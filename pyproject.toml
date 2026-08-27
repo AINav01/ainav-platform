@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ainav-agent-gov"
+version = "2.1.0"
+description = "AINav Job C: dual-admitted effect authority before privileged SoR writes"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [{ name = "AINav" }]
+keywords = ["admit", "dual-control", "consume-ledger", "effect-gate", "job-c"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]
+
+[project.urls]
+Repository = "https://github.com/AINav01/ainav-platform"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+agent_gov = ["py.typed", "dual_consume.lua"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-q --strict-markers"
+markers = [
+    "gold: offline gold invariants (H9 concurrent consume, fail-closed, dual seats)",
+]
+
+[tool.coverage.run]
+source = ["agent_gov"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
