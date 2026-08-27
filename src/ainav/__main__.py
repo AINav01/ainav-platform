@@ -28,6 +28,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="read-only live health (Graph/ARM/BC). Never writes. Never LIVE_PIN_OK.",
     )
+    connect.add_argument(
+        "--bind-host",
+        action="store_true",
+        help="create Azure RG/Key Vault/Log Analytics. Never writes SoR. Never LIVE_PIN_OK.",
+    )
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
     sub.add_parser("company-demo")
@@ -94,6 +99,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "connect":
         from ainav.microsoft.health import stack_health
 
+        if args.bind_host:
+            from ainav.microsoft.host_bind import bind_host
+
+            bound = bind_host()
+            print(canonical_json({"bind": bound, "health": stack_health(probe=True)}))
+            return 0 if bound.get("ok") else 2
         print(canonical_json(stack_health(probe=True if args.probe else None)))
         return 0
     if args.cmd == "connections":

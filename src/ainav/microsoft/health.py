@@ -374,14 +374,20 @@ def probe_complement(connection_id: str) -> dict[str, Any] | None:
             empty_reason="no_key_vault",
             next_step="Create a Key Vault on the visible Azure subscription, or set AZURE_KEYVAULT_URI.",
         )
-    if connection_id in {"azure.monitor", "sentinel.siem"}:
-        row = _probe_arm_list(
+    if connection_id == "azure.monitor":
+        return _probe_arm_list(
             connection_id,
             path="Microsoft.OperationalInsights/workspaces?api-version=2022-10-01",
             empty_reason="no_log_analytics_workspace",
             next_step="Create a Log Analytics workspace before Sentinel/Monitor can bind.",
         )
-        return row
+    if connection_id == "sentinel.siem":
+        return _probe_arm_list(
+            connection_id,
+            path="Microsoft.OperationsManagement/solutions?api-version=2015-11-01-preview",
+            empty_reason="no_sentinel",
+            next_step="A Log Analytics workspace is not Sentinel. Do not mark LIVE_PIN_OK.",
+        )
     if connection_id == "sharepoint.kit":
         tok = _token(GRAPH_SCOPE)
         if not tok.get("ok"):

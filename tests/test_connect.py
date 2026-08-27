@@ -88,6 +88,8 @@ def test_probe_discovers_azure_policy_and_empty_sales(monkeypatch):
             return 200, {"value": []}
         if "Microsoft.OperationalInsights/workspaces" in url:
             return 200, {"value": []}
+        if "Microsoft.OperationsManagement/solutions" in url:
+            return 200, {"value": []}
         if "businesscentral" in url and "/production/" in url:
             return 401, "Authentication_InvalidCredentials"
         if "businesscentral" in url:
@@ -116,7 +118,7 @@ def test_probe_discovers_azure_policy_and_empty_sales(monkeypatch):
     assert body["connections"]["bc.premium"]["sandbox_missing"] is True
     assert body["connections"]["sales.enterprise"]["reason"] == "no_dataverse_instance"
     assert body["connections"]["azure.keyvault"]["reason"] == "no_key_vault"
-    assert body["connections"]["sentinel.siem"]["reason"] == "no_log_analytics_workspace"
+    assert body["connections"]["sentinel.siem"]["reason"] == "no_sentinel"
     assert "Register the existing Entra app" in body["connections"]["bc.premium"]["next"]
     assert body["wrote_sor"] is False
 
@@ -148,7 +150,7 @@ def test_probe_sales_whoami_and_bc_companies(monkeypatch):
             return 200, {"UserId": "u1"}
         if "policyAssignments" in url:
             return 200, {"value": [{"name": "p1"}]}
-        if "vaults" in url or "workspaces" in url:
+        if "vaults" in url or "workspaces" in url or "solutions" in url:
             return 200, {"value": [{"name": "lab"}]}
         if "teams" in url:
             return 200, {"value": [{"id": "t1", "displayName": "Notify"}]}
