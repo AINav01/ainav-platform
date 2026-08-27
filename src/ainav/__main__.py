@@ -30,6 +30,10 @@ def main(argv: list[str] | None = None) -> int:
     brief = sub.add_parser("brief")
     brief.add_argument("--for", dest="for_controller", default="")
     sub.add_parser("next-pin")
+    sub.add_parser("delivery")
+    sub.add_parser("raci")
+    pair = sub.add_parser("motherships")
+    pair.add_argument("--client-id", default="demo-client")
     prov = sub.add_parser("provision")
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
@@ -116,6 +120,18 @@ def main(argv: list[str] | None = None) -> int:
 
         print(canonical_json(sandbox_envelope()))
         return 0
+    if args.cmd == "delivery":
+        from ainav.delivery import public_delivery
+
+        print(canonical_json(public_delivery()))
+        return 0
+    if args.cmd == "raci":
+        from ainav.delivery import raci, week_one
+
+        print(canonical_json({"raci": raci(), "week_one": week_one(), "live": False}))
+        return 0
+    if args.cmd == "motherships":
+        return _motherships(args.client_id)
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())
         industry = tuple(p.strip() for p in args.industry.split(",") if p.strip())
@@ -261,6 +277,40 @@ def _company_demo() -> int:
                 "management": company.management_snapshot(),
                 "runbook": company.delivery_runbook(won),
                 "evidence": company.evidence.stored[-1]["connection"] if company.evidence.stored else None,
+                "live": False,
+            }
+        )
+    )
+    return 0
+
+
+def _motherships(client_id: str) -> int:
+    from ainav.delivery import DeliverySystem
+
+    system = DeliverySystem()
+    pair = system.provision_pair(client_id)
+    local = pair["local"]
+    cloud = pair["cloud"]
+    action = {
+        "action_class": "bc.general_journal.post",
+        "payload": {"account": "1000", "amount": "1.00", "memo": "shared ledger"},
+        "proposal_id": "prp-pair-1",
+        "sor_target": "bc.sandbox",
+        "policy_id": "dual-admit-v1",
+    }
+    out = local.run_and_apply(action, seat_a="oid-1", seat_b="oid-2")
+    replay = None
+    try:
+        cloud.run_and_apply(action, seat_a="oid-1", seat_b="oid-2")
+    except Exception as exc:
+        replay = type(exc).__name__
+    print(
+        canonical_json(
+            {
+                "delivery": system.snapshot(client_id),
+                "effect": out["record_type"],
+                "cloud_replay": replay,
+                "shared_digest": local.lockfile.digest() == cloud.lockfile.digest(),
                 "live": False,
             }
         )

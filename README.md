@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.8.0 surface:
+Same plane, named 2.9.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -60,11 +60,14 @@ python -m ainav buyer
 python -m ainav brief
 python -m ainav next-pin
 python -m ainav provision acme --packs L1
+python -m ainav motherships
+python -m ainav delivery
+python -m ainav raci
 python -m ainav twin-demo
 python -m ainav ops-demo
 ```
 
-Master mothership issues the lockfile. A local mothership runs AdmitClient against a Business Central **digital twin** (`bc.general_journal.post`). Paid U-DUAL deepens the same plane onto a Sales Enterprise twin. Industry packs and fee-for-service hours are **not SKUs**. Teams is notify-only. Entra supplies seat object ids — we do not replace the IdP. Live SoR and `LIVE_PIN_OK` are **open**.
+Master mothership issues the lockfile and never writes the client SoR. A **cloud** mothership (Azure-declared) and a **local** mothership share one consume ledger and run AdmitClient against a Business Central **digital twin** (`bc.general_journal.post`). Paid U-DUAL deepens the same plane onto a Sales Enterprise twin. Industry packs, repositories, and fee-for-service hours are **not SKUs**. Teams is notify-only. Entra supplies seat object ids — we do not replace the IdP. Live SoR and `LIVE_PIN_OK` are **open**.
 
 Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_PLAN.md`. IP hygiene: `LICENSE`, `NOTICE`, `TRADEMARKS.md`. Microsoft marks name integrations only — they are not the product. G12 legal stays **open**.
 

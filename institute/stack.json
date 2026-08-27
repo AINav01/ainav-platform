@@ -68,6 +68,48 @@
       "surfaces": [
         "ainav_inc"
       ]
+    },
+    {
+      "binds": [
+        "eligible dual seats"
+      ],
+      "id": "entra.pim",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Entra Privileged Identity Management",
+      "role": "seat_eligibility",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "DecisionRecord export sink"
+      ],
+      "id": "sentinel.siem",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Sentinel",
+      "role": "siem",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "lockfile host constraints"
+      ],
+      "id": "azure.policy",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Policy",
+      "role": "host_policy",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
     }
   ],
   "connections": [

@@ -128,7 +128,12 @@ class OperatingCompany:
             "master": body["master"],
             "local": body["local"],
             "steps": list(body["steps"]),
+            "cloud": body.get("cloud"),
             "last_sor_connection": account.local.last_sor_connection if account.local else None,
+            "hosts": {
+                "local": account.local.host_mode if account.local else None,
+                "cloud": account.cloud.host_mode if account.cloud else None,
+            },
             "live": False,
         }
 
@@ -163,9 +168,12 @@ class OperatingCompany:
         account.attach_padm()
         account.offer_udual()
         account.attach_udual()
-        account.local.attach_industry("industry.controller")
-        account.local.attach_industry("industry.quote_desk")
-        account.local.attach_library("lib.kit.evidence")
+        for host in (account.local, account.cloud):
+            if host is None:
+                continue
+            host.attach_industry("industry.controller")
+            host.attach_industry("industry.quote_desk")
+            host.attach_library("lib.kit.evidence")
         self.store_kit_evidence(account)
         return account
 
@@ -197,6 +205,13 @@ def public_business() -> dict[str, Any]:
             "seats": list(cat["buyer"]["seats"]),
             "door": cat["buyer"]["door"],
             "contact_email": None,
+        },
+        "delivery": {
+            "hosts": list(cat["motherships"]["hosts"]),
+            "law": cat["motherships"]["law"],
+            "shared_ledger": True,
+            "raci": dict(cat["delivery"]["raci"]),
+            "week_one": list(cat["delivery"]["week_one"]),
         },
         "next_pin": {
             "id": cat["next_pin"]["id"],

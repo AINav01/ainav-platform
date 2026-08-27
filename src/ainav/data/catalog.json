@@ -206,8 +206,77 @@
       "twin": "bc.sandbox",
       "notify": "teams",
       "identity": "entra"
+    },
+    "standard_pair": {
+      "skus": ["L1"],
+      "industry": ["industry.treasury"],
+      "libraries": ["lib.l1.wedge"],
+      "hosts": ["cloud", "local"],
+      "shared_ledger": true,
+      "note": "One client, two motherships, one consume ledger. Not two products."
     }
   },
+  "motherships": {
+    "hosts": ["master", "cloud", "local"],
+    "law": "Same Job C lockfile. One consume ledger per client. Master never writes the client SoR.",
+    "shared_ledger": true,
+    "master": {
+      "writes_client_sor": false,
+      "issues": ["lockfile", "catalog", "gold"],
+      "host": "azure",
+      "live": false
+    },
+    "cloud": {
+      "writes_client_sor": true,
+      "host": "azure",
+      "live": false,
+      "note": "Azure-declared client plane. Sandbox twin. Not LIVE_PIN_OK."
+    },
+    "local": {
+      "writes_client_sor": true,
+      "host": "client",
+      "live": false,
+      "note": "Client-local plane. Same ledger as the cloud mothership."
+    }
+  },
+  "delivery": {
+    "standard_pair": true,
+    "shared_ledger": true,
+    "week_one": [
+      "provision master lockfile",
+      "provision cloud + local pair on one ledger",
+      "proof day or Acceptance Kit on the BC twin",
+      "notify Teams Enterprise and Premium",
+      "store kit evidence in SharePoint sandbox",
+      "refuse live pin"
+    ],
+    "raci": {
+      "master": "AINav, Inc. — lockfile, catalog, gold. Does not write client SoR.",
+      "cloud": "Azure-declared client plane — same ledger, sandbox twin.",
+      "local": "Client operators — seats and twin. Same ledger as cloud.",
+      "buyer": "Controller — forwards the proof-day brief. No invented inbox."
+    }
+  },
+  "repositories": [
+    {
+      "id": "repo.agent_gov",
+      "kind": "plane",
+      "path": "src/agent_gov",
+      "note": "Job C admit plane. Not a SKU."
+    },
+    {
+      "id": "repo.catalog",
+      "kind": "law",
+      "path": "src/ainav/data/catalog.json",
+      "note": "Commercial law. Not a SKU."
+    },
+    {
+      "id": "repo.institute",
+      "kind": "public",
+      "path": "institute",
+      "note": "AINAV.Institute. Not a SKU. Public deploy is not claimed."
+    }
+  ],
   "operations": {
     "stages": [
       "QUALIFY",
@@ -315,6 +384,16 @@
     "compliance_sink": ["Microsoft 365 E7", "Microsoft Purview", "Microsoft Sentinel"],
     "hosting": ["Microsoft Azure"],
     "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+    "complements_10": [
+      "Microsoft Entra ID",
+      "Azure Key Vault",
+      "Azure Monitor",
+      "SharePoint",
+      "Microsoft Defender XDR",
+      "Microsoft Entra Privileged Identity Management",
+      "Microsoft Sentinel",
+      "Azure Policy"
+    ],
     "e7_uses": ["Entra Suite", "Purview", "Sentinel", "Teams licensing"],
     "e7_not_the_product": ["Microsoft 365 Copilot", "Agent 365"]
   },
@@ -463,6 +542,42 @@
         "scopes": ["SecurityEvents.Read.All"],
         "note": "E7 security sink. Not the admit plane.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "entra.pim",
+        "product": "Microsoft Entra Privileged Identity Management",
+        "role": "seat_eligibility",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["eligible dual seats"],
+        "endpoint": "https://graph.microsoft.com/v1.0/privilegedAccess",
+        "env": ["ENTRA_TENANT_ID"],
+        "scopes": ["PrivilegedAccess.Read.AzureAD"],
+        "note": "Eligible seats. Not Job B. A PIM activation is not dual admit.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "sentinel.siem",
+        "product": "Microsoft Sentinel",
+        "role": "siem",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["DecisionRecord export sink"],
+        "endpoint": "https://management.azure.com",
+        "env": ["AZURE_SENTINEL_WORKSPACE_ID"],
+        "scopes": ["https://management.azure.com/.default"],
+        "note": "SIEM sink. Not the admit plane.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "azure.policy",
+        "product": "Azure Policy",
+        "role": "host_policy",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["lockfile host constraints"],
+        "endpoint": "https://management.azure.com",
+        "env": ["AZURE_SUBSCRIPTION_ID"],
+        "scopes": ["https://management.azure.com/.default"],
+        "note": "Host policy. Cannot weaken Job C invariants.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
       }
     ]
   },
@@ -476,8 +591,13 @@
       "not": ["consultancy-as-product", "IdP replacement", "agent inventory", "free U-DUAL"]
     },
     "management": {
-      "cadence": ["weekly pipeline", "kit board", "open-gap review"],
+      "cadence": ["weekly pipeline", "kit board", "open-gap review", "QBR on the same plane"],
       "cannot_mark": ["LIVE_PIN_OK", "signed L1", "recognized revenue"]
+    },
+    "bd": {
+      "motion": "ICP qualify → proof-day brief → ninety minutes → L1 week",
+      "door": "buyer page",
+      "no_inbox": true
     },
     "sales": {
       "motion": "qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL",
@@ -492,10 +612,12 @@
       "principle": "Hours deepen the same admit plane. They never mint a SKU."
     },
     "delivery": {
-      "master": "Azure-declared master mothership issues lockfile, catalog, gold.",
-      "local": "Client mothership: AdmitClient + twin + Teams notify.",
+      "master": "Azure-declared master mothership issues lockfile, catalog, gold. Never writes client SoR.",
+      "cloud": "Azure-declared client mothership. Same ledger as local. Sandbox twin.",
+      "local": "Client-local mothership. Same ledger as cloud. AdmitClient + twin + Teams notify.",
       "steps": [
-        "provision standard_l1",
+        "provision master lockfile",
+        "provision cloud + local pair on one ledger",
         "admit dual seats",
         "effect on BC twin",
         "notify Teams Enterprise and Premium",

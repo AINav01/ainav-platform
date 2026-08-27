@@ -61,6 +61,9 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     validate_programs(catalog)
     validate_connections(catalog)
     validate_business(catalog)
+    from ainav.delivery import validate_delivery
+
+    validate_delivery(catalog)
     _validate_proof_day(catalog)
     _validate_next_pin(catalog)
     _validate_buyer(catalog)

@@ -68,20 +68,30 @@ Exits: LOST · KIT_FAIL · CHURN
 
 ## Delivery
 
-- **Master mothership** (AINav): issues lockfiles, gold vectors, catalog.
-- **Local mothership** (client): AdmitClient + lockfile + ledger + twin.
+Same Job C lockfile. One consume ledger per client. Master never writes the client SoR.
+- **Master mothership** (AINav): issues lockfiles, gold vectors, catalog. Never writes client SoR.
+- **Cloud mothership** (Azure-declared client plane): same ledger as local. Sandbox twin. Not LIVE_PIN_OK.
+- **Local mothership** (client): same ledger as cloud. AdmitClient + twin + Teams notify.
 - **L1 wedge:** `bc.general_journal.post` on a Business Central twin.
 - **U-DUAL deepen:** Sales Enterprise twin after a paid attach.
 - **Teams Enterprise / Premium:** notify only. A chat is not a seat.
 - **Entra (via Microsoft 365 E7):** seat object ids. Not an IdP replacement.
-- **Azure:** declared host for the master mothership and Institute static site.
+- **Azure:** declared host for master, cloud mothership, and Institute static site.
 - **Business Central Premium / Sales Enterprise:** sandbox SoR until G14.
 - Copilot and Agent 365 ship inside E7. They are not the admit plane.
-- Complements: Entra ID, Azure Key Vault, Azure Monitor, SharePoint kit evidence, Defender XDR.
+- Complements: Entra ID, Key Vault, Monitor, SharePoint, Defender XDR, Entra PIM, Sentinel, Azure Policy.
+- RACI: AINav, Inc. — lockfile, catalog, gold. Does not write client SoR.
+
+## Repositories (not SKUs)
+
+- **repo.agent_gov** — src/agent_gov. Job C admit plane. Not a SKU.
+- **repo.catalog** — src/ainav/data/catalog.json. Commercial law. Not a SKU.
+- **repo.institute** — institute. AINAV.Institute. Not a SKU. Public deploy is not claimed.
 
 ## Business operating system
 
 Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
+- BD: ICP qualify → proof-day brief → ninety minutes → L1 week
 - Motion: qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL
 - Services: Hours deepen the same admit plane. They never mint a SKU.
 - Economics: Pipeline math uses catalog list prices. It is not recognized revenue.

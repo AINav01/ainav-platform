@@ -69,17 +69,27 @@ def pack_manifest(
     allowed_actions: frozenset[str] | set[str],
     modules: list[dict[str, Any]],
     libraries: tuple[str, ...] = (),
+    host_mode: str = "local",
+    lockfile_digest: str | None = None,
 ) -> dict[str, Any]:
     cat = load_catalog()
     stack = declared_stack()
+    kind = {
+        "local": "ainav.local_mothership.v1",
+        "cloud": "ainav.cloud_mothership.v1",
+        "master": "ainav.master_mothership.v1",
+    }.get(host_mode, "ainav.local_mothership.v1")
     return {
-        "kind": "ainav.local_mothership.v1",
+        "kind": kind,
+        "host_mode": host_mode,
         "client_id": client_id,
         "skus": list(skus),
         "industry": list(industry),
         "libraries": list(libraries),
         "allowed_actions": sorted(allowed_actions),
         "modules": modules,
+        "lockfile_digest": lockfile_digest,
+        "shared_ledger": bool(cat.get("motherships", {}).get("shared_ledger")),
         "microsoft": stack,
         "not_the_product": stack.get("not_the_product"),
         "connections": [item["id"] for item in cat.get("connections", {}).get("items", [])],

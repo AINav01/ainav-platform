@@ -9,11 +9,14 @@ from ainav.next_pin import sandbox_envelope
 from ainav.programs import application_order, pitch, public_wedge_action, qualify
 from ainav.proof_day import run_proof_day
 from ainav.microsoft.connections import StackPlane, stack_json
-from ainav.mothership import LocalMothership, MasterMothership
+from ainav.delivery import DeliverySystem
+from ainav.mothership import CloudMothership, LocalMothership, MasterMothership
 from ainav.ops import ClientAccount
 
 __all__ = [
     "ClientAccount",
+    "CloudMothership",
+    "DeliverySystem",
     "IPError",
     "LocalMothership",
     "MasterMothership",

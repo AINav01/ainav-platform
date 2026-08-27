@@ -16,12 +16,23 @@
     "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit."
   },
   "delivery": {
-    "local": "Client mothership: AdmitClient + twin + Teams notify.",
-    "master": "Azure-declared master mothership issues lockfile, catalog, gold.",
-    "steps": [
-      "provision standard_l1",
-      "admit dual seats",
-      "effect on BC twin",
+    "hosts": [
+      "master",
+      "cloud",
+      "local"
+    ],
+    "law": "Same Job C lockfile. One consume ledger per client. Master never writes the client SoR.",
+    "raci": {
+      "buyer": "Controller \u2014 forwards the proof-day brief. No invented inbox.",
+      "cloud": "Azure-declared client plane \u2014 same ledger, sandbox twin.",
+      "local": "Client operators \u2014 seats and twin. Same ledger as cloud.",
+      "master": "AINav, Inc. \u2014 lockfile, catalog, gold. Does not write client SoR."
+    },
+    "shared_ledger": true,
+    "week_one": [
+      "provision master lockfile",
+      "provision cloud + local pair on one ledger",
+      "proof day or Acceptance Kit on the BC twin",
       "notify Teams Enterprise and Premium",
       "store kit evidence in SharePoint sandbox",
       "refuse live pin"

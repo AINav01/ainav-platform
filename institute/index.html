@@ -21,6 +21,7 @@
       <a href="#packs">Packs</a>
       <a href="#ops">Operations</a>
       <a href="#business">Business</a>
+      <a href="#delivery">Delivery</a>
       <a href="#mothership">Mothership</a>
       <a href="#microsoft">Microsoft</a>
       <a href="#ip">IP</a>
@@ -143,14 +144,16 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <h3>Industry</h3>
           <ul class="stack">
             <li><strong>industry.treasury</strong> — L1 wedge. <code>bc.general_journal.post</code>.</li>
+            <li><strong>industry.controller</strong> — same L1 wedge, controller seating.</li>
             <li><strong>industry.sales</strong> — paid U-DUAL deepen. Quote override and order submit.</li>
+            <li><strong>industry.quote_desk</strong> — a la carte U-DUAL slice.</li>
           </ul>
         </div>
         <div>
           <h3>Fee-for-service</h3>
           <ul class="stack">
             <li><strong>Acceptance Kit</strong> — inside L1. Not an extra SKU.</li>
-            <li><strong>Integration assist / replay workshop</strong> — $3,500/day on the same plane. Does not attach U-DUAL.</li>
+            <li><strong>Integration assist / replay / QBR / mothership ops</strong> — $3,500/day on the same plane. Does not attach U-DUAL.</li>
           </ul>
         </div>
       </div>
@@ -189,21 +192,38 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         </article>
         <article>
           <h3>Delivery</h3>
-          <p>Master issues the lockfile. Local mothership admits, writes the twin, notifies Teams, stores kit evidence in SharePoint sandbox.</p>
+          <p>Master issues the lockfile. Cloud and local motherships share one consume ledger. Twin write, Teams notify, SharePoint kit evidence. Not a live pin.</p>
         </article>
       </div>
     </section>
 
+    <section id="delivery">
+      <h2>Delivery system</h2>
+      <p class="note">One client. Two motherships. One ledger. Master never writes the client SoR.</p>
+      <p class="lede">
+        Week one: provision the pair, run the ninety-minute proof or Acceptance Kit,
+        notify Teams, store kit evidence, refuse <code>LIVE_PIN_OK</code>.
+      </p>
+      <ul class="stack">
+        <li><strong>Master</strong> — AINav, Inc. Lockfile, catalog, gold.</li>
+        <li><strong>Cloud</strong> — Azure-declared client plane. Same ledger as local.</li>
+        <li><strong>Local</strong> — Client operators. Seats and twin. Same ledger as cloud.</li>
+        <li><strong>Buyer</strong> — Controller forwards the proof-day brief. No invented inbox.</li>
+      </ul>
+    </section>
+
     <section id="mothership">
-      <h2>Master and local motherships</h2>
+      <h2>Master, cloud, and local motherships</h2>
       <div class="split">
         <div>
           <h3>Master</h3>
           <p>AINav issues the lockfile, gold vectors, and catalog. It does not write the client’s SoR. Azure is the declared host — not a live pin.</p>
+          <h3>Cloud</h3>
+          <p>Azure-declared client plane. Same Job C lockfile and consume ledger as local. Sandbox twin. Not <code>LIVE_PIN_OK</code>.</p>
         </div>
         <div>
           <h3>Local</h3>
-          <p>The client plane: AdmitClient, lockfile, ledger, Business Central twin, optional Sales twin. Standard L1 pack is <code>bc.general_journal.post</code>.</p>
+          <p>The client plane: AdmitClient, lockfile, shared ledger, Business Central twin, optional Sales twin. Standard L1 pack is <code>bc.general_journal.post</code>.</p>
         </div>
       </div>
     </section>
@@ -248,7 +268,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <p>Quote override and order submit on a digital twin until G14.</p>
         </article>
       </div>
-      <p class="note">Complements — Entra ID, Azure Key Vault, Azure Monitor, SharePoint kit evidence, Defender XDR. Not SKUs. Not live.</p>
+      <p class="note">Complements — Entra ID, Key Vault, Monitor, SharePoint, Defender XDR, Entra PIM, Sentinel, Azure Policy. Not SKUs. Not live. PIM activation is not dual admit.</p>
     </section>
 
     <section id="ip">

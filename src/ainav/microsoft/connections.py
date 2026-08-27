@@ -28,6 +28,9 @@ COMPLEMENT_IDS = (
     "azure.monitor",
     "sharepoint.kit",
     "defender.xdr",
+    "entra.pim",
+    "sentinel.siem",
+    "azure.policy",
 )
 SURFACES = frozenset({"ainav_inc", "ainav", "institute"})
 FORBIDDEN_CONNECTION_STEMS = (
@@ -67,7 +70,7 @@ def validate_connections(catalog: dict[str, Any]) -> None:
     complements = body.get("complements") or []
     if [item.get("id") for item in complements] != list(COMPLEMENT_IDS):
         raise IntegrityError(
-            "complements must be the five deemed-appropriate Microsoft elements",
+            "complements must be the catalog Microsoft 10/10 set",
             reason_code="CATALOG_CONNECTION",
         )
     for item in complements:

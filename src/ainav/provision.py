@@ -5,6 +5,17 @@ from __future__ import annotations
 from ainav.mothership import LocalMothership, MasterMothership
 
 
+def provision_pair(client_id: str) -> dict[str, LocalMothership]:
+    """Standard L1 cloud + local pair on one consume ledger."""
+    spec = MasterMothership().catalog["provisioning"]["standard_pair"]
+    return MasterMothership().provision_pair(
+        client_id,
+        packs=tuple(spec["skus"]),
+        industry=tuple(spec["industry"]),
+        libraries=tuple(spec.get("libraries") or ()),
+    )
+
+
 def provision_l1(client_id: str) -> LocalMothership:
     return MasterMothership().standard_l1_pack(client_id)
 

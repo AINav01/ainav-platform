@@ -73,6 +73,7 @@ class ClientAccount:
         self.kit_runs: list[dict[str, Any]] = []
         self.services: list[dict[str, Any]] = []
         self.local: LocalMothership | None = None
+        self.cloud: LocalMothership | None = None
         self.coverage_active = False
         self.terms: dict[str, int] = {}
         self.ledger = CommercialLedger()
@@ -95,7 +96,15 @@ class ClientAccount:
         if self.stage != "QUALIFY":
             raise ProvisionError(f"cannot sell L1 from {self.stage}")
         self.ledger.quote(self.client_id, "L1")
-        self.local = self.master.standard_l1_pack(self.client_id)
+        spec = self.master.catalog["provisioning"]["standard_pair"]
+        pair = self.master.provision_pair(
+            self.client_id,
+            packs=tuple(spec["skus"]),
+            industry=tuple(spec["industry"]),
+            libraries=tuple(spec.get("libraries") or ()),
+        )
+        self.local = pair["local"]
+        self.cloud = pair["cloud"]
         self.sold.append("L1")
         self.stage = "L1_SOLD"
         self.ledger.invoice(self.client_id, "L1")
@@ -144,6 +153,8 @@ class ClientAccount:
         self.stage = "KIT_PASS"
         if self.local is not None:
             self.local.kit_pass = True
+        if self.cloud is not None:
+            self.cloud.kit_pass = True
         return report
 
     def attach_padm(self) -> LocalMothership:
@@ -151,6 +162,8 @@ class ClientAccount:
             raise ProvisionError("P-ADM attaches only after kit PASS", reason_code="ATTACH_GATE")
         local = self._require_local()
         local.attach_pack("P-ADM")
+        if self.cloud is not None:
+            self.cloud.attach_pack("P-ADM")
         self.sold.append("P-ADM")
         self.terms["P-ADM"] = 1
         self.coverage_active = True
@@ -180,6 +193,9 @@ class ClientAccount:
         local = self._require_local()
         local.attach_pack("U-DUAL")
         local.attach_industry("industry.sales")
+        if self.cloud is not None:
+            self.cloud.attach_pack("U-DUAL")
+            self.cloud.attach_industry("industry.sales")
         self.sold.append("U-DUAL")
         self.terms["U-DUAL"] = 1
         self.stage = "U_DUAL_ATTACH"
@@ -241,6 +257,10 @@ class ClientAccount:
             "services": list(self.services),
             "industry": list(self.local.industry) if self.local else [],
             "libraries": list(self.local.libraries) if self.local else [],
+            "hosts": {
+                "local": self.local.host_mode if self.local else None,
+                "cloud": self.cloud.host_mode if self.cloud else None,
+            },
         }
 
     def _require_local(self) -> LocalMothership:

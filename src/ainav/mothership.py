@@ -20,8 +20,13 @@ from ainav.packs import book_service, pack_manifest, require_industry, require_l
 from ainav.twin import SandboxRouter
 
 
+HOST_MODES = ("master", "cloud", "local")
+
+
 class LocalMothership:
-    """Client-local Job C plane. Same admit law as master. No second product."""
+    """Client Job C plane. Same admit law as master. No second product."""
+
+    host_mode = "local"
 
     def __init__(
         self,
@@ -162,6 +167,8 @@ class LocalMothership:
             libraries=self.libraries,
             allowed_actions=self.allowed_actions,
             modules=self.modules(),
+            host_mode=self.host_mode,
+            lockfile_digest=self.lockfile.digest(),
         )
 
     def audit(self) -> dict[str, Any]:
@@ -170,8 +177,16 @@ class LocalMothership:
         body["packs"] = list(self.packs)
         body["industry"] = list(self.industry)
         body["libraries"] = list(self.libraries)
+        body["host_mode"] = self.host_mode
+        body["lockfile_digest"] = self.lockfile.digest()
         body["live"] = False
         return body
+
+
+class CloudMothership(LocalMothership):
+    """Azure-declared client plane. Same Job C law and ledger. Not LIVE_PIN_OK."""
+
+    host_mode = "cloud"
 
 
 class MasterMothership:
@@ -181,6 +196,7 @@ class MasterMothership:
         self.catalog = load_catalog()
         self.lockfile = default_lockfile()
         self.locals: dict[str, LocalMothership] = {}
+        self.clouds: dict[str, CloudMothership] = {}
         self.host = AzureHost()
         self.stack = StackPlane()
         self.teams = TeamsNotifier()
@@ -197,9 +213,11 @@ class MasterMothership:
         industry: tuple[str, ...] = (),
         libraries: tuple[str, ...] = (),
         ledger_path: str | None = None,
+        store: AuthorityStore | None = None,
         kit_pass: bool = False,
     ) -> LocalMothership:
-        store = FileAuthorityStore(ledger_path) if ledger_path else MemoryAuthorityStore()
+        if store is None:
+            store = FileAuthorityStore(ledger_path) if ledger_path else MemoryAuthorityStore()
         local = LocalMothership(
             client_id,
             packs=packs,
@@ -211,6 +229,59 @@ class MasterMothership:
         self.locals[client_id] = local
         return local
 
+    def provision_cloud(
+        self,
+        client_id: str,
+        *,
+        packs: tuple[str, ...] = ("L1",),
+        industry: tuple[str, ...] = (),
+        libraries: tuple[str, ...] = (),
+        store: AuthorityStore | None = None,
+        kit_pass: bool = False,
+    ) -> CloudMothership:
+        cloud = CloudMothership(
+            client_id,
+            packs=packs,
+            industry=industry,
+            libraries=libraries,
+            store=store or MemoryAuthorityStore(),
+            kit_pass=kit_pass,
+        )
+        self.clouds[client_id] = cloud
+        return cloud
+
+    def provision_pair(
+        self,
+        client_id: str,
+        *,
+        packs: tuple[str, ...] = ("L1",),
+        industry: tuple[str, ...] = (),
+        libraries: tuple[str, ...] = (),
+        store: AuthorityStore | None = None,
+        kit_pass: bool = False,
+    ) -> dict[str, LocalMothership]:
+        """One client, cloud + local motherships, one consume ledger."""
+        shared = store or MemoryAuthorityStore()
+        local = self.provision(
+            client_id,
+            packs=packs,
+            industry=industry,
+            libraries=libraries,
+            store=shared,
+            kit_pass=kit_pass,
+        )
+        cloud = self.provision_cloud(
+            client_id,
+            packs=packs,
+            industry=industry,
+            libraries=libraries,
+            store=shared,
+            kit_pass=kit_pass,
+        )
+        if local.lockfile.digest() != cloud.lockfile.digest():
+            raise ProvisionError("pair lockfiles must match", reason_code="LOCKFILE_HASH_MISMATCH")
+        return {"local": local, "cloud": cloud}
+
     def company_surface(self) -> dict[str, Any]:
         """AINav, Inc. + Institute + product stack. Deploy is not claimed."""
         return {
@@ -218,10 +289,13 @@ class MasterMothership:
             "product": "AINav Control Plane",
             "institute": "AINAV.Institute",
             "live": False,
+            "host_mode": "master",
+            "writes_client_sor": False,
             "azure": self.host.describe(),
             "master_plan": self.host.plan_master(),
             "institute_plan": self.host.plan_institute(),
             "stack": self.stack.describe(),
+            "motherships": list(load_catalog()["motherships"]["hosts"]),
         }
 
     def standard_l1_pack(self, client_id: str) -> LocalMothership:
