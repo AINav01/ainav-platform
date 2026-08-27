@@ -20,6 +20,18 @@ from ainav.microsoft.connections import COMPLEMENT_IDS, REQUIRED_IDS, spec
 GRAPH_SCOPE = "https://graph.microsoft.com/.default"
 ARM_SCOPE = "https://management.azure.com/.default"
 BC_SCOPE = "https://api.businesscentral.dynamics.com/.default"
+DISCO_SCOPE = "https://globaldisco.crm.dynamics.com/.default"
+DISCO_URL = "https://globaldisco.crm.dynamics.com/api/discovery/v2.0/Instances"
+ARM_SUBS_URL = "https://management.azure.com/subscriptions?api-version=2020-01-01"
+BC_NEXT = (
+    "Register the existing Entra app AINav Cloud Agent1 in Business Central "
+    "(Microsoft Entra Applications). Do not create a new Entra app. "
+    "https://businesscentral.dynamics.com"
+)
+SALES_NEXT = (
+    "Create a Dataverse / Dynamics 365 Sales environment, then set DATAVERSE_URL. "
+    "https://admin.powerplatform.microsoft.com/environments"
+)
 
 
 def _entra() -> dict[str, str]:
@@ -84,7 +96,15 @@ def _get(url: str, token: str) -> tuple[int, Any]:
         return exc.code, str(payload)[:240]
 
 
-def _blocked(connection_id: str, *, reason: str, missing: list[str] | None = None, http: int | None = None) -> dict[str, Any]:
+def _blocked(
+    connection_id: str,
+    *,
+    reason: str,
+    missing: list[str] | None = None,
+    http: int | None = None,
+    next_step: str | None = None,
+    **extra: Any,
+) -> dict[str, Any]:
     item = spec(connection_id)
     out = {
         "id": connection_id,
@@ -100,6 +120,9 @@ def _blocked(connection_id: str, *, reason: str, missing: list[str] | None = Non
         out["missing"] = missing
     if http is not None:
         out["http"] = http
+    if next_step:
+        out["next"] = next_step
+    out.update(extra)
     return out
 
 
@@ -148,66 +171,282 @@ def probe_graph() -> dict[str, Any]:
     return {"entra.id": entra, "m365.e7": e7}
 
 
+def _arm_subscriptions(token: str) -> tuple[int, list[dict[str, Any]]]:
+    status, body = _get(ARM_SUBS_URL, token)
+    if status != 200 or not isinstance(body, dict):
+        return status, []
+    return status, [item for item in (body.get("value") or []) if isinstance(item, dict)]
+
+
+def _subscription_id(token: str) -> str | None:
+    pinned = os.environ.get("AZURE_SUBSCRIPTION_ID") or ""
+    if pinned:
+        return pinned
+    _status, subs = _arm_subscriptions(token)
+    if len(subs) == 1:
+        return subs[0].get("subscriptionId") or None
+    return None
+
+
 def probe_azure() -> dict[str, Any]:
     missing = _missing(["AZURE_SUBSCRIPTION_ID"])
     tok = _token(ARM_SCOPE)
     if not tok.get("ok"):
         return _blocked("azure.host", reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
-    status, body = _get("https://management.azure.com/subscriptions?api-version=2020-01-01", tok["token"])
-    count = len((body or {}).get("value") or []) if isinstance(body, dict) else 0
+    status, subs = _arm_subscriptions(tok["token"])
     if status != 200:
         return _blocked("azure.host", reason="arm_denied", http=status)
-    if count == 0:
+    if not subs:
         return _blocked(
             "azure.host",
             reason="no_azure_subscription_visible",
             missing=missing or ["AZURE_SUBSCRIPTION_ID"],
         )
-    return _connected("azure.host", detail={"subscriptions": count})
+    return _connected(
+        "azure.host",
+        detail={
+            "subscriptions": len(subs),
+            "subscription_ids": [item.get("subscriptionId") for item in subs if item.get("subscriptionId")],
+        },
+    )
 
 
 def probe_bc() -> dict[str, Any]:
     tenant = _entra()["tenant"]
-    env = os.environ.get("BC_ENVIRONMENT") or "sandbox"
+    pinned = os.environ.get("BC_ENVIRONMENT") or ""
+    names = [pinned] if pinned else ["sandbox", "production"]
     missing = _missing(["BC_ENVIRONMENT", "BC_COMPANY_ID"])
     tok = _token(BC_SCOPE)
     if not tok.get("ok"):
         return _blocked("bc.premium", reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
-    status, body = _get(
-        f"https://api.businesscentral.dynamics.com/v2.0/{tenant}/{env}/api/v2.0/companies",
-        tok["token"],
-    )
-    if status == 200 and isinstance(body, dict):
-        return _connected("bc.premium", detail={"environment": env, "companies": len(body.get("value") or [])})
-    reason = "bc_denied"
-    if status == 404:
-        reason = "bc_environment_missing"
-    elif status == 401:
-        reason = "bc_app_not_registered"
-    return _blocked("bc.premium", reason=reason, missing=missing, http=status)
+    last_status = 0
+    saw_401: str | None = None
+    saw_404: str | None = None
+    for env in names:
+        status, body = _get(
+            f"https://api.businesscentral.dynamics.com/v2.0/{tenant}/{env}/api/v2.0/companies",
+            tok["token"],
+        )
+        last_status = status
+        if status == 200 and isinstance(body, dict):
+            return _connected(
+                "bc.premium",
+                detail={"environment": env, "companies": len(body.get("value") or [])},
+            )
+        if status == 401:
+            saw_401 = env
+        elif status == 404:
+            saw_404 = env
+    if saw_401:
+        return _blocked(
+            "bc.premium",
+            reason="bc_app_not_registered",
+            missing=missing,
+            http=401,
+            next_step=BC_NEXT,
+            environment=saw_401,
+            sandbox_missing=saw_404 == "sandbox",
+        )
+    if saw_404:
+        return _blocked(
+            "bc.premium",
+            reason="bc_environment_missing",
+            missing=missing,
+            http=404,
+            next_step=BC_NEXT,
+            environment=saw_404,
+        )
+    return _blocked("bc.premium", reason="bc_denied", missing=missing, http=last_status or None, next_step=BC_NEXT)
 
 
 def probe_sales() -> dict[str, Any]:
     missing = _missing(["DATAVERSE_URL"])
-    return _blocked("sales.enterprise", reason="missing_env", missing=missing)
+    url = os.environ.get("DATAVERSE_URL") or ""
+    if url:
+        tok = _token(f"{url.rstrip('/')}/.default")
+        if tok.get("ok"):
+            status, body = _get(f"{url.rstrip('/')}/api/data/v9.2/WhoAmI", tok["token"])
+            if status == 200 and isinstance(body, dict):
+                return _connected("sales.enterprise", detail={"url": url, "whoami": True})
+            return _blocked("sales.enterprise", reason="dataverse_denied", missing=missing, http=status, next_step=SALES_NEXT)
+        return _blocked(
+            "sales.enterprise",
+            reason=str(tok.get("status")),
+            missing=tok.get("missing") or missing,
+            http=tok.get("http"),
+            next_step=SALES_NEXT,
+        )
+    tok = _token(DISCO_SCOPE)
+    if not tok.get("ok"):
+        return _blocked(
+            "sales.enterprise",
+            reason=str(tok.get("status")) if tok.get("status") != "missing_env" else "missing_env",
+            missing=missing,
+            http=tok.get("http"),
+            next_step=SALES_NEXT,
+        )
+    status, body = _get(DISCO_URL, tok["token"])
+    if status != 200 or not isinstance(body, dict):
+        return _blocked(
+            "sales.enterprise",
+            reason="discovery_denied",
+            missing=missing,
+            http=status,
+            next_step=SALES_NEXT,
+        )
+    instances = [item.get("Url") or item.get("ApiUrl") for item in (body.get("value") or []) if isinstance(item, dict)]
+    instances = [item for item in instances if item]
+    if instances:
+        return _connected("sales.enterprise", detail={"instances": instances, "discovered": True})
+    return _blocked(
+        "sales.enterprise",
+        reason="no_dataverse_instance",
+        missing=missing,
+        next_step=SALES_NEXT,
+    )
 
 
 def probe_teams(connection_id: str) -> dict[str, Any]:
     item = spec(connection_id)
     missing = _missing(list(item.get("env") or []))
-    if missing:
-        return _blocked(connection_id, reason="missing_env", missing=missing)
-    return _blocked(connection_id, reason="graph_role_missing_Team_or_ChannelMessage")
+    tok = _token(GRAPH_SCOPE)
+    if not tok.get("ok"):
+        return _blocked(
+            connection_id,
+            reason=str(tok.get("status")),
+            missing=tok.get("missing") or missing,
+            http=tok.get("http"),
+        )
+    status, body = _get("https://graph.microsoft.com/v1.0/teams?$top=5&$select=id,displayName", tok["token"])
+    if status == 200 and isinstance(body, dict):
+        teams = body.get("value") or []
+        if missing:
+            return _blocked(
+                connection_id,
+                reason="teams_unbound",
+                missing=missing,
+                team_count=len(teams),
+                next_step="Set TEAMS_*_TEAM_ID and TEAMS_*_CHANNEL_ID. A chat is not a seat.",
+            )
+        return _blocked(connection_id, reason="graph_role_missing_Team_or_ChannelMessage")
+    return _blocked(
+        connection_id,
+        reason="graph_role_missing_Team_or_ChannelMessage",
+        missing=missing or None,
+        http=status,
+        next_step="Grant Team.ReadBasic.All on the existing Entra app, or set TEAMS_* IDs. Do not create a new app.",
+    )
 
 
-def probe_complement(connection_id: str) -> dict[str, Any]:
-    item = spec(connection_id)
-    missing = _missing(list(item.get("env") or []))
+def _probe_arm_list(connection_id: str, *, path: str, empty_reason: str, next_step: str) -> dict[str, Any]:
+    tok = _token(ARM_SCOPE)
+    if not tok.get("ok"):
+        return _blocked(connection_id, reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
+    sub = _subscription_id(tok["token"])
+    if not sub:
+        return _blocked(connection_id, reason="no_azure_subscription_visible", missing=["AZURE_SUBSCRIPTION_ID"])
+    status, body = _get(
+        f"https://management.azure.com/subscriptions/{sub}/providers/{path}",
+        tok["token"],
+    )
+    if status != 200 or not isinstance(body, dict):
+        return _blocked(connection_id, reason="arm_denied", http=status)
+    items = body.get("value") or []
+    if not items:
+        return _blocked(connection_id, reason=empty_reason, next_step=next_step, subscription_id=sub)
+    return _connected(connection_id, detail={"subscription_id": sub, "count": len(items)})
+
+
+def probe_complement(connection_id: str) -> dict[str, Any] | None:
     if connection_id == "entra.id":
-        return None  # filled by probe_graph
+        return None
+    if connection_id == "azure.policy":
+        return _probe_arm_list(
+            connection_id,
+            path="Microsoft.Authorization/policyAssignments?api-version=2023-04-01",
+            empty_reason="no_policy_assignment",
+            next_step="Azure Policy is reachable; no assignment required to keep connecting.",
+        )
+    if connection_id == "azure.keyvault":
+        return _probe_arm_list(
+            connection_id,
+            path="Microsoft.KeyVault/vaults?api-version=2022-07-01",
+            empty_reason="no_key_vault",
+            next_step="Create a Key Vault on the visible Azure subscription, or set AZURE_KEYVAULT_URI.",
+        )
+    if connection_id in {"azure.monitor", "sentinel.siem"}:
+        row = _probe_arm_list(
+            connection_id,
+            path="Microsoft.OperationalInsights/workspaces?api-version=2022-10-01",
+            empty_reason="no_log_analytics_workspace",
+            next_step="Create a Log Analytics workspace before Sentinel/Monitor can bind.",
+        )
+        return row
+    if connection_id == "sharepoint.kit":
+        tok = _token(GRAPH_SCOPE)
+        if not tok.get("ok"):
+            return _blocked(connection_id, reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
+        status, _body = _get("https://graph.microsoft.com/v1.0/sites?search=*&$top=1", tok["token"])
+        if status == 200:
+            missing = _missing(["SHAREPOINT_SITE_ID"])
+            if missing:
+                return _blocked(
+                    connection_id,
+                    reason="sharepoint_unbound",
+                    missing=missing,
+                    next_step="Set SHAREPOINT_SITE_ID for Acceptance Kit evidence. Not a seat.",
+                )
+            return _connected(connection_id, detail={"sites_read": True})
+        return _blocked(
+            connection_id,
+            reason="graph_role_missing_Sites",
+            missing=_missing(["SHAREPOINT_SITE_ID"]) or None,
+            http=status,
+            next_step="Grant Sites.Read.All on the existing Entra app, or set SHAREPOINT_SITE_ID.",
+        )
+    if connection_id == "defender.xdr":
+        tok = _token(GRAPH_SCOPE)
+        if not tok.get("ok"):
+            return _blocked(connection_id, reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
+        status, _body = _get("https://graph.microsoft.com/v1.0/security/incidents?$top=1", tok["token"])
+        if status == 200:
+            return _connected(connection_id, detail={"incidents_read": True})
+        return _blocked(
+            connection_id,
+            reason="graph_role_missing_SecurityIncident",
+            http=status,
+            next_step="Grant SecurityIncident.Read.All on the existing Entra app. Do not create a new app.",
+        )
+    if connection_id == "entra.pim":
+        tok = _token(GRAPH_SCOPE)
+        if not tok.get("ok"):
+            return _blocked(connection_id, reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
+        status, _body = _get(
+            "https://graph.microsoft.com/v1.0/roleManagement/directory/roleEligibilityScheduleInstances?$top=1",
+            tok["token"],
+        )
+        if status == 200:
+            return _connected(connection_id, detail={"eligibility_read": True})
+        return _blocked(
+            connection_id,
+            reason="graph_role_missing_PIM",
+            http=status,
+            next_step="Grant RoleEligibilitySchedule.Read.Directory on the existing Entra app. A PIM activation is not dual admit.",
+        )
+    missing = _missing(list(spec(connection_id).get("env") or []))
     if missing:
         return _blocked(connection_id, reason="missing_env", missing=missing)
     return _blocked(connection_id, reason="graph_or_arm_role_missing")
+
+
+def _next_steps(results: dict[str, Any]) -> list[str]:
+    steps: list[str] = []
+    for cid in REQUIRED_IDS + COMPLEMENT_IDS:
+        row = results.get(cid) or {}
+        step = row.get("next")
+        if step and step not in steps:
+            steps.append(step)
+    return steps
 
 
 def stack_health(*, probe: bool | None = None) -> dict[str, Any]:
@@ -243,6 +482,7 @@ def stack_health(*, probe: bool | None = None) -> dict[str, Any]:
         "probed": bool(probe),
         "connected": connected,
         "blocked": blocked,
+        "next": _next_steps(results),
         "connections": results,
         "note": "Graph read is not LIVE_PIN_OK and not a Business Central write.",
     }
