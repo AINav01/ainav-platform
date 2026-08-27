@@ -7,7 +7,9 @@
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
+section[id] { scroll-margin-top: 1.25rem; }
 body {
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
   background: var(--paper);
@@ -36,7 +38,7 @@ nav a {
 }
 nav a:hover { color: var(--ink); }
 
-main { padding: 0 6vw 6rem; max-width: 980px; }
+main { padding: 0 6vw 10rem; max-width: 980px; }
 .hero { padding: 5rem 0 4rem; }
 .kicker {
   color: var(--gold);
