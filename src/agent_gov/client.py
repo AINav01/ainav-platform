@@ -73,6 +73,12 @@ class AdmitClient:
     def session(self, seat_a: str, seat_b: str) -> DualSession:
         return DualSession(seat_a, seat_b, client=self)
 
+    def audit(self) -> dict[str, Any]:
+        return self.store.audit()
+
+    def prove(self, record_id: str) -> dict[str, Any]:
+        return self.store.prove(record_id)
+
 
 class DualSession:
     """Two distinct seats bound for the life of the session."""

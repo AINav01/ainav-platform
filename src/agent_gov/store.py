@@ -13,6 +13,7 @@ from agent_gov.clock import utc_now
 from agent_gov.errors import ConsumeReplay, EffectBlocked, IntegrityError
 from agent_gov.grant import grant_id
 from agent_gov.hashing import canonical_json, content_hash, hashes_equal
+from agent_gov.merkle import leaf_hash, merkle_root, prove_record
 from agent_gov.records import (
     EFFECT_STATES,
     GENESIS_HASH,
@@ -242,6 +243,29 @@ class MemoryAuthorityStore:
         with self._lock:
             return verify_chain(self._chain)
 
+    def merkle_root(self) -> str:
+        with self._lock:
+            return merkle_root([leaf_hash(rec) for rec in self._chain])
+
+    def audit(self) -> dict[str, Any]:
+        records = self.decisions()
+        tip = verify_chain(records)
+        root = merkle_root([leaf_hash(rec) for rec in records])
+        counts: dict[str, int] = {}
+        for rec in records:
+            key = str(rec.get("record_type") or "unknown")
+            counts[key] = counts.get(key, 0) + 1
+        return {
+            "ok": True,
+            "count": len(records),
+            "tip": tip,
+            "merkle_root": root,
+            "counts": counts,
+        }
+
+    def prove(self, record_id: str) -> dict[str, Any]:
+        return prove_record(self.decisions(), record_id)
+
 
 class FileAuthorityStore(MemoryAuthorityStore):
     """Append-only JSONL ledger. Reload rebuilds maps from the hash chain."""
@@ -276,7 +300,12 @@ class FileAuthorityStore(MemoryAuthorityStore):
 
     def _write_tip(self) -> None:
         payload = canonical_json(
-            {"alg": "sha256", "count": len(self._chain), "tip": self._tip}
+            {
+                "alg": "sha256",
+                "count": len(self._chain),
+                "merkle_root": merkle_root([leaf_hash(rec) for rec in self._chain]),
+                "tip": self._tip,
+            }
         ) + "\n"
         dest = self._tip_path()
         tmp = dest.with_suffix(dest.suffix + ".tmp")

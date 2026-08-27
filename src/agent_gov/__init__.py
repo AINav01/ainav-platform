@@ -28,6 +28,7 @@ from agent_gov.errors import (
 )
 from agent_gov.export import export_envelope, verify_export
 from agent_gov.grant import grant_id
+from agent_gov.merkle import merkle_root, prove_record, verify_inclusion
 from agent_gov.hashing import action_hash
 from agent_gov.lockfile import Lockfile, default_lockfile, load_lockfile
 from agent_gov.lua_simulator import LuaSimulator
@@ -68,10 +69,13 @@ __all__ = [
     "export_envelope",
     "grant_id",
     "load_lockfile",
+    "merkle_root",
+    "prove_record",
     "reset_default_store",
     "run_and_apply",
     "verify_chain",
     "verify_export",
+    "verify_inclusion",
     "verify_record",
     "__version__",
 ]

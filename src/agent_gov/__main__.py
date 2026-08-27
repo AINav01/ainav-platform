@@ -30,6 +30,11 @@ def main(argv: list[str] | None = None) -> int:
     verify = sub.add_parser("verify", help="verify a DecisionRecord JSON or JSONL chain")
     verify.add_argument("path")
     sub.add_parser("vectors", help="print frozen gold action_hash")
+    audit = sub.add_parser("audit", help="admit→effect then print a verified audit")
+    audit.add_argument("--ledger", default="", help="optional JSONL ledger path")
+    prove = sub.add_parser("prove", help="print a Merkle inclusion proof from a JSONL ledger")
+    prove.add_argument("ledger")
+    prove.add_argument("record_id")
     args = parser.parse_args(argv)
 
     if args.cmd == "version":
@@ -48,6 +53,10 @@ def main(argv: list[str] | None = None) -> int:
 
         print(files("agent_gov.gold").joinpath("vectors.json").read_text(encoding="utf-8"), end="")
         return 0
+    if args.cmd == "audit":
+        return _audit(args.ledger or None)
+    if args.cmd == "prove":
+        return _prove(Path(args.ledger), args.record_id)
     return 2
 
 
@@ -98,6 +107,42 @@ def _verify(path: Path) -> int:
     else:
         verify_chain(records)
     print(canonical_json({"ok": True, "count": len(records)}))
+    return 0
+
+
+def _audit(ledger: str | None) -> int:
+    if ledger:
+        from agent_gov.store import FileAuthorityStore
+
+        store = FileAuthorityStore(ledger)
+        print(canonical_json(store.audit()))
+        return 0
+    from agent_gov.store import default_store, reset_default_store
+
+    reset_default_store()
+    rec = admit(
+        {
+            "action_class": "custody.withdraw.execute",
+            "payload": {"amount": "100", "asset": "USDC"},
+            "proposal_id": "prp-audit",
+            "sor_target": "custody.core",
+            "policy_id": "dual-admit-v1",
+        },
+        default_lockfile(),
+        ledger=ConsumeLedger(),
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    EffectLedger().effect(rec["request_id"], rec["action_hash"])
+    print(canonical_json(default_store().audit()))
+    return 0
+
+
+def _prove(path: Path, record_id: str) -> int:
+    from agent_gov.store import FileAuthorityStore
+
+    store = FileAuthorityStore(path)
+    print(canonical_json(store.prove(record_id)))
     return 0
 
 

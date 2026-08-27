@@ -44,6 +44,7 @@ session.effect(rec["request_id"], rec["action_hash"])
 python -m pip install -e ".[dev]"
 make gold
 python -m agent_gov demo
+python -m agent_gov audit
 ```
 
 Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent admit **and** effect), the Lua / Redis-shaped consume adapter, file-ledger reload, and integrity verification. Live Redis multi-host HA and `LIVE_PIN_OK` are **not** claimed here.
@@ -59,3 +60,4 @@ Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent a
 | `RedisDualConsume` | EVAL of `dual_consume.lua` (bring your client) |
 | `default_lockfile` | Pinned Job C policy |
 | `verify_record` / `verify_chain` | Tamper check |
+| `audit` / `prove` | Verified counts + Merkle inclusion proof |
