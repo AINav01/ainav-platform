@@ -4,6 +4,7 @@ from ainav.catalog import load_catalog, sku
 from ainav.errors import IPError, ProgramError
 from ainav.ip import notice, screen_pack_label
 from ainav.programs import pitch, public_wedge_action, qualify
+from ainav.microsoft.connections import StackPlane, stack_json
 from ainav.mothership import LocalMothership, MasterMothership
 from ainav.ops import ClientAccount
 
@@ -20,4 +21,6 @@ __all__ = [
     "qualify",
     "screen_pack_label",
     "sku",
+    "stack_json",
+    "StackPlane",
 ]

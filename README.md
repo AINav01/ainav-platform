@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.4.0 surface:
+Same plane, named 2.5.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -68,6 +68,8 @@ Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_P
 python -m ainav ip
 python -m ainav programs
 python -m ainav pitch
+python -m ainav connections
+python -m ainav stack-demo
 ```
 
 NVIDIA Inception and Microsoft for Startups are **qualification targets**, not claimed memberships. Public pitch leads with `bc.general_journal.post`. Inception excludes crypto-associated companies — do not lead with gold-vector custody fixtures. A working public website and incorporation date are apply prerequisites; this tree does not claim either. Pitch: `docs/PROGRAMS.md`.
@@ -85,7 +87,13 @@ NVIDIA Inception and Microsoft for Startups are **qualification targets**, not c
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.4.0 (this tree)
+### 2.5.0 (this tree)
+
+Microsoft stack connections: Azure, Microsoft 365 E7, Teams Enterprise,
+Teams Premium, Business Central Premium, Sales Enterprise. Wired on the
+mothership in sandbox mode. Live deploy and live SoR stay unclaimed.
+
+### 2.4.0
 
 NVIDIA Inception / Microsoft for Startups qualification doctrine.
 Public wedge is `bc.general_journal.post`. Membership, credits, and a

@@ -82,6 +82,7 @@ def pack_manifest(
         "modules": modules,
         "microsoft": stack,
         "not_the_product": stack.get("not_the_product"),
+        "connections": [item["id"] for item in cat.get("connections", {}).get("items", [])],
         "twin": {"live": False, "label": "SANDBOX"},
         "open_gaps": list(cat["open_gaps"]),
         "live": False,

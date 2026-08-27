@@ -21,6 +21,9 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("ip")
     sub.add_parser("programs")
     sub.add_parser("pitch")
+    sub.add_parser("connections")
+    stack_demo = sub.add_parser("stack-demo")
+    stack_demo.add_argument("--client-id", default="demo-client")
     prov = sub.add_parser("provision")
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
@@ -71,6 +74,22 @@ def main(argv: list[str] | None = None) -> int:
 
         print(pitch(), end="")
         return 0
+    if args.cmd == "connections":
+        from ainav.microsoft.connections import stack_json
+
+        master = MasterMothership()
+        print(
+            canonical_json(
+                {
+                    "institute_stack": stack_json(),
+                    "company": master.company_surface(),
+                    "live": False,
+                }
+            )
+        )
+        return 0
+    if args.cmd == "stack-demo":
+        return _stack_demo(args.client_id)
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())
         industry = tuple(p.strip() for p in args.industry.split(",") if p.strip())
@@ -110,7 +129,6 @@ def _twin_demo(client_id: str) -> int:
         "policy_id": "dual-admit-v1",
     }
     out = local.run_and_apply(action, seat_a="oid-1", seat_b="oid-2")
-    local.teams.notify({"request_id": out["request_id"], "record_type": out["record_type"]})
     print(
         canonical_json(
             {
@@ -119,6 +137,38 @@ def _twin_demo(client_id: str) -> int:
                 "audit": local.audit(),
                 "twin_journals": local.bc.twin.journals,
                 "teams_notified": len(local.teams.sent),
+                "connections": [item["id"] for item in local.stack.describe()["connections"]],
+            }
+        )
+    )
+    return 0
+
+
+def _stack_demo(client_id: str) -> int:
+    from ainav.microsoft.connections import stack_json
+
+    master = MasterMothership()
+    local = master.standard_l1_pack(client_id)
+    out = local.run_and_apply(
+        {
+            "action_class": "bc.general_journal.post",
+            "payload": {"account": "1000", "amount": "250.00", "memo": "sandbox journal"},
+            "proposal_id": "prp-stack-1",
+            "sor_target": "bc.sandbox",
+            "policy_id": "dual-admit-v1",
+        },
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    print(
+        canonical_json(
+            {
+                "company": master.company_surface(),
+                "institute_stack": stack_json(),
+                "effect": out["record_type"],
+                "sor_connection": local.last_sor_connection,
+                "teams": [item["connection"] for item in local.teams.sent],
+                "live": False,
             }
         )
     )

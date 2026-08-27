@@ -1,0 +1,19 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/stack.json", "/styles.css", "/*.webp"]
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "no-referrer",
+    "X-Frame-Options": "DENY"
+  },
+  "routes": [
+    {
+      "route": "/stack.json",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
+    }
+  ]
+}

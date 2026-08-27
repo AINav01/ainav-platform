@@ -53,10 +53,12 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
                 reason_code="CATALOG_SKU",
             )
     from ainav.ip import validate_ip_doctrine
+    from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
     validate_ip_doctrine(catalog)
     validate_programs(catalog)
+    validate_connections(catalog)
 
 
 def _validate_named_sets(items: list[dict[str, Any]], module_ids: set[str], kind: str) -> None:

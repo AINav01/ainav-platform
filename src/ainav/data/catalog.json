@@ -195,7 +195,97 @@
     "sor_udual": ["Dynamics 365 Sales Enterprise"],
     "compliance_sink": ["Microsoft 365 E7", "Microsoft Purview", "Microsoft Sentinel"],
     "hosting": ["Microsoft Azure"],
-    "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane."
+    "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+    "e7_uses": ["Entra Suite", "Purview", "Sentinel", "Teams licensing"],
+    "e7_not_the_product": ["Microsoft 365 Copilot", "Agent 365"]
+  },
+  "connections": {
+    "schema_version": "ainav.connections.v1",
+    "live": false,
+    "live_pin": "G1/G10 LIVE_PIN_OK",
+    "live_sor": "G14 live SoR",
+    "required_ids": [
+      "azure.host",
+      "m365.e7",
+      "teams.enterprise",
+      "teams.premium",
+      "bc.premium",
+      "sales.enterprise"
+    ],
+    "items": [
+      {
+        "id": "azure.host",
+        "product": "Microsoft Azure",
+        "role": "hosting",
+        "surfaces": ["ainav_inc", "ainav", "institute"],
+        "binds": ["master mothership target", "AINAV.Institute static site"],
+        "endpoint": "https://management.azure.com",
+        "env": ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET", "AZURE_SUBSCRIPTION_ID"],
+        "scopes": ["https://management.azure.com/.default"],
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "m365.e7",
+        "product": "Microsoft 365 E7",
+        "role": "tenant",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["Entra Suite seat ids", "Purview/Sentinel audit sink", "Teams licensing"],
+        "endpoint": "https://graph.microsoft.com/v1.0",
+        "env": ["ENTRA_TENANT_ID", "ENTRA_CLIENT_ID", "ENTRA_CLIENT_SECRET"],
+        "scopes": ["https://graph.microsoft.com/.default"],
+        "uses": ["Entra Suite", "Purview", "Sentinel", "Teams licensing"],
+        "does_not_use_as_product": ["Microsoft 365 Copilot", "Agent 365"],
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "teams.enterprise",
+        "product": "Microsoft Teams Enterprise",
+        "role": "notify",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["effect notify"],
+        "endpoint": "https://graph.microsoft.com/v1.0/teams",
+        "env": ["TEAMS_ENTERPRISE_TEAM_ID", "TEAMS_ENTERPRISE_CHANNEL_ID"],
+        "scopes": ["ChannelMessage.Send"],
+        "note": "Notify only. A chat is not a seat.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "teams.premium",
+        "product": "Microsoft Teams Premium",
+        "role": "notify",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["protected effect notify"],
+        "endpoint": "https://graph.microsoft.com/v1.0/teams",
+        "env": ["TEAMS_PREMIUM_TEAM_ID", "TEAMS_PREMIUM_CHANNEL_ID"],
+        "scopes": ["ChannelMessage.Send"],
+        "note": "Protected notify only. A meeting or Adaptive Card is not a seat.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "bc.premium",
+        "product": "Dynamics 365 Business Central Premium",
+        "role": "sor",
+        "surfaces": ["ainav"],
+        "binds": ["bc.general_journal.post"],
+        "endpoint": "https://api.businesscentral.dynamics.com/v2.0",
+        "env": ["BC_TENANT_ID", "BC_ENVIRONMENT", "BC_COMPANY_ID"],
+        "scopes": ["https://api.businesscentral.dynamics.com/.default"],
+        "sandbox_target": "bc.sandbox",
+        "live_gap": "G14 live SoR"
+      },
+      {
+        "id": "sales.enterprise",
+        "product": "Dynamics 365 Sales Enterprise",
+        "role": "sor",
+        "surfaces": ["ainav"],
+        "binds": ["d365.quote.discount_override", "d365.order.submit"],
+        "endpoint": "https://*.crm.dynamics.com/api/data/v9.2",
+        "env": ["DATAVERSE_URL"],
+        "scopes": ["https://*.crm.dynamics.com/.default"],
+        "sandbox_target": "d365.sales.sandbox",
+        "live_gap": "G14 live SoR"
+      }
+    ]
   },
   "ip": {
     "owner": "AINav, Inc.",

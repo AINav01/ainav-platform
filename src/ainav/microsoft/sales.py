@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from ainav.errors import LivePinError
+from ainav.microsoft.connections import intended_request
 from ainav.twin import SalesEnterpriseTwin
 
 
@@ -17,6 +18,15 @@ class SalesEnterpriseAdapter:
             )
         self.twin = twin or SalesEnterpriseTwin()
         self.live = False
+        self.connection_id = "sales.enterprise"
 
     def apply(self, grant: dict[str, Any]) -> dict[str, Any]:
-        return self.twin.apply(grant)
+        posted = self.twin.apply(grant)
+        posted["connection"] = self.connection_id
+        posted["intended"] = intended_request(
+            self.connection_id,
+            method="POST",
+            path="/api/data/v9.2",
+            payload=grant.get("proposal") or {},
+        )
+        return posted

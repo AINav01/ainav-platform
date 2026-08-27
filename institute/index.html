@@ -123,16 +123,45 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="microsoft">
-      <h2>Microsoft</h2>
-      <p class="note">Identity, notify, SoR, audit sink. Not the product.</p>
-      <ul class="stack">
-        <li><strong>Entra ID</strong> — seat object ids. We do not replace the IdP.</li>
-        <li><strong>Teams Enterprise / Premium</strong> — notify only. A chat is not a seat.</li>
-        <li><strong>Business Central Premium</strong> — L1 system of record (twin until G14).</li>
-        <li><strong>Sales Enterprise</strong> — U-DUAL action classes on a sandbox twin.</li>
-        <li><strong>Microsoft 365 E7 · Purview · Sentinel</strong> — compliance sink (sandbox export until a live pin).</li>
-        <li><strong>Azure</strong> — hosting target for the master mothership.</li>
-      </ul>
+      <h2>Microsoft stack</h2>
+      <p class="note">Six connections. Sandbox only. Microsoft is not the product. Copilot and Agent 365 are not the admit plane.</p>
+      <p class="lede">
+        AINav, Inc. hosts on Azure. AINav admits on Entra seats from Microsoft 365 E7,
+        writes the Business Central and Sales twins, and notifies Teams Enterprise and Teams Premium.
+        AINAV.Institute is a static site planned for Azure Static Web Apps — not a live deploy.
+      </p>
+      <div id="stack-cards" class="cards stack-cards">
+        <article data-id="azure.host">
+          <h3>Microsoft Azure</h3>
+          <p class="price">hosting · sandbox</p>
+          <p>Master mothership target and Institute static host. Deploy is not claimed.</p>
+        </article>
+        <article data-id="m365.e7">
+          <h3>Microsoft 365 E7</h3>
+          <p class="price">tenant · sandbox</p>
+          <p>Entra Suite, Purview, Sentinel, Teams licensing. Copilot / Agent 365 are not SKUs.</p>
+        </article>
+        <article data-id="teams.enterprise">
+          <h3>Teams Enterprise</h3>
+          <p class="price">notify · sandbox</p>
+          <p>Effect notify only. A chat is not a seat.</p>
+        </article>
+        <article data-id="teams.premium">
+          <h3>Teams Premium</h3>
+          <p class="price">protected notify · sandbox</p>
+          <p>Protected effect notify. A meeting is not a seat.</p>
+        </article>
+        <article data-id="bc.premium">
+          <h3>Business Central Premium</h3>
+          <p class="price">L1 SoR · sandbox</p>
+          <p><code>bc.general_journal.post</code> on a digital twin until G14.</p>
+        </article>
+        <article data-id="sales.enterprise">
+          <h3>Sales Enterprise</h3>
+          <p class="price">U-DUAL SoR · sandbox</p>
+          <p>Quote override and order submit on a digital twin until G14.</p>
+        </article>
+      </div>
     </section>
 
     <section id="ip">
@@ -189,6 +218,17 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         if (history.replaceState) history.replaceState(null, "", "#" + id);
       });
     });
+    fetch("stack.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
+      if (!data || data.live || !data.connections) return;
+      var root = document.getElementById("stack-cards");
+      if (!root) return;
+      data.connections.forEach(function (item) {
+        var card = root.querySelector("[data-id='" + item.id + "']");
+        if (!card) return;
+        card.setAttribute("data-mode", item.mode);
+        card.setAttribute("data-live", "false");
+      });
+    }).catch(function () { /* stack.json is optional when opened as a file */ });
   </script>
 </body>
 </html>

@@ -6,12 +6,13 @@ from typing import Any
 
 from agent_gov import AdmitClient, FileAuthorityStore, MemoryAuthorityStore, default_lockfile
 from agent_gov.store import AuthorityStore
-from ainav.catalog import ALLOWED_SKUS, action_classes_for, load_catalog, modules_for
+from ainav.catalog import ALLOWED_SKUS, action_classes_for, l1_action_classes, load_catalog, modules_for
 from ainav.errors import ProvisionError
 from ainav.ip import screen_pack_label
 from ainav.microsoft.azure import AzureHost
 from ainav.microsoft.bc import BusinessCentralAdapter
 from ainav.microsoft.compliance import ComplianceSink
+from ainav.microsoft.connections import StackPlane
 from ainav.microsoft.entra import EntraSeatVerifier
 from ainav.microsoft.sales import SalesEnterpriseAdapter
 from ainav.microsoft.teams import TeamsNotifier
@@ -67,6 +68,8 @@ class LocalMothership:
         self.teams = TeamsNotifier()
         self.compliance = ComplianceSink()
         self.azure = AzureHost()
+        self.stack = StackPlane()
+        self.last_sor_connection: str | None = None
         self.allowed_actions = self._allowed_actions()
         for pack_id in industry:
             self.attach_industry(pack_id)
@@ -123,12 +126,25 @@ class LocalMothership:
                 f"action_class {action_class!r} is not on this mothership",
                 reason_code="PACK_SCOPE",
             )
-        return self.client.run_and_apply(
+        out = self.client.run_and_apply(
             action,
             seat_a=seat_a,
             seat_b=seat_b,
             apply=lambda grant: self.router.apply(grant, trusted=True),
         )
+        if action.get("action_class") in l1_action_classes():
+            self.last_sor_connection = "bc.premium"
+        else:
+            self.last_sor_connection = "sales.enterprise"
+        self.stack.after_effect(
+            self,
+            {
+                "record_type": out.get("record_type"),
+                "request_id": out.get("request_id"),
+                "action_hash": out.get("action_hash"),
+            },
+        )
+        return out
 
     def export_audit(self) -> dict[str, Any]:
         if "P-ADM" not in self.packs:
@@ -166,6 +182,9 @@ class MasterMothership:
         self.lockfile = default_lockfile()
         self.locals: dict[str, LocalMothership] = {}
         self.host = AzureHost()
+        self.stack = StackPlane()
+        self.teams = TeamsNotifier()
+        self.compliance = ComplianceSink()
 
     def issue_lockfile(self):
         return self.lockfile
@@ -191,6 +210,19 @@ class MasterMothership:
         )
         self.locals[client_id] = local
         return local
+
+    def company_surface(self) -> dict[str, Any]:
+        """AINav, Inc. + Institute + product stack. Deploy is not claimed."""
+        return {
+            "entity": "AINav, Inc.",
+            "product": "AINav Control Plane",
+            "institute": "AINAV.Institute",
+            "live": False,
+            "azure": self.host.describe(),
+            "master_plan": self.host.plan_master(),
+            "institute_plan": self.host.plan_institute(),
+            "stack": self.stack.describe(),
+        }
 
     def standard_l1_pack(self, client_id: str) -> LocalMothership:
         spec = self.catalog["provisioning"]["standard_l1"]
