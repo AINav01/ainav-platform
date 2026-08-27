@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.7.0 surface:
+Same plane, named 2.8.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -55,6 +55,10 @@ Three SKUs only — **L1** ($28–40k), **P-ADM** ($40–60k/yr), **U-DUAL** ($2
 
 ```bash
 python -m ainav plan
+python -m ainav proof-day
+python -m ainav buyer
+python -m ainav brief
+python -m ainav next-pin
 python -m ainav provision acme --packs L1
 python -m ainav twin-demo
 python -m ainav ops-demo
@@ -73,7 +77,9 @@ python -m ainav stack-demo
 python -m ainav company-demo
 ```
 
-NVIDIA Inception and Microsoft for Startups are **qualification targets**, not claimed memberships. Public pitch leads with `bc.general_journal.post`. Inception excludes crypto-associated companies — do not lead with gold-vector custody fixtures. A working public website and incorporation date are apply prerequisites; this tree does not claim either. Pitch: `docs/PROGRAMS.md`.
+Microsoft for Startups is first; NVIDIA Inception is second. Both are **qualification targets**, not claimed memberships. Public pitch leads with `bc.general_journal.post`. Inception excludes crypto-associated companies — do not lead with gold-vector custody fixtures. A working public website and incorporation date are apply prerequisites; this tree does not claim either. Pitch: `docs/PROGRAMS.md`.
+
+Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page generates a forwardable brief and does not invent a contact inbox. Next pin is the intended Business Central sandbox envelope (`sent=False`). Not `LIVE_PIN_OK`.
 
 ## Package
 
@@ -88,7 +94,15 @@ NVIDIA Inception and Microsoft for Startups are **qualification targets**, not c
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.7.0 (this tree)
+### 2.8.0 (this tree)
+
+Proof day is an executable 90-minute runbook. Institute buyer page
+generates a forwardable brief (no inbox). Next pin is the intended
+Business Central sandbox envelope. Microsoft for Startups is first;
+NVIDIA Inception is second. L1 copy is incident-framed. G12/G13 stay
+open. No named design partner.
+
+### 2.7.0
 
 Acceptance Kit is a twin proof. Quotes/invoices are catalog-list
 artifacts. Exits: LOST, KIT_FAIL, CHURN. P-ADM/U-DUAL can renew.

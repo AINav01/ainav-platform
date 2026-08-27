@@ -11,9 +11,17 @@ distinct humans bind the same `action_hash`, that grant is consumed once,
 and the effect gate is fail-closed. Microsoft supplies identity, notify,
 SoR, and audit. It is not the product.
 
+## The sale
+
+The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.
+- Proof day: 90 minutes. `python -m ainav proof-day`
+- Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.
+- L1 is that week. Signed L1 is G13 and stays open.
+
 ## Commercial spine (do not invent SKUs)
 
 - **L1 FIRST_OFFER** — $28,000–$40,000 (2–4 weeks)
+  - incident: The unauthorized general-journal post that two humans did not admit.
   - includes: Local mothership on the Job C admit plane
   - includes: L1 action class only
   - includes: Digital-twin SoR sandbox
@@ -73,8 +81,8 @@ Exits: LOST · KIT_FAIL · CHURN
 
 ## Business operating system
 
-Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid U-DUAL. Hours stay fee-for-service on the same plane.
-- Motion: qualify → sell L1 → kit PASS → attach P-ADM → offer paid U-DUAL
+Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
+- Motion: qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL
 - Services: Hours deepen the same admit plane. They never mint a SKU.
 - Economics: Pipeline math uses catalog list prices. It is not recognized revenue.
 - Complements are not SKUs. Industry packs and FFS hours are not SKUs.
@@ -92,10 +100,22 @@ Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid
 
 Job C: dual-admitted effect authority before Dynamics 365 Business Central privileged writes. Not a cryptocurrency product. Not an IdP. Not agent inventory.
 - Public wedge: `bc.general_journal.post`
-- NVIDIA Inception and Microsoft for Startups: prepare only. Membership is not claimed.
+- Apply order: Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.
 - Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.
 - Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.
 - Ready to apply is false until a public website and incorporation date exist outside this tree.
+
+## Buyer page and ICP
+
+An unauthorized general-journal post that two humans did not admit.
+- Door: Generate a proof-day brief a controller can forward. Do not invent a contact inbox.
+- ICP: Dynamics 365 Business Central Premium; Microsoft Entra ID; existing two-person journal SOD.
+- Named customers: none. Do not invent a design-partner name.
+
+## Next pin
+
+Process twin → Microsoft Business Central sandbox envelope. Not production. Not LIVE_PIN_OK.
+- `bc.sandbox` → `bc.microsoft.sandbox` on bc.premium. sent=False.
 
 ## Acceptance Kit
 

@@ -30,6 +30,7 @@ ALLOWED_STATUSES = frozenset(
     {"qualify_not_claimed", "later_not_first", "complementary_not_claimed"}
 )
 FIRST_IDS = frozenset({"nvidia.inception", "microsoft.founders_hub"})
+APPLY_FIRST = ("microsoft.founders_hub", "nvidia.inception")
 
 
 def programs() -> dict[str, Any]:
@@ -62,12 +63,25 @@ def validate_programs(catalog: dict[str, Any]) -> None:
     ids = {item.get("id") for item in body.get("targets", [])}
     if not FIRST_IDS.issubset(ids):
         raise IntegrityError("catalog must list Inception and Microsoft for Startups")
+    order = list(body.get("application_order") or [])
+    if order[:2] != list(APPLY_FIRST):
+        raise IntegrityError(
+            "Microsoft for Startups is first; NVIDIA Inception is second",
+            reason_code="PROGRAM_ORDER",
+        )
+    if set(order) != ids:
+        raise IntegrityError("application_order must list every program target", reason_code="PROGRAM_ORDER")
     for item in body.get("targets", []):
         if item.get("status") not in ALLOWED_STATUSES:
             raise IntegrityError(
                 f"unknown program status {item.get('status')!r}",
                 reason_code="CATALOG_PROGRAM",
             )
+
+
+def application_order() -> list[str]:
+    body = programs()
+    return list(body.get("application_order") or [item["id"] for item in body["targets"]])
 
 
 def public_wedge_action() -> dict[str, Any]:
@@ -125,6 +139,7 @@ def qualify(program_id: str) -> dict[str, Any]:
     apply_blockers = list(body.get("apply_prerequisites") or [])
     if not body.get("website", {}).get("public_deploy_claimed"):
         apply_blockers = list(dict.fromkeys(apply_blockers))
+    order = list(body.get("application_order") or [item["id"] for item in body["targets"]])
     return {
         "id": program_id,
         "name": target.get("name"),
@@ -138,6 +153,8 @@ def qualify(program_id: str) -> dict[str, Any]:
         "blockers": blockers,
         "apply_prerequisites": apply_blockers,
         "apply": target.get("apply") or target.get("url"),
+        "apply_order": order.index(program_id) + 1 if program_id in order else None,
+        "apply_first": APPLY_FIRST[0],
         "live": False,
     }
 
@@ -166,6 +183,12 @@ def pitch() -> str:
         "**Not:** cryptocurrency, agent inventory (Job A), IdP replacement (Job B), Teams vote.",
         "**Not claimed:** membership, credits, badges, GPU production, public website deploy.",
         "",
+        "## Apply order",
+        "",
+        "Microsoft for Startups first. NVIDIA Inception second.",
+        "Do not apply until a public website and incorporation date exist.",
+        "Do not lead any deck with lab custody fixtures.",
+        "",
         "## Commercial spine",
         "",
     ]
@@ -187,7 +210,9 @@ def pitch() -> str:
         "## Programs to prepare (not claimed)",
         "",
     ]
-    for item in body["targets"]:
+    by_id = {item["id"]: item for item in body["targets"]}
+    for program_id in body.get("application_order") or [item["id"] for item in body["targets"]]:
+        item = by_id[program_id]
         status = item.get("status")
         lines.append(f"- **{item['name']}** — {status}. {item.get('url', '')}")
         if item.get("pitch_rule"):

@@ -61,7 +61,79 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     validate_programs(catalog)
     validate_connections(catalog)
     validate_business(catalog)
+    _validate_proof_day(catalog)
+    _validate_next_pin(catalog)
+    _validate_buyer(catalog)
+    _validate_icp(catalog)
     _validate_acceptance_kit(catalog)
+
+
+def _validate_proof_day(catalog: dict[str, Any]) -> None:
+    body = catalog.get("proof_day")
+    if not isinstance(body, dict) or body.get("requires_sku") != "L1":
+        raise IntegrityError("proof day requires L1", reason_code="CATALOG_PROOF_DAY")
+    if body.get("signed_l1") is True or body.get("live") is True:
+        raise IntegrityError("proof day cannot close G13 or claim live", reason_code="SIGNED_L1_OPEN")
+    if int(body.get("minutes") or 0) != 90:
+        raise IntegrityError("proof day is ninety minutes", reason_code="CATALOG_PROOF_DAY")
+    if body.get("action_class") != "bc.general_journal.post":
+        raise IntegrityError("proof day is the L1 journal", reason_code="CATALOG_PROOF_DAY")
+    if body.get("sor_target") != "bc.sandbox":
+        raise IntegrityError("proof day stays on the BC twin", reason_code="CATALOG_PROOF_DAY")
+
+
+def _validate_next_pin(catalog: dict[str, Any]) -> None:
+    body = catalog.get("next_pin")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing next_pin", reason_code="CATALOG_NEXT_PIN")
+    if body.get("id") != "bc.microsoft.sandbox":
+        raise IntegrityError("next pin is bc.microsoft.sandbox", reason_code="CATALOG_NEXT_PIN")
+    if body.get("connection") != "bc.premium":
+        raise IntegrityError("next pin binds bc.premium", reason_code="CATALOG_NEXT_PIN")
+    if body.get("live") is True or body.get("production") is True or body.get("sent") is True:
+        raise IntegrityError("next pin cannot claim live, production, or sent", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("live_pin_ok") is True:
+        raise IntegrityError("next pin cannot close LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("from") != "bc.sandbox" or body.get("to") != "bc.microsoft.sandbox":
+        raise IntegrityError("next pin is twin → microsoft sandbox", reason_code="CATALOG_NEXT_PIN")
+
+
+def _validate_buyer(catalog: dict[str, Any]) -> None:
+    body = catalog.get("buyer")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing buyer page", reason_code="CATALOG_BUYER")
+    if body.get("contact_email") or body.get("mailto"):
+        raise IntegrityError("do not invent a contact inbox", reason_code="BUYER_INBOX")
+    write = body.get("write_that_must_not_happen") or ""
+    if "journal" not in str(write).lower():
+        raise IntegrityError("buyer page must name the journal write", reason_code="CATALOG_BUYER")
+    seats = set(body.get("seats") or [])
+    kit = catalog.get("acceptance_kit", {}).get("seats") or {}
+    expected = {kit.get("seat_a", {}).get("role"), kit.get("seat_b", {}).get("role")}
+    if seats != expected:
+        raise IntegrityError("buyer seats must be the catalog treasury pair", reason_code="CATALOG_BUYER")
+    prices = " ".join(body.get("prices") or [])
+    for sku_id in ("L1", "P-ADM", "U-DUAL"):
+        if sku_id not in prices:
+            raise IntegrityError("buyer page must list the three SKUs", reason_code="CATALOG_BUYER")
+    refuse = " ".join(body.get("refuse") or []).lower().replace("_", " ")
+    for stem in ("teams vote", "copilot", "free u-dual", "live pin ok"):
+        if stem not in refuse:
+            raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
+
+
+def _validate_icp(catalog: dict[str, Any]) -> None:
+    icp = catalog.get("icp")
+    if not isinstance(icp, dict):
+        raise IntegrityError("catalog missing icp profile", reason_code="CATALOG_ICP")
+    if icp.get("named_customers"):
+        raise IntegrityError("do not invent a named customer", reason_code="ICP_NAMED")
+    if icp.get("do_not_invent_names") is not True:
+        raise IntegrityError("ICP must refuse invented names", reason_code="ICP_NAMED")
+    if "Business Central" not in str(icp.get("erp") or ""):
+        raise IntegrityError("ICP erp is Business Central Premium", reason_code="CATALOG_ICP")
+    if "Entra" not in str(icp.get("identity") or ""):
+        raise IntegrityError("ICP identity is Entra ID", reason_code="CATALOG_ICP")
 
 
 def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
@@ -152,6 +224,10 @@ def acceptance_kit() -> dict[str, Any]:
 
 def honest_missing() -> list[str]:
     return list(load_catalog().get("honest_missing") or [])
+
+
+def l1_incident_copy() -> str:
+    return str(load_catalog()["l1_incident_copy"])
 
 
 def microsoft_stack() -> dict[str, Any]:

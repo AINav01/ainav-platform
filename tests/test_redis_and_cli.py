@@ -50,7 +50,7 @@ def test_redis_dual_consume_via_simulator_client():
 
 def test_cli_version_and_invariants(capsys):
     assert main(["version"]) == 0
-    assert "2.7.0" in capsys.readouterr().out
+    assert "2.8.0" in capsys.readouterr().out
     assert main(["invariants"]) == 0
     out = capsys.readouterr().out
     assert "dual-admit-v1" in out

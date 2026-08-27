@@ -6,6 +6,12 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 **Not:** cryptocurrency, agent inventory (Job A), IdP replacement (Job B), Teams vote.
 **Not claimed:** membership, credits, badges, GPU production, public website deploy.
 
+## Apply order
+
+Microsoft for Startups first. NVIDIA Inception second.
+Do not apply until a public website and incorporation date exist.
+Do not lead any deck with lab custody fixtures.
+
 ## Commercial spine
 
 - **L1 FIRST_OFFER** — $28,000–$40,000 (2–4 weeks)
@@ -21,11 +27,11 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 
 ## Programs to prepare (not claimed)
 
+- **Microsoft for Startups** — qualify_not_claimed. https://startups.microsoft.com
+  - Microsoft is the SoR and hosting stack, not the product.
 - **NVIDIA Inception** — qualify_not_claimed. https://www.nvidia.com/en-us/startups/
   - Lead with the Business Central write-gate. Do not lead with lab custody fixtures.
   - Official FAQ: startups may join before using NVIDIA GPUs or SDKs. Do not invent a GPU production workload.
-- **Microsoft for Startups** — qualify_not_claimed. https://startups.microsoft.com
-  - Microsoft is the SoR and hosting stack, not the product.
 - **NVIDIA Developer Program** — complementary_not_claimed. https://developer.nvidia.com/developer-program
   - Complementary. Do not treat as Inception acceptance.
   - Developer tools and training. Not a grant and not Inception membership.

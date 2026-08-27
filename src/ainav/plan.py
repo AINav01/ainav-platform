@@ -22,6 +22,13 @@ def one_page() -> str:
         "and the effect gate is fail-closed. Microsoft supplies identity, notify,",
         "SoR, and audit. It is not the product.",
         "",
+        "## The sale",
+        "",
+        cat["l1_incident_copy"],
+        f"- Proof day: {cat['proof_day']['minutes']} minutes. `{cat['proof_day']['cli']}`",
+        "- Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+        "- L1 is that week. Signed L1 is G13 and stays open.",
+        "",
         "## Commercial spine (do not invent SKUs)",
         "",
     ]
@@ -31,6 +38,8 @@ def one_page() -> str:
             f"- **{sku_item['id']} {sku_item['name']}** — "
             f"${price['min']:,}–${price['max']:,} ({sku_item['term']})"
         )
+        if sku_item.get("incident"):
+            lines.append(f"  - incident: {sku_item['incident']}")
         for item in sku_item.get("includes", []):
             lines.append(f"  - includes: {item}")
         for item in sku_item.get("does_not_include", []):
@@ -103,10 +112,22 @@ def one_page() -> str:
         "",
         cat["programs"]["lead_narrative"],
         f"- Public wedge: `{cat['programs']['public_wedge']}`",
-        "- NVIDIA Inception and Microsoft for Startups: prepare only. Membership is not claimed.",
+        "- Apply order: Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.",
         "- Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.",
         "- Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.",
         "- Ready to apply is false until a public website and incorporation date exist outside this tree.",
+        "",
+        "## Buyer page and ICP",
+        "",
+        cat["buyer"]["write_that_must_not_happen"],
+        f"- Door: {cat['buyer']['door']}",
+        f"- ICP: {cat['icp']['erp']}; {cat['icp']['identity']}; {cat['icp']['control']}.",
+        "- Named customers: none. Do not invent a design-partner name.",
+        "",
+        "## Next pin",
+        "",
+        cat["next_pin"]["note"],
+        f"- `{cat['next_pin']['from']}` → `{cat['next_pin']['to']}` on {cat['next_pin']['connection']}. sent=False.",
         "",
         "## Acceptance Kit",
         "",

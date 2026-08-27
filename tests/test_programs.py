@@ -10,6 +10,7 @@ from ainav.catalog import load_catalog, validate_catalog
 from ainav.errors import IPError, ProgramError
 from ainav.ip import refuse_claim
 from ainav.programs import (
+    application_order,
     claim_membership,
     pitch,
     public_wedge_action,
@@ -42,6 +43,9 @@ def test_inception_qualify_is_unclaimed():
     hub = qualify("microsoft.founders_hub")
     assert hub["eligible_to_prepare"] is True
     assert hub["ready_to_apply"] is False
+    assert hub["apply_order"] == 1
+    assert application_order()[0] == "microsoft.founders_hub"
+    assert application_order()[1] == "nvidia.inception"
     complementary = qualify("nvidia.developer")
     assert complementary["eligible_to_prepare"] is False
 
@@ -64,6 +68,9 @@ def test_pitch_leads_with_erp():
     assert "Microsoft for Startups" in text
     assert "GitHub for Startups" in text
     assert "Microsoft ISV Success" in text
+    assert text.index("Microsoft for Startups first") < text.index("NVIDIA Inception second")
+    listed = text.split("## Programs to prepare")[1]
+    assert listed.index("Microsoft for Startups") < listed.index("NVIDIA Inception")
 
 
 def test_programs_catalog_cannot_claim_or_go_crypto():
@@ -85,6 +92,14 @@ def test_programs_catalog_cannot_claim_or_go_crypto():
     assert exc3.value.reason_code == "PROGRAM_NOT_CLAIMED"
     with pytest.raises(ProgramError):
         qualify("not.a.program")
+    order = copy.deepcopy(cat)
+    order["programs"]["application_order"][0], order["programs"]["application_order"][1] = (
+        order["programs"]["application_order"][1],
+        order["programs"]["application_order"][0],
+    )
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(order)
+    assert exc4.value.reason_code == "PROGRAM_ORDER"
 
 
 def test_institute_programs_section_is_unclaimed():
@@ -94,5 +109,6 @@ def test_institute_programs_section_is_unclaimed():
     assert "NVIDIA Inception" in html
     assert "Microsoft for Startups" in html
     assert "Do not claim membership" in html
-    assert "Not NVIDIA Inception membership" in html
+    assert "Membership is not claimed" in html
+    assert html.index("Microsoft for Startups") < html.index("NVIDIA Inception")
     assert "scrollIntoView" in html

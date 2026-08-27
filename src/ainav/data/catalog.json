@@ -20,6 +20,7 @@
     "No LIVE_PIN_OK / product HA / signed L1 without evidence"
   ],
   "success_equation": "LIVE_PIN_OK × proof day × signed L1 × P-ADM attach",
+  "l1_incident_copy": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
   "skus": [
     {
       "id": "L1",
@@ -27,6 +28,7 @@
       "kind": "prove",
       "price_usd": { "min": 28000, "max": 40000 },
       "term": "2–4 weeks",
+      "incident": "The unauthorized general-journal post that two humans did not admit.",
       "includes": [
         "Local mothership on the Job C admit plane",
         "L1 action class only",
@@ -245,6 +247,59 @@
       }
     ]
   },
+  "proof_day": {
+    "minutes": 90,
+    "requires_sku": "L1",
+    "cli": "python -m ainav proof-day",
+    "action_class": "bc.general_journal.post",
+    "sor_target": "bc.sandbox",
+    "walk_out": [
+      "sealed DecisionRecord",
+      "Merkle / audit export"
+    ],
+    "signed_l1": false,
+    "live": false,
+    "note": "The sale is the ninety-minute proof. L1 is that week. Not signed L1 (G13)."
+  },
+  "next_pin": {
+    "id": "bc.microsoft.sandbox",
+    "from": "bc.sandbox",
+    "to": "bc.microsoft.sandbox",
+    "connection": "bc.premium",
+    "live": false,
+    "production": false,
+    "sent": false,
+    "live_pin_ok": false,
+    "note": "Process twin → Microsoft Business Central sandbox envelope. Not production. Not LIVE_PIN_OK."
+  },
+  "icp": {
+    "erp": "Dynamics 365 Business Central Premium",
+    "identity": "Microsoft Entra ID",
+    "control": "existing two-person journal SOD",
+    "named_customers": [],
+    "do_not_invent_names": true
+  },
+  "buyer": {
+    "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit.",
+    "seats": ["treasury_approver", "treasury_controller"],
+    "prices": [
+      "L1 $28–40k / 2–4 weeks",
+      "P-ADM $40–60k / year after kit PASS",
+      "U-DUAL $20–35k / year — never free"
+    ],
+    "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+    "refuse": [
+      "Teams vote as dual",
+      "Copilot as the admit plane",
+      "free U-DUAL",
+      "LIVE_PIN_OK",
+      "named design partner",
+      "invented contact inbox"
+    ],
+    "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+    "contact_email": null,
+    "mailto": null
+  },
   "honest_missing": [
     "Live Microsoft tenant credentials and Graph calls",
     "Public Institute deploy and incorporation date",
@@ -412,7 +467,7 @@
     ]
   },
   "business": {
-    "thesis": "Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid U-DUAL. Hours stay fee-for-service on the same plane.",
+    "thesis": "Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.",
     "model": {
       "prove": "L1",
       "keep": "P-ADM",
@@ -425,7 +480,7 @@
       "cannot_mark": ["LIVE_PIN_OK", "signed L1", "recognized revenue"]
     },
     "sales": {
-      "motion": "qualify → sell L1 → kit PASS → attach P-ADM → offer paid U-DUAL",
+      "motion": "qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL",
       "forbidden": ["bundle free U-DUAL", "soft dual as a close", "claim LIVE_PIN_OK to close"]
     },
     "development": {
@@ -524,6 +579,14 @@
     "membership_claimed": false,
     "applied": false,
     "gpu_workload_claimed": false,
+    "application_order": [
+      "microsoft.founders_hub",
+      "nvidia.inception",
+      "nvidia.developer",
+      "github.for_startups",
+      "microsoft.isv_success",
+      "nvidia.connect"
+    ],
     "website": {
       "name": "AINAV.Institute",
       "in_repo": "institute/index.html",
@@ -536,37 +599,6 @@
       "Do not attach gold-vector custody fixtures to any application"
     ],
     "targets": [
-      {
-        "id": "nvidia.inception",
-        "name": "NVIDIA Inception",
-        "url": "https://www.nvidia.com/en-us/startups/",
-        "cost": "free, no equity, no cohort, no deadline",
-        "status": "qualify_not_claimed",
-        "priority": 1,
-        "must": [
-          "officially incorporated (date required on apply)",
-          "at least one developer",
-          "working public website",
-          "less than 10 years old",
-          "privately held"
-        ],
-        "must_not": [
-          "cryptocurrency association",
-          "consultancy / outsourced development",
-          "cloud service provider",
-          "reseller / distributor",
-          "public company"
-        ],
-        "benefits": [
-          "NVIDIA Deep Learning Institute training codes",
-          "preferred pricing on select NVIDIA hardware and software (supplier terms)",
-          "partner cloud credits when eligible — amounts are not claimed here",
-          "Capital Connect introductions when eligible"
-        ],
-        "note": "Official FAQ: startups may join before using NVIDIA GPUs or SDKs. Do not invent a GPU production workload.",
-        "apply": "https://www.nvidia.com/en-us/startups/",
-        "pitch_rule": "Lead with the Business Central write-gate. Do not lead with lab custody fixtures."
-      },
       {
         "id": "microsoft.founders_hub",
         "name": "Microsoft for Startups",
@@ -593,6 +625,37 @@
         ],
         "apply": "https://startups.microsoft.com",
         "pitch_rule": "Microsoft is the SoR and hosting stack, not the product."
+      },
+      {
+        "id": "nvidia.inception",
+        "name": "NVIDIA Inception",
+        "url": "https://www.nvidia.com/en-us/startups/",
+        "cost": "free, no equity, no cohort, no deadline",
+        "status": "qualify_not_claimed",
+        "priority": 2,
+        "must": [
+          "officially incorporated (date required on apply)",
+          "at least one developer",
+          "working public website",
+          "less than 10 years old",
+          "privately held"
+        ],
+        "must_not": [
+          "cryptocurrency association",
+          "consultancy / outsourced development",
+          "cloud service provider",
+          "reseller / distributor",
+          "public company"
+        ],
+        "benefits": [
+          "NVIDIA Deep Learning Institute training codes",
+          "preferred pricing on select NVIDIA hardware and software (supplier terms)",
+          "partner cloud credits when eligible — amounts are not claimed here",
+          "Capital Connect introductions when eligible"
+        ],
+        "note": "Official FAQ: startups may join before using NVIDIA GPUs or SDKs. Do not invent a GPU production workload.",
+        "apply": "https://www.nvidia.com/en-us/startups/",
+        "pitch_rule": "Lead with the Business Central write-gate. Do not lead with lab custody fixtures."
       },
       {
         "id": "nvidia.developer",

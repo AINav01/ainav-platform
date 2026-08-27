@@ -6,6 +6,15 @@
     "requires_sku": "L1",
     "signed_l1": false
   },
+  "buyer": {
+    "contact_email": null,
+    "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+    "seats": [
+      "treasury_approver",
+      "treasury_controller"
+    ],
+    "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit."
+  },
   "delivery": {
     "local": "Client mothership: AdmitClient + twin + Teams notify.",
     "master": "Azure-declared master mothership issues lockfile, catalog, gold.",
@@ -30,6 +39,12 @@
     "Signed L1 counsel pack (G13)",
     "Multi-host product HA"
   ],
+  "icp": {
+    "control": "existing two-person journal SOD",
+    "erp": "Dynamics 365 Business Central Premium",
+    "identity": "Microsoft Entra ID",
+    "named_customers": []
+  },
   "institute": "AINAV.Institute",
   "kind": "ainav.institute.business.v1",
   "live": false,
@@ -45,6 +60,12 @@
     ],
     "prove": "L1"
   },
+  "next_pin": {
+    "id": "bc.microsoft.sandbox",
+    "live": false,
+    "live_pin_ok": false,
+    "sent": false
+  },
   "open_gaps": [
     "G1/G10 LIVE_PIN_OK",
     "G12 legal",
@@ -52,13 +73,27 @@
     "G14 live SoR",
     "Product HA"
   ],
+  "programs_order": [
+    "microsoft.founders_hub",
+    "nvidia.inception",
+    "nvidia.developer",
+    "github.for_startups",
+    "microsoft.isv_success",
+    "nvidia.connect"
+  ],
+  "proof_day": {
+    "cli": "python -m ainav proof-day",
+    "live": false,
+    "minutes": 90,
+    "signed_l1": false
+  },
   "sales": {
     "forbidden": [
       "bundle free U-DUAL",
       "soft dual as a close",
       "claim LIVE_PIN_OK to close"
     ],
-    "motion": "qualify \u2192 sell L1 \u2192 kit PASS \u2192 attach P-ADM \u2192 offer paid U-DUAL"
+    "motion": "qualify \u2192 proof day \u2192 sell L1 that week \u2192 kit PASS \u2192 attach P-ADM \u2192 offer paid U-DUAL"
   },
-  "thesis": "Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid U-DUAL. Hours stay fee-for-service on the same plane."
+  "thesis": "Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL."
 }

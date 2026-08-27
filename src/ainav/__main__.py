@@ -25,6 +25,11 @@ def main(argv: list[str] | None = None) -> int:
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
     sub.add_parser("company-demo")
+    sub.add_parser("proof-day")
+    sub.add_parser("buyer")
+    brief = sub.add_parser("brief")
+    brief.add_argument("--for", dest="for_controller", default="")
+    sub.add_parser("next-pin")
     prov = sub.add_parser("provision")
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
@@ -57,14 +62,15 @@ def main(argv: list[str] | None = None) -> int:
         print(notice(), end="")
         return 0
     if args.cmd == "programs":
-        from ainav.programs import programs, qualify
+        from ainav.programs import application_order, programs, qualify
 
         print(
             canonical_json(
                 {
                     "membership_claimed": False,
-                    "nvidia.inception": qualify("nvidia.inception"),
+                    "application_order": application_order(),
                     "microsoft.founders_hub": qualify("microsoft.founders_hub"),
+                    "nvidia.inception": qualify("nvidia.inception"),
                     "targets": programs()["targets"],
                 }
             )
@@ -93,6 +99,23 @@ def main(argv: list[str] | None = None) -> int:
         return _stack_demo(args.client_id)
     if args.cmd == "company-demo":
         return _company_demo()
+    if args.cmd == "proof-day":
+        return _proof_day()
+    if args.cmd == "buyer":
+        from ainav.buyer import buyer_page
+
+        print(canonical_json(buyer_page()))
+        return 0
+    if args.cmd == "brief":
+        from ainav.buyer import proof_day_brief
+
+        print(canonical_json(proof_day_brief(for_controller=args.for_controller or None)))
+        return 0
+    if args.cmd == "next-pin":
+        from ainav.next_pin import sandbox_envelope
+
+        print(canonical_json(sandbox_envelope()))
+        return 0
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())
         industry = tuple(p.strip() for p in args.industry.split(",") if p.strip())
@@ -242,6 +265,13 @@ def _company_demo() -> int:
             }
         )
     )
+    return 0
+
+
+def _proof_day() -> int:
+    from ainav.proof_day import run_proof_day
+
+    print(canonical_json(run_proof_day("cli-proof-day")))
     return 0
 
 

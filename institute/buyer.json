@@ -1,0 +1,38 @@
+{
+  "contact_email": null,
+  "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+  "entity": "AINav, Inc.",
+  "icp": {
+    "control": "existing two-person journal SOD",
+    "do_not_invent_names": true,
+    "erp": "Dynamics 365 Business Central Premium",
+    "identity": "Microsoft Entra ID",
+    "named_customers": []
+  },
+  "incident": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.buyer.v1",
+  "live": false,
+  "mailto": null,
+  "minutes": 90,
+  "prices": [
+    "L1 $28\u201340k / 2\u20134 weeks",
+    "P-ADM $40\u201360k / year after kit PASS",
+    "U-DUAL $20\u201335k / year \u2014 never free"
+  ],
+  "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+  "refuse": [
+    "Teams vote as dual",
+    "Copilot as the admit plane",
+    "free U-DUAL",
+    "LIVE_PIN_OK",
+    "named design partner",
+    "invented contact inbox"
+  ],
+  "seats": [
+    "treasury_approver",
+    "treasury_controller"
+  ],
+  "signed_l1": false,
+  "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit."
+}

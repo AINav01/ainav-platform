@@ -15,6 +15,7 @@
       <span class="inst">Institute</span>
     </div>
     <nav>
+      <a href="#buyer">Buyer</a>
       <a href="#product">Product</a>
       <a href="#commercial">Commercial</a>
       <a href="#packs">Packs</a>
@@ -41,6 +42,61 @@
       <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote.</p>
     </section>
 
+    <section id="buyer">
+      <h2>Buyer page</h2>
+      <p class="note">A controller can forward this. There is no invented inbox.</p>
+      <p class="lede" id="buyer-write">
+        An unauthorized general-journal post that two humans did not admit.
+      </p>
+      <p class="incident" id="buyer-incident">
+        L1 is the week you prove that write cannot land without two seats.
+      </p>
+      <div class="split">
+        <div>
+          <h3>Two seats</h3>
+          <ul class="stack" id="buyer-seats">
+            <li>treasury_approver</li>
+            <li>treasury_controller</li>
+          </ul>
+          <h3>Three prices</h3>
+          <ul class="stack" id="buyer-prices">
+            <li>L1 $28–40k / 2–4 weeks</li>
+            <li>P-ADM $40–60k / year after kit PASS</li>
+            <li>U-DUAL $20–35k / year — never free</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Proof day</h3>
+          <p id="buyer-proof">Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.</p>
+          <h3>What we refuse</h3>
+          <ul class="stack refuse" id="buyer-refuse">
+            <li>Teams vote as dual</li>
+            <li>Copilot as the admit plane</li>
+            <li>free U-DUAL</li>
+            <li>LIVE_PIN_OK</li>
+            <li>named design partner</li>
+            <li>invented contact inbox</li>
+          </ul>
+        </div>
+      </div>
+      <p class="door" id="buyer-door">Generate a proof-day brief a controller can forward. Do not invent a contact inbox.</p>
+      <button type="button" class="ask" id="ask-proof-day">Ask for a proof day</button>
+      <p class="note" id="brief-status" hidden></p>
+      <script type="application/json" id="buyer-data">{
+        "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit.",
+        "incident": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
+        "seats": ["treasury_approver", "treasury_controller"],
+        "prices": ["L1 $28–40k / 2–4 weeks", "P-ADM $40–60k / year after kit PASS", "U-DUAL $20–35k / year — never free"],
+        "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+        "refuse": ["Teams vote as dual", "Copilot as the admit plane", "free U-DUAL", "LIVE_PIN_OK", "named design partner", "invented contact inbox"],
+        "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+        "contact_email": null,
+        "mailto": null,
+        "live": false,
+        "signed_l1": false
+      }</script>
+    </section>
+
     <section id="product">
       <h2>Product</h2>
       <ol class="flow">
@@ -64,7 +120,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <article>
           <h3>L1 FIRST_OFFER</h3>
           <p class="price">$28–40k · 2–4 weeks</p>
-          <p>Prove the local mothership with the Acceptance Kit. Digital twin only.</p>
+          <p>Price against the unauthorized journal. Ninety-minute proof day. Digital twin only.</p>
         </article>
         <article>
           <h3>P-ADM ADMIT_COVERAGE</h3>
@@ -115,8 +171,8 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <h2>Business operating system</h2>
       <p class="note">One company. One plane. Catalog list is not recognized revenue.</p>
       <p class="lede">
-        Land with L1 proof on a Business Central twin. Keep with P-ADM.
-        Deepen with paid U-DUAL. Hours stay fee-for-service.
+        Price L1 against the unauthorized journal that two humans did not admit.
+        Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
       </p>
       <div class="cards stack-cards">
         <article>
@@ -129,7 +185,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         </article>
         <article>
           <h3>Sales</h3>
-          <p>Qualify → sell L1 → kit PASS → attach P-ADM → offer paid U-DUAL. No free bundle. No soft dual close.</p>
+          <p>Qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL. No free bundle. No soft dual close.</p>
         </article>
         <article>
           <h3>Delivery</h3>
@@ -211,11 +267,11 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <p class="note">Qualify. Do not claim membership, credits, badges, or a live public deploy.</p>
       <p class="lede">
         Job C is dual-admitted effect authority before Dynamics 365 Business Central privileged writes.
-        Not a cryptocurrency product. Not NVIDIA Inception membership.
+        Not a cryptocurrency product. Membership is not claimed.
       </p>
       <ul class="stack">
-        <li><strong>NVIDIA Inception</strong> — first. Free, no equity, no cohort. Excludes crypto-associated companies. Lead with <code>bc.general_journal.post</code>. GPU production is not claimed.</li>
         <li><strong>Microsoft for Startups</strong> — first. Azure Startup credits after verification. Microsoft is the SoR, not the product.</li>
+        <li><strong>NVIDIA Inception</strong> — second. Free, no equity, no cohort. Excludes crypto-associated companies. Lead with <code>bc.general_journal.post</code>. GPU production is not claimed.</li>
         <li><strong>NVIDIA Developer</strong> — complementary tools. Not a grant and not Inception.</li>
         <li><strong>GitHub for Startups</strong> and <strong>Microsoft ISV Success</strong> — later discounts / partner path.</li>
         <li><strong>NVIDIA Connect</strong> — later ISV path. Not the first application.</li>
@@ -272,6 +328,71 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         card.setAttribute("data-live", "false");
       });
     }).catch(function () { /* stack.json is optional when opened as a file */ });
+    function buyerPayload() {
+      var embedded = document.getElementById("buyer-data");
+      try { return embedded ? JSON.parse(embedded.textContent) : {}; } catch (err) { return {}; }
+    }
+    function fillBuyer(data) {
+      if (!data) return;
+      var write = document.getElementById("buyer-write");
+      var incident = document.getElementById("buyer-incident");
+      var proof = document.getElementById("buyer-proof");
+      var door = document.getElementById("buyer-door");
+      if (write && data.write_that_must_not_happen) write.textContent = data.write_that_must_not_happen;
+      if (incident && data.incident) incident.textContent = data.incident;
+      if (proof && data.proof_day) proof.textContent = data.proof_day;
+      if (door && data.door) door.textContent = data.door;
+      function replaceList(id, items) {
+        var node = document.getElementById(id);
+        if (!node || !items || !items.length) return;
+        node.innerHTML = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          node.appendChild(li);
+        });
+      }
+      replaceList("buyer-seats", data.seats);
+      replaceList("buyer-prices", data.prices);
+      replaceList("buyer-refuse", data.refuse);
+    }
+    fetch("buyer.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
+      fillBuyer(data || buyerPayload());
+    }).catch(function () { fillBuyer(buyerPayload()); });
+    var ask = document.getElementById("ask-proof-day");
+    if (ask) {
+      ask.addEventListener("click", function () {
+        var page = buyerPayload();
+        var brief = {
+          kind: "ainav.proof_day.brief.v1",
+          forwardable: true,
+          write_that_must_not_happen: page.write_that_must_not_happen,
+          incident: page.incident,
+          seats: page.seats,
+          prices: page.prices,
+          proof_day: page.proof_day,
+          refuse: page.refuse,
+          ask: "Ask for a ninety-minute proof day on the existing treasury SOD.",
+          contact_email: null,
+          mailto: null,
+          named_customer: null,
+          signed_l1: false,
+          live: false
+        };
+        var blob = new Blob([JSON.stringify(brief, null, 2)], { type: "application/json" });
+        var link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "ainav-proof-day-brief.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        var status = document.getElementById("brief-status");
+        if (status) {
+          status.hidden = false;
+          status.textContent = "Brief downloaded. Forward it. There is no contact inbox on this page.";
+        }
+      });
+    }
   </script>
 </body>
 </html>
