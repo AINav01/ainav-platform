@@ -55,7 +55,7 @@ def test_decision_record_verify_method():
         verify_record({"record_type": "admit_ok"})
 
 
-def test_tampered_record_fails_verify():
+def test_sealed_record_is_immutable():
     store = MemoryAuthorityStore()
     rec = admit(
         sample_action(),
@@ -64,9 +64,13 @@ def test_tampered_record_fails_verify():
         seat_a="oid-1",
         seat_b="oid-2",
     )
-    rec["seat_a"] = "oid-evil"
+    with pytest.raises(IntegrityError) as exc:
+        rec["seat_a"] = "oid-evil"
+    assert exc.value.reason_code == "SEALED"
+    tampered = dict(rec)
+    tampered["seat_a"] = "oid-evil"
     with pytest.raises(IntegrityError):
-        verify_record(rec)
+        verify_record(tampered)
 
 
 def test_broken_chain_fails():
@@ -78,7 +82,7 @@ def test_broken_chain_fails():
         seat_a="oid-1",
         seat_b="oid-2",
     )
-    chain = store.decisions()
+    chain = [dict(store.decisions()[0])]
     chain[0]["prev_receipt_hash"] = "1" * 64
     with pytest.raises(IntegrityError):
         verify_chain(chain)

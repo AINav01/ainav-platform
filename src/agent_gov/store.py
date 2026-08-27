@@ -9,13 +9,17 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any, Protocol
 
+from agent_gov.clock import utc_now
 from agent_gov.errors import ConsumeReplay, EffectBlocked, IntegrityError
-from agent_gov.hashing import canonical_json, content_hash
+from agent_gov.grant import grant_id
+from agent_gov.hashing import canonical_json, content_hash, hashes_equal
 from agent_gov.records import (
     EFFECT_STATES,
     GENESIS_HASH,
-    DecisionRecord,
+    SCHEMA_VERSION,
+    as_sealed,
     hashable_body,
+    new_record_id,
     verify_chain,
     verify_record,
 )
@@ -71,7 +75,10 @@ class MemoryAuthorityStore:
 
     def _seal(self, record: Mapping[str, Any]) -> dict[str, Any]:
         body = hashable_body(record)
+        body.setdefault("schema_version", SCHEMA_VERSION)
+        body.setdefault("record_id", new_record_id())
         body["prev_receipt_hash"] = self._tip
+        body["seq"] = len(self._chain) + 1
         digest = content_hash(body)
         sealed = dict(body)
         sealed["integrity"] = {
@@ -101,17 +108,17 @@ class MemoryAuthorityStore:
             sealed = self._seal(stored)
             self._slots[slot_key] = sealed
             self._admits[str(sealed["request_id"])] = sealed
-            return DecisionRecord(sealed)
+            return as_sealed(sealed)
 
     def get_admit(self, request_id: str) -> AdmitRecord | None:
         with self._lock:
             rec = self._admits.get(request_id)
-            return DecisionRecord(rec) if rec is not None else None
+            return as_sealed(rec) if rec is not None else None
 
     def get_by_slot(self, slot_key: str) -> AdmitRecord | None:
         with self._lock:
             rec = self._slots.get(slot_key)
-            return DecisionRecord(rec) if rec is not None else None
+            return as_sealed(rec) if rec is not None else None
 
     def _require_admit(self, request_id: str, action_hash: str) -> AdmitRecord:
         admit = self._admits.get(request_id)
@@ -125,10 +132,22 @@ class MemoryAuthorityStore:
                 "admit was not ok; SoR write is forbidden",
                 reason_code="EFFECT_ADMIT_NOT_OK",
             )
-        if admit.get("action_hash") != action_hash:
+        if not hashes_equal(admit.get("action_hash"), action_hash):
             raise EffectBlocked(
                 "action_hash does not match admitted grant",
                 reason_code="EFFECT_HASH_MISMATCH",
+            )
+        expected_grant = grant_id(
+            action_hash=str(admit.get("action_hash")),
+            seat_a=str(admit.get("seat_a")),
+            seat_b=str(admit.get("seat_b")),
+            policy_hash=str(admit.get("policy_hash") or ""),
+        )
+        stored_grant = admit.get("grant_id")
+        if stored_grant and not hashes_equal(stored_grant, expected_grant):
+            raise EffectBlocked(
+                "grant_id does not bind seats to action_hash",
+                reason_code="GRANT_MISMATCH",
             )
         return admit
 
@@ -148,11 +167,13 @@ class MemoryAuthorityStore:
                 "seat_a": admit.get("seat_a"),
                 "seat_b": admit.get("seat_b"),
                 "policy_id": admit.get("policy_id"),
+                "policy_hash": admit.get("policy_hash"),
+                "grant_id": admit.get("grant_id"),
                 "record_id": admit.get("record_id"),
             }
             sealed = self._seal(effect)
             self._effects[request_id] = sealed
-            return DecisionRecord(sealed)
+            return as_sealed(sealed)
 
     def finalize_effect(
         self,
@@ -174,7 +195,7 @@ class MemoryAuthorityStore:
                     f"effect is not reserved for request_id={request_id}",
                     reason_code="EFFECT_NOT_RESERVED",
                 )
-            if current.get("action_hash") != action_hash:
+            if not hashes_equal(current.get("action_hash"), action_hash):
                 raise EffectBlocked(
                     "action_hash does not match reserved effect",
                     reason_code="EFFECT_HASH_MISMATCH",
@@ -183,9 +204,11 @@ class MemoryAuthorityStore:
             final["record_type"] = record_type
             if apply_result is not None:
                 final["apply_result"] = apply_result
+            if record_type == "effect_applied":
+                final["effected_at"] = utc_now()
             sealed = self._seal(final)
             self._effects[request_id] = sealed
-            return DecisionRecord(sealed)
+            return as_sealed(sealed)
 
     def try_effect(self, request_id: str, action_hash: str) -> EffectRecord:
         """Backward-compatible alias for reserve_effect."""
@@ -194,7 +217,7 @@ class MemoryAuthorityStore:
     def get_effect(self, request_id: str) -> EffectRecord | None:
         with self._lock:
             rec = self._effects.get(request_id)
-            return DecisionRecord(rec) if rec is not None else None
+            return as_sealed(rec) if rec is not None else None
 
     def put_denied(self, record: Mapping[str, Any]) -> AdmitRecord:
         stored = dict(record)
@@ -202,17 +225,17 @@ class MemoryAuthorityStore:
         with self._lock:
             sealed = self._seal(stored)
             self._denied.append(sealed)
-            return DecisionRecord(sealed)
+            return as_sealed(sealed)
 
     def decisions(self) -> list[dict[str, Any]]:
         with self._lock:
-            return [DecisionRecord(v) for v in self._chain]
+            return [as_sealed(v) for v in self._chain]
 
     def get_record(self, record_id: str) -> dict[str, Any] | None:
         with self._lock:
             for rec in self._chain:
                 if rec.get("record_id") == record_id:
-                    return DecisionRecord(rec)
+                    return as_sealed(rec)
         return None
 
     def verify(self) -> str:
@@ -232,22 +255,6 @@ class FileAuthorityStore(MemoryAuthorityStore):
         else:
             self.path.touch()
 
-    def _load(self) -> None:
-        try:
-            lines = self.path.read_text(encoding="utf-8").splitlines()
-        except OSError as exc:
-            raise IntegrityError(f"ledger unreadable: {exc}") from exc
-        for raw in lines:
-            if not raw.strip():
-                continue
-            try:
-                rec = json.loads(raw)
-            except json.JSONDecodeError as exc:
-                raise IntegrityError("ledger JSONL is corrupt") from exc
-            verify_record(rec)
-            self._replay(rec)
-        verify_chain(self._chain)
-
     def _replay(self, rec: Mapping[str, Any]) -> None:
         sealed = dict(rec)
         rtype = sealed.get("record_type")
@@ -264,12 +271,54 @@ class FileAuthorityStore(MemoryAuthorityStore):
         else:
             self._denied.append(sealed)
 
+    def _tip_path(self) -> Path:
+        return self.path.with_name(self.path.name + ".tip")
+
+    def _write_tip(self) -> None:
+        payload = canonical_json(
+            {"alg": "sha256", "count": len(self._chain), "tip": self._tip}
+        ) + "\n"
+        dest = self._tip_path()
+        tmp = dest.with_suffix(dest.suffix + ".tmp")
+        tmp.write_text(payload, encoding="utf-8")
+        os.replace(tmp, dest)
+
     def _after_seal(self, sealed: Mapping[str, Any]) -> None:
         line = canonical_json(dict(sealed)) + "\n"
         with self.path.open("a", encoding="utf-8") as handle:
             handle.write(line)
             handle.flush()
             os.fsync(handle.fileno())
+        self._write_tip()
+
+    def _load(self) -> None:
+        try:
+            lines = self.path.read_text(encoding="utf-8").splitlines()
+        except OSError as exc:
+            raise IntegrityError(f"ledger unreadable: {exc}") from exc
+        for raw in lines:
+            if not raw.strip():
+                continue
+            try:
+                rec = json.loads(raw)
+            except json.JSONDecodeError as exc:
+                raise IntegrityError("ledger JSONL is corrupt") from exc
+            verify_record(rec)
+            self._replay(rec)
+        verify_chain(self._chain)
+        tip_path = self._tip_path()
+        if tip_path.exists():
+            try:
+                meta = json.loads(tip_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                raise IntegrityError("tip sidecar is corrupt") from exc
+            if meta.get("count") != len(self._chain) or not hashes_equal(
+                meta.get("tip"), self._tip
+            ):
+                raise IntegrityError(
+                    "tip sidecar does not match ledger",
+                    reason_code="TIP_MISMATCH",
+                )
 
 
 _DEFAULT: MemoryAuthorityStore | None = None

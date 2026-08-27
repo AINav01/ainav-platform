@@ -12,7 +12,7 @@ rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
 EffectLedger().effect(rec["request_id"], rec["action_hash"])
 ```
 
-`admit` binds two distinct human seats to an `action_hash` and consumes that slot once. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is recorded as `effect_apply_failed` (never as success) and the slot stays spent.
+`admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
 Same plane, named 2.1.0 surface:
 
@@ -33,7 +33,10 @@ session.effect(rec["request_id"], rec["action_hash"])
 - Fail-closed — deny, replay, and gate failures raise; they never return ok
 - SoR / effect only after admit ok
 - Lockfiles cannot weaken those invariants
-- DecisionRecords are hash-chained (`prev_receipt_hash`) and verifiable
+- DecisionRecords are hash-chained (`prev_receipt_hash` + `seq`) and verifiable
+- Sealed receipts are immutable
+- `grant_id` binds seats to the action and policy
+- Frozen gold vectors pin `action_hash` (breaking change if they move)
 
 ## Install and gold
 

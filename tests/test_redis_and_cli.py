@@ -54,6 +54,8 @@ def test_cli_version_and_invariants(capsys):
     out = capsys.readouterr().out
     assert "dual-admit-v1" in out
     assert "fail_closed" in out
+    assert main(["vectors"]) == 0
+    assert "da4eeecbca9ce7fed28c062156295505eb3b4e978022452feb2b4a4162579fcd" in capsys.readouterr().out
 
 
 def test_cli_demo_and_verify(tmp_path, capsys):

@@ -29,6 +29,7 @@ def main(argv: list[str] | None = None) -> int:
     demo.add_argument("--seat-b", default="oid-2")
     verify = sub.add_parser("verify", help="verify a DecisionRecord JSON or JSONL chain")
     verify.add_argument("path")
+    sub.add_parser("vectors", help="print frozen gold action_hash")
     args = parser.parse_args(argv)
 
     if args.cmd == "version":
@@ -42,6 +43,11 @@ def main(argv: list[str] | None = None) -> int:
         return _demo(args.seat_a, args.seat_b)
     if args.cmd == "verify":
         return _verify(Path(args.path))
+    if args.cmd == "vectors":
+        from importlib.resources import files
+
+        print(files("agent_gov.gold").joinpath("vectors.json").read_text(encoding="utf-8"), end="")
+        return 0
     return 2
 
 

@@ -10,8 +10,10 @@ Canonical caller shape::
 
 SoR writes are allowed only after ``admit`` returns and ``effect`` succeeds.
 Everything else raises. Lockfiles cannot weaken those invariants.
+Sealed DecisionRecords are immutable.
 """
 
+from agent_gov.action import Action
 from agent_gov.admit import admit, run_and_apply
 from agent_gov.client import AdmitClient, DualSession
 from agent_gov.consume import ConsumeLedger
@@ -24,6 +26,8 @@ from agent_gov.errors import (
     IntegrityError,
     LockfileError,
 )
+from agent_gov.export import export_envelope, verify_export
+from agent_gov.grant import grant_id
 from agent_gov.hashing import action_hash
 from agent_gov.lockfile import Lockfile, default_lockfile, load_lockfile
 from agent_gov.lua_simulator import LuaSimulator
@@ -39,6 +43,7 @@ from agent_gov.store import (
 __version__ = "2.1.0"
 
 __all__ = [
+    "Action",
     "AdmitClient",
     "AdmitDenied",
     "AgentGovError",
@@ -60,10 +65,13 @@ __all__ = [
     "admit",
     "default_lockfile",
     "default_store",
+    "export_envelope",
+    "grant_id",
     "load_lockfile",
     "reset_default_store",
     "run_and_apply",
     "verify_chain",
+    "verify_export",
     "verify_record",
     "__version__",
 ]

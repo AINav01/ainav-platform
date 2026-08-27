@@ -6,7 +6,7 @@ from collections.abc import Callable
 from typing import Any
 
 from agent_gov.errors import EffectBlocked
-from agent_gov.records import DecisionRecord, decision_record, utc_now
+from agent_gov.records import decision_record
 from agent_gov.store import AuthorityStore, default_store
 
 ApplyFn = Callable[[dict[str, Any]], Any]
@@ -75,11 +75,9 @@ class EffectLedger:
                     reason_code="EFFECT_APPLY_FAILED",
                 ) from exc
 
-        applied = self.store.finalize_effect(
+        return self.store.finalize_effect(
             request_id,
             action_hash,
             record_type="effect_applied",
             apply_result=apply_result,
         )
-        applied["effected_at"] = utc_now()
-        return DecisionRecord(applied)

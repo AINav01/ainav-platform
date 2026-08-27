@@ -1,16 +1,20 @@
-"""Canonical action hashing. Any field change must change the hash."""
+"""Canonical action hashing. Any field change must change the hash.
+
+Canonical JSON here is the JCS subset we need for Job C: UTF-8, sorted keys,
+no insignificant whitespace, no NaN/Inf. That is the interop contract for
+``action_hash`` and receipt ``content_hash``.
+"""
 
 from __future__ import annotations
 
 import hashlib
+import hmac
 import json
 from collections.abc import Mapping
 from typing import Any
 
 from agent_gov.errors import AdmitDenied
 
-# Fields that bind the privileged write. Extra keys are also hashed so callers
-# cannot smuggle unbound payload beside a stable five-tuple.
 HASH_FIELDS = (
     "action_class",
     "payload",
@@ -36,6 +40,19 @@ def canonical_json(value: Any) -> str:
     )
 
 
+def sha256_hex(body: str) -> str:
+    return hashlib.sha256(body.encode("utf-8")).hexdigest()
+
+
+def hashes_equal(left: Any, right: Any) -> bool:
+    """Constant-time compare for hex digests. Fail-closed on type/length mismatch."""
+    if not isinstance(left, str) or not isinstance(right, str):
+        return False
+    if len(left) != len(right):
+        return False
+    return hmac.compare_digest(left.encode("utf-8"), right.encode("utf-8"))
+
+
 def normalize_action(action: Any) -> dict[str, Any]:
     """Coerce an action into a JSON-canonical mapping. Fail-closed otherwise."""
     if action is None:
@@ -55,8 +72,6 @@ def normalize_action(action: Any) -> dict[str, Any]:
     if not raw:
         raise AdmitDenied("action must not be empty", reason_code="ACTION_EMPTY")
     try:
-        # Round-trip through canonical JSON so the hash is stable and types
-        # that json cannot represent fail here, not after consume.
         return json.loads(canonical_json(raw))
     except (TypeError, ValueError) as exc:
         raise AdmitDenied(
@@ -67,11 +82,9 @@ def normalize_action(action: Any) -> dict[str, Any]:
 
 def action_hash(action: Any) -> str:
     """SHA-256 hex digest of the canonical action document."""
-    body = canonical_json(normalize_action(action))
-    return hashlib.sha256(body.encode("utf-8")).hexdigest()
+    return sha256_hex(canonical_json(normalize_action(action)))
 
 
 def content_hash(document: Mapping[str, Any]) -> str:
     """SHA-256 hex digest of an arbitrary canonical document."""
-    body = canonical_json(dict(document))
-    return hashlib.sha256(body.encode("utf-8")).hexdigest()
+    return sha256_hex(canonical_json(dict(document)))

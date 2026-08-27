@@ -33,7 +33,7 @@ Repository = "https://github.com/AINav01/ainav-platform"
 where = ["src"]
 
 [tool.setuptools.package-data]
-agent_gov = ["py.typed", "dual_consume.lua"]
+agent_gov = ["py.typed", "dual_consume.lua", "gold/vectors.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
