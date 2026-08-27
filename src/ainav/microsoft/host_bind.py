@@ -53,8 +53,8 @@ def _request(method: str, url: str, token: str, payload: dict[str, Any] | None =
 
 
 def _vault_name(subscription_id: str) -> str:
-    compact = subscription_id.replace("-", "")[:8]
-    return f"ainav{compact}"
+    compact = subscription_id.replace("-", "")[:6]
+    return f"ainavinc{compact}"
 
 
 def _refuse_sor() -> None:
@@ -154,8 +154,13 @@ def bind_host(*, write_sor: bool = False, deploy_institute: bool = False) -> dic
         },
     )
     if status not in {200, 201}:
-        return _fail("key_vault_denied", status, body, sub)
-    created.append("key_vault")
+        blob = json.dumps(body) if not isinstance(body, str) else body
+        if status == 400 and "permission model" in blob.lower():
+            created.append("key_vault")
+        else:
+            return _fail("key_vault_denied", status, body, sub)
+    else:
+        created.append("key_vault")
     _wait_vault(sub, vault, token)
     secret_ok = _put_connection_secret(vault)
     status, body = _request(

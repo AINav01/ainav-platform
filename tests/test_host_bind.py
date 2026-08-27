@@ -122,6 +122,31 @@ def test_bind_host_vault_and_workspace_denied(monkeypatch):
     assert body["reason"] == "workspace_denied"
 
 
+def test_bind_host_keeps_existing_vault_when_model_locked(monkeypatch):
+    monkeypatch.setenv("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000001")
+    monkeypatch.setenv("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000002")
+    monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
+    monkeypatch.setenv("AZURE_SUBSCRIPTION_ID", "sub-1")
+    monkeypatch.setattr(host_bind, "_token", lambda scope: {"ok": True, "token": "lab"})
+    monkeypatch.setattr(host_bind, "_entra", lambda: {"tenant": "t", "client": "c", "secret": "s"})
+    monkeypatch.setattr(host_bind, "_service_principal_object_id", lambda: "sp-1")
+    monkeypatch.setattr(host_bind, "_put_connection_secret", lambda vault: True)
+    monkeypatch.setattr(host_bind.time, "sleep", lambda _s: None)
+
+    def locked(method, url, token, payload=None):
+        if "KeyVault/vaults" in url and method == "PUT":
+            return 400, {"error": {"code": "InsufficientPermissions", "message": "permission model"}}
+        if method == "GET" and "vaults" in url:
+            return 200, {"properties": {"provisioningState": "Succeeded"}}
+        return 201, {}
+
+    monkeypatch.setattr(host_bind, "_request", locked)
+    body = host_bind.bind_host()
+    assert body["ok"] is True
+    assert body["live_pin_ok"] is False
+    assert "key_vault" in body["created"]
+
+
 def test_request_and_secret_helpers(monkeypatch):
     class FakeResp:
         status = 200
