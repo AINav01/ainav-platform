@@ -178,5 +178,17 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
   <footer>
     <p>AINav, Inc. · AINAV.Institute · Job C only · Microsoft marks used for integrations only</p>
   </footer>
+  <script>
+    document.querySelectorAll("nav a[href^='#']").forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        var id = link.getAttribute("href").slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (history.replaceState) history.replaceState(null, "", "#" + id);
+      });
+    });
+  </script>
 </body>
 </html>

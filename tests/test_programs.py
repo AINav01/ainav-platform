@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+from pathlib import Path
 
 import pytest
 
@@ -84,3 +85,14 @@ def test_programs_catalog_cannot_claim_or_go_crypto():
     assert exc3.value.reason_code == "PROGRAM_NOT_CLAIMED"
     with pytest.raises(ProgramError):
         qualify("not.a.program")
+
+
+def test_institute_programs_section_is_unclaimed():
+    html = Path("institute/index.html").read_text(encoding="utf-8")
+    assert 'href="#programs"' in html
+    assert 'id="programs"' in html
+    assert "NVIDIA Inception" in html
+    assert "Microsoft for Startups" in html
+    assert "Do not claim membership" in html
+    assert "Not NVIDIA Inception membership" in html
+    assert "scrollIntoView" in html

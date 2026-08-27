@@ -9,7 +9,7 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
-section[id] { scroll-margin-top: 1.25rem; }
+section[id] { scroll-margin-top: 4.5rem; }
 body {
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
   background: var(--paper);
