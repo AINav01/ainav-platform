@@ -24,9 +24,9 @@ DISCO_SCOPE = "https://globaldisco.crm.dynamics.com/.default"
 DISCO_URL = "https://globaldisco.crm.dynamics.com/api/discovery/v2.0/Instances"
 ARM_SUBS_URL = "https://management.azure.com/subscriptions?api-version=2020-01-01"
 BC_NEXT = (
-    "Register the existing Entra app AINav Cloud Agent1 in Business Central "
-    "(Microsoft Entra Applications). Do not create a new Entra app. "
-    "https://businesscentral.dynamics.com"
+    "Register the existing Entra app AINav Cloud Agent1 in the Business Central "
+    "Sandbox (Microsoft Entra Applications). Do not create a new Entra app. "
+    "https://businesscentral.dynamics.com/ainav.institute/Sandbox"
 )
 SALES_NEXT = (
     "Create a Dataverse / Dynamics 365 Sales environment, then set DATAVERSE_URL. "
@@ -220,23 +220,22 @@ def probe_bc() -> dict[str, Any]:
     if not tok.get("ok"):
         return _blocked("bc.premium", reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
     last_status = 0
-    saw_401: str | None = None
-    saw_404: str | None = None
+    hits: dict[str, int] = {}
     for env in names:
         status, body = _get(
             f"https://api.businesscentral.dynamics.com/v2.0/{tenant}/{env}/api/v2.0/companies",
             tok["token"],
         )
         last_status = status
+        hits[env] = status
         if status == 200 and isinstance(body, dict):
             return _connected(
                 "bc.premium",
                 detail={"environment": env, "companies": len(body.get("value") or [])},
             )
-        if status == 401:
-            saw_401 = env
-        elif status == 404:
-            saw_404 = env
+    saw_401 = next((env for env in ("sandbox", "production") if hits.get(env) == 401), None)
+    if saw_401 is None:
+        saw_401 = next((env for env, status in hits.items() if status == 401), None)
     if saw_401:
         return _blocked(
             "bc.premium",
@@ -245,8 +244,10 @@ def probe_bc() -> dict[str, Any]:
             http=401,
             next_step=BC_NEXT,
             environment=saw_401,
-            sandbox_missing=saw_404 == "sandbox",
+            sandbox_missing=hits.get("sandbox") == 404,
+            environments=hits,
         )
+    saw_404 = next((env for env, status in hits.items() if status == 404), None)
     if saw_404:
         return _blocked(
             "bc.premium",
@@ -255,6 +256,7 @@ def probe_bc() -> dict[str, Any]:
             http=404,
             next_step=BC_NEXT,
             environment=saw_404,
+            environments=hits,
         )
     return _blocked("bc.premium", reason="bc_denied", missing=missing, http=last_status or None, next_step=BC_NEXT)
 
