@@ -1,0 +1,61 @@
+# AINav, Inc. — one-page plan
+
+**Institute:** AINAV.Institute
+**Product:** AINav Control Plane (Job C)
+**Category:** Dual-admitted effect authority before privileged system-of-record writes
+
+## First principles
+
+A privileged write is a state transition. It is allowed only when two
+distinct humans bind the same `action_hash`, that grant is consumed once,
+and the effect gate is fail-closed. Microsoft supplies identity, notify,
+SoR, and audit. It is not the product.
+
+## Commercial spine (do not invent SKUs)
+
+- **L1 FIRST_OFFER** — $28,000–$40,000 (2–4 weeks)
+  - includes: Local mothership on the Job C admit plane
+  - includes: L1 action class only
+  - includes: Digital-twin SoR sandbox
+  - includes: Acceptance Kit / proof day
+  - does not include: U-DUAL, live SoR, LIVE_PIN_OK, product HA
+- **P-ADM ADMIT_COVERAGE** — $40,000–$60,000 (annual)
+  - attach after L1 Acceptance Kit PASS
+  - never includes free U-DUAL or soft dual
+- **U-DUAL DEPTH_PACK** — $20,000–$35,000 (annual)
+  - additional action classes on the same admit plane
+  - never free with P-ADM or U-SOR
+  - not a second control product
+
+## Delivery
+
+- **Master mothership** (AINav): issues lockfiles, gold vectors, catalog.
+- **Local mothership** (client): AdmitClient + lockfile + ledger + twin.
+- **L1 wedge:** `bc.general_journal.post` on a Business Central twin.
+- **Teams:** notify only. A chat is not a seat.
+- **Entra:** seat object ids. Not an IdP replacement.
+
+## Success equation
+
+LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
+
+## OPEN (do not mark closed)
+
+- G1/G10 LIVE_PIN_OK
+- G12 legal
+- G13 signed L1
+- G14 live SoR
+- Product HA
+
+## Must not change
+
+- Job C only — not agent inventory (Job A), not IdP replacement (Job B)
+- Dual distinct principals
+- action_hash bound
+- Single-use consume
+- Fail-closed
+- SoR only after admit ok
+- No free U-DUAL with P-ADM or U-SOR
+- No soft HITL as dual
+- No invented SKUs
+- No LIVE_PIN_OK / product HA / signed L1 without evidence

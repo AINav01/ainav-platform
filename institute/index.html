@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AINAV.Institute — Dual-admitted effect authority</title>
+  <meta name="description" content="AINAV.Institute is the public face of AINav, Inc. Job C: two distinct humans bind an action_hash before a privileged write." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark">AINAV</span>
+      <span class="dot">.</span>
+      <span class="inst">Institute</span>
+    </div>
+    <nav>
+      <a href="#product">Product</a>
+      <a href="#commercial">Commercial</a>
+      <a href="#mothership">Mothership</a>
+      <a href="#microsoft">Microsoft</a>
+      <a href="#open">Open</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">Job C · AINav, Inc.</p>
+      <h1>Two distinct humans.<br />One action hash.<br />Then the write.</h1>
+      <p class="lede">
+        AINAV.Institute publishes the law of the admit plane.
+        Privileged system-of-record writes happen only after dual admission,
+        a single-use consume, and a fail-closed effect gate.
+      </p>
+      <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote.</p>
+    </section>
+
+    <section id="product">
+      <h2>Product</h2>
+      <ol class="flow">
+        <li>Agent proposes an action</li>
+        <li>Seat A and Seat B — distinct principals — bind <code>action_hash</code></li>
+        <li>The grant is consumed once</li>
+        <li>A DecisionRecord is sealed</li>
+        <li>SoR apply only if admit is ok</li>
+      </ol>
+      <pre class="snippet" tabindex="0"><code>from agent_gov import admit, ConsumeLedger, default_lockfile, EffectLedger
+
+rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
+            seat_a="oid-1", seat_b="oid-2")
+EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
+    </section>
+
+    <section id="commercial">
+      <h2>Commercial spine</h2>
+      <p class="note">Three SKUs. Packs deepen the same plane. No second control product.</p>
+      <div class="cards">
+        <article>
+          <h3>L1 FIRST_OFFER</h3>
+          <p class="price">$28–40k · 2–4 weeks</p>
+          <p>Prove the local mothership with the Acceptance Kit. Digital twin only.</p>
+        </article>
+        <article>
+          <h3>P-ADM</h3>
+          <p class="price">$40–60k / year</p>
+          <p>Keep coverage after kit PASS. Never includes free U-DUAL. Never soft dual.</p>
+        </article>
+        <article>
+          <h3>U-DUAL</h3>
+          <p class="price">$20–35k / year</p>
+          <p>Depth pack. Additional action classes. Never free with P-ADM or U-SOR.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mothership">
+      <h2>Master and local motherships</h2>
+      <div class="split">
+        <div>
+          <h3>Master</h3>
+          <p>AINav issues the lockfile, gold vectors, and catalog. It does not write the client’s SoR.</p>
+        </div>
+        <div>
+          <h3>Local</h3>
+          <p>The client plane: AdmitClient, lockfile, ledger, Business Central twin. Standard L1 pack is <code>bc.general_journal.post</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="microsoft">
+      <h2>Microsoft</h2>
+      <p class="note">Identity, notify, SoR, audit sink. Not the product.</p>
+      <ul class="stack">
+        <li><strong>Entra ID</strong> — seat object ids. We do not replace the IdP.</li>
+        <li><strong>Teams Enterprise / Premium</strong> — notify only. A chat is not a seat.</li>
+        <li><strong>Business Central Premium</strong> — L1 system of record (twin until G14).</li>
+        <li><strong>Sales Enterprise</strong> — U-DUAL action classes later.</li>
+        <li><strong>Microsoft 365 E7 · Purview · Sentinel</strong> — compliance sink.</li>
+        <li><strong>Azure</strong> — hosting target for the master mothership.</li>
+      </ul>
+    </section>
+
+    <section id="open">
+      <h2>Open — do not mark closed</h2>
+      <ul class="gaps">
+        <li>G1 / G10 LIVE_PIN_OK</li>
+        <li>G12 legal</li>
+        <li>G13 signed L1</li>
+        <li>G14 live SoR</li>
+        <li>Product HA</li>
+      </ul>
+      <p class="equation">Success = LIVE_PIN_OK × proof day × signed L1 × P-ADM attach</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>AINav, Inc. · AINAV.Institute · Job C only</p>
+  </footer>
+</body>
+</html>

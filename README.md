@@ -49,6 +49,20 @@ python -m agent_gov audit
 
 Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent admit **and** effect), the Lua / Redis-shaped consume adapter, file-ledger reload, and integrity verification. Live Redis multi-host HA and `LIVE_PIN_OK` are **not** claimed here.
 
+## Mothership and commercial spine
+
+Three SKUs only — **L1** ($28–40k), **P-ADM** ($40–60k/yr), **U-DUAL** ($20–35k/yr). U-DUAL is never free with P-ADM. Packs deepen this admit plane.
+
+```bash
+python -m ainav plan
+python -m ainav provision acme --packs L1
+python -m ainav twin-demo
+```
+
+Master mothership issues the lockfile. A local mothership runs AdmitClient against a Business Central **digital twin** (`bc.general_journal.post`). Teams is notify-only. Entra supplies seat object ids — we do not replace the IdP. Live SoR and `LIVE_PIN_OK` are **open**.
+
+Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_PLAN.md`.
+
 ## Package
 
 | Export | Role |

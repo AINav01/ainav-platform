@@ -1,0 +1,115 @@
+{
+  "schema_version": "ainav.catalog.v1",
+  "entity": {
+    "legal": "AINav, Inc.",
+    "institute": "AINAV.Institute",
+    "product": "AINav Control Plane",
+    "job": "C",
+    "category": "Dual-admitted effect authority before privileged system-of-record writes"
+  },
+  "must_not_change": [
+    "Job C only — not agent inventory (Job A), not IdP replacement (Job B)",
+    "Dual distinct principals",
+    "action_hash bound",
+    "Single-use consume",
+    "Fail-closed",
+    "SoR only after admit ok",
+    "No free U-DUAL with P-ADM or U-SOR",
+    "No soft HITL as dual",
+    "No invented SKUs",
+    "No LIVE_PIN_OK / product HA / signed L1 without evidence"
+  ],
+  "success_equation": "LIVE_PIN_OK × proof day × signed L1 × P-ADM attach",
+  "skus": [
+    {
+      "id": "L1",
+      "name": "FIRST_OFFER",
+      "kind": "prove",
+      "price_usd": { "min": 28000, "max": 40000 },
+      "term": "2–4 weeks",
+      "includes": [
+        "Local mothership on the Job C admit plane",
+        "L1 action class only",
+        "Digital-twin SoR sandbox",
+        "Acceptance Kit / proof day"
+      ],
+      "does_not_include": [
+        "U-DUAL",
+        "Live SoR",
+        "LIVE_PIN_OK",
+        "Product HA"
+      ]
+    },
+    {
+      "id": "P-ADM",
+      "name": "ADMIT_COVERAGE",
+      "kind": "keep",
+      "price_usd": { "min": 40000, "max": 60000 },
+      "term": "annual",
+      "attach_after": "L1 Acceptance Kit PASS",
+      "includes": ["Keep the same admit plane covered"],
+      "does_not_include": ["U-DUAL (never free)", "Soft dual"]
+    },
+    {
+      "id": "U-DUAL",
+      "name": "DEPTH_PACK",
+      "kind": "deepen",
+      "price_usd": { "min": 20000, "max": 35000 },
+      "term": "annual",
+      "never_free_with": ["P-ADM", "U-SOR"],
+      "includes": ["Additional action classes on the same admit plane"],
+      "does_not_include": ["A second control product"]
+    }
+  ],
+  "modules": [
+    {
+      "id": "bc.general_journal.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "roles": ["treasury_approver", "treasury_controller"]
+    },
+    {
+      "id": "entra.seat.verify",
+      "kind": "identity",
+      "sku": "L1",
+      "sor": "microsoft_entra_id",
+      "note": "Consumes Entra object ids. Does not replace the IdP."
+    },
+    {
+      "id": "teams.notify",
+      "kind": "notify",
+      "sku": "L1",
+      "sor": "microsoft_teams_premium",
+      "note": "Notify only. A Teams message is not a seat."
+    },
+    {
+      "id": "d365.quote.discount_override",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise"
+    },
+    {
+      "id": "d365.order.submit",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise"
+    },
+    {
+      "id": "purview.audit.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "microsoft_purview"
+    }
+  ],
+  "microsoft_stack": {
+    "identity": ["Microsoft Entra ID"],
+    "collaboration_notify_only": ["Microsoft Teams Enterprise", "Microsoft Teams Premium"],
+    "sor_l1": ["Dynamics 365 Business Central Premium"],
+    "sor_udual": ["Dynamics 365 Sales Enterprise"],
+    "compliance_sink": ["Microsoft 365 E7", "Microsoft Purview", "Microsoft Sentinel"],
+    "hosting": ["Microsoft Azure"],
+    "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane."
+  },
+  "open_gaps": ["G1/G10 LIVE_PIN_OK", "G12 legal", "G13 signed L1", "G14 live SoR", "Product HA"]
+}
