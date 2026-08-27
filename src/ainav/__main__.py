@@ -19,6 +19,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("catalog")
     sub.add_parser("plan")
     sub.add_parser("ip")
+    sub.add_parser("programs")
+    sub.add_parser("pitch")
     prov = sub.add_parser("provision")
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
@@ -49,6 +51,25 @@ def main(argv: list[str] | None = None) -> int:
         from ainav.ip import notice
 
         print(notice(), end="")
+        return 0
+    if args.cmd == "programs":
+        from ainav.programs import programs, qualify
+
+        print(
+            canonical_json(
+                {
+                    "membership_claimed": False,
+                    "nvidia.inception": qualify("nvidia.inception"),
+                    "microsoft.founders_hub": qualify("microsoft.founders_hub"),
+                    "targets": programs()["targets"],
+                }
+            )
+        )
+        return 0
+    if args.cmd == "pitch":
+        from ainav.programs import pitch
+
+        print(pitch(), end="")
         return 0
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())

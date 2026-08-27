@@ -255,7 +255,128 @@
       "powered by copilot",
       "teams vote is dual",
       "soft hitl is dual",
-      "live_pin_ok"
+      "live_pin_ok",
+      "nvidia inception member",
+      "microsoft for startups member",
+      "azure credits awarded"
+    ]
+  },
+  "programs": {
+    "lead_narrative": "Job C: dual-admitted effect authority before Dynamics 365 Business Central privileged writes. Not a cryptocurrency product. Not an IdP. Not agent inventory.",
+    "public_wedge": "bc.general_journal.post",
+    "crypto_associated": false,
+    "membership_claimed": false,
+    "applied": false,
+    "gpu_workload_claimed": false,
+    "website": {
+      "name": "AINAV.Institute",
+      "in_repo": "institute/index.html",
+      "public_deploy_claimed": false
+    },
+    "apply_prerequisites": [
+      "Publish a working public website (AINAV.Institute files exist in-repo; a live deploy is not claimed)",
+      "Have an incorporation date ready for NVIDIA Inception (not stored in this tree)",
+      "Pitch deck: Job C Business Central write-gate; software product; not consultancy; not crypto",
+      "Do not attach gold-vector custody fixtures to any application"
+    ],
+    "targets": [
+      {
+        "id": "nvidia.inception",
+        "name": "NVIDIA Inception",
+        "url": "https://www.nvidia.com/en-us/startups/",
+        "cost": "free, no equity, no cohort, no deadline",
+        "status": "qualify_not_claimed",
+        "priority": 1,
+        "must": [
+          "officially incorporated (date required on apply)",
+          "at least one developer",
+          "working public website",
+          "less than 10 years old",
+          "privately held"
+        ],
+        "must_not": [
+          "cryptocurrency association",
+          "consultancy / outsourced development",
+          "cloud service provider",
+          "reseller / distributor",
+          "public company"
+        ],
+        "benefits": [
+          "NVIDIA Deep Learning Institute training codes",
+          "preferred pricing on select NVIDIA hardware and software (supplier terms)",
+          "partner cloud credits when eligible — amounts are not claimed here",
+          "Capital Connect introductions when eligible"
+        ],
+        "note": "Official FAQ: startups may join before using NVIDIA GPUs or SDKs. Do not invent a GPU production workload.",
+        "apply": "https://www.nvidia.com/en-us/startups/",
+        "pitch_rule": "Lead with the Business Central write-gate. Do not lead with lab custody fixtures."
+      },
+      {
+        "id": "microsoft.founders_hub",
+        "name": "Microsoft for Startups",
+        "url": "https://startups.microsoft.com",
+        "cost": "free, no equity",
+        "status": "qualify_not_claimed",
+        "priority": 1,
+        "must": [
+          "owns a software-based product",
+          "privately held for-profit",
+          "has not raised Series C or later",
+          "headquartered where Azure is available",
+          "under Microsoft lifetime Azure credit cap"
+        ],
+        "must_not": [
+          "consultancy / agency",
+          "cryptocurrency mining",
+          "educational or government organization"
+        ],
+        "benefits": [
+          "Azure Startup credits after eligibility verification (tier is eligibility-based; not claimed here)",
+          "Azure + Dynamics + Entra alignment for the mothership stack",
+          "Marketplace / co-sell path is later and not claimed"
+        ],
+        "apply": "https://startups.microsoft.com",
+        "pitch_rule": "Microsoft is the SoR and hosting stack, not the product."
+      },
+      {
+        "id": "nvidia.developer",
+        "name": "NVIDIA Developer Program",
+        "url": "https://developer.nvidia.com/developer-program",
+        "cost": "free",
+        "status": "complementary_not_claimed",
+        "priority": 2,
+        "note": "Developer tools and training. Not a grant and not Inception membership.",
+        "pitch_rule": "Complementary. Do not treat as Inception acceptance."
+      },
+      {
+        "id": "github.for_startups",
+        "name": "GitHub for Startups",
+        "url": "https://github.com/enterprise/startups",
+        "cost": "eligibility-based",
+        "status": "later_not_first",
+        "priority": 3,
+        "note": "Often paired after Microsoft for Startups. Do not apply first or claim credits.",
+        "pitch_rule": "Later tooling discount. Not a second product story."
+      },
+      {
+        "id": "microsoft.isv_success",
+        "name": "Microsoft ISV Success",
+        "url": "https://www.microsoft.com/en-us/isv",
+        "cost": "partner program",
+        "status": "later_not_first",
+        "priority": 3,
+        "note": "Partner / Marketplace path after a sold L1. Not a startup grant.",
+        "pitch_rule": "Later ISV path. Microsoft remains the SoR, not the product."
+      },
+      {
+        "id": "nvidia.connect",
+        "name": "NVIDIA Connect (ISV)",
+        "url": "https://www.nvidia.com/en-us/startups/",
+        "cost": "free",
+        "status": "later_not_first",
+        "priority": 4,
+        "note": "For software companies that are not applying as startups. Do not apply first."
+      }
     ]
   },
   "open_gaps": ["G1/G10 LIVE_PIN_OK", "G12 legal", "G13 signed L1", "G14 live SoR", "Product HA"]

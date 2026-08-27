@@ -21,3 +21,9 @@ class IPError(AgentGovError):
     """IP or competitor-boundary refusal. Not a signed legal opinion (G12 open)."""
 
     reason_code = "IP_PROTECTED"
+
+
+class ProgramError(AgentGovError):
+    """Program / grant qualification refusal. Membership is not claimed."""
+
+    reason_code = "PROGRAM_NOT_CLAIMED"

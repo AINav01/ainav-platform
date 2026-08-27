@@ -71,6 +71,15 @@ QUALIFY → L1_SOLD → KIT_IN_PROGRESS → KIT_PASS → P_ADM_ATTACH → U_DUAL
 - Competitor aliases cannot be provisioned as packs.
 - G12 legal is OPEN. No patent is claimed in this tree.
 
+## Programs (qualify, do not claim)
+
+Job C: dual-admitted effect authority before Dynamics 365 Business Central privileged writes. Not a cryptocurrency product. Not an IdP. Not agent inventory.
+- Public wedge: `bc.general_journal.post`
+- NVIDIA Inception and Microsoft for Startups: prepare only. Membership is not claimed.
+- Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.
+- Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.
+- Ready to apply is false until a public website and incorporation date exist outside this tree.
+
 ## Success equation
 
 LIVE_PIN_OK × proof day × signed L1 × P-ADM attach

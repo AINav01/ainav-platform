@@ -74,10 +74,10 @@ def _demo(seat_a: str, seat_b: str) -> int:
 
     reset_default_store()
     action = {
-        "action_class": "custody.withdraw.execute",
-        "payload": {"amount": "100", "asset": "USDC"},
+        "action_class": "bc.general_journal.post",
+        "payload": {"account": "1000", "amount": "100.00", "memo": "public demo"},
         "proposal_id": "prp-demo",
-        "sor_target": "custody.core",
+        "sor_target": "bc.sandbox",
         "policy_id": "dual-admit-v1",
     }
     rec = admit(
@@ -135,10 +135,10 @@ def _audit(ledger: str | None) -> int:
     reset_default_store()
     rec = admit(
         {
-            "action_class": "custody.withdraw.execute",
-            "payload": {"amount": "100", "asset": "USDC"},
+            "action_class": "bc.general_journal.post",
+            "payload": {"account": "1000", "amount": "100.00", "memo": "public audit"},
             "proposal_id": "prp-audit",
-            "sor_target": "custody.core",
+            "sor_target": "bc.sandbox",
             "policy_id": "dual-admit-v1",
         },
         default_lockfile(),

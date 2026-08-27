@@ -1,6 +1,6 @@
 {
   "schema_version": "agent_gov.gold.v1",
-  "note": "Frozen interop vectors. Changing canonical JSON or hashing is a breaking change.",
+  "note": "Frozen interop vectors. Changing canonical JSON or hashing is a breaking change. Lab fixture only — not the commercial or NVIDIA Inception public wedge (bc.general_journal.post).",
   "action": {
     "action_class": "custody.withdraw.execute",
     "payload": {
