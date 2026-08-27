@@ -1,0 +1,22 @@
+{
+  "schema_version": "agent_gov.gold.v1",
+  "note": "Frozen interop vectors. Changing canonical JSON or hashing is a breaking change. Lab fixture only — not the commercial or NVIDIA Inception public wedge (bc.general_journal.post).",
+  "action": {
+    "action_class": "custody.withdraw.execute",
+    "payload": {
+      "amount": "100",
+      "asset": "USDC",
+      "dest": "0xabc"
+    },
+    "policy_id": "dual-admit-v1",
+    "proposal_id": "prp-1",
+    "sor_target": "custody.core"
+  },
+  "canonical_json": "{\"action_class\":\"custody.withdraw.execute\",\"payload\":{\"amount\":\"100\",\"asset\":\"USDC\",\"dest\":\"0xabc\"},\"policy_id\":\"dual-admit-v1\",\"proposal_id\":\"prp-1\",\"sor_target\":\"custody.core\"}",
+  "action_hash": "da4eeecbca9ce7fed28c062156295505eb3b4e978022452feb2b4a4162579fcd",
+  "seats": {
+    "seat_a": "oid-1",
+    "seat_b": "oid-2"
+  },
+  "grant_id": "e33586eafb6995e3746fd78aa46e223acab2be545f533139c8b4d5f002a38e16"
+}

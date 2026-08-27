@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AINAV.Institute — Dual-admitted effect authority</title>
+  <meta name="description" content="AINAV.Institute is the public face of AINav, Inc. Job C: two distinct humans bind an action_hash before a privileged write." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark">AINAV</span>
+      <span class="dot">.</span>
+      <span class="inst">Institute</span>
+    </div>
+    <nav>
+      <a href="#buyer">Buyer</a>
+      <a href="#product">Product</a>
+      <a href="#commercial">Commercial</a>
+      <a href="#packs">Packs</a>
+      <a href="#ops">Operations</a>
+      <a href="#business">Business</a>
+      <a href="#mothership">Mothership</a>
+      <a href="#microsoft">Microsoft</a>
+      <a href="#ip">IP</a>
+      <a href="#programs">Programs</a>
+      <a href="#missing">Missing</a>
+      <a href="#open">Open</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">Job C · AINav, Inc.</p>
+      <h1>Two distinct humans.<br />One action hash.<br />Then the write.</h1>
+      <p class="lede">
+        AINAV.Institute publishes the law of the admit plane.
+        Privileged system-of-record writes happen only after dual admission,
+        a single-use consume, and a fail-closed effect gate.
+      </p>
+      <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote.</p>
+    </section>
+
+    <section id="buyer">
+      <h2>Buyer page</h2>
+      <p class="note">A controller can forward this. There is no invented inbox.</p>
+      <p class="lede" id="buyer-write">
+        An unauthorized general-journal post that two humans did not admit.
+      </p>
+      <p class="incident" id="buyer-incident">
+        L1 is the week you prove that write cannot land without two seats.
+      </p>
+      <div class="split">
+        <div>
+          <h3>Two seats</h3>
+          <ul class="stack" id="buyer-seats">
+            <li>treasury_approver</li>
+            <li>treasury_controller</li>
+          </ul>
+          <h3>Three prices</h3>
+          <ul class="stack" id="buyer-prices">
+            <li>L1 $28–40k / 2–4 weeks</li>
+            <li>P-ADM $40–60k / year after kit PASS</li>
+            <li>U-DUAL $20–35k / year — never free</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Proof day</h3>
+          <p id="buyer-proof">Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.</p>
+          <h3>What we refuse</h3>
+          <ul class="stack refuse" id="buyer-refuse">
+            <li>Teams vote as dual</li>
+            <li>Copilot as the admit plane</li>
+            <li>free U-DUAL</li>
+            <li>LIVE_PIN_OK</li>
+            <li>named design partner</li>
+            <li>invented contact inbox</li>
+          </ul>
+        </div>
+      </div>
+      <p class="door" id="buyer-door">Generate a proof-day brief a controller can forward. Do not invent a contact inbox.</p>
+      <button type="button" class="ask" id="ask-proof-day">Ask for a proof day</button>
+      <p class="note" id="brief-status" hidden></p>
+      <script type="application/json" id="buyer-data">{
+        "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit.",
+        "incident": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
+        "seats": ["treasury_approver", "treasury_controller"],
+        "prices": ["L1 $28–40k / 2–4 weeks", "P-ADM $40–60k / year after kit PASS", "U-DUAL $20–35k / year — never free"],
+        "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+        "refuse": ["Teams vote as dual", "Copilot as the admit plane", "free U-DUAL", "LIVE_PIN_OK", "named design partner", "invented contact inbox"],
+        "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+        "contact_email": null,
+        "mailto": null,
+        "live": false,
+        "signed_l1": false
+      }</script>
+    </section>
+
+    <section id="product">
+      <h2>Product</h2>
+      <ol class="flow">
+        <li>Agent proposes an action</li>
+        <li>Seat A and Seat B — distinct principals — bind <code>action_hash</code></li>
+        <li>The grant is consumed once</li>
+        <li>A DecisionRecord is sealed</li>
+        <li>SoR apply only if admit is ok</li>
+      </ol>
+      <pre class="snippet" tabindex="0"><code>from agent_gov import admit, ConsumeLedger, default_lockfile, EffectLedger
+
+rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
+            seat_a="oid-1", seat_b="oid-2")
+EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
+    </section>
+
+    <section id="commercial">
+      <h2>Commercial spine</h2>
+      <p class="note">Three SKUs. Packs deepen the same plane. No second control product.</p>
+      <div class="cards">
+        <article>
+          <h3>L1 FIRST_OFFER</h3>
+          <p class="price">$28–40k · 2–4 weeks</p>
+          <p>Price against the unauthorized journal. Ninety-minute proof day. Digital twin only.</p>
+        </article>
+        <article>
+          <h3>P-ADM ADMIT_COVERAGE</h3>
+          <p class="price">$40–60k / year</p>
+          <p>Attach after L1 Acceptance Kit PASS. Never includes free U-DUAL. Never soft dual.</p>
+        </article>
+        <article>
+          <h3>U-DUAL</h3>
+          <p class="price">$20–35k / year</p>
+          <p>Depth pack. Additional action classes. Never free with P-ADM or U-SOR.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="packs">
+      <h2>Packs, libraries, services</h2>
+      <p class="note">Industry shapes and fee-for-service hours are not SKUs.</p>
+      <div class="split">
+        <div>
+          <h3>Industry</h3>
+          <ul class="stack">
+            <li><strong>industry.treasury</strong> — L1 wedge. <code>bc.general_journal.post</code>.</li>
+            <li><strong>industry.sales</strong> — paid U-DUAL deepen. Quote override and order submit.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Fee-for-service</h3>
+          <ul class="stack">
+            <li><strong>Acceptance Kit</strong> — inside L1. Not an extra SKU.</li>
+            <li><strong>Integration assist / replay workshop</strong> — $3,500/day on the same plane. Does not attach U-DUAL.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ops">
+      <h2>Operations</h2>
+      <p class="stages">QUALIFY → L1_SOLD → KIT_IN_PROGRESS → KIT_PASS → P_ADM_ATTACH → U_DUAL_OFFER → U_DUAL_ATTACH</p>
+      <p class="note">Exits: LOST · KIT_FAIL · CHURN. Kit PASS is a twin proof, not a checkbox.</p>
+      <ul class="stack">
+        <li>P-ADM attaches only after kit PASS.</li>
+        <li>U-DUAL requires L1 and never attaches as a free bundle with P-ADM.</li>
+        <li>This plane cannot mark <code>LIVE_PIN_OK</code> or signed L1.</li>
+      </ul>
+    </section>
+
+    <section id="business">
+      <h2>Business operating system</h2>
+      <p class="note">One company. One plane. Catalog list is not recognized revenue.</p>
+      <p class="lede">
+        Price L1 against the unauthorized journal that two humans did not admit.
+        Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
+      </p>
+      <div class="cards stack-cards">
+        <article>
+          <h3>Model</h3>
+          <p>Prove L1. Keep P-ADM. Deepen U-DUAL. Not a consultancy. Not an IdP.</p>
+        </article>
+        <article>
+          <h3>Management</h3>
+          <p>Weekly pipeline. Kit board. Open-gap review. Cannot mark LIVE_PIN_OK, signed L1, or recognized revenue.</p>
+        </article>
+        <article>
+          <h3>Sales</h3>
+          <p>Qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL. No free bundle. No soft dual close.</p>
+        </article>
+        <article>
+          <h3>Delivery</h3>
+          <p>Master issues the lockfile. Local mothership admits, writes the twin, notifies Teams, stores kit evidence in SharePoint sandbox.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mothership">
+      <h2>Master and local motherships</h2>
+      <div class="split">
+        <div>
+          <h3>Master</h3>
+          <p>AINav issues the lockfile, gold vectors, and catalog. It does not write the client’s SoR. Azure is the declared host — not a live pin.</p>
+        </div>
+        <div>
+          <h3>Local</h3>
+          <p>The client plane: AdmitClient, lockfile, ledger, Business Central twin, optional Sales twin. Standard L1 pack is <code>bc.general_journal.post</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="microsoft">
+      <h2>Microsoft stack</h2>
+      <p class="note">Six connections. Sandbox only. Microsoft is not the product. Copilot and Agent 365 are not the admit plane.</p>
+      <p class="lede">
+        AINav, Inc. hosts on Azure. AINav admits on Entra seats from Microsoft 365 E7,
+        writes the Business Central and Sales twins, and notifies Teams Enterprise and Teams Premium.
+        AINAV.Institute is a static site planned for Azure Static Web Apps — not a live deploy.
+      </p>
+      <div id="stack-cards" class="cards stack-cards">
+        <article data-id="azure.host">
+          <h3>Microsoft Azure</h3>
+          <p class="price">hosting · sandbox</p>
+          <p>Master mothership target and Institute static host. Deploy is not claimed.</p>
+        </article>
+        <article data-id="m365.e7">
+          <h3>Microsoft 365 E7</h3>
+          <p class="price">tenant · sandbox</p>
+          <p>Entra Suite, Purview, Sentinel, Teams licensing. Copilot / Agent 365 are not SKUs.</p>
+        </article>
+        <article data-id="teams.enterprise">
+          <h3>Teams Enterprise</h3>
+          <p class="price">notify · sandbox</p>
+          <p>Effect notify only. A chat is not a seat.</p>
+        </article>
+        <article data-id="teams.premium">
+          <h3>Teams Premium</h3>
+          <p class="price">protected notify · sandbox</p>
+          <p>Protected effect notify. A meeting is not a seat.</p>
+        </article>
+        <article data-id="bc.premium">
+          <h3>Business Central Premium</h3>
+          <p class="price">L1 SoR · sandbox</p>
+          <p><code>bc.general_journal.post</code> on a digital twin until G14.</p>
+        </article>
+        <article data-id="sales.enterprise">
+          <h3>Sales Enterprise</h3>
+          <p class="price">U-DUAL SoR · sandbox</p>
+          <p>Quote override and order submit on a digital twin until G14.</p>
+        </article>
+      </div>
+      <p class="note">Complements — Entra ID, Azure Key Vault, Azure Monitor, SharePoint kit evidence, Defender XDR. Not SKUs. Not live.</p>
+    </section>
+
+    <section id="ip">
+      <h2>IP and competitor boundary</h2>
+      <p class="note">Hygiene in this tree. G12 legal is not signed.</p>
+      <ul class="stack">
+        <li><strong>AINav, Inc.</strong> owns the admit plane, gold vectors, lockfile, catalog, and mothership.</li>
+        <li><strong>Microsoft</strong> marks name integrations only. AINav is not a Microsoft product, Copilot feature, or Teams vote.</li>
+        <li>Copilot, Power Automate, Purview, Sentinel, ServiceNow, SailPoint, Okta, Palantir, UiPath, and Agentforce are not SKUs.</li>
+        <li>No patent is claimed in this tree.</li>
+      </ul>
+    </section>
+
+    <section id="programs">
+      <h2>Programs</h2>
+      <p class="note">Qualify. Do not claim membership, credits, badges, or a live public deploy.</p>
+      <p class="lede">
+        Job C is dual-admitted effect authority before Dynamics 365 Business Central privileged writes.
+        Not a cryptocurrency product. Membership is not claimed.
+      </p>
+      <ul class="stack">
+        <li><strong>Microsoft for Startups</strong> — first. Azure Startup credits after verification. Microsoft is the SoR, not the product.</li>
+        <li><strong>NVIDIA Inception</strong> — second. Free, no equity, no cohort. Excludes crypto-associated companies. Lead with <code>bc.general_journal.post</code>. GPU production is not claimed.</li>
+        <li><strong>NVIDIA Developer</strong> — complementary tools. Not a grant and not Inception.</li>
+        <li><strong>GitHub for Startups</strong> and <strong>Microsoft ISV Success</strong> — later discounts / partner path.</li>
+        <li><strong>NVIDIA Connect</strong> — later ISV path. Not the first application.</li>
+      </ul>
+    </section>
+
+    <section id="missing">
+      <h2>Still missing</h2>
+      <p class="note">Honest. Do not invent these as done.</p>
+      <ul class="gaps">
+        <li>Live Microsoft tenant credentials and Graph calls</li>
+        <li>Public Institute deploy and incorporation date</li>
+        <li>Recognized revenue / external billing provider</li>
+        <li>Signed L1 counsel pack (G13)</li>
+        <li>Multi-host product HA</li>
+      </ul>
+    </section>
+
+    <section id="open">
+      <h2>Open — do not mark closed</h2>
+      <ul class="gaps">
+        <li>G1 / G10 LIVE_PIN_OK</li>
+        <li>G12 legal</li>
+        <li>G13 signed L1</li>
+        <li>G14 live SoR</li>
+        <li>Product HA</li>
+      </ul>
+      <p class="equation">Success = LIVE_PIN_OK × proof day × signed L1 × P-ADM attach</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>AINav, Inc. · AINAV.Institute · Job C only · Microsoft marks used for integrations only</p>
+  </footer>
+  <script>
+    document.querySelectorAll("nav a[href^='#']").forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        var id = link.getAttribute("href").slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (history.replaceState) history.replaceState(null, "", "#" + id);
+      });
+    });
+    fetch("stack.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
+      if (!data || data.live || !data.connections) return;
+      var root = document.getElementById("stack-cards");
+      if (!root) return;
+      data.connections.forEach(function (item) {
+        var card = root.querySelector("[data-id='" + item.id + "']");
+        if (!card) return;
+        card.setAttribute("data-mode", item.mode);
+        card.setAttribute("data-live", "false");
+      });
+    }).catch(function () { /* stack.json is optional when opened as a file */ });
+    function buyerPayload() {
+      var embedded = document.getElementById("buyer-data");
+      try { return embedded ? JSON.parse(embedded.textContent) : {}; } catch (err) { return {}; }
+    }
+    function fillBuyer(data) {
+      if (!data) return;
+      var write = document.getElementById("buyer-write");
+      var incident = document.getElementById("buyer-incident");
+      var proof = document.getElementById("buyer-proof");
+      var door = document.getElementById("buyer-door");
+      if (write && data.write_that_must_not_happen) write.textContent = data.write_that_must_not_happen;
+      if (incident && data.incident) incident.textContent = data.incident;
+      if (proof && data.proof_day) proof.textContent = data.proof_day;
+      if (door && data.door) door.textContent = data.door;
+      function replaceList(id, items) {
+        var node = document.getElementById(id);
+        if (!node || !items || !items.length) return;
+        node.innerHTML = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          node.appendChild(li);
+        });
+      }
+      replaceList("buyer-seats", data.seats);
+      replaceList("buyer-prices", data.prices);
+      replaceList("buyer-refuse", data.refuse);
+    }
+    fetch("buyer.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
+      fillBuyer(data || buyerPayload());
+    }).catch(function () { fillBuyer(buyerPayload()); });
+    var ask = document.getElementById("ask-proof-day");
+    if (ask) {
+      ask.addEventListener("click", function () {
+        var page = buyerPayload();
+        var brief = {
+          kind: "ainav.proof_day.brief.v1",
+          forwardable: true,
+          write_that_must_not_happen: page.write_that_must_not_happen,
+          incident: page.incident,
+          seats: page.seats,
+          prices: page.prices,
+          proof_day: page.proof_day,
+          refuse: page.refuse,
+          ask: "Ask for a ninety-minute proof day on the existing treasury SOD.",
+          contact_email: null,
+          mailto: null,
+          named_customer: null,
+          signed_l1: false,
+          live: false
+        };
+        var blob = new Blob([JSON.stringify(brief, null, 2)], { type: "application/json" });
+        var link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "ainav-proof-day-brief.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        var status = document.getElementById("brief-status");
+        if (status) {
+          status.hidden = false;
+          status.textContent = "Brief downloaded. Forward it. There is no contact inbox on this page.";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

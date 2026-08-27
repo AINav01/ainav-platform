@@ -1,0 +1,172 @@
+{
+  "complements": [
+    {
+      "binds": [
+        "seat object ids"
+      ],
+      "id": "entra.id",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Entra ID",
+      "role": "identity",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "connection secret hold"
+      ],
+      "id": "azure.keyvault",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Key Vault",
+      "role": "secrets",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "mothership health"
+      ],
+      "id": "azure.monitor",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Monitor",
+      "role": "observe",
+      "surfaces": [
+        "ainav_inc",
+        "ainav",
+        "institute"
+      ]
+    },
+    {
+      "binds": [
+        "Acceptance Kit evidence"
+      ],
+      "id": "sharepoint.kit",
+      "live": false,
+      "mode": "sandbox",
+      "product": "SharePoint",
+      "role": "evidence",
+      "surfaces": [
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "E7 security sink"
+      ],
+      "id": "defender.xdr",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Defender XDR",
+      "role": "security",
+      "surfaces": [
+        "ainav_inc"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "binds": [
+        "master mothership target",
+        "AINAV.Institute static site"
+      ],
+      "id": "azure.host",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Azure",
+      "role": "hosting",
+      "surfaces": [
+        "ainav_inc",
+        "ainav",
+        "institute"
+      ]
+    },
+    {
+      "binds": [
+        "Entra Suite seat ids",
+        "Purview/Sentinel audit sink",
+        "Teams licensing"
+      ],
+      "id": "m365.e7",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft 365 E7",
+      "role": "tenant",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "effect notify"
+      ],
+      "id": "teams.enterprise",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Teams Enterprise",
+      "role": "notify",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "protected effect notify"
+      ],
+      "id": "teams.premium",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Teams Premium",
+      "role": "notify",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "bc.general_journal.post"
+      ],
+      "id": "bc.premium",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Dynamics 365 Business Central Premium",
+      "role": "sor",
+      "surfaces": [
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ],
+      "id": "sales.enterprise",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Dynamics 365 Sales Enterprise",
+      "role": "sor",
+      "surfaces": [
+        "ainav"
+      ]
+    }
+  ],
+  "e7_not_the_product": [
+    "Microsoft 365 Copilot",
+    "Agent 365"
+  ],
+  "entity": "AINav, Inc.",
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.stack.v1",
+  "live": false,
+  "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+  "product": "AINav Control Plane"
+}
