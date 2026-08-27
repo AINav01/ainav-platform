@@ -13,7 +13,6 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-import uuid
 from typing import Any
 
 from ainav.errors import LivePinError
@@ -23,7 +22,6 @@ RESOURCE_GROUP = "ainav-inc"
 WORKSPACE = "ainav-mothership"
 SECRET_NAME = "ainav-connection"
 LOCATION = "eastus"
-KV_SECRETS_OFFICER = "b86dff2a-9b97-4462-b3b6-0d4d7cb5f0c0"
 PROVIDERS = (
     "Microsoft.KeyVault",
     "Microsoft.OperationalInsights",
@@ -109,6 +107,7 @@ def bind_host(*, write_sor: bool = False, deploy_institute: bool = False) -> dic
         }
     tenant = _entra()["tenant"]
     vault = _vault_name(sub)
+    principal = os.environ.get("ENTRA_OBJECT_ID") or _service_principal_object_id()
     created: list[str] = []
     for provider in PROVIDERS:
         _request(
@@ -137,9 +136,20 @@ def bind_host(*, write_sor: bool = False, deploy_institute: bool = False) -> dic
             "properties": {
                 "tenantId": tenant,
                 "sku": {"family": "A", "name": "standard"},
-                "enableRbacAuthorization": True,
+                "enableRbacAuthorization": False,
                 "enableSoftDelete": True,
                 "publicNetworkAccess": "Enabled",
+                "accessPolicies": (
+                    [
+                        {
+                            "tenantId": tenant,
+                            "objectId": principal,
+                            "permissions": {"secrets": ["get", "list", "set"]},
+                        }
+                    ]
+                    if principal
+                    else []
+                ),
             },
         },
     )
@@ -147,28 +157,6 @@ def bind_host(*, write_sor: bool = False, deploy_institute: bool = False) -> dic
         return _fail("key_vault_denied", status, body, sub)
     created.append("key_vault")
     _wait_vault(sub, vault, token)
-    principal = os.environ.get("ENTRA_OBJECT_ID") or _service_principal_object_id()
-    if principal:
-        _request(
-            "PUT",
-            (
-                f"https://management.azure.com/subscriptions/{sub}/resourceGroups/{RESOURCE_GROUP}"
-                f"/providers/Microsoft.KeyVault/vaults/{vault}/providers/Microsoft.Authorization"
-                f"/roleAssignments/{uuid.uuid5(uuid.NAMESPACE_URL, f'ainav-kv-{vault}-{principal}')}"
-                f"?api-version=2022-04-01"
-            ),
-            token,
-            {
-                "properties": {
-                    "roleDefinitionId": (
-                        f"/subscriptions/{sub}/providers/Microsoft.Authorization"
-                        f"/roleDefinitions/{KV_SECRETS_OFFICER}"
-                    ),
-                    "principalId": principal,
-                    "principalType": "ServicePrincipal",
-                }
-            },
-        )
     secret_ok = _put_connection_secret(vault)
     status, body = _request(
         "PUT",
