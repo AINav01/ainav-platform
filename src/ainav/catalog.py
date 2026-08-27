@@ -52,6 +52,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
                 f"fee-for-service {svc.get('id')} included_in invented SKU",
                 reason_code="CATALOG_SKU",
             )
+    from ainav.business import validate_business
     from ainav.ip import validate_ip_doctrine
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
@@ -59,6 +60,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     validate_ip_doctrine(catalog)
     validate_programs(catalog)
     validate_connections(catalog)
+    validate_business(catalog)
 
 
 def _validate_named_sets(items: list[dict[str, Any]], module_ids: set[str], kind: str) -> None:

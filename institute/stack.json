@@ -1,4 +1,75 @@
 {
+  "complements": [
+    {
+      "binds": [
+        "seat object ids"
+      ],
+      "id": "entra.id",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Entra ID",
+      "role": "identity",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "connection secret hold"
+      ],
+      "id": "azure.keyvault",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Key Vault",
+      "role": "secrets",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "mothership health"
+      ],
+      "id": "azure.monitor",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Monitor",
+      "role": "observe",
+      "surfaces": [
+        "ainav_inc",
+        "ainav",
+        "institute"
+      ]
+    },
+    {
+      "binds": [
+        "Acceptance Kit evidence"
+      ],
+      "id": "sharepoint.kit",
+      "live": false,
+      "mode": "sandbox",
+      "product": "SharePoint",
+      "role": "evidence",
+      "surfaces": [
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "E7 security sink"
+      ],
+      "id": "defender.xdr",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Defender XDR",
+      "role": "security",
+      "surfaces": [
+        "ainav_inc"
+      ]
+    }
+  ],
   "connections": [
     {
       "binds": [

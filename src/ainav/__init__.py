@@ -1,5 +1,6 @@
 """AINav mothership: Job C admit plane + catalog + local provision."""
 
+from ainav.business import OperatingCompany
 from ainav.catalog import load_catalog, sku
 from ainav.errors import IPError, ProgramError
 from ainav.ip import notice, screen_pack_label
@@ -13,6 +14,7 @@ __all__ = [
     "IPError",
     "LocalMothership",
     "MasterMothership",
+    "OperatingCompany",
     "load_catalog",
     "notice",
     "pitch",

@@ -120,6 +120,8 @@ class ClientAccount:
             "live_pin_ok": False,
             "signed_l1": False,
             "services": list(self.services),
+            "industry": list(self.local.industry) if self.local else [],
+            "libraries": list(self.local.libraries) if self.local else [],
         }
 
     def _require_local(self) -> LocalMothership:

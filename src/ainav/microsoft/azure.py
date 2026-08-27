@@ -40,6 +40,22 @@ class AzureHost:
             payload={"name": "ainav-master", "live": False},
         )
 
+    def plan_keyvault(self) -> dict[str, Any]:
+        return intended_request(
+            "azure.keyvault",
+            method="PUT",
+            path="/secrets/ainav-connection",
+            payload={"live": False, "kind": "connection-secret"},
+        )
+
+    def plan_monitor(self) -> dict[str, Any]:
+        return intended_request(
+            "azure.monitor",
+            method="POST",
+            path="/dataCollectionRules/ainav-mothership",
+            payload={"live": False, "kind": "mothership-health"},
+        )
+
     def plan_institute(self) -> dict[str, Any]:
         return intended_request(
             "azure.host",

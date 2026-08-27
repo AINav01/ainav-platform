@@ -36,12 +36,16 @@ SoR, and audit. It is not the product.
 
 - **industry.treasury** — Treasury wedge (requires L1; Standard L1 industry shape. Not a SKU.)
 - **industry.sales** — Sales deepen (requires U-DUAL; A la carte U-DUAL depth. Not a fourth SKU.)
+- **industry.controller** — Controller desk (requires L1; Same L1 wedge, controller seating. Not a SKU.)
+- **industry.quote_desk** — Quote desk (requires U-DUAL; A la carte U-DUAL slice. Not a fourth SKU.)
 
 ## Fee-for-service (not SKUs)
 
 - **ffs.acceptance_kit** — Acceptance Kit / proof day (included in L1). Inside L1. Not a SKU.
 - **ffs.integration_assist** — Integration assist ($3,500/day). Hours on the same admit plane. Not a SKU. Does not attach U-DUAL.
 - **ffs.replay_workshop** — Replay / Merkle workshop ($3,500/day). Audit replay with the client. Not a SKU.
+- **ffs.qbr** — Quarterly business review ($3,500/day). Same-plane review. Not a SKU. Does not attach U-DUAL.
+- **ffs.mothership_ops** — Mothership operations assist ($3,500/day). Local mothership runbook hours. Not a SKU.
 
 ## Operations
 
@@ -64,6 +68,15 @@ QUALIFY → L1_SOLD → KIT_IN_PROGRESS → KIT_PASS → P_ADM_ATTACH → U_DUAL
 - **Azure:** declared host for the master mothership and Institute static site.
 - **Business Central Premium / Sales Enterprise:** sandbox SoR until G14.
 - Copilot and Agent 365 ship inside E7. They are not the admit plane.
+- Complements: Entra ID, Azure Key Vault, Azure Monitor, SharePoint kit evidence, Defender XDR.
+
+## Business operating system
+
+Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid U-DUAL. Hours stay fee-for-service on the same plane.
+- Motion: qualify → sell L1 → kit PASS → attach P-ADM → offer paid U-DUAL
+- Services: Hours deepen the same admit plane. They never mint a SKU.
+- Economics: Pipeline math uses catalog list prices. It is not recognized revenue.
+- Complements are not SKUs. Industry packs and FFS hours are not SKUs.
 
 ## IP and competitor boundary
 

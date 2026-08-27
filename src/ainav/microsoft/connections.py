@@ -22,6 +22,13 @@ REQUIRED_IDS = (
     "bc.premium",
     "sales.enterprise",
 )
+COMPLEMENT_IDS = (
+    "entra.id",
+    "azure.keyvault",
+    "azure.monitor",
+    "sharepoint.kit",
+    "defender.xdr",
+)
 SURFACES = frozenset({"ainav_inc", "ainav", "institute"})
 FORBIDDEN_CONNECTION_STEMS = (
     "copilot",
@@ -57,14 +64,34 @@ def validate_connections(catalog: dict[str, Any]) -> None:
                 )
         if not set(item.get("surfaces") or []) <= SURFACES:
             raise IntegrityError("unknown connection surface", reason_code="CATALOG_CONNECTION")
+    complements = body.get("complements") or []
+    if [item.get("id") for item in complements] != list(COMPLEMENT_IDS):
+        raise IntegrityError(
+            "complements must be the five deemed-appropriate Microsoft elements",
+            reason_code="CATALOG_CONNECTION",
+        )
+    for item in complements:
+        screen_pack_label(str(item.get("id")), catalog=catalog)
+        refuse_claim(str(item.get("product")), catalog=catalog)
+        blob = f"{item.get('id')} {item.get('product')}".lower()
+        for stem in FORBIDDEN_CONNECTION_STEMS:
+            if stem.replace("_", " ") in blob or stem in blob.replace(" ", "_"):
+                raise IntegrityError(
+                    "Copilot / Agent 365 cannot be a stack connection",
+                    reason_code="MICROSOFT_PRODUCT",
+                )
 
 
 def connection_specs() -> list[dict[str, Any]]:
     return [dict(item) for item in load_catalog()["connections"]["items"]]
 
 
+def complement_specs() -> list[dict[str, Any]]:
+    return [dict(item) for item in load_catalog()["connections"].get("complements", [])]
+
+
 def spec(connection_id: str) -> dict[str, Any]:
-    for item in connection_specs():
+    for item in connection_specs() + complement_specs():
         if item["id"] == connection_id:
             return item
     raise IntegrityError(f"unknown connection {connection_id}", reason_code="CATALOG_CONNECTION")
@@ -108,6 +135,18 @@ def stack_json() -> dict[str, Any]:
             }
             for item in body["items"]
         ],
+        "complements": [
+            {
+                "id": item["id"],
+                "product": item["product"],
+                "role": item["role"],
+                "surfaces": list(item["surfaces"]),
+                "binds": list(item.get("binds") or []),
+                "mode": "sandbox",
+                "live": False,
+            }
+            for item in body.get("complements", [])
+        ],
     }
 
 
@@ -118,13 +157,14 @@ class StackPlane:
 
     def __init__(self) -> None:
         self.receipts: list[dict[str, Any]] = []
-        self.specs = {item["id"]: item for item in connection_specs()}
+        self.specs = {item["id"]: item for item in connection_specs() + complement_specs()}
 
     def describe(self) -> dict[str, Any]:
         return {
             "kind": "ainav.stack.v1",
             "live": False,
             "connections": [self.health(cid) for cid in REQUIRED_IDS],
+            "complements": [self.health(cid) for cid in COMPLEMENT_IDS],
             "not_the_product": load_catalog()["microsoft_stack"]["not_the_product"],
         }
 

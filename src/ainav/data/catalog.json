@@ -116,6 +116,20 @@
       "requires_sku": "U-DUAL",
       "modules": ["d365.quote.discount_override", "d365.order.submit"],
       "note": "A la carte U-DUAL depth. Not a fourth SKU."
+    },
+    {
+      "id": "industry.controller",
+      "name": "Controller desk",
+      "requires_sku": "L1",
+      "modules": ["bc.general_journal.post"],
+      "note": "Same L1 wedge, controller seating. Not a SKU."
+    },
+    {
+      "id": "industry.quote_desk",
+      "name": "Quote desk",
+      "requires_sku": "U-DUAL",
+      "modules": ["d365.quote.discount_override"],
+      "note": "A la carte U-DUAL slice. Not a fourth SKU."
     }
   ],
   "libraries": [
@@ -133,6 +147,12 @@
       "id": "lib.padm.export",
       "requires_sku": "P-ADM",
       "modules": ["purview.audit.export"]
+    },
+    {
+      "id": "lib.kit.evidence",
+      "requires_sku": "L1",
+      "modules": ["entra.seat.verify", "teams.notify"],
+      "note": "Acceptance Kit evidence path. Not a SKU."
     }
   ],
   "fee_for_service": [
@@ -158,6 +178,22 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Audit replay with the client. Not a SKU."
+    },
+    {
+      "id": "ffs.qbr",
+      "name": "Quarterly business review",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Same-plane review. Not a SKU. Does not attach U-DUAL."
+    },
+    {
+      "id": "ffs.mothership_ops",
+      "name": "Mothership operations assist",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Local mothership runbook hours. Not a SKU."
     }
   ],
   "provisioning": {
@@ -285,7 +321,109 @@
         "sandbox_target": "d365.sales.sandbox",
         "live_gap": "G14 live SoR"
       }
+    ],
+    "complements": [
+      {
+        "id": "entra.id",
+        "product": "Microsoft Entra ID",
+        "role": "identity",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["seat object ids"],
+        "endpoint": "https://graph.microsoft.com/v1.0/users",
+        "env": ["ENTRA_TENANT_ID"],
+        "scopes": ["User.Read.All"],
+        "note": "Consumes object ids. Does not replace the IdP.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "azure.keyvault",
+        "product": "Azure Key Vault",
+        "role": "secrets",
+        "surfaces": ["ainav_inc", "ainav"],
+        "binds": ["connection secret hold"],
+        "endpoint": "https://{vault}.vault.azure.net",
+        "env": ["AZURE_KEYVAULT_URI"],
+        "scopes": ["https://vault.azure.net/.default"],
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "azure.monitor",
+        "product": "Azure Monitor",
+        "role": "observe",
+        "surfaces": ["ainav_inc", "ainav", "institute"],
+        "binds": ["mothership health"],
+        "endpoint": "https://monitor.azure.com",
+        "env": ["AZURE_MONITOR_DCE"],
+        "scopes": ["https://monitor.azure.com/.default"],
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "sharepoint.kit",
+        "product": "SharePoint",
+        "role": "evidence",
+        "surfaces": ["ainav"],
+        "binds": ["Acceptance Kit evidence"],
+        "endpoint": "https://graph.microsoft.com/v1.0/sites",
+        "env": ["SHAREPOINT_SITE_ID"],
+        "scopes": ["Sites.ReadWrite.All"],
+        "note": "Kit evidence store. Not a seat and not dual.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      },
+      {
+        "id": "defender.xdr",
+        "product": "Microsoft Defender XDR",
+        "role": "security",
+        "surfaces": ["ainav_inc"],
+        "binds": ["E7 security sink"],
+        "endpoint": "https://graph.microsoft.com/v1.0/security",
+        "env": ["ENTRA_TENANT_ID"],
+        "scopes": ["SecurityEvents.Read.All"],
+        "note": "E7 security sink. Not the admit plane.",
+        "live_gap": "G1/G10 LIVE_PIN_OK"
+      }
     ]
+  },
+  "business": {
+    "thesis": "Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid U-DUAL. Hours stay fee-for-service on the same plane.",
+    "model": {
+      "prove": "L1",
+      "keep": "P-ADM",
+      "deepen": "U-DUAL",
+      "hours": "fee-for-service",
+      "not": ["consultancy-as-product", "IdP replacement", "agent inventory", "free U-DUAL"]
+    },
+    "management": {
+      "cadence": ["weekly pipeline", "kit board", "open-gap review"],
+      "cannot_mark": ["LIVE_PIN_OK", "signed L1", "recognized revenue"]
+    },
+    "sales": {
+      "motion": "qualify → sell L1 → kit PASS → attach P-ADM → offer paid U-DUAL",
+      "forbidden": ["bundle free U-DUAL", "soft dual as a close", "claim LIVE_PIN_OK to close"]
+    },
+    "development": {
+      "gold": "make gold",
+      "vectors": "frozen",
+      "release": "catalog + mothership + Institute"
+    },
+    "services": {
+      "principle": "Hours deepen the same admit plane. They never mint a SKU."
+    },
+    "delivery": {
+      "master": "Azure-declared master mothership issues lockfile, catalog, gold.",
+      "local": "Client mothership: AdmitClient + twin + Teams notify.",
+      "steps": [
+        "provision standard_l1",
+        "admit dual seats",
+        "effect on BC twin",
+        "notify Teams Enterprise and Premium",
+        "store kit evidence in SharePoint sandbox",
+        "refuse live pin"
+      ]
+    },
+    "economics": {
+      "recognized_revenue_claimed": false,
+      "note": "Pipeline math uses catalog list prices. It is not recognized revenue."
+    }
   },
   "ip": {
     "owner": "AINav, Inc.",

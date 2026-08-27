@@ -24,6 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("connections")
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
+    sub.add_parser("company-demo")
     prov = sub.add_parser("provision")
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
@@ -90,6 +91,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "stack-demo":
         return _stack_demo(args.client_id)
+    if args.cmd == "company-demo":
+        return _company_demo()
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())
         industry = tuple(p.strip() for p in args.industry.split(",") if p.strip())
@@ -204,6 +207,38 @@ def _ops_demo(client_id: str) -> int:
                 "manifest": local.manifest(),
                 "sales_effect": sales["record_type"],
                 "sales_twin": local.sales.twin.writes,
+            }
+        )
+    )
+    return 0
+
+
+def _company_demo() -> int:
+    from ainav.business import OperatingCompany
+
+    company = OperatingCompany()
+    won = company.run_standard_engagement("acme")
+    company.qualify("prospect")
+    local = won.local
+    assert local is not None
+    local.run_and_apply(
+        {
+            "action_class": "bc.general_journal.post",
+            "payload": {"account": "1000", "amount": "10.00", "memo": "company demo"},
+            "proposal_id": "prp-co-1",
+            "sor_target": "bc.sandbox",
+            "policy_id": "dual-admit-v1",
+        },
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    print(
+        canonical_json(
+            {
+                "management": company.management_snapshot(),
+                "runbook": company.delivery_runbook(won),
+                "evidence": company.evidence.stored[-1]["connection"] if company.evidence.stored else None,
+                "live": False,
             }
         )
     )
