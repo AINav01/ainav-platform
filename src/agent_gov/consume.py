@@ -22,14 +22,35 @@ class ConsumeLedger:
         store: AuthorityStore | None = None,
         *,
         simulator: LuaSimulator | None = None,
+        redis: Any | None = None,
     ) -> None:
         self.store = store or default_store()
         self.simulator = simulator
+        self.redis = redis
 
     def consume(self, slot_key: str, record: Mapping[str, Any]) -> dict[str, Any]:
         if not slot_key:
             raise ConsumeReplay("slot_key is required", reason_code="SLOT_MISSING")
-        if self.simulator is not None:
+        if self.redis is not None:
+            argv = [
+                str(record.get("request_id", "")),
+                str(record.get("action_hash", "")),
+                str(record.get("seat_a", "")),
+                str(record.get("seat_b", "")),
+                str(record.get("consumed_at", "")),
+            ]
+            result = self.redis.eval([slot_key], argv)
+            if result == ERR:
+                raise ConsumeReplay(
+                    f"slot already consumed: {slot_key}",
+                    reason_code="CONSUME_REPLAY",
+                )
+            if result != OK:
+                raise ConsumeReplay(
+                    f"redis consume returned {result!r}",
+                    reason_code="CONSUME_LUA_ERR",
+                )
+        elif self.simulator is not None:
             result = dual_consume(self.simulator, [slot_key], record)
             if result == ERR:
                 raise ConsumeReplay(

@@ -12,6 +12,7 @@ from agent_gov.hashing import canonical_json, content_hash
 
 POLICY_ID = "dual-admit-v1"
 LOCKFILE_SCHEMA = "agent_gov.lockfile.v1"
+REQUIRED_ACTION_FIELDS = ("action_class",)
 
 # These cannot be turned off by a lockfile, env flag, or caller argument.
 HARD_INVARIANTS: dict[str, bool] = {
@@ -27,6 +28,20 @@ def _as_bool(value: Any, key: str) -> bool:
     raise LockfileError(f"lockfile invariant {key!r} must be a boolean")
 
 
+def _required_fields(value: Any) -> tuple[str, ...]:
+    if value is None:
+        return REQUIRED_ACTION_FIELDS
+    if not isinstance(value, (list, tuple)):
+        raise LockfileError("lockfile.required_action_fields must be a list")
+    fields = tuple(str(item) for item in value)
+    if "action_class" not in fields:
+        raise LockfileError(
+            "lockfile cannot drop required action_class",
+            reason_code="LOCKFILE_WEAKENED",
+        )
+    return fields
+
+
 @dataclass(frozen=True)
 class Lockfile:
     """Pinned admit policy. Treat as a content-addressed document."""
@@ -36,6 +51,7 @@ class Lockfile:
     policy_id: str = POLICY_ID
     effect_gate: str = "strict"
     slot_prefix: str = "dual:"
+    required_action_fields: tuple[str, ...] = REQUIRED_ACTION_FIELDS
     invariants: dict[str, bool] = field(default_factory=lambda: dict(HARD_INVARIANTS))
     policy_hash: str = ""
 
@@ -49,6 +65,7 @@ class Lockfile:
             },
             "policy_id": self.policy_id,
             "product": self.product,
+            "required_action_fields": list(self.required_action_fields),
             "schema_version": self.schema_version,
             "slot_prefix": self.slot_prefix,
         }
@@ -84,6 +101,11 @@ class Lockfile:
                     f"lockfile cannot weaken hard invariant {key}",
                     reason_code="LOCKFILE_WEAKENED",
                 )
+        if "action_class" not in self.required_action_fields:
+            raise LockfileError(
+                "lockfile cannot drop required action_class",
+                reason_code="LOCKFILE_WEAKENED",
+            )
         expected = self.digest()
         if self.policy_hash and self.policy_hash != expected:
             raise LockfileError(
@@ -106,6 +128,7 @@ def default_lockfile() -> Lockfile:
         policy_id=draft.policy_id,
         effect_gate=draft.effect_gate,
         slot_prefix=draft.slot_prefix,
+        required_action_fields=REQUIRED_ACTION_FIELDS,
         invariants=dict(HARD_INVARIANTS),
         policy_hash=draft.digest(),
     )
@@ -128,6 +151,7 @@ def load_lockfile(document: Mapping[str, Any] | Lockfile) -> Lockfile:
             policy_id=str(document.get("policy_id", POLICY_ID)),
             effect_gate=str(document.get("effect_gate", "strict")),
             slot_prefix=str(document.get("slot_prefix", "dual:")),
+            required_action_fields=_required_fields(document.get("required_action_fields")),
             invariants={str(k): _as_bool(v, str(k)) for k, v in dict(inv_raw).items()},
             policy_hash=str(document.get("policy_hash", "")),
         )

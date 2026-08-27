@@ -144,6 +144,28 @@ class _WeirdSim:
     # We monkeypatch via a simulator that returns a garbage token.
 
 
+def test_finalize_effect_guards():
+    store = MemoryAuthorityStore()
+    rec = admit(
+        sample_action(),
+        default_lockfile(),
+        ledger=ConsumeLedger(store=store),
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    with pytest.raises(EffectBlocked) as exc:
+        store.finalize_effect(rec["request_id"], rec["action_hash"], record_type="nope")
+    assert exc.value.reason_code == "EFFECT_STATE"
+    with pytest.raises(EffectBlocked) as exc:
+        store.finalize_effect(rec["request_id"], rec["action_hash"], record_type="effect_applied")
+    assert exc.value.reason_code == "EFFECT_NOT_RESERVED"
+    reserved = store.reserve_effect(rec["request_id"], rec["action_hash"])
+    assert reserved["record_type"] == "effect_reserved"
+    with pytest.raises(EffectBlocked) as exc:
+        store.finalize_effect(rec["request_id"], "f" * 64, record_type="effect_applied")
+    assert exc.value.reason_code == "EFFECT_HASH_MISMATCH"
+
+
 def test_consume_simulator_garbage_result(monkeypatch):
     from agent_gov import consume as consume_mod
 

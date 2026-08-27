@@ -96,6 +96,9 @@ def test_apply_failure_is_fail_closed_and_not_retryable():
     with pytest.raises(EffectBlocked) as exc:
         EffectLedger().effect(rec["request_id"], rec["action_hash"], apply=boom)
     assert exc.value.reason_code == "EFFECT_APPLY_FAILED"
+    failed = EffectLedger().store.get_effect(rec["request_id"])
+    assert failed is not None
+    assert failed["record_type"] == "effect_apply_failed"
     with pytest.raises(EffectBlocked) as exc2:
         EffectLedger().effect(rec["request_id"], rec["action_hash"])
     assert exc2.value.reason_code == "EFFECT_REPLAY"

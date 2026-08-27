@@ -36,3 +36,9 @@ class LockfileError(AgentGovError):
     """Lockfile missing, corrupt, or attempting to weaken hard invariants."""
 
     reason_code = "LOCKFILE_INVALID"
+
+
+class IntegrityError(AgentGovError):
+    """DecisionRecord hash, chain, or ledger file failed verification."""
+
+    reason_code = "INTEGRITY"

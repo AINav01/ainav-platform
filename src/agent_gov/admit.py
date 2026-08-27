@@ -43,9 +43,10 @@ def admit(
     digest = action_hash(canonical)
     a = _require_seat(seat_a, "seat_a")
     b = _require_seat(seat_b, "seat_b")
+    consume = ledger or ConsumeLedger()
     if a == b:
         _deny(
-            ledger or ConsumeLedger(),
+            consume,
             action=canonical,
             action_hash=digest,
             seat_a=a,
@@ -54,7 +55,22 @@ def admit(
             reason_code="SEATS_NOT_DISTINCT",
             message="seat_a and seat_b must be distinct principals",
         )
-    consume = ledger or ConsumeLedger()
+    missing = [
+        field
+        for field in lock.required_action_fields
+        if canonical.get(field) in (None, "")
+    ]
+    if missing:
+        _deny(
+            consume,
+            action=canonical,
+            action_hash=digest,
+            seat_a=a,
+            seat_b=b,
+            lock=lock,
+            reason_code="ACTION_FIELD_REQUIRED",
+            message=f"action missing required fields: {', '.join(missing)}",
+        )
     request_id = new_request_id()
     rec = decision_record(
         record_type="admit_ok",

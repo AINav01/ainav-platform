@@ -17,6 +17,7 @@ def test_default_lockfile_pins_job_c():
     assert lock.invariants["distinct_principals"] is True
     assert lock.invariants["single_use_consume"] is True
     assert lock.invariants["fail_closed"] is True
+    assert "action_class" in lock.required_action_fields
     assert lock.policy_hash == lock.digest()
 
 
@@ -34,3 +35,13 @@ def test_unknown_product_rejected():
     doc["product"] = "job_a"
     with pytest.raises(LockfileError):
         load_lockfile(doc)
+
+
+def test_cannot_drop_action_class_requirement():
+    from agent_gov import LockfileError
+
+    doc = default_lockfile().to_canonical()
+    doc["required_action_fields"] = []
+    with pytest.raises(LockfileError) as exc:
+        load_lockfile(doc)
+    assert exc.value.reason_code == "LOCKFILE_WEAKENED"

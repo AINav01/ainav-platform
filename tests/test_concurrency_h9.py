@@ -6,7 +6,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pytest
 
-from agent_gov import ConsumeLedger, ConsumeReplay, admit, default_lockfile
+from agent_gov import (
+    ConsumeLedger,
+    ConsumeReplay,
+    EffectBlocked,
+    EffectLedger,
+    admit,
+    default_lockfile,
+)
 from agent_gov.lua_simulator import ERR, OK, LuaSimulator
 
 from tests.helpers import sample_action
@@ -53,3 +60,28 @@ def test_h9_lua_simulator_exactly_one_ok():
     assert results.count(OK) == 1
     assert results.count(ERR) == WORKERS - 1
     assert sim.keycount() == 1
+
+
+@pytest.mark.gold
+def test_h9_exactly_one_effect_applied():
+    rec = admit(
+        sample_action(),
+        default_lockfile(),
+        ledger=ConsumeLedger(),
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    gate = EffectLedger()
+
+    def attempt(_i: int) -> str:
+        try:
+            out = gate.effect(rec["request_id"], rec["action_hash"])
+            return out["record_type"]
+        except EffectBlocked as exc:
+            return exc.reason_code
+
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        results = [fut.result() for fut in as_completed(pool.submit(attempt, i) for i in range(WORKERS))]
+
+    assert results.count("effect_applied") == 1
+    assert results.count("EFFECT_REPLAY") == WORKERS - 1

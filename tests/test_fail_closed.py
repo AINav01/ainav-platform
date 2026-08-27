@@ -20,6 +20,12 @@ def test_empty_action_denied():
     assert exc.value.reason_code == "ACTION_EMPTY"
 
 
+def test_action_class_is_required():
+    with pytest.raises(AdmitDenied) as exc:
+        admit({"payload": {"x": 1}}, default_lockfile(), seat_a="oid-1", seat_b="oid-2")
+    assert exc.value.reason_code == "ACTION_FIELD_REQUIRED"
+
+
 def test_none_action_denied():
     with pytest.raises(AdmitDenied) as exc:
         admit(None, default_lockfile(), seat_a="oid-1", seat_b="oid-2")

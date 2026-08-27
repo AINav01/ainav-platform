@@ -2,7 +2,7 @@
 
 Private engineering repository for AINav platform development.
 
-This tree hosts the Job C admit plane: **dual-admitted effect authority** before a privileged system-of-record write.
+Job C admit plane: **dual-admitted effect authority** before a privileged system-of-record write.
 
 ```python
 from agent_gov import admit, ConsumeLedger, default_lockfile, EffectLedger
@@ -12,34 +12,47 @@ rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
 EffectLedger().effect(rec["request_id"], rec["action_hash"])
 ```
 
-`admit` binds two distinct human seats to an `action_hash`, then atomically consumes that slot once. `EffectLedger.effect` is the fail-closed gate: no matching `admit_ok` (or a hash mismatch, or a replay) means the SoR write does not happen.
+`admit` binds two distinct human seats to an `action_hash` and consumes that slot once. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is recorded as `effect_apply_failed` (never as success) and the slot stays spent.
+
+Same plane, named 2.1.0 surface:
+
+```python
+from agent_gov import DualSession
+
+session = DualSession("oid-1", "oid-2")
+rec = session.admit(action)
+session.effect(rec["request_id"], rec["action_hash"])
+```
 
 ## Invariants (must not change)
 
 - Dual distinct principals (`seat_a != seat_b`)
 - `action_hash` is SHA-256 of canonical JSON (sorted keys, no whitespace)
+- Privileged actions require `action_class`
 - Single-use consume — second admit of the same hash is `ConsumeReplay`
 - Fail-closed — deny, replay, and gate failures raise; they never return ok
 - SoR / effect only after admit ok
 - Lockfiles cannot weaken those invariants
+- DecisionRecords are hash-chained (`prev_receipt_hash`) and verifiable
 
 ## Install and gold
 
 ```bash
 python -m pip install -e ".[dev]"
 make gold
+python -m agent_gov demo
 ```
 
-Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent ok), the Lua validate-all-then-write-all simulator, and the effect gate. Live Redis multi-host HA and `LIVE_PIN_OK` are **not** claimed here.
+Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent admit **and** effect), the Lua / Redis-shaped consume adapter, file-ledger reload, and integrity verification. Live Redis multi-host HA and `LIVE_PIN_OK` are **not** claimed here.
 
 ## Package
 
 | Export | Role |
 |--------|------|
-| `admit` | Dual-seat admission + consume |
+| `admit` / `AdmitClient` / `DualSession` | Dual-seat admission |
 | `ConsumeLedger` | Single-use slot ledger |
 | `EffectLedger` | Effect gate / SoR apply |
+| `FileAuthorityStore` | Append-only JSONL ledger |
+| `RedisDualConsume` | EVAL of `dual_consume.lua` (bring your client) |
 | `default_lockfile` | Pinned Job C policy |
-| `run_and_apply` | Admit then effect in one call |
-
-Version `2.1.0` matches the lab admit-plane surface (`AdmitClient` / Redis consume live in the private control-plane monorepo).
+| `verify_record` / `verify_chain` | Tamper check |

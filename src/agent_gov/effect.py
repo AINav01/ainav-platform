@@ -6,7 +6,7 @@ from collections.abc import Callable
 from typing import Any
 
 from agent_gov.errors import EffectBlocked
-from agent_gov.records import decision_record, utc_now
+from agent_gov.records import DecisionRecord, decision_record, utc_now
 from agent_gov.store import AuthorityStore, default_store
 
 ApplyFn = Callable[[dict[str, Any]], Any]
@@ -21,6 +21,10 @@ class EffectLedger:
         rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
                     seat_a="oid-1", seat_b="oid-2")
         EffectLedger().effect(rec["request_id"], rec["action_hash"])
+
+    Lifecycle is reserve → apply → finalize. A failed SoR apply records
+    ``effect_apply_failed`` (not ``effect_applied``) and consumes the slot
+    so a retry cannot double-write.
     """
 
     def __init__(self, store: AuthorityStore | None = None) -> None:
@@ -39,10 +43,8 @@ class EffectLedger:
             raise EffectBlocked("action_hash is required", reason_code="EFFECT_NO_HASH")
 
         admit = self.store.get_admit(request_id)
-        # Peek before mutate so a failing apply cannot consume the effect slot
-        # after a blocked gate, and so we can attach a DecisionRecord.
         try:
-            applied = self.store.try_effect(request_id, action_hash)
+            reserved = self.store.reserve_effect(request_id, action_hash)
         except EffectBlocked as exc:
             if admit is not None:
                 blocked = decision_record(
@@ -58,22 +60,26 @@ class EffectLedger:
                 self.store.put_denied(blocked)
             raise
 
+        apply_result: Any = None
         if apply is not None:
             try:
-                apply_result = apply(dict(admit) if admit else dict(applied))
+                apply_result = apply(dict(admit) if admit else dict(reserved))
             except Exception as exc:
-                # Apply failed after the gate reserved the effect. Fail-closed:
-                # do not pretend SoR succeeded. The effect slot stays consumed
-                # so a retry cannot double-write; caller must reconcile.
+                self.store.finalize_effect(
+                    request_id,
+                    action_hash,
+                    record_type="effect_apply_failed",
+                )
                 raise EffectBlocked(
                     f"SoR apply failed after admit: {exc}",
                     reason_code="EFFECT_APPLY_FAILED",
                 ) from exc
-            applied["apply_result"] = apply_result
 
+        applied = self.store.finalize_effect(
+            request_id,
+            action_hash,
+            record_type="effect_applied",
+            apply_result=apply_result,
+        )
         applied["effected_at"] = utc_now()
-        if admit is not None:
-            applied["record_id"] = admit.get("record_id")
-            applied["policy_id"] = admit.get("policy_id")
-        applied.setdefault("record_type", "effect_applied")
-        return applied
+        return DecisionRecord(applied)
