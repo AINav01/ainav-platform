@@ -17,6 +17,8 @@
     <nav>
       <a href="#product">Product</a>
       <a href="#commercial">Commercial</a>
+      <a href="#packs">Packs</a>
+      <a href="#ops">Operations</a>
       <a href="#mothership">Mothership</a>
       <a href="#microsoft">Microsoft</a>
       <a href="#open">Open</a>
@@ -73,16 +75,47 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       </div>
     </section>
 
+    <section id="packs">
+      <h2>Packs, libraries, services</h2>
+      <p class="note">Industry shapes and fee-for-service hours are not SKUs.</p>
+      <div class="split">
+        <div>
+          <h3>Industry</h3>
+          <ul class="stack">
+            <li><strong>industry.treasury</strong> — L1 wedge. <code>bc.general_journal.post</code>.</li>
+            <li><strong>industry.sales</strong> — paid U-DUAL deepen. Quote override and order submit.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Fee-for-service</h3>
+          <ul class="stack">
+            <li><strong>Acceptance Kit</strong> — inside L1. Not an extra SKU.</li>
+            <li><strong>Integration assist / replay workshop</strong> — $3,500/day on the same plane. Does not attach U-DUAL.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ops">
+      <h2>Operations</h2>
+      <p class="stages">QUALIFY → L1_SOLD → KIT → PASS → P-ADM → U-DUAL offer → attach</p>
+      <ul class="stack">
+        <li>P-ADM attaches only after kit PASS.</li>
+        <li>U-DUAL never attaches as a free bundle with P-ADM.</li>
+        <li>This plane cannot mark <code>LIVE_PIN_OK</code> or signed L1.</li>
+      </ul>
+    </section>
+
     <section id="mothership">
       <h2>Master and local motherships</h2>
       <div class="split">
         <div>
           <h3>Master</h3>
-          <p>AINav issues the lockfile, gold vectors, and catalog. It does not write the client’s SoR.</p>
+          <p>AINav issues the lockfile, gold vectors, and catalog. It does not write the client’s SoR. Azure is the declared host — not a live pin.</p>
         </div>
         <div>
           <h3>Local</h3>
-          <p>The client plane: AdmitClient, lockfile, ledger, Business Central twin. Standard L1 pack is <code>bc.general_journal.post</code>.</p>
+          <p>The client plane: AdmitClient, lockfile, ledger, Business Central twin, optional Sales twin. Standard L1 pack is <code>bc.general_journal.post</code>.</p>
         </div>
       </div>
     </section>
@@ -94,8 +127,8 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <li><strong>Entra ID</strong> — seat object ids. We do not replace the IdP.</li>
         <li><strong>Teams Enterprise / Premium</strong> — notify only. A chat is not a seat.</li>
         <li><strong>Business Central Premium</strong> — L1 system of record (twin until G14).</li>
-        <li><strong>Sales Enterprise</strong> — U-DUAL action classes later.</li>
-        <li><strong>Microsoft 365 E7 · Purview · Sentinel</strong> — compliance sink.</li>
+        <li><strong>Sales Enterprise</strong> — U-DUAL action classes on a sandbox twin.</li>
+        <li><strong>Microsoft 365 E7 · Purview · Sentinel</strong> — compliance sink (sandbox export until a live pin).</li>
         <li><strong>Azure</strong> — hosting target for the master mothership.</li>
       </ul>
     </section>

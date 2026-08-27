@@ -25,17 +25,47 @@ def one_page() -> str:
         "## Commercial spine (do not invent SKUs)",
         "",
     ]
-    for sku in cat["skus"]:
-        price = sku["price_usd"]
+    for sku_item in cat["skus"]:
+        price = sku_item["price_usd"]
         lines.append(
-            f"- **{sku['id']} {sku['name']}** — ${price['min']:,}–${price['max']:,} ({sku['term']})"
+            f"- **{sku_item['id']} {sku_item['name']}** — "
+            f"${price['min']:,}–${price['max']:,} ({sku_item['term']})"
         )
-        for item in sku.get("includes", []):
+        for item in sku_item.get("includes", []):
             lines.append(f"  - includes: {item}")
-        for item in sku.get("does_not_include", []):
+        for item in sku_item.get("does_not_include", []):
             lines.append(f"  - does not include: {item}")
-        if sku.get("never_free_with"):
-            lines.append(f"  - never free with: {', '.join(sku['never_free_with'])}")
+        if sku_item.get("never_free_with"):
+            lines.append(f"  - never free with: {', '.join(sku_item['never_free_with'])}")
+        if sku_item.get("attach_after"):
+            lines.append(f"  - attach after: {sku_item['attach_after']}")
+    lines += [
+        "",
+        "## Industry packs (not SKUs)",
+        "",
+    ]
+    for pack in cat.get("industry_packs", []):
+        lines.append(
+            f"- **{pack['id']}** — {pack['name']} "
+            f"(requires {pack['requires_sku']}; {pack['note']})"
+        )
+    lines += [
+        "",
+        "## Fee-for-service (not SKUs)",
+        "",
+    ]
+    for svc in cat.get("fee_for_service", []):
+        extra = "included in L1" if svc.get("included_in") == "L1" else f"${svc.get('rate_usd_per_day', 0):,}/day"
+        lines.append(f"- **{svc['id']}** — {svc['name']} ({extra}). {svc['note']}")
+    lines += [
+        "",
+        "## Operations",
+        "",
+        " → ".join(cat["operations"]["stages"]),
+        "",
+    ]
+    for rule in cat["operations"]["rules"]:
+        lines.append(f"- {rule}")
     lines += [
         "",
         "## Delivery",
@@ -43,10 +73,11 @@ def one_page() -> str:
         "- **Master mothership** (AINav): issues lockfiles, gold vectors, catalog.",
         "- **Local mothership** (client): AdmitClient + lockfile + ledger + twin.",
         "- **L1 wedge:** `bc.general_journal.post` on a Business Central twin.",
+        "- **U-DUAL deepen:** Sales Enterprise twin after a paid attach.",
         "- **Teams:** notify only. A chat is not a seat.",
         "- **Entra:** seat object ids. Not an IdP replacement.",
         "",
-        f"## Success equation",
+        "## Success equation",
         "",
         cat["success_equation"],
         "",

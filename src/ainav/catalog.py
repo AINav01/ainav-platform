@@ -31,14 +31,40 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
             f"catalog SKUs must be exactly {sorted(ALLOWED_SKUS)}",
             reason_code="CATALOG_SKU",
         )
-    for sku in catalog["skus"]:
-        if sku["id"] == "U-DUAL":
-            never = set(sku.get("never_free_with") or [])
+    for sku_item in catalog["skus"]:
+        if sku_item["id"] == "U-DUAL":
+            never = set(sku_item.get("never_free_with") or [])
             if "P-ADM" not in never:
                 raise IntegrityError("U-DUAL must never be free with P-ADM")
+    module_ids: set[str] = set()
     for module in catalog.get("modules", []):
         if module.get("sku") not in ALLOWED_SKUS:
             raise IntegrityError(f"module {module.get('id')} has invented SKU")
+        module_ids.add(module["id"])
+    _validate_named_sets(catalog.get("industry_packs", []), module_ids, "industry pack")
+    _validate_named_sets(catalog.get("libraries", []), module_ids, "library")
+    for svc in catalog.get("fee_for_service", []):
+        if svc.get("id") in ALLOWED_SKUS or svc.get("sku"):
+            raise IntegrityError("fee-for-service is not a SKU", reason_code="CATALOG_SKU")
+        included = svc.get("included_in")
+        if included and included not in ALLOWED_SKUS:
+            raise IntegrityError(
+                f"fee-for-service {svc.get('id')} included_in invented SKU",
+                reason_code="CATALOG_SKU",
+            )
+
+
+def _validate_named_sets(items: list[dict[str, Any]], module_ids: set[str], kind: str) -> None:
+    for item in items:
+        ident = item.get("id")
+        if ident in ALLOWED_SKUS:
+            raise IntegrityError(f"{kind} cannot be a SKU", reason_code="CATALOG_SKU")
+        required = item.get("requires_sku")
+        if required not in ALLOWED_SKUS:
+            raise IntegrityError(f"{kind} {ident} has invented SKU", reason_code="CATALOG_SKU")
+        for mid in item.get("modules", []):
+            if mid not in module_ids:
+                raise IntegrityError(f"{kind} {ident} references unknown module {mid}")
 
 
 def sku(sku_id: str) -> dict[str, Any]:
@@ -59,3 +85,32 @@ def action_classes_for(sku_id: str) -> frozenset[str]:
 
 def l1_action_classes() -> frozenset[str]:
     return action_classes_for("L1")
+
+
+def udual_action_classes() -> frozenset[str]:
+    return action_classes_for("U-DUAL")
+
+
+def industry_pack(pack_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("industry_packs", []):
+        if item["id"] == pack_id:
+            return dict(item)
+    raise IntegrityError(f"unknown industry pack {pack_id}", reason_code="CATALOG_PACK")
+
+
+def library(library_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("libraries", []):
+        if item["id"] == library_id:
+            return dict(item)
+    raise IntegrityError(f"unknown library {library_id}", reason_code="CATALOG_LIB")
+
+
+def fee_for_service(service_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("fee_for_service", []):
+        if item["id"] == service_id:
+            return dict(item)
+    raise IntegrityError(f"unknown fee-for-service {service_id}", reason_code="CATALOG_FFS")
+
+
+def operations() -> dict[str, Any]:
+    return dict(load_catalog()["operations"])

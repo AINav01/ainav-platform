@@ -11,4 +11,17 @@ def provision_l1(client_id: str) -> LocalMothership:
 
 def provision_l1_with_udual(client_id: str) -> LocalMothership:
     """Paid U-DUAL attach. Not free with P-ADM — caller must have sold both."""
-    return MasterMothership().provision(client_id, packs=("L1", "U-DUAL"))
+    return MasterMothership().provision(
+        client_id,
+        packs=("L1", "U-DUAL"),
+        industry=("industry.treasury", "industry.sales"),
+    )
+
+
+def provision_l1_padm(client_id: str) -> LocalMothership:
+    """Coverage after kit PASS. Does not include U-DUAL."""
+    return MasterMothership().provision(
+        client_id,
+        packs=("L1", "P-ADM"),
+        industry=("industry.treasury",),
+    )

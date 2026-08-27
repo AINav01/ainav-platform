@@ -18,20 +18,47 @@ SoR, and audit. It is not the product.
   - includes: L1 action class only
   - includes: Digital-twin SoR sandbox
   - includes: Acceptance Kit / proof day
-  - does not include: U-DUAL, live SoR, LIVE_PIN_OK, product HA
+  - does not include: U-DUAL
+  - does not include: Live SoR
+  - does not include: LIVE_PIN_OK
+  - does not include: Product HA
 - **P-ADM ADMIT_COVERAGE** — $40,000–$60,000 (annual)
-  - attach after L1 Acceptance Kit PASS
-  - never includes free U-DUAL or soft dual
+  - includes: Keep the same admit plane covered
+  - does not include: U-DUAL (never free)
+  - does not include: Soft dual
+  - attach after: L1 Acceptance Kit PASS
 - **U-DUAL DEPTH_PACK** — $20,000–$35,000 (annual)
-  - additional action classes on the same admit plane
-  - never free with P-ADM or U-SOR
-  - not a second control product
+  - includes: Additional action classes on the same admit plane
+  - does not include: A second control product
+  - never free with: P-ADM, U-SOR
+
+## Industry packs (not SKUs)
+
+- **industry.treasury** — Treasury wedge (requires L1; Standard L1 industry shape. Not a SKU.)
+- **industry.sales** — Sales deepen (requires U-DUAL; A la carte U-DUAL depth. Not a fourth SKU.)
+
+## Fee-for-service (not SKUs)
+
+- **ffs.acceptance_kit** — Acceptance Kit / proof day (included in L1). Inside L1. Not a SKU.
+- **ffs.integration_assist** — Integration assist ($3,500/day). Hours on the same admit plane. Not a SKU. Does not attach U-DUAL.
+- **ffs.replay_workshop** — Replay / Merkle workshop ($3,500/day). Audit replay with the client. Not a SKU.
+
+## Operations
+
+QUALIFY → L1_SOLD → KIT_IN_PROGRESS → KIT_PASS → P_ADM_ATTACH → U_DUAL_OFFER → U_DUAL_ATTACH
+
+- P-ADM attaches only after KIT_PASS
+- U-DUAL never attaches as bundled_free with P-ADM
+- U-DUAL requires L1
+- LIVE_PIN_OK cannot be marked from this plane
+- Signed L1 cannot be marked from this plane
 
 ## Delivery
 
 - **Master mothership** (AINav): issues lockfiles, gold vectors, catalog.
 - **Local mothership** (client): AdmitClient + lockfile + ledger + twin.
 - **L1 wedge:** `bc.general_journal.post` on a Business Central twin.
+- **U-DUAL deepen:** Sales Enterprise twin after a paid attach.
 - **Teams:** notify only. A chat is not a seat.
 - **Entra:** seat object ids. Not an IdP replacement.
 

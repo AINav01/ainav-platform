@@ -102,6 +102,92 @@
       "sor": "microsoft_purview"
     }
   ],
+  "industry_packs": [
+    {
+      "id": "industry.treasury",
+      "name": "Treasury wedge",
+      "requires_sku": "L1",
+      "modules": ["bc.general_journal.post"],
+      "note": "Standard L1 industry shape. Not a SKU."
+    },
+    {
+      "id": "industry.sales",
+      "name": "Sales deepen",
+      "requires_sku": "U-DUAL",
+      "modules": ["d365.quote.discount_override", "d365.order.submit"],
+      "note": "A la carte U-DUAL depth. Not a fourth SKU."
+    }
+  ],
+  "libraries": [
+    {
+      "id": "lib.l1.wedge",
+      "requires_sku": "L1",
+      "modules": ["bc.general_journal.post", "entra.seat.verify", "teams.notify"]
+    },
+    {
+      "id": "lib.udual.sales",
+      "requires_sku": "U-DUAL",
+      "modules": ["d365.quote.discount_override", "d365.order.submit"]
+    },
+    {
+      "id": "lib.padm.export",
+      "requires_sku": "P-ADM",
+      "modules": ["purview.audit.export"]
+    }
+  ],
+  "fee_for_service": [
+    {
+      "id": "ffs.acceptance_kit",
+      "name": "Acceptance Kit / proof day",
+      "included_in": "L1",
+      "billable": false,
+      "note": "Inside L1. Not a SKU."
+    },
+    {
+      "id": "ffs.integration_assist",
+      "name": "Integration assist",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours on the same admit plane. Not a SKU. Does not attach U-DUAL."
+    },
+    {
+      "id": "ffs.replay_workshop",
+      "name": "Replay / Merkle workshop",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Audit replay with the client. Not a SKU."
+    }
+  ],
+  "provisioning": {
+    "standard_l1": {
+      "skus": ["L1"],
+      "industry": ["industry.treasury"],
+      "libraries": ["lib.l1.wedge"],
+      "twin": "bc.sandbox",
+      "notify": "teams",
+      "identity": "entra"
+    }
+  },
+  "operations": {
+    "stages": [
+      "QUALIFY",
+      "L1_SOLD",
+      "KIT_IN_PROGRESS",
+      "KIT_PASS",
+      "P_ADM_ATTACH",
+      "U_DUAL_OFFER",
+      "U_DUAL_ATTACH"
+    ],
+    "rules": [
+      "P-ADM attaches only after KIT_PASS",
+      "U-DUAL never attaches as bundled_free with P-ADM",
+      "U-DUAL requires L1",
+      "LIVE_PIN_OK cannot be marked from this plane",
+      "Signed L1 cannot be marked from this plane"
+    ]
+  },
   "microsoft_stack": {
     "identity": ["Microsoft Entra ID"],
     "collaboration_notify_only": ["Microsoft Teams Enterprise", "Microsoft Teams Premium"],

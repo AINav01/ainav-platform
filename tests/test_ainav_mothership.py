@@ -3,15 +3,20 @@ from __future__ import annotations
 import pytest
 
 from agent_gov import AdmitDenied, EffectBlocked
+from agent_gov.errors import IntegrityError
 from ainav.catalog import l1_action_classes, load_catalog, sku
 from ainav.errors import LivePinError, ProvisionError, SoftDualError
+from ainav.catalog import validate_catalog
+from ainav.microsoft.azure import AzureHost
 from ainav.microsoft.bc import BusinessCentralAdapter
+from ainav.microsoft.compliance import ComplianceSink
 from ainav.microsoft.entra import EntraSeatVerifier
+from ainav.microsoft.sales import SalesEnterpriseAdapter
 from ainav.microsoft.stack import assert_not_a_seat
 from ainav.microsoft.teams import TeamsNotifier
 from ainav.mothership import MasterMothership
 from ainav.plan import one_page
-from ainav.provision import provision_l1, provision_l1_with_udual
+from ainav.provision import provision_l1, provision_l1_padm, provision_l1_with_udual
 
 
 def test_catalog_has_exactly_three_skus():
@@ -73,6 +78,21 @@ def test_paid_udual_pack_allows_sales_action():
     local = provision_l1_with_udual("acme")
     assert "d365.quote.discount_override" in local.allowed_actions
     assert "bc.general_journal.post" in local.allowed_actions
+    out = local.run_and_apply(
+        {
+            "action_class": "d365.quote.discount_override",
+            "payload": {"discount": "15"},
+            "proposal_id": "prp-sales",
+            "sor_target": "d365.sales.sandbox",
+            "policy_id": "dual-admit-v1",
+        },
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    assert out["record_type"] == "effect_applied"
+    assert out["apply_result"]["live"] is False
+    assert local.sales.twin.writes[0]["action_class"] == "d365.quote.discount_override"
+    assert "industry.sales" in local.industry
 
 
 def test_udual_without_l1_is_refused():
@@ -105,8 +125,95 @@ def test_live_bc_and_entra_graph_are_not_claimed():
     with pytest.raises(LivePinError):
         BusinessCentralAdapter(live=True)
     with pytest.raises(LivePinError):
+        SalesEnterpriseAdapter(live=True)
+    with pytest.raises(LivePinError):
+        AzureHost(live=True)
+    with pytest.raises(LivePinError):
+        AzureHost().deploy_master()
+    with pytest.raises(LivePinError):
         EntraSeatVerifier().live_group_check()
+    sink = ComplianceSink()
+    with pytest.raises(LivePinError):
+        sink.live_purview()
+    with pytest.raises(LivePinError):
+        sink.live_sentinel()
     assert EntraSeatVerifier().graph_configured() in {False, True}
+
+
+def test_industry_sales_requires_udual():
+    local = provision_l1("acme")
+    with pytest.raises(ProvisionError) as exc:
+        local.attach_industry("industry.sales")
+    assert exc.value.reason_code == "PACK_SCOPE"
+
+
+def test_padm_export_and_standard_manifest():
+    local = provision_l1_padm("acme")
+    exported = local.export_audit()
+    assert exported["live"] is False
+    manifest = local.manifest()
+    assert manifest["kind"] == "ainav.local_mothership.v1"
+    assert manifest["live"] is False
+    assert "P-ADM" in manifest["skus"]
+    with pytest.raises(ProvisionError):
+        provision_l1("other").export_audit()
+
+
+def test_catalog_rejects_invented_industry_sku():
+    cat = load_catalog()
+    broken = {
+        **cat,
+        "industry_packs": [
+            {
+                "id": "industry.fake",
+                "requires_sku": "COPILOT_PACK",
+                "modules": ["bc.general_journal.post"],
+            }
+        ],
+    }
+    with pytest.raises(IntegrityError):
+        validate_catalog(broken)
+
+
+def test_twins_refuse_wrong_action():
+    from ainav.twin import BusinessCentralTwin, SalesEnterpriseTwin, SandboxRouter
+
+    bc = BusinessCentralTwin()
+    with pytest.raises(EffectBlocked):
+        bc.post_journal(
+            {"record_type": "admit_ok", "proposal": {"action_class": "d365.order.submit"}}
+        )
+    with pytest.raises(EffectBlocked):
+        bc.post_journal(
+            {
+                "record_type": "effect_applied",
+                "proposal": {"action_class": "bc.general_journal.post"},
+            }
+        )
+    sales = SalesEnterpriseTwin()
+    with pytest.raises(EffectBlocked):
+        sales.apply(
+            {
+                "record_type": "admit_ok",
+                "proposal": {"action_class": "bc.general_journal.post"},
+            }
+        )
+    with pytest.raises(EffectBlocked):
+        SandboxRouter().apply(
+            {"record_type": "admit_ok", "proposal": {"action_class": "unknown.x"}}
+        )
+
+
+def test_empty_client_and_invented_attach():
+    with pytest.raises(ProvisionError):
+        MasterMothership().provision("  ")
+    local = provision_l1("acme")
+    with pytest.raises(ProvisionError):
+        local.attach_pack("COPILOT_PACK")
+    local.attach_pack("L1")
+    assert local.bc.live is False
+    assert MasterMothership().host.describe()["live"] is False
+    assert MasterMothership().issue_lockfile() is not None
 
 
 def test_cli_catalog_and_twin(capsys):
@@ -121,3 +228,8 @@ def test_cli_catalog_and_twin(capsys):
     out = capsys.readouterr().out
     assert "SANDBOX" in out
     assert "effect_applied" in out
+    assert main(["ops-demo", "--client-id", "ops-acme"]) == 0
+    ops_out = capsys.readouterr().out
+    assert "U_DUAL_ATTACH" in ops_out
+    assert "d365.quote.discount_override" in ops_out
+    assert main(["manifest", "acme", "--packs", "L1"]) == 0

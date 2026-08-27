@@ -57,9 +57,10 @@ Three SKUs only — **L1** ($28–40k), **P-ADM** ($40–60k/yr), **U-DUAL** ($2
 python -m ainav plan
 python -m ainav provision acme --packs L1
 python -m ainav twin-demo
+python -m ainav ops-demo
 ```
 
-Master mothership issues the lockfile. A local mothership runs AdmitClient against a Business Central **digital twin** (`bc.general_journal.post`). Teams is notify-only. Entra supplies seat object ids — we do not replace the IdP. Live SoR and `LIVE_PIN_OK` are **open**.
+Master mothership issues the lockfile. A local mothership runs AdmitClient against a Business Central **digital twin** (`bc.general_journal.post`). Paid U-DUAL deepens the same plane onto a Sales Enterprise twin. Industry packs and fee-for-service hours are **not SKUs**. Teams is notify-only. Entra supplies seat object ids — we do not replace the IdP. Live SoR and `LIVE_PIN_OK` are **open**.
 
 Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_PLAN.md`.
 
