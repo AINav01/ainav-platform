@@ -50,6 +50,7 @@ SoR, and audit. It is not the product.
 ## Operations
 
 QUALIFY → L1_SOLD → KIT_IN_PROGRESS → KIT_PASS → P_ADM_ATTACH → U_DUAL_OFFER → U_DUAL_ATTACH
+Exits: LOST · KIT_FAIL · CHURN
 
 - P-ADM attaches only after KIT_PASS
 - U-DUAL never attaches as bundled_free with P-ADM
@@ -96,9 +97,24 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 - Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.
 - Ready to apply is false until a public website and incorporation date exist outside this tree.
 
+## Acceptance Kit
+
+Proof on the BC twin. Not a SKU. Not signed L1 (G13).
+- Seats: treasury_approver / treasury_controller
+- Cases: kit.bc.journal
+- Kit PASS requires a twin effect_applied. It is not signed L1.
+
 ## Success equation
 
 LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
+
+## Still missing (honest)
+
+- Live Microsoft tenant credentials and Graph calls
+- Public Institute deploy and incorporation date
+- Recognized revenue / external billing provider
+- Signed L1 counsel pack (G13)
+- Multi-host product HA
 
 ## OPEN (do not mark closed)
 

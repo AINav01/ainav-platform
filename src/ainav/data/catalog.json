@@ -222,8 +222,36 @@
       "U-DUAL requires L1",
       "LIVE_PIN_OK cannot be marked from this plane",
       "Signed L1 cannot be marked from this plane"
+    ],
+    "exits": ["LOST", "KIT_FAIL", "CHURN"]
+  },
+  "acceptance_kit": {
+    "requires_sku": "L1",
+    "note": "Proof on the BC twin. Not a SKU. Not signed L1 (G13).",
+    "seats": {
+      "seat_a": {"role": "treasury_approver", "lab": "oid-1"},
+      "seat_b": {"role": "treasury_controller", "lab": "oid-2"}
+    },
+    "cases": [
+      {
+        "id": "kit.bc.journal",
+        "action": {
+          "action_class": "bc.general_journal.post",
+          "payload": {"account": "1000", "amount": "1.00", "memo": "acceptance kit"},
+          "sor_target": "bc.sandbox",
+          "policy_id": "dual-admit-v1"
+        },
+        "expect": "effect_applied"
+      }
     ]
   },
+  "honest_missing": [
+    "Live Microsoft tenant credentials and Graph calls",
+    "Public Institute deploy and incorporation date",
+    "Recognized revenue / external billing provider",
+    "Signed L1 counsel pack (G13)",
+    "Multi-host product HA"
+  ],
   "microsoft_stack": {
     "identity": ["Microsoft Entra ID"],
     "collaboration_notify_only": ["Microsoft Teams Enterprise", "Microsoft Teams Premium"],

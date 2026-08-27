@@ -41,7 +41,7 @@ from agent_gov.store import (
     reset_default_store,
 )
 
-__version__ = "2.6.0"
+__version__ = "2.7.0"
 
 __all__ = [
     "Action",

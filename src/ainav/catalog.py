@@ -61,6 +61,27 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     validate_programs(catalog)
     validate_connections(catalog)
     validate_business(catalog)
+    _validate_acceptance_kit(catalog)
+
+
+def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
+    kit = catalog.get("acceptance_kit")
+    if not isinstance(kit, dict) or kit.get("requires_sku") != "L1":
+        raise IntegrityError("acceptance kit must require L1", reason_code="CATALOG_KIT")
+    cases = kit.get("cases") or []
+    if not cases:
+        raise IntegrityError("acceptance kit needs at least one case", reason_code="CATALOG_KIT")
+    l1 = {
+        m["id"]
+        for m in catalog.get("modules", [])
+        if m.get("sku") == "L1" and m.get("kind") == "action"
+    }
+    for case in cases:
+        action = case.get("action") or {}
+        if action.get("action_class") not in l1:
+            raise IntegrityError("kit case must be the L1 action", reason_code="CATALOG_KIT")
+        if action.get("sor_target") != "bc.sandbox":
+            raise IntegrityError("kit case must stay on the BC twin", reason_code="CATALOG_KIT")
 
 
 def _validate_named_sets(items: list[dict[str, Any]], module_ids: set[str], kind: str) -> None:
@@ -123,6 +144,14 @@ def fee_for_service(service_id: str) -> dict[str, Any]:
 
 def operations() -> dict[str, Any]:
     return dict(load_catalog()["operations"])
+
+
+def acceptance_kit() -> dict[str, Any]:
+    return dict(load_catalog()["acceptance_kit"])
+
+
+def honest_missing() -> list[str]:
+    return list(load_catalog().get("honest_missing") or [])
 
 
 def microsoft_stack() -> dict[str, Any]:

@@ -10,7 +10,7 @@ from collections import Counter
 from typing import Any
 
 from agent_gov.errors import IntegrityError
-from ainav.catalog import ALLOWED_SKUS, load_catalog, sku
+from ainav.catalog import ALLOWED_SKUS, honest_missing, load_catalog, sku
 from ainav.errors import LivePinError, ProvisionError
 
 
@@ -149,6 +149,7 @@ class OperatingCompany:
             "stack": self.master.stack.describe(),
             "live": False,
             "open_gaps": list(load_catalog()["open_gaps"]),
+            "honest_missing": honest_missing(),
         }
 
     def run_standard_engagement(self, client_id: str) -> Any:
@@ -167,3 +168,25 @@ class OperatingCompany:
         account.local.attach_library("lib.kit.evidence")
         self.store_kit_evidence(account)
         return account
+
+
+def public_business() -> dict[str, Any]:
+    cat = load_catalog()
+    return {
+        "kind": "ainav.institute.business.v1",
+        "entity": cat["entity"]["legal"],
+        "institute": cat["entity"]["institute"],
+        "thesis": cat["business"]["thesis"],
+        "model": cat["business"]["model"],
+        "sales": cat["business"]["sales"],
+        "delivery": cat["business"]["delivery"],
+        "economics": cat["business"]["economics"],
+        "acceptance_kit": {
+            "requires_sku": "L1",
+            "cases": [case["id"] for case in cat["acceptance_kit"]["cases"]],
+            "signed_l1": False,
+        },
+        "honest_missing": honest_missing(),
+        "open_gaps": list(cat["open_gaps"]),
+        "live": False,
+    }

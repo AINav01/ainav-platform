@@ -62,6 +62,7 @@ def one_page() -> str:
         "## Operations",
         "",
         " → ".join(cat["operations"]["stages"]),
+        "Exits: " + " · ".join(cat["operations"].get("exits") or []),
         "",
     ]
     for rule in cat["operations"]["rules"]:
@@ -107,9 +108,23 @@ def one_page() -> str:
         "- Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.",
         "- Ready to apply is false until a public website and incorporation date exist outside this tree.",
         "",
+        "## Acceptance Kit",
+        "",
+        cat["acceptance_kit"]["note"],
+        f"- Seats: {cat['acceptance_kit']['seats']['seat_a']['role']} / {cat['acceptance_kit']['seats']['seat_b']['role']}",
+        f"- Cases: {', '.join(case['id'] for case in cat['acceptance_kit']['cases'])}",
+        "- Kit PASS requires a twin effect_applied. It is not signed L1.",
+        "",
         "## Success equation",
         "",
         cat["success_equation"],
+        "",
+        "## Still missing (honest)",
+        "",
+    ]
+    for item in cat.get("honest_missing", []):
+        lines.append(f"- {item}")
+    lines += [
         "",
         "## OPEN (do not mark closed)",
         "",

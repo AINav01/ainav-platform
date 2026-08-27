@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.6.0 surface:
+Same plane, named 2.7.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -88,7 +88,13 @@ NVIDIA Inception and Microsoft for Startups are **qualification targets**, not c
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.6.0 (this tree)
+### 2.7.0 (this tree)
+
+Acceptance Kit is a twin proof. Quotes/invoices are catalog-list
+artifacts. Exits: LOST, KIT_FAIL, CHURN. P-ADM/U-DUAL can renew.
+Honest missing stays listed.
+
+### 2.6.0
 
 Company operating system: pipeline, kit board, delivery runbook, catalog
 economics (not recognized revenue). Complements: Entra, Key Vault, Monitor,

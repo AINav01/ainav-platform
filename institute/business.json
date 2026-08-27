@@ -1,0 +1,64 @@
+{
+  "acceptance_kit": {
+    "cases": [
+      "kit.bc.journal"
+    ],
+    "requires_sku": "L1",
+    "signed_l1": false
+  },
+  "delivery": {
+    "local": "Client mothership: AdmitClient + twin + Teams notify.",
+    "master": "Azure-declared master mothership issues lockfile, catalog, gold.",
+    "steps": [
+      "provision standard_l1",
+      "admit dual seats",
+      "effect on BC twin",
+      "notify Teams Enterprise and Premium",
+      "store kit evidence in SharePoint sandbox",
+      "refuse live pin"
+    ]
+  },
+  "economics": {
+    "note": "Pipeline math uses catalog list prices. It is not recognized revenue.",
+    "recognized_revenue_claimed": false
+  },
+  "entity": "AINav, Inc.",
+  "honest_missing": [
+    "Live Microsoft tenant credentials and Graph calls",
+    "Public Institute deploy and incorporation date",
+    "Recognized revenue / external billing provider",
+    "Signed L1 counsel pack (G13)",
+    "Multi-host product HA"
+  ],
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.business.v1",
+  "live": false,
+  "model": {
+    "deepen": "U-DUAL",
+    "hours": "fee-for-service",
+    "keep": "P-ADM",
+    "not": [
+      "consultancy-as-product",
+      "IdP replacement",
+      "agent inventory",
+      "free U-DUAL"
+    ],
+    "prove": "L1"
+  },
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "sales": {
+    "forbidden": [
+      "bundle free U-DUAL",
+      "soft dual as a close",
+      "claim LIVE_PIN_OK to close"
+    ],
+    "motion": "qualify \u2192 sell L1 \u2192 kit PASS \u2192 attach P-ADM \u2192 offer paid U-DUAL"
+  },
+  "thesis": "Land with L1 proof on a Business Central twin. Keep with P-ADM. Deepen with paid U-DUAL. Hours stay fee-for-service on the same plane."
+}
