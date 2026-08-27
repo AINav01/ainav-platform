@@ -18,6 +18,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("catalog")
     sub.add_parser("plan")
+    sub.add_parser("ip")
     prov = sub.add_parser("provision")
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
@@ -43,6 +44,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "plan":
         print(one_page(), end="")
+        return 0
+    if args.cmd == "ip":
+        from ainav.ip import notice
+
+        print(notice(), end="")
         return 0
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())

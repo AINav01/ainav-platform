@@ -8,6 +8,7 @@ from agent_gov import AdmitClient, FileAuthorityStore, MemoryAuthorityStore, def
 from agent_gov.store import AuthorityStore
 from ainav.catalog import ALLOWED_SKUS, action_classes_for, load_catalog, modules_for
 from ainav.errors import ProvisionError
+from ainav.ip import screen_pack_label
 from ainav.microsoft.azure import AzureHost
 from ainav.microsoft.bc import BusinessCentralAdapter
 from ainav.microsoft.compliance import ComplianceSink
@@ -33,6 +34,8 @@ class LocalMothership:
     ) -> None:
         if not client_id.strip():
             raise ProvisionError("client_id is required")
+        for pack in packs:
+            screen_pack_label(pack)
         unknown = [p for p in packs if p not in ALLOWED_SKUS]
         if unknown:
             raise ProvisionError(f"invented pack {unknown!r}", reason_code="CATALOG_SKU")
@@ -77,6 +80,7 @@ class LocalMothership:
         return frozenset(allowed)
 
     def attach_pack(self, sku_id: str) -> None:
+        screen_pack_label(sku_id)
         if sku_id not in ALLOWED_SKUS:
             raise ProvisionError(f"invented pack {sku_id!r}", reason_code="CATALOG_SKU")
         if sku_id in {"P-ADM", "U-DUAL"} and "L1" not in self.packs:

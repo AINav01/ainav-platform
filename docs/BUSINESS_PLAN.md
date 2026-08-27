@@ -62,6 +62,15 @@ QUALIFY → L1_SOLD → KIT_IN_PROGRESS → KIT_PASS → P_ADM_ATTACH → U_DUAL
 - **Teams:** notify only. A chat is not a seat.
 - **Entra:** seat object ids. Not an IdP replacement.
 
+## IP and competitor boundary
+
+- Owner: AINav, Inc.. Copyright (c) 2026 AINav, Inc. All rights reserved.
+- Product mark: AINav Control Plane. Institute: AINAV.Institute.
+- Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
+- Microsoft marks name integrations only. Copilot / Power Automate / Purview are not SKUs.
+- Competitor aliases cannot be provisioned as packs.
+- G12 legal is OPEN. No patent is claimed in this tree.
+
 ## Success equation
 
 LIVE_PIN_OK × proof day × signed L1 × P-ADM attach

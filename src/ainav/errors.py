@@ -15,3 +15,9 @@ class SoftDualError(AgentGovError):
 
 class LivePinError(AgentGovError):
     reason_code = "LIVE_PIN_NOT_CLAIMED"
+
+
+class IPError(AgentGovError):
+    """IP or competitor-boundary refusal. Not a signed legal opinion (G12 open)."""
+
+    reason_code = "IP_PROTECTED"

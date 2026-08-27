@@ -197,5 +197,66 @@
     "hosting": ["Microsoft Azure"],
     "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane."
   },
+  "ip": {
+    "owner": "AINav, Inc.",
+    "product_mark": "AINav Control Plane",
+    "institute_mark": "AINAV.Institute",
+    "copyright": "Copyright (c) 2026 AINav, Inc. All rights reserved.",
+    "g12_open": true,
+    "no_patent_claim_in_this_tree": true,
+    "reserved_work": [
+      "Job C dual-admit algorithm and lockfile",
+      "ConsumeLedger / EffectLedger / grant_id bind",
+      "dual_consume.lua validate-all-then-write-all",
+      "Frozen gold vectors and action_hash contract",
+      "Catalog, mothership provision, and ops spine"
+    ],
+    "microsoft_marks": [
+      "Microsoft",
+      "Microsoft 365",
+      "Microsoft Teams",
+      "Microsoft Entra",
+      "Dynamics 365",
+      "Azure",
+      "Purview",
+      "Sentinel",
+      "Copilot"
+    ],
+    "microsoft_use": "Name integrations only. No affiliation, endorsement, or joint-venture claim. Microsoft is not the product.",
+    "competitor_aliases": [
+      "copilot",
+      "copilot_pack",
+      "copilot_studio",
+      "microsoft_365_copilot",
+      "dynamics_copilot",
+      "power_automate",
+      "power_platform",
+      "purview_plane",
+      "sentinel_gov",
+      "entra_governance",
+      "azure_openai_gov",
+      "servicenow",
+      "now_assist",
+      "sailpoint",
+      "okta",
+      "palantir",
+      "aip",
+      "uipath",
+      "agentforce",
+      "salesforce_agentforce",
+      "joule",
+      "sap_joule",
+      "workday_extend",
+      "hitl_pack",
+      "soft_dual"
+    ],
+    "forbidden_claims": [
+      "ainav is a microsoft product",
+      "powered by copilot",
+      "teams vote is dual",
+      "soft hitl is dual",
+      "live_pin_ok"
+    ]
+  },
   "open_gaps": ["G1/G10 LIVE_PIN_OK", "G12 legal", "G13 signed L1", "G14 live SoR", "Product HA"]
 }

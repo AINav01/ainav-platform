@@ -1,0 +1,13 @@
+Copyright (c) 2026 AINav, Inc. All rights reserved.
+
+This repository and the AINav Control Plane (including agent_gov, the
+catalog, mothership provision, gold vectors, and dual_consume.lua) are
+proprietary to AINav, Inc.
+
+No license is granted to copy, modify, distribute, sublicense, or use
+this work to build a competing dual-admit or privileged-write control
+plane, except as AINav, Inc. agrees in a written contract.
+
+THE SOFTWARE IS PROVIDED BY AINAV, INC. SOLELY FOR AUTHORIZED WORK ON
+AINAV PRODUCTS. G12 legal review is OPEN. This file is not a signed
+opinion and does not claim a filed patent.

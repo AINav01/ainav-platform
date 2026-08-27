@@ -12,3 +12,15 @@ venv/
 *.lock
 .mypy_cache/
 .ruff_cache/
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.p12
+*.publishsettings
+.azure/
+secrets/
+entra*.json
+bc-credentials.json
+*.snk

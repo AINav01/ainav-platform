@@ -5,7 +5,7 @@ import pytest
 from agent_gov import AdmitDenied, EffectBlocked
 from agent_gov.errors import IntegrityError
 from ainav.catalog import l1_action_classes, load_catalog, sku
-from ainav.errors import LivePinError, ProvisionError, SoftDualError
+from ainav.errors import IPError, LivePinError, ProvisionError, SoftDualError
 from ainav.catalog import validate_catalog
 from ainav.microsoft.azure import AzureHost
 from ainav.microsoft.bc import BusinessCentralAdapter
@@ -102,7 +102,10 @@ def test_udual_without_l1_is_refused():
 
 def test_invented_pack_refused():
     with pytest.raises(ProvisionError):
+        MasterMothership().provision("acme", packs=("L1", "NOT_A_SKU"))
+    with pytest.raises(IPError) as exc:
         MasterMothership().provision("acme", packs=("L1", "COPILOT_PACK"))
+    assert exc.value.reason_code == "MICROSOFT_PRODUCT"
 
 
 def test_teams_is_not_a_seat():
@@ -228,8 +231,10 @@ def test_empty_client_and_invented_attach():
     with pytest.raises(ProvisionError):
         MasterMothership().provision("  ")
     local = provision_l1("acme")
-    with pytest.raises(ProvisionError):
+    with pytest.raises(IPError):
         local.attach_pack("COPILOT_PACK")
+    with pytest.raises(ProvisionError):
+        local.attach_pack("NOT_A_SKU")
     local.attach_pack("L1")
     assert local.bc.live is False
     assert MasterMothership().host.describe()["live"] is False
@@ -242,7 +247,11 @@ def test_cli_catalog_and_twin(capsys):
     assert main(["catalog"]) == 0
     assert "bc.general_journal.post" in capsys.readouterr().out
     assert main(["plan"]) == 0
-    assert "FIRST_OFFER" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "FIRST_OFFER" in out
+    assert "IP and competitor" in out
+    assert main(["ip"]) == 0
+    assert "AINav, Inc." in capsys.readouterr().out
     assert main(["provision", "acme", "--packs", "L1"]) == 0
     assert main(["twin-demo", "--client-id", "acme"]) == 0
     out = capsys.readouterr().out
