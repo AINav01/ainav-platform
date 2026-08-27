@@ -22,6 +22,12 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("programs")
     sub.add_parser("pitch")
     sub.add_parser("connections")
+    connect = sub.add_parser("connect")
+    connect.add_argument(
+        "--probe",
+        action="store_true",
+        help="read-only live health (Graph/ARM/BC). Never writes. Never LIVE_PIN_OK.",
+    )
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
     sub.add_parser("company-demo")
@@ -84,6 +90,11 @@ def main(argv: list[str] | None = None) -> int:
         from ainav.programs import pitch
 
         print(pitch(), end="")
+        return 0
+    if args.cmd == "connect":
+        from ainav.microsoft.health import stack_health
+
+        print(canonical_json(stack_health(probe=True if args.probe else None)))
         return 0
     if args.cmd == "connections":
         from ainav.microsoft.connections import stack_json
