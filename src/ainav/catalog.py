@@ -114,3 +114,7 @@ def fee_for_service(service_id: str) -> dict[str, Any]:
 
 def operations() -> dict[str, Any]:
     return dict(load_catalog()["operations"])
+
+
+def microsoft_stack() -> dict[str, Any]:
+    return dict(load_catalog()["microsoft_stack"])

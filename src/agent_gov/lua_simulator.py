@@ -53,6 +53,10 @@ class LuaSimulator:
         with self._lock:
             return len(self._keys)
 
+    def delete(self, key: str) -> bool:
+        with self._lock:
+            return self._keys.pop(key, None) is not None
+
 
 def _argv_payload(argv: Sequence[str] | None) -> dict[str, str]:
     argv = list(argv or [])

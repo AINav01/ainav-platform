@@ -22,6 +22,11 @@ def main(argv: list[str] | None = None) -> int:
     prov.add_argument("client_id")
     prov.add_argument("--packs", default="L1")
     prov.add_argument("--industry", default="")
+    prov.add_argument(
+        "--kit-pass",
+        action="store_true",
+        help="lab only: allow P-ADM/U-DUAL after Acceptance Kit PASS",
+    )
     demo = sub.add_parser("twin-demo")
     demo.add_argument("--client-id", default="demo-client")
     ops = sub.add_parser("ops-demo")
@@ -29,6 +34,8 @@ def main(argv: list[str] | None = None) -> int:
     man = sub.add_parser("manifest")
     man.add_argument("client_id")
     man.add_argument("--packs", default="L1")
+    man.add_argument("--industry", default="")
+    man.add_argument("--kit-pass", action="store_true")
     args = parser.parse_args(argv)
 
     if args.cmd == "catalog":
@@ -40,7 +47,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "provision":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())
         industry = tuple(p.strip() for p in args.industry.split(",") if p.strip())
-        local = MasterMothership().provision(args.client_id, packs=packs, industry=industry)
+        local = MasterMothership().provision(
+            args.client_id,
+            packs=packs,
+            industry=industry,
+            kit_pass=args.kit_pass,
+        )
         print(canonical_json(local.manifest()))
         return 0
     if args.cmd == "twin-demo":
@@ -49,7 +61,13 @@ def main(argv: list[str] | None = None) -> int:
         return _ops_demo(args.client_id)
     if args.cmd == "manifest":
         packs = tuple(p.strip() for p in args.packs.split(",") if p.strip())
-        local = MasterMothership().provision(args.client_id, packs=packs)
+        industry = tuple(p.strip() for p in args.industry.split(",") if p.strip())
+        local = MasterMothership().provision(
+            args.client_id,
+            packs=packs,
+            industry=industry,
+            kit_pass=args.kit_pass,
+        )
         print(canonical_json(local.manifest()))
         return 0
     return 2

@@ -145,7 +145,12 @@ class MemoryAuthorityStore:
             policy_hash=str(admit.get("policy_hash") or ""),
         )
         stored_grant = admit.get("grant_id")
-        if stored_grant and not hashes_equal(stored_grant, expected_grant):
+        if not stored_grant or not isinstance(stored_grant, str):
+            raise EffectBlocked(
+                "admit_ok missing grant_id",
+                reason_code="GRANT_MISSING",
+            )
+        if not hashes_equal(stored_grant, expected_grant):
             raise EffectBlocked(
                 "grant_id does not bind seats to action_hash",
                 reason_code="GRANT_MISMATCH",
@@ -280,12 +285,15 @@ class FileAuthorityStore(MemoryAuthorityStore):
             self.path.touch()
 
     def _replay(self, rec: Mapping[str, Any]) -> None:
+        from agent_gov.invariants import check_admit_ok
+
         sealed = dict(rec)
         rtype = sealed.get("record_type")
         rid = sealed.get("request_id")
         self._chain.append(sealed)
         self._tip = sealed["integrity"]["content_hash"]
         if rtype == "admit_ok" and rid:
+            check_admit_ok(sealed, policy_hash=str(sealed.get("policy_hash") or ""))
             self._admits[str(rid)] = sealed
             slot = sealed.get("slot_key")
             if slot:
@@ -315,6 +323,12 @@ class FileAuthorityStore(MemoryAuthorityStore):
     def _after_seal(self, sealed: Mapping[str, Any]) -> None:
         line = canonical_json(dict(sealed)) + "\n"
         with self.path.open("a", encoding="utf-8") as handle:
+            try:
+                import fcntl
+
+                fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+            except (ImportError, OSError):
+                pass
             handle.write(line)
             handle.flush()
             os.fsync(handle.fileno())
@@ -324,14 +338,14 @@ class FileAuthorityStore(MemoryAuthorityStore):
         try:
             lines = self.path.read_text(encoding="utf-8").splitlines()
         except OSError as exc:
-            raise IntegrityError(f"ledger unreadable: {exc}") from exc
+            raise IntegrityError(f"ledger unreadable: {exc}", reason_code="LEDGER_UNREADABLE") from exc
         for raw in lines:
             if not raw.strip():
                 continue
             try:
                 rec = json.loads(raw)
             except json.JSONDecodeError as exc:
-                raise IntegrityError("ledger JSONL is corrupt") from exc
+                raise IntegrityError("ledger JSONL is corrupt", reason_code="LEDGER_CORRUPT") from exc
             verify_record(rec)
             self._replay(rec)
         verify_chain(self._chain)
@@ -340,7 +354,7 @@ class FileAuthorityStore(MemoryAuthorityStore):
             try:
                 meta = json.loads(tip_path.read_text(encoding="utf-8"))
             except json.JSONDecodeError as exc:
-                raise IntegrityError("tip sidecar is corrupt") from exc
+                raise IntegrityError("tip sidecar is corrupt", reason_code="LEDGER_CORRUPT") from exc
             if meta.get("count") != len(self._chain) or not hashes_equal(
                 meta.get("tip"), self._tip
             ):

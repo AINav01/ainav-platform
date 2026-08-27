@@ -121,13 +121,13 @@ def hashable_body(record: Mapping[str, Any]) -> dict[str, Any]:
 def verify_record(record: Mapping[str, Any]) -> dict[str, Any]:
     """Fail-closed integrity check. Returns a mutable copy on success."""
     if not isinstance(record, Mapping):
-        raise IntegrityError("record must be a mapping")
+        raise IntegrityError("record must be a mapping", reason_code="RECORD_SCHEMA")
     for field in REQUIRED_FIELDS:
         if field not in record:
             raise IntegrityError(f"record missing {field}", reason_code="RECORD_SCHEMA")
     integrity = record.get("integrity")
     if not isinstance(integrity, Mapping):
-        raise IntegrityError("record missing integrity block")
+        raise IntegrityError("record missing integrity block", reason_code="RECORD_SCHEMA")
     expected = content_hash(hashable_body(record))
     found = integrity.get("content_hash")
     if not hashes_equal(found, expected):

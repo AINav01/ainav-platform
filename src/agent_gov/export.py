@@ -36,17 +36,18 @@ def verify_export(document: Mapping[str, Any]) -> str:
         raise IntegrityError("export product must be job_c", reason_code="EXPORT_PRODUCT")
     records = document.get("records")
     if not isinstance(records, list):
-        raise IntegrityError("export records must be a list")
+        raise IntegrityError("export records must be a list", reason_code="EXPORT_RECORDS")
     if document.get("count") != len(records):
-        raise IntegrityError("export count does not match records")
+        raise IntegrityError("export count does not match records", reason_code="EXPORT_COUNT")
+    if "merkle_root" not in document:
+        raise IntegrityError("export merkle_root is required", reason_code="MERKLE_MISSING")
     tip = verify_chain(records)
     if not hashes_equal(document.get("tip"), tip):
         raise IntegrityError("export tip does not match chain", reason_code="EXPORT_TIP")
-    if "merkle_root" in document:
-        root = merkle_root([leaf_hash(rec) for rec in records])
-        if not hashes_equal(document.get("merkle_root"), root):
-            raise IntegrityError(
-                "export merkle_root does not match records",
-                reason_code="MERKLE_MISMATCH",
-            )
+    root = merkle_root([leaf_hash(rec) for rec in records])
+    if not hashes_equal(document.get("merkle_root"), root):
+        raise IntegrityError(
+            "export merkle_root does not match records",
+            reason_code="MERKLE_MISMATCH",
+        )
     return tip

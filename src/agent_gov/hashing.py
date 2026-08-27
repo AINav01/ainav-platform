@@ -62,7 +62,10 @@ def normalize_action(action: Any) -> dict[str, Any]:
     elif hasattr(action, "to_canonical") and callable(action.to_canonical):
         raw = action.to_canonical()
         if not isinstance(raw, Mapping):
-            raise AdmitDenied("action.to_canonical() must return a mapping")
+            raise AdmitDenied(
+                "action.to_canonical() must return a mapping",
+                reason_code="ACTION_TYPE",
+            )
         raw = dict(raw)
     else:
         raise AdmitDenied(

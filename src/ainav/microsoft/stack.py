@@ -1,19 +1,21 @@
-"""Declared Microsoft stack. Live Graph/BC is not claimed."""
+"""Declared Microsoft stack. Live Graph/BC is not claimed. Catalog wins."""
 
 from __future__ import annotations
 
+from typing import Any
+
+from ainav.catalog import microsoft_stack as catalog_stack
 from ainav.errors import SoftDualError
 
-MICROSOFT_STACK = {
-    "identity": "Microsoft Entra ID",
-    "notify_only": ("Microsoft Teams Enterprise", "Microsoft Teams Premium"),
-    "sor_l1": "Dynamics 365 Business Central Premium",
-    "sor_udual": "Dynamics 365 Sales Enterprise",
-    "compliance": ("Microsoft 365 E7", "Microsoft Purview", "Microsoft Sentinel"),
-    "hosting": "Microsoft Azure",
-}
-
 TEAMS_PREFIXES = ("teams:", "msteams:", "chat:")
+
+
+def declared_stack() -> dict[str, Any]:
+    return catalog_stack()
+
+
+# Compatibility snapshot. Prefer declared_stack() for new callers.
+MICROSOFT_STACK = declared_stack()
 
 
 def assert_not_a_seat(principal: str) -> None:

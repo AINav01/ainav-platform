@@ -15,24 +15,26 @@ from agent_gov.records import verify_record
 def check_lockfile(lock: Lockfile) -> None:
     lock.verify()
     if lock.effect_gate != "strict":
-        raise IntegrityError("effect_gate must be strict")
+        raise IntegrityError("effect_gate must be strict", reason_code="LOCKFILE_EFFECT_GATE")
     if lock.product != "job_c":
-        raise IntegrityError("product must be job_c")
+        raise IntegrityError("product must be job_c", reason_code="LOCKFILE_PRODUCT")
     for key, required in HARD_INVARIANTS.items():
         if lock.invariants.get(key) is not required:
-            raise IntegrityError(f"invariant {key} weakened")
+            raise IntegrityError(f"invariant {key} weakened", reason_code="LOCKFILE_WEAKENED")
     if "action_class" not in lock.required_action_fields:
-        raise IntegrityError("action_class is required")
+        raise IntegrityError("action_class is required", reason_code="LOCKFILE_INVARIANT")
 
 
 def check_admit_ok(record: Mapping[str, Any], *, policy_hash: str) -> None:
     verify_record(record)
     if record.get("record_type") != "admit_ok":
-        raise IntegrityError("record is not admit_ok")
+        raise IntegrityError("record is not admit_ok", reason_code="RECORD_SCHEMA")
     if record.get("consumed") is not True:
-        raise IntegrityError("admit_ok must be consumed")
+        raise IntegrityError("admit_ok must be consumed", reason_code="RECORD_SCHEMA")
     if record.get("seat_a") == record.get("seat_b"):
-        raise IntegrityError("seats are not distinct")
+        raise IntegrityError("seats are not distinct", reason_code="SEATS_NOT_DISTINCT")
+    if not record.get("grant_id"):
+        raise IntegrityError("admit_ok missing grant_id", reason_code="GRANT_MISSING")
     expected = grant_id(
         action_hash=str(record.get("action_hash")),
         seat_a=str(record.get("seat_a")),
@@ -40,10 +42,13 @@ def check_admit_ok(record: Mapping[str, Any], *, policy_hash: str) -> None:
         policy_hash=policy_hash,
     )
     if not hashes_equal(record.get("grant_id"), expected):
-        raise IntegrityError("grant_id does not bind seats to action_hash")
+        raise IntegrityError(
+            "grant_id does not bind seats to action_hash",
+            reason_code="GRANT_MISMATCH",
+        )
 
 
 def check_effect_applied(record: Mapping[str, Any]) -> None:
     verify_record(record)
     if record.get("record_type") != "effect_applied":
-        raise IntegrityError("record is not effect_applied")
+        raise IntegrityError("record is not effect_applied", reason_code="RECORD_SCHEMA")

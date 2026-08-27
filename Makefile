@@ -1,10 +1,13 @@
-.PHONY: test gold install
+.PHONY: test gold install plan-check
 
 install:
-	python -m pip install -e ".[dev]"
+	python3 -m pip install -e ".[dev]"
 
 test:
-	python -m pytest -q
+	python3 -m pytest -q
 
-gold:
-	python -m pytest -q --cov=agent_gov --cov=ainav --cov-report=term-missing
+plan-check:
+	python3 -m ainav plan | diff -q docs/BUSINESS_PLAN.md -
+
+gold: plan-check
+	python3 -m pytest -q --cov=agent_gov --cov=ainav --cov-report=term-missing

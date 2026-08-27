@@ -14,6 +14,7 @@ from agent_gov import (
     admit,
     default_lockfile,
 )
+from agent_gov.errors import AgentGovError
 from agent_gov.hashing import canonical_json
 from agent_gov.lockfile import HARD_INVARIANTS, dumps_lockfile
 from agent_gov.records import verify_chain, verify_record
@@ -35,6 +36,10 @@ def main(argv: list[str] | None = None) -> int:
     prove = sub.add_parser("prove", help="print a Merkle inclusion proof from a JSONL ledger")
     prove.add_argument("ledger")
     prove.add_argument("record_id")
+    export = sub.add_parser("export", help="print an export envelope from a JSONL ledger")
+    export.add_argument("ledger")
+    vexp = sub.add_parser("verify-export", help="verify an export envelope JSON file")
+    vexp.add_argument("path")
     args = parser.parse_args(argv)
 
     if args.cmd == "version":
@@ -57,6 +62,10 @@ def main(argv: list[str] | None = None) -> int:
         return _audit(args.ledger or None)
     if args.cmd == "prove":
         return _prove(Path(args.ledger), args.record_id)
+    if args.cmd == "export":
+        return _export(Path(args.ledger))
+    if args.cmd == "verify-export":
+        return _verify_export(Path(args.path))
     return 2
 
 
@@ -102,10 +111,14 @@ def _verify(path: Path) -> int:
         records = data if isinstance(data, list) else [data]
     except json.JSONDecodeError:
         records = [json.loads(line) for line in text.splitlines() if line.strip()]
-    if len(records) == 1 and "prev_receipt_hash" not in records[0]:
-        verify_record(records[0])
-    else:
-        verify_chain(records)
+    try:
+        if len(records) == 1 and "prev_receipt_hash" not in records[0]:
+            verify_record(records[0])
+        else:
+            verify_chain(records)
+    except AgentGovError as exc:
+        print(canonical_json({"ok": False, "reason_code": exc.reason_code}))
+        return 1
     print(canonical_json({"ok": True, "count": len(records)}))
     return 0
 
@@ -143,6 +156,28 @@ def _prove(path: Path, record_id: str) -> int:
 
     store = FileAuthorityStore(path)
     print(canonical_json(store.prove(record_id)))
+    return 0
+
+
+def _export(path: Path) -> int:
+    from agent_gov.export import export_envelope
+    from agent_gov.store import FileAuthorityStore
+
+    store = FileAuthorityStore(path)
+    records = store.decisions()
+    print(canonical_json(export_envelope(records, tip=store.tip())))
+    return 0
+
+
+def _verify_export(path: Path) -> int:
+    from agent_gov.export import verify_export
+
+    try:
+        tip = verify_export(json.loads(path.read_text(encoding="utf-8")))
+    except AgentGovError as exc:
+        print(canonical_json({"ok": False, "reason_code": exc.reason_code}))
+        return 1
+    print(canonical_json({"ok": True, "tip": tip}))
     return 0
 
 

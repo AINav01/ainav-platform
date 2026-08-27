@@ -138,6 +138,26 @@ def test_live_bc_and_entra_graph_are_not_claimed():
     with pytest.raises(LivePinError):
         sink.live_sentinel()
     assert EntraSeatVerifier().graph_configured() in {False, True}
+    posted = BusinessCentralAdapter().apply(
+        {
+            "record_type": "admit_ok",
+            "proposal": {"action_class": "bc.general_journal.post", "sor_target": "bc.sandbox"},
+        }
+    )
+    assert posted["live"] is False
+    sold = SalesEnterpriseAdapter().apply(
+        {
+            "record_type": "admit_ok",
+            "proposal": {
+                "action_class": "d365.quote.discount_override",
+                "sor_target": "d365.sales.sandbox",
+            },
+        }
+    )
+    assert sold["live"] is False
+    oid = EntraSeatVerifier().verify("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "seat_a")
+    assert oid.startswith("aaaaaaaa")
+    TeamsNotifier().refuse_seat("oid-1")
 
 
 def test_industry_sales_requires_udual():

@@ -31,35 +31,54 @@ class ConsumeLedger:
     def consume(self, slot_key: str, record: Mapping[str, Any]) -> dict[str, Any]:
         if not slot_key:
             raise ConsumeReplay("slot_key is required", reason_code="SLOT_MISSING")
+        external_ok = False
+        try:
+            if self.redis is not None:
+                argv = [
+                    str(record.get("request_id", "")),
+                    str(record.get("action_hash", "")),
+                    str(record.get("seat_a", "")),
+                    str(record.get("seat_b", "")),
+                    str(record.get("consumed_at", "")),
+                ]
+                result = self.redis.eval([slot_key], argv)
+                if result == ERR:
+                    raise ConsumeReplay(
+                        f"slot already consumed: {slot_key}",
+                        reason_code="CONSUME_REPLAY",
+                    )
+                if result != OK:
+                    raise ConsumeReplay(
+                        f"redis consume returned {result!r}",
+                        reason_code="CONSUME_LUA_ERR",
+                    )
+                external_ok = True
+            elif self.simulator is not None:
+                result = dual_consume(self.simulator, [slot_key], record)
+                if result == ERR:
+                    raise ConsumeReplay(
+                        f"slot already consumed: {slot_key}",
+                        reason_code="CONSUME_REPLAY",
+                    )
+                if result != OK:
+                    raise ConsumeReplay(
+                        f"consume simulator returned {result!r}",
+                        reason_code="CONSUME_LUA_ERR",
+                    )
+                external_ok = True
+            return self.store.try_consume(slot_key, record)
+        except ConsumeReplay:
+            raise
+        except Exception:
+            if external_ok:
+                self._rollback_external(slot_key)
+            raise
+
+    def _rollback_external(self, slot_key: str) -> None:
+        if self.simulator is not None:
+            self.simulator.delete(slot_key)
+            return
         if self.redis is not None:
-            argv = [
-                str(record.get("request_id", "")),
-                str(record.get("action_hash", "")),
-                str(record.get("seat_a", "")),
-                str(record.get("seat_b", "")),
-                str(record.get("consumed_at", "")),
-            ]
-            result = self.redis.eval([slot_key], argv)
-            if result == ERR:
-                raise ConsumeReplay(
-                    f"slot already consumed: {slot_key}",
-                    reason_code="CONSUME_REPLAY",
-                )
-            if result != OK:
-                raise ConsumeReplay(
-                    f"redis consume returned {result!r}",
-                    reason_code="CONSUME_LUA_ERR",
-                )
-        elif self.simulator is not None:
-            result = dual_consume(self.simulator, [slot_key], record)
-            if result == ERR:
-                raise ConsumeReplay(
-                    f"slot already consumed: {slot_key}",
-                    reason_code="CONSUME_REPLAY",
-                )
-            if result != OK:
-                raise ConsumeReplay(
-                    f"consume simulator returned {result!r}",
-                    reason_code="CONSUME_LUA_ERR",
-                )
-        return self.store.try_consume(slot_key, record)
+            deleter = getattr(self.redis, "delete", None)
+            if callable(deleter):
+                deleter(slot_key)

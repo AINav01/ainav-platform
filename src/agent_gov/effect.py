@@ -25,6 +25,11 @@ class EffectLedger:
     Lifecycle is reserve → apply → finalize. A failed SoR apply records
     ``effect_apply_failed`` (not ``effect_applied``) and consumes the slot
     so a retry cannot double-write.
+
+    An orphan ``effect_reserved`` (crash before finalize) is fail-closed when
+    an apply callback is present — retrying apply could double-write. Use
+    ``abort_effect`` for ops recovery. A reserved grant with no apply can
+    finalize as applied (no SoR side effect).
     """
 
     def __init__(self, store: AuthorityStore | None = None) -> None:
@@ -36,6 +41,7 @@ class EffectLedger:
         action_hash: str,
         *,
         apply: ApplyFn | None = None,
+        recover: bool = False,
     ) -> dict[str, Any]:
         if not request_id or not isinstance(request_id, str):
             raise EffectBlocked("request_id is required", reason_code="EFFECT_NO_REQUEST")
@@ -43,21 +49,34 @@ class EffectLedger:
             raise EffectBlocked("action_hash is required", reason_code="EFFECT_NO_HASH")
 
         admit = self.store.get_admit(request_id)
+        if recover:
+            existing = self.store.get_effect(request_id)
+            if existing and existing.get("record_type") == "effect_reserved":
+                if apply is not None:
+                    self._record_blocked(
+                        request_id,
+                        action_hash,
+                        admit,
+                        "EFFECT_RESERVED_ORPHAN",
+                    )
+                    raise EffectBlocked(
+                        "reserved effect cannot retry SoR apply; abort first",
+                        reason_code="EFFECT_RESERVED_ORPHAN",
+                    )
+                return self.store.finalize_effect(
+                    request_id,
+                    action_hash,
+                    record_type="effect_applied",
+                )
+            raise EffectBlocked(
+                f"no reserved effect to recover for request_id={request_id}",
+                reason_code="EFFECT_NOT_RESERVED",
+            )
+
         try:
             reserved = self.store.reserve_effect(request_id, action_hash)
         except EffectBlocked as exc:
-            if admit is not None:
-                blocked = decision_record(
-                    record_type="effect_blocked",
-                    request_id=request_id,
-                    action_hash=action_hash,
-                    action=(admit.get("proposal") or {}),
-                    seat_a=admit.get("seat_a"),
-                    seat_b=admit.get("seat_b"),
-                    policy_id=admit.get("policy_id"),
-                    reason_code=exc.reason_code,
-                )
-                self.store.put_denied(blocked)
+            self._record_blocked(request_id, action_hash, admit, exc.reason_code)
             raise
 
         apply_result: Any = None
@@ -81,3 +100,38 @@ class EffectLedger:
             record_type="effect_applied",
             apply_result=apply_result,
         )
+
+    def abort_effect(self, request_id: str, action_hash: str) -> dict[str, Any]:
+        """Finalize a reserved effect as failed. Ops recovery, not a live pin."""
+        current = self.store.get_effect(request_id)
+        if current is None or current.get("record_type") != "effect_reserved":
+            raise EffectBlocked(
+                f"effect is not reserved for request_id={request_id}",
+                reason_code="EFFECT_NOT_RESERVED",
+            )
+        return self.store.finalize_effect(
+            request_id,
+            action_hash,
+            record_type="effect_apply_failed",
+            apply_result={"aborted": True},
+        )
+
+    def _record_blocked(
+        self,
+        request_id: str,
+        action_hash: str,
+        admit: dict[str, Any] | None,
+        reason_code: str,
+    ) -> None:
+        proposal = (admit or {}).get("proposal") or {}
+        blocked = decision_record(
+            record_type="effect_blocked",
+            request_id=request_id,
+            action_hash=action_hash,
+            action=proposal,
+            seat_a=(admit or {}).get("seat_a"),
+            seat_b=(admit or {}).get("seat_b"),
+            policy_id=(admit or {}).get("policy_id"),
+            reason_code=reason_code,
+        )
+        self.store.put_denied(blocked)

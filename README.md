@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.1.0 surface:
+Same plane, named 2.2.0 surface:
 
 ```python
 from agent_gov import DualSession

@@ -51,6 +51,8 @@ class ClientAccount:
             raise ProvisionError("kit PASS requires KIT_IN_PROGRESS")
         self.kit_pass = True
         self.stage = "KIT_PASS"
+        if self.local is not None:
+            self.local.kit_pass = True
 
     def attach_padm(self) -> LocalMothership:
         if not self.kit_pass or self.stage != "KIT_PASS":
@@ -62,6 +64,8 @@ class ClientAccount:
         return local
 
     def offer_udual(self) -> None:
+        if not self.kit_pass:
+            raise ProvisionError("U-DUAL is offered after kit PASS", reason_code="ATTACH_GATE")
         if self.stage not in {"KIT_PASS", "P_ADM_ATTACH"}:
             raise ProvisionError("U-DUAL is offered after kit PASS")
         self.stage = "U_DUAL_OFFER"
@@ -72,6 +76,8 @@ class ClientAccount:
                 "U-DUAL is never free with P-ADM or U-SOR",
                 reason_code="UDUAL_NOT_FREE",
             )
+        if not self.kit_pass:
+            raise ProvisionError("U-DUAL attaches only after kit PASS", reason_code="ATTACH_GATE")
         if "L1" not in self.sold:
             raise ProvisionError("U-DUAL requires L1", reason_code="PACK_SCOPE")
         if self.stage not in {"KIT_PASS", "P_ADM_ATTACH", "U_DUAL_OFFER"}:

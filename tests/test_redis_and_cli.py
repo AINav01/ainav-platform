@@ -8,6 +8,7 @@ import pytest
 from agent_gov import (
     ConsumeLedger,
     ConsumeReplay,
+    EffectLedger,
     RedisDualConsume,
     SimulatorRedis,
     admit,
@@ -49,7 +50,7 @@ def test_redis_dual_consume_via_simulator_client():
 
 def test_cli_version_and_invariants(capsys):
     assert main(["version"]) == 0
-    assert "2.1.0" in capsys.readouterr().out
+    assert "2.2.0" in capsys.readouterr().out
     assert main(["invariants"]) == 0
     out = capsys.readouterr().out
     assert "dual-admit-v1" in out
@@ -122,3 +123,42 @@ def test_redis_bytes_and_bad_script():
     assert RedisDualConsume(_BytesClient()).eval(["k"], ["a"]) == "{ok}"
     bad = SimulatorRedis()
     assert bad.eval("no-contract", 1, "k") == "{err}"
+    sim = SimulatorRedis()
+    RedisDualConsume(sim).delete("k")
+    sim.delete("k")
+
+
+def test_cli_export_and_verify_failure(tmp_path):
+    from agent_gov.store import FileAuthorityStore, reset_default_store
+
+    reset_default_store()
+    path = tmp_path / "ledger.jsonl"
+    store = FileAuthorityStore(path)
+    rec = admit(
+        sample_action(),
+        default_lockfile(),
+        ledger=ConsumeLedger(store=store),
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    EffectLedger(store=store).effect(rec["request_id"], rec["action_hash"])
+    assert main(["export", str(path)]) == 0
+    env = tmp_path / "env.json"
+    env.write_text(json.dumps({"schema_version": "nope"}))
+    assert main(["verify-export", str(env)]) == 1
+    bad = tmp_path / "bad.json"
+    bad.write_text("{")
+    rec_ok = {
+        "schema_version": "decision_record.v1",
+        "record_id": "dr_z",
+        "record_type": "admit_ok",
+        "request_id": "req_z",
+        "action_hash": "c" * 64,
+    }
+    from agent_gov.hashing import content_hash
+    from agent_gov.records import hashable_body
+
+    rec_ok["integrity"] = {"alg": "sha256", "content_hash": "0" * 64}
+    broken = tmp_path / "broken.json"
+    broken.write_text(json.dumps(rec_ok))
+    assert main(["verify", str(broken)]) == 1

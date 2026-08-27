@@ -34,6 +34,11 @@ class RedisDualConsume:
             raw = raw.decode("utf-8")
         return str(raw)
 
+    def delete(self, key: str) -> None:
+        deleter = getattr(self.client, "delete", None)
+        if callable(deleter):
+            deleter(key)
+
 
 class SimulatorRedis:
     """Redis-shaped client that honors the Lua contract in-process."""
@@ -48,3 +53,6 @@ class SimulatorRedis:
         argv = [str(p) for p in parts[numkeys:]]
         result = self.simulator.eval(keys, argv)
         return result if result in {OK, ERR} else ERR
+
+    def delete(self, key: str) -> None:
+        self.simulator.delete(key)

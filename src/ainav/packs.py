@@ -14,7 +14,7 @@ from ainav.catalog import (
     load_catalog,
 )
 from ainav.errors import ProvisionError
-from ainav.microsoft.stack import MICROSOFT_STACK
+from ainav.microsoft.stack import declared_stack
 
 
 def require_industry(pack_id: str, *, skus: tuple[str, ...]) -> dict[str, Any]:
@@ -68,16 +68,20 @@ def pack_manifest(
     industry: tuple[str, ...],
     allowed_actions: frozenset[str] | set[str],
     modules: list[dict[str, Any]],
+    libraries: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     cat = load_catalog()
+    stack = declared_stack()
     return {
         "kind": "ainav.local_mothership.v1",
         "client_id": client_id,
         "skus": list(skus),
         "industry": list(industry),
+        "libraries": list(libraries),
         "allowed_actions": sorted(allowed_actions),
         "modules": modules,
-        "microsoft": dict(MICROSOFT_STACK),
+        "microsoft": stack,
+        "not_the_product": stack.get("not_the_product"),
         "twin": {"live": False, "label": "SANDBOX"},
         "open_gaps": list(cat["open_gaps"]),
         "live": False,

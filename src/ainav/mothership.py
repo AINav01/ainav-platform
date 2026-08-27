@@ -14,7 +14,7 @@ from ainav.microsoft.compliance import ComplianceSink
 from ainav.microsoft.entra import EntraSeatVerifier
 from ainav.microsoft.sales import SalesEnterpriseAdapter
 from ainav.microsoft.teams import TeamsNotifier
-from ainav.packs import book_service, pack_manifest, require_industry
+from ainav.packs import book_service, pack_manifest, require_industry, require_library
 from ainav.twin import SandboxRouter
 
 
@@ -27,18 +27,27 @@ class LocalMothership:
         *,
         packs: tuple[str, ...] = ("L1",),
         industry: tuple[str, ...] = (),
+        libraries: tuple[str, ...] = (),
         store: AuthorityStore | None = None,
+        kit_pass: bool = False,
     ) -> None:
         if not client_id.strip():
             raise ProvisionError("client_id is required")
         unknown = [p for p in packs if p not in ALLOWED_SKUS]
         if unknown:
             raise ProvisionError(f"invented pack {unknown!r}", reason_code="CATALOG_SKU")
-        if "U-DUAL" in packs and "L1" not in packs:
-            raise ProvisionError("U-DUAL cannot be provisioned without L1")
+        if ("P-ADM" in packs or "U-DUAL" in packs) and "L1" not in packs:
+            raise ProvisionError("P-ADM and U-DUAL require L1", reason_code="PACK_SCOPE")
+        if ("P-ADM" in packs or "U-DUAL" in packs) and not kit_pass:
+            raise ProvisionError(
+                "P-ADM and U-DUAL attach only after kit PASS",
+                reason_code="ATTACH_GATE",
+            )
         self.client_id = client_id
         self.packs = packs
         self.industry: tuple[str, ...] = ()
+        self.libraries: tuple[str, ...] = ()
+        self.kit_pass = kit_pass
         self.store = store or MemoryAuthorityStore()
         self.lockfile = default_lockfile()
         self.verifier = EntraSeatVerifier(allow_lab_oids=True)
@@ -49,13 +58,17 @@ class LocalMothership:
         )
         self.bc = BusinessCentralAdapter()
         self.sales = SalesEnterpriseAdapter()
-        self.router = SandboxRouter(bc=self.bc.twin, sales=self.sales.twin)
+        self.bc.twin.sealed = True
+        self.sales.twin.sealed = True
+        self.router = SandboxRouter(bc=self.bc.twin, sales=self.sales.twin, sealed=True)
         self.teams = TeamsNotifier()
         self.compliance = ComplianceSink()
         self.azure = AzureHost()
         self.allowed_actions = self._allowed_actions()
         for pack_id in industry:
             self.attach_industry(pack_id)
+        for lib_id in libraries:
+            self.attach_library(lib_id)
 
     def _allowed_actions(self) -> frozenset[str]:
         allowed: set[str] = set()
@@ -66,8 +79,13 @@ class LocalMothership:
     def attach_pack(self, sku_id: str) -> None:
         if sku_id not in ALLOWED_SKUS:
             raise ProvisionError(f"invented pack {sku_id!r}", reason_code="CATALOG_SKU")
-        if sku_id == "U-DUAL" and "L1" not in self.packs:
-            raise ProvisionError("U-DUAL cannot be provisioned without L1")
+        if sku_id in {"P-ADM", "U-DUAL"} and "L1" not in self.packs:
+            raise ProvisionError(f"{sku_id} cannot be provisioned without L1", reason_code="PACK_SCOPE")
+        if sku_id in {"P-ADM", "U-DUAL"} and not self.kit_pass:
+            raise ProvisionError(
+                f"{sku_id} attaches only after kit PASS",
+                reason_code="ATTACH_GATE",
+            )
         if sku_id in self.packs:
             return
         self.packs = (*self.packs, sku_id)
@@ -78,6 +96,12 @@ class LocalMothership:
         if pack_id not in self.industry:
             self.industry = (*self.industry, pack_id)
         return pack
+
+    def attach_library(self, library_id: str) -> dict[str, Any]:
+        lib = require_library(library_id, skus=self.packs)
+        if library_id not in self.libraries:
+            self.libraries = (*self.libraries, library_id)
+        return lib
 
     def modules(self) -> list[dict[str, Any]]:
         out: list[dict[str, Any]] = []
@@ -99,7 +123,7 @@ class LocalMothership:
             action,
             seat_a=seat_a,
             seat_b=seat_b,
-            apply=self.router.apply,
+            apply=lambda grant: self.router.apply(grant, trusted=True),
         )
 
     def export_audit(self) -> dict[str, Any]:
@@ -115,6 +139,7 @@ class LocalMothership:
             client_id=self.client_id,
             skus=self.packs,
             industry=self.industry,
+            libraries=self.libraries,
             allowed_actions=self.allowed_actions,
             modules=self.modules(),
         )
@@ -124,6 +149,7 @@ class LocalMothership:
         body["client_id"] = self.client_id
         body["packs"] = list(self.packs)
         body["industry"] = list(self.industry)
+        body["libraries"] = list(self.libraries)
         body["live"] = False
         return body
 
@@ -146,10 +172,19 @@ class MasterMothership:
         *,
         packs: tuple[str, ...] = ("L1",),
         industry: tuple[str, ...] = (),
+        libraries: tuple[str, ...] = (),
         ledger_path: str | None = None,
+        kit_pass: bool = False,
     ) -> LocalMothership:
         store = FileAuthorityStore(ledger_path) if ledger_path else MemoryAuthorityStore()
-        local = LocalMothership(client_id, packs=packs, industry=industry, store=store)
+        local = LocalMothership(
+            client_id,
+            packs=packs,
+            industry=industry,
+            libraries=libraries,
+            store=store,
+            kit_pass=kit_pass,
+        )
         self.locals[client_id] = local
         return local
 
@@ -159,4 +194,5 @@ class MasterMothership:
             client_id,
             packs=tuple(spec["skus"]),
             industry=tuple(spec["industry"]),
+            libraries=tuple(spec.get("libraries") or ()),
         )

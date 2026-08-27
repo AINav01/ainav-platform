@@ -27,6 +27,9 @@ body {
   border-bottom: 1px solid var(--rule);
 }
 nav { display: flex; flex-wrap: wrap; }
+@media (max-width: 720px) {
+  nav a { margin-left: 0; margin-right: 0.9rem; font-size: 0.86rem; }
+}
 .brand { letter-spacing: 0.12em; font-size: 0.85rem; text-transform: uppercase; }
 .brand .dot { color: var(--gold); }
 .brand .inst { font-style: italic; letter-spacing: 0.04em; text-transform: none; }

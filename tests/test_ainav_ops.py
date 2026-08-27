@@ -68,11 +68,15 @@ def test_ops_gates_are_fail_closed():
     account.pass_kit()
     from ainav.mothership import LocalMothership
 
-    padm_only = LocalMothership("padm-only", packs=("P-ADM",))
+    with pytest.raises(ProvisionError) as padm:
+        LocalMothership("padm-only", packs=("P-ADM",))
+    assert padm.value.reason_code == "PACK_SCOPE"
+    l1_only = LocalMothership("l1-only", packs=("L1",))
+    with pytest.raises(ProvisionError) as udual:
+        l1_only.attach_pack("U-DUAL")
+    assert udual.value.reason_code == "ATTACH_GATE"
     with pytest.raises(ProvisionError):
-        padm_only.attach_pack("U-DUAL")
-    with pytest.raises(ProvisionError):
-        padm_only.attach_industry("industry.treasury")
+        l1_only.attach_industry("industry.sales")
     account.local.attach_industry("industry.treasury")
 
 
