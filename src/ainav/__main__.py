@@ -112,7 +112,6 @@ def main(argv: list[str] | None = None) -> int:
             return 0 if bound.get("ok") else 2
         if args.sandbox_wedge:
             from ainav.microsoft.bc_sandbox import post_named_company
-            from ainav.mothership import MasterMothership
 
             local = MasterMothership().standard_l1_pack("ainav-inc")
             action = {

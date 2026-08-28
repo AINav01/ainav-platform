@@ -69,3 +69,42 @@ def test_post_named_company_http_success(monkeypatch):
     assert out["production"] is False
     assert out["company"] == "My Company"
     assert len(out["lines"]) == 2
+
+
+def test_post_named_company_missing_env(monkeypatch):
+    monkeypatch.delenv("ENTRA_TENANT_ID", raising=False)
+    monkeypatch.delenv("ENTRA_CLIENT_ID", raising=False)
+    monkeypatch.delenv("ENTRA_CLIENT_SECRET", raising=False)
+    out = post_named_company({"record_type": "admit_ok", "proposal": {"sor_target": "bc.sandbox"}})
+    assert out["ok"] is False
+    assert out["sent"] is False
+    assert out["reason"] == "missing_env"
+
+
+def test_cli_sandbox_wedge(monkeypatch, capsys):
+    from ainav.__main__ import main
+    from ainav.microsoft import bc_sandbox, health
+
+    monkeypatch.setenv("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000001")
+    monkeypatch.setenv("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000002")
+    monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
+    monkeypatch.setattr(
+        bc_sandbox,
+        "post_named_company",
+        lambda grant: {
+            "ok": True,
+            "sent": True,
+            "posted": True,
+            "company": "My Company",
+            "live_pin_ok": False,
+        },
+    )
+    monkeypatch.setattr(
+        health,
+        "stack_health",
+        lambda probe=None: {"live": False, "live_pin_ok": False, "connected": ["bc.premium"]},
+    )
+    assert main(["connect", "--sandbox-wedge"]) == 0
+    out = capsys.readouterr().out
+    assert "ainav.sandbox_wedge.v1" in out
+    assert "live_pin_ok" in out
