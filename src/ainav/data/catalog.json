@@ -123,7 +123,7 @@
         "id": "dept.delivery",
         "name": "Delivery / Customer Success",
         "role": "pair",
-        "systems": ["delivery", "sharepoint.kit"],
+        "systems": ["delivery"],
         "status": "running_code",
         "production": false,
         "blocked_by": ["named customer", "LIVE_PIN_OK"],

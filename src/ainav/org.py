@@ -44,6 +44,8 @@ EXTRA_SYSTEMS = frozenset(
         "delivery",
     }
 )
+
+
 def _connection_systems() -> frozenset[str]:
     from ainav.microsoft.connections import COMPLEMENT_IDS, REQUIRED_IDS
 
@@ -107,12 +109,12 @@ def human_gates() -> list[str]:
 
 def _wired_now(dept: dict[str, Any], connected: set[str] | None) -> bool:
     status = dept.get("status")
+    if status not in RUNNING_STATUSES:
+        return False
     systems = [item for item in dept.get("systems") or [] if item in _connection_systems()]
-    if connected is None:
-        return status in RUNNING_STATUSES
-    if not systems:
-        return status in RUNNING_STATUSES
-    return bool(systems) and all(item in connected for item in systems)
+    if connected is None or not systems:
+        return True
+    return all(item in connected for item in systems)
 
 
 def org_report(*, probe: bool = False) -> dict[str, Any]:

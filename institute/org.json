@@ -166,8 +166,7 @@
       "role": "pair",
       "status": "running_code",
       "systems": [
-        "delivery",
-        "sharepoint.kit"
+        "delivery"
       ],
       "wired_now": true
     },
