@@ -6,6 +6,7 @@
       "/buyer.json",
       "/org.json",
       "/business.json",
+      "/status.json",
       "/styles.css",
       "/site.js",
       "/favicon.svg",
@@ -42,6 +43,10 @@
     },
     {
       "route": "/business.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/status.json",
       "headers": { "Cache-Control": "no-store" }
     }
   ]

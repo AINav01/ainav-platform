@@ -131,4 +131,155 @@
       }
     });
   }
+
+  fetch("status.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok) return;
+      var bc = document.getElementById("status-bc");
+      var note = document.getElementById("status-bc-note");
+      if (bc && data.bc) {
+        bc.textContent = data.bc.environment + " · " + data.bc.operating_company;
+      }
+      if (note && data.bc) {
+        note.textContent =
+          "Document " +
+          data.bc.sandbox_document +
+          ". Wedge " +
+          data.bc.wedge +
+          ". Production blocked. Not LIVE_PIN_OK.";
+      }
+      var sales = document.getElementById("status-sales");
+      if (sales && data.sales) {
+        sales.textContent = data.sales.wired ? "wired · twin" : "licensed · not wired";
+      }
+    })
+    .catch(function () {
+      /* status.json is optional when opened as a file */
+    });
+
+  var twin = {
+    grant: null,
+    consumed: false
+  };
+
+  function hex(buffer) {
+    return Array.from(new Uint8Array(buffer))
+      .map(function (b) {
+        return b.toString(16).padStart(2, "0");
+      })
+      .join("");
+  }
+
+  function actionHash(action) {
+    var encoded = new TextEncoder().encode(JSON.stringify(action));
+    if (!window.crypto || !window.crypto.subtle) {
+      return Promise.resolve("lab-hash-" + encoded.length);
+    }
+    return window.crypto.subtle.digest("SHA-256", encoded).then(hex);
+  }
+
+  function writeLedger(state, text) {
+    var box = document.getElementById("twin-ledger");
+    if (!box) return;
+    box.dataset.state = state;
+    box.textContent = text;
+  }
+
+  function setTwinButtons(ready) {
+    var journal = document.getElementById("twin-journal");
+    var quote = document.getElementById("twin-quote");
+    if (journal) journal.disabled = !ready;
+    if (quote) quote.disabled = !ready;
+  }
+
+  var bind = document.getElementById("twin-bind");
+  if (bind) {
+    bind.addEventListener("click", function () {
+      var a = (document.getElementById("twin-seat-a") || {}).value || "";
+      var b = (document.getElementById("twin-seat-b") || {}).value || "";
+      var status = document.getElementById("twin-admit-status");
+      if (!a.trim() || !b.trim() || a.trim() === b.trim()) {
+        twin.grant = null;
+        twin.consumed = false;
+        setTwinButtons(false);
+        if (status) status.textContent = "Fail-closed. Seats must be two distinct principals.";
+        writeLedger("denied", "admit_denied · same_or_empty_seat\nlive=false · live_pin_ok=false");
+        return;
+      }
+      var action = {
+        action_class: "bc.general_journal.post",
+        payload: { account: "11100", balancing_account: "22100", amount: "250.00", company: "AINav" },
+        sor_target: "bc.sandbox",
+        live: false
+      };
+      actionHash(action).then(function (hash) {
+        twin.grant = { seat_a: a.trim(), seat_b: b.trim(), action_hash: hash, used: false };
+        twin.consumed = false;
+        setTwinButtons(true);
+        if (status) status.textContent = "admit_ok. Grant is single-use.";
+        writeLedger(
+          "ok",
+          "admit_ok\nseat_a=" +
+            twin.grant.seat_a +
+            "\nseat_b=" +
+            twin.grant.seat_b +
+            "\naction_hash=" +
+            hash +
+            "\nlive=false · production=false"
+        );
+      });
+    });
+  }
+
+  var same = document.getElementById("twin-same");
+  if (same) {
+    same.addEventListener("click", function () {
+      var field = document.getElementById("twin-seat-b");
+      var a = document.getElementById("twin-seat-a");
+      if (field && a) field.value = a.value;
+      if (bind) bind.click();
+    });
+  }
+
+  var journal = document.getElementById("twin-journal");
+  if (journal) {
+    journal.addEventListener("click", function () {
+      if (!twin.grant || twin.grant.used) {
+        writeLedger("denied", "effect_blocked · grant missing or already consumed\nNo Business Central write left this browser.");
+        return;
+      }
+      twin.grant.used = true;
+      twin.consumed = true;
+      setTwinButtons(true);
+      writeLedger(
+        "ok",
+        "effect_applied · bc.sandbox\ncompany=AINav · document=AINAV-L1-TWIN · 250.00\n11100 debit / 22100 credit\nMicrosoft Business Central Production was not called.\nlive_pin_ok=false"
+      );
+    });
+  }
+
+  var quote = document.getElementById("twin-quote");
+  if (quote) {
+    quote.addEventListener("click", function () {
+      if (!twin.grant) {
+        writeLedger("denied", "effect_blocked · no grant");
+        return;
+      }
+      var paid = document.getElementById("twin-udual");
+      if (!paid || !paid.checked) {
+        writeLedger(
+          "denied",
+          "provision_denied · U-DUAL is not free with P-ADM\nDynamics 365 Sales Enterprise stays on the twin until a paid attach.\nNo Dataverse write. live=false"
+        );
+        return;
+      }
+      writeLedger(
+        "ok",
+        "effect_applied · d365.sales.sandbox\nquote.discount_override preview on the Sales twin\nNo live Dataverse instance. G14 remains open."
+      );
+    });
+  }
 })();

@@ -1,0 +1,77 @@
+{
+  "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+  "bc": {
+    "amount": "250.00",
+    "connection": "bc.premium",
+    "date": "2026-08-28",
+    "environment": "sandbox",
+    "live_pin_ok": false,
+    "note": "Sandbox journal exists. Production is blocked. This is not LIVE_PIN_OK.",
+    "operating_company": "AINav",
+    "operating_company_id": "9b8d1202-be8f-f111-8327-7ced8db3712c",
+    "product": "Dynamics 365 Business Central Premium",
+    "sandbox_document": "AINAV-L1",
+    "wedge": "bc.general_journal.post"
+  },
+  "custom_domain_claimed": false,
+  "entity": "AINav, Inc.",
+  "honest_missing": [
+    "Second unique human (Inception contacts and signed L1 seats)",
+    "ainav.institute custom domain and incorporation date",
+    "Power Platform / Dataverse environment for Sales",
+    "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
+    "Recognized revenue / external billing provider",
+    "Signed L1 counsel pack (G13)",
+    "Multi-host product HA"
+  ],
+  "host": {
+    "connection": "azure.host",
+    "institute_site": "ainav-institute",
+    "location": "eastus / eastus2"
+  },
+  "identity": {
+    "connection": "m365.e7",
+    "note": "Seat object ids. Not an IdP replacement. Copilot is not the admit plane.",
+    "product": "Microsoft 365 E7 / Microsoft Entra ID"
+  },
+  "institute": "AINAV.Institute",
+  "job": "C",
+  "kind": "ainav.institute.status.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "notify": {
+    "connections": [
+      "teams.enterprise",
+      "teams.premium"
+    ],
+    "note": "Licensed. A chat is not a seat.",
+    "wired": false
+  },
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "opportunity": {
+    "deepen": "U-DUAL",
+    "keep": "P-ADM",
+    "named_customers": [],
+    "prove": "L1",
+    "recognized_revenue": null
+  },
+  "product": "AINav Control Plane",
+  "production": false,
+  "sales": {
+    "connection": "sales.enterprise",
+    "instances": 0,
+    "licensed": true,
+    "note": "License exists. No Dataverse instance. Twin only until G14.",
+    "product": "Dynamics 365 Sales Enterprise",
+    "wired": false
+  },
+  "signed_l1": false,
+  "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "wrote_sor": false
+}

@@ -28,3 +28,16 @@ def test_institute_foundation_is_catalog_honest():
     assert "Sitemap:" in robots
     manifest = json.loads(Path("institute/site.webmanifest").read_text(encoding="utf-8"))
     assert manifest["name"] == "AINAV.Institute"
+    assert 'id="twin"' in html
+    assert 'id="opportunity"' in html
+    assert "Business Central" in html
+    assert "Sales Enterprise" in html
+    assert "Microsoft twin bench" in html
+    assert "No Dataverse write" in Path("institute/site.js").read_text(encoding="utf-8")
+    status = json.loads(Path("institute/status.json").read_text(encoding="utf-8"))
+    assert status["live"] is False
+    assert status["live_pin_ok"] is False
+    assert status["production"] is False
+    assert status["bc"]["operating_company"] == "AINav"
+    assert status["sales"]["wired"] is False
+    assert status["opportunity"]["recognized_revenue"] is None

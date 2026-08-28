@@ -27,6 +27,8 @@
     <div class="nav-wrap">
       <nav class="primary" aria-label="Primary">
         <a href="#buyer">Buyer</a>
+        <a href="#twin">Twin</a>
+        <a href="#opportunity">Opportunity</a>
         <a href="#product">Product</a>
         <a href="#commercial">Commercial</a>
         <a href="#org">Organization</a>
@@ -61,7 +63,7 @@
       <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote.</p>
       <div class="hero-actions">
         <a class="ask" href="#buyer">The write that must not happen</a>
-        <a class="ghost" href="#product">See the plane</a>
+        <a class="ghost" href="#twin">Run the Microsoft twin</a>
       </div>
     </section>
 
@@ -118,6 +120,85 @@
         "live": false,
         "signed_l1": false
       }</script>
+    </section>
+
+    <section id="twin">
+      <h2>Microsoft twin bench</h2>
+      <p class="note">Browser twin only. Dynamics 365 Business Central and Sales writes stay off this page. Not LIVE_PIN_OK. Not Production.</p>
+      <p class="lede">
+        Two distinct seats bind one action hash. The grant is consumed once.
+        Then a Business Central journal may land on the twin. A Sales quote stays refused until paid U-DUAL.
+      </p>
+      <div class="twin-grid">
+        <div class="twin-panel">
+          <h3>1. Admit</h3>
+          <label class="field">Seat A
+            <input id="twin-seat-a" type="text" value="oid-approver" autocomplete="off" />
+          </label>
+          <label class="field">Seat B
+            <input id="twin-seat-b" type="text" value="oid-controller" autocomplete="off" />
+          </label>
+          <div class="hero-actions">
+            <button type="button" class="ask" id="twin-bind">Bind both seats</button>
+            <button type="button" class="ghost" id="twin-same">Try the same seat twice</button>
+          </div>
+          <p class="note" id="twin-admit-status">Waiting for two distinct humans.</p>
+        </div>
+        <div class="twin-panel">
+          <h3>2. Systems of record</h3>
+          <p class="note">L1 wedge: <code>bc.general_journal.post</code> → Business Central Sandbox company AINav.</p>
+          <button type="button" class="ask" id="twin-journal" disabled>Post sandbox journal</button>
+          <p class="note">U-DUAL deepen: quote override → Dynamics 365 Sales Enterprise. Licensed, not wired.</p>
+          <button type="button" class="ghost" id="twin-quote" disabled>Attempt Sales quote override</button>
+          <label class="check"><input id="twin-udual" type="checkbox" /> Preview paid U-DUAL on the Sales twin</label>
+        </div>
+      </div>
+      <div class="ledger" id="twin-ledger" aria-live="polite"></div>
+    </section>
+
+    <section id="opportunity">
+      <h2>Business opportunity</h2>
+      <p class="note">Catalog list prices. Not recognized revenue. No invented customer.</p>
+      <p class="lede">
+        A controller already has two-person journal SOD and Business Central Premium.
+        L1 is the week they prove an unauthorized post cannot land. Keep with P-ADM. Deepen with paid U-DUAL.
+      </p>
+      <div class="cards">
+        <article>
+          <h3>Prove</h3>
+          <p class="price">L1 · $28–40k · 2–4 weeks</p>
+          <p>Ninety-minute proof day on the existing treasury pair. Digital twin. Acceptance Kit inside the SKU.</p>
+        </article>
+        <article>
+          <h3>Keep</h3>
+          <p class="price">P-ADM · $40–60k / year</p>
+          <p>Attach only after kit PASS. Same admit plane. Never bundles free U-DUAL.</p>
+        </article>
+        <article>
+          <h3>Deepen</h3>
+          <p class="price">U-DUAL · $20–35k / year</p>
+          <p>Sales Enterprise quote override and order submit on the same plane. Never free.</p>
+        </article>
+      </div>
+      <div class="split">
+        <div>
+          <h3>Who buys</h3>
+          <ul class="stack">
+            <li>Dynamics 365 Business Central Premium</li>
+            <li>Microsoft Entra ID seats already in SOD</li>
+            <li>A write that must not happen without two humans</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What we do not sell</h3>
+          <ul class="stack refuse">
+            <li>Consultancy hours as the product</li>
+            <li>Copilot or Agent 365 as dual admit</li>
+            <li>A named design partner we do not have</li>
+            <li>Recognized revenue we have not earned</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section id="product">
@@ -320,6 +401,28 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         writes the Business Central and Sales twins, and notifies Teams Enterprise and Teams Premium.
         AINAV.Institute is a static site on Azure Static Web Apps — the ainav.institute custom domain is not claimed.
       </p>
+      <div id="status-board" class="status-board">
+        <article>
+          <h3>Business Central</h3>
+          <p class="price" id="status-bc">sandbox · AINav</p>
+          <p id="status-bc-note">Company AINav. Wedge <code>bc.general_journal.post</code>. Production blocked.</p>
+        </article>
+        <article>
+          <h3>Sales Enterprise</h3>
+          <p class="price" id="status-sales">licensed · not wired</p>
+          <p>No Dataverse instance. Quote override stays on the twin until G14.</p>
+        </article>
+        <article>
+          <h3>Entra / Microsoft 365 E7</h3>
+          <p class="price">identity · connected</p>
+          <p>Seat object ids. Copilot is not a seat. PIM is not dual admit.</p>
+        </article>
+        <article>
+          <h3>Azure host</h3>
+          <p class="price">eastus · Institute on eastus2</p>
+          <p>RG ainav-inc. Custom domain not bound. Not LIVE_PIN_OK.</p>
+        </article>
+      </div>
       <div id="stack-cards" class="cards stack-cards">
         <article data-id="azure.host">
           <h3>Microsoft Azure</h3>

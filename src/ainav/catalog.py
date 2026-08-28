@@ -70,6 +70,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     validate_organization(catalog)
     _validate_proof_day(catalog)
     _validate_next_pin(catalog)
+    _validate_sandbox_evidence(catalog)
     _validate_buyer(catalog)
     _validate_icp(catalog)
     _validate_acceptance_kit(catalog)
@@ -117,6 +118,20 @@ def _validate_next_pin(catalog: dict[str, Any]) -> None:
         raise IntegrityError("next pin cannot close LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
     if body.get("from") != "bc.sandbox" or body.get("to") != "bc.microsoft.sandbox":
         raise IntegrityError("next pin is twin → microsoft sandbox", reason_code="CATALOG_NEXT_PIN")
+
+
+def _validate_sandbox_evidence(catalog: dict[str, Any]) -> None:
+    body = catalog.get("sandbox_evidence")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing sandbox evidence", reason_code="CATALOG_SANDBOX")
+    if body.get("action_class") != "bc.general_journal.post":
+        raise IntegrityError("sandbox evidence is the L1 journal", reason_code="CATALOG_SANDBOX")
+    if body.get("environment") != "sandbox":
+        raise IntegrityError("sandbox evidence stays on sandbox", reason_code="CATALOG_SANDBOX")
+    if body.get("production") is True or body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("sandbox evidence cannot claim production or live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("signed_l1") is True:
+        raise IntegrityError("sandbox evidence cannot close signed L1", reason_code="SIGNED_L1_OPEN")
 
 
 def _validate_buyer(catalog: dict[str, Any]) -> None:

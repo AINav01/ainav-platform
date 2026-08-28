@@ -481,6 +481,21 @@
     "live_pin_ok": false,
     "note": "Process twin → Microsoft Business Central sandbox envelope. Not production. Not LIVE_PIN_OK."
   },
+  "sandbox_evidence": {
+    "bc_document": "AINAV-L1",
+    "bc_company": "AINav",
+    "bc_company_id": "9b8d1202-be8f-f111-8327-7ced8db3712c",
+    "action_class": "bc.general_journal.post",
+    "amount": "250.00",
+    "date": "2026-08-28",
+    "environment": "sandbox",
+    "production": false,
+    "live": false,
+    "live_pin_ok": false,
+    "signed_l1": false,
+    "seats": "lab operator oids — not two named treasury humans",
+    "note": "Sandbox journal exists. Production is blocked. This is not LIVE_PIN_OK."
+  },
   "icp": {
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
