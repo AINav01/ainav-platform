@@ -40,6 +40,11 @@ def main(argv: list[str] | None = None) -> int:
         help="create Azure RG/Key Vault/Log Analytics. Never writes SoR. Never LIVE_PIN_OK.",
     )
     connect.add_argument(
+        "--publish-institute",
+        action="store_true",
+        help="PUT Azure Static Web App and upload institute/. Never custom domain. Never LIVE_PIN_OK.",
+    )
+    connect.add_argument(
         "--sandbox-wedge",
         action="store_true",
         help="dual-admit then POST AINav DEFAULT journal in BC Sandbox. Never production. Never LIVE_PIN_OK.",
@@ -115,6 +120,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "connect":
         from ainav.microsoft.health import stack_health
 
+        if args.publish_institute:
+            from ainav.microsoft.institute_publish import publish_institute
+
+            published = publish_institute()
+            print(canonical_json({"publish": published, "health": stack_health(probe=True)}))
+            return 0 if published.get("ok") else 2
         if args.bind_host:
             from ainav.microsoft.host_bind import bind_host
 

@@ -29,6 +29,7 @@ ALLOWED_DEPT_STATUS = frozenset(
         "running_code",
         "licensed_not_wired",
         "in_repo_not_public",
+        "azure_hosted_not_custom",
         "open_gap",
         "qualify_not_claimed",
     }
@@ -98,7 +99,7 @@ def organization() -> dict[str, Any]:
 
 def human_gates() -> list[str]:
     return [
-        "Publish AINAV.Institute. A coming-soon page is not a working public website.",
+        "Point ainav.institute at the Azure hostname. A coming-soon page is not the custom domain.",
         "Record the incorporation date outside this tree for NVIDIA Inception.",
         "Name a second unique human with a business email (Inception developer + business executive; also signed L1 seat B). The Cloud Agent is not a contact or a seat.",
         "Create a US Power Platform environment with Dataverse, then set DATAVERSE_URL on a new agent.",

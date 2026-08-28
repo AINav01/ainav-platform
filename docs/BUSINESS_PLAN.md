@@ -108,7 +108,7 @@ Departments are the operating company, not SKUs. Out-of-gate means the map is co
 - **Sales / Revenue** — licensed_not_wired. Sales Enterprise license exists. Global Discovery returned zero instances.
 - **People / Notify** — licensed_not_wired. Teams is licensed. A chat is not a seat. Graph notify is not wired.
 - **Security / Compliance** — licensed_not_wired. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel.
-- **Institute / GTM** — in_repo_not_public. institute/ is in this tree. ainav.institute coming-soon is not a working public website. Deploy is not claimed.
+- **Institute / GTM** — azure_hosted_not_custom. Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK.
 - **Legal / Counsel** — open_gap. IP hygiene lives in this tree. Counsel pack is not signed.
 - **Product / Engineering** — running_code. Job C admit plane and catalog. Three SKUs only. Not a live pin.
 - **Delivery / Customer Success** — running_code. Master / cloud / local motherships and week-one runbook. Do not invent a customer.
@@ -131,7 +131,8 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 - Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.
 - Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.
 - Inception also wants two unique contacts (developer + business executive, business emails). Sole owner does not collapse that.
-- Ready to apply is false until a public website, incorporation date, and second unique human exist outside this tree.
+- Azure hostname: https://blue-river-010091a0f.7.azurestaticapps.net. ainav.institute custom domain is not claimed.
+- Ready to apply is false until the custom domain, incorporation date, and second unique human exist outside this tree.
 
 ## Buyer page and ICP
 
@@ -159,7 +160,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 ## Still missing (honest)
 
 - Second unique human (Inception contacts and signed L1 seats)
-- Public Institute deploy and incorporation date
+- ainav.institute custom domain and incorporation date
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
 - Recognized revenue / external billing provider

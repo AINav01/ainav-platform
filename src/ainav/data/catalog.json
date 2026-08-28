@@ -94,10 +94,10 @@
         "name": "Institute / GTM",
         "role": "public",
         "systems": ["repo.institute", "azure.host"],
-        "status": "in_repo_not_public",
+        "status": "azure_hosted_not_custom",
         "production": false,
-        "blocked_by": ["working public website deploy"],
-        "note": "institute/ is in this tree. ainav.institute coming-soon is not a working public website. Deploy is not claimed."
+        "blocked_by": ["ainav.institute custom domain"],
+        "note": "Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK."
       },
       {
         "id": "dept.legal",
@@ -511,7 +511,7 @@
   },
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
-    "Public Institute deploy and incorporation date",
+    "ainav.institute custom domain and incorporation date",
     "Power Platform / Dataverse environment for Sales",
     "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
     "Recognized revenue / external billing provider",
@@ -854,10 +854,14 @@
     "website": {
       "name": "AINAV.Institute",
       "in_repo": "institute/index.html",
-      "public_deploy_claimed": false
+      "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+      "azure_site": "ainav-institute",
+      "azure_location": "eastus2",
+      "public_deploy_claimed": false,
+      "custom_domain_claimed": false
     },
     "apply_prerequisites": [
-      "Publish a working public website (AINAV.Institute files exist in-repo; a live deploy is not claimed)",
+      "Azure hostname is published; ainav.institute custom domain is not claimed",
       "Have an incorporation date ready for NVIDIA Inception (not stored in this tree)",
       "Name two unique humans: one developer and one business executive, each with a business email (no aliases, no gmail). Sole owner does not collapse this. The Cloud Agent is not a contact.",
       "Pitch deck: Job C Business Central write-gate; software product; not consultancy; not crypto",

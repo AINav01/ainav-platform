@@ -4,12 +4,13 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 
 **Public wedge:** `bc.general_journal.post` on a Business Central digital twin.
 **Not:** cryptocurrency, agent inventory (Job A), IdP replacement (Job B), Teams vote.
-**Not claimed:** membership, credits, badges, GPU production, public website deploy.
+**Azure hostname:** https://blue-river-010091a0f.7.azurestaticapps.net
+**Not claimed:** membership, credits, badges, GPU production, ainav.institute custom domain.
 
 ## Apply order
 
 Microsoft for Startups first. NVIDIA Inception second.
-Do not apply until a public website, incorporation date, and two unique human contacts exist.
+Do not apply until the custom domain, incorporation date, and two unique human contacts exist.
 Do not lead any deck with lab custody fixtures.
 
 ## Commercial spine
@@ -20,7 +21,7 @@ Do not lead any deck with lab custody fixtures.
 
 ## Apply prerequisites (still open)
 
-- Publish a working public website (AINAV.Institute files exist in-repo; a live deploy is not claimed)
+- Azure hostname is published; ainav.institute custom domain is not claimed
 - Have an incorporation date ready for NVIDIA Inception (not stored in this tree)
 - Name two unique humans: one developer and one business executive, each with a business email (no aliases, no gmail). Sole owner does not collapse this. The Cloud Agent is not a contact.
 - Pitch deck: Job C Business Central write-gate; software product; not consultancy; not crypto

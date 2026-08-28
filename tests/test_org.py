@@ -26,7 +26,7 @@ def test_organization_is_full_service_and_honest():
     assert statuses["dept.identity"] == "running_sandbox"
     assert statuses["dept.sales"] == "licensed_not_wired"
     assert statuses["dept.people"] == "licensed_not_wired"
-    assert statuses["dept.institute"] == "in_repo_not_public"
+    assert statuses["dept.institute"] == "azure_hosted_not_custom"
     assert statuses["dept.legal"] == "open_gap"
     assert statuses["dept.product"] == "running_code"
     assert statuses["dept.programs"] == "qualify_not_claimed"

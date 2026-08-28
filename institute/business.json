@@ -47,7 +47,7 @@
   "entity": "AINav, Inc.",
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
-    "Public Institute deploy and incorporation date",
+    "ainav.institute custom domain and incorporation date",
     "Power Platform / Dataverse environment for Sales",
     "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
     "Recognized revenue / external billing provider",
@@ -119,7 +119,7 @@
       {
         "id": "dept.institute",
         "name": "Institute / GTM",
-        "status": "in_repo_not_public"
+        "status": "azure_hosted_not_custom"
       },
       {
         "id": "dept.legal",

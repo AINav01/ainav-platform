@@ -52,6 +52,8 @@ def validate_programs(catalog: dict[str, Any]) -> None:
         raise IntegrityError("GPU production workload is not claimed", reason_code="PROGRAM_NOT_CLAIMED")
     if body.get("website", {}).get("public_deploy_claimed") is True:
         raise IntegrityError("public website deploy is not claimed", reason_code="PROGRAM_NOT_CLAIMED")
+    if body.get("website", {}).get("custom_domain_claimed") is True:
+        raise IntegrityError("ainav.institute custom domain is not claimed", reason_code="PROGRAM_NOT_CLAIMED")
     wedge = body.get("public_wedge")
     l1_actions = {
         m["id"]
@@ -181,12 +183,13 @@ def pitch() -> str:
         "",
         f"**Public wedge:** `{body['public_wedge']}` on a Business Central digital twin.",
         "**Not:** cryptocurrency, agent inventory (Job A), IdP replacement (Job B), Teams vote.",
-        "**Not claimed:** membership, credits, badges, GPU production, public website deploy.",
+        f"**Azure hostname:** {body.get('website', {}).get('azure_url') or 'not published'}",
+        "**Not claimed:** membership, credits, badges, GPU production, ainav.institute custom domain.",
         "",
         "## Apply order",
         "",
         "Microsoft for Startups first. NVIDIA Inception second.",
-        "Do not apply until a public website, incorporation date, and two unique human contacts exist.",
+        "Do not apply until the custom domain, incorporation date, and two unique human contacts exist.",
         "Do not lead any deck with lab custody fixtures.",
         "",
         "## Commercial spine",

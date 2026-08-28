@@ -108,14 +108,14 @@
     },
     {
       "blocked_by": [
-        "working public website deploy"
+        "ainav.institute custom domain"
       ],
       "id": "dept.institute",
       "name": "Institute / GTM",
-      "note": "institute/ is in this tree. ainav.institute coming-soon is not a working public website. Deploy is not claimed.",
+      "note": "Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK.",
       "production": false,
       "role": "public",
-      "status": "in_repo_not_public",
+      "status": "azure_hosted_not_custom",
       "systems": [
         "repo.institute",
         "azure.host"
@@ -191,7 +191,7 @@
   "entity": "AINav, Inc.",
   "full_service": true,
   "human_gates": [
-    "Publish AINAV.Institute. A coming-soon page is not a working public website.",
+    "Point ainav.institute at the Azure hostname. A coming-soon page is not the custom domain.",
     "Record the incorporation date outside this tree for NVIDIA Inception.",
     "Name a second unique human with a business email (Inception developer + business executive; also signed L1 seat B). The Cloud Agent is not a contact or a seat.",
     "Create a US Power Platform environment with Dataverse, then set DATAVERSE_URL on a new agent.",
