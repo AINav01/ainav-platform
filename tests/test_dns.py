@@ -43,6 +43,25 @@ def test_dns_probe_does_not_claim_custom_domain_or_launch(monkeypatch):
     assert body["microsoft_365"]["teams_sip"] is False
 
 
+def test_dig_reads_live_cloudflare_ns():
+    from ainav.microsoft.dns import _dig
+
+    ns = _dig("ainav.institute", "NS")
+    assert any("cloudflare.com" in item.lower() for item in ns)
+
+
+def test_dig_empty_on_timeout(monkeypatch):
+    import subprocess
+
+    def boom(*args, **kwargs):
+        raise subprocess.TimeoutExpired(cmd="dig", timeout=15)
+
+    monkeypatch.setattr("ainav.microsoft.dns.subprocess.run", boom)
+    from ainav.microsoft.dns import _dig
+
+    assert _dig("ainav.institute", "NS") == []
+
+
 def test_cli_dns(monkeypatch, capsys):
     from ainav.__main__ import main
 
