@@ -1,0 +1,235 @@
+{
+  "all_running_claimed": false,
+  "all_wired_claimed": false,
+  "blocked_now": [
+    "dept.sales",
+    "dept.people",
+    "dept.compliance",
+    "dept.institute",
+    "dept.legal",
+    "dept.programs"
+  ],
+  "contacts": {
+    "business_executive": null,
+    "developer": null,
+    "note": "NVIDIA Inception requires two unique contacts (developer + business executive) with business emails; aliases and gmail are refused. Sole owner does not collapse this. The Cloud Agent is not a contact or a seat.",
+    "owner": "DayTradingMarkets",
+    "second_unique_human": false
+  },
+  "departments": [
+    {
+      "blocked_by": [
+        "BC Production app not Enabled",
+        "signed L1 / two named treasury humans"
+      ],
+      "id": "dept.treasury",
+      "name": "Treasury / Finance",
+      "note": "Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK.",
+      "production": false,
+      "role": "books",
+      "status": "running_sandbox",
+      "systems": [
+        "bc.premium"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "LIVE_PIN_OK"
+      ],
+      "id": "dept.identity",
+      "name": "Identity / IT / Host",
+      "note": "Same Entra app. Azure host in eastus. West Europe is blocked by policy.",
+      "production": false,
+      "role": "identity_host",
+      "status": "running_sandbox",
+      "systems": [
+        "m365.e7",
+        "entra.id",
+        "azure.host",
+        "azure.keyvault",
+        "azure.monitor",
+        "azure.policy"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "Power Platform environment with Dataverse",
+        "DATAVERSE_URL"
+      ],
+      "id": "dept.sales",
+      "name": "Sales / Revenue",
+      "note": "Sales Enterprise license exists. Global Discovery returned zero instances.",
+      "production": false,
+      "role": "pipeline",
+      "status": "licensed_not_wired",
+      "systems": [
+        "sales.enterprise"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "Team.ReadBasic.All on the same Entra app"
+      ],
+      "id": "dept.people",
+      "name": "People / Notify",
+      "note": "Teams is licensed. A chat is not a seat. Graph notify is not wired.",
+      "production": false,
+      "role": "notify",
+      "status": "licensed_not_wired",
+      "systems": [
+        "teams.enterprise",
+        "teams.premium"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "SecurityIncident.Read.All",
+        "RoleEligibilitySchedule.Read.Directory",
+        "Sites.Read.All",
+        "Sentinel on the existing LAW"
+      ],
+      "id": "dept.compliance",
+      "name": "Security / Compliance",
+      "note": "E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel.",
+      "production": false,
+      "role": "audit_sink",
+      "status": "licensed_not_wired",
+      "systems": [
+        "defender.xdr",
+        "entra.pim",
+        "sentinel.siem",
+        "sharepoint.kit"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "working public website deploy"
+      ],
+      "id": "dept.institute",
+      "name": "Institute / GTM",
+      "note": "institute/ is in this tree. ainav.institute coming-soon is not a working public website. Deploy is not claimed.",
+      "production": false,
+      "role": "public",
+      "status": "in_repo_not_public",
+      "systems": [
+        "repo.institute",
+        "azure.host"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "G12 legal",
+        "G13 signed L1"
+      ],
+      "id": "dept.legal",
+      "name": "Legal / Counsel",
+      "note": "IP hygiene lives in this tree. Counsel pack is not signed.",
+      "production": false,
+      "role": "counsel",
+      "status": "open_gap",
+      "systems": [
+        "catalog.legal"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "product HA"
+      ],
+      "id": "dept.product",
+      "name": "Product / Engineering",
+      "note": "Job C admit plane and catalog. Three SKUs only. Not a live pin.",
+      "production": false,
+      "role": "plane",
+      "status": "running_code",
+      "systems": [
+        "repo.agent_gov",
+        "repo.catalog"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "named customer",
+        "LIVE_PIN_OK"
+      ],
+      "id": "dept.delivery",
+      "name": "Delivery / Customer Success",
+      "note": "Master / cloud / local motherships and week-one runbook. Do not invent a customer.",
+      "production": false,
+      "role": "pair",
+      "status": "running_code",
+      "systems": [
+        "delivery",
+        "sharepoint.kit"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "public website",
+        "incorporation date",
+        "second unique human contact"
+      ],
+      "id": "dept.programs",
+      "name": "Programs / Partnerships",
+      "note": "Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.",
+      "production": false,
+      "role": "qualify",
+      "status": "qualify_not_claimed",
+      "systems": [
+        "programs"
+      ],
+      "wired_now": false
+    }
+  ],
+  "entity": "AINav, Inc.",
+  "full_service": true,
+  "human_gates": [
+    "Publish AINAV.Institute. A coming-soon page is not a working public website.",
+    "Record the incorporation date outside this tree for NVIDIA Inception.",
+    "Name a second unique human with a business email (Inception developer + business executive; also signed L1 seat B). The Cloud Agent is not a contact or a seat.",
+    "Create a US Power Platform environment with Dataverse, then set DATAVERSE_URL on a new agent.",
+    "Grant Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory on the same Entra app AINav Cloud Agent1.",
+    "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write."
+  ],
+  "incorporation_date": null,
+  "institute": "AINAV.Institute",
+  "kind": "ainav.org.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "note": "Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.",
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "probed": false,
+  "programs": {
+    "application_order": [
+      "microsoft.founders_hub",
+      "nvidia.inception",
+      "nvidia.developer",
+      "github.for_startups",
+      "microsoft.isv_success",
+      "nvidia.connect"
+    ],
+    "membership_claimed": false,
+    "ready_to_apply": false
+  },
+  "second_officer": null,
+  "wired_now": [
+    "dept.treasury",
+    "dept.identity",
+    "dept.product",
+    "dept.delivery"
+  ]
+}

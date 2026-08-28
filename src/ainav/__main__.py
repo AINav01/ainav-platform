@@ -21,6 +21,12 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("ip")
     sub.add_parser("programs")
     sub.add_parser("pitch")
+    org_cmd = sub.add_parser("org")
+    org_cmd.add_argument(
+        "--probe",
+        action="store_true",
+        help="overlay read-only stack health. Never writes. Never LIVE_PIN_OK.",
+    )
     sub.add_parser("connections")
     connect = sub.add_parser("connect")
     connect.add_argument(
@@ -100,6 +106,11 @@ def main(argv: list[str] | None = None) -> int:
         from ainav.programs import pitch
 
         print(pitch(), end="")
+        return 0
+    if args.cmd == "org":
+        from ainav.org import org_report
+
+        print(canonical_json(org_report(probe=bool(args.probe))))
         return 0
     if args.cmd == "connect":
         from ainav.microsoft.health import stack_health

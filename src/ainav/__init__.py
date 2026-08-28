@@ -6,6 +6,7 @@ from ainav.catalog import load_catalog, sku
 from ainav.errors import IPError, ProgramError
 from ainav.ip import notice, screen_pack_label
 from ainav.next_pin import sandbox_envelope
+from ainav.org import org_report, organization
 from ainav.programs import application_order, pitch, public_wedge_action, qualify
 from ainav.proof_day import run_proof_day
 from ainav.microsoft.connections import StackPlane, stack_json
@@ -25,6 +26,8 @@ __all__ = [
     "buyer_page",
     "load_catalog",
     "notice",
+    "org_report",
+    "organization",
     "pitch",
     "ProgramError",
     "proof_day_brief",

@@ -97,6 +97,23 @@ Price L1 against the unauthorized journal that two humans did not admit. Prove i
 - Economics: Pipeline math uses catalog list prices. It is not recognized revenue.
 - Complements are not SKUs. Industry packs and FFS hours are not SKUs.
 
+## Operating organization (not SKUs)
+
+Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.
+- Owner: DayTradingMarkets. Operator is not a seat.
+- Second officer: none recorded. Do not invent one.
+- Incorporation date: not stored in this tree.
+- **Treasury / Finance** — running_sandbox. Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK.
+- **Identity / IT / Host** — running_sandbox. Same Entra app. Azure host in eastus. West Europe is blocked by policy.
+- **Sales / Revenue** — licensed_not_wired. Sales Enterprise license exists. Global Discovery returned zero instances.
+- **People / Notify** — licensed_not_wired. Teams is licensed. A chat is not a seat. Graph notify is not wired.
+- **Security / Compliance** — licensed_not_wired. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel.
+- **Institute / GTM** — in_repo_not_public. institute/ is in this tree. ainav.institute coming-soon is not a working public website. Deploy is not claimed.
+- **Legal / Counsel** — open_gap. IP hygiene lives in this tree. Counsel pack is not signed.
+- **Product / Engineering** — running_code. Job C admit plane and catalog. Three SKUs only. Not a live pin.
+- **Delivery / Customer Success** — running_code. Master / cloud / local motherships and week-one runbook. Do not invent a customer.
+- **Programs / Partnerships** — qualify_not_claimed. Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.
+
 ## IP and competitor boundary
 
 - Owner: AINav, Inc.. Copyright (c) 2026 AINav, Inc. All rights reserved.
@@ -113,7 +130,8 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 - Apply order: Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.
 - Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.
 - Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.
-- Ready to apply is false until a public website and incorporation date exist outside this tree.
+- Inception also wants two unique contacts (developer + business executive, business emails). Sole owner does not collapse that.
+- Ready to apply is false until a public website, incorporation date, and second unique human exist outside this tree.
 
 ## Buyer page and ICP
 
@@ -140,8 +158,10 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 
 ## Still missing (honest)
 
-- Live Microsoft tenant credentials and Graph calls
+- Second unique human (Inception contacts and signed L1 seats)
 - Public Institute deploy and incorporation date
+- Power Platform / Dataverse environment for Sales
+- Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
 - Recognized revenue / external billing provider
 - Signed L1 counsel pack (G13)
 - Multi-host product HA

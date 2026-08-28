@@ -16,6 +16,135 @@
     "agent_is_not_dual": true,
     "note": "Sole owner runs AINav, Inc. The Cloud Agent operates host, connect, twin, and authorized sandbox work. The agent is not seat_a or seat_b. Signed L1 still needs two distinct human principals."
   },
+  "organization": {
+    "kind": "ainav.org.v1",
+    "sku": false,
+    "full_service": true,
+    "all_wired_claimed": false,
+    "live": false,
+    "live_pin_ok": false,
+    "second_officer": null,
+    "incorporation_date": null,
+    "contacts": {
+      "owner": "DayTradingMarkets",
+      "developer": null,
+      "business_executive": null,
+      "second_unique_human": false,
+      "note": "NVIDIA Inception requires two unique contacts (developer + business executive) with business emails; aliases and gmail are refused. Sole owner does not collapse this. The Cloud Agent is not a contact or a seat."
+    },
+    "note": "Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.",
+    "departments": [
+      {
+        "id": "dept.treasury",
+        "name": "Treasury / Finance",
+        "role": "books",
+        "systems": ["bc.premium"],
+        "status": "running_sandbox",
+        "production": false,
+        "blocked_by": ["BC Production app not Enabled", "signed L1 / two named treasury humans"],
+        "note": "Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK."
+      },
+      {
+        "id": "dept.identity",
+        "name": "Identity / IT / Host",
+        "role": "identity_host",
+        "systems": ["m365.e7", "entra.id", "azure.host", "azure.keyvault", "azure.monitor", "azure.policy"],
+        "status": "running_sandbox",
+        "production": false,
+        "blocked_by": ["LIVE_PIN_OK"],
+        "note": "Same Entra app. Azure host in eastus. West Europe is blocked by policy."
+      },
+      {
+        "id": "dept.sales",
+        "name": "Sales / Revenue",
+        "role": "pipeline",
+        "systems": ["sales.enterprise"],
+        "status": "licensed_not_wired",
+        "production": false,
+        "blocked_by": ["Power Platform environment with Dataverse", "DATAVERSE_URL"],
+        "note": "Sales Enterprise license exists. Global Discovery returned zero instances."
+      },
+      {
+        "id": "dept.people",
+        "name": "People / Notify",
+        "role": "notify",
+        "systems": ["teams.enterprise", "teams.premium"],
+        "status": "licensed_not_wired",
+        "production": false,
+        "blocked_by": ["Team.ReadBasic.All on the same Entra app"],
+        "note": "Teams is licensed. A chat is not a seat. Graph notify is not wired."
+      },
+      {
+        "id": "dept.compliance",
+        "name": "Security / Compliance",
+        "role": "audit_sink",
+        "systems": ["defender.xdr", "entra.pim", "sentinel.siem", "sharepoint.kit"],
+        "status": "licensed_not_wired",
+        "production": false,
+        "blocked_by": [
+          "SecurityIncident.Read.All",
+          "RoleEligibilitySchedule.Read.Directory",
+          "Sites.Read.All",
+          "Sentinel on the existing LAW"
+        ],
+        "note": "E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel."
+      },
+      {
+        "id": "dept.institute",
+        "name": "Institute / GTM",
+        "role": "public",
+        "systems": ["repo.institute", "azure.host"],
+        "status": "in_repo_not_public",
+        "production": false,
+        "blocked_by": ["working public website deploy"],
+        "note": "institute/ is in this tree. ainav.institute coming-soon is not a working public website. Deploy is not claimed."
+      },
+      {
+        "id": "dept.legal",
+        "name": "Legal / Counsel",
+        "role": "counsel",
+        "systems": ["catalog.legal"],
+        "status": "open_gap",
+        "production": false,
+        "blocked_by": ["G12 legal", "G13 signed L1"],
+        "note": "IP hygiene lives in this tree. Counsel pack is not signed."
+      },
+      {
+        "id": "dept.product",
+        "name": "Product / Engineering",
+        "role": "plane",
+        "systems": ["repo.agent_gov", "repo.catalog"],
+        "status": "running_code",
+        "production": false,
+        "blocked_by": ["product HA"],
+        "note": "Job C admit plane and catalog. Three SKUs only. Not a live pin."
+      },
+      {
+        "id": "dept.delivery",
+        "name": "Delivery / Customer Success",
+        "role": "pair",
+        "systems": ["delivery", "sharepoint.kit"],
+        "status": "running_code",
+        "production": false,
+        "blocked_by": ["named customer", "LIVE_PIN_OK"],
+        "note": "Master / cloud / local motherships and week-one runbook. Do not invent a customer."
+      },
+      {
+        "id": "dept.programs",
+        "name": "Programs / Partnerships",
+        "role": "qualify",
+        "systems": ["programs"],
+        "status": "qualify_not_claimed",
+        "production": false,
+        "blocked_by": [
+          "public website",
+          "incorporation date",
+          "second unique human contact"
+        ],
+        "note": "Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed."
+      }
+    ]
+  },
   "must_not_change": [
     "Job C only — not agent inventory (Job A), not IdP replacement (Job B)",
     "Dual distinct principals",
@@ -381,8 +510,10 @@
     "mailto": null
   },
   "honest_missing": [
-    "Live Microsoft tenant credentials and Graph calls",
+    "Second unique human (Inception contacts and signed L1 seats)",
     "Public Institute deploy and incorporation date",
+    "Power Platform / Dataverse environment for Sales",
+    "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
     "Recognized revenue / external billing provider",
     "Signed L1 counsel pack (G13)",
     "Multi-host product HA"
@@ -728,6 +859,7 @@
     "apply_prerequisites": [
       "Publish a working public website (AINAV.Institute files exist in-repo; a live deploy is not claimed)",
       "Have an incorporation date ready for NVIDIA Inception (not stored in this tree)",
+      "Name two unique humans: one developer and one business executive, each with a business email (no aliases, no gmail). Sole owner does not collapse this. The Cloud Agent is not a contact.",
       "Pitch deck: Job C Business Central write-gate; software product; not consultancy; not crypto",
       "Do not attach gold-vector custody fixtures to any application"
     ],
@@ -770,6 +902,7 @@
           "officially incorporated (date required on apply)",
           "at least one developer",
           "working public website",
+          "two unique contacts: one developer and one business executive (business emails; no aliases or gmail)",
           "less than 10 years old",
           "privately held"
         ],

@@ -289,6 +289,11 @@ class MasterMothership:
             "product": "AINav Control Plane",
             "institute": "AINAV.Institute",
             "operating": dict(load_catalog()["operating"]),
+            "organization": {
+                "full_service": True,
+                "all_wired_claimed": False,
+                "departments": [item["id"] for item in load_catalog()["organization"]["departments"]],
+            },
             "live": False,
             "host_mode": "master",
             "writes_client_sor": False,

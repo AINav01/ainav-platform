@@ -73,6 +73,7 @@ Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_P
 
 ```bash
 python -m ainav ip
+python -m ainav org
 python -m ainav programs
 python -m ainav pitch
 python -m ainav connections
@@ -80,7 +81,7 @@ python -m ainav stack-demo
 python -m ainav company-demo
 ```
 
-Microsoft for Startups is first; NVIDIA Inception is second. Both are **qualification targets**, not claimed memberships. Public pitch leads with `bc.general_journal.post`. Inception excludes crypto-associated companies — do not lead with gold-vector custody fixtures. A working public website and incorporation date are apply prerequisites; this tree does not claim either. Pitch: `docs/PROGRAMS.md`.
+Microsoft for Startups is first; NVIDIA Inception is second. Both are **qualification targets**, not claimed memberships. Public pitch leads with `bc.general_journal.post`. Inception excludes crypto-associated companies — do not lead with gold-vector custody fixtures. Apply also needs a working public website, an incorporation date, and two unique human contacts (developer + business executive). This tree does not claim those. Pitch: `docs/PROGRAMS.md`. The operating organization is `python -m ainav org` — every department exists; Sales, Teams, Institute, legal, and programs are not claimed live.
 
 Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page generates a forwardable brief and does not invent a contact inbox. Next pin is the intended Business Central sandbox envelope (`sent=False`). Not `LIVE_PIN_OK`.
 

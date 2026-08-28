@@ -225,6 +225,15 @@ def public_business() -> dict[str, Any]:
             "control": cat["icp"]["control"],
             "named_customers": [],
         },
+        "organization": {
+            "full_service": True,
+            "all_wired_claimed": False,
+            "second_officer": None,
+            "departments": [
+                {"id": item["id"], "name": item["name"], "status": item["status"]}
+                for item in cat["organization"]["departments"]
+            ],
+        },
         "programs_order": list(cat["programs"]["application_order"]),
         "honest_missing": honest_missing(),
         "open_gaps": list(cat["open_gaps"]),

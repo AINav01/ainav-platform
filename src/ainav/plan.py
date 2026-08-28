@@ -110,6 +110,17 @@ def one_page() -> str:
         f"- Economics: {cat['business']['economics']['note']}",
         "- Complements are not SKUs. Industry packs and FFS hours are not SKUs.",
         "",
+        "## Operating organization (not SKUs)",
+        "",
+        cat["organization"]["note"],
+        f"- Owner: {cat['operating']['owner_principal']}. Operator is not a seat.",
+        "- Second officer: none recorded. Do not invent one.",
+        "- Incorporation date: not stored in this tree.",
+    ]
+    for dept in cat["organization"]["departments"]:
+        lines.append(f"- **{dept['name']}** — {dept['status']}. {dept['note']}")
+    lines += [
+        "",
         "## IP and competitor boundary",
         "",
         f"- Owner: {cat['ip']['owner']}. {cat['ip']['copyright']}",
@@ -126,7 +137,8 @@ def one_page() -> str:
         "- Apply order: Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.",
         "- Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.",
         "- Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.",
-        "- Ready to apply is false until a public website and incorporation date exist outside this tree.",
+        "- Inception also wants two unique contacts (developer + business executive, business emails). Sole owner does not collapse that.",
+        "- Ready to apply is false until a public website, incorporation date, and second unique human exist outside this tree.",
         "",
         "## Buyer page and ICP",
         "",

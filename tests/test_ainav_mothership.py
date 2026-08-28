@@ -265,6 +265,10 @@ def test_cli_catalog_and_twin(capsys):
     assert "IP and competitor" in out
     assert main(["ip"]) == 0
     assert "AINav, Inc." in capsys.readouterr().out
+    assert main(["org"]) == 0
+    org_out = capsys.readouterr().out
+    assert "dept.treasury" in org_out
+    assert "all_wired_claimed" in org_out
     assert main(["programs"]) == 0
     programs_out = capsys.readouterr().out
     assert "nvidia.inception" in programs_out

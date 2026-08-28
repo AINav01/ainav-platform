@@ -9,7 +9,7 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 ## Apply order
 
 Microsoft for Startups first. NVIDIA Inception second.
-Do not apply until a public website and incorporation date exist.
+Do not apply until a public website, incorporation date, and two unique human contacts exist.
 Do not lead any deck with lab custody fixtures.
 
 ## Commercial spine
@@ -22,6 +22,7 @@ Do not lead any deck with lab custody fixtures.
 
 - Publish a working public website (AINAV.Institute files exist in-repo; a live deploy is not claimed)
 - Have an incorporation date ready for NVIDIA Inception (not stored in this tree)
+- Name two unique humans: one developer and one business executive, each with a business email (no aliases, no gmail). Sole owner does not collapse this. The Cloud Agent is not a contact.
 - Pitch deck: Job C Business Central write-gate; software product; not consultancy; not crypto
 - Do not attach gold-vector custody fixtures to any application
 
@@ -53,6 +54,11 @@ not the product story and must not appear on the application deck.
 
 Official FAQ: a startup may join before using NVIDIA GPUs or SDKs.
 Do not invent an H100 / DGX production workload.
+
+The application portal also requires two unique contacts — one
+developer and one business executive — with business emails.
+Aliases and gmail are refused. A sole founder does not collapse
+that rule. The Cloud Agent is not a contact.
 
 Membership, signed L1, awarded cloud credits, and a public
 production website deploy are **not** claimed in this tree.

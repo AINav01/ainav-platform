@@ -35,6 +35,14 @@ def test_inception_qualify_is_unclaimed():
     assert rec["public_wedge"] == "bc.general_journal.post"
     assert rec["live"] is False
     assert rec["apply_prerequisites"]
+    assert any("two unique humans" in item for item in rec["apply_prerequisites"])
+    must = " ".join(
+        item
+        for target in load_catalog()["programs"]["targets"]
+        if target["id"] == "nvidia.inception"
+        for item in target["must"]
+    )
+    assert "two unique contacts" in must
     with pytest.raises(ProgramError) as exc:
         claim_membership("nvidia.inception")
     assert exc.value.reason_code == "PROGRAM_NOT_CLAIMED"
@@ -68,6 +76,7 @@ def test_pitch_leads_with_erp():
     assert "Microsoft for Startups" in text
     assert "GitHub for Startups" in text
     assert "Microsoft ISV Success" in text
+    assert "two unique contacts" in text
     assert text.index("Microsoft for Startups first") < text.index("NVIDIA Inception second")
     listed = text.split("## Programs to prepare")[1]
     assert listed.index("Microsoft for Startups") < listed.index("NVIDIA Inception")
@@ -110,5 +119,6 @@ def test_institute_programs_section_is_unclaimed():
     assert "Microsoft for Startups" in html
     assert "Do not claim membership" in html
     assert "Membership is not claimed" in html
+    assert "two unique contacts" in html
     assert html.index("Microsoft for Startups") < html.index("NVIDIA Inception")
     assert "scrollIntoView" in html

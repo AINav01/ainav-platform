@@ -21,6 +21,7 @@
       <a href="#packs">Packs</a>
       <a href="#ops">Operations</a>
       <a href="#business">Business</a>
+      <a href="#org">Organization</a>
       <a href="#delivery">Delivery</a>
       <a href="#mothership">Mothership</a>
       <a href="#microsoft">Microsoft</a>
@@ -197,6 +198,67 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       </div>
     </section>
 
+    <section id="org">
+      <h2>Operating organization</h2>
+      <p class="note">All departments exist out of the gate. Departments are not SKUs. Wired-and-running is not claimed for Sales, Teams, Institute, legal, or programs.</p>
+      <p class="lede">
+        Sole owner DayTradingMarkets. The Cloud Agent operates. It is not a dual seat
+        and not an Inception contact. A second unique human is still required.
+      </p>
+      <div id="org-cards" class="cards stack-cards">
+        <article data-id="dept.treasury">
+          <h3>Treasury / Finance</h3>
+          <p class="price">running_sandbox</p>
+          <p>Business Central Sandbox company AINav. Production stays blocked.</p>
+        </article>
+        <article data-id="dept.identity">
+          <h3>Identity / IT / Host</h3>
+          <p class="price">running_sandbox</p>
+          <p>Same Entra app. Azure host in eastus. Not LIVE_PIN_OK.</p>
+        </article>
+        <article data-id="dept.sales">
+          <h3>Sales / Revenue</h3>
+          <p class="price">licensed_not_wired</p>
+          <p>Sales Enterprise is licensed. No Dataverse instance yet.</p>
+        </article>
+        <article data-id="dept.people">
+          <h3>People / Notify</h3>
+          <p class="price">licensed_not_wired</p>
+          <p>Teams is licensed. A chat is not a seat.</p>
+        </article>
+        <article data-id="dept.compliance">
+          <h3>Security / Compliance</h3>
+          <p class="price">licensed_not_wired</p>
+          <p>E7 complements. PIM is not dual admit. LAW is not Sentinel.</p>
+        </article>
+        <article data-id="dept.institute">
+          <h3>Institute / GTM</h3>
+          <p class="price">in_repo_not_public</p>
+          <p>This site is in-repo. A coming-soon page is not a working public website.</p>
+        </article>
+        <article data-id="dept.legal">
+          <h3>Legal / Counsel</h3>
+          <p class="price">open_gap</p>
+          <p>G12 legal and G13 signed L1 stay open.</p>
+        </article>
+        <article data-id="dept.product">
+          <h3>Product / Engineering</h3>
+          <p class="price">running_code</p>
+          <p>Job C admit plane. Three SKUs only.</p>
+        </article>
+        <article data-id="dept.delivery">
+          <h3>Delivery / Customer Success</h3>
+          <p class="price">running_code</p>
+          <p>Master, cloud, and local motherships. Do not invent a customer.</p>
+        </article>
+        <article data-id="dept.programs">
+          <h3>Programs / Partnerships</h3>
+          <p class="price">qualify_not_claimed</p>
+          <p>Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.</p>
+        </article>
+      </div>
+    </section>
+
     <section id="delivery">
       <h2>Delivery system</h2>
       <p class="note">One client. Two motherships. One ledger. Master never writes the client SoR.</p>
@@ -291,7 +353,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       </p>
       <ul class="stack">
         <li><strong>Microsoft for Startups</strong> — first. Azure Startup credits after verification. Microsoft is the SoR, not the product.</li>
-        <li><strong>NVIDIA Inception</strong> — second. Free, no equity, no cohort. Excludes crypto-associated companies. Lead with <code>bc.general_journal.post</code>. GPU production is not claimed.</li>
+        <li><strong>NVIDIA Inception</strong> — second. Free, no equity, no cohort. Excludes crypto-associated companies. Portal also wants two unique contacts (developer + business executive, business emails). Lead with <code>bc.general_journal.post</code>. GPU production is not claimed.</li>
         <li><strong>NVIDIA Developer</strong> — complementary tools. Not a grant and not Inception.</li>
         <li><strong>GitHub for Startups</strong> and <strong>Microsoft ISV Success</strong> — later discounts / partner path.</li>
         <li><strong>NVIDIA Connect</strong> — later ISV path. Not the first application.</li>
@@ -302,8 +364,10 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <h2>Still missing</h2>
       <p class="note">Honest. Do not invent these as done.</p>
       <ul class="gaps">
-        <li>Live Microsoft tenant credentials and Graph calls</li>
+        <li>Second unique human (Inception contacts and signed L1 seats)</li>
         <li>Public Institute deploy and incorporation date</li>
+        <li>Power Platform / Dataverse environment for Sales</li>
+        <li>Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM</li>
         <li>Recognized revenue / external billing provider</li>
         <li>Signed L1 counsel pack (G13)</li>
         <li>Multi-host product HA</li>
@@ -337,6 +401,19 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         if (history.replaceState) history.replaceState(null, "", "#" + id);
       });
     });
+    fetch("org.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
+      if (!data || data.live || !data.departments) return;
+      var root = document.getElementById("org-cards");
+      if (!root) return;
+      data.departments.forEach(function (item) {
+        var card = root.querySelector("[data-id='" + item.id + "']");
+        if (!card) return;
+        card.setAttribute("data-status", item.status);
+        card.setAttribute("data-wired", item.wired_now ? "true" : "false");
+        var price = card.querySelector(".price");
+        if (price && item.status) price.textContent = item.status;
+      });
+    }).catch(function () { /* org.json is optional when opened as a file */ });
     fetch("stack.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
       if (!data || data.live || !data.connections) return;
       var root = document.getElementById("stack-cards");
