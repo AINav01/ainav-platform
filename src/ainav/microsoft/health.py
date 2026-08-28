@@ -7,6 +7,7 @@ blocked — not connected. No SoR writes. No Teams send.
 
 from __future__ import annotations
 
+import base64
 import json
 import os
 import urllib.error
@@ -72,6 +73,17 @@ def _token(scope: str) -> dict[str, Any]:
         return {"ok": True, "status": "token", "has_token": bool(body.get("access_token")), "token": body.get("access_token")}
     except urllib.error.HTTPError as exc:
         return {"ok": False, "status": "token_denied", "http": exc.code}
+
+
+def jwt_roles(token: str) -> list[str]:
+    """Read-only roles claim. Never logs the token. Empty if not a JWT."""
+    try:
+        payload = token.split(".")[1]
+        payload += "=" * (-len(payload) % 4)
+        body = json.loads(base64.urlsafe_b64decode(payload.encode()))
+        return sorted(str(role) for role in (body.get("roles") or []) if role)
+    except (IndexError, ValueError, json.JSONDecodeError):
+        return []
 
 
 def _get(url: str, token: str) -> tuple[int, Any]:
@@ -246,6 +258,7 @@ def probe_bc() -> dict[str, Any]:
             environment=saw_401,
             sandbox_missing=hits.get("sandbox") == 404,
             environments=hits,
+            entra_scopes=jwt_roles(str(tok.get("token") or "")),
         )
     saw_404 = next((env for env, status in hits.items() if status == 404), None)
     if saw_404:
@@ -449,7 +462,12 @@ def probe_complement(connection_id: str) -> dict[str, Any] | None:
 
 def _next_steps(results: dict[str, Any]) -> list[str]:
     steps: list[str] = []
+    bc_next = (results.get("bc.premium") or {}).get("next")
+    if bc_next:
+        steps.append(bc_next)
     for cid in REQUIRED_IDS + COMPLEMENT_IDS:
+        if cid == "bc.premium":
+            continue
         row = results.get(cid) or {}
         step = row.get("next")
         if step and step not in steps:

@@ -1,7 +1,24 @@
 from __future__ import annotations
 
+import base64
+import json
+
 from ainav.microsoft.connections import COMPLEMENT_IDS, REQUIRED_IDS
-from ainav.microsoft.health import entra_configured, stack_health
+from ainav.microsoft.health import entra_configured, jwt_roles, stack_health
+
+
+def _lab_jwt(*roles: str) -> str:
+    payload = base64.urlsafe_b64encode(json.dumps({"roles": list(roles)}).encode()).decode().rstrip("=")
+    return f"lab.{payload}.sig"
+
+
+def test_jwt_roles_reads_claim_without_logging_token():
+    assert jwt_roles(_lab_jwt("API.ReadWrite.All", "Automation.ReadWrite.All")) == [
+        "API.ReadWrite.All",
+        "Automation.ReadWrite.All",
+    ]
+    assert jwt_roles("not-a-jwt") == []
+    assert jwt_roles("") == []
 
 
 def test_stack_health_offline_never_claims_live():
@@ -36,6 +53,13 @@ def test_probe_graph_connected(monkeypatch):
     monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
 
     def fake_token(scope: str):
+        if "businesscentral" in scope:
+            return {
+                "ok": True,
+                "status": "token",
+                "has_token": True,
+                "token": _lab_jwt("API.ReadWrite.All", "Automation.ReadWrite.All"),
+            }
         return {"ok": True, "status": "token", "has_token": True, "token": "lab"}
 
     def fake_get(url: str, token: str):
@@ -59,6 +83,11 @@ def test_probe_graph_connected(monkeypatch):
     assert "entra.id" in body["connected"]
     assert body["connections"]["azure.host"]["reason"] == "no_azure_subscription_visible"
     assert body["connections"]["bc.premium"]["reason"] == "bc_app_not_registered"
+    assert body["connections"]["bc.premium"]["entra_scopes"] == [
+        "API.ReadWrite.All",
+        "Automation.ReadWrite.All",
+    ]
+    assert body["next"][0].startswith("Register the existing Entra app")
     assert body["connections"]["sales.enterprise"]["reason"] == "discovery_denied"
     assert body["wrote_sor"] is False
 
@@ -117,6 +146,7 @@ def test_probe_discovers_azure_policy_and_empty_sales(monkeypatch):
     assert body["connections"]["bc.premium"]["environment"] == "production"
     assert body["connections"]["bc.premium"]["sandbox_missing"] is True
     assert body["connections"]["bc.premium"]["environments"]["sandbox"] == 404
+    assert body["next"][0].startswith("Register the existing Entra app")
     assert body["connections"]["sales.enterprise"]["reason"] == "no_dataverse_instance"
     assert body["connections"]["azure.keyvault"]["reason"] == "no_key_vault"
     assert body["connections"]["sentinel.siem"]["reason"] == "no_sentinel"
