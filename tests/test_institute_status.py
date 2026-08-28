@@ -18,6 +18,7 @@ def test_public_status_is_sandbox_and_unclaimed():
     assert body["bc"]["sandbox_document"] == "AINAV-L1"
     assert body["sales"]["instances"] == 0
     assert body["custom_domain_claimed"] is False
+    assert body["launch_ready"] is False
     assert body["agent_tools"]["is_admit_plane"] is False
     assert body["agent_tools"]["cloud_agent_can_approve"] is False
     assert "workiq.user" in body["agent_tools"]["leave_available"]

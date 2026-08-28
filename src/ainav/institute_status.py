@@ -153,6 +153,7 @@ def public_status() -> dict[str, Any]:
         "wrote_sor": False,
         "signed_l1": False,
         "custom_domain_claimed": False,
+        "launch_ready": False,
         "azure_url": site.get("azure_url"),
         "bc": {
             "connection": "bc.premium",

@@ -54,6 +54,11 @@ def validate_programs(catalog: dict[str, Any]) -> None:
         raise IntegrityError("public website deploy is not claimed", reason_code="PROGRAM_NOT_CLAIMED")
     if body.get("website", {}).get("custom_domain_claimed") is True:
         raise IntegrityError("ainav.institute custom domain is not claimed", reason_code="PROGRAM_NOT_CLAIMED")
+    if body.get("website", {}).get("launch_ready") is True:
+        raise IntegrityError(
+            "Institute launch is held. Do not publish until the owner says launch.",
+            reason_code="PROGRAM_NOT_CLAIMED",
+        )
     wedge = body.get("public_wedge")
     l1_actions = {
         m["id"]

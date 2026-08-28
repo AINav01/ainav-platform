@@ -131,7 +131,7 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 - Later / complementary: NVIDIA Developer, GitHub for Startups, Microsoft ISV Success, NVIDIA Connect.
 - Inception excludes cryptocurrency-associated companies. Do not lead with gold-vector custody fixtures.
 - Inception also wants two unique contacts (developer + business executive, business emails). Sole owner does not collapse that.
-- Azure hostname: https://blue-river-010091a0f.7.azurestaticapps.net. ainav.institute custom domain is not claimed.
+- Azure hostname: https://blue-river-010091a0f.7.azurestaticapps.net. ainav.institute custom domain is not claimed. Publish is held until launch.
 - Ready to apply is false until the custom domain, incorporation date, and second unique human exist outside this tree.
 
 ## Buyer page and ICP

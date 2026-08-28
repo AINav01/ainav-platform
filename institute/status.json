@@ -214,6 +214,7 @@
   "institute": "AINAV.Institute",
   "job": "C",
   "kind": "ainav.institute.status.v1",
+  "launch_ready": false,
   "live": false,
   "live_pin_ok": false,
   "notify": {

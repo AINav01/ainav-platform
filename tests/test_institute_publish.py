@@ -19,7 +19,20 @@ def test_publish_refuses_custom_domain_and_west_europe():
     assert exc2.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
 
 
+def test_publish_is_held_until_launch():
+    body = publish_institute()
+    assert body["ok"] is False
+    assert body["reason"] == "launch_not_ready"
+    assert body["uploaded"] is False
+    assert body["custom_domain_claimed"] is False
+    assert body["live_pin_ok"] is False
+
+
 def test_publish_missing_entra(monkeypatch):
+    monkeypatch.setattr(
+        "ainav.catalog.load_catalog",
+        lambda: {"programs": {"website": {"launch_ready": True}}},
+    )
     monkeypatch.delenv("ENTRA_TENANT_ID", raising=False)
     monkeypatch.delenv("ENTRA_CLIENT_ID", raising=False)
     monkeypatch.delenv("ENTRA_CLIENT_SECRET", raising=False)
@@ -31,6 +44,10 @@ def test_publish_missing_entra(monkeypatch):
 
 
 def test_publish_puts_swa_and_uploads(monkeypatch):
+    monkeypatch.setattr(
+        "ainav.catalog.load_catalog",
+        lambda: {"programs": {"website": {"launch_ready": True}}},
+    )
     monkeypatch.setenv("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000001")
     monkeypatch.setenv("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000002")
     monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
@@ -67,12 +84,18 @@ def test_catalog_records_azure_host_without_custom_domain():
     site = load_catalog()["programs"]["website"]
     assert site["public_deploy_claimed"] is False
     assert site["custom_domain_claimed"] is False
+    assert site["launch_ready"] is False
     assert site["azure_url"].startswith("https://")
     claimed = copy.deepcopy(load_catalog())
     claimed["programs"]["website"]["custom_domain_claimed"] = True
     with pytest.raises(IntegrityError) as exc:
         validate_catalog(claimed)
     assert exc.value.reason_code == "PROGRAM_NOT_CLAIMED"
+    launched = copy.deepcopy(load_catalog())
+    launched["programs"]["website"]["launch_ready"] = True
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(launched)
+    assert exc3.value.reason_code == "PROGRAM_NOT_CLAIMED"
 
 
 def test_cli_publish_institute(monkeypatch, capsys):

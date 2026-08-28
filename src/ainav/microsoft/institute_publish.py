@@ -36,6 +36,24 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
             "West Europe is blocked by Azure Policy. Use eastus2.",
             reason_code="LIVE_PIN_NOT_CLAIMED",
         )
+    from ainav.catalog import load_catalog
+
+    if not load_catalog()["programs"]["website"].get("launch_ready"):
+        return {
+            "kind": "ainav.institute_publish.v1",
+            "ok": False,
+            "live": False,
+            "live_pin_ok": False,
+            "custom_domain_claimed": False,
+            "wrote_sor": False,
+            "uploaded": False,
+            "url": None,
+            "reason": "launch_not_ready",
+            "note": (
+                "Owner held publish until launch. Azure hostname stays. "
+                "ainav.institute is not bound. Not LIVE_PIN_OK."
+            ),
+        }
     if not entra_configured():
         return {
             "kind": "ainav.institute_publish.v1",

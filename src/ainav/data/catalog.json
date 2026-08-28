@@ -934,7 +934,8 @@
       "azure_site": "ainav-institute",
       "azure_location": "eastus2",
       "public_deploy_claimed": false,
-      "custom_domain_claimed": false
+      "custom_domain_claimed": false,
+      "launch_ready": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
