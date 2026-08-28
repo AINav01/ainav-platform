@@ -13,8 +13,166 @@
     "sandbox_document": "AINAV-L1",
     "wedge": "bc.general_journal.post"
   },
+  "complements": [
+    {
+      "binds": [
+        "seat object ids"
+      ],
+      "id": "entra.id",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Seat object ids. Not an IdP replacement. Copilot is not the admit plane.",
+      "product": "Microsoft Entra ID",
+      "role": "identity",
+      "wired": false
+    },
+    {
+      "binds": [
+        "connection secret hold"
+      ],
+      "id": "azure.keyvault",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Connection secret hold on the host. Not a live pin.",
+      "product": "Azure Key Vault",
+      "role": "secrets",
+      "wired": false
+    },
+    {
+      "binds": [
+        "mothership health"
+      ],
+      "id": "azure.monitor",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Mothership health. LAW is not Sentinel. Not a live pin.",
+      "product": "Azure Monitor",
+      "role": "observe",
+      "wired": false
+    },
+    {
+      "binds": [
+        "Acceptance Kit evidence"
+      ],
+      "id": "sharepoint.kit",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Kit evidence store. Not a seat. Graph is not called from this page.",
+      "product": "SharePoint",
+      "role": "evidence",
+      "wired": false
+    },
+    {
+      "binds": [
+        "E7 security sink"
+      ],
+      "id": "defender.xdr",
+      "live": false,
+      "mode": "sandbox",
+      "note": "E7 security sink. SecurityIncident.Read.All is not granted. Not the admit plane.",
+      "product": "Microsoft Defender XDR",
+      "role": "security",
+      "wired": false
+    },
+    {
+      "binds": [
+        "eligible dual seats"
+      ],
+      "id": "entra.pim",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Eligible seats. A PIM activation is not dual admit.",
+      "product": "Microsoft Entra Privileged Identity Management",
+      "role": "seat_eligibility",
+      "wired": false
+    },
+    {
+      "binds": [
+        "DecisionRecord export sink"
+      ],
+      "id": "sentinel.siem",
+      "live": false,
+      "mode": "sandbox",
+      "note": "DecisionRecord export sink. The mothership LAW is not a Sentinel workspace.",
+      "product": "Microsoft Sentinel",
+      "role": "siem",
+      "wired": false
+    },
+    {
+      "binds": [
+        "lockfile host constraints"
+      ],
+      "id": "azure.policy",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Host policy. West Europe is blocked. Cannot weaken Job C.",
+      "product": "Azure Policy",
+      "role": "host_policy",
+      "wired": false
+    }
+  ],
   "custom_domain_claimed": false,
   "entity": "AINav, Inc.",
+  "fabric": {
+    "e7_not_the_product": [
+      "Microsoft 365 Copilot",
+      "Agent 365"
+    ],
+    "live": false,
+    "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+    "path": [
+      {
+        "id": "azure.host",
+        "lane": "host",
+        "note": "ainav-institute on eastus2. Custom domain not bound.",
+        "product": "Microsoft Azure",
+        "status": "hosted_sandbox"
+      },
+      {
+        "id": "m365.e7",
+        "lane": "identity",
+        "note": "Seat object ids. Copilot is not a seat. PIM is not dual admit.",
+        "product": "Microsoft 365 E7 / Microsoft Entra ID",
+        "status": "connected_sandbox"
+      },
+      {
+        "id": "admit",
+        "lane": "admit",
+        "note": "Two distinct humans. One action hash. Then the write.",
+        "product": "AINav Control Plane",
+        "status": "running_code"
+      },
+      {
+        "id": "bc.premium",
+        "lane": "sor",
+        "note": "sandbox \u00b7 AINav \u00b7 bc.general_journal.post. Production blocked.",
+        "product": "Dynamics 365 Business Central Premium",
+        "status": "sandbox_journal"
+      },
+      {
+        "id": "sales.enterprise",
+        "lane": "sor",
+        "note": "License exists. No Dataverse instance. Twin only until G14.",
+        "product": "Dynamics 365 Sales Enterprise",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "teams.enterprise",
+        "lane": "notify",
+        "note": "Effect notify. A chat is not a seat.",
+        "product": "Microsoft Teams Enterprise",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "teams.premium",
+        "lane": "notify",
+        "note": "Protected notify. A meeting is not a seat.",
+        "product": "Microsoft Teams Premium",
+        "status": "licensed_not_wired"
+      }
+    ],
+    "product": "AINav Control Plane"
+  },
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
     "ainav.institute custom domain and incorporation date",
@@ -55,11 +213,49 @@
     "Product HA"
   ],
   "opportunity": {
+    "attached": {
+      "L1": 0,
+      "P-ADM": 0,
+      "U-DUAL": 0
+    },
     "deepen": "U-DUAL",
     "keep": "P-ADM",
+    "list": {
+      "L1": {
+        "id": "L1",
+        "kind": "prove",
+        "max": 40000,
+        "min": 28000,
+        "name": "FIRST_OFFER",
+        "term": "2\u20134 weeks"
+      },
+      "P-ADM": {
+        "id": "P-ADM",
+        "kind": "keep",
+        "max": 60000,
+        "min": 40000,
+        "name": "ADMIT_COVERAGE",
+        "term": "annual"
+      },
+      "U-DUAL": {
+        "id": "U-DUAL",
+        "kind": "deepen",
+        "max": 35000,
+        "min": 20000,
+        "name": "DEPTH_PACK",
+        "term": "annual"
+      }
+    },
     "named_customers": [],
+    "note": "Pipeline math uses catalog list prices. It is not recognized revenue.",
     "prove": "L1",
-    "recognized_revenue": null
+    "recognized_revenue": null,
+    "signed_l1": 0,
+    "year_one_list_if_all_three": {
+      "max": 135000,
+      "min": 88000,
+      "note": "Catalog list if one controller buys L1, then attaches P-ADM, then pays for U-DUAL. Not recognized revenue."
+    }
   },
   "product": "AINav Control Plane",
   "production": false,

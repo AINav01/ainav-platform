@@ -30,14 +30,31 @@ def test_institute_foundation_is_catalog_honest():
     assert manifest["name"] == "AINAV.Institute"
     assert 'id="twin"' in html
     assert 'id="opportunity"' in html
+    assert 'id="fabric"' in html
+    assert 'id="complement-cards"' in html
     assert 'id="twin-notify"' in html
     assert 'id="twin-kit"' in html
+    assert 'id="twin-pim"' in html
+    assert 'id="twin-copilot"' in html
     assert 'id="week-path"' in html
+    assert 'id="opp-year-one"' in html
     assert "Business Central" in html
     assert "Sales Enterprise" in html
     assert "Microsoft twin bench" in html
+    assert "Microsoft fabric" in html
     assert "d365.quote.discount_override" in html
     assert "A chat is not a seat" in html
+    for complement in (
+        "entra.id",
+        "azure.keyvault",
+        "azure.monitor",
+        "sharepoint.kit",
+        "defender.xdr",
+        "entra.pim",
+        "sentinel.siem",
+        "azure.policy",
+    ):
+        assert f'data-id="{complement}"' in html
     assert "No Dataverse write" in js
     assert "grant already consumed" in js
     assert "d365.quote.discount_override" in js
@@ -45,7 +62,12 @@ def test_institute_foundation_is_catalog_honest():
     assert "Graph is not called" in js
     assert "sharepoint.kit" in js
     assert "No SharePoint write" in js
+    assert "PIM activation is not dual admit" in js
+    assert "Copilot is not the admit plane" in js
+    assert "complement-cards" in js
+    assert "year_one_list_if_all_three" in js
     assert "business.json" in js
+    assert "--azure" in css
     status = json.loads(Path("institute/status.json").read_text(encoding="utf-8"))
     assert status["live"] is False
     assert status["live_pin_ok"] is False
@@ -54,3 +76,6 @@ def test_institute_foundation_is_catalog_honest():
     assert status["sales"]["wired"] is False
     assert status["notify"]["wired"] is False
     assert status["opportunity"]["recognized_revenue"] is None
+    assert status["opportunity"]["year_one_list_if_all_three"]["min"] == 88000
+    assert status["fabric"]["live"] is False
+    assert all(item["wired"] is False for item in status["complements"])

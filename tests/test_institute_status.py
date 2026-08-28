@@ -6,6 +6,7 @@ import pytest
 
 from agent_gov.errors import IntegrityError
 from ainav.catalog import load_catalog, validate_catalog
+from ainav.microsoft.connections import COMPLEMENT_IDS
 from ainav.institute_status import public_status
 
 
@@ -17,6 +18,42 @@ def test_public_status_is_sandbox_and_unclaimed():
     assert body["bc"]["sandbox_document"] == "AINAV-L1"
     assert body["sales"]["instances"] == 0
     assert body["custom_domain_claimed"] is False
+
+
+def test_public_status_fabric_and_complements_stay_honest():
+    body = public_status()
+    assert body["fabric"]["live"] is False
+    assert "Microsoft is identity" in body["fabric"]["not_the_product"]
+    assert "Microsoft 365 Copilot" in body["fabric"]["e7_not_the_product"]
+    path_ids = [item["id"] for item in body["fabric"]["path"]]
+    assert path_ids == [
+        "azure.host",
+        "m365.e7",
+        "admit",
+        "bc.premium",
+        "sales.enterprise",
+        "teams.enterprise",
+        "teams.premium",
+    ]
+    assert [item["id"] for item in body["complements"]] == list(COMPLEMENT_IDS)
+    assert all(item["wired"] is False and item["live"] is False for item in body["complements"])
+    pim = next(item for item in body["complements"] if item["id"] == "entra.pim")
+    assert "not dual admit" in pim["note"]
+    sentinel = next(item for item in body["complements"] if item["id"] == "sentinel.siem")
+    assert "not a Sentinel workspace" in sentinel["note"]
+
+
+def test_public_status_opportunity_is_catalog_list_not_revenue():
+    body = public_status()
+    opp = body["opportunity"]
+    assert opp["recognized_revenue"] is None
+    assert opp["named_customers"] == []
+    assert opp["signed_l1"] == 0
+    assert opp["attached"] == {"L1": 0, "P-ADM": 0, "U-DUAL": 0}
+    assert opp["list"]["L1"]["min"] == 28000
+    assert opp["year_one_list_if_all_three"]["min"] == 88000
+    assert opp["year_one_list_if_all_three"]["max"] == 135000
+    assert "Not recognized revenue" in opp["year_one_list_if_all_three"]["note"]
 
 
 def test_sandbox_evidence_cannot_claim_production():

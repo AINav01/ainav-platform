@@ -29,8 +29,8 @@
         <a href="#buyer">Buyer</a>
         <a href="#twin">Twin</a>
         <a href="#opportunity">Opportunity</a>
+        <a href="#fabric">Fabric</a>
         <a href="#product">Product</a>
-        <a href="#commercial">Commercial</a>
         <a href="#org">Organization</a>
         <a href="#programs">Programs</a>
         <a href="#open">Open</a>
@@ -42,6 +42,7 @@
           <a href="#ops">Operations</a>
           <a href="#business">Business</a>
           <a href="#delivery">Delivery</a>
+          <a href="#commercial">Commercial</a>
           <a href="#mothership">Mothership</a>
           <a href="#microsoft">Microsoft</a>
           <a href="#ip">IP</a>
@@ -59,11 +60,14 @@
         AINAV.Institute publishes the law of the admit plane.
         Privileged system-of-record writes happen only after dual admission,
         a single-use consume, and a fail-closed effect gate.
+        Microsoft hosts, identifies, notifies, and receives the write.
+        Microsoft is not the product.
       </p>
-      <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote.</p>
+      <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote. Not Copilot. Not LIVE_PIN_OK.</p>
       <div class="hero-actions">
         <a class="ask" href="#buyer">The write that must not happen</a>
         <a class="ghost" href="#twin">Run the Microsoft twin</a>
+        <a class="ghost" href="#fabric">See the Microsoft fabric</a>
       </div>
     </section>
 
@@ -158,7 +162,9 @@
           <p class="note">After an effect: Teams notify. Kit evidence: SharePoint sandbox. Neither is dual admit.</p>
           <button type="button" class="ghost" id="twin-notify" disabled>Notify Teams</button>
           <button type="button" class="ghost" id="twin-kit" disabled>Store kit evidence</button>
-          <p class="note">Graph is not called. PIM activation is not dual admit.</p>
+          <button type="button" class="ghost" id="twin-pim">Activate PIM as dual</button>
+          <button type="button" class="ghost" id="twin-copilot">Ask Copilot to admit</button>
+          <p class="note">Graph is not called. PIM activation is not dual admit. Copilot is not the admit plane.</p>
         </div>
       </div>
       <div class="ledger" id="twin-ledger" aria-live="polite"></div>
@@ -171,24 +177,26 @@
         A controller already has two-person journal SOD and Business Central Premium.
         L1 is the week they prove an unauthorized post cannot land. Keep with P-ADM. Deepen with paid U-DUAL.
       </p>
-      <div class="cards">
-        <article>
+      <div class="cards" id="opp-skus">
+        <article data-sku="L1">
           <h3>Prove</h3>
-          <p class="price">L1 · $28–40k · 2–4 weeks</p>
+          <p class="price" id="opp-l1">L1 · $28–40k · 2–4 weeks</p>
           <p>Ninety-minute proof day on the existing treasury pair. Digital twin. Acceptance Kit inside the SKU.</p>
         </article>
-        <article>
+        <article data-sku="P-ADM">
           <h3>Keep</h3>
-          <p class="price">P-ADM · $40–60k / year</p>
+          <p class="price" id="opp-padm">P-ADM · $40–60k / year</p>
           <p>Attach only after kit PASS. Same admit plane. Never bundles free U-DUAL.</p>
         </article>
-        <article>
+        <article data-sku="U-DUAL">
           <h3>Deepen</h3>
-          <p class="price">U-DUAL · $20–35k / year</p>
+          <p class="price" id="opp-udual">U-DUAL · $20–35k / year</p>
           <p>Sales Enterprise quote override and order submit on the same plane. Never free.</p>
         </article>
       </div>
+      <p class="equation" id="opp-year-one">Year-one catalog list if one controller buys all three: $88–135k. Not recognized revenue.</p>
       <p class="stages" id="week-path">This week: qualify → ninety-minute proof day → sell L1 → kit on the BC twin → refuse live pin. P-ADM attaches after kit PASS. U-DUAL is a later paid offer.</p>
+      <p class="note" id="opp-pipeline">Signed L1: 0. P-ADM attached: 0. U-DUAL attached: 0. Named customers: 0.</p>
       <p class="note" id="opp-revenue">Recognized revenue: none. Named customers: none.</p>
       <div class="split">
         <div>
@@ -403,46 +411,73 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       </div>
     </section>
 
-    <section id="microsoft">
-      <h2>Microsoft stack</h2>
-      <p class="note">Six connections. Sandbox only. Microsoft is not the product. Copilot and Agent 365 are not the admit plane.</p>
+    <section id="fabric">
+      <span id="microsoft"></span>
+      <h2>Microsoft fabric</h2>
+      <p class="note">Six connections. Eight complements. Sandbox only. Microsoft is not the product. Copilot and Agent 365 are not the admit plane.</p>
       <p class="lede">
-        AINav, Inc. hosts on Azure. AINav admits on Entra seats from Microsoft 365 E7,
-        writes the Business Central and Sales twins, and notifies Teams Enterprise and Teams Premium.
-        AINAV.Institute is a static site on Azure Static Web Apps — the ainav.institute custom domain is not claimed.
+        Azure hosts. Entra seats from Microsoft 365 E7 identify.
+        AINav admits. Business Central and Sales receive the write.
+        Teams notifies. Complements hold secrets, evidence, policy, and audit.
+        AINAV.Institute is a static site on Azure Static Web Apps — ainav.institute is not bound.
       </p>
-      <div id="status-board" class="status-board">
-        <article>
-          <h3>Business Central</h3>
+      <ol class="fabric" id="fabric-path" aria-label="How a write travels">
+        <li class="fabric-node" data-id="azure.host" data-lane="host">
+          <span class="lane">1. Host</span>
+          <h3>Microsoft Azure</h3>
+          <p class="price">hosted_sandbox</p>
+          <p>RG ainav-inc. Institute on eastus2 Static Web Apps. Custom domain not bound.</p>
+        </li>
+        <li class="fabric-node" data-id="m365.e7" data-lane="identity">
+          <span class="lane">2. Identity</span>
+          <h3>Microsoft 365 E7 / Entra ID</h3>
+          <p class="price">connected_sandbox</p>
+          <p>Seat object ids. Copilot is not a seat. PIM is not dual admit.</p>
+        </li>
+        <li class="fabric-node" data-id="admit" data-lane="admit">
+          <span class="lane">3. Admit</span>
+          <h3>AINav Control Plane</h3>
+          <p class="price">Job C · running_code</p>
+          <p>Two distinct humans. One action hash. Then the write.</p>
+        </li>
+        <li class="fabric-node" data-id="bc.premium" data-lane="sor">
+          <span class="lane">4. SoR · L1</span>
+          <h3>Business Central Premium</h3>
           <p class="price" id="status-bc">sandbox · AINav</p>
           <p id="status-bc-note">Company AINav. Wedge <code>bc.general_journal.post</code>. Production blocked.</p>
-        </article>
-        <article>
+        </li>
+        <li class="fabric-node" data-id="sales.enterprise" data-lane="sor">
+          <span class="lane">5. SoR · U-DUAL</span>
           <h3>Sales Enterprise</h3>
           <p class="price" id="status-sales">licensed · not wired</p>
           <p>No Dataverse instance. Quote override stays on the twin until G14.</p>
-        </article>
-        <article>
-          <h3>Entra / Microsoft 365 E7</h3>
-          <p class="price">identity · connected</p>
-          <p>Seat object ids. Copilot is not a seat. PIM is not dual admit.</p>
-        </article>
-        <article>
-          <h3>Azure host</h3>
-          <p class="price">eastus · Institute on eastus2</p>
-          <p>RG ainav-inc. Custom domain not bound. Not LIVE_PIN_OK.</p>
-        </article>
-        <article>
-          <h3>Teams notify</h3>
+        </li>
+        <li class="fabric-node" data-id="teams.enterprise" data-lane="notify">
+          <span class="lane">6. Notify</span>
+          <h3>Teams Enterprise</h3>
           <p class="price" id="status-notify">licensed · not wired</p>
-          <p>A chat is not a seat. Graph is not called from this page.</p>
-        </article>
+          <p>Effect notify. A chat is not a seat. Graph is not called from this page.</p>
+        </li>
+        <li class="fabric-node" data-id="teams.premium" data-lane="notify">
+          <span class="lane">7. Protected notify</span>
+          <h3>Teams Premium</h3>
+          <p class="price">licensed · not wired</p>
+          <p>Protected effect notify. A meeting is not a seat.</p>
+        </li>
+      </ol>
+      <div id="status-board" class="status-board">
         <article>
           <h3>Open equation</h3>
           <p class="price" id="status-gaps">G1/G10 · G12 · G13 · G14 · HA</p>
           <p id="status-equation">Success = LIVE_PIN_OK × proof day × signed L1 × P-ADM attach</p>
         </article>
+        <article>
+          <h3>Honesty</h3>
+          <p class="price">live=false · production=false</p>
+          <p>Not LIVE_PIN_OK. Custom domain not claimed. Copilot and Agent 365 are not SKUs.</p>
+        </article>
       </div>
+      <h3 class="subhead">Six connections</h3>
       <div id="stack-cards" class="cards stack-cards">
         <article data-id="azure.host">
           <h3>Microsoft Azure</h3>
@@ -475,7 +510,50 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <p>Quote override and order submit on a digital twin until G14.</p>
         </article>
       </div>
-      <p class="note">Complements — Entra ID, Key Vault, Monitor, SharePoint, Defender XDR, Entra PIM, Sentinel, Azure Policy. Not SKUs. Not live. PIM activation is not dual admit.</p>
+      <h3 class="subhead">Eight complements</h3>
+      <p class="note">Not SKUs. Not live. PIM activation is not dual admit. LAW is not Sentinel.</p>
+      <div id="complement-cards" class="cards stack-cards">
+        <article data-id="entra.id">
+          <h3>Microsoft Entra ID</h3>
+          <p class="price">identity · sandbox</p>
+          <p>Seat object ids. Not an IdP replacement. Copilot is not the admit plane.</p>
+        </article>
+        <article data-id="azure.keyvault">
+          <h3>Azure Key Vault</h3>
+          <p class="price">secrets · sandbox</p>
+          <p>Connection secret hold on the host. Not a live pin.</p>
+        </article>
+        <article data-id="azure.monitor">
+          <h3>Azure Monitor</h3>
+          <p class="price">observe · sandbox</p>
+          <p>Mothership health. LAW is not Sentinel. Not a live pin.</p>
+        </article>
+        <article data-id="sharepoint.kit">
+          <h3>SharePoint</h3>
+          <p class="price">evidence · sandbox</p>
+          <p>Kit evidence store. Not a seat. Graph is not called from this page.</p>
+        </article>
+        <article data-id="defender.xdr">
+          <h3>Microsoft Defender XDR</h3>
+          <p class="price">security · sandbox</p>
+          <p>E7 security sink. Not the admit plane.</p>
+        </article>
+        <article data-id="entra.pim">
+          <h3>Microsoft Entra PIM</h3>
+          <p class="price">seat_eligibility · sandbox</p>
+          <p>Eligible seats. A PIM activation is not dual admit.</p>
+        </article>
+        <article data-id="sentinel.siem">
+          <h3>Microsoft Sentinel</h3>
+          <p class="price">siem · sandbox</p>
+          <p>DecisionRecord export sink. The mothership LAW is not a Sentinel workspace.</p>
+        </article>
+        <article data-id="azure.policy">
+          <h3>Azure Policy</h3>
+          <p class="price">host_policy · sandbox</p>
+          <p>Host policy. West Europe is blocked. Cannot weaken Job C.</p>
+        </article>
+      </div>
     </section>
 
     <section id="ip">

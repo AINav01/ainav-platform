@@ -33,20 +33,33 @@
       /* org.json is optional when opened as a file */
     });
 
+  function paintCards(rootId, items) {
+    var root = document.getElementById(rootId);
+    if (!root || !items) return;
+    items.forEach(function (item) {
+      var card = root.querySelector("[data-id='" + item.id + "']");
+      if (!card) return;
+      card.setAttribute("data-mode", item.mode || "sandbox");
+      card.setAttribute("data-live", "false");
+      card.setAttribute("data-wired", item.wired ? "true" : "false");
+      if (item.role) card.setAttribute("data-role", item.role);
+      var price = card.querySelector(".price");
+      if (price && item.role) {
+        price.textContent = item.role + " · " + (item.mode || "sandbox");
+      }
+      var note = card.querySelector("p:not(.price)");
+      if (note && item.note) note.textContent = item.note;
+    });
+  }
+
   fetch("stack.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
     })
     .then(function (data) {
-      if (!data || data.live || !data.connections) return;
-      var root = document.getElementById("stack-cards");
-      if (!root) return;
-      data.connections.forEach(function (item) {
-        var card = root.querySelector("[data-id='" + item.id + "']");
-        if (!card) return;
-        card.setAttribute("data-mode", item.mode);
-        card.setAttribute("data-live", "false");
-      });
+      if (!data || data.live) return;
+      paintCards("stack-cards", data.connections);
+      paintCards("complement-cards", data.complements);
     })
     .catch(function () {
       /* stack.json is optional when opened as a file */
@@ -175,6 +188,58 @@
           ". Deepen " +
           data.opportunity.deepen +
           ".";
+      }
+      var pipeline = document.getElementById("opp-pipeline");
+      if (pipeline && data.opportunity && data.opportunity.attached) {
+        pipeline.textContent =
+          "Signed L1: " +
+          (data.opportunity.signed_l1 || 0) +
+          ". P-ADM attached: " +
+          data.opportunity.attached["P-ADM"] +
+          ". U-DUAL attached: " +
+          data.opportunity.attached["U-DUAL"] +
+          ". Named customers: " +
+          (data.opportunity.named_customers || []).length +
+          ".";
+      }
+      function money(n) {
+        return "$" + Math.round(n / 1000) + "k";
+      }
+      function paintSku(id, nodeId) {
+        var node = document.getElementById(nodeId);
+        var band = data.opportunity && data.opportunity.list && data.opportunity.list[id];
+        if (!node || !band) return;
+        var term = band.term === "annual" ? "/ year" : "· " + band.term;
+        node.textContent = band.id + " · " + money(band.min) + "–" + money(band.max) + " " + term;
+      }
+      paintSku("L1", "opp-l1");
+      paintSku("P-ADM", "opp-padm");
+      paintSku("U-DUAL", "opp-udual");
+      var year = document.getElementById("opp-year-one");
+      if (year && data.opportunity && data.opportunity.year_one_list_if_all_three) {
+        var band = data.opportunity.year_one_list_if_all_three;
+        year.textContent =
+          "Year-one catalog list if one controller buys all three: " +
+          money(band.min) +
+          "–" +
+          money(band.max) +
+          ". Not recognized revenue.";
+      }
+      if (data.fabric && data.fabric.path) {
+        var fabric = document.getElementById("fabric-path");
+        data.fabric.path.forEach(function (item) {
+          var node = fabric ? fabric.querySelector("[data-id='" + item.id + "']") : null;
+          if (!node) return;
+          node.setAttribute("data-status", item.status);
+          node.setAttribute("data-live", "false");
+          var price = node.querySelector(".price");
+          if (price && item.status && item.id !== "bc.premium" && item.id !== "sales.enterprise") {
+            price.textContent = item.status;
+          }
+        });
+      }
+      if (data.complements) {
+        paintCards("complement-cards", data.complements);
       }
     })
     .catch(function () {
@@ -369,6 +434,26 @@
         "notify_preview · teams.enterprise + teams.premium\neffect=" +
           twin.lastEffect.action_class +
           "\nA chat is not a seat. Graph is not called.\nlicensed_not_wired · live=false"
+      );
+    });
+  }
+
+  var pim = document.getElementById("twin-pim");
+  if (pim) {
+    pim.addEventListener("click", function () {
+      writeLedger(
+        "denied",
+        "admit_denied · entra.pim\nA PIM activation is not dual admit.\nEligible seats stay eligible. Graph is not called.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var copilot = document.getElementById("twin-copilot");
+  if (copilot) {
+    copilot.addEventListener("click", function () {
+      writeLedger(
+        "denied",
+        "admit_denied · microsoft.copilot\nCopilot is not the admit plane.\nAgent 365 is not a SKU. Microsoft is not the product.\nlive=false · live_pin_ok=false"
       );
     });
   }

@@ -132,6 +132,8 @@ def test_institute_site_and_swa_config():
     assert "Business Central Premium" in html
     assert "Sales Enterprise" in html
     assert "stack.json" in Path("institute/site.js").read_text(encoding="utf-8")
+    assert "complement-cards" in html
+    assert "Microsoft fabric" in html
     swa = json.loads(Path("institute/staticwebapp.config.json").read_text(encoding="utf-8"))
     assert swa["navigationFallback"]["rewrite"] == "/index.html"
     assert spec("azure.host")["role"] == "hosting"
