@@ -241,9 +241,18 @@ def probe_bc() -> dict[str, Any]:
         last_status = status
         hits[env] = status
         if status == 200 and isinstance(body, dict):
+            rows = [item for item in (body.get("value") or []) if isinstance(item, dict)]
+            names = [str(item.get("name") or "") for item in rows if item.get("name")]
+            operating = next((item for item in rows if item.get("name") == "My Company"), rows[0] if rows else {})
             return _connected(
                 "bc.premium",
-                detail={"environment": env, "companies": len(body.get("value") or [])},
+                detail={
+                    "environment": env,
+                    "companies": len(rows),
+                    "company_names": names,
+                    "operating_company": operating.get("name") or None,
+                    "operating_company_id": operating.get("id") or None,
+                },
             )
     saw_401 = next((env for env in ("sandbox", "production") if hits.get(env) == 401), None)
     if saw_401 is None:

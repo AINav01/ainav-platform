@@ -33,6 +33,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="create Azure RG/Key Vault/Log Analytics. Never writes SoR. Never LIVE_PIN_OK.",
     )
+    connect.add_argument(
+        "--sandbox-wedge",
+        action="store_true",
+        help="dual-admit then POST My Company DEFAULT journal in BC Sandbox. Never production. Never LIVE_PIN_OK.",
+    )
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
     sub.add_parser("company-demo")
@@ -105,6 +110,51 @@ def main(argv: list[str] | None = None) -> int:
             bound = bind_host()
             print(canonical_json({"bind": bound, "health": stack_health(probe=True)}))
             return 0 if bound.get("ok") else 2
+        if args.sandbox_wedge:
+            from ainav.microsoft.bc_sandbox import post_named_company
+            from ainav.mothership import MasterMothership
+
+            local = MasterMothership().standard_l1_pack("ainav-inc")
+            action = {
+                "action_class": "bc.general_journal.post",
+                "payload": {
+                    "account": "11100",
+                    "balancing_account": "22100",
+                    "amount": "250.00",
+                    "memo": "AINav L1 sandbox wedge",
+                    "company": "My Company",
+                    "journal": "DEFAULT",
+                },
+                "proposal_id": "prp-sandbox-wedge-1",
+                "sor_target": "bc.sandbox",
+                "policy_id": "dual-admit-v1",
+            }
+
+            def apply(grant: dict) -> dict:
+                twin = local.router.apply(grant, trusted=True)
+                http = post_named_company(grant)
+                return {**twin, "microsoft_sandbox": http}
+
+            out = local.client.run_and_apply(
+                action,
+                seat_a="oid-operator-a",
+                seat_b="oid-operator-b",
+                apply=apply,
+            )
+            print(
+                canonical_json(
+                    {
+                        "kind": "ainav.sandbox_wedge.v1",
+                        "effect": out,
+                        "twin_journals": local.bc.twin.journals,
+                        "health": stack_health(probe=True),
+                        "live": False,
+                        "live_pin_ok": False,
+                    }
+                )
+            )
+            http = (out.get("apply_result") or {}).get("microsoft_sandbox") or {}
+            return 0 if http.get("ok") else 2
         print(canonical_json(stack_health(probe=True if args.probe else None)))
         return 0
     if args.cmd == "connections":

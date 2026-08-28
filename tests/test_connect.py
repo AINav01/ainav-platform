@@ -199,6 +199,8 @@ def test_probe_sales_whoami_and_bc_companies(monkeypatch):
     assert body["live_pin_ok"] is False
     assert body["connections"]["bc.premium"]["connected"] is True
     assert body["connections"]["bc.premium"]["companies"] == 1
+    assert body["connections"]["bc.premium"]["company_names"] == ["CRONUS"]
+    assert body["connections"]["bc.premium"]["operating_company"] == "CRONUS"
     assert body["connections"]["sales.enterprise"]["connected"] is True
     assert body["connections"]["sales.enterprise"]["whoami"] is True
     assert body["connections"]["azure.keyvault"]["connected"] is True
