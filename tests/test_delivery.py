@@ -29,7 +29,8 @@ def test_catalog_delivery_law():
     assert cat["motherships"]["hosts"] == ["master", "cloud", "local"]
     assert cat["motherships"]["shared_ledger"] is True
     assert cat["motherships"]["master"]["writes_client_sor"] is False
-    assert set(raci()) == {"master", "cloud", "local", "buyer"}
+    assert set(raci()) == {"master", "cloud", "local", "buyer", "owner", "operator"}
+    assert "Not a seat" in raci()["operator"]
     assert "refuse live pin" in week_one()
     assert [item["id"] for item in cat["repositories"]] == [
         "repo.agent_gov",

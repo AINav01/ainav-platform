@@ -7,6 +7,15 @@
     "job": "C",
     "category": "Dual-admitted effect authority before privileged system-of-record writes"
   },
+  "operating": {
+    "sole_owner": true,
+    "owner_principal": "DayTradingMarkets",
+    "legal_entity": "AINav, Inc.",
+    "operator": "cursor.cloud_agent",
+    "operator_is_seat": false,
+    "agent_is_not_dual": true,
+    "note": "Sole owner runs AINav, Inc. The Cloud Agent operates host, connect, twin, and authorized sandbox work. The agent is not seat_a or seat_b. Signed L1 still needs two distinct human principals."
+  },
   "must_not_change": [
     "Job C only — not agent inventory (Job A), not IdP replacement (Job B)",
     "Dual distinct principals",
@@ -254,7 +263,9 @@
       "master": "AINav, Inc. — lockfile, catalog, gold. Does not write client SoR.",
       "cloud": "Azure-declared client plane — same ledger, sandbox twin.",
       "local": "Client operators — seats and twin. Same ledger as cloud.",
-      "buyer": "Controller — forwards the proof-day brief. No invented inbox."
+      "buyer": "Controller — forwards the proof-day brief. No invented inbox.",
+      "owner": "DayTradingMarkets — sole owner. Runs AINav, Inc.",
+      "operator": "Cursor Cloud Agent — operates. Not a seat. Not dual admit."
     }
   },
   "repositories": [

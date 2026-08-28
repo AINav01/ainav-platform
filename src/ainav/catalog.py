@@ -64,11 +64,26 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     from ainav.delivery import validate_delivery
 
     validate_delivery(catalog)
+    _validate_operating(catalog)
     _validate_proof_day(catalog)
     _validate_next_pin(catalog)
     _validate_buyer(catalog)
     _validate_icp(catalog)
     _validate_acceptance_kit(catalog)
+
+
+def _validate_operating(catalog: dict[str, Any]) -> None:
+    body = catalog.get("operating")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing operating model", reason_code="CATALOG_OPERATING")
+    if body.get("legal_entity") != catalog.get("entity", {}).get("legal"):
+        raise IntegrityError("operating legal_entity must match entity.legal", reason_code="CATALOG_OPERATING")
+    if body.get("sole_owner") is not True:
+        raise IntegrityError("operating records the sole owner", reason_code="CATALOG_OPERATING")
+    if body.get("operator_is_seat") is True or body.get("agent_is_not_dual") is not True:
+        raise IntegrityError("the operator cannot be a dual seat", reason_code="CATALOG_OPERATING")
+    if not str(body.get("owner_principal") or "").strip():
+        raise IntegrityError("operating owner_principal is required", reason_code="CATALOG_OPERATING")
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:

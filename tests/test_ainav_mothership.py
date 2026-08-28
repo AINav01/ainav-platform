@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import copy
+
 import pytest
 
 from agent_gov import AdmitDenied, EffectBlocked
@@ -23,8 +25,19 @@ def test_catalog_has_exactly_three_skus():
     cat = load_catalog()
     assert {s["id"] for s in cat["skus"]} == {"L1", "P-ADM", "U-DUAL"}
     assert cat["entity"]["job"] == "C"
+    assert cat["operating"]["sole_owner"] is True
+    assert cat["operating"]["owner_principal"] == "DayTradingMarkets"
+    assert cat["operating"]["operator_is_seat"] is False
+    assert cat["operating"]["agent_is_not_dual"] is True
     assert l1_action_classes() == frozenset({"bc.general_journal.post"})
     assert sku("L1")["price_usd"]["min"] == 28000
+
+
+def test_operating_model_refuses_agent_as_seat():
+    cat = copy.deepcopy(load_catalog())
+    cat["operating"]["operator_is_seat"] = True
+    with pytest.raises(IntegrityError, match="operator cannot be a dual seat"):
+        validate_catalog(cat)
 
 
 def test_plan_is_generated_from_catalog():

@@ -288,6 +288,7 @@ class MasterMothership:
             "entity": "AINav, Inc.",
             "product": "AINav Control Plane",
             "institute": "AINAV.Institute",
+            "operating": dict(load_catalog()["operating"]),
             "live": False,
             "host_mode": "master",
             "writes_client_sor": False,

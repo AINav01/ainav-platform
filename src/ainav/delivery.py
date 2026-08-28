@@ -28,7 +28,7 @@ def validate_delivery(catalog: dict[str, Any]) -> None:
     if delivery.get("shared_ledger") is not True:
         raise IntegrityError("delivery pair requires a shared ledger", reason_code="CATALOG_DELIVERY")
     raci = delivery.get("raci") or {}
-    for seat in ("master", "cloud", "local", "buyer"):
+    for seat in ("master", "cloud", "local", "buyer", "owner", "operator"):
         if not raci.get(seat):
             raise IntegrityError(f"delivery RACI missing {seat}", reason_code="CATALOG_DELIVERY")
     for repo in catalog.get("repositories") or []:
