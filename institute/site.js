@@ -155,14 +155,51 @@
       if (sales && data.sales) {
         sales.textContent = data.sales.wired ? "wired · twin" : "licensed · not wired";
       }
+      var notify = document.getElementById("status-notify");
+      if (notify && data.notify) {
+        notify.textContent = data.notify.wired ? "wired · notify" : "licensed · not wired";
+      }
+      var gaps = document.getElementById("status-gaps");
+      if (gaps && data.open_gaps && data.open_gaps.length) {
+        gaps.textContent = data.open_gaps.join(" · ");
+      }
+      var equation = document.getElementById("status-equation");
+      if (equation && data.success_equation) equation.textContent = data.success_equation;
+      var revenue = document.getElementById("opp-revenue");
+      if (revenue && data.opportunity) {
+        revenue.textContent =
+          "Recognized revenue: none. Named customers: none. Prove " +
+          data.opportunity.prove +
+          ". Keep " +
+          data.opportunity.keep +
+          ". Deepen " +
+          data.opportunity.deepen +
+          ".";
+      }
     })
     .catch(function () {
       /* status.json is optional when opened as a file */
     });
 
+  fetch("business.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live) return;
+      var week = document.getElementById("week-path");
+      if (week && data.delivery && data.delivery.week_one) {
+        week.textContent = "This week: " + data.delivery.week_one.join(" → ") + ".";
+      }
+    })
+    .catch(function () {
+      /* business.json is optional when opened as a file */
+    });
+
   var twin = {
-    grant: null,
-    consumed: false
+    seats: null,
+    consumed: {},
+    lastEffect: null
   };
 
   function hex(buffer) {
@@ -189,10 +226,31 @@
   }
 
   function setTwinButtons(ready) {
-    var journal = document.getElementById("twin-journal");
-    var quote = document.getElementById("twin-quote");
-    if (journal) journal.disabled = !ready;
-    if (quote) quote.disabled = !ready;
+    ["twin-journal", "twin-quote", "twin-notify", "twin-kit"].forEach(function (id) {
+      var node = document.getElementById(id);
+      if (node) node.disabled = !ready;
+    });
+  }
+
+  function consumeAction(action, onOk) {
+    if (!twin.seats) {
+      writeLedger("denied", "effect_blocked · seats not bound\nNo Microsoft write left this browser.");
+      return;
+    }
+    if (twin.consumed[action.action_class]) {
+      writeLedger(
+        "denied",
+        "effect_blocked · grant already consumed for " +
+          action.action_class +
+          "\nSingle-use consume. No second write. live=false"
+      );
+      return;
+    }
+    actionHash(action).then(function (hash) {
+      twin.consumed[action.action_class] = hash;
+      twin.lastEffect = { action_class: action.action_class, action_hash: hash };
+      onOk(hash);
+    });
   }
 
   var bind = document.getElementById("twin-bind");
@@ -202,35 +260,27 @@
       var b = (document.getElementById("twin-seat-b") || {}).value || "";
       var status = document.getElementById("twin-admit-status");
       if (!a.trim() || !b.trim() || a.trim() === b.trim()) {
-        twin.grant = null;
-        twin.consumed = false;
+        twin.seats = null;
+        twin.consumed = {};
+        twin.lastEffect = null;
         setTwinButtons(false);
         if (status) status.textContent = "Fail-closed. Seats must be two distinct principals.";
         writeLedger("denied", "admit_denied · same_or_empty_seat\nlive=false · live_pin_ok=false");
         return;
       }
-      var action = {
-        action_class: "bc.general_journal.post",
-        payload: { account: "11100", balancing_account: "22100", amount: "250.00", company: "AINav" },
-        sor_target: "bc.sandbox",
-        live: false
-      };
-      actionHash(action).then(function (hash) {
-        twin.grant = { seat_a: a.trim(), seat_b: b.trim(), action_hash: hash, used: false };
-        twin.consumed = false;
-        setTwinButtons(true);
-        if (status) status.textContent = "admit_ok. Grant is single-use.";
-        writeLedger(
-          "ok",
-          "admit_ok\nseat_a=" +
-            twin.grant.seat_a +
-            "\nseat_b=" +
-            twin.grant.seat_b +
-            "\naction_hash=" +
-            hash +
-            "\nlive=false · production=false"
-        );
-      });
+      twin.seats = { seat_a: a.trim(), seat_b: b.trim() };
+      twin.consumed = {};
+      twin.lastEffect = null;
+      setTwinButtons(true);
+      if (status) status.textContent = "admit_ok. Each action_hash is single-use.";
+      writeLedger(
+        "ok",
+        "admit_ok\nseat_a=" +
+          twin.seats.seat_a +
+          "\nseat_b=" +
+          twin.seats.seat_b +
+          "\nNo grant until an action is bound.\nlive=false · production=false"
+      );
     });
   }
 
@@ -247,16 +297,21 @@
   var journal = document.getElementById("twin-journal");
   if (journal) {
     journal.addEventListener("click", function () {
-      if (!twin.grant || twin.grant.used) {
-        writeLedger("denied", "effect_blocked · grant missing or already consumed\nNo Business Central write left this browser.");
-        return;
-      }
-      twin.grant.used = true;
-      twin.consumed = true;
-      setTwinButtons(true);
-      writeLedger(
-        "ok",
-        "effect_applied · bc.sandbox\ncompany=AINav · document=AINAV-L1-TWIN · 250.00\n11100 debit / 22100 credit\nMicrosoft Business Central Production was not called.\nlive_pin_ok=false"
+      consumeAction(
+        {
+          action_class: "bc.general_journal.post",
+          payload: { account: "11100", balancing_account: "22100", amount: "250.00", company: "AINav" },
+          sor_target: "bc.sandbox",
+          live: false
+        },
+        function (hash) {
+          writeLedger(
+            "ok",
+            "effect_applied · bc.sandbox\naction_class=bc.general_journal.post\naction_hash=" +
+              hash +
+              "\ncompany=AINav · document=AINAV-L1-TWIN · 250.00\n11100 debit / 22100 credit\nMicrosoft Business Central Production was not called.\nlive_pin_ok=false"
+          );
+        }
       );
     });
   }
@@ -264,8 +319,8 @@
   var quote = document.getElementById("twin-quote");
   if (quote) {
     quote.addEventListener("click", function () {
-      if (!twin.grant) {
-        writeLedger("denied", "effect_blocked · no grant");
+      if (!twin.seats) {
+        writeLedger("denied", "effect_blocked · seats not bound");
         return;
       }
       var paid = document.getElementById("twin-udual");
@@ -276,9 +331,67 @@
         );
         return;
       }
+      consumeAction(
+        {
+          action_class: "d365.quote.discount_override",
+          payload: { discount: "12", company: "AINav" },
+          sor_target: "d365.sales.sandbox",
+          live: false
+        },
+        function (hash) {
+          writeLedger(
+            "ok",
+            "effect_applied · d365.sales.sandbox\naction_class=d365.quote.discount_override\naction_hash=" +
+              hash +
+              "\nquote.discount_override preview on the Sales twin\nNo Dataverse write. No live Dataverse instance. G14 remains open."
+          );
+        }
+      );
+    });
+  }
+
+  var notifyBtn = document.getElementById("twin-notify");
+  if (notifyBtn) {
+    notifyBtn.addEventListener("click", function () {
+      if (!twin.seats) {
+        writeLedger("denied", "notify_held · seats not bound\nA chat is not a seat.");
+        return;
+      }
+      if (!twin.lastEffect) {
+        writeLedger(
+          "denied",
+          "notify_held · no effect to notify\nTeams Enterprise stays licensed_not_wired.\nA chat is not a seat. Graph is not called."
+        );
+        return;
+      }
       writeLedger(
         "ok",
-        "effect_applied · d365.sales.sandbox\nquote.discount_override preview on the Sales twin\nNo live Dataverse instance. G14 remains open."
+        "notify_preview · teams.enterprise + teams.premium\neffect=" +
+          twin.lastEffect.action_class +
+          "\nA chat is not a seat. Graph is not called.\nlicensed_not_wired · live=false"
+      );
+    });
+  }
+
+  var kit = document.getElementById("twin-kit");
+  if (kit) {
+    kit.addEventListener("click", function () {
+      if (!twin.seats) {
+        writeLedger("denied", "evidence_held · seats not bound");
+        return;
+      }
+      if (!twin.lastEffect) {
+        writeLedger(
+          "denied",
+          "evidence_held · no kit effect\nSharePoint sandbox stays empty until an admitted write."
+        );
+        return;
+      }
+      writeLedger(
+        "ok",
+        "evidence_preview · sharepoint.kit\neffect=" +
+          twin.lastEffect.action_class +
+          "\nNo Sites.Read.All. No SharePoint write.\nAcceptance Kit evidence stays on the twin. live=false"
       );
     });
   }

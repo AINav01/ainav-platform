@@ -124,12 +124,13 @@
 
     <section id="twin">
       <h2>Microsoft twin bench</h2>
-      <p class="note">Browser twin only. Dynamics 365 Business Central and Sales writes stay off this page. Not LIVE_PIN_OK. Not Production.</p>
+      <p class="note">Browser twin only. Dynamics 365 Business Central, Sales, Teams, and SharePoint writes stay off this page. Not LIVE_PIN_OK. Not Production.</p>
       <p class="lede">
-        Two distinct seats bind one action hash. The grant is consumed once.
-        Then a Business Central journal may land on the twin. A Sales quote stays refused until paid U-DUAL.
+        Two distinct seats admit. Each privileged write binds its own action hash and is consumed once.
+        A Business Central journal is the L1 wedge. A Sales quote stays refused until paid U-DUAL.
+        Teams notify and SharePoint kit evidence are complements — a chat is not a seat.
       </p>
-      <div class="twin-grid">
+      <div class="twin-grid twin-grid-3">
         <div class="twin-panel">
           <h3>1. Admit</h3>
           <label class="field">Seat A
@@ -148,9 +149,16 @@
           <h3>2. Systems of record</h3>
           <p class="note">L1 wedge: <code>bc.general_journal.post</code> → Business Central Sandbox company AINav.</p>
           <button type="button" class="ask" id="twin-journal" disabled>Post sandbox journal</button>
-          <p class="note">U-DUAL deepen: quote override → Dynamics 365 Sales Enterprise. Licensed, not wired.</p>
+          <p class="note">U-DUAL deepen: <code>d365.quote.discount_override</code> → Dynamics 365 Sales Enterprise. Licensed, not wired.</p>
           <button type="button" class="ghost" id="twin-quote" disabled>Attempt Sales quote override</button>
           <label class="check"><input id="twin-udual" type="checkbox" /> Preview paid U-DUAL on the Sales twin</label>
+        </div>
+        <div class="twin-panel">
+          <h3>3. Complements</h3>
+          <p class="note">After an effect: Teams notify. Kit evidence: SharePoint sandbox. Neither is dual admit.</p>
+          <button type="button" class="ghost" id="twin-notify" disabled>Notify Teams</button>
+          <button type="button" class="ghost" id="twin-kit" disabled>Store kit evidence</button>
+          <p class="note">Graph is not called. PIM activation is not dual admit.</p>
         </div>
       </div>
       <div class="ledger" id="twin-ledger" aria-live="polite"></div>
@@ -180,6 +188,8 @@
           <p>Sales Enterprise quote override and order submit on the same plane. Never free.</p>
         </article>
       </div>
+      <p class="stages" id="week-path">This week: qualify → ninety-minute proof day → sell L1 → kit on the BC twin → refuse live pin. P-ADM attaches after kit PASS. U-DUAL is a later paid offer.</p>
+      <p class="note" id="opp-revenue">Recognized revenue: none. Named customers: none.</p>
       <div class="split">
         <div>
           <h3>Who buys</h3>
@@ -421,6 +431,16 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <h3>Azure host</h3>
           <p class="price">eastus · Institute on eastus2</p>
           <p>RG ainav-inc. Custom domain not bound. Not LIVE_PIN_OK.</p>
+        </article>
+        <article>
+          <h3>Teams notify</h3>
+          <p class="price" id="status-notify">licensed · not wired</p>
+          <p>A chat is not a seat. Graph is not called from this page.</p>
+        </article>
+        <article>
+          <h3>Open equation</h3>
+          <p class="price" id="status-gaps">G1/G10 · G12 · G13 · G14 · HA</p>
+          <p id="status-equation">Success = LIVE_PIN_OK × proof day × signed L1 × P-ADM attach</p>
         </article>
       </div>
       <div id="stack-cards" class="cards stack-cards">
