@@ -1,4 +1,23 @@
 {
+  "agent_tools": {
+    "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+    "block_until_dual": [
+      "dataverse.mcp",
+      "byo.sor_write"
+    ],
+    "cloud_agent_can_approve": false,
+    "is_admit_plane": false,
+    "leave_available": [
+      "workiq.user",
+      "workiq.teams",
+      "workiq.sharepoint",
+      "workiq.mail",
+      "mcp.management"
+    ],
+    "live": false,
+    "product": "Microsoft 365 Agent Tools",
+    "wired": false
+  },
   "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
   "bc": {
     "amount": "250.00",

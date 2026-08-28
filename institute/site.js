@@ -241,9 +241,50 @@
       if (data.complements) {
         paintCards("complement-cards", data.complements);
       }
+      var toolsStatus = document.getElementById("agent-tools-status");
+      if (toolsStatus && data.agent_tools) {
+        toolsStatus.textContent =
+          "wired=" +
+          data.agent_tools.wired +
+          " · cloud_agent_can_approve=" +
+          data.agent_tools.cloud_agent_can_approve +
+          " · is_admit_plane=" +
+          data.agent_tools.is_admit_plane +
+          " · live=false";
+      }
     })
     .catch(function () {
       /* status.json is optional when opened as a file */
+    });
+
+  fetch("agent-tools.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.is_admit_plane) return;
+      function replaceList(id, items, textFn) {
+        var node = document.getElementById(id);
+        if (!node || !items || !items.length) return;
+        node.innerHTML = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = textFn(item);
+          node.appendChild(li);
+        });
+      }
+      replaceList("agent-tools-allow", data.leave_available, function (item) {
+        return item.name + " — " + item.note;
+      });
+      replaceList("agent-tools-block", data.block_until_dual, function (item) {
+        return item.name + " — " + item.note;
+      });
+      replaceList("agent-tools-never", data.never_as_admit, function (item) {
+        return item;
+      });
+    })
+    .catch(function () {
+      /* agent-tools.json is optional when opened as a file */
     });
 
   fetch("business.json")
@@ -454,6 +495,16 @@
       writeLedger(
         "denied",
         "admit_denied · microsoft.copilot\nCopilot is not the admit plane.\nAgent 365 is not a SKU. Microsoft is not the product.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var agentTools = document.getElementById("twin-agent-tools");
+  if (agentTools) {
+    agentTools.addEventListener("click", function () {
+      writeLedger(
+        "denied",
+        "admit_denied · m365.agent_tools\nA tool invocation is not dual admit.\nWork IQ / MCP stay complements. Dataverse MCP stays blocked until paid U-DUAL.\nThis Cloud Agent cannot approve tools.\nlive=false · live_pin_ok=false"
       );
     });
   }

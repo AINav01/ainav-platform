@@ -7,6 +7,7 @@
       "/org.json",
       "/business.json",
       "/status.json",
+      "/agent-tools.json",
       "/styles.css",
       "/site.js",
       "/favicon.svg",
@@ -47,6 +48,10 @@
     },
     {
       "route": "/status.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/agent-tools.json",
       "headers": { "Cache-Control": "no-store" }
     }
   ]

@@ -552,7 +552,68 @@
       "Azure Policy"
     ],
     "e7_uses": ["Entra Suite", "Purview", "Sentinel", "Teams licensing"],
-    "e7_not_the_product": ["Microsoft 365 Copilot", "Agent 365"]
+    "e7_not_the_product": ["Microsoft 365 Copilot", "Agent 365"],
+    "agent_tools": {
+      "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+      "product": "Microsoft 365 Agent Tools",
+      "is_sku": false,
+      "is_connection": false,
+      "is_admit_plane": false,
+      "cloud_agent_can_approve": false,
+      "note": "E7 ships Copilot and Agent 365. The Agents > Tools registry governs MCP servers. A tool invocation is not dual admit.",
+      "leave_available": [
+        {
+          "id": "workiq.user",
+          "name": "Work IQ User",
+          "maps_to": "entra.id",
+          "note": "Seat object ids. Not a seat."
+        },
+        {
+          "id": "workiq.teams",
+          "name": "Work IQ Teams",
+          "maps_to": "teams.enterprise",
+          "note": "Notify only. A chat is not a seat."
+        },
+        {
+          "id": "workiq.sharepoint",
+          "name": "Work IQ SharePoint",
+          "maps_to": "sharepoint.kit",
+          "note": "Kit evidence. Not dual admit."
+        },
+        {
+          "id": "workiq.mail",
+          "name": "Work IQ Mail",
+          "maps_to": "teams.enterprise",
+          "note": "Notify / evidence only. A mailbox is not a seat."
+        },
+        {
+          "id": "mcp.management",
+          "name": "Microsoft MCP Management",
+          "maps_to": "azure.policy",
+          "note": "Governs tools. Cannot weaken Job C."
+        }
+      ],
+      "block_until_dual": [
+        {
+          "id": "dataverse.mcp",
+          "name": "Dataverse MCP Server",
+          "maps_to": "sales.enterprise",
+          "note": "Sales SoR. No Dataverse instance. A quote or order write without two seats is the U-DUAL write that must not happen."
+        },
+        {
+          "id": "byo.sor_write",
+          "name": "Any BYO MCP that writes Business Central or Sales",
+          "maps_to": "bc.premium",
+          "note": "Reject on the Requests tab. Do not register an AINav admit MCP that posts journals."
+        }
+      ],
+      "never_as_admit": [
+        "Microsoft 365 Copilot",
+        "Work IQ Copilot",
+        "Agent 365",
+        "Work IQ Calendar"
+      ]
+    }
   },
   "connections": {
     "schema_version": "ainav.connections.v1",

@@ -1,0 +1,81 @@
+{
+  "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+  "block_until_dual": [
+    {
+      "id": "dataverse.mcp",
+      "maps_to": "sales.enterprise",
+      "name": "Dataverse MCP Server",
+      "note": "Sales SoR. No Dataverse instance. A quote or order write without two seats is the U-DUAL write that must not happen."
+    },
+    {
+      "id": "byo.sor_write",
+      "maps_to": "bc.premium",
+      "name": "Any BYO MCP that writes Business Central or Sales",
+      "note": "Reject on the Requests tab. Do not register an AINav admit MCP that posts journals."
+    }
+  ],
+  "cloud_agent_can_approve": false,
+  "entity": "AINav, Inc.",
+  "human_adds": true,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.institute.agent_tools.v1",
+  "leave_available": [
+    {
+      "id": "workiq.user",
+      "maps_to": "entra.id",
+      "name": "Work IQ User",
+      "note": "Seat object ids. Not a seat."
+    },
+    {
+      "id": "workiq.teams",
+      "maps_to": "teams.enterprise",
+      "name": "Work IQ Teams",
+      "note": "Notify only. A chat is not a seat."
+    },
+    {
+      "id": "workiq.sharepoint",
+      "maps_to": "sharepoint.kit",
+      "name": "Work IQ SharePoint",
+      "note": "Kit evidence. Not dual admit."
+    },
+    {
+      "id": "workiq.mail",
+      "maps_to": "teams.enterprise",
+      "name": "Work IQ Mail",
+      "note": "Notify / evidence only. A mailbox is not a seat."
+    },
+    {
+      "id": "mcp.management",
+      "maps_to": "azure.policy",
+      "name": "Microsoft MCP Management",
+      "note": "Governs tools. Cannot weaken Job C."
+    }
+  ],
+  "live": false,
+  "live_pin_ok": false,
+  "never_as_admit": [
+    "Microsoft 365 Copilot",
+    "Work IQ Copilot",
+    "Agent 365",
+    "Work IQ Calendar"
+  ],
+  "note": "E7 ships Copilot and Agent 365. The Agents > Tools registry governs MCP servers. A tool invocation is not dual admit.",
+  "product": "Microsoft 365 Agent Tools",
+  "this_agent_cannot": [
+    "Sign in to admin.cloud.microsoft as the owner.",
+    "Approve or block a tool.",
+    "Grant Entra consent for an MCP server.",
+    "Create a new Entra app."
+  ],
+  "wired": false,
+  "you_do": [
+    "Open Agents > Tools > Registry.",
+    "Leave Work IQ User, Teams, SharePoint, Mail, and Microsoft MCP Management Available.",
+    "Block Dataverse MCP Server until paid U-DUAL and dual admit exist.",
+    "On Requests, reject any BYO MCP that writes Business Central or Sales or claims dual admit.",
+    "Do not bind Copilot, Agent 365, or a tool invocation as seat_a or seat_b."
+  ]
+}

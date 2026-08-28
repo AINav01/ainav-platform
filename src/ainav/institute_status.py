@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from ainav.catalog import honest_missing, load_catalog, sku
+from ainav.microsoft.agent_tools import public_review as agent_tools_review
 
 COMPLEMENT_HONESTY = {
     "entra.id": "Seat object ids. Not an IdP replacement. Copilot is not the admit plane.",
@@ -139,6 +140,7 @@ def public_status() -> dict[str, Any]:
     cat = load_catalog()
     evidence = dict(cat["sandbox_evidence"])
     site = cat["programs"]["website"]
+    tools = agent_tools_review()
     return {
         "kind": "ainav.institute.status.v1",
         "entity": cat["entity"]["legal"],
@@ -190,6 +192,16 @@ def public_status() -> dict[str, Any]:
         },
         "fabric": _fabric(cat, evidence, site),
         "complements": _complements(cat),
+        "agent_tools": {
+            "admin_url": tools["admin_url"],
+            "product": tools["product"],
+            "wired": False,
+            "live": False,
+            "is_admit_plane": False,
+            "cloud_agent_can_approve": False,
+            "leave_available": [item["id"] for item in tools["leave_available"]],
+            "block_until_dual": [item["id"] for item in tools["block_until_dual"]],
+        },
         "opportunity": _opportunity(),
         "honest_missing": honest_missing(),
         "open_gaps": list(cat["open_gaps"]),

@@ -28,6 +28,12 @@ def main(argv: list[str] | None = None) -> int:
         help="overlay read-only stack health. Never writes. Never LIVE_PIN_OK.",
     )
     sub.add_parser("connections")
+    agent_tools = sub.add_parser("agent-tools")
+    agent_tools.add_argument(
+        "--probe",
+        action="store_true",
+        help="read-only Agent 365 SP check. Cannot approve tools. Never LIVE_PIN_OK.",
+    )
     connect = sub.add_parser("connect")
     connect.add_argument(
         "--probe",
@@ -177,6 +183,11 @@ def main(argv: list[str] | None = None) -> int:
             http = (out.get("apply_result") or {}).get("microsoft_sandbox") or {}
             return 0 if http.get("ok") else 2
         print(canonical_json(stack_health(probe=True if args.probe else None)))
+        return 0
+    if args.cmd == "agent-tools":
+        from ainav.microsoft.agent_tools import probe_agent_tools, public_review
+
+        print(canonical_json(probe_agent_tools() if args.probe else public_review()))
         return 0
     if args.cmd == "connections":
         from ainav.microsoft.connections import stack_json

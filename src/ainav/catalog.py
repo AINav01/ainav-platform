@@ -54,12 +54,14 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
             )
     from ainav.business import validate_business
     from ainav.ip import validate_ip_doctrine
+    from ainav.microsoft.agent_tools import validate_agent_tools
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
     validate_ip_doctrine(catalog)
     validate_programs(catalog)
     validate_connections(catalog)
+    validate_agent_tools(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 

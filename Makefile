@@ -14,6 +14,7 @@ plan-check:
 	python3 -c "from ainav.buyer import buyer_page; import json; print(json.dumps(buyer_page(), indent=2, sort_keys=True))" | diff -q institute/buyer.json -
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" | diff -q institute/org.json -
 	python3 -c "from ainav.institute_status import public_status; import json; print(json.dumps(public_status(), indent=2, sort_keys=True))" | diff -q institute/status.json -
+	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agent-tools.json -
 
 gold: plan-check
 	python3 -m pytest -q --cov=agent_gov --cov=ainav --cov-report=term-missing

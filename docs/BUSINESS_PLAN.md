@@ -78,7 +78,7 @@ Same Job C lockfile. One consume ledger per client. Master never writes the clie
 - **Entra (via Microsoft 365 E7):** seat object ids. Not an IdP replacement.
 - **Azure:** declared host for master, cloud mothership, and Institute static site.
 - **Business Central Premium / Sales Enterprise:** sandbox SoR until G14.
-- Copilot and Agent 365 ship inside E7. They are not the admit plane.
+- Copilot and Agent 365 ship inside E7. They are not the admit plane. Agent Tools (MCP) stay complements; the owner reviews the registry. This Cloud Agent cannot approve tools.
 - Complements: Entra ID, Key Vault, Monitor, SharePoint, Defender XDR, Entra PIM, Sentinel, Azure Policy.
 - RACI: AINav, Inc. — lockfile, catalog, gold. Does not write client SoR.
 
