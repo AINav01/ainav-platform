@@ -112,7 +112,7 @@ def test_institute_buyer_page_is_forwardable():
     assert "Ask for a proof day" in html
     assert "href=\"mailto:" not in html
     assert "href='mailto:" not in html
-    assert "ainav-proof-day-brief.json" in html
+    assert "ainav-proof-day-brief.json" in Path("institute/site.js").read_text(encoding="utf-8")
     buyer = json.loads(Path("institute/buyer.json").read_text(encoding="utf-8"))
     assert buyer == buyer_page()
     assert buyer["contact_email"] is None

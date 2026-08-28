@@ -121,4 +121,4 @@ def test_institute_programs_section_is_unclaimed():
     assert "Membership is not claimed" in html
     assert "two unique contacts" in html
     assert html.index("Microsoft for Startups") < html.index("NVIDIA Inception")
-    assert "scrollIntoView" in html
+    assert "scrollIntoView" in Path("institute/site.js").read_text(encoding="utf-8")

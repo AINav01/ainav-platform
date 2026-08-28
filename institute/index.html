@@ -5,34 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AINAV.Institute — Dual-admitted effect authority</title>
   <meta name="description" content="AINAV.Institute is the public face of AINav, Inc. Job C: two distinct humans bind an action_hash before a privileged write." />
+  <meta name="theme-color" content="#f4efe6" />
+  <link rel="canonical" href="https://blue-river-010091a0f.7.azurestaticapps.net/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta property="og:title" content="AINAV.Institute — Dual-admitted effect authority" />
+  <meta property="og:description" content="Two distinct humans. One action hash. Then the write." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://blue-river-010091a0f.7.azurestaticapps.net/" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"AINav, Inc.","legalName":"AINav, Inc.","url":"https://blue-river-010091a0f.7.azurestaticapps.net/","description":"Dual-admitted effect authority before privileged system-of-record writes"}
+  </script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to the law</a>
   <header class="top">
-    <div class="brand">
-      <span class="mark">AINAV</span>
-      <span class="dot">.</span>
-      <span class="inst">Institute</span>
+    <a class="brand" href="#main">
+      <span class="mark">AINAV</span><span class="dot">.</span><span class="inst">Institute</span>
+    </a>
+    <div class="nav-wrap">
+      <nav class="primary" aria-label="Primary">
+        <a href="#buyer">Buyer</a>
+        <a href="#product">Product</a>
+        <a href="#commercial">Commercial</a>
+        <a href="#org">Organization</a>
+        <a href="#programs">Programs</a>
+        <a href="#open">Open</a>
+      </nav>
+      <details class="nav-more">
+        <summary>More</summary>
+        <div>
+          <a href="#packs">Packs</a>
+          <a href="#ops">Operations</a>
+          <a href="#business">Business</a>
+          <a href="#delivery">Delivery</a>
+          <a href="#mothership">Mothership</a>
+          <a href="#microsoft">Microsoft</a>
+          <a href="#ip">IP</a>
+          <a href="#missing">Missing</a>
+        </div>
+      </details>
     </div>
-    <nav>
-      <a href="#buyer">Buyer</a>
-      <a href="#product">Product</a>
-      <a href="#commercial">Commercial</a>
-      <a href="#packs">Packs</a>
-      <a href="#ops">Operations</a>
-      <a href="#business">Business</a>
-      <a href="#org">Organization</a>
-      <a href="#delivery">Delivery</a>
-      <a href="#mothership">Mothership</a>
-      <a href="#microsoft">Microsoft</a>
-      <a href="#ip">IP</a>
-      <a href="#programs">Programs</a>
-      <a href="#missing">Missing</a>
-      <a href="#open">Open</a>
-    </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <p class="kicker">Job C · AINav, Inc.</p>
       <h1>Two distinct humans.<br />One action hash.<br />Then the write.</h1>
@@ -42,10 +59,14 @@
         a single-use consume, and a fail-closed effect gate.
       </p>
       <p class="not">Not agent inventory. Not an identity provider. Not a Teams vote.</p>
+      <div class="hero-actions">
+        <a class="ask" href="#buyer">The write that must not happen</a>
+        <a class="ghost" href="#product">See the plane</a>
+      </div>
     </section>
 
-    <section id="buyer">
-      <h2>Buyer page</h2>
+    <section id="buyer" class="band">
+      <h2>The sale</h2>
       <p class="note">A controller can forward this. There is no invented inbox.</p>
       <p class="lede" id="buyer-write">
         An unauthorized general-journal post that two humans did not admit.
@@ -101,6 +122,7 @@
 
     <section id="product">
       <h2>Product</h2>
+      <p class="note">The AINav Control Plane. Job C only.</p>
       <ol class="flow">
         <li>Agent proposes an action</li>
         <li>Seat A and Seat B — distinct principals — bind <code>action_hash</code></li>
@@ -296,13 +318,13 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <p class="lede">
         AINav, Inc. hosts on Azure. AINav admits on Entra seats from Microsoft 365 E7,
         writes the Business Central and Sales twins, and notifies Teams Enterprise and Teams Premium.
-        AINAV.Institute is a static site planned for Azure Static Web Apps — not a live deploy.
+        AINAV.Institute is a static site on Azure Static Web Apps — the ainav.institute custom domain is not claimed.
       </p>
       <div id="stack-cards" class="cards stack-cards">
         <article data-id="azure.host">
           <h3>Microsoft Azure</h3>
           <p class="price">hosting · sandbox</p>
-          <p>Master mothership target and Institute static host. Deploy is not claimed.</p>
+          <p>Master mothership target and Institute static host. Custom domain is not claimed.</p>
         </article>
         <article data-id="m365.e7">
           <h3>Microsoft 365 E7</h3>
@@ -389,107 +411,8 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
 
   <footer>
     <p>AINav, Inc. · AINAV.Institute · Job C only · Microsoft marks used for integrations only</p>
+    <p>Azure hostname published. ainav.institute is not bound. LIVE_PIN_OK is not claimed.</p>
   </footer>
-  <script>
-    document.querySelectorAll("nav a[href^='#']").forEach(function (link) {
-      link.addEventListener("click", function (event) {
-        var id = link.getAttribute("href").slice(1);
-        var target = document.getElementById(id);
-        if (!target) return;
-        event.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        if (history.replaceState) history.replaceState(null, "", "#" + id);
-      });
-    });
-    fetch("org.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
-      if (!data || data.live || !data.departments) return;
-      var root = document.getElementById("org-cards");
-      if (!root) return;
-      data.departments.forEach(function (item) {
-        var card = root.querySelector("[data-id='" + item.id + "']");
-        if (!card) return;
-        card.setAttribute("data-status", item.status);
-        card.setAttribute("data-wired", item.wired_now ? "true" : "false");
-        var price = card.querySelector(".price");
-        if (price && item.status) price.textContent = item.status;
-      });
-    }).catch(function () { /* org.json is optional when opened as a file */ });
-    fetch("stack.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
-      if (!data || data.live || !data.connections) return;
-      var root = document.getElementById("stack-cards");
-      if (!root) return;
-      data.connections.forEach(function (item) {
-        var card = root.querySelector("[data-id='" + item.id + "']");
-        if (!card) return;
-        card.setAttribute("data-mode", item.mode);
-        card.setAttribute("data-live", "false");
-      });
-    }).catch(function () { /* stack.json is optional when opened as a file */ });
-    function buyerPayload() {
-      var embedded = document.getElementById("buyer-data");
-      try { return embedded ? JSON.parse(embedded.textContent) : {}; } catch (err) { return {}; }
-    }
-    function fillBuyer(data) {
-      if (!data) return;
-      var write = document.getElementById("buyer-write");
-      var incident = document.getElementById("buyer-incident");
-      var proof = document.getElementById("buyer-proof");
-      var door = document.getElementById("buyer-door");
-      if (write && data.write_that_must_not_happen) write.textContent = data.write_that_must_not_happen;
-      if (incident && data.incident) incident.textContent = data.incident;
-      if (proof && data.proof_day) proof.textContent = data.proof_day;
-      if (door && data.door) door.textContent = data.door;
-      function replaceList(id, items) {
-        var node = document.getElementById(id);
-        if (!node || !items || !items.length) return;
-        node.innerHTML = "";
-        items.forEach(function (item) {
-          var li = document.createElement("li");
-          li.textContent = item;
-          node.appendChild(li);
-        });
-      }
-      replaceList("buyer-seats", data.seats);
-      replaceList("buyer-prices", data.prices);
-      replaceList("buyer-refuse", data.refuse);
-    }
-    fetch("buyer.json").then(function (res) { return res.ok ? res.json() : null; }).then(function (data) {
-      fillBuyer(data || buyerPayload());
-    }).catch(function () { fillBuyer(buyerPayload()); });
-    var ask = document.getElementById("ask-proof-day");
-    if (ask) {
-      ask.addEventListener("click", function () {
-        var page = buyerPayload();
-        var brief = {
-          kind: "ainav.proof_day.brief.v1",
-          forwardable: true,
-          write_that_must_not_happen: page.write_that_must_not_happen,
-          incident: page.incident,
-          seats: page.seats,
-          prices: page.prices,
-          proof_day: page.proof_day,
-          refuse: page.refuse,
-          ask: "Ask for a ninety-minute proof day on the existing treasury SOD.",
-          contact_email: null,
-          mailto: null,
-          named_customer: null,
-          signed_l1: false,
-          live: false
-        };
-        var blob = new Blob([JSON.stringify(brief, null, 2)], { type: "application/json" });
-        var link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "ainav-proof-day-brief.json";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        var status = document.getElementById("brief-status");
-        if (status) {
-          status.hidden = false;
-          status.textContent = "Brief downloaded. Forward it. There is no contact inbox on this page.";
-        }
-      });
-    }
-  </script>
+  <script src="site.js" defer></script>
 </body>
 </html>
