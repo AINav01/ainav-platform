@@ -3,17 +3,24 @@ from __future__ import annotations
 import pytest
 from agent_gov.errors import EffectBlocked
 from ainav.errors import LivePinError
-from ainav.microsoft.bc_sandbox import pick_operating_company, post_named_company
+from ainav.microsoft.bc_company import pick_operating_company
+from ainav.microsoft.bc_sandbox import post_named_company
 
 
-def test_pick_operating_company_prefers_my_company():
+def test_pick_operating_company_prefers_ainav():
     picked = pick_operating_company(
+        [
+            {"id": "cronus", "name": "CRONUS USA, Inc."},
+            {"id": "9b8d1202-be8f-f111-8327-7ced8db3712c", "name": "My Company", "displayName": "AINav"},
+        ]
+    )
+    assert picked["displayName"] == "AINav"
+    assert pick_operating_company(
         [
             {"id": "cronus", "name": "CRONUS USA, Inc."},
             {"id": "mine", "name": "My Company"},
         ]
-    )
-    assert picked == {"id": "mine", "name": "My Company"}
+    ) == {"id": "mine", "name": "My Company"}
 
 
 def test_post_named_company_requires_admit_ok():

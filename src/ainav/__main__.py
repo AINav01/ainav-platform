@@ -36,7 +36,7 @@ def main(argv: list[str] | None = None) -> int:
     connect.add_argument(
         "--sandbox-wedge",
         action="store_true",
-        help="dual-admit then POST My Company DEFAULT journal in BC Sandbox. Never production. Never LIVE_PIN_OK.",
+        help="dual-admit then POST AINav DEFAULT journal in BC Sandbox. Never production. Never LIVE_PIN_OK.",
     )
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
@@ -121,7 +121,7 @@ def main(argv: list[str] | None = None) -> int:
                     "balancing_account": "22100",
                     "amount": "250.00",
                     "memo": "AINav L1 sandbox wedge",
-                    "company": "My Company",
+                        "company": "AINav",
                     "journal": "DEFAULT",
                 },
                 "proposal_id": "prp-sandbox-wedge-1",

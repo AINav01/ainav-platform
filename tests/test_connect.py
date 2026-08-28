@@ -176,7 +176,7 @@ def test_probe_sales_whoami_and_bc_companies(monkeypatch):
         if "subscriptions?" in url:
             return 200, {"value": [{"subscriptionId": "sub-1"}]}
         if "businesscentral" in url:
-            return 200, {"value": [{"id": "co-1", "name": "CRONUS"}]}
+            return 200, {"value": [{"id": "co-1", "name": "CRONUS", "displayName": "CRONUS"}]}
         if "WhoAmI" in url:
             return 200, {"UserId": "u1"}
         if "policyAssignments" in url:

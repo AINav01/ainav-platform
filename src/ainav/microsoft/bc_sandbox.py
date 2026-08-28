@@ -9,9 +9,8 @@ from typing import Any
 
 from agent_gov.errors import EffectBlocked
 from ainav.errors import LivePinError
+from ainav.microsoft.bc_company import OPERATING_COMPANY, pick_operating_company
 from ainav.microsoft.health import BC_SCOPE, _entra, _token, entra_configured
-
-OPERATING_COMPANY = "My Company"
 JOURNAL_CODE = "DEFAULT"
 DEBIT_ACCOUNT = "11100"
 CREDIT_ACCOUNT = "22100"
@@ -59,15 +58,8 @@ def _require_admit(grant: dict[str, Any]) -> dict[str, Any]:
     return proposal
 
 
-def pick_operating_company(companies: list[dict[str, Any]]) -> dict[str, Any] | None:
-    named = [item for item in companies if item.get("name") == OPERATING_COMPANY]
-    if named:
-        return named[0]
-    return companies[0] if companies else None
-
-
 def post_named_company(grant: dict[str, Any]) -> dict[str, Any]:
-    """POST balanced lines to My Company DEFAULT, then post the batch. Sandbox only."""
+    """POST balanced lines to AINav DEFAULT, then post the batch. Sandbox only."""
     proposal = _require_admit(grant)
     if not entra_configured():
         return {"ok": False, "sent": False, "reason": "missing_env", "live_pin_ok": False}
@@ -119,7 +111,7 @@ def post_named_company(grant: dict[str, Any]) -> dict[str, Any]:
                 "sent": False,
                 "http": status,
                 "reason": "journal_line_denied",
-                "company": company.get("name"),
+                "company": company.get("displayName") or company.get("name"),
                 "journal": JOURNAL_CODE,
                 "error": line,
                 "live": False,
@@ -133,7 +125,7 @@ def post_named_company(grant: dict[str, Any]) -> dict[str, Any]:
         "posted": post_status in {200, 204},
         "post_http": post_status,
         "post_body": posted if post_status not in {200, 204} else None,
-        "company": company.get("name"),
+        "company": company.get("displayName") or company.get("name"),
         "company_id": cid,
         "journal": JOURNAL_CODE,
         "journal_id": jid,
