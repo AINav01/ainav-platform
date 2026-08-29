@@ -3,22 +3,25 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R 4 0 R] /Count 2 >>
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R] /Count 3 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 7 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 6 0 R /F2 7 0 R >> >> /Contents 8 0 R >>
 endobj
 4 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 8 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 6 0 R /F2 7 0 R >> >> /Contents 9 0 R >>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 6 0 R /F2 7 0 R >> >> /Contents 10 0 R >>
 endobj
 6 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
 endobj
 7 0 obj
-<< /Length 5844 >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+8 0 obj
+<< /Length 6417 >>
 stream
 0.08 0.08 0.08 rg
 0 756 612 36 re f
@@ -35,277 +38,297 @@ ET
 BT
 /F2 8 Tf
 1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  1 / 2) Tj
+(AINav, Inc.  ·  Confidential executive brief  ·  1 / 3) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 732 Tm
-(Release 2.10.0 · For Cynthia Hodnett · From James Hodnett) Tj
+1 0 0 1 54 732.0 Tm
+(Release 2.10.1 · For Cynthia Hodnett · From James Hodnett) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 716 Tm
+1 0 0 1 54 717.0 Tm
 (Printable. Catalog-honest. Not a contract. Not signed L1. Not LIVE_PIN_OK.) Tj
 ET
-54 700 m 558 700 l S
+0.55 0.55 0.55 RG
+0.6 w
+54 702.0 m 558 702.0 l S
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 686 Tm
-(Confidential briefing for Cynthia Hodnett · From James Hodnett, sole owner of AINav,) Tj
+1 0 0 1 54 688.0 Tm
+(Confidential · For Cynthia Hodnett · From James Hodnett, sole owner of AINav, Inc. ·) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 673 Tm
-(Inc. · Release 2.10.0 · Printable. Not a contract. Not signed L1. Not LIVE_PIN_OK.) Tj
+1 0 0 1 54 675.5 Tm
+(Release 2.10.1 · Not a contract · Not signed L1 · Not LIVE_PIN_OK · Invited, not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 663.0 Tm
+(recorded) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 648.0 Tm
+(This letter is for you, not for a customer and not for GitHub. James Hodnett asked) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 635.5 Tm
+(that it be written from the company's own catalog so nothing here is invented: no) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 623.0 Tm
+(email for you, no stock, no officer title, no named buyer, no claim that the public) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 610.5 Tm
+(site has launched. If a sentence would make the company look further along than it is,) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 598.0 Tm
+(it was left out.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 647 Tm
+1 0 0 1 54 575.0 Tm
 (The ask, in one sentence) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 626 Tm
+1 0 0 1 54 557.0 Tm
 (James Hodnett is building a company that will not let a privileged money-movement) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 613 Tm
-(write land unless two distinct humans admit it. He can write the software. He cannot) Tj
+1 0 0 1 54 544.5 Tm
+(write land unless two distinct humans admit the exact same action. He can write that) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 600 Tm
-(be both humans. We are asking Cynthia Hodnett to be the second human ? seat B ? with) Tj
+1 0 0 1 54 532.0 Tm
+(gate. He cannot be both humans. We are asking you, Cynthia Hodnett, to be the second) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 587 Tm
-(her own business email and her own click. Not stock. Not Global Admin. Not this Cloud) Tj
+1 0 0 1 54 519.5 Tm
+(human ? seat B ? with your own business email and your own click. Not stock. Not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 574 Tm
-(Agent.) Tj
+1 0 0 1 54 507.0 Tm
+(Global Admin. Not this Cloud Agent. Not a rubber stamp.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 548 Tm
+1 0 0 1 54 484.0 Tm
+(The incident the company exists to stop) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 466.0 Tm
+(Picture a Dynamics 365 Business Central general journal. A line posts. Cash, accrual,) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 453.5 Tm
+(or a clearing account moves. Two people did not look at the same action and say yes.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 441.0 Tm
+(That is the unauthorized general-journal post that two humans did not admit.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 428.5 Tm
+(Controllers already have a name for the human rule: segregation of duties. What they) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 416.0 Tm
+(do not have is a gate that sits in front of the write itself.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 401.0 Tm
+(The product is that gate. Two distinct people. One exact action, hashed so the memo) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 388.5 Tm
+(cannot be swapped after you look. The grant is consumed once ? a replay is a refusal.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 376.0 Tm
+(The effect is fail-closed: if either person is missing, or the apply fails, the write) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 363.5 Tm
+(does not land and there is no fake success. We call this Job C: dual-admitted effect) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 351.0 Tm
+(authority before a privileged system-of-record write. We do not inventory agents \(Job) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 338.5 Tm
+(A\). We do not replace Microsoft Entra \(Job B\).) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 323.5 Tm
+(Microsoft hosts, identifies, notifies, and receives the write after the two of you) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 311.0 Tm
+(admit it. Microsoft is not the product. Teams is not a seat. A chat is not dual admit.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 298.5 Tm
+(Copilot is not the admit plane. A PIM activation is not dual admit. This Cloud Agent) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 286.0 Tm
+(\(cursor.cloud_agent\) can operate the host. It cannot be seat A or seat B. Owner plus) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 273.5 Tm
+(agent is still one human.) Tj
+ET
+BT
+/F2 11 Tf
+0.08 0.08 0.08 rg
+1 0 0 1 54 250.5 Tm
 (What we are building together) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 527 Tm
-(AINav, Inc. is a Delaware C corporation. The product is the AINav Control Plane.) Tj
+1 0 0 1 54 232.5 Tm
+(AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 514 Tm
-(AINAV.Institute is the public law of that plane. Microsoft hosts, identifies,) Tj
+1 0 0 1 54 220.0 Tm
+(is the AINav Control Plane. AINAV.Institute is the public law of that plane ? hosted) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 501 Tm
-(notifies, and receives the write after two humans admit it. Microsoft is not the) Tj
+1 0 0 1 54 207.5 Tm
+(on Azure, not launched, not bound to ainav.institute until James says launch in his) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 488 Tm
-(product. Teams is not a seat. Copilot is not the admit plane. A Cloud Agent can) Tj
+1 0 0 1 54 195.0 Tm
+(own words. Master mothership issues the lockfile and never writes a client system of) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 475 Tm
-(operate the host; it cannot be seat A or seat B.) Tj
+1 0 0 1 54 182.5 Tm
+(record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 459 Tm
-(The job is Job C: dual-admitted effect authority before a Dynamics 365 Business) Tj
+1 0 0 1 54 170.0 Tm
+(Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 446 Tm
-(Central general-journal post that two humans did not admit. Two distinct people bind) Tj
+1 0 0 1 54 157.5 Tm
+(receive the write after you and James admit it.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 433 Tm
-(the same action hash. That grant is consumed once. The effect gate is fail-closed. If) Tj
+1 0 0 1 54 142.5 Tm
+(We sell three things only. Packs, hours, and Microsoft licenses are not products. A) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 420 Tm
-(either human is missing, the write does not land.) Tj
+1 0 0 1 54 130.0 Tm
+(controller buys the commercial close: named dual seats × proof day × signed L1 × P-ADM) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 404 Tm
-(We sell three things only. L1 proves the gate in two to four weeks \($28,000?$40,000\).) Tj
+1 0 0 1 54 117.5 Tm
+(attach. The lab pin LIVE_PIN_OK is a separate engineering fact and is never marked) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 391 Tm
-(P-ADM keeps the same plane covered after kit PASS \($40,000?$60,000 / year\). U-DUAL) Tj
+1 0 0 1 54 105.0 Tm
+(from a sale. Signed L1 is a counsel pack. It is still open.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 378 Tm
-(deepens the same plane onto Sales \($20,000?$35,000 / year\) and is never free. Packs,) Tj
+1 0 0 1 54 90.0 Tm
+(The three SKUs ? catalog list, not recognized revenue) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 365 Tm
-(hours, and Microsoft licenses are not products. A controller buys the commercial) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 352 Tm
-(close: named dual seats × proof day × signed L1 × P-ADM attach. The lab pin) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 339 Tm
-(LIVE_PIN_OK is a separate engineering fact and is never marked from a sale.) Tj
-ET
-BT
-/F2 11 Tf
-0.08 0.08 0.08 rg
-1 0 0 1 54 313 Tm
-(Why we need you) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 292 Tm
-(James Hodnett is the sole owner and one human principal. Job C cannot close with one) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 279 Tm
-(human. NVIDIA Inception also wants two unique contacts with business emails ? a) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 266 Tm
-(developer and a business executive. Sole owner does not collapse that. You are the) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 253 Tm
-(invited second human. You are not recorded as an officer. You are not a stockholder.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 240 Tm
-(No email is stored until you agree and James says record it.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 224 Tm
-(Without a second distinct person who actually clicks, AINav can keep a lab. It cannot) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 211 Tm
-(sign L1, apply to Inception, or tell a controller that two humans admitted the) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 198 Tm
-(journal. That is why this brief exists, and why your yes or no matters before anything) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 185 Tm
-(else.) Tj
-ET
-BT
-/F2 11 Tf
-0.08 0.08 0.08 rg
-1 0 0 1 54 159 Tm
-(Your role if you agree) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 138 Tm
-(Seat B ? treasury_controller. James is seat A ? treasury_approver. Inception ?) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 125 Tm
-(business_executive. James is the developer / programmer. You receive your own) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 112 Tm
-(@ainav.institute mailbox and your own Entra identity. Not an alias. Not Gmail. Not his) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 99 Tm
-(login. When a privileged write is proposed, you review the action hash and admit or) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 86 Tm
-(refuse. If he clicks both seats, it is not dual. If you rubber-stamp without reading,) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 73 Tm
-(it is not dual.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 57 Tm
-(You do not need Global Admin. You do not need equity in the C corp to do this job. You) Tj
+1 0 0 1 54 75.0 Tm
+(SKU | What the buyer is buying | List) Tj
 ET
 endstream
 endobj
-8 0 obj
-<< /Length 2948 >>
+9 0 obj
+<< /Length 6211 >>
 stream
 0.08 0.08 0.08 rg
 0 756 612 36 re f
@@ -322,155 +345,583 @@ ET
 BT
 /F2 8 Tf
 1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  2 / 2) Tj
+(AINav, Inc.  ·  Confidential executive brief  ·  2 / 3) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 732 Tm
-(do not become Copilot, Teams, or this Cloud Agent. Available tools are not seats. A) Tj
+1 0 0 1 54 732.0 Tm
+(L1 ? prove | Two to four weeks. Prove the unauthorized journal cannot land without two) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 719 Tm
-(chat is not a seat. A PIM activation is not dual admit. Counsel decides stock later.) Tj
+1 0 0 1 54 719.5 Tm
+(seats. Ninety-minute proof day. Acceptance Kit on the twin. | $28,000?$40,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 706 Tm
-(This brief does not issue shares.) Tj
+1 0 0 1 54 704.5 Tm
+(P-ADM ? keep | Keep the same admit plane covered after kit PASS. Never bundles free) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 692.0 Tm
+(U-DUAL. | $40,000?$60,000 / year) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 677.0 Tm
+(U-DUAL ? deepen | Same plane, onto Sales \(quote / order\). Never free with P-ADM. |) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 664.5 Tm
+($20,000?$35,000 / year) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 649.5 Tm
+(If one controller bought all three in year one, the catalog list is $88,000?$135,000.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 637.0 Tm
+(There is no named customer. There is no recognized revenue. Pipeline attached is zero.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 624.5 Tm
+(That honesty is the company, not a placeholder.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 680 Tm
-(What you are not being asked) Tj
+1 0 0 1 54 601.5 Tm
+(Where we actually are) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 659 Tm
-(You are not being asked to buy a customer. You are not being asked to mark) Tj
+1 0 0 1 54 583.5 Tm
+(The admit plane runs in code. Gold tests pass. There is a real Business Central) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 646 Tm
-(LIVE_PIN_OK. You are not being asked to launch ainav.institute. You are not being) Tj
+1 0 0 1 54 571.0 Tm
+(Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 for) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 633 Tm
-(asked to enable Business Central Production. You are not being asked to sign a counsel) Tj
+1 0 0 1 54 558.5 Tm
+($250.00. Those seats were lab operator identities ? not two named treasury humans.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 620 Tm
-(pack today. Those remain owner gates and stay open until James authorizes them in his) Tj
+1 0 0 1 54 546.0 Tm
+(Production is blocked. The Institute has an Azure hostname. The custom domain still) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 607 Tm
-(own words.) Tj
+1 0 0 1 54 533.5 Tm
+(serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception are) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 521.0 Tm
+(qualification targets. Membership is not claimed. Crypto-associated is false. We do) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 508.5 Tm
+(not lead with custody or GPU production.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 493.5 Tm
+(Honest split ? working versus not claimed) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 478.5 Tm
+(Working now | Not claimed, not asked of you today) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 463.5 Tm
+(Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 451.0 Tm
+(held until launch | Signed L1; P-ADM attached; Business Central Production; live Sales) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 438.5 Tm
+(/ Dataverse; ainav.institute launched) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 423.5 Tm
+(You are invited by name as seat B / business executive | You as a recorded officer,) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 411.0 Tm
+(stockholder, or second unique human in the catalog) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 396.0 Tm
+(Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach |) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 383.5 Tm
+(LIVE_PIN_OK; product high availability; counsel-signed MSA; recognized revenue) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 581 Tm
-(How the three names fit) Tj
+1 0 0 1 54 360.5 Tm
+(Why we need you ? not a second license) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 560 Tm
-(AINav, Inc. is the company. AINav Control Plane is the product. AINAV.Institute is the) Tj
+1 0 0 1 54 342.5 Tm
+(James Hodnett is one human principal. Job C is a two-human fact. A second Microsoft) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 547 Tm
-(public face. Master mothership issues the lockfile and never writes a client system of) Tj
+1 0 0 1 54 330.0 Tm
+(365 license, a second tool, a second agent, or James clicking twice does not create) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 534 Tm
-(record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7,) Tj
+1 0 0 1 54 317.5 Tm
+(dual admit. The second person must be a different human, with a different Entra object) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 521 Tm
-(Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They) Tj
+1 0 0 1 54 305.0 Tm
+(id, who actually reads the action and clicks. That is why this is a letter to you and) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 508 Tm
-(receive the write after you and James admit it.) Tj
+1 0 0 1 54 292.5 Tm
+(not a settings change.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 277.5 Tm
+(You are the person James trusts with treasury judgment. The seat opposite) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 265.0 Tm
+(treasury_approver is treasury_controller ? the controller who will not let a journal) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 252.5 Tm
+(land because it was convenient. NVIDIA Inception also requires two unique contacts) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 240.0 Tm
+(with business emails: a developer \(James\) and a business executive \(you, if you) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 227.5 Tm
+(agree\). Aliases and Gmail are refused. Sole owner does not collapse those two) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 215.0 Tm
+(contacts. You are not recorded as an officer. You are not a stockholder. No email is) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 202.5 Tm
+(stored until you agree and James says record it.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 187.5 Tm
+(Without a second distinct person who actually clicks, AINav can keep a lab. It cannot) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 175.0 Tm
+(sign L1. It cannot apply to Inception. It cannot look a controller in the eye and say) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 162.5 Tm
+(two humans admitted the journal. That is the whole reason this brief exists. Your yes) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 150.0 Tm
+(or no is the first commercial gate. Everything else on James's owner list waits behind) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 137.5 Tm
+(it.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 482 Tm
+1 0 0 1 54 114.5 Tm
+(Your role if you agree ? what a Tuesday looks like) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 96.5 Tm
+(Two humans, two jobs, one write) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 81.5 Tm
+(| James Hodnett | Cynthia Hodnett \(if you agree\)) Tj
+ET
+endstream
+endobj
+10 0 obj
+<< /Length 5345 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  3 / 3) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 732.0 Tm
+(Seat | A | B) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 717.0 Tm
+(Treasury | treasury_approver | treasury_controller) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 702.0 Tm
+(Inception | developer / programmer | business executive) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 687.0 Tm
+(Identity | His Entra user | Your own @ainav.institute mailbox ? not an alias, not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 674.5 Tm
+(Gmail, not his login) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 659.5 Tm
+(Click | Admits the same action hash | Admits or refuses the same action hash) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 644.5 Tm
+(When a privileged write is proposed, you see the account, the amount, the memo, and) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 632.0 Tm
+(the action hash. You admit or you refuse. Refusing is the product working. If James) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 619.5 Tm
+(clicks both seats, it is not dual. If you approve without reading, it is not dual.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 607.0 Tm
+(Proof day is ninety minutes on the sandbox twin with two named humans. It is still not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 594.5 Tm
+(Production. After a customer buys L1, you are one of the two seats the Acceptance Kit) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 582.0 Tm
+(requires.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 567.0 Tm
+(You do not need, and this brief does not give you) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 552.0 Tm
+(? Global Admin, Azure ownership, or a programming role) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 537.0 Tm
+(? Equity or an officer title ? counsel decides stock later; this page does not issue) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 524.5 Tm
+(shares) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 509.5 Tm
+(? To become Copilot, Teams, Agent 365, or this Cloud Agent) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 494.5 Tm
+(? To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 482.0 Tm
+(sign an MSA today) Tj
+ET
+BT
+/F2 11 Tf
+0.08 0.08 0.08 rg
+1 0 0 1 54 459.0 Tm
+(What your yes unlocks ? and what it does not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 441.0 Tm
+(Your yes lets James create your mailbox, lets you sign in once, and lets proof day use) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 428.5 Tm
+(two named humans instead of lab operator ids. It lets Inception have a business) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 416.0 Tm
+(executive contact when ? and only when ? James also has a custom domain, an) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 403.5 Tm
+(incorporation date outside this tree, and says the public site may launch. It does not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 391.0 Tm
+(make the company live. It does not attach P-ADM. It does not write Production. It does) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 378.5 Tm
+(not make you a stockholder. It does not publish AINAV.Institute.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 363.5 Tm
+(Your no, or not yet, is also a complete answer. Nothing is recorded. The invite stays) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 351.0 Tm
+(open. The company stays a one-human lab until a second distinct human actually clicks.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 338.5 Tm
+(James will not invent a contact to paper over that.) Tj
+ET
+BT
+/F2 11 Tf
+0.08 0.08 0.08 rg
+1 0 0 1 54 315.5 Tm
 (What happens next) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 461 Tm
-(1. You decide. 2. If yes, James creates your mailbox and you sign in once. 3. He sends) Tj
+1 0 0 1 54 297.5 Tm
+(Five steps, in order. Stop after step 1 until you have decided.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 448 Tm
-(this agent your business email and says record it. 4. Proof day uses two named humans) Tj
+1 0 0 1 54 282.5 Tm
+(? You decide ? yes, no, or not yet.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 435 Tm
-(on the twin ? still not Production. 5. Equity, officer titles, and Delaware filings) Tj
+1 0 0 1 54 267.5 Tm
+(? If yes, James creates your @ainav.institute mailbox. You sign in once. He does not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 422 Tm
-(stay with counsel.) Tj
+1 0 0 1 54 255.0 Tm
+(click seat B.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 406 Tm
-(Invited: Cynthia Hodnett · Recorded: no · Email: none stored · Equity: no · Operator:) Tj
+1 0 0 1 54 240.0 Tm
+(? He sends this agent your business email and says record it. Until those words, no) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 393 Tm
-(cursor.cloud_agent \(not a seat\) · Second officer: none) Tj
+1 0 0 1 54 227.5 Tm
+(email is stored.) Tj
 ET
-54 377 m 558 377 l S
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 212.5 Tm
+(? Proof day uses two named humans on the Business Central twin. Still not Production.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 197.5 Tm
+(? Equity, officer titles, and Delaware filings stay with counsel. They are not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 185.0 Tm
+(required for this role.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 170.0 Tm
+(Invited: Cynthia Hodnett · Recorded: no · Email: none stored · Equity: no · Second) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 157.5 Tm
+(officer: none · Operator: cursor.cloud_agent \(not a seat\) · Commercial close: named) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 145.0 Tm
+(dual seats × proof day × signed L1 × P-ADM attach) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 130.0 m 558 130.0 l S
 endstream
 endobj
 xref
-0 9
+0 11
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000121 00000 n 
-0000000257 00000 n 
-0000000393 00000 n 
-0000000465 00000 n 
-0000000540 00000 n 
-0000006436 00000 n 
-trailer << /Size 9 /Root 1 0 R >>
+0000000127 00000 n 
+0000000263 00000 n 
+0000000399 00000 n 
+0000000536 00000 n 
+0000000608 00000 n 
+0000000683 00000 n 
+0000007152 00000 n 
+0000013415 00000 n 
+trailer << /Size 11 /Root 1 0 R >>
 startxref
-9436
+18813
 %%EOF

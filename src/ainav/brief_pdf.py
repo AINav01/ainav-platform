@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 from pathlib import Path
+from typing import Any
 
 from ainav.catalog import load_catalog
 
@@ -14,10 +15,8 @@ PAGE_W = 612
 PAGE_H = 792
 LEFT = 54
 RIGHT = 558
-TOP = 720
-LEADING = 13
-TITLE_SIZE = 16
 BODY_SIZE = 10
+LEADING = 12.5
 
 
 def _ctx() -> dict[str, str]:
@@ -34,113 +33,320 @@ def _ctx() -> dict[str, str]:
         "seat_role": invited["seat_role"],
         "inception_role": invited["inception_role"],
         "commercial": cat["equations"]["commercial"],
-        "product_eq": cat["equations"]["product"],
         "lab_pin": cat["equations"]["lab_pin"],
     }
 
 
-def brief_sections() -> list[tuple[str, str]]:
-    """Return (heading, body) pairs. Empty heading is the kicker."""
+def brief_document() -> list[dict[str, Any]]:
+    """Source of truth for the print brief. Catalog-honest. Not a contract."""
     c = _ctx()
     return [
-        (
-            "",
-            f"Confidential briefing for {c['invited']}  ·  From {c['owner']}, sole owner of {c['legal']}  ·  "
-            f"Release {c['release']}  ·  Printable. Not a contract. Not signed L1. Not {c['lab_pin']}.",
-        ),
-        (
-            "The ask, in one sentence",
-            f"{c['owner']} is building a company that will not let a privileged money-movement "
-            "write land unless two distinct humans admit it. He can write the software. He cannot "
-            f"be both humans. We are asking {c['invited']} to be the second human — seat B — "
-            "with her own business email and her own click. Not stock. Not Global Admin. Not this Cloud Agent.",
-        ),
-        (
-            "What we are building together",
-            f"{c['legal']} is a Delaware C corporation. The product is the {c['product']}. "
-            f"{c['institute']} is the public law of that plane. Microsoft hosts, identifies, "
-            "notifies, and receives the write after two humans admit it. Microsoft is not the product. "
-            "Teams is not a seat. Copilot is not the admit plane. A Cloud Agent can operate the host; "
-            "it cannot be seat A or seat B.",
-        ),
-        (
-            "",
-            "The job is Job C: dual-admitted effect authority before a Dynamics 365 Business Central "
-            "general-journal post that two humans did not admit. Two distinct people bind the same "
-            "action hash. That grant is consumed once. The effect gate is fail-closed. If either "
-            "human is missing, the write does not land.",
-        ),
-        (
-            "",
-            "We sell three things only. L1 proves the gate in two to four weeks ($28,000–$40,000). "
-            "P-ADM keeps the same plane covered after kit PASS ($40,000–$60,000 / year). "
-            "U-DUAL deepens the same plane onto Sales ($20,000–$35,000 / year) and is never free. "
-            "Packs, hours, and Microsoft licenses are not products. A controller buys the commercial "
-            f"close: {c['commercial']}. The lab pin {c['lab_pin']} is a separate engineering fact "
-            "and is never marked from a sale.",
-        ),
-        (
-            "Why we need you",
-            f"{c['owner']} is the sole owner and one human principal. Job C cannot close with one "
-            "human. NVIDIA Inception also wants two unique contacts with business emails — a developer "
-            "and a business executive. Sole owner does not collapse that. You are the invited second "
-            "human. You are not recorded as an officer. You are not a stockholder. No email is stored "
-            "until you agree and James says record it.",
-        ),
-        (
-            "",
-            "Without a second distinct person who actually clicks, AINav can keep a lab. It cannot "
-            "sign L1, apply to Inception, or tell a controller that two humans admitted the journal. "
-            "That is why this brief exists, and why your yes or no matters before anything else.",
-        ),
-        (
-            "Your role if you agree",
-            f"Seat B — {c['seat_role']}. James is seat A — treasury_approver. "
-            f"Inception — {c['inception_role']}. James is the developer / programmer. "
-            "You receive your own @ainav.institute mailbox and your own Entra identity. "
-            "Not an alias. Not Gmail. Not his login. When a privileged write is proposed, you "
-            "review the action hash and admit or refuse. If he clicks both seats, it is not dual. "
-            "If you rubber-stamp without reading, it is not dual.",
-        ),
-        (
-            "",
-            "You do not need Global Admin. You do not need equity in the C corp to do this job. "
-            "You do not become Copilot, Teams, or this Cloud Agent. Available tools are not seats. "
-            "A chat is not a seat. A PIM activation is not dual admit. Counsel decides stock later. "
-            "This brief does not issue shares.",
-        ),
-        (
-            "What you are not being asked",
-            "You are not being asked to buy a customer. You are not being asked to mark LIVE_PIN_OK. "
-            "You are not being asked to launch ainav.institute. You are not being asked to enable "
-            "Business Central Production. You are not being asked to sign a counsel pack today. "
-            "Those remain owner gates and stay open until James authorizes them in his own words.",
-        ),
-        (
-            "How the three names fit",
-            f"{c['legal']} is the company. {c['product']} is the product. {c['institute']} is the "
-            "public face. Master mothership issues the lockfile and never writes a client system of "
-            "record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7, "
-            "Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They "
-            "receive the write after you and James admit it.",
-        ),
-        (
-            "What happens next",
-            "1. You decide.  2. If yes, James creates your mailbox and you sign in once.  "
-            "3. He sends this agent your business email and says record it.  "
-            "4. Proof day uses two named humans on the twin — still not Production.  "
-            "5. Equity, officer titles, and Delaware filings stay with counsel.",
-        ),
-        (
-            "",
-            f"Invited: {c['invited']}  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  "
-            f"Operator: {c['operator']} (not a seat)  ·  Second officer: none",
-        ),
+        {
+            "kind": "kicker",
+            "text": (
+                f"Confidential  ·  For {c['invited']}  ·  From {c['owner']}, sole owner of {c['legal']}  ·  "
+                f"Release {c['release']}  ·  Not a contract  ·  Not signed L1  ·  Not {c['lab_pin']}  ·  "
+                "Invited, not recorded"
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "This letter is for you, not for a customer and not for GitHub. "
+                f"{c['owner']} asked that it be written from the company's own catalog so nothing "
+                "here is invented: no email for you, no stock, no officer title, no named buyer, "
+                "no claim that the public site has launched. If a sentence would make the company "
+                "look further along than it is, it was left out."
+            ),
+        },
+        {
+            "kind": "callout",
+            "title": "The ask, in one sentence",
+            "text": (
+                f"{c['owner']} is building a company that will not let a privileged money-movement "
+                "write land unless two distinct humans admit the exact same action. He can write "
+                f"that gate. He cannot be both humans. We are asking you, {c['invited']}, to be the "
+                "second human — seat B — with your own business email and your own click. Not stock. "
+                "Not Global Admin. Not this Cloud Agent. Not a rubber stamp."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "The incident the company exists to stop",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Picture a Dynamics 365 Business Central general journal. A line posts. Cash, "
+                "accrual, or a clearing account moves. Two people did not look at the same action "
+                "and say yes. That is the unauthorized general-journal post that two humans did "
+                "not admit. Controllers already have a name for the human rule: segregation of "
+                "duties. What they do not have is a gate that sits in front of the write itself."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "The product is that gate. Two distinct people. One exact action, hashed so the "
+                "memo cannot be swapped after you look. The grant is consumed once — a replay is "
+                "a refusal. The effect is fail-closed: if either person is missing, or the apply "
+                "fails, the write does not land and there is no fake success. We call this Job C: "
+                "dual-admitted effect authority before a privileged system-of-record write. We do "
+                "not inventory agents (Job A). We do not replace Microsoft Entra (Job B)."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Microsoft hosts, identifies, notifies, and receives the write after the two of "
+                "you admit it. Microsoft is not the product. Teams is not a seat. A chat is not "
+                "dual admit. Copilot is not the admit plane. A PIM activation is not dual admit. "
+                f"This Cloud Agent ({c['operator']}) can operate the host. It cannot be seat A or "
+                "seat B. Owner plus agent is still one human."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "What we are building together",
+        },
+        {
+            "kind": "p",
+            "text": (
+                f"{c['legal']} is a Delaware C corporation. {c['owner']} is the sole owner. "
+                f"The product is the {c['product']}. {c['institute']} is the public law of that "
+                "plane — hosted on Azure, not launched, not bound to ainav.institute until James "
+                "says launch in his own words. Master mothership issues the lockfile and never "
+                "writes a client system of record. Cloud and local motherships share one consume "
+                "ledger. Azure, Microsoft 365 E7, Business Central Premium, Sales Enterprise, and "
+                "Teams Premium are the fabric. They receive the write after you and James admit it."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "We sell three things only. Packs, hours, and Microsoft licenses are not products. "
+                "A controller buys the commercial close: named dual seats × proof day × signed L1 × "
+                f"P-ADM attach. The lab pin {c['lab_pin']} is a separate engineering fact and is "
+                "never marked from a sale. Signed L1 is a counsel pack. It is still open."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "The three SKUs — catalog list, not recognized revenue",
+            "headers": ["SKU", "What the buyer is buying", "List"],
+            "rows": [
+                [
+                    "L1 — prove",
+                    "Two to four weeks. Prove the unauthorized journal cannot land without two seats. Ninety-minute proof day. Acceptance Kit on the twin.",
+                    "$28,000–$40,000",
+                ],
+                [
+                    "P-ADM — keep",
+                    "Keep the same admit plane covered after kit PASS. Never bundles free U-DUAL.",
+                    "$40,000–$60,000 / year",
+                ],
+                [
+                    "U-DUAL — deepen",
+                    "Same plane, onto Sales (quote / order). Never free with P-ADM.",
+                    "$20,000–$35,000 / year",
+                ],
+            ],
+        },
+        {
+            "kind": "p",
+            "text": (
+                "If one controller bought all three in year one, the catalog list is $88,000–$135,000. "
+                "There is no named customer. There is no recognized revenue. Pipeline attached is "
+                "zero. That honesty is the company, not a placeholder."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Where we actually are",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "The admit plane runs in code. Gold tests pass. There is a real Business Central "
+                "Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 "
+                "for $250.00. Those seats were lab operator identities — not two named treasury "
+                "humans. Production is blocked. The Institute has an Azure hostname. The custom "
+                "domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception "
+                "are qualification targets. Membership is not claimed. Crypto-associated is false. "
+                "We do not lead with custody or GPU production."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Honest split — working versus not claimed",
+            "headers": ["Working now", "Not claimed, not asked of you today"],
+            "rows": [
+                [
+                    "Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute held until launch",
+                    "Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched",
+                ],
+                [
+                    "You are invited by name as seat B / business executive",
+                    "You as a recorded officer, stockholder, or second unique human in the catalog",
+                ],
+                [
+                    "Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach",
+                    f"{c['lab_pin']}; product high availability; counsel-signed MSA; recognized revenue",
+                ],
+            ],
+        },
+        {
+            "kind": "h",
+            "text": "Why we need you — not a second license",
+        },
+        {
+            "kind": "p",
+            "text": (
+                f"{c['owner']} is one human principal. Job C is a two-human fact. A second Microsoft "
+                "365 license, a second tool, a second agent, or James clicking twice does not create "
+                "dual admit. The second person must be a different human, with a different Entra "
+                "object id, who actually reads the action and clicks. That is why this is a letter "
+                "to you and not a settings change."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "You are the person James trusts with treasury judgment. The seat opposite "
+                f"treasury_approver is {c['seat_role']} — the controller who will not let a journal "
+                "land because it was convenient. NVIDIA Inception also requires two unique contacts "
+                f"with business emails: a developer (James) and a {c['inception_role'].replace('_', ' ')} "
+                "(you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse "
+                "those two contacts. You are not recorded as an officer. You are not a stockholder. "
+                "No email is stored until you agree and James says record it."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Without a second distinct person who actually clicks, AINav can keep a lab. It "
+                "cannot sign L1. It cannot apply to Inception. It cannot look a controller in the "
+                "eye and say two humans admitted the journal. That is the whole reason this brief "
+                "exists. Your yes or no is the first commercial gate. Everything else on James's "
+                "owner list waits behind it."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Your role if you agree — what a Tuesday looks like",
+        },
+        {
+            "kind": "table",
+            "title": "Two humans, two jobs, one write",
+            "headers": ["", f"{c['owner']}", f"{c['invited']} (if you agree)"],
+            "rows": [
+                ["Seat", "A", "B"],
+                ["Treasury", "treasury_approver", c["seat_role"]],
+                ["Inception", "developer / programmer", c["inception_role"].replace("_", " ")],
+                ["Identity", "His Entra user", "Your own @ainav.institute mailbox — not an alias, not Gmail, not his login"],
+                ["Click", "Admits the same action hash", "Admits or refuses the same action hash"],
+            ],
+        },
+        {
+            "kind": "p",
+            "text": (
+                "When a privileged write is proposed, you see the account, the amount, the memo, "
+                "and the action hash. You admit or you refuse. Refusing is the product working. "
+                "If James clicks both seats, it is not dual. If you approve without reading, it is "
+                "not dual. Proof day is ninety minutes on the sandbox twin with two named humans. "
+                "It is still not Production. After a customer buys L1, you are one of the two seats "
+                "the Acceptance Kit requires."
+            ),
+        },
+        {
+            "kind": "ul",
+            "title": "You do not need, and this brief does not give you",
+            "items": [
+                "Global Admin, Azure ownership, or a programming role",
+                "Equity or an officer title — counsel decides stock later; this page does not issue shares",
+                "To become Copilot, Teams, Agent 365, or this Cloud Agent",
+                "To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or sign an MSA today",
+            ],
+        },
+        {
+            "kind": "h",
+            "text": "What your yes unlocks — and what it does not",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Your yes lets James create your mailbox, lets you sign in once, and lets proof day "
+                "use two named humans instead of lab operator ids. It lets Inception have a business "
+                "executive contact when — and only when — James also has a custom domain, an "
+                "incorporation date outside this tree, and says the public site may launch. It does "
+                "not make the company live. It does not attach P-ADM. It does not write Production. "
+                "It does not make you a stockholder. It does not publish AINAV.Institute."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Your no, or not yet, is also a complete answer. Nothing is recorded. The invite "
+                "stays open. The company stays a one-human lab until a second distinct human "
+                "actually clicks. James will not invent a contact to paper over that."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "What happens next",
+        },
+        {
+            "kind": "ul",
+            "title": "Five steps, in order. Stop after step 1 until you have decided.",
+            "items": [
+                "You decide — yes, no, or not yet.",
+                "If yes, James creates your @ainav.institute mailbox. You sign in once. He does not click seat B.",
+                "He sends this agent your business email and says record it. Until those words, no email is stored.",
+                "Proof day uses two named humans on the Business Central twin. Still not Production.",
+                "Equity, officer titles, and Delaware filings stay with counsel. They are not required for this role.",
+            ],
+        },
+        {
+            "kind": "status",
+            "text": (
+                f"Invited: {c['invited']}  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  "
+                f"Second officer: none  ·  Operator: {c['operator']} (not a seat)  ·  "
+                f"Commercial close: {c['commercial']}"
+            ),
+        },
     ]
 
 
+def brief_sections() -> list[tuple[str, str]]:
+    """Compatibility: flatten the document to (heading, body) pairs."""
+    rows: list[tuple[str, str]] = []
+    for block in brief_document():
+        kind = block["kind"]
+        if kind == "kicker":
+            rows.append(("", block["text"]))
+        elif kind == "h":
+            rows.append((block["text"], ""))
+        elif kind == "callout":
+            rows.append((block["title"], block["text"]))
+        elif kind in {"p", "status"}:
+            if rows and rows[-1][1] == "" and rows[-1][0]:
+                rows[-1] = (rows[-1][0], block["text"])
+            else:
+                rows.append(("", block["text"]))
+        elif kind == "ul":
+            body = block.get("title", "") + " " + " ".join(f"({i + 1}) {item}" for i, item in enumerate(block["items"]))
+            rows.append(("", body.strip()))
+        elif kind == "table":
+            lines = [block.get("title") or ""]
+            headers = block["headers"]
+            lines.append(" / ".join(headers))
+            for row in block["rows"]:
+                lines.append(" — ".join(row))
+            rows.append(("", "  ".join(part for part in lines if part)))
+    return [(h, b) for h, b in rows if h or b]
+
+
 def brief_lines() -> list[tuple[str, str]]:
-    """(style, text) rows used by the fallback PDF renderer."""
     c = _ctx()
     rows: list[tuple[str, str]] = [
         ("title", f"{c['legal']}  —  Executive brief"),
@@ -148,10 +354,30 @@ def brief_lines() -> list[tuple[str, str]]:
         ("body", "Printable. Catalog-honest. Not a contract. Not signed L1. Not LIVE_PIN_OK."),
         ("rule", ""),
     ]
-    for heading, body in brief_sections():
-        if heading:
-            rows.append(("head", heading))
-        rows.append(("body", body))
+    for block in brief_document():
+        kind = block["kind"]
+        if kind == "kicker":
+            rows.append(("body", block["text"]))
+        elif kind == "h":
+            rows.append(("head", block["text"]))
+        elif kind == "callout":
+            rows.append(("head", block["title"]))
+            rows.append(("body", block["text"]))
+        elif kind in {"p", "status"}:
+            rows.append(("body", block["text"]))
+        elif kind == "ul":
+            if block.get("title"):
+                rows.append(("body", block["title"]))
+            for item in block["items"]:
+                rows.append(("body", f"— {item}"))
+        elif kind == "table":
+            if block.get("title"):
+                rows.append(("body", block["title"]))
+            rows.append(("body", " | ".join(block["headers"])))
+            for row in block["rows"]:
+                rows.append(("body", " | ".join(row)))
+        elif kind == "rule":
+            rows.append(("rule", ""))
     rows.append(("rule", ""))
     return rows
 
@@ -165,11 +391,31 @@ def brief_markdown() -> str:
         "`docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.",
         "",
     ]
-    for heading, body in brief_sections():
-        if heading:
-            lines += [f"## {heading}", "", body, ""]
-        else:
-            lines += [body, ""]
+    for block in brief_document():
+        kind = block["kind"]
+        if kind == "kicker":
+            lines += [block["text"], ""]
+        elif kind == "h":
+            lines += [f"## {block['text']}", ""]
+        elif kind == "callout":
+            lines += [f"## {block['title']}", "", block["text"], ""]
+        elif kind in {"p", "status"}:
+            lines += [block["text"], ""]
+        elif kind == "ul":
+            if block.get("title"):
+                lines += [block["title"], ""]
+            for item in block["items"]:
+                lines.append(f"- {item}")
+            lines.append("")
+        elif kind == "table":
+            if block.get("title"):
+                lines += [f"*{block['title']}*", ""]
+            headers = block["headers"]
+            lines.append("| " + " | ".join(headers) + " |")
+            lines.append("| " + " | ".join("---" for _ in headers) + " |")
+            for row in block["rows"]:
+                lines.append("| " + " | ".join(row) + " |")
+            lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -182,19 +428,27 @@ def brief_html() -> str:
         '<meta charset="utf-8">',
         f"<title>{html.escape(c['legal'])} — Executive brief for {html.escape(c['invited'])}</title>",
         "<style>",
-        "@page { size: letter; margin: 0.7in 0.75in 0.75in 0.75in; }",
+        "@page { size: letter; margin: 0.65in 0.7in 0.7in 0.7in; }",
         "html, body { margin: 0; padding: 0; }",
-        "body { font: 11pt/1.45 'Times New Roman', Times, serif; color: #1a1a1a; }",
-        "header { border-bottom: 2.5pt solid #111; padding-bottom: 10pt; margin-bottom: 14pt; }",
-        ".mark { font: 700 13pt Helvetica, Arial, sans-serif; letter-spacing: 0.12em; }",
-        ".kicker { font: 9pt Helvetica, Arial, sans-serif; color: #444; margin-top: 4pt; }",
-        "h1 { font: 700 20pt Helvetica, Arial, sans-serif; margin: 0 0 4pt; letter-spacing: -0.02em; }",
-        "h2 { font: 700 11pt Helvetica, Arial, sans-serif; margin: 13pt 0 4pt; text-transform: uppercase; letter-spacing: 0.04em; }",
-        "p { margin: 0 0 8pt; }",
-        ".meta { font: 9.5pt Helvetica, Arial, sans-serif; color: #333; }",
-        ".box { border: 1pt solid #111; padding: 8pt 10pt; margin: 8pt 0 12pt; }",
+        "body { font: 11pt/1.42 'Times New Roman', Times, serif; color: #161616; }",
+        "header { border-bottom: 2.5pt solid #111; padding-bottom: 9pt; margin-bottom: 12pt; }",
+        ".mark { font: 700 11pt Helvetica, Arial, sans-serif; letter-spacing: 0.16em; }",
+        ".kicker { font: 8.5pt Helvetica, Arial, sans-serif; color: #444; margin: 5pt 0 0; }",
+        "h1 { font: 700 22pt Helvetica, Arial, sans-serif; margin: 2pt 0 0; letter-spacing: -0.03em; }",
+        "h2 { font: 700 10.5pt Helvetica, Arial, sans-serif; margin: 13pt 0 5pt; text-transform: uppercase; letter-spacing: 0.05em; page-break-after: avoid; }",
+        "p { margin: 0 0 7pt; orphans: 3; widows: 3; }",
+        ".meta { font: 9pt Helvetica, Arial, sans-serif; color: #333; margin-bottom: 10pt; }",
+        ".box { border: 1.25pt solid #111; padding: 9pt 11pt; margin: 8pt 0 12pt; page-break-inside: avoid; }",
+        ".box h2 { margin-top: 0; }",
         ".box p { margin: 0; }",
-        "footer { border-top: 0.75pt solid #999; margin-top: 16pt; padding-top: 6pt; font: 8.5pt Helvetica, Arial, sans-serif; color: #555; }",
+        "table { width: 100%; border-collapse: collapse; margin: 4pt 0 10pt; font: 9.5pt/1.35 Helvetica, Arial, sans-serif; page-break-inside: avoid; }",
+        "caption { caption-side: top; text-align: left; font: italic 10pt Times, serif; margin: 0 0 4pt; }",
+        "th, td { border: 0.6pt solid #444; padding: 5pt 6pt; vertical-align: top; }",
+        "th { background: #111; color: #fff; font-weight: 700; text-align: left; }",
+        "ul { margin: 0 0 8pt 1.1em; padding: 0; }",
+        "li { margin: 0 0 3pt; }",
+        ".status { font: 8.5pt Helvetica, Arial, sans-serif; color: #333; }",
+        "footer { border-top: 0.75pt solid #999; margin-top: 14pt; padding-top: 6pt; font: 8pt Helvetica, Arial, sans-serif; color: #555; }",
         "</style>",
         "</head>",
         "<body>",
@@ -205,26 +459,46 @@ def brief_html() -> str:
         f"Release {html.escape(c['release'])}  ·  {html.escape(c['institute'])}</p>",
         "</header>",
     ]
-    first = True
-    for heading, body in brief_sections():
-        if first and not heading:
-            blocks.append(f'<p class="meta">{html.escape(body)}</p>')
-            first = False
-            continue
-        first = False
-        if heading == "The ask, in one sentence":
+    for block in brief_document():
+        kind = block["kind"]
+        if kind == "kicker":
+            blocks.append(f'<p class="meta">{html.escape(block["text"])}</p>')
+        elif kind == "h":
+            blocks.append(f"<h2>{html.escape(block['text'])}</h2>")
+        elif kind == "callout":
             blocks.append('<div class="box">')
-            blocks.append(f"<h2>{html.escape(heading)}</h2>")
-            blocks.append(f"<p>{html.escape(body)}</p>")
+            blocks.append(f"<h2>{html.escape(block['title'])}</h2>")
+            blocks.append(f"<p>{html.escape(block['text'])}</p>")
             blocks.append("</div>")
-            continue
-        if heading:
-            blocks.append(f"<h2>{html.escape(heading)}</h2>")
-        blocks.append(f"<p>{html.escape(body)}</p>")
+        elif kind == "p":
+            blocks.append(f"<p>{html.escape(block['text'])}</p>")
+        elif kind == "status":
+            blocks.append(f'<p class="status">{html.escape(block["text"])}</p>')
+        elif kind == "ul":
+            if block.get("title"):
+                blocks.append(f"<p>{html.escape(block['title'])}</p>")
+            blocks.append("<ul>")
+            for item in block["items"]:
+                blocks.append(f"<li>{html.escape(item)}</li>")
+            blocks.append("</ul>")
+        elif kind == "table":
+            blocks.append("<table>")
+            if block.get("title"):
+                blocks.append(f"<caption>{html.escape(block['title'])}</caption>")
+            blocks.append("<thead><tr>")
+            for cell in block["headers"]:
+                blocks.append(f"<th>{html.escape(cell)}</th>")
+            blocks.append("</tr></thead><tbody>")
+            for row in block["rows"]:
+                blocks.append("<tr>")
+                for cell in row:
+                    blocks.append(f"<td>{html.escape(cell)}</td>")
+                blocks.append("</tr>")
+            blocks.append("</tbody></table>")
     blocks += [
         "<footer>",
         f"{html.escape(c['legal'])}  ·  Job C admit plane  ·  Invited, not recorded  ·  "
-        "Do not treat this page as a signed L1, an equity grant, or LIVE_PIN_OK.",
+        "Do not treat these pages as a signed L1, an equity grant, or LIVE_PIN_OK.",
         "</footer>",
         "</body>",
         "</html>",
@@ -278,43 +552,52 @@ def _page_chrome(page_no: int, page_count: int) -> list[str]:
 
 
 def render_pdf() -> bytes:
-    """Deterministic two-font letter brief for printing."""
+    """Deterministic multi-page letter brief for printing."""
     commands: list[str] = []
-    y = 732
+    y = 732.0
     page_streams: list[str] = []
 
     def flush() -> None:
         nonlocal commands, y
         page_streams.append("\n".join(commands))
         commands = []
-        y = 732
+        y = 732.0
+
+    def need(height: float) -> None:
+        nonlocal y
+        if y - height < 56:
+            flush()
+
+    def text_block(font: str, size: float, color: str, lines: list[str], gap: float) -> None:
+        nonlocal y
+        for line in lines:
+            need(gap)
+            commands.append("BT")
+            commands.append(f"{font} {size} Tf")
+            commands.append(color)
+            commands.append(f"1 0 0 1 {LEFT} {y:.1f} Tm")
+            commands.append(f"({_escape(line)}) Tj")
+            commands.append("ET")
+            y -= gap
 
     for style, text in brief_lines():
         if style == "title":
             continue
         if style == "rule":
-            commands.append(f"{LEFT} {y} m {RIGHT} {y} l S")
+            need(16)
+            commands.append("0.55 0.55 0.55 RG")
+            commands.append("0.6 w")
+            commands.append(f"{LEFT} {y:.1f} m {RIGHT} {y:.1f} l S")
             y -= 14
             continue
-        size = 11 if style == "head" else BODY_SIZE
-        font = "/F2" if style == "head" else "/F1"
         if style == "head":
-            y -= 10
-        wrapped = _wrap(text, 86 if style == "body" else 78)
-        for line in wrapped:
-            if y < 56:
-                flush()
-            commands.append("BT")
-            commands.append(f"{font} {size} Tf")
-            if style == "head":
-                commands.append("0.08 0.08 0.08 rg")
-            else:
-                commands.append("0.12 0.12 0.12 rg")
-            commands.append(f"1 0 0 1 {LEFT} {y} Tm")
-            commands.append(f"({_escape(line)}) Tj")
-            commands.append("ET")
-            y -= 16 if style == "head" else LEADING
-        y -= 5 if style == "head" else 3
+            need(36)
+            y -= 8
+            text_block("/F2", 11, "0.08 0.08 0.08 rg", _wrap(text, 70), 15)
+            y -= 3
+            continue
+        text_block("/F1", BODY_SIZE, "0.12 0.12 0.12 rg", _wrap(text, 86), LEADING)
+        y -= 2.5
     flush()
 
     count = len(page_streams)

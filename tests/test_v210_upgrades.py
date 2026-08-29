@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.10.0"
+    assert cat["entity"]["release"] == "2.10.1"
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     invited = cat["organization"]["contacts"]["invited"]
     assert invited["name"] == "Cynthia Hodnett"
@@ -92,9 +92,19 @@ def test_printable_brief_is_a_pdf():
     assert "Cynthia Hodnett" in md
     assert "treasury_controller" in md
     assert "not a contract" in md.lower()
+    assert "unauthorized general-journal" in md
+    assert "ninety minutes" in md
+    assert "Tuesday" in md
+    assert "Where we actually are" in md
+    assert "not recorded" in md.lower()
     html = brief_html()
     assert "Executive brief" in html
     assert "Cynthia Hodnett" in html
+    assert "<table>" in html
+    from ainav.brief_pdf import brief_sections
+
+    sections = brief_sections()
+    assert any(title for title, _ in sections)
     path = write_brief(Path("docs/CYNTHIA_HODNETT_BRIEF.pdf"))
     assert path.exists()
     assert path.read_bytes().startswith(b"%PDF")
