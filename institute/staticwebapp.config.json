@@ -8,6 +8,8 @@
       "/business.json",
       "/status.json",
       "/agent-tools.json",
+      "/review.json",
+      "/owner-steps.json",
       "/styles.css",
       "/site.js",
       "/favicon.svg",
@@ -52,6 +54,14 @@
     },
     {
       "route": "/agent-tools.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/review.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/owner-steps.json",
       "headers": { "Cache-Control": "no-store" }
     }
   ]

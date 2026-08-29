@@ -92,7 +92,7 @@ def test_company_and_institute_azure_plans_are_not_live():
     master = MasterMothership()
     surface = master.company_surface()
     assert surface["live"] is False
-    assert surface["operating"]["owner_principal"] == "DayTradingMarkets"
+    assert surface["operating"]["owner_principal"] == "James Hodnett"
     assert surface["operating"]["operator_is_seat"] is False
     assert surface["azure"]["live"] is False
     assert surface["institute_plan"]["sent"] is False

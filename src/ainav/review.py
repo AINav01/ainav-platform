@@ -201,16 +201,22 @@ def deep_dive(*, probe: bool = False) -> str:
         "It cannot yet sell a signed L1, attach P-ADM, or mark LIVE_PIN_OK.",
         "",
         f"**Success still open:** {cat['success_equation']}",
-        f"**Owner:** {cat['operating']['owner_principal']}. "
+        f"**Commercial close:** {cat['equations']['commercial']}",
+        f"**Lab pin:** {cat['equations']['lab_pin']} — never marked from sales.",
+        f"**Owner:** {cat['operating']['owner_principal']} "
+        f"(handle {cat['operating'].get('owner_handle')}). "
         f"**Operator:** {cat['operating']['operator']} (not a seat, not dual admit).",
-        f"**Second officer:** none. **Named customers:** none. **Recognized revenue:** none.",
+        f"**Second officer:** none. **Invited:** {cat['organization']['contacts']['invited']['name']} "
+        "(not recorded, no email stored). "
+        f"**Named customers:** none. **Recognized revenue:** none.",
         f"**Launch ready:** {str(site.get('launch_ready')).lower()}. "
         f"**Custom domain claimed:** {str(site.get('custom_domain_claimed')).lower()}.",
         "",
         "## Success equation scorecard",
         "",
-        "The equation is a product. Every factor must be true. None are sold.",
+        "The product equation is a lab pin times a sale. Controllers buy the commercial equation.",
         "",
+        f"- **Commercial close** — {cat['equations']['commercial']}. Closed: false.",
         f"- **LIVE_PIN_OK** — {str(equation['live_pin_ok']).lower()}. Never marked from this plane.",
         "- **Proof day** — executable "
         f"(`{cat['proof_day']['cli']}`, {cat['proof_day']['minutes']} minutes). Sold: "

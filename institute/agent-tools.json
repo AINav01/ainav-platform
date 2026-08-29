@@ -69,7 +69,7 @@
   ],
   "note": "E7 ships Copilot and Agent 365. The Agents > Tools registry governs MCP servers. A tool invocation is not dual admit.",
   "owner_playbook": {
-    "actor": "DayTradingMarkets",
+    "actor": "James Hodnett",
     "cannot_be_done_by": "cursor.cloud_agent",
     "docs": [
       {
@@ -83,7 +83,7 @@
     ],
     "steps": [
       {
-        "do": "Sign in to the Microsoft 365 admin center as DayTradingMarkets. Use a role that can manage Agent Tools.",
+        "do": "Sign in to the Microsoft 365 admin center as James Hodnett. Use a role that can manage Agent Tools.",
         "id": "sign_in",
         "url": "https://admin.microsoft.com",
         "url_label": "admin.microsoft.com"
@@ -143,7 +143,7 @@
   ],
   "wired": false,
   "you_do": [
-    "Sign in to the Microsoft 365 admin center as DayTradingMarkets. Use a role that can manage Agent Tools.",
+    "Sign in to the Microsoft 365 admin center as James Hodnett. Use a role that can manage Agent Tools.",
     "Open Agents > Tools > Registry. The Cloud admin deep link lands on the tools list.",
     "For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat.",
     "Confirm these five show Status Available and Publisher Microsoft: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management.",

@@ -28,7 +28,7 @@
       "local": "Client operators \u2014 seats and twin. Same ledger as cloud.",
       "master": "AINav, Inc. \u2014 lockfile, catalog, gold. Does not write client SoR.",
       "operator": "Cursor Cloud Agent \u2014 operates. Not a seat. Not dual admit.",
-      "owner": "DayTradingMarkets \u2014 sole owner. Runs AINav, Inc."
+      "owner": "James Hodnett \u2014 sole owner. Runs AINav, Inc."
     },
     "shared_ledger": true,
     "week_one": [

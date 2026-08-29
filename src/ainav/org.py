@@ -72,6 +72,15 @@ def validate_organization(catalog: dict[str, Any]) -> None:
         raise IntegrityError("do not invent a second unique human", reason_code="ORG_SECOND_OFFICER")
     if contacts.get("developer") or contacts.get("business_executive"):
         raise IntegrityError("do not invent Inception contacts", reason_code="ORG_SECOND_OFFICER")
+    invited = contacts.get("invited") or {}
+    if invited.get("recorded") is True or invited.get("second_unique_human") is True:
+        raise IntegrityError("invited human is not recorded", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("email"):
+        raise IntegrityError("do not invent an invited email", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("equity") is True:
+        raise IntegrityError("invited human is not a stockholder", reason_code="ORG_SECOND_OFFICER")
+    if not str(invited.get("name") or "").strip():
+        raise IntegrityError("invited human name is required while invite is open", reason_code="CATALOG_ORG")
     departments = body.get("departments") or []
     ids = [item.get("id") for item in departments]
     if ids != list(REQUIRED_DEPT_IDS):
@@ -98,14 +107,8 @@ def organization() -> dict[str, Any]:
 
 
 def human_gates() -> list[str]:
-    return [
-        "Point ainav.institute at the Azure hostname. A coming-soon page is not the custom domain.",
-        "Record the incorporation date outside this tree for NVIDIA Inception.",
-        "Name a second unique human with a business email (Inception developer + business executive; also signed L1 seat B). The Cloud Agent is not a contact or a seat.",
-        "Create a US Power Platform environment with Dataverse, then set DATAVERSE_URL on a new agent.",
-        "Grant Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory on the same Entra app AINav Cloud Agent1.",
-        "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write.",
-    ]
+    gates = load_catalog().get("owner_gates") or []
+    return [item["do"] for item in gates]
 
 
 def _wired_now(dept: dict[str, Any], connected: set[str] | None) -> bool:

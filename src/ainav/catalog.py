@@ -52,6 +52,10 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
                 f"fee-for-service {svc.get('id')} included_in invented SKU",
                 reason_code="CATALOG_SKU",
             )
+        if svc.get("attaches_udual") is True:
+            raise IntegrityError("fee-for-service cannot attach U-DUAL", reason_code="UDUAL_NOT_FREE")
+        if svc.get("billable") is True and svc.get("requires_l1") is not True:
+            raise IntegrityError("billable FFS requires L1", reason_code="FFS_SCOPE")
     from ainav.business import validate_business
     from ainav.ip import validate_ip_doctrine
     from ainav.microsoft.agent_tools import validate_agent_tools
@@ -76,6 +80,8 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_buyer(catalog)
     _validate_icp(catalog)
     _validate_acceptance_kit(catalog)
+    _validate_counsel(catalog)
+    _validate_owner_gates(catalog)
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
@@ -90,6 +96,13 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         raise IntegrityError("the operator cannot be a dual seat", reason_code="CATALOG_OPERATING")
     if not str(body.get("owner_principal") or "").strip():
         raise IntegrityError("operating owner_principal is required", reason_code="CATALOG_OPERATING")
+    if body.get("owner_principal") == body.get("operator"):
+        raise IntegrityError("owner cannot be the operator", reason_code="CATALOG_OPERATING")
+    equations = catalog.get("equations") or {}
+    if "named dual seats" not in str(equations.get("commercial") or ""):
+        raise IntegrityError("commercial equation must name dual seats", reason_code="CATALOG_EQUATION")
+    if equations.get("lab_pin") != "LIVE_PIN_OK":
+        raise IntegrityError("lab pin stays LIVE_PIN_OK", reason_code="CATALOG_EQUATION")
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
@@ -158,6 +171,29 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
     for stem in ("teams vote", "copilot", "free u-dual", "live pin ok"):
         if stem not in refuse:
             raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
+
+
+def _validate_counsel(catalog: dict[str, Any]) -> None:
+    body = catalog.get("counsel")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing counsel pack", reason_code="G12_OPEN")
+    if body.get("signed") is True or body.get("g12_open") is not True or body.get("g13_open") is not True:
+        raise IntegrityError("counsel pack stays unsigned; G12/G13 stay open", reason_code="G12_OPEN")
+    order = body.get("order_form") or {}
+    msa = body.get("msa") or {}
+    if order.get("unsigned") is not True or msa.get("unsigned") is not True:
+        raise IntegrityError("order form and MSA stay unsigned", reason_code="G12_OPEN")
+    if "U-DUAL is never free" not in " ".join(order.get("rules") or []):
+        raise IntegrityError("order form must refuse free U-DUAL", reason_code="UDUAL_NOT_FREE")
+
+
+def _validate_owner_gates(catalog: dict[str, Any]) -> None:
+    gates = catalog.get("owner_gates")
+    if not isinstance(gates, list) or len(gates) < 6:
+        raise IntegrityError("catalog missing owner gates", reason_code="CATALOG_ORG")
+    for item in gates:
+        if not item.get("do") or not item.get("url"):
+            raise IntegrityError("owner gate needs a step and a link", reason_code="CATALOG_ORG")
 
 
 def _validate_icp(catalog: dict[str, Any]) -> None:

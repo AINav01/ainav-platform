@@ -70,10 +70,19 @@ def main(argv: list[str] | None = None) -> int:
     stack_demo = sub.add_parser("stack-demo")
     stack_demo.add_argument("--client-id", default="demo-client")
     sub.add_parser("company-demo")
-    sub.add_parser("proof-day")
+    proof = sub.add_parser("proof-day")
+    proof.add_argument("--seat-a", default="", help="named Entra object id for seat A. Lab oid if omitted.")
+    proof.add_argument("--seat-b", default="", help="named Entra object id for seat B. Lab oid if omitted.")
     sub.add_parser("buyer")
     brief = sub.add_parser("brief")
     brief.add_argument("--for", dest="for_controller", default="")
+    sub.add_parser("brief-pdf")
+    sub.add_parser("brief-md")
+    sub.add_parser("owner-steps")
+    sub.add_parser("order-form")
+    sub.add_parser("msa")
+    sub.add_parser("keep-artifact")
+    sub.add_parser("runbooks")
     sub.add_parser("next-pin")
     sub.add_parser("delivery")
     sub.add_parser("raci")
@@ -233,7 +242,43 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "company-demo":
         return _company_demo()
     if args.cmd == "proof-day":
-        return _proof_day()
+        return _proof_day(seat_a=args.seat_a, seat_b=args.seat_b)
+    if args.cmd == "brief-pdf":
+        from ainav.brief_pdf import write_brief
+
+        path = write_brief()
+        print(path)
+        return 0
+    if args.cmd == "brief-md":
+        from ainav.brief_pdf import brief_markdown
+
+        print(brief_markdown(), end="")
+        return 0
+    if args.cmd == "owner-steps":
+        from ainav.owner_steps import owner_steps_markdown
+
+        print(owner_steps_markdown(), end="")
+        return 0
+    if args.cmd == "order-form":
+        from ainav.counsel import order_form_markdown
+
+        print(order_form_markdown(), end="")
+        return 0
+    if args.cmd == "msa":
+        from ainav.counsel import msa_markdown
+
+        print(msa_markdown(), end="")
+        return 0
+    if args.cmd == "keep-artifact":
+        from ainav.keep import weekly_keep
+
+        print(canonical_json(weekly_keep()))
+        return 0
+    if args.cmd == "runbooks":
+        from ainav.runbooks import all_runbooks
+
+        print(canonical_json(all_runbooks()))
+        return 0
     if args.cmd == "buyer":
         from ainav.buyer import buyer_page
 
@@ -447,10 +492,18 @@ def _motherships(client_id: str) -> int:
     return 0
 
 
-def _proof_day() -> int:
+def _proof_day(*, seat_a: str = "", seat_b: str = "") -> int:
     from ainav.proof_day import run_proof_day
 
-    print(canonical_json(run_proof_day("cli-proof-day")))
+    print(
+        canonical_json(
+            run_proof_day(
+                "cli-proof-day",
+                seat_a=seat_a or None,
+                seat_b=seat_b or None,
+            )
+        )
+    )
     return 0
 
 

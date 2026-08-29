@@ -36,12 +36,24 @@ def runbook() -> list[str]:
     ]
 
 
-def run_proof_day(client_id: str = "proof-day") -> dict[str, Any]:
-    """Execute the lab proof-day runbook. Not a live pin and not signed L1."""
+def run_proof_day(
+    client_id: str = "proof-day",
+    *,
+    seat_a: str | None = None,
+    seat_b: str | None = None,
+) -> dict[str, Any]:
+    """Execute the proof-day runbook on the twin. Not a live pin and not signed L1.
+
+    Named Entra object ids may be supplied. Lab oids are not two named treasury humans.
+    """
     if not client_id.strip():
         raise ProvisionError("client_id is required")
     spec = proof_day_spec()
     kit = acceptance_kit()
+    named_a = (seat_a or "").strip() or kit["seats"]["seat_a"]["lab"]
+    named_b = (seat_b or "").strip() or kit["seats"]["seat_b"]["lab"]
+    if named_a == named_b:
+        raise ProvisionError("proof day requires two distinct seats", reason_code="SEAT_DISTINCT")
     local = MasterMothership().standard_l1_pack(client_id)
     action = {
         "action_class": spec["action_class"],
@@ -56,8 +68,8 @@ def run_proof_day(client_id: str = "proof-day") -> dict[str, Any]:
     }
     effect = local.run_and_apply(
         action,
-        seat_a=kit["seats"]["seat_a"]["lab"],
-        seat_b=kit["seats"]["seat_b"]["lab"],
+        seat_a=named_a,
+        seat_b=named_b,
     )
     if effect.get("record_type") != "effect_applied":
         raise ProvisionError("proof day failed on the twin", reason_code="PROOF_DAY_FAIL")
@@ -74,8 +86,10 @@ def run_proof_day(client_id: str = "proof-day") -> dict[str, Any]:
         "client_id": client_id,
         "sku": "L1",
         "seats": {
-            "seat_a": kit["seats"]["seat_a"],
-            "seat_b": kit["seats"]["seat_b"],
+            "seat_a": {**kit["seats"]["seat_a"], "bound": named_a},
+            "seat_b": {**kit["seats"]["seat_b"], "bound": named_b},
+            "named_humans": bool(seat_a and seat_b),
+            "lab_oids_are_not_named_seats": spec.get("lab_oids_are_not_named_seats", True),
         },
         "action_class": action["action_class"],
         "sor_target": action["sor_target"],

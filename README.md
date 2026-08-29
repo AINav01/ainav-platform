@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.9.0 surface:
+Same plane, named 2.10.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -58,6 +58,10 @@ python -m ainav plan
 python -m ainav review
 python -m ainav review --probe
 python -m ainav proof-day
+python -m ainav owner-steps
+python -m ainav brief-pdf
+python -m ainav order-form
+python -m ainav keep-artifact
 python -m ainav buyer
 python -m ainav brief
 python -m ainav next-pin
@@ -104,7 +108,24 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.8.0 (this tree)
+### 2.10.0 (this tree)
+
+James Hodnett is sole owner. Cynthia Hodnett is invited as seat B —
+not recorded, no email stored. Commercial close is named dual seats ×
+proof day × signed L1 × P-ADM attach. LIVE_PIN_OK stays a lab pin.
+Unsigned order form and MSA skeleton. Owner steps with Microsoft
+links. Printable brief: `python -m ainav brief-pdf`. Institute
+primary path is the write, proof day, and open. Launch is held.
+
+### 2.9.0
+
+Proof day is an executable 90-minute runbook. Institute buyer page
+generates a forwardable brief (no inbox). Next pin is the intended
+Business Central sandbox envelope. Microsoft for Startups is first;
+NVIDIA Inception is second. L1 copy is incident-framed. G12/G13 stay
+open. No named design partner.
+
+### 2.8.0
 
 Proof day is an executable 90-minute runbook. Institute buyer page
 generates a forwardable brief (no inbox). Next pin is the intended

@@ -100,7 +100,9 @@ Price L1 against the unauthorized journal that two humans did not admit. Prove i
 ## Operating organization (not SKUs)
 
 Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.
-- Owner: DayTradingMarkets. Operator is not a seat.
+- Owner: James Hodnett. Operator is not a seat.
+- Invited second human: Cynthia Hodnett (not recorded).
+- Commercial close: named dual seats × proof day × signed L1 × P-ADM attach
 - Second officer: none recorded. Do not invent one.
 - Incorporation date: not stored in this tree.
 - **Treasury / Finance** — running_sandbox. Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK.

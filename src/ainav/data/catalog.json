@@ -5,11 +5,13 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
+    "release": "2.10.0",
     "category": "Dual-admitted effect authority before privileged system-of-record writes"
   },
   "operating": {
     "sole_owner": true,
-    "owner_principal": "DayTradingMarkets",
+    "owner_principal": "James Hodnett",
+    "owner_handle": "DayTradingMarkets",
     "legal_entity": "AINav, Inc.",
     "operator": "cursor.cloud_agent",
     "operator_is_seat": false,
@@ -26,10 +28,20 @@
     "second_officer": null,
     "incorporation_date": null,
     "contacts": {
-      "owner": "DayTradingMarkets",
+      "owner": "James Hodnett",
       "developer": null,
       "business_executive": null,
       "second_unique_human": false,
+      "invited": {
+        "name": "Cynthia Hodnett",
+        "recorded": false,
+        "email": null,
+        "seat_role": "treasury_controller",
+        "inception_role": "business_executive",
+        "equity": false,
+        "second_unique_human": false,
+        "note": "Invited by the sole owner. Not an officer. Not recorded until a business email is confirmed. Not a stockholder. The Cloud Agent is not a seat."
+      },
       "note": "NVIDIA Inception requires two unique contacts (developer + business executive) with business emails; aliases and gmail are refused. Sole owner does not collapse this. The Cloud Agent is not a contact or a seat."
     },
     "note": "Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.",
@@ -158,6 +170,12 @@
     "No LIVE_PIN_OK / product HA / signed L1 without evidence"
   ],
   "success_equation": "LIVE_PIN_OK × proof day × signed L1 × P-ADM attach",
+  "equations": {
+    "product": "LIVE_PIN_OK × proof day × signed L1 × P-ADM attach",
+    "commercial": "named dual seats × proof day × signed L1 × P-ADM attach",
+    "lab_pin": "LIVE_PIN_OK",
+    "note": "Controllers buy the commercial equation. LIVE_PIN_OK is a lab pin and is never marked from sales."
+  },
   "l1_incident_copy": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
   "skus": [
     {
@@ -188,7 +206,14 @@
       "term": "annual",
       "attach_after": "L1 Acceptance Kit PASS",
       "includes": ["Keep the same admit plane covered"],
-      "does_not_include": ["U-DUAL (never free)", "Soft dual"]
+      "does_not_include": ["U-DUAL (never free)", "Soft dual"],
+      "keep_artifact": {
+        "id": "padm.weekly.decision_export",
+        "cadence": "weekly",
+        "sink": "sharepoint.kit",
+        "export": "purview.audit.export",
+        "note": "Weekly sealed DecisionRecord export the treasurer can open. Not live Purview. Not LIVE_PIN_OK."
+      }
     },
     {
       "id": "U-DUAL",
@@ -248,28 +273,49 @@
       "name": "Treasury wedge",
       "requires_sku": "L1",
       "modules": ["bc.general_journal.post"],
-      "note": "Standard L1 industry shape. Not a SKU."
+      "note": "Standard L1 industry shape. Not a SKU.",
+      "runbook": [
+        "Seat A is treasury_approver. Seat B is treasury_controller.",
+        "One bc.general_journal.post on the BC twin.",
+        "Both humans bind the same action_hash.",
+        "Walk out with a sealed DecisionRecord. Not signed L1."
+      ]
     },
     {
       "id": "industry.sales",
       "name": "Sales deepen",
       "requires_sku": "U-DUAL",
       "modules": ["d365.quote.discount_override", "d365.order.submit"],
-      "note": "A la carte U-DUAL depth. Not a fourth SKU."
+      "note": "A la carte U-DUAL depth. Not a fourth SKU.",
+      "runbook": [
+        "Requires paid U-DUAL after kit PASS. Never free with P-ADM.",
+        "Quote override and order submit on the Sales twin until G14.",
+        "Same admit plane. Not a second product."
+      ]
     },
     {
       "id": "industry.controller",
       "name": "Controller desk",
       "requires_sku": "L1",
       "modules": ["bc.general_journal.post"],
-      "note": "Same L1 wedge, controller seating. Not a SKU."
+      "note": "Same L1 wedge, controller seating. Not a SKU.",
+      "runbook": [
+        "Same journal as industry.treasury. Different humans at the desk.",
+        "Controller is seat B if the treasurer is seat A.",
+        "Do not invent a fourth SKU to rename the desk."
+      ]
     },
     {
       "id": "industry.quote_desk",
       "name": "Quote desk",
       "requires_sku": "U-DUAL",
       "modules": ["d365.quote.discount_override"],
-      "note": "A la carte U-DUAL slice. Not a fourth SKU."
+      "note": "A la carte U-DUAL slice. Not a fourth SKU.",
+      "runbook": [
+        "Same U-DUAL plane as industry.sales. Quote desk only.",
+        "d365.quote.discount_override after paid attach.",
+        "A quote without two seats is the write that must not happen."
+      ]
     }
   ],
   "libraries": [
@@ -301,7 +347,9 @@
       "name": "Acceptance Kit / proof day",
       "included_in": "L1",
       "billable": false,
-      "note": "Inside L1. Not a SKU."
+      "note": "Inside L1. Not a SKU.",
+      "requires_l1": true,
+      "attaches_udual": false
     },
     {
       "id": "ffs.integration_assist",
@@ -309,7 +357,9 @@
       "included_in": null,
       "billable": true,
       "rate_usd_per_day": 3500,
-      "note": "Hours on the same admit plane. Not a SKU. Does not attach U-DUAL."
+      "note": "Hours on the same admit plane. Not a SKU. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
     },
     {
       "id": "ffs.replay_workshop",
@@ -317,7 +367,9 @@
       "included_in": null,
       "billable": true,
       "rate_usd_per_day": 3500,
-      "note": "Audit replay with the client. Not a SKU."
+      "note": "Audit replay with the client. Not a SKU.",
+      "requires_l1": true,
+      "attaches_udual": false
     },
     {
       "id": "ffs.qbr",
@@ -325,7 +377,9 @@
       "included_in": null,
       "billable": true,
       "rate_usd_per_day": 3500,
-      "note": "Same-plane review. Not a SKU. Does not attach U-DUAL."
+      "note": "Same-plane review. Not a SKU. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
     },
     {
       "id": "ffs.mothership_ops",
@@ -333,7 +387,9 @@
       "included_in": null,
       "billable": true,
       "rate_usd_per_day": 3500,
-      "note": "Local mothership runbook hours. Not a SKU."
+      "note": "Local mothership runbook hours. Not a SKU.",
+      "requires_l1": true,
+      "attaches_udual": false
     }
   ],
   "provisioning": {
@@ -393,7 +449,7 @@
       "cloud": "Azure-declared client plane — same ledger, sandbox twin.",
       "local": "Client operators — seats and twin. Same ledger as cloud.",
       "buyer": "Controller — forwards the proof-day brief. No invented inbox.",
-      "owner": "DayTradingMarkets — sole owner. Runs AINav, Inc.",
+      "owner": "James Hodnett — sole owner. Runs AINav, Inc.",
       "operator": "Cursor Cloud Agent — operates. Not a seat. Not dual admit."
     }
   },
@@ -468,7 +524,9 @@
     ],
     "signed_l1": false,
     "live": false,
-    "note": "The sale is the ninety-minute proof. L1 is that week. Not signed L1 (G13)."
+    "buyer_executable": true,
+    "lab_oids_are_not_named_seats": true,
+    "note": "The sale is the ninety-minute proof. L1 is that week. Not signed L1 (G13). Lab oids are not two named treasury humans."
   },
   "next_pin": {
     "id": "bc.microsoft.sandbox",
@@ -619,7 +677,7 @@
         "Work IQ Calendar"
       ],
       "owner_playbook": {
-        "actor": "DayTradingMarkets",
+        "actor": "James Hodnett",
         "cannot_be_done_by": "cursor.cloud_agent",
         "docs": [
           {
@@ -634,7 +692,7 @@
         "steps": [
           {
             "id": "sign_in",
-            "do": "Sign in to the Microsoft 365 admin center as DayTradingMarkets. Use a role that can manage Agent Tools.",
+            "do": "Sign in to the Microsoft 365 admin center as James Hodnett. Use a role that can manage Agent Tools.",
             "url": "https://admin.microsoft.com",
             "url_label": "admin.microsoft.com"
           },
@@ -1116,5 +1174,83 @@
       }
     ]
   },
+  "counsel": {
+    "signed": false,
+    "g12_open": true,
+    "g13_open": true,
+    "order_form": {
+      "kind": "ainav.order_form.v1",
+      "unsigned": true,
+      "skus": ["L1", "P-ADM", "U-DUAL"],
+      "seats": ["treasury_approver", "treasury_controller"],
+      "rules": [
+        "P-ADM attaches only after L1 Acceptance Kit PASS",
+        "U-DUAL is never free with P-ADM or U-SOR",
+        "LIVE_PIN_OK cannot be marked from this contract",
+        "Signed L1 is a separate counsel pack (G13)"
+      ]
+    },
+    "msa": {
+      "kind": "ainav.msa.skeleton.v1",
+      "unsigned": true,
+      "note": "Hygiene skeleton. G12 legal is not signed. Not a patent. Not LIVE_PIN_OK."
+    }
+  },
+  "owner_gates": [
+    {
+      "id": "invite.seat_b",
+      "do": "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
+      "url": "https://admin.microsoft.com/Adminportal/Home#/users",
+      "url_label": "Microsoft 365 admin → Users"
+    },
+    {
+      "id": "entra.confirm_oid",
+      "do": "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
+      "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
+      "url_label": "Entra users"
+    },
+    {
+      "id": "agent_tools.leave_available",
+      "do": "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
+      "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+      "url_label": "Agents > Tools registry"
+    },
+    {
+      "id": "graph.read_roles",
+      "do": "On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.",
+      "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
+      "url_label": "Same app API permissions"
+    },
+    {
+      "id": "dataverse.us",
+      "do": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+      "url": "https://admin.powerplatform.microsoft.com/environments",
+      "url_label": "Power Platform environments"
+    },
+    {
+      "id": "incorporation.date",
+      "do": "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
+      "url": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx",
+      "url_label": "Delaware entity search"
+    },
+    {
+      "id": "founders_hub",
+      "do": "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",
+      "url": "https://www.microsoft.com/en-us/startups",
+      "url_label": "Microsoft for Startups"
+    },
+    {
+      "id": "institute.launch",
+      "do": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.",
+      "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+      "url_label": "Azure Static Web Apps"
+    },
+    {
+      "id": "bc.production",
+      "do": "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.",
+      "url": "https://businesscentral.dynamics.com/ainav.institute/Sandbox",
+      "url_label": "Business Central Sandbox"
+    }
+  ],
   "open_gaps": ["G1/G10 LIVE_PIN_OK", "G12 legal", "G13 signed L1", "G14 live SoR", "Product HA"]
 }

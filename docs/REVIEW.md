@@ -7,14 +7,17 @@ Catalog-honest. Not a live pin. Not a launch. Not recognized revenue.
 AINav, Inc. has a running Job C admit plane, a Microsoft sandbox twin, and an Azure-hosted Institute that is **held until launch**. The company can prove the L1 write-gate on Business Central Sandbox. It cannot yet sell a signed L1, attach P-ADM, or mark LIVE_PIN_OK.
 
 **Success still open:** LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
-**Owner:** DayTradingMarkets. **Operator:** cursor.cloud_agent (not a seat, not dual admit).
-**Second officer:** none. **Named customers:** none. **Recognized revenue:** none.
+**Commercial close:** named dual seats × proof day × signed L1 × P-ADM attach
+**Lab pin:** LIVE_PIN_OK — never marked from sales.
+**Owner:** James Hodnett (handle DayTradingMarkets). **Operator:** cursor.cloud_agent (not a seat, not dual admit).
+**Second officer:** none. **Invited:** Cynthia Hodnett (not recorded, no email stored). **Named customers:** none. **Recognized revenue:** none.
 **Launch ready:** false. **Custom domain claimed:** false.
 
 ## Success equation scorecard
 
-The equation is a product. Every factor must be true. None are sold.
+The product equation is a lab pin times a sale. Controllers buy the commercial equation.
 
+- **Commercial close** — named dual seats × proof day × signed L1 × P-ADM attach. Closed: false.
 - **LIVE_PIN_OK** — false. Never marked from this plane.
 - **Proof day** — executable (`python -m ainav proof-day`, 90 minutes). Sold: false.
 - **Signed L1** — false. G13. Sandbox journal AINAV-L1 used lab operator oids, not two named treasury humans.
@@ -27,7 +30,7 @@ One company. Three SKUs. Ten departments. Six Microsoft connections. Eight compl
 
 Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → Teams notifies. Complements hold secrets, evidence, policy, and audit.
 
-- **Owner / operator** — `sole_owner`. Owner DayTradingMarkets. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.
+- **Owner / operator** — `sole_owner`. Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.
 - **Job C admit plane** — `running_code`. AINav Control Plane. Two distinct humans bind one action_hash. Then the write. Cloud Agent is not seat_a or seat_b.
 - **L1 / Business Central** — `sandbox_journal`. Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids — not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.
 - **P-ADM attach** — `unattached`. Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.
@@ -135,7 +138,7 @@ Leave Available (owner Unblocks if Blocked; this Cloud Agent cannot):
 
 Owner steps:
 
-1. Sign in to the Microsoft 365 admin center as DayTradingMarkets. Use a role that can manage Agent Tools. https://admin.microsoft.com
+1. Sign in to the Microsoft 365 admin center as James Hodnett. Use a role that can manage Agent Tools. https://admin.microsoft.com
 2. Open Agents > Tools > Registry. The Cloud admin deep link lands on the tools list. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
 3. For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
 4. Confirm these five show Status Available and Publisher Microsoft: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
@@ -162,7 +165,7 @@ This Cloud Agent cannot approve tools.
 ## Operating organization
 
 Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.
-- Owner DayTradingMarkets. Operator is not a seat.
+- Owner James Hodnett. Operator is not a seat.
 - Second unique human: false. Incorporation date: not stored in this tree.
 
 - **Treasury / Finance** — running_sandbox. systems: bc.premium. Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK. Blocked by: BC Production app not Enabled; signed L1 / two named treasury humans.
@@ -193,12 +196,15 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 
 ## Human gates (owner only)
 
-- Point ainav.institute at the Azure hostname. A coming-soon page is not the custom domain.
-- Record the incorporation date outside this tree for NVIDIA Inception.
-- Name a second unique human with a business email (Inception developer + business executive; also signed L1 seat B). The Cloud Agent is not a contact or a seat.
-- Create a US Power Platform environment with Dataverse, then set DATAVERSE_URL on a new agent.
-- Grant Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory on the same Entra app AINav Cloud Agent1.
-- Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write.
+- Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.
+- Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.
+- Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.
+- On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.
+- Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.
+- Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.
+- Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.
+- Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.
+- Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.
 
 ## Still missing
 

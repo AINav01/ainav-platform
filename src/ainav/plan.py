@@ -114,6 +114,8 @@ def one_page() -> str:
         "",
         cat["organization"]["note"],
         f"- Owner: {cat['operating']['owner_principal']}. Operator is not a seat.",
+        f"- Invited second human: {cat['organization']['contacts']['invited']['name']} (not recorded).",
+        f"- Commercial close: {cat['equations']['commercial']}",
         "- Second officer: none recorded. Do not invent one.",
         "- Incorporation date: not stored in this tree.",
     ]

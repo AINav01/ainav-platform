@@ -26,7 +26,7 @@ def test_catalog_has_exactly_three_skus():
     assert {s["id"] for s in cat["skus"]} == {"L1", "P-ADM", "U-DUAL"}
     assert cat["entity"]["job"] == "C"
     assert cat["operating"]["sole_owner"] is True
-    assert cat["operating"]["owner_principal"] == "DayTradingMarkets"
+    assert cat["operating"]["owner_principal"] == "James Hodnett"
     assert cat["operating"]["operator_is_seat"] is False
     assert cat["operating"]["agent_is_not_dual"] is True
     assert l1_action_classes() == frozenset({"bc.general_journal.post"})

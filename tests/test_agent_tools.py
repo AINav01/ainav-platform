@@ -29,7 +29,7 @@ def test_agent_tools_review_is_not_the_admit_plane():
     assert notes["workiq.sharepoint"] == "Kit evidence. Not dual."
     assert notes["workiq.mail"] == "Notify only. A mailbox is not a seat."
     assert notes["mcp.management"] == "Governs tools. Cannot weaken Job C."
-    assert body["owner_playbook"]["actor"] == "DayTradingMarkets"
+    assert body["owner_playbook"]["actor"] == "James Hodnett"
     assert body["owner_playbook"]["cannot_be_done_by"] == "cursor.cloud_agent"
     assert body["owner_playbook"]["steps"][0]["url"] == "https://admin.microsoft.com"
     on_disk = json.loads(Path("institute/agent-tools.json").read_text(encoding="utf-8"))

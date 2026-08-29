@@ -34,6 +34,11 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="review"' in html
     assert 'id="review-score"' in html
     assert 'id="review-fit"' in html
+    assert 'href="#buyer"' in html
+    assert 'href="#twin"' in html
+    assert 'href="#open"' in html
+    assert "James Hodnett" in html
+    assert "Cynthia Hodnett is invited" in html
     assert 'id="complement-cards"' in html
     assert 'id="twin-notify"' in html
     assert 'id="twin-kit"' in html

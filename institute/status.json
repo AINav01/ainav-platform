@@ -32,6 +32,7 @@
     "sandbox_document": "AINAV-L1",
     "wedge": "bc.general_journal.post"
   },
+  "commercial_equation": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "complements": [
     {
       "binds": [
@@ -212,8 +213,14 @@
     "product": "Microsoft 365 E7 / Microsoft Entra ID"
   },
   "institute": "AINAV.Institute",
+  "invited_second_human": {
+    "email": null,
+    "name": "Cynthia Hodnett",
+    "recorded": false
+  },
   "job": "C",
   "kind": "ainav.institute.status.v1",
+  "lab_pin": "LIVE_PIN_OK",
   "launch_ready": false,
   "live": false,
   "live_pin_ok": false,

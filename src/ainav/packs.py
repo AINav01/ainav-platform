@@ -50,6 +50,13 @@ def book_service(service_id: str, *, skus: tuple[str, ...]) -> dict[str, Any]:
             "note": svc.get("note"),
         }
     if svc.get("billable"):
+        if svc.get("requires_l1") is not False and "L1" not in skus:
+            raise ProvisionError(
+                "billable fee-for-service books only after L1",
+                reason_code="FFS_SCOPE",
+            )
+        if svc.get("attaches_udual") is True:
+            raise ProvisionError("fee-for-service cannot attach U-DUAL", reason_code="UDUAL_NOT_FREE")
         return {
             "id": service_id,
             "name": svc.get("name"),

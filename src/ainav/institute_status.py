@@ -207,4 +207,11 @@ def public_status() -> dict[str, Any]:
         "honest_missing": honest_missing(),
         "open_gaps": list(cat["open_gaps"]),
         "success_equation": cat["success_equation"],
+        "commercial_equation": cat["equations"]["commercial"],
+        "lab_pin": cat["equations"]["lab_pin"],
+        "invited_second_human": {
+            "name": cat["organization"]["contacts"]["invited"]["name"],
+            "recorded": False,
+            "email": None,
+        },
     }

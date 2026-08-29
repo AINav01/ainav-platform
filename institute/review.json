@@ -35,7 +35,7 @@
     {
       "id": "owner",
       "label": "Owner / operator",
-      "note": "Owner DayTradingMarkets. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.",
+      "note": "Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.",
       "status": "sole_owner"
     },
     {
@@ -90,7 +90,7 @@
   "named_customers": [],
   "operator": "cursor.cloud_agent",
   "operator_is_seat": false,
-  "owner": "DayTradingMarkets",
+  "owner": "James Hodnett",
   "probed": false,
   "product": "AINav Control Plane",
   "public_deploy_claimed": false,

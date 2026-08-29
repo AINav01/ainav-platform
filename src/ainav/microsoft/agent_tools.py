@@ -54,8 +54,9 @@ def validate_agent_tools(catalog: dict[str, Any]) -> None:
             reason_code="MICROSOFT_PRODUCT",
         )
     playbook = body.get("owner_playbook") or {}
-    if playbook.get("actor") != "DayTradingMarkets":
-        raise IntegrityError("owner playbook actor must be DayTradingMarkets", reason_code="MICROSOFT_PRODUCT")
+    owner = (catalog.get("operating") or {}).get("owner_principal")
+    if playbook.get("actor") != owner:
+        raise IntegrityError("owner playbook actor must be the sole owner", reason_code="MICROSOFT_PRODUCT")
     if playbook.get("cannot_be_done_by") != "cursor.cloud_agent":
         raise IntegrityError("Cloud Agent cannot run the owner playbook", reason_code="MICROSOFT_PRODUCT")
     step_ids = [item.get("id") for item in playbook.get("steps") or []]
