@@ -17,12 +17,14 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.17.0"
+    assert cat["entity"]["release"] == "2.18.0"
     assert "client utilizes AI" in cat["equations"]["control"]
     assert "institutes AINav" in cat["equations"]["cascade"]
     assert "one admit plane" in cat["equations"]["umbrella"]
     assert "off-switch" in cat["equations"]["plane"]
     assert "org chart" in cat["equations"]["org"]
+    assert "independence" in cat["equations"]["insulation"]
+    assert cat["icp"]["independent_of_microsoft"] is True
     assert cat["icp"]["counterparties_utilize_ai"] is True
     assert cat["icp"]["sits_over_client_ai"] is True
     assert cat["icp"]["org_chart"] is True
@@ -139,6 +141,8 @@ def test_cli_owner_and_counsel(capsys):
     assert "catalog" in capsys.readouterr().out.lower()
     assert main(["governance"]) == 0
     assert "failsafe" in capsys.readouterr().out.lower()
+    assert main(["ip"]) == 0
+    assert "not uncopyable" in capsys.readouterr().out.lower()
     assert main(["keep-artifact"]) == 0
     assert "live_pin_ok" in capsys.readouterr().out
     assert main(["brief-pdf"]) == 0

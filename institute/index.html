@@ -279,7 +279,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <ul class="stack" id="pack-industry">
             <li><strong>industry.treasury</strong> — included with L1. Journal wedge.</li>
             <li><strong>industry.payables / bank / cash / fixed_asset / inventory</strong> — priced L1 desks.</li>
-            <li><strong>industry.control_plane / industry.org</strong> — included with L1. Plane plus existing org seating.</li>
+            <li><strong>industry.control_plane / industry.org / industry.independence</strong> — included with L1. Plane, org seating, and Microsoft-is-not-the-failsafe.</li>
             <li><strong>industry.cascade</strong> — priced L1 desk. Client's customers utilize AI. Client's two humans admit.</li>
             <li><strong>industry.off_switch / rollback</strong> — priced L1 desks. Fail-closed freeze. Compensating write. Not a time machine.</li>
             <li><strong>industry.sales / quote_desk</strong> — included with paid U-DUAL.</li>
@@ -288,6 +288,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li><strong>industry.second_record</strong> — priced P-ADM keep. Sealed DecisionRecord. Not a certificate.</li>
             <li><strong>industry.board</strong> — priced P-ADM keep. Owner / board / examiner evidence. Not a filing.</li>
             <li><strong>industry.internal_audit</strong> — priced P-ADM keep. Seating map plus second record. Not a named auditor.</li>
+            <li><strong>industry.ip_keep</strong> — priced P-ADM keep. Reserved-work notice. Not a patent. Not uncopyable.</li>
           </ul>
         </div>
         <div>
@@ -802,13 +803,56 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
 
     <section id="ip">
       <h2>IP and competitor boundary</h2>
-      <p class="note">Hygiene in this tree. G12 legal is not signed.</p>
-      <ul class="stack">
-        <li><strong>AINav, Inc.</strong> owns the admit plane, gold vectors, lockfile, catalog, and mothership.</li>
-        <li><strong>Microsoft</strong> marks name integrations only. AINav is not a Microsoft product, Copilot feature, or Teams vote.</li>
-        <li>Copilot, Power Automate, Purview, Sentinel, ServiceNow, SailPoint, Okta, Palantir, UiPath, and Agentforce are not SKUs.</li>
-        <li>No patent is claimed in this tree.</li>
-      </ul>
+      <p class="note">Hygiene in this tree. Not a patent. Not uncopyable. G12 legal is not signed. Catalog list from <code>ip.json</code>.</p>
+      <p class="lede" id="ip-thesis">
+        The build insulates by staying independent of the AI vendor.
+        Microsoft sells Copilot and Agent 365. The vendor of the AI cannot
+        credibly sit over that AI as the human failsafe. Others can copy a
+        Teams vote. They do not copy Job C. This is not a patent.
+      </p>
+      <p class="equation" id="ip-equation">Insulation = independence × Job C lockfile × fail-closed gold × catalog law</p>
+      <p class="note" id="ip-why">
+        Microsoft is identity, notify, SoR, and host. It sells the models that draft the write.
+        A Copilot feature, PIM activation, or Teams vote is not dual admit.
+      </p>
+      <div class="split">
+        <div>
+          <h3 id="ip-layers-heading">What the build pins</h3>
+          <ul class="stack" id="ip-pins">
+            <li>Lockfile product stays job_c</li>
+            <li>Consume-once grant_id bound to seats and action_hash</li>
+            <li>Fail-closed EffectLedger — no admit, no write</li>
+            <li>Frozen gold vectors pin action_hash</li>
+            <li>Catalog law — three SKUs; competitor aliases cannot be provisioned</li>
+          </ul>
+          <h3>Layers</h3>
+          <ul class="stack" id="ip-layers">
+            <li>Independence — the vendor of the AI is not the failsafe of the AI.</li>
+            <li>Job C — write-gate, not agent inventory and not an IdP.</li>
+            <li>Fail-closed — off switch is no admit, no write.</li>
+            <li>Gold — a rebrand breaks gold.</li>
+            <li>Catalog law — Copilot, Agentforce, Joule, and ServiceNow cannot be SKUs.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What they can copy</h3>
+          <ul class="stack" id="ip-copy">
+            <li>A two-person Business Central approval workflow</li>
+            <li>A Teams approval as HITL</li>
+            <li>PIM activation as privileged access</li>
+            <li>Copilot asking a human before a suggestion</li>
+          </ul>
+          <h3>Refuse</h3>
+          <ul class="stack refuse" id="ip-refuse">
+            <li>uncopyable</li>
+            <li>patent granted</li>
+            <li>Microsoft cannot legally copy</li>
+            <li>AINav is a Microsoft product</li>
+            <li>powered by Copilot</li>
+          </ul>
+          <p class="note" id="ip-others">Same conflict for Salesforce Agentforce, SAP Joule, ServiceNow Now Assist, Palantir AIP, UiPath, Workday, Okta, SailPoint.</p>
+        </div>
+      </div>
     </section>
 
     <section id="programs">

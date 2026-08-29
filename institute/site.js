@@ -76,6 +76,49 @@
       /* governance.json is optional when opened as a file */
     });
 
+  fetch("ip.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.sku || data.patent_claimed || data.uncopyable) return;
+      var thesis = document.getElementById("ip-thesis");
+      if (thesis && data.thesis) thesis.textContent = data.thesis;
+      var equation = document.getElementById("ip-equation");
+      if (equation && data.equation) equation.textContent = "Insulation = " + data.equation;
+      var why = document.getElementById("ip-why");
+      if (why && data.why_microsoft_is_not_the_failsafe) why.textContent = data.why_microsoft_is_not_the_failsafe;
+      var others = document.getElementById("ip-others");
+      if (others && data.others && data.others.length) {
+        others.textContent = "Same conflict for " + data.others.join(", ") + ".";
+      }
+      function fill(id, items, line) {
+        var root = document.getElementById(id);
+        if (!root || !items || !items.length) return;
+        root.textContent = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = line(item);
+          root.appendChild(li);
+        });
+      }
+      fill("ip-pins", data.what_the_build_pins || [], function (item) {
+        return item;
+      });
+      fill("ip-layers", data.layers || [], function (item) {
+        return item.id + " — " + item.does;
+      });
+      fill("ip-copy", data.what_they_can_copy || [], function (item) {
+        return item;
+      });
+      fill("ip-refuse", data.refuse || [], function (item) {
+        return item;
+      });
+    })
+    .catch(function () {
+      /* ip.json is optional when opened as a file */
+    });
+
   fetch("client-org.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

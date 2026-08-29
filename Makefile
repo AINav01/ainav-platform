@@ -21,6 +21,7 @@ plan-check:
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" | diff -q institute/packs.json -
 	python3 -c "from ainav.governance import public_governance; import json; print(json.dumps(public_governance(), indent=2, sort_keys=True))" | diff -q institute/governance.json -
 	python3 -c "from ainav.client_org import public_client_org; import json; print(json.dumps(public_client_org(), indent=2, sort_keys=True))" | diff -q institute/client-org.json -
+	python3 -c "from ainav.ip import public_insulation; import json; print(json.dumps(public_insulation(), indent=2, sort_keys=True))" | diff -q institute/ip.json -
 	python3 -m ainav governance | diff -q docs/GOVERNANCE.md -
 	python3 -m ainav owner-steps | diff -q docs/OWNER_STEPS.md -
 	python3 -m ainav order-form | diff -q docs/ORDER_FORM.md -

@@ -262,6 +262,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"- Umbrella: {cat['equations']['umbrella']}",
         f"- Plane: {cat['equations']['plane']}",
         f"- Org: {cat['equations']['org']}",
+        f"- Insulation: {cat['equations']['insulation']}",
+        "- Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.",
         f"- Does: {cat['governance']['failsafe']['does']}",
         "- Separate from: " + "; ".join(cat["governance"]["failsafe"]["separate_from"]) + ".",
         f"- First record: {cat['governance']['records']['first']['what']}",

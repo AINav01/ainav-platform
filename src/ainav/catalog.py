@@ -139,6 +139,18 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "org equation is client org chart \u00d7 existing SOD \u00d7 one admit plane",
             reason_code="CATALOG_EQUATION",
         )
+    insulation = str(equations.get("insulation") or "").lower()
+    if "independence" not in insulation or "job c" not in insulation:
+        raise IntegrityError(
+            "insulation equation is independence \u00d7 Job C lockfile",
+            reason_code="CATALOG_EQUATION",
+        )
+    for stem in ("lockfile", "gold", "catalog"):
+        if stem not in insulation:
+            raise IntegrityError(
+                f"insulation equation must keep {stem}",
+                reason_code="CATALOG_EQUATION",
+            )
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
@@ -217,6 +229,9 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
         "department",
         "org chart",
         "one title",
+        "uncopyable",
+        "patent",
+        "cannot legally copy",
     ):
         if stem not in refuse:
             raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
@@ -317,6 +332,8 @@ def _validate_icp(catalog: dict[str, Any]) -> None:
         raise IntegrityError("ICP maps the client org chart", reason_code="CATALOG_ICP")
     if icp.get("do_not_invent_department_heads") is not True:
         raise IntegrityError("do not invent department heads", reason_code="ICP_NAMED")
+    if icp.get("independent_of_microsoft") is not True:
+        raise IntegrityError("ICP plane is independent of Microsoft", reason_code="CATALOG_ICP")
 
 
 def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:

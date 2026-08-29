@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.17.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.18.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.17.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.18.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -24,7 +24,7 @@ Microsoft hosts, identifies, notifies, and receives the write after the two of y
 
 AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is the public law of that plane — hosted on Azure, not launched, not bound to ainav.institute until James says launch in his own words. Master mothership issues the lockfile and never writes a client system of record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7, Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They receive the write after you and James admit it.
 
-The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. Copilot, Agent 365, a BYO MCP, or a counterparty model may draft a journal. AINav is not that AI. It is the human control plane that sits over all of them: failsafe, off switch, reset, rollback. The client's two seats admit, then the write. No admit, no write. First record is the SoR write. Second record is the sealed DecisionRecord. Off switch is fail-closed, not powering down Copilot. Rollback is a compensating write, not a time machine. We map NIST, SOX, fiduciary oversight, books-and-records, the EU AI Act, and ISO 42001. We do not claim those certificates. We do not invent a board or a regulator. The plane sits on the client's existing org chart. Treasury and controller hold the two seats. Department AI is not a seat. We do not invent named department heads. Governance is not a fourth SKU.
+The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. Copilot, Agent 365, a BYO MCP, or a counterparty model may draft a journal. AINav is not that AI. It is the human control plane that sits over all of them: failsafe, off switch, reset, rollback. The client's two seats admit, then the write. No admit, no write. First record is the SoR write. Second record is the sealed DecisionRecord. Off switch is fail-closed, not powering down Copilot. Rollback is a compensating write, not a time machine. We map NIST, SOX, fiduciary oversight, books-and-records, the EU AI Act, and ISO 42001. We do not claim those certificates. We do not invent a board or a regulator. The plane sits on the client's existing org chart. Treasury and controller hold the two seats. Department AI is not a seat. We do not invent named department heads. Governance is not a fourth SKU. The plane stays independent of Microsoft and of the client's other AI vendors. A Teams vote or a Copilot prompt is not dual admit. This is not a patent. This is not uncopyable. G12 stays open.
 
 We sell three things only. Packs, hours, and Microsoft licenses are not products. A controller buys the commercial close: named dual seats × proof day × signed L1 × P-ADM attach. The lab pin LIVE_PIN_OK is a separate engineering fact and is never marked from a sale. Signed L1 is a counsel pack. It is still open.
 
@@ -140,6 +140,7 @@ Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane
 | One L1 plus off-switch desk | One controller buys L1 then attaches industry.off_switch so humans can freeze writes. | $34,000–$50,000 |
 | One controller — L1, P-ADM, board keep | One controller buys L1, attaches P-ADM, then attaches industry.board for owner/board/examiner evidence. | $73,000–$108,000 |
 | One controller — L1, P-ADM, internal-audit keep | One controller buys L1, attaches P-ADM, then attaches industry.internal_audit for the seating map. | $73,000–$108,000 |
+| One controller — L1, P-ADM, IP keep | One controller buys L1, attaches P-ADM, then attaches industry.ip_keep for reserved-work notice. | $73,000–$108,000 |
 | One L1 plus payables and bank desks | One controller buys L1 then attaches industry.payables and industry.bank. | $40,000–$60,000 |
 | One controller — L1, P-ADM, oversight keep | One controller buys L1, attaches P-ADM, then attaches industry.oversight. | $73,000–$108,000 |
 | All three SKUs plus invoice and credit desks | One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit. | $100,000–$155,000 |

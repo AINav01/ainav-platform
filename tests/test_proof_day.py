@@ -92,6 +92,7 @@ def test_buyer_page_has_no_inbox_or_named_customer():
     assert profile["sits_over_client_ai"] is True
     assert profile["org_chart"] is True
     assert profile["do_not_invent_department_heads"] is True
+    assert profile["independent_of_microsoft"] is True
     assert {"owner", "board", "examiner"} <= set(profile["must_have_for"])
     assert "institutes" in str(profile["institutes_ainav"]).lower()
     assert "not AINav" in profile["ai"]

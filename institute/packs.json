@@ -119,6 +119,16 @@
       "rate_usd_per_day": 3500,
       "requires_l1": true,
       "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.ip_hygiene",
+      "name": "IP / independence hygiene",
+      "note": "Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
     }
   ],
   "industry": [
@@ -470,6 +480,34 @@
       "note": "A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.independence",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Independent plane",
+      "note": "L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.ip_keep",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "name": "IP / reserved-work keep",
+      "note": "A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
     }
   ],
   "kind": "ainav.institute.packs.v1",
@@ -700,6 +738,26 @@
         "governance.org.export"
       ],
       "note": "P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.independence",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.ip",
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "note": "P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
     }

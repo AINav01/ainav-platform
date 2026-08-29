@@ -1,0 +1,79 @@
+{
+  "equation": "independence \u00d7 Job C lockfile \u00d7 fail-closed gold \u00d7 catalog law",
+  "g12_open": true,
+  "kind": "ainav.ip.insulation.v1",
+  "layers": [
+    {
+      "does": "The vendor of the AI is not the failsafe of the AI.",
+      "id": "independence"
+    },
+    {
+      "does": "Write-gate, not agent inventory and not an IdP.",
+      "id": "job_c"
+    },
+    {
+      "does": "Off switch is no admit, no write. Not a Teams vote.",
+      "id": "fail_closed"
+    },
+    {
+      "does": "Frozen vectors and lockfile digest. A rebrand breaks gold.",
+      "id": "gold"
+    },
+    {
+      "does": "Copilot, Agentforce, Joule, and ServiceNow cannot be SKUs.",
+      "id": "catalog_law"
+    },
+    {
+      "does": "AINav Control Plane and AINAV.Institute. Microsoft marks are theirs.",
+      "id": "marks"
+    }
+  ],
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_use": "Name integrations only. No affiliation, endorsement, or joint-venture claim. Microsoft is not the product.",
+  "note": "Hygiene. Not a patent. Not uncopyable. G12 stays open. Microsoft is not the product.",
+  "others": [
+    "Salesforce Agentforce",
+    "SAP Joule",
+    "ServiceNow Now Assist",
+    "Palantir AIP",
+    "UiPath",
+    "Workday",
+    "Okta",
+    "SailPoint"
+  ],
+  "patent_claimed": false,
+  "refuse": [
+    "uncopyable",
+    "patent granted",
+    "Microsoft cannot legally copy",
+    "AINav is a Microsoft product",
+    "powered by Copilot"
+  ],
+  "reserved_work": [
+    "Job C dual-admit algorithm and lockfile",
+    "ConsumeLedger / EffectLedger / grant_id bind",
+    "dual_consume.lua validate-all-then-write-all",
+    "Frozen gold vectors and action_hash contract",
+    "Catalog, mothership provision, and ops spine"
+  ],
+  "sku": false,
+  "thesis": "The build insulates by staying independent of the AI vendor. Microsoft sells Copilot and Agent 365. The vendor of the AI cannot credibly sit over that AI as the human failsafe. Others can copy a Teams vote. They do not copy Job C: lockfile stays job_c, consume-once grant, fail-closed effect, frozen gold, catalog law. This is not a patent. This is not uncopyable. G12 stays open.",
+  "uncopyable": false,
+  "what_the_build_pins": [
+    "Lockfile product stays job_c \u2014 refuse_lockfile_rebrand",
+    "Consume-once grant_id bound to seats and action_hash",
+    "Fail-closed EffectLedger \u2014 no admit, no write",
+    "Frozen gold vectors pin action_hash",
+    "Sealed hash-chained DecisionRecords (first and second record)",
+    "Catalog law \u2014 three SKUs, competitor aliases cannot be provisioned",
+    "Microsoft marks name integrations only"
+  ],
+  "what_they_can_copy": [
+    "A two-person Business Central approval workflow",
+    "A Teams approval as HITL",
+    "PIM activation as privileged access",
+    "Copilot asking a human before a suggestion"
+  ],
+  "why_microsoft_is_not_the_failsafe": "Microsoft is identity, notify, SoR, and host. It sells the models that draft the write. An independent plane must sit over those models. A Copilot feature, PIM activation, or Teams vote is not dual admit."
+}

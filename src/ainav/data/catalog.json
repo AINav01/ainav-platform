@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.17.0",
+    "release": "2.18.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -228,7 +228,9 @@
     "Off switch is fail-closed, not powering down Copilot",
     "Rollback is a dual-admitted compensating write, not a time machine",
     "Client departments are not SKUs; department AI is not a seat",
-    "Do not invent named department heads"
+    "Do not invent named department heads",
+    "Microsoft is not the product; lockfile stays job_c",
+    "No patent claimed in this tree; insulation is not uncopyable"
   ],
   "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "equations": {
@@ -240,7 +242,8 @@
     "cascade": "client's clients utilize AI \u00d7 client institutes AINav \u00d7 two-human control",
     "umbrella": "every client AI \u00d7 one admit plane \u00d7 two-human control",
     "plane": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
-    "org": "client org chart \u00d7 existing SOD \u00d7 one admit plane"
+    "org": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
+    "insulation": "independence \u00d7 Job C lockfile \u00d7 fail-closed gold \u00d7 catalog law"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
@@ -602,6 +605,15 @@
       "wedge": false,
       "upsell": true,
       "note": "A la carte P-ADM keep. Client org seating map: who drafts, who admits, who keeps. Not a named customer. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "ip.reserved.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_catalog",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Reserved-work notice for counsel. Not a patent. Not uncopyable. Not LIVE_PIN_OK."
     }
   ],
   "industry_packs": [
@@ -1161,6 +1173,51 @@
         "Export who admitted and the client org seating map.",
         "Do not invent an internal-audit partner name."
       ]
+    },
+    {
+      "id": "industry.independence",
+      "name": "Independent plane",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent.",
+      "runbook": [
+        "Requires L1. The vendor of the AI is not the failsafe of the AI.",
+        "Copilot, Agent 365, PIM, and a Teams vote are not dual admit.",
+        "Seat A treasury_approver. Seat B treasury_controller.",
+        "Do not claim uncopyable. Do not claim a patent. G12 stays open."
+      ]
+    },
+    {
+      "id": "industry.ip_keep",
+      "name": "IP / reserved-work keep",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "note": "A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK.",
+      "runbook": [
+        "Requires P-ADM after kit PASS. Not a SKU.",
+        "Export the reserved-work list and Microsoft-not-the-product notice.",
+        "This is not a patent. G12 stays open."
+      ]
     }
   ],
   "libraries": [
@@ -1518,6 +1575,38 @@
         "governance.org.export"
       ],
       "note": "P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "lib.l1.independence",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU."
+    },
+    {
+      "id": "lib.padm.ip",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "note": "P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -1637,6 +1726,16 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.ip_hygiene",
+      "name": "IP / independence hygiene",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -1933,7 +2032,8 @@
       "examiner"
     ],
     "org_chart": true,
-    "do_not_invent_department_heads": true
+    "do_not_invent_department_heads": true,
+    "independent_of_microsoft": true
   },
   "buyer": {
     "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.",
@@ -1967,7 +2067,10 @@
       "invented department head",
       "department AI as dual",
       "one title as both seats",
-      "AINav replaces the org chart"
+      "AINav replaces the org chart",
+      "uncopyable",
+      "patent granted",
+      "Microsoft cannot legally copy"
     ],
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
     "contact_email": null,
@@ -2755,8 +2858,77 @@
       "iso 42001 certified",
       "replaces counsel",
       "ainav is the client ai",
-      "client ai is dual"
-    ]
+      "client ai is dual",
+      "uncopyable",
+      "patent granted",
+      "microsoft cannot legally copy"
+    ],
+    "insulation": {
+      "sku": false,
+      "patent_claimed": false,
+      "uncopyable": false,
+      "g12_open": true,
+      "thesis": "The build insulates by staying independent of the AI vendor. Microsoft sells Copilot and Agent 365. The vendor of the AI cannot credibly sit over that AI as the human failsafe. Others can copy a Teams vote. They do not copy Job C: lockfile stays job_c, consume-once grant, fail-closed effect, frozen gold, catalog law. This is not a patent. This is not uncopyable. G12 stays open.",
+      "why_microsoft_is_not_the_failsafe": "Microsoft is identity, notify, SoR, and host. It sells the models that draft the write. An independent plane must sit over those models. A Copilot feature, PIM activation, or Teams vote is not dual admit.",
+      "what_they_can_copy": [
+        "A two-person Business Central approval workflow",
+        "A Teams approval as HITL",
+        "PIM activation as privileged access",
+        "Copilot asking a human before a suggestion"
+      ],
+      "what_the_build_pins": [
+        "Lockfile product stays job_c \u2014 refuse_lockfile_rebrand",
+        "Consume-once grant_id bound to seats and action_hash",
+        "Fail-closed EffectLedger \u2014 no admit, no write",
+        "Frozen gold vectors pin action_hash",
+        "Sealed hash-chained DecisionRecords (first and second record)",
+        "Catalog law \u2014 three SKUs, competitor aliases cannot be provisioned",
+        "Microsoft marks name integrations only"
+      ],
+      "layers": [
+        {
+          "id": "independence",
+          "does": "The vendor of the AI is not the failsafe of the AI."
+        },
+        {
+          "id": "job_c",
+          "does": "Write-gate, not agent inventory and not an IdP."
+        },
+        {
+          "id": "fail_closed",
+          "does": "Off switch is no admit, no write. Not a Teams vote."
+        },
+        {
+          "id": "gold",
+          "does": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+        },
+        {
+          "id": "catalog_law",
+          "does": "Copilot, Agentforce, Joule, and ServiceNow cannot be SKUs."
+        },
+        {
+          "id": "marks",
+          "does": "AINav Control Plane and AINAV.Institute. Microsoft marks are theirs."
+        }
+      ],
+      "others": [
+        "Salesforce Agentforce",
+        "SAP Joule",
+        "ServiceNow Now Assist",
+        "Palantir AIP",
+        "UiPath",
+        "Workday",
+        "Okta",
+        "SailPoint"
+      ],
+      "refuse": [
+        "uncopyable",
+        "patent granted",
+        "Microsoft cannot legally copy",
+        "AINav is a Microsoft product",
+        "powered by Copilot"
+      ]
+    }
   },
   "programs": {
     "lead_narrative": "Job C: dual-admitted effect authority before Dynamics 365 Business Central privileged writes. Not a cryptocurrency product. Not an IdP. Not agent inventory.",

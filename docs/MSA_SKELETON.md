@@ -25,3 +25,5 @@ Must not change:
 - Rollback is a dual-admitted compensating write, not a time machine
 - Client departments are not SKUs; department AI is not a seat
 - Do not invent named department heads
+- Microsoft is not the product; lockfile stays job_c
+- No patent claimed in this tree; insulation is not uncopyable

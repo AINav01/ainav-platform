@@ -122,9 +122,10 @@ def main(argv: list[str] | None = None) -> int:
         print(deep_dive(probe=bool(args.probe)), end="")
         return 0
     if args.cmd == "ip":
-        from ainav.ip import notice
+        from ainav.ip import insulation_markdown, notice
 
         print(notice(), end="")
+        print(insulation_markdown(), end="")
         return 0
     if args.cmd == "programs":
         from ainav.programs import application_order, programs, qualify

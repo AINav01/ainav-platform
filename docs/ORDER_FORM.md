@@ -36,6 +36,8 @@ Seats: treasury_approver / treasury_controller
 - **industry.board** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
 - **industry.org** — included with L1. Not a SKU.
 - **industry.internal_audit** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
+- **industry.independence** — included with L1. Not a SKU.
+- **industry.ip_keep** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
 
 ## Rules
 

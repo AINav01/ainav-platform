@@ -36,6 +36,7 @@ def public_governance() -> dict[str, Any]:
         "umbrella_equation": load_catalog()["equations"].get("umbrella"),
         "plane_equation": load_catalog()["equations"].get("plane"),
         "org_equation": load_catalog()["equations"].get("org"),
+        "insulation_equation": load_catalog()["equations"].get("insulation"),
         "client_org": {
             "thesis": load_catalog()["client_org"]["thesis"],
             "replaces_org_chart": False,
@@ -60,6 +61,8 @@ def governance_markdown() -> str:
         f"Umbrella: {load_catalog()['equations'].get('umbrella')}.",
         f"Plane: {load_catalog()['equations'].get('plane')}.",
         f"Org: {load_catalog()['equations'].get('org')}.",
+        f"Insulation: {load_catalog()['equations'].get('insulation')}.",
+        "Independent of Microsoft. Not a patent. Not uncopyable.",
         f"Certified: {str(body['certified']).lower()}. Replaces counsel: "
         f"{str(body['replaces_counsel']).lower()}. SKU: false. LIVE_PIN_OK: false.",
         "",

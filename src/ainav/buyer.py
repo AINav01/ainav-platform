@@ -51,6 +51,7 @@ def icp_profile() -> dict[str, Any]:
         "must_have_for": list(body.get("must_have_for") or []),
         "org_chart": bool(body.get("org_chart")),
         "do_not_invent_department_heads": True,
+        "independent_of_microsoft": True,
     }
 
 

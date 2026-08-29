@@ -44,6 +44,8 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert "first record" in md.lower()
     assert "second record" in md.lower()
     assert "cascade" in md.lower()
+    assert "independence" in (body.get("insulation_equation") or "").lower()
+    assert "insulation" in md.lower()
     assert body["must_have"]["mandated"] is False
     assert body["plane"]["sits_over_client_ai"] is True
     assert body["plane"]["is_the_clients_ai"] is False

@@ -6,6 +6,8 @@ Cascade: client's clients utilize AI × client institutes AINav × two-human con
 Umbrella: every client AI × one admit plane × two-human control.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
+Insulation: independence × Job C lockfile × fail-closed gold × catalog law.
+Independent of Microsoft. Not a patent. Not uncopyable.
 Certified: false. Replaces counsel: false. SKU: false. LIVE_PIN_OK: false.
 
 ## Failsafe (client utilizes AI; humans control)

@@ -19,7 +19,9 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Umbrella: every client AI × one admit plane × two-human control
 - Plane: failsafe × off-switch × reset × rollback × two-human control
 - Org: client org chart × existing SOD × one admit plane
+- Insulation: independence × Job C lockfile × fail-closed gold × catalog law
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
+- Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.
 - Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write.
 - Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense, Board fiduciary oversight of material AI write risk, COSO internal control.
@@ -80,6 +82,8 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **industry.board** — Board / examiner keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.)
 - **industry.org** — Client org seating (requires L1; included; L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads.)
 - **industry.internal_audit** — Internal-audit keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK.)
+- **industry.independence** — Independent plane (requires L1; included; L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent.)
+- **industry.ip_keep** — IP / reserved-work keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK.)
 
 ## Libraries (not SKUs)
 
@@ -104,6 +108,8 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **lib.padm.board** — requires P-ADM. P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.
 - **lib.l1.org** — requires L1. L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU.
 - **lib.padm.audit** — requires P-ADM. P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK.
+- **lib.l1.independence** — requires L1. L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU.
+- **lib.padm.ip** — requires P-ADM. P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK.
 
 ## Fee-for-service (not SKUs)
 
@@ -119,6 +125,7 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **ffs.institute_failsafe** — Institute AINav failsafe ($3,500/day). Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.
 - **ffs.board_briefing** — Owner / board / examiner briefing ($3,500/day). Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.
 - **ffs.org_workshop** — Client org-chart workshop ($3,500/day). Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL.
+- **ffs.ip_hygiene** — IP / independence hygiene ($3,500/day). Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL.
 
 ## Operations
 
@@ -276,3 +283,5 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - Rollback is a dual-admitted compensating write, not a time machine
 - Client departments are not SKUs; department AI is not a seat
 - Do not invent named department heads
+- Microsoft is not the product; lockfile stays job_c
+- No patent claimed in this tree; insulation is not uncopyable

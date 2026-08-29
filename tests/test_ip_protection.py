@@ -8,7 +8,14 @@ from agent_gov import default_lockfile, load_lockfile
 from agent_gov.errors import IntegrityError, LockfileError
 from ainav.catalog import load_catalog, validate_catalog
 from ainav.errors import IPError
-from ainav.ip import notice, refuse_claim, refuse_lockfile_rebrand, screen_pack_label
+from ainav.ip import (
+    insulation_markdown,
+    notice,
+    public_insulation,
+    refuse_claim,
+    refuse_lockfile_rebrand,
+    screen_pack_label,
+)
 from ainav.mothership import MasterMothership
 
 
@@ -18,6 +25,11 @@ def test_notice_is_ainav_owned_and_g12_open():
     assert "G12" in text
     assert "Microsoft" in text
     assert "not a signed opinion" in text.lower() or "not a signed" in text.lower()
+    assert "not uncopyable" in text.lower()
+    ins = public_insulation()
+    assert ins["sku"] is False
+    assert ins["patent_claimed"] is False
+    assert "not a patent" in insulation_markdown().lower()
 
 
 def test_microsoft_copilot_cannot_be_a_sku():
@@ -44,6 +56,12 @@ def test_forbidden_claims_and_rebrand():
     assert exc.value.reason_code == "IP_CLAIM"
     with pytest.raises(IPError):
         refuse_claim("powered by Copilot")
+    with pytest.raises(IPError):
+        refuse_claim("uncopyable")
+    with pytest.raises(IPError):
+        refuse_claim("patent granted")
+    with pytest.raises(IPError):
+        refuse_claim("Microsoft cannot legally copy")
     with pytest.raises(LockfileError) as lock:
         refuse_lockfile_rebrand("copilot")
     assert lock.value.reason_code == "LOCKFILE_PRODUCT"

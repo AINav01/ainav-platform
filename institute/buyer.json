@@ -12,6 +12,7 @@
     "do_not_invent_names": true,
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
+    "independent_of_microsoft": true,
     "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI",
     "must_have_for": [
       "owner",
@@ -55,7 +56,10 @@
     "invented department head",
     "department AI as dual",
     "one title as both seats",
-    "AINav replaces the org chart"
+    "AINav replaces the org chart",
+    "uncopyable",
+    "patent granted",
+    "Microsoft cannot legally copy"
   ],
   "seats": [
     "treasury_approver",

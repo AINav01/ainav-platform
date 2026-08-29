@@ -110,7 +110,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.17.0 (this tree)
+### 2.18.0 (this tree)
+
+The build insulates by staying independent of the AI vendor.
+Microsoft sells Copilot and Agent 365; the vendor of the AI cannot
+credibly sit over that AI as the human failsafe. Others can copy a
+Teams vote. They do not copy Job C: lockfile stays `job_c`,
+fail-closed gold, catalog law. Not a patent. Not uncopyable.
+G12 stays open. Owner gaps stay open.
+
+### 2.17.0
 
 The plane sits on the client's existing org chart. Treasury and
 controller hold the two admit seats. IT hosts Copilot. Department AI

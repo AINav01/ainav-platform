@@ -147,7 +147,10 @@ def brief_document() -> list[dict[str, Any]]:
                 "EU AI Act, and ISO 42001. We do not claim those certificates. We do not invent "
                 "a board or a regulator. The plane sits on the client's existing org chart. "
                 "Treasury and controller hold the two seats. Department AI is not a seat. "
-                "We do not invent named department heads. Governance is not a fourth SKU."
+                "We do not invent named department heads. Governance is not a fourth SKU. "
+                "The plane stays independent of Microsoft and of the client's other AI vendors. "
+                "A Teams vote or a Copilot prompt is not dual admit. This is not a patent. "
+                "This is not uncopyable. G12 stays open."
             ),
         },
         {
