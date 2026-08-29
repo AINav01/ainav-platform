@@ -48,7 +48,8 @@ def test_institute_foundation_is_catalog_honest():
     assert gov["cascade"]["counterparties_utilize_ai"] is True
     assert gov["cascade"]["client_institutes_ainav"] is True
     assert "sor" in gov["records"]["first"]["what"].lower()
-    assert gov["records"]["second"]["sku"] is False
+    assert gov["records"]["sku"] is False
+    assert gov["records"]["certified"] is False
     assert 'id="pack-industry"' in html
     assert 'id="pack-libraries"' in html
     assert "packs.json" in js
