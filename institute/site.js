@@ -97,7 +97,9 @@
         });
       }
       var thesisNode = document.getElementById("plane-thesis");
-      if (thesisNode && data.thesis && thesisNode.getAttribute("data-keep") !== "short") {
+      if (thesisNode && data.floor && data.floor.lede && thesisNode.getAttribute("data-keep") === "short") {
+        thesisNode.textContent = data.floor.lede;
+      } else if (thesisNode && data.thesis && thesisNode.getAttribute("data-keep") !== "short") {
         thesisNode.textContent = data.thesis;
       }
       if (!thesisNode || thesisNode.getAttribute("data-keep") !== "short") {
@@ -105,12 +107,7 @@
       }
       if (data.equation) set("plane-equation", "Interface = " + data.equation);
       if (data.dashboard && data.dashboard.realtime_means) set("plane-realtime", data.dashboard.realtime_means);
-      if (data.provision_bands) {
-        var week = [data.provision_bands.week_one_note, data.provision_bands.attach_means, data.provision_bands.desk_band_means]
-          .filter(Boolean)
-          .join(" ");
-        if (week) set("plane-week-one", week + " Attached 0 / 0 / 0.");
-      }
+      set("plane-week-one", "Three scopes. One dashboard. Attached 0 / 0 / 0.");
       if (data.access) {
         set(
           "plane-access",
@@ -349,6 +346,24 @@
           card(provision, { name: item.name, state: item.state, tone: "hold", note: item.note || "" });
         });
       }
+      var scopes = document.getElementById("plane-scopes");
+      if (scopes && data.floor && data.floor.scopes) {
+        scopes.textContent = "";
+        data.floor.scopes.forEach(function (item) {
+          card(
+            scopes,
+            {
+              name: item.name,
+              state: item.value,
+              tone: item.id === "advanced" ? "list" : "ready",
+              note: item.note || ""
+            },
+            function (art) {
+              art.setAttribute("data-scope", item.id || "");
+            }
+          );
+        });
+      }
       var bands = document.getElementById("plane-bands");
       if (bands && data.provision_bands && data.provision_bands.items) {
         bands.textContent = "";
@@ -360,7 +375,7 @@
               name: item.name,
               state: upsell ? "upsell band" : "included with L1",
               tone: upsell ? "list" : "ready",
-              note: "SKU: " + String(item.sku).toLowerCase() + ". " + (item.includes || "") + " " + (item.note || "")
+              note: item.note || ""
             },
             function (art) {
               art.setAttribute("data-band", upsell ? "advanced" : "standard");
@@ -368,28 +383,60 @@
           );
         });
       }
-      var deskRows = [];
-      function pushDesks(rows) {
-        (rows || []).forEach(function (item) {
-          deskRows.push([item.name, item.band || "", item.sku || "", item.attach || "", item.note || ""]);
-        });
-      }
-      if (data.provision_bands) {
-        pushDesks(data.provision_bands.included_l1);
-        pushDesks(data.provision_bands.priced_l1);
-        pushDesks(data.provision_bands.included_padm);
-        pushDesks(data.provision_bands.priced_padm);
-        pushDesks(data.provision_bands.included_udual);
-        pushDesks(data.provision_bands.priced_udual);
+      var deskRoot = document.getElementById("plane-desks");
+      if (deskRoot && data.provision_bands) {
+        deskRoot.textContent = "";
+        function deskGroup(label) {
+          var tr = document.createElement("tr");
+          tr.setAttribute("data-group", "true");
+          var th = document.createElement("th");
+          th.colSpan = 5;
+          th.textContent = label;
+          tr.appendChild(th);
+          deskRoot.appendChild(tr);
+        }
+        function deskRows(list, kind) {
+          (list || []).forEach(function (item) {
+            if (kind && item.kind && item.kind !== kind) return;
+            var tr = document.createElement("tr");
+            [item.name, item.band || "", item.sku || "", item.attach || "", item.note || ""].forEach(function (value) {
+              tr.appendChild(cell(value));
+            });
+            deskRoot.appendChild(tr);
+          });
+        }
+        deskGroup("Standard — included with L1");
+        deskRows(data.provision_bands.included_l1, "desk");
+        deskGroup("Advanced — priced attach");
+        deskRows(data.provision_bands.priced_l1, "desk");
+        deskRows(data.provision_bands.priced_padm, "desk");
+        deskRows(data.provision_bands.priced_udual, "desk");
+        deskGroup("Advanced — included with P-ADM (not free)");
+        deskRows(data.provision_bands.included_padm);
+        deskGroup("Advanced — included with paid U-DUAL (not free)");
+        deskRows(data.provision_bands.included_udual);
+        deskGroup("Hours");
         (data.provision_bands.included_hours || []).forEach(function (item) {
-          deskRows.push([item.name, "standard", "hours", "included with L1", item.note || ""]);
+          var tr = document.createElement("tr");
+          [item.name, "standard", "hours", "included with L1", item.note || ""].forEach(function (value) {
+            tr.appendChild(cell(value));
+          });
+          deskRoot.appendChild(tr);
         });
         (data.provision_bands.priced_hours || []).forEach(function (item) {
           var rate = item.rate ? ("$" + Number(item.rate).toLocaleString() + "/day") : "priced";
-          deskRows.push([item.name, "advanced · priced", "hours", rate, item.note || ""]);
+          var tr = document.createElement("tr");
+          [item.name, "advanced · priced", "hours", rate, item.note || ""].forEach(function (value) {
+            tr.appendChild(cell(value));
+          });
+          deskRoot.appendChild(tr);
         });
+        deskGroup("Libraries — same modules, not extra SKUs");
+        deskRows(data.provision_bands.included_l1, "library");
+        deskRows(data.provision_bands.priced_l1, "library");
+        deskRows(data.provision_bands.priced_padm, "library");
+        deskRows(data.provision_bands.priced_udual, "library");
       }
-      fillRows("plane-desks", deskRows, function (row) { return row; });
       if (data.zero_trust) {
         set("plane-zero-trust", data.zero_trust.does + " Does not: " + data.zero_trust.does_not);
         fill("plane-never-trust", data.zero_trust.never_trust || [], function (item) {
@@ -465,18 +512,17 @@
         }
         if (kind === "provision") {
           var attached = (data.provisioning && data.provisioning.attached) || {};
-          add("Standard provision", "included with L1", (data.provision_bands && data.provision_bands.week_one_note) || "Included seating. Not a SKU. Week-one prove is treasury + wedge.");
-          add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + hours. Not a SKU. included means included with the required SKU. U-DUAL never free.");
-          add("L1", String(attached.L1 || 0) + " attached", "Prove. $28–40k list. Not LIVE_PIN_OK.");
-          add("P-ADM", String(attached["P-ADM"] || 0) + " attached", "Keep after kit PASS. Never bundles U-DUAL.");
-          add("U-DUAL", String(attached["U-DUAL"] || 0) + " attached", "Never free. Hours never attach U-DUAL.");
+          var scopes = (data.floor && data.floor.scopes) || [];
+          scopes.forEach(function (item) {
+            add(item.name, item.value, item.note || "");
+          });
+          add("Attached SKUs", String(attached.L1 || 0) + " / " + String(attached["P-ADM"] || 0) + " / " + String(attached["U-DUAL"] || 0), "L1 / P-ADM / U-DUAL. Not LIVE_PIN_OK.");
         }
         if (kind === "client") {
-          var dash = data.client_dashboard || {};
-          add("Client dashboard", "included with L1", dash.thesis || "One dashboard. Not a SKU. Not Standard vs Advanced dashboard products.");
-          add("Standard provision", "included with L1", "Week-one prove is treasury + wedge. Included seating is every L1 pack and library with included_in_sku. Not a SKU. Not an upsell.");
-          add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + FFS. Not a SKU. U-DUAL never free.");
-          add("Attached SKUs", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast. Not LIVE_PIN_OK.");
+          add("This dashboard", "included with L1", "The same plane, tiled. Not a second product. Not Standard vs Advanced dashboard.");
+          add("Week-one prove", "treasury + wedge", "What we provision first. Not the whole standard band.");
+          add("Advanced upsell", "not a SKU", "Priced desks, P-ADM, paid U-DUAL, hours. U-DUAL is never free.");
+          add("Attached", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast.");
         }
         if (kind === "records") {
           add("First record", "1 sandbox / 0 production", "AINAV-L1 lab operator identities.");

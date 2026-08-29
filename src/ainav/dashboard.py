@@ -361,6 +361,7 @@ def public_dashboard() -> dict[str, Any]:
         "provisioning": dict(body.get("provisioning") or {}),
         "client_dashboard": dict(body.get("client_dashboard") or {}),
         "provision_bands": _provision_bands(cat, body),
+        "floor": dict(body.get("floor") or {}),
         "communications": [dict(item) for item in body.get("communications") or []],
         "records": [dict(item) for item in body.get("records") or []],
         "compliance_matrix": _compliance_matrix(maps),
@@ -508,6 +509,8 @@ def dashboard_markdown() -> str:
     lines += [
         "",
         "## Client executive dashboard — included with L1",
+        "",
+        f"{(body.get('floor') or {}).get('lede') or ''}",
         "",
         f"{client_dash.get('thesis') or 'One client dashboard. Included with L1.'} "
         f"SKU: {str(client_dash.get('sku')).lower()}. Upsell: "

@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.28.2. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.28.3. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -22,6 +22,7 @@ Org: client org chart × existing SOD × one admit plane.
 ## Hierarchical views — one plane
 
 - **Entire plane** — Anyone on the tenant. Can: See the ledger and the freeze state. Cannot: A view is not a seat.
+- **Client executive** — Owner / buyer. Can: See the one dashboard included with L1, and the two provision bands. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
 - **Owner / board** — Oversee. Can: Institute the plane. Request a freeze. Cannot: Click both admits. One title cannot be both seats.
 - **Seat A / seat B** — Treasury and controller. Can: Bind the action_hash. Refuse the write. Cannot: Be both seats. Let AI click.
 - **Examiner** — Internal audit. Can: Read first and second records and the seating map. Cannot: Admit. File. Certify.
@@ -29,7 +30,6 @@ Org: client org chart × existing SOD × one admit plane.
 - **IT / identity** — Host. Can: Host Copilot, Agent 365, BYO MCP. Block bypass tools. Cannot: Admit. Treat PIM as dual.
 - **Provision / upsells** — Owner / commercial. Can: See the L1 → kit → P-ADM → U-DUAL path and priced desks. Cannot: Mark LIVE_PIN_OK. Attach U-DUAL free. Invent a buyer.
 - **Records / keep** — Examiner / compliance. Can: Read first record, second record, weekly keep, and retention maps. Cannot: Admit. File. Certify. Treat a chat as the keep.
-- **Client executive** — Owner / buyer. Can: See the one dashboard included with L1, and the two provision bands. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
 
 ## Write path
 
@@ -51,7 +51,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.28.2.
+- As of: catalog release 2.28.3.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -121,6 +121,8 @@ Entra object id on every request. Conditional Access may identify. Identify is n
 - **View revoke** — IT / identity. Effect: console_hidden. Hiding a console is not dual admit.
 
 ## Client executive dashboard — included with L1
+
+One dashboard, included with L1. Week-one prove is the treasury wedge. Advanced is the upsell — not a second dashboard.
 
 One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU. SKU: false. Upsell: false. Included with: L1.
 

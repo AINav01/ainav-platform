@@ -505,8 +505,19 @@ body[data-view="records"] [data-for~="records"],
 body[data-view="client"] [data-for~="client"] { opacity: 1; }
 .plane-bands { display: grid; gap: 0.75rem; margin: 0 0 1rem; }
 @media (min-width: 800px) { .plane-bands { grid-template-columns: 1fr 1fr; } }
-.plane-bands article[data-band="standard"] { box-shadow: inset 3px 0 0 var(--ok); }
-.plane-bands article[data-band="advanced"] { box-shadow: inset 3px 0 0 var(--gold); }
+@media (min-width: 1100px) { #plane-scopes.plane-bands { grid-template-columns: 1fr 1fr 1fr; } }
+.plane-bands article[data-band="standard"],
+.plane-bands article[data-scope="week_one"],
+.plane-bands article[data-scope="included_seating"] { box-shadow: inset 3px 0 0 var(--ok); }
+.plane-bands article[data-band="advanced"],
+.plane-bands article[data-scope="advanced"] { box-shadow: inset 3px 0 0 var(--gold); }
+table.law tr[data-group] th {
+  background: var(--void);
+  color: #f4efe6;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
 .cards article {
   border: 1px solid var(--rule);
   padding: 1.25rem 1.15rem 1.45rem;

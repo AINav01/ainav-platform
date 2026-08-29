@@ -190,7 +190,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.28.2"
+    "release": "2.28.3"
   },
   "communications": [
     {
@@ -771,6 +771,29 @@
       "when": "Copilot, Agent 365, or Agent Tools is treated as admit"
     }
   ],
+  "floor": {
+    "lede": "One dashboard, included with L1. Week-one prove is the treasury wedge. Advanced is the upsell \u2014 not a second dashboard.",
+    "scopes": [
+      {
+        "id": "week_one",
+        "name": "Week-one prove",
+        "note": "What we provision first. Not the whole standard band. Not a SKU.",
+        "value": "L1 + treasury + wedge"
+      },
+      {
+        "id": "included_seating",
+        "name": "Included with L1",
+        "note": "$0 attach. Not extra SKUs. Not extra hosts.",
+        "value": "Dashboard + L1 seating"
+      },
+      {
+        "id": "advanced",
+        "name": "Advanced upsell",
+        "note": "Not a SKU. included with U-DUAL is not free.",
+        "value": "Desks + keep + paid U-DUAL + hours"
+      }
+    ]
+  },
   "forecast": false,
   "institute": "AINAV.Institute",
   "invited": "Cynthia Hodnett",
@@ -1945,7 +1968,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.28.2",
+  "release": "2.28.3",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -2315,6 +2338,19 @@
     },
     {
       "admit": false,
+      "can": "See the one dashboard included with L1, and the two provision bands.",
+      "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
+      "console": "client",
+      "id": "client",
+      "name": "Client executive",
+      "shows": [
+        "signed_l1",
+        "tiles"
+      ],
+      "who": "Owner / buyer"
+    },
+    {
+      "admit": false,
       "can": "Institute the plane. Request a freeze.",
       "cannot": "Click both admits. One title cannot be both seats.",
       "console": "freeze",
@@ -2404,19 +2440,6 @@
         "lod"
       ],
       "who": "Examiner / compliance"
-    },
-    {
-      "admit": false,
-      "can": "See the one dashboard included with L1, and the two provision bands.",
-      "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
-      "console": "client",
-      "id": "client",
-      "name": "Client executive",
-      "shows": [
-        "signed_l1",
-        "tiles"
-      ],
-      "who": "Owner / buyer"
     }
   ],
   "write_path": [

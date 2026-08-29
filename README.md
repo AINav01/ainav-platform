@@ -110,7 +110,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.28.2 (this tree)
+### 2.28.3 (this tree)
+
+The floor reads as three scopes a buyer can scan: week-one prove,
+included with L1, advanced upsell. Client tab sits next to Entire
+plane. Desk table is grouped. Band cards drop the SKU:false dump.
+One dashboard, included with L1. Not a second dashboard product.
+
+### 2.28.2
 
 Desk-table bands no longer say bare "advanced" on included-with-SKU
 rows. Labels are standard, advanced · priced, advanced · with P-ADM,

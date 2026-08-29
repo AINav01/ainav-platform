@@ -86,6 +86,12 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert body["client_dashboard"]["same_as"] == "dashboard"
     assert body["dashboard"]["same_as"] == "client_dashboard"
     assert body["provision_bands"]["week_one"] == "provisioning.standard_l1"
+    assert "one dashboard" in (body.get("floor") or {}).get("lede", "").lower()
+    assert {item["id"] for item in (body.get("floor") or {}).get("scopes") or []} >= {
+        "week_one",
+        "included_seating",
+        "advanced",
+    }
     assert "included with" in (body["provision_bands"].get("attach_means") or "").lower()
     treasury = next(item for item in body["provision_bands"]["included_l1"] if item["id"] == "industry.treasury")
     assert treasury["attach"] == "included with L1"
@@ -234,6 +240,10 @@ def test_plane_interface_validators_refuse_fiction():
     two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
     with pytest.raises(IntegrityError):
         validate_catalog(two_dash)
+    no_lede = copy.deepcopy(cat)
+    no_lede["plane_interface"]["floor"]["lede"] = "two dashboards"
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_lede)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):
@@ -277,6 +287,8 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-bands"' in floor
     assert 'id="plane-desks"' in floor
     assert 'id="plane-week-one"' in floor
+    assert 'id="plane-scopes"' in floor
+    assert 'data-view-tab="client"' in floor
     assert 'data-view-tab="provision"' in floor
     assert 'data-view-tab="records"' in floor
     assert 'data-view-tab="client"' in floor
