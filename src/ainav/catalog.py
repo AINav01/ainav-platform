@@ -728,6 +728,25 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     for who in ("owner", "board", "examiner"):
         if str(floor_for.get(who) or "") != str(gov_for.get(who) or ""):
             raise IntegrityError(f"floor must-have for {who} must match governance", reason_code="CATALOG_PLANE")
+    not_gate_ids = [item.get("id") for item in floor.get("not_the_gate") or []]
+    for needed in ("vendor_native", "teams", "pim", "copilot"):
+        if needed not in not_gate_ids:
+            raise IntegrityError(f"not-the-gate must include {needed}", reason_code="CATALOG_PLANE")
+    close = floor.get("proof_close") or {}
+    if close.get("minutes") != (catalog.get("proof_day") or {}).get("minutes"):
+        raise IntegrityError("proof close minutes must match proof day", reason_code="CATALOG_PLANE")
+    if list(close.get("walk_out") or []) != list((catalog.get("proof_day") or {}).get("walk_out") or []):
+        raise IntegrityError("proof close walk-out must match proof day", reason_code="CATALOG_PLANE")
+    if "ninety-minute" not in str(close.get("sale") or "").lower():
+        raise IntegrityError("the sale is the ninety-minute proof", reason_code="CATALOG_PLANE")
+    no_means = floor.get("no_means") or {}
+    off = str((((catalog.get("governance") or {}).get("plane") or {}).get("off_switch") or {}).get("does") or "")
+    if str(no_means.get("off_switch") or "") != off:
+        raise IntegrityError("no-means off switch must match governance", reason_code="CATALOG_PLANE")
+    if "write does not land" not in str(no_means.get("fail_closed") or "").lower():
+        raise IntegrityError("fail-closed is the write does not land", reason_code="CATALOG_PLANE")
+    if "refusing is the product working" not in str(no_means.get("refuse") or "").lower():
+        raise IntegrityError("refusing is the product working", reason_code="CATALOG_PLANE")
     scope_ids = [item.get("id") for item in floor.get("scopes") or []]
     for needed in ("week_one", "included_seating", "advanced"):
         if needed not in scope_ids:

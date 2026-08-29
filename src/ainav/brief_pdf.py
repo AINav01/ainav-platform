@@ -121,6 +121,29 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
+            "kind": "callout",
+            "title": "Not the gate — BC approval, Teams, PIM, Copilot",
+            "text": " ".join(
+                f"{item.get('name')}: {item.get('note')}"
+                for item in ((cat.get("plane_interface") or {}).get("floor") or {}).get("not_the_gate")
+                or []
+            )
+            or (
+                "A vendor-native button only covers that vendor. A Teams vote is not dual admit. "
+                "PIM is not dual admit. Copilot asking a human leaves every other AI ungated."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Walk out of proof day with a sealed DecisionRecord and a Merkle / audit export. "
+                + str((((cat.get("plane_interface") or {}).get("floor") or {}).get("no_means") or {}).get("fail_closed") or "")
+                + " "
+                + str((((cat.get("plane_interface") or {}).get("floor") or {}).get("no_means") or {}).get("off_switch") or "")
+                + " Refusing is the product working."
+            ),
+        },
+        {
             "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },

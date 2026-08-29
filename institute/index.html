@@ -88,6 +88,38 @@
           <p>First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.</p>
         </article>
       </div>
+      <div class="cards must-for" id="not-the-gate">
+        <article>
+          <h3>Vendor-native approval</h3>
+          <p>A vendor-native button only covers that vendor.</p>
+        </article>
+        <article>
+          <h3>Teams vote</h3>
+          <p>A chat is not a seat. A Teams vote is not dual admit.</p>
+        </article>
+        <article>
+          <h3>PIM activation</h3>
+          <p>PIM is not dual admit. Eligible seats stay eligible.</p>
+        </article>
+        <article>
+          <h3>Copilot asking a human</h3>
+          <p>Copilot asking a human leaves Agentforce and the counterparty's model ungated.</p>
+        </article>
+      </div>
+      <div class="cards must-for" id="proof-close">
+        <article>
+          <h3>Walk in</h3>
+          <p>Ninety minutes. Two existing treasury seats. Client AI or a customer AI may draft.</p>
+        </article>
+        <article>
+          <h3>Walk out</h3>
+          <p>Sealed DecisionRecord. Merkle / audit export. Not signed L1. Not LIVE_PIN_OK.</p>
+        </article>
+        <article>
+          <h3>What no does</h3>
+          <p>Refusing is the product working. If either person is missing, the write does not land. Off switch freezes new grants. Inference may continue. Consequence does not.</p>
+        </article>
+      </div>
       <div class="hero-actions">
         <a class="ask" href="#twin">Ninety-minute proof day</a>
         <a class="ghost" href="#buyer">The write that must not happen</a>
@@ -105,6 +137,7 @@
         The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.
       </p>
       <p class="note" id="buyer-already">Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.</p>
+      <p class="note" id="buyer-walk">Walk in: two existing treasury seats. Walk out: sealed DecisionRecord and Merkle / audit export. Refusing is the product working. If either person is missing, the write does not land.</p>
       <div class="split">
         <div>
           <h3>Two seats</h3>
@@ -112,6 +145,8 @@
             <li>treasury_approver</li>
             <li>treasury_controller</li>
           </ul>
+          <h3>Proof day</h3>
+          <p id="buyer-proof">Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.</p>
           <h3>Three prices</h3>
           <ul class="stack" id="buyer-prices">
             <li>L1 $28–40k / 2–4 weeks</li>
@@ -120,8 +155,6 @@
           </ul>
         </div>
         <div>
-          <h3>Proof day</h3>
-          <p id="buyer-proof">Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.</p>
           <h3>What we refuse</h3>
           <ul class="stack refuse" id="buyer-refuse">
             <li>Teams vote as dual</li>
@@ -158,7 +191,7 @@
 
     <section id="twin">
       <h2>Microsoft twin bench</h2>
-      <p class="note">The sale is the ninety-minute proof. Browser twin only. Dynamics 365 Business Central, Sales, Teams, and SharePoint writes stay off this page. Not LIVE_PIN_OK. Not Production.</p>
+      <p class="note">The sale is the ninety-minute proof. Walk out with a sealed DecisionRecord and a Merkle / audit export. Browser twin only. Dynamics 365 Business Central, Sales, Teams, and SharePoint writes stay off this page. Not LIVE_PIN_OK. Not Production.</p>
       <p class="lede">
         Two distinct seats admit. Each privileged write binds its own action hash and is consumed once.
         A Business Central journal is the L1 wedge. A Sales quote stays refused until paid U-DUAL.
@@ -372,7 +405,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane" class="plane-floor">
-      <p class="kicker">Ultimate control plane · 2.30.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 2.31.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
       <h2>Human control plane — interface</h2>
       <p class="note">Must-have for the named controller. From the top of the client's org chart through every drafting desk. Open the floor. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>

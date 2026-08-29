@@ -36,11 +36,48 @@
     "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.",
     "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off."
   },
+  "no_means": {
+    "fail_closed": "If either person is missing, or the apply fails, the write does not land and there is no fake success.",
+    "off_switch": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.",
+    "refuse": "Refusing is the product working. No grant. No SoR write."
+  },
+  "not_the_gate": [
+    {
+      "id": "vendor_native",
+      "name": "Vendor-native approval",
+      "note": "A vendor-native button only covers that vendor."
+    },
+    {
+      "id": "teams",
+      "name": "Teams vote",
+      "note": "A chat is not a seat. A Teams vote is not dual admit."
+    },
+    {
+      "id": "pim",
+      "name": "PIM activation",
+      "note": "PIM is not dual admit. Eligible seats stay eligible."
+    },
+    {
+      "id": "copilot",
+      "name": "Copilot asking a human",
+      "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
+    }
+  ],
   "prices": [
     "L1 $28\u201340k / 2\u20134 weeks",
     "P-ADM $40\u201360k / year after kit PASS",
     "U-DUAL $20\u201335k / year \u2014 never free"
   ],
+  "proof_close": {
+    "minutes": 90,
+    "note": "Lab oids are not two named treasury humans. Not signed L1. Not LIVE_PIN_OK.",
+    "sale": "The sale is the ninety-minute proof.",
+    "walk_in": "Two existing treasury seats. Client AI or a customer AI may draft.",
+    "walk_out": [
+      "sealed DecisionRecord",
+      "Merkle / audit export"
+    ]
+  },
   "proof_day": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
   "refuse": [
     "Teams vote as dual",

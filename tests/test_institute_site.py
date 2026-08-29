@@ -54,7 +54,12 @@ def test_institute_foundation_is_catalog_honest():
     assert "already have" in html.lower()
     assert "gate in front of the write" in html.lower()
     assert 'id="must-for"' in html
+    assert 'id="not-the-gate"' in html
+    assert 'id="proof-close"' in html
     assert "Inventory of models is not a control" in html
+    assert "vendor-native button" in html.lower()
+    assert "sealed DecisionRecord" in html
+    assert "write does not land" in html.lower()
     assert "gov-cascade" in html or "id=\"gov-cascade\"" in html
     assert "gov-records" in html or "id=\"gov-records\"" in html
     assert "First record" in html

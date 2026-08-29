@@ -121,6 +121,33 @@
       if (!thesisNode || thesisNode.getAttribute("data-keep") !== "short") {
         set("plane-doctrine", data.thesis);
       }
+      function paintCards(id, items, titleKey, noteKey) {
+        var root = document.getElementById(id);
+        if (!root || !items || !items.length) return;
+        root.textContent = "";
+        items.forEach(function (item) {
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = item[titleKey] || item.name || "";
+          var p = document.createElement("p");
+          p.textContent = item[noteKey] || item.note || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          root.appendChild(art);
+        });
+      }
+      if (data.floor && data.floor.not_the_gate) {
+        paintCards("not-the-gate", data.floor.not_the_gate, "name", "note");
+      }
+      if (data.floor && data.floor.proof_close) {
+        var close = data.floor.proof_close;
+        var noMeans = data.floor.no_means || {};
+        paintCards("proof-close", [
+          { name: "Walk in", note: (close.minutes || 90) + " minutes. " + (close.walk_in || "") },
+          { name: "Walk out", note: (close.walk_out || []).join(". ") + ". " + (close.note || "") },
+          { name: "What no does", note: (noMeans.refuse || "") + " " + (noMeans.fail_closed || "") + " " + (noMeans.off_switch || "") }
+        ], "name", "note");
+      }
       if (data.equation) set("plane-equation", "Interface = " + data.equation);
       if (data.dashboard && data.dashboard.realtime_means) set("plane-realtime", data.dashboard.realtime_means);
       set("plane-week-one", "Three scopes. One dashboard. Attached 0 / 0 / 0.");
@@ -546,6 +573,12 @@
           add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
           add("Board", "must-have", audience.board || "Inventory of models is not a control.");
           add("Examiner", "must-have", audience.examiner || "First record is the SoR write. Second record is who admitted it.");
+          add("Not the gate", "BC · Teams · PIM · Copilot", "A vendor-native button only covers that vendor. A Teams vote is not dual admit. PIM is not dual admit.");
+          var close = (data.floor && data.floor.proof_close) || {};
+          add("Walk out", (close.minutes || 90) + " minutes", (close.walk_out || ["sealed DecisionRecord", "Merkle / audit export"]).join(". "));
+          var noMeans = (data.floor && data.floor.no_means) || {};
+          add("What no does", "fail-closed", noMeans.fail_closed || "If either person is missing, the write does not land.");
+          add("Off switch", "READY", noMeans.off_switch || "Humans freeze new grants. Inference may continue. Consequence does not.");
           add("This dashboard", "included with L1", "The same plane, tiled. Not a second product. Not Standard vs Advanced dashboard.");
           add("Week-one prove", "treasury + wedge", "What we provision first. Not the whole standard band.");
           add("Advanced upsell", "not a SKU", "Priced desks, P-ADM, paid U-DUAL, hours. U-DUAL is never free.");
@@ -1139,6 +1172,16 @@
         " " +
         (data.still_lack || "") +
         " A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.";
+    }
+    var walk = document.getElementById("buyer-walk");
+    if (walk && data.proof_close) {
+      walk.textContent =
+        "Walk in: " +
+        (data.proof_close.walk_in || "two existing treasury seats") +
+        " Walk out: " +
+        ((data.proof_close.walk_out || []).join(" and ") || "sealed DecisionRecord") +
+        ". " +
+        ((data.no_means && data.no_means.fail_closed) || "If either person is missing, the write does not land.");
     }
     function replaceList(id, items) {
       var node = document.getElementById(id);

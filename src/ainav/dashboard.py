@@ -413,6 +413,26 @@ def dashboard_markdown() -> str:
         f"- **Board** — {((body.get('must_have') or {}).get('for') or {}).get('board') or ''}",
         f"- **Examiner** — {((body.get('must_have') or {}).get('for') or {}).get('examiner') or ''}",
         "",
+        "### Not the gate",
+        "",
+    ]
+    for item in (body.get("floor") or {}).get("not_the_gate") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    close = (body.get("floor") or {}).get("proof_close") or {}
+    no_means = (body.get("floor") or {}).get("no_means") or {}
+    lines += [
+        "",
+        "### Proof day — walk out",
+        "",
+        f"{close.get('sale') or ''} {close.get('walk_in') or ''} Walk out: "
+        + "; ".join(str(item) for item in close.get("walk_out") or [])
+        + f". {close.get('note') or ''}",
+        "",
+        "### What no does",
+        "",
+        f"{no_means.get('refuse') or ''} {no_means.get('fail_closed') or ''} "
+        f"{no_means.get('off_switch') or ''}",
+        "",
         f"Equation: {body.get('equation')}.",
         f"Plane: {body.get('plane_equation')}.",
         f"Org: {body.get('org_equation')}.",
@@ -1085,7 +1105,7 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="strip">{strip}</div>
 <div class="wrap">
 <p class="thesis">{html.escape(body['thesis'])}</p>
-<p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
+<p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <p class="equation">Interface = {html.escape(body.get('equation') or '')}</p>
 <p class="note">{clock_line}</p>
 <h2>Attention board</h2>

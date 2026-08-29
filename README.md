@@ -110,7 +110,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.30.0 (this tree)
+### 2.31.0 (this tree)
+
+A named controller can now name the incident and the SOD they already
+have. They still could not name what is not the gate, what they walk
+out of proof day with, or what no does. Hero, buyer, Client console,
+and the Cynthia brief now say: vendor-native approval, Teams, PIM, and
+Copilot are not the plane; walk out is a sealed DecisionRecord and a
+Merkle export; refusing is the product working; fail-closed means the
+write does not land; the off switch freezes grants, not Copilot.
+
+### 2.30.0
 
 A named controller already has Business Central Premium, Entra, and
 two-person journal SOD. They still lack a gate in front of the write.

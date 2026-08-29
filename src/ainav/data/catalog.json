@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.30.0",
+    "release": "2.31.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3029,6 +3029,43 @@
           "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
           "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing."
         }
+      },
+      "not_the_gate": [
+        {
+          "id": "vendor_native",
+          "name": "Vendor-native approval",
+          "note": "A vendor-native button only covers that vendor."
+        },
+        {
+          "id": "teams",
+          "name": "Teams vote",
+          "note": "A chat is not a seat. A Teams vote is not dual admit."
+        },
+        {
+          "id": "pim",
+          "name": "PIM activation",
+          "note": "PIM is not dual admit. Eligible seats stay eligible."
+        },
+        {
+          "id": "copilot",
+          "name": "Copilot asking a human",
+          "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
+        }
+      ],
+      "proof_close": {
+        "minutes": 90,
+        "sale": "The sale is the ninety-minute proof.",
+        "walk_in": "Two existing treasury seats. Client AI or a customer AI may draft.",
+        "walk_out": [
+          "sealed DecisionRecord",
+          "Merkle / audit export"
+        ],
+        "note": "Lab oids are not two named treasury humans. Not signed L1. Not LIVE_PIN_OK."
+      },
+      "no_means": {
+        "refuse": "Refusing is the product working. No grant. No SoR write.",
+        "fail_closed": "If either person is missing, or the apply fails, the write does not land and there is no fake success.",
+        "off_switch": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not."
       },
       "scopes": [
         {

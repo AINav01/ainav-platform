@@ -98,6 +98,13 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "business central" in (body.get("floor") or {}).get("already_have", "").lower()
     assert "gate" in (body.get("floor") or {}).get("still_lack", "").lower()
     assert set((body.get("must_have") or {}).get("for") or {}) >= {"owner", "board", "examiner"}
+    assert {item["id"] for item in (body.get("floor") or {}).get("not_the_gate") or []} >= {
+        "vendor_native",
+        "teams",
+        "pim",
+        "copilot",
+    }
+    assert "sealed DecisionRecord" in ((body.get("floor") or {}).get("proof_close") or {}).get("walk_out") or []
     assert {item["id"] for item in (body.get("floor") or {}).get("scopes") or []} >= {
         "week_one",
         "included_seating",
@@ -139,6 +146,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "why a client must have this" in md.lower()
     assert "already have" in md.lower()
     assert "must-have for owner, board, examiner" in md.lower()
+    assert "not the gate" in md.lower()
+    assert "walk out" in md.lower()
+    assert "what no does" in md.lower()
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -308,6 +318,16 @@ def test_plane_interface_validators_refuse_fiction():
     audience["plane_interface"]["floor"]["must_have"]["for"]["board"] = "invented mandate"
     with pytest.raises(IntegrityError):
         validate_catalog(audience)
+    no_teams = copy.deepcopy(cat)
+    no_teams["plane_interface"]["floor"]["not_the_gate"] = [
+        item for item in cat["plane_interface"]["floor"]["not_the_gate"] if item.get("id") != "teams"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_teams)
+    bad_walk = copy.deepcopy(cat)
+    bad_walk["plane_interface"]["floor"]["proof_close"]["walk_out"] = ["invented certificate"]
+    with pytest.raises(IntegrityError):
+        validate_catalog(bad_walk)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):

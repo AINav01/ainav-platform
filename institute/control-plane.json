@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.30.0"
+    "release": "2.31.0"
   },
   "communications": [
     {
@@ -794,6 +794,43 @@
       "mandated": false,
       "sku": false,
       "why": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
+    },
+    "no_means": {
+      "fail_closed": "If either person is missing, or the apply fails, the write does not land and there is no fake success.",
+      "off_switch": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.",
+      "refuse": "Refusing is the product working. No grant. No SoR write."
+    },
+    "not_the_gate": [
+      {
+        "id": "vendor_native",
+        "name": "Vendor-native approval",
+        "note": "A vendor-native button only covers that vendor."
+      },
+      {
+        "id": "teams",
+        "name": "Teams vote",
+        "note": "A chat is not a seat. A Teams vote is not dual admit."
+      },
+      {
+        "id": "pim",
+        "name": "PIM activation",
+        "note": "PIM is not dual admit. Eligible seats stay eligible."
+      },
+      {
+        "id": "copilot",
+        "name": "Copilot asking a human",
+        "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
+      }
+    ],
+    "proof_close": {
+      "minutes": 90,
+      "note": "Lab oids are not two named treasury humans. Not signed L1. Not LIVE_PIN_OK.",
+      "sale": "The sale is the ninety-minute proof.",
+      "walk_in": "Two existing treasury seats. Client AI or a customer AI may draft.",
+      "walk_out": [
+        "sealed DecisionRecord",
+        "Merkle / audit export"
+      ]
     },
     "scopes": [
       {
@@ -2008,7 +2045,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.30.0",
+  "release": "2.31.0",
   "revocations": [
     {
       "by": "Owner / board request",
