@@ -73,7 +73,7 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
-            "text": "Investor letter — print the packet with the full upsell catalog",
+            "text": "Investor packet — print the letter with the full upsell catalog",
         },
         {
             "kind": "callout",

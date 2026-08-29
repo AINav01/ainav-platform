@@ -6,7 +6,7 @@ Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AIN
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
-## Investor letter — print the packet with the full upsell catalog
+## Investor packet — print the letter with the full upsell catalog
 
 ## The company in one line
 
