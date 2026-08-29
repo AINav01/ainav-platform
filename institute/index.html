@@ -37,6 +37,7 @@
           <a href="#fabric">Fabric</a>
           <a href="#product">Product</a>
           <a href="#org">Organization</a>
+          <a href="#client-org">Client chart</a>
           <a href="#review">Review</a>
           <a href="#programs">Programs</a>
           <a href="#packs">Packs</a>
@@ -64,8 +65,9 @@
         The client utilizes AI. Their customers do too. Every one of those systems
         can draft a privileged write. AINav is not that AI. It is the failsafe and
         the ultimate control plane that sits over all of them: off switch, reset,
-        rollback, first and second records. Humans stay in control. The client's
-        two humans bind one action_hash, then the write. No admit, no write.
+        rollback, first and second records. It sits on the client's existing
+        org chart. Humans stay in control. The client's two humans bind one
+        action_hash, then the write. No admit, no write.
         Microsoft hosts, identifies, notifies, and receives the write.
         Microsoft is not the product.
       </p>
@@ -277,7 +279,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <ul class="stack" id="pack-industry">
             <li><strong>industry.treasury</strong> — included with L1. Journal wedge.</li>
             <li><strong>industry.payables / bank / cash / fixed_asset / inventory</strong> — priced L1 desks.</li>
-            <li><strong>industry.control_plane</strong> — included with L1. One human gate over the client's AI estate.</li>
+            <li><strong>industry.control_plane / industry.org</strong> — included with L1. Plane plus existing org seating.</li>
             <li><strong>industry.cascade</strong> — priced L1 desk. Client's customers utilize AI. Client's two humans admit.</li>
             <li><strong>industry.off_switch / rollback</strong> — priced L1 desks. Fail-closed freeze. Compensating write. Not a time machine.</li>
             <li><strong>industry.sales / quote_desk</strong> — included with paid U-DUAL.</li>
@@ -285,6 +287,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li><strong>industry.retention</strong> — priced P-ADM keep. Not live Defender.</li>
             <li><strong>industry.second_record</strong> — priced P-ADM keep. Sealed DecisionRecord. Not a certificate.</li>
             <li><strong>industry.board</strong> — priced P-ADM keep. Owner / board / examiner evidence. Not a filing.</li>
+            <li><strong>industry.internal_audit</strong> — priced P-ADM keep. Seating map plus second record. Not a named auditor.</li>
           </ul>
         </div>
         <div>
@@ -346,6 +349,25 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           </ul>
         </div>
       </div>
+    </section>
+
+    <section id="client-org">
+      <h2>Client org chart — catalog template</h2>
+      <p class="note">Not AINav, Inc. departments. Not a named customer. Departments are not SKUs. Department AI is not a seat.</p>
+      <p class="lede" id="client-org-thesis">
+        AINav sits on the client's existing SOD. Treasury and controller admit.
+        IT hosts Copilot. Those AIs draft. They are not seats.
+      </p>
+      <p class="note" id="client-org-seats">Seat A: treasury_approver (usually Treasury). Seat B: treasury_controller (usually Controller). One title cannot be both seats.</p>
+      <ul class="stack" id="client-org-depts">
+        <li>Treasury — admit (seat A)</li>
+        <li>Controller — admit (seat B)</li>
+        <li>Payables / Sales — draft</li>
+        <li>IT — host. Not a seat.</li>
+        <li>Compliance / internal audit — keep</li>
+        <li>Legal — counsel. Not replaced.</li>
+        <li>Owner / board — oversee. Can freeze.</li>
+      </ul>
     </section>
 
     <section id="ops">

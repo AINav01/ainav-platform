@@ -23,3 +23,5 @@ Must not change:
 - One human plane sits over every client AI that can draft a write
 - Off switch is fail-closed, not powering down Copilot
 - Rollback is a dual-admitted compensating write, not a time machine
+- Client departments are not SKUs; department AI is not a seat
+- Do not invent named department heads

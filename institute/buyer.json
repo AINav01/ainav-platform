@@ -8,6 +8,7 @@
     "counterparties_utilize_ai": true,
     "counterparty_ai": "The client's customers' AI drafting into the client's SoR \u2014 not a seat",
     "do_not_invent_counterparty_names": true,
+    "do_not_invent_department_heads": true,
     "do_not_invent_names": true,
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
@@ -18,6 +19,7 @@
       "examiner"
     ],
     "named_customers": [],
+    "org_chart": true,
     "sits_over_client_ai": true,
     "utilizes_ai": true
   },
@@ -49,7 +51,11 @@
     "time-machine rollback",
     "AINav powers down Copilot",
     "mandated by SEC",
-    "AINav replaces all client AI"
+    "AINav replaces all client AI",
+    "invented department head",
+    "department AI as dual",
+    "one title as both seats",
+    "AINav replaces the org chart"
   ],
   "seats": [
     "treasury_approver",

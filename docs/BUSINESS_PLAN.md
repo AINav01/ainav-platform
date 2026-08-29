@@ -18,6 +18,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Cascade: client's clients utilize AI × client institutes AINav × two-human control
 - Umbrella: every client AI × one admit plane × two-human control
 - Plane: failsafe × off-switch × reset × rollback × two-human control
+- Org: client org chart × existing SOD × one admit plane
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.
 - Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write.
@@ -77,6 +78,8 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **industry.off_switch** — Off-switch desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU.)
 - **industry.rollback** — Rollback desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU.)
 - **industry.board** — Board / examiner keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.)
+- **industry.org** — Client org seating (requires L1; included; L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads.)
+- **industry.internal_audit** — Internal-audit keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK.)
 
 ## Libraries (not SKUs)
 
@@ -99,6 +102,8 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **lib.l1.plane** — requires L1. L1 control-plane library. One admit plane over the client's AI estate. Not a SKU.
 - **lib.l1.off_switch** — requires L1. L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU.
 - **lib.padm.board** — requires P-ADM. P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.
+- **lib.l1.org** — requires L1. L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU.
+- **lib.padm.audit** — requires P-ADM. P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK.
 
 ## Fee-for-service (not SKUs)
 
@@ -113,6 +118,7 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **ffs.governance_workshop** — AI governance / failsafe workshop ($3,500/day). Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.
 - **ffs.institute_failsafe** — Institute AINav failsafe ($3,500/day). Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.
 - **ffs.board_briefing** — Owner / board / examiner briefing ($3,500/day). Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.
+- **ffs.org_workshop** — Client org-chart workshop ($3,500/day). Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL.
 
 ## Operations
 
@@ -268,3 +274,5 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - One human plane sits over every client AI that can draft a write
 - Off switch is fail-closed, not powering down Copilot
 - Rollback is a dual-admitted compensating write, not a time machine
+- Client departments are not SKUs; department AI is not a seat
+- Do not invent named department heads

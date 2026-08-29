@@ -129,6 +129,16 @@ def scenarios() -> list[dict[str, Any]]:
             "max": l1_max + keep_max + _desks("industry.board")[1],
         },
         {
+            "id": "l1_padm_internal_audit",
+            "name": "One controller — L1, P-ADM, internal-audit keep",
+            "if": "One controller buys L1, attaches P-ADM, then attaches industry.internal_audit for the seating map.",
+            "skus": ["L1", "P-ADM"],
+            "packs": ["industry.internal_audit"],
+            "n": 1,
+            "min": l1_min + keep_min + _desks("industry.internal_audit")[0],
+            "max": l1_max + keep_max + _desks("industry.internal_audit")[1],
+        },
+        {
             "id": "l1_plus_two_desks",
             "name": "One L1 plus payables and bank desks",
             "if": "One controller buys L1 then attaches industry.payables and industry.bank.",

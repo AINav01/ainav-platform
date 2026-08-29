@@ -145,7 +145,9 @@ def brief_document() -> list[dict[str, Any]]:
                 "fail-closed, not powering down Copilot. Rollback is a compensating write, not "
                 "a time machine. We map NIST, SOX, fiduciary oversight, books-and-records, the "
                 "EU AI Act, and ISO 42001. We do not claim those certificates. We do not invent "
-                "a board or a regulator. Governance is not a fourth SKU."
+                "a board or a regulator. The plane sits on the client's existing org chart. "
+                "Treasury and controller hold the two seats. Department AI is not a seat. "
+                "We do not invent named department heads. Governance is not a fourth SKU."
             ),
         },
         {

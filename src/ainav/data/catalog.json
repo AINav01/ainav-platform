@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.16.0",
+    "release": "2.17.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -226,7 +226,9 @@
     "First record is the SoR write; second record is the DecisionRecord",
     "One human plane sits over every client AI that can draft a write",
     "Off switch is fail-closed, not powering down Copilot",
-    "Rollback is a dual-admitted compensating write, not a time machine"
+    "Rollback is a dual-admitted compensating write, not a time machine",
+    "Client departments are not SKUs; department AI is not a seat",
+    "Do not invent named department heads"
   ],
   "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "equations": {
@@ -237,7 +239,8 @@
     "control": "client utilizes AI \u00d7 counterparties utilize AI \u00d7 AINav failsafe \u00d7 two-human control",
     "cascade": "client's clients utilize AI \u00d7 client institutes AINav \u00d7 two-human control",
     "umbrella": "every client AI \u00d7 one admit plane \u00d7 two-human control",
-    "plane": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control"
+    "plane": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
+    "org": "client org chart \u00d7 existing SOD \u00d7 one admit plane"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
@@ -590,6 +593,15 @@
       "wedge": false,
       "upsell": true,
       "note": "A la carte P-ADM keep. Last sealed DecisionRecord / Merkle root as the reset point. Not a production wipe. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "governance.org.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_catalog",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Client org seating map: who drafts, who admits, who keeps. Not a named customer. Not LIVE_PIN_OK."
     }
   ],
   "industry_packs": [
@@ -1102,6 +1114,53 @@
         "This is not an SEC mandate, SOX opinion, or EU AI Act certificate.",
         "Do not invent a board or a regulator name."
       ]
+    },
+    {
+      "id": "industry.org",
+      "name": "Client org seating",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads.",
+      "runbook": [
+        "Requires L1. Map the client's existing SOD onto seat A and seat B.",
+        "Treasury usually holds treasury_approver. Controller usually holds treasury_controller.",
+        "IT, Copilot, and department AI may draft. They are not seats.",
+        "Do not collapse two seats into one title. Do not invent a department head."
+      ]
+    },
+    {
+      "id": "industry.internal_audit",
+      "name": "Internal-audit keep",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "note": "A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK.",
+      "runbook": [
+        "Requires P-ADM after kit PASS. Not a SKU.",
+        "Export who admitted and the client org seating map.",
+        "Do not invent an internal-audit partner name."
+      ]
     }
   ],
   "libraries": [
@@ -1425,6 +1484,40 @@
         "governance.reset.export"
       ],
       "note": "P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "lib.l1.org",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU."
+    },
+    {
+      "id": "lib.padm.audit",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "note": "P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -1534,6 +1627,16 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.org_workshop",
+      "name": "Client org-chart workshop",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -1828,7 +1931,9 @@
       "owner",
       "board",
       "examiner"
-    ]
+    ],
+    "org_chart": true,
+    "do_not_invent_department_heads": true
   },
   "buyer": {
     "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.",
@@ -1858,11 +1963,149 @@
       "time-machine rollback",
       "AINav powers down Copilot",
       "mandated by SEC",
-      "AINav replaces all client AI"
+      "AINav replaces all client AI",
+      "invented department head",
+      "department AI as dual",
+      "one title as both seats",
+      "AINav replaces the org chart"
     ],
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
     "contact_email": null,
     "mailto": null
+  },
+  "client_org": {
+    "kind": "ainav.client_org.v1",
+    "sku": false,
+    "live": false,
+    "live_pin_ok": false,
+    "named_customers": [],
+    "do_not_invent_names": true,
+    "do_not_invent_department_heads": true,
+    "replaces_org_chart": false,
+    "thesis": "AINav sits on the client's existing org chart. It does not replace departments. Treasury and controller hold the two admit seats. IT hosts Copilot and agents. Those AIs draft. Department AI is not a seat. Compliance and internal audit keep the second record. Legal is not replaced. The owner and board oversee and can freeze. Do not invent named heads.",
+    "seats": {
+      "seat_a": {
+        "role": "treasury_approver",
+        "usually": "client.treasury"
+      },
+      "seat_b": {
+        "role": "treasury_controller",
+        "usually": "client.controller"
+      }
+    },
+    "departments": [
+      {
+        "id": "client.treasury",
+        "name": "Treasury",
+        "role": "admit",
+        "seat": "treasury_approver",
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.treasury",
+        "ai": "May draft cash and bank journals. Not a seat.",
+        "note": "Usually seat A. Existing two-person SOD. Not a SKU."
+      },
+      {
+        "id": "client.controller",
+        "name": "Controller / accounting",
+        "role": "admit",
+        "seat": "treasury_controller",
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.controller",
+        "ai": "May draft the books. Not a seat.",
+        "note": "Usually seat B. First record is the admitted SoR write. Not a SKU."
+      },
+      {
+        "id": "client.payables",
+        "name": "Payables",
+        "role": "draft",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.payables",
+        "ai": "AP Copilot may draft invoices and payments. Not a seat.",
+        "note": "Same two treasury humans admit. Not a fourth SKU."
+      },
+      {
+        "id": "client.sales",
+        "name": "Sales / quote desk",
+        "role": "draft",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.sales",
+        "ai": "Sales Copilot may draft quotes and orders. Not a seat.",
+        "note": "Paid U-DUAL deepens the same plane. Not a second product."
+      },
+      {
+        "id": "client.it",
+        "name": "IT / identity",
+        "role": "host",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": null,
+        "ai": "Owns Copilot, Agent 365, BYO MCP. Not a seat.",
+        "note": "Hosts identity. Blocks bypass tools. PIM activation is not dual admit."
+      },
+      {
+        "id": "client.compliance",
+        "name": "Security / compliance",
+        "role": "keep",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.oversight",
+        "ai": "May draft risk memos. Not a seat.",
+        "note": "2LOD keep. Second record after P-ADM. Not a certificate."
+      },
+      {
+        "id": "client.internal_audit",
+        "name": "Internal audit",
+        "role": "keep",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.internal_audit",
+        "ai": "Not a seat.",
+        "note": "Reads first and second records. Do not invent an audit partner."
+      },
+      {
+        "id": "client.legal",
+        "name": "Legal / counsel",
+        "role": "counsel",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": null,
+        "ai": "Not a seat.",
+        "note": "AINav does not replace counsel. G12 stays open on our side. Do not invent a firm."
+      },
+      {
+        "id": "client.executive",
+        "name": "Owner / executive",
+        "role": "oversee",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.control_plane",
+        "ai": "Not a seat unless they are one of the two named humans.",
+        "note": "Institutes AINav. Can ask for freeze. One title cannot be both seats."
+      },
+      {
+        "id": "client.board",
+        "name": "Board",
+        "role": "oversee",
+        "seat": null,
+        "department_ai_is_seat": false,
+        "named_head": null,
+        "pack": "industry.board",
+        "ai": "Not a seat.",
+        "note": "Fiduciary oversight. Inventory of models is not a control. Do not invent a director."
+      }
+    ],
+    "note": "Catalog template only. Not a named customer. Not AINav, Inc. departments. Not a SKU. Not LIVE_PIN_OK."
   },
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
@@ -3131,7 +3374,11 @@
       "time-machine rollback",
       "AINav powers down Copilot",
       "mandated by SEC",
-      "AINav replaces all client AI"
+      "AINav replaces all client AI",
+      "invented department head",
+      "department AI as dual",
+      "one title as both seats",
+      "AINav replaces the org chart"
     ],
     "note": "Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
     "cascade": {

@@ -76,6 +76,47 @@
       /* governance.json is optional when opened as a file */
     });
 
+  fetch("client-org.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.sku || data.replaces_org_chart) return;
+      var thesis = document.getElementById("client-org-thesis");
+      if (thesis && data.thesis) thesis.textContent = data.thesis;
+      var seats = document.getElementById("client-org-seats");
+      if (seats && data.seats && data.seats.seat_a && data.seats.seat_b) {
+        seats.textContent =
+          "Seat A: " +
+          data.seats.seat_a.role +
+          " (usually " +
+          data.seats.seat_a.usually +
+          "). Seat B: " +
+          data.seats.seat_b.role +
+          " (usually " +
+          data.seats.seat_b.usually +
+          "). One title cannot be both seats. Invented heads: refused.";
+      }
+      var root = document.getElementById("client-org-depts");
+      if (root && data.departments && data.departments.length) {
+        root.textContent = "";
+        data.departments.forEach(function (item) {
+          var li = document.createElement("li");
+          li.setAttribute("data-id", item.id);
+          li.textContent =
+            item.name +
+            " — " +
+            item.role +
+            ". Department AI is a seat: false. " +
+            (item.note || "");
+          root.appendChild(li);
+        });
+      }
+    })
+    .catch(function () {
+      /* client-org.json is optional when opened as a file */
+    });
+
   fetch("packs.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

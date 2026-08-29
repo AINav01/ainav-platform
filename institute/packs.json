@@ -109,6 +109,16 @@
       "rate_usd_per_day": 3500,
       "requires_l1": true,
       "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.org_workshop",
+      "name": "Client org-chart workshop",
+      "note": "Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
     }
   ],
   "industry": [
@@ -430,6 +440,36 @@
       "note": "A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.org",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Client org seating",
+      "note": "L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.internal_audit",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "name": "Internal-audit keep",
+      "note": "A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
     }
   ],
   "kind": "ainav.institute.packs.v1",
@@ -638,6 +678,28 @@
         "governance.reset.export"
       ],
       "note": "P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.org",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.audit",
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "note": "P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
     }

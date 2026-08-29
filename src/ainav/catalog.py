@@ -87,6 +87,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_upsells(catalog)
     _validate_repositories(catalog)
     _validate_governance(catalog)
+    _validate_client_org(catalog)
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
@@ -130,6 +131,12 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
     if "off-switch" not in plane or "rollback" not in plane:
         raise IntegrityError(
             "plane equation is failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback",
+            reason_code="CATALOG_EQUATION",
+        )
+    org = str(equations.get("org") or "").lower()
+    if "org chart" not in org or "sod" not in org:
+        raise IntegrityError(
+            "org equation is client org chart \u00d7 existing SOD \u00d7 one admit plane",
             reason_code="CATALOG_EQUATION",
         )
 
@@ -207,6 +214,9 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
         "time-machine",
         "powers down",
         "mandated",
+        "department",
+        "org chart",
+        "one title",
     ):
         if stem not in refuse:
             raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
@@ -303,6 +313,10 @@ def _validate_icp(catalog: dict[str, Any]) -> None:
     have = {str(item).lower() for item in icp.get("must_have_for") or []}
     if not needed <= have:
         raise IntegrityError("ICP must-have is owner, board, examiner", reason_code="CATALOG_ICP")
+    if icp.get("org_chart") is not True:
+        raise IntegrityError("ICP maps the client org chart", reason_code="CATALOG_ICP")
+    if icp.get("do_not_invent_department_heads") is not True:
+        raise IntegrityError("do not invent department heads", reason_code="ICP_NAMED")
 
 
 def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
@@ -461,6 +475,53 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
     for stem in ("time-machine rollback", "powers down copilot", "mandated by sec"):
         if stem not in refuse:
             raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+    for stem in ("department ai as dual", "replaces the org chart"):
+        if stem not in refuse:
+            raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+
+
+def _validate_client_org(catalog: dict[str, Any]) -> None:
+    from ainav.client_org import ALLOWED_ROLES, REQUIRED_CLIENT_DEPTS
+
+    body = catalog.get("client_org")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing client org chart", reason_code="CATALOG_ORG")
+    if body.get("sku") is True:
+        raise IntegrityError("client org is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("replaces_org_chart") is True:
+        raise IntegrityError("AINav does not replace the org chart", reason_code="CATALOG_ORG")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("client org cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("named_customers"):
+        raise IntegrityError("do not invent a named customer", reason_code="ICP_NAMED")
+    if body.get("do_not_invent_names") is not True or body.get("do_not_invent_department_heads") is not True:
+        raise IntegrityError("do not invent department heads", reason_code="ICP_NAMED")
+    seats = body.get("seats") or {}
+    if (seats.get("seat_a") or {}).get("role") != "treasury_approver":
+        raise IntegrityError("client seat A is treasury_approver", reason_code="CATALOG_ORG")
+    if (seats.get("seat_b") or {}).get("role") != "treasury_controller":
+        raise IntegrityError("client seat B is treasury_controller", reason_code="CATALOG_ORG")
+    departments = body.get("departments") or []
+    ids = [item.get("id") for item in departments]
+    if ids != list(REQUIRED_CLIENT_DEPTS):
+        raise IntegrityError("client org departments must be the template set", reason_code="CATALOG_ORG")
+    admit = 0
+    for item in departments:
+        if item.get("role") not in ALLOWED_ROLES:
+            raise IntegrityError(f"unknown client org role {item.get('role')!r}", reason_code="CATALOG_ORG")
+        if item.get("department_ai_is_seat") is True:
+            raise IntegrityError("department AI is not a seat", reason_code="CATALOG_ORG")
+        if item.get("named_head"):
+            raise IntegrityError("do not invent a department head", reason_code="ICP_NAMED")
+        if item.get("sku") is True:
+            raise IntegrityError("client department is not a SKU", reason_code="CATALOG_SKU")
+        if item.get("role") == "admit":
+            admit += 1
+    if admit < 2:
+        raise IntegrityError("client org needs two admit departments", reason_code="CATALOG_ORG")
+    thesis = str(body.get("thesis") or "").lower()
+    if "org chart" not in thesis or "not a seat" not in thesis:
+        raise IntegrityError("client org thesis must keep the chart and refuse department AI as a seat", reason_code="CATALOG_ORG")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

@@ -22,6 +22,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **One controller — L1, P-ADM, second-record keep** — One controller buys L1, attaches P-ADM, then attaches industry.second_record. $73,000–$108,000.
 - **One L1 plus off-switch desk** — One controller buys L1 then attaches industry.off_switch so humans can freeze writes. $34,000–$50,000.
 - **One controller — L1, P-ADM, board keep** — One controller buys L1, attaches P-ADM, then attaches industry.board for owner/board/examiner evidence. $73,000–$108,000.
+- **One controller — L1, P-ADM, internal-audit keep** — One controller buys L1, attaches P-ADM, then attaches industry.internal_audit for the seating map. $73,000–$108,000.
 - **One L1 plus payables and bank desks** — One controller buys L1 then attaches industry.payables and industry.bank. $40,000–$60,000.
 - **One controller — L1, P-ADM, oversight keep** — One controller buys L1, attaches P-ADM, then attaches industry.oversight. $73,000–$108,000.
 - **All three SKUs plus invoice and credit desks** — One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit. $100,000–$155,000.

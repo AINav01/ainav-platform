@@ -39,7 +39,7 @@ Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Busines
 - **Programs** — `qualify_not_claimed`. Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.
 - **Commercial spine** — `catalog_list_not_revenue`. Year-one catalog list if one controller buys all three: $88,000–$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.
 
-Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox; client AI as dual; AINav is the client's AI; EU AI Act certified; AINav replaces the client's AI; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI.
+Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox; client AI as dual; AINav is the client's AI; EU AI Act certified; AINav replaces the client's AI; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI; invented department head; department AI as dual; one title as both seats; AINav replaces the org chart.
 
 ## First principles
 
@@ -56,6 +56,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Cascade: client's clients utilize AI × client institutes AINav × two-human control
 - Umbrella: every client AI × one admit plane × two-human control
 - Plane: failsafe × off-switch × reset × rollback × two-human control
+- Org: client org chart × existing SOD × one admit plane
 - Does: Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.
 - Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote; counterparty AI.
 - First record: The privileged SoR write after dual admit (journal, invoice, order).
@@ -64,7 +65,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Must-have: Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.
 - Maps (claimed=false): nist.ai_rmf, omb.m24_10, sox.icfr, ftc.state_ai, eu.ai_act, iso.42001, oecd.ai, sec.books_records, three_lod, fiduciary.duty, coso.ic.
 - Risks: unauthorized_sor; audit_failure; false_certification; seat_collapse; cross_border_claim; bypass_tool; counterparty_ai_write; missing_second_record; ai_sprawl; no_off_switch; silent_rollback; board_blind.
-- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI.
+- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI; invented department head; department AI as dual; one title as both seats; AINav replaces the org chart.
 
 Must not change:
 
@@ -86,6 +87,8 @@ Must not change:
 - One human plane sits over every client AI that can draft a write
 - Off switch is fail-closed, not powering down Copilot
 - Rollback is a dual-admitted compensating write, not a time machine
+- Client departments are not SKUs; department AI is not a seat
+- Do not invent named department heads
 
 ## The sale
 
@@ -93,7 +96,7 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - Proof day: 90 minutes. `python -m ainav proof-day`
 - Seats: treasury_approver / treasury_controller
 - Door: Generate a proof-day brief a controller can forward. Do not invent a contact inbox.
-- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox, client AI as dual, AINav is the client's AI, EU AI Act certified, AINav replaces the client's AI, customer's AI as dual, invented counterparty name, time-machine rollback, AINav powers down Copilot, mandated by SEC, AINav replaces all client AI.
+- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox, client AI as dual, AINav is the client's AI, EU AI Act certified, AINav replaces the client's AI, customer's AI as dual, invented counterparty name, time-machine rollback, AINav powers down Copilot, mandated by SEC, AINav replaces all client AI, invented department head, department AI as dual, one title as both seats, AINav replaces the org chart.
 
 ## Commercial spine
 
@@ -247,6 +250,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **One controller — L1, P-ADM, second-record keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.second_record.
 - **One L1 plus off-switch desk** — $34,000–$50,000. One controller buys L1 then attaches industry.off_switch so humans can freeze writes.
 - **One controller — L1, P-ADM, board keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.board for owner/board/examiner evidence.
+- **One controller — L1, P-ADM, internal-audit keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.internal_audit for the seating map.
 - **One L1 plus payables and bank desks** — $40,000–$60,000. One controller buys L1 then attaches industry.payables and industry.bank.
 - **One controller — L1, P-ADM, oversight keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.oversight.
 - **All three SKUs plus invoice and credit desks** — $100,000–$155,000. One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.

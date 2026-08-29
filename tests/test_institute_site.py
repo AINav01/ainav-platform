@@ -43,6 +43,8 @@ def test_institute_foundation_is_catalog_honest():
     assert "gov-must" in html or 'id="gov-must"' in html
     assert "gov-plane" in html or 'id="gov-plane"' in html
     assert "off switch" in html.lower()
+    assert 'id="client-org"' in html
+    assert "client-org.json" in js
     gov = json.loads(Path("institute/governance.json").read_text(encoding="utf-8"))
     assert gov["kind"] == "ainav.governance.v1"
     assert gov["certified"] is False
@@ -73,6 +75,8 @@ def test_institute_foundation_is_catalog_honest():
         "industry.off_switch",
         "industry.rollback",
         "industry.board",
+        "industry.org",
+        "industry.internal_audit",
     }
     assert 'id="fabric"' in html
     assert 'id="review"' in html

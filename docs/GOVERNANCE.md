@@ -5,6 +5,7 @@ Control: client utilizes AI × counterparties utilize AI × AINav failsafe × tw
 Cascade: client's clients utilize AI × client institutes AINav × two-human control.
 Umbrella: every client AI × one admit plane × two-human control.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
+Org: client org chart × existing SOD × one admit plane.
 Certified: false. Replaces counsel: false. SKU: false. LIVE_PIN_OK: false.
 
 ## Failsafe (client utilizes AI; humans control)
@@ -42,6 +43,11 @@ Certified: false. Replaces counsel: false. SKU: false. LIVE_PIN_OK: false.
 - **Off switch** — Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not. Does not: Power down Copilot, Agent 365, or the client's model.
 - **Reset** — Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep. Does not: Wipe production Business Central or Sales.
 - **Rollback** — A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted. Does not: Silent undo or a time machine.
+
+## Client org chart (template, not a named customer)
+
+AINav sits on the client's existing org chart. It does not replace departments. Treasury and controller hold the two admit seats. IT hosts Copilot and agents. Those AIs draft. Department AI is not a seat. Compliance and internal audit keep the second record. Legal is not replaced. The owner and board oversee and can freeze. Do not invent named heads.
+- Replaces org chart: false. Invented department heads: refused.
 
 ## Maps (not certifications)
 
@@ -88,5 +94,9 @@ Certified: false. Replaces counsel: false. SKU: false. LIVE_PIN_OK: false.
 - AINav powers down Copilot
 - mandated by SEC
 - AINav replaces all client AI
+- invented department head
+- department AI as dual
+- one title as both seats
+- AINav replaces the org chart
 
 Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.

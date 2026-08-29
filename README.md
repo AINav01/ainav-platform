@@ -110,7 +110,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.16.0 (this tree)
+### 2.17.0 (this tree)
+
+The plane sits on the client's existing org chart. Treasury and
+controller hold the two admit seats. IT hosts Copilot. Department AI
+is not a seat. Do not invent named heads. Departments are not SKUs.
+Owner gaps stay open.
+
+### 2.16.0
 
 One human plane sits over every client AI that can draft a write.
 Failsafe, off switch, reset, rollback, first and second records.

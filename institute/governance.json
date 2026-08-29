@@ -22,6 +22,11 @@
     ]
   },
   "certified": false,
+  "client_org": {
+    "do_not_invent_department_heads": true,
+    "replaces_org_chart": false,
+    "thesis": "AINav sits on the client's existing org chart. It does not replace departments. Treasury and controller hold the two admit seats. IT hosts Copilot and agents. Those AIs draft. Department AI is not a seat. Compliance and internal audit keep the second record. Legal is not replaced. The owner and board oversee and can freeze. Do not invent named heads."
+  },
   "control_equation": "client utilizes AI \u00d7 counterparties utilize AI \u00d7 AINav failsafe \u00d7 two-human control",
   "failsafe": {
     "ainav": "Failsafe and human control \u2014 two seats admit, then the write.",
@@ -148,6 +153,7 @@
     "why": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
   },
   "note": "Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+  "org_equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
   "plane": {
     "is_the_clients_ai": false,
     "off_switch": {
@@ -205,7 +211,11 @@
     "time-machine rollback",
     "AINav powers down Copilot",
     "mandated by SEC",
-    "AINav replaces all client AI"
+    "AINav replaces all client AI",
+    "invented department head",
+    "department AI as dual",
+    "one title as both seats",
+    "AINav replaces the org chart"
   ],
   "replaces_counsel": false,
   "risks": [

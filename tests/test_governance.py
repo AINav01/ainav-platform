@@ -51,6 +51,8 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert "compensating" in body["plane"]["rollback"]["does"].lower()
     assert "off switch" in md.lower()
     assert "must-have" in md.lower()
+    assert "org chart" in md.lower()
+    assert body["client_org"]["replaces_org_chart"] is False
 
 
 def test_governance_pack_is_included_l1_seating():

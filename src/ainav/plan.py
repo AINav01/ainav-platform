@@ -29,6 +29,7 @@ def one_page() -> str:
         f"- Cascade: {cat['equations']['cascade']}",
         f"- Umbrella: {cat['equations']['umbrella']}",
         f"- Plane: {cat['equations']['plane']}",
+        f"- Org: {cat['equations']['org']}",
         "- Certified: false. Replaces counsel: false. The failsafe is Job C.",
         "- First record: the admitted SoR write. Second record: the sealed DecisionRecord.",
         "- Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write.",
