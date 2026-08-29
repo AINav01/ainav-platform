@@ -140,7 +140,6 @@
         paintCards("not-the-gate", data.floor.not_the_gate, "name", "note");
       }
       if (data.floor && data.floor.page) {
-        set("plane-page-sale", data.floor.page.sale || "The sale is the ninety-minute proof.");
         set("hero-sale", (data.floor.page.sale || "The sale is the ninety-minute proof.") + " The product is the admit plane.");
       }
       if (data.floor && data.floor.proof_close) {

@@ -134,6 +134,8 @@ def test_institute_foundation_is_catalog_honest():
     assert "admin.microsoft.com" in html
     assert 'id="week-path"' in html
     assert 'id="buyer-sale"' in html
+    assert 'id="buyer-week"' in html
+    assert "qualify → ninety-minute proof day" in html
     assert 'id="hero-sale"' in html
     assert 'id="about"' in html
     assert html.index('id="buyer"') < html.index('id="twin"') < html.index('id="product"') < html.index('id="about"') < html.index('id="opportunity"')
