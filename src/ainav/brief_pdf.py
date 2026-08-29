@@ -73,6 +73,23 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
+            "text": "Why a client must have this",
+        },
+        {
+            "kind": "callout",
+            "title": "The write that must not happen",
+            "text": cat.get("l1_incident_copy") or "",
+        },
+        {
+            "kind": "p",
+            "text": (
+                ((cat.get("governance") or {}).get("must_have") or {}).get("why")
+                or "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
+            )
+            + " Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.",
+        },
+        {
+            "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },
         {

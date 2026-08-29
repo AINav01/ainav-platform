@@ -17,12 +17,20 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.28.3"
+    assert cat["entity"]["release"] == "2.29.0"
+    assert "must-have" in cat["equations"]["interface"]
     assert "humans from the top" in cat["equations"]["interface"]
     assert "walkable rehearsal" in cat["equations"]["interface"]
     assert "authorization lifecycle" in cat["equations"]["interface"]
     assert "sealed records" in cat["equations"]["interface"]
     assert "provision bands" in cat["equations"]["interface"]
+    floor_must = cat["plane_interface"]["floor"]["must_have"]
+    assert floor_must["mandated"] is False
+    assert floor_must["certified"] is False
+    assert floor_must["sku"] is False
+    assert floor_must["why"] == cat["governance"]["must_have"]["why"]
+    assert floor_must["incident"] == cat["l1_incident_copy"]
+    assert "must-have" in cat["plane_interface"]["floor"]["lede"].lower()
     assert cat["plane_interface"]["client_dashboard"]["included_with"] == "L1"
     assert cat["plane_interface"]["client_dashboard"]["upsell"] is False
     assert cat["plane_interface"]["dashboard"]["upsell"] is False
@@ -115,6 +123,8 @@ def test_printable_brief_is_a_pdf():
     assert "treasury_controller" in md
     assert "not a contract" in md.lower()
     assert "unauthorized general-journal" in md
+    assert "why a client must have this" in md.lower()
+    assert md.lower().index("why a client must have this") < md.lower().index("investor packet")
     assert "ninety minutes" in md
     assert "Tuesday" in md
     assert "Where we actually are" in md

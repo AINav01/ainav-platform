@@ -1,10 +1,18 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.28.3. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.29.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
-**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
+**Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
-Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands.
+## Why a client must have this
+
+Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.
+
+The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.
+
+Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.
+
+Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
@@ -22,7 +30,7 @@ Org: client org chart × existing SOD × one admit plane.
 ## Hierarchical views — one plane
 
 - **Entire plane** — Anyone on the tenant. Can: See the ledger and the freeze state. Cannot: A view is not a seat.
-- **Client executive** — Owner / buyer. Can: See the one dashboard included with L1, and the two provision bands. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
+- **Client executive** — The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them.. Can: See why this is must-have, the one dashboard included with L1, and the two provision bands. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
 - **Owner / board** — Oversee. Can: Institute the plane. Request a freeze. Cannot: Click both admits. One title cannot be both seats.
 - **Seat A / seat B** — Treasury and controller. Can: Bind the action_hash. Refuse the write. Cannot: Be both seats. Let AI click.
 - **Examiner** — Internal audit. Can: Read first and second records and the seating map. Cannot: Admit. File. Certify.
@@ -51,7 +59,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.28.3.
+- As of: catalog release 2.29.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -60,6 +68,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 | Signal | Value | Note |
 | --- | --- | --- |
+| Must-have | one plane over every new client AI | Every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Not a mandate. Not a certificate. |
 | Pending binds | 0 | No named treasury pair has a live bind. |
 | Refused | 0 | No live refuse on a named pair. |
 | Frozen | 0 | Catalog plane OPEN. Console freeze is local rehearsal. |
@@ -122,9 +131,9 @@ Entra object id on every request. Conditional Access may identify. Identify is n
 
 ## Client executive dashboard — included with L1
 
-One dashboard, included with L1. Week-one prove is the treasury wedge. Advanced is the upsell — not a second dashboard.
+Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post two humans did not admit. One dashboard included with L1 — not an upsell. Standard and advanced are provision bands, not products.
 
-One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU. SKU: false. Upsell: false. Included with: L1.
+Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU. SKU: false. Upsell: false. Included with: L1.
 
 ## Provisioning — standard included, advanced upsell
 
@@ -238,6 +247,8 @@ Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not b
 
 ## How humans sit from the top
 
+Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. The client institutes AINav as the failsafe, not as the AI. Two humans before the write.
+
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
 
 Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.
@@ -303,6 +314,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 
 | Tile | Value | Note |
 | --- | --- | --- |
+| Must-have | one plane over every new client AI | Every new client AI is another unauthorized-write surface unless one human plane sits over all of them. |
 | Plane state | OPEN | Not frozen. Fail-closed if thrown. Not LIVE_PIN_OK. |
 | Pending dual admits | 0 | No named treasury pair has a live bind. |
 | First record (SoR) | 1 sandbox / 0 production | AINAV-L1 lab oids. Not two named humans. |
@@ -381,5 +393,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - advanced provision as SKU
 - standard vs advanced dashboard
 - included means free
+- must-have as SKU
+- must-have as mandate
 
 Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.

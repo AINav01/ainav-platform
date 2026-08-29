@@ -86,6 +86,12 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert body["client_dashboard"]["same_as"] == "dashboard"
     assert body["dashboard"]["same_as"] == "client_dashboard"
     assert body["provision_bands"]["week_one"] == "provisioning.standard_l1"
+    assert body["must_have"]["mandated"] is False
+    assert body["must_have"]["certified"] is False
+    assert body["must_have"]["sku"] is False
+    assert "write surface" in body["must_have"]["why"].lower()
+    assert "unauthorized general-journal" in body["must_have"]["incident"].lower()
+    assert "must-have" in (body.get("floor") or {}).get("lede", "").lower()
     assert "one dashboard" in (body.get("floor") or {}).get("lede", "").lower()
     assert {item["id"] for item in (body.get("floor") or {}).get("scopes") or []} >= {
         "week_one",
@@ -114,7 +120,8 @@ def test_dashboard_is_honest_and_not_a_sku():
     tiles = {item["id"]: item for item in body["tiles"]}
     assert tiles["standing_grants"]["value"] == "0"
     assert tiles["provisioned_skus"]["value"] == "0 / 0 / 0"
-    assert {item["id"] for item in body["attention"]} >= {"pending", "production", "sandbox_first"}
+    assert {item["id"] for item in body["attention"]} >= {"must_have", "pending", "production", "sandbox_first"}
+    assert "write surface" in tiles["must_have"]["note"].lower()
     assert all(str(item["value"]) == "0" for item in body["attention"] if item["id"] in {"pending", "production"})
     assert {item["id"] for item in body["exceptions"]} >= {"same_seat", "agent_click", "freeze", "replay"}
     assert all(item["live"] is False for item in body["exceptions"])
@@ -124,6 +131,7 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert agent["admit"] is False
     assert agent["draft"] is False
     md = dashboard_markdown()
+    assert "why a client must have this" in md.lower()
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -244,6 +252,15 @@ def test_plane_interface_validators_refuse_fiction():
     no_lede["plane_interface"]["floor"]["lede"] = "two dashboards"
     with pytest.raises(IntegrityError):
         validate_catalog(no_lede)
+    mandated = copy.deepcopy(cat)
+    mandated["plane_interface"]["floor"]["must_have"]["mandated"] = True
+    with pytest.raises(IntegrityError) as must_exc:
+        validate_catalog(mandated)
+    assert must_exc.value.reason_code == "CATALOG_GOVERNANCE"
+    no_must = copy.deepcopy(cat)
+    no_must["plane_interface"]["floor"]["lede"] = "One dashboard included with L1 — not an upsell."
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_must)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):

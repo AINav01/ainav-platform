@@ -58,7 +58,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 BT
 /F2 11.5 Tf
@@ -383,7 +383,7 @@ ET
 endstream
 endobj
 14 0 obj
-<< /Length 7304 >>
+<< /Length 6879 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -405,7 +405,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 BT
 /F1 9 Tf
@@ -498,205 +498,187 @@ BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 518.0 Tm
-(The ultimate control plane interface is not a fourth product. It is how humans sit on the) Tj
+(Must-have for the named controller: every new client AI is another unauthorized-write) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 506.0 Tm
-(plane from the top of the client's existing org chart down to every drafting AI.) Tj
+(surface unless one human plane sits over all of them. The unauthorized general-journal) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 490.0 Tm
-(Owner and board oversee. They institute the plane and can ask for a freeze. They are not) Tj
+1 0 0 1 48.0 494.0 Tm
+(post the client's AI or the client's customer AI drafted and two humans did not admit. The) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 478.0 Tm
-(seats. One title cannot click both admits. Treasury \(seat A\) and controller \(seat B\) are) Tj
+1 0 0 1 48.0 482.0 Tm
+(client institutes AINav as the failsafe, not as the AI. Two humans before the write.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 466.0 Tm
-(the only two humans who bind the action_hash. Payables and sales may draft. IT hosts) Tj
+(The ultimate control plane interface is not a fourth product. It is how humans sit on the) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 454.0 Tm
-(Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second) Tj
+(plane from the top of the client's existing org chart down to every drafting AI.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 442.0 Tm
-(record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.) Tj
+1 0 0 1 48.0 438.0 Tm
+(Owner and board oversee. They institute the plane and can ask for a freeze. They are not) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 426.0 Tm
-(Hierarchical access is segregation of duties, not a new identity provider. Internal and) Tj
+(seats. One title cannot click both admits. Treasury \(seat A\) and controller \(seat B\) are) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 414.0 Tm
-(remote use the same Entra object id on the same plane. Remote is not a second control) Tj
+(the only two humans who bind the action_hash. Payables and sales may draft. IT hosts) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 402.0 Tm
-(plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not) Tj
+(Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 390.0 Tm
-(admit the write. The Cloud Agent may operate the host. It is not a seat.) Tj
+(record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 374.0 Tm
-(The executive dashboard is that same plane, tiled. Real-time here means the admit ledger) Tj
+(Hierarchical access is segregation of duties, not a new identity provider. Internal and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 362.0 Tm
-(and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does) Tj
+(remote use the same Entra object id on the same plane. Remote is not a second control) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 350.0 Tm
-(not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed) Tj
+(plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 338.0 Tm
+(admit the write. The Cloud Agent may operate the host. It is not a seat.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 322.0 Tm
+(The executive dashboard is that same plane, tiled. Real-time here means the admit ledger) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 310.0 Tm
+(and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 298.0 Tm
+(not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 286.0 Tm
 (L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 326.0 Tm
+1 0 0 1 48.0 274.0 Tm
 (identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 314.0 Tm
+1 0 0 1 48.0 262.0 Tm
 (and three lines of defense with claimed=false. The dashboard is not a certificate and not) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 302.0 Tm
+1 0 0 1 48.0 250.0 Tm
 (a SKU. The client executive dashboard is included with L1. It is not an upsell. There is) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 290.0 Tm
+1 0 0 1 48.0 238.0 Tm
 (one dashboard. Do not sell Standard Dashboard versus Advanced Dashboard. Advanced) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 278.0 Tm
+1 0 0 1 48.0 226.0 Tm
 (provision adds priced desks, P-ADM keep, paid U-DUAL, and hours ? not a second dashboard) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 266.0 Tm
+1 0 0 1 48.0 214.0 Tm
 (SKU.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 250.0 Tm
+1 0 0 1 48.0 198.0 Tm
 (The floor is a command console on one plane. Hierarchical views are not a second product.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 238.0 Tm
+1 0 0 1 48.0 186.0 Tm
 (Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 226.0 Tm
+1 0 0 1 48.0 174.0 Tm
 (the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 214.0 Tm
+1 0 0 1 48.0 162.0 Tm
 (the second record, and the maps. Remote is the same Entra object id ? Conditional Access) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 202.0 Tm
+1 0 0 1 48.0 150.0 Tm
 (may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 190.0 Tm
-(Teams, Copilot, and Agent Tools are not dual admit.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 174.0 Tm
-(The write path is the same for every privileged class: draft, bind an action_hash, seat A,) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 162.0 Tm
-(seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 150.0 Tm
-(floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
 1 0 0 1 48.0 138.0 Tm
-(Completing the rehearsal does not create a new SoR write. Microsoft is not called.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 126.0 Tm
-(Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM,) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 114.0 Tm
-(Copilot, and replay are deny paths. Freeze in the console is local to the browser. The) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 102.0 Tm
-(catalog plane stays OPEN until an owner later marks a real freeze.) Tj
+(Teams, Copilot, and Agent Tools are not dual admit.) Tj
 ET
 BT
 /F3 7.5 Tf
@@ -707,7 +689,7 @@ ET
 endstream
 endobj
 15 0 obj
-<< /Length 6928 >>
+<< /Length 7420 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -729,293 +711,308 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 708.0 Tm
-(The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and) Tj
+(The write path is the same for every privileged class: draft, bind an action_hash, seat A,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 696.0 Tm
-(seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0,) Tj
+(seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 684.0 Tm
-(second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record.) Tj
+(floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 672.0 Tm
-(The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed.) Tj
+(Completing the rehearsal does not create a new SoR write. Microsoft is not called.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 660.0 Tm
-(Reset is the last sealed keep. Rollback is a compensating write that itself requires dual) Tj
+(Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 648.0 Tm
-(admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are) Tj
+(Copilot, and replay are deny paths. Freeze in the console is local to the browser. The) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 636.0 Tm
-(live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.) Tj
+(catalog plane stays OPEN until an owner later marks a real freeze.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 620.0 Tm
-(Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional) Tj
+(The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 608.0 Tm
-(Access may identify the human on every request. Identify is not admit. Network location,) Tj
+(seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 596.0 Tm
-(VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a) Tj
+(second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 584.0 Tm
-(console. A seat authorization lets a human bind. A grant is a single-use consume of one) Tj
+(The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 572.0 Tm
-(action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke.) Tj
+(Reset is the last sealed keep. Rollback is a compensating write that itself requires dual) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 560.0 Tm
-(There is no standing privilege on the write.) Tj
+(admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 544.0 Tm
-(Provisioning is two bands on the same plane, not two more SKUs. Standard provision is) Tj
+1 0 0 1 48.0 548.0 Tm
+(live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 532.0 Tm
-(included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra) Tj
+(Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 520.0 Tm
-(identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive) Tj
+(Access may identify the human on every request. Identify is not admit. Network location,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 508.0 Tm
-(dashboard. Standard is not an upsell product. Advanced provision is the upsell band:) Tj
+(VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 496.0 Tm
-(priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service) Tj
+(console. A seat authorization lets a human bind. A grant is a single-use consume of one) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 484.0 Tm
-(hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach) Tj
+(action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 472.0 Tm
-(U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not) Tj
+(There is no standing privilege on the write.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 460.0 Tm
-(LIVE_PIN_OK.) Tj
+1 0 0 1 48.0 456.0 Tm
+(Provisioning is two bands on the same plane, not two more SKUs. Standard provision is) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 444.0 Tm
-(Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human) Tj
+(included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 432.0 Tm
-(that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second) Tj
+(identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 420.0 Tm
-(record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not) Tj
+(dashboard. Standard is not an upsell product. Advanced provision is the upsell band:) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 408.0 Tm
-(the thread.) Tj
+(priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 392.0 Tm
-(Record keeping is two records and a keep. First record is the admitted SoR write. Second) Tj
+1 0 0 1 48.0 396.0 Tm
+(hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 380.0 Tm
-(record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS.) Tj
+1 0 0 1 48.0 384.0 Tm
+(U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 368.0 Tm
-(Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a) Tj
+1 0 0 1 48.0 372.0 Tm
+(LIVE_PIN_OK.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 356.0 Tm
+(Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 344.0 Tm
+(that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 332.0 Tm
+(record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 320.0 Tm
+(the thread.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 304.0 Tm
+(Record keeping is two records and a keep. First record is the admitted SoR write. Second) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 292.0 Tm
+(record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 280.0 Tm
+(Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 268.0 Tm
 (certificate. AI compliance and regulation compliance are the same maps with claimed=false.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 334.0 Tm
+1 0 0 1 48.0 246.0 Tm
 (WHO BUYS · WHY NOW) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 331.0 m 564 331.0 l S
+48 243.0 m 564 243.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 318.0 Tm
+1 0 0 1 48.0 230.0 Tm
 (A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 306.0 Tm
+1 0 0 1 48.0 218.0 Tm
 (two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 294.0 Tm
+1 0 0 1 48.0 206.0 Tm
 (is invented in this packet.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 278.0 Tm
+1 0 0 1 48.0 190.0 Tm
 (Every new client AI is another unauthorized-write surface. The buyer is the controller who) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 266.0 Tm
+1 0 0 1 48.0 178.0 Tm
 (already has Business Central Premium, Entra, and two-person journal SOD. They institute) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 254.0 Tm
+1 0 0 1 48.0 166.0 Tm
 (AINav on the org chart they already have. They do not replace their ERP. They do not) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 242.0 Tm
+1 0 0 1 48.0 154.0 Tm
 (replace Copilot. They put two humans in front of the write.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 220.0 Tm
+1 0 0 1 48.0 132.0 Tm
 (WHAT WE ARE ASKING OF YOU) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 217.0 m 564 217.0 l S
+48 129.0 m 564 129.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 204.0 Tm
+1 0 0 1 48.0 116.0 Tm
 (Seat B is treasury_controller. If you agree, you get your own business mailbox, your own) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 192.0 Tm
+1 0 0 1 48.0 104.0 Tm
 (Entra object id, and your own click. James cannot click for you. Refusing a write is the) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 180.0 Tm
+1 0 0 1 48.0 92.0 Tm
 (product working. You are invited, not recorded. Email stays blank until you confirm a) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 168.0 Tm
+1 0 0 1 48.0 80.0 Tm
 (business address. You are not a stockholder and not an officer.) Tj
 ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 152.0 Tm
-(Cynthia, we are asking you to be seat B and the Inception business executive: your own) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 140.0 Tm
-(mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 128.0 Tm
-(priced round. Not LIVE_PIN_OK.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 106.0 Tm
-(WHAT WE WILL NOT ASK) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 103.0 m 564 103.0 l S
 BT
 /F3 7.5 Tf
 0.4 0.4 0.4 rg
@@ -1025,7 +1022,7 @@ ET
 endstream
 endobj
 16 0 obj
-<< /Length 6199 >>
+<< /Length 6719 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -1047,31 +1044,31 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 708.0 Tm
-(We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark) Tj
+(Cynthia, we are asking you to be seat B and the Inception business executive: your own) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 696.0 Tm
-(LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in) Tj
+(mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 684.0 Tm
-(the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.) Tj
+(priced round. Not LIVE_PIN_OK.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
 1 0 0 1 48.0 662.0 Tm
-(WHAT A TUESDAY LOOKS LIKE) Tj
+(WHAT WE WILL NOT ASK) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
@@ -1080,286 +1077,313 @@ BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 646.0 Tm
-(Seat A is treasury_approver \(James\). Seat B is treasury_controller \(you, if you agree\).) Tj
+(We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 634.0 Tm
-(Each has a distinct Entra object id. When a privileged write is proposed, both of you see) Tj
+(LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 622.0 Tm
-(the same action_hash. Admit or refuse. Refusing is the product working. James clicking) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 610.0 Tm
-(twice is not dual. The Cloud Agent is not a seat.) Tj
+(the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 588.0 Tm
-(HOW A SALE WORKS) Tj
+1 0 0 1 48.0 600.0 Tm
+(WHAT A TUESDAY LOOKS LIKE) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 585.0 m 564 585.0 l S
+48 597.0 m 564 597.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 584.0 Tm
+(Seat A is treasury_approver \(James\). Seat B is treasury_controller \(you, if you agree\).) Tj
+ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 572.0 Tm
-(Qualify a controller who already has Business Central Premium, Entra, and two-person) Tj
+(Each has a distinct Entra object id. When a privileged write is proposed, both of you see) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 560.0 Tm
-(journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin.) Tj
+(the same action_hash. Admit or refuse. Refusing is the product working. James clicking) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 548.0 Tm
+(twice is not dual. The Cloud Agent is not a seat.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 526.0 Tm
+(HOW A SALE WORKS) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 523.0 m 564 523.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 510.0 Tm
+(Qualify a controller who already has Business Central Premium, Entra, and two-person) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 498.0 Tm
+(journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 486.0 Tm
 (Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 536.0 Tm
+1 0 0 1 48.0 474.0 Tm
 (same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 524.0 Tm
+1 0 0 1 48.0 462.0 Tm
 (design-partner name.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 502.0 Tm
+1 0 0 1 48.0 440.0 Tm
 (BUSINESS MODEL ? THREE SKUS ONLY) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 499.0 m 564 499.0 l S
+48 437.0 m 564 437.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 486.0 Tm
+1 0 0 1 48.0 424.0 Tm
 (Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 474.0 Tm
+1 0 0 1 48.0 412.0 Tm
 (Microsoft licenses are not SKUs. U-DUAL is never free. A desk attaches to one of those) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 462.0 Tm
+1 0 0 1 48.0 400.0 Tm
 (three SKUs; it does not become a fourth product.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 446.0 Tm
+1 0 0 1 48.0 384.0 Tm
 (Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 434.0 Tm
+1 0 0 1 48.0 372.0 Tm
 (billing provider. Recognized revenue stays zero until a controller actually buys.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 418.0 Tm
+1 0 0 1 48.0 356.0 Tm
 (A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 406.0 Tm
+1 0 0 1 48.0 344.0 Tm
 (are seating, not a discount on a second control plane. Priced L1 desks are $6,000?$10,000.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 394.0 Tm
+1 0 0 1 48.0 332.0 Tm
 (Priced P-ADM keep is $5,000?$8,000 after kit PASS. Priced U-DUAL desks are $6,000?$10,000) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 382.0 Tm
+1 0 0 1 48.0 320.0 Tm
 (and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 370.0 Tm
+1 0 0 1 48.0 308.0 Tm
 (are not a SKU.) Tj
 ET
 0.067 0.078 0.102 rg
-48 342.0 516.0 16 re f
+48 280.0 516.0 16 re f
 BT
 /F2 7.2 Tf
 1 1 1 rg
-1 0 0 1 52.0 346.0 Tm
+1 0 0 1 52.0 284.0 Tm
 (SKU) Tj
 ET
 BT
 /F2 7.2 Tf
 1 1 1 rg
-1 0 0 1 130.0 346.0 Tm
+1 0 0 1 130.0 284.0 Tm
 (Role) Tj
 ET
 BT
 /F2 7.2 Tf
 1 1 1 rg
-1 0 0 1 220.0 346.0 Tm
+1 0 0 1 220.0 284.0 Tm
 (Catalog list) Tj
 ET
 BT
 /F2 7.2 Tf
 1 1 1 rg
-1 0 0 1 400.0 346.0 Tm
+1 0 0 1 400.0 284.0 Tm
 (Term) Tj
 ET
 0.98 0.97 0.95 rg
-48 327.0 516.0 14 re f
+48 265.0 516.0 14 re f
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 52.0 331.0 Tm
+1 0 0 1 52.0 269.0 Tm
 (L1) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 130.0 331.0 Tm
+1 0 0 1 130.0 269.0 Tm
 (prove) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 220.0 331.0 Tm
+1 0 0 1 220.0 269.0 Tm
 ($28,000?$40,000) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 400.0 331.0 Tm
+1 0 0 1 400.0 269.0 Tm
 (2?4 weeks) Tj
 ET
 0.98 0.97 0.95 rg
-48 313.0 516.0 14 re f
+48 251.0 516.0 14 re f
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 52.0 317.0 Tm
+1 0 0 1 52.0 255.0 Tm
 (P-ADM) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 130.0 317.0 Tm
+1 0 0 1 130.0 255.0 Tm
 (keep) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 220.0 317.0 Tm
+1 0 0 1 220.0 255.0 Tm
 ($40,000?$60,000) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 400.0 317.0 Tm
+1 0 0 1 400.0 255.0 Tm
 (annual) Tj
 ET
 0.98 0.97 0.95 rg
-48 299.0 516.0 14 re f
+48 237.0 516.0 14 re f
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 52.0 303.0 Tm
+1 0 0 1 52.0 241.0 Tm
 (U-DUAL) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 130.0 303.0 Tm
+1 0 0 1 130.0 241.0 Tm
 (deepen) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 220.0 303.0 Tm
+1 0 0 1 220.0 241.0 Tm
 ($20,000?$35,000) Tj
 ET
 BT
 /F3 7.1 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 400.0 303.0 Tm
+1 0 0 1 400.0 241.0 Tm
 (annual) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 288.0 Tm
+1 0 0 1 48.0 226.0 Tm
 (There is no priced round in this packet. There is no valuation. There is no forecast ARR.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 276.0 Tm
+1 0 0 1 48.0 214.0 Tm
 (The honest investor unit is catalog list times zero booked times a two-human close.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 254.0 Tm
+1 0 0 1 48.0 192.0 Tm
 (UPSELL CATALOG ? NOT A FOURTH SKU) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 251.0 m 564 251.0 l S
+48 189.0 m 564 189.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 238.0 Tm
+1 0 0 1 48.0 176.0 Tm
 (Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 226.0 Tm
+1 0 0 1 48.0 164.0 Tm
 (fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 214.0 Tm
+1 0 0 1 48.0 152.0 Tm
 (are seating, not a discount on a second control plane.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 192.0 Tm
+1 0 0 1 48.0 130.0 Tm
 (L1 DESKS) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 189.0 m 564 189.0 l S
+48 127.0 m 564 127.0 l S
 BT
 /F3 7.5 Tf
 0.4 0.4 0.4 rg
@@ -1391,7 +1415,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 0.067 0.078 0.102 rg
 48 696.0 516.0 16 re f
@@ -2231,7 +2255,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 0.98 0.97 0.95 rg
 48 697.0 516.0 14 re f
@@ -3030,7 +3054,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.28.3) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.29.0) Tj
 ET
 0.98 0.97 0.95 rg
 48 697.0 516.0 14 re f
@@ -3328,12 +3352,12 @@ xref
 0000001350 00000 n 
 0000001421 00000 n 
 0000008274 00000 n 
-0000015631 00000 n 
-0000022612 00000 n 
-0000028864 00000 n 
-0000040999 00000 n 
-0000052625 00000 n 
+0000015206 00000 n 
+0000022679 00000 n 
+0000029451 00000 n 
+0000041586 00000 n 
+0000053212 00000 n 
 trailer << /Size 20 /Root 1 0 R >>
 startxref
-58466
+59053
 %%EOF

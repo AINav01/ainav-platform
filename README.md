@@ -110,7 +110,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.28.3 (this tree)
+### 2.29.0 (this tree)
+
+A named controller must see why this is must-have before SKUs, the
+dashboard, or the scoreboard. The unauthorized general-journal post
+the client's AI or the client's customer AI drafted and two humans
+did not admit. Every new client AI is another unauthorized-write
+surface unless one human plane sits over all of them. Hero, buyer,
+floor Entire/Client, and the Cynthia brief now lead with that copy.
+Job C in plain language is two humans before the write. Mandated:
+false. Certified: false. Not a fourth SKU. One dashboard included
+with L1. Standard and advanced stay provision bands.
+
+### 2.28.3
 
 The floor reads as three scopes a buyer can scan: week-one prove,
 included with L1, advanced upsell. Client tab sits next to Entire

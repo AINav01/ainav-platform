@@ -169,6 +169,11 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "interface equation must keep authorization lifecycle and sealed records",
             reason_code="CATALOG_EQUATION",
         )
+    if "must-have" not in interface:
+        raise IntegrityError(
+            "interface equation must keep must-have",
+            reason_code="CATALOG_EQUATION",
+        )
     investor = str(equations.get("investor") or "").lower()
     if "catalog list" not in investor or "zero booked" not in investor:
         raise IntegrityError(
@@ -697,6 +702,20 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     lede = str(floor.get("lede") or "").lower()
     if "one dashboard" not in lede or "included with l1" not in lede:
         raise IntegrityError("floor lede must keep one dashboard included with L1", reason_code="CATALOG_PLANE")
+    if "must-have" not in lede or "write surface" not in lede or "two humans" not in lede:
+        raise IntegrityError("floor lede must keep must-have write surface", reason_code="CATALOG_PLANE")
+    floor_must = floor.get("must_have") or {}
+    if not isinstance(floor_must, dict):
+        raise IntegrityError("floor must-have is required", reason_code="CATALOG_PLANE")
+    if floor_must.get("sku") is True or floor_must.get("mandated") is True or floor_must.get("certified") is True:
+        raise IntegrityError("must-have is not a SKU, mandate, or certificate", reason_code="CATALOG_GOVERNANCE")
+    gov_why = str(((catalog.get("governance") or {}).get("must_have") or {}).get("why") or "")
+    if str(floor_must.get("why") or "") != gov_why:
+        raise IntegrityError("floor must-have why must match governance", reason_code="CATALOG_PLANE")
+    if str(floor_must.get("incident") or "") != str(catalog.get("l1_incident_copy") or ""):
+        raise IntegrityError("floor must-have incident must match l1_incident_copy", reason_code="CATALOG_PLANE")
+    if "two humans before the write" not in str(floor_must.get("job_c_plain") or "").lower():
+        raise IntegrityError("Job C plain is two humans before the write", reason_code="CATALOG_PLANE")
     scope_ids = [item.get("id") for item in floor.get("scopes") or []]
     for needed in ("week_one", "included_seating", "advanced"):
         if needed not in scope_ids:
@@ -709,6 +728,8 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "standard provision as sku",
         "advanced provision as sku",
         "included means free",
+        "must-have as sku",
+        "must-have as mandate",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")
@@ -749,7 +770,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     if clock.get("pending_binds") not in (0, "0"):
         raise IntegrityError("plane clock pending binds stay zero until a named pair", reason_code="CATALOG_PLANE")
     attention_ids = [item.get("id") for item in body.get("attention") or []]
-    for needed in ("pending", "production", "sandbox_first", "second_record"):
+    for needed in ("must_have", "pending", "production", "sandbox_first", "second_record"):
         if needed not in attention_ids:
             raise IntegrityError(f"attention board must include {needed}", reason_code="CATALOG_PLANE")
     for item in body.get("attention") or []:

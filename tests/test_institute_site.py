@@ -47,6 +47,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "control-plane.json" in js
     assert "governance.json" in js
     assert "The client utilizes AI" in html
+    assert "unauthorized general-journal" in html.lower()
+    assert "customer's customer AI" in html.lower() or "customer AI" in html
+    assert "two humans before the write" in html.lower()
     assert "gov-cascade" in html or "id=\"gov-cascade\"" in html
     assert "gov-records" in html or "id=\"gov-records\"" in html
     assert "First record" in html

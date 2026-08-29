@@ -487,6 +487,8 @@
         }
         var event = (data.ledger && data.ledger.events && data.ledger.events[0]) || {};
         if (kind === "inspector" || kind === "attention") {
+          var must = (data.floor && data.floor.must_have) || data.must_have || {};
+          add("Must-have", "one plane over every new client AI", must.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
           add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
           add("Second record", "0", "P-ADM keep not attached. Examiner cannot certify.");
@@ -519,10 +521,13 @@
           add("Attached SKUs", String(attached.L1 || 0) + " / " + String(attached["P-ADM"] || 0) + " / " + String(attached["U-DUAL"] || 0), "L1 / P-ADM / U-DUAL. Not LIVE_PIN_OK.");
         }
         if (kind === "client") {
+          var mustHave = (data.floor && data.floor.must_have) || data.must_have || {};
+          add("Must-have", "one human plane", mustHave.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
+          add("The write that must not happen", "unauthorized journal", mustHave.incident || "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.");
           add("This dashboard", "included with L1", "The same plane, tiled. Not a second product. Not Standard vs Advanced dashboard.");
           add("Week-one prove", "treasury + wedge", "What we provision first. Not the whole standard band.");
           add("Advanced upsell", "not a SKU", "Priced desks, P-ADM, paid U-DUAL, hours. U-DUAL is never free.");
-          add("Attached", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast.");
+          add("Attached", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast. Mandated: false.");
         }
         if (kind === "records") {
           add("First record", "1 sandbox / 0 production", "AINAV-L1 lab operator identities.");
@@ -754,7 +759,7 @@
           host: "IT deck — host, not a seat",
           provision: "Provision deck — standard included, advanced upsell",
           records: "Records deck — first, second, keep",
-          client: "Client deck — one dashboard, two provision bands"
+          client: "Client deck — must-have, then the dashboard"
         };
         if (consoleTitle) consoleTitle.textContent = titles[consoleKind] || "Command console";
         if (consoleNote) {

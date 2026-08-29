@@ -11,6 +11,13 @@
   },
   "attention": [
     {
+      "id": "must_have",
+      "label": "Must-have",
+      "note": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Not a mandate. Not a certificate.",
+      "tone": "hold",
+      "value": "one plane over every new client AI"
+    },
+    {
       "id": "pending",
       "label": "Pending binds",
       "note": "No named treasury pair has a live bind.",
@@ -179,7 +186,7 @@
     "same_as": "dashboard",
     "sku": false,
     "standard_vs_advanced_dashboard": false,
-    "thesis": "One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU.",
+    "thesis": "Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU.",
     "upsell": false
   },
   "clock": {
@@ -190,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.28.3"
+    "release": "2.29.0"
   },
   "communications": [
     {
@@ -455,6 +462,7 @@
     "same_as": "client_dashboard",
     "sku": false,
     "tiles": [
+      "must_have",
       "plane_state",
       "pending_admits",
       "first_record",
@@ -696,7 +704,7 @@
       "role": "not_a_seat"
     }
   ],
-  "equation": "humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands",
   "exceptions": [
     {
       "id": "same_seat",
@@ -772,7 +780,15 @@
     }
   ],
   "floor": {
-    "lede": "One dashboard, included with L1. Week-one prove is the treasury wedge. Advanced is the upsell \u2014 not a second dashboard.",
+    "lede": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post two humans did not admit. One dashboard included with L1 \u2014 not an upsell. Standard and advanced are provision bands, not products.",
+    "must_have": {
+      "certified": false,
+      "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
+      "job_c_plain": "two humans before the write",
+      "mandated": false,
+      "sku": false,
+      "why": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
+    },
     "scopes": [
       {
         "id": "week_one",
@@ -813,7 +829,7 @@
     "pending_binds": 0
   },
   "legal": "AINav, Inc.",
-  "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU. The client executive dashboard is included with L1. It is not an upsell. There is one dashboard. Do not sell Standard Dashboard versus Advanced Dashboard. Advanced provision adds priced desks, P-ADM keep, paid U-DUAL, and hours \u2014 not a second dashboard SKU.\n\nThe floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id \u2014 Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.\n\nThe duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.\n\nAccess authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.\n\nProvisioning is two bands on the same plane, not two more SKUs. Standard provision is included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive dashboard. Standard is not an upsell product. Advanced provision is the upsell band: priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.\n\nInter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.\n\nRecord keeping is two records and a keep. First record is the admitted SoR write. Second record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS. Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a certificate. AI compliance and regulation compliance are the same maps with claimed=false.",
+  "letter": "Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. The client institutes AINav as the failsafe, not as the AI. Two humans before the write.\n\nThe ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU. The client executive dashboard is included with L1. It is not an upsell. There is one dashboard. Do not sell Standard Dashboard versus Advanced Dashboard. Advanced provision adds priced desks, P-ADM keep, paid U-DUAL, and hours \u2014 not a second dashboard SKU.\n\nThe floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id \u2014 Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.\n\nThe duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.\n\nAccess authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.\n\nProvisioning is two bands on the same plane, not two more SKUs. Standard provision is included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive dashboard. Standard is not an upsell product. Advanced provision is the upsell band: priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.\n\nInter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.\n\nRecord keeping is two records and a keep. First record is the admitted SoR write. Second record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS. Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a certificate. AI compliance and regulation compliance are the same maps with claimed=false.",
   "levels": [
     {
       "admit": false,
@@ -1036,6 +1052,14 @@
       "name": "Rollback"
     }
   ],
+  "must_have": {
+    "certified": false,
+    "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
+    "job_c_plain": "two humans before the write",
+    "mandated": false,
+    "sku": false,
+    "why": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
+  },
   "note": "Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.",
   "org_equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
   "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
@@ -1951,7 +1975,9 @@
     "standard provision as SKU",
     "advanced provision as SKU",
     "standard vs advanced dashboard",
-    "included means free"
+    "included means free",
+    "must-have as SKU",
+    "must-have as mandate"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -1968,7 +1994,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.28.3",
+  "release": "2.29.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -2219,8 +2245,15 @@
     }
   },
   "sku": false,
-  "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.",
+  "thesis": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.",
   "tiles": [
+    {
+      "id": "must_have",
+      "label": "Must-have",
+      "note": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.",
+      "tone": "map",
+      "value": "one plane over every new client AI"
+    },
     {
       "id": "plane_state",
       "label": "Plane state",
@@ -2338,7 +2371,7 @@
     },
     {
       "admit": false,
-      "can": "See the one dashboard included with L1, and the two provision bands.",
+      "can": "See why this is must-have, the one dashboard included with L1, and the two provision bands.",
       "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
       "console": "client",
       "id": "client",
@@ -2347,7 +2380,7 @@
         "signed_l1",
         "tiles"
       ],
-      "who": "Owner / buyer"
+      "who": "The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
     },
     {
       "admit": false,

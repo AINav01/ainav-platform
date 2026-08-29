@@ -1,10 +1,18 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.28.3. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.29.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.28.3  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.29.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
+
+## Why a client must have this
+
+## The write that must not happen
+
+The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.
+
+Every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.
 
 ## Investor packet — print the letter with the full upsell catalog
 
@@ -37,6 +45,8 @@ Others can copy a two-person Business Central approval, a Teams vote, or Copilot
 ## How humans sit on the plane — executive dashboard
 
 ## Authorize, provision, keep — honest tiles, not a certificate
+
+Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. The client institutes AINav as the failsafe, not as the AI. Two humans before the write.
 
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
 

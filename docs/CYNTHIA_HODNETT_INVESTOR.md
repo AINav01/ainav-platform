@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.28.3.
+29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.29.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -36,6 +36,8 @@ After kit PASS, the second record, the off switch, and the rollback are segregat
 Others can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.
 
 ## How humans sit on the plane — interface and dashboard
+
+Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. The client institutes AINav as the failsafe, not as the AI. Two humans before the write.
 
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
 

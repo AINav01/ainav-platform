@@ -20,6 +20,7 @@ HTML_PATH = Path("docs/CONTROL_PLANE_DASHBOARD.html")
 INSTITUTE_JSON = Path("institute/control-plane.json")
 
 TILE_TONES = {
+    "must_have": "map",
     "plane_state": "ready",
     "pending_admits": "hold",
     "first_record": "lab",
@@ -308,7 +309,18 @@ def public_dashboard() -> dict[str, Any]:
     by_id = {row["id"]: row for row in fin["scenarios"]}
     all_three = by_id["all_three"]
     maps = [dict(item) for item in gov["maps"]]
+    must = dict((body.get("floor") or {}).get("must_have") or {})
+    if not must:
+        must = dict(gov.get("must_have") or {})
+        must.setdefault("incident", cat["l1_incident_copy"])
+        must.setdefault("job_c_plain", "two humans before the write")
     tiles = [
+        _tile(
+            "must_have",
+            "Must-have",
+            "one plane over every new client AI",
+            must.get("why") or cat["governance"]["must_have"]["why"],
+        ),
         _tile("plane_state", "Plane state", "OPEN", "Not frozen. Fail-closed if thrown. Not LIVE_PIN_OK."),
         _tile("pending_admits", "Pending dual admits", "0", "No named treasury pair has a live bind."),
         _tile("first_record", "First record (SoR)", "1 sandbox / 0 production", "AINAV-L1 lab oids. Not two named humans."),
@@ -361,6 +373,7 @@ def public_dashboard() -> dict[str, Any]:
         "provisioning": dict(body.get("provisioning") or {}),
         "client_dashboard": dict(body.get("client_dashboard") or {}),
         "provision_bands": _provision_bands(cat, body),
+        "must_have": must,
         "floor": dict(body.get("floor") or {}),
         "communications": [dict(item) for item in body.get("communications") or []],
         "records": [dict(item) for item in body.get("records") or []],
@@ -386,6 +399,14 @@ def dashboard_markdown() -> str:
         f"Release {body['release']}. Not a SKU. Not LIVE_PIN_OK. Not a certificate.",
         "",
         f"**{body['thesis']}**",
+        "",
+        "## Why a client must have this",
+        "",
+        f"{(body.get('must_have') or {}).get('why') or ''}",
+        "",
+        f"{(body.get('must_have') or {}).get('incident') or ''}",
+        "",
+        "Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.",
         "",
         f"Equation: {body.get('equation')}.",
         f"Plane: {body.get('plane_equation')}.",
@@ -939,11 +960,15 @@ def dashboard_html() -> str:
             "</tr>"
         )
     provision_desks = "".join(desk_rows)
+    must = body.get("must_have") or {}
     client_dash_note = (
+        f"{html.escape(must.get('why') or '')} "
+        f"{html.escape((body.get('floor') or {}).get('lede') or '')} "
         f"{html.escape(client_dash.get('thesis') or '')} "
         f"SKU: {html.escape(str(client_dash.get('sku')).lower())}. "
         f"Upsell: {html.escape(str(client_dash.get('upsell')).lower())}. "
-        f"Included with: {html.escape(str(client_dash.get('included_with') or 'L1'))}."
+        f"Included with: {html.escape(str(client_dash.get('included_with') or 'L1'))}. "
+        "Mandated: false. Certified: false."
     )
     communications = "".join(
         (
@@ -1055,6 +1080,7 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="strip">{strip}</div>
 <div class="wrap">
 <p class="thesis">{html.escape(body['thesis'])}</p>
+<p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <p class="equation">Interface = {html.escape(body.get('equation') or '')}</p>
 <p class="note">{clock_line}</p>
 <h2>Attention board</h2>
