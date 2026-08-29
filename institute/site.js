@@ -12,6 +12,45 @@
     });
   });
 
+  fetch("review.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.launch_ready) return;
+      var equation = document.getElementById("review-equation");
+      if (equation && data.success_equation) equation.textContent = "Success = " + data.success_equation;
+      var score = document.getElementById("review-score");
+      if (score && data.equation) {
+        var pin = score.querySelector("[data-id='live_pin_ok'] .price");
+        if (pin) pin.textContent = data.equation.live_pin_ok ? "claimed" : "open";
+        var proof = score.querySelector("[data-id='proof_day'] .price");
+        if (proof) {
+          proof.textContent = data.equation.proof_day_sold ? "sold" : "executable · unsold";
+        }
+        var signed = score.querySelector("[data-id='signed_l1'] .price");
+        if (signed) signed.textContent = data.equation.signed_l1 ? "signed" : "open";
+        var padm = score.querySelector("[data-id='p_adm'] .price");
+        if (padm) padm.textContent = String(data.equation.p_adm_attached);
+      }
+      var fitRoot = document.getElementById("review-fit");
+      if (fitRoot && data.fit) {
+        data.fit.forEach(function (item) {
+          var card = fitRoot.querySelector("[data-id='" + item.id + "']");
+          if (!card) return;
+          card.setAttribute("data-status", item.status);
+          card.setAttribute("data-live", "false");
+          var price = card.querySelector(".price");
+          if (price && item.status) price.textContent = item.status;
+          var note = card.querySelector("p:not(.price)");
+          if (note && item.note) note.textContent = item.note;
+        });
+      }
+    })
+    .catch(function () {
+      /* review.json is optional when opened as a file */
+    });
+
   fetch("org.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

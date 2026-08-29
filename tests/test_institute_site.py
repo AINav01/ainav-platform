@@ -31,6 +31,9 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="twin"' in html
     assert 'id="opportunity"' in html
     assert 'id="fabric"' in html
+    assert 'id="review"' in html
+    assert 'id="review-score"' in html
+    assert 'id="review-fit"' in html
     assert 'id="complement-cards"' in html
     assert 'id="twin-notify"' in html
     assert 'id="twin-kit"' in html
@@ -71,6 +74,8 @@ def test_institute_foundation_is_catalog_honest():
     assert "complement-cards" in js
     assert "year_one_list_if_all_three" in js
     assert "business.json" in js
+    assert "review.json" in js
+    assert "review-fit" in js
     assert "--azure" in css
     status = json.loads(Path("institute/status.json").read_text(encoding="utf-8"))
     assert status["live"] is False
@@ -83,3 +88,10 @@ def test_institute_foundation_is_catalog_honest():
     assert status["opportunity"]["year_one_list_if_all_three"]["min"] == 88000
     assert status["fabric"]["live"] is False
     assert all(item["wired"] is False for item in status["complements"])
+    review = json.loads(Path("institute/review.json").read_text(encoding="utf-8"))
+    assert review["kind"] == "ainav.review.v1"
+    assert review["live"] is False
+    assert review["live_pin_ok"] is False
+    assert review["launch_ready"] is False
+    assert review["equation"]["closed"] is False
+    assert "markdown" not in review

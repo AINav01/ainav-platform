@@ -1,0 +1,466 @@
+"""Deep-dive review generated from the catalog. Catalog wins. Never LIVE_PIN_OK."""
+
+from __future__ import annotations
+
+from typing import Any
+
+from ainav.catalog import honest_missing, load_catalog, sku
+from ainav.institute_status import public_status
+from ainav.microsoft.agent_tools import public_review as agent_tools_review
+from ainav.org import human_gates
+
+
+CLI_SURFACE = (
+    "python -m ainav review",
+    "python -m ainav review --probe",
+    "python -m ainav org [--probe]",
+    "python -m ainav connect --probe",
+    "python -m ainav dns",
+    "python -m ainav agent-tools [--probe]",
+    "python -m ainav proof-day",
+    "python -m ainav twin-demo",
+    "python -m ainav programs",
+)
+
+
+def _money(amount: int) -> str:
+    return f"${amount:,}"
+
+
+def _sku_line(sku_id: str) -> str:
+    item = sku(sku_id)
+    price = item["price_usd"]
+    return f"**{sku_id} {item['name']}** — {_money(price['min'])}–{_money(price['max'])} ({item['term']})"
+
+
+def _equation(cat: dict[str, Any], opp: dict[str, Any]) -> dict[str, Any]:
+    attached = opp.get("attached") or {}
+    return {
+        "text": cat["success_equation"],
+        "live_pin_ok": False,
+        "proof_day_executable": True,
+        "proof_day_sold": False,
+        "signed_l1": False,
+        "p_adm_attached": int(attached.get("P-ADM") or 0),
+        "closed": False,
+    }
+
+
+def _fit(cat: dict[str, Any], evidence: dict[str, Any], site: dict[str, Any], opp: dict[str, Any]) -> list[dict[str, str]]:
+    operating = cat["operating"]
+    year = opp["year_one_list_if_all_three"]
+    return [
+        {
+            "id": "owner",
+            "label": "Owner / operator",
+            "status": "sole_owner",
+            "note": (
+                f"Owner {operating['owner_principal']}. Operator {operating['operator']} "
+                "is not a seat and not dual admit. Second officer: none."
+            ),
+        },
+        {
+            "id": "admit",
+            "label": "Job C admit plane",
+            "status": "running_code",
+            "note": (
+                f"{cat['entity']['product']}. Two distinct humans bind one action_hash. "
+                "Then the write. Cloud Agent is not seat_a or seat_b."
+            ),
+        },
+        {
+            "id": "l1",
+            "label": "L1 / Business Central",
+            "status": "sandbox_journal",
+            "note": (
+                f"Sandbox company {evidence['bc_company']} document `{evidence['bc_document']}` "
+                f"on {evidence['date']} for {evidence['amount']}. "
+                f"Wedge `{evidence['action_class']}`. {evidence['seats']}. "
+                "Production stays blocked. Not LIVE_PIN_OK."
+            ),
+        },
+        {
+            "id": "p_adm",
+            "label": "P-ADM attach",
+            "status": "unattached",
+            "note": (
+                f"Attaches after {sku('P-ADM')['attach_after']}. "
+                f"Attached={opp['attached']['P-ADM']}. Never bundles free U-DUAL."
+            ),
+        },
+        {
+            "id": "u_dual",
+            "label": "U-DUAL / Sales",
+            "status": "licensed_not_wired",
+            "note": (
+                "Sales Enterprise is licensed. Global Discovery returned zero instances. "
+                f"Attached={opp['attached']['U-DUAL']}. Twin only until G14."
+            ),
+        },
+        {
+            "id": "institute",
+            "label": "Institute / DNS",
+            "status": "azure_hosted_not_custom",
+            "note": (
+                f"{site.get('azure_site')} on {site.get('azure_location')}. "
+                f"launch_ready={str(site.get('launch_ready')).lower()}. "
+                "Apex still Squarespace. No asuid. Do not publish until launch."
+            ),
+        },
+        {
+            "id": "programs",
+            "label": "Programs",
+            "status": "qualify_not_claimed",
+            "note": (
+                "Microsoft for Startups first. NVIDIA Inception second. "
+                "Membership claimed: false. Crypto-associated: false. GPU production: false."
+            ),
+        },
+        {
+            "id": "pipeline",
+            "label": "Commercial spine",
+            "status": "catalog_list_not_revenue",
+            "note": (
+                f"Year-one catalog list if one controller buys all three: "
+                f"{_money(year['min'])}–{_money(year['max'])}. "
+                f"Signed L1={opp['signed_l1']}. Named customers: none. Recognized revenue: none."
+            ),
+        },
+    ]
+
+
+def review_model(*, probe: bool = False) -> dict[str, Any]:
+    cat = load_catalog()
+    status = public_status()
+    evidence = dict(cat["sandbox_evidence"])
+    site = cat["programs"]["website"]
+    opp = status["opportunity"]
+    tools = agent_tools_review()
+    model = {
+        "kind": "ainav.review.v1",
+        "entity": cat["entity"]["legal"],
+        "institute": cat["entity"]["institute"],
+        "product": cat["entity"]["product"],
+        "job": cat["entity"]["job"],
+        "live": False,
+        "live_pin_ok": False,
+        "launch_ready": False,
+        "signed_l1": False,
+        "recognized_revenue": None,
+        "named_customers": [],
+        "second_officer": None,
+        "owner": cat["operating"]["owner_principal"],
+        "operator": cat["operating"]["operator"],
+        "operator_is_seat": False,
+        "agent_is_not_dual": True,
+        "success_equation": cat["success_equation"],
+        "equation": _equation(cat, opp),
+        "fit": _fit(cat, evidence, site, opp),
+        "attached": dict(opp["attached"]),
+        "azure_url": site.get("azure_url"),
+        "custom_domain_claimed": False,
+        "public_deploy_claimed": False,
+        "agent_tools_is_admit_plane": False,
+        "cloud_agent_can_approve_tools": False,
+        "agent_tools_admin": tools["admin_url"],
+        "cli": list(CLI_SURFACE),
+        "probed": False,
+    }
+    if probe:
+        model["probe"] = _probe_overlay()
+        model["probed"] = True
+    return model
+
+
+def public_card() -> dict[str, Any]:
+    """Institute JSON. Catalog only. Never a live probe."""
+    return review_model(probe=False)
+
+
+def deep_dive(*, probe: bool = False) -> str:
+    cat = load_catalog()
+    entity = cat["entity"]
+    site = cat["programs"]["website"]
+    evidence = cat["sandbox_evidence"]
+    status = public_status()
+    opp = status["opportunity"]
+    tools = agent_tools_review()
+    year = opp["year_one_list_if_all_three"]
+    model = review_model(probe=False)
+    equation = model["equation"]
+    lines = [
+        f"# {entity['legal']} — deep-dive review",
+        "",
+        "Catalog-honest. Not a live pin. Not a launch. Not recognized revenue.",
+        "",
+        "## Verdict",
+        "",
+        f"{entity['legal']} has a running Job {entity['job']} admit plane, a Microsoft sandbox twin, "
+        "and an Azure-hosted Institute that is **held until launch**. "
+        "The company can prove the L1 write-gate on Business Central Sandbox. "
+        "It cannot yet sell a signed L1, attach P-ADM, or mark LIVE_PIN_OK.",
+        "",
+        f"**Success still open:** {cat['success_equation']}",
+        f"**Owner:** {cat['operating']['owner_principal']}. "
+        f"**Operator:** {cat['operating']['operator']} (not a seat, not dual admit).",
+        f"**Second officer:** none. **Named customers:** none. **Recognized revenue:** none.",
+        f"**Launch ready:** {str(site.get('launch_ready')).lower()}. "
+        f"**Custom domain claimed:** {str(site.get('custom_domain_claimed')).lower()}.",
+        "",
+        "## Success equation scorecard",
+        "",
+        "The equation is a product. Every factor must be true. None are sold.",
+        "",
+        f"- **LIVE_PIN_OK** — {str(equation['live_pin_ok']).lower()}. Never marked from this plane.",
+        "- **Proof day** — executable "
+        f"(`{cat['proof_day']['cli']}`, {cat['proof_day']['minutes']} minutes). Sold: "
+        f"{str(equation['proof_day_sold']).lower()}.",
+        f"- **Signed L1** — {str(equation['signed_l1']).lower()}. G13. "
+        "Sandbox journal AINAV-L1 used lab operator oids, not two named treasury humans.",
+        f"- **P-ADM attach** — {equation['p_adm_attached']}. Attaches only after "
+        f"{sku('P-ADM')['attach_after']}.",
+        f"- **Closed:** {str(equation['closed']).lower()}.",
+        "",
+        "## How the pieces fit",
+        "",
+        "One company. Three SKUs. Ten departments. Six Microsoft connections. "
+        "Eight complements. The Cloud Agent operates the host. It is not a seat.",
+        "",
+        "Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → "
+        "Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → "
+        "Teams notifies. Complements hold secrets, evidence, policy, and audit.",
+        "",
+    ]
+    for item in model["fit"]:
+        lines.append(f"- **{item['label']}** — `{item['status']}`. {item['note']}")
+    lines += [
+        "",
+        "Refuse: " + "; ".join(cat["buyer"]["refuse"]) + ".",
+        "",
+        "## First principles",
+        "",
+        entity["category"] + ".",
+        "A privileged write is allowed only when two distinct humans bind the same `action_hash`,",
+        "that grant is consumed once, and the effect gate is fail-closed.",
+        cat["microsoft_stack"]["not_the_product"],
+        "",
+        "Must not change:",
+        "",
+    ]
+    for rule in cat["must_not_change"]:
+        lines.append(f"- {rule}")
+    lines += [
+        "",
+        "## The sale",
+        "",
+        cat["l1_incident_copy"],
+        f"- Proof day: {cat['proof_day']['minutes']} minutes. `{cat['proof_day']['cli']}`",
+        f"- Seats: {' / '.join(cat['buyer']['seats'])}",
+        f"- Door: {cat['buyer']['door']}",
+        "- Refuse: " + ", ".join(cat["buyer"]["refuse"]) + ".",
+        "",
+        "## Commercial spine",
+        "",
+        _sku_line("L1") + " — prove.",
+        _sku_line("P-ADM") + f" — keep after {sku('P-ADM')['attach_after']}. Never bundles free U-DUAL.",
+        _sku_line("U-DUAL") + " — deepen. Never free with P-ADM or U-SOR.",
+        "",
+        f"Year-one catalog list if one controller buys all three: "
+        f"{_money(year['min'])}–{_money(year['max'])}. {year['note']}",
+        f"Pipeline attached: L1={opp['attached']['L1']}, P-ADM={opp['attached']['P-ADM']}, "
+        f"U-DUAL={opp['attached']['U-DUAL']}. Signed L1={opp['signed_l1']}.",
+        "",
+        cat["business"]["thesis"],
+        f"- Motion: {cat['business']['sales']['motion']}",
+        f"- Economics: {cat['business']['economics']['note']}",
+        "",
+        "## Digital twin and Microsoft sandbox",
+        "",
+        "Three layers. They are not interchangeable.",
+        "",
+        "1. **In-process twin** — `bc.sandbox` and `d365.sales.sandbox` only. "
+        "`python -m ainav twin-demo`. Institute `#twin` bench is browser-only. "
+        "Graph, Dataverse, and Production are not called.",
+        "2. **Business Central Sandbox (real)** — "
+        f"company {evidence['bc_company']} (`{evidence['bc_company_id']}`). "
+        f"Document `{evidence['bc_document']}` on {evidence['date']} for {evidence['amount']}. "
+        f"Wedge `{evidence['action_class']}`. {evidence['note']} "
+        f"Seats: {evidence['seats']}.",
+        "3. **Sales twin only** — Dynamics 365 Sales Enterprise is licensed. "
+        "No Dataverse instance. Quote override stays on the twin until G14.",
+        "",
+        f"Next pin: `{cat['next_pin']['from']}` → `{cat['next_pin']['to']}` on "
+        f"{cat['next_pin']['connection']}. sent={cat['next_pin']['sent']}. "
+        f"{cat['next_pin']['note']}",
+        "",
+        "## Microsoft fabric",
+        "",
+        "Path: Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → "
+        "Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → "
+        "Teams notifies. Complements hold secrets, evidence, policy, and audit.",
+        "",
+        "Fabric path (sandbox, not SKUs):",
+        "",
+    ]
+    for item in status["fabric"]["path"]:
+        lines.append(
+            f"- **{item['id']}** — {item['product']} (`{item['lane']}`, {item['status']}). {item['note']}"
+        )
+    lines += [
+        "",
+        "Six connections (sandbox, not SKUs):",
+        "",
+    ]
+    for item in cat["connections"]["items"]:
+        lines.append(
+            f"- **{item['id']}** — {item['product']} ({item['role']}). binds: {', '.join(item.get('binds') or [])}."
+        )
+    lines += [
+        "",
+        "Eight complements (not SKUs, not live, PIM is not dual, LAW is not Sentinel):",
+        "",
+    ]
+    for item in cat["connections"]["complements"]:
+        honesty = next(
+            (row["note"] for row in status["complements"] if row["id"] == item["id"]),
+            "",
+        )
+        lines.append(
+            f"- **{item['id']}** — {item['product']} ({item['role']}). "
+            f"binds: {', '.join(item.get('binds') or [])}. {honesty}"
+        )
+    lines += [
+        "",
+        "E7 ships Copilot and Agent 365. They are not the admit plane.",
+        f"Agent Tools admin: {tools['admin_url']}",
+        "Leave Available: " + ", ".join(item["name"] for item in tools["leave_available"]) + ".",
+        "Block until dual: " + ", ".join(item["name"] for item in tools["block_until_dual"]) + ".",
+        "Never as admit: " + ", ".join(tools["never_as_admit"]) + ".",
+        "This Cloud Agent cannot approve tools.",
+        "",
+        "## Institute and DNS",
+        "",
+        f"- Azure hostname: {site.get('azure_url')}",
+        f"- Site: {site.get('azure_site')} in {site.get('azure_location')}",
+        f"- public_deploy_claimed={site.get('public_deploy_claimed')} "
+        f"custom_domain_claimed={site.get('custom_domain_claimed')} "
+        f"launch_ready={site.get('launch_ready')}",
+        "- Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.",
+        "- Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).",
+        "- No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.",
+        "- `--publish-institute` returns `launch_not_ready` and does not upload.",
+        "- Do not bind `ainav.institute` until the owner says launch.",
+        "",
+        "## Operating organization",
+        "",
+        cat["organization"]["note"],
+        f"- Owner {cat['operating']['owner_principal']}. Operator is not a seat.",
+        "- Second unique human: false. Incorporation date: not stored in this tree.",
+        "",
+    ]
+    for dept in cat["organization"]["departments"]:
+        blocked = "; ".join(dept.get("blocked_by") or []) or "none recorded"
+        systems = ", ".join(dept.get("systems") or []) or "none"
+        lines.append(
+            f"- **{dept['name']}** — {dept['status']}. systems: {systems}. "
+            f"{dept['note']} Blocked by: {blocked}."
+        )
+    lines += [
+        "",
+        "## Delivery",
+        "",
+        cat["motherships"]["law"],
+        f"- Master: {cat['business']['delivery']['master']}",
+        f"- Cloud: {cat['business']['delivery']['cloud']}",
+        f"- Local: {cat['business']['delivery']['local']}",
+        "- Week one: " + " → ".join(cat["delivery"]["week_one"]) + ".",
+        "",
+        "## Programs",
+        "",
+        cat["programs"]["lead_narrative"],
+        f"- Public wedge: `{cat['programs']['public_wedge']}`",
+        "- Order: " + " → ".join(cat["programs"]["application_order"]) + ".",
+        "- Membership claimed: false. Ready to apply: false. GPU workload claimed: false. Crypto-associated: false.",
+        "",
+        "## Human gates (owner only)",
+        "",
+    ]
+    for item in human_gates():
+        lines.append(f"- {item}")
+    lines += [
+        "",
+        "## Still missing",
+        "",
+    ]
+    for item in honest_missing():
+        lines.append(f"- {item}")
+    lines += [
+        "",
+        "## OPEN (do not mark closed)",
+        "",
+    ]
+    for gap in cat["open_gaps"]:
+        lines.append(f"- {gap}")
+    lines += [
+        "",
+        "## Read the company",
+        "",
+        "Catalog wins. `--probe` overlays live Microsoft and DNS health. "
+        "Probe does not publish, write a SoR, or mark LIVE_PIN_OK.",
+        "",
+    ]
+    for cmd in CLI_SURFACE:
+        lines.append(f"- `{cmd}`")
+    if probe:
+        lines.extend(_probe_section())
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _probe_overlay() -> dict[str, Any]:
+    from ainav.microsoft.dns import probe_dns
+    from ainav.microsoft.health import stack_health
+    from ainav.org import org_report
+
+    health = stack_health(probe=True)
+    dns = probe_dns()
+    org = org_report(probe=True)
+    return {
+        "live": False,
+        "live_pin_ok": False,
+        "launch_ready": False,
+        "connected": list(health.get("connected") or []),
+        "blocked": list(health.get("blocked") or []),
+        "wired_now": list(org.get("wired_now") or []),
+        "blocked_now": list(org.get("blocked_now") or []),
+        "cloudflare_nameservers": dns.get("cloudflare_nameservers"),
+        "swa_asuid_present": (dns.get("website") or {}).get("swa_asuid_present"),
+        "mx_outlook": (dns.get("microsoft_365") or {}).get("mx_outlook"),
+        "teams_sip": (dns.get("microsoft_365") or {}).get("teams_sip"),
+        "custom_domain_claimed": False,
+    }
+
+
+def _probe_section() -> list[str]:
+    overlay = _probe_overlay()
+    return [
+        "",
+        "## Live probe overlay (read-only)",
+        "",
+        "Not LIVE_PIN_OK. Not a SoR write. Not a publish. Does not promote blocked departments.",
+        f"- Connected: {', '.join(overlay['connected']) or 'none'}",
+        f"- Blocked: {', '.join(overlay['blocked']) or 'none'}",
+        f"- Departments wired now: {', '.join(overlay['wired_now']) or 'none'}",
+        f"- Departments blocked now: {', '.join(overlay['blocked_now']) or 'none'}",
+        f"- Cloudflare NS: {overlay['cloudflare_nameservers']}. "
+        f"SWA asuid: {overlay['swa_asuid_present']}. "
+        f"Outlook MX: {overlay['mx_outlook']}. "
+        f"Teams SIP: {overlay['teams_sip']}.",
+        "- Custom domain claimed: false. Launch ready: false.",
+    ]
+
+
+def review_json(*, probe: bool = False) -> dict[str, Any]:
+    model = review_model(probe=probe)
+    model["markdown"] = deep_dive(probe=probe)
+    return model

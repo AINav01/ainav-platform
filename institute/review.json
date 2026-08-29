@@ -1,0 +1,101 @@
+{
+  "agent_is_not_dual": true,
+  "agent_tools_admin": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+  "agent_tools_is_admit_plane": false,
+  "attached": {
+    "L1": 0,
+    "P-ADM": 0,
+    "U-DUAL": 0
+  },
+  "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+  "cli": [
+    "python -m ainav review",
+    "python -m ainav review --probe",
+    "python -m ainav org [--probe]",
+    "python -m ainav connect --probe",
+    "python -m ainav dns",
+    "python -m ainav agent-tools [--probe]",
+    "python -m ainav proof-day",
+    "python -m ainav twin-demo",
+    "python -m ainav programs"
+  ],
+  "cloud_agent_can_approve_tools": false,
+  "custom_domain_claimed": false,
+  "entity": "AINav, Inc.",
+  "equation": {
+    "closed": false,
+    "live_pin_ok": false,
+    "p_adm_attached": 0,
+    "proof_day_executable": true,
+    "proof_day_sold": false,
+    "signed_l1": false,
+    "text": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach"
+  },
+  "fit": [
+    {
+      "id": "owner",
+      "label": "Owner / operator",
+      "note": "Owner DayTradingMarkets. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.",
+      "status": "sole_owner"
+    },
+    {
+      "id": "admit",
+      "label": "Job C admit plane",
+      "note": "AINav Control Plane. Two distinct humans bind one action_hash. Then the write. Cloud Agent is not seat_a or seat_b.",
+      "status": "running_code"
+    },
+    {
+      "id": "l1",
+      "label": "L1 / Business Central",
+      "note": "Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids \u2014 not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.",
+      "status": "sandbox_journal"
+    },
+    {
+      "id": "p_adm",
+      "label": "P-ADM attach",
+      "note": "Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.",
+      "status": "unattached"
+    },
+    {
+      "id": "u_dual",
+      "label": "U-DUAL / Sales",
+      "note": "Sales Enterprise is licensed. Global Discovery returned zero instances. Attached=0. Twin only until G14.",
+      "status": "licensed_not_wired"
+    },
+    {
+      "id": "institute",
+      "label": "Institute / DNS",
+      "note": "ainav-institute on eastus2. launch_ready=false. Apex still Squarespace. No asuid. Do not publish until launch.",
+      "status": "azure_hosted_not_custom"
+    },
+    {
+      "id": "programs",
+      "label": "Programs",
+      "note": "Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.",
+      "status": "qualify_not_claimed"
+    },
+    {
+      "id": "pipeline",
+      "label": "Commercial spine",
+      "note": "Year-one catalog list if one controller buys all three: $88,000\u2013$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.",
+      "status": "catalog_list_not_revenue"
+    }
+  ],
+  "institute": "AINAV.Institute",
+  "job": "C",
+  "kind": "ainav.review.v1",
+  "launch_ready": false,
+  "live": false,
+  "live_pin_ok": false,
+  "named_customers": [],
+  "operator": "cursor.cloud_agent",
+  "operator_is_seat": false,
+  "owner": "DayTradingMarkets",
+  "probed": false,
+  "product": "AINav Control Plane",
+  "public_deploy_claimed": false,
+  "recognized_revenue": null,
+  "second_officer": null,
+  "signed_l1": false,
+  "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach"
+}

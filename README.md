@@ -55,6 +55,8 @@ Three SKUs only — **L1** ($28–40k), **P-ADM** ($40–60k/yr), **U-DUAL** ($2
 
 ```bash
 python -m ainav plan
+python -m ainav review
+python -m ainav review --probe
 python -m ainav proof-day
 python -m ainav buyer
 python -m ainav brief
@@ -69,14 +71,17 @@ python -m ainav ops-demo
 
 Master mothership issues the lockfile and never writes the client SoR. A **cloud** mothership (Azure-declared) and a **local** mothership share one consume ledger and run AdmitClient against a Business Central **digital twin** (`bc.general_journal.post`). Paid U-DUAL deepens the same plane onto a Sales Enterprise twin. Industry packs, repositories, and fee-for-service hours are **not SKUs**. Teams is notify-only. Entra supplies seat object ids — we do not replace the IdP. Live SoR and `LIVE_PIN_OK` are **open**.
 
-Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_PLAN.md`. IP hygiene: `LICENSE`, `NOTICE`, `TRADEMARKS.md`. Microsoft marks name integrations only — they are not the product. G12 legal stays **open**.
+Institute site: `institute/index.html` (AINAV.Institute). Plan: `docs/BUSINESS_PLAN.md`. Company review: `docs/REVIEW.md` (`python -m ainav review`). IP hygiene: `LICENSE`, `NOTICE`, `TRADEMARKS.md`. Microsoft marks name integrations only — they are not the product. G12 legal stays **open**. Launch is held.
 
 ```bash
 python -m ainav ip
 python -m ainav org
+python -m ainav review
 python -m ainav programs
 python -m ainav pitch
 python -m ainav connections
+python -m ainav dns
+python -m ainav agent-tools
 python -m ainav stack-demo
 python -m ainav company-demo
 ```

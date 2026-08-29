@@ -1,0 +1,215 @@
+# AINav, Inc. — deep-dive review
+
+Catalog-honest. Not a live pin. Not a launch. Not recognized revenue.
+
+## Verdict
+
+AINav, Inc. has a running Job C admit plane, a Microsoft sandbox twin, and an Azure-hosted Institute that is **held until launch**. The company can prove the L1 write-gate on Business Central Sandbox. It cannot yet sell a signed L1, attach P-ADM, or mark LIVE_PIN_OK.
+
+**Success still open:** LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
+**Owner:** DayTradingMarkets. **Operator:** cursor.cloud_agent (not a seat, not dual admit).
+**Second officer:** none. **Named customers:** none. **Recognized revenue:** none.
+**Launch ready:** false. **Custom domain claimed:** false.
+
+## Success equation scorecard
+
+The equation is a product. Every factor must be true. None are sold.
+
+- **LIVE_PIN_OK** — false. Never marked from this plane.
+- **Proof day** — executable (`python -m ainav proof-day`, 90 minutes). Sold: false.
+- **Signed L1** — false. G13. Sandbox journal AINAV-L1 used lab operator oids, not two named treasury humans.
+- **P-ADM attach** — 0. Attaches only after L1 Acceptance Kit PASS.
+- **Closed:** false.
+
+## How the pieces fit
+
+One company. Three SKUs. Ten departments. Six Microsoft connections. Eight complements. The Cloud Agent operates the host. It is not a seat.
+
+Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → Teams notifies. Complements hold secrets, evidence, policy, and audit.
+
+- **Owner / operator** — `sole_owner`. Owner DayTradingMarkets. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.
+- **Job C admit plane** — `running_code`. AINav Control Plane. Two distinct humans bind one action_hash. Then the write. Cloud Agent is not seat_a or seat_b.
+- **L1 / Business Central** — `sandbox_journal`. Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids — not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.
+- **P-ADM attach** — `unattached`. Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.
+- **U-DUAL / Sales** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. Attached=0. Twin only until G14.
+- **Institute / DNS** — `azure_hosted_not_custom`. ainav-institute on eastus2. launch_ready=false. Apex still Squarespace. No asuid. Do not publish until launch.
+- **Programs** — `qualify_not_claimed`. Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.
+- **Commercial spine** — `catalog_list_not_revenue`. Year-one catalog list if one controller buys all three: $88,000–$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.
+
+Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox.
+
+## First principles
+
+Dual-admitted effect authority before privileged system-of-record writes.
+A privileged write is allowed only when two distinct humans bind the same `action_hash`,
+that grant is consumed once, and the effect gate is fail-closed.
+Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
+
+Must not change:
+
+- Job C only — not agent inventory (Job A), not IdP replacement (Job B)
+- Dual distinct principals
+- action_hash bound
+- Single-use consume
+- Fail-closed
+- SoR only after admit ok
+- No free U-DUAL with P-ADM or U-SOR
+- No soft HITL as dual
+- No invented SKUs
+- No LIVE_PIN_OK / product HA / signed L1 without evidence
+
+## The sale
+
+The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.
+- Proof day: 90 minutes. `python -m ainav proof-day`
+- Seats: treasury_approver / treasury_controller
+- Door: Generate a proof-day brief a controller can forward. Do not invent a contact inbox.
+- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox.
+
+## Commercial spine
+
+**L1 FIRST_OFFER** — $28,000–$40,000 (2–4 weeks) — prove.
+**P-ADM ADMIT_COVERAGE** — $40,000–$60,000 (annual) — keep after L1 Acceptance Kit PASS. Never bundles free U-DUAL.
+**U-DUAL DEPTH_PACK** — $20,000–$35,000 (annual) — deepen. Never free with P-ADM or U-SOR.
+
+Year-one catalog list if one controller buys all three: $88,000–$135,000. Catalog list if one controller buys L1, then attaches P-ADM, then pays for U-DUAL. Not recognized revenue.
+Pipeline attached: L1=0, P-ADM=0, U-DUAL=0. Signed L1=0.
+
+Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
+- Motion: qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL
+- Economics: Pipeline math uses catalog list prices. It is not recognized revenue.
+
+## Digital twin and Microsoft sandbox
+
+Three layers. They are not interchangeable.
+
+1. **In-process twin** — `bc.sandbox` and `d365.sales.sandbox` only. `python -m ainav twin-demo`. Institute `#twin` bench is browser-only. Graph, Dataverse, and Production are not called.
+2. **Business Central Sandbox (real)** — company AINav (`9b8d1202-be8f-f111-8327-7ced8db3712c`). Document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. Sandbox journal exists. Production is blocked. This is not LIVE_PIN_OK. Seats: lab operator oids — not two named treasury humans.
+3. **Sales twin only** — Dynamics 365 Sales Enterprise is licensed. No Dataverse instance. Quote override stays on the twin until G14.
+
+Next pin: `bc.sandbox` → `bc.microsoft.sandbox` on bc.premium. sent=False. Process twin → Microsoft Business Central sandbox envelope. Not production. Not LIVE_PIN_OK.
+
+## Microsoft fabric
+
+Path: Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → Teams notifies. Complements hold secrets, evidence, policy, and audit.
+
+Fabric path (sandbox, not SKUs):
+
+- **azure.host** — Microsoft Azure (`host`, hosted_sandbox). ainav-institute on eastus2. Custom domain not bound.
+- **m365.e7** — Microsoft 365 E7 / Microsoft Entra ID (`identity`, connected_sandbox). Seat object ids. Copilot is not a seat. PIM is not dual admit.
+- **admit** — AINav Control Plane (`admit`, running_code). Two distinct humans. One action hash. Then the write.
+- **bc.premium** — Dynamics 365 Business Central Premium (`sor`, sandbox_journal). sandbox · AINav · bc.general_journal.post. Production blocked.
+- **sales.enterprise** — Dynamics 365 Sales Enterprise (`sor`, licensed_not_wired). License exists. No Dataverse instance. Twin only until G14.
+- **teams.enterprise** — Microsoft Teams Enterprise (`notify`, licensed_not_wired). Effect notify. A chat is not a seat.
+- **teams.premium** — Microsoft Teams Premium (`notify`, licensed_not_wired). Protected notify. A meeting is not a seat.
+
+Six connections (sandbox, not SKUs):
+
+- **azure.host** — Microsoft Azure (hosting). binds: master mothership target, AINAV.Institute static site.
+- **m365.e7** — Microsoft 365 E7 (tenant). binds: Entra Suite seat ids, Purview/Sentinel audit sink, Teams licensing.
+- **teams.enterprise** — Microsoft Teams Enterprise (notify). binds: effect notify.
+- **teams.premium** — Microsoft Teams Premium (notify). binds: protected effect notify.
+- **bc.premium** — Dynamics 365 Business Central Premium (sor). binds: bc.general_journal.post.
+- **sales.enterprise** — Dynamics 365 Sales Enterprise (sor). binds: d365.quote.discount_override, d365.order.submit.
+
+Eight complements (not SKUs, not live, PIM is not dual, LAW is not Sentinel):
+
+- **entra.id** — Microsoft Entra ID (identity). binds: seat object ids. Seat object ids. Not an IdP replacement. Copilot is not the admit plane.
+- **azure.keyvault** — Azure Key Vault (secrets). binds: connection secret hold. Connection secret hold on the host. Not a live pin.
+- **azure.monitor** — Azure Monitor (observe). binds: mothership health. Mothership health. LAW is not Sentinel. Not a live pin.
+- **sharepoint.kit** — SharePoint (evidence). binds: Acceptance Kit evidence. Kit evidence store. Not a seat. Graph is not called from this page.
+- **defender.xdr** — Microsoft Defender XDR (security). binds: E7 security sink. E7 security sink. SecurityIncident.Read.All is not granted. Not the admit plane.
+- **entra.pim** — Microsoft Entra Privileged Identity Management (seat_eligibility). binds: eligible dual seats. Eligible seats. A PIM activation is not dual admit.
+- **sentinel.siem** — Microsoft Sentinel (siem). binds: DecisionRecord export sink. DecisionRecord export sink. The mothership LAW is not a Sentinel workspace.
+- **azure.policy** — Azure Policy (host_policy). binds: lockfile host constraints. Host policy. West Europe is blocked. Cannot weaken Job C.
+
+E7 ships Copilot and Agent 365. They are not the admit plane.
+Agent Tools admin: https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
+Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management.
+Block until dual: Dataverse MCP Server, Any BYO MCP that writes Business Central or Sales.
+Never as admit: Microsoft 365 Copilot, Work IQ Copilot, Agent 365, Work IQ Calendar.
+This Cloud Agent cannot approve tools.
+
+## Institute and DNS
+
+- Azure hostname: https://blue-river-010091a0f.7.azurestaticapps.net
+- Site: ainav-institute in eastus2
+- public_deploy_claimed=False custom_domain_claimed=False launch_ready=False
+- Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.
+- Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).
+- No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.
+- `--publish-institute` returns `launch_not_ready` and does not upload.
+- Do not bind `ainav.institute` until the owner says launch.
+
+## Operating organization
+
+Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.
+- Owner DayTradingMarkets. Operator is not a seat.
+- Second unique human: false. Incorporation date: not stored in this tree.
+
+- **Treasury / Finance** — running_sandbox. systems: bc.premium. Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK. Blocked by: BC Production app not Enabled; signed L1 / two named treasury humans.
+- **Identity / IT / Host** — running_sandbox. systems: m365.e7, entra.id, azure.host, azure.keyvault, azure.monitor, azure.policy. Same Entra app. Azure host in eastus. West Europe is blocked by policy. Blocked by: LIVE_PIN_OK.
+- **Sales / Revenue** — licensed_not_wired. systems: sales.enterprise. Sales Enterprise license exists. Global Discovery returned zero instances. Blocked by: Power Platform environment with Dataverse; DATAVERSE_URL.
+- **People / Notify** — licensed_not_wired. systems: teams.enterprise, teams.premium. Teams is licensed. A chat is not a seat. Graph notify is not wired. Blocked by: Team.ReadBasic.All on the same Entra app.
+- **Security / Compliance** — licensed_not_wired. systems: defender.xdr, entra.pim, sentinel.siem, sharepoint.kit. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Blocked by: SecurityIncident.Read.All; RoleEligibilitySchedule.Read.Directory; Sites.Read.All; Sentinel on the existing LAW.
+- **Institute / GTM** — azure_hosted_not_custom. systems: repo.institute, azure.host. Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK. Blocked by: ainav.institute custom domain.
+- **Legal / Counsel** — open_gap. systems: catalog.legal. IP hygiene lives in this tree. Counsel pack is not signed. Blocked by: G12 legal; G13 signed L1.
+- **Product / Engineering** — running_code. systems: repo.agent_gov, repo.catalog. Job C admit plane and catalog. Three SKUs only. Not a live pin. Blocked by: product HA.
+- **Delivery / Customer Success** — running_code. systems: delivery. Master / cloud / local motherships and week-one runbook. Do not invent a customer. Blocked by: named customer; LIVE_PIN_OK.
+- **Programs / Partnerships** — qualify_not_claimed. systems: programs. Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed. Blocked by: public website; incorporation date; second unique human contact.
+
+## Delivery
+
+Same Job C lockfile. One consume ledger per client. Master never writes the client SoR.
+- Master: Azure-declared master mothership issues lockfile, catalog, gold. Never writes client SoR.
+- Cloud: Azure-declared client mothership. Same ledger as local. Sandbox twin.
+- Local: Client-local mothership. Same ledger as cloud. AdmitClient + twin + Teams notify.
+- Week one: provision master lockfile → provision cloud + local pair on one ledger → proof day or Acceptance Kit on the BC twin → notify Teams Enterprise and Premium → store kit evidence in SharePoint sandbox → refuse live pin.
+
+## Programs
+
+Job C: dual-admitted effect authority before Dynamics 365 Business Central privileged writes. Not a cryptocurrency product. Not an IdP. Not agent inventory.
+- Public wedge: `bc.general_journal.post`
+- Order: microsoft.founders_hub → nvidia.inception → nvidia.developer → github.for_startups → microsoft.isv_success → nvidia.connect.
+- Membership claimed: false. Ready to apply: false. GPU workload claimed: false. Crypto-associated: false.
+
+## Human gates (owner only)
+
+- Point ainav.institute at the Azure hostname. A coming-soon page is not the custom domain.
+- Record the incorporation date outside this tree for NVIDIA Inception.
+- Name a second unique human with a business email (Inception developer + business executive; also signed L1 seat B). The Cloud Agent is not a contact or a seat.
+- Create a US Power Platform environment with Dataverse, then set DATAVERSE_URL on a new agent.
+- Grant Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory on the same Entra app AINav Cloud Agent1.
+- Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write.
+
+## Still missing
+
+- Second unique human (Inception contacts and signed L1 seats)
+- ainav.institute custom domain and incorporation date
+- Power Platform / Dataverse environment for Sales
+- Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
+- Recognized revenue / external billing provider
+- Signed L1 counsel pack (G13)
+- Multi-host product HA
+
+## OPEN (do not mark closed)
+
+- G1/G10 LIVE_PIN_OK
+- G12 legal
+- G13 signed L1
+- G14 live SoR
+- Product HA
+
+## Read the company
+
+Catalog wins. `--probe` overlays live Microsoft and DNS health. Probe does not publish, write a SoR, or mark LIVE_PIN_OK.
+
+- `python -m ainav review`
+- `python -m ainav review --probe`
+- `python -m ainav org [--probe]`
+- `python -m ainav connect --probe`
+- `python -m ainav dns`
+- `python -m ainav agent-tools [--probe]`
+- `python -m ainav proof-day`
+- `python -m ainav twin-demo`
+- `python -m ainav programs`

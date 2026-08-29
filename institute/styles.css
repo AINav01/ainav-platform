@@ -209,10 +209,16 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
 }
 .cards article[data-status="running_sandbox"] .price,
 .cards article[data-status="running_code"] .price,
-.cards article[data-status="azure_hosted_not_custom"] .price { color: var(--ok); }
+.cards article[data-status="azure_hosted_not_custom"] .price,
+.cards article[data-status="executable"] .price,
+.cards article[data-status="sandbox_journal"] .price,
+.cards article[data-status="sole_owner"] .price { color: var(--ok); }
 .cards article[data-status="licensed_not_wired"] .price,
 .cards article[data-status="open_gap"] .price,
-.cards article[data-status="qualify_not_claimed"] .price { color: var(--hold); }
+.cards article[data-status="qualify_not_claimed"] .price,
+.cards article[data-status="open"] .price,
+.cards article[data-status="unattached"] .price,
+.cards article[data-status="catalog_list_not_revenue"] .price { color: var(--hold); }
 
 .split { display: grid; gap: 1.75rem; }
 @media (min-width: 800px) { .split { grid-template-columns: 1fr 1fr; } }

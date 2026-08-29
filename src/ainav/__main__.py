@@ -18,6 +18,12 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("catalog")
     sub.add_parser("plan")
+    review = sub.add_parser("review")
+    review.add_argument(
+        "--probe",
+        action="store_true",
+        help="overlay read-only Microsoft and DNS health. Never writes. Never publishes.",
+    )
     sub.add_parser("ip")
     sub.add_parser("programs")
     sub.add_parser("pitch")
@@ -93,6 +99,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "plan":
         print(one_page(), end="")
+        return 0
+    if args.cmd == "review":
+        from ainav.review import deep_dive
+
+        print(deep_dive(probe=bool(args.probe)), end="")
         return 0
     if args.cmd == "ip":
         from ainav.ip import notice
