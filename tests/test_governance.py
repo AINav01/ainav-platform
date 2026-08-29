@@ -21,6 +21,9 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert body["live"] is False
     assert body["live_pin_ok"] is False
     fail = body["failsafe"]
+    assert fail["client_utilizes_ai"] is True
+    assert fail["human_control"] is True
+    assert fail["ainav_is_client_ai"] is False
     joined = " ".join(fail["separate_from"]).lower()
     assert "client ai" in joined
     assert "copilot" in joined
@@ -30,8 +33,17 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert all(item["claimed"] is False for item in body["maps"])
     assert any(item["id"] == "unauthorized_sor" for item in body["risks"])
     md = governance_markdown()
-    assert "separate failsafe" in md.lower() or "separate from client" in md.lower()
+    assert "client utilizes ai" in md.lower()
+    assert "human control" in md.lower() or "humans control" in md.lower()
     assert "certified: false" in md.lower()
+    assert body["cascade"]["counterparties_utilize_ai"] is True
+    assert body["cascade"]["client_institutes_ainav"] is True
+    assert body["cascade"]["do_not_invent_names"] is True
+    assert "sor" in body["records"]["first"]["what"].lower()
+    assert "decisionrecord" in body["records"]["second"]["what"].lower().replace(" ", "")
+    assert "first record" in md.lower()
+    assert "second record" in md.lower()
+    assert "cascade" in md.lower()
 
 
 def test_governance_pack_is_included_l1_seating():
@@ -92,6 +104,61 @@ def test_governance_validator_refuses_sku_and_seat_collapse():
             cat["governance"].update(patch)
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
+
+
+def test_cascade_desk_and_second_record_are_not_skus():
+    local = provision_l1("acme")
+    pack = local.attach_industry("industry.cascade")
+    assert pack["requires_sku"] == "L1"
+    assert pack["sku"] is False
+    assert pack["attach_usd"]["min"] == 6000
+    assert "bc.general_journal.post" in local.allowed_actions
+    keep = provision_l1_padm("acme")
+    second = keep.attach_industry("industry.second_record")
+    assert second["requires_sku"] == "P-ADM"
+    assert second["sku"] is False
+    booked = book_service("ffs.institute_failsafe", skus=("L1",))
+    assert booked["billed"] is True
+    assert booked["sku"] is None
+
+
+def test_cascade_and_records_validators_refuse_fiction():
+    cases = [
+        {"cascade": {"counterparties_utilize_ai": False, "client_institutes_ainav": True, "do_not_invent_names": True, "buyer_is_the_client": True}},
+        {"cascade": {"counterparties_utilize_ai": True, "client_institutes_ainav": False, "do_not_invent_names": True, "buyer_is_the_client": True}},
+        {"cascade": {"counterparties_utilize_ai": True, "client_institutes_ainav": True, "do_not_invent_names": False, "buyer_is_the_client": True}},
+        {"records": {"sku": True, "certified": False, "first": {"what": "SoR write"}, "second": {"what": "DecisionRecord"}}},
+        {"records": {"sku": False, "certified": True, "first": {"what": "SoR write"}, "second": {"what": "DecisionRecord"}}},
+        {"records": {"sku": False, "certified": False, "first": {"what": "a memo"}, "second": {"what": "DecisionRecord"}}},
+        {"records": {"sku": False, "certified": False, "first": {"what": "SoR write"}, "second": {"what": "a memo"}}},
+    ]
+    for patch in cases:
+        cat = copy.deepcopy(load_catalog())
+        cat["governance"].update(patch)
+        with pytest.raises(IntegrityError):
+            validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["equations"]["cascade"] = "something else"
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["icp"]["counterparties_utilize_ai"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["icp"]["do_not_invent_counterparty_names"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["icp"]["institutes_ainav"] = "no"
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["governance"]["failsafe"]["separate_from"] = [
+        item for item in cat["governance"]["failsafe"]["separate_from"] if "counterparty" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
 
 
 def test_docs_governance_matches_generator():

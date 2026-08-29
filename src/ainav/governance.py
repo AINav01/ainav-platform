@@ -1,8 +1,8 @@
 """AI governance doctrine. Catalog-list maps. Not a certification. Not a SKU.
 
-AINav is a separate failsafe from client AI. Client AI may propose.
-Two humans admit. Then the write. This module does not file, certify,
-or replace counsel.
+The client utilizes AI. AINav is the failsafe and the human control.
+Client AI drafts. Two humans admit. Then the write. This module does
+not file, certify, or replace counsel.
 """
 
 from __future__ import annotations
@@ -26,7 +26,10 @@ def public_governance() -> dict[str, Any]:
         "live": False,
         "live_pin_ok": False,
         "thesis": body["thesis"],
+        "control_equation": load_catalog()["equations"]["control"],
         "failsafe": dict(body["failsafe"]),
+        "cascade": dict(body.get("cascade") or {}),
+        "records": dict(body.get("records") or {}),
         "maps": [dict(item) for item in body.get("maps") or []],
         "risks": [dict(item) for item in body.get("risks") or []],
         "refuse": list(body.get("refuse") or []),
@@ -41,14 +44,38 @@ def governance_markdown() -> str:
         f"# {load_catalog()['entity']['legal']} — AI governance (catalog map)",
         "",
         body["thesis"],
+        f"Control: {body.get('control_equation') or load_catalog()['equations']['control']}.",
+        f"Cascade: {load_catalog()['equations'].get('cascade')}.",
         f"Certified: {str(body['certified']).lower()}. Replaces counsel: "
         f"{str(body['replaces_counsel']).lower()}. SKU: false. LIVE_PIN_OK: false.",
         "",
-        "## Failsafe (separate from client AI)",
+        "## Failsafe (client utilizes AI; humans control)",
         "",
+        f"- Client: {fail.get('client') or 'Utilizes AI.'}",
+        f"- AINav: {fail.get('ainav') or 'Failsafe and human control.'}",
         f"- Does: {fail['does']}",
         "- Separate from: " + "; ".join(fail.get("separate_from") or []) + ".",
         "- Does not: " + "; ".join(fail.get("does_not") or []) + ".",
+        "",
+        "## Cascade (the client's customers utilize AI)",
+        "",
+    ]
+    cascade = body.get("cascade") or {}
+    lines += [
+        f"- Does: {cascade.get('does')}",
+        "- Stable the client institutes: " + ", ".join(cascade.get("stable") or []) + ".",
+        "- Buyer is the client: " + str(cascade.get("buyer_is_the_client")).lower() + ".",
+        "- Invented names: refused.",
+        "",
+        "## First and second records",
+        "",
+    ]
+    records = body.get("records") or {}
+    first = records.get("first") or {}
+    second = records.get("second") or {}
+    lines += [
+        f"- **First record** — {first.get('what')} ({first.get('plane')}). {first.get('note')}",
+        f"- **Second record** — {second.get('what')} ({second.get('plane')}). {second.get('note')}",
         "",
         "## Maps (not certifications)",
         "",

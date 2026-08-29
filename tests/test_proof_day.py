@@ -31,7 +31,8 @@ def test_proof_day_seals_journal_and_export():
     assert result["next_pin"]["sent"] is False
     assert result["next_pin"]["live"] is False
     assert "sealed DecisionRecord" in result["walk_out"]
-    assert runbook()[0].startswith("Confirm two existing")
+    assert runbook()[0].startswith("The client utilizes AI")
+    assert runbook()[1].startswith("Confirm two existing")
 
 
 def test_proof_day_cannot_close_g13_or_live():
@@ -74,6 +75,7 @@ def test_buyer_page_has_no_inbox_or_named_customer():
     assert page["mailto"] is None
     assert page["icp"]["named_customers"] == []
     assert "journal" in page["write_that_must_not_happen"].lower()
+    assert "client" in page["write_that_must_not_happen"].lower()
     assert page["seats"] == ["treasury_approver", "treasury_controller"]
     brief = proof_day_brief()
     assert brief["forwardable"] is True
@@ -84,6 +86,12 @@ def test_buyer_page_has_no_inbox_or_named_customer():
     assert exc.value.reason_code == "ICP_NAMED"
     profile = icp_profile()
     assert profile["do_not_invent_names"] is True
+    assert profile["utilizes_ai"] is True
+    assert profile["counterparties_utilize_ai"] is True
+    assert profile["do_not_invent_counterparty_names"] is True
+    assert "institutes" in str(profile["institutes_ainav"]).lower()
+    assert "not AINav" in profile["ai"]
+    assert "customer" in " ".join(page["refuse"]).lower()
 
 
 def test_catalog_rejects_named_customer_and_live_next_pin():
@@ -103,6 +111,11 @@ def test_catalog_rejects_named_customer_and_live_next_pin():
     with pytest.raises(IntegrityError) as exc3:
         validate_catalog(inbox)
     assert exc3.value.reason_code == "BUYER_INBOX"
+    refuse = copy.deepcopy(cat)
+    refuse["buyer"]["refuse"] = [item for item in refuse["buyer"]["refuse"] if "customer" not in item.lower()]
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(refuse)
+    assert exc4.value.reason_code == "CATALOG_BUYER"
 
 
 def test_institute_buyer_page_is_forwardable():

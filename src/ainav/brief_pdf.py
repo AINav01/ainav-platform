@@ -136,11 +136,13 @@ def brief_document() -> list[dict[str, Any]]:
         {
             "kind": "p",
             "text": (
-                "AINav is a separate failsafe from client AI. Copilot, Agent 365, a BYO MCP, and "
-                "this Cloud Agent may draft a journal. They are not seats. Two humans admit. Then "
-                "the write. We map NIST AI RMF, SOX internal control, the EU AI Act, and ISO 42001. "
-                "We do not claim those certificates. We do not replace counsel. Governance is not "
-                "a fourth SKU."
+                "The client utilizes AI. The client's customers utilize AI. Copilot, Agent 365, "
+                "a BYO MCP, or a counterparty model may draft a journal. AINav is not that AI. "
+                "The client institutes AINav and its stable of offerings as the failsafe: the "
+                "client's two seats admit, then the write. First record is the SoR write. "
+                "Second record is the sealed DecisionRecord. We map NIST, SOX, books-and-records, "
+                "the EU AI Act, and ISO 42001. We do not claim those certificates. We do not "
+                "invent a counterparty name. Governance is not a fourth SKU."
             ),
         },
         {

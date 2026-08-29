@@ -109,6 +109,35 @@
       ]
     },
     {
+      "id": "l1_plus_cascade",
+      "if": "One controller buys L1 then attaches industry.cascade for their customers' AI.",
+      "max": 50000,
+      "min": 34000,
+      "n": 1,
+      "name": "One L1 plus counterparty AI desk",
+      "packs": [
+        "industry.cascade"
+      ],
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_padm_second_record",
+      "if": "One controller buys L1, attaches P-ADM, then attaches industry.second_record.",
+      "max": 108000,
+      "min": 73000,
+      "n": 1,
+      "name": "One controller \u2014 L1, P-ADM, second-record keep",
+      "packs": [
+        "industry.second_record"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
       "id": "l1_plus_two_desks",
       "if": "One controller buys L1 then attaches industry.payables and industry.bank.",
       "max": 60000,

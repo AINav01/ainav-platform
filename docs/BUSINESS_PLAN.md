@@ -2,7 +2,7 @@
 
 **Institute:** AINAV.Institute
 **Product:** AINav Control Plane (Job C)
-**Category:** Dual-admitted effect authority before privileged system-of-record writes
+**Category:** Dual-admitted human control before client-AI and counterparty-AI privileged system-of-record writes
 
 ## First principles
 
@@ -13,14 +13,17 @@ SoR, and audit. It is not the product.
 
 ## AI governance (not a SKU, not a certificate)
 
-AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write.
+The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord.
+- Control: client utilizes AI × counterparties utilize AI × AINav failsafe × two-human control
+- Cascade: client's clients utilize AI × client institutes AINav × two-human control
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
-- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles.
-- A client-AI draft without two seats is the write that must not happen.
+- First record: the admitted SoR write. Second record: the sealed DecisionRecord.
+- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense.
+- A client-AI or customer-AI draft without the client's two seats is the write that must not happen.
 
 ## The sale
 
-The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.
+The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.
 - Proof day: 90 minutes. `python -m ainav proof-day`
 - Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.
 - L1 is that week. Signed L1 is G13 and stays open.
@@ -65,6 +68,8 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **industry.retention** — Retention keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK.)
 - **industry.governance** — AI failsafe desk (requires L1; included; L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification.)
 - **industry.oversight** — Oversight keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.)
+- **industry.cascade** — Counterparty AI desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names.)
+- **industry.second_record** — Second-record keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK.)
 
 ## Libraries (not SKUs)
 
@@ -82,6 +87,8 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **lib.padm.retention** — requires P-ADM. A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK.
 - **lib.l1.failsafe** — requires L1. L1 failsafe library. Client AI is not a seat. Not a SKU.
 - **lib.padm.governance** — requires P-ADM. A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.
+- **lib.l1.cascade** — requires L1. L1 cascade library. Counterparty AI is not a seat. Not a SKU.
+- **lib.padm.records** — requires P-ADM. P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK.
 
 ## Fee-for-service (not SKUs)
 
@@ -94,6 +101,7 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **ffs.desk_workshop** — Desk workshop ($3,500/day). Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL.
 - **ffs.keep_wiring** — P-ADM keep wiring ($3,500/day). Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.
 - **ffs.governance_workshop** — AI governance / failsafe workshop ($3,500/day). Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.
+- **ffs.institute_failsafe** — Institute AINav failsafe ($3,500/day). Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.
 
 ## Operations
 
@@ -107,6 +115,8 @@ Exits: LOST · KIT_FAIL · CHURN
 - Signed L1 cannot be marked from this plane
 - A la carte packs attach after the required SKU. They are not SKUs.
 - AINav is a separate failsafe from client AI. Client AI is not a seat.
+- The client's customers utilizing AI still require the client's two humans.
+- First record is the SoR write. Second record is the DecisionRecord. Neither is a SKU.
 
 ## Delivery
 
@@ -188,9 +198,9 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 
 ## Buyer page and ICP
 
-An unauthorized general-journal post that two humans did not admit.
+An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.
 - Door: Generate a proof-day brief a controller can forward. Do not invent a contact inbox.
-- ICP: Dynamics 365 Business Central Premium; Microsoft Entra ID; existing two-person journal SOD.
+- ICP: Dynamics 365 Business Central Premium; Microsoft Entra ID; existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI.
 - Named customers: none. Do not invent a design-partner name.
 
 ## Next pin
@@ -241,3 +251,6 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - No LIVE_PIN_OK / product HA / signed L1 without evidence
 - AINav is a separate failsafe from client AI
 - No invented compliance certification
+- Client utilizes AI; AINav is the human-control failsafe
+- Client's customers utilizing AI still require the client's two humans
+- First record is the SoR write; second record is the DecisionRecord

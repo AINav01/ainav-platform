@@ -17,3 +17,6 @@ Must not change:
 - No LIVE_PIN_OK / product HA / signed L1 without evidence
 - AINav is a separate failsafe from client AI
 - No invented compliance certification
+- Client utilizes AI; AINav is the human-control failsafe
+- Client's customers utilizing AI still require the client's two humans
+- First record is the SoR write; second record is the DecisionRecord

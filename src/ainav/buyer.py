@@ -39,8 +39,14 @@ def icp_profile() -> dict[str, Any]:
         "erp": body["erp"],
         "identity": body["identity"],
         "control": body["control"],
+        "utilizes_ai": bool(body.get("utilizes_ai")),
+        "counterparties_utilize_ai": bool(body.get("counterparties_utilize_ai")),
+        "institutes_ainav": body.get("institutes_ainav"),
+        "ai": body.get("ai"),
+        "counterparty_ai": body.get("counterparty_ai"),
         "named_customers": [],
         "do_not_invent_names": True,
+        "do_not_invent_counterparty_names": True,
     }
 
 

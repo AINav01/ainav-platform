@@ -108,6 +108,18 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         raise IntegrityError("commercial equation must name dual seats", reason_code="CATALOG_EQUATION")
     if equations.get("lab_pin") != "LIVE_PIN_OK":
         raise IntegrityError("lab pin stays LIVE_PIN_OK", reason_code="CATALOG_EQUATION")
+    control = str(equations.get("control") or "").lower()
+    if "client utilizes ai" not in control or "human" not in control:
+        raise IntegrityError(
+            "control equation is client utilizes AI \u00d7 human-control failsafe",
+            reason_code="CATALOG_EQUATION",
+        )
+    cascade = str(equations.get("cascade") or "").lower()
+    if "client" not in cascade or "institutes ainav" not in cascade:
+        raise IntegrityError(
+            "cascade equation is client's clients utilize AI \u00d7 client institutes AINav",
+            reason_code="CATALOG_EQUATION",
+        )
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
@@ -173,7 +185,14 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
         if sku_id not in prices:
             raise IntegrityError("buyer page must list the three SKUs", reason_code="CATALOG_BUYER")
     refuse = " ".join(body.get("refuse") or []).lower().replace("_", " ")
-    for stem in ("teams vote", "copilot", "free u-dual", "live pin ok", "client ai as dual"):
+    for stem in (
+        "teams vote",
+        "copilot",
+        "free u-dual",
+        "live pin ok",
+        "client ai as dual",
+        "customer",
+    ):
         if stem not in refuse:
             raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
 
@@ -253,6 +272,16 @@ def _validate_icp(catalog: dict[str, Any]) -> None:
         raise IntegrityError("ICP erp is Business Central Premium", reason_code="CATALOG_ICP")
     if "Entra" not in str(icp.get("identity") or ""):
         raise IntegrityError("ICP identity is Entra ID", reason_code="CATALOG_ICP")
+    if icp.get("utilizes_ai") is not True:
+        raise IntegrityError("ICP utilizes AI; AINav is not that AI", reason_code="CATALOG_ICP")
+    if "not ainav" not in str(icp.get("ai") or "").lower():
+        raise IntegrityError("ICP AI is the client's, not AINav", reason_code="CATALOG_ICP")
+    if icp.get("counterparties_utilize_ai") is not True:
+        raise IntegrityError("ICP counterparties utilize AI", reason_code="CATALOG_ICP")
+    if icp.get("do_not_invent_counterparty_names") is not True:
+        raise IntegrityError("do not invent counterparty names", reason_code="ICP_NAMED")
+    if "institutes" not in str(icp.get("institutes_ainav") or "").lower():
+        raise IntegrityError("ICP client institutes AINav", reason_code="CATALOG_ICP")
 
 
 def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
@@ -345,8 +374,18 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
                 f"failsafe must stay separate from {stem}",
                 reason_code="CATALOG_GOVERNANCE",
             )
-    if "two" not in str(body.get("thesis") or "").lower() and "dual" not in str(body.get("thesis") or "").lower():
+    thesis = str(body.get("thesis") or "").lower()
+    if "two" not in thesis and "dual" not in thesis:
         raise IntegrityError("governance thesis must keep dual humans", reason_code="CATALOG_GOVERNANCE")
+    if "utilizes" not in thesis or "control" not in thesis:
+        raise IntegrityError(
+            "governance thesis is client utilizes AI, humans control",
+            reason_code="CATALOG_GOVERNANCE",
+        )
+    if fail.get("client_utilizes_ai") is not True or fail.get("human_control") is not True:
+        raise IntegrityError("failsafe is human control of client-utilized AI", reason_code="CATALOG_GOVERNANCE")
+    if fail.get("ainav_is_client_ai") is True:
+        raise IntegrityError("AINav is not the client's AI", reason_code="CATALOG_GOVERNANCE")
     maps = {item.get("id") for item in body.get("maps") or []}
     if not {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr"} <= maps:
         raise IntegrityError("governance must map NIST, EU AI Act, ISO 42001, and SOX", reason_code="CATALOG_GOVERNANCE")
@@ -358,6 +397,24 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
     if not body.get("risks"):
         raise IntegrityError("governance must name non-compliance risks", reason_code="CATALOG_GOVERNANCE")
+    cascade = body.get("cascade") or {}
+    if cascade.get("counterparties_utilize_ai") is not True:
+        raise IntegrityError("cascade counterparties utilize AI", reason_code="CATALOG_GOVERNANCE")
+    if cascade.get("client_institutes_ainav") is not True:
+        raise IntegrityError("the client institutes AINav", reason_code="CATALOG_GOVERNANCE")
+    if cascade.get("do_not_invent_names") is not True or cascade.get("buyer_is_the_client") is not True:
+        raise IntegrityError("cascade buyer is the client; do not invent names", reason_code="ICP_NAMED")
+    records = body.get("records") or {}
+    first = records.get("first") or {}
+    second = records.get("second") or {}
+    if records.get("sku") is True or records.get("certified") is True:
+        raise IntegrityError("records are not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if "sor" not in str(first.get("what") or "").lower():
+        raise IntegrityError("first record is the SoR write", reason_code="CATALOG_GOVERNANCE")
+    if "decisionrecord" not in str(second.get("what") or "").lower().replace(" ", ""):
+        raise IntegrityError("second record is the DecisionRecord", reason_code="CATALOG_GOVERNANCE")
+    if "counterparty ai" not in separate:
+        raise IntegrityError("failsafe must stay separate from counterparty AI", reason_code="CATALOG_GOVERNANCE")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

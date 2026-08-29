@@ -20,6 +20,18 @@
       if (!data || data.live || data.live_pin_ok || data.sku || data.certified) return;
       var thesis = document.getElementById("gov-thesis");
       if (thesis && data.thesis) thesis.textContent = data.thesis;
+      var cascade = document.getElementById("gov-cascade");
+      if (cascade && data.cascade && data.cascade.does) {
+        cascade.textContent = "Cascade: " + data.cascade.does + " Invented names: refused.";
+      }
+      var records = document.getElementById("gov-records");
+      if (records && data.records && data.records.first && data.records.second) {
+        records.textContent =
+          "First record: " +
+          data.records.first.what +
+          " Second record: " +
+          data.records.second.what;
+      }
       function fill(id, items, line) {
         var root = document.getElementById(id);
         if (!root || !items || !items.length) return;

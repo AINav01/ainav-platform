@@ -17,7 +17,11 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.14.0"
+    assert cat["entity"]["release"] == "2.15.0"
+    assert "client utilizes AI" in cat["equations"]["control"]
+    assert "institutes AINav" in cat["equations"]["cascade"]
+    assert cat["icp"]["counterparties_utilize_ai"] is True
+    assert "institutes" in cat["icp"]["institutes_ainav"].lower()
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     invited = cat["organization"]["contacts"]["invited"]
     assert invited["name"] == "Cynthia Hodnett"

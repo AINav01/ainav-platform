@@ -89,6 +89,16 @@
       "rate_usd_per_day": 3500,
       "requires_l1": true,
       "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.institute_failsafe",
+      "name": "Institute AINav failsafe",
+      "note": "Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
     }
   ],
   "industry": [
@@ -322,6 +332,35 @@
       "note": "A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.cascade",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Counterparty AI desk",
+      "note": "A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.second_record",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "name": "Second-record keep",
+      "note": "A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
     }
   ],
   "kind": "ainav.institute.packs.v1",
@@ -474,6 +513,28 @@
         "governance.risk.export"
       ],
       "note": "A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.cascade",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 cascade library. Counterparty AI is not a seat. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.records",
+      "modules": [
+        "purview.audit.export",
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "note": "P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
     }

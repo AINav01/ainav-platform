@@ -35,11 +35,20 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="governance"' in html
     assert 'href="#governance"' in html
     assert "governance.json" in js
+    assert "The client utilizes AI" in html
+    assert "gov-cascade" in html or "id=\"gov-cascade\"" in html
+    assert "gov-records" in html or "id=\"gov-records\"" in html
+    assert "First record" in html
+    assert "Humans stay in control" in html
     gov = json.loads(Path("institute/governance.json").read_text(encoding="utf-8"))
     assert gov["kind"] == "ainav.governance.v1"
     assert gov["certified"] is False
     assert gov["sku"] is False
     assert "client AI" in " ".join(gov["failsafe"]["separate_from"])
+    assert gov["cascade"]["counterparties_utilize_ai"] is True
+    assert gov["cascade"]["client_institutes_ainav"] is True
+    assert "sor" in gov["records"]["first"]["what"].lower()
+    assert gov["records"]["second"]["sku"] is False
     assert 'id="pack-industry"' in html
     assert 'id="pack-libraries"' in html
     assert "packs.json" in js
@@ -51,6 +60,8 @@ def test_institute_foundation_is_catalog_honest():
         "industry.cash",
         "industry.returns",
         "industry.retention",
+        "industry.cascade",
+        "industry.second_record",
     }
     assert 'id="fabric"' in html
     assert 'id="review"' in html

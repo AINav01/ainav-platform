@@ -24,6 +24,7 @@ def proof_day_spec() -> dict[str, Any]:
 def runbook() -> list[str]:
     spec = proof_day_spec()
     return [
+        "The client utilizes AI. The client's customers may too. Either may draft the journal. Neither is a seat.",
         "Confirm two existing treasury seats from the catalog",
         f"Propose one {spec['action_class']} on {spec['sor_target']}",
         "Admit both seats on the same action_hash",

@@ -3,13 +3,19 @@
   "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
   "entity": "AINav, Inc.",
   "icp": {
-    "control": "existing two-person journal SOD",
+    "ai": "Client Copilot / agents / BYO models \u2014 not AINav",
+    "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",
+    "counterparties_utilize_ai": true,
+    "counterparty_ai": "The client's customers' AI drafting into the client's SoR \u2014 not a seat",
+    "do_not_invent_counterparty_names": true,
     "do_not_invent_names": true,
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
-    "named_customers": []
+    "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI",
+    "named_customers": [],
+    "utilizes_ai": true
   },
-  "incident": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
+  "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.",
   "institute": "AINAV.Institute",
   "kind": "ainav.institute.buyer.v1",
   "live": false,
@@ -20,7 +26,7 @@
     "P-ADM $40\u201360k / year after kit PASS",
     "U-DUAL $20\u201335k / year \u2014 never free"
   ],
-  "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+  "proof_day": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
   "refuse": [
     "Teams vote as dual",
     "Copilot as the admit plane",
@@ -30,12 +36,15 @@
     "invented contact inbox",
     "client AI as dual",
     "AINav is the client's AI",
-    "EU AI Act certified"
+    "EU AI Act certified",
+    "AINav replaces the client's AI",
+    "customer's AI as dual",
+    "invented counterparty name"
   ],
   "seats": [
     "treasury_approver",
     "treasury_controller"
   ],
   "signed_l1": false,
-  "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit."
+  "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit."
 }

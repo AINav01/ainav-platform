@@ -13,7 +13,7 @@
       "treasury_approver",
       "treasury_controller"
     ],
-    "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit."
+    "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit."
   },
   "delivery": {
     "hosts": [
@@ -55,7 +55,7 @@
     "Multi-host product HA"
   ],
   "icp": {
-    "control": "existing two-person journal SOD",
+    "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
     "named_customers": []

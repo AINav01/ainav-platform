@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.14.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.15.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.14.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.15.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -24,7 +24,7 @@ Microsoft hosts, identifies, notifies, and receives the write after the two of y
 
 AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is the public law of that plane — hosted on Azure, not launched, not bound to ainav.institute until James says launch in his own words. Master mothership issues the lockfile and never writes a client system of record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7, Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They receive the write after you and James admit it.
 
-AINav is a separate failsafe from client AI. Copilot, Agent 365, a BYO MCP, and this Cloud Agent may draft a journal. They are not seats. Two humans admit. Then the write. We map NIST AI RMF, SOX internal control, the EU AI Act, and ISO 42001. We do not claim those certificates. We do not replace counsel. Governance is not a fourth SKU.
+The client utilizes AI. The client's customers utilize AI. Copilot, Agent 365, a BYO MCP, or a counterparty model may draft a journal. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe: the client's two seats admit, then the write. First record is the SoR write. Second record is the sealed DecisionRecord. We map NIST, SOX, books-and-records, the EU AI Act, and ISO 42001. We do not claim those certificates. We do not invent a counterparty name. Governance is not a fourth SKU.
 
 We sell three things only. Packs, hours, and Microsoft licenses are not products. A controller buys the commercial close: named dual seats × proof day × signed L1 × P-ADM attach. The lab pin LIVE_PIN_OK is a separate engineering fact and is never marked from a sale. Signed L1 is a counsel pack. It is still open.
 
@@ -135,6 +135,8 @@ Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane
 | One controller — all three SKUs | One controller buys L1, attaches P-ADM, then pays for U-DUAL. | $88,000–$135,000 |
 | Three controllers — L1 + P-ADM each | Three controllers each buy L1 and attach P-ADM. No named buyers exist. | $204,000–$300,000 |
 | One L1 plus four FFS days | One controller buys L1 and four billable days on the same plane. | $42,000–$54,000 |
+| One L1 plus counterparty AI desk | One controller buys L1 then attaches industry.cascade for their customers' AI. | $34,000–$50,000 |
+| One controller — L1, P-ADM, second-record keep | One controller buys L1, attaches P-ADM, then attaches industry.second_record. | $73,000–$108,000 |
 | One L1 plus payables and bank desks | One controller buys L1 then attaches industry.payables and industry.bank. | $40,000–$60,000 |
 | One controller — L1, P-ADM, oversight keep | One controller buys L1, attaches P-ADM, then attaches industry.oversight. | $73,000–$108,000 |
 | All three SKUs plus invoice and credit desks | One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit. | $100,000–$155,000 |
@@ -155,6 +157,8 @@ Working well
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
 - A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
 - AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.
+- Control equation is explicit: the client utilizes AI, AINav is the failsafe, two humans control the write.
+- The client's customers utilize AI. The client institutes AINav and the stable of offerings as the failsafe. First record is the SoR write; second record is the DecisionRecord.
 
 Could be improved — without inventing a fourth SKU
 

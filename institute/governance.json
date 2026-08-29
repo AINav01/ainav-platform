@@ -1,7 +1,36 @@
 {
+  "cascade": {
+    "buyer_is_the_client": true,
+    "client_institutes_ainav": true,
+    "client_utilizes_ai": true,
+    "counterparties_utilize_ai": true,
+    "do_not_invent_names": true,
+    "does": "The client's customers may draft into the client's SoR. The client institutes AINav. The client's two humans admit.",
+    "does_not": [
+      "sell to invented counterparties",
+      "make the customer's AI a seat",
+      "mint a fourth SKU",
+      "certify the customer's model"
+    ],
+    "stable": [
+      "L1",
+      "P-ADM",
+      "U-DUAL",
+      "industry packs",
+      "libraries",
+      "FFS"
+    ]
+  },
   "certified": false,
+  "control_equation": "client utilizes AI \u00d7 counterparties utilize AI \u00d7 AINav failsafe \u00d7 two-human control",
   "failsafe": {
-    "does": "Dual-admit the privileged write regardless of which agent drafted it.",
+    "ainav": "Failsafe and human control \u2014 two seats admit, then the write.",
+    "ainav_is_client_ai": false,
+    "client": "Utilizes AI \u2014 drafts the privileged write.",
+    "client_institutes_ainav": true,
+    "client_utilizes_ai": true,
+    "counterparties_utilize_ai": true,
+    "does": "Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.",
     "does_not": [
       "replace the client's model",
       "be the client's AI",
@@ -9,8 +38,11 @@
       "activate PIM",
       "certify the client's system",
       "replace counsel",
-      "file a regulator submission"
+      "file a regulator submission",
+      "be the counterparty's AI",
+      "invent a named counterparty"
     ],
+    "human_control": true,
     "separate_from": [
       "client AI",
       "Microsoft 365 Copilot",
@@ -18,7 +50,8 @@
       "BYO MCP",
       "cursor.cloud_agent",
       "PIM activation",
-      "Teams vote"
+      "Teams vote",
+      "counterparty AI"
     ]
   },
   "kind": "ainav.governance.v1",
@@ -73,9 +106,39 @@
       "maps_to": "Accountability and human agency before the write. Not a membership.",
       "name": "OECD AI Principles",
       "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "sec.books_records",
+      "maps_to": "First record is the admitted SoR write. Second record is the sealed DecisionRecord. Not a 17a-4 opinion.",
+      "name": "Books and records (first / second record)",
+      "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "three_lod",
+      "maps_to": "1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.",
+      "name": "Three lines of defense",
+      "scope": "risk / compliance"
     }
   ],
-  "note": "Catalog map only. Not booked. Not a certification. Not recognized revenue. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+  "note": "Catalog map only. The client institutes AINav for their AI and their customers' AI. Not booked. Not a certification. Not recognized revenue. Do not invent counterparties. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+  "records": {
+    "certified": false,
+    "first": {
+      "id": "first_record",
+      "note": "Books of original entry. Not a second SKU. Not LIVE_PIN_OK.",
+      "plane": "L1 / U-DUAL",
+      "what": "The privileged SoR write after dual admit (journal, invoice, order)."
+    },
+    "second": {
+      "id": "second_record",
+      "note": "Supporting books-and-records for examiners and the client's customers. Not a certificate.",
+      "plane": "P-ADM",
+      "what": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+    },
+    "sku": false
+  },
   "refuse": [
     "EU AI Act certified",
     "NIST certified",
@@ -84,7 +147,9 @@
     "AINav is the client's AI",
     "client AI as dual",
     "Cloud Agent as a seat",
-    "LIVE_PIN_OK from a governance map"
+    "LIVE_PIN_OK from a governance map",
+    "customer's AI as dual",
+    "invented counterparty name"
   ],
   "replaces_counsel": false,
   "risks": [
@@ -117,8 +182,18 @@
       "harm": "A BYO MCP or Dataverse tool writes Business Central or Sales around the admit plane.",
       "id": "bypass_tool",
       "note": "Owner blocks Dataverse MCP until paid U-DUAL. Tools are not seats."
+    },
+    {
+      "harm": "The client's customer AI posts into the client's SoR without the client's two seats.",
+      "id": "counterparty_ai_write",
+      "note": "The client institutes AINav. Counterparty AI is not a seat. Do not invent names."
+    },
+    {
+      "harm": "The write landed and no sealed DecisionRecord exists for the examiner or the client's customer.",
+      "id": "missing_second_record",
+      "note": "Second record is P-ADM keep. It is not the SoR first record. Not a certificate."
     }
   ],
   "sku": false,
-  "thesis": "AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write."
+  "thesis": "The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord."
 }

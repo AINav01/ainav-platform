@@ -5,8 +5,8 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.14.0",
-    "category": "Dual-admitted effect authority before privileged system-of-record writes"
+    "release": "2.15.0",
+    "category": "Dual-admitted human control before client-AI and counterparty-AI privileged system-of-record writes"
   },
   "operating": {
     "sole_owner": true,
@@ -220,16 +220,21 @@
     "No invented SKUs",
     "No LIVE_PIN_OK / product HA / signed L1 without evidence",
     "AINav is a separate failsafe from client AI",
-    "No invented compliance certification"
+    "No invented compliance certification",
+    "Client utilizes AI; AINav is the human-control failsafe",
+    "Client's customers utilizing AI still require the client's two humans",
+    "First record is the SoR write; second record is the DecisionRecord"
   ],
   "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "equations": {
     "product": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
     "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
     "lab_pin": "LIVE_PIN_OK",
-    "note": "Controllers buy the commercial equation. LIVE_PIN_OK is a lab pin and is never marked from sales."
+    "note": "Controllers buy the commercial equation. The control equation is how AI is allowed to work: the client utilizes AI, the client's customers utilize AI, AINav is the failsafe the client institutes, two humans control the write. First record is the SoR write. Second record is the sealed DecisionRecord. LIVE_PIN_OK is a lab pin and is never marked from sales.",
+    "control": "client utilizes AI \u00d7 counterparties utilize AI \u00d7 AINav failsafe \u00d7 two-human control",
+    "cascade": "client's clients utilize AI \u00d7 client institutes AINav \u00d7 two-human control"
   },
-  "l1_incident_copy": "The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.",
+  "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
     {
       "id": "L1",
@@ -553,6 +558,15 @@
       "wedge": false,
       "upsell": true,
       "note": "A la carte P-ADM keep. Catalog-list non-compliance risk register. Not a filing. Not counsel. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "governance.second_record.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_decision_record",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Second record: sealed DecisionRecord the examiner or the client's customer can open. Not the SoR first record. Not a certificate."
     }
   ],
   "industry_packs": [
@@ -920,6 +934,55 @@
         "This is not an EU AI Act, NIST, or ISO 42001 certificate.",
         "A keep export is not dual admit. Not LIVE_PIN_OK."
       ]
+    },
+    {
+      "id": "industry.cascade",
+      "name": "Counterparty AI desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names.",
+      "runbook": [
+        "Requires L1. The client institutes AINav. This is not a fourth SKU.",
+        "The client's customer AI may draft the journal. It is not a seat.",
+        "Seat A treasury_approver. Seat B treasury_controller. Both are the client's humans.",
+        "One bc.general_journal.post on the BC twin after both humans bind the same action_hash.",
+        "A customer-AI draft without the client's two seats is the write that must not happen.",
+        "Do not invent a named counterparty."
+      ]
+    },
+    {
+      "id": "industry.second_record",
+      "name": "Second-record keep",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "note": "A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK.",
+      "runbook": [
+        "Requires P-ADM after kit PASS. Not a SKU.",
+        "First record is the admitted SoR write. Second record is the sealed DecisionRecord.",
+        "Export the second record for an examiner or the client's customer. Do not invent names.",
+        "This is not an EU AI Act, NIST, or ISO 42001 certificate. Not LIVE_PIN_OK."
+      ]
     }
   ],
   "libraries": [
@@ -1157,6 +1220,40 @@
         "governance.risk.export"
       ],
       "note": "A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "lib.l1.cascade",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 cascade library. Counterparty AI is not a seat. Not a SKU."
+    },
+    {
+      "id": "lib.padm.records",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "purview.audit.export",
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "note": "P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -1246,6 +1343,16 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.institute_failsafe",
+      "name": "Institute AINav failsafe",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -1441,7 +1548,9 @@
       "LIVE_PIN_OK cannot be marked from this plane",
       "Signed L1 cannot be marked from this plane",
       "A la carte packs attach after the required SKU. They are not SKUs.",
-      "AINav is a separate failsafe from client AI. Client AI is not a seat."
+      "AINav is a separate failsafe from client AI. Client AI is not a seat.",
+      "The client's customers utilizing AI still require the client's two humans.",
+      "First record is the SoR write. Second record is the DecisionRecord. Neither is a SKU."
     ],
     "exits": [
       "LOST",
@@ -1493,7 +1602,7 @@
     "live": false,
     "buyer_executable": true,
     "lab_oids_are_not_named_seats": true,
-    "note": "The sale is the ninety-minute proof. L1 is that week. Not signed L1 (G13). Lab oids are not two named treasury humans."
+    "note": "The sale is the ninety-minute proof. The client utilizes AI; it may draft the journal. Two humans admit. AINav is the failsafe. L1 is that week. Not signed L1 (G13). Lab oids are not two named treasury humans."
   },
   "next_pin": {
     "id": "bc.microsoft.sandbox",
@@ -1524,12 +1633,18 @@
   "icp": {
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
-    "control": "existing two-person journal SOD",
+    "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",
     "named_customers": [],
-    "do_not_invent_names": true
+    "do_not_invent_names": true,
+    "utilizes_ai": true,
+    "ai": "Client Copilot / agents / BYO models \u2014 not AINav",
+    "counterparties_utilize_ai": true,
+    "do_not_invent_counterparty_names": true,
+    "counterparty_ai": "The client's customers' AI drafting into the client's SoR \u2014 not a seat",
+    "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI"
   },
   "buyer": {
-    "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit.",
+    "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.",
     "seats": [
       "treasury_approver",
       "treasury_controller"
@@ -1539,7 +1654,7 @@
       "P-ADM $40\u201360k / year after kit PASS",
       "U-DUAL $20\u201335k / year \u2014 never free"
     ],
-    "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
+    "proof_day": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
     "refuse": [
       "Teams vote as dual",
       "Copilot as the admit plane",
@@ -1549,7 +1664,10 @@
       "invented contact inbox",
       "client AI as dual",
       "AINav is the client's AI",
-      "EU AI Act certified"
+      "EU AI Act certified",
+      "AINav replaces the client's AI",
+      "customer's AI as dual",
+      "invented counterparty name"
     ],
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
     "contact_email": null,
@@ -2363,7 +2481,9 @@
         "Industry packs and libraries are not SKUs",
         "A la carte pack attach is catalog list, not a fourth SKU",
         "AINav is a separate failsafe from client AI",
-        "This contract does not certify EU AI Act, NIST, or ISO 42001"
+        "This contract does not certify EU AI Act, NIST, or ISO 42001",
+        "The client's customers utilizing AI still require the client's two humans",
+        "First record is the SoR write; second record is the DecisionRecord; neither is a certificate"
       ]
     },
     "msa": {
@@ -2495,7 +2615,9 @@
       "Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.",
       "Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.",
       "A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.",
-      "AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification."
+      "AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.",
+      "Control equation is explicit: the client utilizes AI, AINav is the failsafe, two humans control the write.",
+      "The client's customers utilize AI. The client institutes AINav and the stable of offerings as the failsafe. First record is the SoR write; second record is the DecisionRecord."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -2631,9 +2753,9 @@
     "replaces_counsel": false,
     "live": false,
     "live_pin_ok": false,
-    "thesis": "AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write.",
+    "thesis": "The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord.",
     "failsafe": {
-      "does": "Dual-admit the privileged write regardless of which agent drafted it.",
+      "does": "Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.",
       "separate_from": [
         "client AI",
         "Microsoft 365 Copilot",
@@ -2641,7 +2763,8 @@
         "BYO MCP",
         "cursor.cloud_agent",
         "PIM activation",
-        "Teams vote"
+        "Teams vote",
+        "counterparty AI"
       ],
       "does_not": [
         "replace the client's model",
@@ -2650,8 +2773,17 @@
         "activate PIM",
         "certify the client's system",
         "replace counsel",
-        "file a regulator submission"
-      ]
+        "file a regulator submission",
+        "be the counterparty's AI",
+        "invent a named counterparty"
+      ],
+      "client_utilizes_ai": true,
+      "human_control": true,
+      "ainav_is_client_ai": false,
+      "client": "Utilizes AI \u2014 drafts the privileged write.",
+      "ainav": "Failsafe and human control \u2014 two seats admit, then the write.",
+      "counterparties_utilize_ai": true,
+      "client_institutes_ainav": true
     },
     "maps": [
       {
@@ -2702,6 +2834,20 @@
         "scope": "international",
         "maps_to": "Accountability and human agency before the write. Not a membership.",
         "claimed": false
+      },
+      {
+        "id": "sec.books_records",
+        "name": "Books and records (first / second record)",
+        "scope": "US domestic / books",
+        "maps_to": "First record is the admitted SoR write. Second record is the sealed DecisionRecord. Not a 17a-4 opinion.",
+        "claimed": false
+      },
+      {
+        "id": "three_lod",
+        "name": "Three lines of defense",
+        "scope": "risk / compliance",
+        "maps_to": "1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.",
+        "claimed": false
       }
     ],
     "risks": [
@@ -2734,6 +2880,16 @@
         "id": "bypass_tool",
         "harm": "A BYO MCP or Dataverse tool writes Business Central or Sales around the admit plane.",
         "note": "Owner blocks Dataverse MCP until paid U-DUAL. Tools are not seats."
+      },
+      {
+        "id": "counterparty_ai_write",
+        "harm": "The client's customer AI posts into the client's SoR without the client's two seats.",
+        "note": "The client institutes AINav. Counterparty AI is not a seat. Do not invent names."
+      },
+      {
+        "id": "missing_second_record",
+        "harm": "The write landed and no sealed DecisionRecord exists for the examiner or the client's customer.",
+        "note": "Second record is P-ADM keep. It is not the SoR first record. Not a certificate."
       }
     ],
     "refuse": [
@@ -2744,8 +2900,48 @@
       "AINav is the client's AI",
       "client AI as dual",
       "Cloud Agent as a seat",
-      "LIVE_PIN_OK from a governance map"
+      "LIVE_PIN_OK from a governance map",
+      "customer's AI as dual",
+      "invented counterparty name"
     ],
-    "note": "Catalog map only. Not booked. Not a certification. Not recognized revenue. G12 legal stays open. The failsafe is Job C, not a fourth SKU."
+    "note": "Catalog map only. The client institutes AINav for their AI and their customers' AI. Not booked. Not a certification. Not recognized revenue. Do not invent counterparties. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+    "cascade": {
+      "client_utilizes_ai": true,
+      "counterparties_utilize_ai": true,
+      "buyer_is_the_client": true,
+      "client_institutes_ainav": true,
+      "do_not_invent_names": true,
+      "stable": [
+        "L1",
+        "P-ADM",
+        "U-DUAL",
+        "industry packs",
+        "libraries",
+        "FFS"
+      ],
+      "does": "The client's customers may draft into the client's SoR. The client institutes AINav. The client's two humans admit.",
+      "does_not": [
+        "sell to invented counterparties",
+        "make the customer's AI a seat",
+        "mint a fourth SKU",
+        "certify the customer's model"
+      ]
+    },
+    "records": {
+      "sku": false,
+      "certified": false,
+      "first": {
+        "id": "first_record",
+        "what": "The privileged SoR write after dual admit (journal, invoice, order).",
+        "plane": "L1 / U-DUAL",
+        "note": "Books of original entry. Not a second SKU. Not LIVE_PIN_OK."
+      },
+      "second": {
+        "id": "second_record",
+        "what": "Sealed DecisionRecord and Merkle keep of who admitted the write.",
+        "plane": "P-ADM",
+        "note": "Supporting books-and-records for examiners and the client's customers. Not a certificate."
+      }
+    }
   }
 }
