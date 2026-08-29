@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.10.1"
+    assert cat["entity"]["release"] == "2.11.0"
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     invited = cat["organization"]["contacts"]["invited"]
     assert invited["name"] == "Cynthia Hodnett"
@@ -96,6 +96,9 @@ def test_printable_brief_is_a_pdf():
     assert "ninety minutes" in md
     assert "Tuesday" in md
     assert "Where we actually are" in md
+    assert "Financial model" in md or "catalog list" in md.lower()
+    assert "Fifteen" in md or "15" in md
+    assert "Named dual seats" in md
     assert "not recorded" in md.lower()
     html = brief_html()
     assert "Executive brief" in html
@@ -123,6 +126,8 @@ def test_cli_owner_and_counsel(capsys):
     assert "unsigned" in capsys.readouterr().out.lower()
     assert main(["runbooks"]) == 0
     assert "industry.treasury" in capsys.readouterr().out
+    assert main(["finance"]) == 0
+    assert "catalog" in capsys.readouterr().out.lower()
     assert main(["keep-artifact"]) == 0
     assert "live_pin_ok" in capsys.readouterr().out
     assert main(["brief-pdf"]) == 0

@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from ainav.catalog import load_catalog
+from ainav.finance import model as finance_model
 
 BRIEF_PATH = Path("docs/CYNTHIA_HODNETT_BRIEF.pdf")
 HTML_PATH = Path("docs/CYNTHIA_HODNETT_BRIEF.html")
@@ -37,9 +38,16 @@ def _ctx() -> dict[str, str]:
     }
 
 
+def _money(lo: int, hi: int) -> str:
+    return f"${lo:,}–${hi:,}"
+
+
 def brief_document() -> list[dict[str, Any]]:
-    """Source of truth for the print brief. Catalog-honest. Not a contract."""
+    """Company packet + Cynthia letter. Catalog-honest. Not a contract."""
     c = _ctx()
+    cat = load_catalog()
+    fin = finance_model()
+    depts = cat["organization"]["departments"]
     return [
         {
             "kind": "kicker",
@@ -58,6 +66,10 @@ def brief_document() -> list[dict[str, Any]]:
                 "no claim that the public site has launched. If a sentence would make the company "
                 "look further along than it is, it was left out."
             ),
+        },
+        {
+            "kind": "h",
+            "text": "Part I — For Cynthia Hodnett",
         },
         {
             "kind": "callout",
@@ -293,15 +305,149 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
+            "text": "Part II — Foundational buildout",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Three motherships, one law. Master mothership (Azure-declared, AINav) issues the "
+                "lockfile, catalog, and gold. It never writes a client system of record. Cloud "
+                "mothership (Azure-declared client plane) and local mothership (client plane) share "
+                "one consume ledger and run AdmitClient against a Business Central digital twin. "
+                "They are not two products. They are not two deployed production planes. Today they "
+                "are in-process on that shared ledger. Week one: provision master lockfile → "
+                "provision the cloud + local pair → proof day or Acceptance Kit on the BC twin → "
+                "notify Teams → store kit evidence in SharePoint sandbox → refuse the live pin."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra "
+                "identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. "
+                "Industry packs (treasury, controller, sales, quote desk) seat the same actions. "
+                "Libraries bundle modules. Repositories are the plane, the catalog, and the Institute. "
+                "None of those are SKUs. A la carte means paid U-DUAL depth — never a fourth product."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Microsoft fabric, 10/10 and no further: Azure host (eastus; Institute eastus2; "
+                "West Europe blocked by policy). Microsoft 365 E7 / Entra for seat object ids. "
+                "Business Central Premium for L1 SoR. Sales Enterprise for U-DUAL SoR. Teams "
+                "Enterprise and Premium for notify. Complements: Key Vault, Monitor, SharePoint kit "
+                "evidence, Defender XDR, Entra PIM, Sentinel (the mothership LAW is not a Sentinel "
+                "workspace), Azure Policy. Copilot, Agent 365, and Agent Tools ship inside E7. They "
+                "are not the admit plane. A 10/10 Microsoft estate that votes in Teams or lets "
+                "Copilot post the journal is a failure of Job C, not a feature."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Part III — Organization and operations",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Ten departments. The map is complete out of the gate. That does not mean Sales, "
+                "Teams, Institute, legal, or programs are live. BD and sales are the same motion: "
+                "qualify an ICP controller who already has Business Central Premium, Entra, and "
+                "two-person journal SOD → generate a proof-day brief they can forward → ninety "
+                "minutes → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL. "
+                "Exits: LOST, KIT_FAIL, CHURN. Do not invent a contact inbox or a design-partner name."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Operating company — departments are not SKUs",
+            "headers": ["Department", "Role", "Status", "Blocked by"],
+            "rows": [
+                [
+                    item["name"],
+                    item["role"],
+                    item["status"],
+                    "; ".join(item.get("blocked_by") or []) or "none",
+                ]
+                for item in depts
+            ],
+        },
+        {
+            "kind": "h",
+            "text": "Part IV — What we sell, pricing, financial model",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Three SKUs. Four pricing models. Fee-for-service at $3,500/day on the same plane "
+                "after L1. Hours never mint a SKU and never attach U-DUAL. There is no billing "
+                f"provider. Recognized revenue is {fin['recognized_revenue']}. Signed L1 is "
+                f"{fin['signed_l1']}. Named customers are {fin['named_customers']}. The numbers "
+                "below are if-then catalog list. They are not a forecast, not ARR, and not booked."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Pricing models",
+            "headers": ["Item", "Model", "How it is sold"],
+            "rows": [
+                ["L1", "Fixed-scope project", "2–4 week engagement. Priced against the unauthorized journal, not hours."],
+                ["P-ADM", "Annual keep", "Attaches only after L1 Acceptance Kit PASS. Never bundles free U-DUAL."],
+                ["U-DUAL", "Annual deepen", "Same admit plane onto Sales. Never free with P-ADM or U-SOR."],
+                ["FFS", "Day rate $3,500", "Integration, replay, QBR, mothership ops. Requires L1. Not a SKU."],
+            ],
+        },
+        {
+            "kind": "table",
+            "title": "If-then catalog list — zero customers today",
+            "headers": ["Scenario", "If", "List"],
+            "rows": [
+                [row["name"], row["if"], _money(row["min"], row["max"])]
+                for row in fin["scenarios"]
+            ],
+        },
+        {
+            "kind": "h",
+            "text": "Part V — Expert review: what works, what to improve, 15 upgrades",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Read as a coding first-principles review, a Microsoft-fabric review, and a "
+                "business review. The bar is gold-standard Job C, not a prettier Coming Soon page. "
+                "Apple polish without the gate is decoration. Elon-style first principles without "
+                "two humans is a lab."
+            ),
+        },
+        {
+            "kind": "ul",
+            "title": "Working well",
+            "items": list(cat["expert_review"]["working_well"]),
+        },
+        {
+            "kind": "ul",
+            "title": "Could be improved — without inventing a fourth SKU",
+            "items": list(cat["expert_review"]["improve"]),
+        },
+        {
+            "kind": "ul",
+            "title": "Fifteen specific upgrades. Tree = already encoded. Owner = James must click.",
+            "items": [
+                f"{item['n']}. [{item['who']}] {item['title']} — {item['do']}"
+                for item in cat["expert_review"]["upgrades"]
+            ],
+        },
+        {
+            "kind": "h",
             "text": "What happens next",
         },
         {
             "kind": "ul",
-            "title": "Five steps, in order. Stop after step 1 until you have decided.",
+            "title": "Five steps, in order. Stop after step 1 until Cynthia has decided.",
             "items": [
-                "You decide — yes, no, or not yet.",
-                "If yes, James creates your @ainav.institute mailbox. You sign in once. He does not click seat B.",
-                "He sends this agent your business email and says record it. Until those words, no email is stored.",
+                "Cynthia decides — yes, no, or not yet.",
+                "If yes, James creates her @ainav.institute mailbox. She signs in once. He does not click seat B.",
+                "He sends this agent her business email and says record it. Until those words, no email is stored.",
                 "Proof day uses two named humans on the Business Central twin. Still not Production.",
                 "Equity, officer titles, and Delaware filings stay with counsel. They are not required for this role.",
             ],
@@ -311,7 +457,7 @@ def brief_document() -> list[dict[str, Any]]:
             "text": (
                 f"Invited: {c['invited']}  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  "
                 f"Second officer: none  ·  Operator: {c['operator']} (not a seat)  ·  "
-                f"Commercial close: {c['commercial']}"
+                f"Commercial close: {c['commercial']}  ·  Recognized revenue: 0"
             ),
         },
     ]

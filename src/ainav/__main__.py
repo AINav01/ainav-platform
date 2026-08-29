@@ -83,6 +83,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("msa")
     sub.add_parser("keep-artifact")
     sub.add_parser("runbooks")
+    sub.add_parser("finance")
     sub.add_parser("next-pin")
     sub.add_parser("delivery")
     sub.add_parser("raci")
@@ -278,6 +279,11 @@ def main(argv: list[str] | None = None) -> int:
         from ainav.runbooks import all_runbooks
 
         print(canonical_json(all_runbooks()))
+        return 0
+    if args.cmd == "finance":
+        from ainav.finance import finance_markdown
+
+        print(finance_markdown(), end="")
         return 0
     if args.cmd == "buyer":
         from ainav.buyer import buyer_page

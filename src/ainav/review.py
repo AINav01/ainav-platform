@@ -20,6 +20,8 @@ CLI_SURFACE = (
     "python -m ainav proof-day",
     "python -m ainav twin-demo",
     "python -m ainav programs",
+    "python -m ainav finance",
+    "python -m ainav brief-pdf",
 )
 
 
@@ -408,6 +410,30 @@ def deep_dive(*, probe: bool = False) -> str:
     ]
     for item in human_gates():
         lines.append(f"- {item}")
+    from ainav.finance import model
+
+    fin = model()
+    lines += [
+        "",
+        "## Financial model (catalog list)",
+        "",
+        fin["note"],
+        f"Recognized revenue: {fin['recognized_revenue']}. Signed L1: {fin['signed_l1']}. "
+        f"Named customers: {fin['named_customers']}. Billing provider: false.",
+        "",
+    ]
+    for row in fin["scenarios"]:
+        lines.append(f"- **{row['name']}** — ${row['min']:,}–${row['max']:,}. {row['if']}")
+    review = cat["expert_review"]
+    lines += ["", "## Expert review — working well", ""]
+    for item in review["working_well"]:
+        lines.append(f"- {item}")
+    lines += ["", "## Expert review — could be improved", ""]
+    for item in review["improve"]:
+        lines.append(f"- {item}")
+    lines += ["", "## Fifteen upgrades", ""]
+    for item in review["upgrades"]:
+        lines.append(f"- **{item['n']}. [{item['who']}] {item['title']}** — {item['do']}")
     lines += [
         "",
         "## Still missing",

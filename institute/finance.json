@@ -1,0 +1,104 @@
+{
+  "billing_provider": false,
+  "currency": "USD",
+  "kind": "ainav.finance.catalog_list.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "named_customers": 0,
+  "note": "Pipeline math uses catalog list prices. It is not booked. It is not recognized revenue.",
+  "pricing_models": [
+    {
+      "id": "L1",
+      "model": "fixed_scope_project",
+      "term": "2\u20134 weeks",
+      "unit": "engagement"
+    },
+    {
+      "attach_after": "L1 Acceptance Kit PASS",
+      "id": "P-ADM",
+      "model": "annual_keep",
+      "unit": "year"
+    },
+    {
+      "id": "U-DUAL",
+      "model": "annual_deepen",
+      "never_free_with": [
+        "P-ADM",
+        "U-SOR"
+      ],
+      "unit": "year"
+    },
+    {
+      "attaches_udual": false,
+      "id": "ffs",
+      "model": "day_rate",
+      "rate_usd": 3500,
+      "requires_l1": true,
+      "unit": "day"
+    }
+  ],
+  "recognized_revenue": 0,
+  "scenarios": [
+    {
+      "id": "l1_only",
+      "if": "One controller buys L1 and stops.",
+      "max": 40000,
+      "min": 28000,
+      "n": 1,
+      "name": "One controller \u2014 L1 only",
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_padm",
+      "if": "One controller buys L1, kit PASS, then attaches P-ADM.",
+      "max": 100000,
+      "min": 68000,
+      "n": 1,
+      "name": "One controller \u2014 L1 then P-ADM",
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "all_three",
+      "if": "One controller buys L1, attaches P-ADM, then pays for U-DUAL.",
+      "max": 135000,
+      "min": 88000,
+      "n": 1,
+      "name": "One controller \u2014 all three SKUs",
+      "skus": [
+        "L1",
+        "P-ADM",
+        "U-DUAL"
+      ]
+    },
+    {
+      "id": "three_l1_padm",
+      "if": "Three controllers each buy L1 and attach P-ADM. No named buyers exist.",
+      "max": 300000,
+      "min": 204000,
+      "n": 3,
+      "name": "Three controllers \u2014 L1 + P-ADM each",
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "ffs_days": 4,
+      "id": "l1_plus_four_days",
+      "if": "One controller buys L1 and four billable days on the same plane.",
+      "max": 54000,
+      "min": 42000,
+      "n": 1,
+      "name": "One L1 plus four FFS days",
+      "skus": [
+        "L1"
+      ]
+    }
+  ],
+  "signed_l1": 0
+}

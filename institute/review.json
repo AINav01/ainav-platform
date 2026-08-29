@@ -17,7 +17,9 @@
     "python -m ainav agent-tools [--probe]",
     "python -m ainav proof-day",
     "python -m ainav twin-demo",
-    "python -m ainav programs"
+    "python -m ainav programs",
+    "python -m ainav finance",
+    "python -m ainav brief-pdf"
   ],
   "cloud_agent_can_approve_tools": false,
   "custom_domain_claimed": false,

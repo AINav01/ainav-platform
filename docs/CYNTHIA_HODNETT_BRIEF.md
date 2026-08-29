@@ -1,10 +1,12 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.10.1. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.11.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.10.1  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.11.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
+
+## Part I — For Cynthia Hodnett
 
 ## The ask, in one sentence
 
@@ -81,14 +83,108 @@ Your yes lets James create your mailbox, lets you sign in once, and lets proof d
 
 Your no, or not yet, is also a complete answer. Nothing is recorded. The invite stays open. The company stays a one-human lab until a second distinct human actually clicks. James will not invent a contact to paper over that.
 
+## Part II — Foundational buildout
+
+Three motherships, one law. Master mothership (Azure-declared, AINav) issues the lockfile, catalog, and gold. It never writes a client system of record. Cloud mothership (Azure-declared client plane) and local mothership (client plane) share one consume ledger and run AdmitClient against a Business Central digital twin. They are not two products. They are not two deployed production planes. Today they are in-process on that shared ledger. Week one: provision master lockfile → provision the cloud + local pair → proof day or Acceptance Kit on the BC twin → notify Teams → store kit evidence in SharePoint sandbox → refuse the live pin.
+
+Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. Industry packs (treasury, controller, sales, quote desk) seat the same actions. Libraries bundle modules. Repositories are the plane, the catalog, and the Institute. None of those are SKUs. A la carte means paid U-DUAL depth — never a fourth product.
+
+Microsoft fabric, 10/10 and no further: Azure host (eastus; Institute eastus2; West Europe blocked by policy). Microsoft 365 E7 / Entra for seat object ids. Business Central Premium for L1 SoR. Sales Enterprise for U-DUAL SoR. Teams Enterprise and Premium for notify. Complements: Key Vault, Monitor, SharePoint kit evidence, Defender XDR, Entra PIM, Sentinel (the mothership LAW is not a Sentinel workspace), Azure Policy. Copilot, Agent 365, and Agent Tools ship inside E7. They are not the admit plane. A 10/10 Microsoft estate that votes in Teams or lets Copilot post the journal is a failure of Job C, not a feature.
+
+## Part III — Organization and operations
+
+Ten departments. The map is complete out of the gate. That does not mean Sales, Teams, Institute, legal, or programs are live. BD and sales are the same motion: qualify an ICP controller who already has Business Central Premium, Entra, and two-person journal SOD → generate a proof-day brief they can forward → ninety minutes → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL. Exits: LOST, KIT_FAIL, CHURN. Do not invent a contact inbox or a design-partner name.
+
+*Operating company — departments are not SKUs*
+
+| Department | Role | Status | Blocked by |
+| --- | --- | --- | --- |
+| Treasury / Finance | books | running_sandbox | BC Production app not Enabled; signed L1 / two named treasury humans |
+| Identity / IT / Host | identity_host | running_sandbox | LIVE_PIN_OK |
+| Sales / Revenue | pipeline | licensed_not_wired | Power Platform environment with Dataverse; DATAVERSE_URL |
+| People / Notify | notify | licensed_not_wired | Team.ReadBasic.All on the same Entra app |
+| Security / Compliance | audit_sink | licensed_not_wired | SecurityIncident.Read.All; RoleEligibilitySchedule.Read.Directory; Sites.Read.All; Sentinel on the existing LAW |
+| Institute / GTM | public | azure_hosted_not_custom | ainav.institute custom domain |
+| Legal / Counsel | counsel | open_gap | G12 legal; G13 signed L1 |
+| Product / Engineering | plane | running_code | product HA |
+| Delivery / Customer Success | pair | running_code | named customer; LIVE_PIN_OK |
+| Programs / Partnerships | qualify | qualify_not_claimed | public website; incorporation date; second unique human contact |
+
+## Part IV — What we sell, pricing, financial model
+
+Three SKUs. Four pricing models. Fee-for-service at $3,500/day on the same plane after L1. Hours never mint a SKU and never attach U-DUAL. There is no billing provider. Recognized revenue is 0. Signed L1 is 0. Named customers are 0. The numbers below are if-then catalog list. They are not a forecast, not ARR, and not booked.
+
+*Pricing models*
+
+| Item | Model | How it is sold |
+| --- | --- | --- |
+| L1 | Fixed-scope project | 2–4 week engagement. Priced against the unauthorized journal, not hours. |
+| P-ADM | Annual keep | Attaches only after L1 Acceptance Kit PASS. Never bundles free U-DUAL. |
+| U-DUAL | Annual deepen | Same admit plane onto Sales. Never free with P-ADM or U-SOR. |
+| FFS | Day rate $3,500 | Integration, replay, QBR, mothership ops. Requires L1. Not a SKU. |
+
+*If-then catalog list — zero customers today*
+
+| Scenario | If | List |
+| --- | --- | --- |
+| One controller — L1 only | One controller buys L1 and stops. | $28,000–$40,000 |
+| One controller — L1 then P-ADM | One controller buys L1, kit PASS, then attaches P-ADM. | $68,000–$100,000 |
+| One controller — all three SKUs | One controller buys L1, attaches P-ADM, then pays for U-DUAL. | $88,000–$135,000 |
+| Three controllers — L1 + P-ADM each | Three controllers each buy L1 and attach P-ADM. No named buyers exist. | $204,000–$300,000 |
+| One L1 plus four FFS days | One controller buys L1 and four billable days on the same plane. | $42,000–$54,000 |
+
+## Part V — Expert review: what works, what to improve, 15 upgrades
+
+Read as a coding first-principles review, a Microsoft-fabric review, and a business review. The bar is gold-standard Job C, not a prettier Coming Soon page. Apple polish without the gate is decoration. Elon-style first principles without two humans is a lab.
+
+Working well
+
+- Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.
+- Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.
+- Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.
+- AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.
+- Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
+- Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
+- Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
+- Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
+
+Could be improved — without inventing a fourth SKU
+
+- AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
+- One human cannot close dual admit, Inception contacts, or signed L1.
+- Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
+- Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
+- Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.
+- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.
+- No billing provider. Catalog list cannot become recognized revenue.
+- Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
+
+Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
+
+- 1. [owner] Named dual seats — Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both.
+- 2. [owner] Proof day on named humans — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
+- 3. [owner] Graph read on the same app — Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
+- 4. [owner] US Dataverse — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
+- 5. [tree] One door, no inbox — Keep the Institute buyer page as a forwardable proof-day brief. Do not invent a contact inbox or a design-partner name.
+- 6. [tree] Price the incident, not hours — Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.
+- 7. [tree] Hold launch — Do not bind ainav.institute or publish until James says launch. --publish-institute stays launch_not_ready.
+- 8. [owner] Startups then Inception — Apply to Microsoft for Startups only after launch and the custom domain. Inception second. Membership is not claimed.
+- 9. [tree] P-ADM weekly keep object — Weekly sealed DecisionRecord export the treasurer can open. Not live Purview.
+- 10. [tree] FFS requires L1 — Billable days refuse without L1. They cannot attach U-DUAL.
+- 11. [tree] Catalog financial model — Talk if-then catalog list. Never invent ARR, bookings, or recognized revenue.
+- 12. [tree] Commercial equation ≠ lab pin — Controllers buy named dual seats × proof day × signed L1 × P-ADM attach. LIVE_PIN_OK stays a lab pin.
+- 13. [owner] Counsel pack — G12 hygiene then G13 signed L1. Unsigned order form and MSA skeleton are not a signature.
+- 14. [tree] Product HA is not a sale — Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.
+- 15. [owner] Leave Available / Block Dataverse MCP — Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.
+
 ## What happens next
 
-Five steps, in order. Stop after step 1 until you have decided.
+Five steps, in order. Stop after step 1 until Cynthia has decided.
 
-- You decide — yes, no, or not yet.
-- If yes, James creates your @ainav.institute mailbox. You sign in once. He does not click seat B.
-- He sends this agent your business email and says record it. Until those words, no email is stored.
+- Cynthia decides — yes, no, or not yet.
+- If yes, James creates her @ainav.institute mailbox. She signs in once. He does not click seat B.
+- He sends this agent her business email and says record it. Until those words, no email is stored.
 - Proof day uses two named humans on the Business Central twin. Still not Production.
 - Equity, officer titles, and Delaware filings stay with counsel. They are not required for this role.
 
-Invited: Cynthia Hodnett  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  Second officer: none  ·  Operator: cursor.cloud_agent (not a seat)  ·  Commercial close: named dual seats × proof day × signed L1 × P-ADM attach
+Invited: Cynthia Hodnett  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  Second officer: none  ·  Operator: cursor.cloud_agent (not a seat)  ·  Commercial close: named dual seats × proof day × signed L1 × P-ADM attach  ·  Recognized revenue: 0

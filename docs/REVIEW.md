@@ -206,6 +206,57 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 - Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.
 - Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.
 
+## Financial model (catalog list)
+
+Pipeline math uses catalog list prices. It is not booked. It is not recognized revenue.
+Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false.
+
+- **One controller — L1 only** — $28,000–$40,000. One controller buys L1 and stops.
+- **One controller — L1 then P-ADM** — $68,000–$100,000. One controller buys L1, kit PASS, then attaches P-ADM.
+- **One controller — all three SKUs** — $88,000–$135,000. One controller buys L1, attaches P-ADM, then pays for U-DUAL.
+- **Three controllers — L1 + P-ADM each** — $204,000–$300,000. Three controllers each buy L1 and attach P-ADM. No named buyers exist.
+- **One L1 plus four FFS days** — $42,000–$54,000. One controller buys L1 and four billable days on the same plane.
+
+## Expert review — working well
+
+- Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.
+- Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.
+- Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.
+- AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.
+- Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
+- Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
+- Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
+- Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
+
+## Expert review — could be improved
+
+- AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
+- One human cannot close dual admit, Inception contacts, or signed L1.
+- Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
+- Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
+- Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.
+- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.
+- No billing provider. Catalog list cannot become recognized revenue.
+- Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
+
+## Fifteen upgrades
+
+- **1. [owner] Named dual seats** — Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both.
+- **2. [owner] Proof day on named humans** — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
+- **3. [owner] Graph read on the same app** — Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
+- **4. [owner] US Dataverse** — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
+- **5. [tree] One door, no inbox** — Keep the Institute buyer page as a forwardable proof-day brief. Do not invent a contact inbox or a design-partner name.
+- **6. [tree] Price the incident, not hours** — Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.
+- **7. [tree] Hold launch** — Do not bind ainav.institute or publish until James says launch. --publish-institute stays launch_not_ready.
+- **8. [owner] Startups then Inception** — Apply to Microsoft for Startups only after launch and the custom domain. Inception second. Membership is not claimed.
+- **9. [tree] P-ADM weekly keep object** — Weekly sealed DecisionRecord export the treasurer can open. Not live Purview.
+- **10. [tree] FFS requires L1** — Billable days refuse without L1. They cannot attach U-DUAL.
+- **11. [tree] Catalog financial model** — Talk if-then catalog list. Never invent ARR, bookings, or recognized revenue.
+- **12. [tree] Commercial equation ≠ lab pin** — Controllers buy named dual seats × proof day × signed L1 × P-ADM attach. LIVE_PIN_OK stays a lab pin.
+- **13. [owner] Counsel pack** — G12 hygiene then G13 signed L1. Unsigned order form and MSA skeleton are not a signature.
+- **14. [tree] Product HA is not a sale** — Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.
+- **15. [owner] Leave Available / Block Dataverse MCP** — Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.
+
 ## Still missing
 
 - Second unique human (Inception contacts and signed L1 seats)
@@ -237,3 +288,5 @@ Catalog wins. `--probe` overlays live Microsoft and DNS health. Probe does not p
 - `python -m ainav proof-day`
 - `python -m ainav twin-demo`
 - `python -m ainav programs`
+- `python -m ainav finance`
+- `python -m ainav brief-pdf`

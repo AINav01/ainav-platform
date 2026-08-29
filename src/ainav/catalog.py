@@ -82,6 +82,8 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_acceptance_kit(catalog)
     _validate_counsel(catalog)
     _validate_owner_gates(catalog)
+    _validate_finance(catalog)
+    _validate_expert_review(catalog)
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
@@ -185,6 +187,37 @@ def _validate_counsel(catalog: dict[str, Any]) -> None:
         raise IntegrityError("order form and MSA stay unsigned", reason_code="G12_OPEN")
     if "U-DUAL is never free" not in " ".join(order.get("rules") or []):
         raise IntegrityError("order form must refuse free U-DUAL", reason_code="UDUAL_NOT_FREE")
+
+
+def _validate_finance(catalog: dict[str, Any]) -> None:
+    body = catalog.get("financial_model")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing financial model", reason_code="CATALOG_FINANCE")
+    if body.get("recognized_revenue") not in (0, False):
+        raise IntegrityError("do not invent recognized revenue", reason_code="CATALOG_FINANCE")
+    if body.get("signed_l1") not in (0, False):
+        raise IntegrityError("signed L1 is still open", reason_code="SIGNED_L1_OPEN")
+    if body.get("named_customers") not in (0, False):
+        raise IntegrityError("do not invent named customers", reason_code="ICP_NAMED")
+    if body.get("billing_provider") is True:
+        raise IntegrityError("no billing provider is claimed", reason_code="CATALOG_FINANCE")
+    models = body.get("pricing_models") or []
+    ids = {item.get("id") for item in models}
+    if not {"L1", "P-ADM", "U-DUAL", "ffs"} <= ids:
+        raise IntegrityError("financial model must price three SKUs and FFS", reason_code="CATALOG_FINANCE")
+
+
+def _validate_expert_review(catalog: dict[str, Any]) -> None:
+    body = catalog.get("expert_review")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
+    upgrades = body.get("upgrades") or []
+    if not 10 <= len(upgrades) <= 15:
+        raise IntegrityError("expert review needs 10–15 upgrades", reason_code="CATALOG_REVIEW")
+    if not body.get("working_well") or not body.get("improve"):
+        raise IntegrityError("expert review needs working_well and improve", reason_code="CATALOG_REVIEW")
+    if any(item.get("marks_live_pin") is True for item in upgrades):
+        raise IntegrityError("upgrades cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:

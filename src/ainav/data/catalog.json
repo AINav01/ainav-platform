@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.10.1",
+    "release": "2.11.0",
     "category": "Dual-admitted effect authority before privileged system-of-record writes"
   },
   "operating": {
@@ -50,47 +50,76 @@
         "id": "dept.treasury",
         "name": "Treasury / Finance",
         "role": "books",
-        "systems": ["bc.premium"],
+        "systems": [
+          "bc.premium"
+        ],
         "status": "running_sandbox",
         "production": false,
-        "blocked_by": ["BC Production app not Enabled", "signed L1 / two named treasury humans"],
+        "blocked_by": [
+          "BC Production app not Enabled",
+          "signed L1 / two named treasury humans"
+        ],
         "note": "Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK."
       },
       {
         "id": "dept.identity",
         "name": "Identity / IT / Host",
         "role": "identity_host",
-        "systems": ["m365.e7", "entra.id", "azure.host", "azure.keyvault", "azure.monitor", "azure.policy"],
+        "systems": [
+          "m365.e7",
+          "entra.id",
+          "azure.host",
+          "azure.keyvault",
+          "azure.monitor",
+          "azure.policy"
+        ],
         "status": "running_sandbox",
         "production": false,
-        "blocked_by": ["LIVE_PIN_OK"],
+        "blocked_by": [
+          "LIVE_PIN_OK"
+        ],
         "note": "Same Entra app. Azure host in eastus. West Europe is blocked by policy."
       },
       {
         "id": "dept.sales",
         "name": "Sales / Revenue",
         "role": "pipeline",
-        "systems": ["sales.enterprise"],
+        "systems": [
+          "sales.enterprise"
+        ],
         "status": "licensed_not_wired",
         "production": false,
-        "blocked_by": ["Power Platform environment with Dataverse", "DATAVERSE_URL"],
+        "blocked_by": [
+          "Power Platform environment with Dataverse",
+          "DATAVERSE_URL"
+        ],
         "note": "Sales Enterprise license exists. Global Discovery returned zero instances."
       },
       {
         "id": "dept.people",
         "name": "People / Notify",
         "role": "notify",
-        "systems": ["teams.enterprise", "teams.premium"],
+        "systems": [
+          "teams.enterprise",
+          "teams.premium"
+        ],
         "status": "licensed_not_wired",
         "production": false,
-        "blocked_by": ["Team.ReadBasic.All on the same Entra app"],
+        "blocked_by": [
+          "Team.ReadBasic.All on the same Entra app"
+        ],
         "note": "Teams is licensed. A chat is not a seat. Graph notify is not wired."
       },
       {
         "id": "dept.compliance",
         "name": "Security / Compliance",
         "role": "audit_sink",
-        "systems": ["defender.xdr", "entra.pim", "sentinel.siem", "sharepoint.kit"],
+        "systems": [
+          "defender.xdr",
+          "entra.pim",
+          "sentinel.siem",
+          "sharepoint.kit"
+        ],
         "status": "licensed_not_wired",
         "production": false,
         "blocked_by": [
@@ -105,47 +134,69 @@
         "id": "dept.institute",
         "name": "Institute / GTM",
         "role": "public",
-        "systems": ["repo.institute", "azure.host"],
+        "systems": [
+          "repo.institute",
+          "azure.host"
+        ],
         "status": "azure_hosted_not_custom",
         "production": false,
-        "blocked_by": ["ainav.institute custom domain"],
+        "blocked_by": [
+          "ainav.institute custom domain"
+        ],
         "note": "Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK."
       },
       {
         "id": "dept.legal",
         "name": "Legal / Counsel",
         "role": "counsel",
-        "systems": ["catalog.legal"],
+        "systems": [
+          "catalog.legal"
+        ],
         "status": "open_gap",
         "production": false,
-        "blocked_by": ["G12 legal", "G13 signed L1"],
+        "blocked_by": [
+          "G12 legal",
+          "G13 signed L1"
+        ],
         "note": "IP hygiene lives in this tree. Counsel pack is not signed."
       },
       {
         "id": "dept.product",
         "name": "Product / Engineering",
         "role": "plane",
-        "systems": ["repo.agent_gov", "repo.catalog"],
+        "systems": [
+          "repo.agent_gov",
+          "repo.catalog"
+        ],
         "status": "running_code",
         "production": false,
-        "blocked_by": ["product HA"],
+        "blocked_by": [
+          "product HA"
+        ],
         "note": "Job C admit plane and catalog. Three SKUs only. Not a live pin."
       },
       {
         "id": "dept.delivery",
         "name": "Delivery / Customer Success",
         "role": "pair",
-        "systems": ["delivery"],
+        "systems": [
+          "delivery"
+        ],
         "status": "running_code",
         "production": false,
-        "blocked_by": ["named customer", "LIVE_PIN_OK"],
+        "blocked_by": [
+          "named customer",
+          "LIVE_PIN_OK"
+        ],
         "note": "Master / cloud / local motherships and week-one runbook. Do not invent a customer."
       },
       {
         "id": "dept.programs",
         "name": "Programs / Partnerships",
         "role": "qualify",
-        "systems": ["programs"],
+        "systems": [
+          "programs"
+        ],
         "status": "qualify_not_claimed",
         "production": false,
         "blocked_by": [
@@ -158,7 +209,7 @@
     ]
   },
   "must_not_change": [
-    "Job C only — not agent inventory (Job A), not IdP replacement (Job B)",
+    "Job C only \u2014 not agent inventory (Job A), not IdP replacement (Job B)",
     "Dual distinct principals",
     "action_hash bound",
     "Single-use consume",
@@ -169,10 +220,10 @@
     "No invented SKUs",
     "No LIVE_PIN_OK / product HA / signed L1 without evidence"
   ],
-  "success_equation": "LIVE_PIN_OK × proof day × signed L1 × P-ADM attach",
+  "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "equations": {
-    "product": "LIVE_PIN_OK × proof day × signed L1 × P-ADM attach",
-    "commercial": "named dual seats × proof day × signed L1 × P-ADM attach",
+    "product": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+    "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
     "lab_pin": "LIVE_PIN_OK",
     "note": "Controllers buy the commercial equation. LIVE_PIN_OK is a lab pin and is never marked from sales."
   },
@@ -182,8 +233,11 @@
       "id": "L1",
       "name": "FIRST_OFFER",
       "kind": "prove",
-      "price_usd": { "min": 28000, "max": 40000 },
-      "term": "2–4 weeks",
+      "price_usd": {
+        "min": 28000,
+        "max": 40000
+      },
+      "term": "2\u20134 weeks",
       "incident": "The unauthorized general-journal post that two humans did not admit.",
       "includes": [
         "Local mothership on the Job C admit plane",
@@ -202,11 +256,19 @@
       "id": "P-ADM",
       "name": "ADMIT_COVERAGE",
       "kind": "keep",
-      "price_usd": { "min": 40000, "max": 60000 },
+      "price_usd": {
+        "min": 40000,
+        "max": 60000
+      },
       "term": "annual",
       "attach_after": "L1 Acceptance Kit PASS",
-      "includes": ["Keep the same admit plane covered"],
-      "does_not_include": ["U-DUAL (never free)", "Soft dual"],
+      "includes": [
+        "Keep the same admit plane covered"
+      ],
+      "does_not_include": [
+        "U-DUAL (never free)",
+        "Soft dual"
+      ],
       "keep_artifact": {
         "id": "padm.weekly.decision_export",
         "cadence": "weekly",
@@ -219,11 +281,21 @@
       "id": "U-DUAL",
       "name": "DEPTH_PACK",
       "kind": "deepen",
-      "price_usd": { "min": 20000, "max": 35000 },
+      "price_usd": {
+        "min": 20000,
+        "max": 35000
+      },
       "term": "annual",
-      "never_free_with": ["P-ADM", "U-SOR"],
-      "includes": ["Additional action classes on the same admit plane"],
-      "does_not_include": ["A second control product"]
+      "never_free_with": [
+        "P-ADM",
+        "U-SOR"
+      ],
+      "includes": [
+        "Additional action classes on the same admit plane"
+      ],
+      "does_not_include": [
+        "A second control product"
+      ]
     }
   ],
   "modules": [
@@ -232,7 +304,10 @@
       "kind": "action",
       "sku": "L1",
       "sor": "dynamics_365_business_central_premium",
-      "roles": ["treasury_approver", "treasury_controller"]
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ]
     },
     {
       "id": "entra.seat.verify",
@@ -272,7 +347,9 @@
       "id": "industry.treasury",
       "name": "Treasury wedge",
       "requires_sku": "L1",
-      "modules": ["bc.general_journal.post"],
+      "modules": [
+        "bc.general_journal.post"
+      ],
       "note": "Standard L1 industry shape. Not a SKU.",
       "runbook": [
         "Seat A is treasury_approver. Seat B is treasury_controller.",
@@ -285,7 +362,10 @@
       "id": "industry.sales",
       "name": "Sales deepen",
       "requires_sku": "U-DUAL",
-      "modules": ["d365.quote.discount_override", "d365.order.submit"],
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ],
       "note": "A la carte U-DUAL depth. Not a fourth SKU.",
       "runbook": [
         "Requires paid U-DUAL after kit PASS. Never free with P-ADM.",
@@ -297,7 +377,9 @@
       "id": "industry.controller",
       "name": "Controller desk",
       "requires_sku": "L1",
-      "modules": ["bc.general_journal.post"],
+      "modules": [
+        "bc.general_journal.post"
+      ],
       "note": "Same L1 wedge, controller seating. Not a SKU.",
       "runbook": [
         "Same journal as industry.treasury. Different humans at the desk.",
@@ -309,7 +391,9 @@
       "id": "industry.quote_desk",
       "name": "Quote desk",
       "requires_sku": "U-DUAL",
-      "modules": ["d365.quote.discount_override"],
+      "modules": [
+        "d365.quote.discount_override"
+      ],
       "note": "A la carte U-DUAL slice. Not a fourth SKU.",
       "runbook": [
         "Same U-DUAL plane as industry.sales. Quote desk only.",
@@ -322,22 +406,34 @@
     {
       "id": "lib.l1.wedge",
       "requires_sku": "L1",
-      "modules": ["bc.general_journal.post", "entra.seat.verify", "teams.notify"]
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ]
     },
     {
       "id": "lib.udual.sales",
       "requires_sku": "U-DUAL",
-      "modules": ["d365.quote.discount_override", "d365.order.submit"]
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ]
     },
     {
       "id": "lib.padm.export",
       "requires_sku": "P-ADM",
-      "modules": ["purview.audit.export"]
+      "modules": [
+        "purview.audit.export"
+      ]
     },
     {
       "id": "lib.kit.evidence",
       "requires_sku": "L1",
-      "modules": ["entra.seat.verify", "teams.notify"],
+      "modules": [
+        "entra.seat.verify",
+        "teams.notify"
+      ],
       "note": "Acceptance Kit evidence path. Not a SKU."
     }
   ],
@@ -394,29 +490,52 @@
   ],
   "provisioning": {
     "standard_l1": {
-      "skus": ["L1"],
-      "industry": ["industry.treasury"],
-      "libraries": ["lib.l1.wedge"],
+      "skus": [
+        "L1"
+      ],
+      "industry": [
+        "industry.treasury"
+      ],
+      "libraries": [
+        "lib.l1.wedge"
+      ],
       "twin": "bc.sandbox",
       "notify": "teams",
       "identity": "entra"
     },
     "standard_pair": {
-      "skus": ["L1"],
-      "industry": ["industry.treasury"],
-      "libraries": ["lib.l1.wedge"],
-      "hosts": ["cloud", "local"],
+      "skus": [
+        "L1"
+      ],
+      "industry": [
+        "industry.treasury"
+      ],
+      "libraries": [
+        "lib.l1.wedge"
+      ],
+      "hosts": [
+        "cloud",
+        "local"
+      ],
       "shared_ledger": true,
       "note": "One client, two motherships, one consume ledger. Not two products."
     }
   },
   "motherships": {
-    "hosts": ["master", "cloud", "local"],
+    "hosts": [
+      "master",
+      "cloud",
+      "local"
+    ],
     "law": "Same Job C lockfile. One consume ledger per client. Master never writes the client SoR.",
     "shared_ledger": true,
     "master": {
       "writes_client_sor": false,
-      "issues": ["lockfile", "catalog", "gold"],
+      "issues": [
+        "lockfile",
+        "catalog",
+        "gold"
+      ],
       "host": "azure",
       "live": false
     },
@@ -445,12 +564,12 @@
       "refuse live pin"
     ],
     "raci": {
-      "master": "AINav, Inc. — lockfile, catalog, gold. Does not write client SoR.",
-      "cloud": "Azure-declared client plane — same ledger, sandbox twin.",
-      "local": "Client operators — seats and twin. Same ledger as cloud.",
-      "buyer": "Controller — forwards the proof-day brief. No invented inbox.",
-      "owner": "James Hodnett — sole owner. Runs AINav, Inc.",
-      "operator": "Cursor Cloud Agent — operates. Not a seat. Not dual admit."
+      "master": "AINav, Inc. \u2014 lockfile, catalog, gold. Does not write client SoR.",
+      "cloud": "Azure-declared client plane \u2014 same ledger, sandbox twin.",
+      "local": "Client operators \u2014 seats and twin. Same ledger as cloud.",
+      "buyer": "Controller \u2014 forwards the proof-day brief. No invented inbox.",
+      "owner": "James Hodnett \u2014 sole owner. Runs AINav, Inc.",
+      "operator": "Cursor Cloud Agent \u2014 operates. Not a seat. Not dual admit."
     }
   },
   "repositories": [
@@ -490,21 +609,35 @@
       "LIVE_PIN_OK cannot be marked from this plane",
       "Signed L1 cannot be marked from this plane"
     ],
-    "exits": ["LOST", "KIT_FAIL", "CHURN"]
+    "exits": [
+      "LOST",
+      "KIT_FAIL",
+      "CHURN"
+    ]
   },
   "acceptance_kit": {
     "requires_sku": "L1",
     "note": "Proof on the BC twin. Not a SKU. Not signed L1 (G13).",
     "seats": {
-      "seat_a": {"role": "treasury_approver", "lab": "oid-1"},
-      "seat_b": {"role": "treasury_controller", "lab": "oid-2"}
+      "seat_a": {
+        "role": "treasury_approver",
+        "lab": "oid-1"
+      },
+      "seat_b": {
+        "role": "treasury_controller",
+        "lab": "oid-2"
+      }
     },
     "cases": [
       {
         "id": "kit.bc.journal",
         "action": {
           "action_class": "bc.general_journal.post",
-          "payload": {"account": "1000", "amount": "1.00", "memo": "acceptance kit"},
+          "payload": {
+            "account": "1000",
+            "amount": "1.00",
+            "memo": "acceptance kit"
+          },
           "sor_target": "bc.sandbox",
           "policy_id": "dual-admit-v1"
         },
@@ -537,7 +670,7 @@
     "production": false,
     "sent": false,
     "live_pin_ok": false,
-    "note": "Process twin → Microsoft Business Central sandbox envelope. Not production. Not LIVE_PIN_OK."
+    "note": "Process twin \u2192 Microsoft Business Central sandbox envelope. Not production. Not LIVE_PIN_OK."
   },
   "sandbox_evidence": {
     "bc_document": "AINAV-L1",
@@ -551,7 +684,7 @@
     "live": false,
     "live_pin_ok": false,
     "signed_l1": false,
-    "seats": "lab operator oids — not two named treasury humans",
+    "seats": "lab operator oids \u2014 not two named treasury humans",
     "note": "Sandbox journal exists. Production is blocked. This is not LIVE_PIN_OK."
   },
   "icp": {
@@ -563,11 +696,14 @@
   },
   "buyer": {
     "write_that_must_not_happen": "An unauthorized general-journal post that two humans did not admit.",
-    "seats": ["treasury_approver", "treasury_controller"],
+    "seats": [
+      "treasury_approver",
+      "treasury_controller"
+    ],
     "prices": [
-      "L1 $28–40k / 2–4 weeks",
-      "P-ADM $40–60k / year after kit PASS",
-      "U-DUAL $20–35k / year — never free"
+      "L1 $28\u201340k / 2\u20134 weeks",
+      "P-ADM $40\u201360k / year after kit PASS",
+      "U-DUAL $20\u201335k / year \u2014 never free"
     ],
     "proof_day": "Ninety minutes. Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.",
     "refuse": [
@@ -592,12 +728,27 @@
     "Multi-host product HA"
   ],
   "microsoft_stack": {
-    "identity": ["Microsoft Entra ID"],
-    "collaboration_notify_only": ["Microsoft Teams Enterprise", "Microsoft Teams Premium"],
-    "sor_l1": ["Dynamics 365 Business Central Premium"],
-    "sor_udual": ["Dynamics 365 Sales Enterprise"],
-    "compliance_sink": ["Microsoft 365 E7", "Microsoft Purview", "Microsoft Sentinel"],
-    "hosting": ["Microsoft Azure"],
+    "identity": [
+      "Microsoft Entra ID"
+    ],
+    "collaboration_notify_only": [
+      "Microsoft Teams Enterprise",
+      "Microsoft Teams Premium"
+    ],
+    "sor_l1": [
+      "Dynamics 365 Business Central Premium"
+    ],
+    "sor_udual": [
+      "Dynamics 365 Sales Enterprise"
+    ],
+    "compliance_sink": [
+      "Microsoft 365 E7",
+      "Microsoft Purview",
+      "Microsoft Sentinel"
+    ],
+    "hosting": [
+      "Microsoft Azure"
+    ],
     "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
     "complements_10": [
       "Microsoft Entra ID",
@@ -609,8 +760,16 @@
       "Microsoft Sentinel",
       "Azure Policy"
     ],
-    "e7_uses": ["Entra Suite", "Purview", "Sentinel", "Teams licensing"],
-    "e7_not_the_product": ["Microsoft 365 Copilot", "Agent 365"],
+    "e7_uses": [
+      "Entra Suite",
+      "Purview",
+      "Sentinel",
+      "Teams licensing"
+    ],
+    "e7_not_the_product": [
+      "Microsoft 365 Copilot",
+      "Agent 365"
+    ],
     "agent_tools": {
       "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
       "product": "Microsoft 365 Agent Tools",
@@ -707,7 +866,7 @@
             "id": "leave_available",
             "do": "For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat.",
             "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
-            "url_label": "Registry — Unblock / Available"
+            "url_label": "Registry \u2014 Unblock / Available"
           },
           {
             "id": "confirm_five",
@@ -762,35 +921,80 @@
         "id": "azure.host",
         "product": "Microsoft Azure",
         "role": "hosting",
-        "surfaces": ["ainav_inc", "ainav", "institute"],
-        "binds": ["master mothership target", "AINAV.Institute static site"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav",
+          "institute"
+        ],
+        "binds": [
+          "master mothership target",
+          "AINAV.Institute static site"
+        ],
         "endpoint": "https://management.azure.com",
-        "env": ["AZURE_TENANT_ID", "AZURE_CLIENT_ID", "AZURE_CLIENT_SECRET", "AZURE_SUBSCRIPTION_ID"],
-        "scopes": ["https://management.azure.com/.default"],
+        "env": [
+          "AZURE_TENANT_ID",
+          "AZURE_CLIENT_ID",
+          "AZURE_CLIENT_SECRET",
+          "AZURE_SUBSCRIPTION_ID"
+        ],
+        "scopes": [
+          "https://management.azure.com/.default"
+        ],
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
       {
         "id": "m365.e7",
         "product": "Microsoft 365 E7",
         "role": "tenant",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["Entra Suite seat ids", "Purview/Sentinel audit sink", "Teams licensing"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "Entra Suite seat ids",
+          "Purview/Sentinel audit sink",
+          "Teams licensing"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0",
-        "env": ["ENTRA_TENANT_ID", "ENTRA_CLIENT_ID", "ENTRA_CLIENT_SECRET"],
-        "scopes": ["https://graph.microsoft.com/.default"],
-        "uses": ["Entra Suite", "Purview", "Sentinel", "Teams licensing"],
-        "does_not_use_as_product": ["Microsoft 365 Copilot", "Agent 365"],
+        "env": [
+          "ENTRA_TENANT_ID",
+          "ENTRA_CLIENT_ID",
+          "ENTRA_CLIENT_SECRET"
+        ],
+        "scopes": [
+          "https://graph.microsoft.com/.default"
+        ],
+        "uses": [
+          "Entra Suite",
+          "Purview",
+          "Sentinel",
+          "Teams licensing"
+        ],
+        "does_not_use_as_product": [
+          "Microsoft 365 Copilot",
+          "Agent 365"
+        ],
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
       {
         "id": "teams.enterprise",
         "product": "Microsoft Teams Enterprise",
         "role": "notify",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["effect notify"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "effect notify"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0/teams",
-        "env": ["TEAMS_ENTERPRISE_TEAM_ID", "TEAMS_ENTERPRISE_CHANNEL_ID"],
-        "scopes": ["ChannelMessage.Send"],
+        "env": [
+          "TEAMS_ENTERPRISE_TEAM_ID",
+          "TEAMS_ENTERPRISE_CHANNEL_ID"
+        ],
+        "scopes": [
+          "ChannelMessage.Send"
+        ],
         "note": "Notify only. A chat is not a seat.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -798,11 +1002,21 @@
         "id": "teams.premium",
         "product": "Microsoft Teams Premium",
         "role": "notify",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["protected effect notify"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "protected effect notify"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0/teams",
-        "env": ["TEAMS_PREMIUM_TEAM_ID", "TEAMS_PREMIUM_CHANNEL_ID"],
-        "scopes": ["ChannelMessage.Send"],
+        "env": [
+          "TEAMS_PREMIUM_TEAM_ID",
+          "TEAMS_PREMIUM_CHANNEL_ID"
+        ],
+        "scopes": [
+          "ChannelMessage.Send"
+        ],
         "note": "Protected notify only. A meeting or Adaptive Card is not a seat.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -810,11 +1024,21 @@
         "id": "bc.premium",
         "product": "Dynamics 365 Business Central Premium",
         "role": "sor",
-        "surfaces": ["ainav"],
-        "binds": ["bc.general_journal.post"],
+        "surfaces": [
+          "ainav"
+        ],
+        "binds": [
+          "bc.general_journal.post"
+        ],
         "endpoint": "https://api.businesscentral.dynamics.com/v2.0",
-        "env": ["BC_TENANT_ID", "BC_ENVIRONMENT", "BC_COMPANY_ID"],
-        "scopes": ["https://api.businesscentral.dynamics.com/.default"],
+        "env": [
+          "BC_TENANT_ID",
+          "BC_ENVIRONMENT",
+          "BC_COMPANY_ID"
+        ],
+        "scopes": [
+          "https://api.businesscentral.dynamics.com/.default"
+        ],
         "sandbox_target": "bc.sandbox",
         "live_gap": "G14 live SoR"
       },
@@ -822,11 +1046,20 @@
         "id": "sales.enterprise",
         "product": "Dynamics 365 Sales Enterprise",
         "role": "sor",
-        "surfaces": ["ainav"],
-        "binds": ["d365.quote.discount_override", "d365.order.submit"],
+        "surfaces": [
+          "ainav"
+        ],
+        "binds": [
+          "d365.quote.discount_override",
+          "d365.order.submit"
+        ],
         "endpoint": "https://*.crm.dynamics.com/api/data/v9.2",
-        "env": ["DATAVERSE_URL"],
-        "scopes": ["https://*.crm.dynamics.com/.default"],
+        "env": [
+          "DATAVERSE_URL"
+        ],
+        "scopes": [
+          "https://*.crm.dynamics.com/.default"
+        ],
         "sandbox_target": "d365.sales.sandbox",
         "live_gap": "G14 live SoR"
       }
@@ -836,11 +1069,20 @@
         "id": "entra.id",
         "product": "Microsoft Entra ID",
         "role": "identity",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["seat object ids"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "seat object ids"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0/users",
-        "env": ["ENTRA_TENANT_ID"],
-        "scopes": ["User.Read.All"],
+        "env": [
+          "ENTRA_TENANT_ID"
+        ],
+        "scopes": [
+          "User.Read.All"
+        ],
         "note": "Consumes object ids. Does not replace the IdP.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -848,33 +1090,60 @@
         "id": "azure.keyvault",
         "product": "Azure Key Vault",
         "role": "secrets",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["connection secret hold"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "connection secret hold"
+        ],
         "endpoint": "https://{vault}.vault.azure.net",
-        "env": ["AZURE_KEYVAULT_URI"],
-        "scopes": ["https://vault.azure.net/.default"],
+        "env": [
+          "AZURE_KEYVAULT_URI"
+        ],
+        "scopes": [
+          "https://vault.azure.net/.default"
+        ],
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
       {
         "id": "azure.monitor",
         "product": "Azure Monitor",
         "role": "observe",
-        "surfaces": ["ainav_inc", "ainav", "institute"],
-        "binds": ["mothership health"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav",
+          "institute"
+        ],
+        "binds": [
+          "mothership health"
+        ],
         "endpoint": "https://monitor.azure.com",
-        "env": ["AZURE_MONITOR_DCE"],
-        "scopes": ["https://monitor.azure.com/.default"],
+        "env": [
+          "AZURE_MONITOR_DCE"
+        ],
+        "scopes": [
+          "https://monitor.azure.com/.default"
+        ],
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
       {
         "id": "sharepoint.kit",
         "product": "SharePoint",
         "role": "evidence",
-        "surfaces": ["ainav"],
-        "binds": ["Acceptance Kit evidence"],
+        "surfaces": [
+          "ainav"
+        ],
+        "binds": [
+          "Acceptance Kit evidence"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0/sites",
-        "env": ["SHAREPOINT_SITE_ID"],
-        "scopes": ["Sites.ReadWrite.All"],
+        "env": [
+          "SHAREPOINT_SITE_ID"
+        ],
+        "scopes": [
+          "Sites.ReadWrite.All"
+        ],
         "note": "Kit evidence store. Not a seat and not dual.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -882,11 +1151,19 @@
         "id": "defender.xdr",
         "product": "Microsoft Defender XDR",
         "role": "security",
-        "surfaces": ["ainav_inc"],
-        "binds": ["E7 security sink"],
+        "surfaces": [
+          "ainav_inc"
+        ],
+        "binds": [
+          "E7 security sink"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0/security",
-        "env": ["ENTRA_TENANT_ID"],
-        "scopes": ["SecurityEvents.Read.All"],
+        "env": [
+          "ENTRA_TENANT_ID"
+        ],
+        "scopes": [
+          "SecurityEvents.Read.All"
+        ],
         "note": "E7 security sink. Not the admit plane.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -894,11 +1171,20 @@
         "id": "entra.pim",
         "product": "Microsoft Entra Privileged Identity Management",
         "role": "seat_eligibility",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["eligible dual seats"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "eligible dual seats"
+        ],
         "endpoint": "https://graph.microsoft.com/v1.0/privilegedAccess",
-        "env": ["ENTRA_TENANT_ID"],
-        "scopes": ["PrivilegedAccess.Read.AzureAD"],
+        "env": [
+          "ENTRA_TENANT_ID"
+        ],
+        "scopes": [
+          "PrivilegedAccess.Read.AzureAD"
+        ],
         "note": "Eligible seats. Not Job B. A PIM activation is not dual admit.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -906,11 +1192,20 @@
         "id": "sentinel.siem",
         "product": "Microsoft Sentinel",
         "role": "siem",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["DecisionRecord export sink"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "DecisionRecord export sink"
+        ],
         "endpoint": "https://management.azure.com",
-        "env": ["AZURE_SENTINEL_WORKSPACE_ID"],
-        "scopes": ["https://management.azure.com/.default"],
+        "env": [
+          "AZURE_SENTINEL_WORKSPACE_ID"
+        ],
+        "scopes": [
+          "https://management.azure.com/.default"
+        ],
         "note": "SIEM sink. Not the admit plane.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
@@ -918,11 +1213,20 @@
         "id": "azure.policy",
         "product": "Azure Policy",
         "role": "host_policy",
-        "surfaces": ["ainav_inc", "ainav"],
-        "binds": ["lockfile host constraints"],
+        "surfaces": [
+          "ainav_inc",
+          "ainav"
+        ],
+        "binds": [
+          "lockfile host constraints"
+        ],
         "endpoint": "https://management.azure.com",
-        "env": ["AZURE_SUBSCRIPTION_ID"],
-        "scopes": ["https://management.azure.com/.default"],
+        "env": [
+          "AZURE_SUBSCRIPTION_ID"
+        ],
+        "scopes": [
+          "https://management.azure.com/.default"
+        ],
         "note": "Host policy. Cannot weaken Job C invariants.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       }
@@ -935,20 +1239,38 @@
       "keep": "P-ADM",
       "deepen": "U-DUAL",
       "hours": "fee-for-service",
-      "not": ["consultancy-as-product", "IdP replacement", "agent inventory", "free U-DUAL"]
+      "not": [
+        "consultancy-as-product",
+        "IdP replacement",
+        "agent inventory",
+        "free U-DUAL"
+      ]
     },
     "management": {
-      "cadence": ["weekly pipeline", "kit board", "open-gap review", "QBR on the same plane"],
-      "cannot_mark": ["LIVE_PIN_OK", "signed L1", "recognized revenue"]
+      "cadence": [
+        "weekly pipeline",
+        "kit board",
+        "open-gap review",
+        "QBR on the same plane"
+      ],
+      "cannot_mark": [
+        "LIVE_PIN_OK",
+        "signed L1",
+        "recognized revenue"
+      ]
     },
     "bd": {
-      "motion": "ICP qualify → proof-day brief → ninety minutes → L1 week",
+      "motion": "ICP qualify \u2192 proof-day brief \u2192 ninety minutes \u2192 L1 week",
       "door": "buyer page",
       "no_inbox": true
     },
     "sales": {
-      "motion": "qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL",
-      "forbidden": ["bundle free U-DUAL", "soft dual as a close", "claim LIVE_PIN_OK to close"]
+      "motion": "qualify \u2192 proof day \u2192 sell L1 that week \u2192 kit PASS \u2192 attach P-ADM \u2192 offer paid U-DUAL",
+      "forbidden": [
+        "bundle free U-DUAL",
+        "soft dual as a close",
+        "claim LIVE_PIN_OK to close"
+      ]
     },
     "development": {
       "gold": "make gold",
@@ -1126,7 +1448,7 @@
         "benefits": [
           "NVIDIA Deep Learning Institute training codes",
           "preferred pricing on select NVIDIA hardware and software (supplier terms)",
-          "partner cloud credits when eligible — amounts are not claimed here",
+          "partner cloud credits when eligible \u2014 amounts are not claimed here",
           "Capital Connect introductions when eligible"
         ],
         "note": "Official FAQ: startups may join before using NVIDIA GPUs or SDKs. Do not invent a GPU production workload.",
@@ -1181,8 +1503,15 @@
     "order_form": {
       "kind": "ainav.order_form.v1",
       "unsigned": true,
-      "skus": ["L1", "P-ADM", "U-DUAL"],
-      "seats": ["treasury_approver", "treasury_controller"],
+      "skus": [
+        "L1",
+        "P-ADM",
+        "U-DUAL"
+      ],
+      "seats": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
       "rules": [
         "P-ADM attaches only after L1 Acceptance Kit PASS",
         "U-DUAL is never free with P-ADM or U-SOR",
@@ -1201,7 +1530,7 @@
       "id": "invite.seat_b",
       "do": "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
       "url": "https://admin.microsoft.com/Adminportal/Home#/users",
-      "url_label": "Microsoft 365 admin → Users"
+      "url_label": "Microsoft 365 admin \u2192 Users"
     },
     {
       "id": "entra.confirm_oid",
@@ -1252,5 +1581,188 @@
       "url_label": "Business Central Sandbox"
     }
   ],
-  "open_gaps": ["G1/G10 LIVE_PIN_OK", "G12 legal", "G13 signed L1", "G14 live SoR", "Product HA"]
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "financial_model": {
+    "kind": "ainav.finance.catalog_list.v1",
+    "currency": "USD",
+    "recognized_revenue": 0,
+    "signed_l1": 0,
+    "named_customers": 0,
+    "billing_provider": false,
+    "pricing_models": [
+      {
+        "id": "L1",
+        "model": "fixed_scope_project",
+        "unit": "engagement",
+        "term": "2\u20134 weeks"
+      },
+      {
+        "id": "P-ADM",
+        "model": "annual_keep",
+        "unit": "year",
+        "attach_after": "L1 Acceptance Kit PASS"
+      },
+      {
+        "id": "U-DUAL",
+        "model": "annual_deepen",
+        "unit": "year",
+        "never_free_with": [
+          "P-ADM",
+          "U-SOR"
+        ]
+      },
+      {
+        "id": "ffs",
+        "model": "day_rate",
+        "unit": "day",
+        "rate_usd": 3500,
+        "requires_l1": true,
+        "attaches_udual": false
+      }
+    ],
+    "note": "Pipeline math uses catalog list prices. It is not booked. It is not recognized revenue."
+  },
+  "expert_review": {
+    "working_well": [
+      "Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.",
+      "Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.",
+      "Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.",
+      "AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.",
+      "Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.",
+      "Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.",
+      "Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.",
+      "Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox."
+    ],
+    "improve": [
+      "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
+      "One human cannot close dual admit, Inception contacts, or signed L1.",
+      "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
+      "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger \u2014 not two deployed planes.",
+      "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.",
+      "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.",
+      "No billing provider. Catalog list cannot become recognized revenue.",
+      "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running."
+    ],
+    "upgrades": [
+      {
+        "n": 1,
+        "who": "owner",
+        "title": "Named dual seats",
+        "do": "Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 2,
+        "who": "owner",
+        "title": "Proof day on named humans",
+        "do": "Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 3,
+        "who": "owner",
+        "title": "Graph read on the same app",
+        "do": "Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 4,
+        "who": "owner",
+        "title": "US Dataverse",
+        "do": "Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 5,
+        "who": "tree",
+        "title": "One door, no inbox",
+        "do": "Keep the Institute buyer page as a forwardable proof-day brief. Do not invent a contact inbox or a design-partner name.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 6,
+        "who": "tree",
+        "title": "Price the incident, not hours",
+        "do": "Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 7,
+        "who": "tree",
+        "title": "Hold launch",
+        "do": "Do not bind ainav.institute or publish until James says launch. --publish-institute stays launch_not_ready.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 8,
+        "who": "owner",
+        "title": "Startups then Inception",
+        "do": "Apply to Microsoft for Startups only after launch and the custom domain. Inception second. Membership is not claimed.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 9,
+        "who": "tree",
+        "title": "P-ADM weekly keep object",
+        "do": "Weekly sealed DecisionRecord export the treasurer can open. Not live Purview.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 10,
+        "who": "tree",
+        "title": "FFS requires L1",
+        "do": "Billable days refuse without L1. They cannot attach U-DUAL.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 11,
+        "who": "tree",
+        "title": "Catalog financial model",
+        "do": "Talk if-then catalog list. Never invent ARR, bookings, or recognized revenue.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 12,
+        "who": "tree",
+        "title": "Commercial equation \u2260 lab pin",
+        "do": "Controllers buy named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach. LIVE_PIN_OK stays a lab pin.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 13,
+        "who": "owner",
+        "title": "Counsel pack",
+        "do": "G12 hygiene then G13 signed L1. Unsigned order form and MSA skeleton are not a signature.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 14,
+        "who": "tree",
+        "title": "Product HA is not a sale",
+        "do": "Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 15,
+        "who": "owner",
+        "title": "Leave Available / Block Dataverse MCP",
+        "do": "Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.",
+        "marks_live_pin": false
+      }
+    ]
+  }
 }

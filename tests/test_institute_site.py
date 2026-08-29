@@ -30,6 +30,8 @@ def test_institute_foundation_is_catalog_honest():
     assert manifest["name"] == "AINAV.Institute"
     assert 'id="twin"' in html
     assert 'id="opportunity"' in html
+    assert 'id="finance"' in html
+    assert 'href="#finance"' in html
     assert 'id="fabric"' in html
     assert 'id="review"' in html
     assert 'id="review-score"' in html

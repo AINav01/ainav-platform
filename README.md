@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.10.1 surface:
+Same plane, named 2.11.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -62,6 +62,7 @@ python -m ainav owner-steps
 python -m ainav brief-pdf
 python -m ainav order-form
 python -m ainav keep-artifact
+python -m ainav finance
 python -m ainav buyer
 python -m ainav brief
 python -m ainav next-pin
@@ -108,7 +109,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.10.1 (this tree)
+### 2.11.0 (this tree)
+
+Company executive packet: org, motherships, Microsoft fabric, products,
+pricing models, catalog-list financial scenarios, expert review, and
+15 upgrades. Print `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Finance:
+`python -m ainav finance`. Cynthia still invited, not recorded.
+
+### 2.10.1
 
 Deep executive brief for Cynthia Hodnett — incident, honest status,
 Tuesday role, and a decision. Print `docs/CYNTHIA_HODNETT_BRIEF.pdf`.

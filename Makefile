@@ -17,12 +17,14 @@ plan-check:
 	python3 -c "from ainav.institute_status import public_status; import json; print(json.dumps(public_status(), indent=2, sort_keys=True))" | diff -q institute/status.json -
 	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agent-tools.json -
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" | diff -q institute/review.json -
+	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" | diff -q institute/finance.json -
 	python3 -m ainav owner-steps | diff -q docs/OWNER_STEPS.md -
 	python3 -m ainav order-form | diff -q docs/ORDER_FORM.md -
 	python3 -m ainav msa | diff -q docs/MSA_SKELETON.md -
 	python3 -c "from ainav.owner_steps import public_owner_steps; import json; print(json.dumps(public_owner_steps(), indent=2, sort_keys=True))" | diff -q institute/owner-steps.json -
 	python3 -c "from ainav.brief_pdf import brief_markdown; print(brief_markdown(), end='')" | diff -q docs/CYNTHIA_HODNETT_BRIEF.md -
 	python3 -c "from ainav.brief_pdf import brief_html; print(brief_html(), end='')" | diff -q docs/CYNTHIA_HODNETT_BRIEF.html -
+	python3 -m ainav finance | diff -q docs/FINANCIAL_MODEL.md -
 	test -s docs/CYNTHIA_HODNETT_BRIEF.pdf
 
 gold: plan-check
