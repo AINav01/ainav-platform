@@ -322,6 +322,14 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         raise IntegrityError("investor packet must include the upsell catalog", reason_code="CATALOG_INVESTOR")
     if "same three skus" not in str(body.get("upsell_note") or "").lower() and "not a fourth" not in str(body.get("upsell_note") or "").lower():
         raise IntegrityError("upsell note must keep packs off a fourth SKU", reason_code="CATALOG_INVESTOR")
+    if "dear cynthia" not in str(body.get("letter_open") or "").lower():
+        raise IntegrityError("investor letter opens to Cynthia", reason_code="CATALOG_INVESTOR")
+    if "seat b" not in str(body.get("seat_b") or "").lower():
+        raise IntegrityError("investor letter names seat B", reason_code="CATALOG_INVESTOR")
+    if "stock" not in str(body.get("will_not_ask") or "").lower():
+        raise IntegrityError("investor letter refuses stock", reason_code="CATALOG_INVESTOR")
+    if "6,000" not in str(body.get("stack") or "") and "$6" not in str(body.get("stack") or ""):
+        raise IntegrityError("investor stack must price the upsell desks", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:

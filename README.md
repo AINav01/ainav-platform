@@ -110,7 +110,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.20.0 (this tree)
+### 2.21.0 (this tree)
+
+Cynthia Hodnett investor letter: greeting, seat-B ask, what we will
+not ask, attach math, and the full upsell catalog with list prices
+(L1 desks, P-ADM keep, U-DUAL, fee-for-service, libraries). Packs are
+not a fourth SKU. Not a priced round. Not a forecast. Print
+`docs/CYNTHIA_HODNETT_INVESTOR.pdf`. Owner gaps stay open.
+
+### 2.20.0
 
 Cynthia Hodnett investor packet: letter pages with the three SKUs,
 the full upsell catalog and list prices, sale motion, and Tuesday

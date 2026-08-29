@@ -90,10 +90,13 @@
         var node = document.getElementById(id);
         if (node && text) node.textContent = text;
       }
+      set("investor-open", data.letter_open);
       set("investor-problem", data.problem);
       set("investor-solution", data.solution);
       set("investor-model", data.model);
       set("investor-ask", data.ask);
+      set("investor-seat", data.seat_b);
+      set("investor-stack", data.stack);
       if (data.kpis) {
         set("investor-rev", "$" + (data.kpis.recognized_revenue || 0));
         set("investor-cust", String(data.kpis.named_customers || 0));

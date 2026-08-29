@@ -1,9 +1,11 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.20.0.
+29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.21.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
+
+Dear Cynthia — this letter is for you. James asked that it be written from the company's catalog so nothing is invented: no email for you, no stock, no officer title, no named buyer, no launched public site, and no priced round. If a sentence would make the company look further along than it is, it was left out.
 
 Equation: catalog list × zero booked × two-human close.
 Commercial close: named dual seats × proof day × signed L1 × P-ADM attach.
@@ -11,40 +13,49 @@ Insulation: independence × Job C lockfile × fail-closed gold × catalog law.
 
 ## The company
 
-AINav, Inc. is a Delaware C corporation. Sole owner: James Hodnett.
-Product: AINav Control Plane. Public face: AINAV.Institute (hosted, not launched).
-Job C only. Microsoft is identity, notify, SoR, and host. Microsoft is not the product.
+AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Job C only: two distinct humans bind the same action_hash before a privileged write. Microsoft is identity, notify, SoR, and host. Microsoft is not the product. The Cloud Agent operates the host. It is not a seat.
 
-## Problem
+## The problem
 
-Client Copilot, Agent 365, BYO models, and the client's customers' AI can draft a Dynamics 365 Business Central journal. Controllers have segregation of duties. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.
+A Dynamics 365 Business Central journal can post because a client Copilot, Agent 365, a bring-your-own model, or a customer's AI drafted the line. Controllers already have segregation of duties. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. James clicking twice is not dual admit.
 
-## Solution
+## The product
 
-Job C: two distinct humans bind the same action_hash. The grant is consumed once. The effect is fail-closed. No admit, no write. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first and second records.
+Job C is that gate. Two distinct humans bind the same action_hash. The grant is consumed once — a replay is a refusal. The effect is fail-closed: if either person is missing, or the apply fails, the write does not land and there is no fake success. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first record (the admitted SoR write) and second record (the sealed DecisionRecord).
 
-## Why now
+## Who buys, and why now
 
-Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav. They do not replace their ERP.
+A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer is invented in this packet.
 
-## Who buys
+Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav on the org chart they already have. They do not replace their ERP. They do not replace Copilot. They put two humans in front of the write.
 
-Dynamics 365 Business Central Premium. Microsoft Entra ID. Existing two-person journal SOD. The client utilizes AI. Their customers do too. Do not invent a named buyer.
+## What we are asking of you
 
-## How the sale works
+Seat B is treasury_controller. If you agree, you get your own business mailbox, your own Entra object id, and your own click. James cannot click for you. Refusing a write is the product working. You are invited, not recorded. Email stays blank until you confirm a business address. You are not a stockholder and not an officer.
 
-Qualify an ICP controller who already has Business Central Premium, Entra, and two-person journal SOD. Generate a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Exits: LOST, KIT_FAIL, CHURN. Do not invent a contact inbox or a design-partner name.
+Cynthia, we are asking you to be seat B and the Inception business executive: your own mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
+
+## What we will not ask
+
+We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
 
 ## What a Tuesday looks like
 
-Seat A is treasury_approver (James). Seat B is treasury_controller (Cynthia, if she agrees). Each has a distinct Entra object id. When a privileged write is proposed, both see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.
+Seat A is treasury_approver (James). Seat B is treasury_controller (you, if you agree). Each has a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.
+
+## How a sale works
+
+Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.
 
 ## Business model — three SKUs only
 
-Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and Microsoft licenses are not SKUs. U-DUAL is never free.
-Catalog list. Not booked. Not ARR. Not a forecast. No billing provider.
+Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and Microsoft licenses are not SKUs. U-DUAL is never free. A desk attaches to one of those three SKUs; it does not become a fourth product.
 
-| SKU | Role | List | Term |
+Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no billing provider. Recognized revenue stays zero until a controller actually buys.
+
+A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks are seating, not a discount on a second control plane. Priced L1 desks are $6,000–$10,000. Priced P-ADM keep is $5,000–$8,000 after kit PASS. Priced U-DUAL desks are $6,000–$10,000 and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours are not a SKU.
+
+| SKU | Role | Catalog list | Term |
 | --- | --- | --- | --- |
 | L1 | prove | $28,000–$40,000 | 2–4 weeks |
 | P-ADM | keep | $40,000–$60,000 | annual |
@@ -52,32 +63,34 @@ Catalog list. Not booked. Not ARR. Not a forecast. No billing provider.
 
 Year-one catalog list if one controller buys all three: $88,000–$135,000. Not booked.
 
+There is no priced round in this packet. There is no valuation. There is no forecast ARR. The honest investor unit is catalog list times zero booked times a two-human close.
+
 ## Upsell catalog — not a fourth SKU
 
 Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs are seating, not a discount on a second control plane.
 
-### Industry desks (L1)
+### L1 desks
 
-| Desk | List | Note |
+| Desk | List | What it is |
 | --- | --- | --- |
-| industry.treasury — Treasury wedge | included with L1 | Standard L1 industry shape. Not a SKU. |
-| industry.controller — Controller desk | included with L1 | Same L1 wedge, controller seating. Not a SKU. |
-| industry.payables — Payables desk | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| industry.bank — Bank desk | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| industry.cash — Cash desk | $6,000–$10,000 | A la carte L1 seating. Cash receipt and sales invoice. Not a SKU. |
-| industry.fixed_asset — Fixed-asset desk | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| industry.inventory — Inventory desk | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| industry.governance — AI failsafe desk | included with L1 | L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification. |
-| industry.cascade — Counterparty AI desk | $6,000–$10,000 | A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names. |
-| industry.control_plane — Human control plane | included with L1 | L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not a SKU. Not the client's AI. |
-| industry.off_switch — Off-switch desk | $6,000–$10,000 | A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU. |
-| industry.rollback — Rollback desk | $6,000–$10,000 | A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU. |
+| industry.treasury — Treasury wedge | included with L1 | Standard L1 industry shape. |
+| industry.controller — Controller desk | included with L1 | Same L1 wedge, controller seating. |
+| industry.payables — Payables desk | $6,000–$10,000 | A la carte L1 seating. |
+| industry.bank — Bank desk | $6,000–$10,000 | A la carte L1 seating. |
+| industry.cash — Cash desk | $6,000–$10,000 | A la carte L1 seating. Cash receipt and sales invoice. |
+| industry.fixed_asset — Fixed-asset desk | $6,000–$10,000 | A la carte L1 seating. |
+| industry.inventory — Inventory desk | $6,000–$10,000 | A la carte L1 seating. |
+| industry.governance — AI failsafe desk | included with L1 | L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a certification. |
+| industry.cascade — Counterparty AI desk | $6,000–$10,000 | A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Do not invent counterparty names. |
+| industry.control_plane — Human control plane | included with L1 | L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not the client's AI. |
+| industry.off_switch — Off-switch desk | $6,000–$10,000 | A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. |
+| industry.rollback — Rollback desk | $6,000–$10,000 | A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. |
 | industry.org — Client org seating | included with L1 | L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads. |
-| industry.independence — Independent plane | included with L1 | L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent. |
+| industry.independence — Independent plane | included with L1 | L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a patent. |
 
-### P-ADM keep (after kit PASS)
+### P-ADM keep after kit PASS
 
-| Keep | List | Note |
+| Keep | List | What it is |
 | --- | --- | --- |
 | industry.retention — Retention keep | $5,000–$8,000 | A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK. |
 | industry.oversight — Oversight keep | $5,000–$8,000 | A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK. |
@@ -86,64 +99,66 @@ Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are
 | industry.internal_audit — Internal-audit keep | $5,000–$8,000 | A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK. |
 | industry.ip_keep — IP / reserved-work keep | $5,000–$8,000 | A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK. |
 
-### U-DUAL desks (never free)
+### U-DUAL desks — never free
 
-| Desk | List | Note |
+| Desk | List | What it is |
 | --- | --- | --- |
-| industry.sales — Sales deepen | included with U-DUAL | A la carte U-DUAL depth. Not a fourth SKU. |
-| industry.quote_desk — Quote desk | included with U-DUAL | A la carte U-DUAL slice. Not a fourth SKU. |
-| industry.invoice_desk — Invoice desk | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| industry.credit — Credit desk | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| industry.returns — Returns desk | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| industry.pricing — Pricing desk | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| industry.sales — Sales deepen | included with U-DUAL | A la carte U-DUAL depth. |
+| industry.quote_desk — Quote desk | included with U-DUAL | A la carte U-DUAL slice. |
+| industry.invoice_desk — Invoice desk | $6,000–$10,000 | A la carte U-DUAL seating. |
+| industry.credit — Credit desk | $6,000–$10,000 | A la carte U-DUAL seating. |
+| industry.returns — Returns desk | $6,000–$10,000 | A la carte U-DUAL seating. |
+| industry.pricing — Pricing desk | $6,000–$10,000 | A la carte U-DUAL seating. |
 
 ### Fee-for-service — $3,500/day after L1
 
-| Service | Rate | Note |
+| Service | Rate | What it is |
 | --- | --- | --- |
-| ffs.acceptance_kit — Acceptance Kit / proof day | inside L1 | Inside L1. Not a SKU. |
-| ffs.integration_assist — Integration assist | $3,500/day | Hours on the same admit plane. Not a SKU. Does not attach U-DUAL. |
-| ffs.replay_workshop — Replay / Merkle workshop | $3,500/day | Audit replay with the client. Not a SKU. |
-| ffs.qbr — Quarterly business review | $3,500/day | Same-plane review. Not a SKU. Does not attach U-DUAL. |
-| ffs.mothership_ops — Mothership operations assist | $3,500/day | Local mothership runbook hours. Not a SKU. |
-| ffs.pack_seating — Industry pack seating | $3,500/day | Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL. |
-| ffs.desk_workshop — Desk workshop | $3,500/day | Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL. |
-| ffs.keep_wiring — P-ADM keep wiring | $3,500/day | Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL. |
-| ffs.governance_workshop — AI governance / failsafe workshop | $3,500/day | Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL. |
-| ffs.institute_failsafe — Institute AINav failsafe | $3,500/day | Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name. |
-| ffs.board_briefing — Owner / board / examiner briefing | $3,500/day | Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name. |
-| ffs.org_workshop — Client org-chart workshop | $3,500/day | Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL. |
-| ffs.ip_hygiene — IP / independence hygiene | $3,500/day | Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL. |
+| ffs.acceptance_kit — Acceptance Kit / proof day | inside L1 | Inside L1. |
+| ffs.integration_assist — Integration assist | $3,500/day | Hours on the same admit plane. Does not attach U-DUAL. |
+| ffs.replay_workshop — Replay / Merkle workshop | $3,500/day | Audit replay with the client. |
+| ffs.qbr — Quarterly business review | $3,500/day | Same-plane review. Does not attach U-DUAL. |
+| ffs.mothership_ops — Mothership operations assist | $3,500/day | Local mothership runbook hours. |
+| ffs.pack_seating — Industry pack seating | $3,500/day | Hours to seat an a la carte pack after L1. Does not attach U-DUAL. |
+| ffs.desk_workshop — Desk workshop | $3,500/day | Hours to seat a new a la carte desk after L1. Does not attach U-DUAL. |
+| ffs.keep_wiring — P-ADM keep wiring | $3,500/day | Hours to wire P-ADM keep sinks. Not live Purview. Does not attach U-DUAL. |
+| ffs.governance_workshop — AI governance / failsafe workshop | $3,500/day | Hours to map the client's AI inventory onto the admit plane. Does not certify. Does not attach U-DUAL. |
+| ffs.institute_failsafe — Institute AINav failsafe | $3,500/day | Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name. |
+| ffs.board_briefing — Owner / board / examiner briefing | $3,500/day | Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name. |
+| ffs.org_workshop — Client org-chart workshop | $3,500/day | Hours to map the client's existing departments onto the admit plane. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL. |
+| ffs.ip_hygiene — IP / independence hygiene | $3,500/day | Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a patent. Does not claim uncopyable. Does not attach U-DUAL. |
 
 ### Libraries — not SKUs
 
-| Library | Requires | Note |
+| Library | Requires | What it is |
 | --- | --- | --- |
-| lib.l1.wedge | L1 | Standard L1 library. Journal wedge plus identity and notify. Not a SKU. |
+| lib.l1.wedge | L1 | Standard L1 library. Journal wedge plus identity and notify. |
 | lib.udual.sales | U-DUAL | Paid U-DUAL library. Quote and order wedges. Never free with P-ADM. |
-| lib.padm.export | P-ADM | P-ADM keep library. Purview export only. Not live Purview. Not a SKU. |
-| lib.kit.evidence | L1 | Acceptance Kit evidence path. Not a SKU. |
-| lib.l1.payables | L1 | A la carte L1 library. Not a SKU. |
-| lib.l1.bank | L1 | A la carte L1 library. Not a SKU. |
+| lib.padm.export | P-ADM | P-ADM keep library. Purview export only. Not live Purview. |
+| lib.kit.evidence | L1 | Acceptance Kit evidence path. |
+| lib.l1.payables | L1 | A la carte L1 library. |
+| lib.l1.bank | L1 | A la carte L1 library. |
 | lib.udual.quote_to_cash | U-DUAL | A la carte U-DUAL library. Never free with P-ADM. |
 | lib.padm.siem | P-ADM | A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK. |
-| lib.l1.cash | L1 | A la carte L1 library. Priced as industry.cash. Not a SKU. |
-| lib.l1.fixed_asset | L1 | A la carte L1 library. Priced as industry.fixed_asset. Not a SKU. |
+| lib.l1.cash | L1 | A la carte L1 library. Priced as industry.cash. |
+| lib.l1.fixed_asset | L1 | A la carte L1 library. Priced as industry.fixed_asset. |
 | lib.udual.returns | U-DUAL | A la carte U-DUAL library. Never free with P-ADM. |
 | lib.padm.retention | P-ADM | A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK. |
-| lib.l1.failsafe | L1 | L1 failsafe library. Client AI is not a seat. Not a SKU. |
+| lib.l1.failsafe | L1 | L1 failsafe library. Client AI is not a seat. |
 | lib.padm.governance | P-ADM | A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK. |
-| lib.l1.cascade | L1 | L1 cascade library. Counterparty AI is not a seat. Not a SKU. |
+| lib.l1.cascade | L1 | L1 cascade library. Counterparty AI is not a seat. |
 | lib.padm.records | P-ADM | P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK. |
-| lib.l1.plane | L1 | L1 control-plane library. One admit plane over the client's AI estate. Not a SKU. |
-| lib.l1.off_switch | L1 | L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU. |
+| lib.l1.plane | L1 | L1 control-plane library. One admit plane over the client's AI estate. |
+| lib.l1.off_switch | L1 | L1 off-switch library. Fail-closed freeze. Not powering down Copilot. |
 | lib.padm.board | P-ADM | P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK. |
-| lib.l1.org | L1 | L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU. |
+| lib.l1.org | L1 | L1 org-seating library. Existing SOD. Department AI is not a seat. |
 | lib.padm.audit | P-ADM | P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK. |
-| lib.l1.independence | L1 | L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU. |
+| lib.l1.independence | L1 | L1 independence library. Microsoft is not the product. Lockfile stays job_c. |
 | lib.padm.ip | P-ADM | P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK. |
 
 ## If-then catalog list (not a forecast)
+
+These rows are attach math on list prices. They are not bookings and not a forecast.
 
 | Scenario | If | List |
 | --- | --- | --- |
@@ -169,7 +184,7 @@ Insulation equation: independence × Job C lockfile × fail-closed gold × catal
 
 ## Traction — honest
 
-Admit plane in code. Gold above 90 percent. Business Central Sandbox company AINav. Sandbox journal AINAV-L1. Institute hosted on Azure, not launched. Production blocked. Named customers: none. Recognized revenue: none.
+The admit plane is in code. Gold is above 90 percent. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.
 
 - Recognized revenue: $0
 - Named customers: 0
@@ -178,18 +193,20 @@ Admit plane in code. Gold above 90 percent. Business Central Sandbox company AIN
 
 ## The ask
 
-Cynthia Hodnett as seat B and Inception business executive. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
+Cynthia, we are asking you to be seat B and the Inception business executive: your own mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
+
+We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
 
 ## Highlights
 
-- Three SKUs only. Year-one catalog list if one controller buys all three: $88,000–$135,000.
+- Three SKUs only. Year-one catalog list if one controller buys all three: $88,000–$135,000. Not booked.
 - L1 $28,000–$40,000 in two to four weeks. Ninety-minute proof day on the twin.
 - P-ADM $40,000–$60,000 / year after kit PASS. U-DUAL $20,000–$35,000 / year, never free.
 - Priced L1 desks $6,000–$10,000. Priced P-ADM keep $5,000–$8,000. Priced U-DUAL desks $6,000–$10,000.
-- Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU.
-- Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist.
+- Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never attach U-DUAL.
+- Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent. Not uncopyable.
 
-## Refuse
+## This packet refuses
 
 - priced round
 - invented valuation
@@ -200,4 +217,6 @@ Cynthia Hodnett as seat B and Inception business executive. Own mailbox. Own cli
 - uncopyable
 - patent granted
 
-Investor-grade packet for the invited second human. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.
+Letter packet for the invited second human. Full upsell catalog and list prices. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.
+
+James Hodnett, sole owner of AINav, Inc.

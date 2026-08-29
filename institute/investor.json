@@ -1,8 +1,11 @@
 {
-  "ask": "Cynthia Hodnett as seat B and Inception business executive. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
+  "ask": "Cynthia, we are asking you to be seat B and the Inception business executive: your own mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
   "audience": "Cynthia Hodnett \u2014 invited business executive, not a recorded stockholder",
+  "capital": "There is no priced round in this packet. There is no valuation. There is no forecast ARR. The honest investor unit is catalog list times zero booked times a two-human close.",
   "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "company": "AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Job C only: two distinct humans bind the same action_hash before a privileged write. Microsoft is identity, notify, SoR, and host. Microsoft is not the product. The Cloud Agent operates the host. It is not a seat.",
   "confidential": true,
+  "date": "29 August 2026",
   "email": null,
   "equation": "catalog list \u00d7 zero booked \u00d7 two-human close",
   "equity_offered": false,
@@ -140,14 +143,14 @@
   ],
   "forecast": false,
   "highlights": [
-    "Three SKUs only. Year-one catalog list if one controller buys all three: $88,000\u2013$135,000.",
+    "Three SKUs only. Year-one catalog list if one controller buys all three: $88,000\u2013$135,000. Not booked.",
     "L1 $28,000\u2013$40,000 in two to four weeks. Ninety-minute proof day on the twin.",
     "P-ADM $40,000\u2013$60,000 / year after kit PASS. U-DUAL $20,000\u2013$35,000 / year, never free.",
     "Priced L1 desks $6,000\u2013$10,000. Priced P-ADM keep $5,000\u2013$8,000. Priced U-DUAL desks $6,000\u2013$10,000.",
-    "Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU.",
-    "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist."
+    "Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never attach U-DUAL.",
+    "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent. Not uncopyable."
   ],
-  "icp": "Dynamics 365 Business Central Premium. Microsoft Entra ID. Existing two-person journal SOD. The client utilizes AI. Their customers do too. Do not invent a named buyer.",
+  "icp": "A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer is invented in this packet.",
   "include_upsells": true,
   "industry": [
     {
@@ -540,6 +543,7 @@
     "signed_l1": 0
   },
   "legal": "AINav, Inc.",
+  "letter_open": "Dear Cynthia \u2014 this letter is for you. James asked that it be written from the company's catalog so nothing is invented: no email for you, no stock, no officer title, no named buyer, no launched public site, and no priced round. If a sentence would make the company look further along than it is, it was left out.",
   "libraries": [
     {
       "id": "lib.l1.wedge",
@@ -793,9 +797,9 @@
   ],
   "live": false,
   "live_pin_ok": false,
-  "model": "Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and Microsoft licenses are not SKUs. U-DUAL is never free.",
+  "model": "Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and Microsoft licenses are not SKUs. U-DUAL is never free. A desk attaches to one of those three SKUs; it does not become a fourth product.",
   "not_a_round": true,
-  "note": "Investor-grade packet for the invited second human. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.",
+  "note": "Letter packet for the invited second human. Full upsell catalog and list prices. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.",
   "one_liner": "Human control plane over every client AI that can draft a privileged system-of-record write.",
   "owner": "James Hodnett",
   "priced_round": false,
@@ -804,7 +808,7 @@
     "path": "docs/CYNTHIA_HODNETT_INVESTOR.pdf",
     "size": "letter"
   },
-  "problem": "Client Copilot, Agent 365, BYO models, and the client's customers' AI can draft a Dynamics 365 Business Central journal. Controllers have segregation of duties. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.",
+  "problem": "A Dynamics 365 Business Central journal can post because a client Copilot, Agent 365, a bring-your-own model, or a customer's AI drafted the line. Controllers already have segregation of duties. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. James clicking twice is not dual admit.",
   "product": "AINav Control Plane",
   "raise_claimed": false,
   "recorded": false,
@@ -818,8 +822,8 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.20.0",
-  "sale_motion": "Qualify an ICP controller who already has Business Central Premium, Entra, and two-person journal SOD. Generate a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Exits: LOST, KIT_FAIL, CHURN. Do not invent a contact inbox or a design-partner name.",
+  "release": "2.21.0",
+  "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {
       "id": "l1_only",
@@ -920,6 +924,8 @@
       "name": "All three SKUs plus invoice and credit desks"
     }
   ],
+  "seat_b": "Seat B is treasury_controller. If you agree, you get your own business mailbox, your own Entra object id, and your own click. James cannot click for you. Refusing a write is the product working. You are invited, not recorded. Email stays blank until you confirm a business address. You are not a stockholder and not an officer.",
+  "signoff": "James Hodnett, sole owner of AINav, Inc.",
   "sku": false,
   "skus": [
     {
@@ -947,13 +953,15 @@
       "term": "annual"
     }
   ],
-  "solution": "Job C: two distinct humans bind the same action_hash. The grant is consumed once. The effect is fail-closed. No admit, no write. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first and second records.",
-  "traction": "Admit plane in code. Gold above 90 percent. Business Central Sandbox company AINav. Sandbox journal AINAV-L1. Institute hosted on Azure, not launched. Production blocked. Named customers: none. Recognized revenue: none.",
-  "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (Cynthia, if she agrees). Each has a distinct Entra object id. When a privileged write is proposed, both see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.",
-  "unit_economics_note": "Catalog list. Not booked. Not ARR. Not a forecast. No billing provider.",
+  "solution": "Job C is that gate. Two distinct humans bind the same action_hash. The grant is consumed once \u2014 a replay is a refusal. The effect is fail-closed: if either person is missing, or the apply fails, the write does not land and there is no fake success. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first record (the admitted SoR write) and second record (the sealed DecisionRecord).",
+  "stack": "A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks are seating, not a discount on a second control plane. Priced L1 desks are $6,000\u2013$10,000. Priced P-ADM keep is $5,000\u2013$8,000 after kit PASS. Priced U-DUAL desks are $6,000\u2013$10,000 and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours are not a SKU.",
+  "traction": "The admit plane is in code. Gold is above 90 percent. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
+  "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (you, if you agree). Each has a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.",
+  "unit_economics_note": "Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no billing provider. Recognized revenue stays zero until a controller actually buys.",
   "upsell_note": "Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs are seating, not a discount on a second control plane.",
   "valuation_claimed": false,
-  "why_now": "Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav. They do not replace their ERP.",
+  "why_now": "Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav on the org chart they already have. They do not replace their ERP. They do not replace Copilot. They put two humans in front of the write.",
+  "will_not_ask": "We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.",
   "year_one_if_all_three": {
     "max": 135000,
     "min": 88000,

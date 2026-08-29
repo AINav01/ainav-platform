@@ -73,7 +73,7 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
-            "text": "Investor executive summary — print the two-page letter",
+            "text": "Investor letter — print the packet with the full upsell catalog",
         },
         {
             "kind": "callout",
@@ -81,7 +81,7 @@ def brief_document() -> list[dict[str, Any]]:
             "text": (
                 "Human control plane over every client AI that can draft a privileged "
                 "system-of-record write. Job C: two distinct humans bind the same action_hash. "
-                "No admit, no write. Print the two-page letter: docs/CYNTHIA_HODNETT_INVESTOR.pdf. "
+                "No admit, no write. Print the letter packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf. "
                 "Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK."
             ),
         },
