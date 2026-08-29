@@ -37,13 +37,21 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert body["year_one_if_all_three"]["min"] == 88000
     assert body["year_one_if_all_three"]["max"] == 135000
     assert {row["id"] for row in body["skus"]} == {"L1", "P-ADM", "U-DUAL"}
+    assert body["include_upsells"] is True
+    assert any(item["id"] == "industry.payables" for item in body["industry"])
+    assert any(item["id"] == "industry.ip_keep" for item in body["industry"])
+    assert any(item["id"] == "ffs.ip_hygiene" for item in body["fee_for_service"])
     md = investor_markdown()
     assert "not a priced round" in md.lower()
     assert "cynthia hodnett" in md.lower()
     assert "$0" in md or "recognized revenue: $0" in md.lower()
+    assert "industry.payables" in md
+    assert "not a fourth" in md.lower()
+    assert "$3,500" in md or "$3500" in md
     html = investor_html()
-    assert "Investor executive summary" in html
+    assert "Investor packet" in html
     assert "<table>" in html
+    assert "industry.payables" in html or "payables" in html
     raw = render_investor_pdf()
     assert raw.startswith(b"%PDF-1.4")
     assert b"Cynthia" in raw or b"AINAV" in raw
@@ -82,6 +90,10 @@ def test_investor_validators_refuse_fiction():
     equation["equations"]["investor"] = "something else"
     with pytest.raises(IntegrityError):
         validate_catalog(equation)
+    no_upsell = copy.deepcopy(cat)
+    no_upsell["investor"]["include_upsells"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_upsell)
 
 
 def test_institute_investor_is_catalog_honest():

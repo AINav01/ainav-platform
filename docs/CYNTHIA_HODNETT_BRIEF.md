@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.19.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.20.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.19.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.20.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -51,6 +51,39 @@ We sell three things only. Packs, hours, and Microsoft licenses are not products
 | U-DUAL — deepen | Same plane, onto Sales (quote / order). Never free with P-ADM. | $20,000–$35,000 / year |
 
 If one controller bought all three in year one, the catalog list is $88,000–$135,000. There is no named customer. There is no recognized revenue. Pipeline attached is zero. That honesty is the company, not a placeholder.
+
+*Upsell catalog — desks on the same three SKUs, not a fourth product*
+
+| Desk | Requires | List |
+| --- | --- | --- |
+| industry.treasury — Treasury wedge | L1 | included with L1 |
+| industry.sales — Sales deepen | U-DUAL | included with U-DUAL |
+| industry.controller — Controller desk | L1 | included with L1 |
+| industry.quote_desk — Quote desk | U-DUAL | included with U-DUAL |
+| industry.payables — Payables desk | L1 | $6,000–$10,000 |
+| industry.bank — Bank desk | L1 | $6,000–$10,000 |
+| industry.invoice_desk — Invoice desk | U-DUAL | $6,000–$10,000 |
+| industry.credit — Credit desk | U-DUAL | $6,000–$10,000 |
+| industry.cash — Cash desk | L1 | $6,000–$10,000 |
+| industry.fixed_asset — Fixed-asset desk | L1 | $6,000–$10,000 |
+| industry.inventory — Inventory desk | L1 | $6,000–$10,000 |
+| industry.returns — Returns desk | U-DUAL | $6,000–$10,000 |
+| industry.pricing — Pricing desk | U-DUAL | $6,000–$10,000 |
+| industry.retention — Retention keep | P-ADM | $5,000–$8,000 |
+| industry.governance — AI failsafe desk | L1 | included with L1 |
+| industry.oversight — Oversight keep | P-ADM | $5,000–$8,000 |
+| industry.cascade — Counterparty AI desk | L1 | $6,000–$10,000 |
+| industry.second_record — Second-record keep | P-ADM | $5,000–$8,000 |
+| industry.control_plane — Human control plane | L1 | included with L1 |
+| industry.off_switch — Off-switch desk | L1 | $6,000–$10,000 |
+| industry.rollback — Rollback desk | L1 | $6,000–$10,000 |
+| industry.board — Board / examiner keep | P-ADM | $5,000–$8,000 |
+| industry.org — Client org seating | L1 | included with L1 |
+| industry.internal_audit — Internal-audit keep | P-ADM | $5,000–$8,000 |
+| industry.independence — Independent plane | L1 | included with L1 |
+| industry.ip_keep — IP / reserved-work keep | P-ADM | $5,000–$8,000 |
+
+Fee-for-service is $3,500/day after L1: integration, replay, QBR, mothership ops, desk workshop, keep wiring, governance workshop, institute failsafe, board briefing, org-chart workshop, IP hygiene. Hours never mint a SKU and never attach U-DUAL. Print the full packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf.
 
 ## Where we actually are
 

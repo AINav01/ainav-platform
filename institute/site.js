@@ -99,6 +99,19 @@
         set("investor-cust", String(data.kpis.named_customers || 0));
         set("investor-l1", String(data.kpis.signed_l1 || 0));
       }
+      if (data.upsell_note) set("investor-upsell", data.upsell_note);
+      var desks = document.getElementById("investor-desks");
+      if (desks && data.industry && data.industry.length) {
+        desks.textContent = "";
+        data.industry.forEach(function (item) {
+          var li = document.createElement("li");
+          var price = item.included
+            ? "included with " + item.requires_sku
+            : "$" + item.min.toLocaleString() + "–$" + item.max.toLocaleString();
+          li.textContent = item.id + " — " + price + ". Not a SKU.";
+          desks.appendChild(li);
+        });
+      }
       if (data.year_one_if_all_three) {
         set(
           "investor-year",

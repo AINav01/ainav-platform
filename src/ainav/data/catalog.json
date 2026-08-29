@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.19.0",
+    "release": "2.20.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3235,10 +3235,15 @@
     "insulation": "The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
     "traction": "Admit plane in code. Gold above 90 percent. Business Central Sandbox company AINav. Sandbox journal AINAV-L1. Institute hosted on Azure, not launched. Production blocked. Named customers: none. Recognized revenue: none.",
     "ask": "Cynthia Hodnett as seat B and Inception business executive. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
+    "sale_motion": "Qualify an ICP controller who already has Business Central Premium, Entra, and two-person journal SOD. Generate a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Exits: LOST, KIT_FAIL, CHURN. Do not invent a contact inbox or a design-partner name.",
+    "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (Cynthia, if she agrees). Each has a distinct Entra object id. When a privileged write is proposed, both see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.",
+    "upsell_note": "Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs are seating, not a discount on a second control plane.",
+    "include_upsells": true,
     "highlights": [
       "Three SKUs only. Year-one catalog list if one controller buys all three: $88,000–$135,000.",
       "L1 $28,000–$40,000 in two to four weeks. Ninety-minute proof day on the twin.",
       "P-ADM $40,000–$60,000 / year after kit PASS. U-DUAL $20,000–$35,000 / year, never free.",
+      "Priced L1 desks $6,000–$10,000. Priced P-ADM keep $5,000–$8,000. Priced U-DUAL desks $6,000–$10,000.",
       "Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU.",
       "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist."
     ],
@@ -3254,7 +3259,7 @@
     ],
     "print": {
       "path": "docs/CYNTHIA_HODNETT_INVESTOR.pdf",
-      "pages": 2,
+      "pages": 6,
       "size": "letter"
     },
     "note": "Investor-grade packet for the invited second human. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK."

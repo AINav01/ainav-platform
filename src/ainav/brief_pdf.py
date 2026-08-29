@@ -8,6 +8,7 @@ from typing import Any
 
 from ainav.catalog import load_catalog
 from ainav.finance import model as finance_model
+from ainav.packs import public_packs
 
 BRIEF_PATH = Path("docs/CYNTHIA_HODNETT_BRIEF.pdf")
 HTML_PATH = Path("docs/CYNTHIA_HODNETT_BRIEF.html")
@@ -50,6 +51,7 @@ def brief_document() -> list[dict[str, Any]]:
     by_id = {row["id"]: row for row in fin["scenarios"]}
     all_three = by_id["all_three"]
     depts = cat["organization"]["departments"]
+    packs = public_packs()["industry"]
     return [
         {
             "kind": "kicker",
@@ -227,9 +229,36 @@ def brief_document() -> list[dict[str, Any]]:
         {
             "kind": "p",
             "text": (
-                "If one controller bought all three in year one, the catalog list is $88,000–$135,000. "
+                f"If one controller bought all three in year one, the catalog list is "
+                f"{_money(all_three['min'], all_three['max'])}. "
                 "There is no named customer. There is no recognized revenue. Pipeline attached is "
                 "zero. That honesty is the company, not a placeholder."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Upsell catalog — desks on the same three SKUs, not a fourth product",
+            "headers": ["Desk", "Requires", "List"],
+            "rows": [
+                [
+                    f"{item['id']} — {item['name']}",
+                    item["requires_sku"],
+                    (
+                        f"included with {item['requires_sku']}"
+                        if item["included"]
+                        else _money(item["min"], item["max"])
+                    ),
+                ]
+                for item in packs
+            ],
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Fee-for-service is $3,500/day after L1: integration, replay, QBR, mothership ops, "
+                "desk workshop, keep wiring, governance workshop, institute failsafe, board briefing, "
+                "org-chart workshop, IP hygiene. Hours never mint a SKU and never attach U-DUAL. "
+                "Print the full packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf."
             ),
         },
         {

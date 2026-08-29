@@ -1,7 +1,7 @@
-"""Investor-grade executive summary. Catalog-honest. Not a priced round.
+"""Investor-grade Cynthia packet. Catalog-honest. Not a priced round.
 
-Printable two-page letter for Cynthia Hodnett. Recognized revenue stays zero.
-No invented valuation, forecast ARR, named buyer, or equity grant.
+Printable letter with the three SKUs, the full upsell catalog, and
+honest traction. Recognized revenue stays zero. Packs are not SKUs.
 """
 
 from __future__ import annotations
@@ -12,6 +12,7 @@ from typing import Any
 
 from ainav.catalog import load_catalog
 from ainav.finance import model as finance_model
+from ainav.packs import public_packs
 
 PDF_PATH = Path("docs/CYNTHIA_HODNETT_INVESTOR.pdf")
 HTML_PATH = Path("docs/CYNTHIA_HODNETT_INVESTOR.html")
@@ -20,19 +21,31 @@ PAGE_W = 612
 PAGE_H = 792
 LEFT = 48
 RIGHT = 564
+NAVY = "0.067 0.078 0.102"
+GOLD = "0.769 0.647 0.455"
+INK = "0.14 0.14 0.14"
+MUTED = "0.35 0.30 0.24"
 
 
 def spec() -> dict[str, Any]:
     return dict(load_catalog()["investor"])
 
 
+def _price(item: dict[str, Any]) -> str:
+    if item.get("included"):
+        return f"included with {item['requires_sku']}"
+    return _money(int(item.get("min") or 0), int(item.get("max") or 0))
+
+
 def public_investor() -> dict[str, Any]:
     cat = load_catalog()
     body = spec()
     fin = finance_model()
+    packs = public_packs()
     invited = cat["organization"]["contacts"]["invited"]
     by_id = {row["id"]: row for row in fin["scenarios"]}
     all_three = by_id["all_three"]
+    industry = [dict(item) for item in packs["industry"]]
     return {
         "kind": body["kind"],
         "sku": False,
@@ -44,6 +57,7 @@ def public_investor() -> dict[str, Any]:
         "priced_round": False,
         "equity_offered": False,
         "not_a_round": True,
+        "include_upsells": True,
         "confidential": True,
         "release": cat["entity"]["release"],
         "legal": cat["entity"]["legal"],
@@ -64,6 +78,9 @@ def public_investor() -> dict[str, Any]:
         "icp": body["icp"],
         "model": body["model"],
         "unit_economics_note": body["unit_economics_note"],
+        "sale_motion": body.get("sale_motion"),
+        "tuesday": body.get("tuesday"),
+        "upsell_note": body.get("upsell_note"),
         "insulation_copy": body["insulation"],
         "traction": body["traction"],
         "ask": body["ask"],
@@ -100,15 +117,10 @@ def public_investor() -> dict[str, Any]:
                 "max": row["max"],
             }
             for row in fin["scenarios"]
-            if row["id"]
-            in {
-                "l1_only",
-                "l1_padm",
-                "all_three",
-                "three_l1_padm",
-                "l1_plus_four_days",
-            }
         ],
+        "industry": industry,
+        "libraries": [dict(item) for item in packs["libraries"]],
+        "fee_for_service": [dict(item) for item in packs["fee_for_service"]],
         "print": dict(body.get("print") or {}),
         "note": body.get("note"),
     }
@@ -117,7 +129,7 @@ def public_investor() -> dict[str, Any]:
 def investor_markdown() -> str:
     body = public_investor()
     lines = [
-        f"# {body['legal']} — Investor executive summary",
+        f"# {body['legal']} — Investor packet for {body['invited']}",
         "",
         f"Confidential. For {body['invited']}. From {body['owner']}. Release {body['release']}.",
         "Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.",
@@ -126,6 +138,7 @@ def investor_markdown() -> str:
         "",
         f"Equation: {body.get('equation')}.",
         f"Commercial close: {body['commercial']}.",
+        f"Insulation: {body.get('insulation')}.",
         "",
         "## The company",
         "",
@@ -149,7 +162,15 @@ def investor_markdown() -> str:
         "",
         body["icp"],
         "",
-        "## Business model",
+        "## How the sale works",
+        "",
+        body.get("sale_motion") or "",
+        "",
+        "## What a Tuesday looks like",
+        "",
+        body.get("tuesday") or "",
+        "",
+        "## Business model — three SKUs only",
         "",
         body["model"],
         body["unit_economics_note"],
@@ -159,13 +180,69 @@ def investor_markdown() -> str:
     ]
     for item in body["skus"]:
         lines.append(
-            f"| {item['id']} | {item['kind']} | ${_money(item['min'], item['max'])} | {item['term']} |"
+            f"| {item['id']} | {item['kind']} | {_money(item['min'], item['max'])} | {item['term']} |"
         )
     lines += [
         "",
         f"Year-one catalog list if one controller buys all three: "
         f"{_money(body['year_one_if_all_three']['min'], body['year_one_if_all_three']['max'])}. "
         "Not booked.",
+        "",
+        "## Upsell catalog — not a fourth SKU",
+        "",
+        body.get("upsell_note") or "",
+        "",
+        "### Industry desks (L1)",
+        "",
+        "| Desk | List | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in body["industry"]:
+        if item["requires_sku"] != "L1":
+            continue
+        lines.append(f"| {item['id']} — {item['name']} | {_price(item)} | {item.get('note') or ''} |")
+    lines += [
+        "",
+        "### P-ADM keep (after kit PASS)",
+        "",
+        "| Keep | List | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in body["industry"]:
+        if item["requires_sku"] != "P-ADM":
+            continue
+        lines.append(f"| {item['id']} — {item['name']} | {_price(item)} | {item.get('note') or ''} |")
+    lines += [
+        "",
+        "### U-DUAL desks (never free)",
+        "",
+        "| Desk | List | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in body["industry"]:
+        if item["requires_sku"] != "U-DUAL":
+            continue
+        lines.append(f"| {item['id']} — {item['name']} | {_price(item)} | {item.get('note') or ''} |")
+    lines += [
+        "",
+        "### Fee-for-service — $3,500/day after L1",
+        "",
+        "| Service | Rate | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in body["fee_for_service"]:
+        rate = "inside L1" if not item.get("billable") else f"${int(item['rate_usd_per_day']):,}/day"
+        lines.append(f"| {item['id']} — {item.get('name')} | {rate} | {item.get('note') or ''} |")
+    lines += [
+        "",
+        "### Libraries — not SKUs",
+        "",
+        "| Library | Requires | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in body["libraries"]:
+        lines.append(f"| {item['id']} | {item['requires_sku']} | {item.get('note') or ''} |")
+    lines += [
         "",
         "## If-then catalog list (not a forecast)",
         "",
@@ -206,36 +283,43 @@ def investor_markdown() -> str:
     return "\n".join(lines)
 
 
+def _table(headers: list[str], rows: list[list[str]]) -> str:
+    head = "".join(f"<th>{html.escape(cell)}</th>" for cell in headers)
+    body = "".join(
+        "<tr>" + "".join(f"<td>{html.escape(cell)}</td>" for cell in row) + "</tr>" for row in rows
+    )
+    return f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>"
+
+
 def investor_html() -> str:
     body = public_investor()
-    sku_rows = "".join(
-        "<tr>"
-        f"<td><strong>{html.escape(item['id'])}</strong></td>"
-        f"<td>{html.escape(item['kind'])}</td>"
-        f"<td>{html.escape(_money(item['min'], item['max']))}</td>"
-        f"<td>{html.escape(item['term'])}</td>"
-        "</tr>"
-        for item in body["skus"]
-    )
-    scenario_rows = "".join(
-        "<tr>"
-        f"<td>{html.escape(row['name'])}</td>"
-        f"<td>{html.escape(row['if'])}</td>"
-        f"<td>{html.escape(_money(row['min'], row['max']))}</td>"
-        "</tr>"
-        for row in body["scenarios"]
-    )
+    sku_rows = [
+        [item["id"], item["kind"], _money(item["min"], item["max"]), item["term"]] for item in body["skus"]
+    ]
+    l1 = [[i["id"], i["name"], _price(i)] for i in body["industry"] if i["requires_sku"] == "L1"]
+    padm = [[i["id"], i["name"], _price(i)] for i in body["industry"] if i["requires_sku"] == "P-ADM"]
+    udual = [[i["id"], i["name"], _price(i)] for i in body["industry"] if i["requires_sku"] == "U-DUAL"]
+    ffs = [
+        [
+            item["id"],
+            item.get("name") or "",
+            "inside L1" if not item.get("billable") else f"${int(item['rate_usd_per_day']):,}/day",
+        ]
+        for item in body["fee_for_service"]
+    ]
+    libs = [[item["id"], item["requires_sku"], (item.get("note") or "")[:120]] for item in body["libraries"]]
+    scenarios = [[row["name"], row["if"], _money(row["min"], row["max"])] for row in body["scenarios"]]
     highlights = "".join(f"<li>{html.escape(item)}</li>" for item in body["highlights"])
     refuse = "".join(f"<li>{html.escape(item)}</li>" for item in body["refuse"])
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>{html.escape(body['legal'])} — Investor executive summary</title>
+<title>{html.escape(body['legal'])} — Investor packet for {html.escape(body['invited'])}</title>
 <style>
-@page {{ size: letter; margin: 0.55in 0.6in 0.6in 0.6in; }}
+@page {{ size: letter; margin: 0.55in 0.6in 0.55in 0.6in; }}
 html, body {{ margin: 0; padding: 0; }}
-body {{ font: 10.5pt/1.38 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #16181d; background: #fff; }}
+body {{ font: 10pt/1.38 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #16181d; background: #fff; }}
 .band {{ background: #11141a; color: #f4efe6; padding: 16pt 18pt 14pt; margin: 0 0 14pt; }}
 .band .mark {{ font: 700 9pt Helvetica, Arial, sans-serif; letter-spacing: 0.22em; color: #c4a574; }}
 .band h1 {{ font: 700 20pt Helvetica, Arial, sans-serif; margin: 4pt 0 2pt; letter-spacing: -0.03em; }}
@@ -243,19 +327,20 @@ body {{ font: 10.5pt/1.38 "Helvetica Neue", Helvetica, Arial, sans-serif; color:
 .kpis {{ display: flex; gap: 8pt; margin: 0 0 14pt; }}
 .kpi {{ flex: 1; border: 0.8pt solid #cfc6b6; background: #f7f3ea; padding: 8pt 9pt; }}
 .kpi .label {{ font: 700 7.5pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #6a6256; }}
-.kpi .value {{ font: 700 13pt Helvetica, Arial, sans-serif; margin-top: 3pt; }}
-h2 {{ font: 700 9pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #11141a; border-bottom: 1.2pt solid #c4a574; padding-bottom: 3pt; margin: 12pt 0 6pt; }}
+.kpi .value {{ font: 700 12pt Helvetica, Arial, sans-serif; margin-top: 3pt; }}
+h2 {{ font: 700 9pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: #11141a; border-bottom: 1.2pt solid #c4a574; padding-bottom: 3pt; margin: 13pt 0 6pt; page-break-after: avoid; }}
+h3 {{ font: 700 9.5pt Helvetica, Arial, sans-serif; margin: 10pt 0 4pt; color: #11141a; }}
 p {{ margin: 0 0 7pt; }}
-.lede {{ font: 700 11.5pt/1.35 Helvetica, Arial, sans-serif; color: #11141a; }}
+.lede {{ font: 700 12pt/1.35 Helvetica, Arial, sans-serif; color: #11141a; }}
 .eq {{ font: italic 10pt Georgia, Times, serif; color: #3d3428; margin: 0 0 10pt; }}
 .split {{ display: flex; gap: 14pt; }}
 .split > div {{ flex: 1; }}
-table {{ width: 100%; border-collapse: collapse; margin: 4pt 0 10pt; font-size: 9pt; }}
-th, td {{ border: 0.5pt solid #b9b1a4; padding: 5pt 6pt; vertical-align: top; text-align: left; }}
+table {{ width: 100%; border-collapse: collapse; margin: 4pt 0 10pt; font-size: 8.4pt; page-break-inside: avoid; }}
+th, td {{ border: 0.5pt solid #b9b1a4; padding: 4pt 5pt; vertical-align: top; text-align: left; }}
 th {{ background: #11141a; color: #f4efe6; font-weight: 700; }}
 ul {{ margin: 0 0 8pt 1.1em; padding: 0; }}
 li {{ margin: 0 0 3pt; }}
-.ask {{ border: 1.4pt solid #11141a; padding: 10pt 12pt; margin: 8pt 0 12pt; background: #fbf8f1; }}
+.ask {{ border: 1.4pt solid #11141a; padding: 10pt 12pt; margin: 8pt 0 12pt; background: #fbf8f1; page-break-inside: avoid; }}
 .ask h2 {{ margin-top: 0; border: 0; padding: 0; }}
 .status {{ font: 8pt Helvetica, Arial, sans-serif; color: #555; }}
 footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 12pt; padding-top: 6pt; font: 8pt Helvetica, Arial, sans-serif; color: #666; }}
@@ -265,8 +350,8 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 12pt; padding-top: 6pt; f
 <body>
 <div class="band">
   <div class="mark">{html.escape(body['legal'].upper())}</div>
-  <h1>Investor executive summary</h1>
-  <p class="sub">Confidential  ·  For {html.escape(body['invited'])}  ·  From {html.escape(body['owner'])}  ·  Release {html.escape(body['release'])}  ·  Not a priced round  ·  Not LIVE_PIN_OK</p>
+  <h1>Investor packet</h1>
+  <p class="sub">Confidential  ·  For {html.escape(body['invited'])}  ·  From {html.escape(body['owner'])}  ·  Release {html.escape(body['release'])}  ·  Full upsell catalog  ·  Not a priced round</p>
 </div>
 <p class="lede">{html.escape(body['one_liner'])}</p>
 <p class="eq">Close = {html.escape(body['commercial'])}. Insulation = {html.escape(body.get('insulation') or '')}. Packet = {html.escape(body.get('equation') or '')}.</p>
@@ -277,26 +362,33 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 12pt; padding-top: 6pt; f
   <div class="kpi"><div class="label">Year-one if all three</div><div class="value">{html.escape(_money(body['year_one_if_all_three']['min'], body['year_one_if_all_three']['max']))}</div></div>
 </div>
 <div class="split">
-  <div>
-    <h2>Problem</h2>
-    <p>{html.escape(body['problem'])}</p>
-  </div>
-  <div>
-    <h2>Solution</h2>
-    <p>{html.escape(body['solution'])}</p>
-  </div>
+  <div><h2>Problem</h2><p>{html.escape(body['problem'])}</p></div>
+  <div><h2>Solution</h2><p>{html.escape(body['solution'])}</p></div>
 </div>
-<h2>Business model</h2>
+<h2>Who buys · why now</h2>
+<p>{html.escape(body['icp'])}</p>
+<p>{html.escape(body['why_now'])}</p>
+<h2>How the sale works</h2>
+<p>{html.escape(body.get('sale_motion') or '')}</p>
+<h2>What a Tuesday looks like</h2>
+<p>{html.escape(body.get('tuesday') or '')}</p>
+<h2>Business model — three SKUs only</h2>
 <p>{html.escape(body['model'])} {html.escape(body['unit_economics_note'])}</p>
-<table>
-  <thead><tr><th>SKU</th><th>Role</th><th>Catalog list</th><th>Term</th></tr></thead>
-  <tbody>{sku_rows}</tbody>
-</table>
+{_table(["SKU", "Role", "Catalog list", "Term"], sku_rows)}
+<h2>Upsell catalog — not a fourth SKU</h2>
+<p>{html.escape(body.get('upsell_note') or '')}</p>
+<h3>L1 desks</h3>
+{_table(["Desk", "Name", "List"], l1)}
+<h3>P-ADM keep after kit PASS</h3>
+{_table(["Keep", "Name", "List"], padm)}
+<h3>U-DUAL desks — never free</h3>
+{_table(["Desk", "Name", "List"], udual)}
+<h3>Fee-for-service</h3>
+{_table(["Service", "Name", "Rate"], ffs)}
+<h3>Libraries</h3>
+{_table(["Library", "Requires", "Note"], libs)}
 <h2>If-then catalog list — not a forecast</h2>
-<table>
-  <thead><tr><th>Scenario</th><th>If</th><th>List</th></tr></thead>
-  <tbody>{scenario_rows}</tbody>
-</table>
+{_table(["Scenario", "If", "List"], scenarios)}
 <h2>Insulation and traction</h2>
 <p>{html.escape(body['insulation_copy'])}</p>
 <p>{html.escape(body['traction'])}</p>
@@ -309,7 +401,7 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 12pt; padding-top: 6pt; f
 <h2>This packet refuses</h2>
 <ul>{refuse}</ul>
 <p class="status">{html.escape(body.get('note') or '')} Invited: {html.escape(body['invited'])}. Recorded: no. Email: none stored. Equity: no.</p>
-<footer>{html.escape(body['legal'])}  ·  Job C  ·  {html.escape(body['institute'])}  ·  Two pages  ·  Print on letter  ·  Do not treat as a raise, equity grant, signed L1, or LIVE_PIN_OK.</footer>
+<footer>{html.escape(body['legal'])}  ·  Job C  ·  {html.escape(body['institute'])}  ·  Letter packet  ·  Do not treat as a raise, equity grant, signed L1, or LIVE_PIN_OK.</footer>
 </body>
 </html>
 """
@@ -324,7 +416,7 @@ def _escape(text: str) -> str:
 
 
 def _wrap(text: str, width: int) -> list[str]:
-    words = text.split()
+    words = str(text).split()
     lines: list[str] = []
     current = ""
     for word in words:
@@ -340,198 +432,201 @@ def _wrap(text: str, width: int) -> list[str]:
     return lines or [""]
 
 
-def render_investor_pdf() -> bytes:
-    """Two-page letter. Deterministic. No raise claimed."""
-    body = public_investor()
-    pages: list[list[str]] = [[], []]
+class _Letter:
+    def __init__(self, legal: str, invited: str, owner: str, release: str) -> None:
+        self.legal = legal
+        self.invited = invited
+        self.owner = owner
+        self.release = release
+        self.pages: list[list[str]] = []
+        self.y = 0.0
+        self._new("Investor packet")
 
-    def fill(page: int, x: float, y: float, w: float, h: float, rgb: str) -> None:
-        pages[page] += [f"{rgb} rg", f"{x:.1f} {y:.1f} {w:.1f} {h:.1f} re f"]
+    def _draw(self, *cmds: str) -> None:
+        self.pages[-1].extend(cmds)
 
-    def stroke(page: int, x1: float, y1: float, x2: float, y2: float, rgb: str, w: float = 0.8) -> None:
-        pages[page] += [f"{rgb} RG", f"{w} w", f"{x1:.1f} {y1:.1f} m {x2:.1f} {y2:.1f} l S"]
+    def _new(self, subtitle: str) -> None:
+        self.pages.append([])
+        self.y = 710
+        self._draw(f"{NAVY} rg", "0 732 612 60 re f", f"{GOLD} rg", "0 728 612 4 re f")
+        self.text(LEFT, 768, "/F2", 8, f"{GOLD} rg", self.legal.upper())
+        self.text(LEFT, 750, "/F2", 16, "1 1 1 rg", subtitle[:62])
+        self.text(
+            LEFT,
+            736,
+            "/F3",
+            8,
+            "0.85 0.82 0.76 rg",
+            f"Confidential  ·  For {self.invited}  ·  From {self.owner}  ·  Release {self.release}",
+        )
 
-    def text(page: int, x: float, y: float, font: str, size: float, rgb: str, line: str) -> None:
-        pages[page] += [
-            "BT",
-            f"{font} {size} Tf",
-            rgb,
-            f"1 0 0 1 {x:.1f} {y:.1f} Tm",
-            f"({_escape(line)}) Tj",
-            "ET",
-        ]
+    def need(self, height: float, subtitle: str = "Investor packet") -> None:
+        if self.y - height < 50:
+            n = len(self.pages)
+            self.text(LEFT, 28, "/F3", 7.5, "0.4 0.4 0.4 rg", f"{self.legal}  ·  Page {n}  ·  Not a priced round  ·  Not LIVE_PIN_OK")
+            self._new(subtitle)
 
-    def block(page: int, x: float, y: float, font: str, size: float, rgb: str, lines: list[str], gap: float) -> float:
+    def text(self, x: float, y: float, font: str, size: float, rgb: str, line: str) -> None:
+        self._draw("BT", f"{font} {size} Tf", rgb, f"1 0 0 1 {x:.1f} {y:.1f} Tm", f"({_escape(line)}) Tj", "ET")
+
+    def heading(self, title: str, subtitle: str = "Upsell catalog") -> None:
+        self.need(28, subtitle)
+        self.y -= 6
+        self.text(LEFT, self.y, "/F2", 9, f"{NAVY} rg", title.upper())
+        self._draw(f"{GOLD} RG", "1.1 w", f"{LEFT} {self.y - 3:.1f} m {RIGHT} {self.y - 3:.1f} l S")
+        self.y -= 16
+
+    def para(self, text: str, width: int = 92, size: float = 9, rgb: str = f"{INK} rg") -> None:
+        lines = _wrap(text, width)
+        self.need(len(lines) * 12 + 4)
         for line in lines:
-            text(page, x, y, font, size, rgb, line)
-            y -= gap
-        return y
+            self.text(LEFT, self.y, "/F1", size, rgb, line)
+            self.y -= 12
+        self.y -= 4
 
-    # Page 1 header
-    fill(0, 0, 732, 612, 60, "0.067 0.078 0.102")
-    fill(0, 0, 728, 612, 4, "0.769 0.647 0.455")
-    text(0, LEFT, 768, "/F2", 8, "0.769 0.647 0.455 rg", body["legal"].upper())
-    text(0, LEFT, 750, "/F2", 18, "1 1 1 rg", "Investor executive summary")
-    text(
-        0,
-        LEFT,
-        736,
-        "/F3",
-        8,
-        "0.85 0.82 0.76 rg",
-        f"Confidential  ·  For {body['invited']}  ·  From {body['owner']}  ·  Release {body['release']}",
+    def lede(self, text: str) -> None:
+        lines = _wrap(text, 78)
+        self.need(len(lines) * 14 + 4)
+        for line in lines:
+            self.text(LEFT, self.y, "/F2", 11, f"{NAVY} rg", line)
+            self.y -= 14
+        self.y -= 2
+
+    def table(self, headers: list[str], rows: list[list[str]], cols: list[float], subtitle: str = "Upsell catalog") -> None:
+        row_h = 13
+        self.need(20 + row_h * (len(rows) + 1), subtitle)
+        self._draw(f"{NAVY} rg", f"{LEFT} {self.y - 12:.1f} {RIGHT - LEFT:.1f} 16 re f")
+        for i, head in enumerate(headers):
+            self.text(cols[i], self.y - 8, "/F2", 7.5, "1 1 1 rg", head)
+        self.y -= 16
+        for row in rows:
+            self.need(row_h + 2, subtitle)
+            self._draw("0.98 0.97 0.95 rg", f"{LEFT} {self.y - 10:.1f} {RIGHT - LEFT:.1f} 13 re f")
+            for i, cell in enumerate(row):
+                self.text(cols[i], self.y - 6, "/F3", 7.4, "0.12 0.12 0.12 rg", str(cell)[:52])
+            self.y -= row_h
+        self.y -= 8
+
+    def finish(self) -> None:
+        n = len(self.pages)
+        self.text(LEFT, 28, "/F3", 7.5, "0.4 0.4 0.4 rg", f"{self.legal}  ·  Page {n} of {n}  ·  Invited, not recorded  ·  Equity: no")
+        # backfill page numbers on earlier pages
+        for i, page in enumerate(self.pages[:-1], start=1):
+            label = f"{self.legal}  ·  Page {i} of {n}  ·  Not a priced round  ·  Not LIVE_PIN_OK"
+            page.extend(
+                [
+                    "BT",
+                    "/F3 7.5 Tf",
+                    "0.4 0.4 0.4 rg",
+                    f"1 0 0 1 {LEFT:.1f} 28.0 Tm",
+                    f"({_escape(label)}) Tj",
+                    "ET",
+                ]
+            )
+
+
+def render_investor_pdf() -> bytes:
+    """Letter packet. Flowing pages. Catalog list only."""
+    body = public_investor()
+    doc = _Letter(body["legal"], body["invited"], body["owner"], body["release"])
+    doc.lede(body["one_liner"])
+    doc.para(
+        f"Close = {body['commercial']}.  Insulation = {body.get('insulation')}.  Packet = {body.get('equation')}.",
+        rgb=f"{MUTED} rg",
+        size=8.5,
     )
-
-    y = 710
-    y = block(0, LEFT, y, "/F2", 11, "0.067 0.078 0.102 rg", _wrap(body["one_liner"], 78), 14)
-    y -= 4
-    y = block(
-        0,
-        LEFT,
-        y,
-        "/F1",
-        9,
-        "0.35 0.30 0.24 rg",
-        _wrap(
-            f"Close = {body['commercial']}.  Insulation = {body.get('insulation')}.  Packet = {body.get('equation')}.",
-            92,
-        ),
-        12,
-    )
-    y -= 8
-
     kpis = [
         ("RECOGNIZED REVENUE", "$0"),
         ("NAMED CUSTOMERS", "0"),
         ("SIGNED L1", "0"),
         ("YEAR-ONE IF ALL THREE", _money(body["year_one_if_all_three"]["min"], body["year_one_if_all_three"]["max"])),
     ]
+    doc.need(50)
     box_w = 124
-    gap = 8
     for i, (label, value) in enumerate(kpis):
-        x = LEFT + i * (box_w + gap)
-        fill(0, x, y - 36, box_w, 42, "0.969 0.953 0.918")
-        stroke(0, x, y - 36, x + box_w, y - 36, "0.769 0.647 0.455", 1.2)
-        text(0, x + 8, y - 6, "/F2", 6.5, "0.42 0.38 0.34 rg", label)
-        text(0, x + 8, y - 24, "/F2", 11, "0.067 0.078 0.102 rg", value)
-    y -= 54
+        x = LEFT + i * (box_w + 8)
+        doc._draw("0.969 0.953 0.918 rg", f"{x:.1f} {doc.y - 36:.1f} {box_w:.1f} 42 re f")
+        doc._draw(f"{GOLD} RG", "1.2 w", f"{x:.1f} {doc.y - 36:.1f} m {x + box_w:.1f} {doc.y - 36:.1f} l S")
+        doc.text(x + 8, doc.y - 6, "/F2", 6.5, "0.42 0.38 0.34 rg", label)
+        doc.text(x + 8, doc.y - 24, "/F2", 10, f"{NAVY} rg", value)
+    doc.y -= 50
 
-    text(0, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "PROBLEM")
-    stroke(0, LEFT, y - 3, 292, y - 3, "0.769 0.647 0.455", 1.1)
-    text(0, 316, y, "/F2", 9, "0.067 0.078 0.102 rg", "SOLUTION")
-    stroke(0, 316, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
-    left_y = block(0, LEFT, y, "/F1", 8.5, "0.14 0.14 0.14 rg", _wrap(body["problem"], 42), 11)
-    right_y = block(0, 316, y, "/F1", 8.5, "0.14 0.14 0.14 rg", _wrap(body["solution"], 42), 11)
-    y = min(left_y, right_y) - 10
+    doc.heading("Problem", "The company")
+    doc.para(body["problem"])
+    doc.heading("Solution", "The company")
+    doc.para(body["solution"])
+    doc.heading("Who buys · why now", "The company")
+    doc.para(body["icp"])
+    doc.para(body["why_now"])
+    doc.heading("How the sale works", "The company")
+    doc.para(body.get("sale_motion") or "")
+    doc.heading("What a Tuesday looks like", "The company")
+    doc.para(body.get("tuesday") or "")
 
-    text(0, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "BUSINESS MODEL")
-    stroke(0, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
-    y = block(
-        0,
-        LEFT,
-        y,
-        "/F1",
-        9,
-        "0.14 0.14 0.14 rg",
-        _wrap(f"{body['model']} {body['unit_economics_note']}", 92),
-        12,
+    doc.heading("Business model — three SKUs only", "Pricing")
+    doc.para(f"{body['model']} {body['unit_economics_note']}")
+    doc.table(
+        ["SKU", "Role", "Catalog list", "Term"],
+        [[i["id"], i["kind"], _money(i["min"], i["max"]), i["term"]] for i in body["skus"]],
+        [LEFT + 4, 130, 220, 400],
+        "Pricing",
     )
-    y -= 8
 
-    headers = ["SKU", "Role", "Catalog list", "Term"]
-    col_x = [LEFT, 130, 220, 400]
-    fill(0, LEFT, y - 14, RIGHT - LEFT, 18, "0.067 0.078 0.102")
-    for i, head in enumerate(headers):
-        text(0, col_x[i] + 4, y - 10, "/F2", 8, "1 1 1 rg", head)
-    y -= 18
-    for item in body["skus"]:
-        fill(0, LEFT, y - 14, RIGHT - LEFT, 16, "0.98 0.97 0.95")
-        stroke(0, LEFT, y - 14, RIGHT, y - 14, "0.78 0.74 0.68", 0.4)
-        vals = [item["id"], item["kind"], _money(item["min"], item["max"]), item["term"]]
-        for i, val in enumerate(vals):
-            text(0, col_x[i] + 4, y - 10, "/F3", 8.5, "0.12 0.12 0.12 rg", val)
-        y -= 16
-    y -= 12
+    doc.heading("Upsell catalog — not a fourth SKU", "Upsell catalog")
+    doc.para(body.get("upsell_note") or "")
+    doc.heading("L1 desks", "Upsell catalog")
+    doc.table(
+        ["Desk", "Name", "List"],
+        [[i["id"].replace("industry.", ""), i["name"][:28], _price(i)] for i in body["industry"] if i["requires_sku"] == "L1"],
+        [LEFT + 4, 180, 380],
+    )
+    doc.heading("P-ADM keep after kit PASS", "Upsell catalog")
+    doc.table(
+        ["Keep", "Name", "List"],
+        [[i["id"].replace("industry.", ""), i["name"][:28], _price(i)] for i in body["industry"] if i["requires_sku"] == "P-ADM"],
+        [LEFT + 4, 180, 380],
+    )
+    doc.heading("U-DUAL desks — never free", "Upsell catalog")
+    doc.table(
+        ["Desk", "Name", "List"],
+        [[i["id"].replace("industry.", ""), i["name"][:28], _price(i)] for i in body["industry"] if i["requires_sku"] == "U-DUAL"],
+        [LEFT + 4, 180, 380],
+    )
+    doc.heading("Fee-for-service — $3,500/day after L1", "Upsell catalog")
+    ffs_rows = []
+    for item in body["fee_for_service"]:
+        rate = "inside L1" if not item.get("billable") else f"${int(item['rate_usd_per_day']):,}/day"
+        ffs_rows.append([item["id"].replace("ffs.", ""), (item.get("name") or "")[:28], rate])
+    doc.table(["Service", "Name", "Rate"], ffs_rows, [LEFT + 4, 180, 400])
+    doc.heading("Libraries — not SKUs", "Upsell catalog")
+    doc.table(
+        ["Library", "Requires", "Note"],
+        [[i["id"].replace("lib.", ""), i["requires_sku"], (i.get("note") or "")[:42]] for i in body["libraries"]],
+        [LEFT + 4, 200, 270],
+    )
 
-    text(0, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "WHO BUYS  ·  WHY NOW")
-    stroke(0, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
-    y = block(0, LEFT, y, "/F1", 9, "0.14 0.14 0.14 rg", _wrap(body["icp"], 92), 12)
-    y -= 4
-    y = block(0, LEFT, y, "/F1", 9, "0.14 0.14 0.14 rg", _wrap(body["why_now"], 92), 12)
+    doc.heading("If-then catalog list — not a forecast", "Financials")
+    doc.table(
+        ["Scenario", "List"],
+        [[row["name"][:42], _money(row["min"], row["max"])] for row in body["scenarios"]],
+        [LEFT + 4, 400],
+        "Financials",
+    )
 
-    text(0, LEFT, 28, "/F3", 7.5, "0.4 0.4 0.4 rg", f"{body['legal']}  ·  Page 1 of 2  ·  Not a priced round  ·  Not LIVE_PIN_OK")
-
-    # Page 2
-    fill(1, 0, 732, 612, 60, "0.067 0.078 0.102")
-    fill(1, 0, 728, 612, 4, "0.769 0.647 0.455")
-    text(1, LEFT, 768, "/F2", 8, "0.769 0.647 0.455 rg", body["legal"].upper())
-    text(1, LEFT, 750, "/F2", 16, "1 1 1 rg", "Unit economics, insulation, ask")
-    text(1, LEFT, 736, "/F3", 8, "0.85 0.82 0.76 rg", "Catalog list only. Zero booked. Two-human close.")
-
-    y = 710
-    text(1, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "IF-THEN CATALOG LIST — NOT A FORECAST")
-    stroke(1, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 18
-    fill(1, LEFT, y - 14, RIGHT - LEFT, 18, "0.067 0.078 0.102")
-    text(1, LEFT + 4, y - 10, "/F2", 8, "1 1 1 rg", "Scenario")
-    text(1, 250, y - 10, "/F2", 8, "1 1 1 rg", "If")
-    text(1, 470, y - 10, "/F2", 8, "1 1 1 rg", "List")
-    y -= 18
-    for row in body["scenarios"]:
-        fill(1, LEFT, y - 22, RIGHT - LEFT, 24, "0.98 0.97 0.95")
-        text(1, LEFT + 4, y - 8, "/F2", 8, "0.12 0.12 0.12 rg", row["name"][:34])
-        text(1, 250, y - 8, "/F3", 7.5, "0.2 0.2 0.2 rg", row["if"][:48])
-        text(1, 470, y - 8, "/F2", 8, "0.12 0.12 0.12 rg", _money(row["min"], row["max"]))
-        text(1, 250, y - 18, "/F3", 7.5, "0.35 0.35 0.35 rg", (row["if"][48:96] if len(row["if"]) > 48 else ""))
-        y -= 26
-    y -= 8
-
-    text(1, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "INSULATION")
-    stroke(1, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
-    y = block(1, LEFT, y, "/F1", 9, "0.14 0.14 0.14 rg", _wrap(body["insulation_copy"], 92), 12)
-    y -= 8
-
-    text(1, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "TRACTION — HONEST")
-    stroke(1, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
-    y = block(1, LEFT, y, "/F1", 9, "0.14 0.14 0.14 rg", _wrap(body["traction"], 92), 12)
-    y -= 10
-
-    fill(1, LEFT, y - 62, RIGHT - LEFT, 68, "0.969 0.953 0.918")
-    stroke(1, LEFT, y - 62, LEFT, y + 6, "0.111 0.129 0.165", 2.4)
-    text(1, LEFT + 12, y - 8, "/F2", 9, "0.067 0.078 0.102 rg", "THE ASK")
-    y = block(1, LEFT + 12, y - 22, "/F1", 9, "0.14 0.14 0.14 rg", _wrap(body["ask"], 86), 12)
-    y -= 18
-
-    text(1, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "HIGHLIGHTS")
-    stroke(1, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
+    doc.heading("Insulation", "Close")
+    doc.para(body["insulation_copy"])
+    doc.heading("Traction — honest", "Close")
+    doc.para(body["traction"])
+    doc.heading("The ask", "Close")
+    doc.para(body["ask"])
+    doc.heading("Highlights", "Close")
     for item in body["highlights"]:
-        y = block(1, LEFT, y, "/F1", 9, "0.14 0.14 0.14 rg", _wrap(f"— {item}", 92), 12)
-        y -= 2
-    y -= 8
-
-    text(1, LEFT, y, "/F2", 9, "0.067 0.078 0.102 rg", "THIS PACKET REFUSES")
-    stroke(1, LEFT, y - 3, RIGHT, y - 3, "0.769 0.647 0.455", 1.1)
-    y -= 16
-    y = block(1, LEFT, y, "/F1", 9, "0.14 0.14 0.14 rg", _wrap("  ·  ".join(body["refuse"]), 92), 12)
-    y -= 10
-    y = block(1, LEFT, y, "/F3", 8, "0.35 0.35 0.35 rg", _wrap(body.get("note") or "", 92), 11)
-    text(
-        1,
-        LEFT,
-        28,
-        "/F3",
-        7.5,
-        "0.4 0.4 0.4 rg",
-        f"{body['legal']}  ·  Page 2 of 2  ·  Invited, not recorded  ·  Equity: no  ·  Print on letter",
-    )
-
-    return _assemble(pages)
+        doc.para(f"— {item}")
+    doc.heading("This packet refuses", "Close")
+    doc.para("  ·  ".join(body["refuse"]))
+    doc.para(body.get("note") or "", rgb="0.4 0.4 0.4 rg", size=8)
+    doc.finish()
+    return _assemble(doc.pages)
 
 
 def _assemble(page_streams: list[list[str]]) -> bytes:
@@ -543,7 +638,7 @@ def _assemble(page_streams: list[list[str]]) -> bytes:
     font_times = 3 + len(decorated)
     font_helv_b = font_times + 1
     font_helv = font_helv_b + 1
-    for index, stream in enumerate(decorated):
+    for index, _stream in enumerate(decorated):
         content_id = font_helv + 1 + index
         objects.append(
             (
@@ -561,10 +656,10 @@ def _assemble(page_streams: list[list[str]]) -> bytes:
 
     out = bytearray(b"%PDF-1.4\n")
     offsets = [0]
-    for number, body in enumerate(objects[1:], start=1):
+    for number, payload in enumerate(objects[1:], start=1):
         offsets.append(len(out))
         out.extend(f"{number} 0 obj\n".encode())
-        out.extend(body)
+        out.extend(payload)
         out.extend(b"\nendobj\n")
     xref = len(out)
     out.extend(f"xref\n0 {len(objects)}\n".encode())

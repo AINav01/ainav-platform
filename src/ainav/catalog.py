@@ -315,8 +315,13 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         if stem not in refuse:
             raise IntegrityError(f"investor packet must refuse {stem}", reason_code="CATALOG_INVESTOR")
     print_body = body.get("print") or {}
-    if int(print_body.get("pages") or 0) != 2:
-        raise IntegrityError("investor print is two letter pages", reason_code="CATALOG_INVESTOR")
+    pages = int(print_body.get("pages") or 0)
+    if pages < 4 or pages > 8:
+        raise IntegrityError("investor print is a four-to-eight page letter packet", reason_code="CATALOG_INVESTOR")
+    if body.get("include_upsells") is not True:
+        raise IntegrityError("investor packet must include the upsell catalog", reason_code="CATALOG_INVESTOR")
+    if "same three skus" not in str(body.get("upsell_note") or "").lower() and "not a fourth" not in str(body.get("upsell_note") or "").lower():
+        raise IntegrityError("upsell note must keep packs off a fourth SKU", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:

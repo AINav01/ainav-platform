@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.19.0"
+    assert cat["entity"]["release"] == "2.20.0"
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False
     assert cat["investor"]["equity_offered"] is False
@@ -114,8 +114,9 @@ def test_printable_brief_is_a_pdf():
     assert "Fifteen" in md or "15" in md
     assert "Named dual seats" in md
     assert "not recorded" in md.lower()
-    assert "Investor executive summary" in md
+    assert "Investor executive summary" in md or "Investor packet" in md
     assert "priced round" in md.lower()
+    assert "industry.payables" in md or "Upsell catalog" in md
     html = brief_html()
     assert "Executive brief" in html
     assert "Cynthia Hodnett" in html
