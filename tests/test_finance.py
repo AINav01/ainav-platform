@@ -19,6 +19,8 @@ def test_finance_is_catalog_list_not_revenue():
     assert by_id["l1_plus_two_desks"]["max"] == 60000
     assert by_id["all_three_plus_desks"]["min"] == 100000
     assert by_id["all_three_plus_desks"]["max"] == 155000
+    assert by_id["l1_padm_oversight"]["min"] == 73000
+    assert by_id["l1_padm_oversight"]["max"] == 108000
     md = finance_markdown()
     assert "Not recognized revenue" in md or "not recognized" in md.lower()
     assert "L1" in md

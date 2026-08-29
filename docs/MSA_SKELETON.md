@@ -15,3 +15,5 @@ Must not change:
 - No soft HITL as dual
 - No invented SKUs
 - No LIVE_PIN_OK / product HA / signed L1 without evidence
+- AINav is a separate failsafe from client AI
+- No invented compliance certification

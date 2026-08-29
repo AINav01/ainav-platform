@@ -26,6 +26,8 @@ Seats: treasury_approver / treasury_controller
 - **industry.returns** — $6,000–$10,000 (annual) after U-DUAL. Not a SKU.
 - **industry.pricing** — $6,000–$10,000 (annual) after U-DUAL. Not a SKU.
 - **industry.retention** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
+- **industry.governance** — included with L1. Not a SKU.
+- **industry.oversight** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
 
 ## Rules
 
@@ -35,5 +37,7 @@ Seats: treasury_approver / treasury_controller
 - Signed L1 is a separate counsel pack (G13)
 - Industry packs and libraries are not SKUs
 - A la carte pack attach is catalog list, not a fourth SKU
+- AINav is a separate failsafe from client AI
+- This contract does not certify EU AI Act, NIST, or ISO 42001
 
 Catalog list. Not recognized revenue. Not a signed L1.

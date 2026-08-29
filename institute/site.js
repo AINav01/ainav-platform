@@ -12,6 +12,41 @@
     });
   });
 
+  fetch("governance.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.sku || data.certified) return;
+      var thesis = document.getElementById("gov-thesis");
+      if (thesis && data.thesis) thesis.textContent = data.thesis;
+      function fill(id, items, line) {
+        var root = document.getElementById(id);
+        if (!root || !items || !items.length) return;
+        root.textContent = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = line(item);
+          root.appendChild(li);
+        });
+      }
+      fill("gov-separate", (data.failsafe && data.failsafe.separate_from) || [], function (item) {
+        return item;
+      });
+      fill("gov-maps", data.maps || [], function (item) {
+        return item.name + " — " + item.scope + ". Claimed: false.";
+      });
+      fill("gov-risks", data.risks || [], function (item) {
+        return item.harm;
+      });
+      fill("gov-refuse", data.refuse || [], function (item) {
+        return item;
+      });
+    })
+    .catch(function () {
+      /* governance.json is optional when opened as a file */
+    });
+
   fetch("packs.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

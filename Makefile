@@ -19,6 +19,8 @@ plan-check:
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" | diff -q institute/review.json -
 	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" | diff -q institute/finance.json -
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" | diff -q institute/packs.json -
+	python3 -c "from ainav.governance import public_governance; import json; print(json.dumps(public_governance(), indent=2, sort_keys=True))" | diff -q institute/governance.json -
+	python3 -m ainav governance | diff -q docs/GOVERNANCE.md -
 	python3 -m ainav owner-steps | diff -q docs/OWNER_STEPS.md -
 	python3 -m ainav order-form | diff -q docs/ORDER_FORM.md -
 	python3 -m ainav msa | diff -q docs/MSA_SKELETON.md -

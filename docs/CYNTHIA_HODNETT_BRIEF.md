@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.13.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.14.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.13.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.14.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -23,6 +23,8 @@ Microsoft hosts, identifies, notifies, and receives the write after the two of y
 ## What we are building together
 
 AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is the public law of that plane — hosted on Azure, not launched, not bound to ainav.institute until James says launch in his own words. Master mothership issues the lockfile and never writes a client system of record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7, Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They receive the write after you and James admit it.
+
+AINav is a separate failsafe from client AI. Copilot, Agent 365, a BYO MCP, and this Cloud Agent may draft a journal. They are not seats. Two humans admit. Then the write. We map NIST AI RMF, SOX internal control, the EU AI Act, and ISO 42001. We do not claim those certificates. We do not replace counsel. Governance is not a fourth SKU.
 
 We sell three things only. Packs, hours, and Microsoft licenses are not products. A controller buys the commercial close: named dual seats × proof day × signed L1 × P-ADM attach. The lab pin LIVE_PIN_OK is a separate engineering fact and is never marked from a sale. Signed L1 is a counsel pack. It is still open.
 
@@ -87,7 +89,7 @@ Your no, or not yet, is also a complete answer. Nothing is recorded. The invite 
 
 Three motherships, one law. Master mothership (Azure-declared, AINav) issues the lockfile, catalog, and gold. It never writes a client system of record. Cloud mothership (Azure-declared client plane) and local mothership (client plane) share one consume ledger and run AdmitClient against a Business Central digital twin. They are not two products. They are not two deployed production planes. Today they are in-process on that shared ledger. Week one: provision master lockfile → provision the cloud + local pair → proof day or Acceptance Kit on the BC twin → notify Teams → store kit evidence in SharePoint sandbox → refuse the live pin.
 
-Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. Industry packs seat the same admit plane: treasury and controller on the journal wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales and quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced U-DUAL desks; retention as a priced P-ADM keep. Libraries bundle those modules. Repositories hold the plane, catalog, Institute, finance, brief, review, packs, runbooks, owner steps, and counsel. None of those are SKUs. A la carte is a desk attach on L1, P-ADM, or paid U-DUAL — never a fourth product.
+Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. Industry packs seat the same admit plane: treasury and controller on the journal wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales and quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced U-DUAL desks; retention as a priced P-ADM keep; governance seating included with L1; oversight keep as a priced P-ADM desk. Libraries bundle those modules. Repositories hold the plane, catalog, Institute, finance, brief, review, packs, runbooks, owner steps, counsel, and governance. None of those are SKUs. A la carte is a desk attach on L1, P-ADM, or paid U-DUAL — never a fourth product.
 
 Microsoft fabric, 10/10 and no further: Azure host (eastus; Institute eastus2; West Europe blocked by policy). Microsoft 365 E7 / Entra for seat object ids. Business Central Premium for L1 SoR. Sales Enterprise for U-DUAL SoR. Teams Enterprise and Premium for notify. Complements: Key Vault, Monitor, SharePoint kit evidence, Defender XDR, Entra PIM, Sentinel (the mothership LAW is not a Sentinel workspace), Azure Policy. Copilot, Agent 365, and Agent Tools ship inside E7. They are not the admit plane. A 10/10 Microsoft estate that votes in Teams or lets Copilot post the journal is a failure of Job C, not a feature.
 
@@ -134,6 +136,7 @@ Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane
 | Three controllers — L1 + P-ADM each | Three controllers each buy L1 and attach P-ADM. No named buyers exist. | $204,000–$300,000 |
 | One L1 plus four FFS days | One controller buys L1 and four billable days on the same plane. | $42,000–$54,000 |
 | One L1 plus payables and bank desks | One controller buys L1 then attaches industry.payables and industry.bank. | $40,000–$60,000 |
+| One controller — L1, P-ADM, oversight keep | One controller buys L1, attaches P-ADM, then attaches industry.oversight. | $73,000–$108,000 |
 | All three SKUs plus invoice and credit desks | One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit. | $100,000–$155,000 |
 
 ## Part V — Expert review: what works, what to improve, 15 upgrades
@@ -151,6 +154,7 @@ Working well
 - Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
 - A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
+- AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.
 
 Could be improved — without inventing a fourth SKU
 
@@ -162,6 +166,7 @@ Could be improved — without inventing a fourth SKU
 - Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.
 - No billing provider. Catalog list cannot become recognized revenue.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
+- Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
 
 Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
 

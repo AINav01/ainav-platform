@@ -86,6 +86,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_expert_review(catalog)
     _validate_upsells(catalog)
     _validate_repositories(catalog)
+    _validate_governance(catalog)
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
@@ -172,7 +173,7 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
         if sku_id not in prices:
             raise IntegrityError("buyer page must list the three SKUs", reason_code="CATALOG_BUYER")
     refuse = " ".join(body.get("refuse") or []).lower().replace("_", " ")
-    for stem in ("teams vote", "copilot", "free u-dual", "live pin ok"):
+    for stem in ("teams vote", "copilot", "free u-dual", "live pin ok", "client ai as dual"):
         if stem not in refuse:
             raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
 
@@ -324,6 +325,39 @@ def _validate_upsells(catalog: dict[str, Any]) -> None:
                 f"upsell {module['id']} must be seated by a pack or library",
                 reason_code="CATALOG_PACK",
             )
+
+
+def _validate_governance(catalog: dict[str, Any]) -> None:
+    body = catalog.get("governance")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing governance doctrine", reason_code="CATALOG_GOVERNANCE")
+    if body.get("sku") is True:
+        raise IntegrityError("governance is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("certified") is True or body.get("replaces_counsel") is True:
+        raise IntegrityError("do not claim certification or replace counsel", reason_code="CATALOG_GOVERNANCE")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("governance cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    fail = body.get("failsafe") or {}
+    separate = " ".join(fail.get("separate_from") or []).lower().replace("_", " ").replace(".", " ")
+    for stem in ("client ai", "copilot", "cloud agent", "agent 365"):
+        if stem not in separate:
+            raise IntegrityError(
+                f"failsafe must stay separate from {stem}",
+                reason_code="CATALOG_GOVERNANCE",
+            )
+    if "two" not in str(body.get("thesis") or "").lower() and "dual" not in str(body.get("thesis") or "").lower():
+        raise IntegrityError("governance thesis must keep dual humans", reason_code="CATALOG_GOVERNANCE")
+    maps = {item.get("id") for item in body.get("maps") or []}
+    if not {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr"} <= maps:
+        raise IntegrityError("governance must map NIST, EU AI Act, ISO 42001, and SOX", reason_code="CATALOG_GOVERNANCE")
+    if any(item.get("claimed") is True for item in body.get("maps") or []):
+        raise IntegrityError("governance maps cannot claim certification", reason_code="CATALOG_GOVERNANCE")
+    refuse = " ".join(body.get("refuse") or []).lower()
+    for stem in ("eu ai act certified", "nist certified", "replaces counsel", "client ai as dual"):
+        if stem not in refuse:
+            raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+    if not body.get("risks"):
+        raise IntegrityError("governance must name non-compliance risks", reason_code="CATALOG_GOVERNANCE")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

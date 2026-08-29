@@ -1,0 +1,124 @@
+{
+  "certified": false,
+  "failsafe": {
+    "does": "Dual-admit the privileged write regardless of which agent drafted it.",
+    "does_not": [
+      "replace the client's model",
+      "be the client's AI",
+      "vote in Teams",
+      "activate PIM",
+      "certify the client's system",
+      "replace counsel",
+      "file a regulator submission"
+    ],
+    "separate_from": [
+      "client AI",
+      "Microsoft 365 Copilot",
+      "Agent 365",
+      "BYO MCP",
+      "cursor.cloud_agent",
+      "PIM activation",
+      "Teams vote"
+    ]
+  },
+  "kind": "ainav.governance.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "maps": [
+    {
+      "claimed": false,
+      "id": "nist.ai_rmf",
+      "maps_to": "Govern and Measure via sealed DecisionRecords on the admit plane",
+      "name": "NIST AI Risk Management Framework",
+      "scope": "US domestic"
+    },
+    {
+      "claimed": false,
+      "id": "omb.m24_10",
+      "maps_to": "Human authority before consequential action. ICP is not a federal agency unless they buy.",
+      "name": "OMB M-24-10 (federal agency AI)",
+      "scope": "US domestic / federal"
+    },
+    {
+      "claimed": false,
+      "id": "sox.icfr",
+      "maps_to": "Unauthorized general-journal post is the L1 incident. Dual admit is a control. Not a SOX opinion.",
+      "name": "SOX / internal control over financial reporting",
+      "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "ftc.state_ai",
+      "maps_to": "Refuse undeclared automated SoR writes. Not a state-law opinion.",
+      "name": "FTC and state AI / automated-decision laws",
+      "scope": "US domestic"
+    },
+    {
+      "claimed": false,
+      "id": "eu.ai_act",
+      "maps_to": "AINav is a write-gate failsafe, not the client's high-risk system. No conformity assessment is claimed.",
+      "name": "EU AI Act",
+      "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "iso.42001",
+      "maps_to": "Catalog and DecisionRecords can feed an AIMS. Certification is not claimed.",
+      "name": "ISO/IEC 42001 AI management system",
+      "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "oecd.ai",
+      "maps_to": "Accountability and human agency before the write. Not a membership.",
+      "name": "OECD AI Principles",
+      "scope": "international"
+    }
+  ],
+  "note": "Catalog map only. Not booked. Not a certification. Not recognized revenue. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+  "refuse": [
+    "EU AI Act certified",
+    "NIST certified",
+    "ISO 42001 certified",
+    "replaces counsel",
+    "AINav is the client's AI",
+    "client AI as dual",
+    "Cloud Agent as a seat",
+    "LIVE_PIN_OK from a governance map"
+  ],
+  "replaces_counsel": false,
+  "risks": [
+    {
+      "harm": "A client-AI or agent tool posts a journal, quote, invoice, or credit without two seats.",
+      "id": "unauthorized_sor",
+      "note": "This is the Job C incident. Dual admit is the failsafe. Not LIVE_PIN_OK."
+    },
+    {
+      "harm": "Books and records cannot show who admitted the write.",
+      "id": "audit_failure",
+      "note": "Sealed DecisionRecords are the keep artifact after P-ADM. Not a SOX opinion."
+    },
+    {
+      "harm": "Claiming EU AI Act, NIST, or ISO 42001 certification that does not exist.",
+      "id": "false_certification",
+      "note": "This tree maps instruments. It does not certify. Counsel stays open (G12)."
+    },
+    {
+      "harm": "Treating Copilot, Agent 365, PIM, a Teams vote, or the Cloud Agent as seat_a or seat_b.",
+      "id": "seat_collapse",
+      "note": "The failsafe collapses. Client AI is not dual admit."
+    },
+    {
+      "harm": "Selling an EU-ready story without a conformity assessment or counsel.",
+      "id": "cross_border_claim",
+      "note": "Maps are not filings. Do not invent a notified body."
+    },
+    {
+      "harm": "A BYO MCP or Dataverse tool writes Business Central or Sales around the admit plane.",
+      "id": "bypass_tool",
+      "note": "Owner blocks Dataverse MCP until paid U-DUAL. Tools are not seats."
+    }
+  ],
+  "sku": false,
+  "thesis": "AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write."
+}

@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.13.0 surface:
+Same plane, named 2.14.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -63,6 +63,7 @@ python -m ainav brief-pdf
 python -m ainav order-form
 python -m ainav keep-artifact
 python -m ainav finance
+python -m ainav governance
 python -m ainav buyer
 python -m ainav brief
 python -m ainav next-pin
@@ -109,7 +110,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.13.0 (this tree)
+### 2.14.0 (this tree)
+
+AINav is a separate failsafe from client AI. Catalog maps NIST AI RMF,
+SOX/ICFR, EU AI Act, and ISO 42001 without claiming certification.
+`industry.governance` seats L1. `industry.oversight` is a priced P-ADM
+keep. Owner gaps stay open. Cynthia still invited, not recorded.
+
+### 2.13.0
 
 Priced a-la-carte desks on the same three SKUs. Cash, fixed-asset,
 inventory, returns, pricing, and retention attach with catalog-list

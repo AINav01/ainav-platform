@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.13.0"
+    assert cat["entity"]["release"] == "2.14.0"
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     invited = cat["organization"]["contacts"]["invited"]
     assert invited["name"] == "Cynthia Hodnett"
@@ -128,6 +128,8 @@ def test_cli_owner_and_counsel(capsys):
     assert "industry.treasury" in capsys.readouterr().out
     assert main(["finance"]) == 0
     assert "catalog" in capsys.readouterr().out.lower()
+    assert main(["governance"]) == 0
+    assert "failsafe" in capsys.readouterr().out.lower()
     assert main(["keep-artifact"]) == 0
     assert "live_pin_ok" in capsys.readouterr().out
     assert main(["brief-pdf"]) == 0

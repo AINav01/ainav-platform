@@ -11,6 +11,13 @@ distinct humans bind the same `action_hash`, that grant is consumed once,
 and the effect gate is fail-closed. Microsoft supplies identity, notify,
 SoR, and audit. It is not the product.
 
+## AI governance (not a SKU, not a certificate)
+
+AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write.
+- Certified: false. Replaces counsel: false. The failsafe is Job C.
+- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles.
+- A client-AI draft without two seats is the write that must not happen.
+
 ## The sale
 
 The unauthorized general-journal post that two humans did not admit. L1 is the week you prove that write cannot land without two seats.
@@ -56,6 +63,8 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **industry.returns** — Returns desk (requires U-DUAL; $6,000–$10,000/annual; A la carte U-DUAL seating. Not a fourth SKU.)
 - **industry.pricing** — Pricing desk (requires U-DUAL; $6,000–$10,000/annual; A la carte U-DUAL seating. Not a fourth SKU.)
 - **industry.retention** — Retention keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK.)
+- **industry.governance** — AI failsafe desk (requires L1; included; L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification.)
+- **industry.oversight** — Oversight keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.)
 
 ## Libraries (not SKUs)
 
@@ -71,6 +80,8 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **lib.l1.fixed_asset** — requires L1. A la carte L1 library. Priced as industry.fixed_asset. Not a SKU.
 - **lib.udual.returns** — requires U-DUAL. A la carte U-DUAL library. Never free with P-ADM.
 - **lib.padm.retention** — requires P-ADM. A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK.
+- **lib.l1.failsafe** — requires L1. L1 failsafe library. Client AI is not a seat. Not a SKU.
+- **lib.padm.governance** — requires P-ADM. A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.
 
 ## Fee-for-service (not SKUs)
 
@@ -82,6 +93,7 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **ffs.pack_seating** — Industry pack seating ($3,500/day). Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL.
 - **ffs.desk_workshop** — Desk workshop ($3,500/day). Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL.
 - **ffs.keep_wiring** — P-ADM keep wiring ($3,500/day). Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.
+- **ffs.governance_workshop** — AI governance / failsafe workshop ($3,500/day). Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.
 
 ## Operations
 
@@ -94,6 +106,7 @@ Exits: LOST · KIT_FAIL · CHURN
 - LIVE_PIN_OK cannot be marked from this plane
 - Signed L1 cannot be marked from this plane
 - A la carte packs attach after the required SKU. They are not SKUs.
+- AINav is a separate failsafe from client AI. Client AI is not a seat.
 
 ## Delivery
 
@@ -123,6 +136,7 @@ Same Job C lockfile. One consume ledger per client. Master never writes the clie
 - **repo.runbooks** — src/ainav/runbooks.py. Industry seating runbooks. Not a SKU.
 - **repo.owner** — src/ainav/owner_steps.py. Owner-only gates with Microsoft links. Not a SKU. Not a seat.
 - **repo.legal** — src/ainav/counsel.py. Unsigned order form and MSA skeleton. Not a SKU. G12 stays open.
+- **repo.governance** — src/ainav/governance.py. AI governance doctrine. Maps only. Not a SKU. Not a certification.
 
 ## Business operating system
 
@@ -225,3 +239,5 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - No soft HITL as dual
 - No invented SKUs
 - No LIVE_PIN_OK / product HA / signed L1 without evidence
+- AINav is a separate failsafe from client AI
+- No invented compliance certification

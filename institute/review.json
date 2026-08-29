@@ -19,6 +19,7 @@
     "python -m ainav twin-demo",
     "python -m ainav programs",
     "python -m ainav finance",
+    "python -m ainav governance",
     "python -m ainav brief-pdf"
   ],
   "cloud_agent_can_approve_tools": false,

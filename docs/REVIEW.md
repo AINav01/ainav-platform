@@ -39,7 +39,7 @@ Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Busines
 - **Programs** — `qualify_not_claimed`. Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.
 - **Commercial spine** — `catalog_list_not_revenue`. Year-one catalog list if one controller buys all three: $88,000–$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.
 
-Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox.
+Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox; client AI as dual; AINav is the client's AI; EU AI Act certified.
 
 ## First principles
 
@@ -47,6 +47,16 @@ Dual-admitted effect authority before privileged system-of-record writes.
 A privileged write is allowed only when two distinct humans bind the same `action_hash`,
 that grant is consumed once, and the effect gate is fail-closed.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
+
+## AI governance — failsafe, not a certificate
+
+AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write.
+- Certified: false. Replaces counsel: false. SKU: false.
+- Does: Dual-admit the privileged write regardless of which agent drafted it.
+- Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote.
+- Maps (claimed=false): nist.ai_rmf, omb.m24_10, sox.icfr, ftc.state_ai, eu.ai_act, iso.42001, oecd.ai.
+- Risks: unauthorized_sor; audit_failure; false_certification; seat_collapse; cross_border_claim; bypass_tool.
+- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map.
 
 Must not change:
 
@@ -60,6 +70,8 @@ Must not change:
 - No soft HITL as dual
 - No invented SKUs
 - No LIVE_PIN_OK / product HA / signed L1 without evidence
+- AINav is a separate failsafe from client AI
+- No invented compliance certification
 
 ## The sale
 
@@ -67,7 +79,7 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - Proof day: 90 minutes. `python -m ainav proof-day`
 - Seats: treasury_approver / treasury_controller
 - Door: Generate a proof-day brief a controller can forward. Do not invent a contact inbox.
-- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox.
+- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox, client AI as dual, AINav is the client's AI, EU AI Act certified.
 
 ## Commercial spine
 
@@ -218,6 +230,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **Three controllers — L1 + P-ADM each** — $204,000–$300,000. Three controllers each buy L1 and attach P-ADM. No named buyers exist.
 - **One L1 plus four FFS days** — $42,000–$54,000. One controller buys L1 and four billable days on the same plane.
 - **One L1 plus payables and bank desks** — $40,000–$60,000. One controller buys L1 then attaches industry.payables and industry.bank.
+- **One controller — L1, P-ADM, oversight keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.oversight.
 - **All three SKUs plus invoice and credit desks** — $100,000–$155,000. One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.
 
 ## Expert review — working well
@@ -231,6 +244,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
 - A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
+- AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.
 
 ## Expert review — could be improved
 
@@ -242,6 +256,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.
 - No billing provider. Catalog list cannot become recognized revenue.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
+- Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
 
 ## Fifteen upgrades
 
@@ -293,4 +308,5 @@ Catalog wins. `--probe` overlays live Microsoft and DNS health. Probe does not p
 - `python -m ainav twin-demo`
 - `python -m ainav programs`
 - `python -m ainav finance`
+- `python -m ainav governance`
 - `python -m ainav brief-pdf`

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.13.0",
+    "release": "2.14.0",
     "category": "Dual-admitted effect authority before privileged system-of-record writes"
   },
   "operating": {
@@ -218,7 +218,9 @@
     "No free U-DUAL with P-ADM or U-SOR",
     "No soft HITL as dual",
     "No invented SKUs",
-    "No LIVE_PIN_OK / product HA / signed L1 without evidence"
+    "No LIVE_PIN_OK / product HA / signed L1 without evidence",
+    "AINav is a separate failsafe from client AI",
+    "No invented compliance certification"
   ],
   "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "equations": {
@@ -533,6 +535,24 @@
       "wedge": false,
       "upsell": true,
       "note": "A la carte P-ADM keep. Seal the DecisionRecord hash in Key Vault. Not a live pin."
+    },
+    {
+      "id": "governance.decision.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_decision_record",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Examiner pack of sealed DecisionRecords. Not a certification. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "governance.risk.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_catalog",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Catalog-list non-compliance risk register. Not a filing. Not counsel. Not LIVE_PIN_OK."
     }
   ],
   "industry_packs": [
@@ -852,6 +872,54 @@
         "Export DecisionRecords to Defender, Monitor, and Key Vault sinks.",
         "A keep export is not dual admit. Not LIVE_PIN_OK."
       ]
+    },
+    {
+      "id": "industry.governance",
+      "name": "AI failsafe desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification.",
+      "runbook": [
+        "Requires L1. The failsafe is the admit plane, not a fourth SKU.",
+        "Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent are not seats.",
+        "Seat A treasury_approver. Seat B treasury_controller.",
+        "One bc.general_journal.post on the BC twin after both humans bind the same action_hash.",
+        "A client-AI draft without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.oversight",
+      "name": "Oversight keep",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "note": "A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.",
+      "runbook": [
+        "Requires P-ADM after kit PASS. Not a SKU.",
+        "Export sealed DecisionRecords and the catalog-list risk register.",
+        "This is not an EU AI Act, NIST, or ISO 42001 certificate.",
+        "A keep export is not dual admit. Not LIVE_PIN_OK."
+      ]
     }
   ],
   "libraries": [
@@ -1055,6 +1123,40 @@
         "keyvault.decision.seal"
       ],
       "note": "A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "lib.l1.failsafe",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 failsafe library. Client AI is not a seat. Not a SKU."
+    },
+    {
+      "id": "lib.padm.governance",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "purview.audit.export",
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "note": "A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -1134,6 +1236,16 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.governance_workshop",
+      "name": "AI governance / failsafe workshop",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -1302,6 +1414,14 @@
       "note": "Unsigned order form and MSA skeleton. Not a SKU. G12 stays open.",
       "live": false,
       "sku": false
+    },
+    {
+      "id": "repo.governance",
+      "kind": "law",
+      "path": "src/ainav/governance.py",
+      "note": "AI governance doctrine. Maps only. Not a SKU. Not a certification.",
+      "live": false,
+      "sku": false
     }
   ],
   "operations": {
@@ -1320,7 +1440,8 @@
       "U-DUAL requires L1",
       "LIVE_PIN_OK cannot be marked from this plane",
       "Signed L1 cannot be marked from this plane",
-      "A la carte packs attach after the required SKU. They are not SKUs."
+      "A la carte packs attach after the required SKU. They are not SKUs.",
+      "AINav is a separate failsafe from client AI. Client AI is not a seat."
     ],
     "exits": [
       "LOST",
@@ -1425,7 +1546,10 @@
       "free U-DUAL",
       "LIVE_PIN_OK",
       "named design partner",
-      "invented contact inbox"
+      "invented contact inbox",
+      "client AI as dual",
+      "AINav is the client's AI",
+      "EU AI Act certified"
     ],
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
     "contact_email": null,
@@ -2073,7 +2197,13 @@
       "live_pin_ok",
       "nvidia inception member",
       "microsoft for startups member",
-      "azure credits awarded"
+      "azure credits awarded",
+      "eu ai act certified",
+      "nist certified",
+      "iso 42001 certified",
+      "replaces counsel",
+      "ainav is the client ai",
+      "client ai is dual"
     ]
   },
   "programs": {
@@ -2231,7 +2361,9 @@
         "LIVE_PIN_OK cannot be marked from this contract",
         "Signed L1 is a separate counsel pack (G13)",
         "Industry packs and libraries are not SKUs",
-        "A la carte pack attach is catalog list, not a fourth SKU"
+        "A la carte pack attach is catalog list, not a fourth SKU",
+        "AINav is a separate failsafe from client AI",
+        "This contract does not certify EU AI Act, NIST, or ISO 42001"
       ]
     },
     "msa": {
@@ -2362,7 +2494,8 @@
       "Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.",
       "Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.",
       "Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.",
-      "A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach."
+      "A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.",
+      "AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -2372,7 +2505,8 @@
       "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.",
       "No billing provider. Catalog list cannot become recognized revenue.",
-      "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running."
+      "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
+      "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
     ],
     "upgrades": [
       {
@@ -2489,5 +2623,129 @@
         "marks_live_pin": false
       }
     ]
+  },
+  "governance": {
+    "kind": "ainav.governance.v1",
+    "sku": false,
+    "certified": false,
+    "replaces_counsel": false,
+    "live": false,
+    "live_pin_ok": false,
+    "thesis": "AINav is a separate failsafe from client AI. Client AI, Copilot, Agent 365, BYO MCP, and the Cloud Agent may propose or operate. They are not seats. Two distinct humans bind one action_hash. Then the privileged write.",
+    "failsafe": {
+      "does": "Dual-admit the privileged write regardless of which agent drafted it.",
+      "separate_from": [
+        "client AI",
+        "Microsoft 365 Copilot",
+        "Agent 365",
+        "BYO MCP",
+        "cursor.cloud_agent",
+        "PIM activation",
+        "Teams vote"
+      ],
+      "does_not": [
+        "replace the client's model",
+        "be the client's AI",
+        "vote in Teams",
+        "activate PIM",
+        "certify the client's system",
+        "replace counsel",
+        "file a regulator submission"
+      ]
+    },
+    "maps": [
+      {
+        "id": "nist.ai_rmf",
+        "name": "NIST AI Risk Management Framework",
+        "scope": "US domestic",
+        "maps_to": "Govern and Measure via sealed DecisionRecords on the admit plane",
+        "claimed": false
+      },
+      {
+        "id": "omb.m24_10",
+        "name": "OMB M-24-10 (federal agency AI)",
+        "scope": "US domestic / federal",
+        "maps_to": "Human authority before consequential action. ICP is not a federal agency unless they buy.",
+        "claimed": false
+      },
+      {
+        "id": "sox.icfr",
+        "name": "SOX / internal control over financial reporting",
+        "scope": "US domestic / books",
+        "maps_to": "Unauthorized general-journal post is the L1 incident. Dual admit is a control. Not a SOX opinion.",
+        "claimed": false
+      },
+      {
+        "id": "ftc.state_ai",
+        "name": "FTC and state AI / automated-decision laws",
+        "scope": "US domestic",
+        "maps_to": "Refuse undeclared automated SoR writes. Not a state-law opinion.",
+        "claimed": false
+      },
+      {
+        "id": "eu.ai_act",
+        "name": "EU AI Act",
+        "scope": "international",
+        "maps_to": "AINav is a write-gate failsafe, not the client's high-risk system. No conformity assessment is claimed.",
+        "claimed": false
+      },
+      {
+        "id": "iso.42001",
+        "name": "ISO/IEC 42001 AI management system",
+        "scope": "international",
+        "maps_to": "Catalog and DecisionRecords can feed an AIMS. Certification is not claimed.",
+        "claimed": false
+      },
+      {
+        "id": "oecd.ai",
+        "name": "OECD AI Principles",
+        "scope": "international",
+        "maps_to": "Accountability and human agency before the write. Not a membership.",
+        "claimed": false
+      }
+    ],
+    "risks": [
+      {
+        "id": "unauthorized_sor",
+        "harm": "A client-AI or agent tool posts a journal, quote, invoice, or credit without two seats.",
+        "note": "This is the Job C incident. Dual admit is the failsafe. Not LIVE_PIN_OK."
+      },
+      {
+        "id": "audit_failure",
+        "harm": "Books and records cannot show who admitted the write.",
+        "note": "Sealed DecisionRecords are the keep artifact after P-ADM. Not a SOX opinion."
+      },
+      {
+        "id": "false_certification",
+        "harm": "Claiming EU AI Act, NIST, or ISO 42001 certification that does not exist.",
+        "note": "This tree maps instruments. It does not certify. Counsel stays open (G12)."
+      },
+      {
+        "id": "seat_collapse",
+        "harm": "Treating Copilot, Agent 365, PIM, a Teams vote, or the Cloud Agent as seat_a or seat_b.",
+        "note": "The failsafe collapses. Client AI is not dual admit."
+      },
+      {
+        "id": "cross_border_claim",
+        "harm": "Selling an EU-ready story without a conformity assessment or counsel.",
+        "note": "Maps are not filings. Do not invent a notified body."
+      },
+      {
+        "id": "bypass_tool",
+        "harm": "A BYO MCP or Dataverse tool writes Business Central or Sales around the admit plane.",
+        "note": "Owner blocks Dataverse MCP until paid U-DUAL. Tools are not seats."
+      }
+    ],
+    "refuse": [
+      "EU AI Act certified",
+      "NIST certified",
+      "ISO 42001 certified",
+      "replaces counsel",
+      "AINav is the client's AI",
+      "client AI as dual",
+      "Cloud Agent as a seat",
+      "LIVE_PIN_OK from a governance map"
+    ],
+    "note": "Catalog map only. Not booked. Not a certification. Not recognized revenue. G12 legal stays open. The failsafe is Job C, not a fourth SKU."
   }
 }

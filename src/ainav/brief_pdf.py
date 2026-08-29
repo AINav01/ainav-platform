@@ -136,6 +136,16 @@ def brief_document() -> list[dict[str, Any]]:
         {
             "kind": "p",
             "text": (
+                "AINav is a separate failsafe from client AI. Copilot, Agent 365, a BYO MCP, and "
+                "this Cloud Agent may draft a journal. They are not seats. Two humans admit. Then "
+                "the write. We map NIST AI RMF, SOX internal control, the EU AI Act, and ISO 42001. "
+                "We do not claim those certificates. We do not replace counsel. Governance is not "
+                "a fourth SKU."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
                 "We sell three things only. Packs, hours, and Microsoft licenses are not products. "
                 "A controller buys the commercial close: named dual seats × proof day × signed L1 × "
                 f"P-ADM attach. The lab pin {c['lab_pin']} is a separate engineering fact and is "
@@ -328,10 +338,11 @@ def brief_document() -> list[dict[str, Any]]:
                 "Industry packs seat the same admit plane: treasury and controller on the journal "
                 "wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales "
                 "and quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced "
-                "U-DUAL desks; retention as a priced P-ADM keep. Libraries bundle those modules. "
+                "U-DUAL desks; retention as a priced P-ADM keep; governance seating included with "
+                "L1; oversight keep as a priced P-ADM desk. Libraries bundle those modules. "
                 "Repositories hold the plane, catalog, Institute, finance, brief, review, packs, "
-                "runbooks, owner steps, and counsel. None of those are SKUs. A la carte is a desk "
-                "attach on L1, P-ADM, or paid U-DUAL — never a fourth product."
+                "runbooks, owner steps, counsel, and governance. None of those are SKUs. A la carte "
+                "is a desk attach on L1, P-ADM, or paid U-DUAL — never a fourth product."
             ),
         },
         {

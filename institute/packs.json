@@ -79,6 +79,16 @@
       "rate_usd_per_day": 3500,
       "requires_l1": true,
       "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.governance_workshop",
+      "name": "AI governance / failsafe workshop",
+      "note": "Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
     }
   ],
   "industry": [
@@ -283,6 +293,35 @@
       "note": "A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.governance",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "AI failsafe desk",
+      "note": "L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.oversight",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "name": "Oversight keep",
+      "note": "A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
     }
   ],
   "kind": "ainav.institute.packs.v1",
@@ -415,6 +454,28 @@
       "note": "A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
+    },
+    {
+      "id": "lib.l1.failsafe",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 failsafe library. Client AI is not a seat. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.governance",
+      "modules": [
+        "purview.audit.export",
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "note": "A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
     }
   ],
   "live": false,
@@ -489,6 +550,13 @@
       "live": false,
       "note": "Unsigned order form and MSA skeleton. Not a SKU. G12 stays open.",
       "path": "src/ainav/counsel.py",
+      "sku": false
+    },
+    {
+      "id": "repo.governance",
+      "live": false,
+      "note": "AI governance doctrine. Maps only. Not a SKU. Not a certification.",
+      "path": "src/ainav/governance.py",
       "sku": false
     }
   ],
