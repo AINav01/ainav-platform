@@ -72,6 +72,28 @@ def test_cannot_claim_eu_ai_act_certified():
         validate_catalog(cat)
 
 
+def test_governance_validator_refuses_sku_and_seat_collapse():
+    cases = [
+        {"sku": True},
+        {"replaces_counsel": True},
+        {"live": True},
+        {"thesis": "A map of instruments with no humans."},
+        {"failsafe": {"separate_from": ["Microsoft 365 Copilot"], "does": "x", "does_not": []}},
+        {"maps": [{"id": "nist.ai_rmf", "name": "NIST", "scope": "US", "maps_to": "x", "claimed": False}]},
+        {"refuse": ["LIVE_PIN_OK from a governance map"]},
+        {"risks": []},
+        {"kind": None},
+    ]
+    for patch in cases:
+        cat = copy.deepcopy(load_catalog())
+        if patch.get("kind") is None and "kind" in patch:
+            cat.pop("governance", None)
+        else:
+            cat["governance"].update(patch)
+        with pytest.raises(IntegrityError):
+            validate_catalog(cat)
+
+
 def test_docs_governance_matches_generator():
     on_disk = Path("docs/GOVERNANCE.md").read_text(encoding="utf-8")
     assert on_disk == governance_markdown()
