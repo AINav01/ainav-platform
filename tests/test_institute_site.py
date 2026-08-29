@@ -35,6 +35,11 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="governance"' in html
     assert 'href="#governance"' in html
     assert 'id="control-plane"' in html
+    assert "Human control plane" in html
+    assert 'id="plane-tiles"' in html
+    assert 'id="plane-hierarchy"' in html
+    assert 'id="plane-depts"' in html
+    assert 'id="plane-maps"' in html
     assert "control-plane.json" in js
     assert "governance.json" in js
     assert "The client utilizes AI" in html

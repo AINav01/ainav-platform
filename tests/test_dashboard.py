@@ -47,9 +47,12 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "not a sku" in md.lower()
     assert "$0" in md
     assert "same entra" in md.lower() or "same plane" in md.lower()
+    assert "throughout the client organization" in md.lower()
     html = dashboard_html()
     assert "Executive control-plane dashboard" in html
     assert "OPEN" in html
+    assert "Throughout the client organization" in html
+    assert "Department AI is not a seat" in html
     path = write_dashboard()
     assert path.exists()
     assert Path("docs/CONTROL_PLANE.md").exists()
@@ -85,6 +88,14 @@ def test_institute_control_plane_matches_catalog():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
     assert 'id="control-plane"' in html
+    assert "Human control plane" in html
+    assert 'id="plane-tiles"' in html
+    assert 'id="plane-hierarchy"' in html
+    assert 'id="plane-depts"' in html
+    assert 'id="plane-maps"' in html
+    assert 'id="plane-access-rules"' in html
     assert "control-plane.json" in js
+    assert "plane-depts" in js
+    assert "plane-maps" in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()

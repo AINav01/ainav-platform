@@ -200,6 +200,28 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
 @media (min-width: 800px) {
   .cards { grid-template-columns: repeat(3, 1fr); }
   .cards.stack-cards { grid-template-columns: repeat(2, 1fr); }
+  .cards.dash { grid-template-columns: repeat(4, 1fr); }
+}
+.cards.dash article { min-height: 8.25rem; }
+.table-wrap { overflow: auto; margin: 0 0 1.25rem; }
+table.law {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+}
+table.law th, table.law td {
+  border: 1px solid var(--rule);
+  padding: 0.45rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+table.law th {
+  background: var(--void);
+  color: var(--void-ink);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 .cards article {
   border: 1px solid var(--rule);

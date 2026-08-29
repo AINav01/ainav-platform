@@ -33,6 +33,21 @@ The executive dashboard is that same plane, tiled. Real-time here means the admi
 | Remote human | same_plane | if_seated | if_seated | if_role | Same Entra object id. Not a second plane. Not a VPN SKU. |
 | Cloud Agent / client AI | not_a_seat | False | False | False | May draft or operate the host. Cannot bind an action_hash. |
 
+## Throughout the client organization
+
+| Department | Role | Seat | AI | Note |
+| --- | --- | --- | --- | --- |
+| Treasury | admit | treasury_approver | May draft cash and bank journals. Not a seat. | Usually seat A. Existing two-person SOD. Not a SKU. |
+| Controller / accounting | admit | treasury_controller | May draft the books. Not a seat. | Usually seat B. First record is the admitted SoR write. Not a SKU. |
+| Payables | draft | — | AP Copilot may draft invoices and payments. Not a seat. | Same two treasury humans admit. Not a fourth SKU. |
+| Sales / quote desk | draft | — | Sales Copilot may draft quotes and orders. Not a seat. | Paid U-DUAL deepens the same plane. Not a second product. |
+| IT / identity | host | — | Owns Copilot, Agent 365, BYO MCP. Not a seat. | Hosts identity. Blocks bypass tools. PIM activation is not dual admit. |
+| Security / compliance | keep | — | May draft risk memos. Not a seat. | 2LOD keep. Second record after P-ADM. Not a certificate. |
+| Internal audit | keep | — | Not a seat. | Reads first and second records. Do not invent an audit partner. |
+| Legal / counsel | counsel | — | Not a seat. | AINav does not replace counsel. G12 stays open on our side. Do not invent a firm. |
+| Owner / executive | oversee | — | Not a seat unless they are one of the two named humans. | Institutes AINav. Can ask for freeze. One title cannot be both seats. |
+| Board | oversee | — | Not a seat. | Fiduciary oversight. Inventory of models is not a control. Do not invent a director. |
+
 ## Internal and remote access
 
 - Internal: Entra ID on the client tenant. Same action_hash. Same consume ledger.

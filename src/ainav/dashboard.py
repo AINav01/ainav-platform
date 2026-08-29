@@ -119,6 +119,18 @@ def dashboard_markdown() -> str:
             f"| {item['name']} | {item['role']} | {item['admit']} | {item['freeze']} | "
             f"{item['keep']} | {item.get('note') or ''} |"
         )
+    lines += [
+        "",
+        "## Throughout the client organization",
+        "",
+        "| Department | Role | Seat | AI | Note |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for item in body["departments"]:
+        lines.append(
+            f"| {item['name']} | {item['role']} | {item.get('seat') or '—'} | "
+            f"{item.get('ai') or 'Not a seat.'} | {item.get('note') or ''} |"
+        )
     access = body["access"]
     lines += [
         "",
@@ -183,8 +195,24 @@ def dashboard_html() -> str:
         + "</tr>"
         for item in body["levels"]
     )
+    depts = "".join(
+        "<tr>"
+        + "".join(
+            f"<td>{html.escape(str(cell))}</td>"
+            for cell in (
+                item["name"],
+                item["role"],
+                item.get("seat") or "—",
+                item.get("ai") or "Not a seat.",
+                item.get("note") or "",
+            )
+        )
+        + "</tr>"
+        for item in body["departments"]
+    )
     maps = "".join(
-        f"<li>{html.escape(item['name'])} — claimed={str(item.get('claimed')).lower()}</li>"
+        f"<li>{html.escape(item['name'])} — {html.escape(item.get('maps_to') or '')} "
+        f"claimed={str(item.get('claimed')).lower()}</li>"
         for item in body["maps"]
     )
     refuse = "".join(f"<li>{html.escape(item)}</li>" for item in body["refuse"])
@@ -236,6 +264,12 @@ footer {{ border-top: 0.7pt solid #b9b1a4; padding-top: 6pt; font: 8pt Helvetica
 <table>
 <thead><tr><th>Level</th><th>Role</th><th>Admit</th><th>Freeze</th><th>Keep</th><th>Note</th></tr></thead>
 <tbody>{levels}</tbody>
+</table>
+<h2>Throughout the client organization</h2>
+<p class="note">Existing SOD. Not invented department heads. Department AI is not a seat.</p>
+<table>
+<thead><tr><th>Department</th><th>Role</th><th>Seat</th><th>AI</th><th>Note</th></tr></thead>
+<tbody>{depts}</tbody>
 </table>
 <h2>Internal and remote</h2>
 <p>Internal: {html.escape(access['internal'])}</p>

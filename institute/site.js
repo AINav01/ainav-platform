@@ -86,6 +86,16 @@
         var node = document.getElementById(id);
         if (node && text) node.textContent = text;
       }
+      function fill(id, items, line) {
+        var root = document.getElementById(id);
+        if (!root || !items || !items.length) return;
+        root.textContent = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = line(item);
+          root.appendChild(li);
+        });
+      }
       set("plane-thesis", data.thesis);
       if (data.equation) set("plane-equation", "Interface = " + data.equation);
       if (data.dashboard && data.dashboard.realtime_means) set("plane-realtime", data.dashboard.realtime_means);
@@ -119,13 +129,43 @@
           tiles.appendChild(art);
         });
       }
+      function cell(text) {
+        var td = document.createElement("td");
+        td.textContent = text == null || text === false ? "no" : text === true ? "yes" : String(text);
+        return td;
+      }
       var levels = document.getElementById("plane-levels");
       if (levels && data.levels && data.levels.length) {
         levels.textContent = "";
         data.levels.forEach(function (item) {
-          var li = document.createElement("li");
-          li.textContent = item.name + " — " + item.role + ". " + (item.note || "");
-          levels.appendChild(li);
+          var tr = document.createElement("tr");
+          tr.appendChild(cell(item.name));
+          tr.appendChild(cell(item.role));
+          tr.appendChild(cell(item.admit));
+          tr.appendChild(cell(item.freeze));
+          tr.appendChild(cell(item.keep));
+          tr.appendChild(cell(item.note || ""));
+          levels.appendChild(tr);
+        });
+      }
+      fill("plane-depts", data.departments || [], function (item) {
+        var seat = item.seat ? " Seat: " + item.seat + "." : "";
+        return item.name + " — " + item.role + "." + seat + " " + (item.note || "") + " AI: " + (item.ai || "Not a seat.");
+      });
+      fill("plane-maps", data.maps || [], function (item) {
+        return item.name + " — " + (item.maps_to || "") + " Claimed: " + String(item.claimed);
+      });
+      fill("plane-refuse", data.refuse || [], function (item) {
+        return item;
+      });
+      if (data.access) {
+        fill("plane-access-rules", [
+          "Internal: " + data.access.internal,
+          "Remote: " + data.access.remote,
+          "Same plane: " + String(data.access.same_plane) + ". Second remote plane: " + String(data.access.second_remote_plane) + ". VPN SKU: " + String(data.access.vpn_sku) + ".",
+          "Entra required. PIM is not dual. Teams is not a seat."
+        ], function (item) {
+          return item;
         });
       }
     })

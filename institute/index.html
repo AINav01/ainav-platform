@@ -355,26 +355,79 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane">
-      <h2>Ultimate control plane interface</h2>
-      <p class="note">Humans from the top of the client's org chart. Executive dashboard tiles the admit ledger — not invented P&amp;L. Remote is the same Entra plane. Compliance maps claimed=false. Not a SKU. Not LIVE_PIN_OK. Catalog from <code>control-plane.json</code>.</p>
+      <h2>Human control plane — interface</h2>
+      <p class="note">Ultimate control plane from the top of the client's org chart through every drafting desk. Executive dashboard tiles the admit ledger — not invented P&amp;L. Internal and remote are the same Entra plane. AI compliance maps claimed=false. Not a SKU. Not LIVE_PIN_OK. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>
       <p class="equation" id="plane-equation">Interface = humans from the top × one admit plane × hierarchical access × fail-closed tiles</p>
-      <div class="cards" id="plane-tiles">
-        <article><h3>Plane state</h3><p class="price">OPEN</p></article>
-        <article><h3>Recognized revenue</h3><p class="price">$0</p></article>
-        <article><h3>Signed L1</h3><p class="price">0</p></article>
-        <article><h3>Compliance maps</h3><p class="price">claimed=false</p></article>
+      <div class="cards dash" id="plane-tiles">
+        <article><h3>Plane state</h3><p class="price">OPEN</p><p class="note">Not frozen. Fail-closed if thrown.</p></article>
+        <article><h3>Pending dual admits</h3><p class="price">0</p><p class="note">No named treasury pair has a live bind.</p></article>
+        <article><h3>First record (SoR)</h3><p class="price">1 sandbox / 0 production</p><p class="note">AINAV-L1 lab oids.</p></article>
+        <article><h3>Second record</h3><p class="price">0</p><p class="note">P-ADM keep not attached.</p></article>
+        <article><h3>Off switch</h3><p class="price">READY</p><p class="note">Does not power down Copilot.</p></article>
+        <article><h3>Last sealed keep</h3><p class="price">none</p><p class="note">Weekly DecisionRecord after kit PASS.</p></article>
+        <article><h3>Recognized revenue</h3><p class="price">$0</p><p class="note">Not booked. No billing provider.</p></article>
+        <article><h3>Named customers</h3><p class="price">0</p><p class="note">Do not invent a buyer.</p></article>
+        <article><h3>Signed L1</h3><p class="price">0</p><p class="note">Counsel pack G13 stays open.</p></article>
+        <article><h3>Year-one if all three</h3><p class="price">$88–135k list</p><p class="note">Catalog list. Not a forecast.</p></article>
+        <article><h3>Seats recorded</h3><p class="price">0 recorded / 1 invited</p><p class="note">Cynthia Hodnett invited, not recorded.</p></article>
+        <article><h3>AI compliance maps</h3><p class="price">11 / claimed=false</p><p class="note">NIST, SOX, EU AI Act, ISO 42001.</p></article>
       </div>
       <p class="note" id="plane-realtime">Real-time means the admit ledger and freeze state. Not live Production BC. Not forecast ARR.</p>
-      <h3>Hierarchy</h3>
-      <ul class="stack" id="plane-levels">
-        <li>Owner / board — oversee. Not seats.</li>
-        <li>Seat A treasury / seat B controller — admit.</li>
-        <li>Departments draft or keep. Department AI is not a seat.</li>
-        <li>Remote human — same Entra object id. Not a second plane.</li>
-        <li>Cloud Agent / client AI — not a seat.</li>
+      <h3>Hierarchical access and control</h3>
+      <div class="table-wrap">
+        <table class="law" id="plane-hierarchy">
+          <thead>
+            <tr><th>Level</th><th>Role</th><th>Admit</th><th>Freeze</th><th>Keep</th><th>Note</th></tr>
+          </thead>
+          <tbody id="plane-levels">
+            <tr><td>Owner / executive</td><td>oversee</td><td>no</td><td>request</td><td>view</td><td>Institutes the plane. One title cannot be both seats.</td></tr>
+            <tr><td>Board</td><td>oversee</td><td>no</td><td>request</td><td>view</td><td>Fiduciary oversight. Not a named director.</td></tr>
+            <tr><td>Internal audit / examiner</td><td>keep</td><td>no</td><td>no</td><td>second_record</td><td>Not a named auditor. Not a filing.</td></tr>
+            <tr><td>Treasury — seat A</td><td>admit</td><td>yes</td><td>refuse</td><td>view</td><td>Own Entra object id. Own click.</td></tr>
+            <tr><td>Controller — seat B</td><td>admit</td><td>yes</td><td>refuse</td><td>view</td><td>Cynthia Hodnett if she agrees. Invited, not recorded.</td></tr>
+            <tr><td>Payables / sales</td><td>draft</td><td>no</td><td>no</td><td>no</td><td>Department AI is not a seat.</td></tr>
+            <tr><td>IT / identity</td><td>host</td><td>no</td><td>no</td><td>no</td><td>Hosts Copilot and agents. Not a seat.</td></tr>
+            <tr><td>Legal</td><td>counsel</td><td>no</td><td>no</td><td>no</td><td>Not replaced. G12 stays open.</td></tr>
+            <tr><td>Remote human</td><td>same_plane</td><td>if seated</td><td>if seated</td><td>if role</td><td>Same Entra object id. Not a VPN SKU.</td></tr>
+            <tr><td>Cloud Agent / client AI</td><td>not_a_seat</td><td>no</td><td>no</td><td>no</td><td>May draft. Cannot bind an action_hash.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Throughout the client organization</h3>
+      <p class="note">Existing SOD. Not invented department heads. Not a fourth SKU. Catalog from the same JSON.</p>
+      <ul class="stack" id="plane-depts">
+        <li>Treasury — admit (usually seat A). AI may draft cash and bank journals. Not a seat.</li>
+        <li>Controller / accounting — admit (usually seat B). AI may draft the books. Not a seat.</li>
+        <li>Payables / sales — draft. Same two humans admit.</li>
+        <li>IT / identity — host. PIM is not dual admit.</li>
+        <li>Security / compliance and internal audit — keep the second record.</li>
+        <li>Legal — counsel. Not replaced.</li>
+        <li>Owner / board — oversee. Can ask for a freeze. Not seats unless they are one of the two named humans.</li>
       </ul>
+      <h3>Internal and remote access</h3>
       <p class="note" id="plane-access">Internal and remote use the same Entra object id. PIM is not dual. Teams is not a seat.</p>
+      <ul class="stack" id="plane-access-rules">
+        <li>Internal: Entra ID on the client tenant. Same action_hash. Same consume ledger.</li>
+        <li>Remote: same Entra object id from any network. Conditional Access may identify. It does not admit.</li>
+        <li>Same plane. Not a second remote plane. Not a VPN SKU.</li>
+      </ul>
+      <h3>AI compliance maps</h3>
+      <p class="note">Maps, not certificates. Every instrument stays claimed=false until counsel says otherwise.</p>
+      <ul class="stack" id="plane-maps">
+        <li>NIST AI RMF — claimed=false</li>
+        <li>SOX / ICFR — claimed=false</li>
+        <li>EU AI Act — claimed=false</li>
+        <li>ISO/IEC 42001 — claimed=false</li>
+        <li>Three lines of defense — claimed=false</li>
+      </ul>
+      <h3>Refuse</h3>
+      <ul class="stack refuse" id="plane-refuse">
+        <li>fourth SKU</li>
+        <li>invented live P&amp;L</li>
+        <li>remote second plane</li>
+        <li>Cloud Agent as seat</li>
+      </ul>
       <p class="note" id="plane-letter">Print docs/CONTROL_PLANE_DASHBOARD.html and the Cynthia letter section.</p>
     </section>
 
