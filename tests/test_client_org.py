@@ -45,12 +45,24 @@ def test_org_desk_and_internal_audit_are_not_skus():
 
 
 def test_client_org_validators_refuse_fiction():
+    cases = [
+        {"named_customers": ["Invented Corp"]},
+        {"replaces_org_chart": True},
+        {"sku": True},
+        {"live": True},
+        {"do_not_invent_names": False},
+        {"thesis": "A map of people with no seats mentioned."},
+        {"seats": {"seat_a": {"role": "ceo"}, "seat_b": {"role": "treasury_controller"}}},
+        {"seats": {"seat_a": {"role": "treasury_approver"}, "seat_b": {"role": "ceo"}}},
+        {"departments": []},
+    ]
+    for patch in cases:
+        cat = copy.deepcopy(load_catalog())
+        cat["client_org"].update(patch)
+        with pytest.raises(IntegrityError):
+            validate_catalog(cat)
     cat = copy.deepcopy(load_catalog())
-    cat["client_org"]["named_customers"] = ["Invented Corp"]
-    with pytest.raises(IntegrityError):
-        validate_catalog(cat)
-    cat = copy.deepcopy(load_catalog())
-    cat["client_org"]["replaces_org_chart"] = True
+    cat.pop("client_org")
     with pytest.raises(IntegrityError):
         validate_catalog(cat)
     cat = copy.deepcopy(load_catalog())
@@ -62,11 +74,35 @@ def test_client_org_validators_refuse_fiction():
     with pytest.raises(IntegrityError):
         validate_catalog(cat)
     cat = copy.deepcopy(load_catalog())
+    cat["client_org"]["departments"][2]["sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["client_org"]["departments"][2]["role"] = "invented"
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    for item in cat["client_org"]["departments"]:
+        if item["role"] == "admit":
+            item["role"] = "draft"
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
     cat["equations"]["org"] = "something else"
     with pytest.raises(IntegrityError):
         validate_catalog(cat)
     cat = copy.deepcopy(load_catalog())
     cat["icp"]["do_not_invent_department_heads"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["icp"]["org_chart"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["governance"]["refuse"] = [
+        item for item in cat["governance"]["refuse"] if "org chart" not in item.lower()
+    ]
     with pytest.raises(IntegrityError):
         validate_catalog(cat)
 
