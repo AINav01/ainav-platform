@@ -310,10 +310,6 @@ def public_dashboard() -> dict[str, Any]:
     all_three = by_id["all_three"]
     maps = [dict(item) for item in gov["maps"]]
     must = dict((body.get("floor") or {}).get("must_have") or {})
-    if not must:
-        must = dict(gov.get("must_have") or {})
-        must.setdefault("incident", cat["l1_incident_copy"])
-        must.setdefault("job_c_plain", "two humans before the write")
     tiles = [
         _tile(
             "must_have",

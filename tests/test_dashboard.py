@@ -261,6 +261,34 @@ def test_plane_interface_validators_refuse_fiction():
     no_must["plane_interface"]["floor"]["lede"] = "One dashboard included with L1 — not an upsell."
     with pytest.raises(IntegrityError):
         validate_catalog(no_must)
+    why = copy.deepcopy(cat)
+    why["plane_interface"]["floor"]["must_have"]["why"] = "invented mandate"
+    with pytest.raises(IntegrityError):
+        validate_catalog(why)
+    incident = copy.deepcopy(cat)
+    incident["plane_interface"]["floor"]["must_have"]["incident"] = "invented inbox"
+    with pytest.raises(IntegrityError):
+        validate_catalog(incident)
+    job = copy.deepcopy(cat)
+    job["plane_interface"]["floor"]["must_have"]["job_c_plain"] = "action_hash jargon"
+    with pytest.raises(IntegrityError):
+        validate_catalog(job)
+    eq = copy.deepcopy(cat)
+    eq["equations"]["interface"] = cat["equations"]["interface"].replace("must-have × ", "")
+    with pytest.raises(IntegrityError):
+        validate_catalog(eq)
+    refuse = copy.deepcopy(cat)
+    refuse["plane_interface"]["refuse"] = [
+        item for item in cat["plane_interface"]["refuse"] if "must-have" not in str(item).lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(refuse)
+    attn = copy.deepcopy(cat)
+    attn["plane_interface"]["attention"] = [
+        item for item in cat["plane_interface"]["attention"] if item.get("id") != "must_have"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(attn)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):
