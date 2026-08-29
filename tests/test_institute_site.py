@@ -18,6 +18,7 @@ def test_institute_foundation_is_catalog_honest():
     assert "scrollIntoView" in js
     assert "ainav-proof-day-brief.json" in js
     assert "prefers-reduced-motion" in css
+    assert ".plane-attention[hidden]" in css
     assert "--gold" in css
     swa = json.loads(Path("institute/staticwebapp.config.json").read_text(encoding="utf-8"))
     assert "Content-Security-Policy" in swa["globalHeaders"]

@@ -391,6 +391,11 @@ nav a[aria-current="page"] { color: var(--ink); }
   gap: 0.55rem;
   margin: 0.85rem 0 0;
 }
+.plane-attention[hidden],
+.plane-rehearsal[hidden],
+.plane-inspector:empty {
+  display: none !important;
+}
 @media (min-width: 800px) {
   .plane-attention { grid-template-columns: repeat(3, 1fr); }
   .plane-exceptions { grid-template-columns: repeat(3, 1fr); }
