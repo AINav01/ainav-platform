@@ -21,6 +21,9 @@ plan-check:
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" | diff -q institute/packs.json -
 	python3 -c "from ainav.governance import public_governance; import json; print(json.dumps(public_governance(), indent=2, sort_keys=True))" | diff -q institute/governance.json -
 	python3 -c "from ainav.client_org import public_client_org; import json; print(json.dumps(public_client_org(), indent=2, sort_keys=True))" | diff -q institute/client-org.json -
+	python3 -c "from ainav.dashboard import public_dashboard; import json; print(json.dumps(public_dashboard(), indent=2, sort_keys=True))" | diff -q institute/control-plane.json -
+	python3 -m ainav control-plane | diff -q docs/CONTROL_PLANE.md -
+	python3 -c "from ainav.dashboard import dashboard_html; print(dashboard_html(), end='')" | diff -q docs/CONTROL_PLANE_DASHBOARD.html -
 	python3 -c "from ainav.ip import public_insulation; import json; print(json.dumps(public_insulation(), indent=2, sort_keys=True))" | diff -q institute/ip.json -
 	python3 -c "from ainav.investor import public_investor; import json; print(json.dumps(public_investor(), indent=2, sort_keys=True))" | diff -q institute/investor.json -
 	python3 -m ainav investor | diff -q docs/CYNTHIA_HODNETT_INVESTOR.md -

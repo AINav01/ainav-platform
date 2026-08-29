@@ -106,6 +106,7 @@ def public_investor() -> dict[str, Any]:
         "upsell_note": body.get("upsell_note"),
         "insulation_copy": body["insulation"],
         "control_plane": body.get("control_plane"),
+        "human_interface": cat.get("plane_interface", {}).get("letter"),
         "traction": body["traction"],
         "ask": body["ask"],
         "highlights": list(body.get("highlights") or []),
@@ -196,6 +197,10 @@ def investor_markdown() -> str:
         "## Why the ultimate control plane insulates",
         "",
         body.get("control_plane") or "",
+        "",
+        "## How humans sit on the plane — interface and dashboard",
+        "",
+        body.get("human_interface") or "",
         "",
         "## Who buys, and why now",
         "",
@@ -441,6 +446,8 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
 </div>
 <h2>Why the ultimate control plane insulates</h2>
 {_paras(body.get('control_plane') or '')}
+<h2>How humans sit on the plane — interface and dashboard</h2>
+{_paras(body.get('human_interface') or '')}
 <h2>Who buys · why now</h2>
 <p>{html.escape(body['icp'])}</p>
 <p>{html.escape(body['why_now'])}</p>
@@ -651,6 +658,10 @@ def render_investor_pdf() -> bytes:
     doc.para(body["solution"])
     doc.heading("Why the ultimate control plane insulates", "The company")
     for chunk in str(body.get("control_plane") or "").split("\n\n"):
+        if chunk.strip():
+            doc.para(chunk.strip())
+    doc.heading("How humans sit on the plane", "The company")
+    for chunk in str(body.get("human_interface") or "").split("\n\n"):
         if chunk.strip():
             doc.para(chunk.strip())
     doc.heading("Who buys · why now", "The company")

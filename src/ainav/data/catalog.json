@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.23.0",
+    "release": "2.24.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -245,6 +245,7 @@
     "plane": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
     "org": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
     "insulation": "independence \u00d7 Job C lockfile \u00d7 fail-closed gold \u00d7 catalog law",
+    "interface": "humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles",
     "investor": "catalog list \u00d7 zero booked \u00d7 two-human close"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
@@ -2212,6 +2213,149 @@
     ],
     "note": "Catalog template only. Not a named customer. Not AINav, Inc. departments. Not a SKU. Not LIVE_PIN_OK."
   },
+  "plane_interface": {
+    "kind": "ainav.plane.interface.v1",
+    "sku": false,
+    "live": false,
+    "live_pin_ok": false,
+    "certified": false,
+    "real_time_claimed": false,
+    "forecast": false,
+    "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
+    "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.",
+    "levels": [
+      {
+        "id": "owner",
+        "name": "Owner / executive",
+        "role": "oversee",
+        "admit": false,
+        "freeze": "request",
+        "keep": "view",
+        "note": "Institutes the plane. One title cannot be both seats. Do not invent a name."
+      },
+      {
+        "id": "board",
+        "name": "Board",
+        "role": "oversee",
+        "admit": false,
+        "freeze": "request",
+        "keep": "view",
+        "note": "Fiduciary oversight. Board keep after P-ADM. Do not invent a director."
+      },
+      {
+        "id": "examiner",
+        "name": "Internal audit / examiner",
+        "role": "keep",
+        "admit": false,
+        "freeze": false,
+        "keep": "second_record",
+        "note": "Second record and seating map. Not a named auditor. Not a filing."
+      },
+      {
+        "id": "seat_a",
+        "name": "Treasury — seat A",
+        "role": "admit",
+        "admit": true,
+        "freeze": "refuse",
+        "keep": "view",
+        "note": "treasury_approver. Own Entra object id. Own click."
+      },
+      {
+        "id": "seat_b",
+        "name": "Controller — seat B",
+        "role": "admit",
+        "admit": true,
+        "freeze": "refuse",
+        "keep": "view",
+        "note": "treasury_controller. Cynthia Hodnett if she agrees. Invited, not recorded."
+      },
+      {
+        "id": "draft_desks",
+        "name": "Payables / sales",
+        "role": "draft",
+        "admit": false,
+        "freeze": false,
+        "keep": false,
+        "note": "May draft. Same two humans admit. Department AI is not a seat."
+      },
+      {
+        "id": "it",
+        "name": "IT / identity",
+        "role": "host",
+        "admit": false,
+        "freeze": false,
+        "keep": false,
+        "note": "Hosts Copilot, Agent 365, BYO MCP. Not a seat."
+      },
+      {
+        "id": "legal",
+        "name": "Legal",
+        "role": "counsel",
+        "admit": false,
+        "freeze": false,
+        "keep": false,
+        "note": "Not replaced. G12 stays open."
+      },
+      {
+        "id": "remote",
+        "name": "Remote human",
+        "role": "same_plane",
+        "admit": "if_seated",
+        "freeze": "if_seated",
+        "keep": "if_role",
+        "note": "Same Entra object id. Not a second plane. Not a VPN SKU."
+      },
+      {
+        "id": "agent",
+        "name": "Cloud Agent / client AI",
+        "role": "not_a_seat",
+        "admit": false,
+        "freeze": false,
+        "keep": false,
+        "note": "May draft or operate the host. Cannot bind an action_hash."
+      }
+    ],
+    "access": {
+      "internal": "Entra ID on the client tenant. Same action_hash. Same consume ledger.",
+      "remote": "Same Entra object id from any network. Conditional Access may identify. It does not admit.",
+      "same_plane": true,
+      "second_remote_plane": false,
+      "vpn_sku": false,
+      "entra_required": true,
+      "pim_is_not_dual": true,
+      "teams_is_not_a_seat": true
+    },
+    "dashboard": {
+      "name": "Executive control-plane dashboard",
+      "sku": false,
+      "realtime_means": "Admit ledger and freeze state. Not invented P&L. Not live Production BC.",
+      "tiles": [
+        "plane_state",
+        "pending_admits",
+        "first_record",
+        "second_record",
+        "off_switch",
+        "last_keep",
+        "recognized_revenue",
+        "named_customers",
+        "signed_l1",
+        "year_one_if_all_three",
+        "seats_recorded",
+        "compliance_maps"
+      ]
+    },
+    "refuse": [
+      "fourth SKU",
+      "invented live P&L",
+      "forecast ARR",
+      "LIVE_PIN_OK",
+      "EU AI Act certified",
+      "named department heads",
+      "remote second plane",
+      "Cloud Agent as seat"
+    ],
+    "note": "Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK."
+  },
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
     "ainav.institute custom domain and incorporation date",
@@ -3260,7 +3404,8 @@
       "Priced L1 desks $6,000–$10,000. Priced P-ADM keep $5,000–$8,000. Priced U-DUAL desks $6,000–$10,000.",
       "Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never attach U-DUAL.",
       "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent. Not uncopyable.",
-      "Ultimate control plane: last human gate over every drafting AI. Vendor-native HITL is not dual admit. Not a patent. Not uncopyable."
+      "Ultimate control plane: last human gate over every drafting AI. Vendor-native HITL is not dual admit. Not a patent. Not uncopyable.",
+      "Executive dashboard tiles the admit ledger and freeze state. Humans from the owner down. Remote is the same Entra plane. Compliance maps claimed=false."
     ],
     "refuse": [
       "priced round",

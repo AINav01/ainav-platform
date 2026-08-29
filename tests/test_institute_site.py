@@ -34,6 +34,8 @@ def test_institute_foundation_is_catalog_honest():
     assert 'href="#finance"' in html
     assert 'id="governance"' in html
     assert 'href="#governance"' in html
+    assert 'id="control-plane"' in html
+    assert "control-plane.json" in js
     assert "governance.json" in js
     assert "The client utilizes AI" in html
     assert "gov-cascade" in html or "id=\"gov-cascade\"" in html

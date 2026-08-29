@@ -76,6 +76,63 @@
       /* governance.json is optional when opened as a file */
     });
 
+  fetch("control-plane.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.sku || data.certified || data.real_time_claimed) return;
+      function set(id, text) {
+        var node = document.getElementById(id);
+        if (node && text) node.textContent = text;
+      }
+      set("plane-thesis", data.thesis);
+      if (data.equation) set("plane-equation", "Interface = " + data.equation);
+      if (data.dashboard && data.dashboard.realtime_means) set("plane-realtime", data.dashboard.realtime_means);
+      if (data.access) {
+        set(
+          "plane-access",
+          "Internal: " +
+            data.access.internal +
+            " Remote: " +
+            data.access.remote +
+            " Same plane. Not a VPN SKU."
+        );
+      }
+      if (data.letter) set("plane-letter", data.letter);
+      var tiles = document.getElementById("plane-tiles");
+      if (tiles && data.tiles && data.tiles.length) {
+        tiles.textContent = "";
+        data.tiles.forEach(function (item) {
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = item.label;
+          var p = document.createElement("p");
+          p.className = "price";
+          p.textContent = item.value;
+          var n = document.createElement("p");
+          n.className = "note";
+          n.textContent = item.note || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          art.appendChild(n);
+          tiles.appendChild(art);
+        });
+      }
+      var levels = document.getElementById("plane-levels");
+      if (levels && data.levels && data.levels.length) {
+        levels.textContent = "";
+        data.levels.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item.name + " — " + item.role + ". " + (item.note || "");
+          levels.appendChild(li);
+        });
+      }
+    })
+    .catch(function () {
+      /* control-plane.json is optional when opened as a file */
+    });
+
   fetch("investor.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

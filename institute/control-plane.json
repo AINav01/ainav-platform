@@ -1,0 +1,427 @@
+{
+  "access": {
+    "entra_required": true,
+    "internal": "Entra ID on the client tenant. Same action_hash. Same consume ledger.",
+    "pim_is_not_dual": true,
+    "remote": "Same Entra object id from any network. Conditional Access may identify. It does not admit.",
+    "same_plane": true,
+    "second_remote_plane": false,
+    "teams_is_not_a_seat": true,
+    "vpn_sku": false
+  },
+  "certified": false,
+  "dashboard": {
+    "name": "Executive control-plane dashboard",
+    "realtime_means": "Admit ledger and freeze state. Not invented P&L. Not live Production BC.",
+    "sku": false,
+    "tiles": [
+      "plane_state",
+      "pending_admits",
+      "first_record",
+      "second_record",
+      "off_switch",
+      "last_keep",
+      "recognized_revenue",
+      "named_customers",
+      "signed_l1",
+      "year_one_if_all_three",
+      "seats_recorded",
+      "compliance_maps"
+    ]
+  },
+  "departments": [
+    {
+      "ai": "May draft cash and bank journals. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.treasury",
+      "name": "Treasury",
+      "named_head": null,
+      "note": "Usually seat A. Existing two-person SOD. Not a SKU.",
+      "pack": "industry.treasury",
+      "role": "admit",
+      "seat": "treasury_approver"
+    },
+    {
+      "ai": "May draft the books. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.controller",
+      "name": "Controller / accounting",
+      "named_head": null,
+      "note": "Usually seat B. First record is the admitted SoR write. Not a SKU.",
+      "pack": "industry.controller",
+      "role": "admit",
+      "seat": "treasury_controller"
+    },
+    {
+      "ai": "AP Copilot may draft invoices and payments. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.payables",
+      "name": "Payables",
+      "named_head": null,
+      "note": "Same two treasury humans admit. Not a fourth SKU.",
+      "pack": "industry.payables",
+      "role": "draft",
+      "seat": null
+    },
+    {
+      "ai": "Sales Copilot may draft quotes and orders. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.sales",
+      "name": "Sales / quote desk",
+      "named_head": null,
+      "note": "Paid U-DUAL deepens the same plane. Not a second product.",
+      "pack": "industry.sales",
+      "role": "draft",
+      "seat": null
+    },
+    {
+      "ai": "Owns Copilot, Agent 365, BYO MCP. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.it",
+      "name": "IT / identity",
+      "named_head": null,
+      "note": "Hosts identity. Blocks bypass tools. PIM activation is not dual admit.",
+      "pack": null,
+      "role": "host",
+      "seat": null
+    },
+    {
+      "ai": "May draft risk memos. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.compliance",
+      "name": "Security / compliance",
+      "named_head": null,
+      "note": "2LOD keep. Second record after P-ADM. Not a certificate.",
+      "pack": "industry.oversight",
+      "role": "keep",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.internal_audit",
+      "name": "Internal audit",
+      "named_head": null,
+      "note": "Reads first and second records. Do not invent an audit partner.",
+      "pack": "industry.internal_audit",
+      "role": "keep",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.legal",
+      "name": "Legal / counsel",
+      "named_head": null,
+      "note": "AINav does not replace counsel. G12 stays open on our side. Do not invent a firm.",
+      "pack": null,
+      "role": "counsel",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat unless they are one of the two named humans.",
+      "department_ai_is_seat": false,
+      "id": "client.executive",
+      "name": "Owner / executive",
+      "named_head": null,
+      "note": "Institutes AINav. Can ask for freeze. One title cannot be both seats.",
+      "pack": "industry.control_plane",
+      "role": "oversee",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.board",
+      "name": "Board",
+      "named_head": null,
+      "note": "Fiduciary oversight. Inventory of models is not a control. Do not invent a director.",
+      "pack": "industry.board",
+      "role": "oversee",
+      "seat": null
+    }
+  ],
+  "equation": "humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles",
+  "forecast": false,
+  "institute": "AINAV.Institute",
+  "invited": "Cynthia Hodnett",
+  "kind": "ainav.plane.interface.v1",
+  "legal": "AINav, Inc.",
+  "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.",
+  "levels": [
+    {
+      "admit": false,
+      "freeze": "request",
+      "id": "owner",
+      "keep": "view",
+      "name": "Owner / executive",
+      "note": "Institutes the plane. One title cannot be both seats. Do not invent a name.",
+      "role": "oversee"
+    },
+    {
+      "admit": false,
+      "freeze": "request",
+      "id": "board",
+      "keep": "view",
+      "name": "Board",
+      "note": "Fiduciary oversight. Board keep after P-ADM. Do not invent a director.",
+      "role": "oversee"
+    },
+    {
+      "admit": false,
+      "freeze": false,
+      "id": "examiner",
+      "keep": "second_record",
+      "name": "Internal audit / examiner",
+      "note": "Second record and seating map. Not a named auditor. Not a filing.",
+      "role": "keep"
+    },
+    {
+      "admit": true,
+      "freeze": "refuse",
+      "id": "seat_a",
+      "keep": "view",
+      "name": "Treasury \u2014 seat A",
+      "note": "treasury_approver. Own Entra object id. Own click.",
+      "role": "admit"
+    },
+    {
+      "admit": true,
+      "freeze": "refuse",
+      "id": "seat_b",
+      "keep": "view",
+      "name": "Controller \u2014 seat B",
+      "note": "treasury_controller. Cynthia Hodnett if she agrees. Invited, not recorded.",
+      "role": "admit"
+    },
+    {
+      "admit": false,
+      "freeze": false,
+      "id": "draft_desks",
+      "keep": false,
+      "name": "Payables / sales",
+      "note": "May draft. Same two humans admit. Department AI is not a seat.",
+      "role": "draft"
+    },
+    {
+      "admit": false,
+      "freeze": false,
+      "id": "it",
+      "keep": false,
+      "name": "IT / identity",
+      "note": "Hosts Copilot, Agent 365, BYO MCP. Not a seat.",
+      "role": "host"
+    },
+    {
+      "admit": false,
+      "freeze": false,
+      "id": "legal",
+      "keep": false,
+      "name": "Legal",
+      "note": "Not replaced. G12 stays open.",
+      "role": "counsel"
+    },
+    {
+      "admit": "if_seated",
+      "freeze": "if_seated",
+      "id": "remote",
+      "keep": "if_role",
+      "name": "Remote human",
+      "note": "Same Entra object id. Not a second plane. Not a VPN SKU.",
+      "role": "same_plane"
+    },
+    {
+      "admit": false,
+      "freeze": false,
+      "id": "agent",
+      "keep": false,
+      "name": "Cloud Agent / client AI",
+      "note": "May draft or operate the host. Cannot bind an action_hash.",
+      "role": "not_a_seat"
+    }
+  ],
+  "live": false,
+  "live_pin_ok": false,
+  "maps": [
+    {
+      "claimed": false,
+      "id": "nist.ai_rmf",
+      "maps_to": "Govern and Measure via sealed DecisionRecords on the admit plane",
+      "name": "NIST AI Risk Management Framework",
+      "scope": "US domestic"
+    },
+    {
+      "claimed": false,
+      "id": "omb.m24_10",
+      "maps_to": "Human authority before consequential action. ICP is not a federal agency unless they buy.",
+      "name": "OMB M-24-10 (federal agency AI)",
+      "scope": "US domestic / federal"
+    },
+    {
+      "claimed": false,
+      "id": "sox.icfr",
+      "maps_to": "Unauthorized general-journal post is the L1 incident. Dual admit is a control. Not a SOX opinion.",
+      "name": "SOX / internal control over financial reporting",
+      "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "ftc.state_ai",
+      "maps_to": "Refuse undeclared automated SoR writes. Not a state-law opinion.",
+      "name": "FTC and state AI / automated-decision laws",
+      "scope": "US domestic"
+    },
+    {
+      "claimed": false,
+      "id": "eu.ai_act",
+      "maps_to": "AINav is a write-gate failsafe, not the client's high-risk system. No conformity assessment is claimed.",
+      "name": "EU AI Act",
+      "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "iso.42001",
+      "maps_to": "Catalog and DecisionRecords can feed an AIMS. Certification is not claimed.",
+      "name": "ISO/IEC 42001 AI management system",
+      "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "oecd.ai",
+      "maps_to": "Accountability and human agency before the write. Not a membership.",
+      "name": "OECD AI Principles",
+      "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "sec.books_records",
+      "maps_to": "First record is the admitted SoR write. Second record is the sealed DecisionRecord. Not a 17a-4 opinion.",
+      "name": "Books and records (first / second record)",
+      "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "three_lod",
+      "maps_to": "1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.",
+      "name": "Three lines of defense",
+      "scope": "risk / compliance"
+    },
+    {
+      "claimed": false,
+      "id": "fiduciary.duty",
+      "maps_to": "One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate.",
+      "name": "Board fiduciary oversight of material AI write risk",
+      "scope": "US domestic / board"
+    },
+    {
+      "claimed": false,
+      "id": "coso.ic",
+      "maps_to": "Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.",
+      "name": "COSO internal control",
+      "scope": "US domestic / books"
+    }
+  ],
+  "note": "Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.",
+  "org_equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
+  "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
+  "product": "AINav Control Plane",
+  "real_time_claimed": false,
+  "recorded": false,
+  "refuse": [
+    "fourth SKU",
+    "invented live P&L",
+    "forecast ARR",
+    "LIVE_PIN_OK",
+    "EU AI Act certified",
+    "named department heads",
+    "remote second plane",
+    "Cloud Agent as seat"
+  ],
+  "release": "2.24.0",
+  "seats": {
+    "seat_a": {
+      "role": "treasury_approver",
+      "usually": "client.treasury"
+    },
+    "seat_b": {
+      "role": "treasury_controller",
+      "usually": "client.controller"
+    }
+  },
+  "sku": false,
+  "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
+  "tiles": [
+    {
+      "id": "plane_state",
+      "label": "Plane state",
+      "note": "Not frozen. Fail-closed if thrown. Not LIVE_PIN_OK.",
+      "value": "OPEN"
+    },
+    {
+      "id": "pending_admits",
+      "label": "Pending dual admits",
+      "note": "No named treasury pair has a live bind.",
+      "value": "0"
+    },
+    {
+      "id": "first_record",
+      "label": "First record (SoR)",
+      "note": "AINAV-L1 lab oids. Not two named humans.",
+      "value": "1 sandbox / 0 production"
+    },
+    {
+      "id": "second_record",
+      "label": "Second record",
+      "note": "P-ADM keep not attached. Not live Purview.",
+      "value": "0"
+    },
+    {
+      "id": "off_switch",
+      "label": "Off switch",
+      "note": "Fail-closed freeze. Does not power down Copilot.",
+      "value": "READY"
+    },
+    {
+      "id": "last_keep",
+      "label": "Last sealed keep",
+      "note": "Weekly DecisionRecord export after kit PASS.",
+      "value": "none"
+    },
+    {
+      "id": "recognized_revenue",
+      "label": "Recognized revenue",
+      "note": "Not booked. No billing provider.",
+      "value": "$0"
+    },
+    {
+      "id": "named_customers",
+      "label": "Named customers",
+      "note": "Do not invent a buyer.",
+      "value": "0"
+    },
+    {
+      "id": "signed_l1",
+      "label": "Signed L1",
+      "note": "Counsel pack G13 stays open.",
+      "value": "0"
+    },
+    {
+      "id": "year_one_if_all_three",
+      "label": "Year-one if all three",
+      "note": "Catalog list. Not a forecast.",
+      "value": "$88,000\u2013$135,000"
+    },
+    {
+      "id": "seats_recorded",
+      "label": "Seats recorded",
+      "note": "Cynthia Hodnett invited, not recorded. Email none.",
+      "value": "0 recorded / 1 invited"
+    },
+    {
+      "id": "compliance_maps",
+      "label": "AI compliance maps",
+      "note": "NIST, SOX, EU AI Act, ISO 42001. Not certified.",
+      "value": "11 instruments / claimed=false"
+    }
+  ]
+}

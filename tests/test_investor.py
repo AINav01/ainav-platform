@@ -58,6 +58,8 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "ultimate control plane" in md.lower()
     assert "not a patent" in md.lower()
     assert "last human gate" in md.lower() or "last authority" in md.lower()
+    assert "how humans sit on the plane" in md.lower()
+    assert "executive dashboard" in md.lower() or "admit ledger" in md.lower()
     html = investor_html()
     assert "Investor packet" in html
     assert "<table>" in html

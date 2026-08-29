@@ -88,6 +88,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_repositories(catalog)
     _validate_governance(catalog)
     _validate_client_org(catalog)
+    _validate_plane_interface(catalog)
     _validate_investor(catalog)
 
 
@@ -152,6 +153,12 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
                 f"insulation equation must keep {stem}",
                 reason_code="CATALOG_EQUATION",
             )
+    interface = str(equations.get("interface") or "").lower()
+    if "humans from the top" not in interface or "hierarchical" not in interface:
+        raise IntegrityError(
+            "interface equation is humans from the top \u00d7 hierarchical access",
+            reason_code="CATALOG_EQUATION",
+        )
     investor = str(equations.get("investor") or "").lower()
     if "catalog list" not in investor or "zero booked" not in investor:
         raise IntegrityError(
@@ -602,6 +609,43 @@ def _validate_client_org(catalog: dict[str, Any]) -> None:
     thesis = str(body.get("thesis") or "").lower()
     if "org chart" not in thesis or "not a seat" not in thesis:
         raise IntegrityError("client org thesis must keep the chart and refuse department AI as a seat", reason_code="CATALOG_ORG")
+
+
+def _validate_plane_interface(catalog: dict[str, Any]) -> None:
+    body = catalog.get("plane_interface")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing plane interface", reason_code="CATALOG_PLANE")
+    if body.get("sku") is True:
+        raise IntegrityError("plane interface is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("plane interface cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("certified") is True or body.get("real_time_claimed") is True or body.get("forecast") is True:
+        raise IntegrityError("plane interface cannot claim live metrics or certification", reason_code="CATALOG_PLANE")
+    thesis = str(body.get("thesis") or "").lower()
+    letter = str(body.get("letter") or "").lower()
+    for stem in ("human", "dashboard", "remote", "compliance", "not a fourth"):
+        blob = thesis + " " + letter
+        if stem not in blob and not (stem == "not a fourth" and "not a fourth" in blob):
+            if stem == "not a fourth" and "fourth sku" in " ".join(body.get("refuse") or []).lower():
+                continue
+            if stem not in blob:
+                raise IntegrityError(f"plane interface must keep {stem}", reason_code="CATALOG_PLANE")
+    ids = [item.get("id") for item in body.get("levels") or []]
+    for needed in ("owner", "board", "seat_a", "seat_b", "remote", "agent"):
+        if needed not in ids:
+            raise IntegrityError(f"plane interface levels must include {needed}", reason_code="CATALOG_PLANE")
+    access = body.get("access") or {}
+    if access.get("same_plane") is not True or access.get("second_remote_plane") is True:
+        raise IntegrityError("remote access is the same plane", reason_code="CATALOG_PLANE")
+    if access.get("vpn_sku") is True:
+        raise IntegrityError("remote access is not a VPN SKU", reason_code="CATALOG_SKU")
+    dash = body.get("dashboard") or {}
+    if dash.get("sku") is True:
+        raise IntegrityError("dashboard is not a SKU", reason_code="CATALOG_SKU")
+    tiles = dash.get("tiles") or []
+    for needed in ("plane_state", "recognized_revenue", "compliance_maps"):
+        if needed not in tiles:
+            raise IntegrityError(f"dashboard must tile {needed}", reason_code="CATALOG_PLANE")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

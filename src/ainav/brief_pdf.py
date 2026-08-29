@@ -122,6 +122,15 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
+            "text": "How humans sit on the plane — executive dashboard",
+        },
+        {
+            "kind": "callout",
+            "title": "Hierarchy, remote access, honest tiles, AI compliance maps",
+            "text": (cat.get("plane_interface") or {}).get("letter") or "",
+        },
+        {
+            "kind": "h",
             "text": "Part I — For Cynthia Hodnett",
         },
         {

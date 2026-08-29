@@ -17,7 +17,8 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.23.0"
+    assert cat["entity"]["release"] == "2.24.0"
+    assert "humans from the top" in cat["equations"]["interface"]
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False
     assert cat["investor"]["equity_offered"] is False
@@ -147,6 +148,10 @@ def test_cli_owner_and_counsel(capsys):
     assert "catalog" in capsys.readouterr().out.lower()
     assert main(["governance"]) == 0
     assert "failsafe" in capsys.readouterr().out.lower()
+    assert main(["control-plane"]) == 0
+    assert "dashboard" in capsys.readouterr().out.lower()
+    assert main(["dashboard"]) == 0
+    assert "CONTROL_PLANE" in capsys.readouterr().out
     assert main(["ip"]) == 0
     assert "not uncopyable" in capsys.readouterr().out.lower()
     assert main(["investor"]) == 0

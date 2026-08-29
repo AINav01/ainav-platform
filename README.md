@@ -110,7 +110,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.23.0 (this tree)
+### 2.24.0 (this tree)
+
+Ultimate control plane interface: humans from the top of the client's
+org chart, hierarchical access, same-Entra remote, executive dashboard
+tiles (admit ledger — not invented P&L), AI compliance maps
+claimed=false. Printed in the Cynthia letter and brief. Institute
+`#control-plane`. Not a fourth SKU. Not LIVE_PIN_OK.
+
+### 2.23.0
 
 Why the ultimate control plane insulates: last human gate over every
 drafting AI. The vendor of that AI cannot credibly be the failsafe.

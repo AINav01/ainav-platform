@@ -87,6 +87,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("runbooks")
     sub.add_parser("finance")
     sub.add_parser("governance")
+    sub.add_parser("control-plane")
+    sub.add_parser("dashboard")
     sub.add_parser("next-pin")
     sub.add_parser("delivery")
     sub.add_parser("raci")
@@ -304,6 +306,17 @@ def main(argv: list[str] | None = None) -> int:
         from ainav.governance import governance_markdown
 
         print(governance_markdown(), end="")
+        return 0
+    if args.cmd == "control-plane":
+        from ainav.dashboard import dashboard_markdown
+
+        print(dashboard_markdown(), end="")
+        return 0
+    if args.cmd == "dashboard":
+        from ainav.dashboard import write_dashboard
+
+        path = write_dashboard()
+        print(path)
         return 0
     if args.cmd == "buyer":
         from ainav.buyer import buyer_page
