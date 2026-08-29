@@ -110,7 +110,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.25.0 (this tree)
+### 2.26.0 (this tree)
+
+Command-console floor: each hierarchical view has a deck (owner freeze,
+seats rehearsal, examiner inspector, remote same-Entra, IT host).
+Walkable sandbox rehearsal of `bc.general_journal.post` — not a live
+bind, Microsoft is not called, production stays 0. Duty matrix is SOD.
+Attention board is honest zeros plus one sandbox first record. Catalog
+as-of clock, not a live Production clock. Not a fourth SKU. Not
+LIVE_PIN_OK.
+
+### 2.25.0
 
 Deep control-plane floor: hierarchical views (owner, seats, examiner,
 remote, IT), write path from draft to keep, three lines of defense,

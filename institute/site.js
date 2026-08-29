@@ -283,8 +283,315 @@
       var viewCard = document.getElementById("plane-view-card");
       var viewById = {};
       (data.views || []).forEach(function (item) { viewById[item.id] = item; });
+      var clock = document.getElementById("plane-clock");
+      if (clock && data.clock) {
+        clock.textContent =
+          "As of " +
+          data.clock.as_of +
+          " " +
+          data.clock.release +
+          " · last event " +
+          data.clock.last_event +
+          " · pending " +
+          data.clock.pending_binds +
+          " · frozen " +
+          String(data.clock.frozen) +
+          " · live clock claimed=" +
+          String(data.clock.live_clock_claimed);
+      }
+      function paintBoard(rootId, items, price) {
+        var root = document.getElementById(rootId);
+        if (!root || !items || !items.length) return;
+        root.textContent = "";
+        items.forEach(function (item) {
+          var art = document.createElement("article");
+          art.setAttribute("data-tone", item.tone || "hold");
+          var h = document.createElement("h3");
+          h.textContent = item.label || item.name || "";
+          var p = document.createElement("p");
+          p.className = "price";
+          p.textContent = price ? price(item) : String(item.value || item.result || "");
+          var n = document.createElement("p");
+          n.className = "note";
+          n.textContent = item.note || item.when || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          art.appendChild(n);
+          root.appendChild(art);
+        });
+      }
+      paintBoard("plane-attention", data.attention || []);
+      paintBoard("plane-exceptions", data.exceptions || [], function (item) {
+        return item.result || "";
+      });
+      fillRows("plane-duties", data.duties || [], function (item) {
+        return [
+          item.name,
+          flag(item.admit),
+          flag(item.freeze),
+          flag(item.keep),
+          flag(item.draft),
+          flag(item.host),
+          flag(item.counsel)
+        ];
+      }, function (item) {
+        return item.role || "";
+      });
+      var dutyBody = document.getElementById("plane-duties");
+      if (dutyBody) {
+        Array.prototype.forEach.call(dutyBody.querySelectorAll("tr"), function (tr) {
+          var admit = tr.children[1];
+          if (admit && admit.textContent === "yes") tr.setAttribute("data-admit", "yes");
+        });
+      }
+      var inspector = document.getElementById("plane-inspector");
+      function paintInspector(kind) {
+        if (!inspector) return;
+        inspector.textContent = "";
+        function add(title, value, note) {
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = title;
+          var p = document.createElement("p");
+          p.className = "price";
+          p.textContent = value;
+          var n = document.createElement("p");
+          n.className = "note";
+          n.textContent = note || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          if (note) art.appendChild(n);
+          inspector.appendChild(art);
+        }
+        var event = (data.ledger && data.ledger.events && data.ledger.events[0]) || {};
+        if (kind === "inspector" || kind === "attention") {
+          add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
+          add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
+          add("Second record", "0", "P-ADM keep not attached. Examiner cannot certify.");
+          add("Pending binds", String((data.ledger && data.ledger.pending_binds) || 0), "No named treasury pair has a live bind.");
+        }
+        if (kind === "freeze") {
+          add("Off switch", "READY", "Fail-closed. Does not power down Copilot.");
+          add("Catalog plane", "OPEN", "A console freeze is local rehearsal. It does not mark LIVE_PIN_OK.");
+          add("Signed L1", "0", "Counsel pack G13 stays open. Owner is not both seats.");
+          add("Seats recorded", "0 recorded / 1 invited", data.invited + " invited, not recorded.");
+        }
+        if (kind === "access") {
+          add("Internal", "Same Entra object id", (data.access && data.access.internal) || "");
+          add("Remote", "Same plane", (data.access && data.access.remote) || "");
+          add("VPN SKU", "false", "Remote is not a second control plane.");
+          add("Conditional Access", "may identify", "It does not admit the write.");
+        }
+        if (kind === "host") {
+          add("IT role", "host", "Copilot, Agent 365, and BYO MCP stay hosted. They are not seats.");
+          add("PIM", "not dual", "An eligible activation is not an admit.");
+          add("Teams", "not a seat", "A chat is not dual admit.");
+          add("Agent Tools", "not the plane", "A tool invocation is not dual admit.");
+        }
+      }
+      var rehearsal = {
+        step: "idle",
+        frozen: false,
+        hash: "",
+        consumed: false
+      };
+      var railIds = ["draft", "bind", "seat_a", "seat_b", "first_record", "second_record", "keep"];
+      var rail = document.getElementById("plane-rehearsal-rail");
+      var actions = document.getElementById("plane-rehearsal-actions");
+      var tape = document.getElementById("plane-tape");
+      var rehearsalRoot = document.getElementById("plane-rehearsal");
+      function writeTape(state, text) {
+        if (!tape) return;
+        tape.dataset.state = state;
+        tape.textContent = text;
+      }
+      function paintRail() {
+        if (!rail) return;
+        rail.textContent = "";
+        var reached = railIds.indexOf(rehearsal.step);
+        railIds.forEach(function (id, index) {
+          var span = document.createElement("span");
+          span.setAttribute("data-step", id);
+          span.setAttribute("data-active", rehearsal.step === id ? "true" : "false");
+          span.setAttribute("data-done", reached > index ? "true" : "false");
+          var found = (data.write_path || []).filter(function (item) { return item.id === id; })[0];
+          span.textContent = found ? found.name : id.replace("_", " ");
+          rail.appendChild(span);
+        });
+      }
+      function rehearsalLabel() {
+        var spec = data.rehearsal || {};
+        return (
+          (spec.label || "Sandbox rehearsal.") +
+          "\nwedge=" +
+          (spec.wedge || "bc.general_journal.post") +
+          "\nwrites_sor=false · production=false · named_humans=false"
+        );
+      }
+      function resetRehearsal(reason) {
+        rehearsal.step = "idle";
+        rehearsal.frozen = false;
+        rehearsal.hash = "";
+        rehearsal.consumed = false;
+        paintRail();
+        writeTape(
+          "idle",
+          (reason ? reason + "\n" : "") +
+            "rehearsal_idle\n" +
+            rehearsalLabel() +
+            "\nMicrosoft was not called. Catalog plane stays OPEN."
+        );
+      }
+      function deny(code, detail) {
+        writeTape(
+          "denied",
+          code +
+            "\n" +
+            detail +
+            "\n" +
+            rehearsalLabel() +
+            "\nlive=false · live_pin_ok=false · Microsoft was not called."
+        );
+      }
+      function bindHash() {
+        return actionHash({
+          action_class: (data.rehearsal && data.rehearsal.wedge) || "bc.general_journal.post",
+          payload: { document: "AINAV-L1", company: "AINav", rehearsal: true },
+          sor_target: "bc.sandbox",
+          live: false
+        });
+      }
+      function runRehearsal(kind) {
+        if (kind === "reset") {
+          resetRehearsal("rehearsal_reset");
+          return;
+        }
+        if (kind === "freeze") {
+          rehearsal.frozen = true;
+          deny("fail_closed · freeze", "Owner/board requested the off switch in this browser. New grants stop. Catalog plane stays OPEN. Inference may continue. Consequence does not.");
+          return;
+        }
+        if (rehearsal.frozen && kind !== "reset") {
+          deny("fail_closed · frozen", "Console is frozen in rehearsal. Reset the rehearsal. Catalog plane stays OPEN.");
+          return;
+        }
+        if (kind === "same_seat") {
+          deny("admit_denied · same_seat", "One title cannot click both admits. One Entra object id cannot be both seats.");
+          return;
+        }
+        if (kind === "agent") {
+          deny("admit_denied · agent_click", "Cloud Agent / client AI may draft. It cannot bind an action_hash.");
+          return;
+        }
+        if (kind === "pim") {
+          deny("admit_denied · entra.pim", "PIM is not dual admit. Eligible seats stay eligible.");
+          return;
+        }
+        if (kind === "copilot") {
+          deny("admit_denied · microsoft.copilot", "Copilot, Agent 365, and Agent Tools are not the admit plane.");
+          return;
+        }
+        if (kind === "refuse") {
+          rehearsal.step = "idle";
+          rehearsal.hash = "";
+          rehearsal.consumed = false;
+          paintRail();
+          deny("write_held · seat_refuse", "Seat A or seat B refused. No grant. No SoR write.");
+          return;
+        }
+        if (kind === "draft") {
+          rehearsal.step = "draft";
+          paintRail();
+          writeTape("ok", "draft_ok · department AI / payables / sales\nNot a seat. Waiting for a bind.\n" + rehearsalLabel());
+          return;
+        }
+        if (kind === "bind") {
+          if (rehearsal.step !== "draft" && rehearsal.step !== "idle") {
+            deny("bind_held", "Reset the rehearsal to bind a new action_hash.");
+            return;
+          }
+          bindHash().then(function (hash) {
+            rehearsal.hash = hash;
+            rehearsal.step = "bind";
+            rehearsal.consumed = false;
+            paintRail();
+            writeTape(
+              "ok",
+              "bind_ok · action_hash=" +
+                hash +
+                "\nPending dual admit. Catalog pending binds stay 0.\n" +
+                rehearsalLabel()
+            );
+          });
+          return;
+        }
+        if (kind === "seat_a") {
+          if (rehearsal.step !== "bind") {
+            deny("admit_held · seat_a", "Bind an action_hash first.");
+            return;
+          }
+          rehearsal.step = "seat_a";
+          paintRail();
+          writeTape("ok", "admit_ok · seat_a=lab operator identity A\nWaiting for seat B. Named humans=false.\n" + rehearsalLabel());
+          return;
+        }
+        if (kind === "seat_b") {
+          if (rehearsal.step !== "seat_a") {
+            deny("admit_held · seat_b", "Seat A must admit first. One title cannot be both seats.");
+            return;
+          }
+          if (rehearsal.consumed) {
+            deny("effect_blocked · replay", "Single-use consume. No second write.");
+            return;
+          }
+          rehearsal.step = "first_record";
+          rehearsal.consumed = true;
+          paintRail();
+          writeTape(
+            "ok",
+            "rehearsal_preview · first_record sandbox\naction_class=bc.general_journal.post\naction_hash=" +
+              rehearsal.hash +
+              "\ndocument=AINAV-L1 · company=AINav\nThis does not create a new SoR write. The catalog first record stays 1 sandbox / 0 production.\nsecond_record=held · keep=held · P-ADM not attached.\nMicrosoft Business Central Production was not called.\n" +
+              rehearsalLabel()
+          );
+          return;
+        }
+      }
+      if (actions && !actions.dataset.bound) {
+        actions.dataset.bound = "true";
+        [
+          ["draft", "Draft wedge", ""],
+          ["bind", "Bind action_hash", "ask"],
+          ["seat_a", "Seat A admit", ""],
+          ["seat_b", "Seat B admit", ""],
+          ["refuse", "Refuse", "deny"],
+          ["same_seat", "Same seat", "deny"],
+          ["agent", "Agent click", "deny"],
+          ["pim", "PIM as dual", "deny"],
+          ["copilot", "Copilot as plane", "deny"],
+          ["freeze", "Request freeze", "deny"],
+          ["reset", "Reset rehearsal", ""]
+        ].forEach(function (row) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = row[1];
+          btn.setAttribute("data-rehearse", row[0]);
+          if (row[2]) btn.className = row[2];
+          btn.addEventListener("click", function () {
+            runRehearsal(row[0]);
+          });
+          actions.appendChild(btn);
+        });
+        paintRail();
+      }
+      var consoleRoot = document.getElementById("plane-console");
+      var consoleKicker = document.getElementById("plane-console-kicker");
+      var consoleTitle = document.getElementById("plane-console-title");
+      var consoleNote = document.getElementById("plane-console-note");
+      var attention = document.getElementById("plane-attention");
       function showView(id) {
         var item = viewById[id] || viewById.entire;
+        var consoleKind = (item && item.console) || "attention";
         document.body.setAttribute("data-view", id);
         document.querySelectorAll("[data-view-tab]").forEach(function (btn) {
           btn.setAttribute("aria-selected", btn.getAttribute("data-view-tab") === id ? "true" : "false");
@@ -294,12 +601,33 @@
           viewCard.querySelector("p").textContent =
             item.who + ". Can: " + (item.can || "") + " Cannot: " + (item.cannot || "");
         }
+        if (consoleRoot) consoleRoot.setAttribute("data-console", consoleKind);
+        if (consoleKicker) consoleKicker.textContent = "Command console · " + ((item && item.name) || id);
+        var titles = {
+          attention: "Attention board",
+          freeze: "Owner deck — freeze and the off switch",
+          rehearsal: "Seat deck — walkable rehearsal",
+          inspector: "Examiner deck — bind inspector",
+          access: "Remote deck — same Entra plane",
+          host: "IT deck — host, not a seat"
+        };
+        if (consoleTitle) consoleTitle.textContent = titles[consoleKind] || "Command console";
+        if (consoleNote) {
+          consoleNote.textContent =
+            consoleKind === "rehearsal"
+              ? ((data.rehearsal && data.rehearsal.label) || "Sandbox rehearsal.") + " Completing it does not create a new SoR write."
+              : (item && item.can ? item.can + " " + (item.cannot || "") : "");
+        }
+        if (attention) attention.hidden = consoleKind !== "attention";
+        if (rehearsalRoot) rehearsalRoot.hidden = consoleKind !== "rehearsal";
+        paintInspector(consoleKind);
       }
       document.querySelectorAll("[data-view-tab]").forEach(function (btn) {
         btn.addEventListener("click", function () {
           showView(btn.getAttribute("data-view-tab"));
         });
       });
+      showView(document.body.getAttribute("data-view") || "entire");
       fill("plane-refuse", data.refuse || [], function (item) {
         return item;
       });

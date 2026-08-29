@@ -6,6 +6,7 @@ Not a SKU. Not live Production metrics. Not a certificate.
 from __future__ import annotations
 
 import html
+import json
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,7 @@ from ainav.governance import public_governance
 
 MD_PATH = Path("docs/CONTROL_PLANE.md")
 HTML_PATH = Path("docs/CONTROL_PLANE_DASHBOARD.html")
+INSTITUTE_JSON = Path("institute/control-plane.json")
 
 TILE_TONES = {
     "plane_state": "ready",
@@ -43,6 +45,7 @@ ROLE_LABELS = {
     "same_plane": "Same plane",
     "not_a_seat": "Not a seat",
 }
+DUTY_POWERS = ("admit", "freeze", "keep", "draft", "host", "counsel")
 
 
 def spec() -> dict[str, Any]:
@@ -126,6 +129,52 @@ def seating_cascade(levels: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return rows
 
 
+def _duty_cell(level: dict[str, Any], power: str) -> Any:
+    if power in {"admit", "freeze", "keep"}:
+        return level.get(power)
+    return level.get("role") == power
+
+
+def duty_matrix(levels: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows = []
+    for item in levels:
+        row = {"id": item.get("id"), "name": item.get("name"), "role": item.get("role")}
+        for power in DUTY_POWERS:
+            row[power] = _duty_cell(item, power)
+        rows.append(row)
+    return rows
+
+
+def _clock(body: dict[str, Any], release: str) -> dict[str, Any]:
+    clock = dict(body.get("clock") or {})
+    clock.setdefault("as_of", "catalog")
+    clock.setdefault("live_clock_claimed", False)
+    clock.setdefault("last_event", "AINAV-L1 sandbox first_record")
+    clock.setdefault("last_event_where", "sandbox")
+    clock.setdefault("frozen", False)
+    clock.setdefault("pending_binds", 0)
+    clock["release"] = release
+    return clock
+
+
+def _attention(body: dict[str, Any]) -> list[dict[str, Any]]:
+    return [dict(item) for item in body.get("attention") or []]
+
+
+def _exceptions(body: dict[str, Any]) -> list[dict[str, Any]]:
+    return [dict(item) for item in body.get("exceptions") or []]
+
+
+def _rehearsal(body: dict[str, Any]) -> dict[str, Any]:
+    spec = dict(body.get("rehearsal") or {})
+    spec.setdefault("sku", False)
+    spec.setdefault("live", False)
+    spec.setdefault("production", False)
+    spec.setdefault("writes_sor", False)
+    spec.setdefault("named_humans", False)
+    return spec
+
+
 def public_dashboard() -> dict[str, Any]:
     cat = load_catalog()
     body = spec()
@@ -176,6 +225,11 @@ def public_dashboard() -> dict[str, Any]:
         "mechanics": _mechanics(gov),
         "scenarios": [dict(item) for item in fin["scenarios"]],
         "ledger": _ledger(),
+        "clock": _clock(body, cat["entity"]["release"]),
+        "attention": _attention(body),
+        "duties": duty_matrix(list(body["levels"])),
+        "exceptions": _exceptions(body),
+        "rehearsal": _rehearsal(body),
         "access": dict(body["access"]),
         "dashboard": dict(body["dashboard"]),
         "tiles": tiles,
@@ -236,6 +290,59 @@ def dashboard_markdown() -> str:
         lines.append(
             f"- **{item['name']}** — {item['is']}. {item['who']}. "
             f"In force: {str(item.get('in_force')).lower()}. Claimed: {str(item.get('claimed')).lower()}."
+        )
+    clock = body["clock"]
+    lines += [
+        "",
+        "## Clock — catalog as-of",
+        "",
+        f"- As of: {clock.get('as_of')} release {clock.get('release')}.",
+        f"- Live clock claimed: {str(clock.get('live_clock_claimed')).lower()}.",
+        f"- Last event: {clock.get('last_event')} ({clock.get('last_event_where')}).",
+        f"- Frozen: {str(clock.get('frozen')).lower()}. Pending binds: {clock.get('pending_binds')}.",
+        "",
+        "## Attention board",
+        "",
+        "| Signal | Value | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in body["attention"]:
+        lines.append(f"| {item['label']} | {item['value']} | {item.get('note') or ''} |")
+    lines += [
+        "",
+        "## Duty matrix — who may do what",
+        "",
+        "| Level | Admit | Freeze | Keep | Draft | Host | Counsel |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for item in body["duties"]:
+        lines.append(
+            "| {name} | {admit} | {freeze} | {keep} | {draft} | {host} | {counsel} |".format(
+                name=item["name"],
+                admit=_flag(item["admit"]),
+                freeze=_flag(item["freeze"]),
+                keep=_flag(item["keep"]),
+                draft=_flag(item["draft"]),
+                host=_flag(item["host"]),
+                counsel=_flag(item["counsel"]),
+            )
+        )
+    reh = body["rehearsal"]
+    lines += [
+        "",
+        "## Walkable rehearsal",
+        "",
+        f"{reh.get('label')} Wedge: `{reh.get('wedge')}`. Document: {reh.get('document')}. "
+        f"Writes SoR: {str(reh.get('writes_sor')).lower()}. Named humans: "
+        f"{str(reh.get('named_humans')).lower()}. {reh.get('note') or ''}",
+        "",
+        "## Exception paths",
+        "",
+    ]
+    for item in body["exceptions"]:
+        lines.append(
+            f"- **{item['name']}** — {item['when']}. Result: {item['result']}. "
+            f"Live: {str(item.get('live')).lower()}. {item.get('note') or ''}"
         )
     lines += [
         "",
@@ -444,6 +551,59 @@ def dashboard_html() -> str:
         for item in body["mechanics"]
     )
     refuse = "".join(f"<li>{html.escape(item)}</li>" for item in body["refuse"])
+    clock = body["clock"]
+    clock_line = (
+        f"As of {html.escape(str(clock.get('as_of')))} {html.escape(str(clock.get('release')))}  ·  "
+        f"last event {html.escape(str(clock.get('last_event')))}  ·  "
+        f"pending {html.escape(str(clock.get('pending_binds')))}  ·  "
+        f"frozen {html.escape(str(clock.get('frozen')).lower())}  ·  "
+        f"live clock claimed={html.escape(str(clock.get('live_clock_claimed')).lower())}"
+    )
+    attention = "".join(
+        (
+            f"<article data-tone=\"{html.escape(item.get('tone') or 'hold')}\">"
+            f"<h3>{html.escape(item['label'])}</h3>"
+            f"<p class=\"price\">{html.escape(str(item['value']))}</p>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p>"
+            "</article>"
+        )
+        for item in body["attention"]
+    )
+    duties = "".join(
+        f"<tr data-role=\"{html.escape(str(item['role']))}\">"
+        + "".join(
+            f"<td>{html.escape(str(cell))}</td>"
+            for cell in (
+                item["name"],
+                _flag(item["admit"]),
+                _flag(item["freeze"]),
+                _flag(item["keep"]),
+                _flag(item["draft"]),
+                _flag(item["host"]),
+                _flag(item["counsel"]),
+            )
+        )
+        + "</tr>"
+        for item in body["duties"]
+    )
+    exceptions = "".join(
+        (
+            f"<article data-tone=\"hold\">"
+            f"<h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(item['result'])}</p>"
+            f"<p class=\"note\">{html.escape(item['when'])}. {html.escape(item.get('note') or '')}</p>"
+            "</article>"
+        )
+        for item in body["exceptions"]
+    )
+    reh = body["rehearsal"]
+    rehearsal = (
+        f"<p class=\"note\">{html.escape(reh.get('label') or '')} Wedge "
+        f"<code>{html.escape(str(reh.get('wedge') or ''))}</code>. "
+        f"Writes SoR: {html.escape(str(reh.get('writes_sor')).lower())}. "
+        f"Named humans: {html.escape(str(reh.get('named_humans')).lower())}. "
+        f"{html.escape(reh.get('note') or '')}</p>"
+    )
     access = body["access"]
     paras = "".join(
         f"<p>{html.escape(chunk.strip())}</p>"
@@ -487,7 +647,8 @@ h2 {{ font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.1em; text-tr
 .path {{ display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 0 0 10pt; }}
 .lod {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .views {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
-.views article, .path article, .lod article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
+.attention, .exceptions {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
+.views article, .path article, .lod article, .attention article, .exceptions article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .cascade article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade h3 {{ font: 700 7pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
@@ -522,6 +683,20 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="wrap">
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="equation">Interface = {html.escape(body.get('equation') or '')}</p>
+<p class="note">{clock_line}</p>
+<h2>Attention board</h2>
+<p class="note">Honest zeros plus one sandbox first record. Not invented P&amp;L.</p>
+<div class="attention">{attention}</div>
+<h2>Duty matrix — who may do what</h2>
+<p class="note">Segregation of duties. Only seat A and seat B admit. A view is not a seat.</p>
+<table>
+<thead><tr><th>Level</th><th>Admit</th><th>Freeze</th><th>Keep</th><th>Draft</th><th>Host</th><th>Counsel</th></tr></thead>
+<tbody>{duties}</tbody>
+</table>
+<h2>Walkable rehearsal</h2>
+{rehearsal}
+<h2>Exception paths</h2>
+<div class="exceptions">{exceptions}</div>
 <h2>Hierarchical views — one plane</h2>
 <p class="note">Views are not SKUs. Same Entra plane. Same consume ledger.</p>
 <div class="views">{views}</div>
@@ -584,4 +759,9 @@ def write_dashboard() -> Path:
     MD_PATH.parent.mkdir(parents=True, exist_ok=True)
     MD_PATH.write_text(dashboard_markdown(), encoding="utf-8")
     HTML_PATH.write_text(dashboard_html(), encoding="utf-8")
+    INSTITUTE_JSON.parent.mkdir(parents=True, exist_ok=True)
+    INSTITUTE_JSON.write_text(
+        json.dumps(public_dashboard(), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     return HTML_PATH

@@ -1,10 +1,10 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.25.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.26.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
-**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. The write path is draft, bind, two admits, first record, second record, keep. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.**
+**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. Each view has a command console. The write path is a walkable sandbox rehearsal of draft, bind, two admits, first record, second record, keep. The duty matrix is segregation of duties. The attention board is honest zeros plus one sandbox first record. The clock is catalog as-of, not a live Production clock. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.**
 
-Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles.
+Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
@@ -46,6 +46,55 @@ Org: client org chart × existing SOD × one admit plane.
 - **2LOD** — P-ADM keep / second record. Compliance keep after kit PASS. In force: false. Claimed: false.
 - **3LOD** — Independent assurance. Internal audit reads; not a named auditor. In force: false. Claimed: false.
 
+## Clock — catalog as-of
+
+- As of: catalog release 2.26.0.
+- Live clock claimed: false.
+- Last event: AINAV-L1 sandbox first_record (sandbox).
+- Frozen: false. Pending binds: 0.
+
+## Attention board
+
+| Signal | Value | Note |
+| --- | --- | --- |
+| Pending binds | 0 | No named treasury pair has a live bind. |
+| Refused | 0 | No live refuse on a named pair. |
+| Frozen | 0 | Catalog plane OPEN. Console freeze is local rehearsal. |
+| Production writes | 0 | Production BC stays blocked. Not LIVE_PIN_OK. |
+| Sandbox first record | 1 | AINAV-L1 lab operator identities. Not two named humans. |
+| Second record | 0 | P-ADM keep not attached. Not live Purview. |
+
+## Duty matrix — who may do what
+
+| Level | Admit | Freeze | Keep | Draft | Host | Counsel |
+| --- | --- | --- | --- | --- | --- | --- |
+| Owner / executive | no | request | view | no | no | no |
+| Board | no | request | view | no | no | no |
+| Internal audit / examiner | no | no | second_record | no | no | no |
+| Treasury — seat A | yes | refuse | view | no | no | no |
+| Controller — seat B | yes | refuse | view | no | no | no |
+| Payables / sales | no | no | no | yes | no | no |
+| IT / identity | no | no | no | no | yes | no |
+| Legal | no | no | no | no | no | yes |
+| Remote human | if_seated | if_seated | if_role | no | no | no |
+| Cloud Agent / client AI | no | no | no | no | no | no |
+
+## Walkable rehearsal
+
+Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called. Wedge: `bc.general_journal.post`. Document: AINAV-L1. Writes SoR: false. Named humans: false. Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett stays invited, not recorded.
+
+## Exception paths
+
+- **Same seat** — One title clicks both admits. Result: admit_denied. Live: false. One Entra object id cannot be both seats.
+- **Agent click** — Cloud Agent or client AI binds the action_hash. Result: admit_denied. Live: false. An agent may draft. It is not a seat.
+- **Seat refuse** — Seat A or seat B refuses the bind. Result: write_held. Live: false. No grant. No SoR write.
+- **Freeze** — Owner or board requests the off switch. Result: fail_closed. Live: false. New grants stop. Inference may continue. Consequence does not.
+- **Bind timeout** — A pending bind expires without dual admit. Result: grant_not_issued. Live: false. No silent success.
+- **Replay** — The same action_hash is consumed twice. Result: effect_blocked. Live: false. Single-use consume. No second write.
+- **Rollback** — A compensating write after a keep. Result: requires_dual_admit. Live: false. Not a time machine. Not a silent undo.
+- **PIM as dual** — An eligible activation is treated as admit. Result: admit_denied. Live: false. PIM is not dual admit.
+- **Copilot as plane** — Copilot, Agent 365, or Agent Tools is treated as admit. Result: admit_denied. Live: false. Microsoft is not the product. A tool invocation is not dual.
+
 ## How humans sit from the top
 
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
@@ -56,9 +105,11 @@ Hierarchical access is segregation of duties, not a new identity provider. Inter
 
 The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.
 
-The floor is one plane with hierarchical views. Owner and board see freeze and the off switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner sees the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views are not SKUs and not a second product.
+The floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.
 
-The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
+The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.
+
+The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
 
 ## Hierarchy
 
@@ -166,5 +217,8 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - named department heads
 - remote second plane
 - Cloud Agent as seat
+- rehearsal as production write
+- duty matrix as SKU
+- live Production clock
 
 Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.25.0",
+    "release": "2.26.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -245,7 +245,7 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "humans from the top × one admit plane × hierarchical access × fail-closed tiles",
+    "interface": "humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal",
     "investor": "catalog list × zero booked × two-human close"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
@@ -2221,8 +2221,8 @@
     "certified": false,
     "real_time_claimed": false,
     "forecast": false,
-    "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. The write path is draft, bind, two admits, first record, second record, keep. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
-    "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is one plane with hierarchical views. Owner and board see freeze and the off switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner sees the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views are not SKUs and not a second product.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.",
+    "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. Each view has a command console. The write path is a walkable sandbox rehearsal of draft, bind, two admits, first record, second record, keep. The duty matrix is segregation of duties. The attention board is honest zeros plus one sandbox first record. The clock is catalog as-of, not a live Production clock. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
+    "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.\n\nThe duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.",
     "levels": [
       {
         "id": "owner",
@@ -2352,7 +2352,10 @@
       "EU AI Act certified",
       "named department heads",
       "remote second plane",
-      "Cloud Agent as seat"
+      "Cloud Agent as seat",
+      "rehearsal as production write",
+      "duty matrix as SKU",
+      "live Production clock"
     ],
     "note": "Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.",
     "views": [
@@ -2368,7 +2371,8 @@
           "path",
           "org",
           "maps"
-        ]
+        ],
+        "console": "attention"
       },
       {
         "id": "owner",
@@ -2381,7 +2385,8 @@
           "off_switch",
           "signed_l1",
           "seats"
-        ]
+        ],
+        "console": "freeze"
       },
       {
         "id": "seats",
@@ -2393,7 +2398,8 @@
         "shows": [
           "pending_admits",
           "first_record"
-        ]
+        ],
+        "console": "rehearsal"
       },
       {
         "id": "examiner",
@@ -2406,7 +2412,8 @@
           "second_record",
           "maps",
           "lod"
-        ]
+        ],
+        "console": "inspector"
       },
       {
         "id": "remote",
@@ -2417,7 +2424,8 @@
         "cannot": "Open a second plane. Use a VPN SKU.",
         "shows": [
           "access"
-        ]
+        ],
+        "console": "access"
       },
       {
         "id": "it",
@@ -2428,7 +2436,8 @@
         "cannot": "Admit. Treat PIM as dual.",
         "shows": [
           "host"
-        ]
+        ],
+        "console": "host"
       }
     ],
     "write_path": [
@@ -2517,7 +2526,149 @@
         "claimed": false,
         "note": "Not claimed. Not a filing."
       }
-    ]
+    ],
+    "clock": {
+      "as_of": "catalog",
+      "live_clock_claimed": false,
+      "last_event": "AINAV-L1 sandbox first_record",
+      "last_event_where": "sandbox",
+      "frozen": false,
+      "pending_binds": 0,
+      "note": "Catalog as-of. Not a live Production clock. Not forecast ARR."
+    },
+    "attention": [
+      {
+        "id": "pending",
+        "label": "Pending binds",
+        "value": "0",
+        "tone": "hold",
+        "note": "No named treasury pair has a live bind."
+      },
+      {
+        "id": "refused",
+        "label": "Refused",
+        "value": "0",
+        "tone": "hold",
+        "note": "No live refuse on a named pair."
+      },
+      {
+        "id": "frozen",
+        "label": "Frozen",
+        "value": "0",
+        "tone": "hold",
+        "note": "Catalog plane OPEN. Console freeze is local rehearsal."
+      },
+      {
+        "id": "production",
+        "label": "Production writes",
+        "value": "0",
+        "tone": "hold",
+        "note": "Production BC stays blocked. Not LIVE_PIN_OK."
+      },
+      {
+        "id": "sandbox_first",
+        "label": "Sandbox first record",
+        "value": "1",
+        "tone": "lab",
+        "note": "AINAV-L1 lab operator identities. Not two named humans."
+      },
+      {
+        "id": "second_record",
+        "label": "Second record",
+        "value": "0",
+        "tone": "hold",
+        "note": "P-ADM keep not attached. Not live Purview."
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "same_seat",
+        "name": "Same seat",
+        "when": "One title clicks both admits",
+        "result": "admit_denied",
+        "live": false,
+        "note": "One Entra object id cannot be both seats."
+      },
+      {
+        "id": "agent_click",
+        "name": "Agent click",
+        "when": "Cloud Agent or client AI binds the action_hash",
+        "result": "admit_denied",
+        "live": false,
+        "note": "An agent may draft. It is not a seat."
+      },
+      {
+        "id": "seat_refuse",
+        "name": "Seat refuse",
+        "when": "Seat A or seat B refuses the bind",
+        "result": "write_held",
+        "live": false,
+        "note": "No grant. No SoR write."
+      },
+      {
+        "id": "freeze",
+        "name": "Freeze",
+        "when": "Owner or board requests the off switch",
+        "result": "fail_closed",
+        "live": false,
+        "note": "New grants stop. Inference may continue. Consequence does not."
+      },
+      {
+        "id": "timeout",
+        "name": "Bind timeout",
+        "when": "A pending bind expires without dual admit",
+        "result": "grant_not_issued",
+        "live": false,
+        "note": "No silent success."
+      },
+      {
+        "id": "replay",
+        "name": "Replay",
+        "when": "The same action_hash is consumed twice",
+        "result": "effect_blocked",
+        "live": false,
+        "note": "Single-use consume. No second write."
+      },
+      {
+        "id": "rollback",
+        "name": "Rollback",
+        "when": "A compensating write after a keep",
+        "result": "requires_dual_admit",
+        "live": false,
+        "note": "Not a time machine. Not a silent undo."
+      },
+      {
+        "id": "pim",
+        "name": "PIM as dual",
+        "when": "An eligible activation is treated as admit",
+        "result": "admit_denied",
+        "live": false,
+        "note": "PIM is not dual admit."
+      },
+      {
+        "id": "copilot",
+        "name": "Copilot as plane",
+        "when": "Copilot, Agent 365, or Agent Tools is treated as admit",
+        "result": "admit_denied",
+        "live": false,
+        "note": "Microsoft is not the product. A tool invocation is not dual."
+      }
+    ],
+    "rehearsal": {
+      "kind": "ainav.plane.rehearsal.v1",
+      "sku": false,
+      "live": false,
+      "production": false,
+      "writes_sor": false,
+      "label": "Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called.",
+      "wedge": "bc.general_journal.post",
+      "document": "AINAV-L1",
+      "company": "AINav",
+      "named_humans": false,
+      "seat_a": "lab operator identity A",
+      "seat_b": "lab operator identity B",
+      "note": "Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett stays invited, not recorded."
+    }
   },
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",

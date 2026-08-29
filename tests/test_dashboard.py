@@ -50,6 +50,21 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert all(item["claimed"] is False for item in body["lines_of_defense"])
     assert all(item["live"] is False for item in body["coverage"])
     assert body["ledger"]["pending_binds"] == 0
+    assert body["clock"]["live_clock_claimed"] is False
+    assert body["clock"]["pending_binds"] == 0
+    assert body["rehearsal"]["live"] is False
+    assert body["rehearsal"]["writes_sor"] is False
+    assert body["rehearsal"]["wedge"] == "bc.general_journal.post"
+    assert body["rehearsal"]["named_humans"] is False
+    assert {item["id"] for item in body["attention"]} >= {"pending", "production", "sandbox_first"}
+    assert all(str(item["value"]) == "0" for item in body["attention"] if item["id"] in {"pending", "production"})
+    assert {item["id"] for item in body["exceptions"]} >= {"same_seat", "agent_click", "freeze", "replay"}
+    assert all(item["live"] is False for item in body["exceptions"])
+    admit_yes = {item["id"] for item in body["duties"] if item["admit"] is True}
+    assert admit_yes == {"seat_a", "seat_b"}
+    agent = next(item for item in body["duties"] if item["id"] == "agent")
+    assert agent["admit"] is False
+    assert agent["draft"] is False
     md = dashboard_markdown()
     assert "humans sit from the top" in md.lower()
     assert "not a sku" in md.lower()
@@ -67,7 +82,12 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Write path" in html
     assert "Hierarchical views" in html
     assert "Three lines of defense" in html
+    assert "Duty matrix" in html
+    assert "Walkable rehearsal" in html
+    assert "Attention board" in html
+    assert "Exception paths" in html
     assert "bc.general_journal.post" in html
+    assert "live clock claimed=false" in html
     path = write_dashboard()
     assert path.exists()
     assert Path("docs/CONTROL_PLANE.md").exists()
@@ -97,6 +117,18 @@ def test_plane_interface_validators_refuse_fiction():
     remote["plane_interface"]["access"]["second_remote_plane"] = True
     with pytest.raises(IntegrityError):
         validate_catalog(remote)
+    live_clock = copy.deepcopy(cat)
+    live_clock["plane_interface"]["clock"]["live_clock_claimed"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(live_clock)
+    live_reh = copy.deepcopy(cat)
+    live_reh["plane_interface"]["rehearsal"]["writes_sor"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(live_reh)
+    named = copy.deepcopy(cat)
+    named["plane_interface"]["rehearsal"]["named_humans"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(named)
 
 
 def test_institute_control_plane_matches_catalog():
@@ -124,5 +156,12 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-view-tabs"' in floor
     assert 'id="plane-lod"' in floor
     assert 'id="plane-coverage"' in floor
+    assert 'id="plane-console"' in floor
+    assert 'id="plane-rehearsal"' in floor
+    assert 'id="plane-duties"' in floor
+    assert 'id="plane-attention"' in floor
+    assert 'id="plane-exceptions"' in floor
+    assert 'id="plane-inspector"' in floor
+    assert "data-rehearse" in js or "runRehearsal" in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()

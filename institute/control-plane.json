@@ -9,6 +9,50 @@
     "teams_is_not_a_seat": true,
     "vpn_sku": false
   },
+  "attention": [
+    {
+      "id": "pending",
+      "label": "Pending binds",
+      "note": "No named treasury pair has a live bind.",
+      "tone": "hold",
+      "value": "0"
+    },
+    {
+      "id": "refused",
+      "label": "Refused",
+      "note": "No live refuse on a named pair.",
+      "tone": "hold",
+      "value": "0"
+    },
+    {
+      "id": "frozen",
+      "label": "Frozen",
+      "note": "Catalog plane OPEN. Console freeze is local rehearsal.",
+      "tone": "hold",
+      "value": "0"
+    },
+    {
+      "id": "production",
+      "label": "Production writes",
+      "note": "Production BC stays blocked. Not LIVE_PIN_OK.",
+      "tone": "hold",
+      "value": "0"
+    },
+    {
+      "id": "sandbox_first",
+      "label": "Sandbox first record",
+      "note": "AINAV-L1 lab operator identities. Not two named humans.",
+      "tone": "lab",
+      "value": "1"
+    },
+    {
+      "id": "second_record",
+      "label": "Second record",
+      "note": "P-ADM keep not attached. Not live Purview.",
+      "tone": "hold",
+      "value": "0"
+    }
+  ],
   "cascade": [
     {
       "label": "Oversee",
@@ -70,6 +114,16 @@
     }
   ],
   "certified": false,
+  "clock": {
+    "as_of": "catalog",
+    "frozen": false,
+    "last_event": "AINAV-L1 sandbox first_record",
+    "last_event_where": "sandbox",
+    "live_clock_claimed": false,
+    "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
+    "pending_binds": 0,
+    "release": "2.26.0"
+  },
   "coverage": [
     {
       "gated": true,
@@ -338,7 +392,193 @@
       "seat": null
     }
   ],
-  "equation": "humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles",
+  "duties": [
+    {
+      "admit": false,
+      "counsel": false,
+      "draft": false,
+      "freeze": "request",
+      "host": false,
+      "id": "owner",
+      "keep": "view",
+      "name": "Owner / executive",
+      "role": "oversee"
+    },
+    {
+      "admit": false,
+      "counsel": false,
+      "draft": false,
+      "freeze": "request",
+      "host": false,
+      "id": "board",
+      "keep": "view",
+      "name": "Board",
+      "role": "oversee"
+    },
+    {
+      "admit": false,
+      "counsel": false,
+      "draft": false,
+      "freeze": false,
+      "host": false,
+      "id": "examiner",
+      "keep": "second_record",
+      "name": "Internal audit / examiner",
+      "role": "keep"
+    },
+    {
+      "admit": true,
+      "counsel": false,
+      "draft": false,
+      "freeze": "refuse",
+      "host": false,
+      "id": "seat_a",
+      "keep": "view",
+      "name": "Treasury \u2014 seat A",
+      "role": "admit"
+    },
+    {
+      "admit": true,
+      "counsel": false,
+      "draft": false,
+      "freeze": "refuse",
+      "host": false,
+      "id": "seat_b",
+      "keep": "view",
+      "name": "Controller \u2014 seat B",
+      "role": "admit"
+    },
+    {
+      "admit": false,
+      "counsel": false,
+      "draft": true,
+      "freeze": false,
+      "host": false,
+      "id": "draft_desks",
+      "keep": false,
+      "name": "Payables / sales",
+      "role": "draft"
+    },
+    {
+      "admit": false,
+      "counsel": false,
+      "draft": false,
+      "freeze": false,
+      "host": true,
+      "id": "it",
+      "keep": false,
+      "name": "IT / identity",
+      "role": "host"
+    },
+    {
+      "admit": false,
+      "counsel": true,
+      "draft": false,
+      "freeze": false,
+      "host": false,
+      "id": "legal",
+      "keep": false,
+      "name": "Legal",
+      "role": "counsel"
+    },
+    {
+      "admit": "if_seated",
+      "counsel": false,
+      "draft": false,
+      "freeze": "if_seated",
+      "host": false,
+      "id": "remote",
+      "keep": "if_role",
+      "name": "Remote human",
+      "role": "same_plane"
+    },
+    {
+      "admit": false,
+      "counsel": false,
+      "draft": false,
+      "freeze": false,
+      "host": false,
+      "id": "agent",
+      "keep": false,
+      "name": "Cloud Agent / client AI",
+      "role": "not_a_seat"
+    }
+  ],
+  "equation": "humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal",
+  "exceptions": [
+    {
+      "id": "same_seat",
+      "live": false,
+      "name": "Same seat",
+      "note": "One Entra object id cannot be both seats.",
+      "result": "admit_denied",
+      "when": "One title clicks both admits"
+    },
+    {
+      "id": "agent_click",
+      "live": false,
+      "name": "Agent click",
+      "note": "An agent may draft. It is not a seat.",
+      "result": "admit_denied",
+      "when": "Cloud Agent or client AI binds the action_hash"
+    },
+    {
+      "id": "seat_refuse",
+      "live": false,
+      "name": "Seat refuse",
+      "note": "No grant. No SoR write.",
+      "result": "write_held",
+      "when": "Seat A or seat B refuses the bind"
+    },
+    {
+      "id": "freeze",
+      "live": false,
+      "name": "Freeze",
+      "note": "New grants stop. Inference may continue. Consequence does not.",
+      "result": "fail_closed",
+      "when": "Owner or board requests the off switch"
+    },
+    {
+      "id": "timeout",
+      "live": false,
+      "name": "Bind timeout",
+      "note": "No silent success.",
+      "result": "grant_not_issued",
+      "when": "A pending bind expires without dual admit"
+    },
+    {
+      "id": "replay",
+      "live": false,
+      "name": "Replay",
+      "note": "Single-use consume. No second write.",
+      "result": "effect_blocked",
+      "when": "The same action_hash is consumed twice"
+    },
+    {
+      "id": "rollback",
+      "live": false,
+      "name": "Rollback",
+      "note": "Not a time machine. Not a silent undo.",
+      "result": "requires_dual_admit",
+      "when": "A compensating write after a keep"
+    },
+    {
+      "id": "pim",
+      "live": false,
+      "name": "PIM as dual",
+      "note": "PIM is not dual admit.",
+      "result": "admit_denied",
+      "when": "An eligible activation is treated as admit"
+    },
+    {
+      "id": "copilot",
+      "live": false,
+      "name": "Copilot as plane",
+      "note": "Microsoft is not the product. A tool invocation is not dual.",
+      "result": "admit_denied",
+      "when": "Copilot, Agent 365, or Agent Tools is treated as admit"
+    }
+  ],
   "forecast": false,
   "institute": "AINAV.Institute",
   "invited": "Cynthia Hodnett",
@@ -358,7 +598,7 @@
     "pending_binds": 0
   },
   "legal": "AINav, Inc.",
-  "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is one plane with hierarchical views. Owner and board see freeze and the off switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner sees the first record, the second record, and the maps. Remote is the same Entra object id \u2014 Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views are not SKUs and not a second product.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.",
+  "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id \u2014 Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.\n\nThe duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.",
   "levels": [
     {
       "admit": false,
@@ -595,9 +835,27 @@
     "EU AI Act certified",
     "named department heads",
     "remote second plane",
-    "Cloud Agent as seat"
+    "Cloud Agent as seat",
+    "rehearsal as production write",
+    "duty matrix as SKU",
+    "live Production clock"
   ],
-  "release": "2.25.0",
+  "rehearsal": {
+    "company": "AINav",
+    "document": "AINAV-L1",
+    "kind": "ainav.plane.rehearsal.v1",
+    "label": "Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called.",
+    "live": false,
+    "named_humans": false,
+    "note": "Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett stays invited, not recorded.",
+    "production": false,
+    "seat_a": "lab operator identity A",
+    "seat_b": "lab operator identity B",
+    "sku": false,
+    "wedge": "bc.general_journal.post",
+    "writes_sor": false
+  },
+  "release": "2.26.0",
   "scenarios": [
     {
       "id": "l1_only",
@@ -806,7 +1064,7 @@
     }
   },
   "sku": false,
-  "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. The write path is draft, bind, two admits, first record, second record, keep. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
+  "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. Each view has a command console. The write path is a walkable sandbox rehearsal of draft, bind, two admits, first record, second record, keep. The duty matrix is segregation of duties. The attention board is honest zeros plus one sandbox first record. The clock is catalog as-of, not a live Production clock. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
   "tiles": [
     {
       "id": "plane_state",
@@ -898,6 +1156,7 @@
       "admit": false,
       "can": "See the ledger and the freeze state.",
       "cannot": "A view is not a seat.",
+      "console": "attention",
       "id": "entire",
       "name": "Entire plane",
       "shows": [
@@ -912,6 +1171,7 @@
       "admit": false,
       "can": "Institute the plane. Request a freeze.",
       "cannot": "Click both admits. One title cannot be both seats.",
+      "console": "freeze",
       "id": "owner",
       "name": "Owner / board",
       "shows": [
@@ -925,6 +1185,7 @@
       "admit": true,
       "can": "Bind the action_hash. Refuse the write.",
       "cannot": "Be both seats. Let AI click.",
+      "console": "rehearsal",
       "id": "seats",
       "name": "Seat A / seat B",
       "shows": [
@@ -937,6 +1198,7 @@
       "admit": false,
       "can": "Read first and second records and the seating map.",
       "cannot": "Admit. File. Certify.",
+      "console": "inspector",
       "id": "examiner",
       "name": "Examiner",
       "shows": [
@@ -950,6 +1212,7 @@
       "admit": "if_seated",
       "can": "Whatever their seat already allows, from any network.",
       "cannot": "Open a second plane. Use a VPN SKU.",
+      "console": "access",
       "id": "remote",
       "name": "Remote human",
       "shows": [
@@ -961,6 +1224,7 @@
       "admit": false,
       "can": "Host Copilot, Agent 365, BYO MCP. Block bypass tools.",
       "cannot": "Admit. Treat PIM as dual.",
+      "console": "host",
       "id": "it",
       "name": "IT / identity",
       "shows": [

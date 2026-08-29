@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AINAV.Institute — Executive control-plane dashboard</title>
-  <meta name="description" content="One human plane. Hierarchical views. Write path from draft to keep. Honest ledger. Not a SKU." />
+  <meta name="description" content="One human plane. Command console. Walkable rehearsal. Duty matrix. Honest ledger. Not a SKU." />
   <meta name="theme-color" content="#f4efe6" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
@@ -26,11 +26,11 @@
   </header>
   <main id="floor" class="plane-main">
     <section id="control-plane" class="plane-floor plane-floor-page">
-      <p class="kicker">Ultimate control plane · 2.25.0 · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 2.26.0 · not a SKU · not LIVE_PIN_OK</p>
       <h1>Executive control-plane dashboard</h1>
-      <p class="lede" id="plane-thesis" data-keep="short">One plane. Six views. Draft to keep. Two humans before the write.</p>
-      <p class="note" id="plane-doctrine">Hierarchical views are the same Entra plane seen from owner, seats, examiner, remote, and IT. Not a second product.</p>
-      <p class="equation" id="plane-equation">Interface = humans from the top × one admit plane × hierarchical access × fail-closed tiles</p>
+      <p class="lede" id="plane-thesis" data-keep="short">One plane. Six consoles. Walk the write. Two humans before the write.</p>
+      <p class="note" id="plane-doctrine">Each view is the same Entra plane seen from a seat. A rehearsal is not a live bind. A view is not a SKU.</p>
+      <p class="equation" id="plane-equation">Interface = humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal</p>
 
       <div class="plane-views" id="plane-view-tabs" role="tablist" aria-label="Hierarchical views">
         <button type="button" role="tab" aria-selected="true" data-view-tab="entire">Entire plane</button>
@@ -53,7 +53,35 @@
         <span>Signed L1 <b>0</b></span>
         <span>Seats <b>0 / 1 invited</b></span>
       </div>
+      <p class="plane-clock" id="plane-clock">As of catalog · live clock claimed=false · last event AINAV-L1 sandbox</p>
       <p class="note" id="plane-realtime">Real-time means the admit ledger and freeze state. Not live Production BC. Not forecast ARR.</p>
+
+      <section class="plane-console" id="plane-console" data-console="entire" aria-live="polite">
+        <p class="kicker" id="plane-console-kicker">Command console · entire plane</p>
+        <h2 id="plane-console-title">Attention board</h2>
+        <p class="note" id="plane-console-note">Honest zeros plus one sandbox first record. The catalog plane stays OPEN.</p>
+        <div class="plane-attention" id="plane-attention"></div>
+        <div class="plane-rehearsal" id="plane-rehearsal" hidden>
+          <div class="plane-rehearsal-rail" id="plane-rehearsal-rail"></div>
+          <div class="plane-rehearsal-actions" id="plane-rehearsal-actions"></div>
+          <pre class="plane-tape" id="plane-tape" data-state="idle">rehearsal_idle
+wedge=bc.general_journal.post
+writes_sor=false · production=false · named_humans=false
+Microsoft was not called. Catalog plane stays OPEN.</pre>
+        </div>
+        <div class="plane-inspector" id="plane-inspector"></div>
+      </section>
+
+      <h2 data-for="entire owner seats examiner">Duty matrix — who may do what</h2>
+      <p class="note">Segregation of duties. Only seat A and seat B admit. Remote inherits the seated power. Cloud Agent cannot bind.</p>
+      <div class="table-wrap">
+        <table class="law" id="plane-duties-table">
+          <thead>
+            <tr><th>Level</th><th>Admit</th><th>Freeze</th><th>Keep</th><th>Draft</th><th>Host</th><th>Counsel</th></tr>
+          </thead>
+          <tbody id="plane-duties"></tbody>
+        </table>
+      </div>
 
       <h2 data-for="entire seats owner">Write path — draft to keep</h2>
       <div class="plane-path" id="plane-path"></div>
@@ -95,6 +123,9 @@
       <h2 data-for="entire owner it">Mechanics — fail-closed</h2>
       <div class="plane-mechanics" id="plane-mechanics"></div>
 
+      <h2 data-for="entire seats examiner owner">Exception paths</h2>
+      <div class="plane-exceptions" id="plane-exceptions"></div>
+
       <h2 data-for="entire seats examiner">Action coverage — same plane, none live</h2>
       <div class="table-wrap">
         <table class="law">
@@ -119,7 +150,7 @@
   </main>
   <footer>
     <span>AINAV.Institute</span>
-    <span>Not a SKU. Not LIVE_PIN_OK. Not a certificate. Views are not SKUs.</span>
+    <span>Not a SKU. Not LIVE_PIN_OK. Not a certificate. Views, rehearsal, and the duty matrix are not SKUs.</span>
   </footer>
   <script src="site.js" defer></script>
 </body>

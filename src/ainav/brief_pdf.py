@@ -126,7 +126,7 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "callout",
-            "title": "Hierarchy, remote access, honest tiles, AI compliance maps",
+            "title": "Command console, duty matrix, walkable rehearsal, honest tiles",
             "text": (cat.get("plane_interface") or {}).get("letter") or "",
         },
         {

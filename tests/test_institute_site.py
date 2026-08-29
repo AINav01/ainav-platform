@@ -42,6 +42,7 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="plane-maps"' in html
     assert "control-plane.html" in html
     assert 'id="plane-path"' in html
+    assert "walkable rehearsal" in html.lower() or "command console" in Path("institute/control-plane.html").read_text(encoding="utf-8").lower()
     assert "control-plane.json" in js
     assert "governance.json" in js
     assert "The client utilizes AI" in html

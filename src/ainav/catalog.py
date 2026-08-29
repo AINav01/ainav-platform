@@ -159,6 +159,11 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "interface equation is humans from the top \u00d7 hierarchical access",
             reason_code="CATALOG_EQUATION",
         )
+    if "walkable rehearsal" not in interface:
+        raise IntegrityError(
+            "interface equation must keep walkable rehearsal",
+            reason_code="CATALOG_EQUATION",
+        )
     investor = str(equations.get("investor") or "").lower()
     if "catalog list" not in investor or "zero booked" not in investor:
         raise IntegrityError(
@@ -663,6 +668,34 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     for item in body.get("lines_of_defense") or []:
         if item.get("claimed") is True:
             raise IntegrityError("lines of defense are not a certificate", reason_code="CATALOG_PLANE")
+    clock = body.get("clock") or {}
+    if clock.get("live_clock_claimed") is True:
+        raise IntegrityError("plane clock cannot claim a live Production clock", reason_code="CATALOG_PLANE")
+    if clock.get("pending_binds") not in (0, "0"):
+        raise IntegrityError("plane clock pending binds stay zero until a named pair", reason_code="CATALOG_PLANE")
+    attention_ids = [item.get("id") for item in body.get("attention") or []]
+    for needed in ("pending", "production", "sandbox_first", "second_record"):
+        if needed not in attention_ids:
+            raise IntegrityError(f"attention board must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("attention") or []:
+        if item.get("id") in {"pending", "production", "second_record"} and str(item.get("value")) not in {"0", "0"}:
+            raise IntegrityError(f"attention {item.get('id')} stays zero", reason_code="CATALOG_PLANE")
+    exception_ids = [item.get("id") for item in body.get("exceptions") or []]
+    for needed in ("same_seat", "agent_click", "seat_refuse", "freeze", "replay"):
+        if needed not in exception_ids:
+            raise IntegrityError(f"exception paths must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("exceptions") or []:
+        if item.get("live") is True:
+            raise IntegrityError("exception paths are not live incidents", reason_code="CATALOG_PLANE")
+    rehearsal = body.get("rehearsal") or {}
+    if rehearsal.get("sku") is True:
+        raise IntegrityError("rehearsal is not a SKU", reason_code="CATALOG_SKU")
+    if rehearsal.get("live") is True or rehearsal.get("production") is True or rehearsal.get("writes_sor") is True:
+        raise IntegrityError("rehearsal cannot write SoR or claim live", reason_code="CATALOG_PLANE")
+    if rehearsal.get("wedge") != "bc.general_journal.post":
+        raise IntegrityError("rehearsal walks the public wedge", reason_code="CATALOG_PLANE")
+    if rehearsal.get("named_humans") is True:
+        raise IntegrityError("rehearsal cannot invent named humans", reason_code="CATALOG_PLANE")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

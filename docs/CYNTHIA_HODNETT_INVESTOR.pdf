@@ -58,7 +58,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
 ET
 BT
 /F2 11.5 Tf
@@ -383,7 +383,7 @@ ET
 endstream
 endobj
 14 0 obj
-<< /Length 7036 >>
+<< /Length 6866 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -405,7 +405,7 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
 ET
 BT
 /F1 9 Tf
@@ -606,94 +606,79 @@ BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 286.0 Tm
-(The floor is one plane with hierarchical views. Owner and board see freeze and the off) Tj
+(The floor is a command console on one plane. Hierarchical views are not a second product.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 274.0 Tm
-(switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner) Tj
+(Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 262.0 Tm
-(sees the first record, the second record, and the maps. Remote is the same Entra object id) Tj
+(the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 250.0 Tm
-(? Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views) Tj
+(the second record, and the maps. Remote is the same Entra object id ? Conditional Access) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 238.0 Tm
-(are not SKUs and not a second product.) Tj
+(may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 222.0 Tm
-(The write path is the same for every privileged class: draft, bind an action_hash, seat A,) Tj
+1 0 0 1 48.0 226.0 Tm
+(Teams, Copilot, and Agent Tools are not dual admit.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 210.0 Tm
-(seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off) Tj
+(The write path is the same for every privileged class: draft, bind an action_hash, seat A,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 198.0 Tm
-(switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write) Tj
+(seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 186.0 Tm
-(that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL.) Tj
+(floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 174.0 Tm
-(None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM) Tj
+(Completing the rehearsal does not create a new SoR write. Microsoft is not called.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 162.0 Tm
-(keep, 3LOD is not claimed.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 140.0 Tm
-(WHO BUYS · WHY NOW) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 137.0 m 564 137.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 124.0 Tm
-(A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and) Tj
+(Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 112.0 Tm
-(two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer) Tj
+1 0 0 1 48.0 150.0 Tm
+(Copilot, and replay are deny paths. Freeze in the console is local to the browser. The) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 100.0 Tm
-(is invented in this packet.) Tj
+1 0 0 1 48.0 138.0 Tm
+(catalog plane stays OPEN until an owner later marks a real freeze.) Tj
 ET
 BT
 /F3 7.5 Tf
@@ -704,7 +689,7 @@ ET
 endstream
 endobj
 15 0 obj
-<< /Length 7305 >>
+<< /Length 6596 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -726,366 +711,289 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 708.0 Tm
-(Every new client AI is another unauthorized-write surface. The buyer is the controller who) Tj
+(The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 696.0 Tm
-(already has Business Central Premium, Entra, and two-person journal SOD. They institute) Tj
+(seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0,) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 684.0 Tm
-(AINav on the org chart they already have. They do not replace their ERP. They do not) Tj
+(second record 0, and one sandbox first record. The clock is catalog as-of. It is not a) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 672.0 Tm
-(replace Copilot. They put two humans in front of the write.) Tj
+(live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 660.0 Tm
+(is a compensating write that itself requires dual admit. Coverage is every action class on) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 648.0 Tm
+(L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 636.0 Tm
+(dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 650.0 Tm
-(WHAT WE ARE ASKING OF YOU) Tj
+1 0 0 1 48.0 614.0 Tm
+(WHO BUYS · WHY NOW) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 647.0 m 564 647.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 634.0 Tm
-(Seat B is treasury_controller. If you agree, you get your own business mailbox, your own) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 622.0 Tm
-(Entra object id, and your own click. James cannot click for you. Refusing a write is the) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 610.0 Tm
-(product working. You are invited, not recorded. Email stays blank until you confirm a) Tj
-ET
+48 611.0 m 564 611.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 598.0 Tm
-(business address. You are not a stockholder and not an officer.) Tj
+(A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 582.0 Tm
-(Cynthia, we are asking you to be seat B and the Inception business executive: your own) Tj
+1 0 0 1 48.0 586.0 Tm
+(two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 570.0 Tm
-(mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a) Tj
+1 0 0 1 48.0 574.0 Tm
+(is invented in this packet.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 558.0 Tm
+(Every new client AI is another unauthorized-write surface. The buyer is the controller who) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 546.0 Tm
+(already has Business Central Premium, Entra, and two-person journal SOD. They institute) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 534.0 Tm
+(AINav on the org chart they already have. They do not replace their ERP. They do not) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 522.0 Tm
+(replace Copilot. They put two humans in front of the write.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 500.0 Tm
+(WHAT WE ARE ASKING OF YOU) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 497.0 m 564 497.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 484.0 Tm
+(Seat B is treasury_controller. If you agree, you get your own business mailbox, your own) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 472.0 Tm
+(Entra object id, and your own click. James cannot click for you. Refusing a write is the) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 460.0 Tm
+(product working. You are invited, not recorded. Email stays blank until you confirm a) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 448.0 Tm
+(business address. You are not a stockholder and not an officer.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 432.0 Tm
+(Cynthia, we are asking you to be seat B and the Inception business executive: your own) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 420.0 Tm
+(mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 408.0 Tm
 (priced round. Not LIVE_PIN_OK.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 536.0 Tm
+1 0 0 1 48.0 386.0 Tm
 (WHAT WE WILL NOT ASK) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 533.0 m 564 533.0 l S
+48 383.0 m 564 383.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 520.0 Tm
+1 0 0 1 48.0 370.0 Tm
 (We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 508.0 Tm
+1 0 0 1 48.0 358.0 Tm
 (LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 496.0 Tm
+1 0 0 1 48.0 346.0 Tm
 (the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 474.0 Tm
+1 0 0 1 48.0 324.0 Tm
 (WHAT A TUESDAY LOOKS LIKE) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 471.0 m 564 471.0 l S
+48 321.0 m 564 321.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 458.0 Tm
+1 0 0 1 48.0 308.0 Tm
 (Seat A is treasury_approver \(James\). Seat B is treasury_controller \(you, if you agree\).) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 446.0 Tm
+1 0 0 1 48.0 296.0 Tm
 (Each has a distinct Entra object id. When a privileged write is proposed, both of you see) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 434.0 Tm
+1 0 0 1 48.0 284.0 Tm
 (the same action_hash. Admit or refuse. Refusing is the product working. James clicking) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 422.0 Tm
+1 0 0 1 48.0 272.0 Tm
 (twice is not dual. The Cloud Agent is not a seat.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 400.0 Tm
+1 0 0 1 48.0 250.0 Tm
 (HOW A SALE WORKS) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 397.0 m 564 397.0 l S
+48 247.0 m 564 247.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 384.0 Tm
+1 0 0 1 48.0 234.0 Tm
 (Qualify a controller who already has Business Central Premium, Entra, and two-person) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 372.0 Tm
+1 0 0 1 48.0 222.0 Tm
 (journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 360.0 Tm
+1 0 0 1 48.0 210.0 Tm
 (Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 348.0 Tm
+1 0 0 1 48.0 198.0 Tm
 (same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 336.0 Tm
+1 0 0 1 48.0 186.0 Tm
 (design-partner name.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 314.0 Tm
+1 0 0 1 48.0 164.0 Tm
 (BUSINESS MODEL ? THREE SKUS ONLY) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 311.0 m 564 311.0 l S
+48 161.0 m 564 161.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 298.0 Tm
+1 0 0 1 48.0 148.0 Tm
 (Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 286.0 Tm
+1 0 0 1 48.0 136.0 Tm
 (Microsoft licenses are not SKUs. U-DUAL is never free. A desk attaches to one of those) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 274.0 Tm
+1 0 0 1 48.0 124.0 Tm
 (three SKUs; it does not become a fourth product.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 258.0 Tm
+1 0 0 1 48.0 108.0 Tm
 (Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 246.0 Tm
+1 0 0 1 48.0 96.0 Tm
 (billing provider. Recognized revenue stays zero until a controller actually buys.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 230.0 Tm
-(A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 218.0 Tm
-(are seating, not a discount on a second control plane. Priced L1 desks are $6,000?$10,000.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 206.0 Tm
-(Priced P-ADM keep is $5,000?$8,000 after kit PASS. Priced U-DUAL desks are $6,000?$10,000) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 194.0 Tm
-(and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 182.0 Tm
-(are not a SKU.) Tj
-ET
-0.067 0.078 0.102 rg
-48 154.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 158.0 Tm
-(SKU) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 130.0 158.0 Tm
-(Role) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 220.0 158.0 Tm
-(Catalog list) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 400.0 158.0 Tm
-(Term) Tj
-ET
-0.98 0.97 0.95 rg
-48 139.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 143.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 130.0 143.0 Tm
-(prove) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 220.0 143.0 Tm
-($28,000?$40,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 143.0 Tm
-(2?4 weeks) Tj
-ET
-0.98 0.97 0.95 rg
-48 125.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 129.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 130.0 129.0 Tm
-(keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 220.0 129.0 Tm
-($40,000?$60,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 129.0 Tm
-(annual) Tj
-ET
-0.98 0.97 0.95 rg
-48 111.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 115.0 Tm
-(U-DUAL) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 130.0 115.0 Tm
-(deepen) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 220.0 115.0 Tm
-($20,000?$35,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 115.0 Tm
-(annual) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 100.0 Tm
-(There is no priced round in this packet. There is no valuation. There is no forecast ARR.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 88.0 Tm
-(The honest investor unit is catalog list times zero booked times a two-human close.) Tj
 ET
 BT
 /F3 7.5 Tf
@@ -1096,1923 +1004,7 @@ ET
 endstream
 endobj
 16 0 obj
-<< /Length 9934 >>
-stream
-0.067 0.078 0.102 rg
-0 730 612 62 re f
-0.769 0.647 0.455 rg
-0 726 612 4 re f
-BT
-/F2 8 Tf
-0.769 0.647 0.455 rg
-1 0 0 1 48.0 770.0 Tm
-(AINAV, INC.) Tj
-ET
-BT
-/F2 15 Tf
-1 1 1 rg
-1 0 0 1 48.0 750.0 Tm
-(Upsell catalog) Tj
-ET
-BT
-/F3 8 Tf
-0.85 0.82 0.76 rg
-1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 702.0 Tm
-(UPSELL CATALOG ? NOT A FOURTH SKU) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 699.0 m 564 699.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 686.0 Tm
-(Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 674.0 Tm
-(fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 662.0 Tm
-(are seating, not a discount on a second control plane.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 640.0 Tm
-(L1 DESKS) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 637.0 m 564 637.0 l S
-0.067 0.078 0.102 rg
-48 612.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 616.0 Tm
-(Desk) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 168.0 616.0 Tm
-(List) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 300.0 616.0 Tm
-(What it is) Tj
-ET
-0.98 0.97 0.95 rg
-48 597.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 601.0 Tm
-(Treasury wedge) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 601.0 Tm
-(included with L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 601.0 Tm
-(Standard L1 industry shape.) Tj
-ET
-0.98 0.97 0.95 rg
-48 583.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 587.0 Tm
-(Controller desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 587.0 Tm
-(included with L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 587.0 Tm
-(Same L1 wedge, controller seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 569.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 573.0 Tm
-(Payables desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 573.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 573.0 Tm
-(A la carte L1 seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 555.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 559.0 Tm
-(Bank desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 559.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 559.0 Tm
-(A la carte L1 seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 541.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 545.0 Tm
-(Cash desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 545.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 545.0 Tm
-(A la carte L1 seating. Cash receipt a?) Tj
-ET
-0.98 0.97 0.95 rg
-48 527.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 531.0 Tm
-(Fixed-asset desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 531.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 531.0 Tm
-(A la carte L1 seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 513.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 517.0 Tm
-(Inventory desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 517.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 517.0 Tm
-(A la carte L1 seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 499.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 503.0 Tm
-(AI failsafe desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 503.0 Tm
-(included with L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 503.0 Tm
-(L1 seating of the failsafe. Client AI?) Tj
-ET
-0.98 0.97 0.95 rg
-48 485.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 489.0 Tm
-(Counterparty AI desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 489.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 489.0 Tm
-(A la carte L1 seating. The client's c?) Tj
-ET
-0.98 0.97 0.95 rg
-48 471.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 475.0 Tm
-(Human control plane) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 475.0 Tm
-(included with L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 475.0 Tm
-(L1 seating of the umbrella plane. One?) Tj
-ET
-0.98 0.97 0.95 rg
-48 457.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 461.0 Tm
-(Off-switch desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 461.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 461.0 Tm
-(A la carte L1 seating. Fail-closed fr?) Tj
-ET
-0.98 0.97 0.95 rg
-48 443.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 447.0 Tm
-(Rollback desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 447.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 447.0 Tm
-(A la carte L1 seating. Compensating j?) Tj
-ET
-0.98 0.97 0.95 rg
-48 429.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 433.0 Tm
-(Client org seating) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 433.0 Tm
-(included with L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 433.0 Tm
-(L1 seating of the client's existing o?) Tj
-ET
-0.98 0.97 0.95 rg
-48 415.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 419.0 Tm
-(Independent plane) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 419.0 Tm
-(included with L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 419.0 Tm
-(L1 seating that the admit plane is no?) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 398.0 Tm
-(P-ADM KEEP AFTER KIT PASS) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 395.0 m 564 395.0 l S
-0.067 0.078 0.102 rg
-48 370.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 374.0 Tm
-(Keep) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 168.0 374.0 Tm
-(List) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 300.0 374.0 Tm
-(What it is) Tj
-ET
-0.98 0.97 0.95 rg
-48 355.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 359.0 Tm
-(Retention keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 359.0 Tm
-($5,000?$8,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 359.0 Tm
-(A la carte P-ADM keep. Not live Defen?) Tj
-ET
-0.98 0.97 0.95 rg
-48 341.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 345.0 Tm
-(Oversight keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 345.0 Tm
-($5,000?$8,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 345.0 Tm
-(A la carte P-ADM keep. Examiner Decis?) Tj
-ET
-0.98 0.97 0.95 rg
-48 327.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 331.0 Tm
-(Second-record keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 331.0 Tm
-($5,000?$8,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 331.0 Tm
-(A la carte P-ADM keep. Second record?) Tj
-ET
-0.98 0.97 0.95 rg
-48 313.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 317.0 Tm
-(Board / examiner keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 317.0 Tm
-($5,000?$8,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 317.0 Tm
-(A la carte P-ADM keep. Owner, board,?) Tj
-ET
-0.98 0.97 0.95 rg
-48 299.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 303.0 Tm
-(Internal-audit keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 303.0 Tm
-($5,000?$8,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 303.0 Tm
-(A la carte P-ADM keep. Internal audit?) Tj
-ET
-0.98 0.97 0.95 rg
-48 285.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 289.0 Tm
-(IP / reserved-work kee) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 289.0 Tm
-($5,000?$8,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 289.0 Tm
-(A la carte P-ADM keep. Counsel-facing?) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 268.0 Tm
-(U-DUAL DESKS ? NEVER FREE) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 265.0 m 564 265.0 l S
-0.067 0.078 0.102 rg
-48 240.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 244.0 Tm
-(Desk) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 168.0 244.0 Tm
-(List) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 300.0 244.0 Tm
-(What it is) Tj
-ET
-0.98 0.97 0.95 rg
-48 225.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 229.0 Tm
-(Sales deepen) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 229.0 Tm
-(included with U-DUAL) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 229.0 Tm
-(A la carte U-DUAL depth.) Tj
-ET
-0.98 0.97 0.95 rg
-48 211.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 215.0 Tm
-(Quote desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 215.0 Tm
-(included with U-DUAL) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 215.0 Tm
-(A la carte U-DUAL slice.) Tj
-ET
-0.98 0.97 0.95 rg
-48 197.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 201.0 Tm
-(Invoice desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 201.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 201.0 Tm
-(A la carte U-DUAL seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 183.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 187.0 Tm
-(Credit desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 187.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 187.0 Tm
-(A la carte U-DUAL seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 169.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 173.0 Tm
-(Returns desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 173.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 173.0 Tm
-(A la carte U-DUAL seating.) Tj
-ET
-0.98 0.97 0.95 rg
-48 155.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 159.0 Tm
-(Pricing desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 168.0 159.0 Tm
-($6,000?$10,000) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 300.0 159.0 Tm
-(A la carte U-DUAL seating.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 138.0 Tm
-(FEE-FOR-SERVICE ? $3,500/DAY AFTER L1) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 135.0 m 564 135.0 l S
-BT
-/F3 7.5 Tf
-0.4 0.4 0.4 rg
-1 0 0 1 48.0 28.0 Tm
-(AINav, Inc.  ·  Page 4 of 7  ·  For Cynthia Hodnett  ·  Not a priced round  ·  Not LIVE_PIN_OK) Tj
-ET
-endstream
-endobj
-17 0 obj
-<< /Length 11658 >>
-stream
-0.067 0.078 0.102 rg
-0 730 612 62 re f
-0.769 0.647 0.455 rg
-0 726 612 4 re f
-BT
-/F2 8 Tf
-0.769 0.647 0.455 rg
-1 0 0 1 48.0 770.0 Tm
-(AINAV, INC.) Tj
-ET
-BT
-/F2 15 Tf
-1 1 1 rg
-1 0 0 1 48.0 750.0 Tm
-(Upsell catalog) Tj
-ET
-BT
-/F3 8 Tf
-0.85 0.82 0.76 rg
-1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
-ET
-0.067 0.078 0.102 rg
-48 696.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 700.0 Tm
-(Service) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 180.0 700.0 Tm
-(Rate) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 280.0 700.0 Tm
-(What it is) Tj
-ET
-0.98 0.97 0.95 rg
-48 681.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 685.0 Tm
-(Acceptance Kit / proof) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 685.0 Tm
-(inside L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 685.0 Tm
-(Inside L1.) Tj
-ET
-0.98 0.97 0.95 rg
-48 667.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 671.0 Tm
-(Integration assist) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 671.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 671.0 Tm
-(Hours on the same admit plane.?) Tj
-ET
-0.98 0.97 0.95 rg
-48 653.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 657.0 Tm
-(Replay / Merkle worksh) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 657.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 657.0 Tm
-(Audit replay with the client.) Tj
-ET
-0.98 0.97 0.95 rg
-48 639.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 643.0 Tm
-(Quarterly business rev) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 643.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 643.0 Tm
-(Same-plane review. Does not att?) Tj
-ET
-0.98 0.97 0.95 rg
-48 625.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 629.0 Tm
-(Mothership operations ) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 629.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 629.0 Tm
-(Local mothership runbook hours.) Tj
-ET
-0.98 0.97 0.95 rg
-48 611.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 615.0 Tm
-(Industry pack seating) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 615.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 615.0 Tm
-(Hours to seat an a la carte pac?) Tj
-ET
-0.98 0.97 0.95 rg
-48 597.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 601.0 Tm
-(Desk workshop) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 601.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 601.0 Tm
-(Hours to seat a new a la carte?) Tj
-ET
-0.98 0.97 0.95 rg
-48 583.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 587.0 Tm
-(P-ADM keep wiring) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 587.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 587.0 Tm
-(Hours to wire P-ADM keep sinks.?) Tj
-ET
-0.98 0.97 0.95 rg
-48 569.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 573.0 Tm
-(AI governance / failsa) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 573.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 573.0 Tm
-(Hours to map the client's AI in?) Tj
-ET
-0.98 0.97 0.95 rg
-48 555.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 559.0 Tm
-(Institute AINav failsa) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 559.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 559.0 Tm
-(Hours to institute L1 and the s?) Tj
-ET
-0.98 0.97 0.95 rg
-48 541.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 545.0 Tm
-(Owner / board / examin) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 545.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 545.0 Tm
-(Hours to brief the owner, board?) Tj
-ET
-0.98 0.97 0.95 rg
-48 527.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 531.0 Tm
-(Client org-chart works) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 531.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 531.0 Tm
-(Hours to map the client's exist?) Tj
-ET
-0.98 0.97 0.95 rg
-48 513.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 517.0 Tm
-(IP / independence hygi) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 180.0 517.0 Tm
-($3,500/day) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 280.0 517.0 Tm
-(Hours to walk reserved work, Mi?) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 496.0 Tm
-(LIBRARIES ? NOT SKUS) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 493.0 m 564 493.0 l S
-0.067 0.078 0.102 rg
-48 468.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 472.0 Tm
-(Library) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 200.0 472.0 Tm
-(Requires) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 270.0 472.0 Tm
-(What it is) Tj
-ET
-0.98 0.97 0.95 rg
-48 453.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 457.0 Tm
-(l1.wedge) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 457.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 457.0 Tm
-(Standard L1 library. Journal wedge?) Tj
-ET
-0.98 0.97 0.95 rg
-48 439.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 443.0 Tm
-(udual.sales) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 443.0 Tm
-(U-DUAL) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 443.0 Tm
-(Paid U-DUAL library. Quote and orde?) Tj
-ET
-0.98 0.97 0.95 rg
-48 425.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 429.0 Tm
-(padm.export) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 429.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 429.0 Tm
-(P-ADM keep library. Purview export?) Tj
-ET
-0.98 0.97 0.95 rg
-48 411.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 415.0 Tm
-(kit.evidence) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 415.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 415.0 Tm
-(Acceptance Kit evidence path.) Tj
-ET
-0.98 0.97 0.95 rg
-48 397.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 401.0 Tm
-(l1.payables) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 401.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 401.0 Tm
-(A la carte L1 library.) Tj
-ET
-0.98 0.97 0.95 rg
-48 383.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 387.0 Tm
-(l1.bank) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 387.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 387.0 Tm
-(A la carte L1 library.) Tj
-ET
-0.98 0.97 0.95 rg
-48 369.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 373.0 Tm
-(udual.quote_to_cash) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 373.0 Tm
-(U-DUAL) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 373.0 Tm
-(A la carte U-DUAL library. Never fr?) Tj
-ET
-0.98 0.97 0.95 rg
-48 355.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 359.0 Tm
-(padm.siem) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 359.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 359.0 Tm
-(A la carte P-ADM keep library. Not?) Tj
-ET
-0.98 0.97 0.95 rg
-48 341.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 345.0 Tm
-(l1.cash) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 345.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 345.0 Tm
-(A la carte L1 library. Priced as in?) Tj
-ET
-0.98 0.97 0.95 rg
-48 327.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 331.0 Tm
-(l1.fixed_asset) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 331.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 331.0 Tm
-(A la carte L1 library. Priced as in?) Tj
-ET
-0.98 0.97 0.95 rg
-48 313.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 317.0 Tm
-(udual.returns) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 317.0 Tm
-(U-DUAL) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 317.0 Tm
-(A la carte U-DUAL library. Never fr?) Tj
-ET
-0.98 0.97 0.95 rg
-48 299.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 303.0 Tm
-(padm.retention) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 303.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 303.0 Tm
-(A la carte P-ADM keep library. Not?) Tj
-ET
-0.98 0.97 0.95 rg
-48 285.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 289.0 Tm
-(l1.failsafe) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 289.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 289.0 Tm
-(L1 failsafe library. Client AI is n?) Tj
-ET
-0.98 0.97 0.95 rg
-48 271.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 275.0 Tm
-(padm.governance) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 275.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 275.0 Tm
-(A la carte P-ADM governance keep. N?) Tj
-ET
-0.98 0.97 0.95 rg
-48 257.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 261.0 Tm
-(l1.cascade) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 261.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 261.0 Tm
-(L1 cascade library. Counterparty AI?) Tj
-ET
-0.98 0.97 0.95 rg
-48 243.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 247.0 Tm
-(padm.records) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 247.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 247.0 Tm
-(P-ADM first-line keep plus second-r?) Tj
-ET
-0.98 0.97 0.95 rg
-48 229.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 233.0 Tm
-(l1.plane) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 233.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 233.0 Tm
-(L1 control-plane library. One admit?) Tj
-ET
-0.98 0.97 0.95 rg
-48 215.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 219.0 Tm
-(l1.off_switch) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 219.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 219.0 Tm
-(L1 off-switch library. Fail-closed?) Tj
-ET
-0.98 0.97 0.95 rg
-48 201.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 205.0 Tm
-(padm.board) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 205.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 205.0 Tm
-(P-ADM board/examiner keep. Second r?) Tj
-ET
-0.98 0.97 0.95 rg
-48 187.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 191.0 Tm
-(l1.org) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 191.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 191.0 Tm
-(L1 org-seating library. Existing SO?) Tj
-ET
-0.98 0.97 0.95 rg
-48 173.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 177.0 Tm
-(padm.audit) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 177.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 177.0 Tm
-(P-ADM internal-audit keep. Seating?) Tj
-ET
-0.98 0.97 0.95 rg
-48 159.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 163.0 Tm
-(l1.independence) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 163.0 Tm
-(L1) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 163.0 Tm
-(L1 independence library. Microsoft?) Tj
-ET
-0.98 0.97 0.95 rg
-48 145.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 149.0 Tm
-(padm.ip) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 200.0 149.0 Tm
-(P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 270.0 149.0 Tm
-(P-ADM reserved-work keep. Not a pat?) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 128.0 Tm
-(IF-THEN CATALOG LIST ? NOT A FORECAST) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 125.0 m 564 125.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 112.0 Tm
-(These rows are attach math on list prices. They are not bookings and not a forecast.) Tj
-ET
-BT
-/F3 7.5 Tf
-0.4 0.4 0.4 rg
-1 0 0 1 48.0 28.0 Tm
-(AINav, Inc.  ·  Page 5 of 7  ·  For Cynthia Hodnett  ·  Not a priced round  ·  Not LIVE_PIN_OK) Tj
-ET
-endstream
-endobj
-18 0 obj
-<< /Length 7289 >>
-stream
-0.067 0.078 0.102 rg
-0 730 612 62 re f
-0.769 0.647 0.455 rg
-0 726 612 4 re f
-BT
-/F2 8 Tf
-0.769 0.647 0.455 rg
-1 0 0 1 48.0 770.0 Tm
-(AINAV, INC.) Tj
-ET
-BT
-/F2 15 Tf
-1 1 1 rg
-1 0 0 1 48.0 750.0 Tm
-(Financials) Tj
-ET
-BT
-/F3 8 Tf
-0.85 0.82 0.76 rg
-1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
-ET
-0.067 0.078 0.102 rg
-48 696.0 516.0 16 re f
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 52.0 700.0 Tm
-(Scenario) Tj
-ET
-BT
-/F2 7.2 Tf
-1 1 1 rg
-1 0 0 1 400.0 700.0 Tm
-(List) Tj
-ET
-0.98 0.97 0.95 rg
-48 681.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 685.0 Tm
-(One controller ? L1 only) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 685.0 Tm
-($28,000?$40,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 667.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 671.0 Tm
-(One controller ? L1 then P-ADM) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 671.0 Tm
-($68,000?$100,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 653.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 657.0 Tm
-(One controller ? all three SKUs) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 657.0 Tm
-($88,000?$135,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 639.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 643.0 Tm
-(Three controllers ? L1 + P-ADM each) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 643.0 Tm
-($204,000?$300,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 625.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 629.0 Tm
-(One L1 plus four FFS days) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 629.0 Tm
-($42,000?$54,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 611.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 615.0 Tm
-(One L1 plus counterparty AI desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 615.0 Tm
-($34,000?$50,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 597.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 601.0 Tm
-(One controller ? L1, P-ADM, second-record ke) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 601.0 Tm
-($73,000?$108,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 583.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 587.0 Tm
-(One L1 plus off-switch desk) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 587.0 Tm
-($34,000?$50,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 569.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 573.0 Tm
-(One controller ? L1, P-ADM, board keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 573.0 Tm
-($73,000?$108,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 555.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 559.0 Tm
-(One controller ? L1, P-ADM, internal-audit k) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 559.0 Tm
-($73,000?$108,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 541.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 545.0 Tm
-(One controller ? L1, P-ADM, IP keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 545.0 Tm
-($73,000?$108,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 527.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 531.0 Tm
-(One L1 plus payables and bank desks) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 531.0 Tm
-($40,000?$60,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 513.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 517.0 Tm
-(One controller ? L1, P-ADM, oversight keep) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 517.0 Tm
-($73,000?$108,000) Tj
-ET
-0.98 0.97 0.95 rg
-48 499.0 516.0 14 re f
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 52.0 503.0 Tm
-(All three SKUs plus invoice and credit desks) Tj
-ET
-BT
-/F3 7.1 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 400.0 503.0 Tm
-($100,000?$155,000) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 482.0 Tm
-(INSULATION) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 479.0 m 564 479.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 466.0 Tm
-(The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 454.0 Tm
-(job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 442.0 Tm
-(This is not uncopyable. G12 stays open.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 420.0 Tm
-(TRACTION ? HONEST) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 417.0 m 564 417.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 404.0 Tm
-(The admit plane is in code. Gold is above 90 percent. There is a real Business Central) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 392.0 Tm
-(Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 380.0 Tm
-(identities, not two named treasury humans. The Institute is hosted on Azure and is not) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 368.0 Tm
-(launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 356.0 Tm
-(L1: none.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 334.0 Tm
-(THE ASK) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 331.0 m 564 331.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 318.0 Tm
-(Cynthia, we are asking you to be seat B and the Inception business executive: your own) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 306.0 Tm
-(mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 294.0 Tm
-(priced round. Not LIVE_PIN_OK.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 278.0 Tm
-(We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 266.0 Tm
-(LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 254.0 Tm
-(the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.) Tj
-ET
-BT
-/F2 9 Tf
-0.067 0.078 0.102 rg
-1 0 0 1 48.0 232.0 Tm
-(HIGHLIGHTS) Tj
-ET
-0.769 0.647 0.455 RG
-1.1 w
-48 229.0 m 564 229.0 l S
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 216.0 Tm
-(? Three SKUs only. Year-one catalog list if one controller buys all three:) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 204.0 Tm
-($88,000?$135,000. Not booked.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 188.0 Tm
-(? L1 $28,000?$40,000 in two to four weeks. Ninety-minute proof day on the twin.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 172.0 Tm
-(? P-ADM $40,000?$60,000 / year after kit PASS. U-DUAL $20,000?$35,000 / year, never free.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 156.0 Tm
-(? Priced L1 desks $6,000?$10,000. Priced P-ADM keep $5,000?$8,000. Priced U-DUAL desks) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 144.0 Tm
-($6,000?$10,000.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 128.0 Tm
-(? Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 116.0 Tm
-(attach U-DUAL.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 100.0 Tm
-(? Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent.) Tj
-ET
-BT
-/F1 9 Tf
-0.14 0.14 0.14 rg
-1 0 0 1 48.0 88.0 Tm
-(Not uncopyable.) Tj
-ET
-BT
-/F3 7.5 Tf
-0.4 0.4 0.4 rg
-1 0 0 1 48.0 28.0 Tm
-(AINav, Inc.  ·  Page 6 of 7  ·  For Cynthia Hodnett  ·  Not a priced round  ·  Not LIVE_PIN_OK) Tj
-ET
-endstream
-endobj
-19 0 obj
-<< /Length 1773 >>
+<< /Length 10082 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -3034,69 +1026,2131 @@ BT
 /F3 8 Tf
 0.85 0.82 0.76 rg
 1 0 0 1 48.0 736.0 Tm
-(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.25.0) Tj
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 708.0 Tm
-(? Ultimate control plane: last human gate over every drafting AI. Vendor-native HITL is) Tj
+(A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 696.0 Tm
-(not dual admit. Not a patent. Not uncopyable.) Tj
+(are seating, not a discount on a second control plane. Priced L1 desks are $6,000?$10,000.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 684.0 Tm
+(Priced P-ADM keep is $5,000?$8,000 after kit PASS. Priced U-DUAL desks are $6,000?$10,000) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 672.0 Tm
+(and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 660.0 Tm
+(are not a SKU.) Tj
+ET
+0.067 0.078 0.102 rg
+48 632.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 636.0 Tm
+(SKU) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 130.0 636.0 Tm
+(Role) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 220.0 636.0 Tm
+(Catalog list) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 400.0 636.0 Tm
+(Term) Tj
+ET
+0.98 0.97 0.95 rg
+48 617.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 621.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 130.0 621.0 Tm
+(prove) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 220.0 621.0 Tm
+($28,000?$40,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 621.0 Tm
+(2?4 weeks) Tj
+ET
+0.98 0.97 0.95 rg
+48 603.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 607.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 130.0 607.0 Tm
+(keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 220.0 607.0 Tm
+($40,000?$60,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 607.0 Tm
+(annual) Tj
+ET
+0.98 0.97 0.95 rg
+48 589.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 593.0 Tm
+(U-DUAL) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 130.0 593.0 Tm
+(deepen) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 220.0 593.0 Tm
+($20,000?$35,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 593.0 Tm
+(annual) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 578.0 Tm
+(There is no priced round in this packet. There is no valuation. There is no forecast ARR.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 566.0 Tm
+(The honest investor unit is catalog list times zero booked times a two-human close.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 544.0 Tm
+(UPSELL CATALOG ? NOT A FOURTH SKU) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 541.0 m 564 541.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 528.0 Tm
+(Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 516.0 Tm
+(fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 504.0 Tm
+(are seating, not a discount on a second control plane.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 482.0 Tm
+(L1 DESKS) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 479.0 m 564 479.0 l S
+0.067 0.078 0.102 rg
+48 454.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 458.0 Tm
+(Desk) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 168.0 458.0 Tm
+(List) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 300.0 458.0 Tm
+(What it is) Tj
+ET
+0.98 0.97 0.95 rg
+48 439.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 443.0 Tm
+(Treasury wedge) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 443.0 Tm
+(included with L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 443.0 Tm
+(Standard L1 industry shape.) Tj
+ET
+0.98 0.97 0.95 rg
+48 425.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 429.0 Tm
+(Controller desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 429.0 Tm
+(included with L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 429.0 Tm
+(Same L1 wedge, controller seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 411.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 415.0 Tm
+(Payables desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 415.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 415.0 Tm
+(A la carte L1 seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 397.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 401.0 Tm
+(Bank desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 401.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 401.0 Tm
+(A la carte L1 seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 383.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 387.0 Tm
+(Cash desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 387.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 387.0 Tm
+(A la carte L1 seating. Cash receipt a?) Tj
+ET
+0.98 0.97 0.95 rg
+48 369.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 373.0 Tm
+(Fixed-asset desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 373.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 373.0 Tm
+(A la carte L1 seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 355.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 359.0 Tm
+(Inventory desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 359.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 359.0 Tm
+(A la carte L1 seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 341.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 345.0 Tm
+(AI failsafe desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 345.0 Tm
+(included with L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 345.0 Tm
+(L1 seating of the failsafe. Client AI?) Tj
+ET
+0.98 0.97 0.95 rg
+48 327.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 331.0 Tm
+(Counterparty AI desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 331.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 331.0 Tm
+(A la carte L1 seating. The client's c?) Tj
+ET
+0.98 0.97 0.95 rg
+48 313.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 317.0 Tm
+(Human control plane) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 317.0 Tm
+(included with L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 317.0 Tm
+(L1 seating of the umbrella plane. One?) Tj
+ET
+0.98 0.97 0.95 rg
+48 299.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 303.0 Tm
+(Off-switch desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 303.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 303.0 Tm
+(A la carte L1 seating. Fail-closed fr?) Tj
+ET
+0.98 0.97 0.95 rg
+48 285.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 289.0 Tm
+(Rollback desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 289.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 289.0 Tm
+(A la carte L1 seating. Compensating j?) Tj
+ET
+0.98 0.97 0.95 rg
+48 271.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 275.0 Tm
+(Client org seating) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 275.0 Tm
+(included with L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 275.0 Tm
+(L1 seating of the client's existing o?) Tj
+ET
+0.98 0.97 0.95 rg
+48 257.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 261.0 Tm
+(Independent plane) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 261.0 Tm
+(included with L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 261.0 Tm
+(L1 seating that the admit plane is no?) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 240.0 Tm
+(P-ADM KEEP AFTER KIT PASS) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 237.0 m 564 237.0 l S
+0.067 0.078 0.102 rg
+48 212.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 216.0 Tm
+(Keep) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 168.0 216.0 Tm
+(List) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 300.0 216.0 Tm
+(What it is) Tj
+ET
+0.98 0.97 0.95 rg
+48 197.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 201.0 Tm
+(Retention keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 201.0 Tm
+($5,000?$8,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 201.0 Tm
+(A la carte P-ADM keep. Not live Defen?) Tj
+ET
+0.98 0.97 0.95 rg
+48 183.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 187.0 Tm
+(Oversight keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 187.0 Tm
+($5,000?$8,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 187.0 Tm
+(A la carte P-ADM keep. Examiner Decis?) Tj
+ET
+0.98 0.97 0.95 rg
+48 169.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 173.0 Tm
+(Second-record keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 173.0 Tm
+($5,000?$8,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 173.0 Tm
+(A la carte P-ADM keep. Second record?) Tj
+ET
+0.98 0.97 0.95 rg
+48 155.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 159.0 Tm
+(Board / examiner keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 159.0 Tm
+($5,000?$8,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 159.0 Tm
+(A la carte P-ADM keep. Owner, board,?) Tj
+ET
+0.98 0.97 0.95 rg
+48 141.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 145.0 Tm
+(Internal-audit keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 145.0 Tm
+($5,000?$8,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 145.0 Tm
+(A la carte P-ADM keep. Internal audit?) Tj
+ET
+0.98 0.97 0.95 rg
+48 127.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 131.0 Tm
+(IP / reserved-work kee) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 131.0 Tm
+($5,000?$8,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 131.0 Tm
+(A la carte P-ADM keep. Counsel-facing?) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 110.0 Tm
+(U-DUAL DESKS ? NEVER FREE) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 107.0 m 564 107.0 l S
+BT
+/F3 7.5 Tf
+0.4 0.4 0.4 rg
+1 0 0 1 48.0 28.0 Tm
+(AINav, Inc.  ·  Page 4 of 7  ·  For Cynthia Hodnett  ·  Not a priced round  ·  Not LIVE_PIN_OK) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Length 12589 >>
+stream
+0.067 0.078 0.102 rg
+0 730 612 62 re f
+0.769 0.647 0.455 rg
+0 726 612 4 re f
+BT
+/F2 8 Tf
+0.769 0.647 0.455 rg
+1 0 0 1 48.0 770.0 Tm
+(AINAV, INC.) Tj
+ET
+BT
+/F2 15 Tf
+1 1 1 rg
+1 0 0 1 48.0 750.0 Tm
+(Upsell catalog) Tj
+ET
+BT
+/F3 8 Tf
+0.85 0.82 0.76 rg
+1 0 0 1 48.0 736.0 Tm
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
+ET
+0.067 0.078 0.102 rg
+48 696.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 700.0 Tm
+(Desk) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 168.0 700.0 Tm
+(List) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 300.0 700.0 Tm
+(What it is) Tj
+ET
+0.98 0.97 0.95 rg
+48 681.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 685.0 Tm
+(Sales deepen) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 685.0 Tm
+(included with U-DUAL) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 685.0 Tm
+(A la carte U-DUAL depth.) Tj
+ET
+0.98 0.97 0.95 rg
+48 667.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 671.0 Tm
+(Quote desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 671.0 Tm
+(included with U-DUAL) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 671.0 Tm
+(A la carte U-DUAL slice.) Tj
+ET
+0.98 0.97 0.95 rg
+48 653.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 657.0 Tm
+(Invoice desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 657.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 657.0 Tm
+(A la carte U-DUAL seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 639.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 643.0 Tm
+(Credit desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 643.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 643.0 Tm
+(A la carte U-DUAL seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 625.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 629.0 Tm
+(Returns desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 629.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 629.0 Tm
+(A la carte U-DUAL seating.) Tj
+ET
+0.98 0.97 0.95 rg
+48 611.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 615.0 Tm
+(Pricing desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 168.0 615.0 Tm
+($6,000?$10,000) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 300.0 615.0 Tm
+(A la carte U-DUAL seating.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 594.0 Tm
+(FEE-FOR-SERVICE ? $3,500/DAY AFTER L1) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 591.0 m 564 591.0 l S
+0.067 0.078 0.102 rg
+48 566.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 570.0 Tm
+(Service) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 180.0 570.0 Tm
+(Rate) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 280.0 570.0 Tm
+(What it is) Tj
+ET
+0.98 0.97 0.95 rg
+48 551.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 555.0 Tm
+(Acceptance Kit / proof) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 555.0 Tm
+(inside L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 555.0 Tm
+(Inside L1.) Tj
+ET
+0.98 0.97 0.95 rg
+48 537.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 541.0 Tm
+(Integration assist) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 541.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 541.0 Tm
+(Hours on the same admit plane.?) Tj
+ET
+0.98 0.97 0.95 rg
+48 523.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 527.0 Tm
+(Replay / Merkle worksh) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 527.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 527.0 Tm
+(Audit replay with the client.) Tj
+ET
+0.98 0.97 0.95 rg
+48 509.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 513.0 Tm
+(Quarterly business rev) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 513.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 513.0 Tm
+(Same-plane review. Does not att?) Tj
+ET
+0.98 0.97 0.95 rg
+48 495.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 499.0 Tm
+(Mothership operations ) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 499.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 499.0 Tm
+(Local mothership runbook hours.) Tj
+ET
+0.98 0.97 0.95 rg
+48 481.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 485.0 Tm
+(Industry pack seating) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 485.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 485.0 Tm
+(Hours to seat an a la carte pac?) Tj
+ET
+0.98 0.97 0.95 rg
+48 467.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 471.0 Tm
+(Desk workshop) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 471.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 471.0 Tm
+(Hours to seat a new a la carte?) Tj
+ET
+0.98 0.97 0.95 rg
+48 453.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 457.0 Tm
+(P-ADM keep wiring) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 457.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 457.0 Tm
+(Hours to wire P-ADM keep sinks.?) Tj
+ET
+0.98 0.97 0.95 rg
+48 439.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 443.0 Tm
+(AI governance / failsa) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 443.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 443.0 Tm
+(Hours to map the client's AI in?) Tj
+ET
+0.98 0.97 0.95 rg
+48 425.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 429.0 Tm
+(Institute AINav failsa) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 429.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 429.0 Tm
+(Hours to institute L1 and the s?) Tj
+ET
+0.98 0.97 0.95 rg
+48 411.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 415.0 Tm
+(Owner / board / examin) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 415.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 415.0 Tm
+(Hours to brief the owner, board?) Tj
+ET
+0.98 0.97 0.95 rg
+48 397.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 401.0 Tm
+(Client org-chart works) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 401.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 401.0 Tm
+(Hours to map the client's exist?) Tj
+ET
+0.98 0.97 0.95 rg
+48 383.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 387.0 Tm
+(IP / independence hygi) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 180.0 387.0 Tm
+($3,500/day) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 280.0 387.0 Tm
+(Hours to walk reserved work, Mi?) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 366.0 Tm
+(LIBRARIES ? NOT SKUS) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 363.0 m 564 363.0 l S
+0.067 0.078 0.102 rg
+48 338.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 342.0 Tm
+(Library) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 200.0 342.0 Tm
+(Requires) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 270.0 342.0 Tm
+(What it is) Tj
+ET
+0.98 0.97 0.95 rg
+48 323.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 327.0 Tm
+(l1.wedge) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 327.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 327.0 Tm
+(Standard L1 library. Journal wedge?) Tj
+ET
+0.98 0.97 0.95 rg
+48 309.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 313.0 Tm
+(udual.sales) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 313.0 Tm
+(U-DUAL) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 313.0 Tm
+(Paid U-DUAL library. Quote and orde?) Tj
+ET
+0.98 0.97 0.95 rg
+48 295.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 299.0 Tm
+(padm.export) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 299.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 299.0 Tm
+(P-ADM keep library. Purview export?) Tj
+ET
+0.98 0.97 0.95 rg
+48 281.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 285.0 Tm
+(kit.evidence) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 285.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 285.0 Tm
+(Acceptance Kit evidence path.) Tj
+ET
+0.98 0.97 0.95 rg
+48 267.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 271.0 Tm
+(l1.payables) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 271.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 271.0 Tm
+(A la carte L1 library.) Tj
+ET
+0.98 0.97 0.95 rg
+48 253.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 257.0 Tm
+(l1.bank) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 257.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 257.0 Tm
+(A la carte L1 library.) Tj
+ET
+0.98 0.97 0.95 rg
+48 239.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 243.0 Tm
+(udual.quote_to_cash) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 243.0 Tm
+(U-DUAL) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 243.0 Tm
+(A la carte U-DUAL library. Never fr?) Tj
+ET
+0.98 0.97 0.95 rg
+48 225.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 229.0 Tm
+(padm.siem) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 229.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 229.0 Tm
+(A la carte P-ADM keep library. Not?) Tj
+ET
+0.98 0.97 0.95 rg
+48 211.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 215.0 Tm
+(l1.cash) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 215.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 215.0 Tm
+(A la carte L1 library. Priced as in?) Tj
+ET
+0.98 0.97 0.95 rg
+48 197.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 201.0 Tm
+(l1.fixed_asset) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 201.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 201.0 Tm
+(A la carte L1 library. Priced as in?) Tj
+ET
+0.98 0.97 0.95 rg
+48 183.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 187.0 Tm
+(udual.returns) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 187.0 Tm
+(U-DUAL) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 187.0 Tm
+(A la carte U-DUAL library. Never fr?) Tj
+ET
+0.98 0.97 0.95 rg
+48 169.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 173.0 Tm
+(padm.retention) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 173.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 173.0 Tm
+(A la carte P-ADM keep library. Not?) Tj
+ET
+0.98 0.97 0.95 rg
+48 155.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 159.0 Tm
+(l1.failsafe) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 159.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 159.0 Tm
+(L1 failsafe library. Client AI is n?) Tj
+ET
+0.98 0.97 0.95 rg
+48 141.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 145.0 Tm
+(padm.governance) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 145.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 145.0 Tm
+(A la carte P-ADM governance keep. N?) Tj
+ET
+0.98 0.97 0.95 rg
+48 127.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 131.0 Tm
+(l1.cascade) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 131.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 131.0 Tm
+(L1 cascade library. Counterparty AI?) Tj
+ET
+0.98 0.97 0.95 rg
+48 113.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 117.0 Tm
+(padm.records) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 117.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 117.0 Tm
+(P-ADM first-line keep plus second-r?) Tj
+ET
+0.98 0.97 0.95 rg
+48 99.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 103.0 Tm
+(l1.plane) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 103.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 103.0 Tm
+(L1 control-plane library. One admit?) Tj
+ET
+0.98 0.97 0.95 rg
+48 85.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 89.0 Tm
+(l1.off_switch) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 89.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 89.0 Tm
+(L1 off-switch library. Fail-closed?) Tj
+ET
+0.98 0.97 0.95 rg
+48 71.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 75.0 Tm
+(padm.board) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 75.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 75.0 Tm
+(P-ADM board/examiner keep. Second r?) Tj
+ET
+0.98 0.97 0.95 rg
+48 57.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 61.0 Tm
+(l1.org) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 61.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 61.0 Tm
+(L1 org-seating library. Existing SO?) Tj
+ET
+BT
+/F3 7.5 Tf
+0.4 0.4 0.4 rg
+1 0 0 1 48.0 28.0 Tm
+(AINav, Inc.  ·  Page 5 of 7  ·  For Cynthia Hodnett  ·  Not a priced round  ·  Not LIVE_PIN_OK) Tj
+ET
+endstream
+endobj
+18 0 obj
+<< /Length 7767 >>
+stream
+0.067 0.078 0.102 rg
+0 730 612 62 re f
+0.769 0.647 0.455 rg
+0 726 612 4 re f
+BT
+/F2 8 Tf
+0.769 0.647 0.455 rg
+1 0 0 1 48.0 770.0 Tm
+(AINAV, INC.) Tj
+ET
+BT
+/F2 15 Tf
+1 1 1 rg
+1 0 0 1 48.0 750.0 Tm
+(Upsell catalog) Tj
+ET
+BT
+/F3 8 Tf
+0.85 0.82 0.76 rg
+1 0 0 1 48.0 736.0 Tm
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
+ET
+0.98 0.97 0.95 rg
+48 697.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 701.0 Tm
+(padm.audit) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 701.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 701.0 Tm
+(P-ADM internal-audit keep. Seating?) Tj
+ET
+0.98 0.97 0.95 rg
+48 683.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 687.0 Tm
+(l1.independence) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 687.0 Tm
+(L1) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 687.0 Tm
+(L1 independence library. Microsoft?) Tj
+ET
+0.98 0.97 0.95 rg
+48 669.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 673.0 Tm
+(padm.ip) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 200.0 673.0 Tm
+(P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 270.0 673.0 Tm
+(P-ADM reserved-work keep. Not a pat?) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 652.0 Tm
+(IF-THEN CATALOG LIST ? NOT A FORECAST) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 649.0 m 564 649.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 636.0 Tm
+(These rows are attach math on list prices. They are not bookings and not a forecast.) Tj
+ET
+0.067 0.078 0.102 rg
+48 608.0 516.0 16 re f
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 52.0 612.0 Tm
+(Scenario) Tj
+ET
+BT
+/F2 7.2 Tf
+1 1 1 rg
+1 0 0 1 400.0 612.0 Tm
+(List) Tj
+ET
+0.98 0.97 0.95 rg
+48 593.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 597.0 Tm
+(One controller ? L1 only) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 597.0 Tm
+($28,000?$40,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 579.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 583.0 Tm
+(One controller ? L1 then P-ADM) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 583.0 Tm
+($68,000?$100,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 565.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 569.0 Tm
+(One controller ? all three SKUs) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 569.0 Tm
+($88,000?$135,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 551.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 555.0 Tm
+(Three controllers ? L1 + P-ADM each) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 555.0 Tm
+($204,000?$300,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 537.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 541.0 Tm
+(One L1 plus four FFS days) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 541.0 Tm
+($42,000?$54,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 523.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 527.0 Tm
+(One L1 plus counterparty AI desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 527.0 Tm
+($34,000?$50,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 509.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 513.0 Tm
+(One controller ? L1, P-ADM, second-record ke) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 513.0 Tm
+($73,000?$108,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 495.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 499.0 Tm
+(One L1 plus off-switch desk) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 499.0 Tm
+($34,000?$50,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 481.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 485.0 Tm
+(One controller ? L1, P-ADM, board keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 485.0 Tm
+($73,000?$108,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 467.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 471.0 Tm
+(One controller ? L1, P-ADM, internal-audit k) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 471.0 Tm
+($73,000?$108,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 453.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 457.0 Tm
+(One controller ? L1, P-ADM, IP keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 457.0 Tm
+($73,000?$108,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 439.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 443.0 Tm
+(One L1 plus payables and bank desks) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 443.0 Tm
+($40,000?$60,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 425.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 429.0 Tm
+(One controller ? L1, P-ADM, oversight keep) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 429.0 Tm
+($73,000?$108,000) Tj
+ET
+0.98 0.97 0.95 rg
+48 411.0 516.0 14 re f
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 52.0 415.0 Tm
+(All three SKUs plus invoice and credit desks) Tj
+ET
+BT
+/F3 7.1 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 400.0 415.0 Tm
+($100,000?$155,000) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 394.0 Tm
+(INSULATION) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 391.0 m 564 391.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 378.0 Tm
+(The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 366.0 Tm
+(job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 354.0 Tm
+(This is not uncopyable. G12 stays open.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 332.0 Tm
+(TRACTION ? HONEST) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 329.0 m 564 329.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 316.0 Tm
+(The admit plane is in code. Gold is above 90 percent. There is a real Business Central) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 304.0 Tm
+(Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 292.0 Tm
+(identities, not two named treasury humans. The Institute is hosted on Azure and is not) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 280.0 Tm
+(launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 268.0 Tm
+(L1: none.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 246.0 Tm
+(THE ASK) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 243.0 m 564 243.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 230.0 Tm
+(Cynthia, we are asking you to be seat B and the Inception business executive: your own) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 218.0 Tm
+(mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 206.0 Tm
+(priced round. Not LIVE_PIN_OK.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 190.0 Tm
+(We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 178.0 Tm
+(LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 166.0 Tm
+(the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.) Tj
+ET
+BT
+/F2 9 Tf
+0.067 0.078 0.102 rg
+1 0 0 1 48.0 144.0 Tm
+(HIGHLIGHTS) Tj
+ET
+0.769 0.647 0.455 RG
+1.1 w
+48 141.0 m 564 141.0 l S
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 128.0 Tm
+(? Three SKUs only. Year-one catalog list if one controller buys all three:) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 116.0 Tm
+($88,000?$135,000. Not booked.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 100.0 Tm
+(? L1 $28,000?$40,000 in two to four weeks. Ninety-minute proof day on the twin.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 84.0 Tm
+(? P-ADM $40,000?$60,000 / year after kit PASS. U-DUAL $20,000?$35,000 / year, never free.) Tj
+ET
+BT
+/F3 7.5 Tf
+0.4 0.4 0.4 rg
+1 0 0 1 48.0 28.0 Tm
+(AINav, Inc.  ·  Page 6 of 7  ·  For Cynthia Hodnett  ·  Not a priced round  ·  Not LIVE_PIN_OK) Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Length 2443 >>
+stream
+0.067 0.078 0.102 rg
+0 730 612 62 re f
+0.769 0.647 0.455 rg
+0 726 612 4 re f
+BT
+/F2 8 Tf
+0.769 0.647 0.455 rg
+1 0 0 1 48.0 770.0 Tm
+(AINAV, INC.) Tj
+ET
+BT
+/F2 15 Tf
+1 1 1 rg
+1 0 0 1 48.0 750.0 Tm
+(Investor packet) Tj
+ET
+BT
+/F3 8 Tf
+0.85 0.82 0.76 rg
+1 0 0 1 48.0 736.0 Tm
+(29 August 2026  ·  Confidential  ·  From James Hodnett  ·  Release 2.26.0) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 708.0 Tm
+(? Priced L1 desks $6,000?$10,000. Priced P-ADM keep $5,000?$8,000. Priced U-DUAL desks) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 696.0 Tm
+($6,000?$10,000.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 680.0 Tm
-(? Executive dashboard tiles the admit ledger and freeze state. Humans from the owner down.) Tj
+(? Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 668.0 Tm
+(attach U-DUAL.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 652.0 Tm
+(? Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 640.0 Tm
+(Not uncopyable.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 624.0 Tm
+(? Ultimate control plane: last human gate over every drafting AI. Vendor-native HITL is) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 612.0 Tm
+(not dual admit. Not a patent. Not uncopyable.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 596.0 Tm
+(? Executive dashboard tiles the admit ledger and freeze state. Humans from the owner down.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 584.0 Tm
 (Remote is the same Entra plane. Compliance maps claimed=false.) Tj
 ET
 BT
 /F2 9 Tf
 0.067 0.078 0.102 rg
-1 0 0 1 48.0 646.0 Tm
+1 0 0 1 48.0 562.0 Tm
 (THIS PACKET REFUSES) Tj
 ET
 0.769 0.647 0.455 RG
 1.1 w
-48 643.0 m 564 643.0 l S
+48 559.0 m 564 559.0 l S
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 630.0 Tm
+1 0 0 1 48.0 546.0 Tm
 (priced round · invented valuation · forecast ARR · named customer · LIVE_PIN_OK · equity) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 618.0 Tm
+1 0 0 1 48.0 534.0 Tm
 (grant · uncopyable · patent granted) Tj
 ET
 BT
 /F1 8 Tf
 0.4 0.4 0.4 rg
-1 0 0 1 48.0 602.0 Tm
+1 0 0 1 48.0 518.0 Tm
 (Letter packet for the invited second human. Full upsell catalog and list prices. Not a) Tj
 ET
 BT
 /F1 8 Tf
 0.4 0.4 0.4 rg
-1 0 0 1 48.0 590.0 Tm
+1 0 0 1 48.0 506.0 Tm
 (raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.) Tj
 ET
 BT
 /F2 10 Tf
 0.14 0.14 0.14 rg
-1 0 0 1 48.0 574.0 Tm
+1 0 0 1 48.0 490.0 Tm
 (James Hodnett, sole owner of AINav, Inc.) Tj
 ET
 BT
@@ -3124,12 +3178,12 @@ xref
 0000001350 00000 n 
 0000001421 00000 n 
 0000008274 00000 n 
-0000015363 00000 n 
-0000022721 00000 n 
-0000032708 00000 n 
-0000044420 00000 n 
-0000051762 00000 n 
+0000015193 00000 n 
+0000021842 00000 n 
+0000031978 00000 n 
+0000044621 00000 n 
+0000052441 00000 n 
 trailer << /Size 20 /Root 1 0 R >>
 startxref
-53588
+54937
 %%EOF

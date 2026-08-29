@@ -17,8 +17,9 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.25.0"
+    assert cat["entity"]["release"] == "2.26.0"
     assert "humans from the top" in cat["equations"]["interface"]
+    assert "walkable rehearsal" in cat["equations"]["interface"]
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False
     assert cat["investor"]["equity_offered"] is False
