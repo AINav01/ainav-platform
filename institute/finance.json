@@ -35,6 +35,15 @@
       "rate_usd": 3500,
       "requires_l1": true,
       "unit": "day"
+    },
+    {
+      "attaches_udual": false,
+      "id": "pack_attach",
+      "model": "annual_desk",
+      "note": "A la carte desk attach. Not a fourth SKU.",
+      "requires_l1": true,
+      "sku": false,
+      "unit": "desk"
     }
   ],
   "recognized_revenue": 0,
@@ -97,6 +106,38 @@
       "name": "One L1 plus four FFS days",
       "skus": [
         "L1"
+      ]
+    },
+    {
+      "id": "l1_plus_two_desks",
+      "if": "One controller buys L1 then attaches industry.payables and industry.bank.",
+      "max": 60000,
+      "min": 40000,
+      "n": 1,
+      "name": "One L1 plus payables and bank desks",
+      "packs": [
+        "industry.payables",
+        "industry.bank"
+      ],
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "all_three_plus_desks",
+      "if": "One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.",
+      "max": 155000,
+      "min": 100000,
+      "n": 1,
+      "name": "All three SKUs plus invoice and credit desks",
+      "packs": [
+        "industry.invoice_desk",
+        "industry.credit"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM",
+        "U-DUAL"
       ]
     }
   ],

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from ainav.catalog import load_catalog, sku
+from ainav.catalog import attach_band, load_catalog, sku
 
 
 def order_form() -> dict[str, Any]:
@@ -30,6 +30,19 @@ def order_form() -> dict[str, Any]:
             for sku_id in body["skus"]
         ],
         "rules": list(body["rules"]),
+        "packs": [
+            {
+                "id": pack["id"],
+                "name": pack["name"],
+                "requires_sku": pack["requires_sku"],
+                "included": bool(pack.get("included_in_sku")),
+                "min": attach_band(pack)[0],
+                "max": attach_band(pack)[1],
+                "term": (pack.get("attach_usd") or {}).get("term") or "annual",
+                "sku": False,
+            }
+            for pack in cat.get("industry_packs") or []
+        ],
         "commercial_equation": cat["equations"]["commercial"],
         "note": "Catalog list. Not recognized revenue. Not a signed L1.",
     }
@@ -51,6 +64,17 @@ def order_form_markdown() -> str:
         lines.append(
             f"- **{item['id']} {item['name']}** — ${item['min']:,}–${item['max']:,} ({item['term']})"
         )
+    lines += ["", "## A la carte packs (not SKUs)", ""]
+    for pack in form["packs"]:
+        if pack["included"]:
+            lines.append(
+                f"- **{pack['id']}** — included with {pack['requires_sku']}. Not a SKU."
+            )
+        else:
+            lines.append(
+                f"- **{pack['id']}** — ${pack['min']:,}–${pack['max']:,} ({pack['term']}) "
+                f"after {pack['requires_sku']}. Not a SKU."
+            )
     lines += ["", "## Rules", ""]
     for rule in form["rules"]:
         lines.append(f"- {rule}")

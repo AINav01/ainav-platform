@@ -264,29 +264,26 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
 
     <section id="packs">
       <h2>Packs, libraries, services</h2>
-      <p class="note">Industry shapes and fee-for-service hours are not SKUs.</p>
+      <p class="note">Industry desks, libraries, fee-for-service hours, and repositories are not SKUs. Catalog list from <code>packs.json</code>.</p>
       <div class="split">
         <div>
           <h3>Industry</h3>
-          <ul class="stack">
-            <li><strong>industry.treasury</strong> — L1 wedge. <code>bc.general_journal.post</code>.</li>
-            <li><strong>industry.controller</strong> — same L1 wedge, controller seating.</li>
-            <li><strong>industry.payables</strong> — a la carte L1. Payment journal and purchase invoice.</li>
-            <li><strong>industry.bank</strong> — a la carte L1. Bank reconciliation.</li>
-            <li><strong>industry.sales</strong> — paid U-DUAL deepen. Quote override and order submit.</li>
-            <li><strong>industry.quote_desk</strong> — a la carte U-DUAL slice.</li>
-            <li><strong>industry.invoice_desk</strong> — a la carte U-DUAL. Invoice post.</li>
-            <li><strong>industry.credit</strong> — a la carte U-DUAL. Credit memo.</li>
+          <ul class="stack" id="pack-industry">
+            <li><strong>industry.treasury</strong> — included with L1. Journal wedge.</li>
+            <li><strong>industry.payables / bank / cash / fixed_asset / inventory</strong> — priced L1 desks.</li>
+            <li><strong>industry.sales / quote_desk</strong> — included with paid U-DUAL.</li>
+            <li><strong>industry.invoice_desk / credit / returns / pricing</strong> — priced U-DUAL desks.</li>
+            <li><strong>industry.retention</strong> — priced P-ADM keep. Not live Defender.</li>
           </ul>
         </div>
         <div>
-          <h3>Libraries and fee-for-service</h3>
-          <ul class="stack">
-            <li><strong>lib.l1.wedge / lib.l1.payables / lib.l1.bank</strong> — L1 seating. Not SKUs.</li>
-            <li><strong>lib.udual.sales / lib.udual.quote_to_cash</strong> — paid U-DUAL. Never free with P-ADM.</li>
-            <li><strong>lib.padm.export / lib.padm.siem</strong> — P-ADM keep. Not live Sentinel.</li>
-            <li><strong>Acceptance Kit</strong> — inside L1. Not an extra SKU.</li>
-            <li><strong>Integration / replay / QBR / mothership ops / pack seating</strong> — $3,500/day after L1. Does not attach U-DUAL.</li>
+          <h3>Libraries, fee-for-service, repositories</h3>
+          <ul class="stack" id="pack-libraries">
+            <li><strong>lib.l1.*</strong> — L1 seating. Not SKUs.</li>
+            <li><strong>lib.udual.*</strong> — paid U-DUAL. Never free with P-ADM.</li>
+            <li><strong>lib.padm.*</strong> — P-ADM keep. Not live Sentinel.</li>
+            <li><strong>Acceptance Kit</strong> — inside L1. Desk workshop / keep wiring $3,500/day after L1.</li>
+            <li><strong>repo.packs / repo.runbooks / repo.owner / repo.legal</strong> — not SKUs. Not live.</li>
           </ul>
         </div>
       </div>

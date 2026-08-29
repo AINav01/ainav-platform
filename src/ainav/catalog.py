@@ -187,8 +187,11 @@ def _validate_counsel(catalog: dict[str, Any]) -> None:
     msa = body.get("msa") or {}
     if order.get("unsigned") is not True or msa.get("unsigned") is not True:
         raise IntegrityError("order form and MSA stay unsigned", reason_code="G12_OPEN")
-    if "U-DUAL is never free" not in " ".join(order.get("rules") or []):
+    rules = " ".join(order.get("rules") or [])
+    if "U-DUAL is never free" not in rules:
         raise IntegrityError("order form must refuse free U-DUAL", reason_code="UDUAL_NOT_FREE")
+    if "not SKUs" not in rules:
+        raise IntegrityError("order form must refuse pack SKUs", reason_code="CATALOG_SKU")
 
 
 def _validate_finance(catalog: dict[str, Any]) -> None:
@@ -205,8 +208,14 @@ def _validate_finance(catalog: dict[str, Any]) -> None:
         raise IntegrityError("no billing provider is claimed", reason_code="CATALOG_FINANCE")
     models = body.get("pricing_models") or []
     ids = {item.get("id") for item in models}
-    if not {"L1", "P-ADM", "U-DUAL", "ffs"} <= ids:
-        raise IntegrityError("financial model must price three SKUs and FFS", reason_code="CATALOG_FINANCE")
+    if not {"L1", "P-ADM", "U-DUAL", "ffs", "pack_attach"} <= ids:
+        raise IntegrityError(
+            "financial model must price three SKUs, FFS, and pack attach",
+            reason_code="CATALOG_FINANCE",
+        )
+    pack_attach = next(item for item in models if item.get("id") == "pack_attach")
+    if pack_attach.get("sku") is True or pack_attach.get("attaches_udual") is True:
+        raise IntegrityError("pack attach cannot be a SKU or attach U-DUAL", reason_code="CATALOG_SKU")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:
@@ -282,6 +291,26 @@ def _validate_upsells(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"{pack.get('id')} needs a runbook", reason_code="CATALOG_PACK")
         if pack.get("sku") is True:
             raise IntegrityError("industry pack is not a SKU", reason_code="CATALOG_SKU")
+        attach = pack.get("attach_usd") or {}
+        lo = int(attach.get("min") or 0)
+        hi = int(attach.get("max") or 0)
+        if pack.get("included_in_sku") is True:
+            if lo != 0 or hi != 0:
+                raise IntegrityError(
+                    f"{pack.get('id')} is included and cannot carry an attach price",
+                    reason_code="CATALOG_PACK",
+                )
+        elif pack.get("ala_carte") is True:
+            if lo < 1 or hi < lo:
+                raise IntegrityError(
+                    f"{pack.get('id')} needs a catalog-list attach band",
+                    reason_code="CATALOG_PACK",
+                )
+    for lib in catalog.get("libraries", []):
+        if not lib.get("note"):
+            raise IntegrityError(f"{lib.get('id')} needs a note", reason_code="CATALOG_LIB")
+        if lib.get("sku") is True:
+            raise IntegrityError("library is not a SKU", reason_code="CATALOG_SKU")
     referenced = {
         mid
         for item in list(catalog.get("industry_packs") or []) + list(catalog.get("libraries") or [])
@@ -373,6 +402,11 @@ def library(library_id: str) -> dict[str, Any]:
         if item["id"] == library_id:
             return dict(item)
     raise IntegrityError(f"unknown library {library_id}", reason_code="CATALOG_LIB")
+
+
+def attach_band(item: dict[str, Any]) -> tuple[int, int]:
+    usd = item.get("attach_usd") or {}
+    return int(usd.get("min") or 0), int(usd.get("max") or 0)
 
 
 def fee_for_service(service_id: str) -> dict[str, Any]:

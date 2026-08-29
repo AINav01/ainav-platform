@@ -32,6 +32,18 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="opportunity"' in html
     assert 'id="finance"' in html
     assert 'href="#finance"' in html
+    assert 'id="pack-industry"' in html
+    assert 'id="pack-libraries"' in html
+    assert "packs.json" in js
+    packs = json.loads(Path("institute/packs.json").read_text(encoding="utf-8"))
+    assert packs["kind"] == "ainav.institute.packs.v1"
+    assert packs["sku"] is False
+    assert packs["live"] is False
+    assert {item["id"] for item in packs["industry"]} >= {
+        "industry.cash",
+        "industry.returns",
+        "industry.retention",
+    }
     assert 'id="fabric"' in html
     assert 'id="review"' in html
     assert 'id="review-score"' in html

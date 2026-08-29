@@ -8,6 +8,7 @@ from __future__ import annotations
 from typing import Any
 
 from ainav.catalog import (
+    attach_band,
     fee_for_service,
     industry_pack,
     library,
@@ -103,4 +104,64 @@ def pack_manifest(
         "twin": {"live": False, "label": "SANDBOX"},
         "open_gaps": list(cat["open_gaps"]),
         "live": False,
+    }
+
+
+def public_packs() -> dict[str, Any]:
+    """Institute catalog-list. Packs, libraries, FFS, and repos are not SKUs."""
+    cat = load_catalog()
+    return {
+        "kind": "ainav.institute.packs.v1",
+        "sku": False,
+        "live": False,
+        "live_pin_ok": False,
+        "note": "Industry desks, libraries, fee-for-service hours, and repositories are not SKUs.",
+        "industry": [
+            {
+                "id": pack["id"],
+                "name": pack["name"],
+                "requires_sku": pack["requires_sku"],
+                "modules": list(pack.get("modules") or []),
+                "included": bool(pack.get("included_in_sku")),
+                "min": attach_band(pack)[0],
+                "max": attach_band(pack)[1],
+                "ala_carte": bool(pack.get("ala_carte")),
+                "note": pack.get("note"),
+                "sku": False,
+            }
+            for pack in cat.get("industry_packs") or []
+        ],
+        "libraries": [
+            {
+                "id": lib["id"],
+                "requires_sku": lib["requires_sku"],
+                "modules": list(lib.get("modules") or []),
+                "note": lib.get("note"),
+                "sku": False,
+            }
+            for lib in cat.get("libraries") or []
+        ],
+        "fee_for_service": [
+            {
+                "id": svc["id"],
+                "name": svc.get("name"),
+                "billable": bool(svc.get("billable")),
+                "rate_usd_per_day": svc.get("rate_usd_per_day"),
+                "requires_l1": bool(svc.get("requires_l1")),
+                "attaches_udual": False,
+                "note": svc.get("note"),
+                "sku": False,
+            }
+            for svc in cat.get("fee_for_service") or []
+        ],
+        "repositories": [
+            {
+                "id": repo["id"],
+                "path": repo.get("path"),
+                "note": repo.get("note"),
+                "sku": False,
+                "live": False,
+            }
+            for repo in cat.get("repositories") or []
+        ],
     }

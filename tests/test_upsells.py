@@ -72,6 +72,12 @@ def test_runbooks_cover_new_desks():
     assert "industry.bank" in ids
     assert "industry.invoice_desk" in ids
     assert "industry.credit" in ids
+    assert "industry.cash" in ids
+    assert "industry.fixed_asset" in ids
+    assert "industry.inventory" in ids
+    assert "industry.returns" in ids
+    assert "industry.pricing" in ids
+    assert "industry.retention" in ids
     assert all(item["sku"] is False for item in body["items"])
 
 
@@ -80,3 +86,75 @@ def test_invoice_desk_requires_udual():
     with pytest.raises(ProvisionError) as exc:
         local.attach_industry("industry.invoice_desk")
     assert exc.value.reason_code == "PACK_SCOPE"
+
+
+def test_cash_desk_is_pack_gated():
+    local = provision_l1("acme")
+    assert "bc.cash_receipt.post" not in local.allowed_actions
+    local.attach_industry("industry.cash")
+    assert "bc.cash_receipt.post" in local.allowed_actions
+    assert "bc.sales_invoice.post" in local.allowed_actions
+    out = local.run_and_apply(
+        {
+            "action_class": "bc.cash_receipt.post",
+            "payload": {"account": "23100", "amount": "40.00", "memo": "cash upsell"},
+            "proposal_id": "prp-cash",
+            "sor_target": "bc.sandbox",
+            "policy_id": "dual-admit-v1",
+        },
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    assert out["record_type"] == "effect_applied"
+    assert out["apply_result"]["live"] is False
+
+
+def test_returns_desk_requires_udual():
+    local = provision_l1_with_udual("acme")
+    assert "d365.return.authorize" not in local.allowed_actions
+    local.attach_industry("industry.returns")
+    out = local.run_and_apply(
+        {
+            "action_class": "d365.return.authorize",
+            "payload": {"rma": "RMA-1", "amount": "25.00"},
+            "proposal_id": "prp-rma",
+            "sor_target": "d365.sales.sandbox",
+            "policy_id": "dual-admit-v1",
+        },
+        seat_a="oid-1",
+        seat_b="oid-2",
+    )
+    assert out["record_type"] == "effect_applied"
+
+
+def test_retention_keep_is_not_a_sku():
+    local = provision_l1_padm("acme")
+    pack = local.attach_industry("industry.retention")
+    assert pack["requires_sku"] == "P-ADM"
+    assert pack["sku"] is False
+    assert pack["attach_usd"]["min"] == 5000
+    lib = local.attach_library("lib.padm.retention")
+    assert "lib.padm.retention" in local.libraries
+    assert lib["sku"] is False
+    booked = book_service("ffs.desk_workshop", skus=("L1",))
+    assert booked["billed"] is True
+    assert booked["sku"] is None
+
+
+def test_priced_desks_are_not_skus():
+    cat = load_catalog()
+    priced = [
+        pack
+        for pack in cat["industry_packs"]
+        if pack.get("ala_carte") and not pack.get("included_in_sku")
+    ]
+    assert {pack["id"] for pack in priced} >= {
+        "industry.payables",
+        "industry.cash",
+        "industry.returns",
+        "industry.retention",
+    }
+    assert all(pack.get("sku") is False for pack in priced)
+    assert all(int(pack["attach_usd"]["min"]) >= 5000 for pack in priced)
+    ids = {item["id"] for item in cat["repositories"]}
+    assert {"repo.packs", "repo.runbooks", "repo.owner", "repo.legal"} <= ids

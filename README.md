@@ -14,7 +14,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])
 
 `admit` binds two distinct human seats to an `action_hash` and consumes that slot once. The grant ticket (`grant_id`) binds seats + hash + policy. `EffectLedger.effect` is the fail-closed gate: reserve → optional SoR `apply` → `effect_applied`. A failed apply is `effect_apply_failed` (never a fake success). Sealed DecisionRecords are immutable and hash-chained (`seq` + `prev_receipt_hash`).
 
-Same plane, named 2.12.0 surface:
+Same plane, named 2.13.0 surface:
 
 ```python
 from agent_gov import DualSession
@@ -109,7 +109,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.12.0 (this tree)
+### 2.13.0 (this tree)
+
+Priced a-la-carte desks on the same three SKUs. Cash, fixed-asset,
+inventory, returns, pricing, and retention attach with catalog-list
+bands. Pack attach is a pricing model, not a fourth SKU. Order form,
+finance, and Institute `#packs` list the desks. Owner gaps stay open.
+Cynthia still invited, not recorded.
+
+### 2.12.0
 
 A la carte upsells on the same three SKUs: payables, bank, invoice,
 and credit desks; quote-to-cash and P-ADM SIEM libraries; finance /

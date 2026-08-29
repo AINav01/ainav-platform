@@ -54,9 +54,24 @@ def one_page() -> str:
         "",
     ]
     for pack in cat.get("industry_packs", []):
+        attach = pack.get("attach_usd") or {}
+        price = (
+            "included"
+            if pack.get("included_in_sku")
+            else f"${int(attach.get('min') or 0):,}–${int(attach.get('max') or 0):,}/{attach.get('term') or 'year'}"
+        )
         lines.append(
             f"- **{pack['id']}** — {pack['name']} "
-            f"(requires {pack['requires_sku']}; {pack['note']})"
+            f"(requires {pack['requires_sku']}; {price}; {pack['note']})"
+        )
+    lines += [
+        "",
+        "## Libraries (not SKUs)",
+        "",
+    ]
+    for lib in cat.get("libraries", []):
+        lines.append(
+            f"- **{lib['id']}** — requires {lib['requires_sku']}. {lib.get('note')}"
         )
     lines += [
         "",

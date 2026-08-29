@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from ainav.catalog import load_catalog, sku
+from ainav.catalog import attach_band, industry_pack, load_catalog, sku
 
 
 def _band(sku_id: str) -> tuple[int, int]:
@@ -20,6 +20,15 @@ def _ffs_rate() -> int:
         if item.get("billable") is True
     ]
     return rates[0] if rates else 0
+
+
+def _desks(*pack_ids: str) -> tuple[int, int]:
+    lo = hi = 0
+    for pack_id in pack_ids:
+        band = attach_band(industry_pack(pack_id))
+        lo += band[0]
+        hi += band[1]
+    return lo, hi
 
 
 def spec() -> dict[str, Any]:
@@ -78,6 +87,26 @@ def scenarios() -> list[dict[str, Any]]:
             "n": 1,
             "min": l1_min + 4 * day,
             "max": l1_max + 4 * day,
+        },
+        {
+            "id": "l1_plus_two_desks",
+            "name": "One L1 plus payables and bank desks",
+            "if": "One controller buys L1 then attaches industry.payables and industry.bank.",
+            "skus": ["L1"],
+            "packs": ["industry.payables", "industry.bank"],
+            "n": 1,
+            "min": l1_min + _desks("industry.payables", "industry.bank")[0],
+            "max": l1_max + _desks("industry.payables", "industry.bank")[1],
+        },
+        {
+            "id": "all_three_plus_desks",
+            "name": "All three SKUs plus invoice and credit desks",
+            "if": "One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.",
+            "skus": ["L1", "P-ADM", "U-DUAL"],
+            "packs": ["industry.invoice_desk", "industry.credit"],
+            "n": 1,
+            "min": l1_min + keep_min + deep_min + _desks("industry.invoice_desk", "industry.credit")[0],
+            "max": l1_max + keep_max + deep_max + _desks("industry.invoice_desk", "industry.credit")[1],
         },
     ]
 

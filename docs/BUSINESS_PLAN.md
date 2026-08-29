@@ -42,14 +42,35 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 
 ## Industry packs (not SKUs)
 
-- **industry.treasury** — Treasury wedge (requires L1; Standard L1 industry shape. Not a SKU.)
-- **industry.sales** — Sales deepen (requires U-DUAL; A la carte U-DUAL depth. Not a fourth SKU.)
-- **industry.controller** — Controller desk (requires L1; Same L1 wedge, controller seating. Not a SKU.)
-- **industry.quote_desk** — Quote desk (requires U-DUAL; A la carte U-DUAL slice. Not a fourth SKU.)
-- **industry.payables** — Payables desk (requires L1; A la carte L1 seating. Not a SKU.)
-- **industry.bank** — Bank desk (requires L1; A la carte L1 seating. Not a SKU.)
-- **industry.invoice_desk** — Invoice desk (requires U-DUAL; A la carte U-DUAL seating. Not a fourth SKU.)
-- **industry.credit** — Credit desk (requires U-DUAL; A la carte U-DUAL seating. Not a fourth SKU.)
+- **industry.treasury** — Treasury wedge (requires L1; included; Standard L1 industry shape. Not a SKU.)
+- **industry.sales** — Sales deepen (requires U-DUAL; included; A la carte U-DUAL depth. Not a fourth SKU.)
+- **industry.controller** — Controller desk (requires L1; included; Same L1 wedge, controller seating. Not a SKU.)
+- **industry.quote_desk** — Quote desk (requires U-DUAL; included; A la carte U-DUAL slice. Not a fourth SKU.)
+- **industry.payables** — Payables desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Not a SKU.)
+- **industry.bank** — Bank desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Not a SKU.)
+- **industry.invoice_desk** — Invoice desk (requires U-DUAL; $6,000–$10,000/annual; A la carte U-DUAL seating. Not a fourth SKU.)
+- **industry.credit** — Credit desk (requires U-DUAL; $6,000–$10,000/annual; A la carte U-DUAL seating. Not a fourth SKU.)
+- **industry.cash** — Cash desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Cash receipt and sales invoice. Not a SKU.)
+- **industry.fixed_asset** — Fixed-asset desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Not a SKU.)
+- **industry.inventory** — Inventory desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Not a SKU.)
+- **industry.returns** — Returns desk (requires U-DUAL; $6,000–$10,000/annual; A la carte U-DUAL seating. Not a fourth SKU.)
+- **industry.pricing** — Pricing desk (requires U-DUAL; $6,000–$10,000/annual; A la carte U-DUAL seating. Not a fourth SKU.)
+- **industry.retention** — Retention keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK.)
+
+## Libraries (not SKUs)
+
+- **lib.l1.wedge** — requires L1. Standard L1 library. Journal wedge plus identity and notify. Not a SKU.
+- **lib.udual.sales** — requires U-DUAL. Paid U-DUAL library. Quote and order wedges. Never free with P-ADM.
+- **lib.padm.export** — requires P-ADM. P-ADM keep library. Purview export only. Not live Purview. Not a SKU.
+- **lib.kit.evidence** — requires L1. Acceptance Kit evidence path. Not a SKU.
+- **lib.l1.payables** — requires L1. A la carte L1 library. Not a SKU.
+- **lib.l1.bank** — requires L1. A la carte L1 library. Not a SKU.
+- **lib.udual.quote_to_cash** — requires U-DUAL. A la carte U-DUAL library. Never free with P-ADM.
+- **lib.padm.siem** — requires P-ADM. A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK.
+- **lib.l1.cash** — requires L1. A la carte L1 library. Priced as industry.cash. Not a SKU.
+- **lib.l1.fixed_asset** — requires L1. A la carte L1 library. Priced as industry.fixed_asset. Not a SKU.
+- **lib.udual.returns** — requires U-DUAL. A la carte U-DUAL library. Never free with P-ADM.
+- **lib.padm.retention** — requires P-ADM. A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK.
 
 ## Fee-for-service (not SKUs)
 
@@ -59,6 +80,8 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **ffs.qbr** — Quarterly business review ($3,500/day). Same-plane review. Not a SKU. Does not attach U-DUAL.
 - **ffs.mothership_ops** — Mothership operations assist ($3,500/day). Local mothership runbook hours. Not a SKU.
 - **ffs.pack_seating** — Industry pack seating ($3,500/day). Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL.
+- **ffs.desk_workshop** — Desk workshop ($3,500/day). Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL.
+- **ffs.keep_wiring** — P-ADM keep wiring ($3,500/day). Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.
 
 ## Operations
 
@@ -70,6 +93,7 @@ Exits: LOST · KIT_FAIL · CHURN
 - U-DUAL requires L1
 - LIVE_PIN_OK cannot be marked from this plane
 - Signed L1 cannot be marked from this plane
+- A la carte packs attach after the required SKU. They are not SKUs.
 
 ## Delivery
 
@@ -95,6 +119,10 @@ Same Job C lockfile. One consume ledger per client. Master never writes the clie
 - **repo.finance** — src/ainav/finance.py. Catalog-list financial model. Not a SKU. Not recognized revenue.
 - **repo.brief** — src/ainav/brief_pdf.py. Executive brief generator. Not a SKU. Not a contract.
 - **repo.review** — src/ainav/review.py. Company review generator. Not a SKU.
+- **repo.packs** — src/ainav/packs.py. Industry pack and library attach. Not a SKU.
+- **repo.runbooks** — src/ainav/runbooks.py. Industry seating runbooks. Not a SKU.
+- **repo.owner** — src/ainav/owner_steps.py. Owner-only gates with Microsoft links. Not a SKU. Not a seat.
+- **repo.legal** — src/ainav/counsel.py. Unsigned order form and MSA skeleton. Not a SKU. G12 stays open.
 
 ## Business operating system
 

@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.12.0"
+    assert cat["entity"]["release"] == "2.13.0"
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     invited = cat["organization"]["contacts"]["invited"]
     assert invited["name"] == "Cynthia Hodnett"

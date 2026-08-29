@@ -325,9 +325,13 @@ def brief_document() -> list[dict[str, Any]]:
             "text": (
                 "Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra "
                 "identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. "
-                "Industry packs (treasury, controller, sales, quote desk) seat the same actions. "
-                "Libraries bundle modules. Repositories are the plane, the catalog, and the Institute. "
-                "None of those are SKUs. A la carte means paid U-DUAL depth — never a fourth product."
+                "Industry packs seat the same admit plane: treasury and controller on the journal "
+                "wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales "
+                "and quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced "
+                "U-DUAL desks; retention as a priced P-ADM keep. Libraries bundle those modules. "
+                "Repositories hold the plane, catalog, Institute, finance, brief, review, packs, "
+                "runbooks, owner steps, and counsel. None of those are SKUs. A la carte is a desk "
+                "attach on L1, P-ADM, or paid U-DUAL — never a fourth product."
             ),
         },
         {
@@ -379,7 +383,7 @@ def brief_document() -> list[dict[str, Any]]:
         {
             "kind": "p",
             "text": (
-                "Three SKUs. Four pricing models. Fee-for-service at $3,500/day on the same plane "
+                "Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane "
                 "after L1. Hours never mint a SKU and never attach U-DUAL. There is no billing "
                 f"provider. Recognized revenue is {fin['recognized_revenue']}. Signed L1 is "
                 f"{fin['signed_l1']}. Named customers are {fin['named_customers']}. The numbers "
@@ -394,7 +398,8 @@ def brief_document() -> list[dict[str, Any]]:
                 ["L1", "Fixed-scope project", "2–4 week engagement. Priced against the unauthorized journal, not hours."],
                 ["P-ADM", "Annual keep", "Attaches only after L1 Acceptance Kit PASS. Never bundles free U-DUAL."],
                 ["U-DUAL", "Annual deepen", "Same admit plane onto Sales. Never free with P-ADM or U-SOR."],
-                ["FFS", "Day rate $3,500", "Integration, replay, QBR, mothership ops. Requires L1. Not a SKU."],
+                ["FFS", "Day rate $3,500", "Integration, replay, QBR, mothership ops, desk workshop, keep wiring. Requires L1. Not a SKU."],
+                ["Pack attach", "Annual desk", "Priced L1 / U-DUAL / P-ADM desks. Not a fourth SKU. Never attaches U-DUAL."],
             ],
         },
         {

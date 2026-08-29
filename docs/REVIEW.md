@@ -74,6 +74,7 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 **L1 FIRST_OFFER** — $28,000–$40,000 (2–4 weeks) — prove.
 **P-ADM ADMIT_COVERAGE** — $40,000–$60,000 (annual) — keep after L1 Acceptance Kit PASS. Never bundles free U-DUAL.
 **U-DUAL DEPTH_PACK** — $20,000–$35,000 (annual) — deepen. Never free with P-ADM or U-SOR.
+A la carte packs attach after the required SKU. They are not SKUs.
 
 Year-one catalog list if one controller buys all three: $88,000–$135,000. Catalog list if one controller buys L1, then attaches P-ADM, then pays for U-DUAL. Not recognized revenue.
 Pipeline attached: L1=0, P-ADM=0, U-DUAL=0. Signed L1=0.
@@ -216,6 +217,8 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **One controller — all three SKUs** — $88,000–$135,000. One controller buys L1, attaches P-ADM, then pays for U-DUAL.
 - **Three controllers — L1 + P-ADM each** — $204,000–$300,000. Three controllers each buy L1 and attach P-ADM. No named buyers exist.
 - **One L1 plus four FFS days** — $42,000–$54,000. One controller buys L1 and four billable days on the same plane.
+- **One L1 plus payables and bank desks** — $40,000–$60,000. One controller buys L1 then attaches industry.payables and industry.bank.
+- **All three SKUs plus invoice and credit desks** — $100,000–$155,000. One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.
 
 ## Expert review — working well
 
@@ -227,6 +230,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
 - Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
+- A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
 
 ## Expert review — could be improved
 

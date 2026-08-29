@@ -272,6 +272,7 @@ def deep_dive(*, probe: bool = False) -> str:
         _sku_line("L1") + " — prove.",
         _sku_line("P-ADM") + f" — keep after {sku('P-ADM')['attach_after']}. Never bundles free U-DUAL.",
         _sku_line("U-DUAL") + " — deepen. Never free with P-ADM or U-SOR.",
+        "A la carte packs attach after the required SKU. They are not SKUs.",
         "",
         f"Year-one catalog list if one controller buys all three: "
         f"{_money(year['min'])}–{_money(year['max'])}. {year['note']}",

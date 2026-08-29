@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.12.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.13.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.12.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.13.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -87,7 +87,7 @@ Your no, or not yet, is also a complete answer. Nothing is recorded. The invite 
 
 Three motherships, one law. Master mothership (Azure-declared, AINav) issues the lockfile, catalog, and gold. It never writes a client system of record. Cloud mothership (Azure-declared client plane) and local mothership (client plane) share one consume ledger and run AdmitClient against a Business Central digital twin. They are not two products. They are not two deployed production planes. Today they are in-process on that shared ledger. Week one: provision master lockfile → provision the cloud + local pair → proof day or Acceptance Kit on the BC twin → notify Teams → store kit evidence in SharePoint sandbox → refuse the live pin.
 
-Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. Industry packs (treasury, controller, sales, quote desk) seat the same actions. Libraries bundle modules. Repositories are the plane, the catalog, and the Institute. None of those are SKUs. A la carte means paid U-DUAL depth — never a fourth product.
+Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. Industry packs seat the same admit plane: treasury and controller on the journal wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales and quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced U-DUAL desks; retention as a priced P-ADM keep. Libraries bundle those modules. Repositories hold the plane, catalog, Institute, finance, brief, review, packs, runbooks, owner steps, and counsel. None of those are SKUs. A la carte is a desk attach on L1, P-ADM, or paid U-DUAL — never a fourth product.
 
 Microsoft fabric, 10/10 and no further: Azure host (eastus; Institute eastus2; West Europe blocked by policy). Microsoft 365 E7 / Entra for seat object ids. Business Central Premium for L1 SoR. Sales Enterprise for U-DUAL SoR. Teams Enterprise and Premium for notify. Complements: Key Vault, Monitor, SharePoint kit evidence, Defender XDR, Entra PIM, Sentinel (the mothership LAW is not a Sentinel workspace), Azure Policy. Copilot, Agent 365, and Agent Tools ship inside E7. They are not the admit plane. A 10/10 Microsoft estate that votes in Teams or lets Copilot post the journal is a failure of Job C, not a feature.
 
@@ -112,7 +112,7 @@ Ten departments. The map is complete out of the gate. That does not mean Sales, 
 
 ## Part IV — What we sell, pricing, financial model
 
-Three SKUs. Four pricing models. Fee-for-service at $3,500/day on the same plane after L1. Hours never mint a SKU and never attach U-DUAL. There is no billing provider. Recognized revenue is 0. Signed L1 is 0. Named customers are 0. The numbers below are if-then catalog list. They are not a forecast, not ARR, and not booked.
+Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane after L1. Hours never mint a SKU and never attach U-DUAL. There is no billing provider. Recognized revenue is 0. Signed L1 is 0. Named customers are 0. The numbers below are if-then catalog list. They are not a forecast, not ARR, and not booked.
 
 *Pricing models*
 
@@ -121,7 +121,8 @@ Three SKUs. Four pricing models. Fee-for-service at $3,500/day on the same plane
 | L1 | Fixed-scope project | 2–4 week engagement. Priced against the unauthorized journal, not hours. |
 | P-ADM | Annual keep | Attaches only after L1 Acceptance Kit PASS. Never bundles free U-DUAL. |
 | U-DUAL | Annual deepen | Same admit plane onto Sales. Never free with P-ADM or U-SOR. |
-| FFS | Day rate $3,500 | Integration, replay, QBR, mothership ops. Requires L1. Not a SKU. |
+| FFS | Day rate $3,500 | Integration, replay, QBR, mothership ops, desk workshop, keep wiring. Requires L1. Not a SKU. |
+| Pack attach | Annual desk | Priced L1 / U-DUAL / P-ADM desks. Not a fourth SKU. Never attaches U-DUAL. |
 
 *If-then catalog list — zero customers today*
 
@@ -132,6 +133,8 @@ Three SKUs. Four pricing models. Fee-for-service at $3,500/day on the same plane
 | One controller — all three SKUs | One controller buys L1, attaches P-ADM, then pays for U-DUAL. | $88,000–$135,000 |
 | Three controllers — L1 + P-ADM each | Three controllers each buy L1 and attach P-ADM. No named buyers exist. | $204,000–$300,000 |
 | One L1 plus four FFS days | One controller buys L1 and four billable days on the same plane. | $42,000–$54,000 |
+| One L1 plus payables and bank desks | One controller buys L1 then attaches industry.payables and industry.bank. | $40,000–$60,000 |
+| All three SKUs plus invoice and credit desks | One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit. | $100,000–$155,000 |
 
 ## Part V — Expert review: what works, what to improve, 15 upgrades
 
@@ -147,6 +150,7 @@ Working well
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
 - Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
+- A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
 
 Could be improved — without inventing a fourth SKU
 

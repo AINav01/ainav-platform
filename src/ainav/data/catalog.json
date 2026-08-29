@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.12.0",
+    "release": "2.13.0",
     "category": "Dual-admitted effect authority before privileged system-of-record writes"
   },
   "operating": {
@@ -427,6 +427,112 @@
       "wedge": false,
       "upsell": true,
       "note": "A la carte P-ADM keep. Seal kit evidence in SharePoint. Not a seat."
+    },
+    {
+      "id": "bc.cash_receipt.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Cash receipt that hits the GL. Not a SKU."
+    },
+    {
+      "id": "bc.sales_invoice.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Sales invoice post on the BC twin. Not a SKU."
+    },
+    {
+      "id": "bc.fixed_asset.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Fixed-asset journal. Same admit plane. Not a SKU."
+    },
+    {
+      "id": "bc.inventory.adjust",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Inventory adjustment that hits the GL. Not a SKU."
+    },
+    {
+      "id": "d365.return.authorize",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte U-DUAL. Return authorization. Never free with P-ADM."
+    },
+    {
+      "id": "d365.price.override",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte U-DUAL. List-price override. Never free with P-ADM."
+    },
+    {
+      "id": "d365.quote.void",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte U-DUAL. Void an issued quote. Never free with P-ADM."
+    },
+    {
+      "id": "defender.incident.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "microsoft_defender_xdr",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Defender incident export sink. Not the admit plane. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "monitor.workbook.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "azure_monitor",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Monitor workbook export. LAW is not Sentinel. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "keyvault.decision.seal",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "azure_key_vault",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Seal the DecisionRecord hash in Key Vault. Not a live pin."
     }
   ],
   "industry_packs": [
@@ -445,7 +551,13 @@
         "Walk out with a sealed DecisionRecord. Not signed L1."
       ],
       "sku": false,
-      "ala_carte": false
+      "ala_carte": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "industry.sales",
@@ -462,7 +574,13 @@
         "Same admit plane. Not a second product."
       ],
       "sku": false,
-      "ala_carte": true
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "industry.controller",
@@ -478,7 +596,13 @@
         "Do not invent a fourth SKU to rename the desk."
       ],
       "sku": false,
-      "ala_carte": true
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "industry.quote_desk",
@@ -494,7 +618,13 @@
         "A quote without two seats is the write that must not happen."
       ],
       "sku": false,
-      "ala_carte": true
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "industry.payables",
@@ -512,7 +642,13 @@
         "Seat A treasury_approver. Seat B treasury_controller.",
         "bc.payment_journal.post and bc.purchase_invoice.post on the BC twin.",
         "Walk out with a sealed DecisionRecord. Not signed L1. Not LIVE_PIN_OK."
-      ]
+      ],
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
     },
     {
       "id": "industry.bank",
@@ -528,7 +664,13 @@
         "Requires L1. Same admit plane as the journal wedge.",
         "Two humans bind bc.bank_reconciliation.post.",
         "A reconciliation without two seats is the write that must not happen."
-      ]
+      ],
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
     },
     {
       "id": "industry.invoice_desk",
@@ -544,7 +686,13 @@
         "Requires paid U-DUAL after kit PASS. Never free with P-ADM.",
         "d365.invoice.post on the Sales twin until G14.",
         "Same admit plane. Not a second product."
-      ]
+      ],
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
     },
     {
       "id": "industry.credit",
@@ -560,6 +708,149 @@
         "Requires paid U-DUAL. Never free with P-ADM.",
         "d365.creditmemo.issue on the Sales twin.",
         "A credit without two seats is the write that must not happen."
+      ],
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
+    },
+    {
+      "id": "industry.cash",
+      "name": "Cash desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.cash_receipt.post",
+        "bc.sales_invoice.post"
+      ],
+      "note": "A la carte L1 seating. Cash receipt and sales invoice. Not a SKU.",
+      "runbook": [
+        "Requires L1. Does not mint a fourth SKU.",
+        "Seat A treasury_approver. Seat B treasury_controller.",
+        "bc.cash_receipt.post and bc.sales_invoice.post on the BC twin.",
+        "Walk out with a sealed DecisionRecord. Not signed L1. Not LIVE_PIN_OK."
+      ]
+    },
+    {
+      "id": "industry.fixed_asset",
+      "name": "Fixed-asset desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.fixed_asset.post"
+      ],
+      "note": "A la carte L1 seating. Not a SKU.",
+      "runbook": [
+        "Requires L1. Same admit plane as the journal wedge.",
+        "Two humans bind bc.fixed_asset.post.",
+        "An asset journal without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.inventory",
+      "name": "Inventory desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.inventory.adjust"
+      ],
+      "note": "A la carte L1 seating. Not a SKU.",
+      "runbook": [
+        "Requires L1. Same admit plane as the journal wedge.",
+        "Two humans bind bc.inventory.adjust.",
+        "An inventory adjustment without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.returns",
+      "name": "Returns desk",
+      "requires_sku": "U-DUAL",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "d365.return.authorize"
+      ],
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "runbook": [
+        "Requires paid U-DUAL after kit PASS. Never free with P-ADM.",
+        "d365.return.authorize on the Sales twin until G14.",
+        "A return without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.pricing",
+      "name": "Pricing desk",
+      "requires_sku": "U-DUAL",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "d365.price.override",
+        "d365.quote.void"
+      ],
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "runbook": [
+        "Requires paid U-DUAL. Never free with P-ADM.",
+        "d365.price.override and d365.quote.void on the Sales twin.",
+        "A price change without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.retention",
+      "name": "Retention keep",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "defender.incident.export",
+        "monitor.workbook.export",
+        "keyvault.decision.seal"
+      ],
+      "note": "A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK.",
+      "runbook": [
+        "Requires P-ADM after kit PASS. Not a SKU.",
+        "Export DecisionRecords to Defender, Monitor, and Key Vault sinks.",
+        "A keep export is not dual admit. Not LIVE_PIN_OK."
       ]
     }
   ],
@@ -571,7 +862,15 @@
         "bc.general_journal.post",
         "entra.seat.verify",
         "teams.notify"
-      ]
+      ],
+      "note": "Standard L1 library. Journal wedge plus identity and notify. Not a SKU.",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "lib.udual.sales",
@@ -579,14 +878,30 @@
       "modules": [
         "d365.quote.discount_override",
         "d365.order.submit"
-      ]
+      ],
+      "note": "Paid U-DUAL library. Quote and order wedges. Never free with P-ADM.",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "lib.padm.export",
       "requires_sku": "P-ADM",
       "modules": [
         "purview.audit.export"
-      ]
+      ],
+      "note": "P-ADM keep library. Purview export only. Not live Purview. Not a SKU.",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "lib.kit.evidence",
@@ -595,7 +910,14 @@
         "entra.seat.verify",
         "teams.notify"
       ],
-      "note": "Acceptance Kit evidence path. Not a SKU."
+      "note": "Acceptance Kit evidence path. Not a SKU.",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      }
     },
     {
       "id": "lib.l1.payables",
@@ -606,7 +928,14 @@
         "entra.seat.verify",
         "teams.notify"
       ],
-      "note": "A la carte L1 library. Not a SKU."
+      "note": "A la carte L1 library. Not a SKU.",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
     },
     {
       "id": "lib.l1.bank",
@@ -616,7 +945,14 @@
         "entra.seat.verify",
         "teams.notify"
       ],
-      "note": "A la carte L1 library. Not a SKU."
+      "note": "A la carte L1 library. Not a SKU.",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
     },
     {
       "id": "lib.udual.quote_to_cash",
@@ -626,7 +962,14 @@
         "d365.order.submit",
         "d365.invoice.post"
       ],
-      "note": "A la carte U-DUAL library. Never free with P-ADM."
+      "note": "A la carte U-DUAL library. Never free with P-ADM.",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      }
     },
     {
       "id": "lib.padm.siem",
@@ -636,7 +979,82 @@
         "sentinel.decision.export",
         "sharepoint.kit.seal"
       ],
-      "note": "A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK."
+      "note": "A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK.",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      }
+    },
+    {
+      "id": "lib.l1.cash",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.cash_receipt.post",
+        "bc.sales_invoice.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Priced as industry.cash. Not a SKU."
+    },
+    {
+      "id": "lib.l1.fixed_asset",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.fixed_asset.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Priced as industry.fixed_asset. Not a SKU."
+    },
+    {
+      "id": "lib.udual.returns",
+      "requires_sku": "U-DUAL",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "d365.return.authorize"
+      ],
+      "note": "A la carte U-DUAL library. Never free with P-ADM."
+    },
+    {
+      "id": "lib.padm.retention",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "purview.audit.export",
+        "defender.incident.export",
+        "monitor.workbook.export",
+        "keyvault.decision.seal"
+      ],
+      "note": "A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -696,6 +1114,26 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.desk_workshop",
+      "name": "Desk workshop",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.keep_wiring",
+      "name": "P-ADM keep wiring",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -832,6 +1270,38 @@
       "note": "Company review generator. Not a SKU.",
       "live": false,
       "sku": false
+    },
+    {
+      "id": "repo.packs",
+      "kind": "law",
+      "path": "src/ainav/packs.py",
+      "note": "Industry pack and library attach. Not a SKU.",
+      "live": false,
+      "sku": false
+    },
+    {
+      "id": "repo.runbooks",
+      "kind": "law",
+      "path": "src/ainav/runbooks.py",
+      "note": "Industry seating runbooks. Not a SKU.",
+      "live": false,
+      "sku": false
+    },
+    {
+      "id": "repo.owner",
+      "kind": "public",
+      "path": "src/ainav/owner_steps.py",
+      "note": "Owner-only gates with Microsoft links. Not a SKU. Not a seat.",
+      "live": false,
+      "sku": false
+    },
+    {
+      "id": "repo.legal",
+      "kind": "law",
+      "path": "src/ainav/counsel.py",
+      "note": "Unsigned order form and MSA skeleton. Not a SKU. G12 stays open.",
+      "live": false,
+      "sku": false
     }
   ],
   "operations": {
@@ -849,7 +1319,8 @@
       "U-DUAL never attaches as bundled_free with P-ADM",
       "U-DUAL requires L1",
       "LIVE_PIN_OK cannot be marked from this plane",
-      "Signed L1 cannot be marked from this plane"
+      "Signed L1 cannot be marked from this plane",
+      "A la carte packs attach after the required SKU. They are not SKUs."
     ],
     "exits": [
       "LOST",
@@ -1758,7 +2229,9 @@
         "P-ADM attaches only after L1 Acceptance Kit PASS",
         "U-DUAL is never free with P-ADM or U-SOR",
         "LIVE_PIN_OK cannot be marked from this contract",
-        "Signed L1 is a separate counsel pack (G13)"
+        "Signed L1 is a separate counsel pack (G13)",
+        "Industry packs and libraries are not SKUs",
+        "A la carte pack attach is catalog list, not a fourth SKU"
       ]
     },
     "msa": {
@@ -1866,6 +2339,15 @@
         "rate_usd": 3500,
         "requires_l1": true,
         "attaches_udual": false
+      },
+      {
+        "id": "pack_attach",
+        "model": "annual_desk",
+        "unit": "desk",
+        "requires_l1": true,
+        "sku": false,
+        "attaches_udual": false,
+        "note": "A la carte desk attach. Not a fourth SKU."
       }
     ],
     "note": "Pipeline math uses catalog list prices. It is not booked. It is not recognized revenue."
@@ -1879,7 +2361,8 @@
       "Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.",
       "Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.",
       "Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.",
-      "Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox."
+      "Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.",
+      "A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

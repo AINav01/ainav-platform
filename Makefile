@@ -18,6 +18,7 @@ plan-check:
 	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agent-tools.json -
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" | diff -q institute/review.json -
 	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" | diff -q institute/finance.json -
+	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" | diff -q institute/packs.json -
 	python3 -m ainav owner-steps | diff -q docs/OWNER_STEPS.md -
 	python3 -m ainav order-form | diff -q docs/ORDER_FORM.md -
 	python3 -m ainav msa | diff -q docs/MSA_SKELETON.md -

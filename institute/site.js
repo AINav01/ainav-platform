@@ -12,6 +12,38 @@
     });
   });
 
+  fetch("packs.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.sku) return;
+      function fill(id, items, line) {
+        var root = document.getElementById(id);
+        if (!root || !items || !items.length) return;
+        root.textContent = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.setAttribute("data-id", item.id);
+          li.innerHTML = line(item);
+          root.appendChild(li);
+        });
+      }
+      fill("pack-industry", data.industry, function (item) {
+        var price = item.included
+          ? "included with " + item.requires_sku
+          : "$" + item.min.toLocaleString() + "–$" + item.max.toLocaleString() + " after " + item.requires_sku;
+        return "<strong>" + item.id + "</strong> — " + price + ". Not a SKU.";
+      });
+      fill("pack-libraries", (data.libraries || []).concat(data.fee_for_service || []), function (item) {
+        var extra = item.rate_usd_per_day ? " $" + item.rate_usd_per_day.toLocaleString() + "/day." : "";
+        return "<strong>" + item.id + "</strong> — " + (item.note || item.requires_sku || "") + extra;
+      });
+    })
+    .catch(function () {
+      /* packs.json is optional when opened as a file */
+    });
+
   fetch("review.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
