@@ -91,10 +91,17 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert treasury["attach"] == "included with L1"
     sales = next(item for item in body["provision_bands"]["included_udual"] if item["id"] == "industry.sales")
     assert sales["attach"] == "included with U-DUAL"
+    assert sales["band"] == "advanced · with U-DUAL"
+    assert treasury["band"] == "standard"
     assert all(
         item["attach"] != "included"
         for item in body["provision_bands"]["included_udual"]
     )
+    assert all(
+        item["band"] != "advanced"
+        for item in body["provision_bands"]["included_udual"]
+    )
+    assert "with u-dual" in (body["provision_bands"].get("desk_band_means") or "").lower()
     assert all(item["seat"] is False and item["keep"] is False for item in body["communications"])
     assert all(item["certified"] is False for item in body["records"])
     assert all(item["claimed"] is False for item in body["compliance_matrix"])
@@ -269,6 +276,7 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-records"' in floor
     assert 'id="plane-bands"' in floor
     assert 'id="plane-desks"' in floor
+    assert 'id="plane-week-one"' in floor
     assert 'data-view-tab="provision"' in floor
     assert 'data-view-tab="records"' in floor
     assert 'data-view-tab="client"' in floor

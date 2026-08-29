@@ -119,19 +119,46 @@ def _provision_bands(cat: dict[str, Any], body: dict[str, Any]) -> dict[str, Any
             if item.get("requires_sku") == sku_id and bool(item.get("included_in_sku")) is included
         ]
 
+    def _with_band(rows: list[dict[str, Any]], band: str) -> list[dict[str, Any]]:
+        out = []
+        for item in rows:
+            row = dict(item)
+            row["band"] = band
+            out.append(row)
+        return out
+
     return {
         "sku": False,
         "note": spec.get("note") or "",
         "attach_means": spec.get("attach_means") or "",
+        "desk_band_means": spec.get("desk_band_means") or "",
         "week_one": spec.get("week_one") or "",
         "week_one_note": spec.get("week_one_note") or "",
         "items": [dict(item) for item in spec.get("items") or []],
-        "included_l1": _by_sku(packs, "L1", True, "desk") + _by_sku(libraries, "L1", True, "library"),
-        "priced_l1": _by_sku(packs, "L1", False, "desk") + _by_sku(libraries, "L1", False, "library"),
-        "included_padm": _by_sku(packs, "P-ADM", True, "desk") + _by_sku(libraries, "P-ADM", True, "library"),
-        "priced_padm": _by_sku(packs, "P-ADM", False, "desk") + _by_sku(libraries, "P-ADM", False, "library"),
-        "included_udual": _by_sku(packs, "U-DUAL", True, "desk") + _by_sku(libraries, "U-DUAL", True, "library"),
-        "priced_udual": _by_sku(packs, "U-DUAL", False, "desk") + _by_sku(libraries, "U-DUAL", False, "library"),
+        "included_l1": _with_band(
+            _by_sku(packs, "L1", True, "desk") + _by_sku(libraries, "L1", True, "library"),
+            "standard",
+        ),
+        "priced_l1": _with_band(
+            _by_sku(packs, "L1", False, "desk") + _by_sku(libraries, "L1", False, "library"),
+            "advanced · priced",
+        ),
+        "included_padm": _with_band(
+            _by_sku(packs, "P-ADM", True, "desk") + _by_sku(libraries, "P-ADM", True, "library"),
+            "advanced · with P-ADM",
+        ),
+        "priced_padm": _with_band(
+            _by_sku(packs, "P-ADM", False, "desk") + _by_sku(libraries, "P-ADM", False, "library"),
+            "advanced · priced",
+        ),
+        "included_udual": _with_band(
+            _by_sku(packs, "U-DUAL", True, "desk") + _by_sku(libraries, "U-DUAL", True, "library"),
+            "advanced · with U-DUAL",
+        ),
+        "priced_udual": _with_band(
+            _by_sku(packs, "U-DUAL", False, "desk") + _by_sku(libraries, "U-DUAL", False, "library"),
+            "advanced · priced",
+        ),
         "included_hours": [_ffs_row(item) for item in services if not item.get("billable")],
         "priced_hours": [_ffs_row(item) for item in services if item.get("billable")],
     }
@@ -514,17 +541,17 @@ def dashboard_markdown() -> str:
         "| Desk / hour | Band | SKU | Attach | Note |",
         "| --- | --- | --- | --- | --- |",
     ]
-    for label, rows in (
-        ("standard", bands.get("included_l1") or []),
-        ("advanced", bands.get("priced_l1") or []),
-        ("advanced", bands.get("included_padm") or []),
-        ("advanced", bands.get("priced_padm") or []),
-        ("advanced", bands.get("included_udual") or []),
-        ("advanced", bands.get("priced_udual") or []),
+    for rows in (
+        bands.get("included_l1") or [],
+        bands.get("priced_l1") or [],
+        bands.get("included_padm") or [],
+        bands.get("priced_padm") or [],
+        bands.get("included_udual") or [],
+        bands.get("priced_udual") or [],
     ):
         for item in rows:
             lines.append(
-                f"| {item['name']} | {label} | {item.get('sku') or ''} | "
+                f"| {item['name']} | {item.get('band') or ''} | {item.get('sku') or ''} | "
                 f"{item.get('attach') or ''} | {item.get('note') or ''} |"
             )
     for item in bands.get("included_hours") or []:
@@ -534,7 +561,7 @@ def dashboard_markdown() -> str:
     for item in bands.get("priced_hours") or []:
         rate = f"${item['rate']:,}/day" if item.get("rate") else "priced"
         lines.append(
-            f"| {item['name']} | advanced | hours | {rate} | {item.get('note') or ''} |"
+            f"| {item['name']} | advanced · priced | hours | {rate} | {item.get('note') or ''} |"
         )
     lines += ["", "## Inter-communication", ""]
     for item in body.get("communications") or []:
@@ -872,19 +899,19 @@ def dashboard_html() -> str:
         for item in bands.get("items") or []
     )
     desk_rows = []
-    for label, rows in (
-        ("standard", bands.get("included_l1") or []),
-        ("advanced", bands.get("priced_l1") or []),
-        ("advanced", bands.get("included_padm") or []),
-        ("advanced", bands.get("priced_padm") or []),
-        ("advanced", bands.get("included_udual") or []),
-        ("advanced", bands.get("priced_udual") or []),
+    for rows in (
+        bands.get("included_l1") or [],
+        bands.get("priced_l1") or [],
+        bands.get("included_padm") or [],
+        bands.get("priced_padm") or [],
+        bands.get("included_udual") or [],
+        bands.get("priced_udual") or [],
     ):
         for item in rows:
             desk_rows.append(
                 "<tr>"
                 f"<td>{html.escape(item['name'])}</td>"
-                f"<td>{html.escape(label)}</td>"
+                f"<td>{html.escape(str(item.get('band') or ''))}</td>"
                 f"<td>{html.escape(str(item.get('sku') or ''))}</td>"
                 f"<td>{html.escape(str(item.get('attach') or ''))}</td>"
                 f"<td>{html.escape(item.get('note') or '')}</td>"
@@ -903,7 +930,7 @@ def dashboard_html() -> str:
         desk_rows.append(
             "<tr>"
             f"<td>{html.escape(item['name'])}</td>"
-            "<td>advanced</td><td>hours</td>"
+            "<td>advanced · priced</td><td>hours</td>"
             f"<td>{html.escape(rate)}</td>"
             f"<td>{html.escape(item.get('note') or '')}</td>"
             "</tr>"

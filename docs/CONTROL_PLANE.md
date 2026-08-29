@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.28.1. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.28.2. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -51,7 +51,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.28.1.
+- As of: catalog release 2.28.2.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -154,56 +154,56 @@ Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not b
 | lib.l1.plane | standard | L1 | included with L1 | L1 control-plane library. One admit plane over the client's AI estate. Not a SKU. |
 | lib.l1.org | standard | L1 | included with L1 | L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU. |
 | lib.l1.independence | standard | L1 | included with L1 | L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU. |
-| Payables desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| Bank desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| Cash desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Cash receipt and sales invoice. Not a SKU. |
-| Fixed-asset desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| Inventory desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
-| Counterparty AI desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names. |
-| Off-switch desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU. |
-| Rollback desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU. |
-| lib.l1.payables | advanced | L1 | $6,000–$10,000 | A la carte L1 library. Not a SKU. |
-| lib.l1.bank | advanced | L1 | $6,000–$10,000 | A la carte L1 library. Not a SKU. |
-| lib.l1.cash | advanced | L1 | $6,000–$10,000 | A la carte L1 library. Priced as industry.cash. Not a SKU. |
-| lib.l1.fixed_asset | advanced | L1 | $6,000–$10,000 | A la carte L1 library. Priced as industry.fixed_asset. Not a SKU. |
-| lib.l1.cascade | advanced | L1 | $6,000–$10,000 | L1 cascade library. Counterparty AI is not a seat. Not a SKU. |
-| lib.l1.off_switch | advanced | L1 | $6,000–$10,000 | L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU. |
-| lib.padm.export | advanced | P-ADM | included with P-ADM | P-ADM keep library. Purview export only. Not live Purview. Not a SKU. |
-| Retention keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK. |
-| Oversight keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK. |
-| Second-record keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK. |
-| Board / examiner keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK. |
-| Internal-audit keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK. |
-| IP / reserved-work keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK. |
-| lib.padm.siem | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK. |
-| lib.padm.retention | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK. |
-| lib.padm.governance | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK. |
-| lib.padm.records | advanced | P-ADM | $5,000–$8,000 | P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK. |
-| lib.padm.board | advanced | P-ADM | $5,000–$8,000 | P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK. |
-| lib.padm.audit | advanced | P-ADM | $5,000–$8,000 | P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK. |
-| lib.padm.ip | advanced | P-ADM | $5,000–$8,000 | P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK. |
-| Sales deepen | advanced | U-DUAL | included with U-DUAL | A la carte U-DUAL depth. Not a fourth SKU. |
-| Quote desk | advanced | U-DUAL | included with U-DUAL | A la carte U-DUAL slice. Not a fourth SKU. |
-| lib.udual.sales | advanced | U-DUAL | included with U-DUAL | Paid U-DUAL library. Quote and order wedges. Never free with P-ADM. |
-| Invoice desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| Credit desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| Returns desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| Pricing desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
-| lib.udual.quote_to_cash | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL library. Never free with P-ADM. |
-| lib.udual.returns | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL library. Never free with P-ADM. |
+| Payables desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Bank desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Cash desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Cash receipt and sales invoice. Not a SKU. |
+| Fixed-asset desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Inventory desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Counterparty AI desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names. |
+| Off-switch desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU. |
+| Rollback desk | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU. |
+| lib.l1.payables | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 library. Not a SKU. |
+| lib.l1.bank | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 library. Not a SKU. |
+| lib.l1.cash | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 library. Priced as industry.cash. Not a SKU. |
+| lib.l1.fixed_asset | advanced · priced | L1 | $6,000–$10,000 | A la carte L1 library. Priced as industry.fixed_asset. Not a SKU. |
+| lib.l1.cascade | advanced · priced | L1 | $6,000–$10,000 | L1 cascade library. Counterparty AI is not a seat. Not a SKU. |
+| lib.l1.off_switch | advanced · priced | L1 | $6,000–$10,000 | L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU. |
+| lib.padm.export | advanced · with P-ADM | P-ADM | included with P-ADM | P-ADM keep library. Purview export only. Not live Purview. Not a SKU. |
+| Retention keep | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK. |
+| Oversight keep | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK. |
+| Second-record keep | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK. |
+| Board / examiner keep | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK. |
+| Internal-audit keep | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK. |
+| IP / reserved-work keep | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK. |
+| lib.padm.siem | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK. |
+| lib.padm.retention | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK. |
+| lib.padm.governance | advanced · priced | P-ADM | $5,000–$8,000 | A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK. |
+| lib.padm.records | advanced · priced | P-ADM | $5,000–$8,000 | P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK. |
+| lib.padm.board | advanced · priced | P-ADM | $5,000–$8,000 | P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK. |
+| lib.padm.audit | advanced · priced | P-ADM | $5,000–$8,000 | P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK. |
+| lib.padm.ip | advanced · priced | P-ADM | $5,000–$8,000 | P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK. |
+| Sales deepen | advanced · with U-DUAL | U-DUAL | included with U-DUAL | A la carte U-DUAL depth. Not a fourth SKU. |
+| Quote desk | advanced · with U-DUAL | U-DUAL | included with U-DUAL | A la carte U-DUAL slice. Not a fourth SKU. |
+| lib.udual.sales | advanced · with U-DUAL | U-DUAL | included with U-DUAL | Paid U-DUAL library. Quote and order wedges. Never free with P-ADM. |
+| Invoice desk | advanced · priced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Credit desk | advanced · priced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Returns desk | advanced · priced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Pricing desk | advanced · priced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| lib.udual.quote_to_cash | advanced · priced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL library. Never free with P-ADM. |
+| lib.udual.returns | advanced · priced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL library. Never free with P-ADM. |
 | Acceptance Kit / proof day | standard | hours | included with L1 | Inside L1. Not a SKU. |
-| Integration assist | advanced | hours | $3,500/day | Hours on the same admit plane. Not a SKU. Does not attach U-DUAL. |
-| Replay / Merkle workshop | advanced | hours | $3,500/day | Audit replay with the client. Not a SKU. |
-| Quarterly business review | advanced | hours | $3,500/day | Same-plane review. Not a SKU. Does not attach U-DUAL. |
-| Mothership operations assist | advanced | hours | $3,500/day | Local mothership runbook hours. Not a SKU. |
-| Industry pack seating | advanced | hours | $3,500/day | Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL. |
-| Desk workshop | advanced | hours | $3,500/day | Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL. |
-| P-ADM keep wiring | advanced | hours | $3,500/day | Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL. |
-| AI governance / failsafe workshop | advanced | hours | $3,500/day | Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL. |
-| Institute AINav failsafe | advanced | hours | $3,500/day | Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name. |
-| Owner / board / examiner briefing | advanced | hours | $3,500/day | Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name. |
-| Client org-chart workshop | advanced | hours | $3,500/day | Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL. |
-| IP / independence hygiene | advanced | hours | $3,500/day | Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL. |
+| Integration assist | advanced · priced | hours | $3,500/day | Hours on the same admit plane. Not a SKU. Does not attach U-DUAL. |
+| Replay / Merkle workshop | advanced · priced | hours | $3,500/day | Audit replay with the client. Not a SKU. |
+| Quarterly business review | advanced · priced | hours | $3,500/day | Same-plane review. Not a SKU. Does not attach U-DUAL. |
+| Mothership operations assist | advanced · priced | hours | $3,500/day | Local mothership runbook hours. Not a SKU. |
+| Industry pack seating | advanced · priced | hours | $3,500/day | Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL. |
+| Desk workshop | advanced · priced | hours | $3,500/day | Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL. |
+| P-ADM keep wiring | advanced · priced | hours | $3,500/day | Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL. |
+| AI governance / failsafe workshop | advanced · priced | hours | $3,500/day | Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL. |
+| Institute AINav failsafe | advanced · priced | hours | $3,500/day | Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name. |
+| Owner / board / examiner briefing | advanced · priced | hours | $3,500/day | Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name. |
+| Client org-chart workshop | advanced · priced | hours | $3,500/day | Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL. |
+| IP / independence hygiene | advanced · priced | hours | $3,500/day | Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL. |
 
 ## Inter-communication
 

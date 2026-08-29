@@ -317,6 +317,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
 - Recognized revenue / external billing provider
+- G12 legal (counsel pack unsigned)
 - Signed L1 counsel pack (G13)
 - Multi-host product HA
 

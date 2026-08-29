@@ -693,6 +693,8 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("included means included with the required SKU", reason_code="CATALOG_PLANE")
     if bands.get("week_one") != "provisioning.standard_l1":
         raise IntegrityError("week-one prove stays standard_l1", reason_code="CATALOG_PLANE")
+    if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
+        raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
     for stem in (
         "dashboard as sku",

@@ -110,7 +110,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.28.1 (this tree)
+### 2.28.2 (this tree)
+
+Desk-table bands no longer say bare "advanced" on included-with-SKU
+rows. Labels are standard, advanced · priced, advanced · with P-ADM,
+and advanced · with U-DUAL. L1 SKU includes now name included seating
+and the dashboard. G12 sits in honest_missing with the other open
+legal gap. Delivery week-one is the runbook after the standard_l1
+prove — not a second week-one product.
+
+### 2.28.1
 
 Deep review of the 2.28.0 bands. included means included with the
 required SKU when that SKU is attached — not free. Sales/quote desks

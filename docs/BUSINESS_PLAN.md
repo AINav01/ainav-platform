@@ -45,6 +45,7 @@ The unauthorized general-journal post the client's AI or the client's customer A
   - includes: L1 action class only
   - includes: Digital-twin SoR sandbox
   - includes: Acceptance Kit / proof day
+  - includes: Included L1 seating and the client dashboard (not extra SKUs)
   - does not include: U-DUAL
   - does not include: Live SoR
   - does not include: LIVE_PIN_OK
@@ -253,6 +254,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
 - Recognized revenue / external billing provider
+- G12 legal (counsel pack unsigned)
 - Signed L1 counsel pack (G13)
 - Multi-host product HA
 

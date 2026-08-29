@@ -105,6 +105,12 @@
       }
       if (data.equation) set("plane-equation", "Interface = " + data.equation);
       if (data.dashboard && data.dashboard.realtime_means) set("plane-realtime", data.dashboard.realtime_means);
+      if (data.provision_bands) {
+        var week = [data.provision_bands.week_one_note, data.provision_bands.attach_means, data.provision_bands.desk_band_means]
+          .filter(Boolean)
+          .join(" ");
+        if (week) set("plane-week-one", week + " Attached 0 / 0 / 0.");
+      }
       if (data.access) {
         set(
           "plane-access",
@@ -363,24 +369,24 @@
         });
       }
       var deskRows = [];
-      function pushDesks(label, rows) {
+      function pushDesks(rows) {
         (rows || []).forEach(function (item) {
-          deskRows.push([item.name, label, item.sku || "", item.attach || "", item.note || ""]);
+          deskRows.push([item.name, item.band || "", item.sku || "", item.attach || "", item.note || ""]);
         });
       }
       if (data.provision_bands) {
-        pushDesks("standard", data.provision_bands.included_l1);
-        pushDesks("advanced", data.provision_bands.priced_l1);
-        pushDesks("advanced", data.provision_bands.included_padm);
-        pushDesks("advanced", data.provision_bands.priced_padm);
-        pushDesks("advanced", data.provision_bands.included_udual);
-        pushDesks("advanced", data.provision_bands.priced_udual);
+        pushDesks(data.provision_bands.included_l1);
+        pushDesks(data.provision_bands.priced_l1);
+        pushDesks(data.provision_bands.included_padm);
+        pushDesks(data.provision_bands.priced_padm);
+        pushDesks(data.provision_bands.included_udual);
+        pushDesks(data.provision_bands.priced_udual);
         (data.provision_bands.included_hours || []).forEach(function (item) {
           deskRows.push([item.name, "standard", "hours", "included with L1", item.note || ""]);
         });
         (data.provision_bands.priced_hours || []).forEach(function (item) {
           var rate = item.rate ? ("$" + Number(item.rate).toLocaleString() + "/day") : "priced";
-          deskRows.push([item.name, "advanced", "hours", rate, item.note || ""]);
+          deskRows.push([item.name, "advanced · priced", "hours", rate, item.note || ""]);
         });
       }
       fillRows("plane-desks", deskRows, function (row) { return row; });
@@ -468,7 +474,7 @@
         if (kind === "client") {
           var dash = data.client_dashboard || {};
           add("Client dashboard", "included with L1", dash.thesis || "One dashboard. Not a SKU. Not Standard vs Advanced dashboard products.");
-          add("Standard provision", "included", "L1 + included packs + wedge + Entra + Teams notify. Not a SKU. Not an upsell.");
+          add("Standard provision", "included with L1", "Week-one prove is treasury + wedge. Included seating is every L1 pack and library with included_in_sku. Not a SKU. Not an upsell.");
           add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + FFS. Not a SKU. U-DUAL never free.");
           add("Attached SKUs", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast. Not LIVE_PIN_OK.");
         }

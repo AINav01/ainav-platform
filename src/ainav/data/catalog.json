@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.28.1",
+    "release": "2.28.2",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -264,7 +264,8 @@
         "Local mothership on the Job C admit plane",
         "L1 action class only",
         "Digital-twin SoR sandbox",
-        "Acceptance Kit / proof day"
+        "Acceptance Kit / proof day",
+        "Included L1 seating and the client dashboard (not extra SKUs)"
       ],
       "does_not_include": [
         "U-DUAL",
@@ -1825,7 +1826,8 @@
       "buyer": "Controller — forwards the proof-day brief. No invented inbox.",
       "owner": "James Hodnett — sole owner. Runs AINav, Inc.",
       "operator": "Cursor Cloud Agent — operates. Not a seat. Not dual admit."
-    }
+    },
+    "week_one_is": "Delivery runbook after the standard_l1 prove. Not a second week-one product. Prove week-one is provisioning.standard_l1."
   },
   "repositories": [
     {
@@ -2996,7 +2998,8 @@
       ],
       "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
       "week_one": "provisioning.standard_l1",
-      "week_one_note": "Week-one prove is L1 + industry.treasury + lib.l1.wedge on bc.sandbox. Included L1 seating is every L1 pack and library with included_in_sku=true, including the client dashboard. Those are not extra SKUs and not extra week-one hosts."
+      "week_one_note": "Week-one prove is L1 + industry.treasury + lib.l1.wedge on bc.sandbox. Included L1 seating is every L1 pack and library with included_in_sku=true, including the client dashboard. Those are not extra SKUs and not extra week-one hosts.",
+      "desk_band_means": "standard = included with L1. advanced · priced = a la carte attach. advanced · with P-ADM = included when P-ADM is attached, not free. advanced · with U-DUAL = included when paid U-DUAL is attached, not free."
     }
   },
   "honest_missing": [
@@ -3005,6 +3008,7 @@
     "Power Platform / Dataverse environment for Sales",
     "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
     "Recognized revenue / external billing provider",
+    "G12 legal (counsel pack unsigned)",
     "Signed L1 counsel pack (G13)",
     "Multi-host product HA"
   ],
