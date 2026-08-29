@@ -330,6 +330,15 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         raise IntegrityError("investor letter refuses stock", reason_code="CATALOG_INVESTOR")
     if "6,000" not in str(body.get("stack") or "") and "$6" not in str(body.get("stack") or ""):
         raise IntegrityError("investor stack must price the upsell desks", reason_code="CATALOG_INVESTOR")
+    plane = str(body.get("control_plane") or "").lower()
+    if "control plane" not in plane:
+        raise IntegrityError("investor letter must name the control plane", reason_code="CATALOG_INVESTOR")
+    if "not a patent" not in plane:
+        raise IntegrityError("control-plane insulation is not a patent", reason_code="IP_CLAIM")
+    if "uncopyable" not in plane:
+        raise IntegrityError("control-plane insulation must say this is not uncopyable", reason_code="IP_CLAIM")
+    if "independen" not in plane and "vendor" not in plane:
+        raise IntegrityError("control-plane insulation must keep independence", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:

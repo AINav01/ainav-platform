@@ -3,40 +3,43 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R] /Count 8 >>
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R 11 0 R] /Count 9 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 13 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 14 0 R >>
 endobj
 4 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 14 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 15 0 R >>
 endobj
 5 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 15 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 16 0 R >>
 endobj
 6 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 16 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 17 0 R >>
 endobj
 7 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 17 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 18 0 R >>
 endobj
 8 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 18 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 19 0 R >>
 endobj
 9 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 19 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 20 0 R >>
 endobj
 10 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> /Contents 20 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 21 0 R >>
 endobj
 11 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 12 0 R /F2 13 0 R >> >> /Contents 22 0 R >>
 endobj
 12 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
 endobj
 13 0 obj
-<< /Length 6069 >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+14 0 obj
+<< /Length 6394 >>
 stream
 0.08 0.08 0.08 rg
 0 756 612 36 re f
@@ -53,13 +56,13 @@ ET
 BT
 /F2 8 Tf
 1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  1 / 8) Tj
+(AINav, Inc.  ·  Confidential executive brief  ·  1 / 9) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 732.0 Tm
-(Release 2.22.0 · For Cynthia Hodnett · From James Hodnett) Tj
+(Release 2.23.0 · For Cynthia Hodnett · From James Hodnett) Tj
 ET
 BT
 /F1 10 Tf
@@ -80,7 +83,7 @@ BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 675.5 Tm
-(Release 2.22.0 · Not a contract · Not signed L1 · Not LIVE_PIN_OK · Invited, not) Tj
+(Release 2.23.0 · Not a contract · Not signed L1 · Not LIVE_PIN_OK · Invited, not) Tj
 ET
 BT
 /F1 10 Tf
@@ -212,1360 +215,1360 @@ BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
 1 0 0 1 54 348.0 Tm
-(Part I ? For Cynthia Hodnett) Tj
+(Why the ultimate control plane insulates) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
 1 0 0 1 54 322.0 Tm
-(The ask, in one sentence) Tj
+(Last gate over every drafting AI ? not another model) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 304.0 Tm
-(James Hodnett is building a company that will not let a privileged money-movement) Tj
+(Ultimate, here, means last authority ? not a claim that AINav owns every model. The) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 291.5 Tm
-(write land unless two distinct humans admit the exact same action. He can write that) Tj
+(client utilizes AI. The client's customers utilize AI. Every one of those systems can) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 279.0 Tm
-(gate. He cannot be both humans. We are asking you, Cynthia Hodnett, to be the second) Tj
+(draft a privileged write. The product is the last human gate in front of that write:) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 266.5 Tm
-(human ? seat B ? with your own business email and your own click. Not stock. Not) Tj
+(one admit plane, two distinct humans, fail-closed. That is the ultimate control plane.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 254.0 Tm
+(It is not another Copilot, Agentforce, Joule, or Now Assist. The vendor of the) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 241.5 Tm
+(drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 229.0 Tm
+(Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 216.5 Tm
+(ship a human-in-the-loop button over its own draft. A treasurer who lets the author of) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 204.0 Tm
+(the draft also lock the vault has no independent control. Independence is why one) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 191.5 Tm
+(plane can sit over all of them at once. A vendor-native button only covers that) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 179.0 Tm
+(vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 166.5 Tm
+(A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 154.0 Tm
+(one plane over the whole estate, replacing it with a Copilot feature is a downgrade:) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 141.5 Tm
+(it opens every other AI again. The umbrella is the insulation. Point solutions are not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 129.0 Tm
+(the category. After kit PASS, the second record, the off switch, and the rollback are) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 116.5 Tm
+(segregation of duties ? books-and-records, not a chatbot seat. Cancelling the plane is) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 104.0 Tm
+(cancelling the gate. That switching cost is SOD, not contract fiction. Others can copy) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 91.5 Tm
+(a two-person Business Central approval, a Teams vote, or Copilot asking a human. They) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 79.0 Tm
+(do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Length 6656 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  2 / 9) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 732.0 Tm
+(action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 719.5 Tm
+(law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 707.0 Tm
+(stays open.) Tj
+ET
+BT
+/F2 11 Tf
+0.08 0.08 0.08 rg
+1 0 0 1 54 684.0 Tm
+(Part I ? For Cynthia Hodnett) Tj
+ET
+BT
+/F2 11 Tf
+0.08 0.08 0.08 rg
+1 0 0 1 54 658.0 Tm
+(The ask, in one sentence) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 640.0 Tm
+(James Hodnett is building a company that will not let a privileged money-movement) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 627.5 Tm
+(write land unless two distinct humans admit the exact same action. He can write that) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 615.0 Tm
+(gate. He cannot be both humans. We are asking you, Cynthia Hodnett, to be the second) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 602.5 Tm
+(human ? seat B ? with your own business email and your own click. Not stock. Not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 590.0 Tm
 (Global Admin. Not this Cloud Agent. Not a rubber stamp.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 231.0 Tm
+1 0 0 1 54 567.0 Tm
 (The incident the company exists to stop) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 213.0 Tm
+1 0 0 1 54 549.0 Tm
 (Picture a Dynamics 365 Business Central general journal. A line posts. Cash, accrual,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 200.5 Tm
+1 0 0 1 54 536.5 Tm
 (or a clearing account moves. Two people did not look at the same action and say yes.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 188.0 Tm
+1 0 0 1 54 524.0 Tm
 (That is the unauthorized general-journal post that two humans did not admit.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 175.5 Tm
+1 0 0 1 54 511.5 Tm
 (Controllers already have a name for the human rule: segregation of duties. What they) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 163.0 Tm
+1 0 0 1 54 499.0 Tm
 (do not have is a gate that sits in front of the write itself.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 148.0 Tm
+1 0 0 1 54 484.0 Tm
 (The product is that gate. Two distinct people. One exact action, hashed so the memo) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 135.5 Tm
+1 0 0 1 54 471.5 Tm
 (cannot be swapped after you look. The grant is consumed once ? a replay is a refusal.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 123.0 Tm
+1 0 0 1 54 459.0 Tm
 (The effect is fail-closed: if either person is missing, or the apply fails, the write) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 110.5 Tm
+1 0 0 1 54 446.5 Tm
 (does not land and there is no fake success. We call this Job C: dual-admitted effect) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 98.0 Tm
+1 0 0 1 54 434.0 Tm
 (authority before a privileged system-of-record write. We do not inventory agents \(Job) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 85.5 Tm
+1 0 0 1 54 421.5 Tm
 (A\). We do not replace Microsoft Entra \(Job B\).) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 70.5 Tm
+1 0 0 1 54 406.5 Tm
 (Microsoft hosts, identifies, notifies, and receives the write after the two of you) Tj
-ET
-endstream
-endobj
-14 0 obj
-<< /Length 6584 >>
-stream
-0.08 0.08 0.08 rg
-0 756 612 36 re f
-1 1 1 rg
-BT
-/F2 9 Tf
-1 0 0 1 54 770 Tm
-(AINAV, INC.) Tj
-ET
-0.55 0.55 0.55 RG
-0.6 w
-54 36 m 558 36 l S
-0.35 0.35 0.35 rg
-BT
-/F2 8 Tf
-1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  2 / 8) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 732.0 Tm
+1 0 0 1 54 394.0 Tm
 (admit it. Microsoft is not the product. Teams is not a seat. A chat is not dual admit.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 719.5 Tm
+1 0 0 1 54 381.5 Tm
 (Copilot is not the admit plane. A PIM activation is not dual admit. This Cloud Agent) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 707.0 Tm
+1 0 0 1 54 369.0 Tm
 (\(cursor.cloud_agent\) can operate the host. It cannot be seat A or seat B. Owner plus) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 694.5 Tm
+1 0 0 1 54 356.5 Tm
 (agent is still one human.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 671.5 Tm
+1 0 0 1 54 333.5 Tm
 (What we are building together) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 653.5 Tm
+1 0 0 1 54 315.5 Tm
 (AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 641.0 Tm
+1 0 0 1 54 303.0 Tm
 (is the AINav Control Plane. AINAV.Institute is the public law of that plane ? hosted) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 628.5 Tm
+1 0 0 1 54 290.5 Tm
 (on Azure, not launched, not bound to ainav.institute until James says launch in his) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 616.0 Tm
+1 0 0 1 54 278.0 Tm
 (own words. Master mothership issues the lockfile and never writes a client system of) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 603.5 Tm
+1 0 0 1 54 265.5 Tm
 (record. Cloud and local motherships share one consume ledger. Azure, Microsoft 365 E7,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 591.0 Tm
+1 0 0 1 54 253.0 Tm
 (Business Central Premium, Sales Enterprise, and Teams Premium are the fabric. They) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 578.5 Tm
+1 0 0 1 54 240.5 Tm
 (receive the write after you and James admit it.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 563.5 Tm
+1 0 0 1 54 225.5 Tm
 (The client utilizes AI. The client's customers utilize AI. Every one of those systems) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 551.0 Tm
+1 0 0 1 54 213.0 Tm
 (can draft a privileged write. Copilot, Agent 365, a BYO MCP, or a counterparty model) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 538.5 Tm
+1 0 0 1 54 200.5 Tm
 (may draft a journal. AINav is not that AI. It is the human control plane that sits) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 526.0 Tm
+1 0 0 1 54 188.0 Tm
 (over all of them: failsafe, off switch, reset, rollback. The client's two seats admit,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 513.5 Tm
+1 0 0 1 54 175.5 Tm
 (then the write. No admit, no write. First record is the SoR write. Second record is) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 501.0 Tm
+1 0 0 1 54 163.0 Tm
 (the sealed DecisionRecord. Off switch is fail-closed, not powering down Copilot.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 488.5 Tm
+1 0 0 1 54 150.5 Tm
 (Rollback is a compensating write, not a time machine. We map NIST, SOX, fiduciary) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 476.0 Tm
+1 0 0 1 54 138.0 Tm
 (oversight, books-and-records, the EU AI Act, and ISO 42001. We do not claim those) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 463.5 Tm
+1 0 0 1 54 125.5 Tm
 (certificates. We do not invent a board or a regulator. The plane sits on the client's) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 451.0 Tm
+1 0 0 1 54 113.0 Tm
 (existing org chart. Treasury and controller hold the two seats. Department AI is not a) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 438.5 Tm
+1 0 0 1 54 100.5 Tm
 (seat. We do not invent named department heads. Governance is not a fourth SKU. The) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 426.0 Tm
+1 0 0 1 54 88.0 Tm
 (plane stays independent of Microsoft and of the client's other AI vendors. A Teams) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 413.5 Tm
+1 0 0 1 54 75.5 Tm
 (vote or a Copilot prompt is not dual admit. This is not a patent. This is not) Tj
+ET
+endstream
+endobj
+16 0 obj
+<< /Length 5839 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  3 / 9) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 401.0 Tm
+1 0 0 1 54 732.0 Tm
 (uncopyable. G12 stays open.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 386.0 Tm
+1 0 0 1 54 717.0 Tm
 (We sell three things only. Packs, hours, and Microsoft licenses are not products. A) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 373.5 Tm
+1 0 0 1 54 704.5 Tm
 (controller buys the commercial close: named dual seats × proof day × signed L1 × P-ADM) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 361.0 Tm
+1 0 0 1 54 692.0 Tm
 (attach. The lab pin LIVE_PIN_OK is a separate engineering fact and is never marked) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 348.5 Tm
+1 0 0 1 54 679.5 Tm
 (from a sale. Signed L1 is a counsel pack. It is still open.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 333.5 Tm
+1 0 0 1 54 664.5 Tm
 (The three SKUs ? catalog list, not recognized revenue) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 318.5 Tm
+1 0 0 1 54 649.5 Tm
 (SKU | What the buyer is buying | List) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 303.5 Tm
+1 0 0 1 54 634.5 Tm
 (L1 ? prove | Two to four weeks. Prove the unauthorized journal cannot land without two) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 291.0 Tm
+1 0 0 1 54 622.0 Tm
 (seats. Ninety-minute proof day. Acceptance Kit on the twin. | $28,000?$40,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 276.0 Tm
+1 0 0 1 54 607.0 Tm
 (P-ADM ? keep | Keep the same admit plane covered after kit PASS. Never bundles free) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 263.5 Tm
+1 0 0 1 54 594.5 Tm
 (U-DUAL. | $40,000?$60,000 / year) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 248.5 Tm
+1 0 0 1 54 579.5 Tm
 (U-DUAL ? deepen | Same plane, onto Sales \(quote / order\). Never free with P-ADM. |) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 236.0 Tm
+1 0 0 1 54 567.0 Tm
 ($20,000?$35,000 / year) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 221.0 Tm
+1 0 0 1 54 552.0 Tm
 (If one controller bought all three in year one, the catalog list is $88,000?$135,000.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 208.5 Tm
+1 0 0 1 54 539.5 Tm
 (There is no named customer. There is no recognized revenue. Pipeline attached is zero.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 196.0 Tm
+1 0 0 1 54 527.0 Tm
 (That honesty is the company, not a placeholder.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 181.0 Tm
+1 0 0 1 54 512.0 Tm
 (Upsell catalog ? desks on the same three SKUs, not a fourth product) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 166.0 Tm
+1 0 0 1 54 497.0 Tm
 (Desk | Requires | List) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 151.0 Tm
+1 0 0 1 54 482.0 Tm
 (industry.treasury ? Treasury wedge | L1 | included with L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 136.0 Tm
+1 0 0 1 54 467.0 Tm
 (industry.sales ? Sales deepen | U-DUAL | included with U-DUAL) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 121.0 Tm
+1 0 0 1 54 452.0 Tm
 (industry.controller ? Controller desk | L1 | included with L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 106.0 Tm
+1 0 0 1 54 437.0 Tm
 (industry.quote_desk ? Quote desk | U-DUAL | included with U-DUAL) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 91.0 Tm
+1 0 0 1 54 422.0 Tm
 (industry.payables ? Payables desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 76.0 Tm
+1 0 0 1 54 407.0 Tm
 (industry.bank ? Bank desk | L1 | $6,000?$10,000) Tj
-ET
-endstream
-endobj
-15 0 obj
-<< /Length 6027 >>
-stream
-0.08 0.08 0.08 rg
-0 756 612 36 re f
-1 1 1 rg
-BT
-/F2 9 Tf
-1 0 0 1 54 770 Tm
-(AINAV, INC.) Tj
-ET
-0.55 0.55 0.55 RG
-0.6 w
-54 36 m 558 36 l S
-0.35 0.35 0.35 rg
-BT
-/F2 8 Tf
-1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  3 / 8) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 732.0 Tm
+1 0 0 1 54 392.0 Tm
 (industry.invoice_desk ? Invoice desk | U-DUAL | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 717.0 Tm
+1 0 0 1 54 377.0 Tm
 (industry.credit ? Credit desk | U-DUAL | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 702.0 Tm
+1 0 0 1 54 362.0 Tm
 (industry.cash ? Cash desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 687.0 Tm
+1 0 0 1 54 347.0 Tm
 (industry.fixed_asset ? Fixed-asset desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 672.0 Tm
+1 0 0 1 54 332.0 Tm
 (industry.inventory ? Inventory desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 657.0 Tm
+1 0 0 1 54 317.0 Tm
 (industry.returns ? Returns desk | U-DUAL | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 642.0 Tm
+1 0 0 1 54 302.0 Tm
 (industry.pricing ? Pricing desk | U-DUAL | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 627.0 Tm
+1 0 0 1 54 287.0 Tm
 (industry.retention ? Retention keep | P-ADM | $5,000?$8,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 612.0 Tm
+1 0 0 1 54 272.0 Tm
 (industry.governance ? AI failsafe desk | L1 | included with L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 597.0 Tm
+1 0 0 1 54 257.0 Tm
 (industry.oversight ? Oversight keep | P-ADM | $5,000?$8,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 582.0 Tm
+1 0 0 1 54 242.0 Tm
 (industry.cascade ? Counterparty AI desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 567.0 Tm
+1 0 0 1 54 227.0 Tm
 (industry.second_record ? Second-record keep | P-ADM | $5,000?$8,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 552.0 Tm
+1 0 0 1 54 212.0 Tm
 (industry.control_plane ? Human control plane | L1 | included with L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 537.0 Tm
+1 0 0 1 54 197.0 Tm
 (industry.off_switch ? Off-switch desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 522.0 Tm
+1 0 0 1 54 182.0 Tm
 (industry.rollback ? Rollback desk | L1 | $6,000?$10,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 507.0 Tm
+1 0 0 1 54 167.0 Tm
 (industry.board ? Board / examiner keep | P-ADM | $5,000?$8,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 492.0 Tm
+1 0 0 1 54 152.0 Tm
 (industry.org ? Client org seating | L1 | included with L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 477.0 Tm
+1 0 0 1 54 137.0 Tm
 (industry.internal_audit ? Internal-audit keep | P-ADM | $5,000?$8,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 462.0 Tm
+1 0 0 1 54 122.0 Tm
 (industry.independence ? Independent plane | L1 | included with L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 447.0 Tm
+1 0 0 1 54 107.0 Tm
 (industry.ip_keep ? IP / reserved-work keep | P-ADM | $5,000?$8,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 432.0 Tm
+1 0 0 1 54 92.0 Tm
 (Fee-for-service is $3,500/day after L1: integration, replay, QBR, mothership ops, desk) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 419.5 Tm
+1 0 0 1 54 79.5 Tm
 (workshop, keep wiring, governance workshop, institute failsafe, board briefing,) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Length 6122 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  4 / 9) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 407.0 Tm
+1 0 0 1 54 732.0 Tm
 (org-chart workshop, IP hygiene. Hours never mint a SKU and never attach U-DUAL. Print) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 394.5 Tm
+1 0 0 1 54 719.5 Tm
 (the full packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 371.5 Tm
+1 0 0 1 54 696.5 Tm
 (Where we actually are) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 353.5 Tm
+1 0 0 1 54 678.5 Tm
 (The admit plane runs in code. Gold tests pass. There is a real Business Central) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 341.0 Tm
+1 0 0 1 54 666.0 Tm
 (Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 for) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 328.5 Tm
+1 0 0 1 54 653.5 Tm
 ($250.00. Those seats were lab operator identities ? not two named treasury humans.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 316.0 Tm
+1 0 0 1 54 641.0 Tm
 (Production is blocked. The Institute has an Azure hostname. The custom domain still) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 303.5 Tm
+1 0 0 1 54 628.5 Tm
 (serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception are) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 291.0 Tm
+1 0 0 1 54 616.0 Tm
 (qualification targets. Membership is not claimed. Crypto-associated is false. We do) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 278.5 Tm
+1 0 0 1 54 603.5 Tm
 (not lead with custody or GPU production.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 263.5 Tm
+1 0 0 1 54 588.5 Tm
 (Honest split ? working versus not claimed) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 248.5 Tm
+1 0 0 1 54 573.5 Tm
 (Working now | Not claimed, not asked of you today) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 233.5 Tm
+1 0 0 1 54 558.5 Tm
 (Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 221.0 Tm
+1 0 0 1 54 546.0 Tm
 (held until launch | Signed L1; P-ADM attached; Business Central Production; live Sales) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 208.5 Tm
+1 0 0 1 54 533.5 Tm
 (/ Dataverse; ainav.institute launched) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 193.5 Tm
+1 0 0 1 54 518.5 Tm
 (You are invited by name as seat B / business executive | You as a recorded officer,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 181.0 Tm
+1 0 0 1 54 506.0 Tm
 (stockholder, or second unique human in the catalog) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 166.0 Tm
+1 0 0 1 54 491.0 Tm
 (Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach |) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 153.5 Tm
+1 0 0 1 54 478.5 Tm
 (LIVE_PIN_OK; product high availability; counsel-signed MSA; recognized revenue) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 130.5 Tm
+1 0 0 1 54 455.5 Tm
 (Why we need you ? not a second license) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 112.5 Tm
+1 0 0 1 54 437.5 Tm
 (James Hodnett is one human principal. Job C is a two-human fact. A second Microsoft) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 100.0 Tm
+1 0 0 1 54 425.0 Tm
 (365 license, a second tool, a second agent, or James clicking twice does not create) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 87.5 Tm
+1 0 0 1 54 412.5 Tm
 (dual admit. The second person must be a different human, with a different Entra object) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 75.0 Tm
+1 0 0 1 54 400.0 Tm
 (id, who actually reads the action and clicks. That is why this is a letter to you and) Tj
-ET
-endstream
-endobj
-16 0 obj
-<< /Length 6022 >>
-stream
-0.08 0.08 0.08 rg
-0 756 612 36 re f
-1 1 1 rg
-BT
-/F2 9 Tf
-1 0 0 1 54 770 Tm
-(AINAV, INC.) Tj
-ET
-0.55 0.55 0.55 RG
-0.6 w
-54 36 m 558 36 l S
-0.35 0.35 0.35 rg
-BT
-/F2 8 Tf
-1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  4 / 8) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 732.0 Tm
+1 0 0 1 54 387.5 Tm
 (not a settings change.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 717.0 Tm
+1 0 0 1 54 372.5 Tm
 (You are the person James trusts with treasury judgment. The seat opposite) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 704.5 Tm
+1 0 0 1 54 360.0 Tm
 (treasury_approver is treasury_controller ? the controller who will not let a journal) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 692.0 Tm
+1 0 0 1 54 347.5 Tm
 (land because it was convenient. NVIDIA Inception also requires two unique contacts) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 679.5 Tm
+1 0 0 1 54 335.0 Tm
 (with business emails: a developer \(James\) and a business executive \(you, if you) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 667.0 Tm
+1 0 0 1 54 322.5 Tm
 (agree\). Aliases and Gmail are refused. Sole owner does not collapse those two) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 654.5 Tm
+1 0 0 1 54 310.0 Tm
 (contacts. You are not recorded as an officer. You are not a stockholder. No email is) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 642.0 Tm
+1 0 0 1 54 297.5 Tm
 (stored until you agree and James says record it.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 627.0 Tm
+1 0 0 1 54 282.5 Tm
 (Without a second distinct person who actually clicks, AINav can keep a lab. It cannot) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 614.5 Tm
+1 0 0 1 54 270.0 Tm
 (sign L1. It cannot apply to Inception. It cannot look a controller in the eye and say) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 602.0 Tm
+1 0 0 1 54 257.5 Tm
 (two humans admitted the journal. That is the whole reason this brief exists. Your yes) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 589.5 Tm
+1 0 0 1 54 245.0 Tm
 (or no is the first commercial gate. Everything else on James's owner list waits behind) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 577.0 Tm
+1 0 0 1 54 232.5 Tm
 (it.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 554.0 Tm
+1 0 0 1 54 209.5 Tm
 (Your role if you agree ? what a Tuesday looks like) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 536.0 Tm
+1 0 0 1 54 191.5 Tm
 (Two humans, two jobs, one write) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 521.0 Tm
+1 0 0 1 54 176.5 Tm
 (| James Hodnett | Cynthia Hodnett \(if you agree\)) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 506.0 Tm
+1 0 0 1 54 161.5 Tm
 (Seat | A | B) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 491.0 Tm
+1 0 0 1 54 146.5 Tm
 (Treasury | treasury_approver | treasury_controller) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 476.0 Tm
+1 0 0 1 54 131.5 Tm
 (Inception | developer / programmer | business executive) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 461.0 Tm
+1 0 0 1 54 116.5 Tm
 (Identity | His Entra user | Your own @ainav.institute mailbox ? not an alias, not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 448.5 Tm
+1 0 0 1 54 104.0 Tm
 (Gmail, not his login) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 433.5 Tm
+1 0 0 1 54 89.0 Tm
 (Click | Admits the same action hash | Admits or refuses the same action hash) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 418.5 Tm
+1 0 0 1 54 74.0 Tm
 (When a privileged write is proposed, you see the account, the amount, the memo, and) Tj
+ET
+endstream
+endobj
+18 0 obj
+<< /Length 6699 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  5 / 9) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 406.0 Tm
+1 0 0 1 54 732.0 Tm
 (the action hash. You admit or you refuse. Refusing is the product working. If James) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 393.5 Tm
+1 0 0 1 54 719.5 Tm
 (clicks both seats, it is not dual. If you approve without reading, it is not dual.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 381.0 Tm
+1 0 0 1 54 707.0 Tm
 (Proof day is ninety minutes on the sandbox twin with two named humans. It is still not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 368.5 Tm
+1 0 0 1 54 694.5 Tm
 (Production. After a customer buys L1, you are one of the two seats the Acceptance Kit) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 356.0 Tm
+1 0 0 1 54 682.0 Tm
 (requires.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 341.0 Tm
+1 0 0 1 54 667.0 Tm
 (You do not need, and this brief does not give you) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 326.0 Tm
+1 0 0 1 54 652.0 Tm
 (? Global Admin, Azure ownership, or a programming role) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 311.0 Tm
+1 0 0 1 54 637.0 Tm
 (? Equity or an officer title ? counsel decides stock later; this page does not issue) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 298.5 Tm
+1 0 0 1 54 624.5 Tm
 (shares) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 283.5 Tm
+1 0 0 1 54 609.5 Tm
 (? To become Copilot, Teams, Agent 365, or this Cloud Agent) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 268.5 Tm
+1 0 0 1 54 594.5 Tm
 (? To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 256.0 Tm
+1 0 0 1 54 582.0 Tm
 (sign an MSA today) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 233.0 Tm
+1 0 0 1 54 559.0 Tm
 (What your yes unlocks ? and what it does not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 215.0 Tm
+1 0 0 1 54 541.0 Tm
 (Your yes lets James create your mailbox, lets you sign in once, and lets proof day use) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 202.5 Tm
+1 0 0 1 54 528.5 Tm
 (two named humans instead of lab operator ids. It lets Inception have a business) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 190.0 Tm
+1 0 0 1 54 516.0 Tm
 (executive contact when ? and only when ? James also has a custom domain, an) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 177.5 Tm
+1 0 0 1 54 503.5 Tm
 (incorporation date outside this tree, and says the public site may launch. It does not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 165.0 Tm
+1 0 0 1 54 491.0 Tm
 (make the company live. It does not attach P-ADM. It does not write Production. It does) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 152.5 Tm
+1 0 0 1 54 478.5 Tm
 (not make you a stockholder. It does not publish AINAV.Institute.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 137.5 Tm
+1 0 0 1 54 463.5 Tm
 (Your no, or not yet, is also a complete answer. Nothing is recorded. The invite stays) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 125.0 Tm
+1 0 0 1 54 451.0 Tm
 (open. The company stays a one-human lab until a second distinct human actually clicks.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 112.5 Tm
+1 0 0 1 54 438.5 Tm
 (James will not invent a contact to paper over that.) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 89.5 Tm
+1 0 0 1 54 415.5 Tm
 (Part II ? Foundational buildout) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 71.5 Tm
+1 0 0 1 54 397.5 Tm
 (Three motherships, one law. Master mothership \(Azure-declared, AINav\) issues the) Tj
-ET
-endstream
-endobj
-17 0 obj
-<< /Length 6684 >>
-stream
-0.08 0.08 0.08 rg
-0 756 612 36 re f
-1 1 1 rg
-BT
-/F2 9 Tf
-1 0 0 1 54 770 Tm
-(AINAV, INC.) Tj
-ET
-0.55 0.55 0.55 RG
-0.6 w
-54 36 m 558 36 l S
-0.35 0.35 0.35 rg
-BT
-/F2 8 Tf
-1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  5 / 8) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 732.0 Tm
+1 0 0 1 54 385.0 Tm
 (lockfile, catalog, and gold. It never writes a client system of record. Cloud) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 719.5 Tm
+1 0 0 1 54 372.5 Tm
 (mothership \(Azure-declared client plane\) and local mothership \(client plane\) share one) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 707.0 Tm
+1 0 0 1 54 360.0 Tm
 (consume ledger and run AdmitClient against a Business Central digital twin. They are) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 694.5 Tm
+1 0 0 1 54 347.5 Tm
 (not two products. They are not two deployed production planes. Today they are) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 682.0 Tm
+1 0 0 1 54 335.0 Tm
 (in-process on that shared ledger. Week one: provision master lockfile ? provision the) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 669.5 Tm
+1 0 0 1 54 322.5 Tm
 (cloud + local pair ? proof day or Acceptance Kit on the BC twin ? notify Teams ? store) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 657.0 Tm
+1 0 0 1 54 310.0 Tm
 (kit evidence in SharePoint sandbox ? refuse the live pin.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 642.0 Tm
+1 0 0 1 54 295.0 Tm
 (Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 629.5 Tm
+1 0 0 1 54 282.5 Tm
 (identity, Teams notify. Standard pair adds cloud and local hosts on one ledger.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 617.0 Tm
+1 0 0 1 54 270.0 Tm
 (Industry packs seat the same admit plane: treasury and controller on the journal) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 604.5 Tm
+1 0 0 1 54 257.5 Tm
 (wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales and) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 592.0 Tm
+1 0 0 1 54 245.0 Tm
 (quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced U-DUAL) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 579.5 Tm
+1 0 0 1 54 232.5 Tm
 (desks; retention as a priced P-ADM keep; governance seating included with L1;) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 567.0 Tm
+1 0 0 1 54 220.0 Tm
 (oversight keep as a priced P-ADM desk. Libraries bundle those modules. Repositories) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 554.5 Tm
+1 0 0 1 54 207.5 Tm
 (hold the plane, catalog, Institute, finance, brief, review, packs, runbooks, owner) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 542.0 Tm
+1 0 0 1 54 195.0 Tm
 (steps, counsel, and governance. None of those are SKUs. A la carte is a desk attach on) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 529.5 Tm
+1 0 0 1 54 182.5 Tm
 (L1, P-ADM, or paid U-DUAL ? never a fourth product.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 514.5 Tm
+1 0 0 1 54 167.5 Tm
 (Microsoft fabric, 10/10 and no further: Azure host \(eastus; Institute eastus2; West) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 502.0 Tm
+1 0 0 1 54 155.0 Tm
 (Europe blocked by policy\). Microsoft 365 E7 / Entra for seat object ids. Business) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 489.5 Tm
+1 0 0 1 54 142.5 Tm
 (Central Premium for L1 SoR. Sales Enterprise for U-DUAL SoR. Teams Enterprise and) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 477.0 Tm
+1 0 0 1 54 130.0 Tm
 (Premium for notify. Complements: Key Vault, Monitor, SharePoint kit evidence, Defender) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 464.5 Tm
+1 0 0 1 54 117.5 Tm
 (XDR, Entra PIM, Sentinel \(the mothership LAW is not a Sentinel workspace\), Azure) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 452.0 Tm
+1 0 0 1 54 105.0 Tm
 (Policy. Copilot, Agent 365, and Agent Tools ship inside E7. They are not the admit) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 439.5 Tm
+1 0 0 1 54 92.5 Tm
 (plane. A 10/10 Microsoft estate that votes in Teams or lets Copilot post the journal) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 427.0 Tm
+1 0 0 1 54 80.0 Tm
 (is a failure of Job C, not a feature.) Tj
-ET
-BT
-/F2 11 Tf
-0.08 0.08 0.08 rg
-1 0 0 1 54 404.0 Tm
-(Part III ? Organization and operations) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 386.0 Tm
-(Ten departments. The map is complete out of the gate. That does not mean Sales, Teams,) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 373.5 Tm
-(Institute, legal, or programs are live. BD and sales are the same motion: qualify an) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 361.0 Tm
-(ICP controller who already has Business Central Premium, Entra, and two-person journal) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 348.5 Tm
-(SOD ? generate a proof-day brief they can forward ? ninety minutes ? sell L1 that week) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 336.0 Tm
-(? kit PASS ? attach P-ADM ? offer paid U-DUAL. Exits: LOST, KIT_FAIL, CHURN. Do not) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 323.5 Tm
-(invent a contact inbox or a design-partner name.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 308.5 Tm
-(Operating company ? departments are not SKUs) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 293.5 Tm
-(Department | Role | Status | Blocked by) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 278.5 Tm
-(Treasury / Finance | books | running_sandbox | BC Production app not Enabled; signed) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 266.0 Tm
-(L1 / two named treasury humans) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 251.0 Tm
-(Identity / IT / Host | identity_host | running_sandbox | LIVE_PIN_OK) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 236.0 Tm
-(Sales / Revenue | pipeline | licensed_not_wired | Power Platform environment with) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 223.5 Tm
-(Dataverse; DATAVERSE_URL) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 208.5 Tm
-(People / Notify | notify | licensed_not_wired | Team.ReadBasic.All on the same Entra) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 196.0 Tm
-(app) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 181.0 Tm
-(Security / Compliance | audit_sink | licensed_not_wired | SecurityIncident.Read.All;) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 168.5 Tm
-(RoleEligibilitySchedule.Read.Directory; Sites.Read.All; Sentinel on the existing LAW) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 153.5 Tm
-(Institute / GTM | public | azure_hosted_not_custom | ainav.institute custom domain) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 138.5 Tm
-(Legal / Counsel | counsel | open_gap | G12 legal; G13 signed L1) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 123.5 Tm
-(Product / Engineering | plane | running_code | product HA) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 108.5 Tm
-(Delivery / Customer Success | pair | running_code | named customer; LIVE_PIN_OK) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 93.5 Tm
-(Programs / Partnerships | qualify | qualify_not_claimed | public website;) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 81.0 Tm
-(incorporation date; second unique human contact) Tj
 ET
 endstream
 endobj
-18 0 obj
-<< /Length 6019 >>
+19 0 obj
+<< /Length 5776 >>
 stream
 0.08 0.08 0.08 rg
 0 756 612 36 re f
@@ -1582,879 +1585,1047 @@ ET
 BT
 /F2 8 Tf
 1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  6 / 8) Tj
+(AINav, Inc.  ·  Confidential executive brief  ·  6 / 9) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
 1 0 0 1 54 724.0 Tm
-(Part IV ? What we sell, pricing, financial model) Tj
+(Part III ? Organization and operations) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 706.0 Tm
-(Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane after) Tj
+(Ten departments. The map is complete out of the gate. That does not mean Sales, Teams,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 693.5 Tm
-(L1. Hours never mint a SKU and never attach U-DUAL. There is no billing provider.) Tj
+(Institute, legal, or programs are live. BD and sales are the same motion: qualify an) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 681.0 Tm
-(Recognized revenue is 0. Signed L1 is 0. Named customers are 0. The numbers below are) Tj
+(ICP controller who already has Business Central Premium, Entra, and two-person journal) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 668.5 Tm
-(if-then catalog list. They are not a forecast, not ARR, and not booked.) Tj
+(SOD ? generate a proof-day brief they can forward ? ninety minutes ? sell L1 that week) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 653.5 Tm
-(Pricing models) Tj
+1 0 0 1 54 656.0 Tm
+(? kit PASS ? attach P-ADM ? offer paid U-DUAL. Exits: LOST, KIT_FAIL, CHURN. Do not) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 638.5 Tm
-(Item | Model | How it is sold) Tj
+1 0 0 1 54 643.5 Tm
+(invent a contact inbox or a design-partner name.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 623.5 Tm
-(L1 | Fixed-scope project | 2?4 week engagement. Priced against the unauthorized) Tj
+1 0 0 1 54 628.5 Tm
+(Operating company ? departments are not SKUs) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 611.0 Tm
-(journal, not hours.) Tj
+1 0 0 1 54 613.5 Tm
+(Department | Role | Status | Blocked by) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 596.0 Tm
-(P-ADM | Annual keep | Attaches only after L1 Acceptance Kit PASS. Never bundles free) Tj
+1 0 0 1 54 598.5 Tm
+(Treasury / Finance | books | running_sandbox | BC Production app not Enabled; signed) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 583.5 Tm
-(U-DUAL.) Tj
+1 0 0 1 54 586.0 Tm
+(L1 / two named treasury humans) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 568.5 Tm
-(U-DUAL | Annual deepen | Same admit plane onto Sales. Never free with P-ADM or U-SOR.) Tj
+1 0 0 1 54 571.0 Tm
+(Identity / IT / Host | identity_host | running_sandbox | LIVE_PIN_OK) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 553.5 Tm
-(FFS | Day rate $3,500 | Integration, replay, QBR, mothership ops, desk workshop, keep) Tj
+1 0 0 1 54 556.0 Tm
+(Sales / Revenue | pipeline | licensed_not_wired | Power Platform environment with) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 541.0 Tm
-(wiring. Requires L1. Not a SKU.) Tj
+1 0 0 1 54 543.5 Tm
+(Dataverse; DATAVERSE_URL) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 526.0 Tm
-(Pack attach | Annual desk | Priced L1 / U-DUAL / P-ADM desks. Not a fourth SKU. Never) Tj
+1 0 0 1 54 528.5 Tm
+(People / Notify | notify | licensed_not_wired | Team.ReadBasic.All on the same Entra) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 513.5 Tm
-(attaches U-DUAL.) Tj
+1 0 0 1 54 516.0 Tm
+(app) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 498.5 Tm
-(If-then catalog list ? zero customers today) Tj
+1 0 0 1 54 501.0 Tm
+(Security / Compliance | audit_sink | licensed_not_wired | SecurityIncident.Read.All;) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 483.5 Tm
-(Scenario | If | List) Tj
+1 0 0 1 54 488.5 Tm
+(RoleEligibilitySchedule.Read.Directory; Sites.Read.All; Sentinel on the existing LAW) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 468.5 Tm
-(One controller ? L1 only | One controller buys L1 and stops. | $28,000?$40,000) Tj
+1 0 0 1 54 473.5 Tm
+(Institute / GTM | public | azure_hosted_not_custom | ainav.institute custom domain) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 453.5 Tm
-(One controller ? L1 then P-ADM | One controller buys L1, kit PASS, then attaches) Tj
+1 0 0 1 54 458.5 Tm
+(Legal / Counsel | counsel | open_gap | G12 legal; G13 signed L1) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 441.0 Tm
-(P-ADM. | $68,000?$100,000) Tj
+1 0 0 1 54 443.5 Tm
+(Product / Engineering | plane | running_code | product HA) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 426.0 Tm
-(One controller ? all three SKUs | One controller buys L1, attaches P-ADM, then pays) Tj
+1 0 0 1 54 428.5 Tm
+(Delivery / Customer Success | pair | running_code | named customer; LIVE_PIN_OK) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 413.5 Tm
-(for U-DUAL. | $88,000?$135,000) Tj
+(Programs / Partnerships | qualify | qualify_not_claimed | public website;) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 398.5 Tm
-(Three controllers ? L1 + P-ADM each | Three controllers each buy L1 and attach P-ADM.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 386.0 Tm
-(No named buyers exist. | $204,000?$300,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 371.0 Tm
-(One L1 plus four FFS days | One controller buys L1 and four billable days on the same) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 358.5 Tm
-(plane. | $42,000?$54,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 343.5 Tm
-(One L1 plus counterparty AI desk | One controller buys L1 then attaches) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 331.0 Tm
-(industry.cascade for their customers' AI. | $34,000?$50,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 316.0 Tm
-(One controller ? L1, P-ADM, second-record keep | One controller buys L1, attaches) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 303.5 Tm
-(P-ADM, then attaches industry.second_record. | $73,000?$108,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 288.5 Tm
-(One L1 plus off-switch desk | One controller buys L1 then attaches industry.off_switch) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 276.0 Tm
-(so humans can freeze writes. | $34,000?$50,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 261.0 Tm
-(One controller ? L1, P-ADM, board keep | One controller buys L1, attaches P-ADM, then) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 248.5 Tm
-(attaches industry.board for owner/board/examiner evidence. | $73,000?$108,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 233.5 Tm
-(One controller ? L1, P-ADM, internal-audit keep | One controller buys L1, attaches) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 221.0 Tm
-(P-ADM, then attaches industry.internal_audit for the seating map. | $73,000?$108,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 206.0 Tm
-(One controller ? L1, P-ADM, IP keep | One controller buys L1, attaches P-ADM, then) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 193.5 Tm
-(attaches industry.ip_keep for reserved-work notice. | $73,000?$108,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 178.5 Tm
-(One L1 plus payables and bank desks | One controller buys L1 then attaches) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 166.0 Tm
-(industry.payables and industry.bank. | $40,000?$60,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 151.0 Tm
-(One controller ? L1, P-ADM, oversight keep | One controller buys L1, attaches P-ADM,) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 138.5 Tm
-(then attaches industry.oversight. | $73,000?$108,000) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 123.5 Tm
-(All three SKUs plus invoice and credit desks | One controller buys all three SKUs then) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 111.0 Tm
-(attaches industry.invoice_desk and industry.credit. | $100,000?$155,000) Tj
+1 0 0 1 54 401.0 Tm
+(incorporation date; second unique human contact) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 88.0 Tm
-(Part V ? Expert review: what works, what to improve, 15 upgrades) Tj
+1 0 0 1 54 378.0 Tm
+(Part IV ? What we sell, pricing, financial model) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 70.0 Tm
-(Read as a coding first-principles review, a Microsoft-fabric review, and a business) Tj
+1 0 0 1 54 360.0 Tm
+(Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane after) Tj
 ET
-endstream
-endobj
-19 0 obj
-<< /Length 5937 >>
-stream
-0.08 0.08 0.08 rg
-0 756 612 36 re f
-1 1 1 rg
 BT
-/F2 9 Tf
-1 0 0 1 54 770 Tm
-(AINAV, INC.) Tj
-ET
-0.55 0.55 0.55 RG
-0.6 w
-54 36 m 558 36 l S
-0.35 0.35 0.35 rg
-BT
-/F2 8 Tf
-1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  7 / 8) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 732.0 Tm
-(review. The bar is gold-standard Job C, not a prettier Coming Soon page. Apple polish) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 719.5 Tm
-(without the gate is decoration. Elon-style first principles without two humans is a) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 707.0 Tm
-(lab.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 692.0 Tm
-(Working well) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 677.0 Tm
-(? Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect,) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 664.5 Tm
-(hash-chained DecisionRecords.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 649.5 Tm
-(? Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 634.5 Tm
-(? Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 619.5 Tm
-(? AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 607.0 Tm
-(custom domain.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 592.0 Tm
-(? Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits,) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 579.5 Tm
-(BC/Sales receive, Teams notifies.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 564.5 Tm
-(? Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 549.5 Tm
-(? Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 534.5 Tm
-(? Proof day is an executable ninety-minute runbook. Buyer brief does not invent an) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 522.0 Tm
-(inbox.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 507.0 Tm
-(? A la carte desks are pack-gated. Extra Business Central and Sales writes stay off) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 494.5 Tm
-(the wedge until attach.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 479.5 Tm
-(? AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 467.0 Tm
-(Act, and ISO 42001 without claiming certification.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 452.0 Tm
-(? Control equation is explicit: the client utilizes AI, AINav is the failsafe, two) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 439.5 Tm
-(humans control the write.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 424.5 Tm
-(? The client's customers utilize AI. The client institutes AINav and the stable of) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 412.0 Tm
-(offerings as the failsafe. First record is the SoR write; second record is the) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 399.5 Tm
-(DecisionRecord.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 384.5 Tm
-(Could be improved ? without inventing a fourth SKU) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 369.5 Tm
-(? AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 357.0 Tm
-(humans.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 342.0 Tm
-(? One human cannot close dual admit, Inception contacts, or signed L1.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 327.0 Tm
-(? Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 314.5 Tm
-(twin.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 299.5 Tm
-(? Cloud and local motherships are Azure-declared in catalog and still in-process on) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 287.0 Tm
-(one ledger ? not two deployed planes.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 272.0 Tm
-(? Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 259.5 Tm
-(public face is split.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 244.5 Tm
-(? Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 232.0 Tm
-(403.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 217.0 Tm
-(? No billing provider. Catalog list cannot become recognized revenue.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 202.0 Tm
-(? Ten departments are mapped. Most are licensed_not_wired. The map is not the company) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 189.5 Tm
-(running.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 174.5 Tm
-(? Governance is a catalog map. It is not counsel, not a filing, and not a certificate.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 159.5 Tm
-(Fifteen specific upgrades. Tree = already encoded. Owner = James must click.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 144.5 Tm
-(? 1. [owner] Named dual seats ? Ask Cynthia. Create her @ainav.institute user. She) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 132.0 Tm
-(clicks seat B. James does not click both.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 117.0 Tm
-(? 2. [owner] Proof day on named humans ? Run python -m ainav proof-day with two) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 104.5 Tm
-(distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 89.5 Tm
-(? 3. [owner] Graph read on the same app ? Admin-consent Team.ReadBasic.All,) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 77.0 Tm
-(Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No) Tj
-ET
-endstream
-endobj
-20 0 obj
-<< /Length 4923 >>
-stream
-0.08 0.08 0.08 rg
-0 756 612 36 re f
-1 1 1 rg
-BT
-/F2 9 Tf
-1 0 0 1 54 770 Tm
-(AINAV, INC.) Tj
-ET
-0.55 0.55 0.55 RG
-0.6 w
-54 36 m 558 36 l S
-0.35 0.35 0.35 rg
-BT
-/F2 8 Tf
-1 0 0 1 54 24 Tm
-(AINav, Inc.  ·  Confidential executive brief  ·  8 / 8) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 732.0 Tm
-(Write. No new app.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 717.0 Tm
-(? 4. [owner] US Dataverse ? Create a US Power Platform environment with Dataverse. New) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 704.5 Tm
-(Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 689.5 Tm
-(? 5. [tree] One door, no inbox ? Keep the Institute buyer page as a forwardable) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 677.0 Tm
-(proof-day brief. Do not invent a contact inbox or a design-partner name.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 662.0 Tm
-(? 6. [tree] Price the incident, not hours ? Sell L1 against the unauthorized journal.) Tj
-ET
-BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 649.5 Tm
-(FFS days deepen the same plane and never mint a SKU.) Tj
+1 0 0 1 54 347.5 Tm
+(L1. Hours never mint a SKU and never attach U-DUAL. There is no billing provider.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 634.5 Tm
-(? 7. [tree] Hold launch ? Do not bind ainav.institute or publish until James says) Tj
+1 0 0 1 54 335.0 Tm
+(Recognized revenue is 0. Signed L1 is 0. Named customers are 0. The numbers below are) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 622.0 Tm
-(launch. --publish-institute stays launch_not_ready.) Tj
+1 0 0 1 54 322.5 Tm
+(if-then catalog list. They are not a forecast, not ARR, and not booked.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 607.0 Tm
-(? 8. [owner] Startups then Inception ? Apply to Microsoft for Startups only after) Tj
+1 0 0 1 54 307.5 Tm
+(Pricing models) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 594.5 Tm
-(launch and the custom domain. Inception second. Membership is not claimed.) Tj
+1 0 0 1 54 292.5 Tm
+(Item | Model | How it is sold) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 579.5 Tm
-(? 9. [tree] P-ADM weekly keep object ? Weekly sealed DecisionRecord export the) Tj
+1 0 0 1 54 277.5 Tm
+(L1 | Fixed-scope project | 2?4 week engagement. Priced against the unauthorized) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 567.0 Tm
-(treasurer can open. Not live Purview.) Tj
+1 0 0 1 54 265.0 Tm
+(journal, not hours.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 552.0 Tm
-(? 10. [tree] FFS requires L1 ? Billable days refuse without L1. They cannot attach) Tj
+1 0 0 1 54 250.0 Tm
+(P-ADM | Annual keep | Attaches only after L1 Acceptance Kit PASS. Never bundles free) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 539.5 Tm
+1 0 0 1 54 237.5 Tm
 (U-DUAL.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
+1 0 0 1 54 222.5 Tm
+(U-DUAL | Annual deepen | Same admit plane onto Sales. Never free with P-ADM or U-SOR.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 207.5 Tm
+(FFS | Day rate $3,500 | Integration, replay, QBR, mothership ops, desk workshop, keep) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 195.0 Tm
+(wiring. Requires L1. Not a SKU.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 180.0 Tm
+(Pack attach | Annual desk | Priced L1 / U-DUAL / P-ADM desks. Not a fourth SKU. Never) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 167.5 Tm
+(attaches U-DUAL.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 152.5 Tm
+(If-then catalog list ? zero customers today) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 137.5 Tm
+(Scenario | If | List) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 122.5 Tm
+(One controller ? L1 only | One controller buys L1 and stops. | $28,000?$40,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 107.5 Tm
+(One controller ? L1 then P-ADM | One controller buys L1, kit PASS, then attaches) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 95.0 Tm
+(P-ADM. | $68,000?$100,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 80.0 Tm
+(One controller ? all three SKUs | One controller buys L1, attaches P-ADM, then pays) Tj
+ET
+endstream
+endobj
+20 0 obj
+<< /Length 6183 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  7 / 9) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 732.0 Tm
+(for U-DUAL. | $88,000?$135,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 717.0 Tm
+(Three controllers ? L1 + P-ADM each | Three controllers each buy L1 and attach P-ADM.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 704.5 Tm
+(No named buyers exist. | $204,000?$300,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 689.5 Tm
+(One L1 plus four FFS days | One controller buys L1 and four billable days on the same) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 677.0 Tm
+(plane. | $42,000?$54,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 662.0 Tm
+(One L1 plus counterparty AI desk | One controller buys L1 then attaches) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 649.5 Tm
+(industry.cascade for their customers' AI. | $34,000?$50,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 634.5 Tm
+(One controller ? L1, P-ADM, second-record keep | One controller buys L1, attaches) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 622.0 Tm
+(P-ADM, then attaches industry.second_record. | $73,000?$108,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 607.0 Tm
+(One L1 plus off-switch desk | One controller buys L1 then attaches industry.off_switch) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 594.5 Tm
+(so humans can freeze writes. | $34,000?$50,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 579.5 Tm
+(One controller ? L1, P-ADM, board keep | One controller buys L1, attaches P-ADM, then) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 567.0 Tm
+(attaches industry.board for owner/board/examiner evidence. | $73,000?$108,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 552.0 Tm
+(One controller ? L1, P-ADM, internal-audit keep | One controller buys L1, attaches) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 539.5 Tm
+(P-ADM, then attaches industry.internal_audit for the seating map. | $73,000?$108,000) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
 1 0 0 1 54 524.5 Tm
-(? 11. [tree] Catalog financial model ? Talk if-then catalog list. Never invent ARR,) Tj
+(One controller ? L1, P-ADM, IP keep | One controller buys L1, attaches P-ADM, then) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 512.0 Tm
-(bookings, or recognized revenue.) Tj
+(attaches industry.ip_keep for reserved-work notice. | $73,000?$108,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 497.0 Tm
-(? 12. [tree] Commercial equation ? lab pin ? Controllers buy named dual seats × proof) Tj
+(One L1 plus payables and bank desks | One controller buys L1 then attaches) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 484.5 Tm
-(day × signed L1 × P-ADM attach. LIVE_PIN_OK stays a lab pin.) Tj
+(industry.payables and industry.bank. | $40,000?$60,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 469.5 Tm
-(? 13. [owner] Counsel pack ? G12 hygiene then G13 signed L1. Unsigned order form and) Tj
+(One controller ? L1, P-ADM, oversight keep | One controller buys L1, attaches P-ADM,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 457.0 Tm
-(MSA skeleton are not a signature.) Tj
+(then attaches industry.oversight. | $73,000?$108,000) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 442.0 Tm
-(? 14. [tree] Product HA is not a sale ? Redis multi-host and LIVE_PIN_OK stay) Tj
+(All three SKUs plus invoice and credit desks | One controller buys all three SKUs then) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 429.5 Tm
-(engineering. Do not mark them from a contract.) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 414.5 Tm
-(? 15. [owner] Leave Available / Block Dataverse MCP ? Leave five Microsoft tools) Tj
-ET
-BT
-/F1 10 Tf
-0.12 0.12 0.12 rg
-1 0 0 1 54 402.0 Tm
-(Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.) Tj
+(attaches industry.invoice_desk and industry.credit. | $100,000?$155,000) Tj
 ET
 BT
 /F2 11 Tf
 0.08 0.08 0.08 rg
-1 0 0 1 54 379.0 Tm
-(What happens next) Tj
+1 0 0 1 54 406.5 Tm
+(Part V ? Expert review: what works, what to improve, 15 upgrades) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 361.0 Tm
-(Five steps, in order. Stop after step 1 until Cynthia has decided.) Tj
+1 0 0 1 54 388.5 Tm
+(Read as a coding first-principles review, a Microsoft-fabric review, and a business) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 346.0 Tm
-(? Cynthia decides ? yes, no, or not yet.) Tj
+1 0 0 1 54 376.0 Tm
+(review. The bar is gold-standard Job C, not a prettier Coming Soon page. Apple polish) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 331.0 Tm
-(? If yes, James creates her @ainav.institute mailbox. She signs in once. He does not) Tj
+1 0 0 1 54 363.5 Tm
+(without the gate is decoration. Elon-style first principles without two humans is a) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 318.5 Tm
-(click seat B.) Tj
+1 0 0 1 54 351.0 Tm
+(lab.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 303.5 Tm
-(? He sends this agent her business email and says record it. Until those words, no) Tj
+1 0 0 1 54 336.0 Tm
+(Working well) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 291.0 Tm
-(email is stored.) Tj
+1 0 0 1 54 321.0 Tm
+(? Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect,) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 276.0 Tm
-(? Proof day uses two named humans on the Business Central twin. Still not Production.) Tj
+1 0 0 1 54 308.5 Tm
+(hash-chained DecisionRecords.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 261.0 Tm
-(? Equity, officer titles, and Delaware filings stay with counsel. They are not) Tj
+1 0 0 1 54 293.5 Tm
+(? Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 248.5 Tm
-(required for this role.) Tj
+1 0 0 1 54 278.5 Tm
+(? Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 233.5 Tm
-(Invited: Cynthia Hodnett · Recorded: no · Email: none stored · Equity: no · Second) Tj
+1 0 0 1 54 263.5 Tm
+(? AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
-1 0 0 1 54 221.0 Tm
-(officer: none · Operator: cursor.cloud_agent \(not a seat\) · Commercial close: named) Tj
+1 0 0 1 54 251.0 Tm
+(custom domain.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 236.0 Tm
+(? Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits,) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 223.5 Tm
+(BC/Sales receive, Teams notifies.) Tj
 ET
 BT
 /F1 10 Tf
 0.12 0.12 0.12 rg
 1 0 0 1 54 208.5 Tm
+(? Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 193.5 Tm
+(? Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 178.5 Tm
+(? Proof day is an executable ninety-minute runbook. Buyer brief does not invent an) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 166.0 Tm
+(inbox.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 151.0 Tm
+(? A la carte desks are pack-gated. Extra Business Central and Sales writes stay off) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 138.5 Tm
+(the wedge until attach.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 123.5 Tm
+(? AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 111.0 Tm
+(Act, and ISO 42001 without claiming certification.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 96.0 Tm
+(? Control equation is explicit: the client utilizes AI, AINav is the failsafe, two) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 83.5 Tm
+(humans control the write.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 68.5 Tm
+(? The client's customers utilize AI. The client institutes AINav and the stable of) Tj
+ET
+endstream
+endobj
+21 0 obj
+<< /Length 6051 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  8 / 9) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 732.0 Tm
+(offerings as the failsafe. First record is the SoR write; second record is the) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 719.5 Tm
+(DecisionRecord.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 704.5 Tm
+(Could be improved ? without inventing a fourth SKU) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 689.5 Tm
+(? AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 677.0 Tm
+(humans.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 662.0 Tm
+(? One human cannot close dual admit, Inception contacts, or signed L1.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 647.0 Tm
+(? Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 634.5 Tm
+(twin.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 619.5 Tm
+(? Cloud and local motherships are Azure-declared in catalog and still in-process on) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 607.0 Tm
+(one ledger ? not two deployed planes.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 592.0 Tm
+(? Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 579.5 Tm
+(public face is split.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 564.5 Tm
+(? Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 552.0 Tm
+(403.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 537.0 Tm
+(? No billing provider. Catalog list cannot become recognized revenue.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 522.0 Tm
+(? Ten departments are mapped. Most are licensed_not_wired. The map is not the company) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 509.5 Tm
+(running.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 494.5 Tm
+(? Governance is a catalog map. It is not counsel, not a filing, and not a certificate.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 479.5 Tm
+(Fifteen specific upgrades. Tree = already encoded. Owner = James must click.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 464.5 Tm
+(? 1. [owner] Named dual seats ? Ask Cynthia. Create her @ainav.institute user. She) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 452.0 Tm
+(clicks seat B. James does not click both.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 437.0 Tm
+(? 2. [owner] Proof day on named humans ? Run python -m ainav proof-day with two) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 424.5 Tm
+(distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 409.5 Tm
+(? 3. [owner] Graph read on the same app ? Admin-consent Team.ReadBasic.All,) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 397.0 Tm
+(Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 384.5 Tm
+(Write. No new app.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 369.5 Tm
+(? 4. [owner] US Dataverse ? Create a US Power Platform environment with Dataverse. New) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 357.0 Tm
+(Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 342.0 Tm
+(? 5. [tree] One door, no inbox ? Keep the Institute buyer page as a forwardable) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 329.5 Tm
+(proof-day brief. Do not invent a contact inbox or a design-partner name.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 314.5 Tm
+(? 6. [tree] Price the incident, not hours ? Sell L1 against the unauthorized journal.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 302.0 Tm
+(FFS days deepen the same plane and never mint a SKU.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 287.0 Tm
+(? 7. [tree] Hold launch ? Do not bind ainav.institute or publish until James says) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 274.5 Tm
+(launch. --publish-institute stays launch_not_ready.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 259.5 Tm
+(? 8. [owner] Startups then Inception ? Apply to Microsoft for Startups only after) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 247.0 Tm
+(launch and the custom domain. Inception second. Membership is not claimed.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 232.0 Tm
+(? 9. [tree] P-ADM weekly keep object ? Weekly sealed DecisionRecord export the) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 219.5 Tm
+(treasurer can open. Not live Purview.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 204.5 Tm
+(? 10. [tree] FFS requires L1 ? Billable days refuse without L1. They cannot attach) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 192.0 Tm
+(U-DUAL.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 177.0 Tm
+(? 11. [tree] Catalog financial model ? Talk if-then catalog list. Never invent ARR,) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 164.5 Tm
+(bookings, or recognized revenue.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 149.5 Tm
+(? 12. [tree] Commercial equation ? lab pin ? Controllers buy named dual seats × proof) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 137.0 Tm
+(day × signed L1 × P-ADM attach. LIVE_PIN_OK stays a lab pin.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 122.0 Tm
+(? 13. [owner] Counsel pack ? G12 hygiene then G13 signed L1. Unsigned order form and) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 109.5 Tm
+(MSA skeleton are not a signature.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 94.5 Tm
+(? 14. [tree] Product HA is not a sale ? Redis multi-host and LIVE_PIN_OK stay) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 82.0 Tm
+(engineering. Do not mark them from a contract.) Tj
+ET
+endstream
+endobj
+22 0 obj
+<< /Length 2090 >>
+stream
+0.08 0.08 0.08 rg
+0 756 612 36 re f
+1 1 1 rg
+BT
+/F2 9 Tf
+1 0 0 1 54 770 Tm
+(AINAV, INC.) Tj
+ET
+0.55 0.55 0.55 RG
+0.6 w
+54 36 m 558 36 l S
+0.35 0.35 0.35 rg
+BT
+/F2 8 Tf
+1 0 0 1 54 24 Tm
+(AINav, Inc.  ·  Confidential executive brief  ·  9 / 9) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 732.0 Tm
+(? 15. [owner] Leave Available / Block Dataverse MCP ? Leave five Microsoft tools) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 719.5 Tm
+(Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.) Tj
+ET
+BT
+/F2 11 Tf
+0.08 0.08 0.08 rg
+1 0 0 1 54 696.5 Tm
+(What happens next) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 678.5 Tm
+(Five steps, in order. Stop after step 1 until Cynthia has decided.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 663.5 Tm
+(? Cynthia decides ? yes, no, or not yet.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 648.5 Tm
+(? If yes, James creates her @ainav.institute mailbox. She signs in once. He does not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 636.0 Tm
+(click seat B.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 621.0 Tm
+(? He sends this agent her business email and says record it. Until those words, no) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 608.5 Tm
+(email is stored.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 593.5 Tm
+(? Proof day uses two named humans on the Business Central twin. Still not Production.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 578.5 Tm
+(? Equity, officer titles, and Delaware filings stay with counsel. They are not) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 566.0 Tm
+(required for this role.) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 551.0 Tm
+(Invited: Cynthia Hodnett · Recorded: no · Email: none stored · Equity: no · Second) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 538.5 Tm
+(officer: none · Operator: cursor.cloud_agent \(not a seat\) · Commercial close: named) Tj
+ET
+BT
+/F1 10 Tf
+0.12 0.12 0.12 rg
+1 0 0 1 54 526.0 Tm
 (dual seats × proof day × signed L1 × P-ADM attach · Recognized revenue: 0) Tj
 ET
 0.55 0.55 0.55 RG
 0.6 w
-54 193.5 m 558 193.5 l S
+54 511.0 m 558 511.0 l S
 endstream
 endobj
 xref
-0 21
+0 23
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000158 00000 n 
-0000000297 00000 n 
-0000000436 00000 n 
-0000000575 00000 n 
-0000000714 00000 n 
-0000000853 00000 n 
-0000000992 00000 n 
-0000001131 00000 n 
-0000001271 00000 n 
-0000001344 00000 n 
-0000001420 00000 n 
-0000007542 00000 n 
-0000014179 00000 n 
-0000020259 00000 n 
-0000026334 00000 n 
-0000033071 00000 n 
-0000039143 00000 n 
-0000045133 00000 n 
-trailer << /Size 21 /Root 1 0 R >>
+0000000165 00000 n 
+0000000304 00000 n 
+0000000443 00000 n 
+0000000582 00000 n 
+0000000721 00000 n 
+0000000860 00000 n 
+0000000999 00000 n 
+0000001138 00000 n 
+0000001278 00000 n 
+0000001418 00000 n 
+0000001491 00000 n 
+0000001567 00000 n 
+0000008014 00000 n 
+0000014723 00000 n 
+0000020615 00000 n 
+0000026790 00000 n 
+0000033542 00000 n 
+0000039371 00000 n 
+0000045607 00000 n 
+0000051711 00000 n 
+trailer << /Size 23 /Root 1 0 R >>
 startxref
-50109
+53854
 %%EOF

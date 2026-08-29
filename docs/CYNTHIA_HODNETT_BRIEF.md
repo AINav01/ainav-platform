@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.22.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.23.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.22.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.23.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -19,6 +19,20 @@ Human control plane over every client AI that can draft a privileged system-of-r
 | $0 | 0 | 0 | $88,000–$135,000 catalog list, not booked |
 
 Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM ($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. Insulation is independence × Job C lockfile × fail-closed gold × catalog law. The ask of you is seat B — not stock, not Global Admin, not a priced round.
+
+## Why the ultimate control plane insulates
+
+## Last gate over every drafting AI — not another model
+
+Ultimate, here, means last authority — not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.
+
+The vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.
+
+A vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.
+
+After kit PASS, the second record, the off switch, and the rollback are segregation of duties — books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.
+
+Others can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.
 
 ## Part I — For Cynthia Hodnett
 

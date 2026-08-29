@@ -55,6 +55,9 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "not a fourth" in md.lower()
     assert "$3,500" in md or "$3500" in md
     assert "what it is" in md.lower()
+    assert "ultimate control plane" in md.lower()
+    assert "not a patent" in md.lower()
+    assert "last human gate" in md.lower() or "last authority" in md.lower()
     html = investor_html()
     assert "Investor packet" in html
     assert "<table>" in html

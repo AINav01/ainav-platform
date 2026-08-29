@@ -59,7 +59,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Org: client org chart × existing SOD × one admit plane
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
 - Investor: catalog list × zero booked × two-human close
-- Investor packet: letter to Cynthia Hodnett with the full upsell catalog and list prices. Not a priced round. Not a forecast. Not an equity grant.
+- Investor packet: letter to Cynthia Hodnett with the full upsell catalog, list prices, and why the ultimate control plane insulates. Not a priced round. Not a forecast. Not an equity grant.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - Does: Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.
 - Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote; counterparty AI.

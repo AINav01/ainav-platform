@@ -105,6 +105,7 @@ def public_investor() -> dict[str, Any]:
         "tuesday": body.get("tuesday"),
         "upsell_note": body.get("upsell_note"),
         "insulation_copy": body["insulation"],
+        "control_plane": body.get("control_plane"),
         "traction": body["traction"],
         "ask": body["ask"],
         "highlights": list(body.get("highlights") or []),
@@ -191,6 +192,10 @@ def investor_markdown() -> str:
         "## The product",
         "",
         body["solution"],
+        "",
+        "## Why the ultimate control plane insulates",
+        "",
+        body.get("control_plane") or "",
         "",
         "## Who buys, and why now",
         "",
@@ -340,6 +345,11 @@ def investor_markdown() -> str:
     return "\n".join(lines)
 
 
+def _paras(text: str) -> str:
+    chunks = [chunk.strip() for chunk in str(text or "").split("\n\n") if chunk.strip()]
+    return "".join(f"<p>{html.escape(chunk)}</p>" for chunk in chunks)
+
+
 def _table(headers: list[str], rows: list[list[str]]) -> str:
     head = "".join(f"<th>{html.escape(cell)}</th>" for cell in headers)
     body = "".join(
@@ -429,6 +439,8 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
   <div><h2>The problem</h2><p>{html.escape(body['problem'])}</p></div>
   <div><h2>The product</h2><p>{html.escape(body['solution'])}</p></div>
 </div>
+<h2>Why the ultimate control plane insulates</h2>
+{_paras(body.get('control_plane') or '')}
 <h2>Who buys · why now</h2>
 <p>{html.escape(body['icp'])}</p>
 <p>{html.escape(body['why_now'])}</p>
@@ -637,6 +649,10 @@ def render_investor_pdf() -> bytes:
     doc.para(body["problem"])
     doc.heading("The product", "The company")
     doc.para(body["solution"])
+    doc.heading("Why the ultimate control plane insulates", "The company")
+    for chunk in str(body.get("control_plane") or "").split("\n\n"):
+        if chunk.strip():
+            doc.para(chunk.strip())
     doc.heading("Who buys · why now", "The company")
     doc.para(body["icp"])
     doc.para(body["why_now"])

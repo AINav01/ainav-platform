@@ -110,7 +110,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.22.0 (this tree)
+### 2.23.0 (this tree)
+
+Why the ultimate control plane insulates: last human gate over every
+drafting AI. The vendor of that AI cannot credibly be the failsafe.
+A vendor-native button is not the category. Not a patent. Not
+uncopyable. G12 stays open. Printed in the Cynthia letter and the
+executive brief.
+
+### 2.22.0
 
 Full Cynthia Hodnett packet on GitHub: investor letter with priced
 upsell catalog, longer personal brief, financial model, governance,

@@ -8,6 +8,10 @@
       "id": "independence"
     },
     {
+      "does": "One admit plane over every drafting AI. A vendor-native button is not the category.",
+      "id": "umbrella"
+    },
+    {
       "does": "Write-gate, not agent inventory and not an IdP.",
       "id": "job_c"
     },
@@ -75,5 +79,6 @@
     "PIM activation as privileged access",
     "Copilot asking a human before a suggestion"
   ],
-  "why_microsoft_is_not_the_failsafe": "Microsoft is identity, notify, SoR, and host. It sells the models that draft the write. An independent plane must sit over those models. A Copilot feature, PIM activation, or Teams vote is not dual admit."
+  "why_microsoft_is_not_the_failsafe": "Microsoft is identity, notify, SoR, and host. It sells the models that draft the write. An independent plane must sit over those models. A Copilot feature, PIM activation, or Teams vote is not dual admit.",
+  "why_ultimate_plane": "Ultimate means last authority before the write, over every AI that can draft one \u2014 not ownership of every model. The vendor of the drafting AI cannot credibly be that failsafe. A vendor-native button only covers that vendor. One admit plane over the whole estate is the insulation. This is not a patent. This is not uncopyable."
 }

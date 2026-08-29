@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.22.0.
+29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.23.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -22,6 +22,18 @@ A Dynamics 365 Business Central journal can post because a client Copilot, Agent
 ## The product
 
 Job C is that gate. Two distinct humans bind the same action_hash. The grant is consumed once — a replay is a refusal. The effect is fail-closed: if either person is missing, or the apply fails, the write does not land and there is no fake success. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first record (the admitted SoR write) and second record (the sealed DecisionRecord).
+
+## Why the ultimate control plane insulates
+
+Ultimate, here, means last authority — not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.
+
+The vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.
+
+A vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.
+
+After kit PASS, the second record, the off switch, and the rollback are segregation of duties — books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.
+
+Others can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.
 
 ## Who buys, and why now
 
@@ -205,6 +217,7 @@ We will not ask you for stock, Global Admin, a priced round, a valuation, or to 
 - Priced L1 desks $6,000–$10,000. Priced P-ADM keep $5,000–$8,000. Priced U-DUAL desks $6,000–$10,000.
 - Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never attach U-DUAL.
 - Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent. Not uncopyable.
+- Ultimate control plane: last human gate over every drafting AI. Vendor-native HITL is not dual admit. Not a patent. Not uncopyable.
 
 ## This packet refuses
 

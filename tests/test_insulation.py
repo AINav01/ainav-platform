@@ -31,12 +31,15 @@ def test_insulation_is_hygiene_not_a_patent():
         "fail_closed",
         "gold",
         "catalog_law",
+        "umbrella",
     }
+    assert "last" in (body.get("why_ultimate_plane") or "").lower()
     assert any("job_c" in item.lower() for item in body["what_the_build_pins"])
     md = insulation_markdown()
     assert "not a patent" in md.lower()
     assert "not uncopyable" in md.lower()
     assert "microsoft" in md.lower()
+    assert "ultimate control plane" in md.lower()
 
 
 def test_independence_desk_and_ip_keep_are_not_skus():

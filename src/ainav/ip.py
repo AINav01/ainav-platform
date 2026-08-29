@@ -133,6 +133,7 @@ def public_insulation() -> dict[str, Any]:
         "live_pin_ok": False,
         "thesis": body["thesis"],
         "equation": cat["equations"].get("insulation"),
+        "why_ultimate_plane": body.get("why_ultimate_plane"),
         "why_microsoft_is_not_the_failsafe": body.get("why_microsoft_is_not_the_failsafe"),
         "what_they_can_copy": list(body.get("what_they_can_copy") or []),
         "what_the_build_pins": list(body.get("what_the_build_pins") or []),
@@ -155,6 +156,10 @@ def insulation_markdown() -> str:
         body["thesis"],
         f"Equation: {body.get('equation')}.",
         "SKU: false. Patent claimed: false. Uncopyable: false. G12: open. LIVE_PIN_OK: false.",
+        "",
+        "## Why the ultimate control plane insulates",
+        "",
+        body.get("why_ultimate_plane") or "",
         "",
         "## Why Microsoft is not the failsafe",
         "",
@@ -207,11 +212,16 @@ def _validate_insulation(ip: dict[str, Any]) -> None:
         if stem not in claims:
             raise IntegrityError(f"forbidden claims must include {stem}", reason_code="IP_CLAIM")
     layers = {str(item.get("id") or "") for item in body.get("layers") or []}
-    for needed in ("independence", "job_c", "fail_closed", "gold", "catalog_law"):
+    for needed in ("independence", "job_c", "fail_closed", "gold", "catalog_law", "umbrella"):
         if needed not in layers:
             raise IntegrityError(f"insulation layers must include {needed}", reason_code="CATALOG_IP")
     if not body.get("what_they_can_copy") or not body.get("what_the_build_pins"):
         raise IntegrityError("insulation must name what they can copy and what the build pins", reason_code="CATALOG_IP")
+    ultimate = str(body.get("why_ultimate_plane") or "").lower()
+    if "last" not in ultimate or "plane" not in ultimate:
+        raise IntegrityError("insulation must explain the ultimate control plane", reason_code="CATALOG_IP")
+    if "not a patent" not in ultimate:
+        raise IntegrityError("ultimate-plane copy must say this is not a patent", reason_code="IP_CLAIM")
 
 
 def _refuse_label(label: str, catalog: dict[str, Any], *, kind: str) -> None:

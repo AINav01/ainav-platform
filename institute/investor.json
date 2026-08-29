@@ -5,6 +5,7 @@
   "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "company": "AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Job C only: two distinct humans bind the same action_hash before a privileged write. Microsoft is identity, notify, SoR, and host. Microsoft is not the product. The Cloud Agent operates the host. It is not a seat.",
   "confidential": true,
+  "control_plane": "Ultimate, here, means last authority \u2014 not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.\n\nThe vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.\n\nA vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.\n\nAfter kit PASS, the second record, the off switch, and the rollback are segregation of duties \u2014 books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.\n\nOthers can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
   "date": "29 August 2026",
   "email": null,
   "equation": "catalog list \u00d7 zero booked \u00d7 two-human close",
@@ -148,7 +149,8 @@
     "P-ADM $40,000\u2013$60,000 / year after kit PASS. U-DUAL $20,000\u2013$35,000 / year, never free.",
     "Priced L1 desks $6,000\u2013$10,000. Priced P-ADM keep $5,000\u2013$8,000. Priced U-DUAL desks $6,000\u2013$10,000.",
     "Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU and never attach U-DUAL.",
-    "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent. Not uncopyable."
+    "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist. Not a patent. Not uncopyable.",
+    "Ultimate control plane: last human gate over every drafting AI. Vendor-native HITL is not dual admit. Not a patent. Not uncopyable."
   ],
   "icp": "A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer is invented in this packet.",
   "include_upsells": true,
@@ -804,7 +806,7 @@
   "owner": "James Hodnett",
   "priced_round": false,
   "print": {
-    "pages": 6,
+    "pages": 7,
     "path": "docs/CYNTHIA_HODNETT_INVESTOR.pdf",
     "size": "letter"
   },
@@ -822,7 +824,7 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.22.0",
+  "release": "2.23.0",
   "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {

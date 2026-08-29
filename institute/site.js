@@ -97,6 +97,7 @@
       set("investor-ask", data.ask);
       set("investor-seat", data.seat_b);
       set("investor-stack", data.stack);
+      set("investor-plane", data.control_plane);
       if (data.kpis) {
         set("investor-rev", "$" + (data.kpis.recognized_revenue || 0));
         set("investor-cust", String(data.kpis.named_customers || 0));
@@ -154,6 +155,8 @@
       if (equation && data.equation) equation.textContent = "Insulation = " + data.equation;
       var why = document.getElementById("ip-why");
       if (why && data.why_microsoft_is_not_the_failsafe) why.textContent = data.why_microsoft_is_not_the_failsafe;
+      var ultimate = document.getElementById("ip-ultimate");
+      if (ultimate && data.why_ultimate_plane) ultimate.textContent = data.why_ultimate_plane;
       var others = document.getElementById("ip-others");
       if (others && data.others && data.others.length) {
         others.textContent = "Same conflict for " + data.others.join(", ") + ".";

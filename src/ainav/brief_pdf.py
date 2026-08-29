@@ -111,6 +111,17 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
+            "text": "Why the ultimate control plane insulates",
+        },
+        {
+            "kind": "callout",
+            "title": "Last gate over every drafting AI — not another model",
+            "text": (cat.get("investor") or {}).get("control_plane")
+            or (cat.get("ip", {}).get("insulation") or {}).get("why_ultimate_plane")
+            or "",
+        },
+        {
+            "kind": "h",
             "text": "Part I — For Cynthia Hodnett",
         },
         {
