@@ -96,7 +96,13 @@
           root.appendChild(li);
         });
       }
-      set("plane-thesis", data.thesis);
+      var thesisNode = document.getElementById("plane-thesis");
+      if (thesisNode && data.thesis && thesisNode.getAttribute("data-keep") !== "short") {
+        thesisNode.textContent = data.thesis;
+      }
+      if (!thesisNode || thesisNode.getAttribute("data-keep") !== "short") {
+        set("plane-doctrine", data.thesis);
+      }
       if (data.equation) set("plane-equation", "Interface = " + data.equation);
       if (data.dashboard && data.dashboard.realtime_means) set("plane-realtime", data.dashboard.realtime_means);
       if (data.access) {

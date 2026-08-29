@@ -110,5 +110,6 @@ def test_institute_control_plane_matches_catalog():
     assert "Executive control-plane dashboard" in floor
     assert 'id="plane-tiles"' in floor
     assert 'id="plane-cascade"' in floor
+    assert 'data-keep="short"' in floor
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()

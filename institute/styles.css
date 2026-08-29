@@ -197,10 +197,22 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
 }
 
 .cards { display: grid; gap: 1rem; }
+.cards.dash { grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 800px) {
   .cards { grid-template-columns: repeat(3, 1fr); }
   .cards.stack-cards { grid-template-columns: repeat(2, 1fr); }
   .cards.dash { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 819px) {
+  .plane-page .plane-floor-page h1 { font-size: 1.85rem; }
+  .plane-page nav.primary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 0.9rem;
+  }
+  .plane-page nav a, .plane-page .nav-more summary { margin: 0; }
+  .plane-strip { gap: 0.45rem 0.85rem; padding: 0.7rem 0.85rem; }
+  .cards.dash article { min-height: 7rem; }
 }
 .cards.dash article { min-height: 8.25rem; }
 .cards.dash .price {
