@@ -27,3 +27,4 @@ Must not change:
 - Do not invent named department heads
 - Microsoft is not the product; lockfile stays job_c
 - No patent claimed in this tree; insulation is not uncopyable
+- No priced round or invented valuation in this tree

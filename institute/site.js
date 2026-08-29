@@ -76,6 +76,44 @@
       /* governance.json is optional when opened as a file */
     });
 
+  fetch("investor.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data || data.live || data.live_pin_ok || data.sku || data.priced_round || data.raise_claimed) return;
+      var thesis = document.getElementById("investor-thesis");
+      if (thesis && data.one_liner) thesis.textContent = data.one_liner;
+      var equation = document.getElementById("investor-equation");
+      if (equation && data.equation) equation.textContent = "Packet = " + data.equation;
+      function set(id, text) {
+        var node = document.getElementById(id);
+        if (node && text) node.textContent = text;
+      }
+      set("investor-problem", data.problem);
+      set("investor-solution", data.solution);
+      set("investor-model", data.model);
+      set("investor-ask", data.ask);
+      if (data.kpis) {
+        set("investor-rev", "$" + (data.kpis.recognized_revenue || 0));
+        set("investor-cust", String(data.kpis.named_customers || 0));
+        set("investor-l1", String(data.kpis.signed_l1 || 0));
+      }
+      if (data.year_one_if_all_three) {
+        set(
+          "investor-year",
+          "$" +
+            Math.round(data.year_one_if_all_three.min / 1000) +
+            "–" +
+            Math.round(data.year_one_if_all_three.max / 1000) +
+            "k list"
+        );
+      }
+    })
+    .catch(function () {
+      /* investor.json is optional when opened as a file */
+    });
+
   fetch("ip.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

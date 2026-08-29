@@ -47,6 +47,8 @@ def brief_document() -> list[dict[str, Any]]:
     c = _ctx()
     cat = load_catalog()
     fin = finance_model()
+    by_id = {row["id"]: row for row in fin["scenarios"]}
+    all_three = by_id["all_three"]
     depts = cat["organization"]["departments"]
     return [
         {
@@ -65,6 +67,44 @@ def brief_document() -> list[dict[str, Any]]:
                 "here is invented: no email for you, no stock, no officer title, no named buyer, "
                 "no claim that the public site has launched. If a sentence would make the company "
                 "look further along than it is, it was left out."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Investor executive summary — print the two-page letter",
+        },
+        {
+            "kind": "callout",
+            "title": "The company in one line",
+            "text": (
+                "Human control plane over every client AI that can draft a privileged "
+                "system-of-record write. Job C: two distinct humans bind the same action_hash. "
+                "No admit, no write. Print the two-page letter: docs/CYNTHIA_HODNETT_INVESTOR.pdf. "
+                "Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Scoreboard today — catalog-honest",
+            "headers": ["Recognized revenue", "Named customers", "Signed L1", "Year-one if all three"],
+            "rows": [
+                [
+                    f"${fin['recognized_revenue']:,}",
+                    str(fin["named_customers"]),
+                    str(fin["signed_l1"]),
+                    f"{_money(all_three['min'], all_three['max'])} catalog list, not booked",
+                ],
+            ],
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM "
+                "($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). "
+                "Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. "
+                "The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. "
+                "Insulation is independence × Job C lockfile × fail-closed gold × catalog law. "
+                "The ask of you is seat B — not stock, not Global Admin, not a priced round."
             ),
         },
         {

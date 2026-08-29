@@ -58,6 +58,8 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Plane: failsafe × off-switch × reset × rollback × two-human control
 - Org: client org chart × existing SOD × one admit plane
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
+- Investor: catalog list × zero booked × two-human close
+- Investor packet: two letter pages. Not a priced round. Not a forecast. Not an equity grant.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - Does: Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.
 - Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote; counterparty AI.
@@ -93,6 +95,7 @@ Must not change:
 - Do not invent named department heads
 - Microsoft is not the product; lockfile stays job_c
 - No patent claimed in this tree; insulation is not uncopyable
+- No priced round or invented valuation in this tree
 
 ## The sale
 

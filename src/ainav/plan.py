@@ -31,6 +31,8 @@ def one_page() -> str:
         f"- Plane: {cat['equations']['plane']}",
         f"- Org: {cat['equations']['org']}",
         f"- Insulation: {cat['equations']['insulation']}",
+        f"- Investor: {cat['equations']['investor']}",
+        "- Investor packet: two letter pages for Cynthia Hodnett. Not a priced round. Not a forecast.",
         "- Certified: false. Replaces counsel: false. The failsafe is Job C.",
         "- Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.",
         "- First record: the admitted SoR write. Second record: the sealed DecisionRecord.",

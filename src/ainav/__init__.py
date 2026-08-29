@@ -4,6 +4,7 @@ from ainav.business import OperatingCompany
 from ainav.buyer import buyer_page, proof_day_brief
 from ainav.catalog import load_catalog, sku
 from ainav.errors import IPError, ProgramError
+from ainav.investor import public_investor
 from ainav.ip import notice, public_insulation, screen_pack_label
 from ainav.next_pin import sandbox_envelope
 from ainav.org import org_report, organization
@@ -32,6 +33,7 @@ __all__ = [
     "pitch",
     "ProgramError",
     "proof_day_brief",
+    "public_investor",
     "public_wedge_action",
     "qualify",
     "run_proof_day",

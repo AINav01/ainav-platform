@@ -263,6 +263,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"- Plane: {cat['equations']['plane']}",
         f"- Org: {cat['equations']['org']}",
         f"- Insulation: {cat['equations']['insulation']}",
+        f"- Investor: {cat['equations']['investor']}",
+        "- Investor packet: two letter pages. Not a priced round. Not a forecast. Not an equity grant.",
         "- Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.",
         f"- Does: {cat['governance']['failsafe']['does']}",
         "- Separate from: " + "; ".join(cat["governance"]["failsafe"]["separate_from"]) + ".",

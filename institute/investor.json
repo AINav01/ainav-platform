@@ -1,0 +1,132 @@
+{
+  "ask": "Cynthia Hodnett as seat B and Inception business executive. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
+  "audience": "Cynthia Hodnett \u2014 invited business executive, not a recorded stockholder",
+  "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "confidential": true,
+  "email": null,
+  "equation": "catalog list \u00d7 zero booked \u00d7 two-human close",
+  "equity_offered": false,
+  "forecast": false,
+  "highlights": [
+    "Three SKUs only. Year-one catalog list if one controller buys all three: $88,000\u2013$135,000.",
+    "L1 $28,000\u2013$40,000 in two to four weeks. Ninety-minute proof day on the twin.",
+    "P-ADM $40,000\u2013$60,000 / year after kit PASS. U-DUAL $20,000\u2013$35,000 / year, never free.",
+    "Fee-for-service $3,500/day on the same plane after L1. Hours are not a SKU.",
+    "Independence from Microsoft, Copilot, Agentforce, Joule, and Now Assist."
+  ],
+  "icp": "Dynamics 365 Business Central Premium. Microsoft Entra ID. Existing two-person journal SOD. The client utilizes AI. Their customers do too. Do not invent a named buyer.",
+  "institute": "AINAV.Institute",
+  "insulation": "independence \u00d7 Job C lockfile \u00d7 fail-closed gold \u00d7 catalog law",
+  "insulation_copy": "The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
+  "invited": "Cynthia Hodnett",
+  "kind": "ainav.investor.v1",
+  "kpis": {
+    "billing_provider": false,
+    "named_customers": 0,
+    "recognized_revenue": 0,
+    "signed_l1": 0
+  },
+  "legal": "AINav, Inc.",
+  "live": false,
+  "live_pin_ok": false,
+  "model": "Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and Microsoft licenses are not SKUs. U-DUAL is never free.",
+  "not_a_round": true,
+  "note": "Investor-grade packet for the invited second human. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.",
+  "one_liner": "Human control plane over every client AI that can draft a privileged system-of-record write.",
+  "owner": "James Hodnett",
+  "priced_round": false,
+  "print": {
+    "pages": 2,
+    "path": "docs/CYNTHIA_HODNETT_INVESTOR.pdf",
+    "size": "letter"
+  },
+  "problem": "Client Copilot, Agent 365, BYO models, and the client's customers' AI can draft a Dynamics 365 Business Central journal. Controllers have segregation of duties. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.",
+  "product": "AINav Control Plane",
+  "raise_claimed": false,
+  "recorded": false,
+  "refuse": [
+    "priced round",
+    "invented valuation",
+    "forecast ARR",
+    "named customer",
+    "LIVE_PIN_OK",
+    "equity grant",
+    "uncopyable",
+    "patent granted"
+  ],
+  "release": "2.19.0",
+  "scenarios": [
+    {
+      "id": "l1_only",
+      "if": "One controller buys L1 and stops.",
+      "max": 40000,
+      "min": 28000,
+      "name": "One controller \u2014 L1 only"
+    },
+    {
+      "id": "l1_padm",
+      "if": "One controller buys L1, kit PASS, then attaches P-ADM.",
+      "max": 100000,
+      "min": 68000,
+      "name": "One controller \u2014 L1 then P-ADM"
+    },
+    {
+      "id": "all_three",
+      "if": "One controller buys L1, attaches P-ADM, then pays for U-DUAL.",
+      "max": 135000,
+      "min": 88000,
+      "name": "One controller \u2014 all three SKUs"
+    },
+    {
+      "id": "three_l1_padm",
+      "if": "Three controllers each buy L1 and attach P-ADM. No named buyers exist.",
+      "max": 300000,
+      "min": 204000,
+      "name": "Three controllers \u2014 L1 + P-ADM each"
+    },
+    {
+      "id": "l1_plus_four_days",
+      "if": "One controller buys L1 and four billable days on the same plane.",
+      "max": 54000,
+      "min": 42000,
+      "name": "One L1 plus four FFS days"
+    }
+  ],
+  "sku": false,
+  "skus": [
+    {
+      "id": "L1",
+      "kind": "prove",
+      "max": 40000,
+      "min": 28000,
+      "name": "FIRST_OFFER",
+      "term": "2\u20134 weeks"
+    },
+    {
+      "id": "P-ADM",
+      "kind": "keep",
+      "max": 60000,
+      "min": 40000,
+      "name": "ADMIT_COVERAGE",
+      "term": "annual"
+    },
+    {
+      "id": "U-DUAL",
+      "kind": "deepen",
+      "max": 35000,
+      "min": 20000,
+      "name": "DEPTH_PACK",
+      "term": "annual"
+    }
+  ],
+  "solution": "Job C: two distinct humans bind the same action_hash. The grant is consumed once. The effect is fail-closed. No admit, no write. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first and second records.",
+  "traction": "Admit plane in code. Gold above 90 percent. Business Central Sandbox company AINav. Sandbox journal AINAV-L1. Institute hosted on Azure, not launched. Production blocked. Named customers: none. Recognized revenue: none.",
+  "unit_economics_note": "Catalog list. Not booked. Not ARR. Not a forecast. No billing provider.",
+  "valuation_claimed": false,
+  "why_now": "Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav. They do not replace their ERP.",
+  "year_one_if_all_three": {
+    "max": 135000,
+    "min": 88000,
+    "note": "Catalog list if one controller buys L1, P-ADM, and U-DUAL. Not booked."
+  }
+}

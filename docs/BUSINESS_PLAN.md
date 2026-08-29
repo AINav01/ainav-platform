@@ -20,6 +20,8 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Plane: failsafe × off-switch × reset × rollback × two-human control
 - Org: client org chart × existing SOD × one admit plane
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
+- Investor: catalog list × zero booked × two-human close
+- Investor packet: two letter pages for Cynthia Hodnett. Not a priced round. Not a forecast.
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.
@@ -285,3 +287,4 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - Do not invent named department heads
 - Microsoft is not the product; lockfile stays job_c
 - No patent claimed in this tree; insulation is not uncopyable
+- No priced round or invented valuation in this tree

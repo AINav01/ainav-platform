@@ -1,10 +1,24 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.18.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.19.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.18.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.19.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
+
+## Investor executive summary — print the two-page letter
+
+## The company in one line
+
+Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. Print the two-page letter: docs/CYNTHIA_HODNETT_INVESTOR.pdf. Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK.
+
+*Scoreboard today — catalog-honest*
+
+| Recognized revenue | Named customers | Signed L1 | Year-one if all three |
+| --- | --- | --- | --- |
+| $0 | 0 | 0 | $88,000–$135,000 catalog list, not booked |
+
+Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM ($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. Insulation is independence × Job C lockfile × fail-closed gold × catalog law. The ask of you is seat B — not stock, not Global Admin, not a priced round.
 
 ## Part I — For Cynthia Hodnett
 

@@ -110,7 +110,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.18.0 (this tree)
+### 2.19.0 (this tree)
+
+Investor executive summary for Cynthia Hodnett: two letter pages,
+catalog list, zero booked, two-human close. Not a priced round. Not
+a forecast. Not an equity grant. Print
+`docs/CYNTHIA_HODNETT_INVESTOR.pdf`. Owner gaps stay open.
+
+### 2.18.0
 
 The build insulates by staying independent of the AI vendor.
 Microsoft sells Copilot and Agent 365; the vendor of the AI cannot

@@ -78,6 +78,8 @@ def main(argv: list[str] | None = None) -> int:
     brief.add_argument("--for", dest="for_controller", default="")
     sub.add_parser("brief-pdf")
     sub.add_parser("brief-md")
+    sub.add_parser("investor")
+    sub.add_parser("investor-pdf")
     sub.add_parser("owner-steps")
     sub.add_parser("order-form")
     sub.add_parser("msa")
@@ -256,6 +258,17 @@ def main(argv: list[str] | None = None) -> int:
         from ainav.brief_pdf import brief_markdown
 
         print(brief_markdown(), end="")
+        return 0
+    if args.cmd == "investor":
+        from ainav.investor import investor_markdown
+
+        print(investor_markdown(), end="")
+        return 0
+    if args.cmd == "investor-pdf":
+        from ainav.investor import write_investor
+
+        path = write_investor()
+        print(path)
         return 0
     if args.cmd == "owner-steps":
         from ainav.owner_steps import owner_steps_markdown

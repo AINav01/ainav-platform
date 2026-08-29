@@ -17,7 +17,10 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.18.0"
+    assert cat["entity"]["release"] == "2.19.0"
+    assert "catalog list" in cat["equations"]["investor"]
+    assert cat["investor"]["priced_round"] is False
+    assert cat["investor"]["equity_offered"] is False
     assert "client utilizes AI" in cat["equations"]["control"]
     assert "institutes AINav" in cat["equations"]["cascade"]
     assert "one admit plane" in cat["equations"]["umbrella"]
@@ -111,6 +114,8 @@ def test_printable_brief_is_a_pdf():
     assert "Fifteen" in md or "15" in md
     assert "Named dual seats" in md
     assert "not recorded" in md.lower()
+    assert "Investor executive summary" in md
+    assert "priced round" in md.lower()
     html = brief_html()
     assert "Executive brief" in html
     assert "Cynthia Hodnett" in html
@@ -143,6 +148,10 @@ def test_cli_owner_and_counsel(capsys):
     assert "failsafe" in capsys.readouterr().out.lower()
     assert main(["ip"]) == 0
     assert "not uncopyable" in capsys.readouterr().out.lower()
+    assert main(["investor"]) == 0
+    assert "priced round" in capsys.readouterr().out.lower()
+    assert main(["investor-pdf"]) == 0
+    assert "INVESTOR" in capsys.readouterr().out
     assert main(["keep-artifact"]) == 0
     assert "live_pin_ok" in capsys.readouterr().out
     assert main(["brief-pdf"]) == 0

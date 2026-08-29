@@ -88,6 +88,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_repositories(catalog)
     _validate_governance(catalog)
     _validate_client_org(catalog)
+    _validate_investor(catalog)
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
@@ -151,6 +152,17 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
                 f"insulation equation must keep {stem}",
                 reason_code="CATALOG_EQUATION",
             )
+    investor = str(equations.get("investor") or "").lower()
+    if "catalog list" not in investor or "zero booked" not in investor:
+        raise IntegrityError(
+            "investor equation is catalog list \u00d7 zero booked \u00d7 two-human close",
+            reason_code="CATALOG_EQUATION",
+        )
+    if "two-human" not in investor and "two human" not in investor:
+        raise IntegrityError(
+            "investor equation must keep two-human close",
+            reason_code="CATALOG_EQUATION",
+        )
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
@@ -276,6 +288,35 @@ def _validate_finance(catalog: dict[str, Any]) -> None:
     pack_attach = next(item for item in models if item.get("id") == "pack_attach")
     if pack_attach.get("sku") is True or pack_attach.get("attaches_udual") is True:
         raise IntegrityError("pack attach cannot be a SKU or attach U-DUAL", reason_code="CATALOG_SKU")
+
+
+def _validate_investor(catalog: dict[str, Any]) -> None:
+    body = catalog.get("investor")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing investor packet", reason_code="CATALOG_INVESTOR")
+    if body.get("sku") is True:
+        raise IntegrityError("investor packet is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("investor packet cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    for flag in ("raise_claimed", "valuation_claimed", "forecast", "priced_round", "equity_offered"):
+        if body.get(flag) is True:
+            raise IntegrityError(f"investor packet cannot claim {flag}", reason_code="CATALOG_INVESTOR")
+    if body.get("not_a_round") is not True:
+        raise IntegrityError("investor packet is not a priced round", reason_code="CATALOG_INVESTOR")
+    if "cynthia" not in str(body.get("audience") or "").lower():
+        raise IntegrityError("investor audience is Cynthia Hodnett", reason_code="CATALOG_INVESTOR")
+    one = str(body.get("one_liner") or "").lower()
+    if "human" not in one or "write" not in one:
+        raise IntegrityError("investor one-liner is the human write-gate", reason_code="CATALOG_INVESTOR")
+    if "not a priced round" not in str(body.get("ask") or "").lower():
+        raise IntegrityError("investor ask is not a priced round", reason_code="CATALOG_INVESTOR")
+    refuse = " ".join(body.get("refuse") or []).lower()
+    for stem in ("priced round", "valuation", "forecast", "named customer", "equity"):
+        if stem not in refuse:
+            raise IntegrityError(f"investor packet must refuse {stem}", reason_code="CATALOG_INVESTOR")
+    print_body = body.get("print") or {}
+    if int(print_body.get("pages") or 0) != 2:
+        raise IntegrityError("investor print is two letter pages", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:
