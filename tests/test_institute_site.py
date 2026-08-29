@@ -51,6 +51,10 @@ def test_institute_foundation_is_catalog_honest():
     assert "unauthorized general-journal" in html.lower()
     assert "customer's customer AI" in html.lower() or "customer AI" in html
     assert "two humans before the write" in html.lower()
+    assert "already have" in html.lower()
+    assert "gate in front of the write" in html.lower()
+    assert 'id="must-for"' in html
+    assert "Inventory of models is not a control" in html
     assert "gov-cascade" in html or "id=\"gov-cascade\"" in html
     assert "gov-records" in html or "id=\"gov-records\"" in html
     assert "First record" in html

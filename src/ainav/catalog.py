@@ -704,6 +704,13 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("floor lede must keep one dashboard included with L1", reason_code="CATALOG_PLANE")
     if "must-have" not in lede or "write surface" not in lede or "two humans" not in lede:
         raise IntegrityError("floor lede must keep must-have write surface", reason_code="CATALOG_PLANE")
+    if "already have" not in lede or "gate" not in lede:
+        raise IntegrityError("floor lede must keep already-have and the gate", reason_code="CATALOG_PLANE")
+    already = str(floor.get("already_have") or "").lower()
+    if "business central" not in already or "entra" not in already or "sod" not in already:
+        raise IntegrityError("already-have is BC, Entra, and journal SOD", reason_code="CATALOG_PLANE")
+    if "gate" not in str(floor.get("still_lack") or "").lower():
+        raise IntegrityError("still-lack is the gate in front of the write", reason_code="CATALOG_PLANE")
     floor_must = floor.get("must_have") or {}
     if not isinstance(floor_must, dict):
         raise IntegrityError("floor must-have is required", reason_code="CATALOG_PLANE")
@@ -716,6 +723,11 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("floor must-have incident must match l1_incident_copy", reason_code="CATALOG_PLANE")
     if "two humans before the write" not in str(floor_must.get("job_c_plain") or "").lower():
         raise IntegrityError("Job C plain is two humans before the write", reason_code="CATALOG_PLANE")
+    gov_for = ((catalog.get("governance") or {}).get("must_have") or {}).get("for") or {}
+    floor_for = floor_must.get("for") or {}
+    for who in ("owner", "board", "examiner"):
+        if str(floor_for.get(who) or "") != str(gov_for.get(who) or ""):
+            raise IntegrityError(f"floor must-have for {who} must match governance", reason_code="CATALOG_PLANE")
     scope_ids = [item.get("id") for item in floor.get("scopes") or []]
     for needed in ("week_one", "included_seating", "advanced"):
         if needed not in scope_ids:
@@ -730,6 +742,8 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "included means free",
         "must-have as sku",
         "must-have as mandate",
+        "native approval as the plane",
+        "vendor-native as dual",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")

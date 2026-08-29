@@ -89,6 +89,38 @@ def brief_document() -> list[dict[str, Any]]:
             + " Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.",
         },
         {
+            "kind": "p",
+            "text": (
+                ((cat.get("plane_interface") or {}).get("floor") or {}).get("already_have")
+                or "Controllers already have Business Central Premium, Entra, and two-person journal SOD."
+            )
+            + " "
+            + (
+                ((cat.get("plane_interface") or {}).get("floor") or {}).get("still_lack")
+                or "They do not have a gate in front of the write."
+            )
+            + " A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.",
+        },
+        {
+            "kind": "callout",
+            "title": "Owner, board, examiner — same plane, three reasons",
+            "text": (
+                "Owner: "
+                + str((((cat.get("governance") or {}).get("must_have") or {}).get("for") or {}).get("owner") or "")
+                + " Board: "
+                + str((((cat.get("governance") or {}).get("must_have") or {}).get("for") or {}).get("board") or "")
+                + " Examiner: "
+                + str((((cat.get("governance") or {}).get("must_have") or {}).get("for") or {}).get("examiner") or "")
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "The sale is the ninety-minute proof day. "
+                + str((cat.get("buyer") or {}).get("proof_day") or "")
+            ),
+        },
+        {
             "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },

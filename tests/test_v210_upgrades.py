@@ -17,7 +17,10 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.29.0"
+    assert cat["entity"]["release"] == "2.30.0"
+    assert "business central" in cat["plane_interface"]["floor"]["already_have"].lower()
+    assert "gate" in cat["plane_interface"]["floor"]["still_lack"].lower()
+    assert set(cat["plane_interface"]["floor"]["must_have"]["for"]) >= {"owner", "board", "examiner"}
     assert "must-have" in cat["equations"]["interface"]
     assert "humans from the top" in cat["equations"]["interface"]
     assert "walkable rehearsal" in cat["equations"]["interface"]
@@ -125,6 +128,8 @@ def test_printable_brief_is_a_pdf():
     assert "unauthorized general-journal" in md
     assert "why a client must have this" in md.lower()
     assert md.lower().index("why a client must have this") < md.lower().index("investor packet")
+    assert md.lower().index("already have") < md.lower().index("investor packet")
+    assert "owner, board, examiner" in md.lower()
     assert "ninety minutes" in md
     assert "Tuesday" in md
     assert "Where we actually are" in md

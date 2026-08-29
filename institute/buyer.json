@@ -1,4 +1,5 @@
 {
+  "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
   "contact_email": null,
   "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
   "entity": "AINav, Inc.",
@@ -30,6 +31,11 @@
   "live": false,
   "mailto": null,
   "minutes": 90,
+  "must_have_for": {
+    "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
+    "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.",
+    "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off."
+  },
   "prices": [
     "L1 $28\u201340k / 2\u20134 weeks",
     "P-ADM $40\u201360k / year after kit PASS",
@@ -66,5 +72,6 @@
     "treasury_controller"
   ],
   "signed_l1": false,
+  "still_lack": "They do not have a gate in front of the write.",
   "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit."
 }

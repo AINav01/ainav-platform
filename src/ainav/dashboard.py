@@ -404,6 +404,15 @@ def dashboard_markdown() -> str:
         "",
         "Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.",
         "",
+        f"{(body.get('floor') or {}).get('already_have') or ''}",
+        f"{(body.get('floor') or {}).get('still_lack') or ''}",
+        "",
+        "### Must-have for owner, board, examiner",
+        "",
+        f"- **Owner** — {((body.get('must_have') or {}).get('for') or {}).get('owner') or ''}",
+        f"- **Board** — {((body.get('must_have') or {}).get('for') or {}).get('board') or ''}",
+        f"- **Examiner** — {((body.get('must_have') or {}).get('for') or {}).get('examiner') or ''}",
+        "",
         f"Equation: {body.get('equation')}.",
         f"Plane: {body.get('plane_equation')}.",
         f"Org: {body.get('org_equation')}.",
@@ -1076,7 +1085,7 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="strip">{strip}</div>
 <div class="wrap">
 <p class="thesis">{html.escape(body['thesis'])}</p>
-<p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
+<p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <p class="equation">Interface = {html.escape(body.get('equation') or '')}</p>
 <p class="note">{clock_line}</p>
 <h2>Attention board</h2>

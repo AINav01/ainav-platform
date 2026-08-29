@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.29.0"
+    "release": "2.30.0"
   },
   "communications": [
     {
@@ -780,9 +780,15 @@
     }
   ],
   "floor": {
-    "lede": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post two humans did not admit. One dashboard included with L1 \u2014 not an upsell. Standard and advanced are provision bands, not products.",
+    "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
+    "lede": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. Two humans before the write. One dashboard included with L1 \u2014 not an upsell. Standard and advanced are provision bands, not products.",
     "must_have": {
       "certified": false,
+      "for": {
+        "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
+        "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.",
+        "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off."
+      },
       "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
       "job_c_plain": "two humans before the write",
       "mandated": false,
@@ -808,7 +814,8 @@
         "note": "Not a SKU. included with U-DUAL is not free.",
         "value": "Desks + keep + paid U-DUAL + hours"
       }
-    ]
+    ],
+    "still_lack": "They do not have a gate in front of the write."
   },
   "forecast": false,
   "institute": "AINAV.Institute",
@@ -1054,6 +1061,11 @@
   ],
   "must_have": {
     "certified": false,
+    "for": {
+      "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
+      "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.",
+      "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off."
+    },
     "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
     "job_c_plain": "two humans before the write",
     "mandated": false,
@@ -1977,7 +1989,9 @@
     "standard vs advanced dashboard",
     "included means free",
     "must-have as SKU",
-    "must-have as mandate"
+    "must-have as mandate",
+    "native approval as the plane",
+    "vendor-native as dual"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -1994,7 +2008,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.29.0",
+  "release": "2.30.0",
   "revocations": [
     {
       "by": "Owner / board request",

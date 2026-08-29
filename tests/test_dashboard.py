@@ -92,7 +92,12 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "write surface" in body["must_have"]["why"].lower()
     assert "unauthorized general-journal" in body["must_have"]["incident"].lower()
     assert "must-have" in (body.get("floor") or {}).get("lede", "").lower()
+    assert "already have" in (body.get("floor") or {}).get("lede", "").lower()
+    assert "gate" in (body.get("floor") or {}).get("lede", "").lower()
     assert "one dashboard" in (body.get("floor") or {}).get("lede", "").lower()
+    assert "business central" in (body.get("floor") or {}).get("already_have", "").lower()
+    assert "gate" in (body.get("floor") or {}).get("still_lack", "").lower()
+    assert set((body.get("must_have") or {}).get("for") or {}) >= {"owner", "board", "examiner"}
     assert {item["id"] for item in (body.get("floor") or {}).get("scopes") or []} >= {
         "week_one",
         "included_seating",
@@ -132,6 +137,8 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert agent["draft"] is False
     md = dashboard_markdown()
     assert "why a client must have this" in md.lower()
+    assert "already have" in md.lower()
+    assert "must-have for owner, board, examiner" in md.lower()
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -289,6 +296,18 @@ def test_plane_interface_validators_refuse_fiction():
     ]
     with pytest.raises(IntegrityError):
         validate_catalog(attn)
+    no_have = copy.deepcopy(cat)
+    no_have["plane_interface"]["floor"]["already_have"] = "they have Copilot"
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_have)
+    no_gate = copy.deepcopy(cat)
+    no_gate["plane_interface"]["floor"]["still_lack"] = "they lack a dashboard"
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_gate)
+    audience = copy.deepcopy(cat)
+    audience["plane_interface"]["floor"]["must_have"]["for"]["board"] = "invented mandate"
+    with pytest.raises(IntegrityError):
+        validate_catalog(audience)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):

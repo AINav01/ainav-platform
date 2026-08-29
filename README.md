@@ -110,7 +110,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.29.0 (this tree)
+### 2.30.0 (this tree)
+
+A named controller already has Business Central Premium, Entra, and
+two-person journal SOD. They still lack a gate in front of the write.
+Must-have is for owner, board, and examiner on the same plane —
+inventory of models is not a control. Hero, buyer, Client console,
+and the Cynthia brief now say that before SKUs or the scoreboard.
+Proof day is the sale. Native approval is not the plane.
+
+### 2.29.0
 
 A named controller must see why this is must-have before SKUs, the
 dashboard, or the scoreboard. The unauthorized general-journal post

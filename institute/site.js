@@ -39,6 +39,22 @@
           data.must_have.why +
           " For owner, board, examiner. Mandated: false. Not a fourth SKU.";
       }
+      var mustFor = document.getElementById("must-for");
+      if (mustFor && data.must_have && data.must_have.for) {
+        var labels = { owner: "Owner", board: "Board", examiner: "Examiner" };
+        mustFor.textContent = "";
+        ["owner", "board", "examiner"].forEach(function (who) {
+          if (!data.must_have.for[who]) return;
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = labels[who];
+          var p = document.createElement("p");
+          p.textContent = data.must_have.for[who];
+          art.appendChild(h);
+          art.appendChild(p);
+          mustFor.appendChild(art);
+        });
+      }
       var plane = document.getElementById("gov-plane");
       if (plane && data.plane && data.plane.off_switch && data.plane.rollback) {
         plane.textContent =
@@ -522,8 +538,14 @@
         }
         if (kind === "client") {
           var mustHave = (data.floor && data.floor.must_have) || data.must_have || {};
+          var audience = mustHave.for || {};
           add("Must-have", "one human plane", mustHave.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("The write that must not happen", "unauthorized journal", mustHave.incident || "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.");
+          add("Already have", "BC · Entra · SOD", (data.floor && data.floor.already_have) || "Controllers already have Business Central Premium, Entra, and two-person journal SOD.");
+          add("Still lack", "the gate", (data.floor && data.floor.still_lack) || "They do not have a gate in front of the write.");
+          add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
+          add("Board", "must-have", audience.board || "Inventory of models is not a control.");
+          add("Examiner", "must-have", audience.examiner || "First record is the SoR write. Second record is who admitted it.");
           add("This dashboard", "included with L1", "The same plane, tiled. Not a second product. Not Standard vs Advanced dashboard.");
           add("Week-one prove", "treasury + wedge", "What we provision first. Not the whole standard band.");
           add("Advanced upsell", "not a SKU", "Priced desks, P-ADM, paid U-DUAL, hours. U-DUAL is never free.");
@@ -759,7 +781,7 @@
           host: "IT deck — host, not a seat",
           provision: "Provision deck — standard included, advanced upsell",
           records: "Records deck — first, second, keep",
-          client: "Client deck — must-have, then the dashboard"
+          client: "Client deck — already have SOD, still lack the gate"
         };
         if (consoleTitle) consoleTitle.textContent = titles[consoleKind] || "Command console";
         if (consoleNote) {
@@ -1110,6 +1132,14 @@
     if (incident && data.incident) incident.textContent = data.incident;
     if (proof && data.proof_day) proof.textContent = data.proof_day;
     if (door && data.door) door.textContent = data.door;
+    var already = document.getElementById("buyer-already");
+    if (already && (data.already_have || data.still_lack)) {
+      already.textContent =
+        (data.already_have || "") +
+        " " +
+        (data.still_lack || "") +
+        " A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.";
+    }
     function replaceList(id, items) {
       var node = document.getElementById(id);
       if (!node || !items || !items.length) return;
