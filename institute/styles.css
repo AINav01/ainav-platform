@@ -116,6 +116,13 @@ nav a:hover, .nav-more summary:hover { color: var(--ink); }
   nav.primary { justify-content: flex-start; }
   nav a, .nav-more summary { margin: 0 0.85rem 0 0; }
 }
+@media (max-width: 520px) {
+  .hero { padding: 3rem 0 2.4rem; }
+  h1 { font-size: clamp(1.85rem, 11vw, 2.55rem); }
+  .kicker { letter-spacing: 0.1em; line-height: 1.45; }
+  .lede { font-size: 1.05rem; }
+  .hero-actions { margin-top: 1.4rem; }
+}
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
@@ -131,6 +138,7 @@ section[id] { scroll-margin-top: 5.2rem; }
   text-transform: uppercase;
   font-size: 0.68rem;
   margin: 0 0 1.1rem;
+  overflow-wrap: anywhere;
 }
 h1 {
   font-family: var(--display);
@@ -139,11 +147,13 @@ h1 {
   line-height: 1.04;
   letter-spacing: -0.03em;
   margin: 0 0 1.6rem;
+  overflow-wrap: break-word;
 }
 .lede {
   font-size: clamp(1.15rem, 2vw, 1.38rem);
   max-width: 34rem;
   line-height: 1.45;
+  overflow-wrap: break-word;
 }
 .not { color: var(--mute); font-size: 0.98rem; max-width: var(--measure); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
