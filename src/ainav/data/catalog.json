@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.28.0",
+    "release": "2.28.1",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2346,7 +2346,8 @@
         "provisioned_skus"
       ],
       "included_with": "L1",
-      "upsell": false
+      "upsell": false,
+      "same_as": "client_dashboard"
     },
     "refuse": [
       "fourth SKU",
@@ -2368,7 +2369,8 @@
       "dashboard as SKU",
       "standard provision as SKU",
       "advanced provision as SKU",
-      "standard vs advanced dashboard"
+      "standard vs advanced dashboard",
+      "included means free"
     ],
     "note": "Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.",
     "views": [
@@ -2484,7 +2486,7 @@
         "name": "Client executive",
         "who": "Owner / buyer",
         "admit": false,
-        "can": "See the one client dashboard included with L1 and the standard versus advanced provision bands.",
+        "can": "See the one dashboard included with L1, and the two provision bands.",
         "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
         "shows": [
           "signed_l1",
@@ -2964,11 +2966,12 @@
       "included_pack": "industry.control_plane",
       "live": false,
       "standard_vs_advanced_dashboard": false,
-      "thesis": "One client dashboard. Included with L1. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU."
+      "thesis": "One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU.",
+      "same_as": "dashboard"
     },
     "provision_bands": {
       "sku": false,
-      "note": "Bands, not SKUs. Standard is included seating. Advanced is the upsell band. Desk lists derive from industry_packs so prices cannot drift.",
+      "note": "Bands, not SKUs. Standard is included seating with L1. Advanced is the upsell band. Week-one prove is provisioning.standard_l1. Desk and library lists derive from industry_packs and libraries so prices cannot drift. included means included with the required SKU, not free.",
       "items": [
         {
           "id": "provision.standard",
@@ -2976,8 +2979,8 @@
           "sku": false,
           "upsell": false,
           "requires_sku": "L1",
-          "includes": "L1 + included L1 packs + lib.l1.wedge on bc.sandbox + Entra identity + Teams notify + twin + proof day + client executive dashboard",
-          "note": "Included seating. Not a SKU. Not an upsell product."
+          "includes": "Week-one: L1 + industry.treasury + lib.l1.wedge. Included seating: every L1 pack and library with included_in_sku=true, Entra identity, Teams notify, twin, proof day, client executive dashboard.",
+          "note": "Included seating with L1. Not a SKU. Not an upsell product. Week-one prove is narrower: treasury + wedge."
         },
         {
           "id": "provision.advanced",
@@ -2990,7 +2993,10 @@
           "hours_never_attach_udual": true,
           "note": "Upsell band. Not a SKU. Never free U-DUAL. Hours never attach U-DUAL. Not LIVE_PIN_OK."
         }
-      ]
+      ],
+      "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
+      "week_one": "provisioning.standard_l1",
+      "week_one_note": "Week-one prove is L1 + industry.treasury + lib.l1.wedge on bc.sandbox. Included L1 seating is every L1 pack and library with included_in_sku=true, including the client dashboard. Those are not extra SKUs and not extra week-one hosts."
     }
   },
   "honest_missing": [

@@ -376,7 +376,7 @@
         pushDesks("advanced", data.provision_bands.included_udual);
         pushDesks("advanced", data.provision_bands.priced_udual);
         (data.provision_bands.included_hours || []).forEach(function (item) {
-          deskRows.push([item.name, "standard", "hours", "included", item.note || ""]);
+          deskRows.push([item.name, "standard", "hours", "included with L1", item.note || ""]);
         });
         (data.provision_bands.priced_hours || []).forEach(function (item) {
           var rate = item.rate ? ("$" + Number(item.rate).toLocaleString() + "/day") : "priced";
@@ -459,8 +459,8 @@
         }
         if (kind === "provision") {
           var attached = (data.provisioning && data.provisioning.attached) || {};
-          add("Standard provision", "included with L1", "Included seating. Not a SKU. Not an upsell product.");
-          add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + hours. Not a SKU. U-DUAL never free.");
+          add("Standard provision", "included with L1", (data.provision_bands && data.provision_bands.week_one_note) || "Included seating. Not a SKU. Week-one prove is treasury + wedge.");
+          add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + hours. Not a SKU. included means included with the required SKU. U-DUAL never free.");
           add("L1", String(attached.L1 || 0) + " attached", "Prove. $28–40k list. Not LIVE_PIN_OK.");
           add("P-ADM", String(attached["P-ADM"] || 0) + " attached", "Keep after kit PASS. Never bundles U-DUAL.");
           add("U-DUAL", String(attached["U-DUAL"] || 0) + " attached", "Never free. Hours never attach U-DUAL.");

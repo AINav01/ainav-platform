@@ -110,7 +110,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.28.0 (this tree)
+### 2.28.1 (this tree)
+
+Deep review of the 2.28.0 bands. included means included with the
+required SKU when that SKU is attached — not free. Sales/quote desks
+are included with paid U-DUAL, not with L1. Week-one prove stays
+`provisioning.standard_l1` (treasury + wedge). Commercial standard
+seating is every L1 pack and library with `included_in_sku=true`, plus
+the one dashboard. Libraries now sit on the desk table. One dashboard
+object (`dashboard` = `client_dashboard`). Not LIVE_PIN_OK.
+
+### 2.28.0
 
 Client executive dashboard is included with L1 — not an upsell and not
 a SKU. One dashboard; do not sell Standard vs Advanced dashboard

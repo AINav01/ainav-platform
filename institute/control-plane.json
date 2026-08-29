@@ -176,9 +176,10 @@
     "included_with": "L1",
     "live": false,
     "name": "Client executive dashboard",
+    "same_as": "dashboard",
     "sku": false,
     "standard_vs_advanced_dashboard": false,
-    "thesis": "One client dashboard. Included with L1. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU.",
+    "thesis": "One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU.",
     "upsell": false
   },
   "clock": {
@@ -189,7 +190,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.28.0"
+    "release": "2.28.1"
   },
   "communications": [
     {
@@ -451,6 +452,7 @@
     "included_with": "L1",
     "name": "Executive control-plane dashboard",
     "realtime_means": "Admit ledger and freeze state. Not invented P&L. Not live Production BC.",
+    "same_as": "client_dashboard",
     "sku": false,
     "tiles": [
       "plane_state",
@@ -1016,6 +1018,7 @@
   "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
   "product": "AINav Control Plane",
   "provision_bands": {
+    "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
     "included_hours": [
       {
         "attaches_udual": false,
@@ -1029,9 +1032,10 @@
     ],
     "included_l1": [
       {
-        "attach": "included",
+        "attach": "included with L1",
         "id": "industry.treasury",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Treasury wedge",
@@ -1040,9 +1044,10 @@
         "term": "included"
       },
       {
-        "attach": "included",
+        "attach": "included with L1",
         "id": "industry.controller",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Controller desk",
@@ -1051,9 +1056,10 @@
         "term": "included"
       },
       {
-        "attach": "included",
+        "attach": "included with L1",
         "id": "industry.governance",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "AI failsafe desk",
@@ -1062,9 +1068,10 @@
         "term": "included"
       },
       {
-        "attach": "included",
+        "attach": "included with L1",
         "id": "industry.control_plane",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Human control plane",
@@ -1073,9 +1080,10 @@
         "term": "included"
       },
       {
-        "attach": "included",
+        "attach": "included with L1",
         "id": "industry.org",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Client org seating",
@@ -1084,23 +1092,110 @@
         "term": "included"
       },
       {
-        "attach": "included",
+        "attach": "included with L1",
         "id": "industry.independence",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Independent plane",
         "note": "L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent.",
         "sku": "L1",
         "term": "included"
+      },
+      {
+        "attach": "included with L1",
+        "id": "lib.l1.wedge",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.l1.wedge",
+        "note": "Standard L1 library. Journal wedge plus identity and notify. Not a SKU.",
+        "sku": "L1",
+        "term": "included"
+      },
+      {
+        "attach": "included with L1",
+        "id": "lib.kit.evidence",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.kit.evidence",
+        "note": "Acceptance Kit evidence path. Not a SKU.",
+        "sku": "L1",
+        "term": "included"
+      },
+      {
+        "attach": "included with L1",
+        "id": "lib.l1.failsafe",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.l1.failsafe",
+        "note": "L1 failsafe library. Client AI is not a seat. Not a SKU.",
+        "sku": "L1",
+        "term": "included"
+      },
+      {
+        "attach": "included with L1",
+        "id": "lib.l1.plane",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.l1.plane",
+        "note": "L1 control-plane library. One admit plane over the client's AI estate. Not a SKU.",
+        "sku": "L1",
+        "term": "included"
+      },
+      {
+        "attach": "included with L1",
+        "id": "lib.l1.org",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.l1.org",
+        "note": "L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU.",
+        "sku": "L1",
+        "term": "included"
+      },
+      {
+        "attach": "included with L1",
+        "id": "lib.l1.independence",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.l1.independence",
+        "note": "L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU.",
+        "sku": "L1",
+        "term": "included"
       }
     ],
-    "included_padm": [],
+    "included_padm": [
+      {
+        "attach": "included with P-ADM",
+        "id": "lib.padm.export",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.padm.export",
+        "note": "P-ADM keep library. Purview export only. Not live Purview. Not a SKU.",
+        "sku": "P-ADM",
+        "term": "included"
+      }
+    ],
     "included_udual": [
       {
-        "attach": "included",
+        "attach": "included with U-DUAL",
         "id": "industry.sales",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Sales deepen",
@@ -1109,13 +1204,26 @@
         "term": "included"
       },
       {
-        "attach": "included",
+        "attach": "included with U-DUAL",
         "id": "industry.quote_desk",
         "included": true,
+        "kind": "desk",
         "max": 0,
         "min": 0,
         "name": "Quote desk",
         "note": "A la carte U-DUAL slice. Not a fourth SKU.",
+        "sku": "U-DUAL",
+        "term": "included"
+      },
+      {
+        "attach": "included with U-DUAL",
+        "id": "lib.udual.sales",
+        "included": true,
+        "kind": "library",
+        "max": 0,
+        "min": 0,
+        "name": "lib.udual.sales",
+        "note": "Paid U-DUAL library. Quote and order wedges. Never free with P-ADM.",
         "sku": "U-DUAL",
         "term": "included"
       }
@@ -1123,9 +1231,9 @@
     "items": [
       {
         "id": "provision.standard",
-        "includes": "L1 + included L1 packs + lib.l1.wedge on bc.sandbox + Entra identity + Teams notify + twin + proof day + client executive dashboard",
+        "includes": "Week-one: L1 + industry.treasury + lib.l1.wedge. Included seating: every L1 pack and library with included_in_sku=true, Entra identity, Teams notify, twin, proof day, client executive dashboard.",
         "name": "Standard provision",
-        "note": "Included seating. Not a SKU. Not an upsell product.",
+        "note": "Included seating with L1. Not a SKU. Not an upsell product. Week-one prove is narrower: treasury + wedge.",
         "requires_sku": "L1",
         "sku": false,
         "upsell": false
@@ -1142,7 +1250,7 @@
         "upsell": true
       }
     ],
-    "note": "Bands, not SKUs. Standard is included seating. Advanced is the upsell band. Desk lists derive from industry_packs so prices cannot drift.",
+    "note": "Bands, not SKUs. Standard is included seating with L1. Advanced is the upsell band. Week-one prove is provisioning.standard_l1. Desk and library lists derive from industry_packs and libraries so prices cannot drift. included means included with the required SKU, not free.",
     "priced_hours": [
       {
         "attaches_udual": false,
@@ -1258,6 +1366,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.payables",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Payables desk",
@@ -1269,6 +1378,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.bank",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Bank desk",
@@ -1280,6 +1390,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.cash",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Cash desk",
@@ -1291,6 +1402,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.fixed_asset",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Fixed-asset desk",
@@ -1302,6 +1414,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.inventory",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Inventory desk",
@@ -1313,6 +1426,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.cascade",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Counterparty AI desk",
@@ -1324,6 +1438,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.off_switch",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Off-switch desk",
@@ -1335,10 +1450,83 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.rollback",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Rollback desk",
         "note": "A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU.",
+        "sku": "L1",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.l1.payables",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.l1.payables",
+        "note": "A la carte L1 library. Not a SKU.",
+        "sku": "L1",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.l1.bank",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.l1.bank",
+        "note": "A la carte L1 library. Not a SKU.",
+        "sku": "L1",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.l1.cash",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.l1.cash",
+        "note": "A la carte L1 library. Priced as industry.cash. Not a SKU.",
+        "sku": "L1",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.l1.fixed_asset",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.l1.fixed_asset",
+        "note": "A la carte L1 library. Priced as industry.fixed_asset. Not a SKU.",
+        "sku": "L1",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.l1.cascade",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.l1.cascade",
+        "note": "L1 cascade library. Counterparty AI is not a seat. Not a SKU.",
+        "sku": "L1",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.l1.off_switch",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.l1.off_switch",
+        "note": "L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU.",
         "sku": "L1",
         "term": "annual"
       }
@@ -1348,6 +1536,7 @@
         "attach": "$5,000\u2013$8,000",
         "id": "industry.retention",
         "included": false,
+        "kind": "desk",
         "max": 8000,
         "min": 5000,
         "name": "Retention keep",
@@ -1359,6 +1548,7 @@
         "attach": "$5,000\u2013$8,000",
         "id": "industry.oversight",
         "included": false,
+        "kind": "desk",
         "max": 8000,
         "min": 5000,
         "name": "Oversight keep",
@@ -1370,6 +1560,7 @@
         "attach": "$5,000\u2013$8,000",
         "id": "industry.second_record",
         "included": false,
+        "kind": "desk",
         "max": 8000,
         "min": 5000,
         "name": "Second-record keep",
@@ -1381,6 +1572,7 @@
         "attach": "$5,000\u2013$8,000",
         "id": "industry.board",
         "included": false,
+        "kind": "desk",
         "max": 8000,
         "min": 5000,
         "name": "Board / examiner keep",
@@ -1392,6 +1584,7 @@
         "attach": "$5,000\u2013$8,000",
         "id": "industry.internal_audit",
         "included": false,
+        "kind": "desk",
         "max": 8000,
         "min": 5000,
         "name": "Internal-audit keep",
@@ -1403,10 +1596,95 @@
         "attach": "$5,000\u2013$8,000",
         "id": "industry.ip_keep",
         "included": false,
+        "kind": "desk",
         "max": 8000,
         "min": 5000,
         "name": "IP / reserved-work keep",
         "note": "A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.siem",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.siem",
+        "note": "A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.retention",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.retention",
+        "note": "A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.governance",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.governance",
+        "note": "A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.records",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.records",
+        "note": "P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.board",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.board",
+        "note": "P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.audit",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.audit",
+        "note": "P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK.",
+        "sku": "P-ADM",
+        "term": "annual"
+      },
+      {
+        "attach": "$5,000\u2013$8,000",
+        "id": "lib.padm.ip",
+        "included": false,
+        "kind": "library",
+        "max": 8000,
+        "min": 5000,
+        "name": "lib.padm.ip",
+        "note": "P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK.",
         "sku": "P-ADM",
         "term": "annual"
       }
@@ -1416,6 +1694,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.invoice_desk",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Invoice desk",
@@ -1427,6 +1706,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.credit",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Credit desk",
@@ -1438,6 +1718,7 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.returns",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Returns desk",
@@ -1449,15 +1730,42 @@
         "attach": "$6,000\u2013$10,000",
         "id": "industry.pricing",
         "included": false,
+        "kind": "desk",
         "max": 10000,
         "min": 6000,
         "name": "Pricing desk",
         "note": "A la carte U-DUAL seating. Not a fourth SKU.",
         "sku": "U-DUAL",
         "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.udual.quote_to_cash",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.udual.quote_to_cash",
+        "note": "A la carte U-DUAL library. Never free with P-ADM.",
+        "sku": "U-DUAL",
+        "term": "annual"
+      },
+      {
+        "attach": "$6,000\u2013$10,000",
+        "id": "lib.udual.returns",
+        "included": false,
+        "kind": "library",
+        "max": 10000,
+        "min": 6000,
+        "name": "lib.udual.returns",
+        "note": "A la carte U-DUAL library. Never free with P-ADM.",
+        "sku": "U-DUAL",
+        "term": "annual"
       }
     ],
-    "sku": false
+    "sku": false,
+    "week_one": "provisioning.standard_l1",
+    "week_one_note": "Week-one prove is L1 + industry.treasury + lib.l1.wedge on bc.sandbox. Included L1 seating is every L1 pack and library with included_in_sku=true, including the client dashboard. Those are not extra SKUs and not extra week-one hosts."
   },
   "provisioning": {
     "attached": {
@@ -1569,7 +1877,8 @@
     "dashboard as SKU",
     "standard provision as SKU",
     "advanced provision as SKU",
-    "standard vs advanced dashboard"
+    "standard vs advanced dashboard",
+    "included means free"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -1586,7 +1895,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.28.0",
+  "release": "2.28.1",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -2048,7 +2357,7 @@
     },
     {
       "admit": false,
-      "can": "See the one client dashboard included with L1 and the standard versus advanced provision bands.",
+      "can": "See the one dashboard included with L1, and the two provision bands.",
       "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
       "console": "client",
       "id": "client",

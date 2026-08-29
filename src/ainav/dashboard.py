@@ -66,13 +66,14 @@ def _flag(value: Any) -> str:
     return str(value)
 
 
-def _desk_row(item: dict[str, Any]) -> dict[str, Any]:
+def _desk_row(item: dict[str, Any], *, kind: str = "desk") -> dict[str, Any]:
     usd = item.get("attach_usd") or {}
     included = bool(item.get("included_in_sku"))
     low = int(usd.get("min") or 0)
     high = int(usd.get("max") or 0)
+    sku_id = item.get("requires_sku")
     if included:
-        attach = str(usd.get("term") or "included")
+        attach = f"included with {sku_id}" if sku_id else "included with required SKU"
     elif high:
         attach = f"${low:,}–${high:,}"
     else:
@@ -80,7 +81,8 @@ def _desk_row(item: dict[str, Any]) -> dict[str, Any]:
     return {
         "id": item["id"],
         "name": item.get("name") or item["id"],
-        "sku": item.get("requires_sku"),
+        "kind": kind,
+        "sku": sku_id,
         "included": included,
         "attach": attach,
         "min": low,
@@ -106,42 +108,30 @@ def _ffs_row(item: dict[str, Any]) -> dict[str, Any]:
 
 def _provision_bands(cat: dict[str, Any], body: dict[str, Any]) -> dict[str, Any]:
     packs = [item for item in cat.get("industry_packs") or [] if item.get("id")]
+    libraries = [item for item in cat.get("libraries") or [] if item.get("id")]
     services = [item for item in cat.get("fee_for_service") or [] if item.get("id")]
     spec = body.get("provision_bands") or {}
+
+    def _by_sku(items: list[dict[str, Any]], sku_id: str, included: bool, kind: str) -> list[dict[str, Any]]:
+        return [
+            _desk_row(item, kind=kind)
+            for item in items
+            if item.get("requires_sku") == sku_id and bool(item.get("included_in_sku")) is included
+        ]
+
     return {
         "sku": False,
         "note": spec.get("note") or "",
+        "attach_means": spec.get("attach_means") or "",
+        "week_one": spec.get("week_one") or "",
+        "week_one_note": spec.get("week_one_note") or "",
         "items": [dict(item) for item in spec.get("items") or []],
-        "included_l1": [
-            _desk_row(item)
-            for item in packs
-            if item.get("requires_sku") == "L1" and item.get("included_in_sku")
-        ],
-        "priced_l1": [
-            _desk_row(item)
-            for item in packs
-            if item.get("requires_sku") == "L1" and not item.get("included_in_sku")
-        ],
-        "included_padm": [
-            _desk_row(item)
-            for item in packs
-            if item.get("requires_sku") == "P-ADM" and item.get("included_in_sku")
-        ],
-        "priced_padm": [
-            _desk_row(item)
-            for item in packs
-            if item.get("requires_sku") == "P-ADM" and not item.get("included_in_sku")
-        ],
-        "included_udual": [
-            _desk_row(item)
-            for item in packs
-            if item.get("requires_sku") == "U-DUAL" and item.get("included_in_sku")
-        ],
-        "priced_udual": [
-            _desk_row(item)
-            for item in packs
-            if item.get("requires_sku") == "U-DUAL" and not item.get("included_in_sku")
-        ],
+        "included_l1": _by_sku(packs, "L1", True, "desk") + _by_sku(libraries, "L1", True, "library"),
+        "priced_l1": _by_sku(packs, "L1", False, "desk") + _by_sku(libraries, "L1", False, "library"),
+        "included_padm": _by_sku(packs, "P-ADM", True, "desk") + _by_sku(libraries, "P-ADM", True, "library"),
+        "priced_padm": _by_sku(packs, "P-ADM", False, "desk") + _by_sku(libraries, "P-ADM", False, "library"),
+        "included_udual": _by_sku(packs, "U-DUAL", True, "desk") + _by_sku(libraries, "U-DUAL", True, "library"),
+        "priced_udual": _by_sku(packs, "U-DUAL", False, "desk") + _by_sku(libraries, "U-DUAL", False, "library"),
         "included_hours": [_ffs_row(item) for item in services if not item.get("billable")],
         "priced_hours": [_ffs_row(item) for item in services if item.get("billable")],
     }
@@ -502,7 +492,8 @@ def dashboard_markdown() -> str:
         f"Attached L1 {attached.get('L1', 0)} / P-ADM {attached.get('P-ADM', 0)} / "
         f"U-DUAL {attached.get('U-DUAL', 0)}. U-DUAL never free: "
         f"{str(prov.get('u_dual_never_free')).lower()}. {prov.get('note') or ''} "
-        f"{bands.get('note') or ''}",
+        f"{bands.get('note') or ''} {bands.get('attach_means') or ''} "
+        f"{bands.get('week_one_note') or ''}",
         "",
     ]
     for item in bands.get("items") or []:
@@ -538,7 +529,7 @@ def dashboard_markdown() -> str:
             )
     for item in bands.get("included_hours") or []:
         lines.append(
-            f"| {item['name']} | standard | hours | included | {item.get('note') or ''} |"
+            f"| {item['name']} | standard | hours | included with L1 | {item.get('note') or ''} |"
         )
     for item in bands.get("priced_hours") or []:
         rate = f"${item['rate']:,}/day" if item.get("rate") else "priced"
@@ -903,7 +894,7 @@ def dashboard_html() -> str:
         desk_rows.append(
             "<tr>"
             f"<td>{html.escape(item['name'])}</td>"
-            "<td>standard</td><td>hours</td><td>included</td>"
+            "<td>standard</td><td>hours</td><td>included with L1</td>"
             f"<td>{html.escape(item.get('note') or '')}</td>"
             "</tr>"
         )

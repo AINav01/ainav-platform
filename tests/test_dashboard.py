@@ -80,8 +80,21 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert band_ids["provision.advanced"]["sku"] is False
     assert band_ids["provision.advanced"]["upsell"] is True
     assert any(item["id"] == "industry.control_plane" for item in body["provision_bands"]["included_l1"])
+    assert any(item["id"] == "lib.l1.wedge" for item in body["provision_bands"]["included_l1"])
     assert any(item["id"] == "industry.payables" for item in body["provision_bands"]["priced_l1"])
     assert all(not item["attaches_udual"] for item in body["provision_bands"]["priced_hours"])
+    assert body["client_dashboard"]["same_as"] == "dashboard"
+    assert body["dashboard"]["same_as"] == "client_dashboard"
+    assert body["provision_bands"]["week_one"] == "provisioning.standard_l1"
+    assert "included with" in (body["provision_bands"].get("attach_means") or "").lower()
+    treasury = next(item for item in body["provision_bands"]["included_l1"] if item["id"] == "industry.treasury")
+    assert treasury["attach"] == "included with L1"
+    sales = next(item for item in body["provision_bands"]["included_udual"] if item["id"] == "industry.sales")
+    assert sales["attach"] == "included with U-DUAL"
+    assert all(
+        item["attach"] != "included"
+        for item in body["provision_bands"]["included_udual"]
+    )
     assert all(item["seat"] is False and item["keep"] is False for item in body["communications"])
     assert all(item["certified"] is False for item in body["records"])
     assert all(item["claimed"] is False for item in body["compliance_matrix"])
@@ -206,6 +219,14 @@ def test_plane_interface_validators_refuse_fiction():
     adv_not_upsell["plane_interface"]["provision_bands"]["items"][1]["upsell"] = False
     with pytest.raises(IntegrityError):
         validate_catalog(adv_not_upsell)
+    free_hours = copy.deepcopy(cat)
+    free_hours["plane_interface"]["provision_bands"]["items"][1]["hours_never_attach_udual"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(free_hours)
+    two_dash = copy.deepcopy(cat)
+    two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
+    with pytest.raises(IntegrityError):
+        validate_catalog(two_dash)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):

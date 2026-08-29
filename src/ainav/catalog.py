@@ -665,6 +665,10 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("client dashboard cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
     if client_dash.get("standard_vs_advanced_dashboard") is True:
         raise IntegrityError("do not sell Standard vs Advanced dashboard", reason_code="CATALOG_SKU")
+    if client_dash.get("same_as") != "dashboard":
+        raise IntegrityError("client dashboard is the same dashboard", reason_code="CATALOG_PLANE")
+    if dash.get("same_as") != "client_dashboard":
+        raise IntegrityError("dashboard is the client dashboard", reason_code="CATALOG_PLANE")
     bands = body.get("provision_bands") or {}
     if bands.get("sku") is True:
         raise IntegrityError("provision bands are not a SKU", reason_code="CATALOG_SKU")
@@ -683,8 +687,19 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("provision bands require L1", reason_code="CATALOG_PLANE")
     if advanced.get("u_dual_never_free") is not True:
         raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    if advanced.get("hours_never_attach_udual") is not True:
+        raise IntegrityError("hours never attach U-DUAL", reason_code="CATALOG_PLANE")
+    if "included with" not in str(bands.get("attach_means") or "").lower():
+        raise IntegrityError("included means included with the required SKU", reason_code="CATALOG_PLANE")
+    if bands.get("week_one") != "provisioning.standard_l1":
+        raise IntegrityError("week-one prove stays standard_l1", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
-    for stem in ("dashboard as sku", "standard provision as sku", "advanced provision as sku"):
+    for stem in (
+        "dashboard as sku",
+        "standard provision as sku",
+        "advanced provision as sku",
+        "included means free",
+    ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")
     tiles = dash.get("tiles") or []
