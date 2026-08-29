@@ -110,7 +110,27 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.21.0 (this tree)
+### 2.22.0 (this tree)
+
+Full Cynthia Hodnett packet on GitHub: investor letter with priced
+upsell catalog, longer personal brief, financial model, governance,
+owner steps, and Institute `#investor` (desks + fee-for-service).
+Not a priced round. Not a forecast. Owner gaps stay open.
+
+| Packet | Path |
+|--------|------|
+| Investor letter (print) | `docs/CYNTHIA_HODNETT_INVESTOR.pdf` |
+| Investor letter (HTML) | `docs/CYNTHIA_HODNETT_INVESTOR.html` |
+| Investor letter (markdown) | `docs/CYNTHIA_HODNETT_INVESTOR.md` |
+| Personal brief (print) | `docs/CYNTHIA_HODNETT_BRIEF.pdf` |
+| Personal brief (HTML) | `docs/CYNTHIA_HODNETT_BRIEF.html` |
+| Personal brief (markdown) | `docs/CYNTHIA_HODNETT_BRIEF.md` |
+| Financial model | `docs/FINANCIAL_MODEL.md` |
+| Governance | `docs/GOVERNANCE.md` |
+| Owner steps | `docs/OWNER_STEPS.md` |
+| One-page plan | `docs/BUSINESS_PLAN.md` |
+
+### 2.21.0
 
 Cynthia Hodnett investor letter: greeting, seat-B ask, what we will
 not ask, attach math, and the full upsell catalog with list prices

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.21.0",
+    "release": "2.22.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {

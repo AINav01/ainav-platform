@@ -115,6 +115,18 @@
           desks.appendChild(li);
         });
       }
+      var ffs = document.getElementById("investor-ffs");
+      if (ffs && data.fee_for_service && data.fee_for_service.length) {
+        ffs.textContent = "";
+        data.fee_for_service.forEach(function (item) {
+          var li = document.createElement("li");
+          var rate = item.billable
+            ? "$" + Number(item.rate_usd_per_day || 0).toLocaleString() + "/day"
+            : "inside L1";
+          li.textContent = item.id + " — " + rate + ". Not a SKU.";
+          ffs.appendChild(li);
+        });
+      }
       if (data.year_one_if_all_three) {
         set(
           "investor-year",

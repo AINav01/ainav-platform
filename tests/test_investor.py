@@ -113,6 +113,8 @@ def test_institute_investor_is_catalog_honest():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     assert 'id="investor"' in html
     assert "investor.json" in js
+    assert 'id="investor-ffs"' in html
+    assert "fee_for_service" in js
     body = public_investor()
     on_disk = json.loads(Path("institute/investor.json").read_text(encoding="utf-8"))
     assert on_disk == body
