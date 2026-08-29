@@ -566,30 +566,35 @@
           "id": "workiq.user",
           "name": "Work IQ User",
           "maps_to": "entra.id",
+          "search": "Work IQ User",
           "note": "Seat object ids. Not a seat."
         },
         {
           "id": "workiq.teams",
           "name": "Work IQ Teams",
           "maps_to": "teams.enterprise",
-          "note": "Notify only. A chat is not a seat."
+          "search": "Work IQ Teams",
+          "note": "Notify. A chat is not a seat."
         },
         {
           "id": "workiq.sharepoint",
           "name": "Work IQ SharePoint",
           "maps_to": "sharepoint.kit",
-          "note": "Kit evidence. Not dual admit."
+          "search": "Work IQ SharePoint",
+          "note": "Kit evidence. Not dual."
         },
         {
           "id": "workiq.mail",
           "name": "Work IQ Mail",
           "maps_to": "teams.enterprise",
-          "note": "Notify / evidence only. A mailbox is not a seat."
+          "search": "Work IQ Mail",
+          "note": "Notify only. A mailbox is not a seat."
         },
         {
           "id": "mcp.management",
           "name": "Microsoft MCP Management",
           "maps_to": "azure.policy",
+          "search": "Microsoft MCP Management",
           "note": "Governs tools. Cannot weaken Job C."
         }
       ],
@@ -612,7 +617,73 @@
         "Work IQ Copilot",
         "Agent 365",
         "Work IQ Calendar"
-      ]
+      ],
+      "owner_playbook": {
+        "actor": "DayTradingMarkets",
+        "cannot_be_done_by": "cursor.cloud_agent",
+        "docs": [
+          {
+            "title": "Manage tools for agents",
+            "url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent"
+          },
+          {
+            "title": "Work IQ MCP overview",
+            "url": "https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview"
+          }
+        ],
+        "steps": [
+          {
+            "id": "sign_in",
+            "do": "Sign in to the Microsoft 365 admin center as DayTradingMarkets. Use a role that can manage Agent Tools.",
+            "url": "https://admin.microsoft.com",
+            "url_label": "admin.microsoft.com"
+          },
+          {
+            "id": "open_registry",
+            "do": "Open Agents > Tools > Registry. The Cloud admin deep link lands on the tools list.",
+            "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+            "url_label": "Agents > Tools registry",
+            "doc": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent"
+          },
+          {
+            "id": "leave_available",
+            "do": "For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat.",
+            "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+            "url_label": "Registry — Unblock / Available"
+          },
+          {
+            "id": "confirm_five",
+            "do": "Confirm these five show Status Available and Publisher Microsoft: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management.",
+            "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+            "url_label": "Confirm Available"
+          },
+          {
+            "id": "never_as_admit",
+            "do": "Do not bind Microsoft 365 Copilot, Work IQ Copilot, Agent 365, or Work IQ Calendar as seat_a or seat_b. A tool invocation is not dual admit.",
+            "url": "https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview",
+            "url_label": "Work IQ MCP overview"
+          },
+          {
+            "id": "block_dataverse",
+            "do": "Find Dataverse MCP Server. If Status is Available, choose Block. Keep it blocked until paid U-DUAL and dual admit exist.",
+            "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+            "url_label": "Block Dataverse MCP"
+          },
+          {
+            "id": "requests",
+            "do": "Open the Requests tab. Reject any BYO MCP that writes Business Central or Sales or claims dual admit. Do not register an AINav admit MCP that posts journals.",
+            "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+            "url_label": "Requests tab",
+            "doc": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent"
+          },
+          {
+            "id": "stop",
+            "do": "Stop. This does not publish the Institute, write a SoR, or mark LIVE_PIN_OK. This Cloud Agent cannot click Unblock or Block.",
+            "url": "",
+            "url_label": ""
+          }
+        ]
+      }
     }
   },
   "connections": {

@@ -333,7 +333,22 @@ def deep_dive(*, probe: bool = False) -> str:
         "",
         "E7 ships Copilot and Agent 365. They are not the admit plane.",
         f"Agent Tools admin: {tools['admin_url']}",
-        "Leave Available: " + ", ".join(item["name"] for item in tools["leave_available"]) + ".",
+        "Leave Available (owner Unblocks if Blocked; this Cloud Agent cannot):",
+        "",
+    ]
+    for item in tools["leave_available"]:
+        lines.append(f"- **{item['name']}** — {item['note']}")
+    lines += [
+        "",
+        "Owner steps:",
+        "",
+    ]
+    for index, step in enumerate((tools.get("owner_playbook") or {}).get("steps") or [], start=1):
+        url = step.get("url") or ""
+        extra = f" {url}" if url else ""
+        lines.append(f"{index}. {step['do']}{extra}")
+    lines += [
+        "",
         "Block until dual: " + ", ".join(item["name"] for item in tools["block_until_dual"]) + ".",
         "Never as admit: " + ", ".join(tools["never_as_admit"]) + ".",
         "This Cloud Agent cannot approve tools.",

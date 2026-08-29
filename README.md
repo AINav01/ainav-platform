@@ -82,6 +82,7 @@ python -m ainav pitch
 python -m ainav connections
 python -m ainav dns
 python -m ainav agent-tools
+python -m ainav agent-tools --steps
 python -m ainav stack-demo
 python -m ainav company-demo
 ```

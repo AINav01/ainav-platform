@@ -41,6 +41,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="read-only Agent 365 SP check. Cannot approve tools. Never LIVE_PIN_OK.",
     )
+    agent_tools.add_argument(
+        "--steps",
+        action="store_true",
+        help="print the owner Leave Available playbook with Microsoft admin links.",
+    )
     connect = sub.add_parser("connect")
     connect.add_argument(
         "--probe",
@@ -202,8 +207,11 @@ def main(argv: list[str] | None = None) -> int:
         print(canonical_json(probe_dns()))
         return 0
     if args.cmd == "agent-tools":
-        from ainav.microsoft.agent_tools import probe_agent_tools, public_review
+        from ainav.microsoft.agent_tools import probe_agent_tools, public_review, steps_markdown
 
+        if args.steps:
+            print(steps_markdown(), end="")
+            return 0
         print(canonical_json(probe_agent_tools() if args.probe else public_review()))
         return 0
     if args.cmd == "connections":

@@ -17,6 +17,9 @@ def test_deep_dive_is_catalog_honest():
     assert "Squarespace" in body
     assert "launch_not_ready" in body
     assert "Work IQ User" in body
+    assert "Seat object ids. Not a seat." in body
+    assert "Owner steps:" in body
+    assert "https://admin.microsoft.com" in body
     assert "DayTradingMarkets" in body
     assert "Named customers:** none" in body
     assert "Success equation scorecard" in body

@@ -125,7 +125,25 @@ Eight complements (not SKUs, not live, PIM is not dual, LAW is not Sentinel):
 
 E7 ships Copilot and Agent 365. They are not the admit plane.
 Agent Tools admin: https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
-Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management.
+Leave Available (owner Unblocks if Blocked; this Cloud Agent cannot):
+
+- **Work IQ User** — Seat object ids. Not a seat.
+- **Work IQ Teams** — Notify. A chat is not a seat.
+- **Work IQ SharePoint** — Kit evidence. Not dual.
+- **Work IQ Mail** — Notify only. A mailbox is not a seat.
+- **Microsoft MCP Management** — Governs tools. Cannot weaken Job C.
+
+Owner steps:
+
+1. Sign in to the Microsoft 365 admin center as DayTradingMarkets. Use a role that can manage Agent Tools. https://admin.microsoft.com
+2. Open Agents > Tools > Registry. The Cloud admin deep link lands on the tools list. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
+3. For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
+4. Confirm these five show Status Available and Publisher Microsoft: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
+5. Do not bind Microsoft 365 Copilot, Work IQ Copilot, Agent 365, or Work IQ Calendar as seat_a or seat_b. A tool invocation is not dual admit. https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview
+6. Find Dataverse MCP Server. If Status is Available, choose Block. Keep it blocked until paid U-DUAL and dual admit exist. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
+7. Open the Requests tab. Reject any BYO MCP that writes Business Central or Sales or claims dual admit. Do not register an AINav admit MCP that posts journals. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
+8. Stop. This does not publish the Institute, write a SoR, or mark LIVE_PIN_OK. This Cloud Agent cannot click Unblock or Block.
+
 Block until dual: Dataverse MCP Server, Any BYO MCP that writes Business Central or Sales.
 Never as admit: Microsoft 365 Copilot, Work IQ Copilot, Agent 365, Work IQ Calendar.
 This Cloud Agent cannot approve tools.

@@ -321,6 +321,23 @@
       replaceList("agent-tools-never", data.never_as_admit, function (item) {
         return item;
       });
+      var steps = document.getElementById("agent-tools-steps");
+      var playbook = data.owner_playbook && data.owner_playbook.steps;
+      if (steps && playbook && playbook.length) {
+        steps.innerHTML = "";
+        playbook.forEach(function (step) {
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode(step.do + (step.url ? " " : "")));
+          if (step.url) {
+            var link = document.createElement("a");
+            link.href = step.url;
+            link.textContent = step.url_label || step.url;
+            link.rel = "noopener";
+            li.appendChild(link);
+          }
+          steps.appendChild(li);
+        });
+      }
     })
     .catch(function () {
       /* agent-tools.json is optional when opened as a file */

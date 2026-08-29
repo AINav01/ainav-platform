@@ -41,6 +41,8 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="twin-copilot"' in html
     assert 'id="twin-agent-tools"' in html
     assert 'id="agent-tools"' in html
+    assert 'id="agent-tools-steps"' in html
+    assert "admin.microsoft.com" in html
     assert 'id="week-path"' in html
     assert 'id="opp-year-one"' in html
     assert "Business Central" in html
@@ -71,6 +73,8 @@ def test_institute_foundation_is_catalog_honest():
     assert "Copilot is not the admit plane" in js
     assert "m365.agent_tools" in js
     assert "agent-tools.json" in js
+    assert "agent-tools-steps" in js
+    assert "owner_playbook" in js
     assert "complement-cards" in js
     assert "year_one_list_if_all_three" in js
     assert "business.json" in js
