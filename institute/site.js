@@ -709,7 +709,9 @@
           consoleNote.textContent =
             consoleKind === "rehearsal"
               ? ((data.rehearsal && data.rehearsal.label) || "Sandbox rehearsal.") + " Completing it does not create a new SoR write."
-              : (item && item.can ? item.can + " " + (item.cannot || "") : "");
+              : (item && item.can
+                ? item.can + (item.cannot ? " Cannot: " + item.cannot : "")
+                : "");
         }
         if (attention) attention.hidden = consoleKind !== "attention";
         if (rehearsalRoot) rehearsalRoot.hidden = consoleKind !== "rehearsal";

@@ -252,5 +252,6 @@ def test_institute_control_plane_matches_catalog():
     assert 'data-view-tab="records"' in floor
     assert 'data-view-tab="client"' in floor
     assert "data-rehearse" in js or "runRehearsal" in js
+    assert "Cannot: " in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()
