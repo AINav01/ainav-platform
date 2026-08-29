@@ -32,6 +32,8 @@ TILE_TONES = {
     "year_one_if_all_three": "list",
     "seats_recorded": "hold",
     "compliance_maps": "map",
+    "standing_grants": "hold",
+    "provisioned_skus": "hold",
 }
 
 ROLE_ORDER = ("oversee", "keep", "admit", "draft", "host", "counsel", "same_plane", "not_a_seat")
@@ -175,6 +177,29 @@ def _rehearsal(body: dict[str, Any]) -> dict[str, Any]:
     return spec
 
 
+def _compliance_matrix(maps: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    rows = []
+    for item in maps:
+        text = str(item.get("maps_to") or "").lower()
+        if "decisionrecord" in text or "second record" in text:
+            record = "second_record"
+        elif "sor" in text or "journal" in text or "dual admit" in text:
+            record = "first_record"
+        else:
+            record = "map_only"
+        rows.append(
+            {
+                "id": item.get("id"),
+                "name": item.get("name"),
+                "scope": item.get("scope") or "",
+                "maps_to": item.get("maps_to") or "",
+                "record": record,
+                "claimed": False,
+            }
+        )
+    return rows
+
+
 def public_dashboard() -> dict[str, Any]:
     cat = load_catalog()
     body = spec()
@@ -198,6 +223,8 @@ def public_dashboard() -> dict[str, Any]:
         _tile("year_one_if_all_three", "Year-one if all three", f"${all_three['min']:,}–${all_three['max']:,}", "Catalog list. Not a forecast."),
         _tile("seats_recorded", "Seats recorded", "0 recorded / 1 invited", f"{invited['name']} invited, not recorded. Email none."),
         _tile("compliance_maps", "AI compliance maps", f"{len(maps)} instruments / claimed=false", "NIST, SOX, EU AI Act, ISO 42001. Not certified."),
+        _tile("standing_grants", "Standing grants", "0", "Zero-standing. Identify is not admit. Single-use consume."),
+        _tile("provisioned_skus", "Provisioned SKUs", "0 / 0 / 0", "L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK."),
     ]
     return {
         "kind": body["kind"],
@@ -230,6 +257,13 @@ def public_dashboard() -> dict[str, Any]:
         "duties": duty_matrix(list(body["levels"])),
         "exceptions": _exceptions(body),
         "rehearsal": _rehearsal(body),
+        "zero_trust": dict(body.get("zero_trust") or {}),
+        "authorizations": [dict(item) for item in body.get("authorizations") or []],
+        "revocations": [dict(item) for item in body.get("revocations") or []],
+        "provisioning": dict(body.get("provisioning") or {}),
+        "communications": [dict(item) for item in body.get("communications") or []],
+        "records": [dict(item) for item in body.get("records") or []],
+        "compliance_matrix": _compliance_matrix(maps),
         "access": dict(body["access"]),
         "dashboard": dict(body["dashboard"]),
         "tiles": tiles,
@@ -343,6 +377,71 @@ def dashboard_markdown() -> str:
         lines.append(
             f"- **{item['name']}** — {item['when']}. Result: {item['result']}. "
             f"Live: {str(item.get('live')).lower()}. {item.get('note') or ''}"
+        )
+    zt = body.get("zero_trust") or {}
+    lines += [
+        "",
+        "## Zero-standing access",
+        "",
+        f"{zt.get('does')} Does not: {zt.get('does_not')} "
+        f"Identify is not admit: {str(zt.get('identify_is_not_admit')).lower()}. "
+        f"ZTNA SKU: {str(zt.get('ztna_sku')).lower()}.",
+        "",
+        "## Authorization lifecycle",
+        "",
+    ]
+    for item in body.get("authorizations") or []:
+        lines.append(
+            f"- **{item['name']}** — {item.get('grants')}. Standing: "
+            f"{str(item.get('standing')).lower()}. {item.get('note') or ''}"
+        )
+    lines += ["", "## Revocation", ""]
+    for item in body.get("revocations") or []:
+        lines.append(
+            f"- **{item['name']}** — {item.get('by')}. Effect: {item.get('effect')}. "
+            f"{item.get('note') or ''}"
+        )
+    prov = body.get("provisioning") or {}
+    attached = prov.get("attached") or {}
+    lines += [
+        "",
+        "## Provisioning — standard and upsells",
+        "",
+        f"Attached L1 {attached.get('L1', 0)} / P-ADM {attached.get('P-ADM', 0)} / "
+        f"U-DUAL {attached.get('U-DUAL', 0)}. U-DUAL never free: "
+        f"{str(prov.get('u_dual_never_free')).lower()}. {prov.get('note') or ''}",
+        "",
+        "| Step | State | Note |",
+        "| --- | --- | --- |",
+    ]
+    for item in prov.get("path") or []:
+        lines.append(f"| {item['name']} | {item['state']} | {item.get('note') or ''} |")
+    lines += ["", "## Inter-communication", ""]
+    for item in body.get("communications") or []:
+        lines.append(
+            f"- **{item['name']}** — {item.get('kind')}. Seat: {str(item.get('seat')).lower()}. "
+            f"Keep: {str(item.get('keep')).lower()}. {item.get('note') or ''}"
+        )
+    lines += [
+        "",
+        "## Record keeping",
+        "",
+    ]
+    for item in body.get("records") or []:
+        lines.append(
+            f"- **{item['name']}** — {item.get('is')}. {item.get('state')}. "
+            f"Certified: {str(item.get('certified')).lower()}. {item.get('note') or ''}"
+        )
+    lines += [
+        "",
+        "## Regulation and AI compliance matrix",
+        "",
+        "| Instrument | Record | Claimed | Maps to |",
+        "| --- | --- | --- | --- |",
+    ]
+    for item in body.get("compliance_matrix") or []:
+        lines.append(
+            f"| {item['name']} | {item['record']} | claimed=false | {item.get('maps_to') or ''} |"
         )
     lines += [
         "",
@@ -604,6 +703,69 @@ def dashboard_html() -> str:
         f"Named humans: {html.escape(str(reh.get('named_humans')).lower())}. "
         f"{html.escape(reh.get('note') or '')}</p>"
     )
+    zt = body.get("zero_trust") or {}
+    zero_trust = (
+        f"<p>{html.escape(zt.get('does') or '')}</p>"
+        f"<p class=\"note\">Does not: {html.escape(zt.get('does_not') or '')} "
+        f"ZTNA SKU: {html.escape(str(zt.get('ztna_sku')).lower())}. "
+        f"Identify is not admit: {html.escape(str(zt.get('identify_is_not_admit')).lower())}.</p>"
+    )
+    authorizations = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(item.get('grants') or '')}</p>"
+            f"<p class=\"note\">Standing: {html.escape(str(item.get('standing')).lower())}. "
+            f"{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in body.get("authorizations") or []
+    )
+    revocations = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(item.get('effect') or '')}</p>"
+            f"<p class=\"note\">{html.escape(item.get('by') or '')}. "
+            f"{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in body.get("revocations") or []
+    )
+    prov = body.get("provisioning") or {}
+    provision_path = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(item.get('state') or '')}</p>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in prov.get("path") or []
+    )
+    communications = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(item.get('kind') or 'notify')}</p>"
+            f"<p class=\"note\">Seat: {html.escape(str(item.get('seat')).lower())}. "
+            f"Keep: {html.escape(str(item.get('keep')).lower())}. "
+            f"{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in body.get("communications") or []
+    )
+    records = "".join(
+        (
+            f"<article data-tone=\"{'lab' if 'sandbox' in str(item.get('state')) else 'hold'}\">"
+            f"<h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(str(item.get('state') or ''))}</p>"
+            f"<p class=\"note\">{html.escape(item.get('is') or '')}. "
+            f"{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in body.get("records") or []
+    )
+    matrix = "".join(
+        "<tr>"
+        f"<td>{html.escape(item.get('name') or '')}</td>"
+        f"<td>{html.escape(item.get('record') or '')}</td>"
+        f"<td>claimed=false</td>"
+        f"<td>{html.escape(item.get('maps_to') or '')}</td>"
+        "</tr>"
+        for item in body.get("compliance_matrix") or []
+    )
     access = body["access"]
     paras = "".join(
         f"<p>{html.escape(chunk.strip())}</p>"
@@ -647,8 +809,8 @@ h2 {{ font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.1em; text-tr
 .path {{ display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 0 0 10pt; }}
 .lod {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .views {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
-.attention, .exceptions {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
-.views article, .path article, .lod article, .attention article, .exceptions article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
+.attention, .exceptions, .lifecycle {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
+.views article, .path article, .lod article, .attention article, .exceptions article, .lifecycle article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .cascade article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade h3 {{ font: 700 7pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
@@ -697,6 +859,26 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 {rehearsal}
 <h2>Exception paths</h2>
 <div class="exceptions">{exceptions}</div>
+<h2>Zero-standing access</h2>
+{zero_trust}
+<h2>Authorization lifecycle</h2>
+<div class="lifecycle">{authorizations}</div>
+<h2>Revocation</h2>
+<div class="lifecycle">{revocations}</div>
+<h2>Provisioning — standard and upsells</h2>
+<p class="note">U-DUAL is never free. Hours never attach U-DUAL. Attached 0 / 0 / 0. Not LIVE_PIN_OK.</p>
+<div class="lifecycle">{provision_path}</div>
+<h2>Inter-communication</h2>
+<p class="note">Notify only. A chat is not a seat. A mailbox is not the keep. Graph is not called.</p>
+<div class="lifecycle">{communications}</div>
+<h2>Record keeping</h2>
+<div class="lifecycle">{records}</div>
+<h2>Regulation and AI compliance matrix</h2>
+<p class="note">Maps, not certificates. claimed=false on every instrument.</p>
+<table>
+<thead><tr><th>Instrument</th><th>Record</th><th>Claimed</th><th>Maps to</th></tr></thead>
+<tbody>{matrix}</tbody>
+</table>
 <h2>Hierarchical views — one plane</h2>
 <p class="note">Views are not SKUs. Same Entra plane. Same consume ledger.</p>
 <div class="views">{views}</div>

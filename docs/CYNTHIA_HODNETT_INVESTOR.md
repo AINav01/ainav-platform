@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.26.0.
+29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.27.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -49,7 +49,15 @@ The floor is a command console on one plane. Hierarchical views are not a second
 
 The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.
 
-The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
+The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
+
+Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.
+
+Provisioning is the commercial path on the same plane. Standard is L1, then kit PASS, then P-ADM. Upsell is paid U-DUAL and priced desks. Hours are fee-for-service after L1. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
+
+Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.
+
+Record keeping is two records and a keep. First record is the admitted SoR write. Second record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS. Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a certificate. AI compliance and regulation compliance are the same maps with claimed=false.
 
 ## Who buys, and why now
 

@@ -110,7 +110,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.26.0 (this tree)
+### 2.27.0 (this tree)
+
+Executive floor adds zero-standing access (identify is not admit; not a
+ZTNA SKU), authorization lifecycle and revocation, provisioning of the
+three SKUs plus desks/hours (U-DUAL never free; attached 0/0/0),
+notify-only inter-communication, sealed record keeping, and a
+regulation/AI compliance matrix with claimed=false. Two more views:
+Provision and Records. Not a fourth SKU. Not LIVE_PIN_OK.
+
+### 2.26.0
 
 Command-console floor: each hierarchical view has a deck (owner freeze,
 seats rehearsal, examiner inspector, remote same-Entra, IT host).

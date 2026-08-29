@@ -45,7 +45,7 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert tiles["recognized_revenue"]["tone"] == "hold"
     assert "claimed=false" in tiles["compliance_maps"]["value"]
     assert {item["role"] for item in body["cascade"]} >= {"oversee", "admit", "not_a_seat"}
-    assert {item["id"] for item in body["views"]} >= {"owner", "seats", "examiner", "remote"}
+    assert {item["id"] for item in body["views"]} >= {"owner", "seats", "examiner", "remote", "provision", "records"}
     assert {item["id"] for item in body["write_path"]} >= {"draft", "seat_a", "seat_b", "keep"}
     assert all(item["claimed"] is False for item in body["lines_of_defense"])
     assert all(item["live"] is False for item in body["coverage"])
@@ -56,6 +56,18 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert body["rehearsal"]["writes_sor"] is False
     assert body["rehearsal"]["wedge"] == "bc.general_journal.post"
     assert body["rehearsal"]["named_humans"] is False
+    assert body["zero_trust"]["identify_is_not_admit"] is True
+    assert body["zero_trust"]["ztna_sku"] is False
+    assert {item["id"] for item in body["authorizations"]} >= {"identify", "seat", "bind", "revoke"}
+    assert all(item["standing"] is False for item in body["authorizations"])
+    assert body["provisioning"]["u_dual_never_free"] is True
+    assert body["provisioning"]["attached"] == {"L1": 0, "P-ADM": 0, "U-DUAL": 0}
+    assert all(item["seat"] is False and item["keep"] is False for item in body["communications"])
+    assert all(item["certified"] is False for item in body["records"])
+    assert all(item["claimed"] is False for item in body["compliance_matrix"])
+    tiles = {item["id"]: item for item in body["tiles"]}
+    assert tiles["standing_grants"]["value"] == "0"
+    assert tiles["provisioned_skus"]["value"] == "0 / 0 / 0"
     assert {item["id"] for item in body["attention"]} >= {"pending", "production", "sandbox_first"}
     assert all(str(item["value"]) == "0" for item in body["attention"] if item["id"] in {"pending", "production"})
     assert {item["id"] for item in body["exceptions"]} >= {"same_seat", "agent_click", "freeze", "replay"}
@@ -86,6 +98,12 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Walkable rehearsal" in html
     assert "Attention board" in html
     assert "Exception paths" in html
+    assert "Zero-standing access" in html
+    assert "Authorization lifecycle" in html
+    assert "Provisioning" in html
+    assert "Inter-communication" in html
+    assert "Record keeping" in html
+    assert "compliance matrix" in html.lower()
     assert "bc.general_journal.post" in html
     assert "live clock claimed=false" in html
     path = write_dashboard()
@@ -129,6 +147,18 @@ def test_plane_interface_validators_refuse_fiction():
     named["plane_interface"]["rehearsal"]["named_humans"] = True
     with pytest.raises(IntegrityError):
         validate_catalog(named)
+    ztna = copy.deepcopy(cat)
+    ztna["plane_interface"]["zero_trust"]["ztna_sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(ztna)
+    free = copy.deepcopy(cat)
+    free["plane_interface"]["provisioning"]["u_dual_never_free"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(free)
+    chat = copy.deepcopy(cat)
+    chat["plane_interface"]["communications"][0]["seat"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(chat)
 
 
 def test_institute_control_plane_matches_catalog():
@@ -162,6 +192,11 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-attention"' in floor
     assert 'id="plane-exceptions"' in floor
     assert 'id="plane-inspector"' in floor
+    assert 'id="plane-authorizations"' in floor
+    assert 'id="plane-provision"' in floor
+    assert 'id="plane-records"' in floor
+    assert 'data-view-tab="provision"' in floor
+    assert 'data-view-tab="records"' in floor
     assert "data-rehearse" in js or "runRehearsal" in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()

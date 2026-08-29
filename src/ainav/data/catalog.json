@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.26.0",
+    "release": "2.27.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -245,7 +245,7 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal",
+    "interface": "humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records",
     "investor": "catalog list × zero booked × two-human close"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
@@ -2221,8 +2221,8 @@
     "certified": false,
     "real_time_claimed": false,
     "forecast": false,
-    "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. Each view has a command console. The write path is a walkable sandbox rehearsal of draft, bind, two admits, first record, second record, keep. The duty matrix is segregation of duties. The attention board is honest zeros plus one sandbox first record. The clock is catalog as-of, not a live Production clock. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
-    "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.\n\nThe duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.",
+    "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, and records. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. Provisioning is L1, kit PASS, P-ADM, paid U-DUAL — desks and hours are not SKUs. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.",
+    "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.\n\nThe duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.\n\nAccess authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.\n\nProvisioning is the commercial path on the same plane. Standard is L1, then kit PASS, then P-ADM. Upsell is paid U-DUAL and priced desks. Hours are fee-for-service after L1. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.\n\nInter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.\n\nRecord keeping is two records and a keep. First record is the admitted SoR write. Second record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS. Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a certificate. AI compliance and regulation compliance are the same maps with claimed=false.",
     "levels": [
       {
         "id": "owner",
@@ -2341,7 +2341,9 @@
         "signed_l1",
         "year_one_if_all_three",
         "seats_recorded",
-        "compliance_maps"
+        "compliance_maps",
+        "standing_grants",
+        "provisioned_skus"
       ]
     },
     "refuse": [
@@ -2355,7 +2357,12 @@
       "Cloud Agent as seat",
       "rehearsal as production write",
       "duty matrix as SKU",
-      "live Production clock"
+      "live Production clock",
+      "zero trust as SKU",
+      "ZTNA SKU",
+      "notify as admit",
+      "chat as keep",
+      "certified records"
     ],
     "note": "Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.",
     "views": [
@@ -2438,6 +2445,33 @@
           "host"
         ],
         "console": "host"
+      },
+      {
+        "id": "provision",
+        "name": "Provision / upsells",
+        "who": "Owner / commercial",
+        "admit": false,
+        "can": "See the L1 → kit → P-ADM → U-DUAL path and priced desks.",
+        "cannot": "Mark LIVE_PIN_OK. Attach U-DUAL free. Invent a buyer.",
+        "shows": [
+          "signed_l1",
+          "seats"
+        ],
+        "console": "provision"
+      },
+      {
+        "id": "records",
+        "name": "Records / keep",
+        "who": "Examiner / compliance",
+        "admit": false,
+        "can": "Read first record, second record, weekly keep, and retention maps.",
+        "cannot": "Admit. File. Certify. Treat a chat as the keep.",
+        "shows": [
+          "second_record",
+          "maps",
+          "lod"
+        ],
+        "console": "records"
       }
     ],
     "write_path": [
@@ -2578,6 +2612,20 @@
         "value": "0",
         "tone": "hold",
         "note": "P-ADM keep not attached. Not live Purview."
+      },
+      {
+        "id": "standing_grants",
+        "label": "Standing grants",
+        "value": "0",
+        "tone": "hold",
+        "note": "Zero-standing. No grant until a bind. Single-use consume."
+      },
+      {
+        "id": "provisioned",
+        "label": "Provisioned SKUs",
+        "value": "0 / 0 / 0",
+        "tone": "hold",
+        "note": "L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK."
       }
     ],
     "exceptions": [
@@ -2668,7 +2716,226 @@
       "seat_a": "lab operator identity A",
       "seat_b": "lab operator identity B",
       "note": "Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett stays invited, not recorded."
-    }
+    },
+    "zero_trust": {
+      "sku": false,
+      "ztna_sku": false,
+      "identify_is_not_admit": true,
+      "continuous_identify": true,
+      "implicit_network_trust": false,
+      "does": "Entra object id on every request. Conditional Access may identify. Identify is not admit.",
+      "does_not": "A ZTNA product, a VPN SKU, or dual admit from location.",
+      "never_trust": [
+        "network location",
+        "VPN",
+        "PIM activation",
+        "Teams presence",
+        "Copilot session",
+        "Cloud Agent"
+      ],
+      "note": "Zero-standing on the write. Not a fourth SKU."
+    },
+    "authorizations": [
+      {
+        "id": "identify",
+        "name": "Identify",
+        "grants": "Entra object id",
+        "standing": false,
+        "live": false,
+        "note": "Conditional Access may identify. It does not admit."
+      },
+      {
+        "id": "view",
+        "name": "View",
+        "grants": "See a console",
+        "standing": false,
+        "live": false,
+        "note": "A view is not a seat."
+      },
+      {
+        "id": "seat",
+        "name": "Seat",
+        "grants": "Bind an action_hash",
+        "standing": false,
+        "live": false,
+        "note": "Own Entra object id. Own click. 0 recorded / 1 invited."
+      },
+      {
+        "id": "bind",
+        "name": "Bind",
+        "grants": "Single-use consume",
+        "standing": false,
+        "live": false,
+        "note": "No grant until both seats admit. Replay is refused."
+      },
+      {
+        "id": "revoke",
+        "name": "Revoke",
+        "grants": "Withdraw identify, view, seat, or grant",
+        "standing": false,
+        "live": false,
+        "note": "Freeze, seat revoke, grant expire, SKU detach, view revoke."
+      }
+    ],
+    "revocations": [
+      {
+        "id": "freeze",
+        "name": "Freeze",
+        "by": "Owner / board request",
+        "effect": "fail_closed",
+        "live": false,
+        "note": "New grants stop. Catalog plane stays OPEN until a real freeze."
+      },
+      {
+        "id": "seat_revoke",
+        "name": "Seat revoke",
+        "by": "Owner on a named Entra object id",
+        "effect": "admit_held",
+        "live": false,
+        "note": "No named pair is recorded. Cynthia stays invited, not recorded."
+      },
+      {
+        "id": "grant_expire",
+        "name": "Grant expire",
+        "by": "The consume ledger",
+        "effect": "grant_not_issued",
+        "live": false,
+        "note": "Timeout or consume. No silent success."
+      },
+      {
+        "id": "sku_detach",
+        "name": "SKU detach",
+        "by": "Owner after counsel",
+        "effect": "classes_ungated",
+        "live": false,
+        "note": "Detaching U-DUAL does not detach L1. Not a live pin."
+      },
+      {
+        "id": "view_revoke",
+        "name": "View revoke",
+        "by": "IT / identity",
+        "effect": "console_hidden",
+        "live": false,
+        "note": "Hiding a console is not dual admit."
+      }
+    ],
+    "provisioning": {
+      "sku": false,
+      "live": false,
+      "u_dual_never_free": true,
+      "hours_never_attach_udual": true,
+      "attached": {
+        "L1": 0,
+        "P-ADM": 0,
+        "U-DUAL": 0
+      },
+      "path": [
+        {
+          "id": "qualify",
+          "name": "Qualify",
+          "state": "open",
+          "note": "Named dual seats. Not a buyer."
+        },
+        {
+          "id": "l1",
+          "name": "L1 prove",
+          "state": "0 signed",
+          "note": "$28–40k list. 2–4 weeks. Not LIVE_PIN_OK."
+        },
+        {
+          "id": "kit",
+          "name": "Kit PASS",
+          "state": "unrun",
+          "note": "Acceptance Kit on the twin. Required before P-ADM."
+        },
+        {
+          "id": "padm",
+          "name": "P-ADM keep",
+          "state": "0 attached",
+          "note": "$40–60k / year after kit PASS. Never bundles U-DUAL."
+        },
+        {
+          "id": "udual",
+          "name": "U-DUAL deepen",
+          "state": "0 attached",
+          "note": "$20–35k / year. Never free. Same plane onto Sales."
+        },
+        {
+          "id": "desks",
+          "name": "Desks / hours",
+          "state": "0 attached",
+          "note": "Industry packs and FFS. Not SKUs. Hours never attach U-DUAL."
+        }
+      ],
+      "note": "Catalog list. Not booked. Not a forecast. Not LIVE_PIN_OK."
+    },
+    "communications": [
+      {
+        "id": "teams.enterprise",
+        "name": "Teams Enterprise",
+        "kind": "notify",
+        "seat": false,
+        "keep": false,
+        "wired": false,
+        "note": "May tell a human a bind is waiting. A chat is not a seat."
+      },
+      {
+        "id": "teams.premium",
+        "name": "Teams Premium",
+        "kind": "notify",
+        "seat": false,
+        "keep": false,
+        "wired": false,
+        "note": "Notify only. Graph is not called from this floor."
+      },
+      {
+        "id": "mail",
+        "name": "Mail",
+        "kind": "notify",
+        "seat": false,
+        "keep": false,
+        "wired": false,
+        "note": "A mailbox is not the second record."
+      }
+    ],
+    "records": [
+      {
+        "id": "first_record",
+        "name": "First record",
+        "is": "Admitted SoR write",
+        "state": "1 sandbox / 0 production",
+        "live": false,
+        "certified": false,
+        "note": "AINAV-L1 lab operator identities. Not two named humans."
+      },
+      {
+        "id": "second_record",
+        "name": "Second record",
+        "is": "Sealed DecisionRecord",
+        "state": "0",
+        "live": false,
+        "certified": false,
+        "note": "P-ADM keep not attached. Not live Purview."
+      },
+      {
+        "id": "keep",
+        "name": "Weekly keep",
+        "is": "DecisionRecord export after kit PASS",
+        "state": "none",
+        "live": false,
+        "certified": false,
+        "note": "SharePoint kit / Purview export after P-ADM. Not a filing."
+      },
+      {
+        "id": "retention",
+        "name": "Retention map",
+        "is": "Books-and-records and COSO maps",
+        "state": "claimed=false",
+        "live": false,
+        "certified": false,
+        "note": "Not a 17a-4 opinion. Not a certificate."
+      }
+    ]
   },
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",

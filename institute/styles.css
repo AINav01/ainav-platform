@@ -499,7 +499,9 @@ body[data-view="owner"] [data-for~="owner"],
 body[data-view="seats"] [data-for~="seats"],
 body[data-view="examiner"] [data-for~="examiner"],
 body[data-view="remote"] [data-for~="remote"],
-body[data-view="it"] [data-for~="it"] { opacity: 1; }
+body[data-view="it"] [data-for~="it"],
+body[data-view="provision"] [data-for~="provision"],
+body[data-view="records"] [data-for~="records"] { opacity: 1; }
 .cards article {
   border: 1px solid var(--rule);
   padding: 1.25rem 1.15rem 1.45rem;

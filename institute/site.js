@@ -324,6 +324,34 @@
       paintBoard("plane-exceptions", data.exceptions || [], function (item) {
         return item.result || "";
       });
+      paintBoard("plane-authorizations", data.authorizations || [], function (item) {
+        return item.grants || "";
+      });
+      paintBoard("plane-revocations", data.revocations || [], function (item) {
+        return item.effect || "";
+      });
+      paintBoard("plane-comms", data.communications || [], function (item) {
+        return item.kind || "notify";
+      });
+      paintBoard("plane-records", data.records || [], function (item) {
+        return item.state || "";
+      });
+      var provision = document.getElementById("plane-provision");
+      if (provision && data.provisioning && data.provisioning.path) {
+        provision.textContent = "";
+        data.provisioning.path.forEach(function (item) {
+          card(provision, { name: item.name, state: item.state, tone: "hold", note: item.note || "" });
+        });
+      }
+      if (data.zero_trust) {
+        set("plane-zero-trust", data.zero_trust.does + " Does not: " + data.zero_trust.does_not);
+        fill("plane-never-trust", data.zero_trust.never_trust || [], function (item) {
+          return "Never trust: " + item + ". Identify is not admit.";
+        });
+      }
+      fillRows("plane-matrix", data.compliance_matrix || [], function (item) {
+        return [item.name, item.record || "map_only", "claimed=false", item.maps_to || ""];
+      });
       fillRows("plane-duties", data.duties || [], function (item) {
         return [
           item.name,
@@ -387,6 +415,19 @@
           add("PIM", "not dual", "An eligible activation is not an admit.");
           add("Teams", "not a seat", "A chat is not dual admit.");
           add("Agent Tools", "not the plane", "A tool invocation is not dual admit.");
+        }
+        if (kind === "provision") {
+          var attached = (data.provisioning && data.provisioning.attached) || {};
+          add("L1", String(attached.L1 || 0) + " attached", "Prove. $28–40k list. Not LIVE_PIN_OK.");
+          add("P-ADM", String(attached["P-ADM"] || 0) + " attached", "Keep after kit PASS. Never bundles U-DUAL.");
+          add("U-DUAL", String(attached["U-DUAL"] || 0) + " attached", "Never free. Hours never attach U-DUAL.");
+          add("Desks / hours", "0 attached", "Industry packs and FFS. Not SKUs.");
+        }
+        if (kind === "records") {
+          add("First record", "1 sandbox / 0 production", "AINAV-L1 lab operator identities.");
+          add("Second record", "0", "P-ADM keep not attached. Not a filing.");
+          add("Weekly keep", "none", "After kit PASS. A chat is not the keep.");
+          add("Retention", "claimed=false", "Books-and-records and COSO maps. Not a 17a-4 opinion.");
         }
       }
       var rehearsal = {
@@ -609,7 +650,9 @@
           rehearsal: "Seat deck — walkable rehearsal",
           inspector: "Examiner deck — bind inspector",
           access: "Remote deck — same Entra plane",
-          host: "IT deck — host, not a seat"
+          host: "IT deck — host, not a seat",
+          provision: "Provision deck — standard and upsells",
+          records: "Records deck — first, second, keep"
         };
         if (consoleTitle) consoleTitle.textContent = titles[consoleKind] || "Command console";
         if (consoleNote) {

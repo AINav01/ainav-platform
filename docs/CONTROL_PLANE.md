@@ -1,10 +1,10 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.26.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.27.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
-**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. Each view has a command console. The write path is a walkable sandbox rehearsal of draft, bind, two admits, first record, second record, keep. The duty matrix is segregation of duties. The attention board is honest zeros plus one sandbox first record. The clock is catalog as-of, not a live Production clock. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.**
+**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, and records. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. Provisioning is L1, kit PASS, P-ADM, paid U-DUAL — desks and hours are not SKUs. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
-Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal.
+Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
@@ -27,6 +27,8 @@ Org: client org chart × existing SOD × one admit plane.
 - **Examiner** — Internal audit. Can: Read first and second records and the seating map. Cannot: Admit. File. Certify.
 - **Remote human** — Same Entra object id. Can: Whatever their seat already allows, from any network. Cannot: Open a second plane. Use a VPN SKU.
 - **IT / identity** — Host. Can: Host Copilot, Agent 365, BYO MCP. Block bypass tools. Cannot: Admit. Treat PIM as dual.
+- **Provision / upsells** — Owner / commercial. Can: See the L1 → kit → P-ADM → U-DUAL path and priced desks. Cannot: Mark LIVE_PIN_OK. Attach U-DUAL free. Invent a buyer.
+- **Records / keep** — Examiner / compliance. Can: Read first record, second record, weekly keep, and retention maps. Cannot: Admit. File. Certify. Treat a chat as the keep.
 
 ## Write path
 
@@ -48,7 +50,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.26.0.
+- As of: catalog release 2.27.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -63,6 +65,8 @@ Org: client org chart × existing SOD × one admit plane.
 | Production writes | 0 | Production BC stays blocked. Not LIVE_PIN_OK. |
 | Sandbox first record | 1 | AINAV-L1 lab operator identities. Not two named humans. |
 | Second record | 0 | P-ADM keep not attached. Not live Purview. |
+| Standing grants | 0 | Zero-standing. No grant until a bind. Single-use consume. |
+| Provisioned SKUs | 0 / 0 / 0 | L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK. |
 
 ## Duty matrix — who may do what
 
@@ -95,6 +99,68 @@ Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called. Wed
 - **PIM as dual** — An eligible activation is treated as admit. Result: admit_denied. Live: false. PIM is not dual admit.
 - **Copilot as plane** — Copilot, Agent 365, or Agent Tools is treated as admit. Result: admit_denied. Live: false. Microsoft is not the product. A tool invocation is not dual.
 
+## Zero-standing access
+
+Entra object id on every request. Conditional Access may identify. Identify is not admit. Does not: A ZTNA product, a VPN SKU, or dual admit from location. Identify is not admit: true. ZTNA SKU: false.
+
+## Authorization lifecycle
+
+- **Identify** — Entra object id. Standing: false. Conditional Access may identify. It does not admit.
+- **View** — See a console. Standing: false. A view is not a seat.
+- **Seat** — Bind an action_hash. Standing: false. Own Entra object id. Own click. 0 recorded / 1 invited.
+- **Bind** — Single-use consume. Standing: false. No grant until both seats admit. Replay is refused.
+- **Revoke** — Withdraw identify, view, seat, or grant. Standing: false. Freeze, seat revoke, grant expire, SKU detach, view revoke.
+
+## Revocation
+
+- **Freeze** — Owner / board request. Effect: fail_closed. New grants stop. Catalog plane stays OPEN until a real freeze.
+- **Seat revoke** — Owner on a named Entra object id. Effect: admit_held. No named pair is recorded. Cynthia stays invited, not recorded.
+- **Grant expire** — The consume ledger. Effect: grant_not_issued. Timeout or consume. No silent success.
+- **SKU detach** — Owner after counsel. Effect: classes_ungated. Detaching U-DUAL does not detach L1. Not a live pin.
+- **View revoke** — IT / identity. Effect: console_hidden. Hiding a console is not dual admit.
+
+## Provisioning — standard and upsells
+
+Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not booked. Not a forecast. Not LIVE_PIN_OK.
+
+| Step | State | Note |
+| --- | --- | --- |
+| Qualify | open | Named dual seats. Not a buyer. |
+| L1 prove | 0 signed | $28–40k list. 2–4 weeks. Not LIVE_PIN_OK. |
+| Kit PASS | unrun | Acceptance Kit on the twin. Required before P-ADM. |
+| P-ADM keep | 0 attached | $40–60k / year after kit PASS. Never bundles U-DUAL. |
+| U-DUAL deepen | 0 attached | $20–35k / year. Never free. Same plane onto Sales. |
+| Desks / hours | 0 attached | Industry packs and FFS. Not SKUs. Hours never attach U-DUAL. |
+
+## Inter-communication
+
+- **Teams Enterprise** — notify. Seat: false. Keep: false. May tell a human a bind is waiting. A chat is not a seat.
+- **Teams Premium** — notify. Seat: false. Keep: false. Notify only. Graph is not called from this floor.
+- **Mail** — notify. Seat: false. Keep: false. A mailbox is not the second record.
+
+## Record keeping
+
+- **First record** — Admitted SoR write. 1 sandbox / 0 production. Certified: false. AINAV-L1 lab operator identities. Not two named humans.
+- **Second record** — Sealed DecisionRecord. 0. Certified: false. P-ADM keep not attached. Not live Purview.
+- **Weekly keep** — DecisionRecord export after kit PASS. none. Certified: false. SharePoint kit / Purview export after P-ADM. Not a filing.
+- **Retention map** — Books-and-records and COSO maps. claimed=false. Certified: false. Not a 17a-4 opinion. Not a certificate.
+
+## Regulation and AI compliance matrix
+
+| Instrument | Record | Claimed | Maps to |
+| --- | --- | --- | --- |
+| NIST AI Risk Management Framework | second_record | claimed=false | Govern and Measure via sealed DecisionRecords on the admit plane |
+| OMB M-24-10 (federal agency AI) | map_only | claimed=false | Human authority before consequential action. ICP is not a federal agency unless they buy. |
+| SOX / internal control over financial reporting | first_record | claimed=false | Unauthorized general-journal post is the L1 incident. Dual admit is a control. Not a SOX opinion. |
+| FTC and state AI / automated-decision laws | first_record | claimed=false | Refuse undeclared automated SoR writes. Not a state-law opinion. |
+| EU AI Act | map_only | claimed=false | AINav is a write-gate failsafe, not the client's high-risk system. No conformity assessment is claimed. |
+| ISO/IEC 42001 AI management system | second_record | claimed=false | Catalog and DecisionRecords can feed an AIMS. Certification is not claimed. |
+| OECD AI Principles | map_only | claimed=false | Accountability and human agency before the write. Not a membership. |
+| Books and records (first / second record) | second_record | claimed=false | First record is the admitted SoR write. Second record is the sealed DecisionRecord. Not a 17a-4 opinion. |
+| Three lines of defense | second_record | claimed=false | 1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed. |
+| Board fiduciary oversight of material AI write risk | map_only | claimed=false | One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate. |
+| COSO internal control | first_record | claimed=false | Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. |
+
 ## How humans sit from the top
 
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
@@ -109,7 +175,15 @@ The floor is a command console on one plane. Hierarchical views are not a second
 
 The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.
 
-The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
+The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
+
+Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.
+
+Provisioning is the commercial path on the same plane. Standard is L1, then kit PASS, then P-ADM. Upsell is paid U-DUAL and priced desks. Hours are fee-for-service after L1. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
+
+Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.
+
+Record keeping is two records and a keep. First record is the admitted SoR write. Second record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS. Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a certificate. AI compliance and regulation compliance are the same maps with claimed=false.
 
 ## Hierarchy
 
@@ -166,6 +240,8 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 | Year-one if all three | $88,000–$135,000 | Catalog list. Not a forecast. |
 | Seats recorded | 0 recorded / 1 invited | Cynthia Hodnett invited, not recorded. Email none. |
 | AI compliance maps | 11 instruments / claimed=false | NIST, SOX, EU AI Act, ISO 42001. Not certified. |
+| Standing grants | 0 | Zero-standing. Identify is not admit. Single-use consume. |
+| Provisioned SKUs | 0 / 0 / 0 | L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK. |
 
 ## AI compliance maps (claimed = false)
 
@@ -220,5 +296,10 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - rehearsal as production write
 - duty matrix as SKU
 - live Production clock
+- zero trust as SKU
+- ZTNA SKU
+- notify as admit
+- chat as keep
+- certified records
 
 Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.

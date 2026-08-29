@@ -164,6 +164,11 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "interface equation must keep walkable rehearsal",
             reason_code="CATALOG_EQUATION",
         )
+    if "authorization lifecycle" not in interface or "sealed records" not in interface:
+        raise IntegrityError(
+            "interface equation must keep authorization lifecycle and sealed records",
+            reason_code="CATALOG_EQUATION",
+        )
     investor = str(equations.get("investor") or "").lower()
     if "catalog list" not in investor or "zero booked" not in investor:
         raise IntegrityError(
@@ -652,7 +657,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         if needed not in tiles:
             raise IntegrityError(f"dashboard must tile {needed}", reason_code="CATALOG_PLANE")
     view_ids = [item.get("id") for item in body.get("views") or []]
-    for needed in ("entire", "owner", "seats", "examiner", "remote", "it"):
+    for needed in ("entire", "owner", "seats", "examiner", "remote", "it", "provision", "records"):
         if needed not in view_ids:
             raise IntegrityError(f"plane views must include {needed}", reason_code="CATALOG_PLANE")
     for item in body.get("views") or []:
@@ -678,8 +683,44 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         if needed not in attention_ids:
             raise IntegrityError(f"attention board must include {needed}", reason_code="CATALOG_PLANE")
     for item in body.get("attention") or []:
-        if item.get("id") in {"pending", "production", "second_record"} and str(item.get("value")) not in {"0", "0"}:
+        if item.get("id") in {"pending", "production", "second_record", "standing_grants"} and str(
+            item.get("value")
+        ) not in {"0", "0"}:
             raise IntegrityError(f"attention {item.get('id')} stays zero", reason_code="CATALOG_PLANE")
+    zt = body.get("zero_trust") or {}
+    if zt.get("sku") is True or zt.get("ztna_sku") is True:
+        raise IntegrityError("zero trust is not a SKU", reason_code="CATALOG_SKU")
+    if zt.get("identify_is_not_admit") is not True:
+        raise IntegrityError("identify is not admit", reason_code="CATALOG_PLANE")
+    auth_ids = [item.get("id") for item in body.get("authorizations") or []]
+    for needed in ("identify", "seat", "bind", "revoke"):
+        if needed not in auth_ids:
+            raise IntegrityError(f"authorizations must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("authorizations") or []:
+        if item.get("standing") is True or item.get("live") is True:
+            raise IntegrityError("authorizations stay zero-standing", reason_code="CATALOG_PLANE")
+    if not {"freeze", "seat_revoke", "grant_expire"} <= {
+        item.get("id") for item in body.get("revocations") or []
+    }:
+        raise IntegrityError("revocations must include freeze and seat revoke", reason_code="CATALOG_PLANE")
+    provision = body.get("provisioning") or {}
+    if provision.get("sku") is True:
+        raise IntegrityError("provisioning is not a SKU", reason_code="CATALOG_SKU")
+    if provision.get("u_dual_never_free") is not True:
+        raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    attached = provision.get("attached") or {}
+    if any(int(attached.get(key) or 0) for key in ("L1", "P-ADM", "U-DUAL")):
+        raise IntegrityError("provisioned SKUs stay zero until a named buyer", reason_code="CATALOG_PLANE")
+    for item in body.get("communications") or []:
+        if item.get("seat") is True or item.get("keep") is True:
+            raise IntegrityError("notify is not a seat or a keep", reason_code="CATALOG_PLANE")
+    record_ids = [item.get("id") for item in body.get("records") or []]
+    for needed in ("first_record", "second_record", "keep"):
+        if needed not in record_ids:
+            raise IntegrityError(f"records must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("records") or []:
+        if item.get("live") is True or item.get("certified") is True:
+            raise IntegrityError("records are not live or certified", reason_code="CATALOG_PLANE")
     exception_ids = [item.get("id") for item in body.get("exceptions") or []]
     for needed in ("same_seat", "agent_click", "seat_refuse", "freeze", "replay"):
         if needed not in exception_ids:
