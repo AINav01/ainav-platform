@@ -2,25 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AINav, Inc. — Executive control-plane dashboard</title>
 <style>
-@page { size: letter; margin: 0.55in 0.6in; }
-body { font: 10.5pt/1.4 Georgia, Times, serif; color: #16181d; margin: 0; background: #fff; }
-.band { background: #11141a; color: #f4efe6; padding: 16pt 18pt; margin: 0 0 14pt; }
-.band .mark { font: 700 8.5pt Helvetica, Arial, sans-serif; letter-spacing: 0.22em; color: #c4a574; }
-.band h1 { font: 700 20pt Helvetica, Arial, sans-serif; margin: 4pt 0 2pt; }
-.band .sub { font: 8.5pt Helvetica, Arial, sans-serif; color: #d8d2c6; }
-h2 { font: 700 9pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1.2pt solid #c4a574; padding-bottom: 3pt; }
-.cards { display: flex; flex-wrap: wrap; gap: 8pt; margin: 0 0 12pt; }
-.cards article { flex: 1 1 140pt; border: 0.8pt solid #cfc6b6; background: #f7f3ea; padding: 8pt; }
-.cards h3 { font: 700 7.5pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; margin: 0; color: #6a6256; }
-.price { font: 700 12pt Helvetica, Arial, sans-serif; margin: 4pt 0; }
-.note { font: 8pt Helvetica, Arial, sans-serif; color: #555; margin: 0; }
-table { width: 100%; border-collapse: collapse; font: 8.2pt Helvetica, Arial, sans-serif; margin: 0 0 12pt; }
-th, td { border: 0.5pt solid #b9b1a4; padding: 4pt; text-align: left; vertical-align: top; }
-th { background: #11141a; color: #f4efe6; }
-ul { margin: 0 0 10pt 1.1em; }
-footer { border-top: 0.7pt solid #b9b1a4; padding-top: 6pt; font: 8pt Helvetica, Arial, sans-serif; color: #666; }
+:root {
+  --ink: #0c0b09; --paper: #f4efe6; --mute: #6b6458; --gold: #8d7034; --gold-2: #c4a056;
+  --void: #0c0b09; --ok: #3d5a3a; --hold: #8a5a2f; --rule: rgba(12,11,9,0.12);
+}
+@page { size: letter; margin: 0.42in 0.48in; }
+html, body { margin: 0; background: var(--paper); color: var(--ink);
+  font: 10.5pt/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.band { background: var(--void); color: #f4efe6; padding: 16pt 18pt 12pt; }
+.band .mark { font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.22em; color: var(--gold-2); }
+.band h1 { font: 560 22pt "Iowan Old Style", Georgia, serif; margin: 4pt 0 3pt; letter-spacing: -0.02em; }
+.band .sub { font: 8pt Helvetica, Arial, sans-serif; color: #d8d2c6; margin: 0; }
+.strip { display: flex; flex-wrap: wrap; gap: 8pt 16pt; background: #16140f; color: #f4efe6;
+  padding: 8pt 18pt; font: 7.5pt/1.35 ui-monospace, Menlo, monospace; letter-spacing: 0.02em; }
+.strip b { color: var(--gold-2); font-size: 10pt; }
+.wrap { padding: 12pt 18pt 16pt; }
+h2 { font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase;
+  border-bottom: 1.1pt solid var(--gold); padding-bottom: 3pt; margin: 14pt 0 8pt; }
+.thesis { max-width: 46rem; }
+.equation { font: italic 12pt "Iowan Old Style", Georgia, serif; color: var(--gold); margin: 0 0 10pt; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7pt; margin: 0 0 8pt; }
+.cards article { border: 0.8pt solid var(--rule); background: #fff; padding: 8pt 9pt 9pt; min-height: 64pt; }
+.cards h3 { font: 700 7pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--mute); margin: 0; }
+.price { font: 560 13pt "Iowan Old Style", Georgia, serif; margin: 4pt 0 3pt; }
+[data-tone="ready"] .price, [data-tone="lab"] .price { color: var(--ok); }
+[data-tone="hold"] .price, [data-tone="list"] .price, [data-tone="map"] .price { color: var(--hold); }
+.note { font: 7.8pt Helvetica, Arial, sans-serif; color: var(--mute); margin: 0; }
+.cascade { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin: 0 0 10pt; }
+.cascade article { border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }
+.cascade h3 { font: 700 7pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); margin: 0 0 3pt; }
+.cascade article[data-role="admit"] { background: var(--void); color: #f4efe6; }
+.cascade article[data-role="admit"] h3 { color: var(--gold-2); }
+.cascade article[data-role="not_a_seat"] { color: var(--mute); }
+table { width: 100%; border-collapse: collapse; font: 7.8pt Helvetica, Arial, sans-serif; margin: 0 0 10pt; }
+th, td { border-bottom: 0.5pt solid #d4cdc0; padding: 4pt 5pt; text-align: left; vertical-align: top; }
+th { background: var(--void); color: #f4efe6; letter-spacing: 0.04em; text-transform: uppercase; font-size: 7pt; }
+tr[data-role="admit"] { background: #e7eee4; }
+tr[data-role="oversee"] { box-shadow: inset 3pt 0 0 var(--gold); }
+tr[data-role="not_a_seat"] { color: var(--mute); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 10pt; margin: 0 0 10pt; }
+.panel { border: 0.8pt solid var(--rule); background: #fff; padding: 8pt 10pt; }
+.panel h3 { font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 4pt; }
+ul { margin: 0 0 8pt 1.1em; }
+footer { border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Helvetica, Arial, sans-serif; color: var(--mute); }
+@media screen and (max-width: 820px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .cascade, .split { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -29,32 +62,48 @@ footer { border-top: 0.7pt solid #b9b1a4; padding-top: 6pt; font: 8pt Helvetica,
   <h1>Executive control-plane dashboard</h1>
   <p class="sub">Release 2.24.0  ·  Humans from the top  ·  Same Entra plane remote  ·  Compliance maps claimed=false  ·  Not a SKU  ·  Not LIVE_PIN_OK</p>
 </div>
-<p>Humans sit on the plane from the top of the client&#x27;s existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&amp;L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.</p>
-<p class="note">Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles.</p>
-<h2>How humans sit from the top</h2>
-<p>The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client&#x27;s existing org chart down to every drafting AI.</p><p>Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.</p><p>Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.</p><p>The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&amp;L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.</p>
+<div class="strip"><span>Plane state <b>OPEN</b></span><span>Pending dual admits <b>0</b></span><span>Off switch <b>READY</b></span><span>Recognized revenue <b>$0</b></span><span>Signed L1 <b>0</b></span><span>Seats recorded <b>0 recorded / 1 invited</b></span></div>
+<div class="wrap">
+<p class="thesis">Humans sit on the plane from the top of the client&#x27;s existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&amp;L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.</p>
+<p class="equation">Interface = humans from the top × one admit plane × hierarchical access × fail-closed tiles</p>
 <h2>Real-time tiles — admit ledger, not invented P&amp;L</h2>
 <p class="note">Admit ledger and freeze state. Not invented P&amp;L. Not live Production BC.</p>
-<div class="cards"><article><h3>Plane state</h3><p class="price">OPEN</p><p class="note">Not frozen. Fail-closed if thrown. Not LIVE_PIN_OK.</p></article><article><h3>Pending dual admits</h3><p class="price">0</p><p class="note">No named treasury pair has a live bind.</p></article><article><h3>First record (SoR)</h3><p class="price">1 sandbox / 0 production</p><p class="note">AINAV-L1 lab oids. Not two named humans.</p></article><article><h3>Second record</h3><p class="price">0</p><p class="note">P-ADM keep not attached. Not live Purview.</p></article><article><h3>Off switch</h3><p class="price">READY</p><p class="note">Fail-closed freeze. Does not power down Copilot.</p></article><article><h3>Last sealed keep</h3><p class="price">none</p><p class="note">Weekly DecisionRecord export after kit PASS.</p></article><article><h3>Recognized revenue</h3><p class="price">$0</p><p class="note">Not booked. No billing provider.</p></article><article><h3>Named customers</h3><p class="price">0</p><p class="note">Do not invent a buyer.</p></article><article><h3>Signed L1</h3><p class="price">0</p><p class="note">Counsel pack G13 stays open.</p></article><article><h3>Year-one if all three</h3><p class="price">$88,000–$135,000</p><p class="note">Catalog list. Not a forecast.</p></article><article><h3>Seats recorded</h3><p class="price">0 recorded / 1 invited</p><p class="note">Cynthia Hodnett invited, not recorded. Email none.</p></article><article><h3>AI compliance maps</h3><p class="price">11 instruments / claimed=false</p><p class="note">NIST, SOX, EU AI Act, ISO 42001. Not certified.</p></article></div>
-<h2>Hierarchical access</h2>
+<div class="cards"><article data-tone="ready"><h3>Plane state</h3><p class="price">OPEN</p><p class="note">Not frozen. Fail-closed if thrown. Not LIVE_PIN_OK.</p></article><article data-tone="hold"><h3>Pending dual admits</h3><p class="price">0</p><p class="note">No named treasury pair has a live bind.</p></article><article data-tone="lab"><h3>First record (SoR)</h3><p class="price">1 sandbox / 0 production</p><p class="note">AINAV-L1 lab oids. Not two named humans.</p></article><article data-tone="hold"><h3>Second record</h3><p class="price">0</p><p class="note">P-ADM keep not attached. Not live Purview.</p></article><article data-tone="ready"><h3>Off switch</h3><p class="price">READY</p><p class="note">Fail-closed freeze. Does not power down Copilot.</p></article><article data-tone="hold"><h3>Last sealed keep</h3><p class="price">none</p><p class="note">Weekly DecisionRecord export after kit PASS.</p></article><article data-tone="hold"><h3>Recognized revenue</h3><p class="price">$0</p><p class="note">Not booked. No billing provider.</p></article><article data-tone="hold"><h3>Named customers</h3><p class="price">0</p><p class="note">Do not invent a buyer.</p></article><article data-tone="hold"><h3>Signed L1</h3><p class="price">0</p><p class="note">Counsel pack G13 stays open.</p></article><article data-tone="list"><h3>Year-one if all three</h3><p class="price">$88,000–$135,000</p><p class="note">Catalog list. Not a forecast.</p></article><article data-tone="hold"><h3>Seats recorded</h3><p class="price">0 recorded / 1 invited</p><p class="note">Cynthia Hodnett invited, not recorded. Email none.</p></article><article data-tone="map"><h3>AI compliance maps</h3><p class="price">11 instruments / claimed=false</p><p class="note">NIST, SOX, EU AI Act, ISO 42001. Not certified.</p></article></div>
+<h2>Seating cascade — from the top</h2>
+<div class="cascade"><article data-role="oversee"><h3>Oversee</h3><p>Owner / executive · Board</p></article><article data-role="keep"><h3>Keep</h3><p>Internal audit / examiner</p></article><article data-role="admit"><h3>Admit</h3><p>Treasury — seat A · Controller — seat B</p></article><article data-role="draft"><h3>Draft</h3><p>Payables / sales</p></article><article data-role="host"><h3>Host</h3><p>IT / identity</p></article><article data-role="counsel"><h3>Counsel</h3><p>Legal</p></article><article data-role="same_plane"><h3>Same plane</h3><p>Remote human</p></article><article data-role="not_a_seat"><h3>Not a seat</h3><p>Cloud Agent / client AI</p></article></div>
+<h2>How humans sit from the top</h2>
+<p>The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client&#x27;s existing org chart down to every drafting AI.</p><p>Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.</p><p>Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.</p><p>The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&amp;L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.</p>
+<h2>Hierarchical access and control</h2>
 <table>
 <thead><tr><th>Level</th><th>Role</th><th>Admit</th><th>Freeze</th><th>Keep</th><th>Note</th></tr></thead>
-<tbody><tr><td>Owner / executive</td><td>oversee</td><td>False</td><td>request</td><td>view</td><td>Institutes the plane. One title cannot be both seats. Do not invent a name.</td></tr><tr><td>Board</td><td>oversee</td><td>False</td><td>request</td><td>view</td><td>Fiduciary oversight. Board keep after P-ADM. Do not invent a director.</td></tr><tr><td>Internal audit / examiner</td><td>keep</td><td>False</td><td>False</td><td>second_record</td><td>Second record and seating map. Not a named auditor. Not a filing.</td></tr><tr><td>Treasury — seat A</td><td>admit</td><td>True</td><td>refuse</td><td>view</td><td>treasury_approver. Own Entra object id. Own click.</td></tr><tr><td>Controller — seat B</td><td>admit</td><td>True</td><td>refuse</td><td>view</td><td>treasury_controller. Cynthia Hodnett if she agrees. Invited, not recorded.</td></tr><tr><td>Payables / sales</td><td>draft</td><td>False</td><td>False</td><td>False</td><td>May draft. Same two humans admit. Department AI is not a seat.</td></tr><tr><td>IT / identity</td><td>host</td><td>False</td><td>False</td><td>False</td><td>Hosts Copilot, Agent 365, BYO MCP. Not a seat.</td></tr><tr><td>Legal</td><td>counsel</td><td>False</td><td>False</td><td>False</td><td>Not replaced. G12 stays open.</td></tr><tr><td>Remote human</td><td>same_plane</td><td>if_seated</td><td>if_seated</td><td>if_role</td><td>Same Entra object id. Not a second plane. Not a VPN SKU.</td></tr><tr><td>Cloud Agent / client AI</td><td>not_a_seat</td><td>False</td><td>False</td><td>False</td><td>May draft or operate the host. Cannot bind an action_hash.</td></tr></tbody>
+<tbody><tr data-role="oversee"><td>Owner / executive</td><td>oversee</td><td>no</td><td>request</td><td>view</td><td>Institutes the plane. One title cannot be both seats. Do not invent a name.</td></tr><tr data-role="oversee"><td>Board</td><td>oversee</td><td>no</td><td>request</td><td>view</td><td>Fiduciary oversight. Board keep after P-ADM. Do not invent a director.</td></tr><tr data-role="keep"><td>Internal audit / examiner</td><td>keep</td><td>no</td><td>no</td><td>second_record</td><td>Second record and seating map. Not a named auditor. Not a filing.</td></tr><tr data-role="admit"><td>Treasury — seat A</td><td>admit</td><td>yes</td><td>refuse</td><td>view</td><td>treasury_approver. Own Entra object id. Own click.</td></tr><tr data-role="admit"><td>Controller — seat B</td><td>admit</td><td>yes</td><td>refuse</td><td>view</td><td>treasury_controller. Cynthia Hodnett if she agrees. Invited, not recorded.</td></tr><tr data-role="draft"><td>Payables / sales</td><td>draft</td><td>no</td><td>no</td><td>no</td><td>May draft. Same two humans admit. Department AI is not a seat.</td></tr><tr data-role="host"><td>IT / identity</td><td>host</td><td>no</td><td>no</td><td>no</td><td>Hosts Copilot, Agent 365, BYO MCP. Not a seat.</td></tr><tr data-role="counsel"><td>Legal</td><td>counsel</td><td>no</td><td>no</td><td>no</td><td>Not replaced. G12 stays open.</td></tr><tr data-role="same_plane"><td>Remote human</td><td>same_plane</td><td>if_seated</td><td>if_seated</td><td>if_role</td><td>Same Entra object id. Not a second plane. Not a VPN SKU.</td></tr><tr data-role="not_a_seat"><td>Cloud Agent / client AI</td><td>not_a_seat</td><td>no</td><td>no</td><td>no</td><td>May draft or operate the host. Cannot bind an action_hash.</td></tr></tbody>
 </table>
 <h2>Throughout the client organization</h2>
 <p class="note">Existing SOD. Not invented department heads. Department AI is not a seat.</p>
 <table>
 <thead><tr><th>Department</th><th>Role</th><th>Seat</th><th>AI</th><th>Note</th></tr></thead>
-<tbody><tr><td>Treasury</td><td>admit</td><td>treasury_approver</td><td>May draft cash and bank journals. Not a seat.</td><td>Usually seat A. Existing two-person SOD. Not a SKU.</td></tr><tr><td>Controller / accounting</td><td>admit</td><td>treasury_controller</td><td>May draft the books. Not a seat.</td><td>Usually seat B. First record is the admitted SoR write. Not a SKU.</td></tr><tr><td>Payables</td><td>draft</td><td>—</td><td>AP Copilot may draft invoices and payments. Not a seat.</td><td>Same two treasury humans admit. Not a fourth SKU.</td></tr><tr><td>Sales / quote desk</td><td>draft</td><td>—</td><td>Sales Copilot may draft quotes and orders. Not a seat.</td><td>Paid U-DUAL deepens the same plane. Not a second product.</td></tr><tr><td>IT / identity</td><td>host</td><td>—</td><td>Owns Copilot, Agent 365, BYO MCP. Not a seat.</td><td>Hosts identity. Blocks bypass tools. PIM activation is not dual admit.</td></tr><tr><td>Security / compliance</td><td>keep</td><td>—</td><td>May draft risk memos. Not a seat.</td><td>2LOD keep. Second record after P-ADM. Not a certificate.</td></tr><tr><td>Internal audit</td><td>keep</td><td>—</td><td>Not a seat.</td><td>Reads first and second records. Do not invent an audit partner.</td></tr><tr><td>Legal / counsel</td><td>counsel</td><td>—</td><td>Not a seat.</td><td>AINav does not replace counsel. G12 stays open on our side. Do not invent a firm.</td></tr><tr><td>Owner / executive</td><td>oversee</td><td>—</td><td>Not a seat unless they are one of the two named humans.</td><td>Institutes AINav. Can ask for freeze. One title cannot be both seats.</td></tr><tr><td>Board</td><td>oversee</td><td>—</td><td>Not a seat.</td><td>Fiduciary oversight. Inventory of models is not a control. Do not invent a director.</td></tr></tbody>
+<tbody><tr data-role="admit"><td>Treasury</td><td>admit</td><td>treasury_approver</td><td>May draft cash and bank journals. Not a seat.</td><td>Usually seat A. Existing two-person SOD. Not a SKU.</td></tr><tr data-role="admit"><td>Controller / accounting</td><td>admit</td><td>treasury_controller</td><td>May draft the books. Not a seat.</td><td>Usually seat B. First record is the admitted SoR write. Not a SKU.</td></tr><tr data-role="draft"><td>Payables</td><td>draft</td><td>—</td><td>AP Copilot may draft invoices and payments. Not a seat.</td><td>Same two treasury humans admit. Not a fourth SKU.</td></tr><tr data-role="draft"><td>Sales / quote desk</td><td>draft</td><td>—</td><td>Sales Copilot may draft quotes and orders. Not a seat.</td><td>Paid U-DUAL deepens the same plane. Not a second product.</td></tr><tr data-role="host"><td>IT / identity</td><td>host</td><td>—</td><td>Owns Copilot, Agent 365, BYO MCP. Not a seat.</td><td>Hosts identity. Blocks bypass tools. PIM activation is not dual admit.</td></tr><tr data-role="keep"><td>Security / compliance</td><td>keep</td><td>—</td><td>May draft risk memos. Not a seat.</td><td>2LOD keep. Second record after P-ADM. Not a certificate.</td></tr><tr data-role="keep"><td>Internal audit</td><td>keep</td><td>—</td><td>Not a seat.</td><td>Reads first and second records. Do not invent an audit partner.</td></tr><tr data-role="counsel"><td>Legal / counsel</td><td>counsel</td><td>—</td><td>Not a seat.</td><td>AINav does not replace counsel. G12 stays open on our side. Do not invent a firm.</td></tr><tr data-role="oversee"><td>Owner / executive</td><td>oversee</td><td>—</td><td>Not a seat unless they are one of the two named humans.</td><td>Institutes AINav. Can ask for freeze. One title cannot be both seats.</td></tr><tr data-role="oversee"><td>Board</td><td>oversee</td><td>—</td><td>Not a seat.</td><td>Fiduciary oversight. Inventory of models is not a control. Do not invent a director.</td></tr></tbody>
 </table>
-<h2>Internal and remote</h2>
-<p>Internal: Entra ID on the client tenant. Same action_hash. Same consume ledger.</p>
-<p>Remote: Same Entra object id from any network. Conditional Access may identify. It does not admit.</p>
-<p>Same plane: true. Second remote plane: false. VPN SKU: false. PIM is not dual. Teams is not a seat.</p>
+<h2>Internal and remote access</h2>
+<div class="split">
+  <div class="panel">
+    <h3>Internal</h3>
+    <p>Entra ID on the client tenant. Same action_hash. Same consume ledger.</p>
+  </div>
+  <div class="panel">
+    <h3>Remote</h3>
+    <p>Same Entra object id from any network. Conditional Access may identify. It does not admit.</p>
+  </div>
+</div>
+<p class="note">Same plane: yes. Second remote plane: no. VPN SKU: no. PIM is not dual. Teams is not a seat.</p>
 <h2>AI compliance maps</h2>
-<ul><li>NIST AI Risk Management Framework — Govern and Measure via sealed DecisionRecords on the admit plane claimed=false</li><li>OMB M-24-10 (federal agency AI) — Human authority before consequential action. ICP is not a federal agency unless they buy. claimed=false</li><li>SOX / internal control over financial reporting — Unauthorized general-journal post is the L1 incident. Dual admit is a control. Not a SOX opinion. claimed=false</li><li>FTC and state AI / automated-decision laws — Refuse undeclared automated SoR writes. Not a state-law opinion. claimed=false</li><li>EU AI Act — AINav is a write-gate failsafe, not the client&#x27;s high-risk system. No conformity assessment is claimed. claimed=false</li><li>ISO/IEC 42001 AI management system — Catalog and DecisionRecords can feed an AIMS. Certification is not claimed. claimed=false</li><li>OECD AI Principles — Accountability and human agency before the write. Not a membership. claimed=false</li><li>Books and records (first / second record) — First record is the admitted SoR write. Second record is the sealed DecisionRecord. Not a 17a-4 opinion. claimed=false</li><li>Three lines of defense — 1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed. claimed=false</li><li>Board fiduciary oversight of material AI write risk — One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate. claimed=false</li><li>COSO internal control — Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. claimed=false</li></ul>
+<table>
+<thead><tr><th>Instrument</th><th>Maps to</th><th>Scope</th><th>Claimed</th></tr></thead>
+<tbody><tr><td>NIST AI Risk Management Framework</td><td>Govern and Measure via sealed DecisionRecords on the admit plane</td><td>US domestic</td><td>claimed=false</td></tr><tr><td>OMB M-24-10 (federal agency AI)</td><td>Human authority before consequential action. ICP is not a federal agency unless they buy.</td><td>US domestic / federal</td><td>claimed=false</td></tr><tr><td>SOX / internal control over financial reporting</td><td>Unauthorized general-journal post is the L1 incident. Dual admit is a control. Not a SOX opinion.</td><td>US domestic / books</td><td>claimed=false</td></tr><tr><td>FTC and state AI / automated-decision laws</td><td>Refuse undeclared automated SoR writes. Not a state-law opinion.</td><td>US domestic</td><td>claimed=false</td></tr><tr><td>EU AI Act</td><td>AINav is a write-gate failsafe, not the client&#x27;s high-risk system. No conformity assessment is claimed.</td><td>international</td><td>claimed=false</td></tr><tr><td>ISO/IEC 42001 AI management system</td><td>Catalog and DecisionRecords can feed an AIMS. Certification is not claimed.</td><td>international</td><td>claimed=false</td></tr><tr><td>OECD AI Principles</td><td>Accountability and human agency before the write. Not a membership.</td><td>international</td><td>claimed=false</td></tr><tr><td>Books and records (first / second record)</td><td>First record is the admitted SoR write. Second record is the sealed DecisionRecord. Not a 17a-4 opinion.</td><td>US domestic / books</td><td>claimed=false</td></tr><tr><td>Three lines of defense</td><td>1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.</td><td>risk / compliance</td><td>claimed=false</td></tr><tr><td>Board fiduciary oversight of material AI write risk</td><td>One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate.</td><td>US domestic / board</td><td>claimed=false</td></tr><tr><td>COSO internal control</td><td>Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.</td><td>US domestic / books</td><td>claimed=false</td></tr></tbody>
+</table>
 <h2>Refuse</h2>
 <ul><li>fourth SKU</li><li>invented live P&amp;L</li><li>forecast ARR</li><li>LIVE_PIN_OK</li><li>EU AI Act certified</li><li>named department heads</li><li>remote second plane</li><li>Cloud Agent as seat</li></ul>
+</div>
 <footer>AINav, Inc.  ·  AINAV.Institute  ·  Invited: Cynthia Hodnett recorded: no  ·  Do not treat as signed L1, a certificate, or LIVE_PIN_OK.</footer>
 </body>
 </html>

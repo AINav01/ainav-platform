@@ -203,6 +203,69 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
   .cards.dash { grid-template-columns: repeat(4, 1fr); }
 }
 .cards.dash article { min-height: 8.25rem; }
+.cards.dash .price {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0.4rem 0 0.35rem;
+}
+.cards.dash article[data-tone="ready"] .price,
+.cards.dash article[data-tone="lab"] .price { color: var(--ok); }
+.cards.dash article[data-tone="hold"] .price,
+.cards.dash article[data-tone="list"] .price,
+.cards.dash article[data-tone="map"] .price { color: var(--hold); }
+.plane-floor { max-width: var(--wide); }
+.plane-floor-page { border-top: 0; padding-top: clamp(2rem, 6vh, 3.5rem); }
+.plane-main { padding: 0 6vw 5rem; }
+.plane-page .plane-floor-page h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  margin: 0 0 1rem;
+}
+.plane-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.35rem;
+  margin: 1.4rem 0 1.5rem;
+  padding: 0.85rem 1.1rem;
+  background: var(--void);
+  color: var(--void-ink);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+}
+.plane-strip b { color: var(--gold-2); font-size: 0.92rem; }
+.plane-cascade {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0 0 1.6rem;
+}
+@media (min-width: 800px) { .plane-cascade { grid-template-columns: repeat(4, 1fr); } }
+.plane-cascade article {
+  border: 1px solid var(--rule);
+  padding: 0.9rem 0.95rem 1rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+  min-height: 6.2rem;
+}
+.plane-cascade h3 {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 0.4rem;
+}
+.plane-cascade article[data-role="admit"] {
+  background: var(--void);
+  color: var(--void-ink);
+  border-color: var(--void);
+}
+.plane-cascade article[data-role="admit"] h3 { color: var(--gold-2); }
+.plane-cascade article[data-role="not_a_seat"] { color: var(--mute); }
+.plane-panel {
+  border: 1px solid var(--rule);
+  padding: 1.1rem 1.15rem 1.25rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+}
 .table-wrap { overflow: auto; margin: 0 0 1.25rem; }
 table.law {
   width: 100%;
@@ -211,8 +274,8 @@ table.law {
   background: color-mix(in srgb, var(--paper) 70%, white);
 }
 table.law th, table.law td {
-  border: 1px solid var(--rule);
-  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 0.55rem;
   text-align: left;
   vertical-align: top;
 }
@@ -223,6 +286,10 @@ table.law th {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+table.law tr[data-role="admit"] { background: color-mix(in srgb, var(--ok) 14%, white); }
+table.law tr[data-role="oversee"] td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
+table.law tr[data-role="not_a_seat"] { color: var(--mute); }
+nav a[aria-current="page"] { color: var(--ink); }
 .cards article {
   border: 1px solid var(--rule);
   padding: 1.25rem 1.15rem 1.45rem;

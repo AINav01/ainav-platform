@@ -8,6 +8,17 @@ Equation: humans from the top × one admit plane × hierarchical access × fail-
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
+## Seating cascade — from the top
+
+- **Oversee** — Owner / executive, Board
+- **Keep** — Internal audit / examiner
+- **Admit** — Treasury — seat A, Controller — seat B
+- **Draft** — Payables / sales
+- **Host** — IT / identity
+- **Counsel** — Legal
+- **Same plane** — Remote human
+- **Not a seat** — Cloud Agent / client AI
+
 ## How humans sit from the top
 
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.

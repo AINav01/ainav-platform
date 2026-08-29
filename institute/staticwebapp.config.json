@@ -10,6 +10,8 @@
       "/agent-tools.json",
       "/review.json",
       "/owner-steps.json",
+      "/control-plane.json",
+      "/control-plane.html",
       "/styles.css",
       "/site.js",
       "/favicon.svg",
@@ -62,6 +64,10 @@
     },
     {
       "route": "/owner-steps.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/control-plane.json",
       "headers": { "Cache-Control": "no-store" }
     }
   ]

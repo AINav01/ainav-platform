@@ -9,6 +9,66 @@
     "teams_is_not_a_seat": true,
     "vpn_sku": false
   },
+  "cascade": [
+    {
+      "label": "Oversee",
+      "names": [
+        "Owner / executive",
+        "Board"
+      ],
+      "role": "oversee"
+    },
+    {
+      "label": "Keep",
+      "names": [
+        "Internal audit / examiner"
+      ],
+      "role": "keep"
+    },
+    {
+      "label": "Admit",
+      "names": [
+        "Treasury \u2014 seat A",
+        "Controller \u2014 seat B"
+      ],
+      "role": "admit"
+    },
+    {
+      "label": "Draft",
+      "names": [
+        "Payables / sales"
+      ],
+      "role": "draft"
+    },
+    {
+      "label": "Host",
+      "names": [
+        "IT / identity"
+      ],
+      "role": "host"
+    },
+    {
+      "label": "Counsel",
+      "names": [
+        "Legal"
+      ],
+      "role": "counsel"
+    },
+    {
+      "label": "Same plane",
+      "names": [
+        "Remote human"
+      ],
+      "role": "same_plane"
+    },
+    {
+      "label": "Not a seat",
+      "names": [
+        "Cloud Agent / client AI"
+      ],
+      "role": "not_a_seat"
+    }
+  ],
   "certified": false,
   "dashboard": {
     "name": "Executive control-plane dashboard",
@@ -355,72 +415,84 @@
       "id": "plane_state",
       "label": "Plane state",
       "note": "Not frozen. Fail-closed if thrown. Not LIVE_PIN_OK.",
+      "tone": "ready",
       "value": "OPEN"
     },
     {
       "id": "pending_admits",
       "label": "Pending dual admits",
       "note": "No named treasury pair has a live bind.",
+      "tone": "hold",
       "value": "0"
     },
     {
       "id": "first_record",
       "label": "First record (SoR)",
       "note": "AINAV-L1 lab oids. Not two named humans.",
+      "tone": "lab",
       "value": "1 sandbox / 0 production"
     },
     {
       "id": "second_record",
       "label": "Second record",
       "note": "P-ADM keep not attached. Not live Purview.",
+      "tone": "hold",
       "value": "0"
     },
     {
       "id": "off_switch",
       "label": "Off switch",
       "note": "Fail-closed freeze. Does not power down Copilot.",
+      "tone": "ready",
       "value": "READY"
     },
     {
       "id": "last_keep",
       "label": "Last sealed keep",
       "note": "Weekly DecisionRecord export after kit PASS.",
+      "tone": "hold",
       "value": "none"
     },
     {
       "id": "recognized_revenue",
       "label": "Recognized revenue",
       "note": "Not booked. No billing provider.",
+      "tone": "hold",
       "value": "$0"
     },
     {
       "id": "named_customers",
       "label": "Named customers",
       "note": "Do not invent a buyer.",
+      "tone": "hold",
       "value": "0"
     },
     {
       "id": "signed_l1",
       "label": "Signed L1",
       "note": "Counsel pack G13 stays open.",
+      "tone": "hold",
       "value": "0"
     },
     {
       "id": "year_one_if_all_three",
       "label": "Year-one if all three",
       "note": "Catalog list. Not a forecast.",
+      "tone": "list",
       "value": "$88,000\u2013$135,000"
     },
     {
       "id": "seats_recorded",
       "label": "Seats recorded",
       "note": "Cynthia Hodnett invited, not recorded. Email none.",
+      "tone": "hold",
       "value": "0 recorded / 1 invited"
     },
     {
       "id": "compliance_maps",
       "label": "AI compliance maps",
       "note": "NIST, SOX, EU AI Act, ISO 42001. Not certified.",
+      "tone": "map",
       "value": "11 instruments / claimed=false"
     }
   ]
