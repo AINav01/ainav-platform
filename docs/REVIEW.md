@@ -39,28 +39,32 @@ Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Busines
 - **Programs** — `qualify_not_claimed`. Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.
 - **Commercial spine** — `catalog_list_not_revenue`. Year-one catalog list if one controller buys all three: $88,000–$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.
 
-Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox; client AI as dual; AINav is the client's AI; EU AI Act certified; AINav replaces the client's AI; customer's AI as dual; invented counterparty name.
+Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox; client AI as dual; AINav is the client's AI; EU AI Act certified; AINav replaces the client's AI; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI.
 
 ## First principles
 
-Dual-admitted human control before client-AI and counterparty-AI privileged system-of-record writes.
+Human control plane over every client AI that can draft a privileged system-of-record write.
 A privileged write is allowed only when two distinct humans bind the same `action_hash`,
 that grant is consumed once, and the effect gate is fail-closed.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 ## AI governance — failsafe, not a certificate
 
-The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord.
+The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. AINav is not that AI. It is the human control plane that sits over all of them: failsafe, off switch, reset, rollback, first and second records. Client or counterparty AI drafts. The client's two humans admit. Then the write. No admit, no write.
 - Certified: false. Replaces counsel: false. SKU: false.
 - Control: client utilizes AI × counterparties utilize AI × AINav failsafe × two-human control
 - Cascade: client's clients utilize AI × client institutes AINav × two-human control
+- Umbrella: every client AI × one admit plane × two-human control
+- Plane: failsafe × off-switch × reset × rollback × two-human control
 - Does: Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.
 - Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote; counterparty AI.
 - First record: The privileged SoR write after dual admit (journal, invoice, order).
 - Second record: Sealed DecisionRecord and Merkle keep of who admitted the write.
-- Maps (claimed=false): nist.ai_rmf, omb.m24_10, sox.icfr, ftc.state_ai, eu.ai_act, iso.42001, oecd.ai, sec.books_records, three_lod.
-- Risks: unauthorized_sor; audit_failure; false_certification; seat_collapse; cross_border_claim; bypass_tool; counterparty_ai_write; missing_second_record.
-- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map; customer's AI as dual; invented counterparty name.
+- Off switch: Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.
+- Must-have: Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.
+- Maps (claimed=false): nist.ai_rmf, omb.m24_10, sox.icfr, ftc.state_ai, eu.ai_act, iso.42001, oecd.ai, sec.books_records, three_lod, fiduciary.duty, coso.ic.
+- Risks: unauthorized_sor; audit_failure; false_certification; seat_collapse; cross_border_claim; bypass_tool; counterparty_ai_write; missing_second_record; ai_sprawl; no_off_switch; silent_rollback; board_blind.
+- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI.
 
 Must not change:
 
@@ -79,14 +83,17 @@ Must not change:
 - Client utilizes AI; AINav is the human-control failsafe
 - Client's customers utilizing AI still require the client's two humans
 - First record is the SoR write; second record is the DecisionRecord
+- One human plane sits over every client AI that can draft a write
+- Off switch is fail-closed, not powering down Copilot
+- Rollback is a dual-admitted compensating write, not a time machine
 
 ## The sale
 
-The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.
+The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.
 - Proof day: 90 minutes. `python -m ainav proof-day`
 - Seats: treasury_approver / treasury_controller
 - Door: Generate a proof-day brief a controller can forward. Do not invent a contact inbox.
-- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox, client AI as dual, AINav is the client's AI, EU AI Act certified, AINav replaces the client's AI, customer's AI as dual, invented counterparty name.
+- Refuse: Teams vote as dual, Copilot as the admit plane, free U-DUAL, LIVE_PIN_OK, named design partner, invented contact inbox, client AI as dual, AINav is the client's AI, EU AI Act certified, AINav replaces the client's AI, customer's AI as dual, invented counterparty name, time-machine rollback, AINav powers down Copilot, mandated by SEC, AINav replaces all client AI.
 
 ## Commercial spine
 
@@ -238,6 +245,8 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **One L1 plus four FFS days** — $42,000–$54,000. One controller buys L1 and four billable days on the same plane.
 - **One L1 plus counterparty AI desk** — $34,000–$50,000. One controller buys L1 then attaches industry.cascade for their customers' AI.
 - **One controller — L1, P-ADM, second-record keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.second_record.
+- **One L1 plus off-switch desk** — $34,000–$50,000. One controller buys L1 then attaches industry.off_switch so humans can freeze writes.
+- **One controller — L1, P-ADM, board keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.board for owner/board/examiner evidence.
 - **One L1 plus payables and bank desks** — $40,000–$60,000. One controller buys L1 then attaches industry.payables and industry.bank.
 - **One controller — L1, P-ADM, oversight keep** — $73,000–$108,000. One controller buys L1, attaches P-ADM, then attaches industry.oversight.
 - **All three SKUs plus invoice and credit desks** — $100,000–$155,000. One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.

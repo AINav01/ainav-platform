@@ -12,10 +12,16 @@
     "erp": "Dynamics 365 Business Central Premium",
     "identity": "Microsoft Entra ID",
     "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI",
+    "must_have_for": [
+      "owner",
+      "board",
+      "examiner"
+    ],
     "named_customers": [],
+    "sits_over_client_ai": true,
     "utilizes_ai": true
   },
-  "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.",
+  "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "institute": "AINAV.Institute",
   "kind": "ainav.institute.buyer.v1",
   "live": false,
@@ -39,7 +45,11 @@
     "EU AI Act certified",
     "AINav replaces the client's AI",
     "customer's AI as dual",
-    "invented counterparty name"
+    "invented counterparty name",
+    "time-machine rollback",
+    "AINav powers down Copilot",
+    "mandated by SEC",
+    "AINav replaces all client AI"
   ],
   "seats": [
     "treasury_approver",

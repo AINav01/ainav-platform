@@ -2,7 +2,7 @@
 
 **Institute:** AINAV.Institute
 **Product:** AINav Control Plane (Job C)
-**Category:** Dual-admitted human control before client-AI and counterparty-AI privileged system-of-record writes
+**Category:** Human control plane over every client AI that can draft a privileged system-of-record write
 
 ## First principles
 
@@ -13,17 +13,20 @@ SoR, and audit. It is not the product.
 
 ## AI governance (not a SKU, not a certificate)
 
-The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord.
+The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. AINav is not that AI. It is the human control plane that sits over all of them: failsafe, off switch, reset, rollback, first and second records. Client or counterparty AI drafts. The client's two humans admit. Then the write. No admit, no write.
 - Control: client utilizes AI × counterparties utilize AI × AINav failsafe × two-human control
 - Cascade: client's clients utilize AI × client institutes AINav × two-human control
+- Umbrella: every client AI × one admit plane × two-human control
+- Plane: failsafe × off-switch × reset × rollback × two-human control
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.
-- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense.
+- Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write.
+- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense, Board fiduciary oversight of material AI write risk, COSO internal control.
 - A client-AI or customer-AI draft without the client's two seats is the write that must not happen.
 
 ## The sale
 
-The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.
+The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.
 - Proof day: 90 minutes. `python -m ainav proof-day`
 - Two existing treasury seats. One journal. Sealed DecisionRecord. Merkle export. Walk out.
 - L1 is that week. Signed L1 is G13 and stays open.
@@ -70,6 +73,10 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **industry.oversight** — Oversight keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.)
 - **industry.cascade** — Counterparty AI desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names.)
 - **industry.second_record** — Second-record keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK.)
+- **industry.control_plane** — Human control plane (requires L1; included; L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not a SKU. Not the client's AI.)
+- **industry.off_switch** — Off-switch desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU.)
+- **industry.rollback** — Rollback desk (requires L1; $6,000–$10,000/annual; A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU.)
+- **industry.board** — Board / examiner keep (requires P-ADM; $5,000–$8,000/annual; A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.)
 
 ## Libraries (not SKUs)
 
@@ -89,6 +96,9 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **lib.padm.governance** — requires P-ADM. A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.
 - **lib.l1.cascade** — requires L1. L1 cascade library. Counterparty AI is not a seat. Not a SKU.
 - **lib.padm.records** — requires P-ADM. P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK.
+- **lib.l1.plane** — requires L1. L1 control-plane library. One admit plane over the client's AI estate. Not a SKU.
+- **lib.l1.off_switch** — requires L1. L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU.
+- **lib.padm.board** — requires P-ADM. P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.
 
 ## Fee-for-service (not SKUs)
 
@@ -102,6 +112,7 @@ The unauthorized general-journal post the client's AI or the client's customer A
 - **ffs.keep_wiring** — P-ADM keep wiring ($3,500/day). Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.
 - **ffs.governance_workshop** — AI governance / failsafe workshop ($3,500/day). Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.
 - **ffs.institute_failsafe** — Institute AINav failsafe ($3,500/day). Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.
+- **ffs.board_briefing** — Owner / board / examiner briefing ($3,500/day). Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.
 
 ## Operations
 
@@ -254,3 +265,6 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - Client utilizes AI; AINav is the human-control failsafe
 - Client's customers utilizing AI still require the client's two humans
 - First record is the SoR write; second record is the DecisionRecord
+- One human plane sits over every client AI that can draft a write
+- Off switch is fail-closed, not powering down Copilot
+- Rollback is a dual-admitted compensating write, not a time machine

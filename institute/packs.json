@@ -99,6 +99,16 @@
       "rate_usd_per_day": 3500,
       "requires_l1": true,
       "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.board_briefing",
+      "name": "Owner / board / examiner briefing",
+      "note": "Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
     }
   ],
   "industry": [
@@ -361,6 +371,65 @@
       "note": "A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.control_plane",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Human control plane",
+      "note": "L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not a SKU. Not the client's AI.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.off_switch",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Off-switch desk",
+      "note": "A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.rollback",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Rollback desk",
+      "note": "A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.board",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "name": "Board / examiner keep",
+      "note": "A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
     }
   ],
   "kind": "ainav.institute.packs.v1",
@@ -535,6 +604,40 @@
         "governance.second_record.export"
       ],
       "note": "P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.plane",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 control-plane library. One admit plane over the client's AI estate. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.off_switch",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.board",
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "note": "P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.",
       "requires_sku": "P-ADM",
       "sku": false
     }

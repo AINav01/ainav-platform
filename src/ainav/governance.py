@@ -1,6 +1,7 @@
 """AI governance doctrine. Catalog-list maps. Not a certification. Not a SKU.
 
-The client utilizes AI. AINav is the failsafe and the human control.
+The client utilizes AI. AINav is the human control plane that sits
+over every other client AI: failsafe, off switch, reset, rollback.
 Client AI drafts. Two humans admit. Then the write. This module does
 not file, certify, or replace counsel.
 """
@@ -30,6 +31,10 @@ def public_governance() -> dict[str, Any]:
         "failsafe": dict(body["failsafe"]),
         "cascade": dict(body.get("cascade") or {}),
         "records": dict(body.get("records") or {}),
+        "must_have": dict(body.get("must_have") or {}),
+        "plane": dict(body.get("plane") or {}),
+        "umbrella_equation": load_catalog()["equations"].get("umbrella"),
+        "plane_equation": load_catalog()["equations"].get("plane"),
         "maps": [dict(item) for item in body.get("maps") or []],
         "risks": [dict(item) for item in body.get("risks") or []],
         "refuse": list(body.get("refuse") or []),
@@ -46,6 +51,8 @@ def governance_markdown() -> str:
         body["thesis"],
         f"Control: {body.get('control_equation') or load_catalog()['equations']['control']}.",
         f"Cascade: {load_catalog()['equations'].get('cascade')}.",
+        f"Umbrella: {load_catalog()['equations'].get('umbrella')}.",
+        f"Plane: {load_catalog()['equations'].get('plane')}.",
         f"Certified: {str(body['certified']).lower()}. Replaces counsel: "
         f"{str(body['replaces_counsel']).lower()}. SKU: false. LIVE_PIN_OK: false.",
         "",
@@ -76,6 +83,32 @@ def governance_markdown() -> str:
     lines += [
         f"- **First record** — {first.get('what')} ({first.get('plane')}). {first.get('note')}",
         f"- **Second record** — {second.get('what')} ({second.get('plane')}). {second.get('note')}",
+        "",
+        "## Must-have (not a mandate, not a fourth SKU)",
+        "",
+    ]
+    must = body.get("must_have") or {}
+    audience = must.get("for") or {}
+    lines += [
+        f"- Why: {must.get('why')}",
+        f"- Mandated: {str(must.get('mandated')).lower()}. Certified: {str(must.get('certified')).lower()}. SKU: false.",
+        f"- Owner: {audience.get('owner')}",
+        f"- Board: {audience.get('board')}",
+        f"- Examiner: {audience.get('examiner')}",
+        "",
+        "## Plane (sits over every client AI)",
+        "",
+    ]
+    plane = body.get("plane") or {}
+    switch = plane.get("off_switch") or {}
+    reset = plane.get("reset") or {}
+    rollback = plane.get("rollback") or {}
+    lines += [
+        "- Sits over: " + "; ".join(plane.get("sits_over") or []) + ".",
+        "- Is the client's AI: false.",
+        f"- **Off switch** — {switch.get('does')} Does not: {switch.get('does_not')}",
+        f"- **Reset** — {reset.get('does')} Does not: {reset.get('does_not')}",
+        f"- **Rollback** — {rollback.get('does')} Does not: {rollback.get('does_not')}",
         "",
         "## Maps (not certifications)",
         "",

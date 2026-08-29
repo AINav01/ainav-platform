@@ -5,8 +5,8 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.15.0",
-    "category": "Dual-admitted human control before client-AI and counterparty-AI privileged system-of-record writes"
+    "release": "2.16.0",
+    "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
     "sole_owner": true,
@@ -223,18 +223,23 @@
     "No invented compliance certification",
     "Client utilizes AI; AINav is the human-control failsafe",
     "Client's customers utilizing AI still require the client's two humans",
-    "First record is the SoR write; second record is the DecisionRecord"
+    "First record is the SoR write; second record is the DecisionRecord",
+    "One human plane sits over every client AI that can draft a write",
+    "Off switch is fail-closed, not powering down Copilot",
+    "Rollback is a dual-admitted compensating write, not a time machine"
   ],
   "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
   "equations": {
     "product": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
     "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
     "lab_pin": "LIVE_PIN_OK",
-    "note": "Controllers buy the commercial equation. The control equation is how AI is allowed to work: the client utilizes AI, the client's customers utilize AI, AINav is the failsafe the client institutes, two humans control the write. First record is the SoR write. Second record is the sealed DecisionRecord. LIVE_PIN_OK is a lab pin and is never marked from sales.",
+    "note": "Controllers buy the commercial equation. The umbrella equation is why the plane is a must-have: every client AI is another write surface unless one human plane sits over all of them. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires two humans. LIVE_PIN_OK is a lab pin and is never marked from sales.",
     "control": "client utilizes AI \u00d7 counterparties utilize AI \u00d7 AINav failsafe \u00d7 two-human control",
-    "cascade": "client's clients utilize AI \u00d7 client institutes AINav \u00d7 two-human control"
+    "cascade": "client's clients utilize AI \u00d7 client institutes AINav \u00d7 two-human control",
+    "umbrella": "every client AI \u00d7 one admit plane \u00d7 two-human control",
+    "plane": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control"
   },
-  "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. L1 is the week you prove that write cannot land without two human seats. The client institutes AINav as the failsafe, not as the AI.",
+  "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
     {
       "id": "L1",
@@ -567,6 +572,24 @@
       "wedge": false,
       "upsell": true,
       "note": "A la carte P-ADM keep. Second record: sealed DecisionRecord the examiner or the client's customer can open. Not the SoR first record. Not a certificate."
+    },
+    {
+      "id": "governance.off_switch.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_decision_record",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Evidence the admit plane was frozen. Fail-closed is the off switch. Not powering down Copilot. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "governance.reset.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "ainav_decision_record",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Last sealed DecisionRecord / Merkle root as the reset point. Not a production wipe. Not LIVE_PIN_OK."
     }
   ],
   "industry_packs": [
@@ -983,6 +1006,102 @@
         "Export the second record for an examiner or the client's customer. Do not invent names.",
         "This is not an EU AI Act, NIST, or ISO 42001 certificate. Not LIVE_PIN_OK."
       ]
+    },
+    {
+      "id": "industry.control_plane",
+      "name": "Human control plane",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not a SKU. Not the client's AI.",
+      "runbook": [
+        "Requires L1. The plane sits over the client's AI estate. Not a fourth SKU.",
+        "Copilot, Agent 365, BYO MCP, vendor bots, and counterparty AI may draft. They are not seats.",
+        "Seat A treasury_approver. Seat B treasury_controller.",
+        "One bc.general_journal.post on the BC twin after both humans bind the same action_hash.",
+        "A draft from any client AI without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.off_switch",
+      "name": "Off-switch desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU.",
+      "runbook": [
+        "Requires L1. The off switch is the admit plane, not a power button on the client's model.",
+        "Propose one bc.general_journal.post. Refuse it without two seats. That is the freeze.",
+        "Humans freeze new grants. Inference may continue. Consequence does not.",
+        "Do not claim AINav turned Copilot off."
+      ]
+    },
+    {
+      "id": "industry.rollback",
+      "name": "Rollback desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "note": "A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU.",
+      "runbook": [
+        "Requires L1. Rollback is a new privileged write.",
+        "Seat A treasury_approver. Seat B treasury_controller.",
+        "One reversing bc.general_journal.post on the BC twin after both humans bind the same action_hash.",
+        "The second record shows the rollback was admitted. Not LIVE_PIN_OK."
+      ]
+    },
+    {
+      "id": "industry.board",
+      "name": "Board / examiner keep",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "ala_carte": true,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "note": "A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.",
+      "runbook": [
+        "Requires P-ADM after kit PASS. Not a SKU.",
+        "Export the second record, off-switch evidence, and reset Merkle root.",
+        "This is not an SEC mandate, SOX opinion, or EU AI Act certificate.",
+        "Do not invent a board or a regulator name."
+      ]
     }
   ],
   "libraries": [
@@ -1254,6 +1373,58 @@
         "governance.second_record.export"
       ],
       "note": "P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "lib.l1.plane",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": true,
+      "attach_usd": {
+        "min": 0,
+        "max": 0,
+        "term": "included"
+      },
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 control-plane library. One admit plane over the client's AI estate. Not a SKU."
+    },
+    {
+      "id": "lib.l1.off_switch",
+      "requires_sku": "L1",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 6000,
+        "max": 10000,
+        "term": "annual"
+      },
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU."
+    },
+    {
+      "id": "lib.padm.board",
+      "requires_sku": "P-ADM",
+      "sku": false,
+      "included_in_sku": false,
+      "attach_usd": {
+        "min": 5000,
+        "max": 8000,
+        "term": "annual"
+      },
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "note": "P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -1353,6 +1524,16 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.board_briefing",
+      "name": "Owner / board / examiner briefing",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -1641,7 +1822,13 @@
     "counterparties_utilize_ai": true,
     "do_not_invent_counterparty_names": true,
     "counterparty_ai": "The client's customers' AI drafting into the client's SoR \u2014 not a seat",
-    "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI"
+    "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI",
+    "sits_over_client_ai": true,
+    "must_have_for": [
+      "owner",
+      "board",
+      "examiner"
+    ]
   },
   "buyer": {
     "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.",
@@ -1667,7 +1854,11 @@
       "EU AI Act certified",
       "AINav replaces the client's AI",
       "customer's AI as dual",
-      "invented counterparty name"
+      "invented counterparty name",
+      "time-machine rollback",
+      "AINav powers down Copilot",
+      "mandated by SEC",
+      "AINav replaces all client AI"
     ],
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
     "contact_email": null,
@@ -2753,7 +2944,7 @@
     "replaces_counsel": false,
     "live": false,
     "live_pin_ok": false,
-    "thesis": "The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord.",
+    "thesis": "The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. AINav is not that AI. It is the human control plane that sits over all of them: failsafe, off switch, reset, rollback, first and second records. Client or counterparty AI drafts. The client's two humans admit. Then the write. No admit, no write.",
     "failsafe": {
       "does": "Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.",
       "separate_from": [
@@ -2848,6 +3039,20 @@
         "scope": "risk / compliance",
         "maps_to": "1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.",
         "claimed": false
+      },
+      {
+        "id": "fiduciary.duty",
+        "name": "Board fiduciary oversight of material AI write risk",
+        "scope": "US domestic / board",
+        "maps_to": "One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate.",
+        "claimed": false
+      },
+      {
+        "id": "coso.ic",
+        "name": "COSO internal control",
+        "scope": "US domestic / books",
+        "maps_to": "Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.",
+        "claimed": false
       }
     ],
     "risks": [
@@ -2890,6 +3095,26 @@
         "id": "missing_second_record",
         "harm": "The write landed and no sealed DecisionRecord exists for the examiner or the client's customer.",
         "note": "Second record is P-ADM keep. It is not the SoR first record. Not a certificate."
+      },
+      {
+        "id": "ai_sprawl",
+        "harm": "The client adds Copilot, Agent 365, BYO models, and vendor bots with no one plane over the writes.",
+        "note": "Every new AI is another unauthorized-write surface. The umbrella plane is the must-have. Not a fourth SKU."
+      },
+      {
+        "id": "no_off_switch",
+        "harm": "An incident happens and client AI keeps landing journals because nothing is fail-closed.",
+        "note": "The off switch is refuse-without-admit. It does not power down Copilot."
+      },
+      {
+        "id": "silent_rollback",
+        "harm": "Someone unwrites a journal, invoice, or order without two seats.",
+        "note": "Rollback is a compensating write that itself requires dual admit. Not a time machine."
+      },
+      {
+        "id": "board_blind",
+        "harm": "The board has an AI inventory and no evidence of who admitted the write or that the plane can freeze.",
+        "note": "Board keep is P-ADM second record plus off-switch and reset evidence. Not a filing."
       }
     ],
     "refuse": [
@@ -2902,9 +3127,13 @@
       "Cloud Agent as a seat",
       "LIVE_PIN_OK from a governance map",
       "customer's AI as dual",
-      "invented counterparty name"
+      "invented counterparty name",
+      "time-machine rollback",
+      "AINav powers down Copilot",
+      "mandated by SEC",
+      "AINav replaces all client AI"
     ],
-    "note": "Catalog map only. The client institutes AINav for their AI and their customers' AI. Not booked. Not a certification. Not recognized revenue. Do not invent counterparties. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+    "note": "Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
     "cascade": {
       "client_utilizes_ai": true,
       "counterparties_utilize_ai": true,
@@ -2941,6 +3170,43 @@
         "what": "Sealed DecisionRecord and Merkle keep of who admitted the write.",
         "plane": "P-ADM",
         "note": "Supporting books-and-records for examiners and the client's customers. Not a certificate."
+      }
+    },
+    "must_have": {
+      "sku": false,
+      "mandated": false,
+      "certified": false,
+      "why": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.",
+      "for": {
+        "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off.",
+        "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
+        "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing."
+      }
+    },
+    "plane": {
+      "sku": false,
+      "sits_over_client_ai": true,
+      "is_the_clients_ai": false,
+      "sits_over": [
+        "client AI",
+        "Microsoft 365 Copilot",
+        "Agent 365",
+        "BYO MCP",
+        "vendor bots",
+        "counterparty AI",
+        "cursor.cloud_agent"
+      ],
+      "off_switch": {
+        "does": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.",
+        "does_not": "Power down Copilot, Agent 365, or the client's model."
+      },
+      "reset": {
+        "does": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep.",
+        "does_not": "Wipe production Business Central or Sales."
+      },
+      "rollback": {
+        "does": "A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted.",
+        "does_not": "Silent undo or a time machine."
       }
     }
   }

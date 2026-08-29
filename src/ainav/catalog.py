@@ -120,6 +120,18 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "cascade equation is client's clients utilize AI \u00d7 client institutes AINav",
             reason_code="CATALOG_EQUATION",
         )
+    umbrella = str(equations.get("umbrella") or "").lower()
+    if "every client ai" not in umbrella or "one admit plane" not in umbrella:
+        raise IntegrityError(
+            "umbrella equation is every client AI \u00d7 one admit plane",
+            reason_code="CATALOG_EQUATION",
+        )
+    plane = str(equations.get("plane") or "").lower()
+    if "off-switch" not in plane or "rollback" not in plane:
+        raise IntegrityError(
+            "plane equation is failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback",
+            reason_code="CATALOG_EQUATION",
+        )
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
@@ -192,6 +204,9 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
         "live pin ok",
         "client ai as dual",
         "customer",
+        "time-machine",
+        "powers down",
+        "mandated",
     ):
         if stem not in refuse:
             raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
@@ -282,6 +297,12 @@ def _validate_icp(catalog: dict[str, Any]) -> None:
         raise IntegrityError("do not invent counterparty names", reason_code="ICP_NAMED")
     if "institutes" not in str(icp.get("institutes_ainav") or "").lower():
         raise IntegrityError("ICP client institutes AINav", reason_code="CATALOG_ICP")
+    if icp.get("sits_over_client_ai") is not True:
+        raise IntegrityError("ICP plane sits over client AI", reason_code="CATALOG_ICP")
+    needed = {"owner", "board", "examiner"}
+    have = {str(item).lower() for item in icp.get("must_have_for") or []}
+    if not needed <= have:
+        raise IntegrityError("ICP must-have is owner, board, examiner", reason_code="CATALOG_ICP")
 
 
 def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
@@ -415,6 +436,31 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
         raise IntegrityError("second record is the DecisionRecord", reason_code="CATALOG_GOVERNANCE")
     if "counterparty ai" not in separate:
         raise IntegrityError("failsafe must stay separate from counterparty AI", reason_code="CATALOG_GOVERNANCE")
+    plane_body = body.get("plane") or {}
+    if plane_body.get("sits_over_client_ai") is not True or plane_body.get("is_the_clients_ai") is True:
+        raise IntegrityError("plane sits over client AI and is not that AI", reason_code="CATALOG_GOVERNANCE")
+    if plane_body.get("sku") is True:
+        raise IntegrityError("the control plane is not a fourth SKU", reason_code="CATALOG_SKU")
+    switch = plane_body.get("off_switch") or {}
+    if "fail-closed" not in str(switch.get("does") or "").lower().replace(" ", "-") and "fail-closed" not in str(switch.get("does") or "").lower():
+        raise IntegrityError("off switch is fail-closed", reason_code="CATALOG_GOVERNANCE")
+    if "power" not in str(switch.get("does_not") or "").lower():
+        raise IntegrityError("off switch does not power down Copilot", reason_code="CATALOG_GOVERNANCE")
+    rollback = plane_body.get("rollback") or {}
+    if "compensating" not in str(rollback.get("does") or "").lower():
+        raise IntegrityError("rollback is a compensating write", reason_code="CATALOG_GOVERNANCE")
+    if "time machine" not in str(rollback.get("does_not") or "").lower():
+        raise IntegrityError("rollback is not a time machine", reason_code="CATALOG_GOVERNANCE")
+    must = body.get("must_have") or {}
+    if must.get("sku") is True or must.get("mandated") is True or must.get("certified") is True:
+        raise IntegrityError("must-have is not a SKU, mandate, or certificate", reason_code="CATALOG_GOVERNANCE")
+    audience = must.get("for") or {}
+    for who in ("owner", "board", "examiner"):
+        if not str(audience.get(who) or "").strip():
+            raise IntegrityError(f"must-have must name the {who}", reason_code="CATALOG_GOVERNANCE")
+    for stem in ("time-machine rollback", "powers down copilot", "mandated by sec"):
+        if stem not in refuse:
+            raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

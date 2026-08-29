@@ -40,6 +40,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "gov-records" in html or "id=\"gov-records\"" in html
     assert "First record" in html
     assert "Humans stay in control" in html
+    assert "gov-must" in html or 'id="gov-must"' in html
+    assert "gov-plane" in html or 'id="gov-plane"' in html
+    assert "off switch" in html.lower()
     gov = json.loads(Path("institute/governance.json").read_text(encoding="utf-8"))
     assert gov["kind"] == "ainav.governance.v1"
     assert gov["certified"] is False
@@ -50,6 +53,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "sor" in gov["records"]["first"]["what"].lower()
     assert gov["records"]["sku"] is False
     assert gov["records"]["certified"] is False
+    assert gov["must_have"]["mandated"] is False
+    assert gov["plane"]["sits_over_client_ai"] is True
+    assert "fail-closed" in gov["plane"]["off_switch"]["does"].lower()
     assert 'id="pack-industry"' in html
     assert 'id="pack-libraries"' in html
     assert "packs.json" in js
@@ -63,6 +69,10 @@ def test_institute_foundation_is_catalog_honest():
         "industry.retention",
         "industry.cascade",
         "industry.second_record",
+        "industry.control_plane",
+        "industry.off_switch",
+        "industry.rollback",
+        "industry.board",
     }
     assert 'id="fabric"' in html
     assert 'id="review"' in html

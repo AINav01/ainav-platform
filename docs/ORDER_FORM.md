@@ -30,6 +30,10 @@ Seats: treasury_approver / treasury_controller
 - **industry.oversight** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
 - **industry.cascade** — $6,000–$10,000 (annual) after L1. Not a SKU.
 - **industry.second_record** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
+- **industry.control_plane** — included with L1. Not a SKU.
+- **industry.off_switch** — $6,000–$10,000 (annual) after L1. Not a SKU.
+- **industry.rollback** — $6,000–$10,000 (annual) after L1. Not a SKU.
+- **industry.board** — $5,000–$8,000 (annual) after P-ADM. Not a SKU.
 
 ## Rules
 

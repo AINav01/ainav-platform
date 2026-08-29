@@ -110,7 +110,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.15.0 (this tree)
+### 2.16.0 (this tree)
+
+One human plane sits over every client AI that can draft a write.
+Failsafe, off switch, reset, rollback, first and second records.
+Off switch is fail-closed, not powering down Copilot. Rollback is a
+compensating write, not a time machine. Must-have for owner, board,
+and examiner is not a statute. Not a fourth SKU. Owner gaps stay open.
+
+### 2.15.0
 
 The client utilizes AI. The client's customers do too. The client
 institutes AINav and its stable of offerings as the failsafe.

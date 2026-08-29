@@ -44,6 +44,13 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert "first record" in md.lower()
     assert "second record" in md.lower()
     assert "cascade" in md.lower()
+    assert body["must_have"]["mandated"] is False
+    assert body["plane"]["sits_over_client_ai"] is True
+    assert body["plane"]["is_the_clients_ai"] is False
+    assert "fail-closed" in body["plane"]["off_switch"]["does"].lower()
+    assert "compensating" in body["plane"]["rollback"]["does"].lower()
+    assert "off switch" in md.lower()
+    assert "must-have" in md.lower()
 
 
 def test_governance_pack_is_included_l1_seating():
@@ -120,6 +127,18 @@ def test_cascade_desk_and_second_record_are_not_skus():
     booked = book_service("ffs.institute_failsafe", skus=("L1",))
     assert booked["billed"] is True
     assert booked["sku"] is None
+    plane = local.attach_industry("industry.control_plane")
+    assert plane["sku"] is False
+    assert plane["included_in_sku"] is True
+    switch = local.attach_industry("industry.off_switch")
+    assert switch["attach_usd"]["min"] == 6000
+    local.attach_industry("industry.rollback")
+    keep = provision_l1_padm("board-keep")
+    board = keep.attach_industry("industry.board")
+    assert board["requires_sku"] == "P-ADM"
+    assert board["sku"] is False
+    briefed = book_service("ffs.board_briefing", skus=("L1",))
+    assert briefed["billed"] is True
 
 
 def test_cascade_and_records_validators_refuse_fiction():
@@ -157,6 +176,30 @@ def test_cascade_and_records_validators_refuse_fiction():
     cat["governance"]["failsafe"]["separate_from"] = [
         item for item in cat["governance"]["failsafe"]["separate_from"] if "counterparty" not in item.lower()
     ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["equations"]["umbrella"] = "something else"
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["equations"]["plane"] = "something else"
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["icp"]["sits_over_client_ai"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["governance"]["must_have"]["mandated"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["governance"]["plane"]["is_the_clients_ai"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(cat)
+    cat = copy.deepcopy(load_catalog())
+    cat["governance"]["plane"]["rollback"]["does_not"] = "a memo"
     with pytest.raises(IntegrityError):
         validate_catalog(cat)
 

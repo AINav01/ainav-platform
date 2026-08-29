@@ -20,3 +20,6 @@ Must not change:
 - Client utilizes AI; AINav is the human-control failsafe
 - Client's customers utilizing AI still require the client's two humans
 - First record is the SoR write; second record is the DecisionRecord
+- One human plane sits over every client AI that can draft a write
+- Off switch is fail-closed, not powering down Copilot
+- Rollback is a dual-admitted compensating write, not a time machine

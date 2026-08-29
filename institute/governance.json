@@ -120,9 +120,61 @@
       "maps_to": "1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.",
       "name": "Three lines of defense",
       "scope": "risk / compliance"
+    },
+    {
+      "claimed": false,
+      "id": "fiduciary.duty",
+      "maps_to": "One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate.",
+      "name": "Board fiduciary oversight of material AI write risk",
+      "scope": "US domestic / board"
+    },
+    {
+      "claimed": false,
+      "id": "coso.ic",
+      "maps_to": "Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.",
+      "name": "COSO internal control",
+      "scope": "US domestic / books"
     }
   ],
-  "note": "Catalog map only. The client institutes AINav for their AI and their customers' AI. Not booked. Not a certification. Not recognized revenue. Do not invent counterparties. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+  "must_have": {
+    "certified": false,
+    "for": {
+      "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
+      "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.",
+      "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off."
+    },
+    "mandated": false,
+    "sku": false,
+    "why": "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
+  },
+  "note": "Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
+  "plane": {
+    "is_the_clients_ai": false,
+    "off_switch": {
+      "does": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.",
+      "does_not": "Power down Copilot, Agent 365, or the client's model."
+    },
+    "reset": {
+      "does": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep.",
+      "does_not": "Wipe production Business Central or Sales."
+    },
+    "rollback": {
+      "does": "A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted.",
+      "does_not": "Silent undo or a time machine."
+    },
+    "sits_over": [
+      "client AI",
+      "Microsoft 365 Copilot",
+      "Agent 365",
+      "BYO MCP",
+      "vendor bots",
+      "counterparty AI",
+      "cursor.cloud_agent"
+    ],
+    "sits_over_client_ai": true,
+    "sku": false
+  },
+  "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
   "records": {
     "certified": false,
     "first": {
@@ -149,7 +201,11 @@
     "Cloud Agent as a seat",
     "LIVE_PIN_OK from a governance map",
     "customer's AI as dual",
-    "invented counterparty name"
+    "invented counterparty name",
+    "time-machine rollback",
+    "AINav powers down Copilot",
+    "mandated by SEC",
+    "AINav replaces all client AI"
   ],
   "replaces_counsel": false,
   "risks": [
@@ -192,8 +248,29 @@
       "harm": "The write landed and no sealed DecisionRecord exists for the examiner or the client's customer.",
       "id": "missing_second_record",
       "note": "Second record is P-ADM keep. It is not the SoR first record. Not a certificate."
+    },
+    {
+      "harm": "The client adds Copilot, Agent 365, BYO models, and vendor bots with no one plane over the writes.",
+      "id": "ai_sprawl",
+      "note": "Every new AI is another unauthorized-write surface. The umbrella plane is the must-have. Not a fourth SKU."
+    },
+    {
+      "harm": "An incident happens and client AI keeps landing journals because nothing is fail-closed.",
+      "id": "no_off_switch",
+      "note": "The off switch is refuse-without-admit. It does not power down Copilot."
+    },
+    {
+      "harm": "Someone unwrites a journal, invoice, or order without two seats.",
+      "id": "silent_rollback",
+      "note": "Rollback is a compensating write that itself requires dual admit. Not a time machine."
+    },
+    {
+      "harm": "The board has an AI inventory and no evidence of who admitted the write or that the plane can freeze.",
+      "id": "board_blind",
+      "note": "Board keep is P-ADM second record plus off-switch and reset evidence. Not a filing."
     }
   ],
   "sku": false,
-  "thesis": "The client utilizes AI. The client's customers utilize AI. AINav is not that AI. The client institutes AINav and its stable of offerings as the failsafe and the human control. Client or counterparty AI drafts. The client's two humans admit. Then the write. First record is the SoR write. Second record is the sealed DecisionRecord."
+  "thesis": "The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. AINav is not that AI. It is the human control plane that sits over all of them: failsafe, off switch, reset, rollback, first and second records. Client or counterparty AI drafts. The client's two humans admit. Then the write. No admit, no write.",
+  "umbrella_equation": "every client AI \u00d7 one admit plane \u00d7 two-human control"
 }

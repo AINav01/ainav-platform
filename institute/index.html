@@ -59,13 +59,13 @@
   <main id="main">
     <section class="hero">
       <p class="kicker">Job C · AINav, Inc.</p>
-      <h1>The client utilizes AI.<br />Their customers do too.<br />Humans stay in control.</h1>
+      <h1>One human plane over every client AI.</h1>
       <p class="lede">
-        The client uses Copilot, agents, or their own model.
-        The client's customers are adding AI that can draft into the client's books.
-        AINav is not that AI. The client institutes AINav as the failsafe:
-        the client's two humans bind one action_hash, then the privileged write.
-        First record is the SoR write. Second record is the sealed DecisionRecord.
+        The client utilizes AI. Their customers do too. Every one of those systems
+        can draft a privileged write. AINav is not that AI. It is the failsafe and
+        the ultimate control plane that sits over all of them: off switch, reset,
+        rollback, first and second records. Humans stay in control. The client's
+        two humans bind one action_hash, then the write. No admit, no write.
         Microsoft hosts, identifies, notifies, and receives the write.
         Microsoft is not the product.
       </p>
@@ -277,11 +277,14 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <ul class="stack" id="pack-industry">
             <li><strong>industry.treasury</strong> — included with L1. Journal wedge.</li>
             <li><strong>industry.payables / bank / cash / fixed_asset / inventory</strong> — priced L1 desks.</li>
+            <li><strong>industry.control_plane</strong> — included with L1. One human gate over the client's AI estate.</li>
             <li><strong>industry.cascade</strong> — priced L1 desk. Client's customers utilize AI. Client's two humans admit.</li>
+            <li><strong>industry.off_switch / rollback</strong> — priced L1 desks. Fail-closed freeze. Compensating write. Not a time machine.</li>
             <li><strong>industry.sales / quote_desk</strong> — included with paid U-DUAL.</li>
             <li><strong>industry.invoice_desk / credit / returns / pricing</strong> — priced U-DUAL desks.</li>
             <li><strong>industry.retention</strong> — priced P-ADM keep. Not live Defender.</li>
             <li><strong>industry.second_record</strong> — priced P-ADM keep. Sealed DecisionRecord. Not a certificate.</li>
+            <li><strong>industry.board</strong> — priced P-ADM keep. Owner / board / examiner evidence. Not a filing.</li>
           </ul>
         </div>
         <div>
@@ -301,10 +304,12 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <h2>AI governance — a failsafe, not a certificate</h2>
       <p class="note">Catalog map only. Not a SKU. Not counsel. Not EU AI Act / NIST / ISO 42001 certified.</p>
       <p class="lede" id="gov-thesis">
-        The client utilizes AI. The client's customers utilize AI. The client institutes AINav. Two humans admit. Then the write.
+        The client utilizes AI. The client's customers utilize AI. AINav is the human control plane that sits over all of them.
       </p>
       <p class="note" id="gov-cascade">Cascade: client's clients utilize AI × client institutes AINav × two-human control. Do not invent counterparty names.</p>
       <p class="note" id="gov-records">First record: the admitted SoR write. Second record: the sealed DecisionRecord. Neither is a certificate.</p>
+      <p class="note" id="gov-must">Must-have for owner, board, and examiner. Not a statute. Not a fourth SKU.</p>
+      <p class="note" id="gov-plane">Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write. Not powering down Copilot. Not a time machine.</p>
       <div class="split">
         <div>
           <h3>Separate from</h3>

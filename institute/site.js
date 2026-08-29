@@ -32,6 +32,23 @@
           " Second record: " +
           data.records.second.what;
       }
+      var must = document.getElementById("gov-must");
+      if (must && data.must_have && data.must_have.why) {
+        must.textContent =
+          "Must-have: " +
+          data.must_have.why +
+          " For owner, board, examiner. Mandated: false. Not a fourth SKU.";
+      }
+      var plane = document.getElementById("gov-plane");
+      if (plane && data.plane && data.plane.off_switch && data.plane.rollback) {
+        plane.textContent =
+          "Off switch: " +
+          data.plane.off_switch.does +
+          " Reset: " +
+          (data.plane.reset && data.plane.reset.does ? data.plane.reset.does + " " : "") +
+          "Rollback: " +
+          data.plane.rollback.does;
+      }
       function fill(id, items, line) {
         var root = document.getElementById(id);
         if (!root || !items || !items.length) return;

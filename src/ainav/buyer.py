@@ -47,6 +47,8 @@ def icp_profile() -> dict[str, Any]:
         "named_customers": [],
         "do_not_invent_names": True,
         "do_not_invent_counterparty_names": True,
+        "sits_over_client_ai": bool(body.get("sits_over_client_ai")),
+        "must_have_for": list(body.get("must_have_for") or []),
     }
 
 
