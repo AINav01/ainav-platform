@@ -60,7 +60,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
 - Investor: catalog list × zero booked × two-human close
 - Investor packet: letter to Cynthia Hodnett with the full upsell catalog, list prices, ultimate-plane insulation, and the human interface / executive dashboard. Not a priced round. Not a forecast. Not an equity grant.
-- Interface: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
+- Interface: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - Does: Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.
 - Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote; counterparty AI.
@@ -278,6 +278,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.
 - Control equation is explicit: the client utilizes AI, AINav is the failsafe, two humans control the write.
 - The client's customers utilize AI. The client institutes AINav and the stable of offerings as the failsafe. First record is the SoR write; second record is the DecisionRecord.
+- The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs.
 
 ## Expert review — could be improved
 

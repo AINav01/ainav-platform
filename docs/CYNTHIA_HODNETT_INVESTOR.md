@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.27.0.
+29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.28.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -43,7 +43,7 @@ Owner and board oversee. They institute the plane and can ask for a freeze. They
 
 Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.
 
-The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.
+The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU. The client executive dashboard is included with L1. It is not an upsell. There is one dashboard. Do not sell Standard Dashboard versus Advanced Dashboard. Advanced provision adds priced desks, P-ADM keep, paid U-DUAL, and hours — not a second dashboard SKU.
 
 The floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.
 
@@ -53,7 +53,7 @@ The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only se
 
 Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.
 
-Provisioning is the commercial path on the same plane. Standard is L1, then kit PASS, then P-ADM. Upsell is paid U-DUAL and priced desks. Hours are fee-for-service after L1. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
+Provisioning is two bands on the same plane, not two more SKUs. Standard provision is included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive dashboard. Standard is not an upsell product. Advanced provision is the upsell band: priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
 
 Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.
 

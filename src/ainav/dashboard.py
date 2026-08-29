@@ -66,6 +66,87 @@ def _flag(value: Any) -> str:
     return str(value)
 
 
+def _desk_row(item: dict[str, Any]) -> dict[str, Any]:
+    usd = item.get("attach_usd") or {}
+    included = bool(item.get("included_in_sku"))
+    low = int(usd.get("min") or 0)
+    high = int(usd.get("max") or 0)
+    if included:
+        attach = str(usd.get("term") or "included")
+    elif high:
+        attach = f"${low:,}–${high:,}"
+    else:
+        attach = "priced"
+    return {
+        "id": item["id"],
+        "name": item.get("name") or item["id"],
+        "sku": item.get("requires_sku"),
+        "included": included,
+        "attach": attach,
+        "min": low,
+        "max": high,
+        "term": usd.get("term") or ("included" if included else "annual"),
+        "note": item.get("note") or "",
+    }
+
+
+def _ffs_row(item: dict[str, Any]) -> dict[str, Any]:
+    billable = bool(item.get("billable"))
+    rate = item.get("rate_usd_per_day")
+    return {
+        "id": item["id"],
+        "name": item.get("name") or item["id"],
+        "billable": billable,
+        "included_in": item.get("included_in"),
+        "rate": int(rate) if rate else 0,
+        "attaches_udual": bool(item.get("attaches_udual")),
+        "note": item.get("note") or "",
+    }
+
+
+def _provision_bands(cat: dict[str, Any], body: dict[str, Any]) -> dict[str, Any]:
+    packs = [item for item in cat.get("industry_packs") or [] if item.get("id")]
+    services = [item for item in cat.get("fee_for_service") or [] if item.get("id")]
+    spec = body.get("provision_bands") or {}
+    return {
+        "sku": False,
+        "note": spec.get("note") or "",
+        "items": [dict(item) for item in spec.get("items") or []],
+        "included_l1": [
+            _desk_row(item)
+            for item in packs
+            if item.get("requires_sku") == "L1" and item.get("included_in_sku")
+        ],
+        "priced_l1": [
+            _desk_row(item)
+            for item in packs
+            if item.get("requires_sku") == "L1" and not item.get("included_in_sku")
+        ],
+        "included_padm": [
+            _desk_row(item)
+            for item in packs
+            if item.get("requires_sku") == "P-ADM" and item.get("included_in_sku")
+        ],
+        "priced_padm": [
+            _desk_row(item)
+            for item in packs
+            if item.get("requires_sku") == "P-ADM" and not item.get("included_in_sku")
+        ],
+        "included_udual": [
+            _desk_row(item)
+            for item in packs
+            if item.get("requires_sku") == "U-DUAL" and item.get("included_in_sku")
+        ],
+        "priced_udual": [
+            _desk_row(item)
+            for item in packs
+            if item.get("requires_sku") == "U-DUAL" and not item.get("included_in_sku")
+        ],
+        "included_hours": [_ffs_row(item) for item in services if not item.get("billable")],
+        "priced_hours": [_ffs_row(item) for item in services if item.get("billable")],
+    }
+
+
 def _coverage(cat: dict[str, Any]) -> list[dict[str, Any]]:
     rows = []
     for item in cat.get("modules") or []:
@@ -261,6 +342,8 @@ def public_dashboard() -> dict[str, Any]:
         "authorizations": [dict(item) for item in body.get("authorizations") or []],
         "revocations": [dict(item) for item in body.get("revocations") or []],
         "provisioning": dict(body.get("provisioning") or {}),
+        "client_dashboard": dict(body.get("client_dashboard") or {}),
+        "provision_bands": _provision_bands(cat, body),
         "communications": [dict(item) for item in body.get("communications") or []],
         "records": [dict(item) for item in body.get("records") or []],
         "compliance_matrix": _compliance_matrix(maps),
@@ -403,19 +486,65 @@ def dashboard_markdown() -> str:
         )
     prov = body.get("provisioning") or {}
     attached = prov.get("attached") or {}
+    client_dash = body.get("client_dashboard") or {}
+    bands = body.get("provision_bands") or {}
     lines += [
         "",
-        "## Provisioning — standard and upsells",
+        "## Client executive dashboard — included with L1",
+        "",
+        f"{client_dash.get('thesis') or 'One client dashboard. Included with L1.'} "
+        f"SKU: {str(client_dash.get('sku')).lower()}. Upsell: "
+        f"{str(client_dash.get('upsell')).lower()}. Included with: "
+        f"{client_dash.get('included_with') or 'L1'}.",
+        "",
+        "## Provisioning — standard included, advanced upsell",
         "",
         f"Attached L1 {attached.get('L1', 0)} / P-ADM {attached.get('P-ADM', 0)} / "
         f"U-DUAL {attached.get('U-DUAL', 0)}. U-DUAL never free: "
-        f"{str(prov.get('u_dual_never_free')).lower()}. {prov.get('note') or ''}",
+        f"{str(prov.get('u_dual_never_free')).lower()}. {prov.get('note') or ''} "
+        f"{bands.get('note') or ''}",
+        "",
+    ]
+    for item in bands.get("items") or []:
+        lines.append(
+            f"- **{item['name']}** — SKU: {str(item.get('sku')).lower()}. "
+            f"Upsell: {str(item.get('upsell')).lower()}. {item.get('includes') or ''} "
+            f"{item.get('note') or ''}"
+        )
+    lines += [
         "",
         "| Step | State | Note |",
         "| --- | --- | --- |",
     ]
     for item in prov.get("path") or []:
         lines.append(f"| {item['name']} | {item['state']} | {item.get('note') or ''} |")
+    lines += [
+        "",
+        "| Desk / hour | Band | SKU | Attach | Note |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for label, rows in (
+        ("standard", bands.get("included_l1") or []),
+        ("advanced", bands.get("priced_l1") or []),
+        ("advanced", bands.get("included_padm") or []),
+        ("advanced", bands.get("priced_padm") or []),
+        ("advanced", bands.get("included_udual") or []),
+        ("advanced", bands.get("priced_udual") or []),
+    ):
+        for item in rows:
+            lines.append(
+                f"| {item['name']} | {label} | {item.get('sku') or ''} | "
+                f"{item.get('attach') or ''} | {item.get('note') or ''} |"
+            )
+    for item in bands.get("included_hours") or []:
+        lines.append(
+            f"| {item['name']} | standard | hours | included | {item.get('note') or ''} |"
+        )
+    for item in bands.get("priced_hours") or []:
+        rate = f"${item['rate']:,}/day" if item.get("rate") else "priced"
+        lines.append(
+            f"| {item['name']} | advanced | hours | {rate} | {item.get('note') or ''} |"
+        )
     lines += ["", "## Inter-communication", ""]
     for item in body.get("communications") or []:
         lines.append(
@@ -737,6 +866,64 @@ def dashboard_html() -> str:
         )
         for item in prov.get("path") or []
     )
+    client_dash = body.get("client_dashboard") or {}
+    bands = body.get("provision_bands") or {}
+    provision_bands = "".join(
+        (
+            f"<article data-tone=\"{'ready' if item.get('upsell') is not True else 'list'}\" "
+            f"data-band=\"{'advanced' if item.get('upsell') is True else 'standard'}\">"
+            f"<h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{'upsell band' if item.get('upsell') is True else 'included with L1'}</p>"
+            f"<p class=\"note\">SKU: {html.escape(str(item.get('sku')).lower())}. "
+            f"{html.escape(item.get('includes') or '')} {html.escape(item.get('note') or '')}</p>"
+            "</article>"
+        )
+        for item in bands.get("items") or []
+    )
+    desk_rows = []
+    for label, rows in (
+        ("standard", bands.get("included_l1") or []),
+        ("advanced", bands.get("priced_l1") or []),
+        ("advanced", bands.get("included_padm") or []),
+        ("advanced", bands.get("priced_padm") or []),
+        ("advanced", bands.get("included_udual") or []),
+        ("advanced", bands.get("priced_udual") or []),
+    ):
+        for item in rows:
+            desk_rows.append(
+                "<tr>"
+                f"<td>{html.escape(item['name'])}</td>"
+                f"<td>{html.escape(label)}</td>"
+                f"<td>{html.escape(str(item.get('sku') or ''))}</td>"
+                f"<td>{html.escape(str(item.get('attach') or ''))}</td>"
+                f"<td>{html.escape(item.get('note') or '')}</td>"
+                "</tr>"
+            )
+    for item in bands.get("included_hours") or []:
+        desk_rows.append(
+            "<tr>"
+            f"<td>{html.escape(item['name'])}</td>"
+            "<td>standard</td><td>hours</td><td>included</td>"
+            f"<td>{html.escape(item.get('note') or '')}</td>"
+            "</tr>"
+        )
+    for item in bands.get("priced_hours") or []:
+        rate = f"${item['rate']:,}/day" if item.get("rate") else "priced"
+        desk_rows.append(
+            "<tr>"
+            f"<td>{html.escape(item['name'])}</td>"
+            "<td>advanced</td><td>hours</td>"
+            f"<td>{html.escape(rate)}</td>"
+            f"<td>{html.escape(item.get('note') or '')}</td>"
+            "</tr>"
+        )
+    provision_desks = "".join(desk_rows)
+    client_dash_note = (
+        f"{html.escape(client_dash.get('thesis') or '')} "
+        f"SKU: {html.escape(str(client_dash.get('sku')).lower())}. "
+        f"Upsell: {html.escape(str(client_dash.get('upsell')).lower())}. "
+        f"Included with: {html.escape(str(client_dash.get('included_with') or 'L1'))}."
+    )
     communications = "".join(
         (
             f"<article data-tone=\"hold\"><h3>{html.escape(item['name'])}</h3>"
@@ -809,8 +996,11 @@ h2 {{ font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.1em; text-tr
 .path {{ display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 0 0 10pt; }}
 .lod {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .views {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
-.attention, .exceptions, .lifecycle {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
-.views article, .path article, .lod article, .attention article, .exceptions article, .lifecycle article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
+.attention, .exceptions, .lifecycle, .bands {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
+.views article, .path article, .lod article, .attention article, .exceptions article, .lifecycle article, .bands article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
+.bands {{ grid-template-columns: 1fr 1fr; }}
+.bands article[data-band="standard"] {{ box-shadow: inset 3pt 0 0 var(--ok); }}
+.bands article[data-band="advanced"] {{ box-shadow: inset 3pt 0 0 var(--gold); }}
 .cascade {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .cascade article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade h3 {{ font: 700 7pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
@@ -865,9 +1055,16 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="lifecycle">{authorizations}</div>
 <h2>Revocation</h2>
 <div class="lifecycle">{revocations}</div>
-<h2>Provisioning — standard and upsells</h2>
-<p class="note">U-DUAL is never free. Hours never attach U-DUAL. Attached 0 / 0 / 0. Not LIVE_PIN_OK.</p>
+<h2>Client executive dashboard — included with L1</h2>
+<p class="note">{client_dash_note}</p>
+<h2>Provisioning — standard included, advanced upsell</h2>
+<p class="note">U-DUAL is never free. Hours never attach U-DUAL. Attached 0 / 0 / 0. Not LIVE_PIN_OK. Bands are not SKUs.</p>
+<div class="bands">{provision_bands}</div>
 <div class="lifecycle">{provision_path}</div>
+<table>
+<thead><tr><th>Desk / hour</th><th>Band</th><th>SKU</th><th>Attach</th><th>Note</th></tr></thead>
+<tbody>{provision_desks}</tbody>
+</table>
 <h2>Inter-communication</h2>
 <p class="note">Notify only. A chat is not a seat. A mailbox is not the keep. Graph is not called.</p>
 <div class="lifecycle">{communications}</div>

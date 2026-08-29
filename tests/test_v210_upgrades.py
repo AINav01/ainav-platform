@@ -17,11 +17,15 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.27.0"
+    assert cat["entity"]["release"] == "2.28.0"
     assert "humans from the top" in cat["equations"]["interface"]
     assert "walkable rehearsal" in cat["equations"]["interface"]
     assert "authorization lifecycle" in cat["equations"]["interface"]
     assert "sealed records" in cat["equations"]["interface"]
+    assert "provision bands" in cat["equations"]["interface"]
+    assert cat["plane_interface"]["client_dashboard"]["included_with"] == "L1"
+    assert cat["plane_interface"]["client_dashboard"]["upsell"] is False
+    assert cat["plane_interface"]["dashboard"]["upsell"] is False
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False
     assert cat["investor"]["equity_offered"] is False

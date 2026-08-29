@@ -45,7 +45,15 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert tiles["recognized_revenue"]["tone"] == "hold"
     assert "claimed=false" in tiles["compliance_maps"]["value"]
     assert {item["role"] for item in body["cascade"]} >= {"oversee", "admit", "not_a_seat"}
-    assert {item["id"] for item in body["views"]} >= {"owner", "seats", "examiner", "remote", "provision", "records"}
+    assert {item["id"] for item in body["views"]} >= {
+        "owner",
+        "seats",
+        "examiner",
+        "remote",
+        "provision",
+        "records",
+        "client",
+    }
     assert {item["id"] for item in body["write_path"]} >= {"draft", "seat_a", "seat_b", "keep"}
     assert all(item["claimed"] is False for item in body["lines_of_defense"])
     assert all(item["live"] is False for item in body["coverage"])
@@ -62,6 +70,18 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert all(item["standing"] is False for item in body["authorizations"])
     assert body["provisioning"]["u_dual_never_free"] is True
     assert body["provisioning"]["attached"] == {"L1": 0, "P-ADM": 0, "U-DUAL": 0}
+    assert body["client_dashboard"]["sku"] is False
+    assert body["client_dashboard"]["upsell"] is False
+    assert body["client_dashboard"]["included_with"] == "L1"
+    assert body["provision_bands"]["sku"] is False
+    band_ids = {item["id"]: item for item in body["provision_bands"]["items"]}
+    assert band_ids["provision.standard"]["sku"] is False
+    assert band_ids["provision.standard"]["upsell"] is False
+    assert band_ids["provision.advanced"]["sku"] is False
+    assert band_ids["provision.advanced"]["upsell"] is True
+    assert any(item["id"] == "industry.control_plane" for item in body["provision_bands"]["included_l1"])
+    assert any(item["id"] == "industry.payables" for item in body["provision_bands"]["priced_l1"])
+    assert all(not item["attaches_udual"] for item in body["provision_bands"]["priced_hours"])
     assert all(item["seat"] is False and item["keep"] is False for item in body["communications"])
     assert all(item["certified"] is False for item in body["records"])
     assert all(item["claimed"] is False for item in body["compliance_matrix"])
@@ -79,6 +99,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert agent["draft"] is False
     md = dashboard_markdown()
     assert "humans sit from the top" in md.lower()
+    assert "client executive dashboard" in md.lower()
+    assert "standard included" in md.lower() or "included seating" in md.lower()
+    assert "upsell band" in md.lower()
     assert "not a sku" in md.lower()
     assert "$0" in md
     assert "same entra" in md.lower() or "same plane" in md.lower()
@@ -101,6 +124,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Zero-standing access" in html
     assert "Authorization lifecycle" in html
     assert "Provisioning" in html
+    assert "Client executive dashboard" in html
+    assert "included with l1" in html.lower()
+    assert "upsell band" in html.lower()
     assert "Inter-communication" in html
     assert "Record keeping" in html
     assert "compliance matrix" in html.lower()
@@ -155,6 +181,31 @@ def test_plane_interface_validators_refuse_fiction():
     free["plane_interface"]["provisioning"]["u_dual_never_free"] = False
     with pytest.raises(IntegrityError):
         validate_catalog(free)
+    dash_sku = copy.deepcopy(cat)
+    dash_sku["plane_interface"]["client_dashboard"]["sku"] = True
+    with pytest.raises(IntegrityError) as dash_exc:
+        validate_catalog(dash_sku)
+    assert dash_exc.value.reason_code == "CATALOG_SKU"
+    dash_upsell = copy.deepcopy(cat)
+    dash_upsell["plane_interface"]["client_dashboard"]["upsell"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(dash_upsell)
+    std_sku = copy.deepcopy(cat)
+    std_sku["plane_interface"]["provision_bands"]["items"][0]["sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(std_sku)
+    std_upsell = copy.deepcopy(cat)
+    std_upsell["plane_interface"]["provision_bands"]["items"][0]["upsell"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(std_upsell)
+    adv_sku = copy.deepcopy(cat)
+    adv_sku["plane_interface"]["provision_bands"]["items"][1]["sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(adv_sku)
+    adv_not_upsell = copy.deepcopy(cat)
+    adv_not_upsell["plane_interface"]["provision_bands"]["items"][1]["upsell"] = False
+    with pytest.raises(IntegrityError):
+        validate_catalog(adv_not_upsell)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):
@@ -195,8 +246,11 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-authorizations"' in floor
     assert 'id="plane-provision"' in floor
     assert 'id="plane-records"' in floor
+    assert 'id="plane-bands"' in floor
+    assert 'id="plane-desks"' in floor
     assert 'data-view-tab="provision"' in floor
     assert 'data-view-tab="records"' in floor
+    assert 'data-view-tab="client"' in floor
     assert "data-rehearse" in js or "runRehearsal" in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()

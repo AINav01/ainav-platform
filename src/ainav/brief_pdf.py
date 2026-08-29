@@ -433,15 +433,20 @@ def brief_document() -> list[dict[str, Any]]:
             "kind": "p",
             "text": (
                 "Standard provision is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra "
-                "identity, Teams notify. Standard pair adds cloud and local hosts on one ledger. "
-                "Industry packs seat the same admit plane: treasury and controller on the journal "
-                "wedge; payables, bank, cash, fixed-asset, and inventory as priced L1 desks; sales "
-                "and quote desk inside paid U-DUAL; invoice, credit, returns, and pricing as priced "
-                "U-DUAL desks; retention as a priced P-ADM keep; governance seating included with "
-                "L1; oversight keep as a priced P-ADM desk. Libraries bundle those modules. "
-                "Repositories hold the plane, catalog, Institute, finance, brief, review, packs, "
-                "runbooks, owner steps, counsel, and governance. None of those are SKUs. A la carte "
-                "is a desk attach on L1, P-ADM, or paid U-DUAL — never a fourth product."
+                "identity, Teams notify, and the client executive dashboard. The dashboard is "
+                "included with L1. It is not an upsell and not a SKU. There is one dashboard. Do "
+                "not sell Standard Dashboard versus Advanced Dashboard. Standard pair adds cloud "
+                "and local hosts on one ledger. Industry packs seat the same admit plane: treasury "
+                "and controller on the journal wedge; payables, bank, cash, fixed-asset, and "
+                "inventory as priced L1 desks; sales and quote desk inside paid U-DUAL; invoice, "
+                "credit, returns, and pricing as priced U-DUAL desks; retention as a priced P-ADM "
+                "keep; governance seating included with L1; oversight keep as a priced P-ADM desk. "
+                "Advanced provision is the upsell band — still not a SKU: priced desks, P-ADM keep, "
+                "paid U-DUAL, and fee-for-service hours after L1. U-DUAL is never free. Hours never "
+                "attach U-DUAL. Libraries bundle those modules. Repositories hold the plane, "
+                "catalog, Institute, finance, brief, review, packs, runbooks, owner steps, counsel, "
+                "and governance. None of those are SKUs. A la carte is a desk attach on L1, P-ADM, "
+                "or paid U-DUAL — never a fourth product."
             ),
         },
         {

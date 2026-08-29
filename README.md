@@ -110,7 +110,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.27.0 (this tree)
+### 2.28.0 (this tree)
+
+Client executive dashboard is included with L1 — not an upsell and not
+a SKU. One dashboard; do not sell Standard vs Advanced dashboard
+products. Provisioning is two bands on the three SKUs: standard is
+included seating (L1 packs, wedge, Entra, Teams notify, twin, proof
+day, the dashboard); advanced is the upsell band (priced desks, P-ADM,
+paid U-DUAL, hours). Neither band is a SKU. U-DUAL is never free.
+Attached 0/0/0. Not LIVE_PIN_OK.
+
+### 2.27.0
 
 Executive floor adds zero-standing access (identify is not admit; not a
 ZTNA SKU), authorization lifecycle and revocation, provisioning of the

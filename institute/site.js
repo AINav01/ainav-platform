@@ -343,6 +343,47 @@
           card(provision, { name: item.name, state: item.state, tone: "hold", note: item.note || "" });
         });
       }
+      var bands = document.getElementById("plane-bands");
+      if (bands && data.provision_bands && data.provision_bands.items) {
+        bands.textContent = "";
+        data.provision_bands.items.forEach(function (item) {
+          var upsell = item.upsell === true;
+          card(
+            bands,
+            {
+              name: item.name,
+              state: upsell ? "upsell band" : "included with L1",
+              tone: upsell ? "list" : "ready",
+              note: "SKU: " + String(item.sku).toLowerCase() + ". " + (item.includes || "") + " " + (item.note || "")
+            },
+            function (art) {
+              art.setAttribute("data-band", upsell ? "advanced" : "standard");
+            }
+          );
+        });
+      }
+      var deskRows = [];
+      function pushDesks(label, rows) {
+        (rows || []).forEach(function (item) {
+          deskRows.push([item.name, label, item.sku || "", item.attach || "", item.note || ""]);
+        });
+      }
+      if (data.provision_bands) {
+        pushDesks("standard", data.provision_bands.included_l1);
+        pushDesks("advanced", data.provision_bands.priced_l1);
+        pushDesks("advanced", data.provision_bands.included_padm);
+        pushDesks("advanced", data.provision_bands.priced_padm);
+        pushDesks("advanced", data.provision_bands.included_udual);
+        pushDesks("advanced", data.provision_bands.priced_udual);
+        (data.provision_bands.included_hours || []).forEach(function (item) {
+          deskRows.push([item.name, "standard", "hours", "included", item.note || ""]);
+        });
+        (data.provision_bands.priced_hours || []).forEach(function (item) {
+          var rate = item.rate ? ("$" + Number(item.rate).toLocaleString() + "/day") : "priced";
+          deskRows.push([item.name, "advanced", "hours", rate, item.note || ""]);
+        });
+      }
+      fillRows("plane-desks", deskRows, function (row) { return row; });
       if (data.zero_trust) {
         set("plane-zero-trust", data.zero_trust.does + " Does not: " + data.zero_trust.does_not);
         fill("plane-never-trust", data.zero_trust.never_trust || [], function (item) {
@@ -418,10 +459,18 @@
         }
         if (kind === "provision") {
           var attached = (data.provisioning && data.provisioning.attached) || {};
+          add("Standard provision", "included with L1", "Included seating. Not a SKU. Not an upsell product.");
+          add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + hours. Not a SKU. U-DUAL never free.");
           add("L1", String(attached.L1 || 0) + " attached", "Prove. $28–40k list. Not LIVE_PIN_OK.");
           add("P-ADM", String(attached["P-ADM"] || 0) + " attached", "Keep after kit PASS. Never bundles U-DUAL.");
           add("U-DUAL", String(attached["U-DUAL"] || 0) + " attached", "Never free. Hours never attach U-DUAL.");
-          add("Desks / hours", "0 attached", "Industry packs and FFS. Not SKUs.");
+        }
+        if (kind === "client") {
+          var dash = data.client_dashboard || {};
+          add("Client dashboard", "included with L1", dash.thesis || "One dashboard. Not a SKU. Not Standard vs Advanced dashboard products.");
+          add("Standard provision", "included", "L1 + included packs + wedge + Entra + Teams notify. Not a SKU. Not an upsell.");
+          add("Advanced provision", "upsell band", "Priced desks + P-ADM + paid U-DUAL + FFS. Not a SKU. U-DUAL never free.");
+          add("Attached SKUs", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast. Not LIVE_PIN_OK.");
         }
         if (kind === "records") {
           add("First record", "1 sandbox / 0 production", "AINAV-L1 lab operator identities.");
@@ -651,8 +700,9 @@
           inspector: "Examiner deck — bind inspector",
           access: "Remote deck — same Entra plane",
           host: "IT deck — host, not a seat",
-          provision: "Provision deck — standard and upsells",
-          records: "Records deck — first, second, keep"
+          provision: "Provision deck — standard included, advanced upsell",
+          records: "Records deck — first, second, keep",
+          client: "Client deck — one dashboard, two provision bands"
         };
         if (consoleTitle) consoleTitle.textContent = titles[consoleKind] || "Command console";
         if (consoleNote) {

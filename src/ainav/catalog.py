@@ -650,14 +650,59 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     if access.get("vpn_sku") is True:
         raise IntegrityError("remote access is not a VPN SKU", reason_code="CATALOG_SKU")
     dash = body.get("dashboard") or {}
-    if dash.get("sku") is True:
+    if dash.get("sku") is True or dash.get("upsell") is True:
         raise IntegrityError("dashboard is not a SKU", reason_code="CATALOG_SKU")
+    if dash.get("included_with") != "L1":
+        raise IntegrityError("dashboard is included with L1", reason_code="CATALOG_PLANE")
+    client_dash = body.get("client_dashboard")
+    if not isinstance(client_dash, dict):
+        raise IntegrityError("catalog missing client dashboard", reason_code="CATALOG_PLANE")
+    if client_dash.get("sku") is True or client_dash.get("upsell") is True:
+        raise IntegrityError("client dashboard is not a SKU or an upsell", reason_code="CATALOG_SKU")
+    if client_dash.get("included_with") != "L1":
+        raise IntegrityError("client dashboard is included with L1", reason_code="CATALOG_PLANE")
+    if client_dash.get("live") is True:
+        raise IntegrityError("client dashboard cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if client_dash.get("standard_vs_advanced_dashboard") is True:
+        raise IntegrityError("do not sell Standard vs Advanced dashboard", reason_code="CATALOG_SKU")
+    bands = body.get("provision_bands") or {}
+    if bands.get("sku") is True:
+        raise IntegrityError("provision bands are not a SKU", reason_code="CATALOG_SKU")
+    band_items = {item.get("id"): item for item in bands.get("items") or []}
+    if "provision.standard" not in band_items or "provision.advanced" not in band_items:
+        raise IntegrityError("provision bands must include standard and advanced", reason_code="CATALOG_PLANE")
+    standard = band_items["provision.standard"]
+    advanced = band_items["provision.advanced"]
+    if standard.get("sku") is True or advanced.get("sku") is True:
+        raise IntegrityError("a provision band is not a SKU", reason_code="CATALOG_SKU")
+    if standard.get("upsell") is True:
+        raise IntegrityError("standard provision is not an upsell", reason_code="CATALOG_PLANE")
+    if advanced.get("upsell") is not True:
+        raise IntegrityError("advanced provision is the upsell band", reason_code="CATALOG_PLANE")
+    if standard.get("requires_sku") != "L1" or advanced.get("requires_sku") != "L1":
+        raise IntegrityError("provision bands require L1", reason_code="CATALOG_PLANE")
+    if advanced.get("u_dual_never_free") is not True:
+        raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
+    for stem in ("dashboard as sku", "standard provision as sku", "advanced provision as sku"):
+        if stem not in refuse_blob:
+            raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")
     tiles = dash.get("tiles") or []
     for needed in ("plane_state", "recognized_revenue", "compliance_maps"):
         if needed not in tiles:
             raise IntegrityError(f"dashboard must tile {needed}", reason_code="CATALOG_PLANE")
     view_ids = [item.get("id") for item in body.get("views") or []]
-    for needed in ("entire", "owner", "seats", "examiner", "remote", "it", "provision", "records"):
+    for needed in (
+        "entire",
+        "owner",
+        "seats",
+        "examiner",
+        "remote",
+        "it",
+        "provision",
+        "records",
+        "client",
+    ):
         if needed not in view_ids:
             raise IntegrityError(f"plane views must include {needed}", reason_code="CATALOG_PLANE")
     for item in body.get("views") or []:

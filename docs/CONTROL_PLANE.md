@@ -1,10 +1,10 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.27.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.28.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
-**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, and records. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. Provisioning is L1, kit PASS, P-ADM, paid U-DUAL — desks and hours are not SKUs. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
+**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
-Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records.
+Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
@@ -29,6 +29,7 @@ Org: client org chart × existing SOD × one admit plane.
 - **IT / identity** — Host. Can: Host Copilot, Agent 365, BYO MCP. Block bypass tools. Cannot: Admit. Treat PIM as dual.
 - **Provision / upsells** — Owner / commercial. Can: See the L1 → kit → P-ADM → U-DUAL path and priced desks. Cannot: Mark LIVE_PIN_OK. Attach U-DUAL free. Invent a buyer.
 - **Records / keep** — Examiner / compliance. Can: Read first record, second record, weekly keep, and retention maps. Cannot: Admit. File. Certify. Treat a chat as the keep.
+- **Client executive** — Owner / buyer. Can: See the one client dashboard included with L1 and the standard versus advanced provision bands. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
 
 ## Write path
 
@@ -50,7 +51,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.27.0.
+- As of: catalog release 2.28.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -119,9 +120,16 @@ Entra object id on every request. Conditional Access may identify. Identify is n
 - **SKU detach** — Owner after counsel. Effect: classes_ungated. Detaching U-DUAL does not detach L1. Not a live pin.
 - **View revoke** — IT / identity. Effect: console_hidden. Hiding a console is not dual admit.
 
-## Provisioning — standard and upsells
+## Client executive dashboard — included with L1
 
-Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not booked. Not a forecast. Not LIVE_PIN_OK.
+One client dashboard. Included with L1. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU. SKU: false. Upsell: false. Included with: L1.
+
+## Provisioning — standard included, advanced upsell
+
+Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not booked. Not a forecast. Not LIVE_PIN_OK. Bands, not SKUs. Standard is included seating. Advanced is the upsell band. Desk lists derive from industry_packs so prices cannot drift.
+
+- **Standard provision** — SKU: false. Upsell: false. L1 + included L1 packs + lib.l1.wedge on bc.sandbox + Entra identity + Teams notify + twin + proof day + client executive dashboard Included seating. Not a SKU. Not an upsell product.
+- **Advanced provision** — SKU: false. Upsell: true. Priced L1 desks + P-ADM keep + paid U-DUAL + priced U-DUAL desks + FFS hours Upsell band. Not a SKU. Never free U-DUAL. Hours never attach U-DUAL. Not LIVE_PIN_OK.
 
 | Step | State | Note |
 | --- | --- | --- |
@@ -131,6 +139,48 @@ Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not b
 | P-ADM keep | 0 attached | $40–60k / year after kit PASS. Never bundles U-DUAL. |
 | U-DUAL deepen | 0 attached | $20–35k / year. Never free. Same plane onto Sales. |
 | Desks / hours | 0 attached | Industry packs and FFS. Not SKUs. Hours never attach U-DUAL. |
+
+| Desk / hour | Band | SKU | Attach | Note |
+| --- | --- | --- | --- | --- |
+| Treasury wedge | standard | L1 | included | Standard L1 industry shape. Not a SKU. |
+| Controller desk | standard | L1 | included | Same L1 wedge, controller seating. Not a SKU. |
+| AI failsafe desk | standard | L1 | included | L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification. |
+| Human control plane | standard | L1 | included | L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not a SKU. Not the client's AI. |
+| Client org seating | standard | L1 | included | L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads. |
+| Independent plane | standard | L1 | included | L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent. |
+| Payables desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Bank desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Cash desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Cash receipt and sales invoice. Not a SKU. |
+| Fixed-asset desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Inventory desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Not a SKU. |
+| Counterparty AI desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names. |
+| Off-switch desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU. |
+| Rollback desk | advanced | L1 | $6,000–$10,000 | A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU. |
+| Retention keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK. |
+| Oversight keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK. |
+| Second-record keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK. |
+| Board / examiner keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK. |
+| Internal-audit keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK. |
+| IP / reserved-work keep | advanced | P-ADM | $5,000–$8,000 | A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK. |
+| Sales deepen | advanced | U-DUAL | included | A la carte U-DUAL depth. Not a fourth SKU. |
+| Quote desk | advanced | U-DUAL | included | A la carte U-DUAL slice. Not a fourth SKU. |
+| Invoice desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Credit desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Returns desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Pricing desk | advanced | U-DUAL | $6,000–$10,000 | A la carte U-DUAL seating. Not a fourth SKU. |
+| Acceptance Kit / proof day | standard | hours | included | Inside L1. Not a SKU. |
+| Integration assist | advanced | hours | $3,500/day | Hours on the same admit plane. Not a SKU. Does not attach U-DUAL. |
+| Replay / Merkle workshop | advanced | hours | $3,500/day | Audit replay with the client. Not a SKU. |
+| Quarterly business review | advanced | hours | $3,500/day | Same-plane review. Not a SKU. Does not attach U-DUAL. |
+| Mothership operations assist | advanced | hours | $3,500/day | Local mothership runbook hours. Not a SKU. |
+| Industry pack seating | advanced | hours | $3,500/day | Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL. |
+| Desk workshop | advanced | hours | $3,500/day | Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL. |
+| P-ADM keep wiring | advanced | hours | $3,500/day | Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL. |
+| AI governance / failsafe workshop | advanced | hours | $3,500/day | Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL. |
+| Institute AINav failsafe | advanced | hours | $3,500/day | Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name. |
+| Owner / board / examiner briefing | advanced | hours | $3,500/day | Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name. |
+| Client org-chart workshop | advanced | hours | $3,500/day | Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL. |
+| IP / independence hygiene | advanced | hours | $3,500/day | Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL. |
 
 ## Inter-communication
 
@@ -169,7 +219,7 @@ Owner and board oversee. They institute the plane and can ask for a freeze. They
 
 Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.
 
-The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.
+The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU. The client executive dashboard is included with L1. It is not an upsell. There is one dashboard. Do not sell Standard Dashboard versus Advanced Dashboard. Advanced provision adds priced desks, P-ADM keep, paid U-DUAL, and hours — not a second dashboard SKU.
 
 The floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.
 
@@ -179,7 +229,7 @@ The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only se
 
 Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.
 
-Provisioning is the commercial path on the same plane. Standard is L1, then kit PASS, then P-ADM. Upsell is paid U-DUAL and priced desks. Hours are fee-for-service after L1. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
+Provisioning is two bands on the same plane, not two more SKUs. Standard provision is included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive dashboard. Standard is not an upsell product. Advanced provision is the upsell band: priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
 
 Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.
 
@@ -301,5 +351,9 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - notify as admit
 - chat as keep
 - certified records
+- dashboard as SKU
+- standard provision as SKU
+- advanced provision as SKU
+- standard vs advanced dashboard
 
-Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.
+Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.
