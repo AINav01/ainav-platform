@@ -1,8 +1,8 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.24.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.25.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
-**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.**
+**Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. The write path is draft, bind, two admits, first record, second record, keep. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.**
 
 Equation: humans from the top × one admit plane × hierarchical access × fail-closed tiles.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
@@ -19,6 +19,33 @@ Org: client org chart × existing SOD × one admit plane.
 - **Same plane** — Remote human
 - **Not a seat** — Cloud Agent / client AI
 
+## Hierarchical views — one plane
+
+- **Entire plane** — Anyone on the tenant. Can: See the ledger and the freeze state. Cannot: A view is not a seat.
+- **Owner / board** — Oversee. Can: Institute the plane. Request a freeze. Cannot: Click both admits. One title cannot be both seats.
+- **Seat A / seat B** — Treasury and controller. Can: Bind the action_hash. Refuse the write. Cannot: Be both seats. Let AI click.
+- **Examiner** — Internal audit. Can: Read first and second records and the seating map. Cannot: Admit. File. Certify.
+- **Remote human** — Same Entra object id. Can: Whatever their seat already allows, from any network. Cannot: Open a second plane. Use a VPN SKU.
+- **IT / identity** — Host. Can: Host Copilot, Agent 365, BYO MCP. Block bypass tools. Cannot: Admit. Treat PIM as dual.
+
+## Write path
+
+| Step | By | State | Note |
+| --- | --- | --- | --- |
+| Draft | Department AI / payables / sales | idle | Not a seat. |
+| Bind | The plane | none | action_hash. No live bind. |
+| Seat A | treasury_approver | 0 | Own Entra object id. Own click. |
+| Seat B | treasury_controller | 0 | Cynthia Hodnett invited, not recorded. |
+| First record | SoR after dual admit | 1 sandbox | AINAV-L1 lab oids. 0 production. |
+| Second record | Sealed DecisionRecord | 0 | P-ADM keep not attached. |
+| Keep | Examiner / board | none | Weekly export after kit PASS. |
+
+## Three lines of defense
+
+- **1LOD** — Dual admit on the write. Seat A and seat B. In force: true. Claimed: false.
+- **2LOD** — P-ADM keep / second record. Compliance keep after kit PASS. In force: false. Claimed: false.
+- **3LOD** — Independent assurance. Internal audit reads; not a named auditor. In force: false. Claimed: false.
+
 ## How humans sit from the top
 
 The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
@@ -28,6 +55,10 @@ Owner and board oversee. They institute the plane and can ask for a freeze. They
 Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.
 
 The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.
+
+The floor is one plane with hierarchical views. Owner and board see freeze and the off switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner sees the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views are not SKUs and not a second product.
+
+The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
 
 ## Hierarchy
 
@@ -98,6 +129,32 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - **Three lines of defense** — 1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed. Claimed: false.
 - **Board fiduciary oversight of material AI write risk** — One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate. Claimed: false.
 - **COSO internal control** — Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. Claimed: false.
+
+## Action coverage — same plane, none live
+
+| Class | SKU | Wedge | Live | Note |
+| --- | --- | --- | --- | --- |
+| bc.general_journal.post | L1 | true | false | Wedge. |
+| d365.quote.discount_override | U-DUAL | true | false | Wedge. |
+| d365.order.submit | U-DUAL | true | false | Wedge. |
+| bc.payment_journal.post | L1 | false | false | A la carte L1. Vendor or customer payment journal. Same admit plane. Not a SKU. |
+| bc.bank_reconciliation.post | L1 | false | false | A la carte L1. Bank reconciliation that hits the GL. Not a SKU. |
+| bc.purchase_invoice.post | L1 | false | false | A la carte L1. Purchase invoice post. Not a SKU. |
+| d365.invoice.post | U-DUAL | false | false | A la carte U-DUAL. Invoice post on the Sales twin until G14. Not a fourth SKU. |
+| d365.creditmemo.issue | U-DUAL | false | false | A la carte U-DUAL. Credit memo issue. Never free with P-ADM. |
+| bc.cash_receipt.post | L1 | false | false | A la carte L1. Cash receipt that hits the GL. Not a SKU. |
+| bc.sales_invoice.post | L1 | false | false | A la carte L1. Sales invoice post on the BC twin. Not a SKU. |
+| bc.fixed_asset.post | L1 | false | false | A la carte L1. Fixed-asset journal. Same admit plane. Not a SKU. |
+| bc.inventory.adjust | L1 | false | false | A la carte L1. Inventory adjustment that hits the GL. Not a SKU. |
+| d365.return.authorize | U-DUAL | false | false | A la carte U-DUAL. Return authorization. Never free with P-ADM. |
+| d365.price.override | U-DUAL | false | false | A la carte U-DUAL. List-price override. Never free with P-ADM. |
+| d365.quote.void | U-DUAL | false | false | A la carte U-DUAL. Void an issued quote. Never free with P-ADM. |
+
+## Mechanics
+
+- **Off switch** — Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not. Does not: Power down Copilot, Agent 365, or the client's model.
+- **Reset** — Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep. Does not: Wipe production Business Central or Sales.
+- **Rollback** — A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted. Does not: Silent undo or a time machine.
 
 ## Refuse
 

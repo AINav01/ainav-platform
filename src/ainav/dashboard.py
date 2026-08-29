@@ -61,6 +61,58 @@ def _flag(value: Any) -> str:
     return str(value)
 
 
+def _coverage(cat: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = []
+    for item in cat.get("modules") or []:
+        if item.get("kind") != "action":
+            continue
+        rows.append(
+            {
+                "id": item["id"],
+                "sku": item["sku"],
+                "wedge": bool(item.get("wedge")),
+                "gated": True,
+                "live": False,
+                "sor": item.get("sor") or "",
+                "note": item.get("note") or ("Wedge." if item.get("wedge") else "Same plane. Not a SKU."),
+            }
+        )
+    return rows
+
+
+def _mechanics(gov: dict[str, Any]) -> list[dict[str, Any]]:
+    plane = gov.get("plane") or {}
+    rows = []
+    for ident, label in (("off_switch", "Off switch"), ("reset", "Reset"), ("rollback", "Rollback")):
+        body = plane.get(ident) or {}
+        rows.append(
+            {
+                "id": ident,
+                "name": label,
+                "does": body.get("does") or "",
+                "does_not": body.get("does_not") or "",
+            }
+        )
+    return rows
+
+
+def _ledger() -> dict[str, Any]:
+    return {
+        "pending_binds": 0,
+        "live": False,
+        "events": [
+            {
+                "id": "ainav-l1",
+                "kind": "first_record",
+                "where": "sandbox",
+                "action": "bc.general_journal.post",
+                "seats": "lab operator identities",
+                "note": "Not two named humans. Not production.",
+            }
+        ],
+    }
+
+
 def seating_cascade(levels: list[dict[str, Any]]) -> list[dict[str, Any]]:
     grouped: dict[str, list[str]] = {}
     for item in levels:
@@ -117,6 +169,13 @@ def public_dashboard() -> dict[str, Any]:
         "org_equation": cat["equations"].get("org"),
         "levels": [dict(item) for item in body["levels"]],
         "cascade": seating_cascade(list(body["levels"])),
+        "views": [dict(item) for item in body.get("views") or []],
+        "write_path": [dict(item) for item in body.get("write_path") or []],
+        "lines_of_defense": [dict(item) for item in body.get("lines_of_defense") or []],
+        "coverage": _coverage(cat),
+        "mechanics": _mechanics(gov),
+        "scenarios": [dict(item) for item in fin["scenarios"]],
+        "ledger": _ledger(),
         "access": dict(body["access"]),
         "dashboard": dict(body["dashboard"]),
         "tiles": tiles,
@@ -148,6 +207,36 @@ def dashboard_markdown() -> str:
     ]
     for item in body["cascade"]:
         lines.append(f"- **{item['label']}** — {', '.join(item['names'])}")
+    lines += [
+        "",
+        "## Hierarchical views — one plane",
+        "",
+    ]
+    for item in body["views"]:
+        lines.append(
+            f"- **{item['name']}** — {item['who']}. Can: {item.get('can')} Cannot: {item.get('cannot')}"
+        )
+    lines += [
+        "",
+        "## Write path",
+        "",
+        "| Step | By | State | Note |",
+        "| --- | --- | --- | --- |",
+    ]
+    for item in body["write_path"]:
+        lines.append(
+            f"| {item['name']} | {item['by']} | {item['state']} | {item.get('note') or ''} |"
+        )
+    lines += [
+        "",
+        "## Three lines of defense",
+        "",
+    ]
+    for item in body["lines_of_defense"]:
+        lines.append(
+            f"- **{item['name']}** — {item['is']}. {item['who']}. "
+            f"In force: {str(item.get('in_force')).lower()}. Claimed: {str(item.get('claimed')).lower()}."
+        )
     lines += [
         "",
         "## How humans sit from the top",
@@ -205,6 +294,25 @@ def dashboard_markdown() -> str:
         lines.append(
             f"- **{item['name']}** — {item.get('maps_to')} Claimed: {str(item.get('claimed')).lower()}."
         )
+    lines += [
+        "",
+        "## Action coverage — same plane, none live",
+        "",
+        "| Class | SKU | Wedge | Live | Note |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for item in body["coverage"]:
+        lines.append(
+            f"| {item['id']} | {item['sku']} | {str(item['wedge']).lower()} | "
+            f"{str(item['live']).lower()} | {item.get('note') or ''} |"
+        )
+    lines += [
+        "",
+        "## Mechanics",
+        "",
+    ]
+    for item in body["mechanics"]:
+        lines.append(f"- **{item['name']}** — {item['does']} Does not: {item['does_not']}")
     lines += ["", "## Refuse", ""]
     for item in body["refuse"]:
         lines.append(f"- {item}")
@@ -287,6 +395,54 @@ def dashboard_html() -> str:
         "</tr>"
         for item in body["maps"]
     )
+    path = "".join(
+        (
+            f"<article data-tone=\"{html.escape(item.get('tone') or 'hold')}\">"
+            f"<h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{html.escape(str(item['state']))}</p>"
+            f"<p class=\"note\">{html.escape(item['by'])}. {html.escape(item.get('note') or '')}</p>"
+            "</article>"
+        )
+        for item in body["write_path"]
+    )
+    views = "".join(
+        (
+            f"<article data-view=\"{html.escape(item['id'])}\">"
+            f"<h3>{html.escape(item['name'])}</h3>"
+            f"<p>{html.escape(item['who'])}</p>"
+            f"<p class=\"note\">Can: {html.escape(item.get('can') or '')} Cannot: {html.escape(item.get('cannot') or '')}</p>"
+            "</article>"
+        )
+        for item in body["views"]
+    )
+    lod = "".join(
+        (
+            f"<article data-tone=\"{'ready' if item.get('in_force') else 'hold'}\">"
+            f"<h3>{html.escape(item['name'])}</h3>"
+            f"<p class=\"price\">{'in force' if item.get('in_force') else 'not claimed'}</p>"
+            f"<p class=\"note\">{html.escape(item['is'])}. {html.escape(item['who'])}.</p>"
+            "</article>"
+        )
+        for item in body["lines_of_defense"]
+    )
+    coverage = "".join(
+        "<tr>"
+        f"<td>{html.escape(item['id'])}</td>"
+        f"<td>{html.escape(item['sku'])}</td>"
+        f"<td>{'wedge' if item['wedge'] else 'desk'}</td>"
+        f"<td>live=false</td>"
+        f"<td>{html.escape(item.get('note') or '')}</td>"
+        "</tr>"
+        for item in body["coverage"]
+    )
+    mechanics = "".join(
+        (
+            f"<article class=\"panel\"><h3>{html.escape(item['name'])}</h3>"
+            f"<p>{html.escape(item['does'])}</p>"
+            f"<p class=\"note\">Does not: {html.escape(item['does_not'])}</p></article>"
+        )
+        for item in body["mechanics"]
+    )
     refuse = "".join(f"<li>{html.escape(item)}</li>" for item in body["refuse"])
     access = body["access"]
     paras = "".join(
@@ -328,6 +484,10 @@ h2 {{ font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.1em; text-tr
 [data-tone="ready"] .price, [data-tone="lab"] .price {{ color: var(--ok); }}
 [data-tone="hold"] .price, [data-tone="list"] .price, [data-tone="map"] .price {{ color: var(--hold); }}
 .note {{ font: 7.8pt Helvetica, Arial, sans-serif; color: var(--mute); margin: 0; }}
+.path {{ display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 0 0 10pt; }}
+.lod {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
+.views {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
+.views article, .path article, .lod article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .cascade article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
 .cascade h3 {{ font: 700 7pt Helvetica, Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
@@ -362,6 +522,13 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="wrap">
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="equation">Interface = {html.escape(body.get('equation') or '')}</p>
+<h2>Hierarchical views — one plane</h2>
+<p class="note">Views are not SKUs. Same Entra plane. Same consume ledger.</p>
+<div class="views">{views}</div>
+<h2>Write path — draft to keep</h2>
+<div class="path">{path}</div>
+<h2>Three lines of defense</h2>
+<div class="lod">{lod}</div>
 <h2>Real-time tiles — admit ledger, not invented P&amp;L</h2>
 <p class="note">{html.escape(body['dashboard'].get('realtime_means') or '')}</p>
 <div class="cards">{tiles}</div>
@@ -392,6 +559,13 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
   </div>
 </div>
 <p class="note">Same plane: yes. Second remote plane: no. VPN SKU: no. PIM is not dual. Teams is not a seat.</p>
+<h2>Mechanics</h2>
+<div class="split">{mechanics}</div>
+<h2>Action coverage — same plane, none live</h2>
+<table>
+<thead><tr><th>Class</th><th>SKU</th><th>Kind</th><th>Live</th><th>Note</th></tr></thead>
+<tbody>{coverage}</tbody>
+</table>
 <h2>AI compliance maps</h2>
 <table>
 <thead><tr><th>Instrument</th><th>Maps to</th><th>Scope</th><th>Claimed</th></tr></thead>

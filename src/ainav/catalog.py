@@ -646,6 +646,23 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     for needed in ("plane_state", "recognized_revenue", "compliance_maps"):
         if needed not in tiles:
             raise IntegrityError(f"dashboard must tile {needed}", reason_code="CATALOG_PLANE")
+    view_ids = [item.get("id") for item in body.get("views") or []]
+    for needed in ("entire", "owner", "seats", "examiner", "remote", "it"):
+        if needed not in view_ids:
+            raise IntegrityError(f"plane views must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("views") or []:
+        if item.get("sku") is True:
+            raise IntegrityError("a view is not a SKU", reason_code="CATALOG_SKU")
+    path_ids = [item.get("id") for item in body.get("write_path") or []]
+    for needed in ("draft", "seat_a", "seat_b", "first_record", "keep"):
+        if needed not in path_ids:
+            raise IntegrityError(f"write path must include {needed}", reason_code="CATALOG_PLANE")
+    lod_ids = [item.get("id") for item in body.get("lines_of_defense") or []]
+    if not {"1lod", "2lod", "3lod"} <= set(lod_ids):
+        raise IntegrityError("three lines of defense are required", reason_code="CATALOG_PLANE")
+    for item in body.get("lines_of_defense") or []:
+        if item.get("claimed") is True:
+            raise IntegrityError("lines of defense are not a certificate", reason_code="CATALOG_PLANE")
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

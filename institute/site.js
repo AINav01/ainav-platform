@@ -209,6 +209,97 @@
       fillRows("plane-maps", data.maps || [], function (item) {
         return [item.name, item.maps_to || "", item.scope || "", "claimed=" + String(item.claimed)];
       });
+      function card(root, item, extra) {
+        var art = document.createElement("article");
+        if (item.tone) art.setAttribute("data-tone", item.tone);
+        if (extra) extra(art, item);
+        var h = document.createElement("h3");
+        h.textContent = item.name || item.label || "";
+        var p = document.createElement("p");
+        p.className = "price";
+        p.textContent = item.state || item.price || "";
+        var n = document.createElement("p");
+        n.className = "note";
+        n.textContent = item.note || "";
+        art.appendChild(h);
+        if (p.textContent) art.appendChild(p);
+        art.appendChild(n);
+        root.appendChild(art);
+        return art;
+      }
+      var path = document.getElementById("plane-path");
+      if (path && data.write_path && data.write_path.length) {
+        path.textContent = "";
+        data.write_path.forEach(function (item) {
+          card(path, item, function (art) {
+            art.setAttribute("data-step", item.id || "");
+            var note = art.querySelector(".note");
+            if (note) note.textContent = item.by + ". " + (item.note || "");
+          });
+        });
+      }
+      var lod = document.getElementById("plane-lod");
+      if (lod && data.lines_of_defense && data.lines_of_defense.length) {
+        lod.textContent = "";
+        data.lines_of_defense.forEach(function (item) {
+          card(lod, {
+            name: item.name,
+            state: item.in_force ? "in force" : "not claimed",
+            tone: item.in_force ? "ready" : "hold",
+            note: item.is + ". " + item.who + ". " + (item.note || "")
+          });
+        });
+      }
+      var ledger = document.getElementById("plane-ledger");
+      if (ledger && data.ledger) {
+        ledger.textContent = "";
+        var pending = document.createElement("article");
+        pending.innerHTML = "<h3>Pending binds</h3><p class=\"price\">" +
+          String(data.ledger.pending_binds || 0) +
+          "</p><p class=\"note\">No named treasury pair has a live bind.</p>";
+        ledger.appendChild(pending);
+        (data.ledger.events || []).forEach(function (item) {
+          var art = document.createElement("article");
+          art.innerHTML = "<h3>" + item.kind + " · " + item.where + "</h3><p>" +
+            item.action + "</p><p class=\"note\">" + item.seats + ". " + (item.note || "") + "</p>";
+          ledger.appendChild(art);
+        });
+      }
+      fillRows("plane-coverage", data.coverage || [], function (item) {
+        return [item.id, item.sku, item.wedge ? "wedge" : "desk", "live=false", item.note || ""];
+      });
+      var mech = document.getElementById("plane-mechanics");
+      if (mech && data.mechanics && data.mechanics.length) {
+        mech.textContent = "";
+        data.mechanics.forEach(function (item) {
+          var art = document.createElement("article");
+          art.innerHTML = "<h3></h3><p></p><p class=\"note\"></p>";
+          art.querySelector("h3").textContent = item.name;
+          art.querySelector("p").textContent = item.does;
+          art.querySelector(".note").textContent = "Does not: " + item.does_not;
+          mech.appendChild(art);
+        });
+      }
+      var viewCard = document.getElementById("plane-view-card");
+      var viewById = {};
+      (data.views || []).forEach(function (item) { viewById[item.id] = item; });
+      function showView(id) {
+        var item = viewById[id] || viewById.entire;
+        document.body.setAttribute("data-view", id);
+        document.querySelectorAll("[data-view-tab]").forEach(function (btn) {
+          btn.setAttribute("aria-selected", btn.getAttribute("data-view-tab") === id ? "true" : "false");
+        });
+        if (viewCard && item) {
+          viewCard.querySelector("h3").textContent = item.name;
+          viewCard.querySelector("p").textContent =
+            item.who + ". Can: " + (item.can || "") + " Cannot: " + (item.cannot || "");
+        }
+      }
+      document.querySelectorAll("[data-view-tab]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          showView(btn.getAttribute("data-view-tab"));
+        });
+      });
       fill("plane-refuse", data.refuse || [], function (item) {
         return item;
       });

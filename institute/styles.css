@@ -302,6 +302,79 @@ table.law tr[data-role="admit"] { background: color-mix(in srgb, var(--ok) 14%, 
 table.law tr[data-role="oversee"] td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
 table.law tr[data-role="not_a_seat"] { color: var(--mute); }
 nav a[aria-current="page"] { color: var(--ink); }
+.plane-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.3rem 0 0.85rem;
+}
+.plane-views button {
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.plane-views button[aria-selected="true"] {
+  background: var(--void);
+  color: var(--void-ink);
+  border-color: var(--void);
+}
+.plane-view-card {
+  border: 1px solid var(--rule);
+  padding: 0.95rem 1.1rem 1.1rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+  margin: 0 0 1.2rem;
+}
+.plane-path, .plane-lod, .plane-mechanics {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 1.4rem;
+}
+@media (min-width: 800px) {
+  .plane-path { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .plane-lod { grid-template-columns: repeat(3, 1fr); }
+  .plane-mechanics { grid-template-columns: repeat(3, 1fr); }
+}
+.plane-path article, .plane-lod article, .plane-mechanics article, .plane-ledger article {
+  border: 1px solid var(--rule);
+  padding: 0.75rem 0.8rem 0.85rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+}
+.plane-path h3, .plane-lod h3, .plane-mechanics h3 {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 0.3rem;
+}
+.plane-path .price, .plane-lod .price {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  margin: 0.2rem 0 0.3rem;
+}
+.plane-path article[data-tone="lab"] .price,
+.plane-lod article[data-tone="ready"] .price { color: var(--ok); }
+.plane-path article[data-tone="hold"] .price,
+.plane-lod article[data-tone="hold"] .price { color: var(--hold); }
+.plane-path article[data-step="seat_a"],
+.plane-path article[data-step="seat_b"] {
+  background: var(--void);
+  color: var(--void-ink);
+  border-color: var(--void);
+}
+.plane-path article[data-step="seat_a"] h3,
+.plane-path article[data-step="seat_b"] h3 { color: var(--gold-2); }
+.plane-ledger { display: grid; gap: 0.55rem; margin: 0 0 1.4rem; }
+body[data-view]:not([data-view="entire"]) [data-for] { opacity: 0.38; }
+body[data-view="owner"] [data-for~="owner"],
+body[data-view="seats"] [data-for~="seats"],
+body[data-view="examiner"] [data-for~="examiner"],
+body[data-view="remote"] [data-for~="remote"],
+body[data-view="it"] [data-for~="it"] { opacity: 1; }
 .cards article {
   border: 1px solid var(--rule);
   padding: 1.25rem 1.15rem 1.45rem;

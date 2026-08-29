@@ -110,7 +110,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.24.0 (this tree)
+### 2.25.0 (this tree)
+
+Deep control-plane floor: hierarchical views (owner, seats, examiner,
+remote, IT), write path from draft to keep, three lines of defense,
+action coverage (none live), fail-closed mechanics. Same honest ledger.
+Not a fourth SKU. Not LIVE_PIN_OK.
+
+### 2.24.0
 
 Ultimate control plane interface: humans from the top of the client's
 org chart, hierarchical access, same-Entra remote, executive dashboard

@@ -45,6 +45,11 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert tiles["recognized_revenue"]["tone"] == "hold"
     assert "claimed=false" in tiles["compliance_maps"]["value"]
     assert {item["role"] for item in body["cascade"]} >= {"oversee", "admit", "not_a_seat"}
+    assert {item["id"] for item in body["views"]} >= {"owner", "seats", "examiner", "remote"}
+    assert {item["id"] for item in body["write_path"]} >= {"draft", "seat_a", "seat_b", "keep"}
+    assert all(item["claimed"] is False for item in body["lines_of_defense"])
+    assert all(item["live"] is False for item in body["coverage"])
+    assert body["ledger"]["pending_binds"] == 0
     md = dashboard_markdown()
     assert "humans sit from the top" in md.lower()
     assert "not a sku" in md.lower()
@@ -59,6 +64,10 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Department AI is not a seat" in html
     assert "data-tone=" in html
     assert "Seating cascade" in html
+    assert "Write path" in html
+    assert "Hierarchical views" in html
+    assert "Three lines of defense" in html
+    assert "bc.general_journal.post" in html
     path = write_dashboard()
     assert path.exists()
     assert Path("docs/CONTROL_PLANE.md").exists()
@@ -111,5 +120,9 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-tiles"' in floor
     assert 'id="plane-cascade"' in floor
     assert 'data-keep="short"' in floor
+    assert 'id="plane-path"' in floor
+    assert 'id="plane-view-tabs"' in floor
+    assert 'id="plane-lod"' in floor
+    assert 'id="plane-coverage"' in floor
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()

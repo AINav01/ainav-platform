@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.24.0.
+29 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.25.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -44,6 +44,10 @@ Owner and board oversee. They institute the plane and can ask for a freeze. They
 Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.
 
 The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.
+
+The floor is one plane with hierarchical views. Owner and board see freeze and the off switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner sees the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views are not SKUs and not a second product.
+
+The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
 
 ## Who buys, and why now
 

@@ -70,6 +70,143 @@
     }
   ],
   "certified": false,
+  "coverage": [
+    {
+      "gated": true,
+      "id": "bc.general_journal.post",
+      "live": false,
+      "note": "Wedge.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": true
+    },
+    {
+      "gated": true,
+      "id": "d365.quote.discount_override",
+      "live": false,
+      "note": "Wedge.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": true
+    },
+    {
+      "gated": true,
+      "id": "d365.order.submit",
+      "live": false,
+      "note": "Wedge.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": true
+    },
+    {
+      "gated": true,
+      "id": "bc.payment_journal.post",
+      "live": false,
+      "note": "A la carte L1. Vendor or customer payment journal. Same admit plane. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "bc.bank_reconciliation.post",
+      "live": false,
+      "note": "A la carte L1. Bank reconciliation that hits the GL. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "bc.purchase_invoice.post",
+      "live": false,
+      "note": "A la carte L1. Purchase invoice post. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "d365.invoice.post",
+      "live": false,
+      "note": "A la carte U-DUAL. Invoice post on the Sales twin until G14. Not a fourth SKU.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "d365.creditmemo.issue",
+      "live": false,
+      "note": "A la carte U-DUAL. Credit memo issue. Never free with P-ADM.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "bc.cash_receipt.post",
+      "live": false,
+      "note": "A la carte L1. Cash receipt that hits the GL. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "bc.sales_invoice.post",
+      "live": false,
+      "note": "A la carte L1. Sales invoice post on the BC twin. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "bc.fixed_asset.post",
+      "live": false,
+      "note": "A la carte L1. Fixed-asset journal. Same admit plane. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "bc.inventory.adjust",
+      "live": false,
+      "note": "A la carte L1. Inventory adjustment that hits the GL. Not a SKU.",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "d365.return.authorize",
+      "live": false,
+      "note": "A la carte U-DUAL. Return authorization. Never free with P-ADM.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "d365.price.override",
+      "live": false,
+      "note": "A la carte U-DUAL. List-price override. Never free with P-ADM.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false
+    },
+    {
+      "gated": true,
+      "id": "d365.quote.void",
+      "live": false,
+      "note": "A la carte U-DUAL. Void an issued quote. Never free with P-ADM.",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false
+    }
+  ],
   "dashboard": {
     "name": "Executive control-plane dashboard",
     "realtime_means": "Admit ledger and freeze state. Not invented P&L. Not live Production BC.",
@@ -206,8 +343,22 @@
   "institute": "AINAV.Institute",
   "invited": "Cynthia Hodnett",
   "kind": "ainav.plane.interface.v1",
+  "ledger": {
+    "events": [
+      {
+        "action": "bc.general_journal.post",
+        "id": "ainav-l1",
+        "kind": "first_record",
+        "note": "Not two named humans. Not production.",
+        "seats": "lab operator identities",
+        "where": "sandbox"
+      }
+    ],
+    "live": false,
+    "pending_binds": 0
+  },
   "legal": "AINav, Inc.",
-  "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.",
+  "letter": "The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.\n\nOwner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.\n\nHierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.\n\nThe executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU.\n\nThe floor is one plane with hierarchical views. Owner and board see freeze and the off switch. They are not seats. Seat A and seat B see pending binds and refuse. The examiner sees the first record, the second record, and the maps. Remote is the same Entra object id \u2014 Conditional Access may identify; it does not admit. IT hosts Copilot and agents. Views are not SKUs and not a second product.\n\nThe write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.",
   "levels": [
     {
       "admit": false,
@@ -300,6 +451,35 @@
       "role": "not_a_seat"
     }
   ],
+  "lines_of_defense": [
+    {
+      "claimed": false,
+      "id": "1lod",
+      "in_force": true,
+      "is": "Dual admit on the write",
+      "name": "1LOD",
+      "note": "The only line that binds the action_hash. Not a SOX opinion.",
+      "who": "Seat A and seat B"
+    },
+    {
+      "claimed": false,
+      "id": "2lod",
+      "in_force": false,
+      "is": "P-ADM keep / second record",
+      "name": "2LOD",
+      "note": "Not attached. Not live Purview.",
+      "who": "Compliance keep after kit PASS"
+    },
+    {
+      "claimed": false,
+      "id": "3lod",
+      "in_force": false,
+      "is": "Independent assurance",
+      "name": "3LOD",
+      "note": "Not claimed. Not a filing.",
+      "who": "Internal audit reads; not a named auditor"
+    }
+  ],
   "live": false,
   "live_pin_ok": false,
   "maps": [
@@ -381,6 +561,26 @@
       "scope": "US domestic / books"
     }
   ],
+  "mechanics": [
+    {
+      "does": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.",
+      "does_not": "Power down Copilot, Agent 365, or the client's model.",
+      "id": "off_switch",
+      "name": "Off switch"
+    },
+    {
+      "does": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep.",
+      "does_not": "Wipe production Business Central or Sales.",
+      "id": "reset",
+      "name": "Reset"
+    },
+    {
+      "does": "A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted.",
+      "does_not": "Silent undo or a time machine.",
+      "id": "rollback",
+      "name": "Rollback"
+    }
+  ],
   "note": "Interface seating of the three SKUs. Not a product. Not LIVE_PIN_OK.",
   "org_equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
   "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
@@ -397,7 +597,204 @@
     "remote second plane",
     "Cloud Agent as seat"
   ],
-  "release": "2.24.0",
+  "release": "2.25.0",
+  "scenarios": [
+    {
+      "id": "l1_only",
+      "if": "One controller buys L1 and stops.",
+      "max": 40000,
+      "min": 28000,
+      "n": 1,
+      "name": "One controller \u2014 L1 only",
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_padm",
+      "if": "One controller buys L1, kit PASS, then attaches P-ADM.",
+      "max": 100000,
+      "min": 68000,
+      "n": 1,
+      "name": "One controller \u2014 L1 then P-ADM",
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "all_three",
+      "if": "One controller buys L1, attaches P-ADM, then pays for U-DUAL.",
+      "max": 135000,
+      "min": 88000,
+      "n": 1,
+      "name": "One controller \u2014 all three SKUs",
+      "skus": [
+        "L1",
+        "P-ADM",
+        "U-DUAL"
+      ]
+    },
+    {
+      "id": "three_l1_padm",
+      "if": "Three controllers each buy L1 and attach P-ADM. No named buyers exist.",
+      "max": 300000,
+      "min": 204000,
+      "n": 3,
+      "name": "Three controllers \u2014 L1 + P-ADM each",
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "ffs_days": 4,
+      "id": "l1_plus_four_days",
+      "if": "One controller buys L1 and four billable days on the same plane.",
+      "max": 54000,
+      "min": 42000,
+      "n": 1,
+      "name": "One L1 plus four FFS days",
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_plus_cascade",
+      "if": "One controller buys L1 then attaches industry.cascade for their customers' AI.",
+      "max": 50000,
+      "min": 34000,
+      "n": 1,
+      "name": "One L1 plus counterparty AI desk",
+      "packs": [
+        "industry.cascade"
+      ],
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_padm_second_record",
+      "if": "One controller buys L1, attaches P-ADM, then attaches industry.second_record.",
+      "max": 108000,
+      "min": 73000,
+      "n": 1,
+      "name": "One controller \u2014 L1, P-ADM, second-record keep",
+      "packs": [
+        "industry.second_record"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "l1_plus_off_switch",
+      "if": "One controller buys L1 then attaches industry.off_switch so humans can freeze writes.",
+      "max": 50000,
+      "min": 34000,
+      "n": 1,
+      "name": "One L1 plus off-switch desk",
+      "packs": [
+        "industry.off_switch"
+      ],
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_padm_board",
+      "if": "One controller buys L1, attaches P-ADM, then attaches industry.board for owner/board/examiner evidence.",
+      "max": 108000,
+      "min": 73000,
+      "n": 1,
+      "name": "One controller \u2014 L1, P-ADM, board keep",
+      "packs": [
+        "industry.board"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "l1_padm_internal_audit",
+      "if": "One controller buys L1, attaches P-ADM, then attaches industry.internal_audit for the seating map.",
+      "max": 108000,
+      "min": 73000,
+      "n": 1,
+      "name": "One controller \u2014 L1, P-ADM, internal-audit keep",
+      "packs": [
+        "industry.internal_audit"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "l1_padm_ip_keep",
+      "if": "One controller buys L1, attaches P-ADM, then attaches industry.ip_keep for reserved-work notice.",
+      "max": 108000,
+      "min": 73000,
+      "n": 1,
+      "name": "One controller \u2014 L1, P-ADM, IP keep",
+      "packs": [
+        "industry.ip_keep"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "l1_plus_two_desks",
+      "if": "One controller buys L1 then attaches industry.payables and industry.bank.",
+      "max": 60000,
+      "min": 40000,
+      "n": 1,
+      "name": "One L1 plus payables and bank desks",
+      "packs": [
+        "industry.payables",
+        "industry.bank"
+      ],
+      "skus": [
+        "L1"
+      ]
+    },
+    {
+      "id": "l1_padm_oversight",
+      "if": "One controller buys L1, attaches P-ADM, then attaches industry.oversight.",
+      "max": 108000,
+      "min": 73000,
+      "n": 1,
+      "name": "One controller \u2014 L1, P-ADM, oversight keep",
+      "packs": [
+        "industry.oversight"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM"
+      ]
+    },
+    {
+      "id": "all_three_plus_desks",
+      "if": "One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit.",
+      "max": 155000,
+      "min": 100000,
+      "n": 1,
+      "name": "All three SKUs plus invoice and credit desks",
+      "packs": [
+        "industry.invoice_desk",
+        "industry.credit"
+      ],
+      "skus": [
+        "L1",
+        "P-ADM",
+        "U-DUAL"
+      ]
+    }
+  ],
   "seats": {
     "seat_a": {
       "role": "treasury_approver",
@@ -409,7 +806,7 @@
     }
   },
   "sku": false,
-  "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
+  "thesis": "Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, and IT. The write path is draft, bind, two admits, first record, second record, keep. The executive dashboard tiles the admit ledger and freeze state. It does not invent live P&L. AI compliance is a map, not a certificate. The interface is not a fourth SKU.",
   "tiles": [
     {
       "id": "plane_state",
@@ -494,6 +891,140 @@
       "note": "NIST, SOX, EU AI Act, ISO 42001. Not certified.",
       "tone": "map",
       "value": "11 instruments / claimed=false"
+    }
+  ],
+  "views": [
+    {
+      "admit": false,
+      "can": "See the ledger and the freeze state.",
+      "cannot": "A view is not a seat.",
+      "id": "entire",
+      "name": "Entire plane",
+      "shows": [
+        "tiles",
+        "path",
+        "org",
+        "maps"
+      ],
+      "who": "Anyone on the tenant"
+    },
+    {
+      "admit": false,
+      "can": "Institute the plane. Request a freeze.",
+      "cannot": "Click both admits. One title cannot be both seats.",
+      "id": "owner",
+      "name": "Owner / board",
+      "shows": [
+        "off_switch",
+        "signed_l1",
+        "seats"
+      ],
+      "who": "Oversee"
+    },
+    {
+      "admit": true,
+      "can": "Bind the action_hash. Refuse the write.",
+      "cannot": "Be both seats. Let AI click.",
+      "id": "seats",
+      "name": "Seat A / seat B",
+      "shows": [
+        "pending_admits",
+        "first_record"
+      ],
+      "who": "Treasury and controller"
+    },
+    {
+      "admit": false,
+      "can": "Read first and second records and the seating map.",
+      "cannot": "Admit. File. Certify.",
+      "id": "examiner",
+      "name": "Examiner",
+      "shows": [
+        "second_record",
+        "maps",
+        "lod"
+      ],
+      "who": "Internal audit"
+    },
+    {
+      "admit": "if_seated",
+      "can": "Whatever their seat already allows, from any network.",
+      "cannot": "Open a second plane. Use a VPN SKU.",
+      "id": "remote",
+      "name": "Remote human",
+      "shows": [
+        "access"
+      ],
+      "who": "Same Entra object id"
+    },
+    {
+      "admit": false,
+      "can": "Host Copilot, Agent 365, BYO MCP. Block bypass tools.",
+      "cannot": "Admit. Treat PIM as dual.",
+      "id": "it",
+      "name": "IT / identity",
+      "shows": [
+        "host"
+      ],
+      "who": "Host"
+    }
+  ],
+  "write_path": [
+    {
+      "by": "Department AI / payables / sales",
+      "id": "draft",
+      "name": "Draft",
+      "note": "Not a seat.",
+      "state": "idle",
+      "tone": "hold"
+    },
+    {
+      "by": "The plane",
+      "id": "bind",
+      "name": "Bind",
+      "note": "action_hash. No live bind.",
+      "state": "none",
+      "tone": "hold"
+    },
+    {
+      "by": "treasury_approver",
+      "id": "seat_a",
+      "name": "Seat A",
+      "note": "Own Entra object id. Own click.",
+      "state": "0",
+      "tone": "hold"
+    },
+    {
+      "by": "treasury_controller",
+      "id": "seat_b",
+      "name": "Seat B",
+      "note": "Cynthia Hodnett invited, not recorded.",
+      "state": "0",
+      "tone": "hold"
+    },
+    {
+      "by": "SoR after dual admit",
+      "id": "first_record",
+      "name": "First record",
+      "note": "AINAV-L1 lab oids. 0 production.",
+      "state": "1 sandbox",
+      "tone": "lab"
+    },
+    {
+      "by": "Sealed DecisionRecord",
+      "id": "second_record",
+      "name": "Second record",
+      "note": "P-ADM keep not attached.",
+      "state": "0",
+      "tone": "hold"
+    },
+    {
+      "by": "Examiner / board",
+      "id": "keep",
+      "name": "Keep",
+      "note": "Weekly export after kit PASS.",
+      "state": "none",
+      "tone": "hold"
     }
   ]
 }
