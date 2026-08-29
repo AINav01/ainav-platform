@@ -262,6 +262,19 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
   letter-spacing: 0.03em;
 }
 .plane-strip b { color: var(--gold-2); font-size: 0.92rem; }
+.plane-strip.plane-page-first {
+  background: color-mix(in srgb, var(--paper-2) 82%, white);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  margin-bottom: 0.65rem;
+}
+.plane-strip.plane-page-first b { color: var(--gold); }
+.band .equation { color: var(--gold-2); }
+.about-ainav {
+  max-width: var(--wide);
+}
+.about-ainav h2 { font-size: clamp(1.45rem, 2.4vw, 1.85rem); }
+#hero-sale { margin: 1.4rem 0 0; max-width: var(--wide); }
 .plane-cascade {
   display: grid;
   gap: 0.65rem;

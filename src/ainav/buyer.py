@@ -29,6 +29,8 @@ def buyer_page() -> dict[str, Any]:
         "not_the_gate": [dict(item) for item in ((cat.get("plane_interface") or {}).get("floor") or {}).get("not_the_gate") or []],
         "proof_close": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("proof_close") or {}),
         "no_means": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("no_means") or {}),
+        "sale": str((((cat.get("plane_interface") or {}).get("floor") or {}).get("page") or {}).get("sale") or ""),
+        "twin_is": str((((cat.get("plane_interface") or {}).get("floor") or {}).get("page") or {}).get("twin_is") or ""),
         "contact_email": None,
         "mailto": None,
         "icp": icp_profile(),

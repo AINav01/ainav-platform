@@ -433,6 +433,10 @@ def dashboard_markdown() -> str:
         f"{no_means.get('refuse') or ''} {no_means.get('fail_closed') or ''} "
         f"{no_means.get('off_switch') or ''}",
         "",
+        f"### {((body.get('floor') or {}).get('page') or {}).get('sale') or 'The sale is the ninety-minute proof.'}",
+        "",
+        f"{((body.get('floor') or {}).get('page') or {}).get('twin_is') or ''}",
+        "",
         f"Equation: {body.get('equation')}.",
         f"Plane: {body.get('plane_equation')}.",
         f"Org: {body.get('org_equation')}.",

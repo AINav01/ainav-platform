@@ -144,6 +144,14 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
+            "kind": "callout",
+            "title": "The sale is the ninety-minute proof",
+            "text": str(
+                (((cat.get("plane_interface") or {}).get("floor") or {}).get("page") or {}).get("twin_is")
+                or "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane."
+            ),
+        },
+        {
             "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },

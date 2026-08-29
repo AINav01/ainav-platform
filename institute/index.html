@@ -34,6 +34,7 @@
       <details class="nav-more">
         <summary>More</summary>
         <div>
+          <a href="#about">About AINav</a>
           <a href="#opportunity">Opportunity</a>
           <a href="#fabric">Fabric</a>
           <a href="#product">Product</a>
@@ -120,6 +121,7 @@
           <p>Refusing is the product working. If either person is missing, the write does not land. Off switch freezes new grants. Inference may continue. Consequence does not.</p>
         </article>
       </div>
+      <p class="equation" id="hero-sale">The sale is the ninety-minute proof. The product is the admit plane.</p>
       <div class="hero-actions">
         <a class="ask" href="#twin">Ninety-minute proof day</a>
         <a class="ghost" href="#buyer">The write that must not happen</a>
@@ -138,6 +140,8 @@
       </p>
       <p class="note" id="buyer-already">Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.</p>
       <p class="note" id="buyer-walk">Walk in: two existing treasury seats. Walk out: sealed DecisionRecord and Merkle / audit export. Refusing is the product working. If either person is missing, the write does not land.</p>
+      <p class="equation" id="buyer-sale">The sale is the ninety-minute proof.</p>
+      <p class="stages" id="week-path">This week: qualify → ninety-minute proof day → sell L1 → kit on the BC twin → refuse live pin. P-ADM attaches after kit PASS. U-DUAL is a later paid offer.</p>
       <div class="split">
         <div>
           <h3>Two seats</h3>
@@ -182,6 +186,8 @@
         "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
         "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
         "still_lack": "They do not have a gate in front of the write.",
+        "sale": "The sale is the ninety-minute proof.",
+        "twin_is": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
         "contact_email": null,
         "mailto": null,
         "live": false,
@@ -190,7 +196,8 @@
     </section>
 
     <section id="twin">
-      <h2>Microsoft twin bench</h2>
+      <h2>Proof day</h2>
+      <p class="kicker">Microsoft twin bench · The product is the admit plane.</p>
       <p class="note">The sale is the ninety-minute proof. Walk out with a sealed DecisionRecord and a Merkle / audit export. Browser twin only. Dynamics 365 Business Central, Sales, Teams, and SharePoint writes stay off this page. Not LIVE_PIN_OK. Not Production.</p>
       <p class="lede">
         Two distinct seats admit. Each privileged write binds its own action hash and is consumed once.
@@ -234,6 +241,28 @@
       <div class="ledger" id="twin-ledger" aria-live="polite"></div>
     </section>
 
+    <section id="product">
+      <h2>Product</h2>
+      <p class="note">The AINav Control Plane. Job C only.</p>
+      <ol class="flow">
+        <li>Agent proposes an action</li>
+        <li>Seat A and Seat B — distinct principals — bind <code>action_hash</code></li>
+        <li>The grant is consumed once</li>
+        <li>A DecisionRecord is sealed</li>
+        <li>SoR apply only if admit is ok</li>
+      </ol>
+      <pre class="snippet" tabindex="0"><code>from agent_gov import admit, ConsumeLedger, default_lockfile, EffectLedger
+
+rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
+            seat_a="oid-1", seat_b="oid-2")
+EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
+    </section>
+
+    <section id="about" class="about-ainav">
+      <h2>About AINav, Inc.</h2>
+      <p class="note">Company, catalog, and open items. The product is the admit plane. The sale is the ninety-minute proof.</p>
+    </section>
+
     <section id="opportunity">
       <h2>Business opportunity</h2>
       <p class="note">Catalog list prices. Not recognized revenue. No invented customer.</p>
@@ -259,7 +288,7 @@
         </article>
       </div>
       <p class="equation" id="opp-year-one">Year-one catalog list if one controller buys all three: $88–135k. Not recognized revenue.</p>
-      <p class="stages" id="week-path">This week: qualify → ninety-minute proof day → sell L1 → kit on the BC twin → refuse live pin. P-ADM attaches after kit PASS. U-DUAL is a later paid offer.</p>
+      <p class="stages">This week: qualify → ninety-minute proof day → sell L1 → kit on the BC twin → refuse live pin. P-ADM attaches after kit PASS. U-DUAL is a later paid offer.</p>
       <p class="note" id="opp-pipeline">Signed L1: 0. P-ADM attached: 0. U-DUAL attached: 0. Named customers: 0.</p>
       <p class="note" id="opp-revenue">Recognized revenue: none. Named customers: none.</p>
       <div class="split">
@@ -281,23 +310,6 @@
           </ul>
         </div>
       </div>
-    </section>
-
-    <section id="product">
-      <h2>Product</h2>
-      <p class="note">The AINav Control Plane. Job C only.</p>
-      <ol class="flow">
-        <li>Agent proposes an action</li>
-        <li>Seat A and Seat B — distinct principals — bind <code>action_hash</code></li>
-        <li>The grant is consumed once</li>
-        <li>A DecisionRecord is sealed</li>
-        <li>SoR apply only if admit is ok</li>
-      </ol>
-      <pre class="snippet" tabindex="0"><code>from agent_gov import admit, ConsumeLedger, default_lockfile, EffectLedger
-
-rec = admit(action, default_lockfile(), ledger=ConsumeLedger(),
-            seat_a="oid-1", seat_b="oid-2")
-EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="commercial">
@@ -405,7 +417,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane" class="plane-floor">
-      <p class="kicker">Ultimate control plane · 2.31.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 2.32.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
       <h2>Human control plane — interface</h2>
       <p class="note">Must-have for the named controller. From the top of the client's org chart through every drafting desk. Open the floor. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>

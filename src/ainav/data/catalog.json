@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.31.0",
+    "release": "2.32.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2377,7 +2377,9 @@
       "must-have as SKU",
       "must-have as mandate",
       "native approval as the plane",
-      "vendor-native as dual"
+      "vendor-native as dual",
+      "microsoft as the product",
+      "homepage as company first"
     ],
     "note": "Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.",
     "views": [
@@ -3086,7 +3088,15 @@
           "value": "Desks + keep + paid U-DUAL + hours",
           "note": "Not a SKU. included with U-DUAL is not free."
         }
-      ]
+      ],
+      "page": {
+        "product_first": true,
+        "twin_heading": "Proof day",
+        "twin_is": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+        "sale": "The sale is the ninety-minute proof.",
+        "product_path": ["buyer", "twin", "product"],
+        "company_after": "about"
+      }
     }
   },
   "honest_missing": [

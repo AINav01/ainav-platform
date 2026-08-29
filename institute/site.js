@@ -139,6 +139,10 @@
       if (data.floor && data.floor.not_the_gate) {
         paintCards("not-the-gate", data.floor.not_the_gate, "name", "note");
       }
+      if (data.floor && data.floor.page) {
+        set("plane-page-sale", data.floor.page.sale || "The sale is the ninety-minute proof.");
+        set("hero-sale", (data.floor.page.sale || "The sale is the ninety-minute proof.") + " The product is the admit plane.");
+      }
       if (data.floor && data.floor.proof_close) {
         var close = data.floor.proof_close;
         var noMeans = data.floor.no_means || {};
@@ -531,6 +535,9 @@
         var event = (data.ledger && data.ledger.events && data.ledger.events[0]) || {};
         if (kind === "inspector" || kind === "attention") {
           var must = (data.floor && data.floor.must_have) || data.must_have || {};
+          var page = (data.floor && data.floor.page) || {};
+          add("The sale", "ninety-minute proof", page.sale || "The sale is the ninety-minute proof.");
+          add("The twin", "the admit plane", page.twin_is || "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.");
           add("Must-have", "one plane over every new client AI", must.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
           add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
@@ -570,6 +577,9 @@
           add("The write that must not happen", "unauthorized journal", mustHave.incident || "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit.");
           add("Already have", "BC · Entra · SOD", (data.floor && data.floor.already_have) || "Controllers already have Business Central Premium, Entra, and two-person journal SOD.");
           add("Still lack", "the gate", (data.floor && data.floor.still_lack) || "They do not have a gate in front of the write.");
+          var page = (data.floor && data.floor.page) || {};
+          add("The sale", "ninety-minute proof", page.sale || "The sale is the ninety-minute proof.");
+          add("The twin", "the admit plane", page.twin_is || "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.");
           add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
           add("Board", "must-have", audience.board || "Inventory of models is not a control.");
           add("Examiner", "must-have", audience.examiner || "First record is the SoR write. Second record is who admitted it.");
@@ -1182,6 +1192,10 @@
         ((data.proof_close.walk_out || []).join(" and ") || "sealed DecisionRecord") +
         ". " +
         ((data.no_means && data.no_means.fail_closed) || "If either person is missing, the write does not land.");
+    }
+    var sale = document.getElementById("buyer-sale");
+    if (sale && (data.sale || (data.proof_close && data.proof_close.sale))) {
+      sale.textContent = data.sale || data.proof_close.sale;
     }
     function replaceList(id, items) {
       var node = document.getElementById(id);

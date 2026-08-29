@@ -751,6 +751,21 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     for needed in ("week_one", "included_seating", "advanced"):
         if needed not in scope_ids:
             raise IntegrityError(f"floor scopes must include {needed}", reason_code="CATALOG_PLANE")
+    page = floor.get("page") or {}
+    if page.get("product_first") is not True:
+        raise IntegrityError("homepage is product-first", reason_code="CATALOG_PLANE")
+    if str(page.get("twin_heading") or "") != "Proof day":
+        raise IntegrityError("twin heading is Proof day", reason_code="CATALOG_PLANE")
+    if str(page.get("twin_is") or "") != str(
+        (catalog.get("microsoft_stack") or {}).get("not_the_product") or ""
+    ):
+        raise IntegrityError("twin is a test of the plane", reason_code="CATALOG_PLANE")
+    if str(page.get("sale") or "") != str(close.get("sale") or ""):
+        raise IntegrityError("page sale must match proof close", reason_code="CATALOG_PLANE")
+    if list(page.get("product_path") or []) != ["buyer", "twin", "product"]:
+        raise IntegrityError("product path is buyer, twin, product", reason_code="CATALOG_PLANE")
+    if str(page.get("company_after") or "") != "about":
+        raise IntegrityError("company dump sits after about", reason_code="CATALOG_PLANE")
     if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
         raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
@@ -763,6 +778,8 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "must-have as mandate",
         "native approval as the plane",
         "vendor-native as dual",
+        "microsoft as the product",
+        "homepage as company first",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")

@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.31.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.32.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.31.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.32.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -27,6 +27,10 @@ The sale is the ninety-minute proof day. Ninety minutes. Client AI or a customer
 Vendor-native approval: A vendor-native button only covers that vendor. Teams vote: A chat is not a seat. A Teams vote is not dual admit. PIM activation: PIM is not dual admit. Eligible seats stay eligible. Copilot asking a human: Copilot asking a human leaves Agentforce and the counterparty's model ungated.
 
 Walk out of proof day with a sealed DecisionRecord and a Merkle / audit export. If either person is missing, or the apply fails, the write does not land and there is no fake success. Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not. Refusing is the product working.
+
+## The sale is the ninety-minute proof
+
+Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 ## Investor packet — print the letter with the full upsell catalog
 

@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.31.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.32.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -35,6 +35,10 @@ The sale is the ninety-minute proof. Two existing treasury seats. Client AI or a
 ### What no does
 
 Refusing is the product working. No grant. No SoR write. If either person is missing, or the apply fails, the write does not land and there is no fake success. Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.
+
+### The sale is the ninety-minute proof.
+
+Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
@@ -83,7 +87,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.31.0.
+- As of: catalog release 2.32.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -421,5 +425,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - must-have as mandate
 - native approval as the plane
 - vendor-native as dual
+- microsoft as the product
+- homepage as company first
 
 Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.

@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.31.0"
+    "release": "2.32.0"
   },
   "communications": [
     {
@@ -822,6 +822,18 @@
         "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
       }
     ],
+    "page": {
+      "company_after": "about",
+      "product_first": true,
+      "product_path": [
+        "buyer",
+        "twin",
+        "product"
+      ],
+      "sale": "The sale is the ninety-minute proof.",
+      "twin_heading": "Proof day",
+      "twin_is": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane."
+    },
     "proof_close": {
       "minutes": 90,
       "note": "Lab oids are not two named treasury humans. Not signed L1. Not LIVE_PIN_OK.",
@@ -2028,7 +2040,9 @@
     "must-have as SKU",
     "must-have as mandate",
     "native approval as the plane",
-    "vendor-native as dual"
+    "vendor-native as dual",
+    "microsoft as the product",
+    "homepage as company first"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -2045,7 +2059,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.31.0",
+  "release": "2.32.0",
   "revocations": [
     {
       "by": "Owner / board request",

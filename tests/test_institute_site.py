@@ -133,6 +133,12 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="agent-tools-steps"' in html
     assert "admin.microsoft.com" in html
     assert 'id="week-path"' in html
+    assert 'id="buyer-sale"' in html
+    assert 'id="hero-sale"' in html
+    assert 'id="about"' in html
+    assert html.index('id="buyer"') < html.index('id="twin"') < html.index('id="product"') < html.index('id="about"') < html.index('id="opportunity"')
+    assert "<h2>Proof day</h2>" in html
+    assert "The product is the admit plane" in html
     assert 'id="opp-year-one"' in html
     assert "Business Central" in html
     assert "Sales Enterprise" in html

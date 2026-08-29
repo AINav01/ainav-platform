@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.31.0"
+    assert cat["entity"]["release"] == "2.32.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -25,6 +25,13 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
         "copilot",
     }
     assert cat["plane_interface"]["floor"]["proof_close"]["walk_out"] == cat["proof_day"]["walk_out"]
+    page = cat["plane_interface"]["floor"]["page"]
+    assert page["product_first"] is True
+    assert page["twin_heading"] == "Proof day"
+    assert page["twin_is"] == cat["microsoft_stack"]["not_the_product"]
+    assert page["sale"] == cat["plane_interface"]["floor"]["proof_close"]["sale"]
+    assert page["product_path"] == ["buyer", "twin", "product"]
+    assert page["company_after"] == "about"
     assert "write does not land" in cat["plane_interface"]["floor"]["no_means"]["fail_closed"].lower()
     assert "business central" in cat["plane_interface"]["floor"]["already_have"].lower()
     assert "gate" in cat["plane_interface"]["floor"]["still_lack"].lower()
@@ -139,6 +146,7 @@ def test_printable_brief_is_a_pdf():
     assert md.lower().index("already have") < md.lower().index("investor packet")
     assert "owner, board, examiner" in md.lower()
     assert md.lower().index("not the gate") < md.lower().index("investor packet")
+    assert md.lower().index("the product is the admit plane") < md.lower().index("investor packet")
     assert "sealed decisionrecord" in md.lower()
     assert "ninety minutes" in md
     assert "Tuesday" in md

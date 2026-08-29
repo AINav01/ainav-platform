@@ -110,7 +110,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.31.0 (this tree)
+### 2.32.0 (this tree)
+
+A named controller can now name the incident, the SOD they already
+have, what is not the gate, what they walk out with, and what no does.
+They still could not tell that this page is the product, that the sale
+is the ninety-minute proof, or that the twin is a test of the plane.
+Homepage product path is buyer → twin → product, then About AINav, Inc.
+Twin heading is Proof day. Microsoft twin bench stays the fixture name.
+The product is the admit plane. Buyer prices sit under the sale line.
+Entire and Client consoles lead with sale and twin before the $0
+scoreboard.
+
+### 2.31.0
 
 A named controller can now name the incident and the SOD they already
 have. They still could not name what is not the gate, what they walk

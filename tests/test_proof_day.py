@@ -77,6 +77,8 @@ def test_buyer_page_has_no_inbox_or_named_customer():
     assert "journal" in page["write_that_must_not_happen"].lower()
     assert "client" in page["write_that_must_not_happen"].lower()
     assert page["seats"] == ["treasury_approver", "treasury_controller"]
+    assert page["sale"] == "The sale is the ninety-minute proof."
+    assert "admit plane" in page["twin_is"]
     brief = proof_day_brief()
     assert brief["forwardable"] is True
     assert brief["named_customer"] is None
