@@ -271,15 +271,22 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <ul class="stack">
             <li><strong>industry.treasury</strong> — L1 wedge. <code>bc.general_journal.post</code>.</li>
             <li><strong>industry.controller</strong> — same L1 wedge, controller seating.</li>
+            <li><strong>industry.payables</strong> — a la carte L1. Payment journal and purchase invoice.</li>
+            <li><strong>industry.bank</strong> — a la carte L1. Bank reconciliation.</li>
             <li><strong>industry.sales</strong> — paid U-DUAL deepen. Quote override and order submit.</li>
             <li><strong>industry.quote_desk</strong> — a la carte U-DUAL slice.</li>
+            <li><strong>industry.invoice_desk</strong> — a la carte U-DUAL. Invoice post.</li>
+            <li><strong>industry.credit</strong> — a la carte U-DUAL. Credit memo.</li>
           </ul>
         </div>
         <div>
-          <h3>Fee-for-service</h3>
+          <h3>Libraries and fee-for-service</h3>
           <ul class="stack">
+            <li><strong>lib.l1.wedge / lib.l1.payables / lib.l1.bank</strong> — L1 seating. Not SKUs.</li>
+            <li><strong>lib.udual.sales / lib.udual.quote_to_cash</strong> — paid U-DUAL. Never free with P-ADM.</li>
+            <li><strong>lib.padm.export / lib.padm.siem</strong> — P-ADM keep. Not live Sentinel.</li>
             <li><strong>Acceptance Kit</strong> — inside L1. Not an extra SKU.</li>
-            <li><strong>Integration assist / replay / QBR / mothership ops</strong> — $3,500/day on the same plane. Does not attach U-DUAL.</li>
+            <li><strong>Integration / replay / QBR / mothership ops / pack seating</strong> — $3,500/day after L1. Does not attach U-DUAL.</li>
           </ul>
         </div>
       </div>

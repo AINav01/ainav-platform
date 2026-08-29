@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.11.0",
+    "release": "2.12.0",
     "category": "Dual-admitted effect authority before privileged system-of-record writes"
   },
   "operating": {
@@ -307,39 +307,126 @@
       "roles": [
         "treasury_approver",
         "treasury_controller"
-      ]
+      ],
+      "wedge": true,
+      "upsell": false
     },
     {
       "id": "entra.seat.verify",
       "kind": "identity",
       "sku": "L1",
       "sor": "microsoft_entra_id",
-      "note": "Consumes Entra object ids. Does not replace the IdP."
+      "note": "Consumes Entra object ids. Does not replace the IdP.",
+      "wedge": false,
+      "upsell": false
     },
     {
       "id": "teams.notify",
       "kind": "notify",
       "sku": "L1",
       "sor": "microsoft_teams_premium",
-      "note": "Notify only. A Teams message is not a seat."
+      "note": "Notify only. A Teams message is not a seat.",
+      "wedge": false,
+      "upsell": false
     },
     {
       "id": "d365.quote.discount_override",
       "kind": "action",
       "sku": "U-DUAL",
-      "sor": "dynamics_365_sales_enterprise"
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": true,
+      "upsell": false
     },
     {
       "id": "d365.order.submit",
       "kind": "action",
       "sku": "U-DUAL",
-      "sor": "dynamics_365_sales_enterprise"
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": true,
+      "upsell": false
     },
     {
       "id": "purview.audit.export",
       "kind": "export",
       "sku": "P-ADM",
-      "sor": "microsoft_purview"
+      "sor": "microsoft_purview",
+      "wedge": false,
+      "upsell": false
+    },
+    {
+      "id": "bc.payment_journal.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Vendor or customer payment journal. Same admit plane. Not a SKU."
+    },
+    {
+      "id": "bc.bank_reconciliation.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Bank reconciliation that hits the GL. Not a SKU."
+    },
+    {
+      "id": "bc.purchase_invoice.post",
+      "kind": "action",
+      "sku": "L1",
+      "sor": "dynamics_365_business_central_premium",
+      "wedge": false,
+      "upsell": true,
+      "roles": [
+        "treasury_approver",
+        "treasury_controller"
+      ],
+      "note": "A la carte L1. Purchase invoice post. Not a SKU."
+    },
+    {
+      "id": "d365.invoice.post",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte U-DUAL. Invoice post on the Sales twin until G14. Not a fourth SKU."
+    },
+    {
+      "id": "d365.creditmemo.issue",
+      "kind": "action",
+      "sku": "U-DUAL",
+      "sor": "dynamics_365_sales_enterprise",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte U-DUAL. Credit memo issue. Never free with P-ADM."
+    },
+    {
+      "id": "sentinel.decision.export",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "microsoft_sentinel",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. DecisionRecord export sink. The mothership LAW is not Sentinel. Not LIVE_PIN_OK."
+    },
+    {
+      "id": "sharepoint.kit.seal",
+      "kind": "export",
+      "sku": "P-ADM",
+      "sor": "sharepoint",
+      "wedge": false,
+      "upsell": true,
+      "note": "A la carte P-ADM keep. Seal kit evidence in SharePoint. Not a seat."
     }
   ],
   "industry_packs": [
@@ -356,7 +443,9 @@
         "One bc.general_journal.post on the BC twin.",
         "Both humans bind the same action_hash.",
         "Walk out with a sealed DecisionRecord. Not signed L1."
-      ]
+      ],
+      "sku": false,
+      "ala_carte": false
     },
     {
       "id": "industry.sales",
@@ -371,7 +460,9 @@
         "Requires paid U-DUAL after kit PASS. Never free with P-ADM.",
         "Quote override and order submit on the Sales twin until G14.",
         "Same admit plane. Not a second product."
-      ]
+      ],
+      "sku": false,
+      "ala_carte": true
     },
     {
       "id": "industry.controller",
@@ -385,7 +476,9 @@
         "Same journal as industry.treasury. Different humans at the desk.",
         "Controller is seat B if the treasurer is seat A.",
         "Do not invent a fourth SKU to rename the desk."
-      ]
+      ],
+      "sku": false,
+      "ala_carte": true
     },
     {
       "id": "industry.quote_desk",
@@ -399,6 +492,74 @@
         "Same U-DUAL plane as industry.sales. Quote desk only.",
         "d365.quote.discount_override after paid attach.",
         "A quote without two seats is the write that must not happen."
+      ],
+      "sku": false,
+      "ala_carte": true
+    },
+    {
+      "id": "industry.payables",
+      "name": "Payables desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "modules": [
+        "bc.payment_journal.post",
+        "bc.purchase_invoice.post"
+      ],
+      "note": "A la carte L1 seating. Not a SKU.",
+      "runbook": [
+        "Requires L1. Does not mint a fourth SKU.",
+        "Seat A treasury_approver. Seat B treasury_controller.",
+        "bc.payment_journal.post and bc.purchase_invoice.post on the BC twin.",
+        "Walk out with a sealed DecisionRecord. Not signed L1. Not LIVE_PIN_OK."
+      ]
+    },
+    {
+      "id": "industry.bank",
+      "name": "Bank desk",
+      "requires_sku": "L1",
+      "sku": false,
+      "ala_carte": true,
+      "modules": [
+        "bc.bank_reconciliation.post"
+      ],
+      "note": "A la carte L1 seating. Not a SKU.",
+      "runbook": [
+        "Requires L1. Same admit plane as the journal wedge.",
+        "Two humans bind bc.bank_reconciliation.post.",
+        "A reconciliation without two seats is the write that must not happen."
+      ]
+    },
+    {
+      "id": "industry.invoice_desk",
+      "name": "Invoice desk",
+      "requires_sku": "U-DUAL",
+      "sku": false,
+      "ala_carte": true,
+      "modules": [
+        "d365.invoice.post"
+      ],
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "runbook": [
+        "Requires paid U-DUAL after kit PASS. Never free with P-ADM.",
+        "d365.invoice.post on the Sales twin until G14.",
+        "Same admit plane. Not a second product."
+      ]
+    },
+    {
+      "id": "industry.credit",
+      "name": "Credit desk",
+      "requires_sku": "U-DUAL",
+      "sku": false,
+      "ala_carte": true,
+      "modules": [
+        "d365.creditmemo.issue"
+      ],
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "runbook": [
+        "Requires paid U-DUAL. Never free with P-ADM.",
+        "d365.creditmemo.issue on the Sales twin.",
+        "A credit without two seats is the write that must not happen."
       ]
     }
   ],
@@ -435,6 +596,47 @@
         "teams.notify"
       ],
       "note": "Acceptance Kit evidence path. Not a SKU."
+    },
+    {
+      "id": "lib.l1.payables",
+      "requires_sku": "L1",
+      "modules": [
+        "bc.payment_journal.post",
+        "bc.purchase_invoice.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Not a SKU."
+    },
+    {
+      "id": "lib.l1.bank",
+      "requires_sku": "L1",
+      "modules": [
+        "bc.bank_reconciliation.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Not a SKU."
+    },
+    {
+      "id": "lib.udual.quote_to_cash",
+      "requires_sku": "U-DUAL",
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit",
+        "d365.invoice.post"
+      ],
+      "note": "A la carte U-DUAL library. Never free with P-ADM."
+    },
+    {
+      "id": "lib.padm.siem",
+      "requires_sku": "P-ADM",
+      "modules": [
+        "purview.audit.export",
+        "sentinel.decision.export",
+        "sharepoint.kit.seal"
+      ],
+      "note": "A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK."
     }
   ],
   "fee_for_service": [
@@ -484,6 +686,16 @@
       "billable": true,
       "rate_usd_per_day": 3500,
       "note": "Local mothership runbook hours. Not a SKU.",
+      "requires_l1": true,
+      "attaches_udual": false
+    },
+    {
+      "id": "ffs.pack_seating",
+      "name": "Industry pack seating",
+      "included_in": null,
+      "billable": true,
+      "rate_usd_per_day": 3500,
+      "note": "Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL.",
       "requires_l1": true,
       "attaches_udual": false
     }
@@ -577,19 +789,49 @@
       "id": "repo.agent_gov",
       "kind": "plane",
       "path": "src/agent_gov",
-      "note": "Job C admit plane. Not a SKU."
+      "note": "Job C admit plane. Not a SKU.",
+      "live": false,
+      "sku": false
     },
     {
       "id": "repo.catalog",
       "kind": "law",
       "path": "src/ainav/data/catalog.json",
-      "note": "Commercial law. Not a SKU."
+      "note": "Commercial law. Not a SKU.",
+      "live": false,
+      "sku": false
     },
     {
       "id": "repo.institute",
       "kind": "public",
       "path": "institute",
-      "note": "AINAV.Institute. Not a SKU. Public deploy is not claimed."
+      "note": "AINAV.Institute. Not a SKU. Public deploy is not claimed.",
+      "live": false,
+      "sku": false
+    },
+    {
+      "id": "repo.finance",
+      "kind": "law",
+      "path": "src/ainav/finance.py",
+      "note": "Catalog-list financial model. Not a SKU. Not recognized revenue.",
+      "live": false,
+      "sku": false
+    },
+    {
+      "id": "repo.brief",
+      "kind": "public",
+      "path": "src/ainav/brief_pdf.py",
+      "note": "Executive brief generator. Not a SKU. Not a contract.",
+      "live": false,
+      "sku": false
+    },
+    {
+      "id": "repo.review",
+      "kind": "law",
+      "path": "src/ainav/review.py",
+      "note": "Company review generator. Not a SKU.",
+      "live": false,
+      "sku": false
     }
   ],
   "operations": {

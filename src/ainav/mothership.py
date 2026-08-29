@@ -6,7 +6,16 @@ from typing import Any
 
 from agent_gov import AdmitClient, FileAuthorityStore, MemoryAuthorityStore, default_lockfile
 from agent_gov.store import AuthorityStore
-from ainav.catalog import ALLOWED_SKUS, action_classes_for, l1_action_classes, load_catalog, modules_for
+from ainav.catalog import (
+    ALLOWED_SKUS,
+    industry_pack,
+    l1_action_classes,
+    library,
+    load_catalog,
+    module_by_id,
+    modules_for,
+    wedge_action_classes,
+)
 from ainav.errors import ProvisionError
 from ainav.ip import screen_pack_label
 from ainav.microsoft.azure import AzureHost
@@ -84,7 +93,17 @@ class LocalMothership:
     def _allowed_actions(self) -> frozenset[str]:
         allowed: set[str] = set()
         for pack in self.packs:
-            allowed.update(action_classes_for(pack))
+            allowed.update(wedge_action_classes(pack))
+        for pack_id in self.industry:
+            for mid in industry_pack(pack_id)["modules"]:
+                module = module_by_id(mid)
+                if module.get("kind") == "action":
+                    allowed.add(mid)
+        for lib_id in self.libraries:
+            for mid in library(lib_id)["modules"]:
+                module = module_by_id(mid)
+                if module.get("kind") == "action":
+                    allowed.add(mid)
         return frozenset(allowed)
 
     def attach_pack(self, sku_id: str) -> None:
@@ -107,18 +126,34 @@ class LocalMothership:
         pack = require_industry(pack_id, skus=self.packs)
         if pack_id not in self.industry:
             self.industry = (*self.industry, pack_id)
+            self.allowed_actions = self._allowed_actions()
         return pack
 
     def attach_library(self, library_id: str) -> dict[str, Any]:
         lib = require_library(library_id, skus=self.packs)
         if library_id not in self.libraries:
             self.libraries = (*self.libraries, library_id)
+            self.allowed_actions = self._allowed_actions()
         return lib
 
     def modules(self) -> list[dict[str, Any]]:
+        seen: set[str] = set()
         out: list[dict[str, Any]] = []
         for pack in self.packs:
-            out.extend(modules_for(pack))
+            for item in modules_for(pack):
+                if item["id"] not in seen:
+                    seen.add(item["id"])
+                    out.append(item)
+        for pack_id in self.industry:
+            for mid in industry_pack(pack_id)["modules"]:
+                if mid not in seen:
+                    seen.add(mid)
+                    out.append(module_by_id(mid))
+        for lib_id in self.libraries:
+            for mid in library(lib_id)["modules"]:
+                if mid not in seen:
+                    seen.add(mid)
+                    out.append(module_by_id(mid))
         return out
 
     def book_service(self, service_id: str) -> dict[str, Any]:

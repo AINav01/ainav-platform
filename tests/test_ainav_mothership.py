@@ -6,7 +6,7 @@ import pytest
 
 from agent_gov import AdmitDenied, EffectBlocked
 from agent_gov.errors import IntegrityError
-from ainav.catalog import l1_action_classes, load_catalog, sku
+from ainav.catalog import l1_action_classes, load_catalog, sku, wedge_action_classes
 from ainav.errors import IPError, LivePinError, ProvisionError, SoftDualError
 from ainav.catalog import validate_catalog
 from ainav.microsoft.azure import AzureHost
@@ -29,7 +29,9 @@ def test_catalog_has_exactly_three_skus():
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     assert cat["operating"]["operator_is_seat"] is False
     assert cat["operating"]["agent_is_not_dual"] is True
-    assert l1_action_classes() == frozenset({"bc.general_journal.post"})
+    assert wedge_action_classes("L1") == frozenset({"bc.general_journal.post"})
+    assert "bc.general_journal.post" in l1_action_classes()
+    assert "bc.payment_journal.post" in l1_action_classes()
     assert sku("L1")["price_usd"]["min"] == 28000
 
 

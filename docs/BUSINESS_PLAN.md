@@ -46,6 +46,10 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **industry.sales** — Sales deepen (requires U-DUAL; A la carte U-DUAL depth. Not a fourth SKU.)
 - **industry.controller** — Controller desk (requires L1; Same L1 wedge, controller seating. Not a SKU.)
 - **industry.quote_desk** — Quote desk (requires U-DUAL; A la carte U-DUAL slice. Not a fourth SKU.)
+- **industry.payables** — Payables desk (requires L1; A la carte L1 seating. Not a SKU.)
+- **industry.bank** — Bank desk (requires L1; A la carte L1 seating. Not a SKU.)
+- **industry.invoice_desk** — Invoice desk (requires U-DUAL; A la carte U-DUAL seating. Not a fourth SKU.)
+- **industry.credit** — Credit desk (requires U-DUAL; A la carte U-DUAL seating. Not a fourth SKU.)
 
 ## Fee-for-service (not SKUs)
 
@@ -54,6 +58,7 @@ The unauthorized general-journal post that two humans did not admit. L1 is the w
 - **ffs.replay_workshop** — Replay / Merkle workshop ($3,500/day). Audit replay with the client. Not a SKU.
 - **ffs.qbr** — Quarterly business review ($3,500/day). Same-plane review. Not a SKU. Does not attach U-DUAL.
 - **ffs.mothership_ops** — Mothership operations assist ($3,500/day). Local mothership runbook hours. Not a SKU.
+- **ffs.pack_seating** — Industry pack seating ($3,500/day). Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL.
 
 ## Operations
 
@@ -87,6 +92,9 @@ Same Job C lockfile. One consume ledger per client. Master never writes the clie
 - **repo.agent_gov** — src/agent_gov. Job C admit plane. Not a SKU.
 - **repo.catalog** — src/ainav/data/catalog.json. Commercial law. Not a SKU.
 - **repo.institute** — institute. AINAV.Institute. Not a SKU. Public deploy is not claimed.
+- **repo.finance** — src/ainav/finance.py. Catalog-list financial model. Not a SKU. Not recognized revenue.
+- **repo.brief** — src/ainav/brief_pdf.py. Executive brief generator. Not a SKU. Not a contract.
+- **repo.review** — src/ainav/review.py. Company review generator. Not a SKU.
 
 ## Business operating system
 

@@ -32,11 +32,9 @@ def test_catalog_delivery_law():
     assert set(raci()) == {"master", "cloud", "local", "buyer", "owner", "operator"}
     assert "Not a seat" in raci()["operator"]
     assert "refuse live pin" in week_one()
-    assert [item["id"] for item in cat["repositories"]] == [
-        "repo.agent_gov",
-        "repo.catalog",
-        "repo.institute",
-    ]
+    ids = [item["id"] for item in cat["repositories"]]
+    assert ids[:3] == ["repo.agent_gov", "repo.catalog", "repo.institute"]
+    assert {"repo.finance", "repo.brief", "repo.review"} <= set(ids)
 
 
 def test_pair_shares_lockfile_and_consume_ledger():

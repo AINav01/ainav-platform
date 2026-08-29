@@ -84,6 +84,8 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_owner_gates(catalog)
     _validate_finance(catalog)
     _validate_expert_review(catalog)
+    _validate_upsells(catalog)
+    _validate_repositories(catalog)
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
@@ -263,6 +265,50 @@ def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
             raise IntegrityError("kit case must stay on the BC twin", reason_code="CATALOG_KIT")
 
 
+def _validate_upsells(catalog: dict[str, Any]) -> None:
+    wedges = [
+        m
+        for m in catalog.get("modules", [])
+        if m.get("kind") == "action" and m.get("wedge") is True
+    ]
+    l1_wedges = [m["id"] for m in wedges if m.get("sku") == "L1"]
+    if l1_wedges != ["bc.general_journal.post"]:
+        raise IntegrityError("L1 wedge stays the general journal", reason_code="CATALOG_WEDGE")
+    udual_wedges = {m["id"] for m in wedges if m.get("sku") == "U-DUAL"}
+    if udual_wedges != {"d365.quote.discount_override", "d365.order.submit"}:
+        raise IntegrityError("U-DUAL wedges stay quote and order", reason_code="CATALOG_WEDGE")
+    for pack in catalog.get("industry_packs", []):
+        if not pack.get("runbook"):
+            raise IntegrityError(f"{pack.get('id')} needs a runbook", reason_code="CATALOG_PACK")
+        if pack.get("sku") is True:
+            raise IntegrityError("industry pack is not a SKU", reason_code="CATALOG_SKU")
+    referenced = {
+        mid
+        for item in list(catalog.get("industry_packs") or []) + list(catalog.get("libraries") or [])
+        for mid in item.get("modules") or []
+    }
+    for module in catalog.get("modules", []):
+        if module.get("upsell") is True and module.get("wedge") is True:
+            raise IntegrityError("a wedge cannot be an upsell", reason_code="CATALOG_WEDGE")
+        if module.get("upsell") is True and module["id"] not in referenced:
+            raise IntegrityError(
+                f"upsell {module['id']} must be seated by a pack or library",
+                reason_code="CATALOG_PACK",
+            )
+
+
+def _validate_repositories(catalog: dict[str, Any]) -> None:
+    repos = catalog.get("repositories") or []
+    ids = {item.get("id") for item in repos}
+    if not {"repo.agent_gov", "repo.catalog", "repo.institute"} <= ids:
+        raise IntegrityError("core repositories are required", reason_code="CATALOG_REPO")
+    for item in repos:
+        if item.get("id") in ALLOWED_SKUS or item.get("sku"):
+            raise IntegrityError("repository is not a SKU", reason_code="CATALOG_SKU")
+        if item.get("live") is True:
+            raise IntegrityError("repository cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+
+
 def _validate_named_sets(items: list[dict[str, Any]], module_ids: set[str], kind: str) -> None:
     for item in items:
         ident = item.get("id")
@@ -290,6 +336,21 @@ def modules_for(sku_id: str) -> list[dict[str, Any]]:
 
 def action_classes_for(sku_id: str) -> frozenset[str]:
     return frozenset(m["id"] for m in modules_for(sku_id) if m.get("kind") == "action")
+
+
+def wedge_action_classes(sku_id: str) -> frozenset[str]:
+    return frozenset(
+        m["id"]
+        for m in modules_for(sku_id)
+        if m.get("kind") == "action" and m.get("wedge") is True
+    )
+
+
+def module_by_id(module_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("modules", []):
+        if item["id"] == module_id:
+            return dict(item)
+    raise IntegrityError(f"unknown module {module_id}", reason_code="CATALOG_PACK")
 
 
 def l1_action_classes() -> frozenset[str]:
