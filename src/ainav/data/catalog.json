@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.33.0",
+    "release": "2.34.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2381,7 +2381,10 @@
       "microsoft as the product",
       "homepage as company first",
       "lab oids as named seats",
-      "owner as a seat"
+      "owner as a seat",
+      "update weakens job c",
+      "this page as a certificate",
+      "this page as a signature"
     ],
     "note": "Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.",
     "views": [
@@ -3121,6 +3124,31 @@
             "id": "not_a_seat",
             "name": "Not a seat",
             "note": "One title cannot click both admits. Lab oids are not two named treasury humans."
+          }
+        ]
+      },
+      "protect": {
+        "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate.",
+        "items": [
+          {
+            "id": "disclaimer",
+            "name": "Not counsel",
+            "note": "This tree maps instruments. It does not certify. Counsel stays open (G12). Unsigned order form and MSA skeleton are not a signature."
+          },
+          {
+            "id": "attest",
+            "name": "Second record",
+            "note": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+          },
+          {
+            "id": "policy",
+            "name": "Host policy",
+            "note": "Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane."
+          },
+          {
+            "id": "update",
+            "name": "Lockfile digest",
+            "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
           }
         ]
       }

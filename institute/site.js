@@ -144,6 +144,17 @@
         set("hero-accountable", (data.floor.accountable.lede || "") + " Lab oids are not two named treasury humans.");
         set("buyer-duty", data.floor.accountable.lede || "");
       }
+      if (data.floor && data.floor.protect && data.floor.protect.items) {
+        paintCards("protect", data.floor.protect.items, "name", "note");
+        var prot = data.floor.protect;
+        var protBy = {};
+        (prot.items || []).forEach(function (item) {
+          protBy[item.id] = item;
+        });
+        var policyNote = (protBy.policy && protBy.policy.note) || "";
+        set("hero-protect", (prot.lede || "") + (policyNote ? " " + policyNote : ""));
+        set("buyer-protect-lede", prot.lede || "");
+      }
       if (data.floor && data.floor.page) {
         set("hero-sale", (data.floor.page.sale || "The sale is the ninety-minute proof.") + " The product is the admit plane.");
       }
@@ -544,6 +555,13 @@
           add("The twin", "the admit plane", page.twin_is || "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.");
           var acc = (data.floor && data.floor.accountable) || {};
           add("Who may", "admit · freeze · keep", acc.lede || "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit.");
+          var protAttn = (data.floor && data.floor.protect) || {};
+          add("Disclaimer", "not a certificate", protAttn.lede || "Governance is a catalog map. It is not counsel, not a filing, and not a certificate.");
+          (protAttn.items || []).forEach(function (item) {
+            if (item.id === "attest" || item.id === "policy" || item.id === "update") {
+              add(item.name, item.id, item.note || "");
+            }
+          });
           add("Must-have", "one plane over every new client AI", must.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
           add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
@@ -589,6 +607,11 @@
           var acc = (data.floor && data.floor.accountable) || {};
           add("Who may", "admit · freeze · keep", acc.lede || "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit.");
           (acc.items || []).forEach(function (item) {
+            add(item.name, item.id, item.note || "");
+          });
+          var prot = (data.floor && data.floor.protect) || {};
+          add("Disclaimer", "not a certificate", prot.lede || "Governance is a catalog map. It is not counsel, not a filing, and not a certificate.");
+          (prot.items || []).forEach(function (item) {
             add(item.name, item.id, item.note || "");
           });
           add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
@@ -1225,6 +1248,26 @@
           art.appendChild(h);
           art.appendChild(p);
           acc.appendChild(art);
+        });
+      }
+    }
+    if (data.protect && data.protect.lede) {
+      var protLede = document.getElementById("buyer-protect-lede");
+      if (protLede) protLede.textContent = data.protect.lede;
+    }
+    if (data.protect && data.protect.items) {
+      var prot = document.getElementById("protect");
+      if (prot) {
+        prot.textContent = "";
+        data.protect.items.forEach(function (item) {
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = item.name || "";
+          var p = document.createElement("p");
+          p.textContent = item.note || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          prot.appendChild(art);
         });
       }
     }

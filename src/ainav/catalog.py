@@ -785,6 +785,26 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     not_seat = str((acc_by.get("not_a_seat") or {}).get("note") or "").lower()
     if "one title cannot" not in not_seat or "lab oids are not two named" not in not_seat:
         raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
+    protect = floor.get("protect") or {}
+    prot_lede = str(protect.get("lede") or "").lower()
+    if "not counsel" not in prot_lede or "not a certificate" not in prot_lede:
+        raise IntegrityError("protect lede is the catalog-map disclaimer", reason_code="CATALOG_PLANE")
+    prot_ids = [item.get("id") for item in protect.get("items") or []]
+    for needed in ("disclaimer", "attest", "policy", "update"):
+        if needed not in prot_ids:
+            raise IntegrityError(f"protect must include {needed}", reason_code="CATALOG_PLANE")
+    prot_by = {item.get("id"): item for item in protect.get("items") or []}
+    disc = str((prot_by.get("disclaimer") or {}).get("note") or "").lower()
+    if "does not certify" not in disc or "not a signature" not in disc:
+        raise IntegrityError("disclaimer is not a certificate or a signature", reason_code="CATALOG_PLANE")
+    second = str((((catalog.get("governance") or {}).get("records") or {}).get("second") or {}).get("what") or "")
+    if str((prot_by.get("attest") or {}).get("note") or "") != second:
+        raise IntegrityError("attest must match the second record", reason_code="CATALOG_PLANE")
+    pol = str((prot_by.get("policy") or {}).get("note") or "").lower()
+    if "cannot weaken job c" not in pol or "live_pin_ok cannot be marked" not in pol:
+        raise IntegrityError("policy cannot weaken Job C", reason_code="CATALOG_PLANE")
+    if "a rebrand breaks gold" not in str((prot_by.get("update") or {}).get("note") or "").lower():
+        raise IntegrityError("a system update cannot rebrand Job C", reason_code="CATALOG_PLANE")
     if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
         raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
@@ -801,6 +821,9 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "homepage as company first",
         "lab oids as named seats",
         "owner as a seat",
+        "update weakens job c",
+        "this page as a certificate",
+        "this page as a signature",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")

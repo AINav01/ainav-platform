@@ -153,6 +153,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "the sale is the ninety-minute proof" in md.lower()
     assert "who may admit, freeze, keep" in md.lower()
     assert "lab oids are not two named" in md.lower()
+    assert "disclaimer, attestation, and protection" in md.lower()
+    assert "cannot weaken job c" in md.lower()
+    assert "not a signature" in md.lower()
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -376,6 +379,50 @@ def test_plane_interface_validators_refuse_fiction():
     owner_seat["plane_interface"]["floor"]["accountable"]["items"][1]["note"] = "owner clicks both admits"
     with pytest.raises(IntegrityError):
         validate_catalog(owner_seat)
+    drop_attest = copy.deepcopy(cat)
+    drop_attest["plane_interface"]["floor"]["protect"]["items"] = [
+        item
+        for item in cat["plane_interface"]["floor"]["protect"]["items"]
+        if item.get("id") != "attest"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(drop_attest)
+    mismatch_attest = copy.deepcopy(cat)
+    mismatch_attest["plane_interface"]["floor"]["protect"]["items"][1]["note"] = "Signed certificate of dual admit."
+    with pytest.raises(IntegrityError):
+        validate_catalog(mismatch_attest)
+    weaken_policy = copy.deepcopy(cat)
+    weaken_policy["plane_interface"]["floor"]["protect"]["items"][2]["note"] = "Host policy. May weaken Job C."
+    with pytest.raises(IntegrityError):
+        validate_catalog(weaken_policy)
+    bad_update = copy.deepcopy(cat)
+    bad_update["plane_interface"]["floor"]["protect"]["items"][3]["note"] = "A rebrand is fine."
+    with pytest.raises(IntegrityError):
+        validate_catalog(bad_update)
+    no_disc = copy.deepcopy(cat)
+    no_disc["plane_interface"]["floor"]["protect"]["lede"] = "this page is a certificate"
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_disc)
+    unsigned = copy.deepcopy(cat)
+    unsigned["plane_interface"]["floor"]["protect"]["items"][0]["note"] = "this tree certifies"
+    with pytest.raises(IntegrityError):
+        validate_catalog(unsigned)
+    no_protect_refuse = copy.deepcopy(cat)
+    no_protect_refuse["plane_interface"]["refuse"] = [
+        item
+        for item in cat["plane_interface"]["refuse"]
+        if "update weakens job c" not in str(item).lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_protect_refuse)
+    no_cert_refuse = copy.deepcopy(cat)
+    no_cert_refuse["plane_interface"]["refuse"] = [
+        item
+        for item in cat["plane_interface"]["refuse"]
+        if "this page as a certificate" not in str(item).lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_cert_refuse)
     no_lab_refuse = copy.deepcopy(cat)
     no_lab_refuse["plane_interface"]["refuse"] = [
         item for item in cat["plane_interface"]["refuse"] if "lab oids" not in str(item).lower()
@@ -423,6 +470,8 @@ def test_institute_control_plane_matches_catalog():
     assert "ninety-minute proof" in floor
     assert "seat A · seat B" in floor
     assert "owner / board request" in floor
+    assert "not a certificate" in floor
+    assert "cannot weaken Job C" in floor
     assert 'id="plane-authorizations"' in floor
     assert 'id="plane-provision"' in floor
     assert 'id="plane-records"' in floor

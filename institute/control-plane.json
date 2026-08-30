@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.33.0"
+    "release": "2.34.0"
   },
   "communications": [
     {
@@ -868,6 +868,31 @@
         "sealed DecisionRecord",
         "Merkle / audit export"
       ]
+    },
+    "protect": {
+      "items": [
+        {
+          "id": "disclaimer",
+          "name": "Not counsel",
+          "note": "This tree maps instruments. It does not certify. Counsel stays open (G12). Unsigned order form and MSA skeleton are not a signature."
+        },
+        {
+          "id": "attest",
+          "name": "Second record",
+          "note": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+        },
+        {
+          "id": "policy",
+          "name": "Host policy",
+          "note": "Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane."
+        },
+        {
+          "id": "update",
+          "name": "Lockfile digest",
+          "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+        }
+      ],
+      "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
     },
     "scopes": [
       {
@@ -2069,7 +2094,10 @@
     "microsoft as the product",
     "homepage as company first",
     "lab oids as named seats",
-    "owner as a seat"
+    "owner as a seat",
+    "update weakens job c",
+    "this page as a certificate",
+    "this page as a signature"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -2086,7 +2114,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.33.0",
+  "release": "2.34.0",
   "revocations": [
     {
       "by": "Owner / board request",

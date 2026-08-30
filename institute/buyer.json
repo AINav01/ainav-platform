@@ -104,6 +104,31 @@
     ]
   },
   "proof_day": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
+  "protect": {
+    "items": [
+      {
+        "id": "disclaimer",
+        "name": "Not counsel",
+        "note": "This tree maps instruments. It does not certify. Counsel stays open (G12). Unsigned order form and MSA skeleton are not a signature."
+      },
+      {
+        "id": "attest",
+        "name": "Second record",
+        "note": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+      },
+      {
+        "id": "policy",
+        "name": "Host policy",
+        "note": "Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane."
+      },
+      {
+        "id": "update",
+        "name": "Lockfile digest",
+        "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+      }
+    ],
+    "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
+  },
   "refuse": [
     "Teams vote as dual",
     "Copilot as the admit plane",

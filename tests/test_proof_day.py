@@ -81,6 +81,14 @@ def test_buyer_page_has_no_inbox_or_named_customer():
     assert "admit plane" in page["twin_is"]
     assert "duty matrix" in page["accountable"]["lede"].lower()
     assert {item["id"] for item in page["accountable"]["items"]} >= {"admit", "freeze", "keep"}
+    assert "not counsel" in page["protect"]["lede"].lower()
+    assert {item["id"] for item in page["protect"]["items"]} >= {
+        "disclaimer",
+        "attest",
+        "policy",
+        "update",
+    }
+    assert "cannot weaken job c" in " ".join(item["note"] for item in page["protect"]["items"]).lower()
     brief = proof_day_brief()
     assert brief["forwardable"] is True
     assert brief["named_customer"] is None

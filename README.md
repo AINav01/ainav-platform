@@ -110,7 +110,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.33.0 (this tree)
+### 2.34.0 (this tree)
+
+Disclaimer, attestation, and protection. The catalog map is not
+counsel, not a filing, not a certificate, and not a signature.
+The second record attests the sealed DecisionRecord and Merkle
+keep of who admitted. Host policy cannot weaken Job C;
+`LIVE_PIN_OK` cannot be marked from this plane. Frozen vectors
+and the lockfile digest hold a rebrand to the same Job C. The
+buyer page places four cards after accountability and before
+the three SKU prices.
+
+### 2.33.0
 
 A named controller can now name the incident, the gate, what is not
 the gate, the sale, and that the twin is a test of the plane. They

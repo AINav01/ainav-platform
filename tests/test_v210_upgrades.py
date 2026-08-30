@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.33.0"
+    assert cat["entity"]["release"] == "2.34.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -37,6 +37,19 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     assert {item["id"] for item in acc["items"]} >= {"admit", "freeze", "keep", "not_a_seat"}
     assert acc["items"][2]["note"] == cat["plane_interface"]["floor"]["must_have"]["for"]["examiner"]
     assert "lab oids are not two named" in " ".join(item["note"] for item in acc["items"]).lower()
+    protect = cat["plane_interface"]["floor"]["protect"]
+    assert "not counsel" in protect["lede"].lower()
+    assert {item["id"] for item in protect["items"]} >= {
+        "disclaimer",
+        "attest",
+        "policy",
+        "update",
+    }
+    assert protect["items"][1]["note"] == cat["governance"]["records"]["second"]["what"]
+    assert "does not certify" in protect["items"][0]["note"].lower()
+    assert "not a signature" in protect["items"][0]["note"].lower()
+    assert "cannot weaken job c" in protect["items"][2]["note"].lower()
+    assert "a rebrand breaks gold" in protect["items"][3]["note"].lower()
     assert "write does not land" in cat["plane_interface"]["floor"]["no_means"]["fail_closed"].lower()
     assert "business central" in cat["plane_interface"]["floor"]["already_have"].lower()
     assert "gate" in cat["plane_interface"]["floor"]["still_lack"].lower()

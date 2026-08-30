@@ -58,6 +58,13 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="proof-close"' in html
     assert 'id="accountable"' in html
     assert 'id="hero-accountable"' in html
+    assert 'id="hero-protect"' in html
+    assert 'id="protect"' in html
+    assert "cannot weaken Job C" in html
+    assert "not a signature" in html
+    assert "floor.protect" in js
+    assert 'id="buyer-protect-lede"' in html
+    assert "#protect.must-for" in css
     assert 'id="twin-lab"' in html
     assert "who may admit, freeze, keep" in html.lower()
     assert "lab oids are not two named treasury humans" in html.lower()
