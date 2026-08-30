@@ -97,6 +97,9 @@ def test_buyer_page_has_no_inbox_or_named_customer():
         "rollback",
     }
     assert "not a time machine" in " ".join(item["note"] for item in page["memory"]["items"]).lower()
+    assert "cannot create users" in page["integrate"]["lede"].lower()
+    assert [item["id"] for item in page["integrate"]["items"]][0] == "invite.seat_b"
+    assert page["integrate"]["items"][0]["url"].startswith("https://admin.microsoft.com")
     brief = proof_day_brief()
     assert brief["forwardable"] is True
     assert brief["named_customer"] is None

@@ -1,6 +1,32 @@
 (function () {
   "use strict";
 
+  function paintIntegrate(rootId, body) {
+    var root = document.getElementById(rootId);
+    if (!root || !body || !body.items || !body.items.length) return;
+    root.textContent = "";
+    body.items.forEach(function (item) {
+      var li = document.createElement("li");
+      var url = String(item.url || "");
+      var label = item.url_label || item.name || "";
+      var note = item.note || "";
+      if (
+        url.indexOf("https://") === 0 &&
+        url.toLowerCase().indexOf("entra_client") === -1 &&
+        url.indexOf("2ad041b8") === -1
+      ) {
+        var a = document.createElement("a");
+        a.setAttribute("href", url);
+        a.textContent = label;
+        li.appendChild(a);
+        li.appendChild(document.createTextNode(note ? " — " + note : ""));
+      } else {
+        li.textContent = label + (note ? " — " + note : "");
+      }
+      root.appendChild(li);
+    });
+  }
+
   document.querySelectorAll("a[href^='#']").forEach(function (link) {
     link.addEventListener("click", function (event) {
       var id = link.getAttribute("href").slice(1);
@@ -171,6 +197,11 @@
             " A mailbox is not the second record."
         );
         set("buyer-memory-lede", mem.lede || "");
+      }
+      if (data.floor && data.floor.integrate && data.floor.integrate.items) {
+        paintIntegrate("integrate", data.floor.integrate);
+        set("hero-integrate", (data.floor.integrate.lede || "") + " The owner clicks the Microsoft admin links. Do not create a new Entra app.");
+        set("buyer-integrate-lede", data.floor.integrate.lede || "");
       }
       if (data.floor && data.floor.page) {
         set("hero-sale", (data.floor.page.sale || "The sale is the ninety-minute proof.") + " The product is the admit plane.");
@@ -584,6 +615,11 @@
           (memAttn.items || []).forEach(function (item) {
             add(item.name, item.id, item.note || "");
           });
+          var intAttn = (data.floor && data.floor.integrate) || {};
+          add("Integrate", "owner clicks", intAttn.lede || "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.");
+          (intAttn.items || []).forEach(function (item) {
+            add(item.url_label || item.name, item.id, item.note || "");
+          });
           add("Must-have", "one plane over every new client AI", must.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
           add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
@@ -615,6 +651,11 @@
             add(item.name, item.value, item.note || "");
           });
           add("Attached SKUs", String(attached.L1 || 0) + " / " + String(attached["P-ADM"] || 0) + " / " + String(attached["U-DUAL"] || 0), "L1 / P-ADM / U-DUAL. Not LIVE_PIN_OK.");
+          var intProv = (data.floor && data.floor.integrate) || {};
+          add("Integrate", "owner clicks", intProv.lede || "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.");
+          (intProv.items || []).forEach(function (item) {
+            add(item.url_label || item.name, item.id, item.note || "");
+          });
         }
         if (kind === "client") {
           var mustHave = (data.floor && data.floor.must_have) || data.must_have || {};
@@ -640,6 +681,11 @@
           add("Memory", "two records and a keep", mem.lede || "Record keeping is two records and a keep.");
           (mem.items || []).forEach(function (item) {
             add(item.name, item.id, item.note || "");
+          });
+          var integ = (data.floor && data.floor.integrate) || {};
+          add("Integrate", "owner clicks", integ.lede || "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.");
+          (integ.items || []).forEach(function (item) {
+            add(item.url_label || item.name, item.id, item.note || "");
           });
           add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
           add("Board", "must-have", audience.board || "Inventory of models is not a control.");
@@ -1322,6 +1368,13 @@
           memBand.appendChild(art);
         });
       }
+    }
+    if (data.integrate && data.integrate.lede) {
+      var intLede = document.getElementById("buyer-integrate-lede");
+      if (intLede) intLede.textContent = data.integrate.lede;
+    }
+    if (data.integrate && data.integrate.items) {
+      paintIntegrate("integrate", data.integrate);
     }
     function replaceList(id, items) {
       var node = document.getElementById(id);

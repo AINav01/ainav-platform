@@ -167,7 +167,15 @@ h1 {
 }
 #hero-accountable,
 #hero-protect,
-#hero-memory { max-width: var(--wide); margin: 0.85rem 0 0; }
+#hero-memory,
+#hero-integrate { max-width: var(--wide); margin: 0.85rem 0 0; }
+#integrate.stack {
+  max-width: var(--wide);
+  margin: 1.25rem 0 0;
+  padding-left: 1.25rem;
+}
+#integrate.stack li { margin: 0.65rem 0; }
+#integrate.stack a { text-decoration: underline; }
 .band #accountable,
 .band #protect,
 .band #memory { margin-top: 1.25rem; }

@@ -110,7 +110,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.35.0 (this tree)
+### 2.36.0 (this tree)
+
+Complete the stack. The owner clicks the Microsoft admin links.
+This Cloud Agent cannot create users, grant Graph roles, publish
+the Institute, or mark LIVE_PIN_OK. The nine owner gates stay
+locked to `owner_gates` so the URLs cannot drift. Do not create
+a new Entra app. Graph stays Read. Sandbox journal AINAV-L1 is
+not Production. The buyer page lists the steps with links after
+institutional memory and before the three SKU prices.
+
+### 2.35.0
 
 Institutional memory. Record keeping is two records and a keep.
 First record is the privileged SoR write after dual admit. Keep

@@ -75,6 +75,18 @@ def test_institute_foundation_is_catalog_honest():
     assert "#memory.must-for" in css
     assert html.index('class="hero"') < html.index('id="buyer"')
     assert html.index('id="must-for"') > html.index('id="buyer"')
+    assert 'id="hero-integrate"' in html
+    assert 'id="integrate"' in html
+    assert "cannot create users" in html.lower()
+    assert "https://admin.microsoft.com/Adminportal/Home#/users" in html
+    assert "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all" in html
+    assert "https://admin.powerplatform.microsoft.com/environments" in html
+    assert "https://businesscentral.dynamics.com/ainav.institute/Sandbox" in html
+    assert "floor.integrate" in js
+    assert "paintIntegrate" in js
+    assert "#integrate.stack" in css
+    assert html.index('id="integrate"') > html.index('id="memory"')
+    assert html.index('id="integrate"') < html.index('id="buyer-prices"')
     assert 'id="twin-lab"' in html
     assert "who may admit, freeze, keep" in html.lower()
     assert "lab oids are not two named treasury humans" in html.lower()

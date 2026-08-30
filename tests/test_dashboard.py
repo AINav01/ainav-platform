@@ -159,6 +159,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "institutional memory" in md.lower()
     assert "two records and a keep" in md.lower()
     assert "not a time machine" in md.lower()
+    assert "complete the stack" in md.lower()
+    assert "cannot create users" in md.lower()
+    assert "admin.microsoft.com" in md
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -462,6 +465,26 @@ def test_plane_interface_validators_refuse_fiction():
     ]
     with pytest.raises(IntegrityError):
         validate_catalog(no_mailbox_refuse)
+    drop_integrate = copy.deepcopy(cat)
+    drop_integrate["plane_interface"]["floor"]["integrate"]["items"] = [
+        item
+        for item in cat["plane_interface"]["floor"]["integrate"]["items"]
+        if item.get("id") != "invite.seat_b"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(drop_integrate)
+    drift_integrate = copy.deepcopy(cat)
+    drift_integrate["plane_interface"]["floor"]["integrate"]["items"][0]["url"] = "https://example.com"
+    with pytest.raises(IntegrityError):
+        validate_catalog(drift_integrate)
+    no_new_app_refuse = copy.deepcopy(cat)
+    no_new_app_refuse["plane_interface"]["refuse"] = [
+        item
+        for item in cat["plane_interface"]["refuse"]
+        if "new entra app" not in str(item).lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_new_app_refuse)
     no_lab_refuse = copy.deepcopy(cat)
     no_lab_refuse["plane_interface"]["refuse"] = [
         item for item in cat["plane_interface"]["refuse"] if "lab oids" not in str(item).lower()
@@ -513,6 +536,8 @@ def test_institute_control_plane_matches_catalog():
     assert "cannot weaken Job C" in floor
     assert "last sealed keep" in floor
     assert "not a time machine" in floor
+    assert "owner clicks" in floor
+    assert "same Entra app" in floor
     assert 'id="plane-authorizations"' in floor
     assert 'id="plane-provision"' in floor
     assert 'id="plane-records"' in floor

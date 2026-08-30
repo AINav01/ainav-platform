@@ -464,6 +464,17 @@ def dashboard_markdown() -> str:
         lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
     lines += [
         "",
+        "### Complete the stack",
+        "",
+        f"{((body.get('floor') or {}).get('integrate') or {}).get('lede') or ''}",
+        "",
+    ]
+    for item in ((body.get("floor") or {}).get("integrate") or {}).get("items") or []:
+        label = item.get("url_label") or item.get("name") or ""
+        url = item.get("url") or ""
+        lines.append(f"- **{label}** — {item.get('note') or ''} {url}")
+    lines += [
+        "",
         f"Equation: {body.get('equation')}.",
         f"Plane: {body.get('plane_equation')}.",
         f"Org: {body.get('org_equation')}.",

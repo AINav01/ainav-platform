@@ -191,6 +191,19 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
+            "kind": "callout",
+            "title": "Complete the stack",
+            "text": (
+                str((((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("lede") or "")
+                + " "
+                + " ".join(
+                    f"{item.get('url_label') or item.get('name')}: {item.get('note')} {item.get('url')}"
+                    for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("items")
+                    or []
+                )
+            ),
+        },
+        {
             "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },

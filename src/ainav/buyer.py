@@ -34,6 +34,7 @@ def buyer_page() -> dict[str, Any]:
         "accountable": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("accountable") or {}),
         "protect": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("protect") or {}),
         "memory": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}),
+        "integrate": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}),
         "contact_email": None,
         "mailto": None,
         "icp": icp_profile(),

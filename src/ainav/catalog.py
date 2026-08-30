@@ -830,6 +830,23 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     rollback_note = str((mem_by.get("rollback") or {}).get("note") or "").lower()
     if "compensating write" not in rollback_note or "not a time machine" not in rollback_note:
         raise IntegrityError("rollback is a compensating write, not a time machine", reason_code="CATALOG_PLANE")
+    integrate = floor.get("integrate") or {}
+    int_lede = str(integrate.get("lede") or "").lower()
+    if "cannot create users" not in int_lede or "live_pin_ok" not in int_lede:
+        raise IntegrityError("integrate lede is the owner-click playbook", reason_code="CATALOG_PLANE")
+    gates = catalog.get("owner_gates") or []
+    int_items = list(integrate.get("items") or [])
+    if [item.get("id") for item in int_items] != [item.get("id") for item in gates]:
+        raise IntegrityError("integrate items must match owner gates", reason_code="CATALOG_PLANE")
+    for gate, item in zip(gates, int_items, strict=True):
+        if str(item.get("note") or "") != str(gate.get("do") or ""):
+            raise IntegrityError(f"integrate {gate.get('id')} must match the owner gate", reason_code="CATALOG_PLANE")
+        if str(item.get("url") or "") != str(gate.get("url") or ""):
+            raise IntegrityError(f"integrate {gate.get('id')} url must match the owner gate", reason_code="CATALOG_PLANE")
+        if not item.get("url") or not str(item.get("url")).startswith("https://"):
+            raise IntegrityError("integrate steps need https links", reason_code="CATALOG_PLANE")
+        if "entra_client_id" in str(item.get("url") or "").lower() or "2ad041b8" in str(item.get("url") or ""):
+            raise IntegrityError("integrate urls cannot embed the Entra app id", reason_code="CATALOG_PLANE")
     if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
         raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
@@ -852,6 +869,9 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "mailbox as the second record",
         "rollback as a time machine",
         "reset wipes production",
+        "new entra app",
+        "graph write roles",
+        "cloud agent clicks unblock",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")

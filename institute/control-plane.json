@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.35.0"
+    "release": "2.36.0"
   },
   "communications": [
     {
@@ -806,6 +806,74 @@
       "lede": "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit."
     },
     "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
+    "integrate": {
+      "items": [
+        {
+          "id": "invite.seat_b",
+          "name": "Microsoft 365 admin \u2192 Users",
+          "note": "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
+          "url": "https://admin.microsoft.com/Adminportal/Home#/users",
+          "url_label": "Microsoft 365 admin \u2192 Users"
+        },
+        {
+          "id": "entra.confirm_oid",
+          "name": "Entra users",
+          "note": "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
+          "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
+          "url_label": "Entra users"
+        },
+        {
+          "id": "agent_tools.leave_available",
+          "name": "Agents > Tools registry",
+          "note": "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
+          "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+          "url_label": "Agents > Tools registry"
+        },
+        {
+          "id": "graph.read_roles",
+          "name": "Same app API permissions",
+          "note": "On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.",
+          "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
+          "url_label": "Same app API permissions"
+        },
+        {
+          "id": "dataverse.us",
+          "name": "Power Platform environments",
+          "note": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+          "url": "https://admin.powerplatform.microsoft.com/environments",
+          "url_label": "Power Platform environments"
+        },
+        {
+          "id": "incorporation.date",
+          "name": "Delaware entity search",
+          "note": "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
+          "url": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx",
+          "url_label": "Delaware entity search"
+        },
+        {
+          "id": "founders_hub",
+          "name": "Microsoft for Startups",
+          "note": "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",
+          "url": "https://www.microsoft.com/en-us/startups",
+          "url_label": "Microsoft for Startups"
+        },
+        {
+          "id": "institute.launch",
+          "name": "Azure Static Web Apps",
+          "note": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+          "url_label": "Azure Static Web Apps"
+        },
+        {
+          "id": "bc.production",
+          "name": "Business Central Sandbox",
+          "note": "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.",
+          "url": "https://businesscentral.dynamics.com/ainav.institute/Sandbox",
+          "url_label": "Business Central Sandbox"
+        }
+      ],
+      "lede": "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK."
+    },
     "lede": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. Two humans before the write. One dashboard included with L1 \u2014 not an upsell. Standard and advanced are provision bands, not products.",
     "memory": {
       "items": [
@@ -2125,7 +2193,10 @@
     "this page as a signature",
     "mailbox as the second record",
     "rollback as a time machine",
-    "reset wipes production"
+    "reset wipes production",
+    "new entra app",
+    "graph write roles",
+    "cloud agent clicks unblock"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -2142,7 +2213,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.35.0",
+  "release": "2.36.0",
   "revocations": [
     {
       "by": "Owner / board request",
