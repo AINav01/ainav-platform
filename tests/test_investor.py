@@ -75,6 +75,8 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "| item | what it is |" in md.lower()
     assert "i am writing" in md.lower()
     assert "invited, not recorded" in md.lower()
+    assert "catalog detail" in md.lower()
+    assert md.lower().index("a letter to cynthia") < md.lower().index("catalog detail")
     assert "what we will not ask" in md.lower()
     assert "$0" in md or "recognized revenue: $0" in md.lower()
     assert "industry.payables" in md
@@ -155,10 +157,29 @@ def test_investor_validators_refuse_fiction():
         validate_catalog(no_close)
     no_zero = copy.deepcopy(cat)
     no_zero["investor"]["letter_body"] = (
-        "Seat B. Invited, not recorded. Not stock. Not a priced round. No scoreboard."
+        "Seat B. Invited, not recorded. Not stock. Not a priced round. I will not ask. No scoreboard."
     )
     with pytest.raises(IntegrityError):
         validate_catalog(no_zero)
+    company_dump = copy.deepcopy(cat)
+    company_dump["investor"]["letter_body"] = (
+        "Seat B. Invited, not recorded. Not stock. Not a priced round. "
+        "I will not ask. Recognized revenue is $0. Delaware C corporation."
+    )
+    with pytest.raises(IntegrityError):
+        validate_catalog(company_dump)
+    no_human_ask = copy.deepcopy(cat)
+    no_human_ask["investor"]["letter_body"] = (
+        "Seat B. Invited, not recorded. Not stock. Not a priced round. Recognized revenue is $0."
+    )
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_human_ask)
+    no_board = copy.deepcopy(cat)
+    no_board["investor"]["executive_summary"]["lede"] = (
+        "Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero."
+    )
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_board)
     for flag in ("sku", "certified", "mandated", "forecast", "priced_round", "live", "live_pin_ok"):
         bad = copy.deepcopy(cat)
         bad["investor"]["executive_summary"][flag] = True

@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.38.0"
+    assert cat["entity"]["release"] == "2.39.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -111,6 +111,9 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     ]
     assert "seat b" in cat["investor"]["letter_body"].lower()
     assert "not recorded" in cat["investor"]["letter_body"].lower()
+    assert "i will not ask" in cat["investor"]["letter_body"].lower()
+    assert "delaware" not in cat["investor"]["letter_body"].lower()
+    assert "board packet" in cat["investor"]["executive_summary"]["lede"].lower()
     assert "sole owner" in cat["investor"]["letter_close"].lower()
     assert "$0" in summary["tiles"]
     assert "not the product" in summary["microsoft"].lower()
@@ -216,6 +219,11 @@ def test_printable_brief_is_a_pdf():
     assert md.lower().index("not the gate") < md.lower().index("investor packet")
     assert md.lower().index("the product is the admit plane") < md.lower().index("investor packet")
     assert md.lower().index("who may admit, freeze, keep") < md.lower().index("investor packet")
+    assert md.lower().index("why a client must have this") < md.lower().index("the write that must not happen")
+    assert "appendix — the plane" in md.lower()
+    assert md.lower().index("a letter to cynthia") < md.lower().index("appendix — the plane")
+    assert "| step | what the owner clicks | link |" in md.lower()
+    assert "admin.microsoft.com" in md
     assert "lab oids are not two named" in md.lower()
     assert "sealed decisionrecord" in md.lower()
     assert "ninety minutes" in md

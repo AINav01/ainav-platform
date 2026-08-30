@@ -180,6 +180,8 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="buyer-week"' in html
     assert "qualify → ninety-minute proof day" in html
     assert 'id="hero-sale"' in html
+    assert 'id="hero-notes"' in html
+    assert 'id="investor-catalog-detail"' in html
     assert 'id="about"' in html
     assert html.index('id="buyer"') < html.index('id="twin"') < html.index('id="product"') < html.index('id="about"') < html.index('id="opportunity"')
     assert "<h2>Proof day</h2>" in html

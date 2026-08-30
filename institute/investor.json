@@ -58,7 +58,7 @@
     ],
     "job_c": "Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat.",
     "kind": "ainav.exec.v1",
-    "lede": "Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.",
+    "lede": "This is the board packet for the admit plane. Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.",
     "live": false,
     "live_pin_ok": false,
     "mandated": false,
@@ -608,7 +608,7 @@
     "signed_l1": 0
   },
   "legal": "AINav, Inc.",
-  "letter_body": "The seat is seat B: treasury_controller, and the Inception business executive if you also agree to that contact. You get your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.\n\nYou are invited, not recorded. No email is stored until you send a business address and I say record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer. I will not invent a contact to paper over a one-human lab.\n\nIf you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.\n\nThe company is AINav, Inc., a Delaware C corporation. I am the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Microsoft is identity, notify, SoR, and host \u2014 not the product. Recognized revenue is $0. Named customers are 0. Signed L1 is 0. Year-one catalog list if one controller bought L1, P-ADM, and U-DUAL is $88,000\u2013$135,000. Not booked. Not a priced round. Not LIVE_PIN_OK.",
+  "letter_body": "The seat is seat B: treasury_controller, and the Inception business executive if you also agree to that contact. You get your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.\n\nYou are invited, not recorded. No email is stored until you send a business address and I say record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer. I will not invent a contact to paper over a one-human lab.\n\nIf you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.\n\nI will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.",
   "letter_close": "James Hodnett, sole owner of AINav, Inc.",
   "letter_open": "Dear Cynthia \u2014 I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.",
   "letter_voice": "first_person",
@@ -890,7 +890,7 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.38.0",
+  "release": "2.39.0",
   "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {
@@ -1029,7 +1029,7 @@
   "upsell_note": "Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs are seating, not a discount on a second control plane.",
   "valuation_claimed": false,
   "why_now": "Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav on the org chart they already have. They do not replace their ERP. They do not replace Copilot. They put two humans in front of the write.",
-  "will_not_ask": "We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.",
+  "will_not_ask": "I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.",
   "year_one_if_all_three": {
     "max": 135000,
     "min": 88000,

@@ -1,13 +1,13 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.38.0.
+30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.39.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
 
 ## Executive summary
 
-Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
+This is the board packet for the admit plane. Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
 
 | Item | What it is |
 | --- | --- |
@@ -30,9 +30,13 @@ You are invited, not recorded. No email is stored until you send a business addr
 
 If you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.
 
-The company is AINav, Inc., a Delaware C corporation. I am the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Microsoft is identity, notify, SoR, and host — not the product. Recognized revenue is $0. Named customers are 0. Signed L1 is 0. Year-one catalog list if one controller bought L1, P-ADM, and U-DUAL is $88,000–$135,000. Not booked. Not a priced round. Not LIVE_PIN_OK.
+I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
 
 James Hodnett, sole owner of AINav, Inc.
+
+## Catalog detail
+
+Company, problem, and list prices sit below the letter. They are not a second ask.
 
 Equation: catalog list × zero booked × two-human close.
 Commercial close: named dual seats × proof day × signed L1 × P-ADM attach.
@@ -102,7 +106,7 @@ Cynthia, we are asking you to be seat B and the Inception business executive: yo
 
 ## What we will not ask
 
-We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
+I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
 
 ## What a Tuesday looks like
 
@@ -260,7 +264,7 @@ The admit plane is in code. Gold is above 90 percent. There is a real Business C
 
 Cynthia, we are asking you to be seat B and the Inception business executive: your own mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
 
-We will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. We will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
+I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
 
 ## Highlights
 

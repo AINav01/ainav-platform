@@ -43,6 +43,10 @@ def _money(lo: int, hi: int) -> str:
     return f"${lo:,}–${hi:,}"
 
 
+def _rows(items: list[dict[str, Any]] | None, left: str = "name", right: str = "note") -> list[list[str]]:
+    return [[str(item.get(left) or ""), str(item.get(right) or "")] for item in items or []]
+
+
 def brief_document() -> list[dict[str, Any]]:
     """Company packet + Cynthia letter. Catalog-honest. Not a contract."""
     c = _ctx()
@@ -98,17 +102,17 @@ def brief_document() -> list[dict[str, Any]]:
             "text": "Why a client must have this",
         },
         {
-            "kind": "callout",
-            "title": "The write that must not happen",
-            "text": cat.get("l1_incident_copy") or "",
-        },
-        {
             "kind": "p",
             "text": (
                 ((cat.get("governance") or {}).get("must_have") or {}).get("why")
                 or "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
             )
             + " Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.",
+        },
+        {
+            "kind": "callout",
+            "title": "The write that must not happen",
+            "text": cat.get("l1_incident_copy") or "",
         },
         {
             "kind": "p",
@@ -143,17 +147,10 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
-            "kind": "callout",
+            "kind": "table",
             "title": "Not the gate — BC approval, Teams, PIM, Copilot",
-            "text": " ".join(
-                f"{item.get('name')}: {item.get('note')}"
-                for item in ((cat.get("plane_interface") or {}).get("floor") or {}).get("not_the_gate")
-                or []
-            )
-            or (
-                "A vendor-native button only covers that vendor. A Teams vote is not dual admit. "
-                "PIM is not dual admit. Copilot asking a human leaves every other AI ungated."
-            ),
+            "headers": ["Lookalike", "Why it is not dual admit"],
+            "rows": _rows(((cat.get("plane_interface") or {}).get("floor") or {}).get("not_the_gate")),
         },
         {
             "kind": "p",
@@ -174,68 +171,61 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
-            "kind": "callout",
+            "kind": "table",
             "title": "Who may admit, freeze, keep",
-            "text": (
-                str((((cat.get("plane_interface") or {}).get("floor") or {}).get("accountable") or {}).get("lede") or "")
-                + " "
-                + " ".join(
-                    f"{item.get('name')}: {item.get('note')}"
-                    for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("accountable") or {}).get("items")
-                    or []
-                )
+            "headers": ["Duty", "Who"],
+            "rows": _rows(
+                (((cat.get("plane_interface") or {}).get("floor") or {}).get("accountable") or {}).get("items")
             ),
         },
         {
-            "kind": "callout",
+            "kind": "table",
             "title": "Disclaimer, attestation, and protection",
-            "text": (
-                str((((cat.get("plane_interface") or {}).get("floor") or {}).get("protect") or {}).get("lede") or "")
-                + " "
-                + " ".join(
-                    f"{item.get('name')}: {item.get('note')}"
-                    for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("protect") or {}).get("items")
-                    or []
-                )
+            "headers": ["Name", "What it is"],
+            "rows": _rows(
+                (((cat.get("plane_interface") or {}).get("floor") or {}).get("protect") or {}).get("items")
             ),
         },
         {
-            "kind": "callout",
+            "kind": "table",
             "title": "Institutional memory",
-            "text": (
-                str((((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}).get("lede") or "")
-                + " "
-                + " ".join(
-                    f"{item.get('name')}: {item.get('note')}"
-                    for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}).get("items")
-                    or []
-                )
+            "headers": ["Record", "What it is"],
+            "rows": _rows(
+                (((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}).get("items")
             ),
         },
         {
-            "kind": "callout",
-            "title": "Complete the stack",
-            "text": (
-                str((((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("lede") or "")
-                + " "
-                + " ".join(
-                    f"{item.get('url_label') or item.get('name')}: {item.get('note')} {item.get('url')}"
-                    for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("items")
-                    or []
-                )
+            "kind": "p",
+            "text": str(
+                (((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("lede")
+                or "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK."
             ),
+        },
+        {
+            "kind": "table",
+            "title": "Complete the stack",
+            "headers": ["Step", "What the owner clicks", "Link"],
+            "rows": [
+                [
+                    str(item.get("url_label") or item.get("name") or ""),
+                    str(item.get("note") or ""),
+                    str(item.get("url") or ""),
+                ]
+                for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get(
+                    "items"
+                )
+                or []
+            ],
         },
         {
             "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },
         {
-            "kind": "callout",
-            "title": "The company in one line",
+            "kind": "p",
             "text": (
-                "Human control plane over every client AI that can draft a privileged "
-                "system-of-record write. Job C: two distinct humans bind the same action_hash. "
-                "No admit, no write. Print the letter packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf. "
+                "The letter and the one-fact table are at the top of this brief. "
+                "Print docs/CYNTHIA_HODNETT_INVESTOR.pdf for the full upsell catalog. "
                 "Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK."
             ),
         },
@@ -261,76 +251,6 @@ def brief_document() -> list[dict[str, Any]]:
                 "The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. "
                 "Insulation is independence × Job C lockfile × fail-closed gold × catalog law. "
                 "The ask of you is seat B — not stock, not Global Admin, not a priced round."
-            ),
-        },
-        {
-            "kind": "h",
-            "text": "Why the ultimate control plane insulates",
-        },
-        {
-            "kind": "callout",
-            "title": "Last gate over every drafting AI — not another model",
-            "text": (cat.get("investor") or {}).get("control_plane")
-            or (cat.get("ip", {}).get("insulation") or {}).get("why_ultimate_plane")
-            or "",
-        },
-        {
-            "kind": "h",
-            "text": "How humans sit on the plane — executive dashboard",
-        },
-        {
-            "kind": "callout",
-            "title": "Authorize, provision, keep — honest tiles, not a certificate",
-            "text": (cat.get("plane_interface") or {}).get("letter") or "",
-        },
-        {
-            "kind": "h",
-            "text": "Part I — For Cynthia Hodnett",
-        },
-        {
-            "kind": "callout",
-            "title": "The ask, in one sentence",
-            "text": (
-                f"{c['owner']} is building a company that will not let a privileged money-movement "
-                "write land unless two distinct humans admit the exact same action. He can write "
-                f"that gate. He cannot be both humans. We are asking you, {c['invited']}, to be the "
-                "second human — seat B — with your own business email and your own click. Not stock. "
-                "Not Global Admin. Not this Cloud Agent. Not a rubber stamp."
-            ),
-        },
-        {
-            "kind": "h",
-            "text": "The incident the company exists to stop",
-        },
-        {
-            "kind": "p",
-            "text": (
-                "Picture a Dynamics 365 Business Central general journal. A line posts. Cash, "
-                "accrual, or a clearing account moves. Two people did not look at the same action "
-                "and say yes. That is the unauthorized general-journal post that two humans did "
-                "not admit. Controllers already have a name for the human rule: segregation of "
-                "duties. What they do not have is a gate that sits in front of the write itself."
-            ),
-        },
-        {
-            "kind": "p",
-            "text": (
-                "The product is that gate. Two distinct people. One exact action, hashed so the "
-                "memo cannot be swapped after you look. The grant is consumed once — a replay is "
-                "a refusal. The effect is fail-closed: if either person is missing, or the apply "
-                "fails, the write does not land and there is no fake success. We call this Job C: "
-                "dual-admitted effect authority before a privileged system-of-record write. We do "
-                "not inventory agents (Job A). We do not replace Microsoft Entra (Job B)."
-            ),
-        },
-        {
-            "kind": "p",
-            "text": (
-                "Microsoft hosts, identifies, notifies, and receives the write after the two of "
-                "you admit it. Microsoft is not the product. Teams is not a seat. A chat is not "
-                "dual admit. Copilot is not the admit plane. A PIM activation is not dual admit. "
-                f"This Cloud Agent ({c['operator']}) can operate the host. It cannot be seat A or "
-                "seat B. Owner plus agent is still one human."
             ),
         },
         {
@@ -564,6 +484,18 @@ def brief_document() -> list[dict[str, Any]]:
                 "Your no, or not yet, is also a complete answer. Nothing is recorded. The invite "
                 "stays open. The company stays a one-human lab until a second distinct human "
                 "actually clicks. James will not invent a contact to paper over that."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Appendix — the plane",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "The rest of this brief is the operating company: motherships, departments, "
+                "pricing models, and the expert review. The letter and the one-fact table "
+                "are the first-minute read. Cynthia can stop above this line."
             ),
         },
         {

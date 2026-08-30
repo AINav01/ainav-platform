@@ -1,12 +1,12 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.38.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.39.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.38.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.39.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 ## Executive summary
 
-Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
+This is the board packet for the admit plane. Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
 
 *Board packet — one fact per row*
 
@@ -31,17 +31,17 @@ You are invited, not recorded. No email is stored until you send a business addr
 
 If you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.
 
-The company is AINav, Inc., a Delaware C corporation. I am the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Microsoft is identity, notify, SoR, and host — not the product. Recognized revenue is $0. Named customers are 0. Signed L1 is 0. Year-one catalog list if one controller bought L1, P-ADM, and U-DUAL is $88,000–$135,000. Not booked. Not a priced round. Not LIVE_PIN_OK.
+I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
 
 James Hodnett, sole owner of AINav, Inc.
 
 ## Why a client must have this
 
+Every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.
+
 ## The write that must not happen
 
 The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.
-
-Every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Mandated: false. Certified: false. Not a fourth SKU. Job C is two humans before the write.
 
 Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.
 
@@ -51,9 +51,14 @@ Owner: The controller who cannot let any AI post a journal without two seats, an
 
 The sale is the ninety-minute proof day. Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.
 
-## Not the gate — BC approval, Teams, PIM, Copilot
+*Not the gate — BC approval, Teams, PIM, Copilot*
 
-Vendor-native approval: A vendor-native button only covers that vendor. Teams vote: A chat is not a seat. A Teams vote is not dual admit. PIM activation: PIM is not dual admit. Eligible seats stay eligible. Copilot asking a human: Copilot asking a human leaves Agentforce and the counterparty's model ungated.
+| Lookalike | Why it is not dual admit |
+| --- | --- |
+| Vendor-native approval | A vendor-native button only covers that vendor. |
+| Teams vote | A chat is not a seat. A Teams vote is not dual admit. |
+| PIM activation | PIM is not dual admit. Eligible seats stay eligible. |
+| Copilot asking a human | Copilot asking a human leaves Agentforce and the counterparty's model ungated. |
 
 Walk out of proof day with a sealed DecisionRecord and a Merkle / audit export. If either person is missing, or the apply fails, the write does not land and there is no fake success. Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not. Refusing is the product working.
 
@@ -61,27 +66,52 @@ Walk out of proof day with a sealed DecisionRecord and a Merkle / audit export. 
 
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
-## Who may admit, freeze, keep
+*Who may admit, freeze, keep*
 
-The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. Seat A / seat B: Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Owner / board: Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. Examiner: First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing. Not a seat: One title cannot click both admits. Lab oids are not two named treasury humans.
+| Duty | Who |
+| --- | --- |
+| Seat A / seat B | Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. |
+| Owner / board | Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. |
+| Examiner | First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing. |
+| Not a seat | One title cannot click both admits. Lab oids are not two named treasury humans. |
 
-## Disclaimer, attestation, and protection
+*Disclaimer, attestation, and protection*
 
-Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Not counsel: This tree maps instruments. It does not certify. Counsel stays open (G12). Unsigned order form and MSA skeleton are not a signature. Second record: Sealed DecisionRecord and Merkle keep of who admitted the write. Host policy: Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane. Lockfile digest: Frozen vectors and lockfile digest. A rebrand breaks gold.
+| Name | What it is |
+| --- | --- |
+| Not counsel | This tree maps instruments. It does not certify. Counsel stays open (G12). Unsigned order form and MSA skeleton are not a signature. |
+| Second record | Sealed DecisionRecord and Merkle keep of who admitted the write. |
+| Host policy | Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane. |
+| Lockfile digest | Frozen vectors and lockfile digest. A rebrand breaks gold. |
 
-## Institutional memory
+*Institutional memory*
 
-Record keeping is two records and a keep. First record: The privileged SoR write after dual admit (journal, invoice, order). Keep: Weekly export after kit PASS. Reset: Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep. Rollback: Rollback is a compensating write that itself requires dual admit. Not a time machine.
+| Record | What it is |
+| --- | --- |
+| First record | The privileged SoR write after dual admit (journal, invoice, order). |
+| Keep | Weekly export after kit PASS. |
+| Reset | Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep. |
+| Rollback | Rollback is a compensating write that itself requires dual admit. Not a time machine. |
 
-## Complete the stack
+This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
 
-This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK. Microsoft 365 admin → Users: Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it. https://admin.microsoft.com/Adminportal/Home#/users Entra users: Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers Agents > Tools registry: Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all Same app API permissions: On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] Power Platform environments: Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. https://admin.powerplatform.microsoft.com/environments Delaware entity search: Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here. https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx Microsoft for Startups: Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. https://www.microsoft.com/en-us/startups Azure Static Web Apps: Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch. https://portal.azure.com/#view/Microsoft_Azure_StaticApps Business Central Sandbox: Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production. https://businesscentral.dynamics.com/ainav.institute/Sandbox
+*Complete the stack*
+
+| Step | What the owner clicks | Link |
+| --- | --- | --- |
+| Microsoft 365 admin → Users | Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it. | https://admin.microsoft.com/Adminportal/Home#/users |
+| Entra users | Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. | https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers |
+| Agents > Tools registry | Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. | https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all |
+| Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
+| Power Platform environments | Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. | https://admin.powerplatform.microsoft.com/environments |
+| Delaware entity search | Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here. | https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx |
+| Microsoft for Startups | Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. | https://www.microsoft.com/en-us/startups |
+| Azure Static Web Apps | Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch. | https://portal.azure.com/#view/Microsoft_Azure_StaticApps |
+| Business Central Sandbox | Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production. | https://businesscentral.dynamics.com/ainav.institute/Sandbox |
 
 ## Investor packet — print the letter with the full upsell catalog
 
-## The company in one line
-
-Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. Print the letter packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf. Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK.
+The letter and the one-fact table are at the top of this brief. Print docs/CYNTHIA_HODNETT_INVESTOR.pdf for the full upsell catalog. Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK.
 
 *Scoreboard today — catalog-honest*
 
@@ -90,62 +120,6 @@ Human control plane over every client AI that can draft a privileged system-of-r
 | $0 | 0 | 0 | $88,000–$135,000 catalog list, not booked |
 
 Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM ($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. Insulation is independence × Job C lockfile × fail-closed gold × catalog law. The ask of you is seat B — not stock, not Global Admin, not a priced round.
-
-## Why the ultimate control plane insulates
-
-## Last gate over every drafting AI — not another model
-
-Ultimate, here, means last authority — not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.
-
-The vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.
-
-A vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.
-
-After kit PASS, the second record, the off switch, and the rollback are segregation of duties — books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.
-
-Others can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.
-
-## How humans sit on the plane — executive dashboard
-
-## Authorize, provision, keep — honest tiles, not a certificate
-
-Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. The client institutes AINav as the failsafe, not as the AI. Two humans before the write.
-
-The ultimate control plane interface is not a fourth product. It is how humans sit on the plane from the top of the client's existing org chart down to every drafting AI.
-
-Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. One title cannot click both admits. Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Payables and sales may draft. IT hosts Copilot and agents. Those AIs are not seats. Compliance and internal audit keep the second record. Legal is not replaced. Department AI is not a seat. Do not invent named heads.
-
-Hierarchical access is segregation of duties, not a new identity provider. Internal and remote use the same Entra object id on the same plane. Remote is not a second control plane and not a VPN SKU. Microsoft Conditional Access may identify the human. It does not admit the write. The Cloud Agent may operate the host. It is not a seat.
-
-The executive dashboard is that same plane, tiled. Real-time here means the admit ledger and the freeze state: pending binds, admits, refuses, frozen, last sealed keep. It does not invent a live P&L, forecast ARR, or Production Business Central metrics. Until signed L1, business tiles stay zero and the sandbox journal AINAV-L1 is labeled lab operator identities. AI compliance tiles map NIST, SOX, EU AI Act, ISO 42001, books-and-records, and three lines of defense with claimed=false. The dashboard is not a certificate and not a SKU. The client executive dashboard is included with L1. It is not an upsell. There is one dashboard. Do not sell Standard Dashboard versus Advanced Dashboard. Advanced provision adds priced desks, P-ADM keep, paid U-DUAL, and hours — not a second dashboard SKU.
-
-The floor is a command console on one plane. Hierarchical views are not a second product. Owner and board get freeze and the off switch. They are not seats. Seat A and seat B get the walkable rehearsal and refuse. The examiner gets the bind inspector, the first record, the second record, and the maps. Remote is the same Entra object id — Conditional Access may identify; it does not admit. IT hosts Copilot and agents and can demonstrate that PIM, Teams, Copilot, and Agent Tools are not dual admit.
-
-The write path is the same for every privileged class: draft, bind an action_hash, seat A, seat B, first record on the SoR, second record as the sealed DecisionRecord, keep. The floor walks that path as a sandbox rehearsal of the public wedge bc.general_journal.post. Completing the rehearsal does not create a new SoR write. Microsoft is not called. Production stays 0. Second record stays 0. Keep stays none. Same-seat, agent-click, PIM, Copilot, and replay are deny paths. Freeze in the console is local to the browser. The catalog plane stays OPEN until an owner later marks a real freeze.
-
-The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. The attention board is pending 0, refused 0, frozen 0, production writes 0, second record 0, standing grants 0, provisioned SKUs 0/0/0, and one sandbox first record. The clock is catalog as-of. It is not a live Production clock. Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write that itself requires dual admit. Coverage is every action class on L1, P-ADM, and U-DUAL. None of those classes are live. Three lines of defense: 1LOD is dual admit, 2LOD is P-ADM keep, 3LOD is not claimed.
-
-Access authorization is zero-standing, not a ZTNA SKU. Microsoft Entra and Conditional Access may identify the human on every request. Identify is not admit. Network location, VPN, PIM, and a Teams presence are not trust. A view authorization lets a human see a console. A seat authorization lets a human bind. A grant is a single-use consume of one action_hash. Revocation is freeze, seat revoke, grant expire, SKU detach, or view revoke. There is no standing privilege on the write.
-
-Provisioning is two bands on the same plane, not two more SKUs. Standard provision is included seating with L1: the included L1 packs, lib.l1.wedge on bc.sandbox, Entra identity, Teams notify, the twin, proof day or Acceptance Kit, and the client executive dashboard. Standard is not an upsell product. Advanced provision is the upsell band: priced L1 desks, priced P-ADM keeps, paid U-DUAL, priced U-DUAL desks, and fee-for-service hours after L1. Advanced is not a SKU. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Attached today is 0 L1 / 0 P-ADM / 0 U-DUAL. Provisioning a SKU is not LIVE_PIN_OK.
-
-Inter-communication is notify. Teams Enterprise, Teams Premium, and mail may tell a human that a bind is waiting or a keep landed. A chat is not a seat. A mailbox is not the second record. Graph is not called from this floor. The keep is the sealed DecisionRecord, not the thread.
-
-Record keeping is two records and a keep. First record is the admitted SoR write. Second record is the sealed DecisionRecord after P-ADM. Keep is the weekly export after kit PASS. Retention is mapped to books-and-records and COSO. It is not a 17a-4 opinion and not a certificate. AI compliance and regulation compliance are the same maps with claimed=false.
-
-## Part I — For Cynthia Hodnett
-
-## The ask, in one sentence
-
-James Hodnett is building a company that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. He can write that gate. He cannot be both humans. We are asking you, Cynthia Hodnett, to be the second human — seat B — with your own business email and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.
-
-## The incident the company exists to stop
-
-Picture a Dynamics 365 Business Central general journal. A line posts. Cash, accrual, or a clearing account moves. Two people did not look at the same action and say yes. That is the unauthorized general-journal post that two humans did not admit. Controllers already have a name for the human rule: segregation of duties. What they do not have is a gate that sits in front of the write itself.
-
-The product is that gate. Two distinct people. One exact action, hashed so the memo cannot be swapped after you look. The grant is consumed once — a replay is a refusal. The effect is fail-closed: if either person is missing, or the apply fails, the write does not land and there is no fake success. We call this Job C: dual-admitted effect authority before a privileged system-of-record write. We do not inventory agents (Job A). We do not replace Microsoft Entra (Job B).
-
-Microsoft hosts, identifies, notifies, and receives the write after the two of you admit it. Microsoft is not the product. Teams is not a seat. A chat is not dual admit. Copilot is not the admit plane. A PIM activation is not dual admit. This Cloud Agent (cursor.cloud_agent) can operate the host. It cannot be seat A or seat B. Owner plus agent is still one human.
 
 ## What we are building together
 
@@ -244,6 +218,10 @@ You do not need, and this brief does not give you
 Your yes lets James create your mailbox, lets you sign in once, and lets proof day use two named humans instead of lab operator ids. It lets Inception have a business executive contact when — and only when — James also has a custom domain, an incorporation date outside this tree, and says the public site may launch. It does not make the company live. It does not attach P-ADM. It does not write Production. It does not make you a stockholder. It does not publish AINAV.Institute.
 
 Your no, or not yet, is also a complete answer. Nothing is recorded. The invite stays open. The company stays a one-human lab until a second distinct human actually clicks. James will not invent a contact to paper over that.
+
+## Appendix — the plane
+
+The rest of this brief is the operating company: motherships, departments, pricing models, and the expert review. The letter and the one-fact table are the first-minute read. Cynthia can stop above this line.
 
 ## Part II — Foundational buildout
 

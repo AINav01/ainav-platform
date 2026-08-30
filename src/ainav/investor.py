@@ -199,6 +199,10 @@ def investor_markdown() -> str:
         "",
         body.get("letter_close") or "",
         "",
+        "## Catalog detail",
+        "",
+        "Company, problem, and list prices sit below the letter. They are not a second ask.",
+        "",
         f"Equation: {body.get('equation')}.",
         f"Commercial close: {body['commercial']}.",
         f"Insulation: {body.get('insulation')}.",
@@ -462,6 +466,8 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
 {_paras(body.get('letter_body') or '')}
 <p class="sign">{html.escape(body.get('letter_close') or body.get('signoff') or body['owner'])}</p>
 </div>
+<h2>Catalog detail</h2>
+<p>Company, problem, and list prices sit below the letter. They are not a second ask.</p>
 <p class="eq">Close = {html.escape(body['commercial'])}. Insulation = {html.escape(body.get('insulation') or '')}. Packet = {html.escape(body.get('equation') or '')}.</p>
 <div class="kpis">
   <div class="kpi"><div class="label">Recognized revenue</div><div class="value">$0</div></div>

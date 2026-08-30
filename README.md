@@ -110,7 +110,21 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.38.0 (this tree)
+### 2.39.0 (this tree)
+
+Packet discipline. The first-person letter ends on what James will
+not ask Cynthia for — not a Delaware scoreboard dump. The executive
+summary lede names the board packet. After the letter, the brief
+gives "Why a client must have this" a body, then duty / protect /
+memory / integrate as tables, not a URL wall. The investor packet
+and Institute `#investor` keep the letter once; company copy sits
+under Catalog detail. Hero notes stay (IDs unchanged) in a two-
+column grid. Cynthia is still invited, not recorded. No invented
+email. No stock. `LIVE_PIN_OK` cannot be marked. Print
+`docs/CYNTHIA_HODNETT_BRIEF.pdf` and
+`docs/CYNTHIA_HODNETT_INVESTOR.pdf`.
+
+### 2.38.0
 
 The letter is first person from James. The executive summary is one
 fact per row, not a four-column wall. Cynthia is still invited, not

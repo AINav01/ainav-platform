@@ -358,6 +358,10 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"investor letter body must keep {stem}", reason_code="CATALOG_INVESTOR")
     if "$0" not in str(body.get("letter_body") or "") and "recognized revenue is $0" not in letter_body:
         raise IntegrityError("investor letter body must keep the $0 scoreboard", reason_code="CATALOG_INVESTOR")
+    if "delaware" in letter_body:
+        raise IntegrityError("investor letter body is the human ask — company dump belongs in the exec table", reason_code="CATALOG_INVESTOR")
+    if "i will not ask" not in letter_body:
+        raise IntegrityError("investor letter body must end on what James will not ask Cynthia for", reason_code="CATALOG_INVESTOR")
     if "sole owner" not in str(body.get("letter_close") or "").lower():
         raise IntegrityError("investor letter closes from the sole owner", reason_code="CATALOG_INVESTOR")
     if "seat b" not in str(body.get("seat_b") or "").lower():
@@ -388,6 +392,8 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
     for stem in ("job c", "ninety", "three sku", "zero"):
         if stem not in lede:
             raise IntegrityError(f"executive summary lede must keep {stem}", reason_code="CATALOG_INVESTOR")
+    if "board packet" not in lede:
+        raise IntegrityError("executive summary lede must say this is the board packet", reason_code="CATALOG_INVESTOR")
     if str(summary.get("proof") or "") != str((catalog.get("buyer") or {}).get("proof_day") or ""):
         raise IntegrityError("executive summary proof must match buyer proof day", reason_code="CATALOG_INVESTOR")
     if "two distinct humans" not in str(summary.get("job_c") or "").lower():
