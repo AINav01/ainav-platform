@@ -37,6 +37,7 @@
           <a href="#about">About AINav</a>
           <a href="#opportunity">Opportunity</a>
           <a href="#fabric">Fabric</a>
+          <a href="#e7-cloudflare">E7 on Cloudflare</a>
           <a href="#product">Product</a>
           <a href="#org">Organization</a>
           <a href="#client-org">Client chart</a>
@@ -493,7 +494,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane" class="plane-floor">
-      <p class="kicker">Ultimate control plane · 2.40.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 2.41.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
       <h2>Human control plane — interface</h2>
       <p class="note">Must-have for the named controller. From the top of the client's org chart through every drafting desk. Open the floor. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>
@@ -960,12 +961,13 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     <section id="fabric">
       <span id="microsoft"></span>
       <h2>Microsoft fabric</h2>
-      <p class="note">Six connections. Eight complements. Sandbox only. Microsoft is not the product. Copilot and Agent 365 are not the admit plane.</p>
+      <p class="note">Six connections. Eight complements. Cloudflare is DNS/edge, not a ninth complement. Sandbox only. Microsoft is not the product. Copilot and Agent 365 are not the admit plane.</p>
       <p class="lede">
         Azure hosts. Entra seats from Microsoft 365 E7 identify.
         AINav admits. Business Central and Sales receive the write.
         Teams notifies. Complements hold secrets, evidence, policy, and audit.
         AINAV.Institute is a static site on Azure Static Web Apps — ainav.institute is not bound.
+        E7 mail already points through Cloudflare. Teams SIP is missing. Full is false.
       </p>
       <ol class="fabric" id="fabric-path" aria-label="How a write travels">
         <li class="fabric-node" data-id="azure.host" data-lane="host">
@@ -1023,6 +1025,33 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           <p>Not LIVE_PIN_OK. Custom domain not claimed. Copilot and Agent 365 are not SKUs.</p>
         </article>
       </div>
+      <h3 class="subhead" id="e7-cloudflare">E7 on Cloudflare</h3>
+      <p class="note">Not a ninth complement. Not a hop on the privileged write. DNS/edge only. Mail already points. Teams SIP is missing. Full is false. Cloudflare is not the product.</p>
+      <div class="status-board" id="e7-cloudflare-board">
+        <article>
+          <h3>Already pointed</h3>
+          <ul class="stack" id="e7-cloudflare-already">
+            <li>Cloudflare nameservers</li>
+            <li>Outlook MX</li>
+            <li>SPF include Outlook</li>
+            <li>Entra MS= TXT</li>
+            <li>autodiscover CNAME</li>
+            <li>enterpriseenrollment CNAME</li>
+            <li>enterpriseregistration CNAME</li>
+            <li>DKIM selectors</li>
+            <li>DMARC p=none</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Still missing</h3>
+          <ul class="stack" id="e7-cloudflare-missing">
+            <li>Teams SIP / lync SRV</li>
+          </ul>
+          <p class="note">Owner adds the SIP / lync records in <a href="https://dash.cloudflare.com">dash.cloudflare.com</a>. This Cloud Agent cannot edit Cloudflare. Do not orange-cloud MX or autodiscover.</p>
+        </article>
+      </div>
+      <p class="note" id="e7-cloudflare-note">Nameservers for ainav.institute. Microsoft 365 E7 mail and Entra records already point through Cloudflare. Teams SIP is missing. Full is false. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This Cloud Agent cannot edit Cloudflare.</p>
+      <p class="note" id="e7-cloudflare-status">full=false · sku=false · live=false · is_admit_plane=false · complement=false</p>
       <h3 class="subhead">Six connections</h3>
       <div id="stack-cards" class="cards stack-cards">
         <article data-id="azure.host">

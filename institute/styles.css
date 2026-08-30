@@ -735,6 +735,9 @@ table.law tr[data-group] th {
 .fabric-node[data-status="running_code"] .price { color: var(--ok); }
 #complement-cards article[data-wired="false"] .price { color: var(--hold); }
 #microsoft { scroll-margin-top: 5.2rem; }
+#e7-cloudflare { scroll-margin-top: 5.2rem; }
+#e7-cloudflare-board ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
+#e7-cloudflare-status { font-family: var(--mono); font-size: 0.82rem; }
 
 #investor .letter {
   margin: 1.25rem 0 1.75rem;

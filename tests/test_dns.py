@@ -41,6 +41,10 @@ def test_dns_probe_does_not_claim_custom_domain_or_launch(monkeypatch):
     assert body["microsoft_365"]["spf_outlook"] is True
     assert body["microsoft_365"]["dkim"] is True
     assert body["microsoft_365"]["teams_sip"] is False
+    assert body["e7_on_cloudflare"]["mail_on_cloudflare"] is True
+    assert body["e7_on_cloudflare"]["full"] is False
+    assert body["e7_on_cloudflare"]["live_pin_ok"] is False
+    assert "teams_sip" in body["e7_on_cloudflare"]["missing"]
 
 
 def test_dig_reads_live_cloudflare_ns():

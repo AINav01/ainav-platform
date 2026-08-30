@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.40.0",
+    "release": "2.41.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3260,6 +3260,7 @@
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
     "ainav.institute custom domain and incorporation date",
+    "Teams SIP / lync SRV on Cloudflare (E7-on-Cloudflare full=false)",
     "Power Platform / Dataverse environment for Sales",
     "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
     "Recognized revenue / external billing provider",
@@ -3310,6 +3311,46 @@
       "Microsoft 365 Copilot",
       "Agent 365"
     ],
+    "edge": {
+      "id": "cloudflare.dns",
+      "product": "Cloudflare",
+      "role": "dns_edge",
+      "sku": false,
+      "connection": false,
+      "complement": false,
+      "live": false,
+      "live_pin_ok": false,
+      "is_admit_plane": false,
+      "full": false,
+      "apex": "ainav.institute",
+      "dashboard_url": "https://dash.cloudflare.com",
+      "already": [
+        "Cloudflare nameservers",
+        "Outlook MX",
+        "SPF include Outlook",
+        "Entra MS= TXT",
+        "autodiscover CNAME",
+        "enterpriseenrollment CNAME",
+        "enterpriseregistration CNAME",
+        "DKIM selectors",
+        "DMARC p=none"
+      ],
+      "missing": [
+        "Teams SIP / lync SRV"
+      ],
+      "not": [
+        "SKU",
+        "seat",
+        "ninth Microsoft complement",
+        "hop on the privileged write",
+        "dual admit",
+        "Institute launch",
+        "Azure SWA custom domain",
+        "Zero Trust as the admit plane",
+        "Cloudflare Email Security as live"
+      ],
+      "note": "Nameservers for ainav.institute. Microsoft 365 E7 mail and Entra records already point through Cloudflare. Teams SIP is missing. Full is false. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This Cloud Agent cannot edit Cloudflare."
+    },
     "agent_tools": {
       "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
       "product": "Microsoft 365 Agent Tools",
@@ -4397,6 +4438,7 @@
       "Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.",
       "AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.",
       "Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.",
+      "E7 mail and Entra records already point through Cloudflare nameservers. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.",
       "Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.",
       "Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.",
       "Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.",
@@ -4412,6 +4454,7 @@
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
       "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.",
+      "Teams SIP / lync SRV is not on Cloudflare. Full E7-on-Cloudflare is false. Do not orange-cloud MX or autodiscover.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.",
       "No billing provider. Catalog list cannot become recognized revenue.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",

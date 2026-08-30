@@ -251,6 +251,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 
 - Second unique human (Inception contacts and signed L1 seats)
 - ainav.institute custom domain and incorporation date
+- Teams SIP / lync SRV on Cloudflare (E7-on-Cloudflare full=false)
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
 - Recognized revenue / external billing provider

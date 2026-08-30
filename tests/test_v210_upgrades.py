@@ -17,7 +17,14 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.40.0"
+    assert cat["entity"]["release"] == "2.41.0"
+    edge = cat["microsoft_stack"]["edge"]
+    assert edge["id"] == "cloudflare.dns"
+    assert edge["sku"] is False
+    assert edge["full"] is False
+    assert edge["is_admit_plane"] is False
+    assert edge["complement"] is False
+    assert "sip" in " ".join(edge["missing"]).lower()
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",

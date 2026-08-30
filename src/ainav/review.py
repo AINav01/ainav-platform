@@ -167,6 +167,7 @@ def review_model(*, probe: bool = False) -> dict[str, Any]:
         "cloud_agent_can_approve_tools": False,
         "agent_tools_admin": tools["admin_url"],
         "cli": list(CLI_SURFACE),
+        "e7_cloudflare": dict(status["e7_cloudflare"]),
         "probed": False,
     }
     if probe:
@@ -365,6 +366,19 @@ def deep_dive(*, probe: bool = False) -> str:
         )
     lines += [
         "",
+        "E7 on Cloudflare (DNS/edge, not a ninth complement, not a write-path hop):",
+        "",
+        f"- Product: {status['e7_cloudflare']['product']}. Role: {status['e7_cloudflare']['role']}. "
+        f"full={str(status['e7_cloudflare']['full']).lower()}. "
+        f"sku={str(status['e7_cloudflare']['sku']).lower()}. "
+        f"is_admit_plane={str(status['e7_cloudflare']['is_admit_plane']).lower()}.",
+        f"- Already pointed: {'; '.join(status['e7_cloudflare']['already'])}.",
+        f"- Still missing: {'; '.join(status['e7_cloudflare']['missing'])}.",
+        f"- Not: {'; '.join(status['e7_cloudflare']['not'])}.",
+        f"- {status['e7_cloudflare']['note']}",
+        f"- Owner dashboard: {status['e7_cloudflare']['dashboard_url']}. "
+        "This Cloud Agent cannot edit Cloudflare.",
+        "",
         "E7 ships Copilot and Agent 365. They are not the admit plane.",
         f"Agent Tools admin: {tools['admin_url']}",
         "Leave Available (owner Unblocks if Blocked; this Cloud Agent cannot):",
@@ -396,6 +410,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"launch_ready={site.get('launch_ready')}",
         "- Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.",
         "- Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).",
+        "- E7-on-Cloudflare full=false until Teams SIP / lync SRV is present. "
+        "Orange-cloud MX is not dual admit.",
         "- No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.",
         "- `--publish-institute` returns `launch_not_ready` and does not upload.",
         "- Do not bind `ainav.institute` until the owner says launch.",
@@ -510,6 +526,9 @@ def _probe_overlay() -> dict[str, Any]:
         "swa_asuid_present": (dns.get("website") or {}).get("swa_asuid_present"),
         "mx_outlook": (dns.get("microsoft_365") or {}).get("mx_outlook"),
         "teams_sip": (dns.get("microsoft_365") or {}).get("teams_sip"),
+        "e7_on_cloudflare_full": (dns.get("e7_on_cloudflare") or {}).get("full"),
+        "e7_on_cloudflare_mail": (dns.get("e7_on_cloudflare") or {}).get("mail_on_cloudflare"),
+        "e7_on_cloudflare_missing": list((dns.get("e7_on_cloudflare") or {}).get("missing") or []),
         "custom_domain_claimed": False,
     }
 
@@ -529,7 +548,11 @@ def _probe_section() -> list[str]:
         f"SWA asuid: {overlay['swa_asuid_present']}. "
         f"Outlook MX: {overlay['mx_outlook']}. "
         f"Teams SIP: {overlay['teams_sip']}.",
-        "- Custom domain claimed: false. Launch ready: false.",
+        f"- E7 on Cloudflare: mail={overlay['e7_on_cloudflare_mail']} "
+        f"full={overlay['e7_on_cloudflare_full']}. "
+        f"Missing: {', '.join(overlay['e7_on_cloudflare_missing']) or 'none'}.",
+        "- Custom domain claimed: false. Launch ready: false. "
+        "Cloudflare is not a SKU and not on the privileged write path.",
     ]
 
 

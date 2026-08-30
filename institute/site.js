@@ -1571,6 +1571,49 @@
       if (data.complements) {
         paintCards("complement-cards", data.complements);
       }
+      if (data.e7_cloudflare) {
+        var edge = data.e7_cloudflare;
+        if (
+          edge.full ||
+          edge.sku ||
+          edge.live ||
+          edge.live_pin_ok ||
+          edge.is_admit_plane ||
+          edge.complement ||
+          edge.connection
+        ) {
+          /* refuse to paint a fiction scoreboard */
+        } else {
+          function replacePlainList(id, items) {
+            var node = document.getElementById(id);
+            if (!node || !items) return;
+            node.innerHTML = "";
+            items.forEach(function (item) {
+              var li = document.createElement("li");
+              li.textContent = item;
+              node.appendChild(li);
+            });
+          }
+          replacePlainList("e7-cloudflare-already", edge.already);
+          replacePlainList("e7-cloudflare-missing", edge.missing);
+          var edgeStatus = document.getElementById("e7-cloudflare-status");
+          if (edgeStatus) {
+            edgeStatus.textContent =
+              "full=" +
+              edge.full +
+              " · sku=" +
+              edge.sku +
+              " · live=" +
+              edge.live +
+              " · is_admit_plane=" +
+              edge.is_admit_plane +
+              " · complement=" +
+              edge.complement;
+          }
+          var edgeNote = document.getElementById("e7-cloudflare-note");
+          if (edgeNote && edge.note) edgeNote.textContent = edge.note;
+        }
+      }
       var toolsStatus = document.getElementById("agent-tools-status");
       if (toolsStatus && data.agent_tools) {
         toolsStatus.textContent =

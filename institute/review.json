@@ -24,6 +24,46 @@
   ],
   "cloud_agent_can_approve_tools": false,
   "custom_domain_claimed": false,
+  "e7_cloudflare": {
+    "already": [
+      "Cloudflare nameservers",
+      "Outlook MX",
+      "SPF include Outlook",
+      "Entra MS= TXT",
+      "autodiscover CNAME",
+      "enterpriseenrollment CNAME",
+      "enterpriseregistration CNAME",
+      "DKIM selectors",
+      "DMARC p=none"
+    ],
+    "apex": "ainav.institute",
+    "complement": false,
+    "connection": false,
+    "dashboard_url": "https://dash.cloudflare.com",
+    "full": false,
+    "id": "cloudflare.dns",
+    "is_admit_plane": false,
+    "live": false,
+    "live_pin_ok": false,
+    "missing": [
+      "Teams SIP / lync SRV"
+    ],
+    "not": [
+      "SKU",
+      "seat",
+      "ninth Microsoft complement",
+      "hop on the privileged write",
+      "dual admit",
+      "Institute launch",
+      "Azure SWA custom domain",
+      "Zero Trust as the admit plane",
+      "Cloudflare Email Security as live"
+    ],
+    "note": "Nameservers for ainav.institute. Microsoft 365 E7 mail and Entra records already point through Cloudflare. Teams SIP is missing. Full is false. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This Cloud Agent cannot edit Cloudflare.",
+    "product": "Cloudflare",
+    "role": "dns_edge",
+    "sku": false
+  },
   "entity": "AINav, Inc.",
   "equation": {
     "closed": false,

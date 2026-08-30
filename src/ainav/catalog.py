@@ -90,6 +90,54 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_client_org(catalog)
     _validate_plane_interface(catalog)
     _validate_investor(catalog)
+    _validate_microsoft_edge(catalog)
+
+
+def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
+    edge = (catalog.get("microsoft_stack") or {}).get("edge")
+    if not isinstance(edge, dict):
+        raise IntegrityError("catalog missing Cloudflare edge", reason_code="CATALOG_EDGE")
+    if edge.get("id") != "cloudflare.dns":
+        raise IntegrityError("edge id is cloudflare.dns", reason_code="CATALOG_EDGE")
+    if edge.get("product") != "Cloudflare":
+        raise IntegrityError("edge product is Cloudflare", reason_code="CATALOG_EDGE")
+    if edge.get("role") != "dns_edge":
+        raise IntegrityError("edge role is dns_edge", reason_code="CATALOG_EDGE")
+    if edge.get("dashboard_url") != "https://dash.cloudflare.com":
+        raise IntegrityError("edge dashboard is dash.cloudflare.com", reason_code="CATALOG_EDGE")
+    if str(edge.get("apex") or "") != "ainav.institute":
+        raise IntegrityError("edge apex is ainav.institute", reason_code="CATALOG_EDGE")
+    for flag in (
+        "sku",
+        "connection",
+        "complement",
+        "live",
+        "live_pin_ok",
+        "is_admit_plane",
+        "full",
+    ):
+        if edge.get(flag) is not False:
+            raise IntegrityError(f"edge cannot claim {flag}", reason_code="CATALOG_EDGE")
+    already = " ".join(str(item) for item in edge.get("already") or []).lower()
+    for stem in ("nameserver", "mx", "spf", "entra", "autodiscover", "dkim", "dmarc"):
+        if stem not in already:
+            raise IntegrityError(f"edge already must include {stem}", reason_code="CATALOG_EDGE")
+    missing = " ".join(str(item) for item in edge.get("missing") or []).lower()
+    if "sip" not in missing:
+        raise IntegrityError("edge missing must include Teams SIP", reason_code="CATALOG_EDGE")
+    not_blob = " ".join(str(item) for item in edge.get("not") or []).lower()
+    for stem in ("sku", "complement", "dual", "launch"):
+        if stem not in not_blob:
+            raise IntegrityError(f"edge not must include {stem}", reason_code="CATALOG_EDGE")
+    note = str(edge.get("note") or "").lower()
+    if "not the product" not in note:
+        raise IntegrityError("edge note: Cloudflare is not the product", reason_code="CATALOG_EDGE")
+    if "dns-only" not in note:
+        raise IntegrityError("edge note: MX stays DNS-only", reason_code="CATALOG_EDGE")
+    if "cannot edit" not in note:
+        raise IntegrityError("edge note: Cloud Agent cannot edit Cloudflare", reason_code="CATALOG_EDGE")
+    if "full is false" not in note:
+        raise IntegrityError("edge note: full is false", reason_code="CATALOG_EDGE")
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:

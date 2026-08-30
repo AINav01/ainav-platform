@@ -158,6 +158,9 @@ def test_institute_foundation_is_catalog_honest():
         "industry.ip_keep",
     }
     assert 'id="fabric"' in html
+    assert 'id="e7-cloudflare"' in html
+    assert 'id="e7-cloudflare-already"' in html
+    assert "not a ninth complement" in html.lower()
     assert 'id="review"' in html
     assert 'id="review-score"' in html
     assert 'id="review-fit"' in html
@@ -220,6 +223,8 @@ def test_institute_foundation_is_catalog_honest():
     assert "agent-tools-steps" in js
     assert "owner_playbook" in js
     assert "complement-cards" in js
+    assert "e7_cloudflare" in js
+    assert "e7-cloudflare-already" in js
     assert "year_one_list_if_all_three" in js
     assert "business.json" in js
     assert "review.json" in js
@@ -235,6 +240,8 @@ def test_institute_foundation_is_catalog_honest():
     assert status["opportunity"]["recognized_revenue"] is None
     assert status["opportunity"]["year_one_list_if_all_three"]["min"] == 88000
     assert status["fabric"]["live"] is False
+    assert status["e7_cloudflare"]["full"] is False
+    assert status["e7_cloudflare"]["sku"] is False
     assert all(item["wired"] is False for item in status["complements"])
     review = json.loads(Path("institute/review.json").read_text(encoding="utf-8"))
     assert review["kind"] == "ainav.review.v1"

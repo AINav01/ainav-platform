@@ -6,6 +6,7 @@ from typing import Any
 
 from ainav.catalog import honest_missing, load_catalog, sku
 from ainav.microsoft.agent_tools import public_review as agent_tools_review
+from ainav.microsoft.dns import catalog_edge
 
 COMPLEMENT_HONESTY = {
     "entra.id": "Seat object ids. Not an IdP replacement. Copilot is not the admit plane.",
@@ -192,6 +193,7 @@ def public_status() -> dict[str, Any]:
             "institute_site": site.get("azure_site"),
         },
         "fabric": _fabric(cat, evidence, site),
+        "e7_cloudflare": catalog_edge(),
         "complements": _complements(cat),
         "agent_tools": {
             "admin_url": tools["admin_url"],
