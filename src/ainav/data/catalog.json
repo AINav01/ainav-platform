@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.32.0",
+    "release": "2.33.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2379,7 +2379,9 @@
       "native approval as the plane",
       "vendor-native as dual",
       "microsoft as the product",
-      "homepage as company first"
+      "homepage as company first",
+      "lab oids as named seats",
+      "owner as a seat"
     ],
     "note": "Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.",
     "views": [
@@ -3096,6 +3098,31 @@
         "sale": "The sale is the ninety-minute proof.",
         "product_path": ["buyer", "twin", "product"],
         "company_after": "about"
+      },
+      "accountable": {
+        "lede": "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit.",
+        "items": [
+          {
+            "id": "admit",
+            "name": "Seat A / seat B",
+            "note": "Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash."
+          },
+          {
+            "id": "freeze",
+            "name": "Owner / board",
+            "note": "Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats."
+          },
+          {
+            "id": "keep",
+            "name": "Examiner",
+            "note": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing."
+          },
+          {
+            "id": "not_a_seat",
+            "name": "Not a seat",
+            "note": "One title cannot click both admits. Lab oids are not two named treasury humans."
+          }
+        ]
       }
     }
   },

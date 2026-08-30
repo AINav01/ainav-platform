@@ -110,7 +110,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.32.0 (this tree)
+### 2.33.0 (this tree)
+
+A named controller can now name the incident, the gate, what is not
+the gate, the sale, and that the twin is a test of the plane. They
+still could not name who is accountable: who admits, who may freeze,
+who keeps the second record, and that lab oids are not those humans.
+Hero, buyer, Proof day, Client console, and the Cynthia brief now say
+the duty matrix: only seat A and seat B admit; owner and board can ask
+for a freeze and are not seats; the examiner keeps who admitted and
+off-switch evidence; one title cannot click both; lab oids are not two
+named treasury humans.
+
+### 2.32.0
 
 A named controller can now name the incident, the SOD they already
 have, what is not the gate, what they walk out with, and what no does.

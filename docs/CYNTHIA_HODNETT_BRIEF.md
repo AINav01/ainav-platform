@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.32.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.33.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.32.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.33.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 This letter is for you, not for a customer and not for GitHub. James Hodnett asked that it be written from the company's own catalog so nothing here is invented: no email for you, no stock, no officer title, no named buyer, no claim that the public site has launched. If a sentence would make the company look further along than it is, it was left out.
 
@@ -31,6 +31,10 @@ Walk out of proof day with a sealed DecisionRecord and a Merkle / audit export. 
 ## The sale is the ninety-minute proof
 
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
+
+## Who may admit, freeze, keep
+
+The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit. Seat A / seat B: Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash. Owner / board: Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats. Examiner: First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing. Not a seat: One title cannot click both admits. Lab oids are not two named treasury humans.
 
 ## Investor packet — print the letter with the full upsell catalog
 

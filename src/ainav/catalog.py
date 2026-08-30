@@ -766,6 +766,25 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("product path is buyer, twin, product", reason_code="CATALOG_PLANE")
     if str(page.get("company_after") or "") != "about":
         raise IntegrityError("company dump sits after about", reason_code="CATALOG_PLANE")
+    accountable = floor.get("accountable") or {}
+    acc_lede = str(accountable.get("lede") or "").lower()
+    if "duty matrix" not in acc_lede or "only seat a and seat b admit" not in acc_lede:
+        raise IntegrityError("accountable lede is the duty matrix", reason_code="CATALOG_PLANE")
+    acc_ids = [item.get("id") for item in accountable.get("items") or []]
+    for needed in ("admit", "freeze", "keep", "not_a_seat"):
+        if needed not in acc_ids:
+            raise IntegrityError(f"accountable must include {needed}", reason_code="CATALOG_PLANE")
+    acc_by = {item.get("id"): item for item in accountable.get("items") or []}
+    if "only two humans" not in str((acc_by.get("admit") or {}).get("note") or "").lower():
+        raise IntegrityError("admit is the only two humans", reason_code="CATALOG_PLANE")
+    freeze_note = str((acc_by.get("freeze") or {}).get("note") or "").lower()
+    if "they are not seats" not in freeze_note or "freeze" not in freeze_note:
+        raise IntegrityError("owner and board are not seats", reason_code="CATALOG_PLANE")
+    if str((acc_by.get("keep") or {}).get("note") or "") != str(floor_for.get("examiner") or ""):
+        raise IntegrityError("keep must match examiner must-have", reason_code="CATALOG_PLANE")
+    not_seat = str((acc_by.get("not_a_seat") or {}).get("note") or "").lower()
+    if "one title cannot" not in not_seat or "lab oids are not two named" not in not_seat:
+        raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
     if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
         raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
@@ -780,6 +799,8 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "vendor-native as dual",
         "microsoft as the product",
         "homepage as company first",
+        "lab oids as named seats",
+        "owner as a seat",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")

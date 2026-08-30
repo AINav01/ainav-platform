@@ -1,4 +1,29 @@
 {
+  "accountable": {
+    "items": [
+      {
+        "id": "admit",
+        "name": "Seat A / seat B",
+        "note": "Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash."
+      },
+      {
+        "id": "freeze",
+        "name": "Owner / board",
+        "note": "Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats."
+      },
+      {
+        "id": "keep",
+        "name": "Examiner",
+        "note": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing."
+      },
+      {
+        "id": "not_a_seat",
+        "name": "Not a seat",
+        "note": "One title cannot click both admits. Lab oids are not two named treasury humans."
+      }
+    ],
+    "lede": "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit."
+  },
   "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
   "contact_email": null,
   "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",

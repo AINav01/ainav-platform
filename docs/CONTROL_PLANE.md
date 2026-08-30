@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.32.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.33.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -39,6 +39,15 @@ Refusing is the product working. No grant. No SoR write. If either person is mis
 ### The sale is the ninety-minute proof.
 
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
+
+### Who may admit, freeze, keep
+
+The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit.
+
+- **Seat A / seat B** — Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash.
+- **Owner / board** — Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats.
+- **Examiner** — First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.
+- **Not a seat** — One title cannot click both admits. Lab oids are not two named treasury humans.
 
 Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
@@ -87,7 +96,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.32.0.
+- As of: catalog release 2.33.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -427,5 +436,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - vendor-native as dual
 - microsoft as the product
 - homepage as company first
+- lab oids as named seats
+- owner as a seat
 
 Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.

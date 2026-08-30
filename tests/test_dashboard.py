@@ -151,6 +151,8 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "what no does" in md.lower()
     assert "the product is the admit plane" in md.lower()
     assert "the sale is the ninety-minute proof" in md.lower()
+    assert "who may admit, freeze, keep" in md.lower()
+    assert "lab oids are not two named" in md.lower()
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -346,6 +348,22 @@ def test_plane_interface_validators_refuse_fiction():
     bad_path["plane_interface"]["floor"]["page"]["product_path"] = ["opportunity", "org"]
     with pytest.raises(IntegrityError):
         validate_catalog(bad_path)
+    no_admit = copy.deepcopy(cat)
+    no_admit["plane_interface"]["floor"]["accountable"]["items"] = [
+        item
+        for item in cat["plane_interface"]["floor"]["accountable"]["items"]
+        if item.get("id") != "admit"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_admit)
+    bad_keep = copy.deepcopy(cat)
+    bad_keep["plane_interface"]["floor"]["accountable"]["items"][2]["note"] = "invented filing"
+    with pytest.raises(IntegrityError):
+        validate_catalog(bad_keep)
+    lab_as_seat = copy.deepcopy(cat)
+    lab_as_seat["plane_interface"]["floor"]["accountable"]["items"][3]["note"] = "lab oids are the seats"
+    with pytest.raises(IntegrityError):
+        validate_catalog(lab_as_seat)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):
@@ -385,6 +403,8 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-inspector"' in floor
     assert 'id="plane-page-first"' in floor
     assert "ninety-minute proof" in floor
+    assert "seat A · seat B" in floor
+    assert "owner / board request" in floor
     assert 'id="plane-authorizations"' in floor
     assert 'id="plane-provision"' in floor
     assert 'id="plane-records"' in floor

@@ -56,6 +56,11 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="must-for"' in html
     assert 'id="not-the-gate"' in html
     assert 'id="proof-close"' in html
+    assert 'id="accountable"' in html
+    assert 'id="hero-accountable"' in html
+    assert 'id="twin-lab"' in html
+    assert "who may admit, freeze, keep" in html.lower()
+    assert "lab oids are not two named treasury humans" in html.lower()
     assert "Inventory of models is not a control" in html
     assert "vendor-native button" in html.lower()
     assert "sealed DecisionRecord" in html

@@ -161,7 +161,15 @@ h1 {
 .must-for article p { margin: 0; color: var(--mute); font-size: 0.92rem; line-height: 1.4; }
 @media (min-width: 900px) {
   #not-the-gate.must-for { grid-template-columns: repeat(4, 1fr); }
+  #accountable.must-for { grid-template-columns: repeat(4, 1fr); }
 }
+#hero-accountable { max-width: var(--wide); margin: 0.85rem 0 0; }
+.band #accountable { margin-top: 1.25rem; }
+.band #accountable article {
+  background: color-mix(in srgb, var(--void-ink) 6%, transparent);
+  border-color: color-mix(in srgb, var(--void-ink) 18%, transparent);
+}
+.band #accountable article p { color: color-mix(in srgb, var(--void-ink) 68%, transparent); }
 
 section {
   padding: clamp(3rem, 8vh, 5.5rem) 0;

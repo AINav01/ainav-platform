@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.32.0"
+    assert cat["entity"]["release"] == "2.33.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -32,6 +32,11 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     assert page["sale"] == cat["plane_interface"]["floor"]["proof_close"]["sale"]
     assert page["product_path"] == ["buyer", "twin", "product"]
     assert page["company_after"] == "about"
+    acc = cat["plane_interface"]["floor"]["accountable"]
+    assert "duty matrix" in acc["lede"].lower()
+    assert {item["id"] for item in acc["items"]} >= {"admit", "freeze", "keep", "not_a_seat"}
+    assert acc["items"][2]["note"] == cat["plane_interface"]["floor"]["must_have"]["for"]["examiner"]
+    assert "lab oids are not two named" in " ".join(item["note"] for item in acc["items"]).lower()
     assert "write does not land" in cat["plane_interface"]["floor"]["no_means"]["fail_closed"].lower()
     assert "business central" in cat["plane_interface"]["floor"]["already_have"].lower()
     assert "gate" in cat["plane_interface"]["floor"]["still_lack"].lower()
@@ -147,6 +152,8 @@ def test_printable_brief_is_a_pdf():
     assert "owner, board, examiner" in md.lower()
     assert md.lower().index("not the gate") < md.lower().index("investor packet")
     assert md.lower().index("the product is the admit plane") < md.lower().index("investor packet")
+    assert md.lower().index("who may admit, freeze, keep") < md.lower().index("investor packet")
+    assert "lab oids are not two named" in md.lower()
     assert "sealed decisionrecord" in md.lower()
     assert "ninety minutes" in md
     assert "Tuesday" in md

@@ -139,6 +139,11 @@
       if (data.floor && data.floor.not_the_gate) {
         paintCards("not-the-gate", data.floor.not_the_gate, "name", "note");
       }
+      if (data.floor && data.floor.accountable && data.floor.accountable.items) {
+        paintCards("accountable", data.floor.accountable.items, "name", "note");
+        set("hero-accountable", (data.floor.accountable.lede || "") + " Lab oids are not two named treasury humans.");
+        set("buyer-duty", data.floor.accountable.lede || "");
+      }
       if (data.floor && data.floor.page) {
         set("hero-sale", (data.floor.page.sale || "The sale is the ninety-minute proof.") + " The product is the admit plane.");
       }
@@ -537,6 +542,8 @@
           var page = (data.floor && data.floor.page) || {};
           add("The sale", "ninety-minute proof", page.sale || "The sale is the ninety-minute proof.");
           add("The twin", "the admit plane", page.twin_is || "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.");
+          var acc = (data.floor && data.floor.accountable) || {};
+          add("Who may", "admit · freeze · keep", acc.lede || "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit.");
           add("Must-have", "one plane over every new client AI", must.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
           add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
@@ -579,6 +586,11 @@
           var page = (data.floor && data.floor.page) || {};
           add("The sale", "ninety-minute proof", page.sale || "The sale is the ninety-minute proof.");
           add("The twin", "the admit plane", page.twin_is || "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.");
+          var acc = (data.floor && data.floor.accountable) || {};
+          add("Who may", "admit · freeze · keep", acc.lede || "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit.");
+          (acc.items || []).forEach(function (item) {
+            add(item.name, item.id, item.note || "");
+          });
           add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
           add("Board", "must-have", audience.board || "Inventory of models is not a control.");
           add("Examiner", "must-have", audience.examiner || "First record is the SoR write. Second record is who admitted it.");
@@ -1195,6 +1207,26 @@
     var sale = document.getElementById("buyer-sale");
     if (sale && (data.sale || (data.proof_close && data.proof_close.sale))) {
       sale.textContent = data.sale || data.proof_close.sale;
+    }
+    if (data.accountable && data.accountable.lede) {
+      var duty = document.getElementById("buyer-duty");
+      if (duty) duty.textContent = data.accountable.lede;
+    }
+    if (data.accountable && data.accountable.items) {
+      var acc = document.getElementById("accountable");
+      if (acc) {
+        acc.textContent = "";
+        data.accountable.items.forEach(function (item) {
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = item.name || "";
+          var p = document.createElement("p");
+          p.textContent = item.note || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          acc.appendChild(art);
+        });
+      }
     }
     function replaceList(id, items) {
       var node = document.getElementById(id);
