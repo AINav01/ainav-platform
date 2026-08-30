@@ -131,6 +131,57 @@ def test_investor_validators_refuse_fiction():
     weak_letter["investor"]["letter_body"] = "Please help."
     with pytest.raises(IntegrityError):
         validate_catalog(weak_letter)
+    no_second = copy.deepcopy(cat)
+    no_second["investor"]["letter_open"] = "Dear Cynthia — hello."
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_second)
+    no_close = copy.deepcopy(cat)
+    no_close["investor"]["letter_close"] = "Thanks."
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_close)
+    no_zero = copy.deepcopy(cat)
+    no_zero["investor"]["letter_body"] = (
+        "Seat B. Invited, not recorded. Not stock. Not a priced round. No scoreboard."
+    )
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_zero)
+    for flag in ("sku", "certified", "mandated", "forecast", "priced_round", "live", "live_pin_ok"):
+        bad = copy.deepcopy(cat)
+        bad["investor"]["executive_summary"][flag] = True
+        with pytest.raises(IntegrityError):
+            validate_catalog(bad)
+    weak_lede = copy.deepcopy(cat)
+    weak_lede["investor"]["executive_summary"]["lede"] = "A company exists."
+    with pytest.raises(IntegrityError):
+        validate_catalog(weak_lede)
+    drift_proof = copy.deepcopy(cat)
+    drift_proof["investor"]["executive_summary"]["proof"] = "Sometime later."
+    with pytest.raises(IntegrityError):
+        validate_catalog(drift_proof)
+    weak_job = copy.deepcopy(cat)
+    weak_job["investor"]["executive_summary"]["job_c"] = "Someone clicks."
+    with pytest.raises(IntegrityError):
+        validate_catalog(weak_job)
+    weak_tiles = copy.deepcopy(cat)
+    weak_tiles["investor"]["executive_summary"]["tiles"] = "Growing fast."
+    with pytest.raises(IntegrityError):
+        validate_catalog(weak_tiles)
+    ms_product = copy.deepcopy(cat)
+    ms_product["investor"]["executive_summary"]["microsoft"] = "Microsoft is the product."
+    with pytest.raises(IntegrityError):
+        validate_catalog(ms_product)
+    cert = copy.deepcopy(cat)
+    cert["investor"]["executive_summary"]["must_have"] = "This is a certificate."
+    with pytest.raises(IntegrityError):
+        validate_catalog(cert)
+    pin = copy.deepcopy(cat)
+    pin["investor"]["executive_summary"]["opens"] = "Mark it live."
+    with pytest.raises(IntegrityError):
+        validate_catalog(pin)
+    weak_ask = copy.deepcopy(cat)
+    weak_ask["investor"]["executive_summary"]["ask"] = "Please invest."
+    with pytest.raises(IntegrityError):
+        validate_catalog(weak_ask)
 
 
 def test_institute_investor_is_catalog_honest():
