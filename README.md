@@ -110,7 +110,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.39.0 (this tree)
+### 2.40.0 (this tree)
+
+Decision first. After the letter, Cynthia gets why James trusts
+her, what a Tuesday looks like, and what yes / no / not yet does.
+James's owner-click URLs, desks, and motherships sit under
+Appendix — the plane. The letter says I trust, not mailbox
+procedure. Institute `#investor` paints Your decision after the
+letter and keeps Catalog detail closed. Cynthia is still invited,
+not recorded. No invented email. No stock. `LIVE_PIN_OK` cannot be
+marked. Print `docs/CYNTHIA_HODNETT_BRIEF.pdf` and
+`docs/CYNTHIA_HODNETT_INVESTOR.pdf`.
+
+### 2.39.0
 
 Packet discipline. The first-person letter ends on what James will
 not ask Cynthia for — not a Delaware scoreboard dump. The executive

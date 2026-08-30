@@ -1,12 +1,12 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.39.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.40.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.39.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.40.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 ## Executive summary
 
-This is the board packet for the admit plane. Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
+This is the board packet for the admit plane. Job C needs a second human. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
 
 *Board packet — one fact per row*
 
@@ -25,15 +25,50 @@ This is the board packet for the admit plane. Job C is the only product. The sal
 
 Dear Cynthia — I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.
 
-The seat is seat B: treasury_controller, and the Inception business executive if you also agree to that contact. You get your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.
+I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. Seat B is the second unique human. It is not stock, not a priced round, and not a customer seat.
 
-You are invited, not recorded. No email is stored until you send a business address and I say record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer. I will not invent a contact to paper over a one-human lab.
+You are invited, not recorded. I will not invent an inbox or an object id for you. Your no, or not yet, is a complete answer.
 
-If you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.
+If you agree, you become seat B on the same Entra tenant. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
 
 I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
 
 James Hodnett, sole owner of AINav, Inc.
+
+## Why we need you — not a second license
+
+James Hodnett is one human principal. Job C is a two-human fact. A second Microsoft 365 license, a second tool, a second agent, or James clicking twice does not create dual admit. The second person must be a different human, with a different Entra object id, who actually reads the action and clicks. That is why this is a letter to you and not a settings change.
+
+You are the person James trusts with treasury judgment. The seat opposite treasury_approver is treasury_controller — the controller who will not let a journal land because it was convenient. NVIDIA Inception also requires two unique contacts with business emails: a developer (James) and a business executive (you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse those two contacts. You are not recorded as an officer. You are not a stockholder. No email is stored until you agree and James says record it.
+
+Without a second distinct person who actually clicks, AINav can keep a lab. It cannot sign L1. It cannot apply to Inception. It cannot look a controller in the eye and say two humans admitted the journal. That is the whole reason this brief exists. Your yes or no is the first commercial gate. Everything else on James's owner list waits behind it.
+
+## Your role if you agree — what a Tuesday looks like
+
+*Two humans, two jobs, one write*
+
+|  | James Hodnett | Cynthia Hodnett (if you agree) |
+| --- | --- | --- |
+| Seat | A | B |
+| Treasury | treasury_approver | treasury_controller |
+| Inception | developer / programmer | business executive |
+| Identity | His Entra user | Your own @ainav.institute mailbox — not an alias, not Gmail, not his login |
+| Click | Admits the same action hash | Admits or refuses the same action hash |
+
+When a privileged write is proposed, you see the account, the amount, the memo, and the action hash. You admit or you refuse. Refusing is the product working. If James clicks both seats, it is not dual. If you approve without reading, it is not dual. Proof day is ninety minutes on the sandbox twin with two named humans. It is still not Production. After a customer buys L1, you are one of the two seats the Acceptance Kit requires.
+
+You do not need, and this brief does not give you
+
+- Global Admin, Azure ownership, or a programming role
+- Equity or an officer title — counsel decides stock later; this page does not issue shares
+- To become Copilot, Teams, Agent 365, or this Cloud Agent
+- To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or sign an MSA today
+
+## What your yes unlocks — and what it does not
+
+Your yes lets James create your mailbox, lets you sign in once, and lets proof day use two named humans instead of lab operator ids. It lets Inception have a business executive contact when — and only when — James also has a custom domain, an incorporation date outside this tree, and says the public site may launch. It does not make the company live. It does not attach P-ADM. It does not write Production. It does not make you a stockholder. It does not publish AINAV.Institute.
+
+Your no, or not yet, is also a complete answer. Nothing is recorded. The invite stays open. The company stays a one-human lab until a second distinct human actually clicks. James will not invent a contact to paper over that.
 
 ## Why a client must have this
 
@@ -75,6 +110,34 @@ Microsoft is identity, notify, SoR, and audit sink. The product is the admit pla
 | Examiner | First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing. |
 | Not a seat | One title cannot click both admits. Lab oids are not two named treasury humans. |
 
+## Investor packet — print the letter with the full upsell catalog
+
+The letter and the one-fact table are at the top of this brief. Print docs/CYNTHIA_HODNETT_INVESTOR.pdf for the full upsell catalog. Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK.
+
+*Scoreboard today — catalog-honest*
+
+| Recognized revenue | Named customers | Signed L1 | Year-one if all three |
+| --- | --- | --- | --- |
+| $0 | 0 | 0 | $88,000–$135,000 catalog list, not booked |
+
+Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM ($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. Insulation is independence × Job C lockfile × fail-closed gold × catalog law. The ask of you is seat B — not stock, not Global Admin, not a priced round.
+
+## Where we actually are
+
+The admit plane runs in code. Gold tests pass. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 for $250.00. Those seats were lab operator identities — not two named treasury humans. Production is blocked. The Institute has an Azure hostname. The custom domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception are qualification targets. Membership is not claimed. Crypto-associated is false. We do not lead with custody or GPU production.
+
+*Honest split — working versus not claimed*
+
+| Working now | Not claimed, not asked of you today |
+| --- | --- |
+| Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute held until launch | Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched |
+| You are invited by name as seat B / business executive | You as a recorded officer, stockholder, or second unique human in the catalog |
+| Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach | LIVE_PIN_OK; product high availability; counsel-signed MSA; recognized revenue |
+
+## Appendix — the plane
+
+Cynthia can stop above this line. What follows is James's operating company: owner-click links, desks, motherships, departments, pricing models, and the expert review. None of it is required to decide yes, no, or not yet.
+
 *Disclaimer, attestation, and protection*
 
 | Name | What it is |
@@ -108,18 +171,6 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 | Microsoft for Startups | Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. | https://www.microsoft.com/en-us/startups |
 | Azure Static Web Apps | Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch. | https://portal.azure.com/#view/Microsoft_Azure_StaticApps |
 | Business Central Sandbox | Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production. | https://businesscentral.dynamics.com/ainav.institute/Sandbox |
-
-## Investor packet — print the letter with the full upsell catalog
-
-The letter and the one-fact table are at the top of this brief. Print docs/CYNTHIA_HODNETT_INVESTOR.pdf for the full upsell catalog. Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK.
-
-*Scoreboard today — catalog-honest*
-
-| Recognized revenue | Named customers | Signed L1 | Year-one if all three |
-| --- | --- | --- | --- |
-| $0 | 0 | 0 | $88,000–$135,000 catalog list, not booked |
-
-Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM ($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. Insulation is independence × Job C lockfile × fail-closed gold × catalog law. The ask of you is seat B — not stock, not Global Admin, not a priced round.
 
 ## What we are building together
 
@@ -171,57 +222,6 @@ If one controller bought all three in year one, the catalog list is $88,000–$1
 | industry.ip_keep — IP / reserved-work keep | P-ADM | $5,000–$8,000 |
 
 Fee-for-service is $3,500/day after L1: integration, replay, QBR, mothership ops, desk workshop, keep wiring, governance workshop, institute failsafe, board briefing, org-chart workshop, IP hygiene. Hours never mint a SKU and never attach U-DUAL. Print the full packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf.
-
-## Where we actually are
-
-The admit plane runs in code. Gold tests pass. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 for $250.00. Those seats were lab operator identities — not two named treasury humans. Production is blocked. The Institute has an Azure hostname. The custom domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception are qualification targets. Membership is not claimed. Crypto-associated is false. We do not lead with custody or GPU production.
-
-*Honest split — working versus not claimed*
-
-| Working now | Not claimed, not asked of you today |
-| --- | --- |
-| Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute held until launch | Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched |
-| You are invited by name as seat B / business executive | You as a recorded officer, stockholder, or second unique human in the catalog |
-| Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach | LIVE_PIN_OK; product high availability; counsel-signed MSA; recognized revenue |
-
-## Why we need you — not a second license
-
-James Hodnett is one human principal. Job C is a two-human fact. A second Microsoft 365 license, a second tool, a second agent, or James clicking twice does not create dual admit. The second person must be a different human, with a different Entra object id, who actually reads the action and clicks. That is why this is a letter to you and not a settings change.
-
-You are the person James trusts with treasury judgment. The seat opposite treasury_approver is treasury_controller — the controller who will not let a journal land because it was convenient. NVIDIA Inception also requires two unique contacts with business emails: a developer (James) and a business executive (you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse those two contacts. You are not recorded as an officer. You are not a stockholder. No email is stored until you agree and James says record it.
-
-Without a second distinct person who actually clicks, AINav can keep a lab. It cannot sign L1. It cannot apply to Inception. It cannot look a controller in the eye and say two humans admitted the journal. That is the whole reason this brief exists. Your yes or no is the first commercial gate. Everything else on James's owner list waits behind it.
-
-## Your role if you agree — what a Tuesday looks like
-
-*Two humans, two jobs, one write*
-
-|  | James Hodnett | Cynthia Hodnett (if you agree) |
-| --- | --- | --- |
-| Seat | A | B |
-| Treasury | treasury_approver | treasury_controller |
-| Inception | developer / programmer | business executive |
-| Identity | His Entra user | Your own @ainav.institute mailbox — not an alias, not Gmail, not his login |
-| Click | Admits the same action hash | Admits or refuses the same action hash |
-
-When a privileged write is proposed, you see the account, the amount, the memo, and the action hash. You admit or you refuse. Refusing is the product working. If James clicks both seats, it is not dual. If you approve without reading, it is not dual. Proof day is ninety minutes on the sandbox twin with two named humans. It is still not Production. After a customer buys L1, you are one of the two seats the Acceptance Kit requires.
-
-You do not need, and this brief does not give you
-
-- Global Admin, Azure ownership, or a programming role
-- Equity or an officer title — counsel decides stock later; this page does not issue shares
-- To become Copilot, Teams, Agent 365, or this Cloud Agent
-- To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or sign an MSA today
-
-## What your yes unlocks — and what it does not
-
-Your yes lets James create your mailbox, lets you sign in once, and lets proof day use two named humans instead of lab operator ids. It lets Inception have a business executive contact when — and only when — James also has a custom domain, an incorporation date outside this tree, and says the public site may launch. It does not make the company live. It does not attach P-ADM. It does not write Production. It does not make you a stockholder. It does not publish AINAV.Institute.
-
-Your no, or not yet, is also a complete answer. Nothing is recorded. The invite stays open. The company stays a one-human lab until a second distinct human actually clicks. James will not invent a contact to paper over that.
-
-## Appendix — the plane
-
-The rest of this brief is the operating company: motherships, departments, pricing models, and the expert review. The letter and the one-fact table are the first-minute read. Cynthia can stop above this line.
 
 ## Part II — Foundational buildout
 

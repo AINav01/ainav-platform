@@ -1043,6 +1043,7 @@
           set("investor-exec-ask", data.executive_summary.ask);
         }
       }
+      set("investor-tuesday", data.tuesday);
       set("investor-problem", data.problem);
       set("investor-solution", data.solution);
       set("investor-model", data.model);

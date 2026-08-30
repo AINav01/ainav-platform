@@ -783,12 +783,28 @@ table.law tr[data-group] th {
 @media (max-width: 700px) {
   #investor table.packet tbody th { width: 7rem; }
 }
-#investor-catalog-detail {
-  margin: 1.75rem 0 0.65rem;
+#investor-decision {
+  max-width: 42rem;
+  margin: 0 0 1.6rem;
+}
+#investor-decision h3 {
+  margin: 0 0 0.55rem;
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--mute);
+}
+#investor-catalog-wrap {
+  margin: 1.75rem 0 0;
+}
+#investor-catalog-wrap > summary,
+#investor-catalog-detail {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  cursor: pointer;
 }
 
 footer {

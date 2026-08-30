@@ -99,6 +99,102 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
+            "text": "Why we need you — not a second license",
+        },
+        {
+            "kind": "p",
+            "text": (
+                f"{c['owner']} is one human principal. Job C is a two-human fact. A second Microsoft "
+                "365 license, a second tool, a second agent, or James clicking twice does not create "
+                "dual admit. The second person must be a different human, with a different Entra "
+                "object id, who actually reads the action and clicks. That is why this is a letter "
+                "to you and not a settings change."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "You are the person James trusts with treasury judgment. The seat opposite "
+                f"treasury_approver is {c['seat_role']} — the controller who will not let a journal "
+                "land because it was convenient. NVIDIA Inception also requires two unique contacts "
+                f"with business emails: a developer (James) and a {c['inception_role'].replace('_', ' ')} "
+                "(you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse "
+                "those two contacts. You are not recorded as an officer. You are not a stockholder. "
+                "No email is stored until you agree and James says record it."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Without a second distinct person who actually clicks, AINav can keep a lab. It "
+                "cannot sign L1. It cannot apply to Inception. It cannot look a controller in the "
+                "eye and say two humans admitted the journal. That is the whole reason this brief "
+                "exists. Your yes or no is the first commercial gate. Everything else on James's "
+                "owner list waits behind it."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Your role if you agree — what a Tuesday looks like",
+        },
+        {
+            "kind": "table",
+            "title": "Two humans, two jobs, one write",
+            "headers": ["", f"{c['owner']}", f"{c['invited']} (if you agree)"],
+            "rows": [
+                ["Seat", "A", "B"],
+                ["Treasury", "treasury_approver", c["seat_role"]],
+                ["Inception", "developer / programmer", c["inception_role"].replace("_", " ")],
+                ["Identity", "His Entra user", "Your own @ainav.institute mailbox — not an alias, not Gmail, not his login"],
+                ["Click", "Admits the same action hash", "Admits or refuses the same action hash"],
+            ],
+        },
+        {
+            "kind": "p",
+            "text": (
+                "When a privileged write is proposed, you see the account, the amount, the memo, "
+                "and the action hash. You admit or you refuse. Refusing is the product working. "
+                "If James clicks both seats, it is not dual. If you approve without reading, it is "
+                "not dual. Proof day is ninety minutes on the sandbox twin with two named humans. "
+                "It is still not Production. After a customer buys L1, you are one of the two seats "
+                "the Acceptance Kit requires."
+            ),
+        },
+        {
+            "kind": "ul",
+            "title": "You do not need, and this brief does not give you",
+            "items": [
+                "Global Admin, Azure ownership, or a programming role",
+                "Equity or an officer title — counsel decides stock later; this page does not issue shares",
+                "To become Copilot, Teams, Agent 365, or this Cloud Agent",
+                "To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or sign an MSA today",
+            ],
+        },
+        {
+            "kind": "h",
+            "text": "What your yes unlocks — and what it does not",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Your yes lets James create your mailbox, lets you sign in once, and lets proof day "
+                "use two named humans instead of lab operator ids. It lets Inception have a business "
+                "executive contact when — and only when — James also has a custom domain, an "
+                "incorporation date outside this tree, and says the public site may launch. It does "
+                "not make the company live. It does not attach P-ADM. It does not write Production. "
+                "It does not make you a stockholder. It does not publish AINAV.Institute."
+            ),
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Your no, or not yet, is also a complete answer. Nothing is recorded. The invite "
+                "stays open. The company stays a one-human lab until a second distinct human "
+                "actually clicks. James will not invent a contact to paper over that."
+            ),
+        },
+        {
+            "kind": "h",
             "text": "Why a client must have this",
         },
         {
@@ -179,6 +275,89 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
+            "kind": "h",
+            "text": "Investor packet — print the letter with the full upsell catalog",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "The letter and the one-fact table are at the top of this brief. "
+                "Print docs/CYNTHIA_HODNETT_INVESTOR.pdf for the full upsell catalog. "
+                "Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Scoreboard today — catalog-honest",
+            "headers": ["Recognized revenue", "Named customers", "Signed L1", "Year-one if all three"],
+            "rows": [
+                [
+                    f"${fin['recognized_revenue']:,}",
+                    str(fin["named_customers"]),
+                    str(fin["signed_l1"]),
+                    f"{_money(all_three['min'], all_three['max'])} catalog list, not booked",
+                ],
+            ],
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM "
+                "($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). "
+                "Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. "
+                "The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. "
+                "Insulation is independence × Job C lockfile × fail-closed gold × catalog law. "
+                "The ask of you is seat B — not stock, not Global Admin, not a priced round."
+            ),
+        },
+        {
+            "kind": "h",
+            "text": "Where we actually are",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "The admit plane runs in code. Gold tests pass. There is a real Business Central "
+                "Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 "
+                "for $250.00. Those seats were lab operator identities — not two named treasury "
+                "humans. Production is blocked. The Institute has an Azure hostname. The custom "
+                "domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception "
+                "are qualification targets. Membership is not claimed. Crypto-associated is false. "
+                "We do not lead with custody or GPU production."
+            ),
+        },
+        {
+            "kind": "table",
+            "title": "Honest split — working versus not claimed",
+            "headers": ["Working now", "Not claimed, not asked of you today"],
+            "rows": [
+                [
+                    "Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute held until launch",
+                    "Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched",
+                ],
+                [
+                    "You are invited by name as seat B / business executive",
+                    "You as a recorded officer, stockholder, or second unique human in the catalog",
+                ],
+                [
+                    "Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach",
+                    f"{c['lab_pin']}; product high availability; counsel-signed MSA; recognized revenue",
+                ],
+            ],
+        },
+        {
+            "kind": "h",
+            "text": "Appendix — the plane",
+        },
+        {
+            "kind": "p",
+            "text": (
+                "Cynthia can stop above this line. What follows is James's operating company: "
+                "owner-click links, desks, motherships, departments, pricing models, and the "
+                "expert review. None of it is required to decide yes, no, or not yet."
+            ),
+        },
+        {
             "kind": "table",
             "title": "Disclaimer, attestation, and protection",
             "headers": ["Name", "What it is"],
@@ -216,42 +395,6 @@ def brief_document() -> list[dict[str, Any]]:
                 )
                 or []
             ],
-        },
-        {
-            "kind": "h",
-            "text": "Investor packet — print the letter with the full upsell catalog",
-        },
-        {
-            "kind": "p",
-            "text": (
-                "The letter and the one-fact table are at the top of this brief. "
-                "Print docs/CYNTHIA_HODNETT_INVESTOR.pdf for the full upsell catalog. "
-                "Not a priced round. Not a forecast. Not a contract. Not LIVE_PIN_OK."
-            ),
-        },
-        {
-            "kind": "table",
-            "title": "Scoreboard today — catalog-honest",
-            "headers": ["Recognized revenue", "Named customers", "Signed L1", "Year-one if all three"],
-            "rows": [
-                [
-                    f"${fin['recognized_revenue']:,}",
-                    str(fin["named_customers"]),
-                    str(fin["signed_l1"]),
-                    f"{_money(all_three['min'], all_three['max'])} catalog list, not booked",
-                ],
-            ],
-        },
-        {
-            "kind": "p",
-            "text": (
-                "Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM "
-                "($40–60k / year after kit PASS), deepen with paid U-DUAL ($20–35k / year, never free). "
-                "Fee-for-service is $3,500/day on the same plane after L1. Packs are not SKUs. "
-                "The commercial close is named dual seats × proof day × signed L1 × P-ADM attach. "
-                "Insulation is independence × Job C lockfile × fail-closed gold × catalog law. "
-                "The ask of you is seat B — not stock, not Global Admin, not a priced round."
-            ),
         },
         {
             "kind": "h",
@@ -353,149 +496,6 @@ def brief_document() -> list[dict[str, Any]]:
                 "desk workshop, keep wiring, governance workshop, institute failsafe, board briefing, "
                 "org-chart workshop, IP hygiene. Hours never mint a SKU and never attach U-DUAL. "
                 "Print the full packet: docs/CYNTHIA_HODNETT_INVESTOR.pdf."
-            ),
-        },
-        {
-            "kind": "h",
-            "text": "Where we actually are",
-        },
-        {
-            "kind": "p",
-            "text": (
-                "The admit plane runs in code. Gold tests pass. There is a real Business Central "
-                "Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 "
-                "for $250.00. Those seats were lab operator identities — not two named treasury "
-                "humans. Production is blocked. The Institute has an Azure hostname. The custom "
-                "domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception "
-                "are qualification targets. Membership is not claimed. Crypto-associated is false. "
-                "We do not lead with custody or GPU production."
-            ),
-        },
-        {
-            "kind": "table",
-            "title": "Honest split — working versus not claimed",
-            "headers": ["Working now", "Not claimed, not asked of you today"],
-            "rows": [
-                [
-                    "Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute held until launch",
-                    "Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched",
-                ],
-                [
-                    "You are invited by name as seat B / business executive",
-                    "You as a recorded officer, stockholder, or second unique human in the catalog",
-                ],
-                [
-                    "Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach",
-                    f"{c['lab_pin']}; product high availability; counsel-signed MSA; recognized revenue",
-                ],
-            ],
-        },
-        {
-            "kind": "h",
-            "text": "Why we need you — not a second license",
-        },
-        {
-            "kind": "p",
-            "text": (
-                f"{c['owner']} is one human principal. Job C is a two-human fact. A second Microsoft "
-                "365 license, a second tool, a second agent, or James clicking twice does not create "
-                "dual admit. The second person must be a different human, with a different Entra "
-                "object id, who actually reads the action and clicks. That is why this is a letter "
-                "to you and not a settings change."
-            ),
-        },
-        {
-            "kind": "p",
-            "text": (
-                "You are the person James trusts with treasury judgment. The seat opposite "
-                f"treasury_approver is {c['seat_role']} — the controller who will not let a journal "
-                "land because it was convenient. NVIDIA Inception also requires two unique contacts "
-                f"with business emails: a developer (James) and a {c['inception_role'].replace('_', ' ')} "
-                "(you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse "
-                "those two contacts. You are not recorded as an officer. You are not a stockholder. "
-                "No email is stored until you agree and James says record it."
-            ),
-        },
-        {
-            "kind": "p",
-            "text": (
-                "Without a second distinct person who actually clicks, AINav can keep a lab. It "
-                "cannot sign L1. It cannot apply to Inception. It cannot look a controller in the "
-                "eye and say two humans admitted the journal. That is the whole reason this brief "
-                "exists. Your yes or no is the first commercial gate. Everything else on James's "
-                "owner list waits behind it."
-            ),
-        },
-        {
-            "kind": "h",
-            "text": "Your role if you agree — what a Tuesday looks like",
-        },
-        {
-            "kind": "table",
-            "title": "Two humans, two jobs, one write",
-            "headers": ["", f"{c['owner']}", f"{c['invited']} (if you agree)"],
-            "rows": [
-                ["Seat", "A", "B"],
-                ["Treasury", "treasury_approver", c["seat_role"]],
-                ["Inception", "developer / programmer", c["inception_role"].replace("_", " ")],
-                ["Identity", "His Entra user", "Your own @ainav.institute mailbox — not an alias, not Gmail, not his login"],
-                ["Click", "Admits the same action hash", "Admits or refuses the same action hash"],
-            ],
-        },
-        {
-            "kind": "p",
-            "text": (
-                "When a privileged write is proposed, you see the account, the amount, the memo, "
-                "and the action hash. You admit or you refuse. Refusing is the product working. "
-                "If James clicks both seats, it is not dual. If you approve without reading, it is "
-                "not dual. Proof day is ninety minutes on the sandbox twin with two named humans. "
-                "It is still not Production. After a customer buys L1, you are one of the two seats "
-                "the Acceptance Kit requires."
-            ),
-        },
-        {
-            "kind": "ul",
-            "title": "You do not need, and this brief does not give you",
-            "items": [
-                "Global Admin, Azure ownership, or a programming role",
-                "Equity or an officer title — counsel decides stock later; this page does not issue shares",
-                "To become Copilot, Teams, Agent 365, or this Cloud Agent",
-                "To buy a customer, launch ainav.institute, enable Production, mark LIVE_PIN_OK, or sign an MSA today",
-            ],
-        },
-        {
-            "kind": "h",
-            "text": "What your yes unlocks — and what it does not",
-        },
-        {
-            "kind": "p",
-            "text": (
-                "Your yes lets James create your mailbox, lets you sign in once, and lets proof day "
-                "use two named humans instead of lab operator ids. It lets Inception have a business "
-                "executive contact when — and only when — James also has a custom domain, an "
-                "incorporation date outside this tree, and says the public site may launch. It does "
-                "not make the company live. It does not attach P-ADM. It does not write Production. "
-                "It does not make you a stockholder. It does not publish AINAV.Institute."
-            ),
-        },
-        {
-            "kind": "p",
-            "text": (
-                "Your no, or not yet, is also a complete answer. Nothing is recorded. The invite "
-                "stays open. The company stays a one-human lab until a second distinct human "
-                "actually clicks. James will not invent a contact to paper over that."
-            ),
-        },
-        {
-            "kind": "h",
-            "text": "Appendix — the plane",
-        },
-        {
-            "kind": "p",
-            "text": (
-                "The rest of this brief is the operating company: motherships, departments, "
-                "pricing models, and the expert review. The letter and the one-fact table "
-                "are the first-minute read. Cynthia can stop above this line."
             ),
         },
         {

@@ -362,6 +362,8 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         raise IntegrityError("investor letter body is the human ask — company dump belongs in the exec table", reason_code="CATALOG_INVESTOR")
     if "i will not ask" not in letter_body:
         raise IntegrityError("investor letter body must end on what James will not ask Cynthia for", reason_code="CATALOG_INVESTOR")
+    if "i trust" not in letter_body:
+        raise IntegrityError("investor letter body must say why James trusts Cynthia", reason_code="CATALOG_INVESTOR")
     if "sole owner" not in str(body.get("letter_close") or "").lower():
         raise IntegrityError("investor letter closes from the sole owner", reason_code="CATALOG_INVESTOR")
     if "seat b" not in str(body.get("seat_b") or "").lower():

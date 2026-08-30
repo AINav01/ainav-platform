@@ -199,6 +199,16 @@ def investor_markdown() -> str:
         "",
         body.get("letter_close") or "",
         "",
+        "## Your decision",
+        "",
+        body.get("seat_b") or "",
+        "",
+        body.get("tuesday") or "",
+        "",
+        "## What we will not ask",
+        "",
+        body.get("will_not_ask") or "",
+        "",
         "## Catalog detail",
         "",
         "Company, problem, and list prices sit below the letter. They are not a second ask.",
@@ -232,20 +242,6 @@ def investor_markdown() -> str:
         body["icp"],
         "",
         body["why_now"],
-        "",
-        "## What we are asking of you",
-        "",
-        body.get("seat_b") or "",
-        "",
-        body["ask"],
-        "",
-        "## What we will not ask",
-        "",
-        body.get("will_not_ask") or "",
-        "",
-        "## What a Tuesday looks like",
-        "",
-        body.get("tuesday") or "",
         "",
         "## How a sale works",
         "",
@@ -466,6 +462,11 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
 {_paras(body.get('letter_body') or '')}
 <p class="sign">{html.escape(body.get('letter_close') or body.get('signoff') or body['owner'])}</p>
 </div>
+<h2>Your decision</h2>
+<p>{html.escape(body.get('seat_b') or '')}</p>
+<p>{html.escape(body.get('tuesday') or '')}</p>
+<h2>What we will not ask</h2>
+<p>{html.escape(body.get('will_not_ask') or '')}</p>
 <h2>Catalog detail</h2>
 <p>Company, problem, and list prices sit below the letter. They are not a second ask.</p>
 <p class="eq">Close = {html.escape(body['commercial'])}. Insulation = {html.escape(body.get('insulation') or '')}. Packet = {html.escape(body.get('equation') or '')}.</p>
@@ -488,13 +489,6 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
 <h2>Who buys · why now</h2>
 <p>{html.escape(body['icp'])}</p>
 <p>{html.escape(body['why_now'])}</p>
-<h2>What we are asking of you</h2>
-<p>{html.escape(body.get('seat_b') or '')}</p>
-<p>{html.escape(body['ask'])}</p>
-<h2>What we will not ask</h2>
-<p>{html.escape(body.get('will_not_ask') or '')}</p>
-<h2>What a Tuesday looks like</h2>
-<p>{html.escape(body.get('tuesday') or '')}</p>
 <h2>How a sale works</h2>
 <p>{html.escape(body.get('sale_motion') or '')}</p>
 <h2>Business model — three SKUs only</h2>
@@ -675,6 +669,11 @@ def render_investor_pdf() -> bytes:
         if chunk.strip():
             doc.para(chunk.strip(), width=88, size=9.5)
     doc.para(body.get("letter_close") or "", font="/F2", size=10)
+    doc.heading("Your decision", "The company")
+    doc.para(body.get("seat_b") or "")
+    doc.para(body.get("tuesday") or "")
+    doc.heading("What we will not ask", "The company")
+    doc.para(body.get("will_not_ask") or "")
     doc.para(
         f"Close = {body['commercial']}.  Insulation = {body.get('insulation')}.  Packet = {body.get('equation')}.",
         rgb=f"{MUTED} rg",
@@ -714,13 +713,6 @@ def render_investor_pdf() -> bytes:
     doc.heading("Who buys · why now", "The company")
     doc.para(body["icp"])
     doc.para(body["why_now"])
-    doc.heading("What we are asking of you", "The company")
-    doc.para(body.get("seat_b") or "")
-    doc.para(body["ask"])
-    doc.heading("What we will not ask", "The company")
-    doc.para(body.get("will_not_ask") or "")
-    doc.heading("What a Tuesday looks like", "The company")
-    doc.para(body.get("tuesday") or "")
     doc.heading("How a sale works", "The company")
     doc.para(body.get("sale_motion") or "")
 

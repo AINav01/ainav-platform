@@ -58,7 +58,7 @@
     ],
     "job_c": "Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat.",
     "kind": "ainav.exec.v1",
-    "lede": "This is the board packet for the admit plane. Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.",
+    "lede": "This is the board packet for the admit plane. Job C needs a second human. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.",
     "live": false,
     "live_pin_ok": false,
     "mandated": false,
@@ -608,7 +608,7 @@
     "signed_l1": 0
   },
   "legal": "AINav, Inc.",
-  "letter_body": "The seat is seat B: treasury_controller, and the Inception business executive if you also agree to that contact. You get your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.\n\nYou are invited, not recorded. No email is stored until you send a business address and I say record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer. I will not invent a contact to paper over a one-human lab.\n\nIf you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.\n\nI will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.",
+  "letter_body": "I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. Seat B is the second unique human. It is not stock, not a priced round, and not a customer seat.\n\nYou are invited, not recorded. I will not invent an inbox or an object id for you. Your no, or not yet, is a complete answer.\n\nIf you agree, you become seat B on the same Entra tenant. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.\n\nI will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.",
   "letter_close": "James Hodnett, sole owner of AINav, Inc.",
   "letter_open": "Dear Cynthia \u2014 I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.",
   "letter_voice": "first_person",
@@ -890,7 +890,7 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.39.0",
+  "release": "2.40.0",
   "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {

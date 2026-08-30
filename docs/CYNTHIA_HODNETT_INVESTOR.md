@@ -1,13 +1,13 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.39.0.
+30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.40.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
 
 ## Executive summary
 
-This is the board packet for the admit plane. Job C is the only product. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
+This is the board packet for the admit plane. Job C needs a second human. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
 
 | Item | What it is |
 | --- | --- |
@@ -24,15 +24,25 @@ This is the board packet for the admit plane. Job C is the only product. The sal
 
 Dear Cynthia — I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.
 
-The seat is seat B: treasury_controller, and the Inception business executive if you also agree to that contact. You get your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.
+I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. Seat B is the second unique human. It is not stock, not a priced round, and not a customer seat.
 
-You are invited, not recorded. No email is stored until you send a business address and I say record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer. I will not invent a contact to paper over a one-human lab.
+You are invited, not recorded. I will not invent an inbox or an object id for you. Your no, or not yet, is a complete answer.
 
-If you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.
+If you agree, you become seat B on the same Entra tenant. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
 
 I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
 
 James Hodnett, sole owner of AINav, Inc.
+
+## Your decision
+
+Seat B is treasury_controller. If you agree, you get your own business mailbox, your own Entra object id, and your own click. James cannot click for you. Refusing a write is the product working. You are invited, not recorded. Email stays blank until you confirm a business address. You are not a stockholder and not an officer.
+
+Seat A is treasury_approver (James). Seat B is treasury_controller (you, if you agree). Each has a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.
+
+## What we will not ask
+
+I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
 
 ## Catalog detail
 
@@ -97,20 +107,6 @@ Record keeping is two records and a keep. First record is the admitted SoR write
 A controller already on Dynamics 365 Business Central Premium, Microsoft Entra ID, and two-person journal SOD, whose firm utilizes AI and whose customers do too. No named buyer is invented in this packet.
 
 Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav on the org chart they already have. They do not replace their ERP. They do not replace Copilot. They put two humans in front of the write.
-
-## What we are asking of you
-
-Seat B is treasury_controller. If you agree, you get your own business mailbox, your own Entra object id, and your own click. James cannot click for you. Refusing a write is the product working. You are invited, not recorded. Email stays blank until you confirm a business address. You are not a stockholder and not an officer.
-
-Cynthia, we are asking you to be seat B and the Inception business executive: your own mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
-
-## What we will not ask
-
-I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
-
-## What a Tuesday looks like
-
-Seat A is treasury_approver (James). Seat B is treasury_controller (you, if you agree). Each has a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.
 
 ## How a sale works
 

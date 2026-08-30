@@ -76,6 +76,8 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "i am writing" in md.lower()
     assert "invited, not recorded" in md.lower()
     assert "catalog detail" in md.lower()
+    assert md.lower().index("a letter to cynthia") < md.lower().index("your decision")
+    assert md.lower().index("your decision") < md.lower().index("catalog detail")
     assert md.lower().index("a letter to cynthia") < md.lower().index("catalog detail")
     assert "what we will not ask" in md.lower()
     assert "$0" in md or "recognized revenue: $0" in md.lower()
@@ -163,12 +165,19 @@ def test_investor_validators_refuse_fiction():
         validate_catalog(no_zero)
     company_dump = copy.deepcopy(cat)
     company_dump["investor"]["letter_body"] = (
-        "Seat B. Invited, not recorded. Not stock. Not a priced round. "
+        "I trust you. Seat B. Invited, not recorded. Not stock. Not a priced round. "
         "I will not ask. Recognized revenue is $0. Delaware C corporation."
     )
     with pytest.raises(IntegrityError):
         validate_catalog(company_dump)
     no_human_ask = copy.deepcopy(cat)
+    no_trust = copy.deepcopy(cat)
+    no_trust["investor"]["letter_body"] = (
+        "Seat B. Invited, not recorded. Not stock. Not a priced round. "
+        "I will not ask. Recognized revenue is $0."
+    )
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_trust)
     no_human_ask["investor"]["letter_body"] = (
         "Seat B. Invited, not recorded. Not stock. Not a priced round. Recognized revenue is $0."
     )
