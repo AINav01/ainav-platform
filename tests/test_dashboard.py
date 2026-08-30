@@ -364,6 +364,24 @@ def test_plane_interface_validators_refuse_fiction():
     lab_as_seat["plane_interface"]["floor"]["accountable"]["items"][3]["note"] = "lab oids are the seats"
     with pytest.raises(IntegrityError):
         validate_catalog(lab_as_seat)
+    no_duty = copy.deepcopy(cat)
+    no_duty["plane_interface"]["floor"]["accountable"]["lede"] = "invented RACI"
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_duty)
+    bad_admit = copy.deepcopy(cat)
+    bad_admit["plane_interface"]["floor"]["accountable"]["items"][0]["note"] = "anyone may admit"
+    with pytest.raises(IntegrityError):
+        validate_catalog(bad_admit)
+    owner_seat = copy.deepcopy(cat)
+    owner_seat["plane_interface"]["floor"]["accountable"]["items"][1]["note"] = "owner clicks both admits"
+    with pytest.raises(IntegrityError):
+        validate_catalog(owner_seat)
+    no_lab_refuse = copy.deepcopy(cat)
+    no_lab_refuse["plane_interface"]["refuse"] = [
+        item for item in cat["plane_interface"]["refuse"] if "lab oids" not in str(item).lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_lab_refuse)
     chat = copy.deepcopy(cat)
     chat["plane_interface"]["communications"][0]["seat"] = True
     with pytest.raises(IntegrityError):
