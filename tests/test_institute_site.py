@@ -108,8 +108,14 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="investor"' in html
     assert "investor.json" in js
     assert 'id="investor-exec-lede"' in html
+    assert 'id="investor-exec-table"' in html
+    assert 'id="investor-letter"' in html
     assert 'id="investor-letter-body"' in html
+    css = Path("institute/styles.css").read_text(encoding="utf-8")
+    assert "#investor .letter" in css
+    assert "#investor table.packet" in css
     assert "executive_summary" in js
+    assert '"letter_voice": "first_person"' in Path("institute/investor.json").read_text(encoding="utf-8")
     assert 'id="investor-ffs"' in html
     assert 'id="investor-plane"' in html
     assert 'id="ip-ultimate"' in html

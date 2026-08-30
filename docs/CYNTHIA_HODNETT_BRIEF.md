@@ -1,48 +1,37 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.37.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.38.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.37.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.38.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 ## Executive summary
 
-## The company in one page
-
 Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.
 
-*Board packet — catalog-honest*
+*Board packet — one fact per row*
 
-| Job C | Proof day | Three SKUs | Scoreboard today |
-| --- | --- | --- | --- |
-| Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat. | Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out. | L1 $28,000–$40,000 in two to four weeks. P-ADM $40,000–$60,000 / year after kit PASS. U-DUAL $20,000–$35,000 / year, never free. Year-one if all three: $88,000–$135,000 list, not booked. Packs are not SKUs. | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 0 recorded / 1 invited. |
-
-## Microsoft is not the product
-
-Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.
-
-## Must-have is not a mandate
-
-Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent.
-
-## Owner-only still open
-
-Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane.
-
-## The ask
-
-Cynthia Hodnett as seat B. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. Invited, not recorded.
+| Item | What it is |
+| --- | --- |
+| Job C | Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat. |
+| Proof day | Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out. |
+| Three SKUs | L1 $28,000–$40,000 in two to four weeks. P-ADM $40,000–$60,000 / year after kit PASS. U-DUAL $20,000–$35,000 / year, never free. Year-one if all three: $88,000–$135,000 list, not booked. Packs are not SKUs. |
+| Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 0 recorded / 1 invited. |
+| Microsoft | Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. |
+| Must-have | Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent. |
+| Owner-only still open | Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
+| The ask | Cynthia Hodnett as seat B. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. Invited, not recorded. |
 
 ## A letter to Cynthia Hodnett
 
-Dear Cynthia — James is writing to ask you to be the second human on the admit plane. He can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. He cannot be both humans. This letter is from the company's catalog so nothing is invented: no email for you, no stock, no officer title, no named buyer, and no launched public site.
+Dear Cynthia — I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.
 
-We are asking you to be seat B — treasury_controller and the Inception business executive — with your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.
+The seat is seat B: treasury_controller, and the Inception business executive if you also agree to that contact. You get your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.
 
-You are invited, not recorded. No email is stored until you confirm a business address and James says record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer.
+You are invited, not recorded. No email is stored until you send a business address and I say record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer. I will not invent a contact to paper over a one-human lab.
 
-If you agree: James creates your mailbox. You sign in once. You click seat B. He does not click both. When a privileged write is proposed, both of you see the same action_hash. You admit or you refuse. Refusing is the product working.
+If you agree: I create your mailbox. You sign in once. You click seat B. I do not click both. When a privileged write is proposed, we both see the same action_hash. You admit or you refuse. Refusing is the product working.
 
-The company is AINav, Inc., a Delaware C corporation. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Microsoft is identity, notify, SoR, and host — not the product. Recognized revenue is $0. Named customers are 0. Signed L1 is 0. Year-one catalog list if one controller bought L1, P-ADM, and U-DUAL is $88,000–$135,000. Not booked. Not a priced round. Not LIVE_PIN_OK.
+The company is AINav, Inc., a Delaware C corporation. I am the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Microsoft is identity, notify, SoR, and host — not the product. Recognized revenue is $0. Named customers are 0. Signed L1 is 0. Year-one catalog list if one controller bought L1, P-ADM, and U-DUAL is $88,000–$135,000. Not booked. Not a priced round. Not LIVE_PIN_OK.
 
 James Hodnett, sole owner of AINav, Inc.
 

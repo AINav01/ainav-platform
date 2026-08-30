@@ -721,6 +721,54 @@ table.law tr[data-group] th {
 #complement-cards article[data-wired="false"] .price { color: var(--hold); }
 #microsoft { scroll-margin-top: 5.2rem; }
 
+#investor .letter {
+  margin: 1.25rem 0 1.75rem;
+  padding: 0.35rem 0 0.35rem 1.15rem;
+  border-left: 3px solid var(--ink);
+  max-width: 42rem;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+#investor .letter p { margin: 0 0 0.85rem; }
+#investor .letter .sign {
+  font-style: italic;
+  margin: 1rem 0 0;
+  color: var(--mute);
+}
+#investor table.packet {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 1.4rem;
+  font-size: 0.95rem;
+}
+#investor table.packet th,
+#investor table.packet td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.7rem;
+  vertical-align: top;
+  text-align: left;
+}
+#investor table.packet thead th {
+  background: var(--ink);
+  color: var(--void-ink);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#investor table.packet tbody th {
+  width: 11rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mute);
+  background: var(--paper-2);
+}
+@media (max-width: 700px) {
+  #investor table.packet tbody th { width: 7rem; }
+}
+
 footer {
   padding: 1.6rem 6vw 2.6rem;
   border-top: 1px solid var(--rule);

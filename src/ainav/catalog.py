@@ -348,6 +348,10 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         raise IntegrityError("investor letter opens to Cynthia", reason_code="CATALOG_INVESTOR")
     if "second human" not in str(body.get("letter_open") or "").lower():
         raise IntegrityError("investor letter leads with the second-human ask", reason_code="CATALOG_INVESTOR")
+    if "i am writing" not in str(body.get("letter_open") or "").lower():
+        raise IntegrityError("investor letter is first person from the owner", reason_code="CATALOG_INVESTOR")
+    if str(body.get("letter_voice") or "") != "first_person":
+        raise IntegrityError("investor letter voice is first person", reason_code="CATALOG_INVESTOR")
     letter_body = str(body.get("letter_body") or "").lower()
     for stem in ("seat b", "invited", "not recorded", "not stock", "not a priced round"):
         if stem not in letter_body:
@@ -401,6 +405,22 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
     ask = str(summary.get("ask") or "").lower()
     if "seat b" not in ask or "not recorded" not in ask:
         raise IntegrityError("executive summary ask is seat B, invited not recorded", reason_code="CATALOG_INVESTOR")
+    wanted = [
+        ("job_c", "Job C", summary.get("job_c")),
+        ("proof", "Proof day", summary.get("proof")),
+        ("skus", "Three SKUs", summary.get("skus")),
+        ("tiles", "Scoreboard today", summary.get("tiles")),
+        ("microsoft", "Microsoft", summary.get("microsoft")),
+        ("must_have", "Must-have", summary.get("must_have")),
+        ("opens", "Owner-only still open", summary.get("opens")),
+        ("ask", "The ask", summary.get("ask")),
+    ]
+    items = list(summary.get("items") or [])
+    if [item.get("id") for item in items] != [row[0] for row in wanted]:
+        raise IntegrityError("executive summary items must be the board-packet rows", reason_code="CATALOG_INVESTOR")
+    for item, (iid, name, note) in zip(items, wanted, strict=True):
+        if str(item.get("name") or "") != name or str(item.get("note") or "") != str(note or ""):
+            raise IntegrityError(f"executive summary {iid} must match the scalar", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:

@@ -84,6 +84,7 @@ def public_investor() -> dict[str, Any]:
         "letter_open": body.get("letter_open"),
         "letter_body": body.get("letter_body"),
         "letter_close": body.get("letter_close"),
+        "letter_voice": body.get("letter_voice"),
         "executive_summary": dict(body.get("executive_summary") or {}),
         "signoff": body.get("signoff"),
         "invited": invited["name"],
@@ -183,27 +184,20 @@ def investor_markdown() -> str:
         "",
         (body.get("executive_summary") or {}).get("lede") or "",
         "",
-        f"Job C: {(body.get('executive_summary') or {}).get('job_c') or ''}",
-        "",
-        f"Proof day: {(body.get('executive_summary') or {}).get('proof') or ''}",
-        "",
-        f"Three SKUs: {(body.get('executive_summary') or {}).get('skus') or ''}",
-        "",
-        f"Scoreboard: {(body.get('executive_summary') or {}).get('tiles') or ''}",
-        "",
-        f"Microsoft: {(body.get('executive_summary') or {}).get('microsoft') or ''}",
-        "",
-        f"Must-have: {(body.get('executive_summary') or {}).get('must_have') or ''}",
-        "",
-        f"Owner-only still open: {(body.get('executive_summary') or {}).get('opens') or ''}",
-        "",
-        f"The ask: {(body.get('executive_summary') or {}).get('ask') or ''}",
+        "| Item | What it is |",
+        "| --- | --- |",
+    ]
+    for item in (body.get("executive_summary") or {}).get("items") or []:
+        lines.append(f"| {item.get('name') or ''} | {item.get('note') or ''} |")
+    lines += [
         "",
         "## A letter to Cynthia Hodnett",
         "",
         body.get("letter_open") or "",
         "",
         body.get("letter_body") or "",
+        "",
+        body.get("letter_close") or "",
         "",
         f"Equation: {body.get('equation')}.",
         f"Commercial close: {body['commercial']}.",
@@ -434,6 +428,8 @@ h3 {{ font: 700 11pt Georgia, Times, serif; margin: 12pt 0 5pt; color: #11141a; 
 p {{ margin: 0 0 8pt; }}
 .lede {{ font: 700 13pt/1.35 Helvetica, Arial, sans-serif; color: #11141a; }}
 .open {{ font: italic 11pt/1.45 Georgia, Times, serif; color: #2a241c; margin: 0 0 12pt; }}
+.letter {{ border-left: 2.5pt solid #11141a; padding: 4pt 0 4pt 14pt; margin: 0 0 14pt; }}
+.letter .sign {{ margin: 10pt 0 0; font: italic 11pt Georgia, Times, serif; }}
 .eq {{ font: italic 10pt Georgia, Times, serif; color: #3d3428; margin: 0 0 12pt; }}
 .split {{ display: flex; gap: 16pt; }}
 .split > div {{ flex: 1; }}
@@ -459,19 +455,13 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
 <p class="lede">{html.escape(body['one_liner'])}</p>
 <h2>Executive summary</h2>
 <p>{html.escape((body.get('executive_summary') or {}).get('lede') or '')}</p>
-<div class="split">
-  <div><h3>Job C</h3><p>{html.escape((body.get('executive_summary') or {}).get('job_c') or '')}</p>
-  <h3>Proof day</h3><p>{html.escape((body.get('executive_summary') or {}).get('proof') or '')}</p></div>
-  <div><h3>Three SKUs</h3><p>{html.escape((body.get('executive_summary') or {}).get('skus') or '')}</p>
-  <h3>Scoreboard</h3><p>{html.escape((body.get('executive_summary') or {}).get('tiles') or '')}</p></div>
-</div>
-<p>{html.escape((body.get('executive_summary') or {}).get('microsoft') or '')}</p>
-<p>{html.escape((body.get('executive_summary') or {}).get('must_have') or '')}</p>
-<p>{html.escape((body.get('executive_summary') or {}).get('opens') or '')}</p>
-<p>{html.escape((body.get('executive_summary') or {}).get('ask') or '')}</p>
+{_table(["Item", "What it is"], [[item.get("name") or "", item.get("note") or ""] for item in (body.get("executive_summary") or {}).get("items") or []])}
 <h2>A letter to Cynthia Hodnett</h2>
+<div class="letter">
 <p class="open">{html.escape(body.get('letter_open') or '')}</p>
 {_paras(body.get('letter_body') or '')}
+<p class="sign">{html.escape(body.get('letter_close') or body.get('signoff') or body['owner'])}</p>
+</div>
 <p class="eq">Close = {html.escape(body['commercial'])}. Insulation = {html.escape(body.get('insulation') or '')}. Packet = {html.escape(body.get('equation') or '')}.</p>
 <div class="kpis">
   <div class="kpi"><div class="label">Recognized revenue</div><div class="value">$0</div></div>
@@ -671,19 +661,14 @@ def render_investor_pdf() -> bytes:
     summary = body.get("executive_summary") or {}
     doc.heading("Executive summary", "The company")
     doc.para(str(summary.get("lede") or ""))
-    doc.para(f"Job C: {summary.get('job_c') or ''}")
-    doc.para(f"Proof day: {summary.get('proof') or ''}")
-    doc.para(f"Three SKUs: {summary.get('skus') or ''}")
-    doc.para(f"Scoreboard: {summary.get('tiles') or ''}")
-    doc.para(str(summary.get("microsoft") or ""))
-    doc.para(str(summary.get("must_have") or ""))
-    doc.para(str(summary.get("opens") or ""))
-    doc.para(str(summary.get("ask") or ""))
+    for item in summary.get("items") or []:
+        doc.para(f"{item.get('name') or ''} — {item.get('note') or ''}", width=92, size=8.6)
     doc.heading("A letter to Cynthia Hodnett", "The company")
     doc.para(body.get("letter_open") or "", width=88, size=9.5, rgb=f"{MUTED} rg")
     for chunk in str(body.get("letter_body") or "").split("\n\n"):
         if chunk.strip():
             doc.para(chunk.strip(), width=88, size=9.5)
+    doc.para(body.get("letter_close") or "", font="/F2", size=10)
     doc.para(
         f"Close = {body['commercial']}.  Insulation = {body.get('insulation')}.  Packet = {body.get('equation')}.",
         rgb=f"{MUTED} rg",

@@ -40,10 +40,22 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert body["include_upsells"] is True
     assert "Dear Cynthia" in (body.get("letter_open") or "")
     assert "second human" in (body.get("letter_open") or "").lower()
+    assert "i am writing" in (body.get("letter_open") or "").lower()
+    assert body.get("letter_voice") == "first_person"
     assert "seat b" in (body.get("letter_body") or "").lower()
     assert "not recorded" in (body.get("letter_body") or "").lower()
     assert "sole owner" in (body.get("letter_close") or "").lower()
     summary = body.get("executive_summary") or {}
+    assert [item["id"] for item in summary.get("items") or []] == [
+        "job_c",
+        "proof",
+        "skus",
+        "tiles",
+        "microsoft",
+        "must_have",
+        "opens",
+        "ask",
+    ]
     assert summary.get("sku") is False
     assert summary.get("certified") is False
     assert "job c" in str(summary.get("lede") or "").lower()
@@ -60,6 +72,8 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "dear cynthia" in md.lower()
     assert "executive summary" in md.lower()
     assert md.lower().index("executive summary") < md.lower().index("a letter to cynthia")
+    assert "| item | what it is |" in md.lower()
+    assert "i am writing" in md.lower()
     assert "invited, not recorded" in md.lower()
     assert "what we will not ask" in md.lower()
     assert "$0" in md or "recognized revenue: $0" in md.lower()
@@ -182,6 +196,20 @@ def test_investor_validators_refuse_fiction():
     weak_ask["investor"]["executive_summary"]["ask"] = "Please invest."
     with pytest.raises(IntegrityError):
         validate_catalog(weak_ask)
+    third = copy.deepcopy(cat)
+    third["investor"]["letter_open"] = (
+        "Dear Cynthia — James is writing to ask you to be the second human."
+    )
+    with pytest.raises(IntegrityError):
+        validate_catalog(third)
+    voice = copy.deepcopy(cat)
+    voice["investor"]["letter_voice"] = "third_person"
+    with pytest.raises(IntegrityError):
+        validate_catalog(voice)
+    drift_items = copy.deepcopy(cat)
+    drift_items["investor"]["executive_summary"]["items"][0]["note"] = "Something else."
+    with pytest.raises(IntegrityError):
+        validate_catalog(drift_items)
 
 
 def test_institute_investor_is_catalog_honest():

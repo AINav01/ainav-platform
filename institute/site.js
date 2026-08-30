@@ -1006,17 +1006,42 @@
         if (node && text) node.textContent = text;
       }
       set("investor-open", data.letter_open);
-      set("investor-letter-body", data.letter_body);
+      set("investor-letter-close", data.letter_close);
+      var letterBody = document.getElementById("investor-letter-body");
+      if (letterBody && data.letter_body) {
+        letterBody.textContent = "";
+        String(data.letter_body).split(/\n\n+/).forEach(function (chunk) {
+          if (!chunk.trim()) return;
+          var p = document.createElement("p");
+          p.textContent = chunk.trim();
+          letterBody.appendChild(p);
+        });
+      }
       if (data.executive_summary) {
         set("investor-exec-lede", data.executive_summary.lede);
-        set("investor-exec-job", data.executive_summary.job_c);
-        set("investor-exec-proof", data.executive_summary.proof);
-        set("investor-exec-skus", data.executive_summary.skus);
-        set("investor-exec-tiles", data.executive_summary.tiles);
-        set("investor-exec-microsoft", data.executive_summary.microsoft);
-        set("investor-exec-must", data.executive_summary.must_have);
-        set("investor-exec-opens", data.executive_summary.opens);
-        set("investor-exec-ask", data.executive_summary.ask);
+        var exec = document.getElementById("investor-exec");
+        if (exec && data.executive_summary.items && data.executive_summary.items.length) {
+          exec.textContent = "";
+          data.executive_summary.items.forEach(function (item) {
+            var tr = document.createElement("tr");
+            var th = document.createElement("th");
+            th.textContent = item.name || "";
+            var td = document.createElement("td");
+            td.textContent = item.note || "";
+            tr.appendChild(th);
+            tr.appendChild(td);
+            exec.appendChild(tr);
+          });
+        } else {
+          set("investor-exec-job", data.executive_summary.job_c);
+          set("investor-exec-proof", data.executive_summary.proof);
+          set("investor-exec-skus", data.executive_summary.skus);
+          set("investor-exec-tiles", data.executive_summary.tiles);
+          set("investor-exec-microsoft", data.executive_summary.microsoft);
+          set("investor-exec-must", data.executive_summary.must_have);
+          set("investor-exec-opens", data.executive_summary.opens);
+          set("investor-exec-ask", data.executive_summary.ask);
+        }
       }
       set("investor-problem", data.problem);
       set("investor-solution", data.solution);

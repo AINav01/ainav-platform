@@ -110,7 +110,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.37.0 (this tree)
+### 2.38.0 (this tree)
+
+The letter is first person from James. The executive summary is one
+fact per row, not a four-column wall. Cynthia is still invited, not
+recorded. No invented email. No stock. `LIVE_PIN_OK` cannot be
+marked. Print `docs/CYNTHIA_HODNETT_BRIEF.pdf` and
+`docs/CYNTHIA_HODNETT_INVESTOR.pdf`.
+
+### 2.37.0
 
 Owner-grade letter to Cynthia Hodnett and a board-packet executive
 summary. The letter leads with the second-human ask: seat B, own

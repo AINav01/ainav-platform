@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.37.0"
+    assert cat["entity"]["release"] == "2.38.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -97,6 +97,18 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     assert summary["mandated"] is False
     assert summary["proof"] == cat["buyer"]["proof_day"]
     assert "second human" in cat["investor"]["letter_open"].lower()
+    assert "i am writing" in cat["investor"]["letter_open"].lower()
+    assert cat["investor"]["letter_voice"] == "first_person"
+    assert [item["id"] for item in cat["investor"]["executive_summary"]["items"]] == [
+        "job_c",
+        "proof",
+        "skus",
+        "tiles",
+        "microsoft",
+        "must_have",
+        "opens",
+        "ask",
+    ]
     assert "seat b" in cat["investor"]["letter_body"].lower()
     assert "not recorded" in cat["investor"]["letter_body"].lower()
     assert "sole owner" in cat["investor"]["letter_close"].lower()
@@ -195,6 +207,8 @@ def test_printable_brief_is_a_pdf():
     assert md.lower().index("executive summary") < md.lower().index("a letter to cynthia")
     assert md.lower().index("a letter to cynthia") < md.lower().index("why a client must have this")
     assert "dear cynthia" in md.lower()
+    assert "i am writing" in md.lower()
+    assert "item" in md.lower() and "what it is" in md.lower()
     assert "invited, not recorded" in md.lower()
     assert md.lower().index("why a client must have this") < md.lower().index("investor packet")
     assert md.lower().index("already have") < md.lower().index("investor packet")

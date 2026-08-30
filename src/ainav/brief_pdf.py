@@ -66,59 +66,32 @@ def brief_document() -> list[dict[str, Any]]:
             "text": "Executive summary",
         },
         {
-            "kind": "callout",
-            "title": "The company in one page",
+            "kind": "p",
             "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("lede") or ""),
         },
         {
             "kind": "table",
-            "title": "Board packet — catalog-honest",
-            "headers": ["Job C", "Proof day", "Three SKUs", "Scoreboard today"],
+            "title": "Board packet — one fact per row",
+            "headers": ["Item", "What it is"],
             "rows": [
-                [
-                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("job_c") or ""),
-                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("proof") or ""),
-                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("skus") or ""),
-                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("tiles") or ""),
-                ],
+                [str(item.get("name") or ""), str(item.get("note") or "")]
+                for item in ((cat.get("investor") or {}).get("executive_summary") or {}).get("items")
+                or []
             ],
-        },
-        {
-            "kind": "callout",
-            "title": "Microsoft is not the product",
-            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("microsoft") or ""),
-        },
-        {
-            "kind": "callout",
-            "title": "Must-have is not a mandate",
-            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("must_have") or ""),
-        },
-        {
-            "kind": "callout",
-            "title": "Owner-only still open",
-            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("opens") or ""),
-        },
-        {
-            "kind": "callout",
-            "title": "The ask",
-            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("ask") or ""),
         },
         {
             "kind": "h",
             "text": "A letter to Cynthia Hodnett",
         },
         {
-            "kind": "p",
-            "text": str((cat.get("investor") or {}).get("letter_open") or ""),
-        },
-        *[
-            {"kind": "p", "text": chunk.strip()}
-            for chunk in str((cat.get("investor") or {}).get("letter_body") or "").split("\n\n")
-            if chunk.strip()
-        ],
-        {
-            "kind": "p",
-            "text": str((cat.get("investor") or {}).get("letter_close") or c["owner"]),
+            "kind": "letter",
+            "open": str((cat.get("investor") or {}).get("letter_open") or ""),
+            "paras": [
+                chunk.strip()
+                for chunk in str((cat.get("investor") or {}).get("letter_body") or "").split("\n\n")
+                if chunk.strip()
+            ],
+            "close": str((cat.get("investor") or {}).get("letter_close") or c["owner"]),
         },
         {
             "kind": "h",
@@ -794,6 +767,11 @@ def brief_sections() -> list[tuple[str, str]]:
             for row in block["rows"]:
                 lines.append(" — ".join(row))
             rows.append(("", "  ".join(part for part in lines if part)))
+        elif kind == "letter":
+            body = " ".join(
+                [block.get("open") or "", *list(block.get("paras") or []), block.get("close") or ""]
+            )
+            rows.append(("", " ".join(body.split())))
     return [(h, b) for h, b in rows if h or b]
 
 
@@ -829,6 +807,11 @@ def brief_lines() -> list[tuple[str, str]]:
                 rows.append(("body", " | ".join(row)))
         elif kind == "rule":
             rows.append(("rule", ""))
+        elif kind == "letter":
+            rows.append(("body", block.get("open") or ""))
+            for para in block.get("paras") or []:
+                rows.append(("body", para))
+            rows.append(("body", block.get("close") or ""))
     rows.append(("rule", ""))
     return rows
 
@@ -858,6 +841,11 @@ def brief_markdown() -> str:
             for item in block["items"]:
                 lines.append(f"- {item}")
             lines.append("")
+        elif kind == "letter":
+            lines += [block.get("open") or "", ""]
+            for para in block.get("paras") or []:
+                lines += [para, ""]
+            lines += [block.get("close") or "", ""]
         elif kind == "table":
             if block.get("title"):
                 lines += [f"*{block['title']}*", ""]
@@ -899,6 +887,9 @@ def brief_html() -> str:
         "ul { margin: 0 0 8pt 1.1em; padding: 0; }",
         "li { margin: 0 0 3pt; }",
         ".status { font: 8.5pt Helvetica, Arial, sans-serif; color: #333; }",
+        ".letter { border-left: 2.5pt solid #111; padding: 8pt 0 4pt 14pt; margin: 6pt 0 14pt; }",
+        ".letter p { margin: 0 0 8pt; }",
+        ".letter .sign { font: italic 11pt Times, serif; margin-top: 10pt; }",
         "footer { border-top: 0.75pt solid #999; margin-top: 14pt; padding-top: 6pt; font: 8pt Helvetica, Arial, sans-serif; color: #555; }",
         "</style>",
         "</head>",
@@ -920,6 +911,13 @@ def brief_html() -> str:
             blocks.append('<div class="box">')
             blocks.append(f"<h2>{html.escape(block['title'])}</h2>")
             blocks.append(f"<p>{html.escape(block['text'])}</p>")
+            blocks.append("</div>")
+        elif kind == "letter":
+            blocks.append('<div class="letter">')
+            blocks.append(f"<p>{html.escape(block.get('open') or '')}</p>")
+            for para in block.get("paras") or []:
+                blocks.append(f"<p>{html.escape(para)}</p>")
+            blocks.append(f'<p class="sign">{html.escape(block.get("close") or "")}</p>')
             blocks.append("</div>")
         elif kind == "p":
             blocks.append(f"<p>{html.escape(block['text'])}</p>")
