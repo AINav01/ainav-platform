@@ -805,6 +805,31 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("policy cannot weaken Job C", reason_code="CATALOG_PLANE")
     if "a rebrand breaks gold" not in str((prot_by.get("update") or {}).get("note") or "").lower():
         raise IntegrityError("a system update cannot rebrand Job C", reason_code="CATALOG_PLANE")
+    memory = floor.get("memory") or {}
+    mem_lede = str(memory.get("lede") or "").lower()
+    if "two records and a keep" not in mem_lede:
+        raise IntegrityError("memory lede is two records and a keep", reason_code="CATALOG_PLANE")
+    mem_ids = [item.get("id") for item in memory.get("items") or []]
+    for needed in ("first", "keep", "reset", "rollback"):
+        if needed not in mem_ids:
+            raise IntegrityError(f"memory must include {needed}", reason_code="CATALOG_PLANE")
+    mem_by = {item.get("id"): item for item in memory.get("items") or []}
+    first_what = str((((catalog.get("governance") or {}).get("records") or {}).get("first") or {}).get("what") or "")
+    if str((mem_by.get("first") or {}).get("note") or "") != first_what:
+        raise IntegrityError("memory first must match the first record", reason_code="CATALOG_PLANE")
+    keep_note = ""
+    for item in body.get("write_path") or []:
+        if item.get("id") == "keep":
+            keep_note = str(item.get("note") or "")
+            break
+    if str((mem_by.get("keep") or {}).get("note") or "") != keep_note:
+        raise IntegrityError("memory keep must match the write-path keep", reason_code="CATALOG_PLANE")
+    reset_does = str((((catalog.get("governance") or {}).get("plane") or {}).get("reset") or {}).get("does") or "")
+    if str((mem_by.get("reset") or {}).get("note") or "") != reset_does:
+        raise IntegrityError("memory reset must match governance reset", reason_code="CATALOG_PLANE")
+    rollback_note = str((mem_by.get("rollback") or {}).get("note") or "").lower()
+    if "compensating write" not in rollback_note or "not a time machine" not in rollback_note:
+        raise IntegrityError("rollback is a compensating write, not a time machine", reason_code="CATALOG_PLANE")
     if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
         raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
     refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
@@ -824,6 +849,9 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "update weakens job c",
         "this page as a certificate",
         "this page as a signature",
+        "mailbox as the second record",
+        "rollback as a time machine",
+        "reset wipes production",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")

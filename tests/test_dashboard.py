@@ -156,6 +156,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "disclaimer, attestation, and protection" in md.lower()
     assert "cannot weaken job c" in md.lower()
     assert "not a signature" in md.lower()
+    assert "institutional memory" in md.lower()
+    assert "two records and a keep" in md.lower()
+    assert "not a time machine" in md.lower()
     assert "humans sit from the top" in md.lower()
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
@@ -423,6 +426,42 @@ def test_plane_interface_validators_refuse_fiction():
     ]
     with pytest.raises(IntegrityError):
         validate_catalog(no_cert_refuse)
+    drop_memory_first = copy.deepcopy(cat)
+    drop_memory_first["plane_interface"]["floor"]["memory"]["items"] = [
+        item
+        for item in cat["plane_interface"]["floor"]["memory"]["items"]
+        if item.get("id") != "first"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(drop_memory_first)
+    mismatch_memory_first = copy.deepcopy(cat)
+    mismatch_memory_first["plane_interface"]["floor"]["memory"]["items"][0]["note"] = "invented ledger"
+    with pytest.raises(IntegrityError):
+        validate_catalog(mismatch_memory_first)
+    mismatch_memory_keep = copy.deepcopy(cat)
+    mismatch_memory_keep["plane_interface"]["floor"]["memory"]["items"][1]["note"] = "a chat is the keep"
+    with pytest.raises(IntegrityError):
+        validate_catalog(mismatch_memory_keep)
+    mismatch_memory_reset = copy.deepcopy(cat)
+    mismatch_memory_reset["plane_interface"]["floor"]["memory"]["items"][2]["note"] = "reset wipes production"
+    with pytest.raises(IntegrityError):
+        validate_catalog(mismatch_memory_reset)
+    time_machine = copy.deepcopy(cat)
+    time_machine["plane_interface"]["floor"]["memory"]["items"][3]["note"] = "silent undo"
+    with pytest.raises(IntegrityError):
+        validate_catalog(time_machine)
+    no_memory_lede = copy.deepcopy(cat)
+    no_memory_lede["plane_interface"]["floor"]["memory"]["lede"] = "invented archive"
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_memory_lede)
+    no_mailbox_refuse = copy.deepcopy(cat)
+    no_mailbox_refuse["plane_interface"]["refuse"] = [
+        item
+        for item in cat["plane_interface"]["refuse"]
+        if "mailbox as the second record" not in str(item).lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_mailbox_refuse)
     no_lab_refuse = copy.deepcopy(cat)
     no_lab_refuse["plane_interface"]["refuse"] = [
         item for item in cat["plane_interface"]["refuse"] if "lab oids" not in str(item).lower()
@@ -472,6 +511,8 @@ def test_institute_control_plane_matches_catalog():
     assert "owner / board request" in floor
     assert "not a certificate" in floor
     assert "cannot weaken Job C" in floor
+    assert "last sealed keep" in floor
+    assert "not a time machine" in floor
     assert 'id="plane-authorizations"' in floor
     assert 'id="plane-provision"' in floor
     assert 'id="plane-records"' in floor

@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.34.0"
+    "release": "2.35.0"
   },
   "communications": [
     {
@@ -807,6 +807,31 @@
     },
     "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
     "lede": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. Two humans before the write. One dashboard included with L1 \u2014 not an upsell. Standard and advanced are provision bands, not products.",
+    "memory": {
+      "items": [
+        {
+          "id": "first",
+          "name": "First record",
+          "note": "The privileged SoR write after dual admit (journal, invoice, order)."
+        },
+        {
+          "id": "keep",
+          "name": "Keep",
+          "note": "Weekly export after kit PASS."
+        },
+        {
+          "id": "reset",
+          "name": "Reset",
+          "note": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep."
+        },
+        {
+          "id": "rollback",
+          "name": "Rollback",
+          "note": "Rollback is a compensating write that itself requires dual admit. Not a time machine."
+        }
+      ],
+      "lede": "Record keeping is two records and a keep."
+    },
     "must_have": {
       "certified": false,
       "for": {
@@ -2097,7 +2122,10 @@
     "owner as a seat",
     "update weakens job c",
     "this page as a certificate",
-    "this page as a signature"
+    "this page as a signature",
+    "mailbox as the second record",
+    "rollback as a time machine",
+    "reset wipes production"
   ],
   "rehearsal": {
     "company": "AINav",
@@ -2114,7 +2142,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.34.0",
+  "release": "2.35.0",
   "revocations": [
     {
       "by": "Owner / board request",

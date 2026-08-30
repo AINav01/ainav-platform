@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.34.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.35.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -58,6 +58,15 @@ Governance is a catalog map. It is not counsel, not a filing, and not a certific
 - **Host policy** — Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane.
 - **Lockfile digest** — Frozen vectors and lockfile digest. A rebrand breaks gold.
 
+### Institutional memory
+
+Record keeping is two records and a keep.
+
+- **First record** — The privileged SoR write after dual admit (journal, invoice, order).
+- **Keep** — Weekly export after kit PASS.
+- **Reset** — Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep.
+- **Rollback** — Rollback is a compensating write that itself requires dual admit. Not a time machine.
+
 Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
@@ -105,7 +114,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.34.0.
+- As of: catalog release 2.35.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -450,5 +459,8 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - update weakens job c
 - this page as a certificate
 - this page as a signature
+- mailbox as the second record
+- rollback as a time machine
+- reset wipes production
 
 Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.

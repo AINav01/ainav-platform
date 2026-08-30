@@ -110,7 +110,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.34.0 (this tree)
+### 2.35.0 (this tree)
+
+Institutional memory. Record keeping is two records and a keep.
+First record is the privileged SoR write after dual admit. Keep
+is the weekly export after kit PASS. Reset returns the plane to
+the last sealed DecisionRecord / Merkle root. Rollback is a
+compensating write that itself requires dual admit — not a time
+machine. A mailbox is not the second record. The hero is the
+incident and the one-liners; the buyer page carries the cards
+before the three SKU prices.
+
+### 2.34.0
 
 Disclaimer, attestation, and protection. The catalog map is not
 counsel, not a filing, not a certificate, and not a signature.

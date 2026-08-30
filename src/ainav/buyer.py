@@ -33,6 +33,7 @@ def buyer_page() -> dict[str, Any]:
         "twin_is": str((((cat.get("plane_interface") or {}).get("floor") or {}).get("page") or {}).get("twin_is") or ""),
         "accountable": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("accountable") or {}),
         "protect": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("protect") or {}),
+        "memory": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}),
         "contact_email": None,
         "mailto": None,
         "icp": icp_profile(),

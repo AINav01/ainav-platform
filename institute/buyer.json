@@ -55,6 +55,31 @@
   "kind": "ainav.institute.buyer.v1",
   "live": false,
   "mailto": null,
+  "memory": {
+    "items": [
+      {
+        "id": "first",
+        "name": "First record",
+        "note": "The privileged SoR write after dual admit (journal, invoice, order)."
+      },
+      {
+        "id": "keep",
+        "name": "Keep",
+        "note": "Weekly export after kit PASS."
+      },
+      {
+        "id": "reset",
+        "name": "Reset",
+        "note": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep."
+      },
+      {
+        "id": "rollback",
+        "name": "Rollback",
+        "note": "Rollback is a compensating write that itself requires dual admit. Not a time machine."
+      }
+    ],
+    "lede": "Record keeping is two records and a keep."
+  },
   "minutes": 90,
   "must_have_for": {
     "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",

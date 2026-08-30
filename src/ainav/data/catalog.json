@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.34.0",
+    "release": "2.35.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2384,7 +2384,10 @@
       "owner as a seat",
       "update weakens job c",
       "this page as a certificate",
-      "this page as a signature"
+      "this page as a signature",
+      "mailbox as the second record",
+      "rollback as a time machine",
+      "reset wipes production"
     ],
     "note": "Interface seating of the three SKUs. Client dashboard included with L1. Standard provision included. Advanced provision is the upsell band. Not products. Not LIVE_PIN_OK.",
     "views": [
@@ -3149,6 +3152,31 @@
             "id": "update",
             "name": "Lockfile digest",
             "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+          }
+        ]
+      },
+      "memory": {
+        "lede": "Record keeping is two records and a keep.",
+        "items": [
+          {
+            "id": "first",
+            "name": "First record",
+            "note": "The privileged SoR write after dual admit (journal, invoice, order)."
+          },
+          {
+            "id": "keep",
+            "name": "Keep",
+            "note": "Weekly export after kit PASS."
+          },
+          {
+            "id": "reset",
+            "name": "Reset",
+            "note": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep."
+          },
+          {
+            "id": "rollback",
+            "name": "Rollback",
+            "note": "Rollback is a compensating write that itself requires dual admit. Not a time machine."
           }
         ]
       }

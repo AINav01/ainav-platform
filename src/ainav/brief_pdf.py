@@ -178,6 +178,19 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
+            "kind": "callout",
+            "title": "Institutional memory",
+            "text": (
+                str((((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}).get("lede") or "")
+                + " "
+                + " ".join(
+                    f"{item.get('name')}: {item.get('note')}"
+                    for item in (((cat.get("plane_interface") or {}).get("floor") or {}).get("memory") or {}).get("items")
+                    or []
+                )
+            ),
+        },
+        {
             "kind": "h",
             "text": "Investor packet — print the letter with the full upsell catalog",
         },

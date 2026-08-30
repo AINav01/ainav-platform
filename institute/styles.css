@@ -163,18 +163,23 @@ h1 {
   #not-the-gate.must-for { grid-template-columns: repeat(4, 1fr); }
   #accountable.must-for { grid-template-columns: repeat(4, 1fr); }
   #protect.must-for { grid-template-columns: repeat(4, 1fr); }
+  #memory.must-for { grid-template-columns: repeat(4, 1fr); }
 }
 #hero-accountable,
-#hero-protect { max-width: var(--wide); margin: 0.85rem 0 0; }
+#hero-protect,
+#hero-memory { max-width: var(--wide); margin: 0.85rem 0 0; }
 .band #accountable,
-.band #protect { margin-top: 1.25rem; }
+.band #protect,
+.band #memory { margin-top: 1.25rem; }
 .band #accountable article,
-.band #protect article {
+.band #protect article,
+.band #memory article {
   background: color-mix(in srgb, var(--void-ink) 6%, transparent);
   border-color: color-mix(in srgb, var(--void-ink) 18%, transparent);
 }
 .band #accountable article p,
-.band #protect article p { color: color-mix(in srgb, var(--void-ink) 68%, transparent); }
+.band #protect article p,
+.band #memory article p { color: color-mix(in srgb, var(--void-ink) 68%, transparent); }
 
 section {
   padding: clamp(3rem, 8vh, 5.5rem) 0;

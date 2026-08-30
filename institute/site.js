@@ -155,6 +155,23 @@
         set("hero-protect", (prot.lede || "") + (policyNote ? " " + policyNote : ""));
         set("buyer-protect-lede", prot.lede || "");
       }
+      if (data.floor && data.floor.memory && data.floor.memory.items) {
+        paintCards("memory", data.floor.memory.items, "name", "note");
+        var mem = data.floor.memory;
+        var memBy = {};
+        (mem.items || []).forEach(function (item) {
+          memBy[item.id] = item;
+        });
+        var rollbackNote = (memBy.rollback && memBy.rollback.note) || "";
+        set(
+          "hero-memory",
+          (mem.lede || "") +
+            " Reset is the last sealed keep." +
+            (rollbackNote ? " " + rollbackNote : "") +
+            " A mailbox is not the second record."
+        );
+        set("buyer-memory-lede", mem.lede || "");
+      }
       if (data.floor && data.floor.page) {
         set("hero-sale", (data.floor.page.sale || "The sale is the ninety-minute proof.") + " The product is the admit plane.");
       }
@@ -562,6 +579,11 @@
               add(item.name, item.id, item.note || "");
             }
           });
+          var memAttn = (data.floor && data.floor.memory) || {};
+          add("Memory", "two records and a keep", memAttn.lede || "Record keeping is two records and a keep.");
+          (memAttn.items || []).forEach(function (item) {
+            add(item.name, item.id, item.note || "");
+          });
           add("Must-have", "one plane over every new client AI", must.why || "Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.");
           add("First record", "1 sandbox / 0 production", event.note || "AINAV-L1 lab operator identities.");
           add("Action", event.action || "bc.general_journal.post", (event.where || "sandbox") + ". " + (event.seats || "lab operator identities"));
@@ -614,6 +636,11 @@
           (prot.items || []).forEach(function (item) {
             add(item.name, item.id, item.note || "");
           });
+          var mem = (data.floor && data.floor.memory) || {};
+          add("Memory", "two records and a keep", mem.lede || "Record keeping is two records and a keep.");
+          (mem.items || []).forEach(function (item) {
+            add(item.name, item.id, item.note || "");
+          });
           add("Owner", "must-have", audience.owner || "Cannot let any AI post a journal without two seats.");
           add("Board", "must-have", audience.board || "Inventory of models is not a control.");
           add("Examiner", "must-have", audience.examiner || "First record is the SoR write. Second record is who admitted it.");
@@ -629,6 +656,11 @@
           add("Attached", "0 / 0 / 0", "Year-one if all three is catalog list. Not a forecast. Mandated: false.");
         }
         if (kind === "records") {
+          var memRec = (data.floor && data.floor.memory) || {};
+          add("Memory", "two records and a keep", memRec.lede || "Record keeping is two records and a keep.");
+          (memRec.items || []).forEach(function (item) {
+            add(item.name, item.id, item.note || "");
+          });
           add("First record", "1 sandbox / 0 production", "AINAV-L1 lab operator identities.");
           add("Second record", "0", "P-ADM keep not attached. Not a filing.");
           add("Weekly keep", "none", "After kit PASS. A chat is not the keep.");
@@ -1268,6 +1300,26 @@
           art.appendChild(h);
           art.appendChild(p);
           prot.appendChild(art);
+        });
+      }
+    }
+    if (data.memory && data.memory.lede) {
+      var memLede = document.getElementById("buyer-memory-lede");
+      if (memLede) memLede.textContent = data.memory.lede;
+    }
+    if (data.memory && data.memory.items) {
+      var memBand = document.getElementById("memory");
+      if (memBand) {
+        memBand.textContent = "";
+        data.memory.items.forEach(function (item) {
+          var art = document.createElement("article");
+          var h = document.createElement("h3");
+          h.textContent = item.name || "";
+          var p = document.createElement("p");
+          p.textContent = item.note || "";
+          art.appendChild(h);
+          art.appendChild(p);
+          memBand.appendChild(art);
         });
       }
     }

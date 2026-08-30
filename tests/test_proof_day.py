@@ -89,6 +89,14 @@ def test_buyer_page_has_no_inbox_or_named_customer():
         "update",
     }
     assert "cannot weaken job c" in " ".join(item["note"] for item in page["protect"]["items"]).lower()
+    assert "two records and a keep" in page["memory"]["lede"].lower()
+    assert {item["id"] for item in page["memory"]["items"]} >= {
+        "first",
+        "keep",
+        "reset",
+        "rollback",
+    }
+    assert "not a time machine" in " ".join(item["note"] for item in page["memory"]["items"]).lower()
     brief = proof_day_brief()
     assert brief["forwardable"] is True
     assert brief["named_customer"] is None

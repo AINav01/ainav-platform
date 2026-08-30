@@ -65,6 +65,16 @@ def test_institute_foundation_is_catalog_honest():
     assert "floor.protect" in js
     assert 'id="buyer-protect-lede"' in html
     assert "#protect.must-for" in css
+    assert 'id="hero-memory"' in html
+    assert 'id="memory"' in html
+    assert "two records and a keep" in html
+    assert "not a time machine" in html.lower()
+    assert "A mailbox is not the second record" in html
+    assert "floor.memory" in js
+    assert 'id="buyer-memory-lede"' in html
+    assert "#memory.must-for" in css
+    assert html.index('class="hero"') < html.index('id="buyer"')
+    assert html.index('id="must-for"') > html.index('id="buyer"')
     assert 'id="twin-lab"' in html
     assert "who may admit, freeze, keep" in html.lower()
     assert "lab oids are not two named treasury humans" in html.lower()

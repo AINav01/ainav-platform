@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.34.0"
+    assert cat["entity"]["release"] == "2.35.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -50,6 +50,15 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     assert "not a signature" in protect["items"][0]["note"].lower()
     assert "cannot weaken job c" in protect["items"][2]["note"].lower()
     assert "a rebrand breaks gold" in protect["items"][3]["note"].lower()
+    memory = cat["plane_interface"]["floor"]["memory"]
+    assert "two records and a keep" in memory["lede"].lower()
+    assert {item["id"] for item in memory["items"]} >= {"first", "keep", "reset", "rollback"}
+    assert memory["items"][0]["note"] == cat["governance"]["records"]["first"]["what"]
+    assert memory["items"][1]["note"] == next(
+        item["note"] for item in cat["plane_interface"]["write_path"] if item["id"] == "keep"
+    )
+    assert memory["items"][2]["note"] == cat["governance"]["plane"]["reset"]["does"]
+    assert "not a time machine" in memory["items"][3]["note"].lower()
     assert "write does not land" in cat["plane_interface"]["floor"]["no_means"]["fail_closed"].lower()
     assert "business central" in cat["plane_interface"]["floor"]["already_have"].lower()
     assert "gate" in cat["plane_interface"]["floor"]["still_lack"].lower()
