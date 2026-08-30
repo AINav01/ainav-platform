@@ -39,6 +39,15 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert {row["id"] for row in body["skus"]} == {"L1", "P-ADM", "U-DUAL"}
     assert body["include_upsells"] is True
     assert "Dear Cynthia" in (body.get("letter_open") or "")
+    assert "second human" in (body.get("letter_open") or "").lower()
+    assert "seat b" in (body.get("letter_body") or "").lower()
+    assert "not recorded" in (body.get("letter_body") or "").lower()
+    assert "sole owner" in (body.get("letter_close") or "").lower()
+    summary = body.get("executive_summary") or {}
+    assert summary.get("sku") is False
+    assert summary.get("certified") is False
+    assert "job c" in str(summary.get("lede") or "").lower()
+    assert "$0" in str(summary.get("tiles") or "")
     assert "Seat B" in (body.get("seat_b") or "")
     assert "stock" in (body.get("will_not_ask") or "").lower()
     assert "$6,000" in (body.get("stack") or "")
@@ -49,6 +58,9 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "not a priced round" in md.lower()
     assert "cynthia hodnett" in md.lower()
     assert "dear cynthia" in md.lower()
+    assert "executive summary" in md.lower()
+    assert md.lower().index("executive summary") < md.lower().index("a letter to cynthia")
+    assert "invited, not recorded" in md.lower()
     assert "what we will not ask" in md.lower()
     assert "$0" in md or "recognized revenue: $0" in md.lower()
     assert "industry.payables" in md
@@ -111,6 +123,14 @@ def test_investor_validators_refuse_fiction():
     no_letter["investor"]["letter_open"] = "Hello"
     with pytest.raises(IntegrityError):
         validate_catalog(no_letter)
+    no_summary = copy.deepcopy(cat)
+    del no_summary["investor"]["executive_summary"]
+    with pytest.raises(IntegrityError):
+        validate_catalog(no_summary)
+    weak_letter = copy.deepcopy(cat)
+    weak_letter["investor"]["letter_body"] = "Please help."
+    with pytest.raises(IntegrityError):
+        validate_catalog(weak_letter)
 
 
 def test_institute_investor_is_catalog_honest():

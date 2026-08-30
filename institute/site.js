@@ -1006,6 +1006,18 @@
         if (node && text) node.textContent = text;
       }
       set("investor-open", data.letter_open);
+      set("investor-letter-body", data.letter_body);
+      if (data.executive_summary) {
+        set("investor-exec-lede", data.executive_summary.lede);
+        set("investor-exec-job", data.executive_summary.job_c);
+        set("investor-exec-proof", data.executive_summary.proof);
+        set("investor-exec-skus", data.executive_summary.skus);
+        set("investor-exec-tiles", data.executive_summary.tiles);
+        set("investor-exec-microsoft", data.executive_summary.microsoft);
+        set("investor-exec-must", data.executive_summary.must_have);
+        set("investor-exec-opens", data.executive_summary.opens);
+        set("investor-exec-ask", data.executive_summary.ask);
+      }
       set("investor-problem", data.problem);
       set("investor-solution", data.solution);
       set("investor-model", data.model);

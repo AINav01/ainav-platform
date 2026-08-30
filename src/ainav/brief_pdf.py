@@ -62,14 +62,63 @@ def brief_document() -> list[dict[str, Any]]:
             ),
         },
         {
+            "kind": "h",
+            "text": "Executive summary",
+        },
+        {
+            "kind": "callout",
+            "title": "The company in one page",
+            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("lede") or ""),
+        },
+        {
+            "kind": "table",
+            "title": "Board packet — catalog-honest",
+            "headers": ["Job C", "Proof day", "Three SKUs", "Scoreboard today"],
+            "rows": [
+                [
+                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("job_c") or ""),
+                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("proof") or ""),
+                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("skus") or ""),
+                    str(((cat.get("investor") or {}).get("executive_summary") or {}).get("tiles") or ""),
+                ],
+            ],
+        },
+        {
+            "kind": "callout",
+            "title": "Microsoft is not the product",
+            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("microsoft") or ""),
+        },
+        {
+            "kind": "callout",
+            "title": "Must-have is not a mandate",
+            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("must_have") or ""),
+        },
+        {
+            "kind": "callout",
+            "title": "Owner-only still open",
+            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("opens") or ""),
+        },
+        {
+            "kind": "callout",
+            "title": "The ask",
+            "text": str(((cat.get("investor") or {}).get("executive_summary") or {}).get("ask") or ""),
+        },
+        {
+            "kind": "h",
+            "text": "A letter to Cynthia Hodnett",
+        },
+        {
             "kind": "p",
-            "text": (
-                "This letter is for you, not for a customer and not for GitHub. "
-                f"{c['owner']} asked that it be written from the company's own catalog so nothing "
-                "here is invented: no email for you, no stock, no officer title, no named buyer, "
-                "no claim that the public site has launched. If a sentence would make the company "
-                "look further along than it is, it was left out."
-            ),
+            "text": str((cat.get("investor") or {}).get("letter_open") or ""),
+        },
+        *[
+            {"kind": "p", "text": chunk.strip()}
+            for chunk in str((cat.get("investor") or {}).get("letter_body") or "").split("\n\n")
+            if chunk.strip()
+        ],
+        {
+            "kind": "p",
+            "text": str((cat.get("investor") or {}).get("letter_close") or c["owner"]),
         },
         {
             "kind": "h",

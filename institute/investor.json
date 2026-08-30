@@ -6,10 +6,29 @@
   "company": "AINav, Inc. is a Delaware C corporation. James Hodnett is the sole owner. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Job C only: two distinct humans bind the same action_hash before a privileged write. Microsoft is identity, notify, SoR, and host. Microsoft is not the product. The Cloud Agent operates the host. It is not a seat.",
   "confidential": true,
   "control_plane": "Ultimate, here, means last authority \u2014 not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.\n\nThe vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.\n\nA vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.\n\nAfter kit PASS, the second record, the off switch, and the rollback are segregation of duties \u2014 books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.\n\nOthers can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
-  "date": "29 August 2026",
+  "date": "30 August 2026",
   "email": null,
   "equation": "catalog list \u00d7 zero booked \u00d7 two-human close",
   "equity_offered": false,
+  "executive_summary": {
+    "ask": "Cynthia Hodnett as seat B. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. Invited, not recorded.",
+    "certified": false,
+    "forecast": false,
+    "job_c": "Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat.",
+    "kind": "ainav.exec.v1",
+    "lede": "Human control plane over every client AI that can draft a privileged system-of-record write. Job C: two distinct humans bind the same action_hash. No admit, no write. The sale is the ninety-minute proof. Three SKUs only. Honest tiles stay zero until a controller buys.",
+    "live": false,
+    "live_pin_ok": false,
+    "mandated": false,
+    "microsoft": "Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.",
+    "must_have": "Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent.",
+    "opens": "Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane.",
+    "priced_round": false,
+    "proof": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
+    "sku": false,
+    "skus": "L1 $28,000\u2013$40,000 in two to four weeks. P-ADM $40,000\u2013$60,000 / year after kit PASS. U-DUAL $20,000\u2013$35,000 / year, never free. Year-one if all three: $88,000\u2013$135,000 list, not booked. Packs are not SKUs.",
+    "tiles": "Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 0 recorded / 1 invited."
+  },
   "fee_for_service": [
     {
       "attaches_udual": false,
@@ -547,7 +566,9 @@
     "signed_l1": 0
   },
   "legal": "AINav, Inc.",
-  "letter_open": "Dear Cynthia \u2014 this letter is for you. James asked that it be written from the company's catalog so nothing is invented: no email for you, no stock, no officer title, no named buyer, no launched public site, and no priced round. If a sentence would make the company look further along than it is, it was left out.",
+  "letter_body": "We are asking you to be seat B \u2014 treasury_controller and the Inception business executive \u2014 with your own @ainav.institute mailbox and your own click. Not stock. Not Global Admin. Not this Cloud Agent. Not a rubber stamp.\n\nYou are invited, not recorded. No email is stored until you confirm a business address and James says record it. You are not a stockholder and not an officer. Your no, or not yet, is a complete answer.\n\nIf you agree: James creates your mailbox. You sign in once. You click seat B. He does not click both. When a privileged write is proposed, both of you see the same action_hash. You admit or you refuse. Refusing is the product working.\n\nThe company is AINav, Inc., a Delaware C corporation. The product is the AINav Control Plane. AINAV.Institute is hosted on Azure and is not launched. Microsoft is identity, notify, SoR, and host \u2014 not the product. Recognized revenue is $0. Named customers are 0. Signed L1 is 0. Year-one catalog list if one controller bought L1, P-ADM, and U-DUAL is $88,000\u2013$135,000. Not booked. Not a priced round. Not LIVE_PIN_OK.",
+  "letter_close": "James Hodnett, sole owner of AINav, Inc.",
+  "letter_open": "Dear Cynthia \u2014 James is writing to ask you to be the second human on the admit plane. He can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. He cannot be both humans. This letter is from the company's catalog so nothing is invented: no email for you, no stock, no officer title, no named buyer, and no launched public site.",
   "libraries": [
     {
       "id": "lib.l1.wedge",
@@ -808,7 +829,7 @@
   "owner": "James Hodnett",
   "priced_round": false,
   "print": {
-    "pages": 7,
+    "pages": 9,
     "path": "docs/CYNTHIA_HODNETT_INVESTOR.pdf",
     "size": "letter"
   },
@@ -826,7 +847,7 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.36.0",
+  "release": "2.37.0",
   "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {

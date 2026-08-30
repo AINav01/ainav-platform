@@ -107,6 +107,9 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="ip-thesis"' in html
     assert 'id="investor"' in html
     assert "investor.json" in js
+    assert 'id="investor-exec-lede"' in html
+    assert 'id="investor-letter-body"' in html
+    assert "executive_summary" in js
     assert 'id="investor-ffs"' in html
     assert 'id="investor-plane"' in html
     assert 'id="ip-ultimate"' in html

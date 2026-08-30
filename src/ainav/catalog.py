@@ -338,14 +338,24 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"investor packet must refuse {stem}", reason_code="CATALOG_INVESTOR")
     print_body = body.get("print") or {}
     pages = int(print_body.get("pages") or 0)
-    if pages < 4 or pages > 8:
-        raise IntegrityError("investor print is a four-to-eight page letter packet", reason_code="CATALOG_INVESTOR")
+    if pages < 4 or pages > 10:
+        raise IntegrityError("investor print is a four-to-ten page letter packet", reason_code="CATALOG_INVESTOR")
     if body.get("include_upsells") is not True:
         raise IntegrityError("investor packet must include the upsell catalog", reason_code="CATALOG_INVESTOR")
     if "same three skus" not in str(body.get("upsell_note") or "").lower() and "not a fourth" not in str(body.get("upsell_note") or "").lower():
         raise IntegrityError("upsell note must keep packs off a fourth SKU", reason_code="CATALOG_INVESTOR")
     if "dear cynthia" not in str(body.get("letter_open") or "").lower():
         raise IntegrityError("investor letter opens to Cynthia", reason_code="CATALOG_INVESTOR")
+    if "second human" not in str(body.get("letter_open") or "").lower():
+        raise IntegrityError("investor letter leads with the second-human ask", reason_code="CATALOG_INVESTOR")
+    letter_body = str(body.get("letter_body") or "").lower()
+    for stem in ("seat b", "invited", "not recorded", "not stock", "not a priced round"):
+        if stem not in letter_body:
+            raise IntegrityError(f"investor letter body must keep {stem}", reason_code="CATALOG_INVESTOR")
+    if "$0" not in str(body.get("letter_body") or "") and "recognized revenue is $0" not in letter_body:
+        raise IntegrityError("investor letter body must keep the $0 scoreboard", reason_code="CATALOG_INVESTOR")
+    if "sole owner" not in str(body.get("letter_close") or "").lower():
+        raise IntegrityError("investor letter closes from the sole owner", reason_code="CATALOG_INVESTOR")
     if "seat b" not in str(body.get("seat_b") or "").lower():
         raise IntegrityError("investor letter names seat B", reason_code="CATALOG_INVESTOR")
     if "stock" not in str(body.get("will_not_ask") or "").lower():
@@ -361,6 +371,36 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         raise IntegrityError("control-plane insulation must say this is not uncopyable", reason_code="IP_CLAIM")
     if "independen" not in plane and "vendor" not in plane:
         raise IntegrityError("control-plane insulation must keep independence", reason_code="CATALOG_INVESTOR")
+    summary = body.get("executive_summary")
+    if not isinstance(summary, dict):
+        raise IntegrityError("investor packet missing executive summary", reason_code="CATALOG_INVESTOR")
+    if summary.get("sku") is True or summary.get("certified") is True or summary.get("mandated") is True:
+        raise IntegrityError("executive summary is not a SKU, certificate, or mandate", reason_code="CATALOG_INVESTOR")
+    if summary.get("forecast") is True or summary.get("priced_round") is True:
+        raise IntegrityError("executive summary cannot claim a forecast or priced round", reason_code="CATALOG_INVESTOR")
+    if summary.get("live") is True or summary.get("live_pin_ok") is True:
+        raise IntegrityError("executive summary cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(summary.get("lede") or "").lower()
+    for stem in ("job c", "ninety", "three sku", "zero"):
+        if stem not in lede:
+            raise IntegrityError(f"executive summary lede must keep {stem}", reason_code="CATALOG_INVESTOR")
+    if str(summary.get("proof") or "") != str((catalog.get("buyer") or {}).get("proof_day") or ""):
+        raise IntegrityError("executive summary proof must match buyer proof day", reason_code="CATALOG_INVESTOR")
+    if "two distinct humans" not in str(summary.get("job_c") or "").lower():
+        raise IntegrityError("executive summary Job C is two distinct humans", reason_code="CATALOG_INVESTOR")
+    tiles = str(summary.get("tiles") or "").lower()
+    if "$0" not in str(summary.get("tiles") or "") or "invited" not in tiles:
+        raise IntegrityError("executive summary tiles stay $0 and invited", reason_code="CATALOG_INVESTOR")
+    if "not the product" not in str(summary.get("microsoft") or "").lower():
+        raise IntegrityError("executive summary Microsoft is not the product", reason_code="CATALOG_INVESTOR")
+    must = str(summary.get("must_have") or "").lower()
+    if "not counsel" not in must or "not a certificate" not in must:
+        raise IntegrityError("executive summary must-have is not counsel or a certificate", reason_code="CATALOG_INVESTOR")
+    if "live_pin_ok cannot be marked" not in str(summary.get("opens") or "").lower():
+        raise IntegrityError("executive summary opens cannot mark LIVE_PIN_OK", reason_code="CATALOG_INVESTOR")
+    ask = str(summary.get("ask") or "").lower()
+    if "seat b" not in ask or "not recorded" not in ask:
+        raise IntegrityError("executive summary ask is seat B, invited not recorded", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_expert_review(catalog: dict[str, Any]) -> None:

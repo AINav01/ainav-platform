@@ -110,7 +110,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.36.0 (this tree)
+### 2.37.0 (this tree)
+
+Owner-grade letter to Cynthia Hodnett and a board-packet executive
+summary. The letter leads with the second-human ask: seat B, own
+mailbox, own click. Invited, not recorded. No invented email. No
+stock. The executive summary is Job C, the ninety-minute proof,
+three SKUs, honest $0 tiles, Microsoft-is-not-the-product, must-have
+is not a mandate, and owner-only opens. `LIVE_PIN_OK` cannot be
+marked. Print `docs/CYNTHIA_HODNETT_BRIEF.pdf` and
+`docs/CYNTHIA_HODNETT_INVESTOR.pdf`.
+
+### 2.36.0
 
 Complete the stack. The owner clicks the Microsoft admin links.
 This Cloud Agent cannot create users, grant Graph roles, publish

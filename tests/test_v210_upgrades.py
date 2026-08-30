@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.36.0"
+    assert cat["entity"]["release"] == "2.37.0"
     assert {item["id"] for item in cat["plane_interface"]["floor"]["not_the_gate"]} >= {
         "vendor_native",
         "teams",
@@ -91,6 +91,18 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False
     assert cat["investor"]["equity_offered"] is False
+    summary = cat["investor"]["executive_summary"]
+    assert summary["sku"] is False
+    assert summary["certified"] is False
+    assert summary["mandated"] is False
+    assert summary["proof"] == cat["buyer"]["proof_day"]
+    assert "second human" in cat["investor"]["letter_open"].lower()
+    assert "seat b" in cat["investor"]["letter_body"].lower()
+    assert "not recorded" in cat["investor"]["letter_body"].lower()
+    assert "sole owner" in cat["investor"]["letter_close"].lower()
+    assert "$0" in summary["tiles"]
+    assert "not the product" in summary["microsoft"].lower()
+    assert "live_pin_ok cannot be marked" in summary["opens"].lower()
     assert "client utilizes AI" in cat["equations"]["control"]
     assert "institutes AINav" in cat["equations"]["cascade"]
     assert "one admit plane" in cat["equations"]["umbrella"]
@@ -178,6 +190,12 @@ def test_printable_brief_is_a_pdf():
     assert "not a contract" in md.lower()
     assert "unauthorized general-journal" in md
     assert "why a client must have this" in md.lower()
+    assert "executive summary" in md.lower()
+    assert "a letter to cynthia hodnett" in md.lower()
+    assert md.lower().index("executive summary") < md.lower().index("a letter to cynthia")
+    assert md.lower().index("a letter to cynthia") < md.lower().index("why a client must have this")
+    assert "dear cynthia" in md.lower()
+    assert "invited, not recorded" in md.lower()
     assert md.lower().index("why a client must have this") < md.lower().index("investor packet")
     assert md.lower().index("already have") < md.lower().index("investor packet")
     assert "owner, board, examiner" in md.lower()
