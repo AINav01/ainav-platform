@@ -38,10 +38,11 @@ def test_finance_is_catalog_list_not_revenue():
     assert "L1" in md
 
 
-def test_expert_review_has_fifteen_upgrades():
+def test_expert_review_has_sixteen_upgrades():
     cat = load_catalog()
     upgrades = cat["expert_review"]["upgrades"]
-    assert len(upgrades) == 15
+    assert len(upgrades) == 16
+    assert any(item.get("n") == 16 and item.get("done") is True for item in upgrades)
     assert all(item.get("marks_live_pin") is not True for item in upgrades)
     assert any(item["who"] == "owner" for item in upgrades)
     assert any(item["who"] == "tree" for item in upgrades)

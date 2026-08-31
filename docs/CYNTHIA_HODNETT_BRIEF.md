@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.49.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.50.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.49.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.50.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -312,14 +312,13 @@ Working well
 - Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold.
 - Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.
 - Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.
+- Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.
 
 Could be improved — without inventing a fourth SKU
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
 - Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.
 - The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
-- Control-plane language now collides with in-harness agent governors and agent-tool allow-lists. Job C is a SoR write-gate, not agent inventory and not in-process policy.
-- Institute first screen is still doctrine-heavy. The competitive contrast sits below the incident. A controller should see substitute vs Job C in one glance.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
 - Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.
@@ -345,6 +344,7 @@ Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
 - 13. [owner] Counsel pack — G12 hygiene then G13 signed L1. Unsigned order form and MSA skeleton are not a signature.
 - 14. [tree] Product HA is not a sale — Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.
 - 15. [owner] Leave Available / Block Dataverse MCP — Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.
+- 16. [tree] Substitute vs Job C on first screen — Hero fold paints not-the-gate next to Job C. A controller sees the licensed copies in one glance. Job C pins stay. Not uncopyable.
 
 ## What happens next
 

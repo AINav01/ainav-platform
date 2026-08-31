@@ -97,7 +97,7 @@
       "id": "seat",
       "live": false,
       "name": "Seat",
-      "note": "Own Entra object id. Own click. 0 recorded / 1 invited.",
+      "note": "Own Entra object id. Own click. 1 mailbox recorded / 0 oid. Mailbox is not the click.",
       "standing": false
     },
     {
@@ -198,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.49.0"
+    "release": "2.50.0"
   },
   "communications": [
     {
@@ -809,6 +809,12 @@
       "lede": "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit."
     },
     "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
+    "first_glance": {
+      "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
+      "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
+      "sku": false,
+      "uses": "not_the_gate"
+    },
     "integrate": {
       "items": [
         {
@@ -2226,7 +2232,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.49.0",
+  "release": "2.50.0",
   "revocations": [
     {
       "by": "Owner / board request",

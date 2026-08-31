@@ -76,6 +76,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     from ainav.org import validate_organization
 
     validate_organization(catalog)
+    _validate_mailbox_law(catalog)
     _validate_proof_day(catalog)
     _validate_next_pin(catalog)
     _validate_sandbox_evidence(catalog)
@@ -352,6 +353,34 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         )
 
 
+def _validate_mailbox_law(catalog: dict[str, Any]) -> None:
+    invited = ((catalog.get("organization") or {}).get("contacts") or {}).get("invited") or {}
+    if invited.get("recorded") is not True:
+        return
+    if invited.get("seat_role") != "treasury_controller":
+        raise IntegrityError("recorded invite seat is treasury_controller", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("inception_role") != "business_executive":
+        raise IntegrityError("recorded invite Inception role is business_executive", reason_code="ORG_SECOND_OFFICER")
+    stale = "invited, not recorded"
+    for item in ((catalog.get("plane_interface") or {}).get("authorizations") or []):
+        if item.get("id") != "seat":
+            continue
+        note = str(item.get("note") or "").lower()
+        if "1 mailbox" not in note or "0 oid" not in note:
+            raise IntegrityError("seat authorization must keep 1 mailbox / 0 oid", reason_code="CATALOG_PLANE")
+        if stale in note or "0 recorded / 1 invited" in note:
+            raise IntegrityError("seat authorization cannot revert to invited-not-recorded", reason_code="CATALOG_PLANE")
+    investor = catalog.get("investor") or {}
+    for field in ("letter_body", "letter_open", "seat_b", "ask"):
+        if stale in str(investor.get(field) or "").lower():
+            raise IntegrityError(
+                "investor copy cannot say invited, not recorded after mailbox law",
+                reason_code="CATALOG_INVESTOR",
+            )
+    if not any("chodnett@ainav.institute" in str(item).lower() for item in catalog.get("honest_missing") or []):
+        raise IntegrityError("honest_missing must keep the recorded mailbox", reason_code="CATALOG_HONEST")
+
+
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
     body = catalog.get("proof_day")
     if not isinstance(body, dict) or body.get("requires_sku") != "L1":
@@ -601,8 +630,13 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 10 <= len(upgrades) <= 15:
-        raise IntegrityError("expert review needs 10–15 upgrades", reason_code="CATALOG_REVIEW")
+    if not 10 <= len(upgrades) <= 16:
+        raise IntegrityError("expert review needs 10–16 upgrades", reason_code="CATALOG_REVIEW")
+    if not any(
+        item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
+        for item in upgrades
+    ):
+        raise IntegrityError("tree upgrade 16 is first-screen substitute vs Job C", reason_code="CATALOG_REVIEW")
     if not body.get("working_well") or not body.get("improve"):
         raise IntegrityError("expert review needs working_well and improve", reason_code="CATALOG_REVIEW")
     if any(item.get("marks_live_pin") is True for item in upgrades):
@@ -616,6 +650,12 @@ def _validate_owner_gates(catalog: dict[str, Any]) -> None:
     for item in gates:
         if not item.get("do") or not item.get("url"):
             raise IntegrityError("owner gate needs a step and a link", reason_code="CATALOG_ORG")
+        if item.get("id") == "invite.seat_b":
+            do = str(item.get("do") or "").lower()
+            if "chodnett@ainav.institute" not in do or "mailbox recorded" not in do:
+                raise IntegrityError("invite.seat_b must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
+            if "invited, not recorded" in do:
+                raise IntegrityError("invite.seat_b cannot revert to invited-not-recorded", reason_code="ORG_SECOND_OFFICER")
 
 
 def _validate_icp(catalog: dict[str, Any]) -> None:
@@ -965,6 +1005,19 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     for needed in ("vendor_native", "teams", "pim", "copilot", "bc_workflow", "in_harness"):
         if needed not in not_gate_ids:
             raise IntegrityError(f"not-the-gate must include {needed}", reason_code="CATALOG_PLANE")
+    glance = floor.get("first_glance") or {}
+    if not isinstance(glance, dict):
+        raise IntegrityError("floor first_glance is required", reason_code="CATALOG_PLANE")
+    if glance.get("sku") is True:
+        raise IntegrityError("first glance is not a SKU", reason_code="CATALOG_SKU")
+    if glance.get("uses") != "not_the_gate":
+        raise IntegrityError("first glance uses not_the_gate", reason_code="CATALOG_PLANE")
+    glance_lede = str(glance.get("lede") or "").lower()
+    if "substitute" not in glance_lede or "job c" not in glance_lede:
+        raise IntegrityError("first glance is substitute vs Job C", reason_code="CATALOG_PLANE")
+    job_c = str(glance.get("job_c") or "").lower()
+    if "sor write-gate" not in job_c or "not agent inventory" not in job_c:
+        raise IntegrityError("first glance Job C is a SoR write-gate, not agent inventory", reason_code="CATALOG_PLANE")
     close = floor.get("proof_close") or {}
     if close.get("minutes") != (catalog.get("proof_day") or {}).get("minutes"):
         raise IntegrityError("proof close minutes must match proof day", reason_code="CATALOG_PLANE")
@@ -1165,6 +1218,10 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     for item in body.get("authorizations") or []:
         if item.get("standing") is True or item.get("live") is True:
             raise IntegrityError("authorizations stay zero-standing", reason_code="CATALOG_PLANE")
+        if item.get("id") == "seat":
+            note = str(item.get("note") or "").lower()
+            if "1 mailbox" not in note or "0 oid" not in note:
+                raise IntegrityError("seat authorization must keep 1 mailbox / 0 oid", reason_code="CATALOG_PLANE")
     if not {"freeze", "seat_revoke", "grant_expire"} <= {
         item.get("id") for item in body.get("revocations") or []
     }:

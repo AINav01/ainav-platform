@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.49.0",
+    "release": "2.50.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2809,7 +2809,7 @@
         "grants": "Bind an action_hash",
         "standing": false,
         "live": false,
-        "note": "Own Entra object id. Own click. 0 recorded / 1 invited."
+        "note": "Own Entra object id. Own click. 1 mailbox recorded / 0 oid. Mailbox is not the click."
       },
       {
         "id": "bind",
@@ -3033,6 +3033,12 @@
       "lede": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. Two humans before the write. One dashboard included with L1 — not an upsell. Standard and advanced are provision bands, not products.",
       "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
       "still_lack": "They do not have a gate in front of the write.",
+      "first_glance": {
+        "sku": false,
+        "uses": "not_the_gate",
+        "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
+        "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory."
+      },
       "must_have": {
         "sku": false,
         "mandated": false,
@@ -3311,6 +3317,8 @@
       "Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered",
       "Institute, review, and brief generated from the catalog",
       "Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click",
+      "Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded",
+      "Institute first screen paints substitute vs Job C in one glance",
       "Owner-click runbooks with Microsoft admin links"
     ],
     "cannot_close": [
@@ -4516,14 +4524,13 @@
       "Institute Owner nav is one click from Closed. Health, sandbox, and Institute publish fail-closed paths are gold. Graph Teams read with bound IDs is connected, not a missing-role fiction.",
       "Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold.",
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
-      "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent."
+      "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
+      "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
       "Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.",
       "The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.",
-      "Control-plane language now collides with in-harness agent governors and agent-tool allow-lists. Job C is a SoR write-gate, not agent inventory and not in-process policy.",
-      "Institute first screen is still doctrine-heavy. The competitive contrast sits below the incident. A controller should see substitute vs Job C in one glance.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
       "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.",
@@ -4644,6 +4651,14 @@
         "who": "owner",
         "title": "Leave Available / Block Dataverse MCP",
         "do": "Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.",
+        "marks_live_pin": false
+      },
+      {
+        "n": 16,
+        "who": "tree",
+        "title": "Substitute vs Job C on first screen",
+        "do": "Hero fold paints not-the-gate next to Job C. A controller sees the licensed copies in one glance. Job C pins stay. Not uncopyable.",
+        "done": true,
         "marks_live_pin": false
       }
     ]

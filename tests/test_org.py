@@ -118,6 +118,33 @@ def test_organization_refuses_live_contacts_and_unknown_systems():
     with pytest.raises(IntegrityError) as exc_click:
         validate_catalog(clicked)
     assert exc_click.value.reason_code == "ORG_SECOND_OFFICER"
+    equity = copy.deepcopy(cat)
+    equity["organization"]["contacts"]["invited"]["equity"] = True
+    with pytest.raises(IntegrityError) as exc_eq:
+        validate_catalog(equity)
+    assert exc_eq.value.reason_code == "ORG_SECOND_OFFICER"
+    nameless = copy.deepcopy(cat)
+    nameless["organization"]["contacts"]["invited"]["name"] = ""
+    with pytest.raises(IntegrityError) as exc_name:
+        validate_catalog(nameless)
+    assert exc_name.value.reason_code == "CATALOG_ORG"
+    no_agree = copy.deepcopy(cat)
+    no_agree["organization"]["contacts"]["invited"]["agreed"] = False
+    with pytest.raises(IntegrityError) as exc_agree:
+        validate_catalog(no_agree)
+    assert exc_agree.value.reason_code == "ORG_SECOND_OFFICER"
+    wrong_name = copy.deepcopy(cat)
+    wrong_name["organization"]["contacts"]["invited"]["name"] = "Invented Person"
+    with pytest.raises(IntegrityError) as exc_wrong:
+        validate_catalog(wrong_name)
+    assert exc_wrong.value.reason_code == "ORG_SECOND_OFFICER"
+    email_only = copy.deepcopy(cat)
+    email_only["organization"]["contacts"]["invited"]["recorded"] = False
+    email_only["organization"]["contacts"]["invited"]["agreed"] = False
+    email_only["organization"]["contacts"]["invited"]["email"] = "invented@ainav.institute"
+    with pytest.raises(IntegrityError) as exc_mail:
+        validate_catalog(email_only)
+    assert exc_mail.value.reason_code == "ORG_SECOND_OFFICER"
     trimmed = copy.deepcopy(cat)
     trimmed["organization"]["departments"] = trimmed["organization"]["departments"][:1]
     with pytest.raises(IntegrityError) as exc6:

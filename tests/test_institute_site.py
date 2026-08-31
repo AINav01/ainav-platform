@@ -174,6 +174,14 @@ def test_institute_foundation_is_catalog_honest():
     assert "Cynthia Hodnett agreed" in html
     assert "chodnett@ainav.institute" in html
     assert "href=\"mailto:" not in html
+    assert 'id="hero-contrast"' in html
+    assert "Substitute vs Job C" in html
+    assert "Workflow User Groups" in html
+    assert "1 mailbox / 0 oid" in html
+    assert "0 / 1 invited" not in html
+    plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    assert "1 mailbox / 0 oid" in plane
+    assert "0 / 1 invited" not in plane
     assert 'id="complement-cards"' in html
     assert 'id="twin-notify"' in html
     assert 'id="twin-kit"' in html

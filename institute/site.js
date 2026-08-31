@@ -172,6 +172,29 @@
       }
       if (data.floor && data.floor.not_the_gate) {
         paintCards("not-the-gate", data.floor.not_the_gate, "name", "note");
+        var glance = data.floor.first_glance || {};
+        if (glance.lede) set("hero-contrast-lede", glance.lede);
+        var contrast = document.getElementById("hero-contrast");
+        if (contrast) {
+          var pin = contrast.querySelector("[data-pin='job-c']");
+          if (pin && glance.job_c) {
+            var pinNote = pin.querySelector("p");
+            if (pinNote) pinNote.textContent = glance.job_c;
+          }
+          Array.prototype.slice.call(contrast.querySelectorAll("article:not([data-pin])")).forEach(function (art) {
+            art.parentNode.removeChild(art);
+          });
+          data.floor.not_the_gate.forEach(function (item) {
+            var art = document.createElement("article");
+            var h = document.createElement("h3");
+            h.textContent = item.name || "";
+            var p = document.createElement("p");
+            p.textContent = item.note || "";
+            art.appendChild(h);
+            art.appendChild(p);
+            contrast.appendChild(art);
+          });
+        }
       }
       if (data.floor && data.floor.accountable && data.floor.accountable.items) {
         paintCards("accountable", data.floor.accountable.items, "name", "note");

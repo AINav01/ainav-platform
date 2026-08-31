@@ -111,7 +111,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.49.0 (this tree)
+### 2.50.0 (this tree)
+
+Institute first screen shows substitute vs Job C in one
+glance. Mailbox law is fail-closed: seat note, owner gate,
+and letter cannot revert to invited-not-recorded. Seats
+tile stays `1 mailbox / 0 oid`. A green check is not
+`LIVE_PIN_OK`. Owner gates stay owner gates.
+
+### 2.49.0
 
 Cynthia Hodnett agreed. Mailbox `chodnett@ainav.institute`
 is recorded. Mailbox is not an Entra oid and not a click.
