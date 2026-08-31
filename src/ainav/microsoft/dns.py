@@ -86,7 +86,7 @@ def probe_dns() -> dict[str, Any]:
             "swa_asuid_present": swa_txt,
             "azure_swa_hostname": SWA_HOST,
             "azure_swa_bound": False,
-            "note": "Apex still resolves through Cloudflare. It is not bound to Azure Static Web Apps.",
+            "note": "Apex CNAME is empty Cloudflare Pages. It is not bound to Azure Static Web Apps. Pages is not the Institute.",
         },
         "microsoft_365": {
             "mx": mx,
@@ -190,5 +190,6 @@ def catalog_edge() -> dict[str, Any]:
         "missing": list(edge.get("missing") or []),
         "not": list(edge["not"]),
         "activate": dict(edge.get("activate") or {}),
+        "holding": dict(edge.get("holding") or {}),
         "note": edge["note"],
     }

@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.54.0 (this tree)
+### 2.55.0 (this tree)
+
+Apex `ainav.institute` CNAMEs to empty Cloudflare Pages.
+Pages is not the Institute host. Azure Static Web Apps
+remains the hosted Institute. Leave the DNS zone as-is.
+The Squarespace registrar transfer is still in flight.
+Do not add asuid while Pages is the apex origin. A green
+check is not `LIVE_PIN_OK`.
+
+### 2.54.0
 
 Cloudflare Pro is the edge plan, not a SKU. This Cloud
 Agent cannot edit Cloudflare. Owner activates SSL Full,

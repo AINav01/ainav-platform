@@ -167,6 +167,22 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"Pro activate now must keep {stem}", reason_code="CATALOG_EDGE")
     if "pro" not in already:
         raise IntegrityError("edge already must record Cloudflare Pro", reason_code="CATALOG_EDGE")
+    holding = edge.get("holding") or {}
+    if not isinstance(holding, dict):
+        raise IntegrityError("edge holding is empty Cloudflare Pages", reason_code="CATALOG_EDGE")
+    if holding.get("id") != "cloudflare.pages":
+        raise IntegrityError("edge holding is cloudflare.pages", reason_code="CATALOG_EDGE")
+    if str(holding.get("origin") or "") != "ainav-institute.pages.dev":
+        raise IntegrityError("edge holding origin is ainav-institute.pages.dev", reason_code="CATALOG_EDGE")
+    for flag in ("host", "institute", "launch", "sku"):
+        if holding.get(flag) is not False:
+            raise IntegrityError(f"Pages cannot claim {flag}", reason_code="CATALOG_EDGE")
+    hold_note = str(holding.get("note") or "").lower()
+    if "not the institute" not in hold_note or "leave" not in hold_note:
+        raise IntegrityError(
+            "edge holding note: Pages is not the Institute; leave the zone",
+            reason_code="CATALOG_EDGE",
+        )
     if edge.get("full") is True:
         if missing_items:
             raise IntegrityError("edge cannot claim full while records are missing", reason_code="CATALOG_EDGE")
@@ -710,8 +726,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 26:
-        raise IntegrityError("expert review needs 16–26 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 28:
+        raise IntegrityError("expert review needs 16–28 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -727,6 +743,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         23: ("stack walk", "cloudflare"),
         24: ("static", "owner book"),
         25: ("pro", "not a sku"),
+        26: ("pages", "not the institute"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():

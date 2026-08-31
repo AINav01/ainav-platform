@@ -1,6 +1,6 @@
 # AINav, Inc. — owner steps
 
-Release 2.54.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.55.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Owner: James Hodnett. Operator: cursor.cloud_agent (not a seat).
 Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Mailbox is not an Entra oid and not a click.
 
@@ -29,7 +29,7 @@ The nine gates below are the clicks. Cloudflare Pro activate is owner-only at [d
 7. Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.
    [Microsoft for Startups](https://www.microsoft.com/en-us/startups)
 
-8. Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.
+8. Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.
    [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
 
 9. Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.

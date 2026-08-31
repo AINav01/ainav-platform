@@ -111,7 +111,7 @@ def _fit(cat: dict[str, Any], evidence: dict[str, Any], site: dict[str, Any], op
             "note": (
                 f"{site.get('azure_site')} on {site.get('azure_location')}. "
                 f"launch_ready={str(site.get('launch_ready')).lower()}. "
-                "Apex still Squarespace. No asuid. Do not publish until launch."
+                "Apex CNAME is empty Cloudflare Pages. No asuid. Do not publish until launch."
             ),
         },
         {
@@ -535,7 +535,7 @@ def deep_dive(*, probe: bool = False) -> str:
         f"- public_deploy_claimed={site.get('public_deploy_claimed')} "
         f"custom_domain_claimed={site.get('custom_domain_claimed')} "
         f"launch_ready={site.get('launch_ready')}",
-        "- Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.",
+        "- Nameservers stay on Cloudflare. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute host.",
         "- Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).",
         f"- E7-on-Cloudflare full={str(status['e7_cloudflare']['full']).lower()}. "
         "Orange-cloud MX is not dual admit. This is not Institute launch.",

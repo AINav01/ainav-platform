@@ -125,7 +125,7 @@
       ],
       "id": "dept.institute",
       "name": "Institute / GTM",
-      "note": "Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK.",
+      "note": "Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK.",
       "production": false,
       "role": "public",
       "status": "azure_hosted_not_custom",
@@ -211,7 +211,7 @@
     "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
     "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
     "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",
-    "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.",
+    "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
     "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production."
   ],
   "incorporation_date": null,

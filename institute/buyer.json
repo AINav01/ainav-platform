@@ -117,7 +117,7 @@
       {
         "id": "institute.launch",
         "name": "Azure Static Web Apps",
-        "note": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.",
+        "note": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
         "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
         "url_label": "Azure Static Web Apps"
       },

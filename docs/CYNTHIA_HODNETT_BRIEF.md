@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.54.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.55.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.54.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.55.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -126,7 +126,7 @@ Business model: prove with L1 ($28–40k / 2–4 weeks), keep with P-ADM ($40–
 
 ## Where we actually are
 
-The admit plane runs in code. Gold tests pass. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 for $250.00. Those seats were lab operator identities — not two named treasury humans. Production is blocked. The Institute has an Azure hostname. The custom domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception are qualification targets. Membership is not claimed. Crypto-associated is false. We do not lead with custody or GPU production.
+The admit plane runs in code. Gold tests pass. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 for $250.00. Those seats were lab operator identities — not two named treasury humans. Production is blocked. The Institute has an Azure hostname. Apex ainav.institute CNAMEs to empty Cloudflare Pages. That is not the Institute and not launch. Microsoft for Startups and NVIDIA Inception are qualification targets. Membership is not claimed. Crypto-associated is false. We do not lead with custody or GPU production.
 
 *Honest split — working versus not claimed*
 
@@ -171,7 +171,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 | Power Platform environments | Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. | https://admin.powerplatform.microsoft.com/environments |
 | Delaware entity search | Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here. | https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx |
 | Microsoft for Startups | Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. | https://www.microsoft.com/en-us/startups |
-| Azure Static Web Apps | Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch. | https://portal.azure.com/#view/Microsoft_Azure_StaticApps |
+| Azure Static Web Apps | Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch. | https://portal.azure.com/#view/Microsoft_Azure_StaticApps |
 | Business Central Sandbox | Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production. | https://businesscentral.dynamics.com/ainav.institute/Sandbox |
 
 ## What we are building together
@@ -298,7 +298,7 @@ Working well
 - Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.
 - Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.
 - Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.
-- AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.
+- AINAV.Institute is hosted on Azure. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Launch is held.
 - Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
 - E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
@@ -328,7 +328,7 @@ Could be improved — without inventing a fourth SKU
 - A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
-- Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.
+- Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.
 - Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
 - No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
@@ -401,6 +401,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 23. [tree] Stack walk with admin links — Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.
 - 24. [tree] Static public face — Keep Azure Static Web Apps. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. Owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK.
 - 25. [tree] Cloudflare Pro is the edge plan — Record Pro. Not a SKU. Owner activates SSL Full, WAF managed, Rocket Loader off. MX stays DNS-only. This Cloud Agent cannot edit Cloudflare. Not launch.
+- 26. [tree] Apex holding is empty Pages — Record ainav-institute.pages.dev as the apex CNAME. Empty Pages is not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.
 
 ## What happens next
 

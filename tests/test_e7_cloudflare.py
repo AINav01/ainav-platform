@@ -101,6 +101,11 @@ def test_catalog_rejects_edge_fiction():
     with pytest.raises(IntegrityError) as exc10:
         validate_catalog(none)
     assert exc10.value.reason_code == "CATALOG_EDGE"
+    pages_host = copy.deepcopy(cat)
+    pages_host["microsoft_stack"]["edge"]["holding"]["host"] = True
+    with pytest.raises(IntegrityError) as exc_hold:
+        validate_catalog(pages_host)
+    assert exc_hold.value.reason_code == "CATALOG_EDGE"
 
 
 def test_catalog_edge_records_dns_full_not_launch():
@@ -129,6 +134,14 @@ def test_catalog_edge_records_dns_full_not_launch():
     assert "dns is full" in edge["note"].lower()
     assert "not institute launch" in edge["note"].lower()
     assert edge["dashboard_url"] == "https://dash.cloudflare.com"
+    holding = edge["holding"]
+    assert holding["id"] == "cloudflare.pages"
+    assert holding["origin"] == "ainav-institute.pages.dev"
+    assert holding["host"] is False
+    assert holding["institute"] is False
+    assert holding["launch"] is False
+    assert holding["sku"] is False
+    assert "not the institute" in holding["note"].lower()
 
 
 def test_live_scoreboard_mail_on_cloudflare_is_not_full_without_teams():
@@ -260,12 +273,15 @@ def test_institute_paints_e7_cloudflare_strip():
     assert 'id="e7-cloudflare-missing"' in html
     assert 'id="e7-cloudflare-plan"' in html
     assert 'id="e7-cloudflare-activate"' in html
+    assert 'id="e7-cloudflare-holding"' in html
+    assert "ainav-institute.pages.dev" in html
     assert "Cloudflare Pro" in html
     assert "Rocket Loader Off" in html
     assert "dash.cloudflare.com" in html
     assert "dns is full" in html.lower()
     assert "not a ninth complement" in html.lower()
     assert "e7_cloudflare" in js
+    assert "e7-cloudflare-holding" in js
     assert "refuse to paint a fiction scoreboard" in js
     assert "None. E7 DNS is full." in js
     assert "#e7-cloudflare" in css

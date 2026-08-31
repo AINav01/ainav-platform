@@ -324,8 +324,9 @@ def brief_document() -> list[dict[str, Any]]:
                 "The admit plane runs in code. Gold tests pass. There is a real Business Central "
                 "Sandbox company named AINav and a sandbox journal AINAV-L1 dated 28 August 2026 "
                 "for $250.00. Those seats were lab operator identities — not two named treasury "
-                "humans. Production is blocked. The Institute has an Azure hostname. The custom "
-                "domain still serves a Coming Soon page. Microsoft for Startups and NVIDIA Inception "
+                "humans. Production is blocked. The Institute has an Azure hostname. Apex "
+                "ainav.institute CNAMEs to empty Cloudflare Pages. That is not the Institute "
+                "and not launch. Microsoft for Startups and NVIDIA Inception "
                 "are qualification targets. Membership is not claimed. Crypto-associated is false. "
                 "We do not lead with custody or GPU production."
             ),

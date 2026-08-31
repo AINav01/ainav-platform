@@ -1898,6 +1898,20 @@
           }
           var edgeNote = document.getElementById("e7-cloudflare-note");
           if (edgeNote && edge.note) edgeNote.textContent = edge.note;
+          var holding = document.getElementById("e7-cloudflare-holding");
+          if (holding && edge.holding && !edge.holding.host && !edge.holding.institute && !edge.holding.launch) {
+            holding.textContent =
+              "holding=" +
+              (edge.holding.origin || "ainav-institute.pages.dev") +
+              " · host=" +
+              (edge.holding.host === true) +
+              " · institute=" +
+              (edge.holding.institute === true) +
+              " · launch=" +
+              (edge.holding.launch === true) +
+              " · " +
+              (edge.holding.note || "Empty Pages is not the Institute. Leave the zone as-is.");
+          }
         }
       }
       if (data.engineering) {

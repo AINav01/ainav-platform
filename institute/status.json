@@ -163,7 +163,7 @@
       ],
       "wait": [
         {
-          "do": "Do not bind ainav.institute or add asuid until the registrar transfer is Active and you say launch.",
+          "do": "Do not bind ainav.institute or add asuid while Pages is the apex origin. Wait until the registrar transfer is Active and you say launch.",
           "id": "bind"
         },
         {
@@ -194,6 +194,15 @@
     "dashboard_url": "https://dash.cloudflare.com",
     "from_this_plane": false,
     "full": true,
+    "holding": {
+      "host": false,
+      "id": "cloudflare.pages",
+      "institute": false,
+      "launch": false,
+      "note": "Apex and www CNAME to ainav-institute.pages.dev. Empty Pages plus a Pro challenge. Not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.",
+      "origin": "ainav-institute.pages.dev",
+      "sku": false
+    },
     "id": "cloudflare.dns",
     "is_admit_plane": false,
     "live": false,
@@ -209,7 +218,8 @@
       "Azure SWA custom domain",
       "Zero Trust as the admit plane",
       "Cloudflare Email Security as live",
-      "Cloudflare Pro as a SKU"
+      "Cloudflare Pro as a SKU",
+      "Cloudflare Pages as the Institute host"
     ],
     "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
     "plan": "pro",

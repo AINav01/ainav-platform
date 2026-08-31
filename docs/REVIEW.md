@@ -35,7 +35,7 @@ Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Busines
 - **L1 / Business Central** — `sandbox_journal`. Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids — not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.
 - **P-ADM attach** — `unattached`. Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.
 - **U-DUAL / Sales** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. Attached=0. Twin only until G14.
-- **Institute / DNS** — `azure_hosted_not_custom`. ainav-institute on eastus2. launch_ready=false. Apex still Squarespace. No asuid. Do not publish until launch.
+- **Institute / DNS** — `azure_hosted_not_custom`. ainav-institute on eastus2. launch_ready=false. Apex CNAME is empty Cloudflare Pages. No asuid. Do not publish until launch.
 - **Programs** — `qualify_not_claimed`. Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.
 - **Commercial spine** — `catalog_list_not_revenue`. Year-one catalog list if one controller buys all three: $88,000–$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.
 
@@ -158,7 +158,7 @@ CLI: `python -m ainav stack`. Probe: `python -m ainav connect --probe`.
 - **7. Teams notify** — `dns_full_graph_open`. SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat. [Microsoft 365 admin](https://admin.cloud.microsoft/?source=applauncher#/homepage)
 - **8. Graph Read on the same app** — `owner_consent_open`. Health probes report 403 without Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. No Graph Write from this plane. [Entra app registrations](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
 - **9. Agent Tools registry** — `owner_leave_available`. Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block. [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all)
-- **10. Institute launch** — `held`. --publish-institute stays launch_not_ready. Apex is Squarespace Coming Soon. Azure hostname is hosted. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
+- **10. Institute launch** — `held`. --publish-institute stays launch_not_ready. Apex CNAME is empty Cloudflare Pages. Azure hostname is hosted. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
 
 Complements (not hops on the write):
 
@@ -298,7 +298,7 @@ E7 on Cloudflare (DNS/edge, not a ninth complement, not a write-path hop):
 - Product: Cloudflare. Role: dns_edge. full=true. sku=false. is_admit_plane=false.
 - Already pointed: Cloudflare Pro plan; Cloudflare nameservers; Outlook MX; SPF include Outlook; Entra MS= TXT; autodiscover CNAME; enterpriseenrollment CNAME; enterpriseregistration CNAME; DKIM selectors; DMARC p=quarantine; sip CNAME; lyncdiscover CNAME; _sip._tls SRV; _sipfederationtls._tcp SRV.
 - Still missing: none. E7 DNS is full..
-- Not: SKU; seat; ninth Microsoft complement; hop on the privileged write; dual admit; Institute launch; Azure SWA custom domain; Zero Trust as the admit plane; Cloudflare Email Security as live; Cloudflare Pro as a SKU.
+- Not: SKU; seat; ninth Microsoft complement; hop on the privileged write; dual admit; Institute launch; Azure SWA custom domain; Zero Trust as the admit plane; Cloudflare Email Security as live; Cloudflare Pro as a SKU; Cloudflare Pages as the Institute host.
 - Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.
 - Owner dashboard: https://dash.cloudflare.com. This Cloud Agent cannot edit Cloudflare.
 
@@ -332,7 +332,7 @@ This Cloud Agent cannot approve tools.
 - Azure hostname: https://blue-river-010091a0f.7.azurestaticapps.net
 - Site: ainav-institute in eastus2
 - public_deploy_claimed=False custom_domain_claimed=False launch_ready=False
-- Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.
+- Nameservers stay on Cloudflare. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute host.
 - Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).
 - E7-on-Cloudflare full=true. Orange-cloud MX is not dual admit. This is not Institute launch.
 - No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.
@@ -359,7 +359,7 @@ Departments are the operating company, not SKUs. Out-of-gate means the map is co
 - **Sales / Revenue** — licensed_not_wired. systems: sales.enterprise. Sales Enterprise license exists. Global Discovery returned zero instances. Blocked by: Power Platform environment with Dataverse; DATAVERSE_URL.
 - **People / Notify** — licensed_not_wired. systems: teams.enterprise, teams.premium. Teams is licensed. A chat is not a seat. Graph notify is not wired. Blocked by: Team.ReadBasic.All on the same Entra app.
 - **Security / Compliance** — licensed_not_wired. systems: defender.xdr, entra.pim, sentinel.siem, sharepoint.kit. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Blocked by: SecurityIncident.Read.All; RoleEligibilitySchedule.Read.Directory; Sites.Read.All; Sentinel on the existing LAW.
-- **Institute / GTM** — azure_hosted_not_custom. systems: repo.institute, azure.host. Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK. Blocked by: ainav.institute custom domain.
+- **Institute / GTM** — azure_hosted_not_custom. systems: repo.institute, azure.host. Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK. Blocked by: ainav.institute custom domain.
 - **Legal / Counsel** — open_gap. systems: catalog.legal. IP hygiene lives in this tree. Counsel pack is not signed. Blocked by: G12 legal; G13 signed L1.
 - **Product / Engineering** — running_code. systems: repo.agent_gov, repo.catalog. Job C admit plane and catalog. Three SKUs only. Not a live pin. Blocked by: product HA.
 - **Delivery / Customer Success** — running_code. systems: delivery. Master / cloud / local motherships and week-one runbook. Do not invent a customer. Blocked by: named customer; LIVE_PIN_OK.
@@ -389,7 +389,7 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 - Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.
 - Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.
 - Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.
-- Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.
+- Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.
 - Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.
 
 ## Financial model (catalog list)
@@ -417,7 +417,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.
 - Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.
 - Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.
-- AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.
+- AINAV.Institute is hosted on Azure. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Launch is held.
 - Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
 - E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
@@ -447,7 +447,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
-- Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.
+- Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.
 - Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
 - No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
@@ -480,6 +480,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **23. [tree] Stack walk with admin links** — Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.
 - **24. [tree] Static public face** — Keep Azure Static Web Apps. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. Owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK.
 - **25. [tree] Cloudflare Pro is the edge plan** — Record Pro. Not a SKU. Owner activates SSL Full, WAF managed, Rocket Loader off. MX stays DNS-only. This Cloud Agent cannot edit Cloudflare. Not launch.
+- **26. [tree] Apex holding is empty Pages** — Record ainav-institute.pages.dev as the apex CNAME. Empty Pages is not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.
 
 ## Owner — James must click
 

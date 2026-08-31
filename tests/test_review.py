@@ -15,6 +15,8 @@ def test_deep_dive_is_catalog_honest():
     assert "bc.general_journal.post" in body
     assert "Dataverse" in body
     assert "Squarespace" in body
+    assert "empty Cloudflare Pages" in body
+    assert "ainav-institute.pages.dev" in body or "Pages is not the Institute" in body
     assert "launch_not_ready" in body
     assert "E7 on Cloudflare" in body
     assert "full=true" in body
@@ -78,7 +80,7 @@ def test_review_json_cannot_claim_live():
     assert card["live"] is False
     assert card["probed"] is False
     assert card["expert_review"]["success"]["live_pin_ok"] is False
-    assert len(card["expert_review"]["upgrades"]) == 25
+    assert len(card["expert_review"]["upgrades"]) == 26
 
 
 def test_review_model_fit_covers_the_company():

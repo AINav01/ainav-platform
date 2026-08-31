@@ -119,6 +119,16 @@ def test_programs_catalog_cannot_claim_or_go_crypto():
     with pytest.raises(IntegrityError) as exc6:
         validate_catalog(deploy)
     assert exc6.value.reason_code == "PROGRAM_NOT_CLAIMED"
+    pages_host = copy.deepcopy(cat)
+    pages_host["programs"]["website"]["pages_is_host"] = True
+    with pytest.raises(IntegrityError) as exc_pages:
+        validate_catalog(pages_host)
+    assert exc_pages.value.reason_code == "PROGRAM_NOT_CLAIMED"
+    pages_origin = copy.deepcopy(cat)
+    pages_origin["programs"]["website"]["apex_origin"] = "invented.pages.dev"
+    with pytest.raises(IntegrityError) as exc_origin:
+        validate_catalog(pages_origin)
+    assert exc_origin.value.reason_code == "PROGRAM_NOT_CLAIMED"
     wedge = copy.deepcopy(cat)
     wedge["programs"]["public_wedge"] = "invented.wedge"
     with pytest.raises(IntegrityError) as exc7:

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.54.0",
+    "release": "2.55.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -146,7 +146,7 @@
         "blocked_by": [
           "ainav.institute custom domain"
         ],
-        "note": "Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK."
+        "note": "Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK."
       },
       {
         "id": "dept.legal",
@@ -3344,7 +3344,7 @@
           {
             "id": "institute.launch",
             "name": "Azure Static Web Apps",
-            "note": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.",
+            "note": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
             "url_label": "Azure Static Web Apps"
           },
@@ -3504,7 +3504,8 @@
         "Azure SWA custom domain",
         "Zero Trust as the admit plane",
         "Cloudflare Email Security as live",
-        "Cloudflare Pro as a SKU"
+        "Cloudflare Pro as a SKU",
+        "Cloudflare Pages as the Institute host"
       ],
       "activate": {
         "from_this_plane": false,
@@ -3537,13 +3538,22 @@
         "wait": [
           {
             "id": "bind",
-            "do": "Do not bind ainav.institute or add asuid until the registrar transfer is Active and you say launch."
+            "do": "Do not bind ainav.institute or add asuid while Pages is the apex origin. Wait until the registrar transfer is Active and you say launch."
           },
           {
             "id": "origin",
             "do": "Polish, Image Resizing, and Page Rules that point the apex at Azure SWA wait. That is launch."
           }
         ]
+      },
+      "holding": {
+        "id": "cloudflare.pages",
+        "origin": "ainav-institute.pages.dev",
+        "host": false,
+        "institute": false,
+        "launch": false,
+        "sku": false,
+        "note": "Apex and www CNAME to ainav-institute.pages.dev. Empty Pages plus a Pro challenge. Not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch."
       },
       "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
     },
@@ -3818,8 +3828,8 @@
           "name": "Institute launch",
           "role": "hold",
           "status": "held",
-          "in_tree": "--publish-institute stays launch_not_ready. Apex is Squarespace Coming Soon. Azure hostname is hosted.",
-          "owner": "Say launch only when you want ainav.institute bound. A Coming Soon page is not the custom domain.",
+          "in_tree": "--publish-institute stays launch_not_ready. Apex CNAME is empty Cloudflare Pages. Azure hostname is hosted.",
+          "owner": "Say launch only when you want ainav.institute bound. Empty Pages is not the Institute. Do not add asuid while Pages is the apex origin.",
           "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
           "url_label": "Azure Static Web Apps",
           "learn": "https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external",
@@ -4485,7 +4495,9 @@
       "azure_location": "eastus2",
       "public_deploy_claimed": false,
       "custom_domain_claimed": false,
-      "launch_ready": false
+      "launch_ready": false,
+      "apex_origin": "ainav-institute.pages.dev",
+      "pages_is_host": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -4675,7 +4687,7 @@
     },
     {
       "id": "institute.launch",
-      "do": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. A Coming Soon page is not the custom domain. Do not publish until you say launch.",
+      "do": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
       "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
       "url_label": "Azure Static Web Apps"
     },
@@ -4874,7 +4886,7 @@
       "Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.",
       "Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.",
       "Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.",
-      "AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.",
+      "AINAV.Institute is hosted on Azure. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Launch is held.",
       "Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.",
       "E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.",
       "Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.",
@@ -4903,7 +4915,7 @@
       "A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
-      "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.",
+      "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
@@ -5235,6 +5247,14 @@
         "who": "tree",
         "title": "Cloudflare Pro is the edge plan",
         "do": "Record Pro. Not a SKU. Owner activates SSL Full, WAF managed, Rocket Loader off. MX stays DNS-only. This Cloud Agent cannot edit Cloudflare. Not launch.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 26,
+        "who": "tree",
+        "title": "Apex holding is empty Pages",
+        "do": "Record ainav-institute.pages.dev as the apex CNAME. Empty Pages is not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.",
         "done": true,
         "marks_live_pin": false
       }

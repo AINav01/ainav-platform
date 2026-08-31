@@ -59,6 +59,13 @@ def validate_programs(catalog: dict[str, Any]) -> None:
             "Institute launch is held. Do not publish until the owner says launch.",
             reason_code="PROGRAM_NOT_CLAIMED",
         )
+    if body.get("website", {}).get("pages_is_host") is True:
+        raise IntegrityError("Cloudflare Pages is not the Institute host", reason_code="PROGRAM_NOT_CLAIMED")
+    if str(body.get("website", {}).get("apex_origin") or "") != "ainav-institute.pages.dev":
+        raise IntegrityError(
+            "apex origin is empty Cloudflare Pages",
+            reason_code="PROGRAM_NOT_CLAIMED",
+        )
     wedge = body.get("public_wedge")
     l1_actions = {
         m["id"]

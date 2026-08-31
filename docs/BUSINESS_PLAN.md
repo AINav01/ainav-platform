@@ -198,7 +198,7 @@ Departments are the operating company, not SKUs. Out-of-gate means the map is co
 - **Sales / Revenue** — licensed_not_wired. Sales Enterprise license exists. Global Discovery returned zero instances.
 - **People / Notify** — licensed_not_wired. Teams is licensed. A chat is not a seat. Graph notify is not wired.
 - **Security / Compliance** — licensed_not_wired. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel.
-- **Institute / GTM** — azure_hosted_not_custom. Azure hostname is published. ainav.institute coming-soon is not bound. Not LIVE_PIN_OK.
+- **Institute / GTM** — azure_hosted_not_custom. Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK.
 - **Legal / Counsel** — open_gap. IP hygiene lives in this tree. Counsel pack is not signed.
 - **Product / Engineering** — running_code. Job C admit plane and catalog. Three SKUs only. Not a live pin.
 - **Delivery / Customer Success** — running_code. Master / cloud / local motherships and week-one runbook. Do not invent a customer.

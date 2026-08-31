@@ -1,6 +1,6 @@
 # AINav, Inc. — stack walk
 
-Release 2.54.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.55.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 **Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**
@@ -39,8 +39,8 @@ This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind 
 9. **Agent Tools registry** — `owner_leave_available`. Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block.
    Owner: Leave five Work IQ / MCP Management tools Available. Block Dataverse MCP until paid U-DUAL. Reject BYO SoR writers. [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all) · [Manage tools for agents](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent)
 
-10. **Institute launch** — `held`. --publish-institute stays launch_not_ready. Apex is Squarespace Coming Soon. Azure hostname is hosted.
-   Owner: Say launch only when you want ainav.institute bound. A Coming Soon page is not the custom domain. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps) · [Bind a custom domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external)
+10. **Institute launch** — `held`. --publish-institute stays launch_not_ready. Apex CNAME is empty Cloudflare Pages. Azure hostname is hosted.
+   Owner: Say launch only when you want ainav.institute bound. Empty Pages is not the Institute. Do not add asuid while Pages is the apex origin. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps) · [Bind a custom domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external)
 
 
 ## Complements (not hops on the write)

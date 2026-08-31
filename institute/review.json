@@ -56,7 +56,7 @@
       ],
       "wait": [
         {
-          "do": "Do not bind ainav.institute or add asuid until the registrar transfer is Active and you say launch.",
+          "do": "Do not bind ainav.institute or add asuid while Pages is the apex origin. Wait until the registrar transfer is Active and you say launch.",
           "id": "bind"
         },
         {
@@ -87,6 +87,15 @@
     "dashboard_url": "https://dash.cloudflare.com",
     "from_this_plane": false,
     "full": true,
+    "holding": {
+      "host": false,
+      "id": "cloudflare.pages",
+      "institute": false,
+      "launch": false,
+      "note": "Apex and www CNAME to ainav-institute.pages.dev. Empty Pages plus a Pro challenge. Not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.",
+      "origin": "ainav-institute.pages.dev",
+      "sku": false
+    },
     "id": "cloudflare.dns",
     "is_admit_plane": false,
     "live": false,
@@ -102,7 +111,8 @@
       "Azure SWA custom domain",
       "Zero Trust as the admit plane",
       "Cloudflare Email Security as live",
-      "Cloudflare Pro as a SKU"
+      "Cloudflare Pro as a SKU",
+      "Cloudflare Pages as the Institute host"
     ],
     "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
     "plan": "pro",
@@ -177,7 +187,7 @@
       "A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger \u2014 not two deployed planes.",
-      "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.",
+      "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
@@ -511,13 +521,21 @@
         "n": 25,
         "title": "Cloudflare Pro is the edge plan",
         "who": "tree"
+      },
+      {
+        "do": "Record ainav-institute.pages.dev as the apex CNAME. Empty Pages is not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 26,
+        "title": "Apex holding is empty Pages",
+        "who": "tree"
       }
     ],
     "working_well": [
       "Job C invariants hold in gold: dual seats, single-use consume, fail-closed effect, hash-chained DecisionRecords.",
       "Three SKUs only. Packs, libraries, FFS, and Microsoft licenses are not products.",
       "Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.",
-      "AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.",
+      "AINAV.Institute is hosted on Azure. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Launch is held.",
       "Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.",
       "E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.",
       "Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.",
@@ -574,7 +592,7 @@
     {
       "id": "institute",
       "label": "Institute / DNS",
-      "note": "ainav-institute on eastus2. launch_ready=false. Apex still Squarespace. No asuid. Do not publish until launch.",
+      "note": "ainav-institute on eastus2. launch_ready=false. Apex CNAME is empty Cloudflare Pages. No asuid. Do not publish until launch.",
       "status": "azure_hosted_not_custom"
     },
     {
