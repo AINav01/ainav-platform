@@ -38,11 +38,25 @@ def test_finance_is_catalog_list_not_revenue():
     assert "L1" in md
 
 
-def test_expert_review_has_sixteen_upgrades():
+def test_expert_review_has_twenty_two_upgrades():
     cat = load_catalog()
     upgrades = cat["expert_review"]["upgrades"]
-    assert len(upgrades) == 16
+    assert len(upgrades) == 22
     assert any(item.get("n") == 16 and item.get("done") is True for item in upgrades)
+    assert any(item.get("n") == 22 and item.get("done") is True for item in upgrades)
     assert all(item.get("marks_live_pin") is not True for item in upgrades)
     assert any(item["who"] == "owner" for item in upgrades)
     assert any(item["who"] == "tree" for item in upgrades)
+    success = cat["expert_review"]["success"]
+    assert success["live"] is False
+    assert success["live_pin_ok"] is False
+    assert success["sku"] is False
+    assert {item["id"] for item in success["bake_off"]["we_win"]} >= {
+        "independence",
+        "consume_once",
+        "fail_closed",
+        "counterparty",
+    }
+    assert any("Workflow User Groups" in item for item in success["qualify"]["walk_away"])
+    assert success["seat_b"]["mailbox"] == "chodnett@ainav.institute"
+    assert "write does not land" in success["continuity"]["lede"].lower()

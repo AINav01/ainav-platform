@@ -120,6 +120,15 @@ def test_buyer_page_has_no_inbox_or_named_customer():
     assert "institutes" in str(profile["institutes_ainav"]).lower()
     assert "not AINav" in profile["ai"]
     assert "customer" in " ".join(page["refuse"]).lower()
+    success = page["success"]
+    assert success["live"] is False
+    assert success["live_pin_ok"] is False
+    assert success["sku"] is False
+    assert "cheaper button" in success["bake_off"]["lede"].lower()
+    assert any("Workflow User Groups" in item for item in success["qualify"]["walk_away"])
+    assert success["seat_b"]["mailbox"] == "chodnett@ainav.institute"
+    assert brief["bake_off"]["we_win"]
+    assert "LIVE_PIN_OK from a demo" in brief["walk_away"]
 
 
 def test_catalog_rejects_named_customer_and_live_next_pin():

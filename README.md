@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.50.0 (this tree)
+### 2.51.0 (this tree)
+
+Success program is catalog law: bake-off win/lose, qualify
+and walk away, objection cards, CISO posture, seat B
+meaning, and one-seat-missing continuity. Institute paints
+them next to the write. Tree upgrades 17–22 are done.
+Owner gates stay owner gates. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.50.0
 
 Institute first screen shows substitute vs Job C in one
 glance. Mailbox law is fail-closed: seat note, owner gate,

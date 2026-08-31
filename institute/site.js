@@ -1279,6 +1279,26 @@
           if (note && item.note) note.textContent = item.note;
         });
       }
+      var upgrades = document.getElementById("review-upgrades");
+      if (upgrades && data.expert_review && data.expert_review.upgrades) {
+        upgrades.textContent = "";
+        data.expert_review.upgrades.forEach(function (item) {
+          var li = document.createElement("li");
+          var who = item.who || "";
+          var done = item.done ? "done" : "open";
+          li.textContent =
+            item.n +
+            ". [" +
+            who +
+            " · " +
+            done +
+            "] " +
+            (item.title || "") +
+            " — " +
+            (item.do || "");
+          upgrades.appendChild(li);
+        });
+      }
     })
     .catch(function () {
       /* review.json is optional when opened as a file */
@@ -1360,8 +1380,11 @@
     }
   }
 
+  var lastBuyer = null;
+
   function fillBuyer(data) {
     if (!data) return;
+    lastBuyer = data;
     var write = document.getElementById("buyer-write");
     var incident = document.getElementById("buyer-incident");
     var proof = document.getElementById("buyer-proof");
@@ -1472,6 +1495,79 @@
     replaceList("buyer-seats", data.seats);
     replaceList("buyer-prices", data.prices);
     replaceList("buyer-refuse", data.refuse);
+    paintSuccess(data.success);
+  }
+
+  function paintNamedCards(rootId, items, titleKey, noteKey) {
+    var root = document.getElementById(rootId);
+    if (!root || !items || !items.length) return;
+    root.textContent = "";
+    items.forEach(function (item) {
+      var art = document.createElement("article");
+      if (item.id) art.setAttribute("data-id", item.id);
+      var h = document.createElement("h3");
+      h.textContent = item[titleKey] || item.name || item.hear || "";
+      var p = document.createElement("p");
+      p.textContent = item[noteKey] || item.note || item.answer || "";
+      art.appendChild(h);
+      art.appendChild(p);
+      root.appendChild(art);
+    });
+  }
+
+  function paintSuccess(success) {
+    if (!success || success.live || success.live_pin_ok || success.sku) return;
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("success-thesis", success.thesis);
+    if (success.bake_off) {
+      set("success-bake-lede", success.bake_off.lede);
+      paintNamedCards("they-win", success.bake_off.they_win, "name", "note");
+      paintNamedCards("we-win", success.bake_off.we_win, "name", "note");
+    }
+    if (success.qualify) {
+      set("qualify-lede", success.qualify.lede);
+      replacePlain("qualify-must", success.qualify.must);
+      replacePlain("qualify-walk", success.qualify.walk_away);
+    }
+    paintNamedCards("objections", success.objections, "hear", "answer");
+    if (success.ciso) {
+      set("ciso-lede", success.ciso.lede);
+      replacePlain("ciso-holds", success.ciso.holds);
+      replacePlain("ciso-not", success.ciso.does_not);
+    }
+    if (success.seat_b) {
+      set(
+        "seat-b-lede",
+        (success.seat_b.lede || "") +
+          " " +
+          (success.seat_b.name || "") +
+          " · " +
+          (success.seat_b.mailbox || "") +
+          "."
+      );
+      replacePlain("seat-b-is", success.seat_b.is);
+      replacePlain("seat-b-not", success.seat_b.is_not);
+    }
+    if (success.continuity) {
+      set(
+        "continuity",
+        (success.continuity.lede || "") + " " + (success.continuity.note || "")
+      );
+    }
+  }
+
+  function replacePlain(id, items) {
+    var node = document.getElementById(id);
+    if (!node || !items || !items.length) return;
+    node.textContent = "";
+    items.forEach(function (item) {
+      var li = document.createElement("li");
+      li.textContent = item;
+      node.appendChild(li);
+    });
   }
 
   fetch("buyer.json")
@@ -1488,7 +1584,7 @@
   var ask = document.getElementById("ask-proof-day");
   if (ask) {
     ask.addEventListener("click", function () {
-      var page = buyerPayload();
+      var page = lastBuyer || buyerPayload();
       var brief = {
         kind: "ainav.proof_day.brief.v1",
         forwardable: true,
@@ -1499,6 +1595,10 @@
         proof_day: page.proof_day,
         refuse: page.refuse,
         ask: "Ask for a ninety-minute proof day on the existing treasury SOD.",
+        bake_off: (page.success && page.success.bake_off) || null,
+        qualify: (page.success && page.success.qualify) || null,
+        walk_away:
+          (page.success && page.success.qualify && page.success.qualify.walk_away) || [],
         contact_email: null,
         mailto: null,
         named_customer: null,

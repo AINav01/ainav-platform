@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.50.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.51.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.50.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.51.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -287,9 +287,11 @@ Three SKUs. Five pricing models. Fee-for-service at $3,500/day on the same plane
 | One controller — L1, P-ADM, oversight keep | One controller buys L1, attaches P-ADM, then attaches industry.oversight. | $73,000–$108,000 |
 | All three SKUs plus invoice and credit desks | One controller buys all three SKUs then attaches industry.invoice_desk and industry.credit. | $100,000–$155,000 |
 
-## Part V — Expert review: what works, what to improve, 15 upgrades
+## Part V — Expert review: what works, what to improve, success upgrades
 
-Read as a coding first-principles review, a Microsoft-fabric review, and a business review. The bar is gold-standard Job C, not a prettier Coming Soon page. Apple polish without the gate is decoration. Elon-style first principles without two humans is a lab.
+Read as a coding first-principles review, a Microsoft-fabric review, and a business review. The bar is gold-standard Job C, not a prettier Coming Soon page. Apple polish without the gate is decoration. Elon-style first principles without two humans is a lab. The success program is the bake-off: walk away from the licensed substitute, or buy L1 when independence is the requirement.
+
+The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.
 
 Working well
 
@@ -313,12 +315,14 @@ Working well
 - Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.
 - Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.
 - Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.
+- Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.
 
 Could be improved — without inventing a fourth SKU
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
 - Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.
 - The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
+- A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
 - Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.
@@ -327,7 +331,47 @@ Could be improved — without inventing a fourth SKU
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
 
-Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
+They win the bake-off when
+
+- One vendor, one button — They only run Copilot on Business Central. Workflow User Groups is enough this quarter.
+- Native is already licensed — They will not pay L1 to prove a gate they think they already have.
+- Chat approval is fast — They accept a Teams vote as two humans looked.
+
+We win the bake-off when
+
+- Independence — The drafting vendor is the worst failsafe for that draft. Job C sits outside the model.
+- Consume-once — Native approval can be replayed. Job C consumes the grant once on one action_hash.
+- Fail-closed SoR — If either seat is missing, the write does not land. No fake success.
+- Counterparty AI — A Copilot-only button leaves Agentforce and the customer's model ungated.
+
+Walk away when
+
+- Just give us cheaper Workflow User Groups
+- One human wearing both titles
+- Copilot Studio RFI as the product
+- AINav as the client's AI
+- LIVE_PIN_OK from a demo
+- Invented named customer or inbox
+
+Objection cards
+
+- Native is free. — Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.
+- Microsoft already does this. — Microsoft hosts, identifies, notifies, and receives the write. Microsoft is not the admit plane. A vendor-native button only covers that vendor.
+- Two humans is slow. — One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.
+- Why not PIM? — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
+- Copilot Studio already asks a human. — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
+
+CISO posture — holds
+
+- No Graph Write from this plane
+- Fail-closed EffectLedger — no admit, no write
+- Zero-standing grants — identify is not admit
+- Sandbox first; Production blocked until the owner authorizes
+- Mailbox is not an Entra oid and not a click
+
+If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
+
+Success upgrades. Tree = already encoded. Owner = James must click.
 
 - 1. [owner] Named dual seats — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - 2. [owner] Proof day on named humans — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
@@ -345,6 +389,12 @@ Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
 - 14. [tree] Product HA is not a sale — Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.
 - 15. [owner] Leave Available / Block Dataverse MCP — Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.
 - 16. [tree] Substitute vs Job C on first screen — Hero fold paints not-the-gate next to Job C. A controller sees the licensed copies in one glance. Job C pins stay. Not uncopyable.
+- 17. [tree] Bake-off win/lose — Paint they-win and we-win. They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.
+- 18. [tree] Qualify and walk away — Proof day is for the controller who cannot let any AI post. Walk away from cheaper Workflow User Groups, one title as both seats, and Copilot Studio RFI as the product.
+- 19. [tree] Objection cards — Answer price, Microsoft-already, two-humans-slow, PIM, and Copilot Studio RFI. If independence is not the requirement, walk away.
+- 20. [tree] CISO posture — No Graph Write. Fail-closed EffectLedger. Zero-standing grants. Identify is not admit. Not a certificate.
+- 21. [tree] Seat B meaning — Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. Not an officer. Not a stockholder.
+- 22. [tree] One seat missing is the product — If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant.
 
 ## What happens next
 

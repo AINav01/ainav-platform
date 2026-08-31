@@ -379,6 +379,9 @@ def _validate_mailbox_law(catalog: dict[str, Any]) -> None:
             )
     if not any("chodnett@ainav.institute" in str(item).lower() for item in catalog.get("honest_missing") or []):
         raise IntegrityError("honest_missing must keep the recorded mailbox", reason_code="CATALOG_HONEST")
+    seat = (((catalog.get("expert_review") or {}).get("success") or {}).get("seat_b") or {})
+    if seat and str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
+        raise IntegrityError("success seat B must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
 
 
 def _validate_proof_day(catalog: dict[str, Any]) -> None:
@@ -630,17 +633,94 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 10 <= len(upgrades) <= 16:
-        raise IntegrityError("expert review needs 10–16 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 24:
+        raise IntegrityError("expert review needs 16–24 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
     ):
         raise IntegrityError("tree upgrade 16 is first-screen substitute vs Job C", reason_code="CATALOG_REVIEW")
+    required_done = {
+        17: ("bake-off", "independence"),
+        18: ("walk away", "workflow"),
+        19: ("objection", "pim"),
+        20: ("graph write", "fail-closed"),
+        21: ("chodnett@ainav.institute", "not a click"),
+        22: ("missing", "product working"),
+    }
+    by_n = {item.get("n"): item for item in upgrades}
+    for number, stems in required_done.items():
+        item = by_n.get(number) or {}
+        if item.get("who") != "tree" or item.get("done") is not True:
+            raise IntegrityError(f"tree upgrade {number} must be done", reason_code="CATALOG_REVIEW")
+        blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+        if any(stem not in blob for stem in stems):
+            raise IntegrityError(f"tree upgrade {number} must keep {stems[0]}", reason_code="CATALOG_REVIEW")
     if not body.get("working_well") or not body.get("improve"):
         raise IntegrityError("expert review needs working_well and improve", reason_code="CATALOG_REVIEW")
     if any(item.get("marks_live_pin") is True for item in upgrades):
         raise IntegrityError("upgrades cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    _validate_success_program(body.get("success"))
+
+
+def _validate_success_program(success: Any) -> None:
+    if not isinstance(success, dict):
+        raise IntegrityError("expert review needs a success program", reason_code="CATALOG_REVIEW")
+    if success.get("sku") is True or success.get("mandated") is True or success.get("certified") is True:
+        raise IntegrityError("success program is not a SKU, mandate, or certificate", reason_code="CATALOG_REVIEW")
+    if success.get("live") is True or success.get("live_pin_ok") is True:
+        raise IntegrityError("success program cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    thesis = str(success.get("thesis") or "").lower()
+    if "walk" not in thesis or "licensed substitute" not in thesis or "live_pin_ok" not in thesis:
+        raise IntegrityError("success thesis is walk away from the licensed substitute", reason_code="CATALOG_REVIEW")
+    bake = success.get("bake_off") or {}
+    they = [item.get("id") for item in bake.get("they_win") or []]
+    we = [item.get("id") for item in bake.get("we_win") or []]
+    if not {"one_vendor", "cheaper", "speed"} <= set(they):
+        raise IntegrityError("bake-off they-win must name one-vendor, cheaper, speed", reason_code="CATALOG_REVIEW")
+    if not {"independence", "consume_once", "fail_closed", "counterparty"} <= set(we):
+        raise IntegrityError("bake-off we-win must name independence and fail-closed", reason_code="CATALOG_REVIEW")
+    if "cheaper button" not in str(bake.get("lede") or "").lower():
+        raise IntegrityError("bake-off lede must name the cheaper button", reason_code="CATALOG_REVIEW")
+    qualify = success.get("qualify") or {}
+    walk = " ".join(str(item).lower() for item in qualify.get("walk_away") or [])
+    must = " ".join(str(item).lower() for item in qualify.get("must") or [])
+    if "workflow user groups" not in walk or "one human" not in walk:
+        raise IntegrityError("qualify must walk away from cheaper native dual", reason_code="CATALOG_REVIEW")
+    if "two existing treasury" not in must or "one title" not in must:
+        raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
+    objections = {item.get("id"): item for item in success.get("objections") or []}
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi"):
+        if needed not in objections:
+            raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('hear') or ''} {item.get('answer') or ''}".lower()
+        for item in objections.values()
+    )
+    if "uncopyable" in blob or "patent granted" in blob:
+        raise IntegrityError("objections cannot claim uncopyable or a patent", reason_code="CATALOG_REVIEW")
+    if "walk away" not in str(objections["price"].get("answer") or "").lower():
+        raise IntegrityError("price objection must offer the walk-away", reason_code="CATALOG_REVIEW")
+    ciso = success.get("ciso") or {}
+    holds = " ".join(str(item).lower() for item in ciso.get("holds") or [])
+    does_not = " ".join(str(item).lower() for item in ciso.get("does_not") or [])
+    if "no graph write" not in holds or "fail-closed" not in holds:
+        raise IntegrityError("CISO posture must keep no Graph Write and fail-closed", reason_code="CATALOG_REVIEW")
+    if "live_pin_ok" not in does_not or "inbox" not in does_not:
+        raise IntegrityError("CISO posture cannot invent an inbox or LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    seat = success.get("seat_b") or {}
+    if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
+        raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
+    if str(seat.get("name") or "") != "Cynthia Hodnett":
+        raise IntegrityError("seat B meaning must keep Cynthia Hodnett", reason_code="ORG_SECOND_OFFICER")
+    is_not = " ".join(str(item).lower() for item in seat.get("is_not") or [])
+    if "entra object id" not in is_not or "officer" not in is_not or "stockholder" not in is_not:
+        raise IntegrityError("seat B meaning: mailbox is not oid, officer, or stock", reason_code="ORG_SECOND_OFFICER")
+    continuity = success.get("continuity") or {}
+    if "write does not land" not in str(continuity.get("lede") or "").lower():
+        raise IntegrityError("continuity is the write does not land", reason_code="CATALOG_REVIEW")
+    if "bypass" not in str(continuity.get("note") or "").lower():
+        raise IntegrityError("continuity is not a bypass", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1018,6 +1098,16 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     job_c = str(glance.get("job_c") or "").lower()
     if "sor write-gate" not in job_c or "not agent inventory" not in job_c:
         raise IntegrityError("first glance Job C is a SoR write-gate, not agent inventory", reason_code="CATALOG_PLANE")
+    success_floor = floor.get("success") or {}
+    if not isinstance(success_floor, dict):
+        raise IntegrityError("floor success is required", reason_code="CATALOG_PLANE")
+    if success_floor.get("sku") is True:
+        raise IntegrityError("floor success is not a SKU", reason_code="CATALOG_SKU")
+    if success_floor.get("uses") != "expert_review.success":
+        raise IntegrityError("floor success uses expert_review.success", reason_code="CATALOG_PLANE")
+    review_thesis = str(((catalog.get("expert_review") or {}).get("success") or {}).get("thesis") or "")
+    if str(success_floor.get("lede") or "") != review_thesis:
+        raise IntegrityError("floor success lede must match the success thesis", reason_code="CATALOG_PLANE")
     close = floor.get("proof_close") or {}
     if close.get("minutes") != (catalog.get("proof_day") or {}).get("minutes"):
         raise IntegrityError("proof close minutes must match proof day", reason_code="CATALOG_PLANE")

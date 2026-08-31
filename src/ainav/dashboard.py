@@ -393,6 +393,8 @@ def public_dashboard() -> dict[str, Any]:
         "seat_clicked": bool(invited.get("seat_clicked")),
         "refuse": list(body.get("refuse") or []),
         "note": body.get("note"),
+        "success": dict((cat.get("expert_review") or {}).get("success") or {}),
+        "success_equation": cat["equations"].get("success"),
     }
 
 
@@ -427,6 +429,72 @@ def dashboard_markdown() -> str:
     ]
     for item in (body.get("floor") or {}).get("not_the_gate") or []:
         lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    success = body.get("success") or {}
+    bake = success.get("bake_off") or {}
+    lines += [
+        "",
+        "### Success program — bake-off",
+        "",
+        f"{success.get('thesis') or ''}",
+        "",
+        f"{bake.get('lede') or ''}",
+        "",
+        "They win when:",
+        "",
+    ]
+    for item in bake.get("they_win") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    lines += [
+        "",
+        "We win when:",
+        "",
+    ]
+    for item in bake.get("we_win") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    qualify = success.get("qualify") or {}
+    lines += [
+        "",
+        f"### Qualify and walk away",
+        "",
+        f"{qualify.get('lede') or ''}",
+        "",
+        "Must:",
+        "",
+    ]
+    for item in qualify.get("must") or []:
+        lines.append(f"- {item}")
+    lines += ["", "Walk away:", ""]
+    for item in qualify.get("walk_away") or []:
+        lines.append(f"- {item}")
+    lines += ["", "### Objection cards", ""]
+    for item in success.get("objections") or []:
+        lines.append(f"- **{item.get('hear')}** — {item.get('answer') or ''}")
+    ciso = success.get("ciso") or {}
+    lines += ["", f"### CISO posture", "", f"{ciso.get('lede') or ''}", ""]
+    for item in ciso.get("holds") or []:
+        lines.append(f"- Holds: {item}")
+    for item in ciso.get("does_not") or []:
+        lines.append(f"- Does not: {item}")
+    seat = success.get("seat_b") or {}
+    lines += [
+        "",
+        "### Seat B meaning",
+        "",
+        f"{seat.get('lede') or ''} {seat.get('name') or ''} · {seat.get('mailbox') or ''}.",
+        "",
+    ]
+    for item in seat.get("is") or []:
+        lines.append(f"- Is: {item}")
+    for item in seat.get("is_not") or []:
+        lines.append(f"- Is not: {item}")
+    cont = success.get("continuity") or {}
+    lines += [
+        "",
+        "### One seat missing is the product",
+        "",
+        f"{cont.get('lede') or ''} {cont.get('note') or ''}",
+        "",
+    ]
     close = (body.get("floor") or {}).get("proof_close") or {}
     no_means = (body.get("floor") or {}).get("no_means") or {}
     lines += [
@@ -1075,6 +1143,33 @@ def dashboard_html() -> str:
         "</tr>"
         for item in body.get("compliance_matrix") or []
     )
+    success = body.get("success") or {}
+    bake = success.get("bake_off") or {}
+    they_win = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in bake.get("they_win") or []
+    )
+    we_win = "".join(
+        (
+            f"<article data-tone=\"lab\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in bake.get("we_win") or []
+    )
+    objections = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('hear') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('answer') or '')}</p></article>"
+        )
+        for item in success.get("objections") or []
+    )
+    walk_away = "".join(
+        f"<li>{html.escape(item)}</li>" for item in (success.get("qualify") or {}).get("walk_away") or []
+    )
+    continuity = success.get("continuity") or {}
     access = body["access"]
     paras = "".join(
         f"<p>{html.escape(chunk.strip())}</p>"
@@ -1157,6 +1252,17 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="wrap">
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
+<h2>Success program — bake-off</h2>
+<p class="note">{html.escape(success.get('thesis') or '')} {html.escape(bake.get('lede') or '')}</p>
+<p class="equation">Success = {html.escape(body.get('success_equation') or '')}</p>
+<p class="note">They win when</p>
+<div class="lifecycle">{they_win}</div>
+<p class="note">We win when</p>
+<div class="lifecycle">{we_win}</div>
+<p class="note">Walk away</p>
+<ul>{walk_away}</ul>
+<div class="lifecycle">{objections}</div>
+<p class="note">{html.escape(continuity.get('lede') or '')} {html.escape(continuity.get('note') or '')}</p>
 <p class="equation">Interface = {html.escape(body.get('equation') or '')}</p>
 <p class="note">{clock_line}</p>
 <h2>Attention board</h2>

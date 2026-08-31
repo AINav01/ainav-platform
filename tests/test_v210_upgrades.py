@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.50.0"
+    assert cat["entity"]["release"] == "2.51.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -37,6 +37,9 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     }
     glance = cat["plane_interface"]["floor"]["first_glance"]
     assert glance["uses"] == "not_the_gate"
+    floor_success = cat["plane_interface"]["floor"]["success"]
+    assert floor_success["uses"] == "expert_review.success"
+    assert floor_success["lede"] == cat["expert_review"]["success"]["thesis"]
     assert glance["sku"] is False
     assert "substitute" in glance["lede"].lower()
     assert "not agent inventory" in glance["job_c"].lower()
@@ -267,7 +270,7 @@ def test_printable_brief_is_a_pdf():
     assert "Tuesday" in md
     assert "Where we actually are" in md
     assert "Financial model" in md or "catalog list" in md.lower()
-    assert "Fifteen" in md or "15" in md
+    assert "Success upgrades" in md or "Bake-off" in md
     assert "Named dual seats" in md
     assert "not recorded as an officer" in md.lower()
     assert "Investor executive summary" in md or "Investor packet" in md

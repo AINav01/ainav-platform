@@ -172,6 +172,12 @@ def review_model(*, probe: bool = False) -> dict[str, Any]:
         "cli": list(CLI_SURFACE),
         "e7_cloudflare": dict(status["e7_cloudflare"]),
         "engineering": dict(status["engineering"]),
+        "expert_review": {
+            "working_well": list(cat["expert_review"]["working_well"]),
+            "improve": list(cat["expert_review"]["improve"]),
+            "upgrades": [dict(item) for item in cat["expert_review"]["upgrades"]],
+            "success": dict(cat["expert_review"]["success"]),
+        },
         "probed": False,
     }
     if probe:
@@ -274,6 +280,71 @@ def deep_dive(*, probe: bool = False) -> str:
         + ". None of those are Job C. Job C is a SoR write-gate, not agent inventory and not an IdP.",
         "",
         "Refuse: " + "; ".join(cat["ip"]["insulation"]["refuse"]) + ".",
+        "",
+        "## Success program — bake-off, qualify, walk away",
+        "",
+        cat["expert_review"]["success"]["thesis"],
+        "",
+        f"**Bake-off.** {cat['expert_review']['success']['bake_off']['lede']}",
+        "",
+        "They win when:",
+        "",
+    ]
+    for item in cat["expert_review"]["success"]["bake_off"]["they_win"]:
+        lines.append(f"- **{item['name']}** — {item['note']}")
+    lines += [
+        "",
+        "We win when:",
+        "",
+    ]
+    for item in cat["expert_review"]["success"]["bake_off"]["we_win"]:
+        lines.append(f"- **{item['name']}** — {item['note']}")
+    lines += [
+        "",
+        f"**Qualify.** {cat['expert_review']['success']['qualify']['lede']}",
+        "",
+        "Must:",
+        "",
+    ]
+    for item in cat["expert_review"]["success"]["qualify"]["must"]:
+        lines.append(f"- {item}")
+    lines += [
+        "",
+        "Walk away:",
+        "",
+    ]
+    for item in cat["expert_review"]["success"]["qualify"]["walk_away"]:
+        lines.append(f"- {item}")
+    lines += [
+        "",
+        "**Objections.**",
+        "",
+    ]
+    for item in cat["expert_review"]["success"]["objections"]:
+        lines.append(f"- **{item['hear']}** — {item['answer']}")
+    lines += [
+        "",
+        f"**CISO.** {cat['expert_review']['success']['ciso']['lede']}",
+        "",
+    ]
+    for item in cat["expert_review"]["success"]["ciso"]["holds"]:
+        lines.append(f"- Holds: {item}")
+    for item in cat["expert_review"]["success"]["ciso"]["does_not"]:
+        lines.append(f"- Does not: {item}")
+    seat = cat["expert_review"]["success"]["seat_b"]
+    lines += [
+        "",
+        f"**Seat B meaning.** {seat['lede']} {seat['name']} · {seat['mailbox']}.",
+        "",
+    ]
+    for item in seat["is"]:
+        lines.append(f"- Is: {item}")
+    for item in seat["is_not"]:
+        lines.append(f"- Is not: {item}")
+    cont = cat["expert_review"]["success"]["continuity"]
+    lines += [
+        "",
+        f"**Continuity.** {cont['lede']} {cont['note']}",
         "",
         "## First principles",
         "",
@@ -516,7 +587,7 @@ def deep_dive(*, probe: bool = False) -> str:
     lines += ["", "## Expert review — could be improved", ""]
     for item in review["improve"]:
         lines.append(f"- {item}")
-    lines += ["", "## Fifteen upgrades", ""]
+    lines += ["", "## Success upgrades", ""]
     for item in review["upgrades"]:
         lines.append(f"- **{item['n']}. [{item['who']}] {item['title']}** — {item['do']}")
     lines += [

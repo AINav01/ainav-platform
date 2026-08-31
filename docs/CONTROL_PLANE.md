@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.50.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.51.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -29,6 +29,89 @@ They do not have a gate in front of the write.
 - **Copilot asking a human** — Copilot asking a human leaves Agentforce and the counterparty's model ungated.
 - **BC native dual approval** — Workflow User Groups can require two humans. That is not consume-once action_hash and not a fail-closed EffectLedger.
 - **In-harness AI governor** — Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI.
+
+### Success program — bake-off
+
+The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.
+
+They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.
+
+They win when:
+
+- **One vendor, one button** — They only run Copilot on Business Central. Workflow User Groups is enough this quarter.
+- **Native is already licensed** — They will not pay L1 to prove a gate they think they already have.
+- **Chat approval is fast** — They accept a Teams vote as two humans looked.
+
+We win when:
+
+- **Independence** — The drafting vendor is the worst failsafe for that draft. Job C sits outside the model.
+- **Consume-once** — Native approval can be replayed. Job C consumes the grant once on one action_hash.
+- **Fail-closed SoR** — If either seat is missing, the write does not land. No fake success.
+- **Counterparty AI** — A Copilot-only button leaves Agentforce and the customer's model ungated.
+
+### Qualify and walk away
+
+Walk away from the cheap-native buyer. Proof day is for the controller who cannot let any AI post.
+
+Must:
+
+- Business Central Premium
+- Entra ID
+- Two existing treasury humans — not one title as both seats
+- Client AI that can draft a privileged write
+- Controller who cannot let any AI post without two seats
+
+Walk away:
+
+- Just give us cheaper Workflow User Groups
+- One human wearing both titles
+- Copilot Studio RFI as the product
+- AINav as the client's AI
+- LIVE_PIN_OK from a demo
+- Invented named customer or inbox
+
+### Objection cards
+
+- **Native is free.** — Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.
+- **Microsoft already does this.** — Microsoft hosts, identifies, notifies, and receives the write. Microsoft is not the admit plane. A vendor-native button only covers that vendor.
+- **Two humans is slow.** — One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.
+- **Why not PIM?** — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
+- **Copilot Studio already asks a human.** — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
+
+### CISO posture
+
+CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write.
+
+- Holds: No Graph Write from this plane
+- Holds: Fail-closed EffectLedger — no admit, no write
+- Holds: Zero-standing grants — identify is not admit
+- Holds: Sandbox first; Production blocked until the owner authorizes
+- Holds: Mailbox is not an Entra oid and not a click
+- Does not: Store a buyer inbox
+- Does not: Invent an Entra object id
+- Does not: Mark LIVE_PIN_OK
+- Does not: Replace counsel
+- Does not: Power down Copilot
+
+### Seat B meaning
+
+Mailbox recorded is not the click. Seat B meaning stays honest. Cynthia Hodnett · chodnett@ainav.institute.
+
+- Is: Agreed human for seat B
+- Is: Mailbox chodnett@ainav.institute recorded
+- Is: Intended treasury_controller
+- Is: Intended Inception business_executive contact when programs open
+- Is not: An Entra object id
+- Is not: A seat B click
+- Is not: An officer
+- Is not: A stockholder
+- Is not: The second unique human until oid and click
+- Is not: The Cloud Agent
+
+### One seat missing is the product
+
+If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
+
 
 ### Proof day — walk out
 
@@ -130,7 +213,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.50.0.
+- As of: catalog release 2.51.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.

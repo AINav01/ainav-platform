@@ -264,6 +264,141 @@
   ],
   "signed_l1": false,
   "still_lack": "They do not have a gate in front of the write.",
+  "success": {
+    "bake_off": {
+      "lede": "They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.",
+      "they_win": [
+        {
+          "id": "one_vendor",
+          "name": "One vendor, one button",
+          "note": "They only run Copilot on Business Central. Workflow User Groups is enough this quarter."
+        },
+        {
+          "id": "cheaper",
+          "name": "Native is already licensed",
+          "note": "They will not pay L1 to prove a gate they think they already have."
+        },
+        {
+          "id": "speed",
+          "name": "Chat approval is fast",
+          "note": "They accept a Teams vote as two humans looked."
+        }
+      ],
+      "we_win": [
+        {
+          "id": "independence",
+          "name": "Independence",
+          "note": "The drafting vendor is the worst failsafe for that draft. Job C sits outside the model."
+        },
+        {
+          "id": "consume_once",
+          "name": "Consume-once",
+          "note": "Native approval can be replayed. Job C consumes the grant once on one action_hash."
+        },
+        {
+          "id": "fail_closed",
+          "name": "Fail-closed SoR",
+          "note": "If either seat is missing, the write does not land. No fake success."
+        },
+        {
+          "id": "counterparty",
+          "name": "Counterparty AI",
+          "note": "A Copilot-only button leaves Agentforce and the customer's model ungated."
+        }
+      ]
+    },
+    "certified": false,
+    "ciso": {
+      "does_not": [
+        "Store a buyer inbox",
+        "Invent an Entra object id",
+        "Mark LIVE_PIN_OK",
+        "Replace counsel",
+        "Power down Copilot"
+      ],
+      "holds": [
+        "No Graph Write from this plane",
+        "Fail-closed EffectLedger \u2014 no admit, no write",
+        "Zero-standing grants \u2014 identify is not admit",
+        "Sandbox first; Production blocked until the owner authorizes",
+        "Mailbox is not an Entra oid and not a click"
+      ],
+      "lede": "CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write."
+    },
+    "continuity": {
+      "lede": "If either seat is missing, the write does not land. That is the product working.",
+      "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not."
+    },
+    "live": false,
+    "live_pin_ok": false,
+    "mandated": false,
+    "objections": [
+      {
+        "answer": "Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.",
+        "hear": "Native is free.",
+        "id": "price"
+      },
+      {
+        "answer": "Microsoft hosts, identifies, notifies, and receives the write. Microsoft is not the admit plane. A vendor-native button only covers that vendor.",
+        "hear": "Microsoft already does this.",
+        "id": "microsoft"
+      },
+      {
+        "answer": "One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.",
+        "hear": "Two humans is slow.",
+        "id": "slow"
+      },
+      {
+        "answer": "PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.",
+        "hear": "Why not PIM?",
+        "id": "pim"
+      },
+      {
+        "answer": "That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.",
+        "hear": "Copilot Studio already asks a human.",
+        "id": "copilot_rfi"
+      }
+    ],
+    "qualify": {
+      "lede": "Walk away from the cheap-native buyer. Proof day is for the controller who cannot let any AI post.",
+      "must": [
+        "Business Central Premium",
+        "Entra ID",
+        "Two existing treasury humans \u2014 not one title as both seats",
+        "Client AI that can draft a privileged write",
+        "Controller who cannot let any AI post without two seats"
+      ],
+      "walk_away": [
+        "Just give us cheaper Workflow User Groups",
+        "One human wearing both titles",
+        "Copilot Studio RFI as the product",
+        "AINav as the client's AI",
+        "LIVE_PIN_OK from a demo",
+        "Invented named customer or inbox"
+      ]
+    },
+    "seat_b": {
+      "is": [
+        "Agreed human for seat B",
+        "Mailbox chodnett@ainav.institute recorded",
+        "Intended treasury_controller",
+        "Intended Inception business_executive contact when programs open"
+      ],
+      "is_not": [
+        "An Entra object id",
+        "A seat B click",
+        "An officer",
+        "A stockholder",
+        "The second unique human until oid and click",
+        "The Cloud Agent"
+      ],
+      "lede": "Mailbox recorded is not the click. Seat B meaning stays honest.",
+      "mailbox": "chodnett@ainav.institute",
+      "name": "Cynthia Hodnett"
+    },
+    "sku": false,
+    "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK."
+  },
   "twin_is": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
   "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit."
 }

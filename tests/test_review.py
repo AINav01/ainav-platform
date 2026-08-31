@@ -40,6 +40,11 @@ def test_deep_dive_is_catalog_honest():
     assert "## Owner — James must click" in body
     assert "G1/G10 LIVE_PIN_OK" in body
     assert "## Competitive field (honest)" in body
+    assert "## Success program — bake-off, qualify, walk away" in body
+    assert "## Success upgrades" in body
+    assert "licensed substitute" in body.lower()
+    assert "Workflow User Groups" in body
+    assert "One seat missing" in body or "write does not land" in body.lower()
     assert "Workflow User Group" in body
     assert "Copilot Studio" in body
     assert "not a patent" in body.lower()
@@ -69,6 +74,8 @@ def test_review_json_cannot_claim_live():
     assert "markdown" not in card
     assert card["live"] is False
     assert card["probed"] is False
+    assert card["expert_review"]["success"]["live_pin_ok"] is False
+    assert len(card["expert_review"]["upgrades"]) == 22
 
 
 def test_review_model_fit_covers_the_company():

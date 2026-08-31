@@ -115,3 +115,23 @@ def test_catalog_refuses_finance_live_upgrade_pin_and_empty_gate():
     with pytest.raises(IntegrityError) as exc6:
         validate_catalog(repo)
     assert exc6.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
+    bake = copy.deepcopy(cat)
+    bake["expert_review"]["success"]["bake_off"]["we_win"] = []
+    with pytest.raises(IntegrityError) as exc7:
+        validate_catalog(bake)
+    assert exc7.value.reason_code == "CATALOG_REVIEW"
+    walk = copy.deepcopy(cat)
+    walk["expert_review"]["success"]["qualify"]["walk_away"] = ["invented"]
+    with pytest.raises(IntegrityError) as exc8:
+        validate_catalog(walk)
+    assert exc8.value.reason_code == "CATALOG_REVIEW"
+    pin = copy.deepcopy(cat)
+    pin["expert_review"]["success"]["live_pin_ok"] = True
+    with pytest.raises(IntegrityError) as exc9:
+        validate_catalog(pin)
+    assert exc9.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
+    seat = copy.deepcopy(cat)
+    seat["expert_review"]["success"]["seat_b"]["mailbox"] = "invented@example.com"
+    with pytest.raises(IntegrityError) as exc10:
+        validate_catalog(seat)
+    assert exc10.value.reason_code == "ORG_SECOND_OFFICER"

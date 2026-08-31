@@ -38,11 +38,31 @@ def buyer_page() -> dict[str, Any]:
         "contact_email": None,
         "mailto": None,
         "icp": icp_profile(),
+        "success": success_program(),
         "signed_l1": False,
         "live": False,
     }
     refuse_claim(page["write_that_must_not_happen"], catalog=cat)
     return page
+
+
+def success_program() -> dict[str, Any]:
+    """Controller-facing success program. Catalog only. Not LIVE_PIN_OK."""
+    body = dict((load_catalog().get("expert_review") or {}).get("success") or {})
+    return {
+        "sku": False,
+        "live": False,
+        "live_pin_ok": False,
+        "certified": False,
+        "mandated": False,
+        "thesis": body.get("thesis"),
+        "bake_off": dict(body.get("bake_off") or {}),
+        "qualify": dict(body.get("qualify") or {}),
+        "objections": [dict(item) for item in body.get("objections") or []],
+        "ciso": dict(body.get("ciso") or {}),
+        "seat_b": dict(body.get("seat_b") or {}),
+        "continuity": dict(body.get("continuity") or {}),
+    }
 
 
 def icp_profile() -> dict[str, Any]:
@@ -90,6 +110,9 @@ def proof_day_brief(*, for_controller: str | None = None) -> dict[str, Any]:
         "minutes": page["minutes"],
         "refuse": page["refuse"],
         "ask": "Ask for a ninety-minute proof day on the existing treasury SOD.",
+        "bake_off": dict((page.get("success") or {}).get("bake_off") or {}),
+        "qualify": dict((page.get("success") or {}).get("qualify") or {}),
+        "walk_away": list(((page.get("success") or {}).get("qualify") or {}).get("walk_away") or []),
         "contact_email": None,
         "mailto": None,
         "named_customer": None,

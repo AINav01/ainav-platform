@@ -151,6 +151,16 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "already have" in md.lower()
     assert "must-have for owner, board, examiner" in md.lower()
     assert "not the gate" in md.lower()
+    assert "success program" in md.lower()
+    assert "they win when" in md.lower()
+    assert "walk away" in md.lower()
+    assert "objection cards" in md.lower()
+    assert "ciso posture" in md.lower()
+    assert "seat b meaning" in md.lower()
+    assert "one seat missing" in md.lower()
+    assert body["success"]["live_pin_ok"] is False
+    assert body["success"]["seat_b"]["mailbox"] == "chodnett@ainav.institute"
+    assert "walk-away" in (body.get("success_equation") or "")
     assert "walk out" in md.lower()
     assert "what no does" in md.lower()
     assert "the product is the admit plane" in md.lower()
@@ -176,6 +186,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "throughout the client organization" in md.lower()
     assert "seating cascade" in md.lower()
     html = dashboard_html()
+    assert "Success program — bake-off" in html
+    assert "They win when" in html
+    assert "We win when" in html
     assert "Executive control-plane dashboard" in html
     assert "OPEN" in html
     assert "Throughout the client organization" in html

@@ -67,6 +67,80 @@ Others in the same conversation: Salesforce Agentforce; SAP Joule; ServiceNow No
 
 Refuse: uncopyable; patent granted; Microsoft cannot legally copy; AINav is a Microsoft product; powered by Copilot.
 
+## Success program — bake-off, qualify, walk away
+
+The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.
+
+**Bake-off.** They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.
+
+They win when:
+
+- **One vendor, one button** — They only run Copilot on Business Central. Workflow User Groups is enough this quarter.
+- **Native is already licensed** — They will not pay L1 to prove a gate they think they already have.
+- **Chat approval is fast** — They accept a Teams vote as two humans looked.
+
+We win when:
+
+- **Independence** — The drafting vendor is the worst failsafe for that draft. Job C sits outside the model.
+- **Consume-once** — Native approval can be replayed. Job C consumes the grant once on one action_hash.
+- **Fail-closed SoR** — If either seat is missing, the write does not land. No fake success.
+- **Counterparty AI** — A Copilot-only button leaves Agentforce and the customer's model ungated.
+
+**Qualify.** Walk away from the cheap-native buyer. Proof day is for the controller who cannot let any AI post.
+
+Must:
+
+- Business Central Premium
+- Entra ID
+- Two existing treasury humans — not one title as both seats
+- Client AI that can draft a privileged write
+- Controller who cannot let any AI post without two seats
+
+Walk away:
+
+- Just give us cheaper Workflow User Groups
+- One human wearing both titles
+- Copilot Studio RFI as the product
+- AINav as the client's AI
+- LIVE_PIN_OK from a demo
+- Invented named customer or inbox
+
+**Objections.**
+
+- **Native is free.** — Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.
+- **Microsoft already does this.** — Microsoft hosts, identifies, notifies, and receives the write. Microsoft is not the admit plane. A vendor-native button only covers that vendor.
+- **Two humans is slow.** — One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.
+- **Why not PIM?** — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
+- **Copilot Studio already asks a human.** — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
+
+**CISO.** CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write.
+
+- Holds: No Graph Write from this plane
+- Holds: Fail-closed EffectLedger — no admit, no write
+- Holds: Zero-standing grants — identify is not admit
+- Holds: Sandbox first; Production blocked until the owner authorizes
+- Holds: Mailbox is not an Entra oid and not a click
+- Does not: Store a buyer inbox
+- Does not: Invent an Entra object id
+- Does not: Mark LIVE_PIN_OK
+- Does not: Replace counsel
+- Does not: Power down Copilot
+
+**Seat B meaning.** Mailbox recorded is not the click. Seat B meaning stays honest. Cynthia Hodnett · chodnett@ainav.institute.
+
+- Is: Agreed human for seat B
+- Is: Mailbox chodnett@ainav.institute recorded
+- Is: Intended treasury_controller
+- Is: Intended Inception business_executive contact when programs open
+- Is not: An Entra object id
+- Is not: A seat B click
+- Is not: An officer
+- Is not: A stockholder
+- Is not: The second unique human until oid and click
+- Is not: The Cloud Agent
+
+**Continuity.** If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
+
 ## First principles
 
 Human control plane over every client AI that can draft a privileged system-of-record write.
@@ -241,7 +315,7 @@ This Cloud Agent cannot approve tools.
 - Workflow: `.github/workflows/gold.yml`. Command: `make gold`. Coverage floor: 90.
 - exists=true. observed_green=true. marks_live_pin=false. launch=false. sku=false.
 - Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.
-- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded; Institute first screen paints substitute vs Job C in one glance; Owner-click runbooks with Microsoft admin links.
+- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded; Institute first screen paints substitute vs Job C in one glance; Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity; Owner-click runbooks with Microsoft admin links.
 - This Cloud Agent cannot close: Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats); ainav.institute custom domain and launch; Graph Read on the same Entra app; US Dataverse for Sales; G12 legal / G13 signed L1; Recognized revenue; Multi-host product HA; LIVE_PIN_OK.
 - This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.
 
@@ -331,12 +405,14 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.
 - Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.
 - Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.
+- Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.
 
 ## Expert review — could be improved
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
 - Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.
 - The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
+- A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
 - Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.
@@ -345,7 +421,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
 
-## Fifteen upgrades
+## Success upgrades
 
 - **1. [owner] Named dual seats** — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - **2. [owner] Proof day on named humans** — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
@@ -363,6 +439,12 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **14. [tree] Product HA is not a sale** — Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.
 - **15. [owner] Leave Available / Block Dataverse MCP** — Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.
 - **16. [tree] Substitute vs Job C on first screen** — Hero fold paints not-the-gate next to Job C. A controller sees the licensed copies in one glance. Job C pins stay. Not uncopyable.
+- **17. [tree] Bake-off win/lose** — Paint they-win and we-win. They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.
+- **18. [tree] Qualify and walk away** — Proof day is for the controller who cannot let any AI post. Walk away from cheaper Workflow User Groups, one title as both seats, and Copilot Studio RFI as the product.
+- **19. [tree] Objection cards** — Answer price, Microsoft-already, two-humans-slow, PIM, and Copilot Studio RFI. If independence is not the requirement, walk away.
+- **20. [tree] CISO posture** — No Graph Write. Fail-closed EffectLedger. Zero-standing grants. Identify is not admit. Not a certificate.
+- **21. [tree] Seat B meaning** — Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. Not an officer. Not a stockholder.
+- **22. [tree] One seat missing is the product** — If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant.
 
 ## Owner — James must click
 

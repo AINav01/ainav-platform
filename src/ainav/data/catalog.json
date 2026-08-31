@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.50.0",
+    "release": "2.51.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -249,7 +249,8 @@
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
     "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands",
-    "investor": "catalog list × zero booked × two-human close"
+    "investor": "catalog list × zero booked × two-human close",
+    "success": "walk-away × independence × consume-once × fail-closed × named dual seats"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
@@ -3039,6 +3040,11 @@
         "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
         "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory."
       },
+      "success": {
+        "sku": false,
+        "uses": "expert_review.success",
+        "lede": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK."
+      },
       "must_have": {
         "sku": false,
         "mandated": false,
@@ -3319,6 +3325,7 @@
       "Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click",
       "Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded",
       "Institute first screen paints substitute vs Job C in one glance",
+      "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
       "Owner-click runbooks with Microsoft admin links"
     ],
     "cannot_close": [
@@ -4525,12 +4532,14 @@
       "Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold.",
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
-      "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory."
+      "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
+      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
       "Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.",
       "The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.",
+      "A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
       "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.",
@@ -4539,6 +4548,141 @@
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
       "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
     ],
+    "success": {
+      "sku": false,
+      "live": false,
+      "live_pin_ok": false,
+      "certified": false,
+      "mandated": false,
+      "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.",
+      "bake_off": {
+        "lede": "They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.",
+        "they_win": [
+          {
+            "id": "one_vendor",
+            "name": "One vendor, one button",
+            "note": "They only run Copilot on Business Central. Workflow User Groups is enough this quarter."
+          },
+          {
+            "id": "cheaper",
+            "name": "Native is already licensed",
+            "note": "They will not pay L1 to prove a gate they think they already have."
+          },
+          {
+            "id": "speed",
+            "name": "Chat approval is fast",
+            "note": "They accept a Teams vote as two humans looked."
+          }
+        ],
+        "we_win": [
+          {
+            "id": "independence",
+            "name": "Independence",
+            "note": "The drafting vendor is the worst failsafe for that draft. Job C sits outside the model."
+          },
+          {
+            "id": "consume_once",
+            "name": "Consume-once",
+            "note": "Native approval can be replayed. Job C consumes the grant once on one action_hash."
+          },
+          {
+            "id": "fail_closed",
+            "name": "Fail-closed SoR",
+            "note": "If either seat is missing, the write does not land. No fake success."
+          },
+          {
+            "id": "counterparty",
+            "name": "Counterparty AI",
+            "note": "A Copilot-only button leaves Agentforce and the customer's model ungated."
+          }
+        ]
+      },
+      "qualify": {
+        "lede": "Walk away from the cheap-native buyer. Proof day is for the controller who cannot let any AI post.",
+        "must": [
+          "Business Central Premium",
+          "Entra ID",
+          "Two existing treasury humans — not one title as both seats",
+          "Client AI that can draft a privileged write",
+          "Controller who cannot let any AI post without two seats"
+        ],
+        "walk_away": [
+          "Just give us cheaper Workflow User Groups",
+          "One human wearing both titles",
+          "Copilot Studio RFI as the product",
+          "AINav as the client's AI",
+          "LIVE_PIN_OK from a demo",
+          "Invented named customer or inbox"
+        ]
+      },
+      "objections": [
+        {
+          "id": "price",
+          "hear": "Native is free.",
+          "answer": "Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away."
+        },
+        {
+          "id": "microsoft",
+          "hear": "Microsoft already does this.",
+          "answer": "Microsoft hosts, identifies, notifies, and receives the write. Microsoft is not the admit plane. A vendor-native button only covers that vendor."
+        },
+        {
+          "id": "slow",
+          "hear": "Two humans is slow.",
+          "answer": "One missing human is the product working. The unauthorized post is faster. Controllers buy the gate."
+        },
+        {
+          "id": "pim",
+          "hear": "Why not PIM?",
+          "answer": "PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash."
+        },
+        {
+          "id": "copilot_rfi",
+          "hear": "Copilot Studio already asks a human.",
+          "answer": "That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them."
+        }
+      ],
+      "ciso": {
+        "lede": "CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write.",
+        "holds": [
+          "No Graph Write from this plane",
+          "Fail-closed EffectLedger — no admit, no write",
+          "Zero-standing grants — identify is not admit",
+          "Sandbox first; Production blocked until the owner authorizes",
+          "Mailbox is not an Entra oid and not a click"
+        ],
+        "does_not": [
+          "Store a buyer inbox",
+          "Invent an Entra object id",
+          "Mark LIVE_PIN_OK",
+          "Replace counsel",
+          "Power down Copilot"
+        ]
+      },
+      "seat_b": {
+        "name": "Cynthia Hodnett",
+        "mailbox": "chodnett@ainav.institute",
+        "lede": "Mailbox recorded is not the click. Seat B meaning stays honest.",
+        "is": [
+          "Agreed human for seat B",
+          "Mailbox chodnett@ainav.institute recorded",
+          "Intended treasury_controller",
+          "Intended Inception business_executive contact when programs open"
+        ],
+        "is_not": [
+          "An Entra object id",
+          "A seat B click",
+          "An officer",
+          "A stockholder",
+          "The second unique human until oid and click",
+          "The Cloud Agent"
+        ]
+      },
+      "continuity": {
+        "lede": "If either seat is missing, the write does not land. That is the product working.",
+        "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not."
+      }
+    },
     "upgrades": [
       {
         "n": 1,
@@ -4658,6 +4802,54 @@
         "who": "tree",
         "title": "Substitute vs Job C on first screen",
         "do": "Hero fold paints not-the-gate next to Job C. A controller sees the licensed copies in one glance. Job C pins stay. Not uncopyable.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 17,
+        "who": "tree",
+        "title": "Bake-off win/lose",
+        "do": "Paint they-win and we-win. They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 18,
+        "who": "tree",
+        "title": "Qualify and walk away",
+        "do": "Proof day is for the controller who cannot let any AI post. Walk away from cheaper Workflow User Groups, one title as both seats, and Copilot Studio RFI as the product.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 19,
+        "who": "tree",
+        "title": "Objection cards",
+        "do": "Answer price, Microsoft-already, two-humans-slow, PIM, and Copilot Studio RFI. If independence is not the requirement, walk away.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 20,
+        "who": "tree",
+        "title": "CISO posture",
+        "do": "No Graph Write. Fail-closed EffectLedger. Zero-standing grants. Identify is not admit. Not a certificate.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 21,
+        "who": "tree",
+        "title": "Seat B meaning",
+        "do": "Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. Not an officer. Not a stockholder.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 22,
+        "who": "tree",
+        "title": "One seat missing is the product",
+        "do": "If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant.",
         "done": true,
         "marks_live_pin": false
       }

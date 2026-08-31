@@ -167,6 +167,20 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="review"' in html
     assert 'id="review-score"' in html
     assert 'id="review-fit"' in html
+    assert 'id="success"' in html
+    assert 'href="#success"' in html
+    assert 'id="they-win"' in html
+    assert 'id="we-win"' in html
+    assert 'id="qualify-walk"' in html
+    assert 'id="objections"' in html
+    assert 'id="ciso-holds"' in html
+    assert 'id="seat-b-not"' in html
+    assert 'id="continuity"' in html
+    assert 'id="review-upgrades"' in html
+    assert "licensed substitute" in html.lower()
+    assert "cheaper Workflow User Groups" in html
+    assert "paintSuccess" in js
+    assert "expert_review" in js
     assert 'href="#buyer"' in html
     assert 'href="#twin"' in html
     assert 'href="#open"' in html

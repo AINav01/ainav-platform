@@ -632,7 +632,7 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "h",
-            "text": "Part V — Expert review: what works, what to improve, 15 upgrades",
+            "text": "Part V — Expert review: what works, what to improve, success upgrades",
         },
         {
             "kind": "p",
@@ -640,8 +640,13 @@ def brief_document() -> list[dict[str, Any]]:
                 "Read as a coding first-principles review, a Microsoft-fabric review, and a "
                 "business review. The bar is gold-standard Job C, not a prettier Coming Soon page. "
                 "Apple polish without the gate is decoration. Elon-style first principles without "
-                "two humans is a lab."
+                "two humans is a lab. The success program is the bake-off: walk away from the "
+                "licensed substitute, or buy L1 when independence is the requirement."
             ),
+        },
+        {
+            "kind": "p",
+            "text": cat["expert_review"]["success"]["thesis"],
         },
         {
             "kind": "ul",
@@ -655,7 +660,48 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "ul",
-            "title": "Fifteen specific upgrades. Tree = already encoded. Owner = James must click.",
+            "title": "They win the bake-off when",
+            "items": [
+                f"{item['name']} — {item['note']}"
+                for item in cat["expert_review"]["success"]["bake_off"]["they_win"]
+            ],
+        },
+        {
+            "kind": "ul",
+            "title": "We win the bake-off when",
+            "items": [
+                f"{item['name']} — {item['note']}"
+                for item in cat["expert_review"]["success"]["bake_off"]["we_win"]
+            ],
+        },
+        {
+            "kind": "ul",
+            "title": "Walk away when",
+            "items": list(cat["expert_review"]["success"]["qualify"]["walk_away"]),
+        },
+        {
+            "kind": "ul",
+            "title": "Objection cards",
+            "items": [
+                f"{item['hear']} — {item['answer']}"
+                for item in cat["expert_review"]["success"]["objections"]
+            ],
+        },
+        {
+            "kind": "ul",
+            "title": "CISO posture — holds",
+            "items": list(cat["expert_review"]["success"]["ciso"]["holds"]),
+        },
+        {
+            "kind": "p",
+            "text": (
+                f"{cat['expert_review']['success']['continuity']['lede']} "
+                f"{cat['expert_review']['success']['continuity']['note']}"
+            ),
+        },
+        {
+            "kind": "ul",
+            "title": "Success upgrades. Tree = already encoded. Owner = James must click.",
             "items": [
                 f"{item['n']}. [{item['who']}] {item['title']} — {item['do']}"
                 for item in cat["expert_review"]["upgrades"]
