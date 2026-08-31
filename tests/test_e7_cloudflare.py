@@ -73,6 +73,63 @@ def test_full_only_when_every_check_is_present():
     assert "dns is full" in scored["note"].lower()
 
 
+def _incomplete_edge(cat: dict) -> dict:
+    edge = cat["microsoft_stack"]["edge"]
+    edge["full"] = False
+    edge["missing"] = ["Teams SIP / lync SRV"]
+    edge["already"] = [item for item in edge["already"] if "sip" not in item.lower() and "lync" not in item.lower()]
+    edge["note"] = (
+        "Nameservers for ainav.institute. Teams SIP is missing. Full is false. "
+        "Cloudflare is not the product. MX stays DNS-only. This is not Institute launch. "
+        "This Cloud Agent cannot edit Cloudflare."
+    )
+    return cat
+
+
+def test_catalog_allows_recorded_incomplete_dns():
+    cat = _incomplete_edge(copy.deepcopy(load_catalog()))
+    validate_catalog(cat)
+
+
+def test_catalog_rejects_incomplete_without_sip_or_false_note():
+    no_sip = _incomplete_edge(copy.deepcopy(load_catalog()))
+    no_sip["microsoft_stack"]["edge"]["missing"] = ["something else"]
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(no_sip)
+    assert exc.value.reason_code == "CATALOG_EDGE"
+    bad_note = _incomplete_edge(copy.deepcopy(load_catalog()))
+    bad_note["microsoft_stack"]["edge"]["note"] = (
+        "Cloudflare is not the product. MX stays DNS-only. "
+        "This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+    )
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(bad_note)
+    assert exc2.value.reason_code == "CATALOG_EDGE"
+
+
+def test_catalog_rejects_non_boolean_full_or_full_without_sip():
+    none = copy.deepcopy(load_catalog())
+    none["microsoft_stack"]["edge"]["full"] = None
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(none)
+    assert exc.value.reason_code == "CATALOG_EDGE"
+    no_sip = copy.deepcopy(load_catalog())
+    no_sip["microsoft_stack"]["edge"]["already"] = [
+        item for item in no_sip["microsoft_stack"]["edge"]["already"] if "sip" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(no_sip)
+    assert exc2.value.reason_code == "CATALOG_EDGE"
+    no_phrase = copy.deepcopy(load_catalog())
+    no_phrase["microsoft_stack"]["edge"]["note"] = (
+        "Cloudflare is not the product. MX stays DNS-only. "
+        "This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+    )
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(no_phrase)
+    assert exc3.value.reason_code == "CATALOG_EDGE"
+
+
 def test_catalog_rejects_sku_live_or_full_with_missing():
     sku = copy.deepcopy(load_catalog())
     sku["microsoft_stack"]["edge"]["sku"] = True
