@@ -536,6 +536,7 @@ def deep_dive(*, probe: bool = False) -> str:
         f"custom_domain_claimed={site.get('custom_domain_claimed')} "
         f"launch_ready={site.get('launch_ready')}",
         "- Nameservers stay on Cloudflare. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute host.",
+        "- Squarespace registrar transfer is still in flight. Leave the zone as-is.",
         "- Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).",
         f"- E7-on-Cloudflare full={str(status['e7_cloudflare']['full']).lower()}. "
         "Orange-cloud MX is not dual admit. This is not Institute launch.",

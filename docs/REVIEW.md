@@ -333,6 +333,7 @@ This Cloud Agent cannot approve tools.
 - Site: ainav-institute in eastus2
 - public_deploy_claimed=False custom_domain_claimed=False launch_ready=False
 - Nameservers stay on Cloudflare. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute host.
+- Squarespace registrar transfer is still in flight. Leave the zone as-is.
 - Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).
 - E7-on-Cloudflare full=true. Orange-cloud MX is not dual admit. This is not Institute launch.
 - No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.

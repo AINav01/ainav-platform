@@ -14,9 +14,10 @@ def test_deep_dive_is_catalog_honest():
     assert "AINAV-L1" in body
     assert "bc.general_journal.post" in body
     assert "Dataverse" in body
-    assert "Squarespace" in body
+    assert "Squarespace registrar transfer" in body
     assert "empty Cloudflare Pages" in body
-    assert "ainav-institute.pages.dev" in body or "Pages is not the Institute" in body
+    assert "Pages is not the Institute" in body
+    assert "Squarespace Coming Soon" not in body
     assert "launch_not_ready" in body
     assert "E7 on Cloudflare" in body
     assert "full=true" in body
