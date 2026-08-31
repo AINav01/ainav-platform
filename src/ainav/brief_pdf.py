@@ -556,9 +556,10 @@ def brief_document() -> list[dict[str, Any]]:
             "kind": "p",
             "text": (
                 "E7 already sits on Cloudflare DNS: nameservers, Outlook MX, SPF, Entra MS=, "
-                "autodiscover, enrollment, DKIM, DMARC. Teams SIP is missing. Full is false. "
-                "Cloudflare is not a SKU, not a ninth complement, and not on the privileged write. "
-                "Orange-cloud MX is not dual admit."
+                "autodiscover, enrollment, DKIM, DMARC, sip, lyncdiscover, and both lync SRV "
+                "records. DNS is full. Cloudflare is not a SKU, not a ninth complement, and not "
+                "on the privileged write. Orange-cloud MX is not dual admit. This is not Institute "
+                "launch."
             ),
         },
         {

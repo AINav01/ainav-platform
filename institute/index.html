@@ -494,7 +494,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane" class="plane-floor">
-      <p class="kicker">Ultimate control plane · 2.41.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 2.42.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
       <h2>Human control plane — interface</h2>
       <p class="note">Must-have for the named controller. From the top of the client's org chart through every drafting desk. Open the floor. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>
@@ -967,7 +967,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         AINav admits. Business Central and Sales receive the write.
         Teams notifies. Complements hold secrets, evidence, policy, and audit.
         AINAV.Institute is a static site on Azure Static Web Apps — ainav.institute is not bound.
-        E7 mail already points through Cloudflare. Teams SIP is missing. Full is false.
+        E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full.
       </p>
       <ol class="fabric" id="fabric-path" aria-label="How a write travels">
         <li class="fabric-node" data-id="azure.host" data-lane="host">
@@ -1026,7 +1026,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         </article>
       </div>
       <h3 class="subhead" id="e7-cloudflare">E7 on Cloudflare</h3>
-      <p class="note">Not a ninth complement. Not a hop on the privileged write. DNS/edge only. Mail already points. Teams SIP is missing. Full is false. Cloudflare is not the product.</p>
+      <p class="note">Not a ninth complement. Not a hop on the privileged write. DNS/edge only. Mail, Entra, Teams SIP, and lync SRV already point. DNS is full. Cloudflare is not the product. This is not Institute launch.</p>
       <div class="status-board" id="e7-cloudflare-board">
         <article>
           <h3>Already pointed</h3>
@@ -1039,19 +1039,23 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li>enterpriseenrollment CNAME</li>
             <li>enterpriseregistration CNAME</li>
             <li>DKIM selectors</li>
-            <li>DMARC p=none</li>
+            <li>DMARC p=quarantine</li>
+            <li>sip CNAME</li>
+            <li>lyncdiscover CNAME</li>
+            <li>_sip._tls SRV</li>
+            <li>_sipfederationtls._tcp SRV</li>
           </ul>
         </article>
         <article>
           <h3>Still missing</h3>
           <ul class="stack" id="e7-cloudflare-missing">
-            <li>Teams SIP / lync SRV</li>
+            <li>None. E7 DNS is full.</li>
           </ul>
-          <p class="note">Owner adds the SIP / lync records in <a href="https://dash.cloudflare.com">dash.cloudflare.com</a>. This Cloud Agent cannot edit Cloudflare. Do not orange-cloud MX or autodiscover.</p>
+          <p class="note">Institute launch is a different gate. Do not bind <code>ainav.institute</code> until James says launch. Do not orange-cloud MX or autodiscover. Dashboard: <a href="https://dash.cloudflare.com">dash.cloudflare.com</a>.</p>
         </article>
       </div>
-      <p class="note" id="e7-cloudflare-note">Nameservers for ainav.institute. Microsoft 365 E7 mail and Entra records already point through Cloudflare. Teams SIP is missing. Full is false. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This Cloud Agent cannot edit Cloudflare.</p>
-      <p class="note" id="e7-cloudflare-status">full=false · sku=false · live=false · is_admit_plane=false · complement=false</p>
+      <p class="note" id="e7-cloudflare-note">Nameservers for ainav.institute. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.</p>
+      <p class="note" id="e7-cloudflare-status">full=true · sku=false · live=false · is_admit_plane=false · complement=false</p>
       <h3 class="subhead">Six connections</h3>
       <div id="stack-cards" class="cards stack-cards">
         <article data-id="azure.host">

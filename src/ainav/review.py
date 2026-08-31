@@ -373,7 +373,7 @@ def deep_dive(*, probe: bool = False) -> str:
         f"sku={str(status['e7_cloudflare']['sku']).lower()}. "
         f"is_admit_plane={str(status['e7_cloudflare']['is_admit_plane']).lower()}.",
         f"- Already pointed: {'; '.join(status['e7_cloudflare']['already'])}.",
-        f"- Still missing: {'; '.join(status['e7_cloudflare']['missing'])}.",
+        f"- Still missing: {'; '.join(status['e7_cloudflare']['missing']) or 'none. E7 DNS is full.'}.",
         f"- Not: {'; '.join(status['e7_cloudflare']['not'])}.",
         f"- {status['e7_cloudflare']['note']}",
         f"- Owner dashboard: {status['e7_cloudflare']['dashboard_url']}. "
@@ -410,8 +410,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"launch_ready={site.get('launch_ready')}",
         "- Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.",
         "- Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).",
-        "- E7-on-Cloudflare full=false until Teams SIP / lync SRV is present. "
-        "Orange-cloud MX is not dual admit.",
+        f"- E7-on-Cloudflare full={str(status['e7_cloudflare']['full']).lower()}. "
+        "Orange-cloud MX is not dual admit. This is not Institute launch.",
         "- No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.",
         "- `--publish-institute` returns `launch_not_ready` and does not upload.",
         "- Do not bind `ainav.institute` until the owner says launch.",

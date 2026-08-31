@@ -1574,7 +1574,6 @@
       if (data.e7_cloudflare) {
         var edge = data.e7_cloudflare;
         if (
-          edge.full ||
           edge.sku ||
           edge.live ||
           edge.live_pin_ok ||
@@ -1586,16 +1585,20 @@
         } else {
           function replacePlainList(id, items) {
             var node = document.getElementById(id);
-            if (!node || !items) return;
+            if (!node) return;
             node.innerHTML = "";
-            items.forEach(function (item) {
+            (items || []).forEach(function (item) {
               var li = document.createElement("li");
               li.textContent = item;
               node.appendChild(li);
             });
           }
           replacePlainList("e7-cloudflare-already", edge.already);
-          replacePlainList("e7-cloudflare-missing", edge.missing);
+          if (!edge.missing || !edge.missing.length) {
+            replacePlainList("e7-cloudflare-missing", ["None. E7 DNS is full."]);
+          } else {
+            replacePlainList("e7-cloudflare-missing", edge.missing);
+          }
           var edgeStatus = document.getElementById("e7-cloudflare-status");
           if (edgeStatus) {
             edgeStatus.textContent =

@@ -43,9 +43,10 @@ def test_public_status_fabric_and_complements_stay_honest():
     assert [item["id"] for item in body["complements"]] == list(COMPLEMENT_IDS)
     assert "cloudflare.dns" not in path_ids
     assert body["e7_cloudflare"]["id"] == "cloudflare.dns"
-    assert body["e7_cloudflare"]["full"] is False
+    assert body["e7_cloudflare"]["full"] is True
     assert body["e7_cloudflare"]["complement"] is False
     assert body["e7_cloudflare"]["is_admit_plane"] is False
+    assert body["e7_cloudflare"]["live_pin_ok"] is False
     assert all(item["wired"] is False and item["live"] is False for item in body["complements"])
     pim = next(item for item in body["complements"] if item["id"] == "entra.pim")
     assert "not dual admit" in pim["note"]

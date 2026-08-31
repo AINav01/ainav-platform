@@ -240,8 +240,9 @@ def test_institute_foundation_is_catalog_honest():
     assert status["opportunity"]["recognized_revenue"] is None
     assert status["opportunity"]["year_one_list_if_all_three"]["min"] == 88000
     assert status["fabric"]["live"] is False
-    assert status["e7_cloudflare"]["full"] is False
+    assert status["e7_cloudflare"]["full"] is True
     assert status["e7_cloudflare"]["sku"] is False
+    assert status["e7_cloudflare"]["live_pin_ok"] is False
     assert all(item["wired"] is False for item in status["complements"])
     review = json.loads(Path("institute/review.json").read_text(encoding="utf-8"))
     assert review["kind"] == "ainav.review.v1"

@@ -166,11 +166,11 @@ Eight complements (not SKUs, not live, PIM is not dual, LAW is not Sentinel):
 
 E7 on Cloudflare (DNS/edge, not a ninth complement, not a write-path hop):
 
-- Product: Cloudflare. Role: dns_edge. full=false. sku=false. is_admit_plane=false.
-- Already pointed: Cloudflare nameservers; Outlook MX; SPF include Outlook; Entra MS= TXT; autodiscover CNAME; enterpriseenrollment CNAME; enterpriseregistration CNAME; DKIM selectors; DMARC p=none.
-- Still missing: Teams SIP / lync SRV.
+- Product: Cloudflare. Role: dns_edge. full=true. sku=false. is_admit_plane=false.
+- Already pointed: Cloudflare nameservers; Outlook MX; SPF include Outlook; Entra MS= TXT; autodiscover CNAME; enterpriseenrollment CNAME; enterpriseregistration CNAME; DKIM selectors; DMARC p=quarantine; sip CNAME; lyncdiscover CNAME; _sip._tls SRV; _sipfederationtls._tcp SRV.
+- Still missing: none. E7 DNS is full..
 - Not: SKU; seat; ninth Microsoft complement; hop on the privileged write; dual admit; Institute launch; Azure SWA custom domain; Zero Trust as the admit plane; Cloudflare Email Security as live.
-- Nameservers for ainav.institute. Microsoft 365 E7 mail and Entra records already point through Cloudflare. Teams SIP is missing. Full is false. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This Cloud Agent cannot edit Cloudflare.
+- Nameservers for ainav.institute. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.
 - Owner dashboard: https://dash.cloudflare.com. This Cloud Agent cannot edit Cloudflare.
 
 E7 ships Copilot and Agent 365. They are not the admit plane.
@@ -205,7 +205,7 @@ This Cloud Agent cannot approve tools.
 - public_deploy_claimed=False custom_domain_claimed=False launch_ready=False
 - Nameservers stay on Cloudflare. Apex still serves Squarespace Coming Soon.
 - Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).
-- E7-on-Cloudflare full=false until Teams SIP / lync SRV is present. Orange-cloud MX is not dual admit.
+- E7-on-Cloudflare full=true. Orange-cloud MX is not dual admit. This is not Institute launch.
 - No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.
 - `--publish-institute` returns `launch_not_ready` and does not upload.
 - Do not bind `ainav.institute` until the owner says launch.
@@ -281,7 +281,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.
 - AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.
 - Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
-- E7 mail and Entra records already point through Cloudflare nameservers. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
+- E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
 - Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
@@ -298,8 +298,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
 - Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.
-- Teams SIP / lync SRV is not on Cloudflare. Full E7-on-Cloudflare is false. Do not orange-cloud MX or autodiscover.
-- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.
+- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
 - No billing provider. Catalog list cannot become recognized revenue.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
@@ -326,7 +325,6 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 
 - Second unique human (Inception contacts and signed L1 seats)
 - ainav.institute custom domain and incorporation date
-- Teams SIP / lync SRV on Cloudflare (E7-on-Cloudflare full=false)
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
 - Recognized revenue / external billing provider

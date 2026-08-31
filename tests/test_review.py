@@ -17,8 +17,9 @@ def test_deep_dive_is_catalog_honest():
     assert "Squarespace" in body
     assert "launch_not_ready" in body
     assert "E7 on Cloudflare" in body
-    assert "full=false" in body
+    assert "full=true" in body
     assert "dash.cloudflare.com" in body
+    assert "E7 DNS is full" in body or "dns is full" in body.lower()
     assert "Work IQ User" in body
     assert "Seat object ids. Not a seat." in body
     assert "Owner steps:" in body

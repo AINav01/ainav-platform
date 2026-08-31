@@ -24,6 +24,9 @@ def test_dns_probe_does_not_claim_custom_domain_or_launch(monkeypatch):
         ("selector2._domainkey.ainav.institute", "CNAME"): ["selector2.example"],
         ("_dmarc.ainav.institute", "TXT"): ['"v=DMARC1; p=none;"'],
         ("sip.ainav.institute", "CNAME"): [],
+        ("lyncdiscover.ainav.institute", "CNAME"): [],
+        ("_sip._tls.ainav.institute", "SRV"): [],
+        ("_sipfederationtls._tcp.ainav.institute", "SRV"): [],
     }
 
     monkeypatch.setattr(

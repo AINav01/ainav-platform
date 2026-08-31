@@ -18,6 +18,15 @@ E7_ON_CLOUDFLARE_CHECKS = (
     "dkim",
     "dmarc",
     "teams_sip",
+    "teams_lyncdiscover",
+    "teams_sip_srv",
+    "teams_federation_srv",
+)
+TEAMS_CHECK_KEYS = (
+    "teams_sip",
+    "teams_lyncdiscover",
+    "teams_sip_srv",
+    "teams_federation_srv",
 )
 
 
@@ -53,11 +62,15 @@ def probe_dns() -> dict[str, Any]:
     dkim2 = _dig(f"selector2._domainkey.{APEX}", "CNAME")
     dmarc = [item.strip('"') for item in _dig(f"_dmarc.{APEX}", "TXT")]
     sip = _dig(f"sip.{APEX}", "CNAME")
+    lyncdiscover = _dig(f"lyncdiscover.{APEX}", "CNAME")
+    sip_srv = _dig(f"_sip._tls.{APEX}", "SRV")
+    fed_srv = _dig(f"_sipfederationtls._tcp.{APEX}", "SRV")
     cloudflare_ns = all("cloudflare.com" in item.lower() for item in ns) if ns else False
     outlook_mx = any("protection.outlook.com" in item.lower() for item in mx)
     outlook_spf = any("spf.protection.outlook.com" in item.lower() for item in txt)
     ms_verify = any(item.startswith("MS=") for item in txt)
     swa_txt = any("azurestaticapps" in item.lower() for item in asuid)
+    teams_sip = bool(sip)
     body = {
         "kind": "ainav.dns.v1",
         "apex": APEX,
@@ -85,8 +98,17 @@ def probe_dns() -> dict[str, Any]:
             "enterpriseregistration": registration,
             "dkim": bool(dkim1 and dkim2),
             "dmarc": dmarc,
-            "teams_sip": bool(sip),
-            "note": "Mail and Entra records are pointed at Microsoft. Teams SIP/lync SRV is not present. This is not a website launch.",
+            "teams_sip": teams_sip,
+            "lyncdiscover": lyncdiscover,
+            "sip_srv": sip_srv,
+            "federation_srv": fed_srv,
+            "note": (
+                "Mail, Entra, Teams SIP, and lync SRV are pointed at Microsoft. "
+                "This is not a website launch."
+                if teams_sip
+                else "Mail and Entra records are pointed at Microsoft. "
+                "Teams SIP/lync SRV is not present. This is not a website launch."
+            ),
         },
     }
     body["e7_on_cloudflare"] = score_e7_on_cloudflare(body)
@@ -94,7 +116,7 @@ def probe_dns() -> dict[str, Any]:
 
 
 def score_e7_on_cloudflare(dns: dict[str, Any]) -> dict[str, Any]:
-    """Live DNS scoreboard. Mail can be on Cloudflare while full stays false."""
+    """Live DNS scoreboard. Mail can be on Cloudflare while Teams records are missing."""
     m365 = dns.get("microsoft_365") or {}
     checks = {
         "cloudflare_nameservers": bool(dns.get("cloudflare_nameservers")),
@@ -107,32 +129,44 @@ def score_e7_on_cloudflare(dns: dict[str, Any]) -> dict[str, Any]:
         "dkim": bool(m365.get("dkim")),
         "dmarc": bool(m365.get("dmarc")),
         "teams_sip": bool(m365.get("teams_sip")),
+        "teams_lyncdiscover": bool(m365.get("lyncdiscover")),
+        "teams_sip_srv": bool(m365.get("sip_srv")),
+        "teams_federation_srv": bool(m365.get("federation_srv")),
     }
     missing = [name for name in E7_ON_CLOUDFLARE_CHECKS if not checks[name]]
-    mail_keys = [name for name in E7_ON_CLOUDFLARE_CHECKS if name != "teams_sip"]
+    mail_keys = [name for name in E7_ON_CLOUDFLARE_CHECKS if name not in TEAMS_CHECK_KEYS]
     mail_on = all(checks[name] for name in mail_keys)
+    full = all(checks[name] for name in E7_ON_CLOUDFLARE_CHECKS)
+    if full:
+        note = (
+            "DNS is full. Mail, Entra, Teams SIP, and lync SRV point through Cloudflare. "
+            "Cloudflare is not the product, not a seat, not dual admit. "
+            "This is not Institute launch."
+        )
+    else:
+        note = (
+            "Mail and Entra already point through Cloudflare nameservers. "
+            f"Missing: {', '.join(missing) or 'none'}. "
+            "Full is false while any check is missing. "
+            "Cloudflare is not the product, not a seat, not dual admit. "
+            "This is not Institute launch."
+        )
     return {
         "kind": "ainav.e7_cloudflare.v1",
         "sku": False,
         "live": False,
         "live_pin_ok": False,
         "is_admit_plane": False,
-        "full": all(checks[name] for name in E7_ON_CLOUDFLARE_CHECKS),
+        "full": full,
         "mail_on_cloudflare": mail_on,
         "checks": checks,
         "missing": missing,
-        "note": (
-            "Mail and Entra already point through Cloudflare nameservers. "
-            "Teams SIP/lync SRV is missing until it appears in DNS. "
-            "Full is false while any check is missing. "
-            "Cloudflare is not the product, not a seat, not dual admit. "
-            "This is not Institute launch."
-        ),
+        "note": note,
     }
 
 
 def catalog_edge() -> dict[str, Any]:
-    """Catalog-honest edge. Not a live probe. full stays false until recorded."""
+    """Catalog-honest edge. Not a live probe. Never LIVE_PIN_OK."""
     from ainav.catalog import load_catalog
 
     edge = dict(load_catalog()["microsoft_stack"]["edge"])
@@ -146,11 +180,11 @@ def catalog_edge() -> dict[str, Any]:
         "live": False,
         "live_pin_ok": False,
         "is_admit_plane": False,
-        "full": False,
+        "full": bool(edge.get("full")),
         "apex": edge["apex"],
         "dashboard_url": edge["dashboard_url"],
         "already": list(edge["already"]),
-        "missing": list(edge["missing"]),
+        "missing": list(edge.get("missing") or []),
         "not": list(edge["not"]),
         "note": edge["note"],
     }

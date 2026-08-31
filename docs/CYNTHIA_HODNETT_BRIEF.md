@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.41.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.42.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.41.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.42.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 ## Executive summary
 
@@ -231,7 +231,7 @@ Week-one prove is L1 + industry.treasury + lib.l1.wedge on bc.sandbox, Entra ide
 
 Microsoft fabric, 10/10 and no further: Azure host (eastus; Institute eastus2; West Europe blocked by policy). Microsoft 365 E7 / Entra for seat object ids. Business Central Premium for L1 SoR. Sales Enterprise for U-DUAL SoR. Teams Enterprise and Premium for notify. Complements: Key Vault, Monitor, SharePoint kit evidence, Defender XDR, Entra PIM, Sentinel (the mothership LAW is not a Sentinel workspace), Azure Policy. Copilot, Agent 365, and Agent Tools ship inside E7. They are not the admit plane. A 10/10 Microsoft estate that votes in Teams or lets Copilot post the journal is a failure of Job C, not a feature.
 
-E7 already sits on Cloudflare DNS: nameservers, Outlook MX, SPF, Entra MS=, autodiscover, enrollment, DKIM, DMARC. Teams SIP is missing. Full is false. Cloudflare is not a SKU, not a ninth complement, and not on the privileged write. Orange-cloud MX is not dual admit.
+E7 already sits on Cloudflare DNS: nameservers, Outlook MX, SPF, Entra MS=, autodiscover, enrollment, DKIM, DMARC, sip, lyncdiscover, and both lync SRV records. DNS is full. Cloudflare is not a SKU, not a ninth complement, and not on the privileged write. Orange-cloud MX is not dual admit. This is not Institute launch.
 
 ## Part III — Organization and operations
 
@@ -296,7 +296,7 @@ Working well
 - Catalog is law. Probe cannot publish, write a SoR, or mark LIVE_PIN_OK.
 - AINAV.Institute is hosted and launch is held. Coming Soon is not claimed as the custom domain.
 - Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
-- E7 mail and Entra records already point through Cloudflare nameservers. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
+- E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
 - Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
@@ -313,8 +313,7 @@ Could be improved — without inventing a fourth SKU
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
 - Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.
-- Teams SIP / lync SRV is not on Cloudflare. Full E7-on-Cloudflare is false. Do not orange-cloud MX or autodiscover.
-- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403.
+- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
 - No billing provider. Catalog list cannot become recognized revenue.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate.

@@ -197,7 +197,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.41.0"
+    "release": "2.42.0"
   },
   "communications": [
     {
@@ -2213,7 +2213,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.41.0",
+  "release": "2.42.0",
   "revocations": [
     {
       "by": "Owner / board request",

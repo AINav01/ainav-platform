@@ -110,7 +110,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.41.0 (this tree)
+### 2.42.0 (this tree)
+
+E7-on-Cloudflare DNS is full. James added Teams SIP, lyncdiscover,
+and both lync SRV records on Cloudflare. Mail, Entra, and Teams
+DNS already point. Cloudflare is still DNS/edge — not a SKU, not
+a ninth Microsoft complement, not a hop on the privileged write,
+not dual admit, not Institute launch. Graph Teams / SharePoint /
+Defender / PIM stay 403 until the owner grants Read on the same
+Entra app. MX and autodiscover stay DNS-only. Cynthia is still
+invited, not recorded. No invented email. No stock. `LIVE_PIN_OK`
+cannot be marked.
+
+### 2.41.0
 
 E7 on Cloudflare. Mail and Entra records already point through
 Cloudflare nameservers. Teams SIP / lync SRV is missing, so full

@@ -142,20 +142,22 @@
       "enterpriseenrollment CNAME",
       "enterpriseregistration CNAME",
       "DKIM selectors",
-      "DMARC p=none"
+      "DMARC p=quarantine",
+      "sip CNAME",
+      "lyncdiscover CNAME",
+      "_sip._tls SRV",
+      "_sipfederationtls._tcp SRV"
     ],
     "apex": "ainav.institute",
     "complement": false,
     "connection": false,
     "dashboard_url": "https://dash.cloudflare.com",
-    "full": false,
+    "full": true,
     "id": "cloudflare.dns",
     "is_admit_plane": false,
     "live": false,
     "live_pin_ok": false,
-    "missing": [
-      "Teams SIP / lync SRV"
-    ],
+    "missing": [],
     "not": [
       "SKU",
       "seat",
@@ -167,7 +169,7 @@
       "Zero Trust as the admit plane",
       "Cloudflare Email Security as live"
     ],
-    "note": "Nameservers for ainav.institute. Microsoft 365 E7 mail and Entra records already point through Cloudflare. Teams SIP is missing. Full is false. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This Cloud Agent cannot edit Cloudflare.",
+    "note": "Nameservers for ainav.institute. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
     "product": "Cloudflare",
     "role": "dns_edge",
     "sku": false
@@ -236,7 +238,6 @@
   "honest_missing": [
     "Second unique human (Inception contacts and signed L1 seats)",
     "ainav.institute custom domain and incorporation date",
-    "Teams SIP / lync SRV on Cloudflare (E7-on-Cloudflare full=false)",
     "Power Platform / Dataverse environment for Sales",
     "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
     "Recognized revenue / external billing provider",

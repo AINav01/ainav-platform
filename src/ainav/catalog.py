@@ -114,7 +114,6 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
         "live",
         "live_pin_ok",
         "is_admit_plane",
-        "full",
     ):
         if edge.get(flag) is not False:
             raise IntegrityError(f"edge cannot claim {flag}", reason_code="CATALOG_EDGE")
@@ -122,9 +121,8 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
     for stem in ("nameserver", "mx", "spf", "entra", "autodiscover", "dkim", "dmarc"):
         if stem not in already:
             raise IntegrityError(f"edge already must include {stem}", reason_code="CATALOG_EDGE")
-    missing = " ".join(str(item) for item in edge.get("missing") or []).lower()
-    if "sip" not in missing:
-        raise IntegrityError("edge missing must include Teams SIP", reason_code="CATALOG_EDGE")
+    missing_items = list(edge.get("missing") or [])
+    missing = " ".join(str(item) for item in missing_items).lower()
     not_blob = " ".join(str(item) for item in edge.get("not") or []).lower()
     for stem in ("sku", "complement", "dual", "launch"):
         if stem not in not_blob:
@@ -136,8 +134,23 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
         raise IntegrityError("edge note: MX stays DNS-only", reason_code="CATALOG_EDGE")
     if "cannot edit" not in note:
         raise IntegrityError("edge note: Cloud Agent cannot edit Cloudflare", reason_code="CATALOG_EDGE")
-    if "full is false" not in note:
-        raise IntegrityError("edge note: full is false", reason_code="CATALOG_EDGE")
+    if "not institute launch" not in note:
+        raise IntegrityError("edge note: not Institute launch", reason_code="CATALOG_EDGE")
+    if edge.get("full") is True:
+        if missing_items:
+            raise IntegrityError("edge cannot claim full while records are missing", reason_code="CATALOG_EDGE")
+        for stem in ("sip", "lync"):
+            if stem not in already:
+                raise IntegrityError(f"edge full must record {stem}", reason_code="CATALOG_EDGE")
+        if "dns is full" not in note:
+            raise IntegrityError("edge note: DNS is full", reason_code="CATALOG_EDGE")
+    elif edge.get("full") is False:
+        if "sip" not in missing:
+            raise IntegrityError("edge missing must include Teams SIP", reason_code="CATALOG_EDGE")
+        if "full is false" not in note:
+            raise IntegrityError("edge note: full is false", reason_code="CATALOG_EDGE")
+    else:
+        raise IntegrityError("edge full must be boolean", reason_code="CATALOG_EDGE")
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:
