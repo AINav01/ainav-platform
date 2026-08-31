@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.51.0 (this tree)
+### 2.52.0 (this tree)
+
+Stack walk is catalog law. Every hop on the privileged-write
+path and every complement has an admin link and an honest
+status. `python -m ainav stack` prints `docs/STACK_WALK.md`.
+Cloudflare is DNS/edge, not a write hop. SharePoint Write is
+not from this plane. Owner gates stay owner gates. A green
+check is not `LIVE_PIN_OK`.
+
+### 2.51.0
 
 Success program is catalog law: bake-off win/lose, qualify
 and walk away, objection cards, CISO posture, seat B

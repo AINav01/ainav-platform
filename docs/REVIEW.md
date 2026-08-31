@@ -141,6 +141,35 @@ Walk away:
 
 **Continuity.** If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
 
+## Stack walk
+
+Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.
+
+Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Probe never writes a SoR and never marks LIVE_PIN_OK.
+
+CLI: `python -m ainav stack`. Probe: `python -m ainav connect --probe`.
+
+- **1. Cloudflare DNS / edge** — `full`. probe_dns. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch. [Cloudflare dashboard](https://dash.cloudflare.com)
+- **2. Azure host** — `hosted_not_custom`. Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
+- **3. Entra identify** — `mailbox_recorded_oid_open`. Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. probe_graph reads org and users when the same app has User.Read.All. [Entra users](https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers)
+- **4. AINav Control Plane** — `running_code`. Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat. [Azure-hosted Institute](https://blue-river-010091a0f.7.azurestaticapps.net/)
+- **5. Business Central Premium** — `sandbox_journal`. Sandbox company AINav. Document AINAV-L1. Wedge bc.general_journal.post. Production stays blocked. Not LIVE_PIN_OK. [Business Central Sandbox](https://businesscentral.dynamics.com/ainav.institute/Sandbox)
+- **6. Sales Enterprise** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. U-DUAL stays on the twin until G14. [Power Platform environments](https://admin.powerplatform.microsoft.com/environments)
+- **7. Teams notify** — `dns_full_graph_open`. SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat. [Microsoft 365 admin](https://admin.cloud.microsoft/?source=applauncher#/homepage)
+- **8. Graph Read on the same app** — `owner_consent_open`. Health probes report 403 without Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. No Graph Write from this plane. [Entra app registrations](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
+- **9. Agent Tools registry** — `owner_leave_available`. Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block. [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all)
+- **10. Institute launch** — `held`. --publish-institute stays launch_not_ready. Apex is Squarespace Coming Soon. Azure hostname is hosted. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
+
+Complements (not hops on the write):
+
+- **Azure Key Vault** — `declared_sandbox`. [Key Vaults](https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults)
+- **Azure Monitor** — `declared_sandbox`. [Azure Monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview)
+- **SharePoint kit** — `graph_read_open`. [SharePoint](https://www.office.com/launch/sharepoint)
+- **Defender XDR** — `graph_read_open`. [Microsoft Defender portal](https://security.microsoft.com)
+- **Entra PIM** — `not_dual`. [Entra PIM](https://entra.microsoft.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/quickStart)
+- **Microsoft Sentinel** — `declared_sandbox`. [Microsoft Sentinel](https://portal.azure.com/#view/Microsoft_Azure_Security_Insights)
+- **Azure Policy** — `cannot_weaken`. [Azure Policy](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview)
+
 ## First principles
 
 Human control plane over every client AI that can draft a privileged system-of-record write.
@@ -315,7 +344,7 @@ This Cloud Agent cannot approve tools.
 - Workflow: `.github/workflows/gold.yml`. Command: `make gold`. Coverage floor: 90.
 - exists=true. observed_green=true. marks_live_pin=false. launch=false. sku=false.
 - Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.
-- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded; Institute first screen paints substitute vs Job C in one glance; Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity; Owner-click runbooks with Microsoft admin links.
+- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded; Institute first screen paints substitute vs Job C in one glance; Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity; Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop; Owner-click runbooks with Microsoft admin links.
 - This Cloud Agent cannot close: Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats); ainav.institute custom domain and launch; Graph Read on the same Entra app; US Dataverse for Sales; G12 legal / G13 signed L1; Recognized revenue; Multi-host product HA; LIVE_PIN_OK.
 - This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.
 
@@ -406,6 +435,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.
 - Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.
 - Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.
+- Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.
 
 ## Expert review — could be improved
 
@@ -445,6 +475,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **20. [tree] CISO posture** — No Graph Write. Fail-closed EffectLedger. Zero-standing grants. Identify is not admit. Not a certificate.
 - **21. [tree] Seat B meaning** — Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. Not an officer. Not a stockholder.
 - **22. [tree] One seat missing is the product** — If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant.
+- **23. [tree] Stack walk with admin links** — Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.
 
 ## Owner — James must click
 
@@ -474,6 +505,7 @@ Catalog wins. `--probe` overlays live Microsoft and DNS health. Probe does not p
 - `python -m ainav review --probe`
 - `python -m ainav org [--probe]`
 - `python -m ainav connect --probe`
+- `python -m ainav stack`
 - `python -m ainav dns`
 - `python -m ainav agent-tools [--probe]`
 - `python -m ainav proof-day`

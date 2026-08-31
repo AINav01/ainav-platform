@@ -1,10 +1,12 @@
 # AINav, Inc. — owner steps
 
-Release 2.51.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.52.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Owner: James Hodnett. Operator: cursor.cloud_agent (not a seat).
 Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Mailbox is not an Entra oid and not a click.
 
 This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
+
+The nine gates below are the clicks. The hop-by-hop stack walk is `python -m ainav stack` and `docs/STACK_WALK.md`.
 
 1. Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
    [Microsoft 365 admin → Users](https://admin.microsoft.com/Adminportal/Home#/users)

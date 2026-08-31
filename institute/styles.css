@@ -183,6 +183,17 @@ h1 {
 #continuity { max-width: var(--wide); }
 #review-upgrades { max-width: var(--wide); padding-left: 1.25rem; }
 #review-upgrades li { margin: 0.55rem 0; }
+#stack-walk { scroll-margin-top: 4.5rem; }
+#stack-walk-path,
+#stack-walk-complements {
+  max-width: var(--wide);
+  margin: 1.1rem 0 0;
+  padding-left: 1.25rem;
+}
+#stack-walk-path li,
+#stack-walk-complements li { margin: 0.55rem 0; }
+#stack-walk-path a,
+#stack-walk-complements a { text-decoration: underline; }
 #hero-accountable,
 #hero-protect,
 #hero-memory,

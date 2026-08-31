@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.51.0",
+    "release": "2.52.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3326,6 +3326,7 @@
       "Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded",
       "Institute first screen paints substitute vs Job C in one glance",
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
+      "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
       "Owner-click runbooks with Microsoft admin links"
     ],
     "cannot_close": [
@@ -3556,6 +3557,240 @@
           }
         ]
       }
+    },
+    "walk": {
+      "sku": false,
+      "live": false,
+      "live_pin_ok": false,
+      "is_admit_plane": false,
+      "thesis": "Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.",
+      "implementation": "Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Probe never writes a SoR and never marks LIVE_PIN_OK.",
+      "cli": "python -m ainav stack",
+      "cannot": [
+        "create users",
+        "grant Graph roles",
+        "edit Cloudflare",
+        "bind ainav.institute",
+        "mark LIVE_PIN_OK"
+      ],
+      "path": [
+        {
+          "id": "cloudflare.dns",
+          "n": 1,
+          "name": "Cloudflare DNS / edge",
+          "role": "dns_edge",
+          "status": "full",
+          "in_tree": "probe_dns. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch.",
+          "owner": "Do not orange-cloud MX or autodiscover. Do not bind ainav.institute until you say launch. This Cloud Agent cannot edit Cloudflare.",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "Cloudflare dashboard",
+          "learn": "https://developers.cloudflare.com/dns/",
+          "learn_label": "Cloudflare DNS docs"
+        },
+        {
+          "id": "azure.host",
+          "n": 2,
+          "name": "Azure host",
+          "role": "hosting",
+          "status": "hosted_not_custom",
+          "in_tree": "Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound.",
+          "owner": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS.",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+          "url_label": "Azure Static Web Apps",
+          "learn": "https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external",
+          "learn_label": "SWA custom domain"
+        },
+        {
+          "id": "entra.id",
+          "n": 3,
+          "name": "Entra identify",
+          "role": "identity",
+          "status": "mailbox_recorded_oid_open",
+          "in_tree": "Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. probe_graph reads org and users when the same app has User.Read.All.",
+          "owner": "Create or confirm her Entra user. Confirm a distinct object id. She signs in once. You do not click both seats.",
+          "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
+          "url_label": "Entra users",
+          "learn": "https://learn.microsoft.com/en-us/entra/identity/users/users-overview",
+          "learn_label": "Entra users"
+        },
+        {
+          "id": "admit",
+          "n": 4,
+          "name": "AINav Control Plane",
+          "role": "admit",
+          "status": "running_code",
+          "in_tree": "Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat.",
+          "owner": "She clicks seat B with her own object id. Lab oids are not two named treasury humans.",
+          "url": "https://blue-river-010091a0f.7.azurestaticapps.net/",
+          "url_label": "Azure-hosted Institute",
+          "learn": "https://github.com/AINav01/ainav-platform",
+          "learn_label": "ainav-platform"
+        },
+        {
+          "id": "bc.premium",
+          "n": 5,
+          "name": "Business Central Premium",
+          "role": "sor_l1",
+          "status": "sandbox_journal",
+          "in_tree": "Sandbox company AINav. Document AINAV-L1. Wedge bc.general_journal.post. Production stays blocked. Not LIVE_PIN_OK.",
+          "owner": "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write.",
+          "url": "https://businesscentral.dynamics.com/ainav.institute/Sandbox",
+          "url_label": "Business Central Sandbox",
+          "learn": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/new-company",
+          "learn_label": "BC companies"
+        },
+        {
+          "id": "sales.enterprise",
+          "n": 6,
+          "name": "Sales Enterprise",
+          "role": "sor_udual",
+          "status": "licensed_not_wired",
+          "in_tree": "Sales Enterprise is licensed. Global Discovery returned zero instances. U-DUAL stays on the twin until G14.",
+          "owner": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+          "url": "https://admin.powerplatform.microsoft.com/environments",
+          "url_label": "Power Platform environments",
+          "learn": "https://learn.microsoft.com/en-us/power-platform/admin/create-environment",
+          "learn_label": "Create an environment"
+        },
+        {
+          "id": "teams.enterprise",
+          "n": 7,
+          "name": "Teams notify",
+          "role": "notify",
+          "status": "dns_full_graph_open",
+          "in_tree": "SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat.",
+          "owner": "Admin-consent Team.ReadBasic.All on the same Entra app. Do not use Write. Do not create a new app.",
+          "url": "https://admin.cloud.microsoft/?source=applauncher#/homepage",
+          "url_label": "Microsoft 365 admin",
+          "learn": "https://learn.microsoft.com/en-us/microsoftteams/teams-overview",
+          "learn_label": "Teams overview"
+        },
+        {
+          "id": "graph.read",
+          "n": 8,
+          "name": "Graph Read on the same app",
+          "role": "consent",
+          "status": "owner_consent_open",
+          "in_tree": "Health probes report 403 without Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. No Graph Write from this plane.",
+          "owner": "On the same Entra app AINav Cloud Agent1, grant those four Read roles. Do not use Write. Do not create a new app.",
+          "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade",
+          "url_label": "Entra app registrations",
+          "learn": "https://learn.microsoft.com/en-us/graph/permissions-reference",
+          "learn_label": "Graph permissions"
+        },
+        {
+          "id": "agent_tools",
+          "n": 9,
+          "name": "Agent Tools registry",
+          "role": "govern_mcp",
+          "status": "owner_leave_available",
+          "in_tree": "Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block.",
+          "owner": "Leave five Work IQ / MCP Management tools Available. Block Dataverse MCP until paid U-DUAL. Reject BYO SoR writers.",
+          "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+          "url_label": "Agents > Tools registry",
+          "learn": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent",
+          "learn_label": "Manage tools for agents"
+        },
+        {
+          "id": "institute.launch",
+          "n": 10,
+          "name": "Institute launch",
+          "role": "hold",
+          "status": "held",
+          "in_tree": "--publish-institute stays launch_not_ready. Apex is Squarespace Coming Soon. Azure hostname is hosted.",
+          "owner": "Say launch only when you want ainav.institute bound. A Coming Soon page is not the custom domain.",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+          "url_label": "Azure Static Web Apps",
+          "learn": "https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external",
+          "learn_label": "Bind a custom domain"
+        }
+      ],
+      "complements": [
+        {
+          "id": "azure.keyvault",
+          "name": "Azure Key Vault",
+          "role": "secrets",
+          "status": "declared_sandbox",
+          "in_tree": "host_bind can create a vault. Secrets are not LIVE_PIN_OK.",
+          "owner": "Hold connection secrets here. Do not paste them into the catalog.",
+          "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults",
+          "url_label": "Key Vaults",
+          "learn": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview",
+          "learn_label": "Key Vault overview"
+        },
+        {
+          "id": "azure.monitor",
+          "name": "Azure Monitor",
+          "role": "observe",
+          "status": "declared_sandbox",
+          "in_tree": "Mothership health. LAW is not Sentinel. Not a live pin.",
+          "owner": "Read host health. Do not treat Monitor as the admit plane.",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview",
+          "url_label": "Azure Monitor",
+          "learn": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+          "learn_label": "Azure Monitor"
+        },
+        {
+          "id": "sharepoint.kit",
+          "name": "SharePoint kit",
+          "role": "evidence",
+          "status": "graph_read_open",
+          "in_tree": "Kit evidence store. Graph Write is not consented from this plane. Sites.Read.All is the owner gate.",
+          "owner": "Grant Sites.Read.All on the same app. Do not grant Write from this plane.",
+          "url": "https://www.office.com/launch/sharepoint",
+          "url_label": "SharePoint",
+          "learn": "https://learn.microsoft.com/en-us/graph/api/resources/sharepoint",
+          "learn_label": "SharePoint Graph"
+        },
+        {
+          "id": "defender.xdr",
+          "name": "Defender XDR",
+          "role": "security",
+          "status": "graph_read_open",
+          "in_tree": "E7 security sink. SecurityIncident.Read.All stays owner-consent. Not the admit plane.",
+          "owner": "Grant SecurityIncident.Read.All on the same app. No Write.",
+          "url": "https://security.microsoft.com",
+          "url_label": "Microsoft Defender portal",
+          "learn": "https://learn.microsoft.com/en-us/defender-xdr/",
+          "learn_label": "Defender XDR"
+        },
+        {
+          "id": "entra.pim",
+          "name": "Entra PIM",
+          "role": "seat_eligibility",
+          "status": "not_dual",
+          "in_tree": "Eligible seats. A PIM activation is not dual admit. RoleEligibilitySchedule.Read.Directory stays owner-consent.",
+          "owner": "Grant the Read Directory role on the same app. Do not treat PIM as seat B.",
+          "url": "https://entra.microsoft.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/quickStart",
+          "url_label": "Entra PIM",
+          "learn": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+          "learn_label": "PIM configure"
+        },
+        {
+          "id": "sentinel.siem",
+          "name": "Microsoft Sentinel",
+          "role": "siem",
+          "status": "declared_sandbox",
+          "in_tree": "DecisionRecord export sink after P-ADM. The mothership LAW is not a Sentinel workspace.",
+          "owner": "Do not treat Sentinel as the admit plane. Keep is the sealed DecisionRecord.",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights",
+          "url_label": "Microsoft Sentinel",
+          "learn": "https://learn.microsoft.com/en-us/azure/sentinel/overview",
+          "learn_label": "Sentinel overview"
+        },
+        {
+          "id": "azure.policy",
+          "name": "Azure Policy",
+          "role": "host_policy",
+          "status": "cannot_weaken",
+          "in_tree": "Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane.",
+          "owner": "Keep West Europe blocked if that is the host rule. Do not loosen Job C from Policy.",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview",
+          "url_label": "Azure Policy",
+          "learn": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+          "learn_label": "Azure Policy"
+        }
+      ]
     }
   },
   "connections": {
@@ -3799,7 +4034,9 @@
         "scopes": [
           "Sites.ReadWrite.All"
         ],
-        "note": "Kit evidence store. Not a seat and not dual.",
+        "write_from_this_plane": false,
+        "consented_ask": "Sites.Read.All",
+        "note": "Kit evidence store. Not a seat and not dual. Graph Write is not consented from this plane. Sites.Read.All is the owner gate.",
         "live_gap": "G1/G10 LIVE_PIN_OK"
       },
       {
@@ -4533,7 +4770,8 @@
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
       "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
-      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity."
+      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.",
+      "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -4850,6 +5088,14 @@
         "who": "tree",
         "title": "One seat missing is the product",
         "do": "If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 23,
+        "who": "tree",
+        "title": "Stack walk with admin links",
+        "do": "Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

@@ -8,6 +8,7 @@ regen:
 	python3 -m ainav review > docs/REVIEW.md
 	python3 -m ainav pitch > docs/PROGRAMS.md
 	python3 -c "from ainav.microsoft.connections import stack_json; import json; print(json.dumps(stack_json(), indent=2, sort_keys=True))" > institute/stack.json
+	python3 -m ainav stack > docs/STACK_WALK.md
 	python3 -c "from ainav.business import public_business; import json; print(json.dumps(public_business(), indent=2, sort_keys=True))" > institute/business.json
 	python3 -c "from ainav.buyer import buyer_page; import json; print(json.dumps(buyer_page(), indent=2, sort_keys=True))" > institute/buyer.json
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" > institute/org.json
@@ -42,6 +43,7 @@ plan-check:
 	python3 -m ainav review | diff -q docs/REVIEW.md -
 	python3 -m ainav pitch | diff -q docs/PROGRAMS.md -
 	python3 -c "from ainav.microsoft.connections import stack_json; import json; print(json.dumps(stack_json(), indent=2, sort_keys=True))" | diff -q institute/stack.json -
+	python3 -m ainav stack | diff -q docs/STACK_WALK.md -
 	python3 -c "from ainav.business import public_business; import json; print(json.dumps(public_business(), indent=2, sort_keys=True))" | diff -q institute/business.json -
 	python3 -c "from ainav.buyer import buyer_page; import json; print(json.dumps(buyer_page(), indent=2, sort_keys=True))" | diff -q institute/buyer.json -
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" | diff -q institute/org.json -

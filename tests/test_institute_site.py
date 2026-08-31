@@ -161,6 +161,13 @@ def test_institute_foundation_is_catalog_honest():
         "industry.ip_keep",
     }
     assert 'id="fabric"' in html
+    assert 'id="stack-walk"' in html
+    assert 'href="#stack-walk"' in html
+    assert 'id="stack-walk-path"' in html
+    assert 'id="stack-walk-complements"' in html
+    assert "paintStackWalk" in js
+    assert "https://dash.cloudflare.com" in html
+    assert "https://security.microsoft.com" in html
     assert 'id="e7-cloudflare"' in html
     assert 'id="e7-cloudflare-already"' in html
     assert "not a ninth complement" in html.lower()

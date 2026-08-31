@@ -150,6 +150,16 @@ def stack_json() -> dict[str, Any]:
             }
             for item in body.get("complements", [])
         ],
+        "walk": {
+            "thesis": (cat["microsoft_stack"].get("walk") or {}).get("thesis"),
+            "implementation": (cat["microsoft_stack"].get("walk") or {}).get("implementation"),
+            "cli": (cat["microsoft_stack"].get("walk") or {}).get("cli"),
+            "cannot": list((cat["microsoft_stack"].get("walk") or {}).get("cannot") or []),
+            "path": [dict(item) for item in (cat["microsoft_stack"].get("walk") or {}).get("path") or []],
+            "complements": [
+                dict(item) for item in (cat["microsoft_stack"].get("walk") or {}).get("complements") or []
+            ],
+        },
     }
 
 

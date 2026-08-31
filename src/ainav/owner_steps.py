@@ -24,6 +24,8 @@ def owner_steps_markdown() -> str:
         "",
         "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.",
         "",
+        "The nine gates below are the clicks. The hop-by-hop stack walk is `python -m ainav stack` and `docs/STACK_WALK.md`.",
+        "",
     ]
     for index, step in enumerate(owner_steps(), start=1):
         lines.append(f"{index}. {step['do']}")

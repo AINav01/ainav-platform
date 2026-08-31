@@ -1358,6 +1358,47 @@
     });
   }
 
+  function paintStackWalk(walk) {
+    if (!walk) return;
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("stack-walk-thesis", walk.thesis);
+    set("stack-walk-impl", walk.implementation);
+    if (walk.cannot && walk.cannot.length) {
+      set(
+        "stack-walk-cannot",
+        "This Cloud Agent cannot " + walk.cannot.join(", ") + "."
+      );
+    }
+    function paintHops(rootId, items) {
+      var root = document.getElementById(rootId);
+      if (!root || !items || !items.length) return;
+      root.textContent = "";
+      items.forEach(function (item) {
+        var li = document.createElement("li");
+        var url = String(item.url || "");
+        var label = item.url_label || item.name || "";
+        var body =
+          (item.status ? item.status + ". " : "") +
+          (item.in_tree || item.owner || "");
+        if (url.indexOf("https://") === 0 && url.indexOf("2ad041b8") === -1) {
+          var a = document.createElement("a");
+          a.setAttribute("href", url);
+          a.textContent = label;
+          li.appendChild(a);
+          li.appendChild(document.createTextNode(body ? " — " + body : ""));
+        } else {
+          li.textContent = label + (body ? " — " + body : "");
+        }
+        root.appendChild(li);
+      });
+    }
+    paintHops("stack-walk-path", walk.path);
+    paintHops("stack-walk-complements", walk.complements);
+  }
+
   fetch("stack.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -1366,6 +1407,7 @@
       if (!data || data.live) return;
       paintCards("stack-cards", data.connections);
       paintCards("complement-cards", data.complements);
+      paintStackWalk(data.walk);
     })
     .catch(function () {
       /* stack.json is optional when opened as a file */

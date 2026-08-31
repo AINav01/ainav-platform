@@ -156,6 +156,57 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
             raise IntegrityError("edge note: full is false", reason_code="CATALOG_EDGE")
     else:
         raise IntegrityError("edge full must be boolean", reason_code="CATALOG_EDGE")
+    _validate_stack_walk(catalog)
+
+
+def _validate_stack_walk(catalog: dict[str, Any]) -> None:
+    walk = (catalog.get("microsoft_stack") or {}).get("walk")
+    if not isinstance(walk, dict):
+        raise IntegrityError("catalog missing stack walk", reason_code="CATALOG_STACK")
+    if walk.get("sku") is True or walk.get("is_admit_plane") is True:
+        raise IntegrityError("stack walk is not a SKU or the admit plane", reason_code="CATALOG_STACK")
+    if walk.get("live") is True or walk.get("live_pin_ok") is True:
+        raise IntegrityError("stack walk cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    thesis = str(walk.get("thesis") or "").lower()
+    if "azure hosts" not in thesis or "ainav admits" not in thesis:
+        raise IntegrityError("stack walk thesis is Azure hosts, AINav admits", reason_code="CATALOG_STACK")
+    if "not a hop" not in thesis and "dns/edge" not in thesis:
+        raise IntegrityError("stack walk must keep Cloudflare off the write hop", reason_code="CATALOG_STACK")
+    path_ids = [item.get("id") for item in walk.get("path") or []]
+    for needed in (
+        "cloudflare.dns",
+        "azure.host",
+        "entra.id",
+        "admit",
+        "bc.premium",
+        "sales.enterprise",
+        "teams.enterprise",
+        "graph.read",
+        "agent_tools",
+        "institute.launch",
+    ):
+        if needed not in path_ids:
+            raise IntegrityError(f"stack walk path must include {needed}", reason_code="CATALOG_STACK")
+    for item in (walk.get("path") or []) + (walk.get("complements") or []):
+        url = str(item.get("url") or "")
+        if not url.startswith("https://"):
+            raise IntegrityError(f"stack walk {item.get('id')} needs an https link", reason_code="CATALOG_STACK")
+        if item.get("live") is True or item.get("live_pin_ok") is True:
+            raise IntegrityError("stack walk hops cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if "dash.cloudflare.com" not in str((walk.get("path") or [{}])[0].get("url") or ""):
+        raise IntegrityError("first hop is the Cloudflare dashboard", reason_code="CATALOG_STACK")
+    cannot = " ".join(str(item).lower() for item in walk.get("cannot") or [])
+    for stem in ("create users", "graph", "cloudflare", "live_pin_ok"):
+        if stem not in cannot:
+            raise IntegrityError(f"stack walk cannot must keep {stem}", reason_code="CATALOG_STACK")
+    share = next(
+        (item for item in (catalog.get("connections") or {}).get("complements") or [] if item.get("id") == "sharepoint.kit"),
+        {},
+    )
+    if share.get("write_from_this_plane") is not False:
+        raise IntegrityError("SharePoint Write is not from this plane", reason_code="CATALOG_STACK")
+    if str(share.get("consented_ask") or "") != "Sites.Read.All":
+        raise IntegrityError("SharePoint consented ask is Sites.Read.All", reason_code="CATALOG_STACK")
 
 
 def _validate_engineering(catalog: dict[str, Any]) -> None:
@@ -633,8 +684,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 24:
-        raise IntegrityError("expert review needs 16–24 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 26:
+        raise IntegrityError("expert review needs 16–26 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -647,6 +698,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         20: ("graph write", "fail-closed"),
         21: ("chodnett@ainav.institute", "not a click"),
         22: ("missing", "product working"),
+        23: ("stack walk", "cloudflare"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():

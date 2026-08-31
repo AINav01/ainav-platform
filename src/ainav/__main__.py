@@ -34,6 +34,7 @@ def main(argv: list[str] | None = None) -> int:
         help="overlay read-only stack health. Never writes. Never LIVE_PIN_OK.",
     )
     sub.add_parser("connections")
+    sub.add_parser("stack")
     sub.add_parser("dns")
     agent_tools = sub.add_parser("agent-tools")
     agent_tools.add_argument(
@@ -229,6 +230,11 @@ def main(argv: list[str] | None = None) -> int:
             print(steps_markdown(), end="")
             return 0
         print(canonical_json(probe_agent_tools() if args.probe else public_review()))
+        return 0
+    if args.cmd == "stack":
+        from ainav.stack_walk import stack_walk_markdown
+
+        print(stack_walk_markdown(), end="")
         return 0
     if args.cmd == "connections":
         from ainav.microsoft.connections import stack_json

@@ -13,6 +13,7 @@
     "python -m ainav review --probe",
     "python -m ainav org [--probe]",
     "python -m ainav connect --probe",
+    "python -m ainav stack",
     "python -m ainav dns",
     "python -m ainav agent-tools [--probe]",
     "python -m ainav proof-day",
@@ -90,6 +91,7 @@
       "Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded",
       "Institute first screen paints substitute vs Job C in one glance",
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
+      "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
       "Owner-click runbooks with Microsoft admin links"
     ],
     "complement": false,
@@ -441,6 +443,14 @@
         "n": 22,
         "title": "One seat missing is the product",
         "who": "tree"
+      },
+      {
+        "do": "Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 23,
+        "title": "Stack walk with admin links",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -464,7 +474,8 @@
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
       "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
-      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity."
+      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.",
+      "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write."
     ]
   },
   "fit": [

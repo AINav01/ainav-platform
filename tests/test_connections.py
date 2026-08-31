@@ -30,6 +30,8 @@ def test_stack_json_is_sandbox_public_artifact():
     assert body["kind"] == "ainav.institute.stack.v1"
     assert [item["id"] for item in body["connections"]] == list(REQUIRED_IDS)
     assert all(item["mode"] == "sandbox" for item in body["connections"])
+    assert body["walk"]["path"][0]["url"] == "https://dash.cloudflare.com"
+    assert "create users" in " ".join(body["walk"]["cannot"])
     on_disk = json.loads(Path("institute/stack.json").read_text(encoding="utf-8"))
     assert on_disk == body
 

@@ -15,6 +15,7 @@ CLI_SURFACE = (
     "python -m ainav review --probe",
     "python -m ainav org [--probe]",
     "python -m ainav connect --probe",
+    "python -m ainav stack",
     "python -m ainav dns",
     "python -m ainav agent-tools [--probe]",
     "python -m ainav proof-day",
@@ -345,6 +346,33 @@ def deep_dive(*, probe: bool = False) -> str:
     lines += [
         "",
         f"**Continuity.** {cont['lede']} {cont['note']}",
+        "",
+        "## Stack walk",
+        "",
+        cat["microsoft_stack"]["walk"]["thesis"],
+        "",
+        cat["microsoft_stack"]["walk"]["implementation"],
+        "",
+        "CLI: `python -m ainav stack`. Probe: `python -m ainav connect --probe`.",
+        "",
+    ]
+    for item in cat["microsoft_stack"]["walk"]["path"]:
+        url = item.get("url") or ""
+        label = item.get("url_label") or url
+        lines.append(
+            f"- **{item['n']}. {item['name']}** — `{item['status']}`. {item['in_tree']} "
+            f"[{label}]({url})"
+        )
+    lines += [
+        "",
+        "Complements (not hops on the write):",
+        "",
+    ]
+    for item in cat["microsoft_stack"]["walk"]["complements"]:
+        url = item.get("url") or ""
+        label = item.get("url_label") or url
+        lines.append(f"- **{item['name']}** — `{item['status']}`. [{label}]({url})")
+    lines += [
         "",
         "## First principles",
         "",

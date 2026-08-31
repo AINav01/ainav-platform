@@ -135,3 +135,13 @@ def test_catalog_refuses_finance_live_upgrade_pin_and_empty_gate():
     with pytest.raises(IntegrityError) as exc10:
         validate_catalog(seat)
     assert exc10.value.reason_code == "ORG_SECOND_OFFICER"
+    walk = copy.deepcopy(cat)
+    walk["microsoft_stack"]["walk"]["path"][0]["url"] = "http://localhost"
+    with pytest.raises(IntegrityError) as exc11:
+        validate_catalog(walk)
+    assert exc11.value.reason_code == "CATALOG_STACK"
+    pin = copy.deepcopy(cat)
+    pin["microsoft_stack"]["walk"]["live_pin_ok"] = True
+    with pytest.raises(IntegrityError) as exc12:
+        validate_catalog(pin)
+    assert exc12.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
