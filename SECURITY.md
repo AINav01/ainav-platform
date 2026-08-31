@@ -13,4 +13,4 @@ Open a **private** GitHub security advisory on `AINav01/ainav-platform`. Do not 
 
 ## Out of scope for “we are secure now”
 
-Live Graph, live Business Central, live Sales, multi-host Redis HA, and G12 legal remain **open**.
+Live Graph, live Business Central, live Sales, multi-host Redis HA, and G12 legal remain **open**. Gold CI (`.github/workflows/gold.yml`, `make gold`) is in the tree. A green check is not live security and is not `LIVE_PIN_OK`.

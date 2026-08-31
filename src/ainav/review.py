@@ -168,6 +168,7 @@ def review_model(*, probe: bool = False) -> dict[str, Any]:
         "agent_tools_admin": tools["admin_url"],
         "cli": list(CLI_SURFACE),
         "e7_cloudflare": dict(status["e7_cloudflare"]),
+        "engineering": dict(status["engineering"]),
         "probed": False,
     }
     if probe:
@@ -415,6 +416,20 @@ def deep_dive(*, probe: bool = False) -> str:
         "- No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.",
         "- `--publish-institute` returns `launch_not_ready` and does not upload.",
         "- Do not bind `ainav.institute` until the owner says launch.",
+        "",
+        "## Gold CI (in-tree, not a live pin)",
+        "",
+        f"- Workflow: `{status['engineering']['gold_ci']['workflow']}`. "
+        f"Command: `{status['engineering']['gold_ci']['command']}`. "
+        f"Coverage floor: {status['engineering']['gold_ci']['coverage_floor']}.",
+        f"- exists={str(status['engineering']['gold_ci']['exists']).lower()}. "
+        f"marks_live_pin={str(status['engineering']['gold_ci']['marks_live_pin']).lower()}. "
+        f"launch={str(status['engineering']['launch']).lower()}. "
+        f"sku={str(status['engineering']['sku']).lower()}.",
+        f"- {status['engineering']['gold_ci']['note']}",
+        "- Closed in this tree: " + "; ".join(status["engineering"]["closed_in_tree"]) + ".",
+        "- This Cloud Agent cannot close: " + "; ".join(status["engineering"]["cannot_close"]) + ".",
+        f"- {status['engineering']['note']}",
         "",
         "## Operating organization",
         "",

@@ -243,6 +243,13 @@ def test_institute_foundation_is_catalog_honest():
     assert status["e7_cloudflare"]["full"] is True
     assert status["e7_cloudflare"]["sku"] is False
     assert status["e7_cloudflare"]["live_pin_ok"] is False
+    assert status["engineering"]["gold_ci"]["exists"] is True
+    assert status["engineering"]["sku"] is False
+    assert status["engineering"]["live_pin_ok"] is False
+    assert 'id="closed"' in html
+    assert 'id="honest-missing"' in html
+    assert "G12 legal (counsel pack unsigned)" in html
+    assert "closed-in-tree" in js
     assert all(item["wired"] is False for item in status["complements"])
     review = json.loads(Path("institute/review.json").read_text(encoding="utf-8"))
     assert review["kind"] == "ainav.review.v1"

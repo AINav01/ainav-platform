@@ -165,6 +165,8 @@ def test_review_model_carries_catalog_edge():
     model = review_model()
     assert model["e7_cloudflare"]["full"] is True
     assert model["e7_cloudflare"]["sku"] is False
+    assert model["engineering"]["gold_ci"]["exists"] is True
+    assert model["engineering"]["sku"] is False
     assert model["live_pin_ok"] is False
     assert model["launch_ready"] is False
 

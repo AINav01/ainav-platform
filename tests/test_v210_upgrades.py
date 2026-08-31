@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.42.0"
+    assert cat["entity"]["release"] == "2.43.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False

@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.42.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.43.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.42.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.43.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
 
 ## Executive summary
 
@@ -305,6 +305,7 @@ Working well
 - Control equation is explicit: the client utilizes AI, AINav is the failsafe, two humans control the write.
 - The client's customers utilize AI. The client institutes AINav and the stable of offerings as the failsafe. First record is the SoR write; second record is the DecisionRecord.
 - The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs.
+- Gold CI is in the tree (`make gold` on GitHub Actions). A green check is not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 

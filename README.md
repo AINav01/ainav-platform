@@ -110,7 +110,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.42.0 (this tree)
+### 2.43.0 (this tree)
+
+Close every in-tree gap this Cloud Agent can close. GitHub
+Actions now runs `make gold`. Catalog `engineering` records
+what the tree closed and what James still has to click.
+Institute `#closed` paints that split. A workflow file is
+not a green check. A green check is not `LIVE_PIN_OK`, not
+signed L1, and not Institute launch. E7-on-Cloudflare DNS
+stays full. Cynthia is still invited, not recorded. No
+invented email. No stock. Owner gates stay owner gates.
+
+### 2.42.0
 
 E7-on-Cloudflare DNS is full. James added Teams SIP, lyncdiscover,
 and both lync SRV records on Cloudflare. Mail, Entra, and Teams

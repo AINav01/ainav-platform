@@ -1481,6 +1481,16 @@
     })
     .then(function (data) {
       if (!data || data.live || data.live_pin_ok) return;
+      function replacePlainList(id, items) {
+        var node = document.getElementById(id);
+        if (!node) return;
+        node.innerHTML = "";
+        (items || []).forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          node.appendChild(li);
+        });
+      }
       var bc = document.getElementById("status-bc");
       var note = document.getElementById("status-bc-note");
       if (bc && data.bc) {
@@ -1583,16 +1593,6 @@
         ) {
           /* refuse to paint a fiction scoreboard */
         } else {
-          function replacePlainList(id, items) {
-            var node = document.getElementById(id);
-            if (!node) return;
-            node.innerHTML = "";
-            (items || []).forEach(function (item) {
-              var li = document.createElement("li");
-              li.textContent = item;
-              node.appendChild(li);
-            });
-          }
           replacePlainList("e7-cloudflare-already", edge.already);
           if (!edge.missing || !edge.missing.length) {
             replacePlainList("e7-cloudflare-missing", ["None. E7 DNS is full."]);
@@ -1616,6 +1616,38 @@
           var edgeNote = document.getElementById("e7-cloudflare-note");
           if (edgeNote && edge.note) edgeNote.textContent = edge.note;
         }
+      }
+      if (data.engineering) {
+        var eng = data.engineering;
+        if (
+          eng.sku ||
+          eng.live ||
+          eng.live_pin_ok ||
+          eng.launch ||
+          eng.is_admit_plane
+        ) {
+          /* refuse to paint a fiction scoreboard */
+        } else {
+          replacePlainList("closed-in-tree", eng.closed_in_tree);
+          replacePlainList("cannot-close", eng.cannot_close);
+          var goldNote = document.getElementById("gold-ci-note");
+          if (goldNote && eng.gold_ci && eng.gold_ci.note) goldNote.textContent = eng.gold_ci.note;
+          var goldStatus = document.getElementById("gold-ci-status");
+          if (goldStatus && eng.gold_ci) {
+            goldStatus.textContent =
+              "exists=" +
+              eng.gold_ci.exists +
+              " · marks_live_pin=" +
+              eng.gold_ci.marks_live_pin +
+              " · launch=" +
+              eng.launch +
+              " · sku=" +
+              eng.sku;
+          }
+        }
+      }
+      if (data.honest_missing && data.honest_missing.length) {
+        replacePlainList("honest-missing", data.honest_missing);
       }
       var toolsStatus = document.getElementById("agent-tools-status");
       if (toolsStatus && data.agent_tools) {

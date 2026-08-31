@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.42.0",
+    "release": "2.43.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3267,6 +3267,45 @@
     "Signed L1 counsel pack (G13)",
     "Multi-host product HA"
   ],
+  "engineering": {
+    "kind": "ainav.engineering.v1",
+    "sku": false,
+    "connection": false,
+    "complement": false,
+    "live": false,
+    "live_pin_ok": false,
+    "launch": false,
+    "is_admit_plane": false,
+    "gold_ci": {
+      "id": "github.actions.gold",
+      "exists": true,
+      "workflow": ".github/workflows/gold.yml",
+      "command": "make gold",
+      "coverage_floor": 90,
+      "marks_live_pin": false,
+      "is_admit_plane": false,
+      "note": "Gold CI is in the tree. A workflow file is not a green check. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent wrote the workflow. It cannot enable Actions if the org has it off."
+    },
+    "closed_in_tree": [
+      "Job C gold invariants (dual seats, single-use consume, fail-closed effect)",
+      "Catalog law — three SKUs only",
+      "E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV)",
+      "GitHub Actions gold workflow in .github/workflows/gold.yml",
+      "Institute, review, and brief generated from the catalog",
+      "Owner-click runbooks with Microsoft admin links"
+    ],
+    "cannot_close": [
+      "Second unique human (Cynthia recorded) and signed L1 seats",
+      "ainav.institute custom domain and launch",
+      "Graph Read on the same Entra app",
+      "US Dataverse for Sales",
+      "G12 legal / G13 signed L1",
+      "Recognized revenue",
+      "Multi-host product HA",
+      "LIVE_PIN_OK"
+    ],
+    "note": "This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane."
+  },
   "microsoft_stack": {
     "identity": [
       "Microsoft Entra ID"
@@ -4447,7 +4486,8 @@
       "AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.",
       "Control equation is explicit: the client utilizes AI, AINav is the failsafe, two humans control the write.",
       "The client's customers utilize AI. The client institutes AINav and the stable of offerings as the failsafe. First record is the SoR write; second record is the DecisionRecord.",
-      "The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs."
+      "The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs.",
+      "Gold CI is in the tree (`make gold` on GitHub Actions). A green check is not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

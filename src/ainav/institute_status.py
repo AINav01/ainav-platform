@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from ainav.catalog import honest_missing, load_catalog, sku
+from ainav.catalog import catalog_engineering, honest_missing, load_catalog, sku
 from ainav.microsoft.agent_tools import public_review as agent_tools_review
 from ainav.microsoft.dns import catalog_edge
 
@@ -194,6 +194,7 @@ def public_status() -> dict[str, Any]:
         },
         "fabric": _fabric(cat, evidence, site),
         "e7_cloudflare": catalog_edge(),
+        "engineering": catalog_engineering(),
         "complements": _complements(cat),
         "agent_tools": {
             "admin_url": tools["admin_url"],

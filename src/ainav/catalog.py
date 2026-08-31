@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from functools import lru_cache
 from importlib.resources import files
+from pathlib import Path
 from typing import Any
 
 from agent_gov.errors import IntegrityError
@@ -91,6 +92,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_plane_interface(catalog)
     _validate_investor(catalog)
     _validate_microsoft_edge(catalog)
+    _validate_engineering(catalog)
 
 
 def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
@@ -151,6 +153,80 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
             raise IntegrityError("edge note: full is false", reason_code="CATALOG_EDGE")
     else:
         raise IntegrityError("edge full must be boolean", reason_code="CATALOG_EDGE")
+
+
+def _validate_engineering(catalog: dict[str, Any]) -> None:
+    body = catalog.get("engineering")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing engineering", reason_code="CATALOG_ENGINEERING")
+    if body.get("kind") != "ainav.engineering.v1":
+        raise IntegrityError("engineering kind is ainav.engineering.v1", reason_code="CATALOG_ENGINEERING")
+    for flag in (
+        "sku",
+        "connection",
+        "complement",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "is_admit_plane",
+    ):
+        if body.get(flag) is not False:
+            raise IntegrityError(f"engineering cannot claim {flag}", reason_code="CATALOG_ENGINEERING")
+    gold = body.get("gold_ci")
+    if not isinstance(gold, dict):
+        raise IntegrityError("engineering missing gold_ci", reason_code="CATALOG_ENGINEERING")
+    if gold.get("id") != "github.actions.gold":
+        raise IntegrityError("gold_ci id is github.actions.gold", reason_code="CATALOG_ENGINEERING")
+    if gold.get("marks_live_pin") is not False:
+        raise IntegrityError("gold_ci cannot mark LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    if gold.get("is_admit_plane") is not False:
+        raise IntegrityError("gold_ci is not the admit plane", reason_code="CATALOG_ENGINEERING")
+    if gold.get("coverage_floor") != 90:
+        raise IntegrityError("gold coverage floor is 90", reason_code="CATALOG_ENGINEERING")
+    if gold.get("command") != "make gold":
+        raise IntegrityError("gold command is make gold", reason_code="CATALOG_ENGINEERING")
+    note = str(gold.get("note") or "").lower()
+    if "not live_pin_ok" not in note:
+        raise IntegrityError("gold_ci note must refuse LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    closed = [str(item).lower() for item in body.get("closed_in_tree") or []]
+    cannot = [str(item).lower() for item in body.get("cannot_close") or []]
+    if not closed or not cannot:
+        raise IntegrityError("engineering needs closed_in_tree and cannot_close", reason_code="CATALOG_ENGINEERING")
+    if not any("live_pin" in item for item in cannot):
+        raise IntegrityError("cannot_close must keep LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    if not any("cynthia" in item or "second unique" in item for item in cannot):
+        raise IntegrityError("cannot_close must keep the second human", reason_code="CATALOG_ENGINEERING")
+    if any("live_pin_ok" in item and "not" not in item for item in closed):
+        raise IntegrityError("closed_in_tree cannot claim LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    law = str(body.get("note") or "").lower()
+    if "not a sku" not in law:
+        raise IntegrityError("engineering note: not a SKU", reason_code="CATALOG_ENGINEERING")
+    if "not the admit plane" not in law:
+        raise IntegrityError("engineering note: not the admit plane", reason_code="CATALOG_ENGINEERING")
+    if gold.get("exists") is True:
+        path = Path(str(gold.get("workflow") or ""))
+        if path.as_posix() != ".github/workflows/gold.yml":
+            raise IntegrityError("gold workflow path", reason_code="CATALOG_ENGINEERING")
+        if not path.is_file():
+            raise IntegrityError("gold workflow file missing", reason_code="CATALOG_ENGINEERING")
+        text = path.read_text(encoding="utf-8").lower()
+        if "make gold" not in text:
+            raise IntegrityError("gold workflow must run make gold", reason_code="CATALOG_ENGINEERING")
+        if "live_pin_ok" not in text:
+            raise IntegrityError("gold workflow must refuse LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+        if "green check" not in note:
+            raise IntegrityError("gold_ci note: a green check is not LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+        if not any("gold" in item or "github" in item or "workflow" in item for item in closed):
+            raise IntegrityError("closed_in_tree must record gold CI", reason_code="CATALOG_ENGINEERING")
+    elif gold.get("exists") is False:
+        if "missing" not in note and "not in the tree" not in note:
+            raise IntegrityError("missing gold_ci must say so", reason_code="CATALOG_ENGINEERING")
+    else:
+        raise IntegrityError("gold_ci.exists must be boolean", reason_code="CATALOG_ENGINEERING")
+
+
+def catalog_engineering() -> dict[str, Any]:
+    return dict(load_catalog()["engineering"])
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:

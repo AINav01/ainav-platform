@@ -47,6 +47,10 @@ def test_public_status_fabric_and_complements_stay_honest():
     assert body["e7_cloudflare"]["complement"] is False
     assert body["e7_cloudflare"]["is_admit_plane"] is False
     assert body["e7_cloudflare"]["live_pin_ok"] is False
+    assert body["engineering"]["gold_ci"]["exists"] is True
+    assert body["engineering"]["sku"] is False
+    assert body["engineering"]["live_pin_ok"] is False
+    assert body["engineering"]["launch"] is False
     assert all(item["wired"] is False and item["live"] is False for item in body["complements"])
     pim = next(item for item in body["complements"] if item["id"] == "entra.pim")
     assert "not dual admit" in pim["note"]
