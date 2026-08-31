@@ -141,6 +141,32 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
         raise IntegrityError("edge note: Cloud Agent cannot edit Cloudflare", reason_code="CATALOG_EDGE")
     if "not institute launch" not in note:
         raise IntegrityError("edge note: not Institute launch", reason_code="CATALOG_EDGE")
+    if str(edge.get("plan") or "") != "pro":
+        raise IntegrityError("edge plan is Cloudflare Pro", reason_code="CATALOG_EDGE")
+    if edge.get("plan_sku") is True:
+        raise IntegrityError("Cloudflare Pro is not a SKU", reason_code="CATALOG_EDGE")
+    if edge.get("from_this_plane") is True:
+        raise IntegrityError("this plane cannot edit Cloudflare", reason_code="CATALOG_EDGE")
+    activate = edge.get("activate") or {}
+    if not isinstance(activate, dict) or activate.get("from_this_plane") is True:
+        raise IntegrityError("Cloudflare Pro activate is owner-only", reason_code="CATALOG_EDGE")
+    now_ids = [item.get("id") for item in activate.get("now") or []]
+    for needed in ("ssl.full", "waf.managed", "perf.off", "dns.only"):
+        if needed not in now_ids:
+            raise IntegrityError(f"Pro activate now must include {needed}", reason_code="CATALOG_EDGE")
+    wait_blob = " ".join(
+        f"{item.get('id') or ''} {item.get('do') or ''}" for item in activate.get("wait") or []
+    ).lower()
+    if "launch" not in wait_blob or "asuid" not in wait_blob:
+        raise IntegrityError("Pro activate wait keeps launch and asuid", reason_code="CATALOG_EDGE")
+    now_blob = " ".join(
+        f"{item.get('id') or ''} {item.get('do') or ''}" for item in activate.get("now") or []
+    ).lower()
+    for stem in ("flexible", "rocket loader", "dns only"):
+        if stem not in now_blob:
+            raise IntegrityError(f"Pro activate now must keep {stem}", reason_code="CATALOG_EDGE")
+    if "pro" not in already:
+        raise IntegrityError("edge already must record Cloudflare Pro", reason_code="CATALOG_EDGE")
     if edge.get("full") is True:
         if missing_items:
             raise IntegrityError("edge cannot claim full while records are missing", reason_code="CATALOG_EDGE")
@@ -700,6 +726,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         22: ("missing", "product working"),
         23: ("stack walk", "cloudflare"),
         24: ("static", "owner book"),
+        25: ("pro", "not a sku"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():

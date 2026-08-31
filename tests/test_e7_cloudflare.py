@@ -86,6 +86,16 @@ def test_catalog_rejects_edge_fiction():
     with pytest.raises(IntegrityError) as exc9:
         validate_catalog(note)
     assert exc9.value.reason_code == "CATALOG_EDGE"
+    plan = copy.deepcopy(cat)
+    plan["microsoft_stack"]["edge"]["plan"] = "free"
+    with pytest.raises(IntegrityError) as exc_plan:
+        validate_catalog(plan)
+    assert exc_plan.value.reason_code == "CATALOG_EDGE"
+    click = copy.deepcopy(cat)
+    click["microsoft_stack"]["edge"]["from_this_plane"] = True
+    with pytest.raises(IntegrityError) as exc_click:
+        validate_catalog(click)
+    assert exc_click.value.reason_code == "CATALOG_EDGE"
     none = copy.deepcopy(cat)
     none["microsoft_stack"]["edge"]["full"] = None
     with pytest.raises(IntegrityError) as exc10:
@@ -104,6 +114,16 @@ def test_catalog_edge_records_dns_full_not_launch():
     assert edge["live_pin_ok"] is False
     assert edge["is_admit_plane"] is False
     assert edge["full"] is True
+    assert edge["plan"] == "pro"
+    assert edge["plan_sku"] is False
+    assert edge["from_this_plane"] is False
+    assert edge["activate"]["from_this_plane"] is False
+    assert {item["id"] for item in edge["activate"]["now"]} >= {
+        "ssl.full",
+        "waf.managed",
+        "perf.off",
+        "dns.only",
+    }
     assert edge["missing"] == []
     assert "sip" in " ".join(edge["already"]).lower()
     assert "dns is full" in edge["note"].lower()
@@ -238,6 +258,10 @@ def test_institute_paints_e7_cloudflare_strip():
     assert 'id="e7-cloudflare"' in html
     assert 'id="e7-cloudflare-already"' in html
     assert 'id="e7-cloudflare-missing"' in html
+    assert 'id="e7-cloudflare-plan"' in html
+    assert 'id="e7-cloudflare-activate"' in html
+    assert "Cloudflare Pro" in html
+    assert "Rocket Loader Off" in html
     assert "dash.cloudflare.com" in html
     assert "dns is full" in html.lower()
     assert "not a ninth complement" in html.lower()

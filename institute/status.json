@@ -133,7 +133,47 @@
   ],
   "custom_domain_claimed": false,
   "e7_cloudflare": {
+    "activate": {
+      "from_this_plane": false,
+      "now": [
+        {
+          "do": "SSL/TLS encryption mode Full, not Flexible. Minimum TLS 1.2. Always Use HTTPS On.",
+          "id": "ssl.full",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "SSL/TLS"
+        },
+        {
+          "do": "Enable Cloudflare Managed and OWASP Core (Pro). A challenge on the empty apex is not the Institute and not launch.",
+          "id": "waf.managed",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "WAF"
+        },
+        {
+          "do": "Rocket Loader Off. Auto Minify JavaScript Off. They break the static Institute after launch.",
+          "id": "perf.off",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "Speed"
+        },
+        {
+          "do": "MX and autodiscover stay DNS only. Do not orange-cloud mail during the Squarespace transfer or after.",
+          "id": "dns.only",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "DNS"
+        }
+      ],
+      "wait": [
+        {
+          "do": "Do not bind ainav.institute or add asuid until the registrar transfer is Active and you say launch.",
+          "id": "bind"
+        },
+        {
+          "do": "Polish, Image Resizing, and Page Rules that point the apex at Azure SWA wait. That is launch.",
+          "id": "origin"
+        }
+      ]
+    },
     "already": [
+      "Cloudflare Pro plan",
       "Cloudflare nameservers",
       "Outlook MX",
       "SPF include Outlook",
@@ -152,6 +192,7 @@
     "complement": false,
     "connection": false,
     "dashboard_url": "https://dash.cloudflare.com",
+    "from_this_plane": false,
     "full": true,
     "id": "cloudflare.dns",
     "is_admit_plane": false,
@@ -167,9 +208,12 @@
       "Institute launch",
       "Azure SWA custom domain",
       "Zero Trust as the admit plane",
-      "Cloudflare Email Security as live"
+      "Cloudflare Email Security as live",
+      "Cloudflare Pro as a SKU"
     ],
-    "note": "Nameservers for ainav.institute. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+    "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+    "plan": "pro",
+    "plan_sku": false,
     "product": "Cloudflare",
     "role": "dns_edge",
     "sku": false

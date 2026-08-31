@@ -149,7 +149,7 @@ Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, ho
 
 CLI: `python -m ainav stack`. Probe: `python -m ainav connect --probe`.
 
-- **1. Cloudflare DNS / edge** — `full`. probe_dns. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch. [Cloudflare dashboard](https://dash.cloudflare.com)
+- **1. Cloudflare DNS / edge** — `full`. probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch. [Cloudflare dashboard](https://dash.cloudflare.com)
 - **2. Azure host** — `hosted_not_custom`. Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
 - **3. Entra identify** — `mailbox_recorded_oid_open`. Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. probe_graph reads org and users when the same app has User.Read.All. [Entra users](https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers)
 - **4. AINav Control Plane** — `running_code`. Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat. [Azure-hosted Institute](https://blue-river-010091a0f.7.azurestaticapps.net/)
@@ -296,10 +296,10 @@ Eight complements (not SKUs, not live, PIM is not dual, LAW is not Sentinel):
 E7 on Cloudflare (DNS/edge, not a ninth complement, not a write-path hop):
 
 - Product: Cloudflare. Role: dns_edge. full=true. sku=false. is_admit_plane=false.
-- Already pointed: Cloudflare nameservers; Outlook MX; SPF include Outlook; Entra MS= TXT; autodiscover CNAME; enterpriseenrollment CNAME; enterpriseregistration CNAME; DKIM selectors; DMARC p=quarantine; sip CNAME; lyncdiscover CNAME; _sip._tls SRV; _sipfederationtls._tcp SRV.
+- Already pointed: Cloudflare Pro plan; Cloudflare nameservers; Outlook MX; SPF include Outlook; Entra MS= TXT; autodiscover CNAME; enterpriseenrollment CNAME; enterpriseregistration CNAME; DKIM selectors; DMARC p=quarantine; sip CNAME; lyncdiscover CNAME; _sip._tls SRV; _sipfederationtls._tcp SRV.
 - Still missing: none. E7 DNS is full..
-- Not: SKU; seat; ninth Microsoft complement; hop on the privileged write; dual admit; Institute launch; Azure SWA custom domain; Zero Trust as the admit plane; Cloudflare Email Security as live.
-- Nameservers for ainav.institute. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.
+- Not: SKU; seat; ninth Microsoft complement; hop on the privileged write; dual admit; Institute launch; Azure SWA custom domain; Zero Trust as the admit plane; Cloudflare Email Security as live; Cloudflare Pro as a SKU.
+- Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.
 - Owner dashboard: https://dash.cloudflare.com. This Cloud Agent cannot edit Cloudflare.
 
 E7 ships Copilot and Agent 365. They are not the admit plane.
@@ -437,6 +437,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.
 - Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.
 - Institute public face is a catalog-honest static sale. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.
+- Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.
 
 ## Expert review — could be improved
 
@@ -478,6 +479,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **22. [tree] One seat missing is the product** — If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant.
 - **23. [tree] Stack walk with admin links** — Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.
 - **24. [tree] Static public face** — Keep Azure Static Web Apps. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. Owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK.
+- **25. [tree] Cloudflare Pro is the edge plan** — Record Pro. Not a SKU. Owner activates SSL Full, WAF managed, Rocket Loader off. MX stays DNS-only. This Cloud Agent cannot edit Cloudflare. Not launch.
 
 ## Owner — James must click
 

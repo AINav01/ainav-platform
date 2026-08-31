@@ -310,12 +310,12 @@
     "path": [
       {
         "id": "cloudflare.dns",
-        "in_tree": "probe_dns. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch.",
+        "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch.",
         "learn": "https://developers.cloudflare.com/dns/",
         "learn_label": "Cloudflare DNS docs",
         "n": 1,
         "name": "Cloudflare DNS / edge",
-        "owner": "Do not orange-cloud MX or autodiscover. Do not bind ainav.institute until you say launch. This Cloud Agent cannot edit Cloudflare.",
+        "owner": "Confirm Pro: SSL Full not Flexible, WAF managed on, Rocket Loader off. Do not orange-cloud MX or autodiscover. Do not bind ainav.institute until the transfer is Active and you say launch. This Cloud Agent cannot edit Cloudflare.",
         "role": "dns_edge",
         "status": "full",
         "url": "https://dash.cloudflare.com",

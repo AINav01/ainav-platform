@@ -111,7 +111,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.53.0 (this tree)
+### 2.54.0 (this tree)
+
+Cloudflare Pro is the edge plan, not a SKU. This Cloud
+Agent cannot edit Cloudflare. Owner activates SSL Full,
+WAF managed, and Rocket Loader off. MX stays DNS-only.
+Apex challenge is not Institute launch. A green check
+is not `LIVE_PIN_OK`.
+
+### 2.53.0
 
 Institute public face stays static on Azure Static Web Apps.
 First glance is Job C vs substitutes, three SKUs, and the

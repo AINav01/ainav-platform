@@ -1865,6 +1865,37 @@
               " · complement=" +
               edge.complement;
           }
+          var edgePlan = document.getElementById("e7-cloudflare-plan");
+          if (edgePlan) {
+            edgePlan.textContent =
+              "plan=" +
+              (edge.plan || "pro") +
+              " · plan_sku=" +
+              (edge.plan_sku === true) +
+              " · from_this_plane=" +
+              (edge.from_this_plane === true);
+          }
+          if (edge.activate && !edge.activate.from_this_plane) {
+            paintIntegrate("e7-cloudflare-activate", {
+              items: (edge.activate.now || []).map(function (item) {
+                return {
+                  url: item.url,
+                  url_label: item.url_label,
+                  note: item.do,
+                };
+              }),
+            });
+            var wait = document.getElementById("e7-cloudflare-wait");
+            if (wait && edge.activate.wait && edge.activate.wait.length) {
+              wait.textContent =
+                "Wait: " +
+                edge.activate.wait
+                  .map(function (item) {
+                    return item.do;
+                  })
+                  .join(" ");
+            }
+          }
           var edgeNote = document.getElementById("e7-cloudflare-note");
           if (edgeNote && edge.note) edgeNote.textContent = edge.note;
         }
