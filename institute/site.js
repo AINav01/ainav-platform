@@ -1267,6 +1267,20 @@
     })
     .then(function (data) {
       if (!data || data.live || !data.departments) return;
+      var invited = (data.contacts && data.contacts.invited) || {};
+      var orgLede = document.getElementById("org-lede");
+      if (orgLede && invited.name) {
+        var mailbox = invited.email || "mailbox not recorded";
+        orgLede.textContent =
+          "Sole owner James Hodnett. The Cloud Agent operates. It is not a dual seat " +
+          "and not an Inception contact. " +
+          invited.name +
+          (invited.agreed ? " agreed. " : " is invited. ") +
+          "Mailbox " +
+          mailbox +
+          (invited.recorded ? " recorded. " : " not recorded. ") +
+          "Entra oid and click still open.";
+      }
       var root = document.getElementById("org-cards");
       if (!root) return;
       data.departments.forEach(function (item) {
