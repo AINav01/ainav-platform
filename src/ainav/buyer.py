@@ -39,8 +39,27 @@ def buyer_page() -> dict[str, Any]:
         "mailto": None,
         "icp": icp_profile(),
         "success": success_program(),
+        "first_glance": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("first_glance") or {}),
+        "public_face": dict(((cat.get("plane_interface") or {}).get("floor") or {}).get("public_face") or {}),
+        "skus": [
+            {
+                "id": item["id"],
+                "name": item["name"],
+                "kind": item["kind"],
+                "term": item["term"],
+                "price_usd": dict(item["price_usd"]),
+                "one_line": (
+                    item.get("incident")
+                    or (item.get("includes") or ["Keep the same admit plane"])[0]
+                ),
+            }
+            for item in cat.get("skus") or []
+            if item.get("id") in {"L1", "P-ADM", "U-DUAL"}
+        ],
         "signed_l1": False,
         "live": False,
+        "live_pin_ok": False,
+        "launch": False,
     }
     refuse_claim(page["write_that_must_not_happen"], catalog=cat)
     return page

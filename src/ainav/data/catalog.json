@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.52.0",
+    "release": "2.53.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3038,7 +3038,84 @@
         "sku": false,
         "uses": "not_the_gate",
         "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
-        "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory."
+        "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
+        "skus": ["L1", "P-ADM", "U-DUAL"]
+      },
+      "public_face": {
+        "sku": false,
+        "live": false,
+        "live_pin_ok": false,
+        "launch": false,
+        "cms": false,
+        "host": "azure_static_web_apps",
+        "thesis": "The Institute is a catalog-honest static sale. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK.",
+        "primary": [
+          {"id": "buyer", "href": "#buyer", "label": "The write"},
+          {"id": "twin", "href": "#twin", "label": "Proof day"},
+          {"id": "success", "href": "#success", "label": "Bake-off"},
+          {"id": "dashboard", "href": "control-plane.html", "label": "Dashboard"},
+          {"id": "owner", "href": "#missing", "label": "Owner"}
+        ],
+        "owner_book": [
+          {
+            "id": "sale",
+            "name": "Sale",
+            "items": [
+              {"href": "#buyer", "label": "The write"},
+              {"href": "#twin", "label": "Proof day"},
+              {"href": "#success", "label": "Bake-off"},
+              {"href": "#product", "label": "Product"}
+            ]
+          },
+          {
+            "id": "owner",
+            "name": "Owner",
+            "items": [
+              {"href": "#closed", "label": "Closed"},
+              {"href": "#missing", "label": "Owner"},
+              {"href": "#open", "label": "Open"},
+              {"href": "#stack-walk", "label": "Stack walk"},
+              {"href": "#e7-cloudflare", "label": "E7 on Cloudflare"}
+            ]
+          },
+          {
+            "id": "book",
+            "name": "Book",
+            "items": [
+              {"href": "#about", "label": "About AINav"},
+              {"href": "#opportunity", "label": "Opportunity"},
+              {"href": "#fabric", "label": "Fabric"},
+              {"href": "#org", "label": "Organization"},
+              {"href": "#client-org", "label": "Client chart"},
+              {"href": "#review", "label": "Review"},
+              {"href": "#programs", "label": "Programs"},
+              {"href": "#packs", "label": "Packs"},
+              {"href": "#governance", "label": "Governance"},
+              {"href": "#control-plane", "label": "Control plane"},
+              {"href": "#ops", "label": "Operations"},
+              {"href": "#business", "label": "Business"},
+              {"href": "#finance", "label": "Finance"},
+              {"href": "#investor", "label": "Investor"},
+              {"href": "#delivery", "label": "Delivery"},
+              {"href": "#commercial", "label": "Commercial"},
+              {"href": "#mothership", "label": "Mothership"},
+              {"href": "#microsoft", "label": "Microsoft"},
+              {"href": "#agent-tools", "label": "Agent Tools"},
+              {"href": "#ip", "label": "IP"}
+            ]
+          }
+        ],
+        "cta": [
+          {"href": "#twin", "label": "Ninety-minute proof day", "kind": "ask"},
+          {"href": "#success", "label": "When to walk away", "kind": "ghost"},
+          {"href": "#buyer", "label": "The write", "kind": "ghost"}
+        ],
+        "cannot": [
+          "invent an inbox",
+          "bind ainav.institute",
+          "mark LIVE_PIN_OK",
+          "become a CMS"
+        ]
       },
       "success": {
         "sku": false,
@@ -4771,7 +4848,8 @@
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
       "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
       "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.",
-      "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write."
+      "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
+      "Institute public face is a catalog-honest static sale. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -5096,6 +5174,14 @@
         "who": "tree",
         "title": "Stack walk with admin links",
         "do": "Paint the privileged-write path and complements with Cloudflare, Azure, Entra, BC, Dataverse, Graph, and Agent Tools links. Probe is read-only. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 24,
+        "who": "tree",
+        "title": "Static public face",
+        "do": "Keep Azure Static Web Apps. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. Owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

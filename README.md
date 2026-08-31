@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.52.0 (this tree)
+### 2.53.0 (this tree)
+
+Institute public face stays static on Azure Static Web Apps.
+First glance is Job C vs substitutes, three SKUs, and the
+ninety-minute proof. Primary nav is the write, proof day,
+bake-off, dashboard, and owner. The owner book is not the
+homepage. Not a CMS. Not a custom-domain launch. A green
+check is not `LIVE_PIN_OK`.
+
+### 2.52.0
 
 Stack walk is catalog law. Every hop on the privileged-write
 path and every complement has an admin link and an honest

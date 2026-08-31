@@ -198,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.52.0"
+    "release": "2.53.0"
   },
   "communications": [
     {
@@ -813,6 +813,11 @@
       "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
       "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
       "sku": false,
+      "skus": [
+        "L1",
+        "P-ADM",
+        "U-DUAL"
+      ],
       "uses": "not_the_gate"
     },
     "integrate": {
@@ -1005,6 +1010,201 @@
         }
       ],
       "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
+    },
+    "public_face": {
+      "cannot": [
+        "invent an inbox",
+        "bind ainav.institute",
+        "mark LIVE_PIN_OK",
+        "become a CMS"
+      ],
+      "cms": false,
+      "cta": [
+        {
+          "href": "#twin",
+          "kind": "ask",
+          "label": "Ninety-minute proof day"
+        },
+        {
+          "href": "#success",
+          "kind": "ghost",
+          "label": "When to walk away"
+        },
+        {
+          "href": "#buyer",
+          "kind": "ghost",
+          "label": "The write"
+        }
+      ],
+      "host": "azure_static_web_apps",
+      "launch": false,
+      "live": false,
+      "live_pin_ok": false,
+      "owner_book": [
+        {
+          "id": "sale",
+          "items": [
+            {
+              "href": "#buyer",
+              "label": "The write"
+            },
+            {
+              "href": "#twin",
+              "label": "Proof day"
+            },
+            {
+              "href": "#success",
+              "label": "Bake-off"
+            },
+            {
+              "href": "#product",
+              "label": "Product"
+            }
+          ],
+          "name": "Sale"
+        },
+        {
+          "id": "owner",
+          "items": [
+            {
+              "href": "#closed",
+              "label": "Closed"
+            },
+            {
+              "href": "#missing",
+              "label": "Owner"
+            },
+            {
+              "href": "#open",
+              "label": "Open"
+            },
+            {
+              "href": "#stack-walk",
+              "label": "Stack walk"
+            },
+            {
+              "href": "#e7-cloudflare",
+              "label": "E7 on Cloudflare"
+            }
+          ],
+          "name": "Owner"
+        },
+        {
+          "id": "book",
+          "items": [
+            {
+              "href": "#about",
+              "label": "About AINav"
+            },
+            {
+              "href": "#opportunity",
+              "label": "Opportunity"
+            },
+            {
+              "href": "#fabric",
+              "label": "Fabric"
+            },
+            {
+              "href": "#org",
+              "label": "Organization"
+            },
+            {
+              "href": "#client-org",
+              "label": "Client chart"
+            },
+            {
+              "href": "#review",
+              "label": "Review"
+            },
+            {
+              "href": "#programs",
+              "label": "Programs"
+            },
+            {
+              "href": "#packs",
+              "label": "Packs"
+            },
+            {
+              "href": "#governance",
+              "label": "Governance"
+            },
+            {
+              "href": "#control-plane",
+              "label": "Control plane"
+            },
+            {
+              "href": "#ops",
+              "label": "Operations"
+            },
+            {
+              "href": "#business",
+              "label": "Business"
+            },
+            {
+              "href": "#finance",
+              "label": "Finance"
+            },
+            {
+              "href": "#investor",
+              "label": "Investor"
+            },
+            {
+              "href": "#delivery",
+              "label": "Delivery"
+            },
+            {
+              "href": "#commercial",
+              "label": "Commercial"
+            },
+            {
+              "href": "#mothership",
+              "label": "Mothership"
+            },
+            {
+              "href": "#microsoft",
+              "label": "Microsoft"
+            },
+            {
+              "href": "#agent-tools",
+              "label": "Agent Tools"
+            },
+            {
+              "href": "#ip",
+              "label": "IP"
+            }
+          ],
+          "name": "Book"
+        }
+      ],
+      "primary": [
+        {
+          "href": "#buyer",
+          "id": "buyer",
+          "label": "The write"
+        },
+        {
+          "href": "#twin",
+          "id": "twin",
+          "label": "Proof day"
+        },
+        {
+          "href": "#success",
+          "id": "success",
+          "label": "Bake-off"
+        },
+        {
+          "href": "control-plane.html",
+          "id": "dashboard",
+          "label": "Dashboard"
+        },
+        {
+          "href": "#missing",
+          "id": "owner",
+          "label": "Owner"
+        }
+      ],
+      "sku": false,
+      "thesis": "The Institute is a catalog-honest static sale. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK."
     },
     "scopes": [
       {
@@ -2237,7 +2437,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.52.0",
+  "release": "2.53.0",
   "revocations": [
     {
       "by": "Owner / board request",

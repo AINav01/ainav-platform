@@ -699,6 +699,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         21: ("chodnett@ainav.institute", "not a click"),
         22: ("missing", "product working"),
         23: ("stack walk", "cloudflare"),
+        24: ("static", "owner book"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1031,6 +1032,48 @@ def _validate_client_org(catalog: dict[str, Any]) -> None:
         raise IntegrityError("client org thesis must keep the chart and refuse department AI as a seat", reason_code="CATALOG_ORG")
 
 
+def _validate_public_face(face: Any) -> None:
+    if not isinstance(face, dict):
+        raise IntegrityError("floor public_face is required", reason_code="CATALOG_PLANE")
+    if face.get("sku") is True:
+        raise IntegrityError("public face is not a SKU", reason_code="CATALOG_SKU")
+    if face.get("live") is True or face.get("live_pin_ok") is True or face.get("launch") is True:
+        raise IntegrityError("public face cannot mark launch or LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if face.get("cms") is True:
+        raise IntegrityError("public face is not a CMS", reason_code="CATALOG_PLANE")
+    if "static" not in str(face.get("host") or "").lower():
+        raise IntegrityError("public face host is Azure Static Web Apps", reason_code="CATALOG_PLANE")
+    thesis = str(face.get("thesis") or "").lower()
+    for stem in ("static", "first glance", "owner book", "not a cms", "live_pin_ok"):
+        if stem not in thesis:
+            raise IntegrityError(f"public face thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    primary = list(face.get("primary") or [])
+    labels = [str(item.get("label") or "") for item in primary]
+    if labels != ["The write", "Proof day", "Bake-off", "Dashboard", "Owner"]:
+        raise IntegrityError("primary nav is write, proof day, bake-off, dashboard, owner", reason_code="CATALOG_PLANE")
+    hrefs = [str(item.get("href") or "") for item in primary]
+    if hrefs != ["#buyer", "#twin", "#success", "control-plane.html", "#missing"]:
+        raise IntegrityError("primary nav hrefs are buyer, twin, success, dashboard, owner", reason_code="CATALOG_PLANE")
+    book = list(face.get("owner_book") or [])
+    book_ids = [item.get("id") for item in book]
+    if book_ids != ["sale", "owner", "book"]:
+        raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
+    owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
+    if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
+        raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
+    book_hrefs = [str(item.get("href") or "") for item in (book[2].get("items") or [])]
+    for needed in ("#finance", "#governance", "#investor"):
+        if needed not in book_hrefs:
+            raise IntegrityError(f"owner book must keep {needed}", reason_code="CATALOG_PLANE")
+    ctas = [str(item.get("href") or "") for item in face.get("cta") or []]
+    if "#twin" not in ctas or "#success" not in ctas or "#buyer" not in ctas:
+        raise IntegrityError("public face CTAs are proof day, bake-off, and the write", reason_code="CATALOG_PLANE")
+    cannot = " ".join(str(item) for item in face.get("cannot") or []).lower()
+    for stem in ("inbox", "ainav.institute", "live_pin_ok", "cms"):
+        if stem not in cannot:
+            raise IntegrityError(f"public face cannot must keep {stem}", reason_code="CATALOG_PLANE")
+
+
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     body = catalog.get("plane_interface")
     if not isinstance(body, dict):
@@ -1150,6 +1193,9 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     job_c = str(glance.get("job_c") or "").lower()
     if "sor write-gate" not in job_c or "not agent inventory" not in job_c:
         raise IntegrityError("first glance Job C is a SoR write-gate, not agent inventory", reason_code="CATALOG_PLANE")
+    if list(glance.get("skus") or []) != ["L1", "P-ADM", "U-DUAL"]:
+        raise IntegrityError("first glance names the same three SKUs", reason_code="CATALOG_PLANE")
+    _validate_public_face(floor.get("public_face"))
     success_floor = floor.get("success") or {}
     if not isinstance(success_floor, dict):
         raise IntegrityError("floor success is required", reason_code="CATALOG_PLANE")

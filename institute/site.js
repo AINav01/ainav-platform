@@ -35,6 +35,8 @@
       event.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
       if (history.replaceState) history.replaceState(null, "", "#" + id);
+      var menu = link.closest(".nav-menu");
+      if (menu) menu.removeAttribute("open");
     });
   });
 
@@ -1538,6 +1540,7 @@
     replaceList("buyer-prices", data.prices);
     replaceList("buyer-refuse", data.refuse);
     paintSuccess(data.success);
+    paintPublicFace(data);
   }
 
   function paintNamedCards(rootId, items, titleKey, noteKey) {
@@ -1555,6 +1558,68 @@
       art.appendChild(p);
       root.appendChild(art);
     });
+  }
+
+  function paintPublicFace(data) {
+    if (!data || data.live || data.live_pin_ok || data.launch) return;
+    var glance = data.first_glance || {};
+    var lede = document.getElementById("hero-contrast-lede");
+    if (lede && glance.lede) lede.textContent = glance.lede;
+    var fold = document.getElementById("hero-fold-lede");
+    if (fold && (data.already_have || data.still_lack)) {
+      fold.textContent = ((data.already_have || "") + " " + (data.still_lack || "")).trim();
+    }
+    var contrast = document.getElementById("hero-contrast");
+    if (contrast && glance.job_c && data.not_the_gate && data.not_the_gate.length) {
+      contrast.textContent = "";
+      var pin = document.createElement("article");
+      pin.setAttribute("data-pin", "job-c");
+      var ph = document.createElement("h3");
+      ph.textContent = "Job C";
+      var pp = document.createElement("p");
+      pp.textContent = glance.job_c;
+      pin.appendChild(ph);
+      pin.appendChild(pp);
+      contrast.appendChild(pin);
+      data.not_the_gate.forEach(function (item) {
+        var art = document.createElement("article");
+        var h = document.createElement("h3");
+        h.textContent = item.name || "";
+        var p = document.createElement("p");
+        p.textContent = item.note || "";
+        art.appendChild(h);
+        art.appendChild(p);
+        contrast.appendChild(art);
+      });
+    }
+    var skus = document.getElementById("hero-skus");
+    if (skus && data.skus && data.skus.length === 3) {
+      skus.textContent = "";
+      data.skus.forEach(function (item) {
+        if (!item || !item.id) return;
+        var li = document.createElement("li");
+        li.setAttribute("data-sku", item.id);
+        var b = document.createElement("b");
+        b.textContent = item.id;
+        var kind = document.createElement("span");
+        kind.textContent = item.kind || "";
+        var p = document.createElement("p");
+        var price = item.price_usd || {};
+        var band =
+          typeof price.min === "number" && typeof price.max === "number"
+            ? " $" + price.min.toLocaleString() + "–$" + price.max.toLocaleString()
+            : "";
+        p.textContent =
+          (item.one_line || "") +
+          band +
+          (item.term ? " · " + item.term : "") +
+          ". Not LIVE_PIN_OK.";
+        li.appendChild(b);
+        li.appendChild(kind);
+        li.appendChild(p);
+        skus.appendChild(li);
+      });
+    }
   }
 
   function paintSuccess(success) {

@@ -28,6 +28,17 @@
   "contact_email": null,
   "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
   "entity": "AINav, Inc.",
+  "first_glance": {
+    "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
+    "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
+    "sku": false,
+    "skus": [
+      "L1",
+      "P-ADM",
+      "U-DUAL"
+    ],
+    "uses": "not_the_gate"
+  },
   "icp": {
     "ai": "Client Copilot / agents / BYO models \u2014 not AINav",
     "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",
@@ -121,7 +132,9 @@
     "lede": "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK."
   },
   "kind": "ainav.institute.buyer.v1",
+  "launch": false,
   "live": false,
+  "live_pin_ok": false,
   "mailto": null,
   "memory": {
     "items": [
@@ -232,6 +245,201 @@
     ],
     "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
   },
+  "public_face": {
+    "cannot": [
+      "invent an inbox",
+      "bind ainav.institute",
+      "mark LIVE_PIN_OK",
+      "become a CMS"
+    ],
+    "cms": false,
+    "cta": [
+      {
+        "href": "#twin",
+        "kind": "ask",
+        "label": "Ninety-minute proof day"
+      },
+      {
+        "href": "#success",
+        "kind": "ghost",
+        "label": "When to walk away"
+      },
+      {
+        "href": "#buyer",
+        "kind": "ghost",
+        "label": "The write"
+      }
+    ],
+    "host": "azure_static_web_apps",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "owner_book": [
+      {
+        "id": "sale",
+        "items": [
+          {
+            "href": "#buyer",
+            "label": "The write"
+          },
+          {
+            "href": "#twin",
+            "label": "Proof day"
+          },
+          {
+            "href": "#success",
+            "label": "Bake-off"
+          },
+          {
+            "href": "#product",
+            "label": "Product"
+          }
+        ],
+        "name": "Sale"
+      },
+      {
+        "id": "owner",
+        "items": [
+          {
+            "href": "#closed",
+            "label": "Closed"
+          },
+          {
+            "href": "#missing",
+            "label": "Owner"
+          },
+          {
+            "href": "#open",
+            "label": "Open"
+          },
+          {
+            "href": "#stack-walk",
+            "label": "Stack walk"
+          },
+          {
+            "href": "#e7-cloudflare",
+            "label": "E7 on Cloudflare"
+          }
+        ],
+        "name": "Owner"
+      },
+      {
+        "id": "book",
+        "items": [
+          {
+            "href": "#about",
+            "label": "About AINav"
+          },
+          {
+            "href": "#opportunity",
+            "label": "Opportunity"
+          },
+          {
+            "href": "#fabric",
+            "label": "Fabric"
+          },
+          {
+            "href": "#org",
+            "label": "Organization"
+          },
+          {
+            "href": "#client-org",
+            "label": "Client chart"
+          },
+          {
+            "href": "#review",
+            "label": "Review"
+          },
+          {
+            "href": "#programs",
+            "label": "Programs"
+          },
+          {
+            "href": "#packs",
+            "label": "Packs"
+          },
+          {
+            "href": "#governance",
+            "label": "Governance"
+          },
+          {
+            "href": "#control-plane",
+            "label": "Control plane"
+          },
+          {
+            "href": "#ops",
+            "label": "Operations"
+          },
+          {
+            "href": "#business",
+            "label": "Business"
+          },
+          {
+            "href": "#finance",
+            "label": "Finance"
+          },
+          {
+            "href": "#investor",
+            "label": "Investor"
+          },
+          {
+            "href": "#delivery",
+            "label": "Delivery"
+          },
+          {
+            "href": "#commercial",
+            "label": "Commercial"
+          },
+          {
+            "href": "#mothership",
+            "label": "Mothership"
+          },
+          {
+            "href": "#microsoft",
+            "label": "Microsoft"
+          },
+          {
+            "href": "#agent-tools",
+            "label": "Agent Tools"
+          },
+          {
+            "href": "#ip",
+            "label": "IP"
+          }
+        ],
+        "name": "Book"
+      }
+    ],
+    "primary": [
+      {
+        "href": "#buyer",
+        "id": "buyer",
+        "label": "The write"
+      },
+      {
+        "href": "#twin",
+        "id": "twin",
+        "label": "Proof day"
+      },
+      {
+        "href": "#success",
+        "id": "success",
+        "label": "Bake-off"
+      },
+      {
+        "href": "control-plane.html",
+        "id": "dashboard",
+        "label": "Dashboard"
+      },
+      {
+        "href": "#missing",
+        "id": "owner",
+        "label": "Owner"
+      }
+    ],
+    "sku": false,
+    "thesis": "The Institute is a catalog-honest static sale. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK."
+  },
   "refuse": [
     "Teams vote as dual",
     "Copilot as the admit plane",
@@ -263,6 +471,41 @@
     "treasury_controller"
   ],
   "signed_l1": false,
+  "skus": [
+    {
+      "id": "L1",
+      "kind": "prove",
+      "name": "FIRST_OFFER",
+      "one_line": "The unauthorized general-journal post that two humans did not admit.",
+      "price_usd": {
+        "max": 40000,
+        "min": 28000
+      },
+      "term": "2\u20134 weeks"
+    },
+    {
+      "id": "P-ADM",
+      "kind": "keep",
+      "name": "ADMIT_COVERAGE",
+      "one_line": "Keep the same admit plane covered",
+      "price_usd": {
+        "max": 60000,
+        "min": 40000
+      },
+      "term": "annual"
+    },
+    {
+      "id": "U-DUAL",
+      "kind": "deepen",
+      "name": "DEPTH_PACK",
+      "one_line": "Additional action classes on the same admit plane",
+      "price_usd": {
+        "max": 35000,
+        "min": 20000
+      },
+      "term": "annual"
+    }
+  ],
   "still_lack": "They do not have a gate in front of the write.",
   "success": {
     "bake_off": {

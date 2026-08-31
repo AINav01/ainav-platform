@@ -42,6 +42,21 @@ def test_mailbox_law_refuses_stale_seat_note_and_letter():
     with pytest.raises(IntegrityError) as exc5:
         validate_catalog(glance)
     assert exc5.value.reason_code == "CATALOG_PLANE"
+    face = copy.deepcopy(cat)
+    face["plane_interface"]["floor"]["public_face"]["cms"] = True
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(face)
+    assert exc6.value.reason_code == "CATALOG_PLANE"
+    launch = copy.deepcopy(cat)
+    launch["plane_interface"]["floor"]["public_face"]["launch"] = True
+    with pytest.raises(IntegrityError) as exc7:
+        validate_catalog(launch)
+    assert exc7.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
+    nav = copy.deepcopy(cat)
+    nav["plane_interface"]["floor"]["public_face"]["primary"][2]["label"] = "Finance"
+    with pytest.raises(IntegrityError) as exc8:
+        validate_catalog(nav)
+    assert exc8.value.reason_code == "CATALOG_PLANE"
 
 
 def test_catalog_refuses_live_proof_pin_sandbox_and_buyer_inbox():

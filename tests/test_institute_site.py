@@ -196,6 +196,16 @@ def test_institute_foundation_is_catalog_honest():
     assert "chodnett@ainav.institute" in html
     assert "href=\"mailto:" not in html
     assert 'id="hero-contrast"' in html
+    assert 'id="hero-skus"' in html
+    assert 'data-sku="L1"' in html
+    assert 'data-sku="P-ADM"' in html
+    assert 'data-sku="U-DUAL"' in html
+    assert "paintPublicFace" in js
+    assert "Owner book" in html
+    assert "nav-menu" in html
+    assert "nav-toggle" in html
+    assert html.index('href="#closed"') < html.index('class="primary"')
+    assert 'href="#success">Bake-off</a>' in html
     assert "Substitute vs Job C" in html
     assert "Workflow User Groups" in html
     assert "1 mailbox / 0 oid" in html

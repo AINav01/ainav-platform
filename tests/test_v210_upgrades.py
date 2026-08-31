@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.52.0"
+    assert cat["entity"]["release"] == "2.53.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -36,6 +36,17 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
         "in_harness",
     }
     glance = cat["plane_interface"]["floor"]["first_glance"]
+    assert glance["skus"] == ["L1", "P-ADM", "U-DUAL"]
+    face = cat["plane_interface"]["floor"]["public_face"]
+    assert face["cms"] is False
+    assert face["launch"] is False
+    assert [item["label"] for item in face["primary"]] == [
+        "The write",
+        "Proof day",
+        "Bake-off",
+        "Dashboard",
+        "Owner",
+    ]
     assert glance["uses"] == "not_the_gate"
     floor_success = cat["plane_interface"]["floor"]["success"]
     assert floor_success["uses"] == "expert_review.success"
