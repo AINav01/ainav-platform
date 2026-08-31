@@ -35,8 +35,8 @@
       event.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
       if (history.replaceState) history.replaceState(null, "", "#" + id);
-      var menu = link.closest(".nav-menu");
-      if (menu) menu.removeAttribute("open");
+      var box = document.getElementById("nav-open");
+      if (box) box.checked = false;
     });
   });
 

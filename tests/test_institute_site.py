@@ -204,6 +204,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "Owner book" in html
     assert "nav-menu" in html
     assert "nav-toggle" in html
+    assert 'id="nav-open"' in html
+    assert 'class="nav-check"' in html
+    assert "<details class=\"nav-menu\">" not in html
     assert html.index('href="#closed"') < html.index('class="primary"')
     assert 'href="#success">Bake-off</a>' in html
     assert "Substitute vs Job C" in html
