@@ -739,6 +739,8 @@ table.law tr[data-group] th {
 #e7-cloudflare-board ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
 #e7-cloudflare-status { font-family: var(--mono); font-size: 0.82rem; }
 #closed { scroll-margin-top: 5.2rem; }
+#missing { scroll-margin-top: 5.2rem; }
+#open { scroll-margin-top: 5.2rem; }
 #closed-board ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
 #gold-ci-status { font-family: var(--mono); font-size: 0.82rem; }
 

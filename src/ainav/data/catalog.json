@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.44.0",
+    "release": "2.45.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3292,6 +3292,8 @@
       "Catalog law — three SKUs only",
       "E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV)",
       "GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK",
+      "Institute owner board is one click from Closed",
+      "Health, sandbox, and Institute publish fail-closed probes covered",
       "Institute, review, and brief generated from the catalog",
       "Owner-click runbooks with Microsoft admin links"
     ],
@@ -4488,7 +4490,8 @@
       "Control equation is explicit: the client utilizes AI, AINav is the failsafe, two humans control the write.",
       "The client's customers utilize AI. The client institutes AINav and the stable of offerings as the failsafe. First record is the SoR write; second record is the DecisionRecord.",
       "The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs.",
-      "Gold CI ran green on GitHub Actions (`make gold`). A green check is not LIVE_PIN_OK."
+      "Gold CI ran green on GitHub Actions (`make gold`). A green check is not LIVE_PIN_OK.",
+      "Institute Owner nav is one click from Closed. Health, sandbox, and Institute publish fail-closed paths are gold. Graph Teams read with bound IDs is connected, not a missing-role fiction."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

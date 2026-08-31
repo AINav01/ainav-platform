@@ -111,7 +111,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.44.0 (this tree)
+### 2.45.0 (this tree)
+
+Close remaining in-tree gaps this Cloud Agent can close.
+Institute primary nav is Closed · Owner · Open. The owner
+board is one click from Closed. Graph Teams read with
+bound IDs reports connected, not a missing-role fiction.
+Health, sandbox, and Institute publish fail-closed paths
+are gold. Dependabot watches Actions and pip. CODEOWNERS
+names the sole owner. A green check is not `LIVE_PIN_OK`.
+Cynthia is still invited, not recorded. Owner gates stay
+owner gates.
+
+### 2.44.0
 
 Gold CI ran green. Catalog records `observed_green=true`
 without marking `LIVE_PIN_OK`. Actions are pinned by

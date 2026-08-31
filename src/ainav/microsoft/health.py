@@ -157,10 +157,24 @@ def _connected(connection_id: str, *, detail: dict[str, Any]) -> dict[str, Any]:
 def probe_graph() -> dict[str, Any]:
     tok = _token(GRAPH_SCOPE)
     if not tok.get("ok"):
-        return _blocked("m365.e7", reason=str(tok.get("status")), missing=tok.get("missing"), http=tok.get("http"))
+        blocked = _blocked(
+            "m365.e7",
+            reason=str(tok.get("status")),
+            missing=tok.get("missing"),
+            http=tok.get("http"),
+        )
+        entra = _blocked(
+            "entra.id",
+            reason=str(tok.get("status")),
+            missing=tok.get("missing"),
+            http=tok.get("http"),
+        )
+        return {"entra.id": entra, "m365.e7": blocked}
     status, org = _get("https://graph.microsoft.com/v1.0/organization?$select=displayName,verifiedDomains", tok["token"])
     if status != 200 or not isinstance(org, dict):
-        return _blocked("m365.e7", reason="graph_org_denied", http=status)
+        denied = _blocked("m365.e7", reason="graph_org_denied", http=status)
+        entra = _blocked("entra.id", reason="graph_org_denied", http=status)
+        return {"entra.id": entra, "m365.e7": denied}
     first = (org.get("value") or [{}])[0]
     domains = [d.get("name") for d in (first.get("verifiedDomains") or []) if d.get("name")]
     users_status, _users = _get("https://graph.microsoft.com/v1.0/users?$top=1&$select=id", tok["token"])
@@ -355,7 +369,10 @@ def probe_teams(connection_id: str) -> dict[str, Any]:
                 team_count=len(teams),
                 next_step="Set TEAMS_*_TEAM_ID and TEAMS_*_CHANNEL_ID. A chat is not a seat.",
             )
-        return _blocked(connection_id, reason="graph_role_missing_Team_or_ChannelMessage")
+        return _connected(
+            connection_id,
+            detail={"teams_read": True, "team_count": len(teams)},
+        )
     return _blocked(
         connection_id,
         reason="graph_role_missing_Team_or_ChannelMessage",

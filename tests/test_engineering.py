@@ -48,11 +48,16 @@ def test_gold_workflow_exists_and_refuses_live_pin():
     assert "actions/checkout@11d5960a326750d5838078e36cf38b85af677262" in text
     assert "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065" in text
     assert Path(".github/dependabot.yml").is_file()
+    dependabot = Path(".github/dependabot.yml").read_text(encoding="utf-8")
+    assert "package-ecosystem: github-actions" in dependabot
+    assert "package-ecosystem: pip" in dependabot
+    assert Path(".github/CODEOWNERS").is_file()
+    assert "@DayTradingMarkets" in Path(".github/CODEOWNERS").read_text(encoding="utf-8")
 
 
 def test_package_version_matches_catalog_release():
     release = load_catalog()["entity"]["release"]
-    assert release == "2.44.0"
+    assert release == "2.45.0"
     assert f'version = "{release}"' in Path("pyproject.toml").read_text(encoding="utf-8")
 
 
@@ -98,7 +103,7 @@ def test_catalog_allows_recorded_missing_gold_workflow():
     validate_catalog(cat)
 
 
-def test_catalog_rejects_missing_gold_without_honesty():
+def test_catalog_rejects_missing_gold_without_honesty(monkeypatch):
     cat = copy.deepcopy(load_catalog())
     cat["engineering"]["gold_ci"]["exists"] = False
     cat["engineering"]["gold_ci"]["observed_green"] = False
@@ -254,6 +259,71 @@ def test_catalog_rejects_missing_gold_without_honesty():
         validate_catalog(none_green)
     assert exc23.value.reason_code == "CATALOG_ENGINEERING"
 
+    from ainav import catalog as catalog_mod
+
+    real_is_file = catalog_mod.Path.is_file
+
+    def missing_gold(self):
+        if self.as_posix() == ".github/workflows/gold.yml":
+            return False
+        return real_is_file(self)
+
+    gone_file = copy.deepcopy(load_catalog())
+    monkeypatch.setattr(catalog_mod.Path, "is_file", missing_gold)
+    with pytest.raises(IntegrityError) as exc24:
+        validate_catalog(gone_file)
+    assert exc24.value.reason_code == "CATALOG_ENGINEERING"
+    monkeypatch.undo()
+
+    def _workflow_text(body: str):
+        real = catalog_mod.Path.read_text
+
+        def fake(self, encoding="utf-8"):
+            if self.as_posix() == ".github/workflows/gold.yml":
+                return body
+            return real(self, encoding=encoding)
+
+        return fake
+
+    no_make = copy.deepcopy(load_catalog())
+    monkeypatch.setattr(catalog_mod.Path, "read_text", _workflow_text("LIVE_PIN_OK\nactions/checkout@11d5960a326750d5838078e36cf38b85af677262\n"))
+    with pytest.raises(IntegrityError) as exc25:
+        validate_catalog(no_make)
+    assert exc25.value.reason_code == "CATALOG_ENGINEERING"
+    monkeypatch.undo()
+
+    no_pin_word = copy.deepcopy(load_catalog())
+    monkeypatch.setattr(
+        catalog_mod.Path,
+        "read_text",
+        _workflow_text("make gold\nactions/checkout@11d5960a326750d5838078e36cf38b85af677262\n"),
+    )
+    with pytest.raises(IntegrityError) as exc26:
+        validate_catalog(no_pin_word)
+    assert exc26.value.reason_code == "CATALOG_ENGINEERING"
+    monkeypatch.undo()
+
+    no_checkout = copy.deepcopy(load_catalog())
+    monkeypatch.setattr(
+        catalog_mod.Path,
+        "read_text",
+        _workflow_text("make gold\nLIVE_PIN_OK\nactions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\n"),
+    )
+    with pytest.raises(IntegrityError) as exc27:
+        validate_catalog(no_checkout)
+    assert exc27.value.reason_code == "CATALOG_ENGINEERING"
+    monkeypatch.undo()
+
+    no_setup = copy.deepcopy(load_catalog())
+    monkeypatch.setattr(
+        catalog_mod.Path,
+        "read_text",
+        _workflow_text("make gold\nLIVE_PIN_OK\nactions/checkout@11d5960a326750d5838078e36cf38b85af677262\n"),
+    )
+    with pytest.raises(IntegrityError) as exc28:
+        validate_catalog(no_setup)
+    assert exc28.value.reason_code == "CATALOG_ENGINEERING"
+
 
 def test_public_status_keeps_engineering_off_the_write_path():
     body = public_status()
@@ -290,7 +360,15 @@ def test_institute_paints_closed_and_gold_ci():
     assert "make gold" in html
     assert "ran green" in html.lower()
     assert "href=\"#closed\"" in html
-    assert html.index('href="#closed"') < html.index('href="#open"')
+    assert html.index('href="#closed"') < html.index('href="#missing"')
+    assert html.index('href="#missing"') < html.index('href="#open"')
+    assert ">Owner<" in html
+    assert "James must click" in html
+    plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    assert 'href="index.html#closed"' in plane
+    assert 'href="index.html#missing"' in plane
+    assert plane.index('href="index.html#closed"') < plane.index('href="index.html#missing"')
+    assert plane.index('href="index.html#missing"') < plane.index('href="index.html#open"')
     assert "observed_green" in js
     assert "refuse to paint a fiction scoreboard" in js
     assert "closed-in-tree" in js

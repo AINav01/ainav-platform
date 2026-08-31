@@ -98,6 +98,80 @@ def test_catalog_records_azure_host_without_custom_domain():
     assert exc3.value.reason_code == "PROGRAM_NOT_CLAIMED"
 
 
+def test_publish_fail_closed_after_launch(monkeypatch, tmp_path):
+    from ainav.microsoft import institute_publish as pub
+
+    monkeypatch.setattr(
+        "ainav.catalog.load_catalog",
+        lambda: {"programs": {"website": {"launch_ready": True}}},
+    )
+    monkeypatch.setenv("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000001")
+    monkeypatch.setenv("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000002")
+    monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
+
+    monkeypatch.setattr(pub, "APP_LOCATION", tmp_path)
+    missing = publish_institute()
+    assert missing["ok"] is False
+    assert missing["reason"] == "institute_files_missing"
+    assert missing["live_pin_ok"] is False
+    assert missing["custom_domain_claimed"] is False
+
+    (tmp_path / "index.html").write_text("<html></html>", encoding="utf-8")
+    monkeypatch.setattr(pub, "_token", lambda scope: {"ok": False, "status": "token_denied", "http": 401})
+    denied = publish_institute()
+    assert denied["reason"] == "token_denied"
+    assert denied["ok"] is False
+
+    monkeypatch.setattr(pub, "_token", lambda scope: {"ok": True, "token": "lab"})
+    monkeypatch.delenv("AZURE_SUBSCRIPTION_ID", raising=False)
+    monkeypatch.setattr(pub, "_subscription_id", lambda token: None)
+    no_sub = publish_institute()
+    assert no_sub["reason"] == "no_azure_subscription_visible"
+
+    monkeypatch.setenv("AZURE_SUBSCRIPTION_ID", "sub-1")
+    monkeypatch.setattr(pub, "_request", lambda method, url, token, payload=None: (400, {"error": {"code": "Denied", "message": "no"}}))
+    site = publish_institute()
+    assert site["reason"] == "static_site_denied"
+    assert site["uploaded"] is False
+    assert site["url"] is None
+
+
+def test_publish_helpers_fail_closed(monkeypatch):
+    from ainav.microsoft import institute_publish as pub
+
+    monkeypatch.setattr(pub.time, "sleep", lambda seconds: None)
+    monkeypatch.setattr(pub, "_request", lambda method, url, token, payload=None: (200, {"properties": {"provisioningState": "Creating"}}))
+    waiting = pub._wait_site("https://example.test/site", "lab")
+    assert waiting["properties"]["provisioningState"] == "Creating"
+
+    monkeypatch.setattr(pub, "_request", lambda method, url, token, payload=None: (404, "gone"))
+    assert pub._deployment_token("sub-1", "lab") == ""
+
+    monkeypatch.setattr(pub, "_request", lambda method, url, token, payload=None: (200, {"properties": {"apiKey": ""}}))
+    assert pub._deployment_token("sub-1", "lab") == ""
+
+    monkeypatch.setattr(pub, "_request", lambda method, url, token, payload=None: (200, "not-a-dict"))
+    assert pub._deployment_token("sub-1", "lab") == ""
+
+    def boom(*_args, **_kwargs):
+        raise OSError("npx missing")
+
+    monkeypatch.setattr(pub.subprocess, "run", boom)
+    ok, detail = pub._swa_deploy("key")
+    assert ok is False
+    assert "npx missing" in detail
+
+    class Result:
+        returncode = 0
+        stdout = "uploaded"
+        stderr = ""
+
+    monkeypatch.setattr(pub.subprocess, "run", lambda *args, **kwargs: Result())
+    ok, detail = pub._swa_deploy("key")
+    assert ok is True
+    assert "uploaded" in detail
+
+
 def test_cli_publish_institute(monkeypatch, capsys):
     from ainav.__main__ import main
 

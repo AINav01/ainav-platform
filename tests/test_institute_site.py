@@ -247,7 +247,15 @@ def test_institute_foundation_is_catalog_honest():
     assert status["engineering"]["gold_ci"]["observed_green"] is True
     assert status["engineering"]["sku"] is False
     assert 'href="#closed"' in html
-    assert html.index('href="#closed"') < html.index('href="#open"')
+    assert 'href="#missing"' in html
+    assert html.index('href="#closed"') < html.index('href="#missing"')
+    assert html.index('href="#missing"') < html.index('href="#open"')
+    assert ">Owner<" in html
+    assert "James must click" in html
+    assert "#missing" in css
+    plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    assert 'href="index.html#closed"' in plane
+    assert 'href="index.html#missing"' in plane
     assert status["engineering"]["live_pin_ok"] is False
     assert 'id="closed"' in html
     assert 'id="honest-missing"' in html
