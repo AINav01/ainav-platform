@@ -124,6 +124,42 @@ def test_catalog_rejects_split_ledger():
     assert exc7.value.reason_code == "CATALOG_SKU"
 
 
+def test_delivery_system_refuses_broken_pairs():
+    from unittest.mock import MagicMock
+
+    from ainav.errors import ProvisionError
+    from ainav.mothership import CloudMothership, LocalMothership
+    from agent_gov import MemoryAuthorityStore
+
+    system = DeliverySystem()
+    local = MagicMock()
+    cloud = MagicMock()
+    local.lockfile.digest.return_value = "aaa"
+    cloud.lockfile.digest.return_value = "bbb"
+    local.client.store = object()
+    cloud.client.store = object()
+    system.master = MagicMock()
+    system.master.provision_pair.return_value = {"local": local, "cloud": cloud}
+    with pytest.raises(ProvisionError) as exc:
+        system.provision_pair("split-lock")
+    assert exc.value.reason_code == "LOCKFILE_HASH_MISMATCH"
+
+    local.lockfile.digest.return_value = "same"
+    cloud.lockfile.digest.return_value = "same"
+    with pytest.raises(ProvisionError) as exc2:
+        system.provision_pair("split-ledger")
+    assert exc2.value.reason_code == "SHARED_LEDGER"
+
+    store = MemoryAuthorityStore()
+    real_local = LocalMothership("pair-local", packs=("L1",), store=store)
+    fake_cloud = LocalMothership("pair-cloud", packs=("L1",), store=store)
+    system.master.provision_pair.return_value = {"local": real_local, "cloud": fake_cloud}
+    with pytest.raises(ProvisionError) as exc3:
+        system.provision_pair("no-cloud")
+    assert exc3.value.reason_code == "HOST_MODE"
+    assert not isinstance(fake_cloud, CloudMothership)
+
+
 def test_delivery_system_refuses_unknown_pair():
     from ainav.errors import ProvisionError
 

@@ -200,7 +200,7 @@ def one_page() -> str:
         "",
         cat["success_equation"],
         "",
-        "## Still missing (honest)",
+        "## Owner — James must click (honest)",
         "",
     ]
     for item in cat.get("honest_missing", []):

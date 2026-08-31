@@ -57,7 +57,7 @@ def test_gold_workflow_exists_and_refuses_live_pin():
 
 def test_package_version_matches_catalog_release():
     release = load_catalog()["entity"]["release"]
-    assert release == "2.46.0"
+    assert release == "2.47.0"
     assert f'version = "{release}"' in Path("pyproject.toml").read_text(encoding="utf-8")
 
 
@@ -325,6 +325,115 @@ def test_catalog_rejects_missing_gold_without_honesty(monkeypatch):
     assert exc28.value.reason_code == "CATALOG_ENGINEERING"
 
 
+def test_honest_missing_must_keep_live_pin_and_second_human():
+    missing = load_catalog()["honest_missing"]
+    assert any("LIVE_PIN_OK" in item for item in missing)
+    assert any("Second unique" in item or "Cynthia" in item for item in missing)
+
+    gone = copy.deepcopy(load_catalog())
+    gone["honest_missing"] = []
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(gone)
+    assert exc.value.reason_code == "CATALOG_HONEST"
+
+    no_pin = copy.deepcopy(load_catalog())
+    no_pin["honest_missing"] = [
+        item for item in no_pin["honest_missing"] if "LIVE_PIN" not in item
+    ]
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(no_pin)
+    assert exc2.value.reason_code == "CATALOG_HONEST"
+
+    no_human = copy.deepcopy(load_catalog())
+    no_human["honest_missing"] = [
+        item
+        for item in no_human["honest_missing"]
+        if "second unique" not in item.lower() and "cynthia" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(no_human)
+    assert exc3.value.reason_code == "CATALOG_HONEST"
+
+    claimed = copy.deepcopy(load_catalog())
+    claimed["honest_missing"] = [
+        "LIVE_PIN_OK is marked",
+        "Second unique human (Inception contacts and signed L1 seats)",
+    ]
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(claimed)
+    assert exc4.value.reason_code == "CATALOG_HONEST"
+
+
+def test_catalog_rejects_operating_and_equation_fiction():
+    from ainav.catalog import _validate_operating
+
+    def reject(reason: str, **patch: object) -> None:
+        body = copy.deepcopy(load_catalog())
+        for key, value in patch.items():
+            if key == "operating" and value is None:
+                body["operating"] = None
+            elif "." in key:
+                section, field = key.split(".", 1)
+                body[section][field] = value
+            else:
+                body[key] = value
+        with pytest.raises(IntegrityError) as exc:
+            _validate_operating(body)
+        assert exc.value.reason_code == reason
+
+    reject("CATALOG_OPERATING", operating=None)
+    reject("CATALOG_OPERATING", **{"operating.legal_entity": "Invented, Inc."})
+    reject("CATALOG_OPERATING", **{"operating.sole_owner": False})
+    reject("CATALOG_OPERATING", **{"operating.operator_is_seat": True})
+    reject("CATALOG_OPERATING", **{"operating.agent_is_not_dual": False})
+    reject("CATALOG_OPERATING", **{"operating.owner_principal": "  "})
+    same = copy.deepcopy(load_catalog())
+    same["operating"]["owner_principal"] = same["operating"]["operator"]
+    with pytest.raises(IntegrityError) as exc:
+        _validate_operating(same)
+    assert exc.value.reason_code == "CATALOG_OPERATING"
+    reject("CATALOG_EQUATION", **{"equations.commercial": "signed L1 only"})
+    reject("CATALOG_EQUATION", **{"equations.lab_pin": "SIGNED_L1"})
+    reject("CATALOG_EQUATION", **{"equations.control": "AI writes alone"})
+    reject("CATALOG_EQUATION", **{"equations.cascade": "no client institutes"})
+    reject("CATALOG_EQUATION", **{"equations.umbrella": "many planes"})
+    reject("CATALOG_EQUATION", **{"equations.plane": "no fail-closed"})
+    reject("CATALOG_EQUATION", **{"equations.org": "no chart"})
+    reject("CATALOG_EQUATION", **{"equations.insulation": "independence × Job C"})
+    reject("CATALOG_EQUATION", **{"equations.interface": "no humans from the top"})
+    reject(
+        "CATALOG_EQUATION",
+        **{
+            "equations.interface": (
+                "humans from the top × hierarchical access × authorization lifecycle "
+                "× sealed records × must-have"
+            )
+        },
+    )
+    reject(
+        "CATALOG_EQUATION",
+        **{
+            "equations.interface": (
+                "humans from the top × hierarchical access × walkable rehearsal × must-have"
+            )
+        },
+    )
+    reject(
+        "CATALOG_EQUATION",
+        **{
+            "equations.interface": (
+                "humans from the top × hierarchical access × walkable rehearsal "
+                "× authorization lifecycle × sealed records"
+            )
+        },
+    )
+    reject("CATALOG_EQUATION", **{"equations.investor": "forecast booked"})
+    reject(
+        "CATALOG_EQUATION",
+        **{"equations.investor": "catalog list × zero booked × one click"},
+    )
+
+
 def test_public_status_keeps_engineering_off_the_write_path():
     body = public_status()
     path_ids = [item["id"] for item in body["fabric"]["path"]]
@@ -364,6 +473,8 @@ def test_institute_paints_closed_and_gold_ci():
     assert html.index('href="#missing"') < html.index('href="#open"')
     assert ">Owner<" in html
     assert "James must click" in html
+    assert "<h2>Owner — James must click</h2>" in html
+    assert "G1/G10 LIVE_PIN_OK" in html
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert 'href="index.html#closed"' in plane
     assert 'href="index.html#missing"' in plane

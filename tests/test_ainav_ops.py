@@ -80,6 +80,52 @@ def test_ops_gates_are_fail_closed():
     account.local.attach_industry("industry.treasury")
 
 
+def test_ops_exits_and_stage_gates_are_fail_closed():
+    qualify = ClientAccount("qualify-only")
+    with pytest.raises(ProvisionError):
+        qualify.churn()
+    with pytest.raises(ProvisionError):
+        qualify.run_kit()
+    with pytest.raises(ProvisionError):
+        qualify.attach_udual()
+    with pytest.raises(ProvisionError):
+        qualify.renew("L1")
+    sold = ClientAccount("sold-only")
+    sold.sell_l1()
+    with pytest.raises(ProvisionError):
+        sold.lose()
+    with pytest.raises(ProvisionError):
+        sold.run_kit()
+    with pytest.raises(ProvisionError):
+        sold.renew("P-ADM")
+    with pytest.raises(ProvisionError):
+        sold.churn()
+    sold.start_kit()
+    report = sold.run_kit()
+    assert report["passed"] is True
+    assert report["live"] is False
+    fail_kit = ClientAccount("kit-fail")
+    fail_kit.sell_l1()
+    fail_kit.start_kit()
+    fail_kit.seats["seat_b"] = fail_kit.seats["seat_a"]
+    failed = fail_kit.run_kit()
+    assert failed["passed"] is False
+    assert fail_kit.stage == "KIT_FAIL"
+    with pytest.raises(ProvisionError):
+        fail_kit.attach_udual()
+    same_pass = ClientAccount("kit-fail-pass")
+    same_pass.sell_l1()
+    same_pass.start_kit()
+    same_pass.seats["seat_b"] = same_pass.seats["seat_a"]
+    with pytest.raises(ProvisionError) as kit_fail:
+        same_pass.pass_kit()
+    assert kit_fail.value.reason_code == "KIT_FAIL"
+    orphan = ClientAccount("no-local")
+    orphan.stage = "KIT_IN_PROGRESS"
+    with pytest.raises(ProvisionError):
+        orphan.run_kit()
+
+
 def test_cannot_mark_open_gaps():
     account = ClientAccount("gaps")
     account.sell_l1()

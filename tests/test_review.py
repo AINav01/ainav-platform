@@ -37,6 +37,8 @@ def test_deep_dive_is_catalog_honest():
     assert "Success equation scorecard" in body
     assert "How the pieces fit" in body
     assert "Read the company" in body
+    assert "## Owner — James must click" in body
+    assert "G1/G10 LIVE_PIN_OK" in body
     assert "Closed:** false" in body
     assert "Live probe overlay" not in body
     on_disk = Path("docs/REVIEW.md").read_text(encoding="utf-8")

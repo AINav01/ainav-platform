@@ -141,6 +141,34 @@ def test_programs_catalog_cannot_claim_or_go_crypto():
     assert exc9.value.reason_code == "PROGRAM_ORDER"
 
 
+def test_qualify_records_in_memory_blockers(monkeypatch):
+    body = copy.deepcopy(load_catalog()["programs"])
+    body["membership_claimed"] = True
+    body["applied"] = True
+    body["crypto_associated"] = True
+    body["gpu_workload_claimed"] = True
+    body["website"] = {
+        **body["website"],
+        "in_repo": False,
+        "public_deploy_claimed": True,
+    }
+    monkeypatch.setattr("ainav.programs.programs", lambda: body)
+    rec = qualify("nvidia.inception")
+    assert rec["eligible_to_prepare"] is False
+    assert rec["ready_to_apply"] is False
+    assert rec["membership_claimed"] is False
+    stems = " ".join(rec["blockers"])
+    assert "membership must not be claimed" in stems
+    assert "crypto association" in stems
+    assert "GPU production" in stems
+    assert "working website" in stems
+    assert "live public deploy" in stems
+    later = qualify("nvidia.connect")
+    assert "not the first application" in " ".join(later["blockers"])
+    complement = qualify("nvidia.developer")
+    assert "complementary developer program" in " ".join(complement["blockers"])
+
+
 def test_institute_programs_section_is_unclaimed():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     assert 'href="#programs"' in html

@@ -215,7 +215,7 @@ This Cloud Agent cannot approve tools.
 - Workflow: `.github/workflows/gold.yml`. Command: `make gold`. Coverage floor: 90.
 - exists=true. observed_green=true. marks_live_pin=false. launch=false. sku=false.
 - Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.
-- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Owner-click runbooks with Microsoft admin links.
+- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Owner-click runbooks with Microsoft admin links.
 - This Cloud Agent cannot close: Second unique human (Cynthia recorded) and signed L1 seats; ainav.institute custom domain and launch; Graph Read on the same Entra app; US Dataverse for Sales; G12 legal / G13 signed L1; Recognized revenue; Multi-host product HA; LIVE_PIN_OK.
 - This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.
 
@@ -301,6 +301,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs.
 - Gold CI ran green on GitHub Actions (`make gold`). A green check is not LIVE_PIN_OK.
 - Institute Owner nav is one click from Closed. Health, sandbox, and Institute publish fail-closed paths are gold. Graph Teams read with bound IDs is connected, not a missing-role fiction.
+- Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold.
 
 ## Expert review — could be improved
 
@@ -332,7 +333,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **14. [tree] Product HA is not a sale** — Redis multi-host and LIVE_PIN_OK stay engineering. Do not mark them from a contract.
 - **15. [owner] Leave Available / Block Dataverse MCP** — Leave five Microsoft tools Available. Block Dataverse MCP until paid U-DUAL. Tools are not seats.
 
-## Still missing
+## Owner — James must click
 
 - Second unique human (Inception contacts and signed L1 seats)
 - ainav.institute custom domain and incorporation date
@@ -342,6 +343,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - G12 legal (counsel pack unsigned)
 - Signed L1 counsel pack (G13)
 - Multi-host product HA
+- G1/G10 LIVE_PIN_OK (owner-only; never from this plane)
 
 ## OPEN (do not mark closed)
 

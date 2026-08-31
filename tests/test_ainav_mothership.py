@@ -49,6 +49,8 @@ def test_plan_is_generated_from_catalog():
     assert "never free" in text.lower() or "Never free" in text or "never free with" in text
     assert "LIVE_PIN_OK" in text
     assert "Teams" in text
+    assert "## Owner — James must click (honest)" in text
+    assert "G1/G10 LIVE_PIN_OK" in text
 
 
 def test_standard_l1_twin_journal():

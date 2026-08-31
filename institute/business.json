@@ -53,7 +53,8 @@
     "Recognized revenue / external billing provider",
     "G12 legal (counsel pack unsigned)",
     "Signed L1 counsel pack (G13)",
-    "Multi-host product HA"
+    "Multi-host product HA",
+    "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)"
   ],
   "icp": {
     "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",

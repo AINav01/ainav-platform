@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.46.0 (this tree)
+### 2.47.0 (this tree)
+
+Owner board lists `LIVE_PIN_OK` as honest-missing, not as
+an agent close. Institute `#missing` heading matches Owner.
+Operating, equation, delivery-pair, and program-qualify
+fiction stay refused in gold. A green check is not
+`LIVE_PIN_OK`. Cynthia is still invited, not recorded.
+Owner gates stay owner gates.
+
+### 2.46.0
 
 Close remaining in-tree fail-closed holes. Connections,
 delivery, and program catalog fiction stay refused in gold.

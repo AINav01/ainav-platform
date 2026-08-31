@@ -94,6 +94,7 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     _validate_investor(catalog)
     _validate_microsoft_edge(catalog)
     _validate_engineering(catalog)
+    _validate_honest_missing(catalog)
 
 
 def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
@@ -242,6 +243,18 @@ def _validate_engineering(catalog: dict[str, Any]) -> None:
 
 def catalog_engineering() -> dict[str, Any]:
     return dict(load_catalog()["engineering"])
+
+
+def _validate_honest_missing(catalog: dict[str, Any]) -> None:
+    missing = [str(item).lower() for item in catalog.get("honest_missing") or []]
+    if not missing:
+        raise IntegrityError("catalog missing honest_missing", reason_code="CATALOG_HONEST")
+    if not any("live_pin" in item for item in missing):
+        raise IntegrityError("honest_missing must keep LIVE_PIN_OK", reason_code="CATALOG_HONEST")
+    if not any("second unique" in item or "cynthia" in item for item in missing):
+        raise IntegrityError("honest_missing must keep the second human", reason_code="CATALOG_HONEST")
+    if any(item.strip() == "live_pin_ok is marked" for item in missing):
+        raise IntegrityError("honest_missing cannot claim LIVE_PIN_OK closed", reason_code="CATALOG_HONEST")
 
 
 def _validate_operating(catalog: dict[str, Any]) -> None:

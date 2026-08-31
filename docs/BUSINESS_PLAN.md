@@ -247,7 +247,7 @@ Proof on the BC twin. Not a SKU. Not signed L1 (G13).
 
 LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 
-## Still missing (honest)
+## Owner — James must click (honest)
 
 - Second unique human (Inception contacts and signed L1 seats)
 - ainav.institute custom domain and incorporation date
@@ -257,6 +257,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - G12 legal (counsel pack unsigned)
 - Signed L1 counsel pack (G13)
 - Multi-host product HA
+- G1/G10 LIVE_PIN_OK (owner-only; never from this plane)
 
 ## OPEN (do not mark closed)
 

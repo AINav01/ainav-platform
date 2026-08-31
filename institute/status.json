@@ -191,6 +191,7 @@
       "E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV)",
       "GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK",
       "Institute owner board is one click from Closed",
+      "Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close",
       "Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered",
       "Institute, review, and brief generated from the catalog",
       "Owner-click runbooks with Microsoft admin links"
@@ -285,7 +286,8 @@
     "Recognized revenue / external billing provider",
     "G12 legal (counsel pack unsigned)",
     "Signed L1 counsel pack (G13)",
-    "Multi-host product HA"
+    "Multi-host product HA",
+    "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)"
   ],
   "host": {
     "connection": "azure.host",

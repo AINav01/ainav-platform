@@ -83,6 +83,7 @@
       "E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV)",
       "GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK",
       "Institute owner board is one click from Closed",
+      "Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close",
       "Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered",
       "Institute, review, and brief generated from the catalog",
       "Owner-click runbooks with Microsoft admin links"

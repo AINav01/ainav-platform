@@ -494,7 +494,7 @@ def deep_dive(*, probe: bool = False) -> str:
         lines.append(f"- **{item['n']}. [{item['who']}] {item['title']}** — {item['do']}")
     lines += [
         "",
-        "## Still missing",
+        "## Owner — James must click",
         "",
     ]
     for item in honest_missing():

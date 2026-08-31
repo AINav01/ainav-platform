@@ -55,6 +55,7 @@ def test_public_business_names_the_missing():
     assert body["acceptance_kit"]["signed_l1"] is False
     assert "kit.bc.journal" in body["acceptance_kit"]["cases"]
     assert any("Recognized revenue" in item for item in body["honest_missing"])
+    assert any("LIVE_PIN_OK" in item for item in body["honest_missing"])
     assert body["proof_day"]["minutes"] == 90
     assert body["proof_day"]["signed_l1"] is False
     assert body["buyer"]["contact_email"] is None
