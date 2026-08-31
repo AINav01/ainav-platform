@@ -6,7 +6,7 @@ Invited second human: Cynthia Hodnett (treasury_controller / business_executive)
 
 This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
 
-1. Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
+1. Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
    [Microsoft 365 admin → Users](https://admin.microsoft.com/Adminportal/Home#/users)
 
 2. Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.

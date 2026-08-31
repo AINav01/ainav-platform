@@ -21,7 +21,7 @@
   "signed_l1": false,
   "steps": [
     {
-      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
       "id": "invite.seat_b",
       "url": "https://admin.microsoft.com/Adminportal/Home#/users",
       "url_label": "Microsoft 365 admin \u2192 Users"

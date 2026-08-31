@@ -45,7 +45,8 @@ def test_org_report_does_not_claim_all_wired():
     assert "dept.sales" in report["blocked_now"]
     assert "dept.programs" in report["blocked_now"]
     assert report["programs"]["ready_to_apply"] is False
-    assert any("second unique human" in gate for gate in report["human_gates"])
+    assert any("second unique human" in gate.lower() for gate in report["human_gates"])
+    assert any("chodnett@ainav.institute" in gate for gate in report["human_gates"])
     public = public_org()
     assert "health" not in public
     assert public["all_wired_claimed"] is False
