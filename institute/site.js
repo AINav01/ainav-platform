@@ -638,7 +638,7 @@
           add("Off switch", "READY", "Fail-closed. Does not power down Copilot.");
           add("Catalog plane", "OPEN", "A console freeze is local rehearsal. It does not mark LIVE_PIN_OK.");
           add("Signed L1", "0", "Counsel pack G13 stays open. Owner is not both seats.");
-          add("Seats recorded", "0 recorded / 1 invited", data.invited + " invited, not recorded.");
+          add("Seats recorded", "1 mailbox / 0 oid", (data.invited || "Cynthia Hodnett") + " mailbox recorded. Mailbox is not an Entra oid and not a click.");
         }
         if (kind === "access") {
           add("Internal", "Same Entra object id", (data.access && data.access.internal) || "");

@@ -189,7 +189,7 @@ Price L1 against the unauthorized journal that two humans did not admit. Prove i
 
 Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.
 - Owner: James Hodnett. Operator is not a seat.
-- Invited second human: Cynthia Hodnett (not recorded).
+- Invited second human: Cynthia Hodnett (mailbox chodnett@ainav.institute recorded; Entra oid and click still open).
 - Commercial close: named dual seats × proof day × signed L1 × P-ADM attach
 - Second officer: none recorded. Do not invent one.
 - Incorporation date: not stored in this tree.
@@ -249,7 +249,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 
 ## Owner — James must click (honest)
 
-- Second unique human (Inception contacts and signed L1 seats)
+- Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)
 - ainav.institute custom domain and incorporation date
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM

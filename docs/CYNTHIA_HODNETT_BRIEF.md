@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.48.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.49.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.48.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Invited, not recorded
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.49.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -15,21 +15,21 @@ This is the board packet for the admit plane. Job C needs a second human. The sa
 | Job C | Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat. |
 | Proof day | Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out. |
 | Three SKUs | L1 $28,000–$40,000 in two to four weeks. P-ADM $40,000–$60,000 / year after kit PASS. U-DUAL $20,000–$35,000 / year, never free. Year-one if all three: $88,000–$135,000 list, not booked. Packs are not SKUs. |
-| Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 0 recorded / 1 invited. |
+| Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 1 mailbox recorded / 0 oid. Cynthia agreed as seat B. Entra oid and click still open. |
 | Microsoft | Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. |
 | Must-have | Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent. |
 | Owner-only still open | Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
-| The ask | Cynthia Hodnett as seat B. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. Invited, not recorded. |
+| The ask | Cynthia Hodnett as seat B. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. |
 
 ## A letter to Cynthia Hodnett
 
-Dear Cynthia — I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.
+Dear Cynthia — I am writing to record that you agreed to be the second human on the admit plane. James recorded chodnett@ainav.institute. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans. A mailbox is not your click.
 
-I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. Seat B is the second unique human. It is not stock, not a priced round, and not a customer seat.
+I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. You agreed. Seat B is the second unique human. Mailbox recorded: chodnett@ainav.institute. That mailbox is not an Entra object id and not your click. It is not stock, not a priced round, and not a customer seat.
 
-You are invited, not recorded. I will not invent an inbox or an object id for you. Your no, or not yet, is a complete answer.
+You were invited. The mailbox is now recorded. I will not invent an object id for you. Your no, or not yet, on the click is still a complete answer.
 
-If you agree, you become seat B on the same Entra tenant. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
+You become seat B on the same Entra tenant when you have your own object id and your own click. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
 
 I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
 
@@ -39,7 +39,7 @@ James Hodnett, sole owner of AINav, Inc.
 
 James Hodnett is one human principal. Job C is a two-human fact. A second Microsoft 365 license, a second tool, a second agent, or James clicking twice does not create dual admit. The second person must be a different human, with a different Entra object id, who actually reads the action and clicks. That is why this is a letter to you and not a settings change.
 
-You are the person James trusts with treasury judgment. The seat opposite treasury_approver is treasury_controller — the controller who will not let a journal land because it was convenient. NVIDIA Inception also requires two unique contacts with business emails: a developer (James) and a business executive (you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse those two contacts. You are not recorded as an officer. You are not a stockholder. No email is stored until you agree and James says record it.
+You are the person James trusts with treasury judgment. The seat opposite treasury_approver is treasury_controller — the controller who will not let a journal land because it was convenient. NVIDIA Inception also requires two unique contacts with business emails: a developer (James) and a business executive (you). Aliases and Gmail are refused. Sole owner does not collapse those two contacts. You agreed. Mailbox chodnett@ainav.institute is recorded. You are not recorded as an officer. You are not a stockholder. An Entra object id and a seat B click are still open.
 
 Without a second distinct person who actually clicks, AINav can keep a lab. It cannot sign L1. It cannot apply to Inception. It cannot look a controller in the eye and say two humans admitted the journal. That is the whole reason this brief exists. Your yes or no is the first commercial gate. Everything else on James's owner list waits behind it.
 
@@ -133,7 +133,7 @@ The admit plane runs in code. Gold tests pass. There is a real Business Central 
 | Working now | Not claimed, not asked of you today |
 | --- | --- |
 | Job C admit plane in code; sandbox journal on Business Central; Azure-hosted Institute held until launch | Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched |
-| You are invited by name as seat B / business executive | You as a recorded officer, stockholder, or second unique human in the catalog |
+| You agreed. Mailbox chodnett@ainav.institute recorded as seat B / business executive | You as a recorded officer, stockholder, Entra oid, or seat B click in the catalog |
 | Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach | LIVE_PIN_OK; product high availability; counsel-signed MSA; recognized revenue |
 
 ## Appendix — the plane
@@ -164,7 +164,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 
 | Step | What the owner clicks | Link |
 | --- | --- | --- |
-| Microsoft 365 admin → Users | Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it. | https://admin.microsoft.com/Adminportal/Home#/users |
+| Microsoft 365 admin → Users | Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B. | https://admin.microsoft.com/Adminportal/Home#/users |
 | Entra users | Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. | https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers |
 | Agents > Tools registry | Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. | https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all |
 | Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
@@ -300,7 +300,7 @@ Working well
 - Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
 - E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
-- Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
+- Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
 - A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
 - AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.
@@ -316,7 +316,7 @@ Working well
 Could be improved — without inventing a fourth SKU
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
-- One human cannot close dual admit, Inception contacts, or signed L1. Without seat B, AINav cannot out-demo Copilot Studio Request for information in a room.
+- Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.
 - The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
 - Control-plane language now collides with in-harness agent governors and agent-tool allow-lists. Job C is a SoR write-gate, not agent inventory and not in-process policy.
 - Institute first screen is still doctrine-heavy. The competitive contrast sits below the incident. A controller should see substitute vs Job C in one glance.
@@ -330,7 +330,7 @@ Could be improved — without inventing a fourth SKU
 
 Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
 
-- 1. [owner] Named dual seats — Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both. Without this, Copilot Studio RFI wins every bake-off.
+- 1. [owner] Named dual seats — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - 2. [owner] Proof day on named humans — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
 - 3. [owner] Graph read on the same app — Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
 - 4. [owner] US Dataverse — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
@@ -348,12 +348,12 @@ Fifteen specific upgrades. Tree = already encoded. Owner = James must click.
 
 ## What happens next
 
-Five steps, in order. Stop after step 1 until Cynthia has decided.
+Five steps, in order. Mailbox recorded. Stop until she has an Entra oid and clicks seat B.
 
-- Cynthia decides — yes, no, or not yet.
-- If yes, James creates her @ainav.institute mailbox. She signs in once. He does not click seat B.
-- He sends this agent her business email and says record it. Until those words, no email is stored.
+- Cynthia agreed. Mailbox chodnett@ainav.institute is recorded. That is not an Entra oid and not a click.
+- James creates or confirms her Entra user. She signs in once. He does not invent an object id in this tree. He does not click seat B.
+- She clicks seat B with her own object id. Until that click, dual admit stays open.
 - Proof day uses two named humans on the Business Central twin. Still not Production.
 - Equity, officer titles, and Delaware filings stay with counsel. They are not required for this role.
 
-Invited: Cynthia Hodnett  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  Second officer: none  ·  Operator: cursor.cloud_agent (not a seat)  ·  Commercial close: named dual seats × proof day × signed L1 × P-ADM attach  ·  Recognized revenue: 0
+Invited: Cynthia Hodnett  ·  Agreed: yes  ·  Mailbox recorded: chodnett@ainav.institute  ·  Entra oid: none  ·  Click: no  ·  Equity: no  ·  Second officer: none  ·  Operator: cursor.cloud_agent (not a seat)  ·  Commercial close: named dual seats × proof day × signed L1 × P-ADM attach  ·  Recognized revenue: 0

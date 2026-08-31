@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.48.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.49.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -73,7 +73,7 @@ Record keeping is two records and a keep.
 
 This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
 
-- **Microsoft 365 admin → Users** — Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it. https://admin.microsoft.com/Adminportal/Home#/users
+- **Microsoft 365 admin → Users** — Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B. https://admin.microsoft.com/Adminportal/Home#/users
 - **Entra users** — Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers
 - **Agents > Tools registry** — Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
 - **Same app API permissions** — On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]
@@ -117,7 +117,7 @@ Org: client org chart × existing SOD × one admit plane.
 | Draft | Department AI / payables / sales | idle | Not a seat. |
 | Bind | The plane | none | action_hash. No live bind. |
 | Seat A | treasury_approver | 0 | Own Entra object id. Own click. |
-| Seat B | treasury_controller | 0 | Cynthia Hodnett invited, not recorded. |
+| Seat B | treasury_controller | 0 | Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. |
 | First record | SoR after dual admit | 1 sandbox | AINAV-L1 lab oids. 0 production. |
 | Second record | Sealed DecisionRecord | 0 | P-ADM keep not attached. |
 | Keep | Examiner / board | none | Weekly export after kit PASS. |
@@ -130,7 +130,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.48.0.
+- As of: catalog release 2.49.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -166,7 +166,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Walkable rehearsal
 
-Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called. Wedge: `bc.general_journal.post`. Document: AINAV-L1. Writes SoR: false. Named humans: false. Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett stays invited, not recorded.
+Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called. Wedge: `bc.general_journal.post`. Document: AINAV-L1. Writes SoR: false. Named humans: false. Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett mailbox recorded. Lab oids are not her click.
 
 ## Exception paths
 
@@ -195,7 +195,7 @@ Entra object id on every request. Conditional Access may identify. Identify is n
 ## Revocation
 
 - **Freeze** — Owner / board request. Effect: fail_closed. New grants stop. Catalog plane stays OPEN until a real freeze.
-- **Seat revoke** — Owner on a named Entra object id. Effect: admit_held. No named pair is recorded. Cynthia stays invited, not recorded.
+- **Seat revoke** — Owner on a named Entra object id. Effect: admit_held. No named Entra pair is recorded. Cynthia mailbox recorded. Oid and click still open.
 - **Grant expire** — The consume ledger. Effect: grant_not_issued. Timeout or consume. No silent success.
 - **SKU detach** — Owner after counsel. Effect: classes_ungated. Detaching U-DUAL does not detach L1. Not a live pin.
 - **View revoke** — IT / identity. Effect: console_hidden. Hiding a console is not dual admit.
@@ -350,7 +350,7 @@ Record keeping is two records and a keep. First record is the admitted SoR write
 | Board | oversee | False | request | view | Fiduciary oversight. Board keep after P-ADM. Do not invent a director. |
 | Internal audit / examiner | keep | False | False | second_record | Second record and seating map. Not a named auditor. Not a filing. |
 | Treasury — seat A | admit | True | refuse | view | treasury_approver. Own Entra object id. Own click. |
-| Controller — seat B | admit | True | refuse | view | treasury_controller. Cynthia Hodnett if she agrees. Invited, not recorded. |
+| Controller — seat B | admit | True | refuse | view | treasury_controller. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. |
 | Payables / sales | draft | False | False | False | May draft. Same two humans admit. Department AI is not a seat. |
 | IT / identity | host | False | False | False | Hosts Copilot, Agent 365, BYO MCP. Not a seat. |
 | Legal | counsel | False | False | False | Not replaced. G12 stays open. |
@@ -396,7 +396,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 | Named customers | 0 | Do not invent a buyer. |
 | Signed L1 | 0 | Counsel pack G13 stays open. |
 | Year-one if all three | $88,000–$135,000 | Catalog list. Not a forecast. |
-| Seats recorded | 0 recorded / 1 invited | Cynthia Hodnett invited, not recorded. Email none. |
+| Seats recorded | 1 mailbox / 0 oid | Cynthia Hodnett chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. |
 | AI compliance maps | 11 instruments / claimed=false | NIST, SOX, EU AI Act, ISO 42001. Not certified. |
 | Standing grants | 0 | Zero-standing. Identify is not admit. Single-use consume. |
 | Provisioned SKUs | 0 / 0 / 0 | L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK. |

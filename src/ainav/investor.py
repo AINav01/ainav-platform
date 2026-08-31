@@ -88,8 +88,9 @@ def public_investor() -> dict[str, Any]:
         "executive_summary": dict(body.get("executive_summary") or {}),
         "signoff": body.get("signoff"),
         "invited": invited["name"],
-        "recorded": False,
-        "email": None,
+        "recorded": bool(invited.get("recorded")),
+        "agreed": bool(invited.get("agreed")),
+        "email": invited.get("email"),
         "one_liner": body["one_liner"],
         "equation": cat["equations"].get("investor"),
         "commercial": cat["equations"]["commercial"],
@@ -526,7 +527,7 @@ footer {{ border-top: 0.7pt solid #b9b1a4; margin-top: 14pt; padding-top: 7pt; f
 <h2>This packet refuses</h2>
 <ul>{refuse}</ul>
 <p class="sign">{html.escape(body.get('letter_close') or body.get('signoff') or body['owner'])}</p>
-<p class="status">{html.escape(body.get('note') or '')} Invited: {html.escape(body['invited'])}. Recorded: no. Email: none stored. Equity: no.</p>
+<p class="status">{html.escape(body.get('note') or '')} Invited: {html.escape(body['invited'])}. Mailbox recorded: {html.escape(body.get('email') or '')}. Entra oid open. Click open. Equity: no.</p>
 <footer>{html.escape(body['legal'])}  ·  Job C  ·  {html.escape(body['institute'])}  ·  Investor packet  ·  Do not treat as a raise, equity grant, signed L1, or LIVE_PIN_OK.</footer>
 </body>
 </html>

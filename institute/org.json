@@ -13,12 +13,15 @@
     "business_executive": null,
     "developer": null,
     "invited": {
-      "email": null,
+      "agreed": true,
+      "email": "chodnett@ainav.institute",
+      "entra_oid": null,
       "equity": false,
       "inception_role": "business_executive",
       "name": "Cynthia Hodnett",
-      "note": "Invited by the sole owner. Not an officer. Not recorded until a business email is confirmed. Not a stockholder. The Cloud Agent is not a seat.",
-      "recorded": false,
+      "note": "Owner recorded chodnett@ainav.institute after she agreed to be seat B. Mailbox is not an Entra object id. Mailbox is not a click. Not an officer. Not a stockholder. The Cloud Agent is not a seat.",
+      "recorded": true,
+      "seat_clicked": false,
       "seat_role": "treasury_controller",
       "second_unique_human": false
     },
@@ -201,7 +204,7 @@
   "entity": "AINav, Inc.",
   "full_service": true,
   "human_gates": [
-    "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
+    "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
     "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
     "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
     "On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.",

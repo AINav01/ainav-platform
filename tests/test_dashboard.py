@@ -24,7 +24,11 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert body["certified"] is False
     assert body["real_time_claimed"] is False
     assert body["forecast"] is False
-    assert body["recorded"] is False
+    assert body["recorded"] is True
+    assert body["agreed"] is True
+    assert body["email"] == "chodnett@ainav.institute"
+    assert body["entra_oid"] is None
+    assert body["seat_clicked"] is False
     assert body["invited"] == "Cynthia Hodnett"
     assert {item["id"] for item in body["levels"]} >= {
         "owner",

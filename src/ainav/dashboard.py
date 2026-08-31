@@ -327,7 +327,12 @@ def public_dashboard() -> dict[str, Any]:
         _tile("named_customers", "Named customers", str(fin["named_customers"]), "Do not invent a buyer."),
         _tile("signed_l1", "Signed L1", str(fin["signed_l1"]), "Counsel pack G13 stays open."),
         _tile("year_one_if_all_three", "Year-one if all three", f"${all_three['min']:,}–${all_three['max']:,}", "Catalog list. Not a forecast."),
-        _tile("seats_recorded", "Seats recorded", "0 recorded / 1 invited", f"{invited['name']} invited, not recorded. Email none."),
+        _tile(
+            "seats_recorded",
+            "Seats recorded",
+            "1 mailbox / 0 oid",
+            f"{invited['name']} {invited.get('email')} recorded. Mailbox is not an Entra oid and not a click.",
+        ),
         _tile("compliance_maps", "AI compliance maps", f"{len(maps)} instruments / claimed=false", "NIST, SOX, EU AI Act, ISO 42001. Not certified."),
         _tile("standing_grants", "Standing grants", "0", "Zero-standing. Identify is not admit. Single-use consume."),
         _tile("provisioned_skus", "Provisioned SKUs", "0 / 0 / 0", "L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK."),
@@ -381,7 +386,11 @@ def public_dashboard() -> dict[str, Any]:
         "departments": [dict(item) for item in org["departments"]],
         "seats": dict(org["seats"]),
         "invited": invited["name"],
-        "recorded": False,
+        "recorded": bool(invited.get("recorded")),
+        "agreed": bool(invited.get("agreed")),
+        "email": invited.get("email"),
+        "entra_oid": invited.get("entra_oid"),
+        "seat_clicked": bool(invited.get("seat_clicked")),
         "refuse": list(body.get("refuse") or []),
         "note": body.get("note"),
     }
@@ -1242,7 +1251,7 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <h2>Refuse</h2>
 <ul>{refuse}</ul>
 </div>
-<footer>{html.escape(body['legal'])}  ·  {html.escape(body['institute'])}  ·  Invited: {html.escape(body['invited'])} recorded: no  ·  Do not treat as signed L1, a certificate, or LIVE_PIN_OK.</footer>
+<footer>{html.escape(body['legal'])}  ·  {html.escape(body['institute'])}  ·  Invited: {html.escape(body['invited'])} mailbox recorded · oid open  ·  Do not treat as signed L1, a certificate, or LIVE_PIN_OK.</footer>
 </body>
 </html>
 """

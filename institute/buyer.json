@@ -57,7 +57,7 @@
       {
         "id": "invite.seat_b",
         "name": "Microsoft 365 admin \u2192 Users",
-        "note": "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
+        "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
         "url": "https://admin.microsoft.com/Adminportal/Home#/users",
         "url_label": "Microsoft 365 admin \u2192 Users"
       },

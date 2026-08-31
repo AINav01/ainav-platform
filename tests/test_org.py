@@ -102,6 +102,21 @@ def test_organization_refuses_live_contacts_and_unknown_systems():
     with pytest.raises(IntegrityError) as exc5:
         validate_catalog(named)
     assert exc5.value.reason_code == "ORG_SECOND_OFFICER"
+    gmail = copy.deepcopy(cat)
+    gmail["organization"]["contacts"]["invited"]["email"] = "cynthia@gmail.com"
+    with pytest.raises(IntegrityError) as exc_gmail:
+        validate_catalog(gmail)
+    assert exc_gmail.value.reason_code == "ORG_SECOND_OFFICER"
+    oid = copy.deepcopy(cat)
+    oid["organization"]["contacts"]["invited"]["entra_oid"] = "00000000-0000-0000-0000-000000000001"
+    with pytest.raises(IntegrityError) as exc_oid:
+        validate_catalog(oid)
+    assert exc_oid.value.reason_code == "ORG_SECOND_OFFICER"
+    clicked = copy.deepcopy(cat)
+    clicked["organization"]["contacts"]["invited"]["seat_clicked"] = True
+    with pytest.raises(IntegrityError) as exc_click:
+        validate_catalog(clicked)
+    assert exc_click.value.reason_code == "ORG_SECOND_OFFICER"
     trimmed = copy.deepcopy(cat)
     trimmed["organization"]["departments"] = trimmed["organization"]["departments"][:1]
     with pytest.raises(IntegrityError) as exc6:

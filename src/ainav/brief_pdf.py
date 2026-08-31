@@ -32,6 +32,9 @@ def _ctx() -> dict[str, str]:
         "owner": cat["operating"]["owner_principal"],
         "operator": cat["operating"]["operator"],
         "invited": invited["name"],
+        "agreed": "yes" if invited.get("agreed") else "no",
+        "recorded": "yes" if invited.get("recorded") else "no",
+        "email": invited.get("email") or "none stored",
         "seat_role": invited["seat_role"],
         "inception_role": invited["inception_role"],
         "commercial": cat["equations"]["commercial"],
@@ -62,7 +65,7 @@ def brief_document() -> list[dict[str, Any]]:
             "text": (
                 f"Confidential  ·  For {c['invited']}  ·  From {c['owner']}, sole owner of {c['legal']}  ·  "
                 f"Release {c['release']}  ·  Not a contract  ·  Not signed L1  ·  Not {c['lab_pin']}  ·  "
-                "Invited, not recorded"
+                "Mailbox recorded · Entra oid open · click open"
             ),
         },
         {
@@ -118,9 +121,10 @@ def brief_document() -> list[dict[str, Any]]:
                 f"treasury_approver is {c['seat_role']} — the controller who will not let a journal "
                 "land because it was convenient. NVIDIA Inception also requires two unique contacts "
                 f"with business emails: a developer (James) and a {c['inception_role'].replace('_', ' ')} "
-                "(you, if you agree). Aliases and Gmail are refused. Sole owner does not collapse "
-                "those two contacts. You are not recorded as an officer. You are not a stockholder. "
-                "No email is stored until you agree and James says record it."
+                "(you). Aliases and Gmail are refused. Sole owner does not collapse "
+                "those two contacts. You agreed. Mailbox chodnett@ainav.institute is recorded. "
+                "You are not recorded as an officer. You are not a stockholder. "
+                "An Entra object id and a seat B click are still open."
             ),
         },
         {
@@ -336,8 +340,8 @@ def brief_document() -> list[dict[str, Any]]:
                     "Signed L1; P-ADM attached; Business Central Production; live Sales / Dataverse; ainav.institute launched",
                 ],
                 [
-                    "You are invited by name as seat B / business executive",
-                    "You as a recorded officer, stockholder, or second unique human in the catalog",
+                    "You agreed. Mailbox chodnett@ainav.institute recorded as seat B / business executive",
+                    "You as a recorded officer, stockholder, Entra oid, or seat B click in the catalog",
                 ],
                 [
                     "Commercial equation written: named dual seats × proof day × signed L1 × P-ADM attach",
@@ -663,11 +667,11 @@ def brief_document() -> list[dict[str, Any]]:
         },
         {
             "kind": "ul",
-            "title": "Five steps, in order. Stop after step 1 until Cynthia has decided.",
+            "title": "Five steps, in order. Mailbox recorded. Stop until she has an Entra oid and clicks seat B.",
             "items": [
-                "Cynthia decides — yes, no, or not yet.",
-                "If yes, James creates her @ainav.institute mailbox. She signs in once. He does not click seat B.",
-                "He sends this agent her business email and says record it. Until those words, no email is stored.",
+                "Cynthia agreed. Mailbox chodnett@ainav.institute is recorded. That is not an Entra oid and not a click.",
+                "James creates or confirms her Entra user. She signs in once. He does not invent an object id in this tree. He does not click seat B.",
+                "She clicks seat B with her own object id. Until that click, dual admit stays open.",
                 "Proof day uses two named humans on the Business Central twin. Still not Production.",
                 "Equity, officer titles, and Delaware filings stay with counsel. They are not required for this role.",
             ],
@@ -675,7 +679,8 @@ def brief_document() -> list[dict[str, Any]]:
         {
             "kind": "status",
             "text": (
-                f"Invited: {c['invited']}  ·  Recorded: no  ·  Email: none stored  ·  Equity: no  ·  "
+                f"Invited: {c['invited']}  ·  Agreed: {c['agreed']}  ·  Mailbox recorded: {c['email']}  ·  "
+                "Entra oid: none  ·  Click: no  ·  Equity: no  ·  "
                 f"Second officer: none  ·  Operator: {c['operator']} (not a seat)  ·  "
                 f"Commercial close: {c['commercial']}  ·  Recognized revenue: 0"
             ),
@@ -888,7 +893,7 @@ def brief_html() -> str:
             blocks.append("</tbody></table>")
     blocks += [
         "<footer>",
-        f"{html.escape(c['legal'])}  ·  Job C admit plane  ·  Invited, not recorded  ·  "
+        f"{html.escape(c['legal'])}  ·  Job C admit plane  ·  Mailbox recorded · oid open  ·  "
         "Do not treat these pages as a signed L1, an equity grant, or LIVE_PIN_OK.",
         "</footer>",
         "</body>",

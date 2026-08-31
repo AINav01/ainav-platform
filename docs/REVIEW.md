@@ -10,7 +10,7 @@ AINav, Inc. has a running Job C admit plane, a Microsoft sandbox twin, and an Az
 **Commercial close:** named dual seats × proof day × signed L1 × P-ADM attach
 **Lab pin:** LIVE_PIN_OK — never marked from sales.
 **Owner:** James Hodnett (handle DayTradingMarkets). **Operator:** cursor.cloud_agent (not a seat, not dual admit).
-**Second officer:** none. **Invited:** Cynthia Hodnett (not recorded, no email stored). **Named customers:** none. **Recognized revenue:** none.
+**Second officer:** none. **Invited:** Cynthia Hodnett (mailbox chodnett@ainav.institute recorded; Entra oid and click still open). **Named customers:** none. **Recognized revenue:** none.
 **Launch ready:** false. **Custom domain claimed:** false.
 
 ## Success equation scorecard
@@ -30,7 +30,7 @@ One company. Three SKUs. Ten departments. Six Microsoft connections. Eight compl
 
 Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → Teams notifies. Complements hold secrets, evidence, policy, and audit.
 
-- **Owner / operator** — `sole_owner`. Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.
+- **Owner / operator** — `sole_owner`. Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open.
 - **Job C admit plane** — `running_code`. AINav Control Plane. Two distinct humans bind one action_hash. Then the write. Cloud Agent is not seat_a or seat_b.
 - **L1 / Business Central** — `sandbox_journal`. Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids — not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.
 - **P-ADM attach** — `unattached`. Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.
@@ -241,8 +241,8 @@ This Cloud Agent cannot approve tools.
 - Workflow: `.github/workflows/gold.yml`. Command: `make gold`. Coverage floor: 90.
 - exists=true. observed_green=true. marks_live_pin=false. launch=false. sku=false.
 - Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.
-- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Owner-click runbooks with Microsoft admin links.
-- This Cloud Agent cannot close: Second unique human (Cynthia recorded) and signed L1 seats; ainav.institute custom domain and launch; Graph Read on the same Entra app; US Dataverse for Sales; G12 legal / G13 signed L1; Recognized revenue; Multi-host product HA; LIVE_PIN_OK.
+- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Owner-click runbooks with Microsoft admin links.
+- This Cloud Agent cannot close: Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats); ainav.institute custom domain and launch; Graph Read on the same Entra app; US Dataverse for Sales; G12 legal / G13 signed L1; Recognized revenue; Multi-host product HA; LIVE_PIN_OK.
 - This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.
 
 ## Operating organization
@@ -279,7 +279,7 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 
 ## Human gates (owner only)
 
-- Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.
+- Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
 - Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.
 - Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.
 - On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.
@@ -318,7 +318,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Microsoft fabric path is correct: Azure hosts, Entra identifies, AINav admits, BC/Sales receive, Teams notifies.
 - E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare nameservers. DNS is full. Cloudflare is DNS/edge, not a SKU, not a ninth complement, not a hop on the privileged write.
 - Business Central Sandbox journal AINAV-L1 exists. Production stays blocked.
-- Cynthia Hodnett is invited by name and not recorded. The Cloud Agent is not a seat.
+- Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. The Cloud Agent is not a seat.
 - Proof day is an executable ninety-minute runbook. Buyer brief does not invent an inbox.
 - A la carte desks are pack-gated. Extra Business Central and Sales writes stay off the wedge until attach.
 - AINav is encoded as a separate failsafe from client AI. Maps name NIST, SOX, EU AI Act, and ISO 42001 without claiming certification.
@@ -334,7 +334,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 ## Expert review — could be improved
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
-- One human cannot close dual admit, Inception contacts, or signed L1. Without seat B, AINav cannot out-demo Copilot Studio Request for information in a room.
+- Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.
 - The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
 - Control-plane language now collides with in-harness agent governors and agent-tool allow-lists. Job C is a SoR write-gate, not agent inventory and not in-process policy.
 - Institute first screen is still doctrine-heavy. The competitive contrast sits below the incident. A controller should see substitute vs Job C in one glance.
@@ -348,7 +348,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 
 ## Fifteen upgrades
 
-- **1. [owner] Named dual seats** — Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both. Without this, Copilot Studio RFI wins every bake-off.
+- **1. [owner] Named dual seats** — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - **2. [owner] Proof day on named humans** — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
 - **3. [owner] Graph read on the same app** — Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
 - **4. [owner] US Dataverse** — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
@@ -366,7 +366,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 
 ## Owner — James must click
 
-- Second unique human (Inception contacts and signed L1 seats)
+- Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)
 - ainav.institute custom domain and incorporation date
 - Power Platform / Dataverse environment for Sales
 - Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM

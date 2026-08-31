@@ -20,7 +20,7 @@ def owner_steps_markdown() -> str:
         f"Release {cat['entity']['release']}. Catalog-honest. Not LIVE_PIN_OK. Not a launch.",
         f"Owner: {cat['operating']['owner_principal']}. Operator: {cat['operating']['operator']} (not a seat).",
         f"Invited second human: {invited['name']} ({invited['seat_role']} / {invited['inception_role']}). "
-        "Not recorded. Email not stored.",
+        f"Mailbox recorded: {invited.get('email')}. Mailbox is not an Entra oid and not a click.",
         "",
         "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.",
         "",
@@ -43,8 +43,11 @@ def public_owner_steps() -> dict[str, Any]:
         "operator_is_seat": False,
         "invited": {
             "name": invited["name"],
-            "recorded": False,
-            "email": None,
+            "recorded": bool(invited.get("recorded")),
+            "agreed": bool(invited.get("agreed")),
+            "email": invited.get("email"),
+            "entra_oid": invited.get("entra_oid"),
+            "seat_clicked": bool(invited.get("seat_clicked")),
             "seat_role": invited["seat_role"],
             "inception_role": invited["inception_role"],
             "equity": False,

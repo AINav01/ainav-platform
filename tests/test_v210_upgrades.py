@@ -15,9 +15,9 @@ from ainav.proof_day import run_proof_day
 from ainav.runbooks import all_runbooks
 
 
-def test_owner_is_james_and_cynthia_is_invited_not_recorded():
+def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.48.0"
+    assert cat["entity"]["release"] == "2.49.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -121,7 +121,8 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
         "ask",
     ]
     assert "seat b" in cat["investor"]["letter_body"].lower()
-    assert "not recorded" in cat["investor"]["letter_body"].lower()
+    assert "mailbox is now recorded" in cat["investor"]["letter_body"].lower()
+    assert "chodnett@ainav.institute" in cat["investor"]["letter_body"].lower()
     assert "i will not ask" in cat["investor"]["letter_body"].lower()
     assert "i trust" in cat["investor"]["letter_body"].lower()
     assert "delaware" not in cat["investor"]["letter_body"].lower()
@@ -144,8 +145,12 @@ def test_owner_is_james_and_cynthia_is_invited_not_recorded():
     assert cat["operating"]["owner_principal"] == "James Hodnett"
     invited = cat["organization"]["contacts"]["invited"]
     assert invited["name"] == "Cynthia Hodnett"
-    assert invited["recorded"] is False
-    assert invited["email"] is None
+    assert invited["agreed"] is True
+    assert invited["recorded"] is True
+    assert invited["email"] == "chodnett@ainav.institute"
+    assert invited["entra_oid"] is None
+    assert invited["seat_clicked"] is False
+    assert invited["second_unique_human"] is False
     assert invited["equity"] is False
     assert cat["organization"]["second_officer"] is None
     assert cat["organization"]["contacts"]["second_unique_human"] is False
@@ -201,7 +206,11 @@ def test_owner_steps_have_links():
     assert "Cynthia Hodnett" in md
     assert "James Hodnett" in md
     pub = public_owner_steps()
-    assert pub["invited"]["email"] is None
+    assert pub["invited"]["email"] == "chodnett@ainav.institute"
+    assert pub["invited"]["recorded"] is True
+    assert pub["invited"]["agreed"] is True
+    assert pub["invited"]["entra_oid"] is None
+    assert pub["invited"]["seat_clicked"] is False
     assert pub["live_pin_ok"] is False
 
 
@@ -227,7 +236,8 @@ def test_printable_brief_is_a_pdf():
     assert "dear cynthia" in md.lower()
     assert "i am writing" in md.lower()
     assert "item" in md.lower() and "what it is" in md.lower()
-    assert "invited, not recorded" in md.lower()
+    assert "chodnett@ainav.institute" in md.lower()
+    assert "mailbox recorded" in md.lower()
     assert md.lower().index("why a client must have this") < md.lower().index("investor packet")
     assert md.lower().index("already have") < md.lower().index("investor packet")
     assert "owner, board, examiner" in md.lower()
@@ -248,7 +258,7 @@ def test_printable_brief_is_a_pdf():
     assert "Financial model" in md or "catalog list" in md.lower()
     assert "Fifteen" in md or "15" in md
     assert "Named dual seats" in md
-    assert "not recorded" in md.lower()
+    assert "not recorded as an officer" in md.lower()
     assert "Investor executive summary" in md or "Investor packet" in md
     assert "priced round" in md.lower()
     assert "industry.payables" in md or "Upsell catalog" in md
@@ -300,10 +310,38 @@ def test_cli_owner_and_counsel(capsys):
     assert "named_humans" in capsys.readouterr().out
 
 
-def test_cannot_record_invited_human(monkeypatch):
+def test_recorded_mailbox_refuses_oid_click_and_wrong_inbox():
     import copy
 
-    cat = copy.deepcopy(load_catalog())
-    cat["organization"]["contacts"]["invited"]["recorded"] = True
-    with pytest.raises(IntegrityError):
-        validate_catalog(cat)
+    cat = load_catalog()
+    oid = copy.deepcopy(cat)
+    oid["organization"]["contacts"]["invited"]["entra_oid"] = "invented-oid"
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(oid)
+    assert exc.value.reason_code == "ORG_SECOND_OFFICER"
+    clicked = copy.deepcopy(cat)
+    clicked["organization"]["contacts"]["invited"]["seat_clicked"] = True
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(clicked)
+    assert exc2.value.reason_code == "ORG_SECOND_OFFICER"
+    gmail = copy.deepcopy(cat)
+    gmail["organization"]["contacts"]["invited"]["email"] = "chodnett@gmail.com"
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(gmail)
+    assert exc3.value.reason_code == "ORG_SECOND_OFFICER"
+    alias = copy.deepcopy(cat)
+    alias["organization"]["contacts"]["invited"]["email"] = "james@ainav.institute"
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(alias)
+    assert exc4.value.reason_code == "ORG_SECOND_OFFICER"
+    human = copy.deepcopy(cat)
+    human["organization"]["contacts"]["invited"]["second_unique_human"] = True
+    with pytest.raises(IntegrityError) as exc5:
+        validate_catalog(human)
+    assert exc5.value.reason_code == "ORG_SECOND_OFFICER"
+    agreed_only = copy.deepcopy(cat)
+    agreed_only["organization"]["contacts"]["invited"]["recorded"] = False
+    agreed_only["organization"]["contacts"]["invited"]["email"] = None
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(agreed_only)
+    assert exc6.value.reason_code == "ORG_SECOND_OFFICER"

@@ -73,14 +73,35 @@ def validate_organization(catalog: dict[str, Any]) -> None:
     if contacts.get("developer") or contacts.get("business_executive"):
         raise IntegrityError("do not invent Inception contacts", reason_code="ORG_SECOND_OFFICER")
     invited = contacts.get("invited") or {}
-    if invited.get("recorded") is True or invited.get("second_unique_human") is True:
-        raise IntegrityError("invited human is not recorded", reason_code="ORG_SECOND_OFFICER")
-    if invited.get("email"):
-        raise IntegrityError("do not invent an invited email", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("second_unique_human") is True:
+        raise IntegrityError("mailbox is not the second unique human", reason_code="ORG_SECOND_OFFICER")
     if invited.get("equity") is True:
         raise IntegrityError("invited human is not a stockholder", reason_code="ORG_SECOND_OFFICER")
-    if not str(invited.get("name") or "").strip():
+    if invited.get("seat_clicked") is True:
+        raise IntegrityError("do not invent a seat B click", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("entra_oid"):
+        raise IntegrityError("do not invent an Entra object id", reason_code="ORG_SECOND_OFFICER")
+    name = str(invited.get("name") or "").strip()
+    if not name:
         raise IntegrityError("invited human name is required while invite is open", reason_code="CATALOG_ORG")
+    email = str(invited.get("email") or "").strip().lower()
+    if invited.get("recorded") is True:
+        if invited.get("agreed") is not True:
+            raise IntegrityError("recorded invite must be the owner-confirmed agreement", reason_code="ORG_SECOND_OFFICER")
+        if name != "Cynthia Hodnett":
+            raise IntegrityError("recorded invite name is Cynthia Hodnett", reason_code="ORG_SECOND_OFFICER")
+        if email != "chodnett@ainav.institute":
+            raise IntegrityError(
+                "recorded invite must be the owner-sent institute mailbox",
+                reason_code="ORG_SECOND_OFFICER",
+            )
+        if "gmail" in email or email.split("@")[0] in {"james", "jhodnett", "daytradingmarkets"}:
+            raise IntegrityError("recorded invite cannot be an alias or Gmail", reason_code="ORG_SECOND_OFFICER")
+    else:
+        if email:
+            raise IntegrityError("do not invent an invited email", reason_code="ORG_SECOND_OFFICER")
+        if invited.get("agreed") is True:
+            raise IntegrityError("agreed invite must record the owner-sent mailbox", reason_code="ORG_SECOND_OFFICER")
     departments = body.get("departments") or []
     ids = [item.get("id") for item in departments]
     if ids != list(REQUIRED_DEPT_IDS):

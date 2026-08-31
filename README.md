@@ -111,7 +111,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.48.0 (this tree)
+### 2.49.0 (this tree)
+
+Cynthia Hodnett agreed. Mailbox `chodnett@ainav.institute`
+is recorded. Mailbox is not an Entra oid and not a click.
+Not an officer. Not a stockholder. A green check is not
+`LIVE_PIN_OK`. Owner gates stay owner gates.
+
+### 2.48.0
 
 Competitive field is catalog law. Institute not-the-gate
 names BC Workflow User Groups and in-harness governors

@@ -1,12 +1,12 @@
 # AINav, Inc. — owner steps
 
-Release 2.48.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.49.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Owner: James Hodnett. Operator: cursor.cloud_agent (not a seat).
-Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Not recorded. Email not stored.
+Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Mailbox is not an Entra oid and not a click.
 
 This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
 
-1. Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.
+1. Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
    [Microsoft 365 admin → Users](https://admin.microsoft.com/Adminportal/Home#/users)
 
 2. Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.

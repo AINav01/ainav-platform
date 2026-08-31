@@ -1,11 +1,14 @@
 {
   "entity": "AINav, Inc.",
   "invited": {
-    "email": null,
+    "agreed": true,
+    "email": "chodnett@ainav.institute",
+    "entra_oid": null,
     "equity": false,
     "inception_role": "business_executive",
     "name": "Cynthia Hodnett",
-    "recorded": false,
+    "recorded": true,
+    "seat_clicked": false,
     "seat_role": "treasury_controller"
   },
   "kind": "ainav.owner_steps.v1",
@@ -14,11 +17,11 @@
   "live_pin_ok": false,
   "operator_is_seat": false,
   "owner": "James Hodnett",
-  "release": "2.48.0",
+  "release": "2.49.0",
   "signed_l1": false,
   "steps": [
     {
-      "do": "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
+      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
       "id": "invite.seat_b",
       "url": "https://admin.microsoft.com/Adminportal/Home#/users",
       "url_label": "Microsoft 365 admin \u2192 Users"

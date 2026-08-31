@@ -214,7 +214,10 @@ def public_status() -> dict[str, Any]:
         "lab_pin": cat["equations"]["lab_pin"],
         "invited_second_human": {
             "name": cat["organization"]["contacts"]["invited"]["name"],
-            "recorded": False,
-            "email": None,
+            "recorded": bool(cat["organization"]["contacts"]["invited"].get("recorded")),
+            "agreed": bool(cat["organization"]["contacts"]["invited"].get("agreed")),
+            "email": cat["organization"]["contacts"]["invited"].get("email"),
+            "entra_oid": cat["organization"]["contacts"]["invited"].get("entra_oid"),
+            "seat_clicked": bool(cat["organization"]["contacts"]["invited"].get("seat_clicked")),
         },
     }

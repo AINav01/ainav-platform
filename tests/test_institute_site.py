@@ -171,7 +171,9 @@ def test_institute_foundation_is_catalog_honest():
     assert 'href="#twin"' in html
     assert 'href="#open"' in html
     assert "James Hodnett" in html
-    assert "Cynthia Hodnett is invited" in html
+    assert "Cynthia Hodnett agreed" in html
+    assert "chodnett@ainav.institute" in html
+    assert "href=\"mailto:" not in html
     assert 'id="complement-cards"' in html
     assert 'id="twin-notify"' in html
     assert 'id="twin-kit"' in html

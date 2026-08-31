@@ -518,7 +518,7 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
     if str(body.get("letter_voice") or "") != "first_person":
         raise IntegrityError("investor letter voice is first person", reason_code="CATALOG_INVESTOR")
     letter_body = str(body.get("letter_body") or "").lower()
-    for stem in ("seat b", "invited", "not recorded", "not stock", "not a priced round"):
+    for stem in ("seat b", "mailbox recorded", "not stock", "not a priced round", "chodnett@ainav.institute"):
         if stem not in letter_body:
             raise IntegrityError(f"investor letter body must keep {stem}", reason_code="CATALOG_INVESTOR")
     if "$0" not in str(body.get("letter_body") or "") and "recognized revenue is $0" not in letter_body:
@@ -566,8 +566,8 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
     if "two distinct humans" not in str(summary.get("job_c") or "").lower():
         raise IntegrityError("executive summary Job C is two distinct humans", reason_code="CATALOG_INVESTOR")
     tiles = str(summary.get("tiles") or "").lower()
-    if "$0" not in str(summary.get("tiles") or "") or "invited" not in tiles:
-        raise IntegrityError("executive summary tiles stay $0 and invited", reason_code="CATALOG_INVESTOR")
+    if "$0" not in str(summary.get("tiles") or "") or "mailbox recorded" not in tiles:
+        raise IntegrityError("executive summary tiles stay $0 and mailbox recorded", reason_code="CATALOG_INVESTOR")
     if "not the product" not in str(summary.get("microsoft") or "").lower():
         raise IntegrityError("executive summary Microsoft is not the product", reason_code="CATALOG_INVESTOR")
     must = str(summary.get("must_have") or "").lower()
@@ -576,8 +576,8 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
     if "live_pin_ok cannot be marked" not in str(summary.get("opens") or "").lower():
         raise IntegrityError("executive summary opens cannot mark LIVE_PIN_OK", reason_code="CATALOG_INVESTOR")
     ask = str(summary.get("ask") or "").lower()
-    if "seat b" not in ask or "not recorded" not in ask:
-        raise IntegrityError("executive summary ask is seat B, invited not recorded", reason_code="CATALOG_INVESTOR")
+    if "seat b" not in ask or "mailbox" not in ask or "click" not in ask:
+        raise IntegrityError("executive summary ask is seat B mailbox recorded, click still open", reason_code="CATALOG_INVESTOR")
     wanted = [
         ("job_c", "Job C", summary.get("job_c")),
         ("proof", "Proof day", summary.get("proof")),

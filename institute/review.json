@@ -68,7 +68,7 @@
   },
   "engineering": {
     "cannot_close": [
-      "Second unique human (Cynthia recorded) and signed L1 seats",
+      "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
       "Graph Read on the same Entra app",
       "US Dataverse for Sales",
@@ -86,6 +86,7 @@
       "Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close",
       "Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered",
       "Institute, review, and brief generated from the catalog",
+      "Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click",
       "Owner-click runbooks with Microsoft admin links"
     ],
     "complement": false,
@@ -123,7 +124,7 @@
     {
       "id": "owner",
       "label": "Owner / operator",
-      "note": "Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none.",
+      "note": "Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open.",
       "status": "sole_owner"
     },
     {

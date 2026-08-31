@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.48.0.
+30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.49.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -14,21 +14,21 @@ This is the board packet for the admit plane. Job C needs a second human. The sa
 | Job C | Two distinct humans bind the same action_hash before a privileged SoR write. Fail-closed. Consume-once. The Cloud Agent is not a seat. |
 | Proof day | Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out. |
 | Three SKUs | L1 $28,000–$40,000 in two to four weeks. P-ADM $40,000–$60,000 / year after kit PASS. U-DUAL $20,000–$35,000 / year, never free. Year-one if all three: $88,000–$135,000 list, not booked. Packs are not SKUs. |
-| Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 0 recorded / 1 invited. |
+| Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 1 mailbox recorded / 0 oid. Cynthia agreed as seat B. Entra oid and click still open. |
 | Microsoft | Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. |
 | Must-have | Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent. |
 | Owner-only still open | Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
-| The ask | Cynthia Hodnett as seat B. Own mailbox. Own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. Invited, not recorded. |
+| The ask | Cynthia Hodnett as seat B. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. |
 
 ## A letter to Cynthia Hodnett
 
-Dear Cynthia — I am writing to ask you to be the second human on the admit plane. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans.
+Dear Cynthia — I am writing to record that you agreed to be the second human on the admit plane. James recorded chodnett@ainav.institute. I can write the gate that will not let a privileged money-movement write land unless two distinct humans admit the exact same action. I cannot be both humans. A mailbox is not your click.
 
-I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. Seat B is the second unique human. It is not stock, not a priced round, and not a customer seat.
+I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. You agreed. Seat B is the second unique human. Mailbox recorded: chodnett@ainav.institute. That mailbox is not an Entra object id and not your click. It is not stock, not a priced round, and not a customer seat.
 
-You are invited, not recorded. I will not invent an inbox or an object id for you. Your no, or not yet, is a complete answer.
+You were invited. The mailbox is now recorded. I will not invent an object id for you. Your no, or not yet, on the click is still a complete answer.
 
-If you agree, you become seat B on the same Entra tenant. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
+You become seat B on the same Entra tenant when you have your own object id and your own click. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
 
 I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
 
@@ -36,9 +36,9 @@ James Hodnett, sole owner of AINav, Inc.
 
 ## Your decision
 
-Seat B is treasury_controller. If you agree, you get your own business mailbox, your own Entra object id, and your own click. James cannot click for you. Refusing a write is the product working. You are invited, not recorded. Email stays blank until you confirm a business address. You are not a stockholder and not an officer.
+Seat B is treasury_controller. Mailbox recorded: chodnett@ainav.institute. Entra object id is not recorded. Seat B click is not recorded. James cannot click for you. Refusing a write is the product working. You are not a stockholder and not an officer.
 
-Seat A is treasury_approver (James). Seat B is treasury_controller (you, if you agree). Each has a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat.
+Seat A is treasury_approver (James). Seat B is treasury_controller (you). Each needs a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat. A mailbox is not the click.
 
 ## What we will not ask
 
@@ -258,7 +258,7 @@ The admit plane is in code. Gold is above 90 percent. There is a real Business C
 
 ## The ask
 
-Cynthia, we are asking you to be seat B and the Inception business executive: your own mailbox, your own Entra object id, your own click. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
+Cynthia, you agreed to be seat B and the Inception business executive. Mailbox chodnett@ainav.institute is recorded. Your own Entra object id and your own click are still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.
 
 I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.
 
@@ -284,6 +284,6 @@ I will not ask you for stock, Global Admin, a priced round, a valuation, or to m
 - uncopyable
 - patent granted
 
-Letter packet for the invited second human. Full upsell catalog and list prices. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.
+Letter packet for the agreed second human. Mailbox recorded. Full upsell catalog and list prices. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.
 
 James Hodnett, sole owner of AINav, Inc.

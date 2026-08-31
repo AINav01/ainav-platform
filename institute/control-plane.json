@@ -9,6 +9,7 @@
     "teams_is_not_a_seat": true,
     "vpn_sku": false
   },
+  "agreed": true,
   "attention": [
     {
       "id": "must_have",
@@ -197,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.48.0"
+    "release": "2.49.0"
   },
   "communications": [
     {
@@ -704,6 +705,8 @@
       "role": "not_a_seat"
     }
   ],
+  "email": "chodnett@ainav.institute",
+  "entra_oid": null,
   "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands",
   "exceptions": [
     {
@@ -811,7 +814,7 @@
         {
           "id": "invite.seat_b",
           "name": "Microsoft 365 admin \u2192 Users",
-          "note": "Ask Cynthia Hodnett to be the second unique human. If she agrees, create her own @ainav.institute mailbox and Entra user. Do not use an alias or Gmail. Do not record her in this tree until you send the address and say record it.",
+          "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
           "url": "https://admin.microsoft.com/Adminportal/Home#/users",
           "url_label": "Microsoft 365 admin \u2192 Users"
         },
@@ -1082,7 +1085,7 @@
       "id": "seat_b",
       "keep": "view",
       "name": "Controller \u2014 seat B",
-      "note": "treasury_controller. Cynthia Hodnett if she agrees. Invited, not recorded.",
+      "note": "treasury_controller. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open.",
       "role": "admit"
     },
     {
@@ -2129,7 +2132,7 @@
     "u_dual_never_free": true
   },
   "real_time_claimed": false,
-  "recorded": false,
+  "recorded": true,
   "records": [
     {
       "certified": false,
@@ -2215,7 +2218,7 @@
     "label": "Sandbox rehearsal. Not a live bind. Not production. Microsoft is not called.",
     "live": false,
     "named_humans": false,
-    "note": "Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett stays invited, not recorded.",
+    "note": "Walks the write path on the public wedge. Completing it does not create a new SoR write. Cynthia Hodnett mailbox recorded. Lab oids are not her click.",
     "production": false,
     "seat_a": "lab operator identity A",
     "seat_b": "lab operator identity B",
@@ -2223,7 +2226,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.48.0",
+  "release": "2.49.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -2239,7 +2242,7 @@
       "id": "seat_revoke",
       "live": false,
       "name": "Seat revoke",
-      "note": "No named pair is recorded. Cynthia stays invited, not recorded."
+      "note": "No named Entra pair is recorded. Cynthia mailbox recorded. Oid and click still open."
     },
     {
       "by": "The consume ledger",
@@ -2463,6 +2466,7 @@
       ]
     }
   ],
+  "seat_clicked": false,
   "seats": {
     "seat_a": {
       "role": "treasury_approver",
@@ -2556,9 +2560,9 @@
     {
       "id": "seats_recorded",
       "label": "Seats recorded",
-      "note": "Cynthia Hodnett invited, not recorded. Email none.",
+      "note": "Cynthia Hodnett chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click.",
       "tone": "hold",
-      "value": "0 recorded / 1 invited"
+      "value": "1 mailbox / 0 oid"
     },
     {
       "id": "compliance_maps",
@@ -2733,7 +2737,7 @@
       "by": "treasury_controller",
       "id": "seat_b",
       "name": "Seat B",
-      "note": "Cynthia Hodnett invited, not recorded.",
+      "note": "Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open.",
       "state": "0",
       "tone": "hold"
     },

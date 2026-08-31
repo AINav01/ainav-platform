@@ -29,8 +29,9 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert body["equity_offered"] is False
     assert body["not_a_round"] is True
     assert body["invited"] == "Cynthia Hodnett"
-    assert body["recorded"] is False
-    assert body["email"] is None
+    assert body["recorded"] is True
+    assert body["agreed"] is True
+    assert body["email"] == "chodnett@ainav.institute"
     assert body["kpis"]["recognized_revenue"] == 0
     assert body["kpis"]["named_customers"] == 0
     assert body["kpis"]["signed_l1"] == 0
@@ -43,7 +44,8 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert "i am writing" in (body.get("letter_open") or "").lower()
     assert body.get("letter_voice") == "first_person"
     assert "seat b" in (body.get("letter_body") or "").lower()
-    assert "not recorded" in (body.get("letter_body") or "").lower()
+    assert "mailbox is now recorded" in (body.get("letter_body") or "").lower()
+    assert "chodnett@ainav.institute" in (body.get("letter_body") or "").lower()
     assert "sole owner" in (body.get("letter_close") or "").lower()
     summary = body.get("executive_summary") or {}
     assert [item["id"] for item in summary.get("items") or []] == [
@@ -74,7 +76,8 @@ def test_investor_packet_is_honest_and_not_a_round():
     assert md.lower().index("executive summary") < md.lower().index("a letter to cynthia")
     assert "| item | what it is |" in md.lower()
     assert "i am writing" in md.lower()
-    assert "invited, not recorded" in md.lower()
+    assert "mailbox recorded" in md.lower()
+    assert "chodnett@ainav.institute" in md.lower()
     assert "catalog detail" in md.lower()
     assert md.lower().index("a letter to cynthia") < md.lower().index("your decision")
     assert md.lower().index("your decision") < md.lower().index("catalog detail")

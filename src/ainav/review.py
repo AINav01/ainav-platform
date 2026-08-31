@@ -59,7 +59,10 @@ def _fit(cat: dict[str, Any], evidence: dict[str, Any], site: dict[str, Any], op
             "status": "sole_owner",
             "note": (
                 f"Owner {operating['owner_principal']}. Operator {operating['operator']} "
-                "is not a seat and not dual admit. Second officer: none."
+                "is not a seat and not dual admit. Second officer: none. "
+                f"{cat['organization']['contacts']['invited']['name']} agreed. "
+                f"Mailbox {cat['organization']['contacts']['invited'].get('email')} recorded. "
+                "Entra oid and click still open."
             ),
         },
         {
@@ -212,7 +215,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"(handle {cat['operating'].get('owner_handle')}). "
         f"**Operator:** {cat['operating']['operator']} (not a seat, not dual admit).",
         f"**Second officer:** none. **Invited:** {cat['organization']['contacts']['invited']['name']} "
-        "(not recorded, no email stored). "
+        f"(mailbox {cat['organization']['contacts']['invited'].get('email')} recorded; "
+        "Entra oid and click still open). "
         f"**Named customers:** none. **Recognized revenue:** none.",
         f"**Launch ready:** {str(site.get('launch_ready')).lower()}. "
         f"**Custom domain claimed:** {str(site.get('custom_domain_claimed')).lower()}.",
