@@ -121,6 +121,40 @@ def test_catalog_rejects_live_or_reordered_connections():
     missing["connections"]["items"] = missing["connections"]["items"][1:]
     with pytest.raises(IntegrityError):
         validate_catalog(missing)
+    gone = copy.deepcopy(cat)
+    gone["connections"] = None
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(gone)
+    assert exc2.value.reason_code == "CATALOG_CONNECTION"
+    copilot = copy.deepcopy(cat)
+    copilot["connections"]["items"][0]["product"] = "Microsoft 365 Copilot"
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(copilot)
+    assert exc3.value.reason_code == "MICROSOFT_PRODUCT"
+    surface = copy.deepcopy(cat)
+    surface["connections"]["items"][0]["surfaces"] = ["invented"]
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(surface)
+    assert exc4.value.reason_code == "CATALOG_CONNECTION"
+    comps = copy.deepcopy(cat)
+    comps["connections"]["complements"] = comps["connections"]["complements"][1:]
+    with pytest.raises(IntegrityError) as exc5:
+        validate_catalog(comps)
+    assert exc5.value.reason_code == "CATALOG_CONNECTION"
+    agent = copy.deepcopy(cat)
+    agent["connections"]["complements"][0]["product"] = "Agent 365"
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(agent)
+    assert exc6.value.reason_code == "MICROSOFT_PRODUCT"
+    with pytest.raises(IntegrityError) as exc7:
+        spec("copilot.as.seat")
+    assert exc7.value.reason_code == "CATALOG_CONNECTION"
+
+
+def test_stack_plane_after_effect_ignores_non_applied():
+    from ainav.microsoft.connections import StackPlane
+
+    assert StackPlane().after_effect(object(), {"record_type": "effect_apply_failed"}) == []
 
 
 def test_institute_site_and_swa_config():

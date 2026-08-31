@@ -111,7 +111,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.45.0 (this tree)
+### 2.46.0 (this tree)
+
+Close remaining in-tree fail-closed holes. Connections,
+delivery, and program catalog fiction stay refused in gold.
+Institute More nav matches Owner. A green check is not
+`LIVE_PIN_OK`. Cynthia is still invited, not recorded.
+Owner gates stay owner gates.
+
+### 2.45.0
 
 Close remaining in-tree gaps this Cloud Agent can close.
 Institute primary nav is Closed · Owner · Open. The owner

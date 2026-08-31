@@ -92,6 +92,44 @@ def test_catalog_rejects_split_ledger():
     with pytest.raises(IntegrityError) as exc:
         validate_catalog(broken)
     assert exc.value.reason_code == "CATALOG_DELIVERY"
+    hosts = copy.deepcopy(cat)
+    hosts["motherships"]["hosts"] = ["master", "cloud"]
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(hosts)
+    assert exc2.value.reason_code == "CATALOG_DELIVERY"
+    master = copy.deepcopy(cat)
+    master["motherships"]["master"]["writes_client_sor"] = True
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(master)
+    assert exc3.value.reason_code == "CATALOG_DELIVERY"
+    live = copy.deepcopy(cat)
+    live["motherships"]["cloud"]["live"] = True
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(live)
+    assert exc4.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
+    pair = copy.deepcopy(cat)
+    pair["delivery"]["shared_ledger"] = False
+    with pytest.raises(IntegrityError) as exc5:
+        validate_catalog(pair)
+    assert exc5.value.reason_code == "CATALOG_DELIVERY"
+    raci_missing = copy.deepcopy(cat)
+    raci_missing["delivery"]["raci"] = {"master": "issues law"}
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(raci_missing)
+    assert exc6.value.reason_code == "CATALOG_DELIVERY"
+    repo = copy.deepcopy(cat)
+    repo["repositories"][0]["sku"] = "L1"
+    with pytest.raises(IntegrityError) as exc7:
+        validate_catalog(repo)
+    assert exc7.value.reason_code == "CATALOG_SKU"
+
+
+def test_delivery_system_refuses_unknown_pair():
+    from ainav.errors import ProvisionError
+
+    with pytest.raises(ProvisionError) as exc:
+        DeliverySystem().snapshot("missing-client")
+    assert exc.value.reason_code == "DELIVERY"
 
 
 def test_cli_motherships_and_raci(capsys):

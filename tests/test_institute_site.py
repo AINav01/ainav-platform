@@ -252,6 +252,7 @@ def test_institute_foundation_is_catalog_honest():
     assert html.index('href="#missing"') < html.index('href="#open"')
     assert ">Owner<" in html
     assert "James must click" in html
+    assert html.count('href="#missing">Owner</a>') >= 2
     assert "#missing" in css
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert 'href="index.html#closed"' in plane

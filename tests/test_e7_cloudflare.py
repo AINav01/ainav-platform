@@ -33,6 +33,66 @@ def _mail_dns(*, teams: bool = False) -> dict:
     }
 
 
+def test_catalog_rejects_edge_fiction():
+    cat = load_catalog()
+    gone = copy.deepcopy(cat)
+    gone["microsoft_stack"]["edge"] = None
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(gone)
+    assert exc.value.reason_code == "CATALOG_EDGE"
+    bad_id = copy.deepcopy(cat)
+    bad_id["microsoft_stack"]["edge"]["id"] = "invented.dns"
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(bad_id)
+    assert exc2.value.reason_code == "CATALOG_EDGE"
+    product = copy.deepcopy(cat)
+    product["microsoft_stack"]["edge"]["product"] = "Squarespace"
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(product)
+    assert exc3.value.reason_code == "CATALOG_EDGE"
+    role = copy.deepcopy(cat)
+    role["microsoft_stack"]["edge"]["role"] = "admit"
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(role)
+    assert exc4.value.reason_code == "CATALOG_EDGE"
+    dash = copy.deepcopy(cat)
+    dash["microsoft_stack"]["edge"]["dashboard_url"] = "https://example.test"
+    with pytest.raises(IntegrityError) as exc5:
+        validate_catalog(dash)
+    assert exc5.value.reason_code == "CATALOG_EDGE"
+    apex = copy.deepcopy(cat)
+    apex["microsoft_stack"]["edge"]["apex"] = "example.test"
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(apex)
+    assert exc6.value.reason_code == "CATALOG_EDGE"
+    already = copy.deepcopy(cat)
+    already["microsoft_stack"]["edge"]["already"] = ["nameservers"]
+    already["microsoft_stack"]["edge"]["full"] = False
+    already["microsoft_stack"]["edge"]["missing"] = ["Teams SIP / lync SRV"]
+    already["microsoft_stack"]["edge"]["note"] = (
+        "Cloudflare is not the product. MX stays DNS-only. This Cloud Agent cannot edit Cloudflare. "
+        "Not Institute launch. Full is false."
+    )
+    with pytest.raises(IntegrityError) as exc7:
+        validate_catalog(already)
+    assert exc7.value.reason_code == "CATALOG_EDGE"
+    not_blob = copy.deepcopy(cat)
+    not_blob["microsoft_stack"]["edge"]["not"] = ["seat"]
+    with pytest.raises(IntegrityError) as exc8:
+        validate_catalog(not_blob)
+    assert exc8.value.reason_code == "CATALOG_EDGE"
+    note = copy.deepcopy(cat)
+    note["microsoft_stack"]["edge"]["note"] = "DNS only. Cannot edit. Not Institute launch. DNS is full."
+    with pytest.raises(IntegrityError) as exc9:
+        validate_catalog(note)
+    assert exc9.value.reason_code == "CATALOG_EDGE"
+    none = copy.deepcopy(cat)
+    none["microsoft_stack"]["edge"]["full"] = None
+    with pytest.raises(IntegrityError) as exc10:
+        validate_catalog(none)
+    assert exc10.value.reason_code == "CATALOG_EDGE"
+
+
 def test_catalog_edge_records_dns_full_not_launch():
     edge = catalog_edge()
     assert edge["id"] == "cloudflare.dns"

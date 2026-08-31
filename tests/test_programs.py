@@ -109,6 +109,36 @@ def test_programs_catalog_cannot_claim_or_go_crypto():
     with pytest.raises(IntegrityError) as exc4:
         validate_catalog(order)
     assert exc4.value.reason_code == "PROGRAM_ORDER"
+    gone = copy.deepcopy(cat)
+    gone["programs"] = None
+    with pytest.raises(IntegrityError) as exc5:
+        validate_catalog(gone)
+    assert exc5.value.reason_code == "CATALOG_PROGRAM"
+    deploy = copy.deepcopy(cat)
+    deploy["programs"]["website"]["public_deploy_claimed"] = True
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(deploy)
+    assert exc6.value.reason_code == "PROGRAM_NOT_CLAIMED"
+    wedge = copy.deepcopy(cat)
+    wedge["programs"]["public_wedge"] = "invented.wedge"
+    with pytest.raises(IntegrityError) as exc7:
+        validate_catalog(wedge)
+    assert exc7.value.reason_code == "PROGRAM_WEDGE"
+    targets = copy.deepcopy(cat)
+    targets["programs"]["targets"] = [item for item in targets["programs"]["targets"] if item["id"] != "nvidia.inception"]
+    targets["programs"]["application_order"] = [item for item in targets["programs"]["application_order"] if item != "nvidia.inception"]
+    with pytest.raises(IntegrityError):
+        validate_catalog(targets)
+    status = copy.deepcopy(cat)
+    status["programs"]["targets"][0]["status"] = "invented"
+    with pytest.raises(IntegrityError) as exc8:
+        validate_catalog(status)
+    assert exc8.value.reason_code == "CATALOG_PROGRAM"
+    incomplete = copy.deepcopy(cat)
+    incomplete["programs"]["application_order"] = incomplete["programs"]["application_order"][:2]
+    with pytest.raises(IntegrityError) as exc9:
+        validate_catalog(incomplete)
+    assert exc9.value.reason_code == "PROGRAM_ORDER"
 
 
 def test_institute_programs_section_is_unclaimed():
