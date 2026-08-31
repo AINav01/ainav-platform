@@ -81,7 +81,7 @@
       "Job C gold invariants (dual seats, single-use consume, fail-closed effect)",
       "Catalog law \u2014 three SKUs only",
       "E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV)",
-      "GitHub Actions gold workflow in .github/workflows/gold.yml",
+      "GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK",
       "Institute, review, and brief generated from the catalog",
       "Owner-click runbooks with Microsoft admin links"
     ],
@@ -94,7 +94,8 @@
       "id": "github.actions.gold",
       "is_admit_plane": false,
       "marks_live_pin": false,
-      "note": "Gold CI is in the tree. A workflow file is not a green check. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent wrote the workflow. It cannot enable Actions if the org has it off.",
+      "note": "Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.",
+      "observed_green": true,
       "workflow": ".github/workflows/gold.yml"
     },
     "is_admit_plane": false,

@@ -138,6 +138,14 @@
           root.appendChild(li);
         });
       }
+      if (data.release) {
+        document.querySelectorAll("#control-plane > .kicker").forEach(function (node) {
+          node.textContent =
+            "Ultimate control plane · " +
+            data.release +
+            " · must-have · not a SKU · not LIVE_PIN_OK";
+        });
+      }
       var thesisNode = document.getElementById("plane-thesis");
       if (thesisNode && data.floor && data.floor.lede && thesisNode.getAttribute("data-keep") === "short") {
         thesisNode.textContent = data.floor.lede;
@@ -1637,6 +1645,8 @@
             goldStatus.textContent =
               "exists=" +
               eng.gold_ci.exists +
+              " · observed_green=" +
+              eng.gold_ci.observed_green +
               " · marks_live_pin=" +
               eng.gold_ci.marks_live_pin +
               " · launch=" +

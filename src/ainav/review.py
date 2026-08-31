@@ -423,6 +423,7 @@ def deep_dive(*, probe: bool = False) -> str:
         f"Command: `{status['engineering']['gold_ci']['command']}`. "
         f"Coverage floor: {status['engineering']['gold_ci']['coverage_floor']}.",
         f"- exists={str(status['engineering']['gold_ci']['exists']).lower()}. "
+        f"observed_green={str(status['engineering']['gold_ci']['observed_green']).lower()}. "
         f"marks_live_pin={str(status['engineering']['gold_ci']['marks_live_pin']).lower()}. "
         f"launch={str(status['engineering']['launch']).lower()}. "
         f"sku={str(status['engineering']['sku']).lower()}.",

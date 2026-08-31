@@ -43,11 +43,12 @@ session.effect(rec["request_id"], rec["action_hash"])
 ```bash
 python -m pip install -e ".[dev]"
 make gold
+make regen
 python -m agent_gov demo
 python -m agent_gov audit
 ```
 
-Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent admit **and** effect), the Lua / Redis-shaped consume adapter, file-ledger reload, and integrity verification. Live Redis multi-host HA and `LIVE_PIN_OK` are **not** claimed here.
+Offline gold covers dual seats, single-use consume, H9 (exactly one concurrent admit **and** effect), the Lua / Redis-shaped consume adapter, file-ledger reload, and integrity verification. GitHub Actions runs the same `make gold` from `.github/workflows/gold.yml` (actions pinned by SHA). A green check is not `LIVE_PIN_OK`. Live Redis multi-host HA and `LIVE_PIN_OK` are **not** claimed here. `make regen` rewrites catalog-derived docs and Institute JSON.
 
 ## Mothership and commercial spine
 
@@ -110,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.43.0 (this tree)
+### 2.44.0 (this tree)
+
+Gold CI ran green. Catalog records `observed_green=true`
+without marking `LIVE_PIN_OK`. Actions are pinned by
+commit SHA. Dependabot watches the workflow. Institute
+primary nav now has Closed next to Open. Job C invariant
+fail paths and Agent Tools missing-env probes are gold.
+Cynthia is still invited, not recorded. Owner gates stay
+owner gates.
+
+### 2.43.0
 
 Close every in-tree gap this Cloud Agent can close. GitHub
 Actions now runs `make gold`. Catalog `engineering` records

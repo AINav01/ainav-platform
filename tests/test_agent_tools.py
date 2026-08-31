@@ -8,7 +8,7 @@ import pytest
 
 from agent_gov.errors import IntegrityError
 from ainav.catalog import load_catalog, validate_catalog
-from ainav.microsoft.agent_tools import public_review, steps_markdown, validate_agent_tools
+from ainav.microsoft.agent_tools import probe_agent_tools, public_review, steps_markdown, validate_agent_tools
 
 
 def test_agent_tools_review_is_not_the_admit_plane():
@@ -68,6 +68,26 @@ def test_catalog_refuses_agent_tools_as_admit_plane():
     with pytest.raises(IntegrityError) as approve_exc:
         validate_agent_tools(approve)
     assert approve_exc.value.reason_code == "MICROSOFT_PRODUCT"
+
+
+def test_probe_agent_tools_is_read_only_and_fail_closed(monkeypatch):
+    monkeypatch.setattr("ainav.microsoft.agent_tools.entra_configured", lambda: False)
+    missing = probe_agent_tools()
+    assert missing["probed"] is False
+    assert missing["reason"] == "missing_env"
+    assert missing["is_admit_plane"] is False
+    monkeypatch.setattr("ainav.microsoft.agent_tools.entra_configured", lambda: True)
+    monkeypatch.setattr("ainav.microsoft.agent_tools._token", lambda scope: {"ok": False, "status": "401"})
+    denied = probe_agent_tools()
+    assert denied["probed"] is True
+    assert denied["reason"] == "401"
+    assert denied["is_admit_plane"] is False
+    monkeypatch.setattr("ainav.microsoft.agent_tools._token", lambda scope: {"ok": True, "token": "x"})
+    monkeypatch.setattr("ainav.microsoft.agent_tools._get", lambda url, token: (403, "forbidden"))
+    blocked = probe_agent_tools()
+    assert blocked["http"] == 403
+    assert "graph_role_missing" in blocked["reason"]
+    assert blocked["cloud_agent_can_approve"] is False
 
 
 def test_cli_agent_tools(capsys):

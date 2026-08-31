@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from importlib.resources import files
 from pathlib import Path
@@ -218,11 +219,25 @@ def _validate_engineering(catalog: dict[str, Any]) -> None:
             raise IntegrityError("gold_ci note: a green check is not LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
         if not any("gold" in item or "github" in item or "workflow" in item for item in closed):
             raise IntegrityError("closed_in_tree must record gold CI", reason_code="CATALOG_ENGINEERING")
+        if not re.search(r"actions/checkout@[0-9a-f]{40}", text):
+            raise IntegrityError("gold workflow must pin checkout", reason_code="CATALOG_ENGINEERING")
+        if not re.search(r"actions/setup-python@[0-9a-f]{40}", text):
+            raise IntegrityError("gold workflow must pin setup-python", reason_code="CATALOG_ENGINEERING")
     elif gold.get("exists") is False:
         if "missing" not in note and "not in the tree" not in note:
             raise IntegrityError("missing gold_ci must say so", reason_code="CATALOG_ENGINEERING")
     else:
         raise IntegrityError("gold_ci.exists must be boolean", reason_code="CATALOG_ENGINEERING")
+    if gold.get("observed_green") is True:
+        if gold.get("exists") is not True:
+            raise IntegrityError("cannot claim green without a workflow", reason_code="CATALOG_ENGINEERING")
+        if "ran green" not in note:
+            raise IntegrityError("observed_green note must say ran green", reason_code="CATALOG_ENGINEERING")
+    elif gold.get("observed_green") is False:
+        if "ran green" in note:
+            raise IntegrityError("observed_green false cannot claim ran green", reason_code="CATALOG_ENGINEERING")
+    else:
+        raise IntegrityError("gold_ci.observed_green must be boolean", reason_code="CATALOG_ENGINEERING")
 
 
 def catalog_engineering() -> dict[str, Any]:

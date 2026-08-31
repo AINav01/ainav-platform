@@ -24,6 +24,7 @@ def test_catalog_engineering_records_gold_ci_not_launch():
     gold = body["gold_ci"]
     assert gold["id"] == "github.actions.gold"
     assert gold["exists"] is True
+    assert gold["observed_green"] is True
     assert gold["workflow"] == ".github/workflows/gold.yml"
     assert gold["command"] == "make gold"
     assert gold["coverage_floor"] == 90
@@ -44,11 +45,14 @@ def test_gold_workflow_exists_and_refuses_live_pin():
     assert "not signed L1" in text
     assert "permissions:" in text
     assert "contents: read" in text
+    assert "actions/checkout@11d5960a326750d5838078e36cf38b85af677262" in text
+    assert "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065" in text
+    assert Path(".github/dependabot.yml").is_file()
 
 
 def test_package_version_matches_catalog_release():
     release = load_catalog()["entity"]["release"]
-    assert release == "2.43.0"
+    assert release == "2.44.0"
     assert f'version = "{release}"' in Path("pyproject.toml").read_text(encoding="utf-8")
 
 
@@ -83,6 +87,7 @@ def test_catalog_allows_recorded_missing_gold_workflow():
     cat = copy.deepcopy(load_catalog())
     gold = cat["engineering"]["gold_ci"]
     gold["exists"] = False
+    gold["observed_green"] = False
     gold["note"] = (
         "Gold CI is missing. Not in the tree. A green check is not LIVE_PIN_OK. "
         "This Cloud Agent has not written the workflow."
@@ -96,6 +101,7 @@ def test_catalog_allows_recorded_missing_gold_workflow():
 def test_catalog_rejects_missing_gold_without_honesty():
     cat = copy.deepcopy(load_catalog())
     cat["engineering"]["gold_ci"]["exists"] = False
+    cat["engineering"]["gold_ci"]["observed_green"] = False
     cat["engineering"]["gold_ci"]["note"] = "Gold CI. A green check is not LIVE_PIN_OK."
     with pytest.raises(IntegrityError) as exc:
         validate_catalog(cat)
@@ -214,6 +220,40 @@ def test_catalog_rejects_missing_gold_without_honesty():
         validate_catalog(no_record)
     assert exc19.value.reason_code == "CATALOG_ENGINEERING"
 
+    claimed = copy.deepcopy(load_catalog())
+    claimed["engineering"]["gold_ci"]["exists"] = False
+    claimed["engineering"]["gold_ci"]["observed_green"] = True
+    claimed["engineering"]["gold_ci"]["note"] = (
+        "Gold CI ran green. A green check is not LIVE_PIN_OK. Missing."
+    )
+    with pytest.raises(IntegrityError) as exc20:
+        validate_catalog(claimed)
+    assert exc20.value.reason_code == "CATALOG_ENGINEERING"
+
+    no_ran = copy.deepcopy(load_catalog())
+    no_ran["engineering"]["gold_ci"]["note"] = (
+        "Gold CI is in the tree. A green check is not LIVE_PIN_OK."
+    )
+    with pytest.raises(IntegrityError) as exc21:
+        validate_catalog(no_ran)
+    assert exc21.value.reason_code == "CATALOG_ENGINEERING"
+
+    fiction_green = copy.deepcopy(load_catalog())
+    fiction_green["engineering"]["gold_ci"]["exists"] = False
+    fiction_green["engineering"]["gold_ci"]["observed_green"] = False
+    fiction_green["engineering"]["gold_ci"]["note"] = (
+        "Gold CI is missing. Not in the tree. Ran green. A green check is not LIVE_PIN_OK."
+    )
+    with pytest.raises(IntegrityError) as exc22:
+        validate_catalog(fiction_green)
+    assert exc22.value.reason_code == "CATALOG_ENGINEERING"
+
+    none_green = copy.deepcopy(load_catalog())
+    none_green["engineering"]["gold_ci"]["observed_green"] = None
+    with pytest.raises(IntegrityError) as exc23:
+        validate_catalog(none_green)
+    assert exc23.value.reason_code == "CATALOG_ENGINEERING"
+
 
 def test_public_status_keeps_engineering_off_the_write_path():
     body = public_status()
@@ -225,6 +265,7 @@ def test_public_status_keeps_engineering_off_the_write_path():
     assert eng["live_pin_ok"] is False
     assert eng["launch"] is False
     assert eng["gold_ci"]["exists"] is True
+    assert eng["gold_ci"]["observed_green"] is True
 
 
 def test_review_model_carries_catalog_engineering():
@@ -246,8 +287,11 @@ def test_institute_paints_closed_and_gold_ci():
     assert 'id="gold-ci-note"' in html
     assert 'id="honest-missing"' in html
     assert "G12 legal (counsel pack unsigned)" in html
-    assert "gold.yml" in html
+    assert "make gold" in html
+    assert "ran green" in html.lower()
     assert "href=\"#closed\"" in html
+    assert html.index('href="#closed"') < html.index('href="#open"')
+    assert "observed_green" in js
     assert "refuse to paint a fiction scoreboard" in js
     assert "closed-in-tree" in js
     assert "honest-missing" in js

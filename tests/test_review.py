@@ -23,6 +23,7 @@ def test_deep_dive_is_catalog_honest():
     assert "Gold CI" in body
     assert ".github/workflows/gold.yml" in body
     assert "make gold" in body
+    assert "observed_green=true" in body
     assert "Closed in this tree" in body
     assert "Work IQ User" in body
     assert "Seat object ids. Not a seat." in body

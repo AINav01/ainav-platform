@@ -244,7 +244,10 @@ def test_institute_foundation_is_catalog_honest():
     assert status["e7_cloudflare"]["sku"] is False
     assert status["e7_cloudflare"]["live_pin_ok"] is False
     assert status["engineering"]["gold_ci"]["exists"] is True
+    assert status["engineering"]["gold_ci"]["observed_green"] is True
     assert status["engineering"]["sku"] is False
+    assert 'href="#closed"' in html
+    assert html.index('href="#closed"') < html.index('href="#open"')
     assert status["engineering"]["live_pin_ok"] is False
     assert 'id="closed"' in html
     assert 'id="honest-missing"' in html

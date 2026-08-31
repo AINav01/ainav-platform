@@ -67,6 +67,84 @@ def test_grant_id_changes_when_a_seat_swaps():
     assert left != right
 
 
+def test_executable_invariants_fail_closed_on_weak_inputs(monkeypatch):
+    class SoftLock:
+        effect_gate = "soft"
+        product = "job_c"
+        invariants = {"distinct_principals": True, "single_use_consume": True, "fail_closed": True}
+        required_action_fields = ("action_class",)
+
+        def verify(self) -> None:
+            return None
+
+    with pytest.raises(IntegrityError) as soft:
+        check_lockfile(SoftLock())
+    assert soft.value.reason_code == "LOCKFILE_EFFECT_GATE"
+
+    class OtherProduct(SoftLock):
+        effect_gate = "strict"
+        product = "job_a"
+
+    with pytest.raises(IntegrityError) as product:
+        check_lockfile(OtherProduct())
+    assert product.value.reason_code == "LOCKFILE_PRODUCT"
+
+    class WeakInv(SoftLock):
+        effect_gate = "strict"
+        invariants = {"distinct_principals": False, "single_use_consume": True, "fail_closed": True}
+
+    with pytest.raises(IntegrityError) as weakened:
+        check_lockfile(WeakInv())
+    assert weakened.value.reason_code == "LOCKFILE_WEAKENED"
+
+    class NoClass(SoftLock):
+        effect_gate = "strict"
+        required_action_fields = ("amount",)
+
+    with pytest.raises(IntegrityError) as missing:
+        check_lockfile(NoClass())
+    assert missing.value.reason_code == "LOCKFILE_INVARIANT"
+
+    monkeypatch.setattr("agent_gov.invariants.verify_record", lambda rec: None)
+    with pytest.raises(IntegrityError) as kind:
+        check_admit_ok({"record_type": "admit_denied"}, policy_hash="0" * 64)
+    assert kind.value.reason_code == "RECORD_SCHEMA"
+    with pytest.raises(IntegrityError) as consumed:
+        check_admit_ok({"record_type": "admit_ok", "consumed": False}, policy_hash="0" * 64)
+    assert consumed.value.reason_code == "RECORD_SCHEMA"
+    with pytest.raises(IntegrityError) as seats:
+        check_admit_ok(
+            {"record_type": "admit_ok", "consumed": True, "seat_a": "oid-1", "seat_b": "oid-1"},
+            policy_hash="0" * 64,
+        )
+    assert seats.value.reason_code == "SEATS_NOT_DISTINCT"
+    with pytest.raises(IntegrityError) as grant:
+        check_admit_ok(
+            {
+                "record_type": "admit_ok",
+                "consumed": True,
+                "seat_a": "oid-1",
+                "seat_b": "oid-2",
+                "grant_id": "",
+            },
+            policy_hash="0" * 64,
+        )
+    assert grant.value.reason_code == "GRANT_MISSING"
+    with pytest.raises(IntegrityError) as mismatch:
+        check_admit_ok(
+            {
+                "record_type": "admit_ok",
+                "consumed": True,
+                "seat_a": "oid-1",
+                "seat_b": "oid-2",
+                "action_hash": "ab",
+                "grant_id": "0" * 64,
+            },
+            policy_hash="0" * 64,
+        )
+    assert mismatch.value.reason_code == "GRANT_MISMATCH"
+
+
 def test_executable_invariants_on_happy_path():
     lock = default_lockfile()
     check_lockfile(lock)
