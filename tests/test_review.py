@@ -39,6 +39,10 @@ def test_deep_dive_is_catalog_honest():
     assert "Read the company" in body
     assert "## Owner — James must click" in body
     assert "G1/G10 LIVE_PIN_OK" in body
+    assert "## Competitive field (honest)" in body
+    assert "Workflow User Group" in body
+    assert "Copilot Studio" in body
+    assert "not a patent" in body.lower()
     assert "Closed:** false" in body
     assert "Live probe overlay" not in body
     on_disk = Path("docs/REVIEW.md").read_text(encoding="utf-8")

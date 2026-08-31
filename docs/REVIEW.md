@@ -41,6 +41,32 @@ Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Busines
 
 Refuse: Teams vote as dual; Copilot as the admit plane; free U-DUAL; LIVE_PIN_OK; named design partner; invented contact inbox; client AI as dual; AINav is the client's AI; EU AI Act certified; AINav replaces the client's AI; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI; invented department head; department AI as dual; one title as both seats; AINav replaces the org chart; uncopyable; patent granted; Microsoft cannot legally copy.
 
+## Competitive field (honest)
+
+Substitutes a controller already has or will be offered. They can copy these. This is not a patent. This is not uncopyable.
+
+- They can copy: A two-person Business Central Workflow User Group approval.
+- They can copy: Copilot Studio Request for information or multistage / AI approvals.
+- They can copy: A Teams approval as HITL.
+- They can copy: PIM activation as privileged access.
+- They can copy: Copilot asking a human before a suggestion.
+- They can copy: Joule, Agentforce, or Now Assist human-in-the-loop on that vendor's draft.
+- They can copy: In-harness agent governors and agent-tool allow-lists (not a SoR admit plane).
+
+What the build pins:
+
+- Lockfile product stays job_c — refuse_lockfile_rebrand
+- Consume-once grant_id bound to seats and action_hash
+- Fail-closed EffectLedger — no admit, no write
+- Frozen gold vectors pin action_hash
+- Sealed hash-chained DecisionRecords (first and second record)
+- Catalog law — three SKUs, competitor aliases cannot be provisioned
+- Microsoft marks name integrations only
+
+Others in the same conversation: Salesforce Agentforce; SAP Joule; ServiceNow Now Assist; Palantir AIP; UiPath; Workday; Okta; SailPoint. None of those are Job C. Job C is a SoR write-gate, not agent inventory and not an IdP.
+
+Refuse: uncopyable; patent granted; Microsoft cannot legally copy; AINav is a Microsoft product; powered by Copilot.
+
 ## First principles
 
 Human control plane over every client AI that can draft a privileged system-of-record write.
@@ -302,30 +328,35 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Gold CI ran green on GitHub Actions (`make gold`). A green check is not LIVE_PIN_OK.
 - Institute Owner nav is one click from Closed. Health, sandbox, and Institute publish fail-closed paths are gold. Graph Teams read with bound IDs is connected, not a missing-role fiction.
 - Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold.
+- Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.
+- Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.
 
 ## Expert review — could be improved
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
-- One human cannot close dual admit, Inception contacts, or signed L1.
+- One human cannot close dual admit, Inception contacts, or signed L1. Without seat B, AINav cannot out-demo Copilot Studio Request for information in a room.
+- The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
+- Control-plane language now collides with in-harness agent governors and agent-tool allow-lists. Job C is a SoR write-gate, not agent inventory and not in-process policy.
+- Institute first screen is still doctrine-heavy. The competitive contrast sits below the incident. A controller should see substitute vs Job C in one glance.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
-- Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.
+- Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.
 - Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
-- No billing provider. Catalog list cannot become recognized revenue.
+- No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
 
 ## Fifteen upgrades
 
-- **1. [owner] Named dual seats** — Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both.
+- **1. [owner] Named dual seats** — Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both. Without this, Copilot Studio RFI wins every bake-off.
 - **2. [owner] Proof day on named humans** — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
 - **3. [owner] Graph read on the same app** — Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
 - **4. [owner] US Dataverse** — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
-- **5. [tree] One door, no inbox** — Keep the Institute buyer page as a forwardable proof-day brief. Do not invent a contact inbox or a design-partner name.
+- **5. [tree] Name the 2026 substitutes** — Paint BC Workflow User Groups, Copilot Studio RFI, Joule/Agentforce HITL, and in-harness governors as copies they can make. Job C pins stay. Not uncopyable.
 - **6. [tree] Price the incident, not hours** — Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.
 - **7. [tree] Hold launch** — Do not bind ainav.institute or publish until James says launch. --publish-institute stays launch_not_ready.
 - **8. [owner] Startups then Inception** — Apply to Microsoft for Startups only after launch and the custom domain. Inception second. Membership is not claimed.
-- **9. [tree] P-ADM weekly keep object** — Weekly sealed DecisionRecord export the treasurer can open. Not live Purview.
+- **9. [tree] Competitive field on Institute** — Buyer not-the-gate and IP copy-list name the substitutes. Review prints the competitive field. Do not invent a design partner.
 - **10. [tree] FFS requires L1** — Billable days refuse without L1. They cannot attach U-DUAL.
 - **11. [tree] Catalog financial model** — Talk if-then catalog list. Never invent ARR, bookings, or recognized revenue.
 - **12. [tree] Commercial equation ≠ lab pin** — Controllers buy named dual seats × proof day × signed L1 × P-ADM attach. LIVE_PIN_OK stays a lab pin.

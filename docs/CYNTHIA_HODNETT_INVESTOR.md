@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.47.0.
+30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.48.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**

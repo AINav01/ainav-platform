@@ -92,6 +92,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "lab oids are not two named treasury humans" in html.lower()
     assert "Inventory of models is not a control" in html
     assert "vendor-native button" in html.lower()
+    assert "BC native dual approval" in html
+    assert "In-harness AI governor" in html
+    assert "Workflow User Groups" in html
     assert "sealed DecisionRecord" in html
     assert "write does not land" in html.lower()
     assert "gov-cascade" in html or "id=\"gov-cascade\"" in html

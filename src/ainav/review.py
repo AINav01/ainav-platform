@@ -248,6 +248,29 @@ def deep_dive(*, probe: bool = False) -> str:
         "",
         "Refuse: " + "; ".join(cat["buyer"]["refuse"]) + ".",
         "",
+        "## Competitive field (honest)",
+        "",
+        "Substitutes a controller already has or will be offered. They can copy these. "
+        "This is not a patent. This is not uncopyable.",
+        "",
+    ]
+    for item in cat["ip"]["insulation"]["what_they_can_copy"]:
+        lines.append(f"- They can copy: {item}.")
+    lines += [
+        "",
+        "What the build pins:",
+        "",
+    ]
+    for item in cat["ip"]["insulation"]["what_the_build_pins"]:
+        lines.append(f"- {item}")
+    lines += [
+        "",
+        "Others in the same conversation: "
+        + "; ".join(cat["ip"]["insulation"]["others"])
+        + ". None of those are Job C. Job C is a SoR write-gate, not agent inventory and not an IdP.",
+        "",
+        "Refuse: " + "; ".join(cat["ip"]["insulation"]["refuse"]) + ".",
+        "",
         "## First principles",
         "",
         entity["category"] + ".",

@@ -160,7 +160,7 @@ h1 {
 .must-for { margin: 1.75rem 0 0; max-width: var(--wide); }
 .must-for article p { margin: 0; color: var(--mute); font-size: 0.92rem; line-height: 1.4; }
 @media (min-width: 900px) {
-  #not-the-gate.must-for { grid-template-columns: repeat(4, 1fr); }
+  #not-the-gate.must-for { grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); }
   #accountable.must-for { grid-template-columns: repeat(4, 1fr); }
   #protect.must-for { grid-template-columns: repeat(4, 1fr); }
   #memory.must-for { grid-template-columns: repeat(4, 1fr); }

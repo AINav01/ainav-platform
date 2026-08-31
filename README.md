@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.47.0 (this tree)
+### 2.48.0 (this tree)
+
+Competitive field is catalog law. Institute not-the-gate
+names BC Workflow User Groups and in-harness governors
+next to Teams, PIM, and Copilot. Insulation lists what
+they can copy. This is not a patent. A green check is not
+`LIVE_PIN_OK`. Cynthia is still invited, not recorded.
+Owner gates stay owner gates.
+
+### 2.47.0
 
 Owner board lists `LIVE_PIN_OK` as honest-missing, not as
 an agent close. Institute `#missing` heading matches Owner.

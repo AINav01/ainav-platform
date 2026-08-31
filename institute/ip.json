@@ -74,10 +74,13 @@
     "Microsoft marks name integrations only"
   ],
   "what_they_can_copy": [
-    "A two-person Business Central approval workflow",
+    "A two-person Business Central Workflow User Group approval",
+    "Copilot Studio Request for information or multistage / AI approvals",
     "A Teams approval as HITL",
     "PIM activation as privileged access",
-    "Copilot asking a human before a suggestion"
+    "Copilot asking a human before a suggestion",
+    "Joule, Agentforce, or Now Assist human-in-the-loop on that vendor's draft",
+    "In-harness agent governors and agent-tool allow-lists (not a SoR admit plane)"
   ],
   "why_microsoft_is_not_the_failsafe": "Microsoft is identity, notify, SoR, and host. It sells the models that draft the write. An independent plane must sit over those models. A Copilot feature, PIM activation, or Teams vote is not dual admit.",
   "why_ultimate_plane": "Ultimate means last authority before the write, over every AI that can draft one \u2014 not ownership of every model. The vendor of the drafting AI cannot credibly be that failsafe. A vendor-native button only covers that vendor. One admit plane over the whole estate is the insulation. This is not a patent. This is not uncopyable."

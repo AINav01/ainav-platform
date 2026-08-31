@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.47.0",
+    "release": "2.48.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3063,6 +3063,16 @@
           "id": "copilot",
           "name": "Copilot asking a human",
           "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
+        },
+        {
+          "id": "bc_workflow",
+          "name": "BC native dual approval",
+          "note": "Workflow User Groups can require two humans. That is not consume-once action_hash and not a fail-closed EffectLedger."
+        },
+        {
+          "id": "in_harness",
+          "name": "In-harness AI governor",
+          "note": "Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI."
         }
       ],
       "proof_close": {
@@ -3976,7 +3986,10 @@
       "sap_joule",
       "workday_extend",
       "hitl_pack",
-      "soft_dual"
+      "soft_dual",
+      "credo_ai",
+      "cordum",
+      "kosmoy"
     ],
     "forbidden_claims": [
       "ainav is a microsoft product",
@@ -4006,10 +4019,13 @@
       "why_ultimate_plane": "Ultimate means last authority before the write, over every AI that can draft one — not ownership of every model. The vendor of the drafting AI cannot credibly be that failsafe. A vendor-native button only covers that vendor. One admit plane over the whole estate is the insulation. This is not a patent. This is not uncopyable.",
       "why_microsoft_is_not_the_failsafe": "Microsoft is identity, notify, SoR, and host. It sells the models that draft the write. An independent plane must sit over those models. A Copilot feature, PIM activation, or Teams vote is not dual admit.",
       "what_they_can_copy": [
-        "A two-person Business Central approval workflow",
+        "A two-person Business Central Workflow User Group approval",
+        "Copilot Studio Request for information or multistage / AI approvals",
         "A Teams approval as HITL",
         "PIM activation as privileged access",
-        "Copilot asking a human before a suggestion"
+        "Copilot asking a human before a suggestion",
+        "Joule, Agentforce, or Now Assist human-in-the-loop on that vendor's draft",
+        "In-harness agent governors and agent-tool allow-lists (not a SoR admit plane)"
       ],
       "what_the_build_pins": [
         "Lockfile product stays job_c — refuse_lockfile_rebrand",
@@ -4494,16 +4510,21 @@
       "The client executive dashboard is included with L1. Standard provision is included seating. Advanced provision is the upsell band. None of those are SKUs.",
       "Gold CI ran green on GitHub Actions (`make gold`). A green check is not LIVE_PIN_OK.",
       "Institute Owner nav is one click from Closed. Health, sandbox, and Institute publish fail-closed paths are gold. Graph Teams read with bound IDs is connected, not a missing-role fiction.",
-      "Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold."
+      "Owner board lists LIVE_PIN_OK as honest-missing. Operating, equation, delivery-pair, and program-qualify fiction stay refused in gold.",
+      "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
+      "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
-      "One human cannot close dual admit, Inception contacts, or signed L1.",
+      "One human cannot close dual admit, Inception contacts, or signed L1. Without seat B, AINav cannot out-demo Copilot Studio Request for information in a room.",
+      "The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.",
+      "Control-plane language now collides with in-harness agent governors and agent-tool allow-lists. Job C is a SoR write-gate, not agent inventory and not in-process policy.",
+      "Institute first screen is still doctrine-heavy. The competitive contrast sits below the incident. A controller should see substitute vs Job C in one glance.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
-      "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split.",
+      "Apex ainav.institute is Squarespace Coming Soon while Azure hosts the real site. The public face is split against any launched SaaS domain.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.",
-      "No billing provider. Catalog list cannot become recognized revenue.",
+      "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
       "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
     ],
@@ -4512,7 +4533,7 @@
         "n": 1,
         "who": "owner",
         "title": "Named dual seats",
-        "do": "Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both.",
+        "do": "Ask Cynthia. Create her @ainav.institute user. She clicks seat B. James does not click both. Without this, Copilot Studio RFI wins every bake-off.",
         "marks_live_pin": false
       },
       {
@@ -4539,8 +4560,8 @@
       {
         "n": 5,
         "who": "tree",
-        "title": "One door, no inbox",
-        "do": "Keep the Institute buyer page as a forwardable proof-day brief. Do not invent a contact inbox or a design-partner name.",
+        "title": "Name the 2026 substitutes",
+        "do": "Paint BC Workflow User Groups, Copilot Studio RFI, Joule/Agentforce HITL, and in-harness governors as copies they can make. Job C pins stay. Not uncopyable.",
         "done": true,
         "marks_live_pin": false
       },
@@ -4570,8 +4591,8 @@
       {
         "n": 9,
         "who": "tree",
-        "title": "P-ADM weekly keep object",
-        "do": "Weekly sealed DecisionRecord export the treasurer can open. Not live Purview.",
+        "title": "Competitive field on Institute",
+        "do": "Buyer not-the-gate and IP copy-list name the substitutes. Review prints the competitive field. Do not invent a design partner.",
         "done": true,
         "marks_live_pin": false
       },

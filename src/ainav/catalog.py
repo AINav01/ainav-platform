@@ -962,7 +962,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         if str(floor_for.get(who) or "") != str(gov_for.get(who) or ""):
             raise IntegrityError(f"floor must-have for {who} must match governance", reason_code="CATALOG_PLANE")
     not_gate_ids = [item.get("id") for item in floor.get("not_the_gate") or []]
-    for needed in ("vendor_native", "teams", "pim", "copilot"):
+    for needed in ("vendor_native", "teams", "pim", "copilot", "bc_workflow", "in_harness"):
         if needed not in not_gate_ids:
             raise IntegrityError(f"not-the-gate must include {needed}", reason_code="CATALOG_PLANE")
     close = floor.get("proof_close") or {}

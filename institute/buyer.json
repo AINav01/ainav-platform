@@ -179,6 +179,16 @@
       "id": "copilot",
       "name": "Copilot asking a human",
       "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
+    },
+    {
+      "id": "bc_workflow",
+      "name": "BC native dual approval",
+      "note": "Workflow User Groups can require two humans. That is not consume-once action_hash and not a fail-closed EffectLedger."
+    },
+    {
+      "id": "in_harness",
+      "name": "In-harness AI governor",
+      "note": "Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI."
     }
   ],
   "prices": [
