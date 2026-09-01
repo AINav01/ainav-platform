@@ -25,7 +25,11 @@ def test_public_face_is_static_catalog_sale():
     assert [item["id"] for item in page["skus"]] == ["L1", "P-ADM", "U-DUAL"]
     assert page["public_face"]["primary"][2]["label"] == "Bake-off"
     html = Path("institute/index.html").read_text(encoding="utf-8")
+    css = Path("institute/styles.css").read_text(encoding="utf-8")
     assert "Owner book" in html
+    assert 'class="hero-fold"' in html
+    assert ".hero-fold" in css
+    assert face["cms"] is False
     assert html.count('href="#missing">Owner</a>') >= 2
     assert "href=\"mailto:" not in html
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
