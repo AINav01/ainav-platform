@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.62.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.63.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -167,7 +167,7 @@ Record keeping is two records and a keep.
 
 This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
 
-- **Microsoft 365 admin → Users** — Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B. https://admin.microsoft.com/Adminportal/Home#/users
+- **Microsoft 365 admin → Users** — Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree. https://admin.microsoft.com/Adminportal/Home#/users
 - **Entra users** — Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers
 - **Agents > Tools registry** — Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all
 - **Same app API permissions** — On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]
@@ -224,7 +224,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.62.0.
+- As of: catalog release 2.63.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.

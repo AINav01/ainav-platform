@@ -892,8 +892,10 @@ def _validate_owner_gates(catalog: dict[str, Any]) -> None:
             do = str(item.get("do") or "").lower()
             if "chodnett@ainav.institute" not in do or "mailbox recorded" not in do:
                 raise IntegrityError("invite.seat_b must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
-            if "one mailbox seat" not in do or "exhausted" not in do:
-                raise IntegrityError("invite.seat_b assigns one mailbox seat only", reason_code="ORG_SECOND_OFFICER")
+            if "paid" not in do or "e7" not in do or "teams premium" not in do:
+                raise IntegrityError("invite.seat_b records paid E7 and Teams Premium", reason_code="ORG_SECOND_OFFICER")
+            if "fallback" not in do or "not a seat" not in do:
+                raise IntegrityError("invite.seat_b keeps the fallback and Teams Premium is not a seat", reason_code="ORG_SECOND_OFFICER")
             if "invited, not recorded" in do:
                 raise IntegrityError("invite.seat_b cannot revert to invited-not-recorded", reason_code="ORG_SECOND_OFFICER")
 

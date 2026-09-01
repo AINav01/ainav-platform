@@ -1,14 +1,14 @@
 # AINav, Inc. — owner steps
 
-Release 2.62.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.63.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Owner: James Hodnett. Operator: cursor.cloud_agent (not a seat).
-Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Number two for other aspects, not all aspects. Mailbox is not an Entra oid and not a click.
+Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Paid E7 and Teams Premium assigned. Number two for other aspects, not all aspects. Paid mail is not an Entra oid and not a click.
 
 This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.
 
 The nine gates below are the clicks. Cloudflare Pro activate is owner-only at [dash.cloudflare.com](https://dash.cloudflare.com) — not a tenth Job C gate. The hop-by-hop stack walk is `python -m ainav stack` and `docs/STACK_WALK.md`.
 
-1. Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
+1. Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.
    [Microsoft 365 admin → Users](https://admin.microsoft.com/Adminportal/Home#/users)
 
 2. Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.

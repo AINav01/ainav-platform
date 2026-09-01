@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.62.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.63.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.62.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.63.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -166,7 +166,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 
 | Step | What the owner clicks | Link |
 | --- | --- | --- |
-| Microsoft 365 admin → Users | Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B. | https://admin.microsoft.com/Adminportal/Home#/users |
+| Microsoft 365 admin → Users | Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree. | https://admin.microsoft.com/Adminportal/Home#/users |
 | Entra users | Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. | https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers |
 | Agents > Tools registry | Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. | https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all |
 | Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
@@ -327,6 +327,7 @@ Working well
 - The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
 - Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
 - Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.
+- Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.
 
 Could be improved — without inventing a fourth SKU
 

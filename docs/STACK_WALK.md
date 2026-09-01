@@ -1,6 +1,6 @@
 # AINav, Inc. — stack walk
 
-Release 2.62.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.63.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 **Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**
@@ -18,8 +18,8 @@ This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind 
 2. **Azure host** — `hosted_not_custom`. Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound.
    Owner: Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps) · [SWA custom domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external)
 
-3. **Entra identify** — `mailbox_recorded_oid_open`. Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. probe_graph reads org and users when the same app has User.Read.All.
-   Owner: Create or confirm her Entra user. Confirm a distinct object id. She signs in once. You do not click both seats. [Entra users](https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers) · [Entra users](https://learn.microsoft.com/en-us/entra/identity/users/users-overview)
+3. **Entra identify** — `mailbox_recorded_oid_open`. Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Owner assigned paid Microsoft 365 E7 and Teams Premium. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat. probe_graph reads org and users when the same app has User.Read.All.
+   Owner: She signs in once. Confirm a distinct object id. She clicks seat B. You do not click both seats. James keeps the fallback E7. [Entra users](https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers) · [Entra users](https://learn.microsoft.com/en-us/entra/identity/users/users-overview)
 
 4. **AINav Control Plane** — `running_code`. Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat.
    Owner: She clicks seat B with her own object id. Lab oids are not two named treasury humans. [Azure-hosted Institute](https://blue-river-010091a0f.7.azurestaticapps.net/) · [ainav-platform](https://github.com/AINav01/ainav-platform)

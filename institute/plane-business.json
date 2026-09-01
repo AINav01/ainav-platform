@@ -102,7 +102,7 @@
       "Weekly kit and pipeline notes as the second human"
     ],
     "name": "Cynthia Hodnett",
-    "note": "Owner assigned number two to manage other aspects, not all aspects. Operating assignment. Mailbox is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett.",
+    "note": "Owner assigned number two to manage other aspects, not all aspects. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. Teams Premium is not a seat. Operating assignment. Paid mail is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett.",
     "officer": false,
     "role": "number_two",
     "scope": "other_aspects",
@@ -205,7 +205,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.62.0",
+  "release": "2.63.0",
   "scenarios": [
     {
       "id": "l1_only",

@@ -103,6 +103,7 @@ def validate_organization(catalog: dict[str, Any]) -> None:
             raise IntegrityError("recorded invite cannot be an alias or Gmail", reason_code="ORG_SECOND_OFFICER")
         if invited.get("number_two") is not True:
             raise IntegrityError("recorded invite is number two", reason_code="ORG_SECOND_OFFICER")
+        _validate_invite_licenses(invited.get("licenses"))
         _validate_number_two(body.get("number_two"), name=name, email=email)
     else:
         if email:
@@ -130,6 +131,25 @@ def validate_organization(catalog: dict[str, Any]) -> None:
                 raise IntegrityError(f"unknown org system {system}", reason_code="CATALOG_ORG")
 
 
+def _validate_invite_licenses(body: Any) -> None:
+    if not isinstance(body, dict):
+        raise IntegrityError("invite licenses must be catalog law", reason_code="ORG_SECOND_OFFICER")
+    if body.get("kind") != "ainav.invite.licenses.v1":
+        raise IntegrityError("invite licenses kind is ainav.invite.licenses.v1", reason_code="ORG_SECOND_OFFICER")
+    if body.get("e7") is not True or body.get("teams_premium") is not True:
+        raise IntegrityError("invite licenses record paid E7 and Teams Premium", reason_code="ORG_SECOND_OFFICER")
+    if body.get("fallback_stays_on_owner") is not True:
+        raise IntegrityError("invite licenses keep the fallback E7 on James", reason_code="ORG_SECOND_OFFICER")
+    if body.get("from_this_plane") is True:
+        raise IntegrityError("this plane cannot assign Microsoft licenses", reason_code="ORG_SECOND_OFFICER")
+    for flag in ("sku", "seat", "live", "live_pin_ok", "second_unique_human"):
+        if body.get(flag) is True:
+            raise IntegrityError(f"invite licenses cannot claim {flag}", reason_code="ORG_SECOND_OFFICER")
+    note = str(body.get("note") or "").lower()
+    if "not a seat" not in note or "not a click" not in note or "fallback" not in note:
+        raise IntegrityError("invite licenses note: not a seat, not a click, fallback stays", reason_code="ORG_SECOND_OFFICER")
+
+
 def _validate_number_two(body: Any, *, name: str, email: str) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("number two must be catalog law", reason_code="ORG_SECOND_OFFICER")
@@ -152,6 +172,8 @@ def _validate_number_two(body: Any, *, name: str, email: str) -> None:
         raise IntegrityError("number two note must keep other aspects, not all aspects", reason_code="ORG_SECOND_OFFICER")
     if "not an officer" not in note or "not a click" not in note:
         raise IntegrityError("number two note must keep not an officer and not a click", reason_code="ORG_SECOND_OFFICER")
+    if "e7" not in note or "teams premium" not in note:
+        raise IntegrityError("number two note records paid E7 and Teams Premium", reason_code="ORG_SECOND_OFFICER")
     manages = " ".join(str(item).lower() for item in body.get("manages") or [])
     cannot = " ".join(str(item).lower() for item in body.get("cannot") or [])
     if "walk away" not in manages or "seat b" not in manages:

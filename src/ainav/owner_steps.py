@@ -20,8 +20,8 @@ def owner_steps_markdown() -> str:
         f"Release {cat['entity']['release']}. Catalog-honest. Not LIVE_PIN_OK. Not a launch.",
         f"Owner: {cat['operating']['owner_principal']}. Operator: {cat['operating']['operator']} (not a seat).",
         f"Invited second human: {invited['name']} ({invited['seat_role']} / {invited['inception_role']}). "
-        f"Mailbox recorded: {invited.get('email')}. Number two for other aspects, not all aspects. "
-        "Mailbox is not an Entra oid and not a click.",
+        f"Mailbox recorded: {invited.get('email')}. Paid E7 and Teams Premium assigned. "
+        "Number two for other aspects, not all aspects. Paid mail is not an Entra oid and not a click.",
         "",
         "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK.",
         "",
@@ -59,6 +59,7 @@ def public_owner_steps() -> dict[str, Any]:
             "officer": False,
             "number_two": True,
             "all_aspects": False,
+            "licenses": dict(invited.get("licenses") or {}),
         },
         "number_two": dict(cat["organization"]["number_two"]),
         "steps": owner_steps(),

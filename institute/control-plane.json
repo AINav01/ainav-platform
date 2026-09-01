@@ -198,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.62.0"
+    "release": "2.63.0"
   },
   "communications": [
     {
@@ -876,7 +876,7 @@
         {
           "id": "invite.seat_b",
           "name": "Microsoft 365 admin \u2192 Users",
-          "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+          "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
           "url": "https://admin.microsoft.com/Adminportal/Home#/users",
           "url_label": "Microsoft 365 admin \u2192 Users"
         },
@@ -2617,7 +2617,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.62.0",
+  "release": "2.63.0",
   "revocations": [
     {
       "by": "Owner / board request",

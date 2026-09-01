@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.62.0 (this tree)
+### 2.63.0 (this tree)
+
+Owner assigned paid Microsoft 365 E7 and
+Teams Premium to Cynthia Hodnett. James
+keeps the fallback E7. Paid mail is not an
+Entra oid and not a click. Teams Premium
+is not a seat. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.62.0
 
 Cloudflare quality is catalog law: E7 DNS
 is full and the apex is a held challenge.

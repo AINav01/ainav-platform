@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.62.0",
+    "release": "2.63.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -46,7 +46,20 @@
         "number_two": true,
         "all_aspects": false,
         "second_unique_human": false,
-        "note": "Owner recorded chodnett@ainav.institute after she agreed to be seat B. Owner assigned number two for other aspects, not all aspects. Mailbox is not an Entra object id. Mailbox is not a click. Not an officer. Not a stockholder. The Cloud Agent is not a seat."
+        "licenses": {
+          "kind": "ainav.invite.licenses.v1",
+          "from_this_plane": false,
+          "e7": true,
+          "teams_premium": true,
+          "fallback_stays_on_owner": true,
+          "sku": false,
+          "seat": false,
+          "live": false,
+          "live_pin_ok": false,
+          "second_unique_human": false,
+          "note": "Owner assigned paid Microsoft 365 E7 and Teams Premium to chodnett@ainav.institute. James keeps the fallback E7. Teams Premium is not a seat. Paid mail is not an Entra oid and not a click."
+        },
+        "note": "Owner recorded chodnett@ainav.institute after she agreed to be seat B. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. Number two for other aspects, not all aspects. Paid mail is not an Entra object id. Paid mail is not a click. Teams Premium is not a seat. Not an officer. Not a stockholder. The Cloud Agent is not a seat."
       },
       "note": "NVIDIA Inception requires two unique contacts (developer + business executive) with business emails; aliases and gmail are refused. Sole owner does not collapse this. The Cloud Agent is not a contact or a seat."
     },
@@ -90,7 +103,7 @@
         "Cloud Agent",
         "Invented customer or inbox"
       ],
-      "note": "Owner assigned number two to manage other aspects, not all aspects. Operating assignment. Mailbox is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett."
+      "note": "Owner assigned number two to manage other aspects, not all aspects. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. Teams Premium is not a seat. Operating assignment. Paid mail is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett."
     },
     "note": "Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.",
     "departments": [
@@ -3409,7 +3422,7 @@
           {
             "id": "invite.seat_b",
             "name": "Microsoft 365 admin → Users",
-            "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+            "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
             "url": "https://admin.microsoft.com/Adminportal/Home#/users",
             "url_label": "Microsoft 365 admin → Users"
           },
@@ -3513,7 +3526,7 @@
       "Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close",
       "Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered",
       "Institute, review, and brief generated from the catalog",
-      "Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click",
+      "Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Owner assigned paid E7 and Teams Premium. Paid mail is not an Entra oid and not a click",
       "Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded",
       "Institute first screen paints substitute vs Job C in one glance",
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
@@ -3895,8 +3908,8 @@
           "name": "Entra identify",
           "role": "identity",
           "status": "mailbox_recorded_oid_open",
-          "in_tree": "Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. probe_graph reads org and users when the same app has User.Read.All.",
-          "owner": "Create or confirm her Entra user. Confirm a distinct object id. She signs in once. You do not click both seats.",
+          "in_tree": "Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Owner assigned paid Microsoft 365 E7 and Teams Premium. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat. probe_graph reads org and users when the same app has User.Read.All.",
+          "owner": "She signs in once. Confirm a distinct object id. She clicks seat B. You do not click both seats. James keeps the fallback E7.",
           "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
           "url_label": "Entra users",
           "learn": "https://learn.microsoft.com/en-us/entra/identity/users/users-overview",
@@ -4803,7 +4816,7 @@
   "owner_gates": [
     {
       "id": "invite.seat_b",
-      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
       "url": "https://admin.microsoft.com/Adminportal/Home#/users",
       "url_label": "Microsoft 365 admin → Users"
     },
@@ -5070,7 +5083,8 @@
         "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
         "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
         "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.",
-        "Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch."
+        "Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.",
+        "Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

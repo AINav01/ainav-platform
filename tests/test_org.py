@@ -31,6 +31,14 @@ def test_organization_is_full_service_and_honest():
     assert two["seat_clicked"] is False
     assert two["entra_oid"] is None
     assert two["mailbox"] == "chodnett@ainav.institute"
+    licenses = body["contacts"]["invited"]["licenses"]
+    assert licenses["kind"] == "ainav.invite.licenses.v1"
+    assert licenses["e7"] is True
+    assert licenses["teams_premium"] is True
+    assert licenses["fallback_stays_on_owner"] is True
+    assert licenses["from_this_plane"] is False
+    assert licenses["seat"] is False
+    assert licenses["second_unique_human"] is False
     assert [item["id"] for item in body["departments"]] == list(REQUIRED_DEPT_IDS)
     assert body["sku"] is False
     statuses = {item["id"]: item["status"] for item in body["departments"]}
@@ -125,6 +133,16 @@ def test_organization_refuses_live_contacts_and_unknown_systems():
     with pytest.raises(IntegrityError) as exc_oid:
         validate_catalog(oid)
     assert exc_oid.value.reason_code == "ORG_SECOND_OFFICER"
+    paid = copy.deepcopy(cat)
+    paid["organization"]["contacts"]["invited"]["licenses"]["seat"] = True
+    with pytest.raises(IntegrityError) as exc_lic:
+        validate_catalog(paid)
+    assert exc_lic.value.reason_code == "ORG_SECOND_OFFICER"
+    missing_e7 = copy.deepcopy(cat)
+    missing_e7["organization"]["contacts"]["invited"]["licenses"]["e7"] = False
+    with pytest.raises(IntegrityError) as exc_e7:
+        validate_catalog(missing_e7)
+    assert exc_e7.value.reason_code == "ORG_SECOND_OFFICER"
     clicked = copy.deepcopy(cat)
     clicked["organization"]["contacts"]["invited"]["seat_clicked"] = True
     with pytest.raises(IntegrityError) as exc_click:
