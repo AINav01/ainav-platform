@@ -1331,6 +1331,55 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("included means included with the required SKU", reason_code="CATALOG_PLANE")
     if bands.get("week_one") != "provisioning.standard_l1":
         raise IntegrityError("week-one prove stays standard_l1", reason_code="CATALOG_PLANE")
+    offer = body.get("included_and_upsells") or {}
+    if not isinstance(offer, dict):
+        raise IntegrityError("catalog missing included and upsells", reason_code="CATALOG_PLANE")
+    if offer.get("sku") is True or offer.get("fourth_sku") is True:
+        raise IntegrityError("included and upsells is not a SKU", reason_code="CATALOG_SKU")
+    if offer.get("included_means_free") is True:
+        raise IntegrityError("included does not mean free", reason_code="CATALOG_PLANE")
+    if offer.get("u_dual_never_free") is not True:
+        raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    if offer.get("hours_never_attach_udual") is not True:
+        raise IntegrityError("hours never attach U-DUAL", reason_code="CATALOG_PLANE")
+    if offer.get("standard_vs_advanced_dashboard") is True:
+        raise IntegrityError("do not sell Standard vs Advanced dashboard", reason_code="CATALOG_SKU")
+    if str(offer.get("attach_means") or "") != str(bands.get("attach_means") or ""):
+        raise IntegrityError("included attach_means must match provision bands", reason_code="CATALOG_PLANE")
+    thesis = str(offer.get("thesis") or "").lower()
+    if "not free" not in thesis or "three sku" not in thesis or "upsell band" not in thesis:
+        raise IntegrityError("included thesis is seating vs upsell band, not free, three SKUs", reason_code="CATALOG_PLANE")
+    glance = offer.get("first_glance") or {}
+    if not isinstance(glance, dict):
+        raise IntegrityError("included and upsells first glance is required", reason_code="CATALOG_PLANE")
+    if glance.get("sku") is True:
+        raise IntegrityError("included and upsells first glance is not a SKU", reason_code="CATALOG_SKU")
+    lede = str(glance.get("lede") or "").lower()
+    if "not a gift" not in lede or "upsell band" not in lede or "fourth sku" not in lede:
+        raise IntegrityError("included first glance is seating vs upsell, not a fourth SKU", reason_code="CATALOG_PLANE")
+    columns = {item.get("id"): item for item in glance.get("columns") or [] if isinstance(item, dict)}
+    if set(columns) != {"included_with_l1", "upsell_band"}:
+        raise IntegrityError("included and upsells needs included_with_l1 and upsell_band", reason_code="CATALOG_PLANE")
+    included = columns["included_with_l1"]
+    upsell = columns["upsell_band"]
+    if included.get("sku") is True or upsell.get("sku") is True:
+        raise IntegrityError("an included or upsell column is not a SKU", reason_code="CATALOG_SKU")
+    if included.get("upsell") is True or included.get("band") != "provision.standard":
+        raise IntegrityError("included with L1 is standard provision, not an upsell", reason_code="CATALOG_PLANE")
+    if upsell.get("upsell") is not True or upsell.get("band") != "provision.advanced":
+        raise IntegrityError("upsell band is advanced provision", reason_code="CATALOG_PLANE")
+    included_blob = " ".join(str(item) for item in included.get("items") or []).lower()
+    if "week-one" not in included_blob or "dashboard" not in included_blob or "included_in_sku" not in included_blob:
+        raise IntegrityError("included column must keep week-one, dashboard, and included seating", reason_code="CATALOG_PLANE")
+    upsell_blob = " ".join(str(item) for item in upsell.get("items") or []).lower()
+    if "p-adm" not in upsell_blob or "u-dual" not in upsell_blob or "hours" not in upsell_blob:
+        raise IntegrityError("upsell column must keep priced desks, P-ADM, U-DUAL, and hours", reason_code="CATALOG_PLANE")
+    if "never free" not in upsell_blob:
+        raise IntegrityError("upsell column must keep U-DUAL never free", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in offer.get("refuse") or []]
+    for stem in ("included means free", "fourth sku", "u-dual free with p-adm", "dashboard as sku"):
+        if stem not in refuse:
+            raise IntegrityError("included and upsells must refuse " + stem, reason_code="CATALOG_PLANE")
     floor = body.get("floor") or {}
     lede = str(floor.get("lede") or "").lower()
     if "one dashboard" not in lede or "included with l1" not in lede:

@@ -272,6 +272,7 @@ def public_business_plane() -> dict[str, Any]:
             "Not LIVE_PIN_OK."
         ),
         "commercial": cat["equations"]["commercial"],
+        "included_and_upsells": dict(cat["plane_interface"].get("included_and_upsells") or {}),
         "lab_pin": cat["equations"]["lab_pin"],
         "close": {
             "named_dual_seats": False,

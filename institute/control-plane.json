@@ -198,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.63.0"
+    "release": "2.64.0"
   },
   "communications": [
     {
@@ -1414,6 +1414,67 @@
     }
   },
   "forecast": false,
+  "included_and_upsells": {
+    "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
+    "first_glance": {
+      "columns": [
+        {
+          "band": "provision.standard",
+          "id": "included_with_l1",
+          "items": [
+            "Week-one prove: L1 + industry.treasury + lib.l1.wedge on the BC twin",
+            "Every L1 pack and library with included_in_sku=true",
+            "Entra identity, Teams notify, twin, proof day / Acceptance Kit",
+            "Client executive dashboard",
+            "Standard provision seating"
+          ],
+          "name": "Included with L1",
+          "price": "inside $28\u201340k \u00b7 2\u20134 weeks",
+          "sku": false,
+          "upsell": false
+        },
+        {
+          "band": "provision.advanced",
+          "id": "upsell_band",
+          "items": [
+            "Priced L1 desks (a la carte)",
+            "P-ADM keep after kit PASS \u2014 $40\u201360k / year",
+            "Paid U-DUAL \u2014 $20\u201335k / year \u2014 never free",
+            "Priced U-DUAL desks",
+            "FFS hours $3,500 / day \u2014 hours never attach U-DUAL"
+          ],
+          "name": "Upsell band",
+          "price": "attach after L1",
+          "sku": false,
+          "upsell": true
+        }
+      ],
+      "lede": "Included with L1 is seating, not a gift. The upsell band is priced desks, keep, paid U-DUAL, and hours. Not a fourth SKU.",
+      "sku": false
+    },
+    "fourth_sku": false,
+    "hours_never_attach_udual": true,
+    "included_means_free": false,
+    "kind": "ainav.commercial.included_and_upsells.v1",
+    "refuse": [
+      "U-DUAL free with P-ADM",
+      "dashboard as SKU",
+      "standard vs advanced dashboard",
+      "standard provision as SKU",
+      "advanced provision as SKU",
+      "included means free",
+      "must-have as SKU",
+      "packs as products",
+      "libraries as products",
+      "hours as products",
+      "Microsoft licenses as products",
+      "fourth SKU"
+    ],
+    "sku": false,
+    "standard_vs_advanced_dashboard": false,
+    "thesis": "L1 includes the week-one prove and every L1 pack and library with included_in_sku=true. Advanced is the upsell band: priced desks, P-ADM keep, paid U-DUAL, and FFS hours. Included means included with the required SKU, not free. Three SKUs only.",
+    "u_dual_never_free": true
+  },
   "institute": "AINAV.Institute",
   "invited": "Cynthia Hodnett",
   "kind": "ainav.plane.interface.v1",
@@ -2617,7 +2678,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.63.0",
+  "release": "2.64.0",
   "revocations": [
     {
       "by": "Owner / board request",

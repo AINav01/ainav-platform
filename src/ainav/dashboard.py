@@ -374,6 +374,7 @@ def public_dashboard() -> dict[str, Any]:
         "provisioning": dict(body.get("provisioning") or {}),
         "client_dashboard": dict(body.get("client_dashboard") or {}),
         "provision_bands": _provision_bands(cat, body),
+        "included_and_upsells": dict(body.get("included_and_upsells") or {}),
         "must_have": must,
         "floor": dict(body.get("floor") or {}),
         "communications": [dict(item) for item in body.get("communications") or []],
@@ -680,6 +681,7 @@ def dashboard_markdown() -> str:
     attached = prov.get("attached") or {}
     client_dash = body.get("client_dashboard") or {}
     bands = body.get("provision_bands") or {}
+    offer = body.get("included_and_upsells") or {}
     lines += [
         "",
         "## Client executive dashboard — included with L1",
@@ -690,6 +692,23 @@ def dashboard_markdown() -> str:
         f"SKU: {str(client_dash.get('sku')).lower()}. Upsell: "
         f"{str(client_dash.get('upsell')).lower()}. Included with: "
         f"{client_dash.get('included_with') or 'L1'}.",
+        "",
+        "## Included with L1 · upsell band",
+        "",
+        f"{(offer.get('first_glance') or {}).get('lede') or offer.get('thesis') or ''} "
+        f"{offer.get('attach_means') or ''}",
+        "",
+    ]
+    for item in (offer.get("first_glance") or {}).get("columns") or []:
+        lines.append(
+            f"- **{item.get('name')}** — {item.get('price') or ''}. "
+            f"SKU: {str(item.get('sku')).lower()}. Upsell: "
+            f"{str(item.get('upsell')).lower()}. "
+            + "; ".join(item.get("items") or [])
+        )
+    for item in offer.get("refuse") or []:
+        lines.append(f"- Refuse: {item}")
+    lines += [
         "",
         "## Provisioning — standard included, advanced upsell",
         "",
@@ -1123,6 +1142,20 @@ def dashboard_html() -> str:
         f"Included with: {html.escape(str(client_dash.get('included_with') or 'L1'))}. "
         "Mandated: false. Certified: false."
     )
+    offer = body.get("included_and_upsells") or {}
+    offer_glance = offer.get("first_glance") or {}
+    offer_columns = "".join(
+        (
+            f"<article data-band=\"{'advanced' if item.get('upsell') is True else 'standard'}\">"
+            f"<h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"price\">{html.escape(item.get('price') or '')}</p>"
+            "<ul>"
+            + "".join(f"<li>{html.escape(line)}</li>" for line in item.get("items") or [])
+            + "</ul></article>"
+        )
+        for item in offer_glance.get("columns") or []
+    )
+    offer_refuse = "".join(f"<li>{html.escape(item)}</li>" for item in offer.get("refuse") or [])
     dash_glance = (body.get("dashboard") or {}).get("first_glance") or {}
     rail_items = list(dash_glance.get("write_rail") or [])
     if not rail_items:
@@ -1319,6 +1352,10 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="lifecycle">{revocations}</div>
 <h2>Client executive dashboard — included with L1</h2>
 <p class="note">{client_dash_note}</p>
+<h2>Included with L1 · upsell band</h2>
+<p class="note">{html.escape(offer_glance.get('lede') or offer.get('thesis') or '')} {html.escape(offer.get('attach_means') or '')}</p>
+<div class="bands">{offer_columns}</div>
+<ul>{offer_refuse}</ul>
 <h2>Provisioning — standard included, advanced upsell</h2>
 <p class="note">U-DUAL is never free. Hours never attach U-DUAL. Attached 0 / 0 / 0. Not LIVE_PIN_OK. Bands are not SKUs.</p>
 <div class="bands">{provision_bands}</div>

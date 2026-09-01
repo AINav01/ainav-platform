@@ -876,6 +876,17 @@ body[data-view="client"] [data-for~="client"] { opacity: 1; }
 .plane-bands article[data-scope="included_seating"] { box-shadow: inset 3px 0 0 var(--ok); }
 .plane-bands article[data-band="advanced"],
 .plane-bands article[data-scope="advanced"] { box-shadow: inset 3px 0 0 var(--gold); }
+.include-upsell { display: grid; gap: 0.9rem; margin: 1rem 0; }
+@media (min-width: 800px) { .include-upsell { grid-template-columns: 1fr 1fr; } }
+.include-upsell article {
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.15rem 1.35rem;
+  background: color-mix(in srgb, var(--paper) 74%, white);
+}
+.include-upsell article[data-band="standard"] { box-shadow: inset 3px 0 0 var(--ok); }
+.include-upsell article[data-band="advanced"] { box-shadow: inset 3px 0 0 var(--gold); }
+.include-upsell .price { margin: 0.2rem 0 0.7rem; color: var(--gold); }
+.include-upsell ul { margin: 0; }
 table.law tr[data-group] th {
   background: var(--void);
   color: #f4efe6;

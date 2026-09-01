@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.63.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.64.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.63.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.64.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -328,6 +328,7 @@ Working well
 - Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
 - Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.
 - Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.
+- Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.
 
 Could be improved — without inventing a fourth SKU
 

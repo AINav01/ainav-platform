@@ -216,6 +216,9 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="plane-write-rail"' in html
     assert 'id="plane-dash-lede"' in html
     assert 'id="hero-skus"' in html
+    assert 'id="included-upsells"' in html
+    assert 'id="commercial-lede"' in html
+    assert "not a gift" in html.lower()
     assert 'data-sku="L1"' in html
     assert 'data-sku="P-ADM"' in html
     assert 'data-sku="U-DUAL"' in html
@@ -233,6 +236,7 @@ def test_institute_foundation_is_catalog_honest():
     assert "1 mailbox / 0 oid" in html
     assert "0 / 1 invited" not in html
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    assert 'id="plane-offer"' in plane
     assert "1 mailbox / 0 oid" in plane
     assert "0 / 1 invited" not in plane
     assert 'id="complement-cards"' in html

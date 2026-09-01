@@ -36,6 +36,14 @@ def test_business_plane_is_catalog_list_not_a_forecast():
     assert body["year_one_all_three"]["min"] == 88000
     assert body["year_one_all_three"]["max"] == 135000
     assert body["year_one_all_three"]["forecast"] is False
+    offer = body["included_and_upsells"]
+    assert offer["sku"] is False
+    assert offer["fourth_sku"] is False
+    assert offer["included_means_free"] is False
+    assert [item["id"] for item in offer["first_glance"]["columns"]] == [
+        "included_with_l1",
+        "upsell_band",
+    ]
     assert {item["id"] for item in body["bake_off"]["we_win"]} >= {
         "independence",
         "consume_once",
@@ -68,7 +76,16 @@ def test_app_html_paints_the_business_plane():
     assert "If-then catalog list" in app
     assert "Operating company. Close is open." in app
     assert "Number two" in app
+    assert "Included and upsells" in app
+    assert "not a gift" in app.lower()
     assert "not all aspects" in app.lower()
     assert "plane-business.json" in js
     assert "paintBusiness" in js
     assert "nvidia inception member" not in app.lower()
+    sale = Path("institute/index.html").read_text(encoding="utf-8")
+    js = Path("institute/site.js").read_text(encoding="utf-8")
+    assert 'id="included-upsells"' in sale
+    assert 'id="commercial-refuse"' in sale
+    assert "not a gift" in sale.lower()
+    assert "paintOffer" in js
+    assert "included_and_upsells" in js

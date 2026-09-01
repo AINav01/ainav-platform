@@ -257,6 +257,36 @@
     if (two.all_aspects || two.officer || two.seat_clicked || two.entra_oid) return;
     if (data.thesis) setText("app-business-lede", data.thesis);
     setText("app-business-commercial", (data.commercial || "") + ". Closed: false. Lab pin is " + (data.lab_pin || "LIVE_PIN_OK") + ".");
+    var offer = data.included_and_upsells || {};
+    if (!offer.sku && !offer.fourth_sku && !offer.included_means_free) {
+      var glance = offer.first_glance || {};
+      if (glance.lede) setText("app-business-offer-lede", glance.lede);
+      if (offer.attach_means) setText("app-business-attach", offer.attach_means);
+      var offerRoot = $("app-business-offer");
+      if (offerRoot && glance.columns && glance.columns.length) {
+        offerRoot.textContent = "";
+        glance.columns.forEach(function (item) {
+          var art = document.createElement("article");
+          art.setAttribute("data-band", item.upsell === true ? "advanced" : "standard");
+          var h = document.createElement("h3");
+          h.textContent = item.name || "";
+          var price = document.createElement("p");
+          price.className = "price";
+          price.textContent = item.price || "";
+          var ul = document.createElement("ul");
+          ul.className = "stack";
+          (item.items || []).forEach(function (line) {
+            var li = document.createElement("li");
+            li.textContent = line;
+            ul.appendChild(li);
+          });
+          art.appendChild(h);
+          art.appendChild(price);
+          art.appendChild(ul);
+          offerRoot.appendChild(art);
+        });
+      }
+    }
     var close = data.close || {};
     var kpis = $("app-business-close");
     if (kpis) {

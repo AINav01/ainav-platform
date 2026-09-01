@@ -148,6 +148,46 @@
             " · must-have · not a SKU · not LIVE_PIN_OK";
         });
       }
+      function paintOffer(rootId, offer) {
+        var root = document.getElementById(rootId);
+        var glance = (offer && offer.first_glance) || {};
+        if (!root || !glance.columns || !glance.columns.length) return;
+        root.textContent = "";
+        glance.columns.forEach(function (item) {
+          var art = document.createElement("article");
+          art.setAttribute("data-band", item.upsell === true ? "advanced" : "standard");
+          var h = document.createElement("h3");
+          h.textContent = item.name || "";
+          var price = document.createElement("p");
+          price.className = "price";
+          price.textContent = item.price || "";
+          var ul = document.createElement("ul");
+          ul.className = "stack";
+          (item.items || []).forEach(function (line) {
+            var li = document.createElement("li");
+            li.textContent = line;
+            ul.appendChild(li);
+          });
+          art.appendChild(h);
+          art.appendChild(price);
+          art.appendChild(ul);
+          root.appendChild(art);
+        });
+      }
+      var offer = data.included_and_upsells || {};
+      if (!offer.sku && !offer.fourth_sku && !offer.included_means_free) {
+        var offerGlance = offer.first_glance || {};
+        if (offerGlance.lede) {
+          set("commercial-lede", offerGlance.lede);
+          set("plane-offer-lede", offerGlance.lede);
+        }
+        if (offer.attach_means) set("commercial-attach", offer.attach_means);
+        paintOffer("included-upsells", offer);
+        paintOffer("plane-offer", offer);
+        fill("commercial-refuse", offer.refuse || [], function (item) {
+          return item;
+        });
+      }
       var dashGlance = (data.dashboard && data.dashboard.first_glance) || {};
       var floorGlance = (data.floor && data.floor.first_glance) || {};
       if (dashGlance.lede) set("plane-dash-lede", dashGlance.lede);

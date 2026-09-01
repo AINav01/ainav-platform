@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.63.0"
+    assert cat["entity"]["release"] == "2.64.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -136,6 +136,17 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     assert "must-have" in cat["plane_interface"]["floor"]["lede"].lower()
     assert cat["plane_interface"]["client_dashboard"]["included_with"] == "L1"
     assert cat["plane_interface"]["client_dashboard"]["upsell"] is False
+    offer = cat["plane_interface"]["included_and_upsells"]
+    assert offer["sku"] is False
+    assert offer["fourth_sku"] is False
+    assert offer["included_means_free"] is False
+    assert offer["u_dual_never_free"] is True
+    assert [item["id"] for item in offer["first_glance"]["columns"]] == [
+        "included_with_l1",
+        "upsell_band",
+    ]
+    assert "not a gift" in offer["first_glance"]["lede"].lower()
+    assert "included means free" in [item.lower() for item in offer["refuse"]]
     assert cat["plane_interface"]["dashboard"]["upsell"] is False
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False

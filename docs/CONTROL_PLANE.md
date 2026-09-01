@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.63.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.64.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -224,7 +224,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.63.0.
+- As of: catalog release 2.64.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -299,6 +299,25 @@ Entra object id on every request. Conditional Access may identify. Identify is n
 Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. Two humans before the write. One dashboard included with L1 — not an upsell. Standard and advanced are provision bands, not products.
 
 Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU. SKU: false. Upsell: false. Included with: L1.
+
+## Included with L1 · upsell band
+
+Included with L1 is seating, not a gift. The upsell band is priced desks, keep, paid U-DUAL, and hours. Not a fourth SKU. included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.
+
+- **Included with L1** — inside $28–40k · 2–4 weeks. SKU: false. Upsell: false. Week-one prove: L1 + industry.treasury + lib.l1.wedge on the BC twin; Every L1 pack and library with included_in_sku=true; Entra identity, Teams notify, twin, proof day / Acceptance Kit; Client executive dashboard; Standard provision seating
+- **Upsell band** — attach after L1. SKU: false. Upsell: true. Priced L1 desks (a la carte); P-ADM keep after kit PASS — $40–60k / year; Paid U-DUAL — $20–35k / year — never free; Priced U-DUAL desks; FFS hours $3,500 / day — hours never attach U-DUAL
+- Refuse: U-DUAL free with P-ADM
+- Refuse: dashboard as SKU
+- Refuse: standard vs advanced dashboard
+- Refuse: standard provision as SKU
+- Refuse: advanced provision as SKU
+- Refuse: included means free
+- Refuse: must-have as SKU
+- Refuse: packs as products
+- Refuse: libraries as products
+- Refuse: hours as products
+- Refuse: Microsoft licenses as products
+- Refuse: fourth SKU
 
 ## Provisioning — standard included, advanced upsell
 

@@ -119,6 +119,19 @@ def test_dashboard_is_honest_and_not_a_sku():
         "advanced",
     }
     assert "included with" in (body["provision_bands"].get("attach_means") or "").lower()
+    offer = body["included_and_upsells"]
+    assert offer["sku"] is False
+    assert offer["fourth_sku"] is False
+    assert offer["included_means_free"] is False
+    assert offer["u_dual_never_free"] is True
+    assert offer["hours_never_attach_udual"] is True
+    assert [item["id"] for item in offer["first_glance"]["columns"]] == [
+        "included_with_l1",
+        "upsell_band",
+    ]
+    assert offer["first_glance"]["columns"][0]["upsell"] is False
+    assert offer["first_glance"]["columns"][1]["upsell"] is True
+    assert offer["attach_means"] == body["provision_bands"]["attach_means"]
     treasury = next(item for item in body["provision_bands"]["included_l1"] if item["id"] == "industry.treasury")
     assert treasury["attach"] == "included with L1"
     sales = next(item for item in body["provision_bands"]["included_udual"] if item["id"] == "industry.sales")
@@ -186,6 +199,7 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
     assert "upsell band" in md.lower()
+    assert "not a gift" in md.lower() or "included with l1 · upsell band" in md.lower()
     assert "not a sku" in md.lower()
     assert "$0" in md
     assert "same entra" in md.lower() or "same plane" in md.lower()
@@ -217,6 +231,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Client executive dashboard" in html
     assert "included with l1" in html.lower()
     assert "upsell band" in html.lower()
+    assert "Included with L1 · upsell band" in html
+    assert "not a gift" in html.lower()
+    assert "fourth sku" in html.lower()
     assert "Inter-communication" in html
     assert "Record keeping" in html
     assert "compliance matrix" in html.lower()
@@ -300,6 +317,23 @@ def test_plane_interface_validators_refuse_fiction():
     free_hours["plane_interface"]["provision_bands"]["items"][1]["hours_never_attach_udual"] = False
     with pytest.raises(IntegrityError):
         validate_catalog(free_hours)
+    offer_sku = copy.deepcopy(cat)
+    offer_sku["plane_interface"]["included_and_upsells"]["sku"] = True
+    with pytest.raises(IntegrityError) as offer_exc:
+        validate_catalog(offer_sku)
+    assert offer_exc.value.reason_code == "CATALOG_SKU"
+    offer_free = copy.deepcopy(cat)
+    offer_free["plane_interface"]["included_and_upsells"]["included_means_free"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(offer_free)
+    offer_fourth = copy.deepcopy(cat)
+    offer_fourth["plane_interface"]["included_and_upsells"]["fourth_sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(offer_fourth)
+    offer_col = copy.deepcopy(cat)
+    offer_col["plane_interface"]["included_and_upsells"]["first_glance"]["columns"][0]["upsell"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(offer_col)
     two_dash = copy.deepcopy(cat)
     two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
     with pytest.raises(IntegrityError):

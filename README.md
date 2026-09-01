@@ -111,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.63.0 (this tree)
+### 2.64.0 (this tree)
+
+Included versus upsell is catalog law. L1
+seating and the client dashboard are
+included with L1. Advanced is the upsell
+band: priced desks, P-ADM keep, paid
+U-DUAL, and hours. Included is not free.
+Not a fourth SKU. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.63.0
 
 Owner assigned paid Microsoft 365 E7 and
 Teams Premium to Cynthia Hodnett. James
