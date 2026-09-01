@@ -47,6 +47,19 @@ def test_public_face_is_static_catalog_sale():
     assert 'setAttribute("data-lane", "copy")' in js
     assert "write_rail" in js
     assert "write rail" in face["thesis"].lower()
+    dash_glance = cat["plane_interface"]["dashboard"]["first_glance"]
+    assert [item["id"] for item in dash_glance["write_rail"]] == [
+        "seat_a",
+        "seat_b",
+        "hash",
+        "write",
+    ]
+    assert "one dashboard" in dash_glance["lede"].lower()
+    plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    assert 'id="plane-write-rail"' in plane
+    assert 'class="plane-dash"' in plane
+    assert 'id="plane-dash-lede"' in plane
+    assert "plane-write-rail" in js
     assert [item["id"] for item in page["first_glance"]["write_rail"]] == [
         "seat_a",
         "seat_b",

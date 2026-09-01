@@ -89,6 +89,10 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert all(not item["attaches_udual"] for item in body["provision_bands"]["priced_hours"])
     assert body["client_dashboard"]["same_as"] == "dashboard"
     assert body["dashboard"]["same_as"] == "client_dashboard"
+    dash_glance = body["dashboard"]["first_glance"]
+    assert dash_glance["uses"] == "write_rail"
+    assert [item["id"] for item in dash_glance["write_rail"]] == ["seat_a", "seat_b", "hash", "write"]
+    assert "one dashboard" in dash_glance["lede"].lower()
     assert body["provision_bands"]["week_one"] == "provisioning.standard_l1"
     assert body["must_have"]["mandated"] is False
     assert body["must_have"]["certified"] is False
@@ -148,6 +152,8 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert agent["draft"] is False
     md = dashboard_markdown()
     assert "why a client must have this" in md.lower()
+    assert "write rail" in md.lower()
+    assert "one dashboard" in md.lower()
     assert "already have" in md.lower()
     assert "must-have for owner, board, examiner" in md.lower()
     assert "not the gate" in md.lower()
@@ -186,6 +192,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "throughout the client organization" in md.lower()
     assert "seating cascade" in md.lower()
     html = dashboard_html()
+    assert "Write rail — one dashboard" in html
+    assert "Seat A" in html
+    assert "Then the write" in html
     assert "Success program — bake-off" in html
     assert "They win when" in html
     assert "We win when" in html
@@ -532,6 +541,8 @@ def test_institute_control_plane_matches_catalog():
     assert "plane-maps" in js
     floor = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert "Executive control-plane dashboard" in floor
+    assert 'id="plane-write-rail"' in floor
+    assert 'id="plane-dash-lede"' in floor
     assert 'id="plane-tiles"' in floor
     assert 'id="plane-cascade"' in floor
     assert 'data-keep="short"' in floor

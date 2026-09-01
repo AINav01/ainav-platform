@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.56.0 (this tree)
+### 2.57.0 (this tree)
+
+Dashboard first glance is the same write rail.
+One dashboard included with L1. Hierarchical views
+are the same plane, not a second product. Client
+executive dashboard is the executive control-plane
+dashboard. Not a CMS. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.56.0
 
 First glance is a write rail, Job C vs not-the-gate,
 and three SKUs. The Institute stays static on Azure

@@ -198,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.56.0"
+    "release": "2.57.0"
   },
   "communications": [
     {
@@ -457,6 +457,34 @@
     }
   ],
   "dashboard": {
+    "first_glance": {
+      "lede": "One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU.",
+      "same_as": "client_dashboard",
+      "sku": false,
+      "uses": "write_rail",
+      "write_rail": [
+        {
+          "id": "seat_a",
+          "name": "Seat A",
+          "note": "Treasury admits"
+        },
+        {
+          "id": "seat_b",
+          "name": "Seat B",
+          "note": "Controller admits"
+        },
+        {
+          "id": "hash",
+          "name": "One hash",
+          "note": "Consume once"
+        },
+        {
+          "id": "write",
+          "name": "Then the write",
+          "note": "Fail-closed SoR"
+        }
+      ]
+    },
     "included_with": "L1",
     "name": "Executive control-plane dashboard",
     "realtime_means": "Admit ledger and freeze state. Not invented P&L. Not live Production BC.",
@@ -2460,7 +2488,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.56.0",
+  "release": "2.57.0",
   "revocations": [
     {
       "by": "Owner / board request",

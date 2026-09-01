@@ -745,6 +745,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         25: ("pro", "not a sku"),
         26: ("pages", "not the institute"),
         27: ("write rail", "not a cms"),
+        28: ("write rail", "one dashboard"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1167,6 +1168,21 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("client dashboard is the same dashboard", reason_code="CATALOG_PLANE")
     if dash.get("same_as") != "client_dashboard":
         raise IntegrityError("dashboard is the client dashboard", reason_code="CATALOG_PLANE")
+    dash_glance = dash.get("first_glance") or {}
+    if not isinstance(dash_glance, dict):
+        raise IntegrityError("dashboard first glance is required", reason_code="CATALOG_PLANE")
+    if dash_glance.get("sku") is True:
+        raise IntegrityError("dashboard first glance is not a SKU", reason_code="CATALOG_SKU")
+    if dash_glance.get("same_as") != "client_dashboard":
+        raise IntegrityError("dashboard first glance is the client dashboard", reason_code="CATALOG_PLANE")
+    if dash_glance.get("uses") != "write_rail":
+        raise IntegrityError("dashboard first glance uses the write rail", reason_code="CATALOG_PLANE")
+    dash_lede = str(dash_glance.get("lede") or "").lower()
+    if "one dashboard" not in dash_lede or "same plane" not in dash_lede:
+        raise IntegrityError("dashboard first glance is one dashboard on the same plane", reason_code="CATALOG_PLANE")
+    dash_rail = [item.get("id") for item in dash_glance.get("write_rail") or []]
+    if dash_rail != ["seat_a", "seat_b", "hash", "write"]:
+        raise IntegrityError("dashboard write rail is seat A, seat B, hash, then the write", reason_code="CATALOG_PLANE")
     bands = body.get("provision_bands") or {}
     if bands.get("sku") is True:
         raise IntegrityError("provision bands are not a SKU", reason_code="CATALOG_SKU")
@@ -1243,6 +1259,9 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     rail = list(glance.get("write_rail") or [])
     if [item.get("id") for item in rail] != ["seat_a", "seat_b", "hash", "write"]:
         raise IntegrityError("first glance write rail is seat A, seat B, hash, then the write", reason_code="CATALOG_PLANE")
+    dash_ids = [item.get("id") for item in ((body.get("dashboard") or {}).get("first_glance") or {}).get("write_rail") or []]
+    if dash_ids != [item.get("id") for item in rail]:
+        raise IntegrityError("dashboard write rail must match the public write rail", reason_code="CATALOG_PLANE")
     rail_blob = " ".join(f"{item.get('name') or ''} {item.get('note') or ''}" for item in rail).lower()
     for stem in ("seat a", "seat b", "hash", "write"):
         if stem not in rail_blob:

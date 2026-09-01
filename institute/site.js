@@ -148,6 +148,25 @@
             " · must-have · not a SKU · not LIVE_PIN_OK";
         });
       }
+      var dashGlance = (data.dashboard && data.dashboard.first_glance) || {};
+      var floorGlance = (data.floor && data.floor.first_glance) || {};
+      if (dashGlance.lede) set("plane-dash-lede", dashGlance.lede);
+      var planeRail = document.getElementById("plane-write-rail");
+      var railItems = dashGlance.write_rail || floorGlance.write_rail;
+      if (planeRail && railItems && railItems.length) {
+        planeRail.textContent = "";
+        railItems.forEach(function (item) {
+          var li = document.createElement("li");
+          if (item.id) li.setAttribute("data-step", item.id);
+          var b = document.createElement("b");
+          b.textContent = item.name || "";
+          var span = document.createElement("span");
+          span.textContent = item.note || "";
+          li.appendChild(b);
+          li.appendChild(span);
+          planeRail.appendChild(li);
+        });
+      }
       var thesisNode = document.getElementById("plane-thesis");
       if (thesisNode && data.floor && data.floor.lede && thesisNode.getAttribute("data-keep") === "short") {
         thesisNode.textContent = data.floor.lede;

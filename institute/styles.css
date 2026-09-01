@@ -556,6 +556,13 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
 .cards.dash article[data-tone="list"] .price,
 .cards.dash article[data-tone="map"] .price { color: var(--hold); }
 .plane-floor { max-width: var(--wide); }
+.plane-dash {
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+.plane-dash .write-rail { margin-top: 1.15rem; }
+.plane-dash .cards.dash { margin-top: 1.35rem; }
 .plane-floor-page { border-top: 0; padding-top: clamp(2rem, 6vh, 3.5rem); }
 .plane-main { padding: 0 6vw 5rem; }
 .plane-page .plane-floor-page h1 {

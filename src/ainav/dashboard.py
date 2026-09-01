@@ -418,6 +418,15 @@ def dashboard_markdown() -> str:
         f"{(body.get('floor') or {}).get('already_have') or ''}",
         f"{(body.get('floor') or {}).get('still_lack') or ''}",
         "",
+        "## Write rail — one dashboard",
+        "",
+        f"{((body.get('dashboard') or {}).get('first_glance') or {}).get('lede') or ''}",
+        "",
+    ]
+    for item in ((body.get("dashboard") or {}).get("first_glance") or {}).get("write_rail") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    lines += [
+        "",
         "### Must-have for owner, board, examiner",
         "",
         f"- **Owner** — {((body.get('must_have') or {}).get('for') or {}).get('owner') or ''}",
@@ -1114,6 +1123,22 @@ def dashboard_html() -> str:
         f"Included with: {html.escape(str(client_dash.get('included_with') or 'L1'))}. "
         "Mandated: false. Certified: false."
     )
+    dash_glance = (body.get("dashboard") or {}).get("first_glance") or {}
+    rail_items = list(dash_glance.get("write_rail") or [])
+    if not rail_items:
+        rail_items = list(((body.get("floor") or {}).get("first_glance") or {}).get("write_rail") or [])
+    write_rail = "".join(
+        (
+            f"<article data-step=\"{html.escape(item.get('id') or '')}\">"
+            f"<h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p>"
+            "</article>"
+        )
+        for item in rail_items
+    )
+    dash_glance_lede = html.escape(
+        str(dash_glance.get("lede") or "One dashboard included with L1. Hierarchical views are the same plane.")
+    )
     communications = "".join(
         (
             f"<article data-tone=\"hold\"><h3>{html.escape(item['name'])}</h3>"
@@ -1211,6 +1236,11 @@ h2 {{ font: 700 8pt Helvetica, Arial, sans-serif; letter-spacing: 0.1em; text-tr
 [data-tone="hold"] .price, [data-tone="list"] .price, [data-tone="map"] .price {{ color: var(--hold); }}
 .note {{ font: 7.8pt Helvetica, Arial, sans-serif; color: var(--mute); margin: 0; }}
 .path {{ display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 0 0 10pt; }}
+.rail {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6pt; margin: 0 0 10pt; }}
+.rail article {{ border: 0.8pt solid var(--rule); background: #fff; padding: 7pt 8pt; }}
+.rail article[data-step="seat_a"], .rail article[data-step="seat_b"] {{ background: var(--void); color: #f4efe6; }}
+.rail article[data-step="hash"] {{ border-top: 2pt solid var(--gold); }}
+.rail article[data-step="write"] {{ box-shadow: inset 3pt 0 0 var(--gold); }}
 .lod {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .views {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
 .attention, .exceptions, .lifecycle, .bands {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6pt; margin: 0 0 10pt; }}
@@ -1250,6 +1280,9 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 </div>
 <div class="strip">{strip}</div>
 <div class="wrap">
+<h2>Write rail — one dashboard</h2>
+<p class="note">{dash_glance_lede}</p>
+<div class="rail">{write_rail}</div>
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <h2>Success program — bake-off</h2>

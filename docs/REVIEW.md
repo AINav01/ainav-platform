@@ -439,6 +439,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.
 - Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.
 - Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.
+- Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.
 
 ## Expert review — could be improved
 
@@ -483,6 +484,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **25. [tree] Cloudflare Pro is the edge plan** — Record Pro. Not a SKU. Owner activates SSL Full, WAF managed, Rocket Loader off. MX stays DNS-only. This Cloud Agent cannot edit Cloudflare. Not launch.
 - **26. [tree] Apex holding is empty Pages** — Record ainav-institute.pages.dev as the apex CNAME. Empty Pages is not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.
 - **27. [tree] Instrument first glance** — Paint a write rail, Job C vs not-the-gate, and three SKUs on the first glance. Keep Azure Static Web Apps. Owner book stays secondary. Not a CMS. Not LIVE_PIN_OK.
+- **28. [tree] Instrument dashboard first glance** — Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.
 
 ## Owner — James must click
 

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.56.0",
+    "release": "2.57.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2354,7 +2354,19 @@
       ],
       "included_with": "L1",
       "upsell": false,
-      "same_as": "client_dashboard"
+      "same_as": "client_dashboard",
+      "first_glance": {
+        "sku": false,
+        "same_as": "client_dashboard",
+        "uses": "write_rail",
+        "lede": "One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU.",
+        "write_rail": [
+          {"id": "seat_a", "name": "Seat A", "note": "Treasury admits"},
+          {"id": "seat_b", "name": "Seat B", "note": "Controller admits"},
+          {"id": "hash", "name": "One hash", "note": "Consume once"},
+          {"id": "write", "name": "Then the write", "note": "Fail-closed SoR"}
+        ]
+      }
     },
     "refuse": [
       "fourth SKU",
@@ -4913,7 +4925,8 @@
       "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.",
       "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
       "Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.",
-      "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch."
+      "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
+      "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -5270,6 +5283,14 @@
         "who": "tree",
         "title": "Instrument first glance",
         "do": "Paint a write rail, Job C vs not-the-gate, and three SKUs on the first glance. Keep Azure Static Web Apps. Owner book stays secondary. Not a CMS. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 28,
+        "who": "tree",
+        "title": "Instrument dashboard first glance",
+        "do": "Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }
