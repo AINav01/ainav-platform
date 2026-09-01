@@ -42,7 +42,7 @@ def test_public_kit_is_fail_closed():
     assert "nvidia inception member" not in llms
     search = public_search()
     assert search["engine"] == "catalog_minisearch"
-    assert {item["id"] for item in search["records"]} >= {"floor", "capital", "programs", "kit"}
+    assert {item["id"] for item in search["records"]} >= {"floor", "capital", "business", "programs", "kit"}
     assert public_speculation()["prefetch"][0]["urls"]
     assert "/app.html" in public_sitemap()
     assert "/llms.txt" in public_sitemap()

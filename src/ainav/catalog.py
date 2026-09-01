@@ -748,6 +748,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         28: ("write rail", "one dashboard"),
         29: ("application", "not a cms"),
         30: ("kit", "not a cms"),
+        31: ("business", "not a priced round"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1103,8 +1104,8 @@ def _validate_public_face(face: Any) -> None:
     if str(app.get("href") or "") != "app.html":
         raise IntegrityError("application face is app.html", reason_code="CATALOG_PLANE")
     work_ids = [item.get("id") for item in app.get("workspaces") or []]
-    if not {"floor", "capital", "programs"} <= set(work_ids):
-        raise IntegrityError("application workspaces are floor, capital, and programs", reason_code="CATALOG_PLANE")
+    if not {"floor", "capital", "business", "programs"} <= set(work_ids):
+        raise IntegrityError("application workspaces are floor, capital, business, and programs", reason_code="CATALOG_PLANE")
     primary = list(face.get("primary") or [])
     labels = [str(item.get("label") or "") for item in primary]
     if labels != ["The write", "Proof day", "Bake-off", "Dashboard", "Owner"]:

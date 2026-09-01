@@ -30,6 +30,8 @@ function readCatalog(request) {
         search: "/search.json",
         programs: "/programs.json",
         investor: "/investor.json",
+        business: "/plane-business.json",
+        finance: "/finance.json",
         floor: "/control-plane.json",
       },
       note: "Read catalog JSON from the static host. This Function is not Job C.",

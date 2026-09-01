@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.59.0",
+    "release": "2.60.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3068,7 +3068,7 @@
         "cms": false,
         "application": true,
         "host": "azure_static_web_apps",
-        "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The kit is licensed complements, not a CMS. Not LIVE_PIN_OK.",
+        "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close — not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not LIVE_PIN_OK.",
         "app": {
           "sku": false,
           "cms": false,
@@ -3076,6 +3076,7 @@
           "workspaces": [
             {"id": "floor", "label": "Floor", "kind": "dashboard"},
             {"id": "capital", "label": "Capital", "kind": "dashboard"},
+            {"id": "business", "label": "Business", "kind": "dashboard"},
             {"id": "programs", "label": "Programs", "kind": "dashboard"},
             {"id": "sale", "label": "Sale", "href": "index.html"},
             {"id": "owner", "label": "Owner", "href": "index.html#missing"},
@@ -4977,7 +4978,8 @@
       "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
         "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.",
         "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.",
-        "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS."
+        "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
+        "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -5358,6 +5360,14 @@
           "who": "tree",
           "title": "Application kit",
           "do": "Wire the application kit: JSON-LD, llms.txt, view transitions, speculation, popover, catalog search, Playwright, axe, Lighthouse, Eleventy compiler, Lit elements, SWA identify-not-admit, read-only Functions, fail-closed Insights, Pagefind on the kit, SWA CLI, and Storybook. Identify is not admit. API does not write SoR. Not a CMS. Not LIVE_PIN_OK.",
+          "done": true,
+          "marks_live_pin": false
+        },
+        {
+          "n": 31,
+          "who": "tree",
+          "title": "Business plane",
+          "do": "Paint the operating-company business plane on the same application: commercial close, if-then catalog list, bake-off, walk-away, and objections. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
           "done": true,
           "marks_live_pin": false
         }

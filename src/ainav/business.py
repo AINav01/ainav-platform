@@ -239,3 +239,74 @@ def public_business() -> dict[str, Any]:
         "open_gaps": list(cat["open_gaps"]),
         "live": False,
     }
+
+
+def public_business_plane() -> dict[str, Any]:
+    """Application business workspace. Catalog list. Not a forecast."""
+    from ainav.finance import model as finance_model
+
+    cat = load_catalog()
+    fin = finance_model()
+    success = cat["expert_review"]["success"]
+    invited = cat["organization"]["contacts"]["invited"]
+    all_three = next(row for row in fin["scenarios"] if row["id"] == "all_three")
+    return {
+        "kind": "ainav.institute.business_plane.v1",
+        "sku": False,
+        "cms": False,
+        "live": False,
+        "live_pin_ok": False,
+        "priced_round": False,
+        "forecast": False,
+        "recognized_revenue": 0,
+        "signed_l1": 0,
+        "named_customers": 0,
+        "billing_provider": False,
+        "walk_away_recorded": False,
+        "release": cat["entity"]["release"],
+        "legal": cat["entity"]["legal"],
+        "institute": cat["entity"]["institute"],
+        "thesis": (
+            "The business succeeds when a named controller walks away from the licensed "
+            "substitute and buys L1. If-then catalog list is not a forecast. Not a priced round. "
+            "Not LIVE_PIN_OK."
+        ),
+        "commercial": cat["equations"]["commercial"],
+        "lab_pin": cat["equations"]["lab_pin"],
+        "close": {
+            "named_dual_seats": False,
+            "proof_day_sold": False,
+            "signed_l1": False,
+            "p_adm_attached": 0,
+            "closed": False,
+            "note": "Mailbox recorded is not dual admit. Controllers buy the commercial equation. LIVE_PIN_OK is the lab pin.",
+        },
+        "year_one_all_three": {
+            "min": all_three["min"],
+            "max": all_three["max"],
+            "forecast": False,
+            "note": "Catalog list if one controller buys all three SKUs. Not booked.",
+        },
+        "path": [dict(item) for item in cat["plane_interface"]["provisioning"]["path"]],
+        "scenarios": fin["scenarios"],
+        "bake_off": dict(success["bake_off"]),
+        "qualify": dict(success["qualify"]),
+        "objections": [dict(item) for item in success["objections"]],
+        "seat_b": {
+            "name": invited["name"],
+            "mailbox": invited.get("email"),
+            "entra_oid": None,
+            "seat_clicked": False,
+            "officer": False,
+            "equity": False,
+            "second_unique_human": False,
+        },
+        "honest_missing": honest_missing(),
+        "refuse": [
+            "priced round",
+            "forecast ARR",
+            "recognized revenue",
+            "invented walk-away",
+            "LIVE_PIN_OK",
+        ],
+    }

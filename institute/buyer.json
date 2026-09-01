@@ -285,6 +285,11 @@
           "label": "Capital"
         },
         {
+          "id": "business",
+          "kind": "dashboard",
+          "label": "Business"
+        },
+        {
           "id": "programs",
           "kind": "dashboard",
           "label": "Programs"
@@ -585,7 +590,7 @@
       }
     ],
     "sku": false,
-    "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The kit is licensed complements, not a CMS. Not LIVE_PIN_OK."
+    "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not LIVE_PIN_OK."
   },
   "refuse": [
     "Teams vote as dual",

@@ -11,6 +11,13 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **ffs** — day_rate (day) $3,500/day.
 - **pack_attach** — annual_desk (desk).
 
+## Books (not a forecast)
+
+- Recognized revenue $0. Signed L1 0. Named customers 0. Billing provider false.
+- First walk-away recorded: false.
+- Commercial close: named dual seats × proof day × signed L1 × P-ADM attach. Closed: false.
+- Attach path: L1 prove → kit PASS → P-ADM keep → paid U-DUAL. Hours never attach U-DUAL. U-DUAL is never free.
+
 ## If-then catalog list (not a forecast)
 
 - **One controller — L1 only** — One controller buys L1 and stops. $28,000–$40,000.

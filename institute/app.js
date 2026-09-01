@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var WORKSPACES = ["floor", "capital", "programs"];
+  var WORKSPACES = ["floor", "capital", "business", "programs"];
   var VIEW_COPY = {
     entire: {
       title: "Entire plane",
@@ -222,6 +222,98 @@
         refuse.appendChild(li);
       });
     }
+    paintScenarioTable($("app-capital-scenarios"), data.scenarios);
+  }
+
+  function paintScenarioTable(table, rows) {
+    var body = table ? table.querySelector("tbody") : null;
+    if (!body || !rows) return;
+    body.textContent = "";
+    rows.forEach(function (row) {
+      var tr = document.createElement("tr");
+      var th = document.createElement("th");
+      th.textContent = row.if || row.name || "";
+      var td = document.createElement("td");
+      td.textContent = "$" + Number(row.min || 0).toLocaleString() + "–$" + Number(row.max || 0).toLocaleString();
+      tr.appendChild(th);
+      tr.appendChild(td);
+      body.appendChild(tr);
+    });
+  }
+
+  function namedList(root, items, pick) {
+    if (!root) return;
+    root.textContent = "";
+    (items || []).forEach(function (item) {
+      var li = document.createElement("li");
+      li.textContent = pick ? pick(item) : item;
+      root.appendChild(li);
+    });
+  }
+
+  function paintBusiness(data) {
+    if (!data || data.cms || data.priced_round || data.forecast || data.live_pin_ok) return;
+    if (data.thesis) setText("app-business-lede", data.thesis);
+    setText("app-business-commercial", (data.commercial || "") + ". Closed: false. Lab pin is " + (data.lab_pin || "LIVE_PIN_OK") + ".");
+    var close = data.close || {};
+    var kpis = $("app-business-close");
+    if (kpis) {
+      var map = {
+        "Named dual seats": close.named_dual_seats ? "claimed" : "open",
+        "Proof day sold": String(!!close.proof_day_sold),
+        "Signed L1": String(close.signed_l1 || 0),
+        "Commercial close": close.closed ? "claimed" : "open"
+      };
+      Array.prototype.forEach.call(kpis.querySelectorAll("article"), function (art) {
+        var label = (art.querySelector("h3") || {}).textContent;
+        var price = art.querySelector(".price");
+        if (price && map[label]) price.textContent = map[label];
+      });
+    }
+    var path = $("app-business-path");
+    if (path && data.path) {
+      path.textContent = "";
+      data.path.forEach(function (item) {
+        var li = document.createElement("li");
+        li.setAttribute("data-status", item.state || "");
+        var kicker = document.createElement("p");
+        kicker.className = "kicker";
+        kicker.textContent = item.state || "";
+        var h = document.createElement("h3");
+        h.textContent = item.name || "";
+        var p = document.createElement("p");
+        p.textContent = item.note || "";
+        li.appendChild(kicker);
+        li.appendChild(h);
+        li.appendChild(p);
+        path.appendChild(li);
+      });
+    }
+    var bake = data.bake_off || {};
+    setText("app-business-bake-lede", bake.lede || "");
+    namedList($("app-business-they-win"), bake.they_win, function (item) {
+      return (item.name || "") + " — " + (item.note || "");
+    });
+    namedList($("app-business-we-win"), bake.we_win, function (item) {
+      return (item.name || "") + " — " + (item.note || "");
+    });
+    namedList($("app-business-walk"), (data.qualify || {}).walk_away);
+    var objections = $("app-business-objections");
+    if (objections && data.objections) {
+      objections.textContent = "";
+      data.objections.forEach(function (item) {
+        var art = document.createElement("article");
+        var h = document.createElement("h3");
+        h.textContent = item.hear || "";
+        var p = document.createElement("p");
+        p.textContent = item.answer || "";
+        art.appendChild(h);
+        art.appendChild(p);
+        objections.appendChild(art);
+      });
+    }
+    paintScenarioTable($("app-business-scenarios"), data.scenarios);
+    list($("app-business-missing"), data.honest_missing);
   }
 
   function list(root, items) {
@@ -330,6 +422,14 @@
       })
       .then(function (data) {
         if (data) paintPrograms(data);
+      })
+      .catch(function () {});
+    fetch("plane-business.json")
+      .then(function (res) {
+        return res.ok ? res.json() : null;
+      })
+      .then(function (data) {
+        if (data) paintBusiness(data);
       })
       .catch(function () {});
     fetch("schema.json")

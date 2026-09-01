@@ -24,6 +24,12 @@
       "title": "Capital"
     },
     {
+      "href": "app.html#business",
+      "id": "business",
+      "text": "Operating company. Commercial close open. If-then catalog list. Not a priced round. Not a forecast. Walk-away not recorded.",
+      "title": "Business"
+    },
+    {
       "href": "app.html#programs",
       "id": "programs",
       "text": "Microsoft for Startups first. NVIDIA Inception second. Qualify not claimed. GPU workload not claimed. Two unique humans still open.",
@@ -42,6 +48,6 @@
       "title": "Identify is not admit"
     }
   ],
-  "release": "2.59.0",
+  "release": "2.60.0",
   "sku": false
 }

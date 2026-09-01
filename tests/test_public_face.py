@@ -22,7 +22,7 @@ def test_public_face_is_static_catalog_sale():
     assert face["kit"]["cms"] is False
     assert face["kit"]["href"] == "kit.html"
     assert face["kit"]["auth_is_admit"] is False
-    assert {item["id"] for item in face["app"]["workspaces"]} >= {"floor", "capital", "programs"}
+    assert {item["id"] for item in face["app"]["workspaces"]} >= {"floor", "capital", "business", "programs"}
     assert face["primary"][3]["href"] == "app.html"
     assert [item["id"] for item in cat["skus"]] == ["L1", "P-ADM", "U-DUAL"]
     page = buyer_page()
@@ -84,7 +84,10 @@ def test_public_face_is_static_catalog_sale():
     js_app = Path("institute/app.js").read_text(encoding="utf-8")
     assert 'id="workspace-floor"' in app
     assert 'id="workspace-capital"' in app
+    assert 'id="workspace-business"' in app
     assert 'id="workspace-programs"' in app
+    assert "paintBusiness" in js_app
+    assert "If-then catalog list" in app
     assert 'id="app-write-rail"' in app
     assert "Not a priced round" in app
     assert "Not LIVE_PIN_OK" in app

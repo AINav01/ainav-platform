@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.59.0 (this tree)
+### 2.60.0 (this tree)
+
+The application business plane paints the
+operating company: commercial close, if-then
+catalog list, bake-off, walk-away, and
+objections. Capital now shows the same if-then
+list. Not a priced round. Not a forecast. A
+green check is not `LIVE_PIN_OK`.
+
+### 2.59.0
 
 Application kit is licensed complements, not a
 CMS. JSON-LD, `llms.txt`, catalog search, view

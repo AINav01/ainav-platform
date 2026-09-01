@@ -214,6 +214,16 @@ def finance_markdown() -> str:
         extra = item.get("attach_after") or item.get("term") or ""
         rate = f" ${item['rate_usd']:,}/day" if item.get("rate_usd") else ""
         lines.append(f"- **{item['id']}** — {item['model']} ({item['unit']}){rate}. {extra}".rstrip())
+    lines += ["", "## Books (not a forecast)", ""]
+    lines.append("- Recognized revenue $0. Signed L1 0. Named customers 0. Billing provider false.")
+    lines.append("- First walk-away recorded: false.")
+    lines.append(
+        f"- Commercial close: {load_catalog()['equations']['commercial']}. Closed: false."
+    )
+    lines.append(
+        "- Attach path: L1 prove → kit PASS → P-ADM keep → paid U-DUAL. "
+        "Hours never attach U-DUAL. U-DUAL is never free."
+    )
     lines += ["", "## If-then catalog list (not a forecast)", ""]
     for row in body["scenarios"]:
         lines.append(

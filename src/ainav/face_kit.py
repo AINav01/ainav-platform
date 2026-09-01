@@ -157,6 +157,7 @@ def public_llms() -> str:
         f"- [Application]({HOST}/app.html): floor, capital, programs",
         f"- [Floor]({HOST}/app.html#floor): one dashboard, same write rail",
         f"- [Capital]({HOST}/app.html#capital): outside investor room, not a priced round",
+        f"- [Business]({HOST}/app.html#business): if-then catalog list, bake-off, commercial close",
         f"- [Programs]({HOST}/app.html#programs): qualify, not claimed",
         f"- [Deep floor]({HOST}/control-plane.html): command console",
         f"- [Kit]({HOST}/kit.html): licensed complements, not a CMS",
@@ -194,6 +195,12 @@ def public_search() -> dict[str, Any]:
             "title": "Capital",
             "href": "app.html#capital",
             "text": "Board packet for Cynthia Hodnett. Not a priced round. No valuation. No forecast ARR. Recognized revenue $0.",
+        },
+        {
+            "id": "business",
+            "title": "Business",
+            "href": "app.html#business",
+            "text": "Operating company. Commercial close open. If-then catalog list. Not a priced round. Not a forecast. Walk-away not recorded.",
         },
         {
             "id": "programs",

@@ -36,12 +36,15 @@ def test_finance_is_catalog_list_not_revenue():
     md = finance_markdown()
     assert "Not recognized revenue" in md or "not recognized" in md.lower()
     assert "L1" in md
+    assert "not a forecast" in md.lower()
+    assert "commercial close" in md.lower()
+    assert "walk-away recorded: false" in md.lower()
 
 
 def test_expert_review_has_twenty_eight_upgrades():
     cat = load_catalog()
     upgrades = cat["expert_review"]["upgrades"]
-    assert len(upgrades) == 30
+    assert len(upgrades) == 31
     assert any(item.get("n") == 16 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 22 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 23 and item.get("done") is True for item in upgrades)
@@ -52,6 +55,7 @@ def test_expert_review_has_twenty_eight_upgrades():
     assert any(item.get("n") == 28 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 29 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 30 and item.get("done") is True for item in upgrades)
+    assert any(item.get("n") == 31 and item.get("done") is True for item in upgrades)
     assert all(item.get("marks_live_pin") is not True for item in upgrades)
     assert any(item["who"] == "owner" for item in upgrades)
     assert any(item["who"] == "tree" for item in upgrades)

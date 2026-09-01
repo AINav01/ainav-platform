@@ -27,6 +27,7 @@
       "/client-org.json",
       "/ip.json",
       "/kit.json",
+      "/plane-business.json",
       "/schema.json",
       "/search.json",
       "/speculation.json",
@@ -77,6 +78,10 @@
     },
     {
       "route": "/kit.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/plane-business.json",
       "headers": { "Cache-Control": "no-store" }
     },
     {

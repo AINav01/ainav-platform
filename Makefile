@@ -10,6 +10,7 @@ regen:
 	python3 -c "from ainav.microsoft.connections import stack_json; import json; print(json.dumps(stack_json(), indent=2, sort_keys=True))" > institute/stack.json
 	python3 -m ainav stack > docs/STACK_WALK.md
 	python3 -c "from ainav.business import public_business; import json; print(json.dumps(public_business(), indent=2, sort_keys=True))" > institute/business.json
+	python3 -c "from ainav.business import public_business_plane; import json; print(json.dumps(public_business_plane(), indent=2, sort_keys=True))" > institute/plane-business.json
 	python3 -c "from ainav.buyer import buyer_page; import json; print(json.dumps(buyer_page(), indent=2, sort_keys=True))" > institute/buyer.json
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" > institute/org.json
 	python3 -c "from ainav.institute_status import public_status; import json; print(json.dumps(public_status(), indent=2, sort_keys=True))" > institute/status.json
@@ -52,6 +53,7 @@ plan-check:
 	python3 -c "from ainav.microsoft.connections import stack_json; import json; print(json.dumps(stack_json(), indent=2, sort_keys=True))" | diff -q institute/stack.json -
 	python3 -m ainav stack | diff -q docs/STACK_WALK.md -
 	python3 -c "from ainav.business import public_business; import json; print(json.dumps(public_business(), indent=2, sort_keys=True))" | diff -q institute/business.json -
+	python3 -c "from ainav.business import public_business_plane; import json; print(json.dumps(public_business_plane(), indent=2, sort_keys=True))" | diff -q institute/plane-business.json -
 	python3 -c "from ainav.buyer import buyer_page; import json; print(json.dumps(buyer_page(), indent=2, sort_keys=True))" | diff -q institute/buyer.json -
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" | diff -q institute/org.json -
 	python3 -c "from ainav.institute_status import public_status; import json; print(json.dumps(public_status(), indent=2, sort_keys=True))" | diff -q institute/status.json -
