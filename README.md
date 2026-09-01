@@ -111,7 +111,14 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.60.0 (this tree)
+### 2.61.0 (this tree)
+
+Number two is catalog law: Cynthia Hodnett
+manages other aspects, not all aspects.
+Operating assignment. Not an officer. Not a
+click. A green check is not `LIVE_PIN_OK`.
+
+### 2.60.0
 
 The application business plane paints the
 operating company: commercial close, if-then

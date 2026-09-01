@@ -151,6 +151,8 @@ def one_page() -> str:
         f"- Invited second human: {cat['organization']['contacts']['invited']['name']} "
         f"(mailbox {cat['organization']['contacts']['invited'].get('email')} recorded; "
         "Entra oid and click still open).",
+        f"- Number two: {cat['organization']['number_two']['name']} — other aspects, not all aspects. "
+        "Not an officer. Not a click.",
         f"- Commercial close: {cat['equations']['commercial']}",
         "- Second officer: none recorded. Do not invent one.",
         "- Incorporation date: not stored in this tree.",

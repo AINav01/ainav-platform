@@ -77,6 +77,10 @@ def validate_organization(catalog: dict[str, Any]) -> None:
         raise IntegrityError("mailbox is not the second unique human", reason_code="ORG_SECOND_OFFICER")
     if invited.get("equity") is True:
         raise IntegrityError("invited human is not a stockholder", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("officer") is True:
+        raise IntegrityError("number two is not an officer", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("all_aspects") is True:
+        raise IntegrityError("number two is other aspects, not all aspects", reason_code="ORG_SECOND_OFFICER")
     if invited.get("seat_clicked") is True:
         raise IntegrityError("do not invent a seat B click", reason_code="ORG_SECOND_OFFICER")
     if invited.get("entra_oid"):
@@ -97,6 +101,9 @@ def validate_organization(catalog: dict[str, Any]) -> None:
             )
         if "gmail" in email or email.split("@")[0] in {"james", "jhodnett", "daytradingmarkets"}:
             raise IntegrityError("recorded invite cannot be an alias or Gmail", reason_code="ORG_SECOND_OFFICER")
+        if invited.get("number_two") is not True:
+            raise IntegrityError("recorded invite is number two", reason_code="ORG_SECOND_OFFICER")
+        _validate_number_two(body.get("number_two"), name=name, email=email)
     else:
         if email:
             raise IntegrityError("do not invent an invited email", reason_code="ORG_SECOND_OFFICER")
@@ -121,6 +128,36 @@ def validate_organization(catalog: dict[str, Any]) -> None:
         for system in item.get("systems") or []:
             if system not in allowed_systems:
                 raise IntegrityError(f"unknown org system {system}", reason_code="CATALOG_ORG")
+
+
+def _validate_number_two(body: Any, *, name: str, email: str) -> None:
+    if not isinstance(body, dict):
+        raise IntegrityError("number two must be catalog law", reason_code="ORG_SECOND_OFFICER")
+    if body.get("sku") is True:
+        raise IntegrityError("number two is not a SKU", reason_code="CATALOG_SKU")
+    if str(body.get("name") or "") != name or str(body.get("mailbox") or "").lower() != email:
+        raise IntegrityError("number two is the recorded invite", reason_code="ORG_SECOND_OFFICER")
+    if str(body.get("role") or "") != "number_two" or str(body.get("scope") or "") != "other_aspects":
+        raise IntegrityError("number two scope is other aspects", reason_code="ORG_SECOND_OFFICER")
+    if body.get("all_aspects") is True:
+        raise IntegrityError("number two is other aspects, not all aspects", reason_code="ORG_SECOND_OFFICER")
+    if body.get("officer") is True or body.get("second_officer") is True or body.get("equity") is True:
+        raise IntegrityError("number two is not an officer or stockholder", reason_code="ORG_SECOND_OFFICER")
+    if body.get("seated") is True or body.get("seat_clicked") is True or body.get("entra_oid"):
+        raise IntegrityError("number two is not a click", reason_code="ORG_SECOND_OFFICER")
+    if body.get("second_unique_human") is True:
+        raise IntegrityError("mailbox is not the second unique human", reason_code="ORG_SECOND_OFFICER")
+    note = str(body.get("note") or "").lower()
+    if "other aspects" not in note or "not all aspects" not in note:
+        raise IntegrityError("number two note must keep other aspects, not all aspects", reason_code="ORG_SECOND_OFFICER")
+    if "not an officer" not in note or "not a click" not in note:
+        raise IntegrityError("number two note must keep not an officer and not a click", reason_code="ORG_SECOND_OFFICER")
+    manages = " ".join(str(item).lower() for item in body.get("manages") or [])
+    cannot = " ".join(str(item).lower() for item in body.get("cannot") or [])
+    if "walk away" not in manages or "seat b" not in manages:
+        raise IntegrityError("number two manages seat B and the walk-away", reason_code="ORG_SECOND_OFFICER")
+    if "all aspects" not in cannot or "officer" not in cannot or "live_pin_ok" not in cannot:
+        raise IntegrityError("number two cannot list must keep all aspects, officer, and LIVE_PIN_OK", reason_code="ORG_SECOND_OFFICER")
 
 
 def organization() -> dict[str, Any]:
@@ -180,6 +217,7 @@ def org_report(*, probe: bool = False) -> dict[str, Any]:
         "second_officer": None,
         "incorporation_date": None,
         "contacts": dict(body["contacts"]),
+        "number_two": dict(body.get("number_two") or {}),
         "departments": departments,
         "wired_now": wired,
         "blocked_now": blocked,

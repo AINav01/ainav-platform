@@ -63,6 +63,7 @@ def _fit(cat: dict[str, Any], evidence: dict[str, Any], site: dict[str, Any], op
                 "is not a seat and not dual admit. Second officer: none. "
                 f"{cat['organization']['contacts']['invited']['name']} agreed. "
                 f"Mailbox {cat['organization']['contacts']['invited'].get('email')} recorded. "
+                "Number two for other aspects, not all aspects. "
                 "Entra oid and click still open."
             ),
         },
@@ -223,6 +224,7 @@ def deep_dive(*, probe: bool = False) -> str:
         f"**Operator:** {cat['operating']['operator']} (not a seat, not dual admit).",
         f"**Second officer:** none. **Invited:** {cat['organization']['contacts']['invited']['name']} "
         f"(mailbox {cat['organization']['contacts']['invited'].get('email')} recorded; "
+        "number two for other aspects, not all aspects; "
         "Entra oid and click still open). "
         f"**Named customers:** none. **Recognized revenue:** none.",
         f"**Launch ready:** {str(site.get('launch_ready')).lower()}. "

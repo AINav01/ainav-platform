@@ -200,7 +200,7 @@ def public_search() -> dict[str, Any]:
             "id": "business",
             "title": "Business",
             "href": "app.html#business",
-            "text": "Operating company. Commercial close open. If-then catalog list. Not a priced round. Not a forecast. Walk-away not recorded.",
+            "text": "Operating company. Number two for other aspects, not all aspects. Commercial close open. If-then catalog list. Not a priced round. Not a forecast. Walk-away not recorded.",
         },
         {
             "id": "programs",

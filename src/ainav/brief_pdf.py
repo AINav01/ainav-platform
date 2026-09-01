@@ -727,6 +727,7 @@ def brief_document() -> list[dict[str, Any]]:
             "kind": "status",
             "text": (
                 f"Invited: {c['invited']}  ·  Agreed: {c['agreed']}  ·  Mailbox recorded: {c['email']}  ·  "
+                "Number two: other aspects, not all aspects  ·  "
                 "Entra oid: none  ·  Click: no  ·  Equity: no  ·  "
                 f"Second officer: none  ·  Operator: {c['operator']} (not a seat)  ·  "
                 f"Commercial close: {c['commercial']}  ·  Recognized revenue: 0"

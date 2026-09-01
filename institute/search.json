@@ -26,7 +26,7 @@
     {
       "href": "app.html#business",
       "id": "business",
-      "text": "Operating company. Commercial close open. If-then catalog list. Not a priced round. Not a forecast. Walk-away not recorded.",
+      "text": "Operating company. Number two for other aspects, not all aspects. Commercial close open. If-then catalog list. Not a priced round. Not a forecast. Walk-away not recorded.",
       "title": "Business"
     },
     {
@@ -48,6 +48,6 @@
       "title": "Identify is not admit"
     }
   ],
-  "release": "2.60.0",
+  "release": "2.61.0",
   "sku": false
 }

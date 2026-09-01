@@ -71,6 +71,48 @@
   "live": false,
   "live_pin_ok": false,
   "named_customers": 0,
+  "number_two": {
+    "all_aspects": false,
+    "cannot": [
+      "All aspects of the business",
+      "Seat A or both seats",
+      "Second officer",
+      "Equity",
+      "Global Admin",
+      "LIVE_PIN_OK",
+      "Signed L1",
+      "Graph consent",
+      "Dataverse",
+      "Institute launch",
+      "Cloud Agent",
+      "Invented customer or inbox"
+    ],
+    "entra_oid": null,
+    "equity": false,
+    "inception_role": "business_executive",
+    "kind": "ainav.number_two.v1",
+    "mailbox": "chodnett@ainav.institute",
+    "manages": [
+      "Seat B admit or refuse",
+      "Proof day as controller",
+      "Qualify or walk away",
+      "Treasury judgment on books that stay zero",
+      "Inception business executive contact when programs open",
+      "Packet honesty",
+      "Weekly kit and pipeline notes as the second human"
+    ],
+    "name": "Cynthia Hodnett",
+    "note": "Owner assigned number two to manage other aspects, not all aspects. Operating assignment. Mailbox is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett.",
+    "officer": false,
+    "role": "number_two",
+    "scope": "other_aspects",
+    "seat_clicked": false,
+    "seat_role": "treasury_controller",
+    "seated": false,
+    "second_officer": false,
+    "second_unique_human": false,
+    "sku": false
+  },
   "objections": [
     {
       "answer": "Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.",
@@ -163,7 +205,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.60.0",
+  "release": "2.61.0",
   "scenarios": [
     {
       "id": "l1_only",
@@ -362,10 +404,12 @@
     }
   ],
   "seat_b": {
+    "all_aspects": false,
     "entra_oid": null,
     "equity": false,
     "mailbox": "chodnett@ainav.institute",
     "name": "Cynthia Hodnett",
+    "number_two": true,
     "officer": false,
     "seat_clicked": false,
     "second_unique_human": false

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.60.0",
+    "release": "2.61.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -42,10 +42,55 @@
         "seat_role": "treasury_controller",
         "inception_role": "business_executive",
         "equity": false,
+        "officer": false,
+        "number_two": true,
+        "all_aspects": false,
         "second_unique_human": false,
-        "note": "Owner recorded chodnett@ainav.institute after she agreed to be seat B. Mailbox is not an Entra object id. Mailbox is not a click. Not an officer. Not a stockholder. The Cloud Agent is not a seat."
+        "note": "Owner recorded chodnett@ainav.institute after she agreed to be seat B. Owner assigned number two for other aspects, not all aspects. Mailbox is not an Entra object id. Mailbox is not a click. Not an officer. Not a stockholder. The Cloud Agent is not a seat."
       },
       "note": "NVIDIA Inception requires two unique contacts (developer + business executive) with business emails; aliases and gmail are refused. Sole owner does not collapse this. The Cloud Agent is not a contact or a seat."
+    },
+    "number_two": {
+      "kind": "ainav.number_two.v1",
+      "sku": false,
+      "name": "Cynthia Hodnett",
+      "mailbox": "chodnett@ainav.institute",
+      "role": "number_two",
+      "scope": "other_aspects",
+      "all_aspects": false,
+      "officer": false,
+      "equity": false,
+      "second_officer": false,
+      "seated": false,
+      "entra_oid": null,
+      "seat_clicked": false,
+      "second_unique_human": false,
+      "seat_role": "treasury_controller",
+      "inception_role": "business_executive",
+      "manages": [
+        "Seat B admit or refuse",
+        "Proof day as controller",
+        "Qualify or walk away",
+        "Treasury judgment on books that stay zero",
+        "Inception business executive contact when programs open",
+        "Packet honesty",
+        "Weekly kit and pipeline notes as the second human"
+      ],
+      "cannot": [
+        "All aspects of the business",
+        "Seat A or both seats",
+        "Second officer",
+        "Equity",
+        "Global Admin",
+        "LIVE_PIN_OK",
+        "Signed L1",
+        "Graph consent",
+        "Dataverse",
+        "Institute launch",
+        "Cloud Agent",
+        "Invented customer or inbox"
+      ],
+      "note": "Owner assigned number two to manage other aspects, not all aspects. Operating assignment. Mailbox is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett."
     },
     "note": "Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.",
     "departments": [
@@ -4848,7 +4893,7 @@
     "model": "Prove with L1. Keep with P-ADM after kit PASS. Deepen with paid U-DUAL. Packs, hours, and Microsoft licenses are not SKUs. U-DUAL is never free. A desk attaches to one of those three SKUs; it does not become a fourth product.",
     "unit_economics_note": "Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no billing provider. Recognized revenue stays zero until a controller actually buys.",
     "stack": "A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks are seating, not a discount on a second control plane. Priced L1 desks are $6,000–$10,000. Priced P-ADM keep is $5,000–$8,000 after kit PASS. Priced U-DUAL desks are $6,000–$10,000 and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours are not a SKU.",
-    "seat_b": "Seat B is treasury_controller. Mailbox recorded: chodnett@ainav.institute. Entra object id is not recorded. Seat B click is not recorded. James cannot click for you. Refusing a write is the product working. You are not a stockholder and not an officer.",
+    "seat_b": "Seat B is treasury_controller. Mailbox recorded: chodnett@ainav.institute. Entra object id is not recorded. Seat B click is not recorded. James cannot click for you. Refusing a write is the product working. You are number two for other aspects, not all aspects. You are not a stockholder and not an officer.",
     "will_not_ask": "I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.",
     "capital": "There is no priced round in this packet. There is no valuation. There is no forecast ARR. The honest investor unit is catalog list times zero booked times a two-human close.",
     "insulation": "The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
@@ -4885,7 +4930,7 @@
       "size": "letter"
     },
     "note": "Letter packet for the agreed second human. Mailbox recorded. Full upsell catalog and list prices. Not a raise. Not a forecast. Not a contract. Not LIVE_PIN_OK.",
-    "letter_body": "I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. You agreed. Seat B is the second unique human. Mailbox recorded: chodnett@ainav.institute. That mailbox is not an Entra object id and not your click. It is not stock, not a priced round, and not a customer seat.\n\nYou were invited. The mailbox is now recorded. I will not invent an object id for you. Your no, or not yet, on the click is still a complete answer.\n\nYou become seat B on the same Entra tenant when you have your own object id and your own click. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.\n\nI will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.",
+    "letter_body": "I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. You agreed. Seat B is the second unique human. Mailbox recorded: chodnett@ainav.institute. That mailbox is not an Entra object id and not your click. It is not stock, not a priced round, and not a customer seat.\n\nYou were invited. The mailbox is now recorded. I will not invent an object id for you. Your no, or not yet, on the click is still a complete answer.\n\nI want you as number two for other aspects, not all aspects. That is not an officer title and not a click. I remain sole owner. You manage the write and the walk-away. You do not hold the keys, the pin, or both seats.\n\nYou become seat B on the same Entra tenant when you have your own object id and your own click. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.\n\nI will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.",
     "letter_close": "James Hodnett, sole owner of AINav, Inc.",
     "executive_summary": {
       "kind": "ainav.exec.v1",
@@ -4979,7 +5024,8 @@
         "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.",
         "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.",
         "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
-        "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK."
+        "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
+        "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -5113,7 +5159,8 @@
           "Agreed human for seat B",
           "Mailbox chodnett@ainav.institute recorded",
           "Intended treasury_controller",
-          "Intended Inception business_executive contact when programs open"
+          "Intended Inception business_executive contact when programs open",
+          "Number two for other aspects"
         ],
         "is_not": [
           "An Entra object id",
@@ -5121,7 +5168,8 @@
           "An officer",
           "A stockholder",
           "The second unique human until oid and click",
-          "The Cloud Agent"
+          "The Cloud Agent",
+          "All aspects of the business"
         ]
       },
       "continuity": {
@@ -5368,6 +5416,14 @@
           "who": "tree",
           "title": "Business plane",
           "do": "Paint the operating-company business plane on the same application: commercial close, if-then catalog list, bake-off, walk-away, and objections. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
+          "done": true,
+          "marks_live_pin": false
+        },
+        {
+          "n": 32,
+          "who": "tree",
+          "title": "Number two other aspects",
+          "do": "Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.",
           "done": true,
           "marks_live_pin": false
         }

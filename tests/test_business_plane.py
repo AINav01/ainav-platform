@@ -27,6 +27,12 @@ def test_business_plane_is_catalog_list_not_a_forecast():
     assert body["close"]["named_dual_seats"] is False
     assert body["seat_b"]["entra_oid"] is None
     assert body["seat_b"]["seat_clicked"] is False
+    assert body["seat_b"]["number_two"] is True
+    assert body["seat_b"]["all_aspects"] is False
+    assert body["number_two"]["scope"] == "other_aspects"
+    assert body["number_two"]["all_aspects"] is False
+    assert body["number_two"]["officer"] is False
+    assert body["number_two"]["seat_clicked"] is False
     assert body["year_one_all_three"]["min"] == 88000
     assert body["year_one_all_three"]["max"] == 135000
     assert body["year_one_all_three"]["forecast"] is False
@@ -61,6 +67,8 @@ def test_app_html_paints_the_business_plane():
     assert 'id="workspace-business"' in app
     assert "If-then catalog list" in app
     assert "Operating company. Close is open." in app
+    assert "Number two" in app
+    assert "not all aspects" in app.lower()
     assert "plane-business.json" in js
     assert "paintBusiness" in js
     assert "nvidia inception member" not in app.lower()

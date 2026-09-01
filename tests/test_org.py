@@ -19,6 +19,18 @@ def test_organization_is_full_service_and_honest():
     assert body["second_officer"] is None
     assert body["incorporation_date"] is None
     assert body["contacts"]["second_unique_human"] is False
+    assert body["contacts"]["invited"]["number_two"] is True
+    assert body["contacts"]["invited"]["all_aspects"] is False
+    assert body["contacts"]["invited"]["officer"] is False
+    two = body["number_two"]
+    assert two["role"] == "number_two"
+    assert two["scope"] == "other_aspects"
+    assert two["all_aspects"] is False
+    assert two["officer"] is False
+    assert two["seated"] is False
+    assert two["seat_clicked"] is False
+    assert two["entra_oid"] is None
+    assert two["mailbox"] == "chodnett@ainav.institute"
     assert [item["id"] for item in body["departments"]] == list(REQUIRED_DEPT_IDS)
     assert body["sku"] is False
     statuses = {item["id"]: item["status"] for item in body["departments"]}
@@ -123,6 +135,16 @@ def test_organization_refuses_live_contacts_and_unknown_systems():
     with pytest.raises(IntegrityError) as exc_eq:
         validate_catalog(equity)
     assert exc_eq.value.reason_code == "ORG_SECOND_OFFICER"
+    officer = copy.deepcopy(cat)
+    officer["organization"]["contacts"]["invited"]["officer"] = True
+    with pytest.raises(IntegrityError) as exc_off:
+        validate_catalog(officer)
+    assert exc_off.value.reason_code == "ORG_SECOND_OFFICER"
+    all_aspects = copy.deepcopy(cat)
+    all_aspects["organization"]["number_two"]["all_aspects"] = True
+    with pytest.raises(IntegrityError) as exc_all:
+        validate_catalog(all_aspects)
+    assert exc_all.value.reason_code == "ORG_SECOND_OFFICER"
     nameless = copy.deepcopy(cat)
     nameless["organization"]["contacts"]["invited"]["name"] = ""
     with pytest.raises(IntegrityError) as exc_name:

@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.60.0.
+30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.61.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -28,6 +28,8 @@ I am asking you because I trust your treasury judgment, and because you already 
 
 You were invited. The mailbox is now recorded. I will not invent an object id for you. Your no, or not yet, on the click is still a complete answer.
 
+I want you as number two for other aspects, not all aspects. That is not an officer title and not a click. I remain sole owner. You manage the write and the walk-away. You do not hold the keys, the pin, or both seats.
+
 You become seat B on the same Entra tenant when you have your own object id and your own click. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
 
 I will not ask you for a priced round, a valuation, or to mark LIVE_PIN_OK. This is not a priced round. Recognized revenue is $0. That honesty is the company, not a placeholder.
@@ -36,7 +38,7 @@ James Hodnett, sole owner of AINav, Inc.
 
 ## Your decision
 
-Seat B is treasury_controller. Mailbox recorded: chodnett@ainav.institute. Entra object id is not recorded. Seat B click is not recorded. James cannot click for you. Refusing a write is the product working. You are not a stockholder and not an officer.
+Seat B is treasury_controller. Mailbox recorded: chodnett@ainav.institute. Entra object id is not recorded. Seat B click is not recorded. James cannot click for you. Refusing a write is the product working. You are number two for other aspects, not all aspects. You are not a stockholder and not an officer.
 
 Seat A is treasury_approver (James). Seat B is treasury_controller (you). Each needs a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat. A mailbox is not the click.
 

@@ -253,6 +253,8 @@
 
   function paintBusiness(data) {
     if (!data || data.cms || data.priced_round || data.forecast || data.live_pin_ok) return;
+    var two = data.number_two || {};
+    if (two.all_aspects || two.officer || two.seat_clicked || two.entra_oid) return;
     if (data.thesis) setText("app-business-lede", data.thesis);
     setText("app-business-commercial", (data.commercial || "") + ". Closed: false. Lab pin is " + (data.lab_pin || "LIVE_PIN_OK") + ".");
     var close = data.close || {};
@@ -314,6 +316,9 @@
     }
     paintScenarioTable($("app-business-scenarios"), data.scenarios);
     list($("app-business-missing"), data.honest_missing);
+    if (two.note) setText("app-business-number-two", two.note);
+    namedList($("app-business-manages"), two.manages);
+    namedList($("app-business-cannot"), two.cannot);
   }
 
   function list(root, items) {

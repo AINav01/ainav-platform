@@ -190,6 +190,7 @@ Price L1 against the unauthorized journal that two humans did not admit. Prove i
 Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.
 - Owner: James Hodnett. Operator is not a seat.
 - Invited second human: Cynthia Hodnett (mailbox chodnett@ainav.institute recorded; Entra oid and click still open).
+- Number two: Cynthia Hodnett — other aspects, not all aspects. Not an officer. Not a click.
 - Commercial close: named dual seats × proof day × signed L1 × P-ADM attach
 - Second officer: none recorded. Do not invent one.
 - Incorporation date: not stored in this tree.

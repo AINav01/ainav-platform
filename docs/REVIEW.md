@@ -10,7 +10,7 @@ AINav, Inc. has a running Job C admit plane, a Microsoft sandbox twin, and an Az
 **Commercial close:** named dual seats × proof day × signed L1 × P-ADM attach
 **Lab pin:** LIVE_PIN_OK — never marked from sales.
 **Owner:** James Hodnett (handle DayTradingMarkets). **Operator:** cursor.cloud_agent (not a seat, not dual admit).
-**Second officer:** none. **Invited:** Cynthia Hodnett (mailbox chodnett@ainav.institute recorded; Entra oid and click still open). **Named customers:** none. **Recognized revenue:** none.
+**Second officer:** none. **Invited:** Cynthia Hodnett (mailbox chodnett@ainav.institute recorded; number two for other aspects, not all aspects; Entra oid and click still open). **Named customers:** none. **Recognized revenue:** none.
 **Launch ready:** false. **Custom domain claimed:** false.
 
 ## Success equation scorecard
@@ -30,7 +30,7 @@ One company. Three SKUs. Ten departments. Six Microsoft connections. Eight compl
 
 Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Business Central (L1 SoR) and Sales (U-DUAL SoR) receive the write → Teams notifies. Complements hold secrets, evidence, policy, and audit.
 
-- **Owner / operator** — `sole_owner`. Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open.
+- **Owner / operator** — `sole_owner`. Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Number two for other aspects, not all aspects. Entra oid and click still open.
 - **Job C admit plane** — `running_code`. AINav Control Plane. Two distinct humans bind one action_hash. Then the write. Cloud Agent is not seat_a or seat_b.
 - **L1 / Business Central** — `sandbox_journal`. Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids — not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.
 - **P-ADM attach** — `unattached`. Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.
@@ -132,12 +132,14 @@ Walk away:
 - Is: Mailbox chodnett@ainav.institute recorded
 - Is: Intended treasury_controller
 - Is: Intended Inception business_executive contact when programs open
+- Is: Number two for other aspects
 - Is not: An Entra object id
 - Is not: A seat B click
 - Is not: An officer
 - Is not: A stockholder
 - Is not: The second unique human until oid and click
 - Is not: The Cloud Agent
+- Is not: All aspects of the business
 
 **Continuity.** If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
 
@@ -443,6 +445,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.
 - The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.
 - The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
+- Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
 
 ## Expert review — could be improved
 
@@ -491,6 +494,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **29. [tree] Application face** — Paint a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS. Not LIVE_PIN_OK.
 - **30. [tree] Application kit** — Wire the application kit: JSON-LD, llms.txt, view transitions, speculation, popover, catalog search, Playwright, axe, Lighthouse, Eleventy compiler, Lit elements, SWA identify-not-admit, read-only Functions, fail-closed Insights, Pagefind on the kit, SWA CLI, and Storybook. Identify is not admit. API does not write SoR. Not a CMS. Not LIVE_PIN_OK.
 - **31. [tree] Business plane** — Paint the operating-company business plane on the same application: commercial close, if-then catalog list, bake-off, walk-away, and objections. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
+- **32. [tree] Number two other aspects** — Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.
 
 ## Owner — James must click
 

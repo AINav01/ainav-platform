@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.60.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.61.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.60.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.61.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -28,6 +28,8 @@ Dear Cynthia — I am writing to record that you agreed to be the second human o
 I am asking you because I trust your treasury judgment, and because you already sit next to this company as family. You agreed. Seat B is the second unique human. Mailbox recorded: chodnett@ainav.institute. That mailbox is not an Entra object id and not your click. It is not stock, not a priced round, and not a customer seat.
 
 You were invited. The mailbox is now recorded. I will not invent an object id for you. Your no, or not yet, on the click is still a complete answer.
+
+I want you as number two for other aspects, not all aspects. That is not an officer title and not a click. I remain sole owner. You manage the write and the walk-away. You do not hold the keys, the pin, or both seats.
 
 You become seat B on the same Entra tenant when you have your own object id and your own click. I remain seat A. The Cloud Agent is never a seat. On a Tuesday you see the same action I see. You admit or you refuse. Refusing is the product working.
 
@@ -323,6 +325,7 @@ Working well
 - The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.
 - The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.
 - The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
+- Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
 
 Could be improved — without inventing a fourth SKU
 
@@ -411,6 +414,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 29. [tree] Application face — Paint a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS. Not LIVE_PIN_OK.
 - 30. [tree] Application kit — Wire the application kit: JSON-LD, llms.txt, view transitions, speculation, popover, catalog search, Playwright, axe, Lighthouse, Eleventy compiler, Lit elements, SWA identify-not-admit, read-only Functions, fail-closed Insights, Pagefind on the kit, SWA CLI, and Storybook. Identify is not admit. API does not write SoR. Not a CMS. Not LIVE_PIN_OK.
 - 31. [tree] Business plane — Paint the operating-company business plane on the same application: commercial close, if-then catalog list, bake-off, walk-away, and objections. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
+- 32. [tree] Number two other aspects — Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.
 
 ## What happens next
 
@@ -422,4 +426,4 @@ Five steps, in order. Mailbox recorded. Stop until she has an Entra oid and clic
 - Proof day uses two named humans on the Business Central twin. Still not Production.
 - Equity, officer titles, and Delaware filings stay with counsel. They are not required for this role.
 
-Invited: Cynthia Hodnett  ·  Agreed: yes  ·  Mailbox recorded: chodnett@ainav.institute  ·  Entra oid: none  ·  Click: no  ·  Equity: no  ·  Second officer: none  ·  Operator: cursor.cloud_agent (not a seat)  ·  Commercial close: named dual seats × proof day × signed L1 × P-ADM attach  ·  Recognized revenue: 0
+Invited: Cynthia Hodnett  ·  Agreed: yes  ·  Mailbox recorded: chodnett@ainav.institute  ·  Number two: other aspects, not all aspects  ·  Entra oid: none  ·  Click: no  ·  Equity: no  ·  Second officer: none  ·  Operator: cursor.cloud_agent (not a seat)  ·  Commercial close: named dual seats × proof day × signed L1 × P-ADM attach  ·  Recognized revenue: 0

@@ -311,7 +311,8 @@
           "Agreed human for seat B",
           "Mailbox chodnett@ainav.institute recorded",
           "Intended treasury_controller",
-          "Intended Inception business_executive contact when programs open"
+          "Intended Inception business_executive contact when programs open",
+          "Number two for other aspects"
         ],
         "is_not": [
           "An Entra object id",
@@ -319,7 +320,8 @@
           "An officer",
           "A stockholder",
           "The second unique human until oid and click",
-          "The Cloud Agent"
+          "The Cloud Agent",
+          "All aspects of the business"
         ],
         "lede": "Mailbox recorded is not the click. Seat B meaning stays honest.",
         "mailbox": "chodnett@ainav.institute",
@@ -569,6 +571,14 @@
         "n": 31,
         "title": "Business plane",
         "who": "tree"
+      },
+      {
+        "do": "Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 32,
+        "title": "Number two other aspects",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -599,14 +609,15 @@
       "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.",
       "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.",
       "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
-      "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK."
+      "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
+      "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click."
     ]
   },
   "fit": [
     {
       "id": "owner",
       "label": "Owner / operator",
-      "note": "Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open.",
+      "note": "Owner James Hodnett. Operator cursor.cloud_agent is not a seat and not dual admit. Second officer: none. Cynthia Hodnett agreed. Mailbox chodnett@ainav.institute recorded. Number two for other aspects, not all aspects. Entra oid and click still open.",
       "status": "sole_owner"
     },
     {

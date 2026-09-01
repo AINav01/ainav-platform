@@ -643,7 +643,15 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
     if str(body.get("letter_voice") or "") != "first_person":
         raise IntegrityError("investor letter voice is first person", reason_code="CATALOG_INVESTOR")
     letter_body = str(body.get("letter_body") or "").lower()
-    for stem in ("seat b", "mailbox recorded", "not stock", "not a priced round", "chodnett@ainav.institute"):
+    for stem in (
+        "seat b",
+        "mailbox recorded",
+        "not stock",
+        "not a priced round",
+        "chodnett@ainav.institute",
+        "number two",
+        "not all aspects",
+    ):
         if stem not in letter_body:
             raise IntegrityError(f"investor letter body must keep {stem}", reason_code="CATALOG_INVESTOR")
     if "$0" not in str(body.get("letter_body") or "") and "recognized revenue is $0" not in letter_body:
@@ -658,6 +666,8 @@ def _validate_investor(catalog: dict[str, Any]) -> None:
         raise IntegrityError("investor letter closes from the sole owner", reason_code="CATALOG_INVESTOR")
     if "seat b" not in str(body.get("seat_b") or "").lower():
         raise IntegrityError("investor letter names seat B", reason_code="CATALOG_INVESTOR")
+    if "number two" not in str(body.get("seat_b") or "").lower() or "not all aspects" not in str(body.get("seat_b") or "").lower():
+        raise IntegrityError("investor seat B is number two for other aspects, not all aspects", reason_code="CATALOG_INVESTOR")
     if "stock" not in str(body.get("will_not_ask") or "").lower():
         raise IntegrityError("investor letter refuses stock", reason_code="CATALOG_INVESTOR")
     if "6,000" not in str(body.get("stack") or "") and "$6" not in str(body.get("stack") or ""):
@@ -749,6 +759,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         29: ("application", "not a cms"),
         30: ("kit", "not a cms"),
         31: ("business", "not a priced round"),
+        32: ("number two", "not all aspects"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -818,6 +829,11 @@ def _validate_success_program(success: Any) -> None:
     is_not = " ".join(str(item).lower() for item in seat.get("is_not") or [])
     if "entra object id" not in is_not or "officer" not in is_not or "stockholder" not in is_not:
         raise IntegrityError("seat B meaning: mailbox is not oid, officer, or stock", reason_code="ORG_SECOND_OFFICER")
+    is_yes = " ".join(str(item).lower() for item in seat.get("is") or [])
+    if "number two" not in is_yes or "other aspects" not in is_yes:
+        raise IntegrityError("seat B meaning: number two for other aspects", reason_code="ORG_SECOND_OFFICER")
+    if "all aspects" not in is_not:
+        raise IntegrityError("seat B meaning: not all aspects", reason_code="ORG_SECOND_OFFICER")
     continuity = success.get("continuity") or {}
     if "write does not land" not in str(continuity.get("lede") or "").lower():
         raise IntegrityError("continuity is the write does not land", reason_code="CATALOG_REVIEW")

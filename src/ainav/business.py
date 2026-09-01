@@ -300,7 +300,10 @@ def public_business_plane() -> dict[str, Any]:
             "officer": False,
             "equity": False,
             "second_unique_human": False,
+            "number_two": True,
+            "all_aspects": False,
         },
+        "number_two": dict(cat["organization"]["number_two"]),
         "honest_missing": honest_missing(),
         "refuse": [
             "priced round",
