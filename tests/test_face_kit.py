@@ -55,11 +55,14 @@ def test_kit_files_and_csp_stay_honest():
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     swa = json.loads(Path("institute/staticwebapp.config.json").read_text(encoding="utf-8"))
     assert "ainav-elements.js" in kit
+    assert "speculate.js" in kit
     assert "ainav-honest" in app
     assert "app-search" in app
     assert "popovertarget" in app
     assert "@view-transition" in css
+    assert "--gold-ink: #7a5d26" in css
     assert "Identify is not admit" in identify
+    assert 'aria-label="Menu"' in app
     assert "nvidia inception member" not in kit.lower()
     assert "href=\"mailto:" not in kit
     assert swa["globalHeaders"]["Content-Security-Policy"].find("wasm-unsafe-eval") < 0
