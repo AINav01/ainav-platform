@@ -167,6 +167,12 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"Pro activate now must keep {stem}", reason_code="CATALOG_EDGE")
     if "pro" not in already:
         raise IntegrityError("edge already must record Cloudflare Pro", reason_code="CATALOG_EDGE")
+    if "403" not in now_blob and "challenge" not in now_blob:
+        raise IntegrityError("Pro activate must keep the apex challenge as holding", reason_code="CATALOG_EDGE")
+    if "grey" not in now_blob and "outlook" not in now_blob:
+        raise IntegrityError("Pro activate DNS must keep Outlook / grey cloud", reason_code="CATALOG_EDGE")
+    if "reject" not in wait_blob:
+        raise IntegrityError("Pro activate wait keeps DMARC reject", reason_code="CATALOG_EDGE")
     holding = edge.get("holding") or {}
     if not isinstance(holding, dict):
         raise IntegrityError("edge holding is empty Cloudflare Pages", reason_code="CATALOG_EDGE")
@@ -191,6 +197,7 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
                 raise IntegrityError(f"edge full must record {stem}", reason_code="CATALOG_EDGE")
         if "dns is full" not in note:
             raise IntegrityError("edge note: DNS is full", reason_code="CATALOG_EDGE")
+        _validate_edge_quality(edge)
     elif edge.get("full") is False:
         if "sip" not in missing:
             raise IntegrityError("edge missing must include Teams SIP", reason_code="CATALOG_EDGE")
@@ -199,6 +206,39 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
     else:
         raise IntegrityError("edge full must be boolean", reason_code="CATALOG_EDGE")
     _validate_stack_walk(catalog)
+
+
+def _validate_edge_quality(edge: dict[str, Any]) -> None:
+    quality = edge.get("quality")
+    if not isinstance(quality, dict):
+        raise IntegrityError("edge quality is required", reason_code="CATALOG_EDGE")
+    if quality.get("kind") != "ainav.edge.quality.v1":
+        raise IntegrityError("edge quality kind is ainav.edge.quality.v1", reason_code="CATALOG_EDGE")
+    for flag in ("sku", "live", "live_pin_ok", "from_this_plane", "apex_is_institute", "ssl_full_claimed"):
+        if quality.get(flag) is True:
+            raise IntegrityError(f"edge quality cannot claim {flag}", reason_code="CATALOG_EDGE")
+    if quality.get("e7_full") is not True:
+        raise IntegrityError("edge quality records E7 DNS full", reason_code="CATALOG_EDGE")
+    if str(quality.get("institute_host") or "") != "azure.swa":
+        raise IntegrityError("edge quality host is Azure SWA", reason_code="CATALOG_EDGE")
+    verified = " ".join(str(item).lower() for item in quality.get("verified") or [])
+    for stem in ("13/13", "403", "asuid", "301"):
+        if stem not in verified:
+            raise IntegrityError(f"edge quality verified must keep {stem}", reason_code="CATALOG_EDGE")
+    confirm = " ".join(str(item).lower() for item in quality.get("confirm") or [])
+    for stem in ("flexible", "rocket", "grey"):
+        if stem not in confirm:
+            raise IntegrityError(f"edge quality confirm must keep {stem}", reason_code="CATALOG_EDGE")
+    refuse = " ".join(str(item).lower() for item in quality.get("refuse") or [])
+    for stem in ("asuid", "orange-cloud", "403"):
+        if stem not in refuse:
+            raise IntegrityError(f"edge quality refuse must keep {stem}", reason_code="CATALOG_EDGE")
+    wait = " ".join(str(item).lower() for item in quality.get("wait") or [])
+    if "reject" not in wait or "launch" not in wait:
+        raise IntegrityError("edge quality wait keeps DMARC reject and launch", reason_code="CATALOG_EDGE")
+    note = str(quality.get("note") or "").lower()
+    if "not institute launch" not in note or "cannot edit" not in note:
+        raise IntegrityError("edge quality note: not launch and cannot edit", reason_code="CATALOG_EDGE")
 
 
 def _validate_stack_walk(catalog: dict[str, Any]) -> None:
@@ -852,6 +892,8 @@ def _validate_owner_gates(catalog: dict[str, Any]) -> None:
             do = str(item.get("do") or "").lower()
             if "chodnett@ainav.institute" not in do or "mailbox recorded" not in do:
                 raise IntegrityError("invite.seat_b must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
+            if "one mailbox seat" not in do or "exhausted" not in do:
+                raise IntegrityError("invite.seat_b assigns one mailbox seat only", reason_code="ORG_SECOND_OFFICER")
             if "invited, not recorded" in do:
                 raise IntegrityError("invite.seat_b cannot revert to invited-not-recorded", reason_code="ORG_SECOND_OFFICER")
 

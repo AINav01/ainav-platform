@@ -191,5 +191,6 @@ def catalog_edge() -> dict[str, Any]:
         "not": list(edge["not"]),
         "activate": dict(edge.get("activate") or {}),
         "holding": dict(edge.get("holding") or {}),
+        "quality": dict(edge.get("quality") or {}),
         "note": edge["note"],
     }

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.61.0",
+    "release": "2.62.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3409,7 +3409,7 @@
           {
             "id": "invite.seat_b",
             "name": "Microsoft 365 admin → Users",
-            "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+            "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
             "url": "https://admin.microsoft.com/Adminportal/Home#/users",
             "url_label": "Microsoft 365 admin → Users"
           },
@@ -3518,7 +3518,8 @@
       "Institute first screen paints substitute vs Job C in one glance",
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
       "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
-      "Owner-click runbooks with Microsoft admin links"
+      "Owner-click runbooks with Microsoft admin links",
+      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -3626,13 +3627,13 @@
         "now": [
           {
             "id": "ssl.full",
-            "do": "SSL/TLS encryption mode Full, not Flexible. Minimum TLS 1.2. Always Use HTTPS On.",
+            "do": "Confirm SSL/TLS Full, not Flexible. Minimum TLS 1.2. HTTP to HTTPS 301 is already on. That redirect is not Institute launch.",
             "url": "https://dash.cloudflare.com",
             "url_label": "SSL/TLS"
           },
           {
             "id": "waf.managed",
-            "do": "Enable Cloudflare Managed and OWASP Core (Pro). A challenge on the empty apex is not the Institute and not launch.",
+            "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is holding. It is not the Institute and not launch.",
             "url": "https://dash.cloudflare.com",
             "url_label": "WAF"
           },
@@ -3644,7 +3645,7 @@
           },
           {
             "id": "dns.only",
-            "do": "MX and autodiscover stay DNS only. Do not orange-cloud mail during the Squarespace transfer or after.",
+            "do": "MX and autodiscover resolve to Outlook. Confirm they stay DNS only / grey cloud. Do not orange-cloud mail.",
             "url": "https://dash.cloudflare.com",
             "url_label": "DNS"
           }
@@ -3657,8 +3658,51 @@
           {
             "id": "origin",
             "do": "Polish, Image Resizing, and Page Rules that point the apex at Azure SWA wait. That is launch."
+          },
+          {
+            "id": "dmarc.reject",
+            "do": "Do not raise DMARC to p=reject until mail to Cynthia actually flows. Quarantine is enough."
           }
         ]
+      },
+      "quality": {
+        "kind": "ainav.edge.quality.v1",
+        "sku": false,
+        "live": false,
+        "live_pin_ok": false,
+        "from_this_plane": false,
+        "e7_full": true,
+        "apex_is_institute": false,
+        "institute_host": "azure.swa",
+        "ssl_full_claimed": false,
+        "verified": [
+          "Cloudflare nameservers bella and dilbert",
+          "E7 DNS 13/13 full",
+          "Outlook MX, SPF -all, DKIM, DMARC p=quarantine",
+          "HTTP to HTTPS 301",
+          "Apex 403 Cloudflare challenge — holding, not the Institute",
+          "ainav-institute.pages.dev 404 empty",
+          "Azure SWA 200 with Institute CSP",
+          "asuid absent"
+        ],
+        "confirm": [
+          "SSL/TLS Full, not Flexible",
+          "Rocket Loader Off and Auto Minify JavaScript Off",
+          "MX and autodiscover grey cloud",
+          "WAF challenge stays on the empty apex"
+        ],
+        "refuse": [
+          "asuid while Pages is the apex",
+          "orange-cloud MX or autodiscover",
+          "Flexible SSL",
+          "Rocket Loader",
+          "treat the apex 403 as launch"
+        ],
+        "wait": [
+          "DMARC p=reject after mail flows",
+          "Bind ainav.institute / asuid when the owner says launch"
+        ],
+        "note": "Quality is E7 DNS full and a held apex. It is not Institute launch. This Cloud Agent cannot edit Cloudflare."
       },
       "holding": {
         "id": "cloudflare.pages",
@@ -3667,7 +3711,7 @@
         "institute": false,
         "launch": false,
         "sku": false,
-        "note": "Apex and www CNAME to ainav-institute.pages.dev. Empty Pages plus a Pro challenge. Not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch."
+        "note": "Apex is a Pro 403 challenge. Pages origin 404. Azure SWA is the Institute host. Empty Pages is not the Institute. Leave the zone as-is. Transfer still in flight. Not launch."
       },
       "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
     },
@@ -3825,8 +3869,8 @@
           "name": "Cloudflare DNS / edge",
           "role": "dns_edge",
           "status": "full",
-          "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch.",
-          "owner": "Confirm Pro: SSL Full not Flexible, WAF managed on, Rocket Loader off. Do not orange-cloud MX or autodiscover. Do not bind ainav.institute until the transfer is Active and you say launch. This Cloud Agent cannot edit Cloudflare.",
+          "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex 403 is holding. asuid absent. DNS full is not Institute launch.",
+          "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Leave the apex 403. Do not add asuid. Do not bind ainav.institute until you say launch. This Cloud Agent cannot edit Cloudflare.",
           "url": "https://dash.cloudflare.com",
           "url_label": "Cloudflare dashboard",
           "learn": "https://developers.cloudflare.com/dns/",
@@ -4759,7 +4803,7 @@
   "owner_gates": [
     {
       "id": "invite.seat_b",
-      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
       "url": "https://admin.microsoft.com/Adminportal/Home#/users",
       "url_label": "Microsoft 365 admin → Users"
     },
@@ -5025,7 +5069,8 @@
         "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.",
         "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
         "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
-        "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click."
+        "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.",
+        "Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

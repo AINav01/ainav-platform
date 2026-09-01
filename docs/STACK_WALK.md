@@ -1,6 +1,6 @@
 # AINav, Inc. — stack walk
 
-Release 2.61.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.62.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 **Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**
@@ -12,8 +12,8 @@ This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind 
 
 ## Privileged-write path
 
-1. **Cloudflare DNS / edge** — `full`. probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch.
-   Owner: Confirm Pro: SSL Full not Flexible, WAF managed on, Rocket Loader off. Do not orange-cloud MX or autodiscover. Do not bind ainav.institute until the transfer is Active and you say launch. This Cloud Agent cannot edit Cloudflare. [Cloudflare dashboard](https://dash.cloudflare.com) · [Cloudflare DNS docs](https://developers.cloudflare.com/dns/)
+1. **Cloudflare DNS / edge** — `full`. probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex 403 is holding. asuid absent. DNS full is not Institute launch.
+   Owner: Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Leave the apex 403. Do not add asuid. Do not bind ainav.institute until you say launch. This Cloud Agent cannot edit Cloudflare. [Cloudflare dashboard](https://dash.cloudflare.com) · [Cloudflare DNS docs](https://developers.cloudflare.com/dns/)
 
 2. **Azure host** — `hosted_not_custom`. Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound.
    Owner: Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps) · [SWA custom domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external)

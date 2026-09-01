@@ -137,13 +137,13 @@
       "from_this_plane": false,
       "now": [
         {
-          "do": "SSL/TLS encryption mode Full, not Flexible. Minimum TLS 1.2. Always Use HTTPS On.",
+          "do": "Confirm SSL/TLS Full, not Flexible. Minimum TLS 1.2. HTTP to HTTPS 301 is already on. That redirect is not Institute launch.",
           "id": "ssl.full",
           "url": "https://dash.cloudflare.com",
           "url_label": "SSL/TLS"
         },
         {
-          "do": "Enable Cloudflare Managed and OWASP Core (Pro). A challenge on the empty apex is not the Institute and not launch.",
+          "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is holding. It is not the Institute and not launch.",
           "id": "waf.managed",
           "url": "https://dash.cloudflare.com",
           "url_label": "WAF"
@@ -155,7 +155,7 @@
           "url_label": "Speed"
         },
         {
-          "do": "MX and autodiscover stay DNS only. Do not orange-cloud mail during the Squarespace transfer or after.",
+          "do": "MX and autodiscover resolve to Outlook. Confirm they stay DNS only / grey cloud. Do not orange-cloud mail.",
           "id": "dns.only",
           "url": "https://dash.cloudflare.com",
           "url_label": "DNS"
@@ -169,6 +169,10 @@
         {
           "do": "Polish, Image Resizing, and Page Rules that point the apex at Azure SWA wait. That is launch.",
           "id": "origin"
+        },
+        {
+          "do": "Do not raise DMARC to p=reject until mail to Cynthia actually flows. Quarantine is enough.",
+          "id": "dmarc.reject"
         }
       ]
     },
@@ -199,7 +203,7 @@
       "id": "cloudflare.pages",
       "institute": false,
       "launch": false,
-      "note": "Apex and www CNAME to ainav-institute.pages.dev. Empty Pages plus a Pro challenge. Not the Institute. Azure SWA remains the host. Leave the zone as-is. Transfer still in flight. Not launch.",
+      "note": "Apex is a Pro 403 challenge. Pages origin 404. Azure SWA is the Institute host. Empty Pages is not the Institute. Leave the zone as-is. Transfer still in flight. Not launch.",
       "origin": "ainav-institute.pages.dev",
       "sku": false
     },
@@ -225,6 +229,45 @@
     "plan": "pro",
     "plan_sku": false,
     "product": "Cloudflare",
+    "quality": {
+      "apex_is_institute": false,
+      "confirm": [
+        "SSL/TLS Full, not Flexible",
+        "Rocket Loader Off and Auto Minify JavaScript Off",
+        "MX and autodiscover grey cloud",
+        "WAF challenge stays on the empty apex"
+      ],
+      "e7_full": true,
+      "from_this_plane": false,
+      "institute_host": "azure.swa",
+      "kind": "ainav.edge.quality.v1",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "Quality is E7 DNS full and a held apex. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+      "refuse": [
+        "asuid while Pages is the apex",
+        "orange-cloud MX or autodiscover",
+        "Flexible SSL",
+        "Rocket Loader",
+        "treat the apex 403 as launch"
+      ],
+      "sku": false,
+      "ssl_full_claimed": false,
+      "verified": [
+        "Cloudflare nameservers bella and dilbert",
+        "E7 DNS 13/13 full",
+        "Outlook MX, SPF -all, DKIM, DMARC p=quarantine",
+        "HTTP to HTTPS 301",
+        "Apex 403 Cloudflare challenge \u2014 holding, not the Institute",
+        "ainav-institute.pages.dev 404 empty",
+        "Azure SWA 200 with Institute CSP",
+        "asuid absent"
+      ],
+      "wait": [
+        "DMARC p=reject after mail flows",
+        "Bind ainav.institute / asuid when the owner says launch"
+      ]
+    },
     "role": "dns_edge",
     "sku": false
   },
@@ -253,7 +296,8 @@
       "Institute first screen paints substitute vs Job C in one glance",
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
       "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
-      "Owner-click runbooks with Microsoft admin links"
+      "Owner-click runbooks with Microsoft admin links",
+      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch"
     ],
     "complement": false,
     "connection": false,

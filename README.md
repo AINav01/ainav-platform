@@ -111,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.61.0 (this tree)
+### 2.62.0 (this tree)
+
+Cloudflare quality is catalog law: E7 DNS
+is full and the apex is a held challenge.
+The Institute paints verified / confirm /
+refuse / wait. Confirm Full, not Flexible.
+One mailbox seat only. Do not add asuid.
+Not Institute launch. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.61.0
 
 Number two is catalog law: Cynthia Hodnett
 manages other aspects, not all aspects.

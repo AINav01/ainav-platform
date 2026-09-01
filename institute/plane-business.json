@@ -205,7 +205,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.61.0",
+  "release": "2.62.0",
   "scenarios": [
     {
       "id": "l1_only",

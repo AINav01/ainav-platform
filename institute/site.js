@@ -1938,6 +1938,23 @@
           }
           var edgeNote = document.getElementById("e7-cloudflare-note");
           if (edgeNote && edge.note) edgeNote.textContent = edge.note;
+          var quality = edge.quality || {};
+          if (
+            quality.sku ||
+            quality.live ||
+            quality.live_pin_ok ||
+            quality.apex_is_institute ||
+            quality.ssl_full_claimed
+          ) {
+            /* refuse to paint a fiction quality board */
+          } else {
+            replacePlainList("e7-cloudflare-verified", quality.verified);
+            replacePlainList("e7-cloudflare-confirm", quality.confirm);
+            replacePlainList("e7-cloudflare-refuse", quality.refuse);
+            replacePlainList("e7-cloudflare-quality-wait", quality.wait);
+            var qualityNote = document.getElementById("e7-cloudflare-quality");
+            if (qualityNote && quality.note) qualityNote.textContent = quality.note;
+          }
           var holding = document.getElementById("e7-cloudflare-holding");
           if (holding && edge.holding && !edge.holding.host && !edge.holding.institute && !edge.holding.launch) {
             holding.textContent =

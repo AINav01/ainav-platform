@@ -37,6 +37,16 @@ def test_mailbox_law_refuses_stale_seat_note_and_letter():
     with pytest.raises(IntegrityError) as exc4:
         validate_catalog(gate)
     assert exc4.value.reason_code == "ORG_SECOND_OFFICER"
+    seat = copy.deepcopy(cat)
+    for item in seat["owner_gates"]:
+        if item["id"] == "invite.seat_b":
+            item["do"] = (
+                "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. "
+                "Create or confirm her Entra user. She clicks seat B."
+            )
+    with pytest.raises(IntegrityError) as exc_seat:
+        validate_catalog(seat)
+    assert exc_seat.value.reason_code == "ORG_SECOND_OFFICER"
     glance = copy.deepcopy(cat)
     glance["plane_interface"]["floor"]["first_glance"]["lede"] = "A company exists."
     with pytest.raises(IntegrityError) as exc5:

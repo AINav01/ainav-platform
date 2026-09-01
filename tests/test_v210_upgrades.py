@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.61.0"
+    assert cat["entity"]["release"] == "2.62.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -111,6 +111,8 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     ]
     assert all(item["url"].startswith("https://") for item in integrate["items"])
     assert integrate["items"][0]["url"].startswith("https://admin.microsoft.com")
+    assert "one mailbox seat" in integrate["items"][0]["note"].lower()
+    assert "exhausted" in integrate["items"][0]["note"].lower()
     assert integrate["items"][2]["url"].startswith("https://admin.cloud.microsoft")
     assert "2ad041b8" not in integrate["items"][3]["url"]
     assert "write does not land" in cat["plane_interface"]["floor"]["no_means"]["fail_closed"].lower()

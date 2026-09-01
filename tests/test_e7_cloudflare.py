@@ -106,6 +106,16 @@ def test_catalog_rejects_edge_fiction():
     with pytest.raises(IntegrityError) as exc_hold:
         validate_catalog(pages_host)
     assert exc_hold.value.reason_code == "CATALOG_EDGE"
+    claimed = copy.deepcopy(cat)
+    claimed["microsoft_stack"]["edge"]["quality"]["ssl_full_claimed"] = True
+    with pytest.raises(IntegrityError) as exc_ssl:
+        validate_catalog(claimed)
+    assert exc_ssl.value.reason_code == "CATALOG_EDGE"
+    institute = copy.deepcopy(cat)
+    institute["microsoft_stack"]["edge"]["quality"]["apex_is_institute"] = True
+    with pytest.raises(IntegrityError) as exc_apex:
+        validate_catalog(institute)
+    assert exc_apex.value.reason_code == "CATALOG_EDGE"
 
 
 def test_catalog_edge_records_dns_full_not_launch():
@@ -142,6 +152,16 @@ def test_catalog_edge_records_dns_full_not_launch():
     assert holding["launch"] is False
     assert holding["sku"] is False
     assert "not the institute" in holding["note"].lower()
+    quality = edge["quality"]
+    assert quality["kind"] == "ainav.edge.quality.v1"
+    assert quality["e7_full"] is True
+    assert quality["apex_is_institute"] is False
+    assert quality["ssl_full_claimed"] is False
+    assert quality["institute_host"] == "azure.swa"
+    assert any("403" in item for item in quality["verified"])
+    assert any("13/13" in item for item in quality["verified"])
+    assert any("Flexible" in item for item in quality["confirm"])
+    assert any("asuid" in item.lower() for item in quality["refuse"])
 
 
 def test_live_scoreboard_mail_on_cloudflare_is_not_full_without_teams():
@@ -282,6 +302,15 @@ def test_institute_paints_e7_cloudflare_strip():
     assert "not a ninth complement" in html.lower()
     assert "e7_cloudflare" in js
     assert "e7-cloudflare-holding" in js
+    assert "e7-cloudflare-verified" in html
+    assert "e7-cloudflare-confirm" in html
+    assert "e7-cloudflare-quality-wait" in html
+    assert "E7 DNS 13/13 full" in html
+    assert "asuid absent" in html
+    assert "DMARC p=reject after mail flows" in html
+    assert "e7-cloudflare-quality-wait" in js
     assert "refuse to paint a fiction scoreboard" in js
+    assert "refuse to paint a fiction quality board" in js
     assert "None. E7 DNS is full." in js
     assert "#e7-cloudflare" in css
+    assert "#e7-cloudflare-quality-board" in css

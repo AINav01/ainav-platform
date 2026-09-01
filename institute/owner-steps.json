@@ -62,11 +62,11 @@
   },
   "operator_is_seat": false,
   "owner": "James Hodnett",
-  "release": "2.61.0",
+  "release": "2.62.0",
   "signed_l1": false,
   "steps": [
     {
-      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
+      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.",
       "id": "invite.seat_b",
       "url": "https://admin.microsoft.com/Adminportal/Home#/users",
       "url_label": "Microsoft 365 admin \u2192 Users"

@@ -151,7 +151,7 @@ Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, ho
 
 CLI: `python -m ainav stack`. Probe: `python -m ainav connect --probe`.
 
-- **1. Cloudflare DNS / edge** — `full`. probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. DNS full is not Institute launch. [Cloudflare dashboard](https://dash.cloudflare.com)
+- **1. Cloudflare DNS / edge** — `full`. probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex 403 is holding. asuid absent. DNS full is not Institute launch. [Cloudflare dashboard](https://dash.cloudflare.com)
 - **2. Azure host** — `hosted_not_custom`. Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps)
 - **3. Entra identify** — `mailbox_recorded_oid_open`. Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Mailbox is not an Entra oid and not a click. probe_graph reads org and users when the same app has User.Read.All. [Entra users](https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers)
 - **4. AINav Control Plane** — `running_code`. Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat. [Azure-hosted Institute](https://blue-river-010091a0f.7.azurestaticapps.net/)
@@ -347,7 +347,7 @@ This Cloud Agent cannot approve tools.
 - Workflow: `.github/workflows/gold.yml`. Command: `make gold`. Coverage floor: 90.
 - exists=true. observed_green=true. marks_live_pin=false. launch=false. sku=false.
 - Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.
-- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded; Institute first screen paints substitute vs Job C in one glance; Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity; Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop; Owner-click runbooks with Microsoft admin links.
+- Closed in this tree: Job C gold invariants (dual seats, single-use consume, fail-closed effect); Catalog law — three SKUs only; E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV); GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK; Institute owner board is one click from Closed; Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close; Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered; Institute, review, and brief generated from the catalog; Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Mailbox is not an Entra oid and not a click; Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded; Institute first screen paints substitute vs Job C in one glance; Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity; Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop; Owner-click runbooks with Microsoft admin links; Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch.
 - This Cloud Agent cannot close: Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats); ainav.institute custom domain and launch; Graph Read on the same Entra app; US Dataverse for Sales; G12 legal / G13 signed L1; Recognized revenue; Multi-host product HA; LIVE_PIN_OK.
 - This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.
 
@@ -385,7 +385,7 @@ Job C: dual-admitted effect authority before Dynamics 365 Business Central privi
 
 ## Human gates (owner only)
 
-- Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
+- Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Assign one mailbox seat only. Do not buy exhausted SKUs. Create or confirm her Entra user as the second unique human (not an alias, not Gmail). Do not invent an object id in this tree. She clicks seat B.
 - Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.
 - Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.
 - On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.
@@ -446,6 +446,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.
 - The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
 - Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
+- Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.
 
 ## Expert review — could be improved
 
