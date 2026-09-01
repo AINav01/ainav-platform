@@ -196,6 +196,8 @@ def test_institute_foundation_is_catalog_honest():
     assert "chodnett@ainav.institute" in html
     assert "href=\"mailto:" not in html
     assert 'id="hero-contrast"' in html
+    assert 'id="hero-write-rail"' in html
+    assert 'id="hero-rail-kicker"' in html
     assert 'id="hero-skus"' in html
     assert 'data-sku="L1"' in html
     assert 'data-sku="P-ADM"' in html

@@ -744,6 +744,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         24: ("static", "owner book"),
         25: ("pro", "not a sku"),
         26: ("pages", "not the institute"),
+        27: ("write rail", "not a cms"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1088,7 +1089,7 @@ def _validate_public_face(face: Any) -> None:
     if "static" not in str(face.get("host") or "").lower():
         raise IntegrityError("public face host is Azure Static Web Apps", reason_code="CATALOG_PLANE")
     thesis = str(face.get("thesis") or "").lower()
-    for stem in ("static", "first glance", "owner book", "not a cms", "live_pin_ok"):
+    for stem in ("static", "first glance", "write rail", "owner book", "not a cms", "live_pin_ok"):
         if stem not in thesis:
             raise IntegrityError(f"public face thesis must keep {stem}", reason_code="CATALOG_PLANE")
     primary = list(face.get("primary") or [])
@@ -1239,6 +1240,16 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("first glance Job C is a SoR write-gate, not agent inventory", reason_code="CATALOG_PLANE")
     if list(glance.get("skus") or []) != ["L1", "P-ADM", "U-DUAL"]:
         raise IntegrityError("first glance names the same three SKUs", reason_code="CATALOG_PLANE")
+    rail = list(glance.get("write_rail") or [])
+    if [item.get("id") for item in rail] != ["seat_a", "seat_b", "hash", "write"]:
+        raise IntegrityError("first glance write rail is seat A, seat B, hash, then the write", reason_code="CATALOG_PLANE")
+    rail_blob = " ".join(f"{item.get('name') or ''} {item.get('note') or ''}" for item in rail).lower()
+    for stem in ("seat a", "seat b", "hash", "write"):
+        if stem not in rail_blob:
+            raise IntegrityError(f"first glance write rail must keep {stem}", reason_code="CATALOG_PLANE")
+    kicker = str(glance.get("rail_kicker") or "").lower()
+    if "gate" not in kicker or "cop" not in kicker:
+        raise IntegrityError("first glance rail kicker is the gate then the licensed copies", reason_code="CATALOG_PLANE")
     _validate_public_face(floor.get("public_face"))
     success_floor = floor.get("success") or {}
     if not isinstance(success_floor, dict):

@@ -198,7 +198,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.55.0"
+    "release": "2.56.0"
   },
   "communications": [
     {
@@ -812,13 +812,36 @@
     "first_glance": {
       "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
       "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
+      "rail_kicker": "The gate \u00b7 then the licensed copies",
       "sku": false,
       "skus": [
         "L1",
         "P-ADM",
         "U-DUAL"
       ],
-      "uses": "not_the_gate"
+      "uses": "not_the_gate",
+      "write_rail": [
+        {
+          "id": "seat_a",
+          "name": "Seat A",
+          "note": "Treasury admits"
+        },
+        {
+          "id": "seat_b",
+          "name": "Seat B",
+          "note": "Controller admits"
+        },
+        {
+          "id": "hash",
+          "name": "One hash",
+          "note": "Consume once"
+        },
+        {
+          "id": "write",
+          "name": "Then the write",
+          "note": "Fail-closed SoR"
+        }
+      ]
     },
     "integrate": {
       "items": [
@@ -1204,7 +1227,7 @@
         }
       ],
       "sku": false,
-      "thesis": "The Institute is a catalog-honest static sale. First glance is Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK."
+      "thesis": "The Institute is a catalog-honest static sale. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK."
     },
     "scopes": [
       {
@@ -2437,7 +2460,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.55.0",
+  "release": "2.56.0",
   "revocations": [
     {
       "by": "Owner / board request",

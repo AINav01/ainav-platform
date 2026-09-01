@@ -57,6 +57,11 @@ def test_mailbox_law_refuses_stale_seat_note_and_letter():
     with pytest.raises(IntegrityError) as exc8:
         validate_catalog(nav)
     assert exc8.value.reason_code == "CATALOG_PLANE"
+    rail = copy.deepcopy(cat)
+    rail["plane_interface"]["floor"]["first_glance"]["write_rail"] = []
+    with pytest.raises(IntegrityError) as exc9:
+        validate_catalog(rail)
+    assert exc9.value.reason_code == "CATALOG_PLANE"
 
 
 def test_catalog_refuses_live_proof_pin_sandbox_and_buyer_inbox():

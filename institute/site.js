@@ -180,6 +180,7 @@
         if (contrast) {
           var pin = contrast.querySelector("[data-pin='job-c']");
           if (pin && glance.job_c) {
+            pin.setAttribute("data-lane", "gate");
             var pinNote = pin.querySelector("p");
             if (pinNote) pinNote.textContent = glance.job_c;
           }
@@ -188,6 +189,7 @@
           });
           data.floor.not_the_gate.forEach(function (item) {
             var art = document.createElement("article");
+            art.setAttribute("data-lane", "copy");
             var h = document.createElement("h3");
             h.textContent = item.name || "";
             var p = document.createElement("p");
@@ -1569,11 +1571,29 @@
     if (fold && (data.already_have || data.still_lack)) {
       fold.textContent = ((data.already_have || "") + " " + (data.still_lack || "")).trim();
     }
+    var kicker = document.getElementById("hero-rail-kicker");
+    if (kicker && glance.rail_kicker) kicker.textContent = glance.rail_kicker;
+    var rail = document.getElementById("hero-write-rail");
+    if (rail && glance.write_rail && glance.write_rail.length) {
+      rail.textContent = "";
+      glance.write_rail.forEach(function (item) {
+        var li = document.createElement("li");
+        if (item.id) li.setAttribute("data-step", item.id);
+        var b = document.createElement("b");
+        b.textContent = item.name || "";
+        var span = document.createElement("span");
+        span.textContent = item.note || "";
+        li.appendChild(b);
+        li.appendChild(span);
+        rail.appendChild(li);
+      });
+    }
     var contrast = document.getElementById("hero-contrast");
     if (contrast && glance.job_c && data.not_the_gate && data.not_the_gate.length) {
       contrast.textContent = "";
       var pin = document.createElement("article");
       pin.setAttribute("data-pin", "job-c");
+      pin.setAttribute("data-lane", "gate");
       var ph = document.createElement("h3");
       ph.textContent = "Job C";
       var pp = document.createElement("p");
@@ -1583,6 +1603,7 @@
       contrast.appendChild(pin);
       data.not_the_gate.forEach(function (item) {
         var art = document.createElement("article");
+        art.setAttribute("data-lane", "copy");
         var h = document.createElement("h3");
         h.textContent = item.name || "";
         var p = document.createElement("p");

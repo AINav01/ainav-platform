@@ -13,7 +13,7 @@ def test_stack_walk_is_catalog_honest_with_https_links():
     assert body["live_pin_ok"] is False
     assert body["sku"] is False
     assert body["is_admit_plane"] is False
-    assert body["release"] == "2.55.0"
+    assert body["release"] == "2.56.0"
     ids = [item["id"] for item in body["path"]]
     assert ids == [
         "cloudflare.dns",

@@ -111,7 +111,15 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.55.0 (this tree)
+### 2.56.0 (this tree)
+
+First glance is a write rail, Job C vs not-the-gate,
+and three SKUs. The Institute stays static on Azure
+Static Web Apps. Owner book is not the homepage. Not
+a CMS. Not a custom-domain launch. A green check is
+not `LIVE_PIN_OK`.
+
+### 2.55.0
 
 Apex `ainav.institute` CNAMEs to empty Cloudflare Pages.
 Pages is not the Institute host. Azure Static Web Apps
