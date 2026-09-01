@@ -19,6 +19,9 @@ def test_public_face_is_static_catalog_sale():
     assert "application" in face["thesis"].lower()
     assert face["app"]["cms"] is False
     assert face["app"]["href"] == "app.html"
+    assert face["kit"]["cms"] is False
+    assert face["kit"]["href"] == "kit.html"
+    assert face["kit"]["auth_is_admit"] is False
     assert {item["id"] for item in face["app"]["workspaces"]} >= {"floor", "capital", "programs"}
     assert face["primary"][3]["href"] == "app.html"
     assert [item["id"] for item in cat["skus"]] == ["L1", "P-ADM", "U-DUAL"]

@@ -1,0 +1,99 @@
+{
+  "api_writes_sor": false,
+  "auth_is_admit": false,
+  "cms": false,
+  "compiler": "eleventy",
+  "compiler_is_cms": false,
+  "connection_claimed": false,
+  "href": "kit.html",
+  "insights_claimed": false,
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.kit.v1",
+  "launch": false,
+  "legal": "AINav, Inc.",
+  "live": false,
+  "live_pin_ok": false,
+  "pagefind_on_public_face": false,
+  "refuse": [
+    "CMS",
+    "identify is admit",
+    "Function SoR write",
+    "Application Insights claimed",
+    "membership claimed",
+    "priced round",
+    "LIVE_PIN_OK"
+  ],
+  "release": "2.59.0",
+  "sku": false,
+  "thesis": "The kit compiles catalog law into JSON-LD, llms.txt, search, speculation, Lit elements, Eleventy output, Storybook stories, Playwright, axe, Lighthouse, SWA identify-not-admit, a read-only Function, fail-closed Insights, Pagefind on the kit only, and SWA CLI. Identify is not admit. The API does not write a SoR. Insights are not claimed. Not a CMS. Not LIVE_PIN_OK.",
+  "tools": [
+    {
+      "id": "jsonld",
+      "status": "wired"
+    },
+    {
+      "id": "llms_txt",
+      "status": "wired"
+    },
+    {
+      "id": "view_transitions",
+      "status": "wired"
+    },
+    {
+      "id": "speculation_rules",
+      "status": "wired"
+    },
+    {
+      "id": "popover",
+      "status": "wired"
+    },
+    {
+      "id": "minisearch",
+      "status": "wired"
+    },
+    {
+      "id": "playwright",
+      "status": "wired"
+    },
+    {
+      "id": "axe",
+      "status": "wired"
+    },
+    {
+      "id": "lighthouse",
+      "status": "wired"
+    },
+    {
+      "id": "eleventy",
+      "status": "wired"
+    },
+    {
+      "id": "lit",
+      "status": "wired"
+    },
+    {
+      "id": "swa_auth",
+      "status": "identify_not_admit"
+    },
+    {
+      "id": "swa_api",
+      "status": "read_only"
+    },
+    {
+      "id": "app_insights",
+      "status": "fail_closed"
+    },
+    {
+      "id": "pagefind",
+      "status": "kit_only"
+    },
+    {
+      "id": "swa_cli",
+      "status": "local_emulate"
+    },
+    {
+      "id": "storybook",
+      "status": "catalog_stories"
+    }
+  ]
+}

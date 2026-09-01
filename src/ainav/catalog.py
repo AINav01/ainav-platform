@@ -726,8 +726,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 30:
-        raise IntegrityError("expert review needs 16–30 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 32:
+        raise IntegrityError("expert review needs 16–32 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -747,6 +747,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         27: ("write rail", "not a cms"),
         28: ("write rail", "one dashboard"),
         29: ("application", "not a cms"),
+        30: ("kit", "not a cms"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1129,6 +1130,57 @@ def _validate_public_face(face: Any) -> None:
     for stem in ("inbox", "ainav.institute", "live_pin_ok", "cms"):
         if stem not in cannot:
             raise IntegrityError(f"public face cannot must keep {stem}", reason_code="CATALOG_PLANE")
+    _validate_face_kit(face.get("kit"))
+
+
+REQUIRED_KIT_TOOLS = (
+    "jsonld",
+    "llms_txt",
+    "view_transitions",
+    "speculation_rules",
+    "popover",
+    "minisearch",
+    "playwright",
+    "axe",
+    "lighthouse",
+    "eleventy",
+    "lit",
+    "swa_auth",
+    "swa_api",
+    "app_insights",
+    "pagefind",
+    "swa_cli",
+    "storybook",
+)
+
+
+def _validate_face_kit(kit: Any) -> None:
+    if not isinstance(kit, dict):
+        raise IntegrityError("public face kit is required", reason_code="CATALOG_PLANE")
+    if kit.get("sku") is True or kit.get("cms") is True or kit.get("compiler_is_cms") is True:
+        raise IntegrityError("application kit is not a CMS or a SKU", reason_code="CATALOG_PLANE")
+    if kit.get("live") is True or kit.get("live_pin_ok") is True or kit.get("launch") is True:
+        raise IntegrityError("application kit cannot mark launch or LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if kit.get("auth_is_admit") is True:
+        raise IntegrityError("SWA identify is not admit", reason_code="CATALOG_PLANE")
+    if kit.get("api_writes_sor") is True:
+        raise IntegrityError("kit API cannot write a SoR", reason_code="CATALOG_PLANE")
+    if kit.get("insights_claimed") is True or kit.get("connection_claimed") is True:
+        raise IntegrityError("Application Insights is not claimed", reason_code="CATALOG_PLANE")
+    if kit.get("pagefind_on_public_face") is True:
+        raise IntegrityError("Pagefind stays on the kit, not the public CSP", reason_code="CATALOG_PLANE")
+    if str(kit.get("href") or "") != "kit.html":
+        raise IntegrityError("application kit is kit.html", reason_code="CATALOG_PLANE")
+    if str(kit.get("compiler") or "") != "eleventy":
+        raise IntegrityError("application kit compiler is Eleventy", reason_code="CATALOG_PLANE")
+    thesis = str(kit.get("thesis") or "").lower()
+    for stem in ("kit", "eleventy", "identify", "not a cms", "live_pin_ok"):
+        if stem not in thesis:
+            raise IntegrityError(f"application kit thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    ids = [item.get("id") for item in kit.get("tools") or []]
+    missing = [item for item in REQUIRED_KIT_TOOLS if item not in ids]
+    if missing:
+        raise IntegrityError(f"application kit missing {missing[0]}", reason_code="CATALOG_PLANE")
 
 
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:

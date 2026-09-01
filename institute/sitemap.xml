@@ -3,4 +3,19 @@
   <url>
     <loc>https://blue-river-010091a0f.7.azurestaticapps.net/</loc>
   </url>
+  <url>
+    <loc>https://blue-river-010091a0f.7.azurestaticapps.net/app.html</loc>
+  </url>
+  <url>
+    <loc>https://blue-river-010091a0f.7.azurestaticapps.net/control-plane.html</loc>
+  </url>
+  <url>
+    <loc>https://blue-river-010091a0f.7.azurestaticapps.net/kit.html</loc>
+  </url>
+  <url>
+    <loc>https://blue-river-010091a0f.7.azurestaticapps.net/identify.html</loc>
+  </url>
+  <url>
+    <loc>https://blue-river-010091a0f.7.azurestaticapps.net/llms.txt</loc>
+  </url>
 </urlset>

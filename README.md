@@ -111,7 +111,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.58.0 (this tree)
+### 2.59.0 (this tree)
+
+Application kit is licensed complements, not a
+CMS. JSON-LD, `llms.txt`, catalog search, view
+transitions, speculation, popover, Lit elements,
+Eleventy, Storybook, Playwright, axe, Lighthouse,
+SWA identify-not-admit, a read-only Function,
+fail-closed Insights, kit-only Pagefind, and SWA
+CLI. Identify is not admit. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.58.0
 
 The Institute is a catalog-honest application on
 `app.html`. Custom dashboards are the same plane:

@@ -1,4 +1,4 @@
-.PHONY: test gold install plan-check regen
+.PHONY: test gold install plan-check regen kit swa-emulate pagefind
 
 install:
 	python3 -m pip install -e ".[dev]"
@@ -25,6 +25,12 @@ regen:
 	python3 -c "from ainav.ip import public_insulation; import json; print(json.dumps(public_insulation(), indent=2, sort_keys=True))" > institute/ip.json
 	python3 -c "from ainav.investor import public_investor; import json; print(json.dumps(public_investor(), indent=2, sort_keys=True))" > institute/investor.json
 	python3 -c "from ainav.programs import public_programs; import json; print(json.dumps(public_programs(), indent=2, sort_keys=True))" > institute/programs.json
+	python3 -c "from ainav.face_kit import public_kit; import json; print(json.dumps(public_kit(), indent=2, sort_keys=True))" > institute/kit.json
+	python3 -c "from ainav.face_kit import public_schema; import json; print(json.dumps(public_schema(), indent=2, sort_keys=True))" > institute/schema.json
+	python3 -c "from ainav.face_kit import public_search; import json; print(json.dumps(public_search(), indent=2, sort_keys=True))" > institute/search.json
+	python3 -c "from ainav.face_kit import public_speculation; import json; print(json.dumps(public_speculation(), indent=2, sort_keys=True))" > institute/speculation.json
+	python3 -c "from ainav.face_kit import public_llms; print(public_llms(), end='')" > institute/llms.txt
+	python3 -c "from ainav.face_kit import public_sitemap; print(public_sitemap(), end='')" > institute/sitemap.xml
 	python3 -m ainav investor > docs/CYNTHIA_HODNETT_INVESTOR.md
 	python3 -c "from ainav.investor import investor_html; print(investor_html(), end='')" > docs/CYNTHIA_HODNETT_INVESTOR.html
 	python3 -m ainav investor-pdf
@@ -61,6 +67,12 @@ plan-check:
 	python3 -c "from ainav.ip import public_insulation; import json; print(json.dumps(public_insulation(), indent=2, sort_keys=True))" | diff -q institute/ip.json -
 	python3 -c "from ainav.investor import public_investor; import json; print(json.dumps(public_investor(), indent=2, sort_keys=True))" | diff -q institute/investor.json -
 	python3 -c "from ainav.programs import public_programs; import json; print(json.dumps(public_programs(), indent=2, sort_keys=True))" | diff -q institute/programs.json -
+	python3 -c "from ainav.face_kit import public_kit; import json; print(json.dumps(public_kit(), indent=2, sort_keys=True))" | diff -q institute/kit.json -
+	python3 -c "from ainav.face_kit import public_schema; import json; print(json.dumps(public_schema(), indent=2, sort_keys=True))" | diff -q institute/schema.json -
+	python3 -c "from ainav.face_kit import public_search; import json; print(json.dumps(public_search(), indent=2, sort_keys=True))" | diff -q institute/search.json -
+	python3 -c "from ainav.face_kit import public_speculation; import json; print(json.dumps(public_speculation(), indent=2, sort_keys=True))" | diff -q institute/speculation.json -
+	python3 -c "from ainav.face_kit import public_llms; print(public_llms(), end='')" | diff -q institute/llms.txt -
+	python3 -c "from ainav.face_kit import public_sitemap; print(public_sitemap(), end='')" | diff -q institute/sitemap.xml -
 	python3 -m ainav investor | diff -q docs/CYNTHIA_HODNETT_INVESTOR.md -
 	python3 -c "from ainav.investor import investor_html; print(investor_html(), end='')" | diff -q docs/CYNTHIA_HODNETT_INVESTOR.html -
 	test -s docs/CYNTHIA_HODNETT_INVESTOR.pdf
@@ -76,3 +88,12 @@ plan-check:
 
 gold: plan-check
 	python3 -m pytest -q --cov=agent_gov --cov=ainav --cov-report=term-missing
+
+kit:
+	cd web && npm ci && npm run build && npm run test:e2e && npm run lighthouse && npm run pagefind
+
+swa-emulate:
+	npx --yes @azure/static-web-apps-cli@2.0.7 start institute --api-location api --port 4280
+
+pagefind:
+	npx --yes pagefind@1.4.0 --site institute --output-path institute/pagefind --exclude-selectors "nav, header, footer, .app-rail"

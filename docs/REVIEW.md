@@ -441,6 +441,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.
 - Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.
 - The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.
+- The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.
 
 ## Expert review — could be improved
 
@@ -487,6 +488,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - **27. [tree] Instrument first glance** — Paint a write rail, Job C vs not-the-gate, and three SKUs on the first glance. Keep Azure Static Web Apps. Owner book stays secondary. Not a CMS. Not LIVE_PIN_OK.
 - **28. [tree] Instrument dashboard first glance** — Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.
 - **29. [tree] Application face** — Paint a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS. Not LIVE_PIN_OK.
+- **30. [tree] Application kit** — Wire the application kit: JSON-LD, llms.txt, view transitions, speculation, popover, catalog search, Playwright, axe, Lighthouse, Eleventy compiler, Lit elements, SWA identify-not-admit, read-only Functions, fail-closed Insights, Pagefind on the kit, SWA CLI, and Storybook. Identify is not admit. API does not write SoR. Not a CMS. Not LIVE_PIN_OK.
 
 ## Owner — James must click
 

@@ -332,6 +332,16 @@
         if (data) paintPrograms(data);
       })
       .catch(function () {});
+    fetch("schema.json")
+      .then(function (res) {
+        return res.ok ? res.json() : null;
+      })
+      .then(function (schema) {
+        var node = document.getElementById("schema-graph");
+        if (!node || !schema || schema.cms || schema.live_pin_ok) return;
+        node.textContent = JSON.stringify(schema);
+      })
+      .catch(function () {});
   }
 
   boot();

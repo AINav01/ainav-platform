@@ -7,7 +7,8 @@
   <meta name="description" content="Catalog-honest application. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first. Not a CMS. Not LIVE_PIN_OK." />
   <meta name="theme-color" content="#100e0b" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=2.58.0" />
+  <link rel="stylesheet" href="styles.css?v=2.59.0" />
+  <script type="application/ld+json" id="schema-graph">{"@context":"https://schema.org","@type":"WebApplication","name":"AINAV.Institute"}</script>
 </head>
 <body class="app-page" data-workspace="floor">
   <a class="skip" href="#app-main">Skip to the application</a>
@@ -18,6 +19,15 @@
     <input id="nav-open" class="nav-check" type="checkbox" />
     <label class="nav-toggle" for="nav-open">Menu</label>
     <div class="nav-wrap nav-menu">
+      <button type="button" class="ghost" popovertarget="app-owner-book">Owner book</button>
+      <div id="app-owner-book" popover class="owner-book">
+        <p class="book-label">Owner</p>
+        <a href="index.html#closed">Closed</a>
+        <a href="index.html#missing">Owner</a>
+        <a href="index.html#open">Open</a>
+        <a href="kit.html">Kit</a>
+        <a href="identify.html">Identify</a>
+      </div>
       <details class="nav-more">
         <summary>Owner book</summary>
         <div class="owner-book">
@@ -40,17 +50,22 @@
 
   <div class="app-shell">
     <nav class="app-rail" aria-label="Workspaces">
-      <p class="app-rail-kicker">Application · 2.58.0</p>
+      <p class="app-rail-kicker">Application · 2.59.0</p>
       <a href="#floor" data-workspace="floor">Floor</a>
       <a href="#capital" data-workspace="capital">Capital</a>
       <a href="#programs" data-workspace="programs">Programs</a>
       <a href="index.html">Sale</a>
       <a href="index.html#missing">Owner</a>
+      <a href="kit.html">Kit</a>
       <p class="app-rail-note">Same plane. Not extra SKUs. Not a CMS.</p>
     </nav>
 
     <main id="app-main">
-      <section class="app-honest" aria-label="Honesty">
+      <label class="field" for="app-search">Catalog search
+        <input id="app-search" type="search" autocomplete="off" spellcheck="false" placeholder="floor, capital, Inception, kit" />
+      </label>
+      <div id="app-search-out" class="app-search-out" aria-live="polite"></div>
+      <ainav-honest class="app-honest" aria-label="Honesty">
         <article>
           <h2>Not a priced round</h2>
           <p>Recognized revenue $0. Named customers 0. Signed L1 0. No valuation. No forecast ARR. No equity grant.</p>
@@ -63,18 +78,20 @@
           <h2>Not LIVE_PIN_OK</h2>
           <p>Mailbox recorded is not an Entra oid and not a click. The Cloud Agent is not a seat. Launch is held.</p>
         </article>
-      </section>
+      </ainav-honest>
 
       <section class="app-workspace" id="workspace-floor" data-workspace="floor">
         <p class="kicker">Floor · one dashboard · same write rail</p>
         <h1>Executive control-plane</h1>
         <p class="lede" id="app-floor-lede">One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU.</p>
+        <ainav-rail>
         <ol class="write-rail" id="app-write-rail" aria-label="Job C write path">
           <li data-step="seat_a"><b>Seat A</b><span>Treasury admits</span></li>
           <li data-step="seat_b"><b>Seat B</b><span>Controller admits</span></li>
           <li data-step="hash"><b>One hash</b><span>Consume once</span></li>
           <li data-step="write"><b>Then the write</b><span>Fail-closed SoR</span></li>
         </ol>
+        </ainav-rail>
         <div class="plane-strip" id="app-floor-strip">
           <span>Plane <b>OPEN</b></span>
           <span>Pending <b>0</b></span>
@@ -161,6 +178,10 @@
     <span>AINAV.Institute</span>
     <span>Catalog-honest application. Custom dashboards are the same plane. Not a CMS. Not a priced round. Not LIVE_PIN_OK.</span>
   </footer>
-  <script src="app.js?v=2.58.0" defer></script>
+  <script src="kit/ainav-elements.js?v=2.59.0" defer></script>
+  <script src="kit/speculate.js?v=2.59.0" defer></script>
+  <script src="search.js?v=2.59.0" defer></script>
+  <script src="insights.js?v=2.59.0" defer></script>
+  <script src="app.js?v=2.59.0" defer></script>
 </body>
 </html>

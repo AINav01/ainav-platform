@@ -1,0 +1,40 @@
+# Application kit. A green check is not LIVE_PIN_OK.
+name: kit
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20"
+      - name: Install kit
+        working-directory: web
+        run: npm install
+      - name: Playwright browsers
+        working-directory: web
+        run: npx playwright install --with-deps chromium
+      - name: Eleventy compile
+        working-directory: web
+        run: npm run build
+      - name: Playwright and axe
+        working-directory: web
+        run: npm run test:e2e
+      - name: Lighthouse
+        working-directory: web
+        run: npm run lighthouse
+        continue-on-error: true

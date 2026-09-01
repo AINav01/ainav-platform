@@ -9,6 +9,7 @@ from ainav.investor import public_investor
 from ainav.ip import notice, public_insulation, screen_pack_label
 from ainav.next_pin import sandbox_envelope
 from ainav.org import org_report, organization
+from ainav.face_kit import public_kit, public_schema, public_search
 from ainav.programs import application_order, pitch, public_programs, public_wedge_action, qualify
 from ainav.proof_day import run_proof_day
 from ainav.microsoft.connections import StackPlane, stack_json
@@ -36,7 +37,10 @@ __all__ = [
     "proof_day_brief",
     "public_dashboard",
     "public_investor",
+    "public_kit",
     "public_programs",
+    "public_schema",
+    "public_search",
     "public_wedge_action",
     "qualify",
     "run_proof_day",

@@ -1123,6 +1123,31 @@ footer {
 }
 footer a { color: inherit; }
 
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+.app-page { view-transition-name: ainav-app; }
+[popover].owner-book {
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  padding: 1rem 1.1rem 1.2rem;
+  max-width: 16rem;
+}
+.app-search-out {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+}
+.app-search-out article {
+  border: 1px solid var(--rule);
+  padding: 0.65rem 0.8rem;
+  background: color-mix(in srgb, var(--paper) 74%, white);
+}
+.app-search-out a { color: inherit; }
+.site-search { margin: 0; min-width: 12rem; }
+.field.site-search input { width: 100%; }
+
 .app-page { background: var(--paper); }
 .app-shell {
   display: grid;
@@ -1305,3 +1330,28 @@ footer a { color: inherit; }
   .app-page #app-main { padding: 1.1rem 5vw 3.4rem; }
   #app-capital-exec tbody th { width: 7rem; }
 }
+
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+.app-page { view-transition-name: ainav-app; }
+[popover].owner-book {
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  padding: 1rem 1.1rem 1.2rem;
+  max-width: 16rem;
+}
+.app-search-out {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+}
+.app-search-out article {
+  border: 1px solid var(--rule);
+  padding: 0.65rem 0.8rem;
+  background: color-mix(in srgb, var(--paper) 74%, white);
+}
+.app-search-out a { color: inherit; }
+.site-search { margin: 0; min-width: 12rem; }
+.field.site-search input { width: 100%; }

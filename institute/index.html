@@ -14,7 +14,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://blue-river-010091a0f.7.azurestaticapps.net/" />
   <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="schema-graph">
   {"@context":"https://schema.org","@type":"Organization","name":"AINav, Inc.","legalName":"AINav, Inc.","url":"https://blue-river-010091a0f.7.azurestaticapps.net/","description":"Dual-admitted effect authority before privileged system-of-record writes"}
   </script>
 </head>
@@ -27,6 +27,19 @@
     <input id="nav-open" class="nav-check" type="checkbox" />
     <label class="nav-toggle" for="nav-open">Menu</label>
     <div class="nav-wrap nav-menu" id="site-nav">
+        <button type="button" class="ghost" popovertarget="site-owner-book">Owner book</button>
+        <div id="site-owner-book" popover class="owner-book">
+          <p class="book-label">Owner</p>
+          <a href="#closed">Closed</a>
+          <a href="#missing">Owner</a>
+          <a href="#open">Open</a>
+          <a href="kit.html">Kit</a>
+          <a href="identify.html">Identify</a>
+        </div>
+        <label class="field site-search" for="site-search">Search
+          <input id="site-search" type="search" autocomplete="off" spellcheck="false" placeholder="write rail, capital, programs" />
+        </label>
+        <div id="site-search-out" class="app-search-out" aria-live="polite"></div>
         <details class="nav-more">
           <summary>Owner book</summary>
           <div class="owner-book">
@@ -696,7 +709,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane" class="plane-floor">
-      <p class="kicker">Ultimate control plane · 2.58.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 2.59.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
       <h2>Human control plane — interface</h2>
       <p class="note">Must-have for the named controller. From the top of the client's org chart through every drafting desk. Open the floor. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>
@@ -1575,6 +1588,10 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     <p>AINav, Inc. · AINAV.Institute · Job C only · Microsoft marks used for integrations only</p>
     <p>Azure hostname published. ainav.institute is not bound. LIVE_PIN_OK is not claimed.</p>
   </footer>
+  <script src="kit/ainav-elements.js?v=2.59.0" defer></script>
+  <script src="kit/speculate.js?v=2.59.0" defer></script>
+  <script src="search.js?v=2.59.0" defer></script>
+  <script src="insights.js?v=2.59.0" defer></script>
   <script src="site.js" defer></script>
 </body>
 </html>

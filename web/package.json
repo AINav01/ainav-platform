@@ -1,0 +1,25 @@
+{
+  "name": "ainav-institute-kit",
+  "version": "2.59.0",
+  "private": true,
+  "description": "Eleventy compiler, Storybook, Playwright, axe, Lighthouse, Pagefind. Not a CMS.",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o ../institute/compiled/storybook",
+    "test:e2e": "playwright test",
+    "lighthouse": "lhci autorun",
+    "pagefind": "pagefind --site ../institute --output-path ../institute/pagefind --exclude-selectors \"nav, header, footer, .app-rail\""
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.49.0",
+    "@storybook/html": "^8.4.7",
+    "@storybook/html-vite": "^8.4.7",
+    "storybook": "^8.4.7",
+    "@lhci/cli": "^0.14.0",
+    "pagefind": "^1.3.0",
+    "lit": "^3.2.1"
+  }
+}
