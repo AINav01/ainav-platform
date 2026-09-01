@@ -24,6 +24,7 @@ regen:
 	python3 -c "from ainav.dashboard import dashboard_html; print(dashboard_html(), end='')" > docs/CONTROL_PLANE_DASHBOARD.html
 	python3 -c "from ainav.ip import public_insulation; import json; print(json.dumps(public_insulation(), indent=2, sort_keys=True))" > institute/ip.json
 	python3 -c "from ainav.investor import public_investor; import json; print(json.dumps(public_investor(), indent=2, sort_keys=True))" > institute/investor.json
+	python3 -c "from ainav.programs import public_programs; import json; print(json.dumps(public_programs(), indent=2, sort_keys=True))" > institute/programs.json
 	python3 -m ainav investor > docs/CYNTHIA_HODNETT_INVESTOR.md
 	python3 -c "from ainav.investor import investor_html; print(investor_html(), end='')" > docs/CYNTHIA_HODNETT_INVESTOR.html
 	python3 -m ainav investor-pdf
@@ -59,6 +60,7 @@ plan-check:
 	python3 -c "from ainav.dashboard import dashboard_html; print(dashboard_html(), end='')" | diff -q docs/CONTROL_PLANE_DASHBOARD.html -
 	python3 -c "from ainav.ip import public_insulation; import json; print(json.dumps(public_insulation(), indent=2, sort_keys=True))" | diff -q institute/ip.json -
 	python3 -c "from ainav.investor import public_investor; import json; print(json.dumps(public_investor(), indent=2, sort_keys=True))" | diff -q institute/investor.json -
+	python3 -c "from ainav.programs import public_programs; import json; print(json.dumps(public_programs(), indent=2, sort_keys=True))" | diff -q institute/programs.json -
 	python3 -m ainav investor | diff -q docs/CYNTHIA_HODNETT_INVESTOR.md -
 	python3 -c "from ainav.investor import investor_html; print(investor_html(), end='')" | diff -q docs/CYNTHIA_HODNETT_INVESTOR.html -
 	test -s docs/CYNTHIA_HODNETT_INVESTOR.pdf

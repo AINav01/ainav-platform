@@ -14,6 +14,11 @@ def test_institute_foundation_is_catalog_honest():
     assert "site.js" in html
     assert "href=\"mailto:" not in html
     assert "nvidia inception member" not in html.lower()
+    app = Path("institute/app.html").read_text(encoding="utf-8")
+    assert "app.js" in app
+    assert "nvidia inception member" not in app.lower()
+    assert "Not a priced round" in app
+    assert 'href="app.html"' in html
     assert "LIVE_PIN_OK" in html
     assert "scrollIntoView" in js
     assert "ainav-proof-day-brief.json" in js
@@ -22,6 +27,9 @@ def test_institute_foundation_is_catalog_honest():
     assert ".plane-attention[hidden]" in css
     assert "--gold" in css
     swa = json.loads(Path("institute/staticwebapp.config.json").read_text(encoding="utf-8"))
+    assert "/app.html" in swa["navigationFallback"]["exclude"]
+    assert "/app.js" in swa["navigationFallback"]["exclude"]
+    assert "/programs.json" in swa["navigationFallback"]["exclude"]
     assert "Content-Security-Policy" in swa["globalHeaders"]
     assert swa["responseOverrides"]["404"]["rewrite"] == "/404.html"
     assert Path("institute/404.html").exists()

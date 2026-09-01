@@ -41,7 +41,7 @@ def test_finance_is_catalog_list_not_revenue():
 def test_expert_review_has_twenty_eight_upgrades():
     cat = load_catalog()
     upgrades = cat["expert_review"]["upgrades"]
-    assert len(upgrades) == 28
+    assert len(upgrades) == 29
     assert any(item.get("n") == 16 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 22 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 23 and item.get("done") is True for item in upgrades)
@@ -50,6 +50,7 @@ def test_expert_review_has_twenty_eight_upgrades():
     assert any(item.get("n") == 26 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 27 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 28 and item.get("done") is True for item in upgrades)
+    assert any(item.get("n") == 29 and item.get("done") is True for item in upgrades)
     assert all(item.get("marks_live_pin") is not True for item in upgrades)
     assert any(item["who"] == "owner" for item in upgrades)
     assert any(item["who"] == "tree" for item in upgrades)

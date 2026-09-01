@@ -726,8 +726,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 28:
-        raise IntegrityError("expert review needs 16–28 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 30:
+        raise IntegrityError("expert review needs 16–30 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -746,6 +746,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         26: ("pages", "not the institute"),
         27: ("write rail", "not a cms"),
         28: ("write rail", "one dashboard"),
+        29: ("application", "not a cms"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1087,19 +1088,29 @@ def _validate_public_face(face: Any) -> None:
         raise IntegrityError("public face cannot mark launch or LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
     if face.get("cms") is True:
         raise IntegrityError("public face is not a CMS", reason_code="CATALOG_PLANE")
+    if face.get("application") is not True:
+        raise IntegrityError("public face is a catalog-honest application", reason_code="CATALOG_PLANE")
     if "static" not in str(face.get("host") or "").lower():
         raise IntegrityError("public face host is Azure Static Web Apps", reason_code="CATALOG_PLANE")
     thesis = str(face.get("thesis") or "").lower()
-    for stem in ("static", "first glance", "write rail", "owner book", "not a cms", "live_pin_ok"):
+    for stem in ("static", "application", "first glance", "write rail", "owner book", "not a cms", "live_pin_ok"):
         if stem not in thesis:
             raise IntegrityError(f"public face thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    app = face.get("app") or {}
+    if not isinstance(app, dict) or app.get("cms") is True or app.get("sku") is True:
+        raise IntegrityError("application face is not a CMS or a SKU", reason_code="CATALOG_PLANE")
+    if str(app.get("href") or "") != "app.html":
+        raise IntegrityError("application face is app.html", reason_code="CATALOG_PLANE")
+    work_ids = [item.get("id") for item in app.get("workspaces") or []]
+    if not {"floor", "capital", "programs"} <= set(work_ids):
+        raise IntegrityError("application workspaces are floor, capital, and programs", reason_code="CATALOG_PLANE")
     primary = list(face.get("primary") or [])
     labels = [str(item.get("label") or "") for item in primary]
     if labels != ["The write", "Proof day", "Bake-off", "Dashboard", "Owner"]:
         raise IntegrityError("primary nav is write, proof day, bake-off, dashboard, owner", reason_code="CATALOG_PLANE")
     hrefs = [str(item.get("href") or "") for item in primary]
-    if hrefs != ["#buyer", "#twin", "#success", "control-plane.html", "#missing"]:
-        raise IntegrityError("primary nav hrefs are buyer, twin, success, dashboard, owner", reason_code="CATALOG_PLANE")
+    if hrefs != ["#buyer", "#twin", "#success", "app.html", "#missing"]:
+        raise IntegrityError("primary nav hrefs are buyer, twin, success, application, owner", reason_code="CATALOG_PLANE")
     book = list(face.get("owner_book") or [])
     book_ids = [item.get("id") for item in book]
     if book_ids != ["sale", "owner", "book"]:

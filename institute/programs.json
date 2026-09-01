@@ -1,0 +1,235 @@
+{
+  "application_order": [
+    "microsoft.founders_hub",
+    "nvidia.inception",
+    "nvidia.developer",
+    "github.for_startups",
+    "microsoft.isv_success",
+    "nvidia.connect"
+  ],
+  "applied": false,
+  "apply_first": "microsoft.founders_hub",
+  "apply_prerequisites": [
+    "Azure hostname is published; ainav.institute custom domain is not claimed",
+    "Have an incorporation date ready for NVIDIA Inception (not stored in this tree)",
+    "Name two unique humans: one developer and one business executive, each with a business email (no aliases, no gmail). Sole owner does not collapse this. The Cloud Agent is not a contact.",
+    "Pitch deck: Job C Business Central write-gate; software product; not consultancy; not crypto",
+    "Do not attach gold-vector custody fixtures to any application"
+  ],
+  "apply_second": "nvidia.inception",
+  "cms": false,
+  "contacts": {
+    "business_executive": null,
+    "developer": null,
+    "developer_intended": "James Hodnett",
+    "invited": {
+      "agreed": true,
+      "email": "chodnett@ainav.institute",
+      "entra_oid": null,
+      "equity": false,
+      "inception_role": "business_executive",
+      "name": "Cynthia Hodnett",
+      "recorded": true,
+      "seat_clicked": false,
+      "second_unique_human": false
+    },
+    "owner": "James Hodnett",
+    "second_unique_human": false
+  },
+  "crypto_associated": false,
+  "gpu_workload_claimed": false,
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.programs.v1",
+  "ladder": [
+    {
+      "applied": false,
+      "apply": "https://startups.microsoft.com",
+      "apply_order": 1,
+      "benefits": [
+        "Azure Startup credits after eligibility verification (tier is eligibility-based; not claimed here)",
+        "Azure + Dynamics + Entra alignment for the mothership stack",
+        "Marketplace / co-sell path is later and not claimed"
+      ],
+      "blockers": [],
+      "cost": "free, no equity",
+      "eligible_to_prepare": true,
+      "id": "microsoft.founders_hub",
+      "membership_claimed": false,
+      "must": [
+        "owns a software-based product",
+        "privately held for-profit",
+        "has not raised Series C or later",
+        "headquartered where Azure is available",
+        "under Microsoft lifetime Azure credit cap"
+      ],
+      "must_not": [
+        "consultancy / agency",
+        "cryptocurrency mining",
+        "educational or government organization"
+      ],
+      "name": "Microsoft for Startups",
+      "note": null,
+      "pitch_rule": "Microsoft is the SoR and hosting stack, not the product.",
+      "priority": 1,
+      "ready_to_apply": false,
+      "status": "qualify_not_claimed",
+      "url": "https://startups.microsoft.com"
+    },
+    {
+      "applied": false,
+      "apply": "https://www.nvidia.com/en-us/startups/",
+      "apply_order": 2,
+      "benefits": [
+        "NVIDIA Deep Learning Institute training codes",
+        "preferred pricing on select NVIDIA hardware and software (supplier terms)",
+        "partner cloud credits when eligible \u2014 amounts are not claimed here",
+        "Capital Connect introductions when eligible"
+      ],
+      "blockers": [],
+      "cost": "free, no equity, no cohort, no deadline",
+      "eligible_to_prepare": true,
+      "id": "nvidia.inception",
+      "membership_claimed": false,
+      "must": [
+        "officially incorporated (date required on apply)",
+        "at least one developer",
+        "working public website",
+        "two unique contacts: one developer and one business executive (business emails; no aliases or gmail)",
+        "less than 10 years old",
+        "privately held"
+      ],
+      "must_not": [
+        "cryptocurrency association",
+        "consultancy / outsourced development",
+        "cloud service provider",
+        "reseller / distributor",
+        "public company"
+      ],
+      "name": "NVIDIA Inception",
+      "note": "Official FAQ: startups may join before using NVIDIA GPUs or SDKs. Do not invent a GPU production workload.",
+      "pitch_rule": "Lead with the Business Central write-gate. Do not lead with lab custody fixtures.",
+      "priority": 2,
+      "ready_to_apply": false,
+      "status": "qualify_not_claimed",
+      "url": "https://www.nvidia.com/en-us/startups/"
+    },
+    {
+      "applied": false,
+      "apply": "https://developer.nvidia.com/developer-program",
+      "apply_order": 3,
+      "benefits": [],
+      "blockers": [
+        "complementary developer program \u2014 not a grant membership"
+      ],
+      "cost": "free",
+      "eligible_to_prepare": false,
+      "id": "nvidia.developer",
+      "membership_claimed": false,
+      "must": [],
+      "must_not": [],
+      "name": "NVIDIA Developer Program",
+      "note": "Developer tools and training. Not a grant and not Inception membership.",
+      "pitch_rule": "Complementary. Do not treat as Inception acceptance.",
+      "priority": 2,
+      "ready_to_apply": false,
+      "status": "complementary_not_claimed",
+      "url": "https://developer.nvidia.com/developer-program"
+    },
+    {
+      "applied": false,
+      "apply": "https://github.com/enterprise/startups",
+      "apply_order": 4,
+      "benefits": [],
+      "blockers": [
+        "not the first application"
+      ],
+      "cost": "eligibility-based",
+      "eligible_to_prepare": false,
+      "id": "github.for_startups",
+      "membership_claimed": false,
+      "must": [],
+      "must_not": [],
+      "name": "GitHub for Startups",
+      "note": "Often paired after Microsoft for Startups. Do not apply first or claim credits.",
+      "pitch_rule": "Later tooling discount. Not a second product story.",
+      "priority": 3,
+      "ready_to_apply": false,
+      "status": "later_not_first",
+      "url": "https://github.com/enterprise/startups"
+    },
+    {
+      "applied": false,
+      "apply": "https://www.microsoft.com/en-us/isv",
+      "apply_order": 5,
+      "benefits": [],
+      "blockers": [
+        "not the first application"
+      ],
+      "cost": "partner program",
+      "eligible_to_prepare": false,
+      "id": "microsoft.isv_success",
+      "membership_claimed": false,
+      "must": [],
+      "must_not": [],
+      "name": "Microsoft ISV Success",
+      "note": "Partner / Marketplace path after a sold L1. Not a startup grant.",
+      "pitch_rule": "Later ISV path. Microsoft remains the SoR, not the product.",
+      "priority": 3,
+      "ready_to_apply": false,
+      "status": "later_not_first",
+      "url": "https://www.microsoft.com/en-us/isv"
+    },
+    {
+      "applied": false,
+      "apply": "https://www.nvidia.com/en-us/startups/",
+      "apply_order": 6,
+      "benefits": [],
+      "blockers": [
+        "not the first application"
+      ],
+      "cost": "free",
+      "eligible_to_prepare": false,
+      "id": "nvidia.connect",
+      "membership_claimed": false,
+      "must": [],
+      "must_not": [],
+      "name": "NVIDIA Connect (ISV)",
+      "note": "For software companies that are not applying as startups. Do not apply first.",
+      "pitch_rule": null,
+      "priority": 4,
+      "ready_to_apply": false,
+      "status": "later_not_first",
+      "url": "https://www.nvidia.com/en-us/startups/"
+    }
+  ],
+  "lead_narrative": "Job C: dual-admitted effect authority before Dynamics 365 Business Central privileged writes. Not a cryptocurrency product. Not an IdP. Not agent inventory.",
+  "legal": "AINav, Inc.",
+  "live": false,
+  "live_pin_ok": false,
+  "membership_claimed": false,
+  "owner": "James Hodnett",
+  "priced_round": false,
+  "public_wedge": "bc.general_journal.post",
+  "raise_claimed": false,
+  "refuse": [
+    "priced round",
+    "membership claimed",
+    "GPU production workload",
+    "LIVE_PIN_OK",
+    "CMS"
+  ],
+  "release": "2.58.0",
+  "sku": false,
+  "website": {
+    "apex_origin": "ainav-institute.pages.dev",
+    "azure_location": "eastus2",
+    "azure_site": "ainav-institute",
+    "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+    "custom_domain_claimed": false,
+    "in_repo": "institute/index.html",
+    "launch_ready": false,
+    "name": "AINAV.Institute",
+    "pages_is_host": false,
+    "public_deploy_claimed": false
+  }
+}

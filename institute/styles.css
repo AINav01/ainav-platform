@@ -1122,3 +1122,186 @@ footer {
   background: color-mix(in srgb, var(--paper-2) 42%, var(--paper));
 }
 footer a { color: inherit; }
+
+.app-page { background: var(--paper); }
+.app-shell {
+  display: grid;
+  gap: 0;
+  min-height: calc(100vh - 8rem);
+}
+@media (min-width: 900px) {
+  .app-shell { grid-template-columns: 13.5rem minmax(0, 1fr); }
+}
+.app-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.7rem;
+  padding: 1.1rem 6vw 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--void);
+  color: var(--void-ink);
+}
+@media (min-width: 900px) {
+  .app-rail {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    padding: 1.6rem 1.1rem 2rem;
+    border-bottom: 0;
+    border-right: 1px solid color-mix(in srgb, var(--void-ink) 12%, transparent);
+  }
+}
+.app-rail-kicker,
+.app-rail-note {
+  width: 100%;
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d8d2c6;
+}
+.app-rail-note { letter-spacing: 0.03em; text-transform: none; margin-top: auto; }
+.app-rail a {
+  color: var(--void-ink);
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--void-ink) 22%, transparent);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.86rem;
+}
+.app-rail a[aria-current="page"] {
+  background: var(--gold-2);
+  color: var(--void);
+  border-color: var(--gold-2);
+}
+.app-page #app-main { padding: 1.4rem 6vw 4rem; }
+.app-honest {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.6rem;
+}
+@media (min-width: 800px) { .app-honest { grid-template-columns: 1fr 1fr 1fr; } }
+.app-honest article,
+.app-contacts article,
+.app-kpis article {
+  border: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper) 72%, white);
+  padding: 0.95rem 1rem 1.1rem;
+}
+.app-honest h2,
+.app-contacts h3,
+.app-kpis h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.app-honest p,
+.app-contacts p { margin: 0; color: var(--ink); }
+.app-kpis {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.1rem 0 1.5rem;
+}
+@media (min-width: 800px) { .app-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.app-kpis .price {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.55rem;
+  color: var(--hold);
+}
+.app-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.9rem;
+}
+.app-views button {
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+.app-views button[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+.app-view-card {
+  border: 1px solid var(--rule);
+  padding: 0.95rem 1.05rem 1.1rem;
+  margin: 0 0 1.2rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+}
+.app-view-card h3 { margin: 0 0 0.35rem; }
+.app-view-card p { margin: 0; color: var(--mute); }
+.app-contacts {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.1rem 0 1.5rem;
+}
+@media (min-width: 800px) { .app-contacts { grid-template-columns: 1fr 1fr 1fr; } }
+.app-ladder {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.6rem;
+  display: grid;
+  gap: 0.85rem;
+}
+.app-ladder li {
+  border: 1px solid var(--rule);
+  padding: 1rem 1.05rem 1.15rem;
+  background: color-mix(in srgb, var(--paper) 74%, white);
+}
+.app-ladder li[data-status="qualify_not_claimed"] { box-shadow: inset 3px 0 0 var(--gold); }
+.app-ladder li[data-status="later_not_first"],
+.app-ladder li[data-status="complementary_not_claimed"] { opacity: 0.72; }
+.app-ladder .kicker { margin: 0 0 0.35rem; }
+.app-ladder h3 { margin: 0 0 0.4rem; }
+#workspace-capital .letter {
+  margin: 1.25rem 0 1.75rem;
+  padding: 0.35rem 0 0.35rem 1.15rem;
+  border-left: 3px solid var(--ink);
+  max-width: 42rem;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+#workspace-capital .letter p { margin: 0 0 0.85rem; }
+#workspace-capital .letter .sign { font-style: italic; color: var(--mute); }
+#app-capital-exec {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.4rem;
+}
+#app-capital-exec th,
+#app-capital-exec td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+#app-capital-exec thead th {
+  background: var(--ink);
+  color: var(--void-ink);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#app-capital-exec tbody th {
+  width: 11rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mute);
+  background: var(--paper-2);
+}
+@media (max-width: 700px) {
+  .app-page #app-main { padding: 1.1rem 5vw 3.4rem; }
+  #app-capital-exec tbody th { width: 7rem; }
+}

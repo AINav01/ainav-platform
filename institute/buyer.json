@@ -269,6 +269,39 @@
     "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
   },
   "public_face": {
+    "app": {
+      "cms": false,
+      "href": "app.html",
+      "sku": false,
+      "workspaces": [
+        {
+          "id": "floor",
+          "kind": "dashboard",
+          "label": "Floor"
+        },
+        {
+          "id": "capital",
+          "kind": "dashboard",
+          "label": "Capital"
+        },
+        {
+          "id": "programs",
+          "kind": "dashboard",
+          "label": "Programs"
+        },
+        {
+          "href": "index.html",
+          "id": "sale",
+          "label": "Sale"
+        },
+        {
+          "href": "index.html#missing",
+          "id": "owner",
+          "label": "Owner"
+        }
+      ]
+    },
+    "application": true,
     "cannot": [
       "invent an inbox",
       "bind ainav.institute",
@@ -450,7 +483,7 @@
         "label": "Bake-off"
       },
       {
-        "href": "control-plane.html",
+        "href": "app.html",
         "id": "dashboard",
         "label": "Dashboard"
       },
@@ -461,7 +494,7 @@
       }
     ],
     "sku": false,
-    "thesis": "The Institute is a catalog-honest static sale. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK."
+    "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. Not a CMS. Not LIVE_PIN_OK."
   },
   "refuse": [
     "Teams vote as dual",

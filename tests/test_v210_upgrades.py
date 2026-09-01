@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.57.0"
+    assert cat["entity"]["release"] == "2.58.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -46,6 +46,8 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     assert "one dashboard" in dash_glance["lede"].lower()
     face = cat["plane_interface"]["floor"]["public_face"]
     assert face["cms"] is False
+    assert face["application"] is True
+    assert face["app"]["href"] == "app.html"
     assert face["launch"] is False
     assert [item["label"] for item in face["primary"]] == [
         "The write",

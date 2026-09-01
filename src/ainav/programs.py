@@ -93,6 +93,91 @@ def validate_programs(catalog: dict[str, Any]) -> None:
             )
 
 
+def public_programs() -> dict[str, Any]:
+    """Fail-closed Institute feed. Membership stays unclaimed."""
+    cat = load_catalog()
+    body = programs()
+    contacts = cat["organization"]["contacts"]
+    invited = contacts["invited"]
+    by_id = {item["id"]: item for item in body["targets"]}
+    ladder = []
+    for program_id in application_order():
+        rec = qualify(program_id)
+        target = by_id[program_id]
+        ladder.append(
+            {
+                "id": rec["id"],
+                "name": rec["name"],
+                "status": rec["status"],
+                "priority": target.get("priority"),
+                "apply_order": rec["apply_order"],
+                "eligible_to_prepare": rec["eligible_to_prepare"],
+                "ready_to_apply": False,
+                "membership_claimed": False,
+                "applied": False,
+                "url": target.get("url"),
+                "cost": target.get("cost"),
+                "must": list(target.get("must") or []),
+                "must_not": list(target.get("must_not") or []),
+                "benefits": list(target.get("benefits") or []),
+                "note": target.get("note"),
+                "pitch_rule": target.get("pitch_rule"),
+                "apply": rec["apply"],
+                "blockers": list(rec.get("blockers") or []),
+            }
+        )
+    return {
+        "kind": "ainav.institute.programs.v1",
+        "sku": False,
+        "cms": False,
+        "live": False,
+        "live_pin_ok": False,
+        "membership_claimed": False,
+        "applied": False,
+        "gpu_workload_claimed": False,
+        "crypto_associated": False,
+        "priced_round": False,
+        "raise_claimed": False,
+        "release": cat["entity"]["release"],
+        "legal": cat["entity"]["legal"],
+        "institute": cat["entity"]["institute"],
+        "owner": cat["operating"]["owner_principal"],
+        "lead_narrative": body["lead_narrative"],
+        "public_wedge": body["public_wedge"],
+        "application_order": list(body["application_order"]),
+        "apply_first": APPLY_FIRST[0],
+        "apply_second": APPLY_FIRST[1],
+        "apply_prerequisites": list(body.get("apply_prerequisites") or []),
+        "website": dict(body["website"]),
+        "ladder": ladder,
+        "contacts": {
+            "owner": contacts["owner"],
+            "developer": contacts.get("developer"),
+            "business_executive": contacts.get("business_executive"),
+            "second_unique_human": False,
+            "developer_intended": contacts["owner"],
+            "invited": {
+                "name": invited["name"],
+                "email": invited.get("email"),
+                "recorded": bool(invited.get("recorded")),
+                "agreed": bool(invited.get("agreed")),
+                "entra_oid": invited.get("entra_oid"),
+                "seat_clicked": bool(invited.get("seat_clicked")),
+                "inception_role": invited.get("inception_role"),
+                "equity": bool(invited.get("equity")),
+                "second_unique_human": bool(invited.get("second_unique_human")),
+            },
+        },
+        "refuse": [
+            "priced round",
+            "membership claimed",
+            "GPU production workload",
+            "LIVE_PIN_OK",
+            "CMS",
+        ],
+    }
+
+
 def application_order() -> list[str]:
     body = programs()
     return list(body.get("application_order") or [item["id"] for item in body["targets"]])

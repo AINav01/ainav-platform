@@ -111,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.57.0 (this tree)
+### 2.58.0 (this tree)
+
+The Institute is a catalog-honest application on
+`app.html`. Custom dashboards are the same plane:
+floor, capital, and programs. Capital is not a
+priced round. Programs are Microsoft for Startups
+first and NVIDIA Inception second — qualify, not
+claimed. Not a CMS. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.57.0
 
 Dashboard first glance is the same write rail.
 One dashboard included with L1. Hierarchical views

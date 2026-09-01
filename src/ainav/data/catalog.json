@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.57.0",
+    "release": "2.58.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3066,13 +3066,26 @@
         "live_pin_ok": false,
         "launch": false,
         "cms": false,
+        "application": true,
         "host": "azure_static_web_apps",
-        "thesis": "The Institute is a catalog-honest static sale. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Not a CMS. Not LIVE_PIN_OK.",
+        "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. Not a CMS. Not LIVE_PIN_OK.",
+        "app": {
+          "sku": false,
+          "cms": false,
+          "href": "app.html",
+          "workspaces": [
+            {"id": "floor", "label": "Floor", "kind": "dashboard"},
+            {"id": "capital", "label": "Capital", "kind": "dashboard"},
+            {"id": "programs", "label": "Programs", "kind": "dashboard"},
+            {"id": "sale", "label": "Sale", "href": "index.html"},
+            {"id": "owner", "label": "Owner", "href": "index.html#missing"}
+          ]
+        },
         "primary": [
           {"id": "buyer", "href": "#buyer", "label": "The write"},
           {"id": "twin", "href": "#twin", "label": "Proof day"},
           {"id": "success", "href": "#success", "label": "Bake-off"},
-          {"id": "dashboard", "href": "control-plane.html", "label": "Dashboard"},
+          {"id": "dashboard", "href": "app.html", "label": "Dashboard"},
           {"id": "owner", "href": "#missing", "label": "Owner"}
         ],
         "owner_book": [
@@ -4926,7 +4939,8 @@
       "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
       "Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.",
       "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
-      "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product."
+        "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.",
+        "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -5286,15 +5300,23 @@
         "done": true,
         "marks_live_pin": false
       },
-      {
-        "n": 28,
-        "who": "tree",
-        "title": "Instrument dashboard first glance",
-        "do": "Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.",
-        "done": true,
-        "marks_live_pin": false
-      }
-    ]
+        {
+          "n": 28,
+          "who": "tree",
+          "title": "Instrument dashboard first glance",
+          "do": "Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.",
+          "done": true,
+          "marks_live_pin": false
+        },
+        {
+          "n": 29,
+          "who": "tree",
+          "title": "Application face",
+          "do": "Paint a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS. Not LIVE_PIN_OK.",
+          "done": true,
+          "marks_live_pin": false
+        }
+      ]
   },
   "governance": {
     "kind": "ainav.governance.v1",

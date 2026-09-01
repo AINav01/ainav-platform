@@ -14,7 +14,13 @@ def test_public_face_is_static_catalog_sale():
     assert face["live_pin_ok"] is False
     assert face["launch"] is False
     assert face["cms"] is False
+    assert face["application"] is True
     assert "static" in face["host"]
+    assert "application" in face["thesis"].lower()
+    assert face["app"]["cms"] is False
+    assert face["app"]["href"] == "app.html"
+    assert {item["id"] for item in face["app"]["workspaces"]} >= {"floor", "capital", "programs"}
+    assert face["primary"][3]["href"] == "app.html"
     assert [item["id"] for item in cat["skus"]] == ["L1", "P-ADM", "U-DUAL"]
     page = buyer_page()
     assert page["live"] is False
@@ -69,7 +75,24 @@ def test_public_face_is_static_catalog_sale():
     assert "gate" in page["first_glance"]["rail_kicker"].lower()
     assert face["cms"] is False
     assert html.count('href="#missing">Owner</a>') >= 2
+    assert 'href="app.html">Dashboard</a>' in html
     assert "href=\"mailto:" not in html
+    app = Path("institute/app.html").read_text(encoding="utf-8")
+    js_app = Path("institute/app.js").read_text(encoding="utf-8")
+    assert 'id="workspace-floor"' in app
+    assert 'id="workspace-capital"' in app
+    assert 'id="workspace-programs"' in app
+    assert 'id="app-write-rail"' in app
+    assert "Not a priced round" in app
+    assert "Not LIVE_PIN_OK" in app
+    assert "nvidia inception member" not in app.lower()
+    assert "href=\"mailto:" not in app
+    assert "control-plane.html" in app
+    assert "workspaceFromHash" in js_app
+    assert "paintCapital" in js_app
+    assert "paintPrograms" in js_app
+    assert ".app-shell" in css
+    assert ".app-ladder" in css
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert plane.index("index.html#closed") < plane.index("index.html#missing")
     assert plane.index("index.html#missing") < plane.index("index.html#open")

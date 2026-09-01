@@ -13,6 +13,7 @@ from ainav.programs import (
     application_order,
     claim_membership,
     pitch,
+    public_programs,
     public_wedge_action,
     qualify,
     screen_public_copy,
@@ -177,6 +178,35 @@ def test_qualify_records_in_memory_blockers(monkeypatch):
     assert "not the first application" in " ".join(later["blockers"])
     complement = qualify("nvidia.developer")
     assert "complementary developer program" in " ".join(complement["blockers"])
+
+
+def test_public_programs_is_fail_closed():
+    body = public_programs()
+    assert body["kind"] == "ainav.institute.programs.v1"
+    assert body["membership_claimed"] is False
+    assert body["applied"] is False
+    assert body["gpu_workload_claimed"] is False
+    assert body["crypto_associated"] is False
+    assert body["priced_round"] is False
+    assert body["cms"] is False
+    assert body["live_pin_ok"] is False
+    assert body["apply_first"] == "microsoft.founders_hub"
+    assert body["apply_second"] == "nvidia.inception"
+    assert [item["id"] for item in body["ladder"][:2]] == [
+        "microsoft.founders_hub",
+        "nvidia.inception",
+    ]
+    assert body["contacts"]["developer"] is None
+    assert body["contacts"]["business_executive"] is None
+    assert body["contacts"]["second_unique_human"] is False
+    assert body["contacts"]["developer_intended"] == "James Hodnett"
+    assert body["contacts"]["invited"]["name"] == "Cynthia Hodnett"
+    assert body["contacts"]["invited"]["entra_oid"] is None
+    assert body["contacts"]["invited"]["seat_clicked"] is False
+    assert body["contacts"]["invited"]["inception_role"] == "business_executive"
+    assert all(item["membership_claimed"] is False for item in body["ladder"])
+    assert all(item["ready_to_apply"] is False for item in body["ladder"])
+    assert Path("institute/app.html").read_text(encoding="utf-8").lower().count("nvidia inception member") == 0
 
 
 def test_institute_programs_section_is_unclaimed():

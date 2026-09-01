@@ -12,8 +12,17 @@
       "/owner-steps.json",
       "/control-plane.json",
       "/control-plane.html",
+      "/app.html",
+      "/app.js",
       "/styles.css",
       "/site.js",
+      "/investor.json",
+      "/programs.json",
+      "/packs.json",
+      "/finance.json",
+      "/governance.json",
+      "/client-org.json",
+      "/ip.json",
       "/favicon.svg",
       "/robots.txt",
       "/sitemap.xml",
@@ -68,6 +77,22 @@
     },
     {
       "route": "/control-plane.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/investor.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/programs.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/app.html",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/app.js",
       "headers": { "Cache-Control": "no-store" }
     }
   ]
