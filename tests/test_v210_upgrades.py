@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.64.0"
+    assert cat["entity"]["release"] == "2.65.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -147,6 +147,16 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     ]
     assert "not a gift" in offer["first_glance"]["lede"].lower()
     assert "included means free" in [item.lower() for item in offer["refuse"]]
+    board = cat["plane_interface"]["client_dashboard"]["executive_board"]
+    assert board["default_view"] == "client"
+    assert board["sku"] is False
+    assert [item["id"] for item in board["sections"]] == [
+        "write_rail",
+        "attention",
+        "seats",
+        "keep",
+        "offer",
+    ]
     assert cat["plane_interface"]["dashboard"]["upsell"] is False
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False

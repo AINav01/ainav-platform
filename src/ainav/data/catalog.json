@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.64.0",
+    "release": "2.65.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2488,11 +2488,15 @@
         "name": "Client executive",
         "who": "The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them.",
         "admit": false,
-        "can": "See why this is must-have, the one dashboard included with L1, and the two provision bands.",
+        "can": "Sit the executive board: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1.",
         "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
         "shows": [
-          "signed_l1",
-          "tiles"
+          "write_rail",
+          "attention",
+          "seats",
+          "keep",
+          "offer",
+          "signed_l1"
         ],
         "console": "client"
       },
@@ -3068,7 +3072,51 @@
       "live": false,
       "standard_vs_advanced_dashboard": false,
       "thesis": "Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU.",
-      "same_as": "dashboard"
+      "same_as": "dashboard",
+      "executive_board": {
+        "kind": "ainav.plane.executive_board.v1",
+        "sku": false,
+        "upsell": false,
+        "included_with": "L1",
+        "same_as": "client_dashboard",
+        "default_view": "client",
+        "lede": "Sit the plane. Two humans before the write. Honest zeros. One dashboard included with L1.",
+        "sections": [
+          {"id": "write_rail", "name": "Write rail"},
+          {"id": "attention", "name": "Attention"},
+          {"id": "seats", "name": "Seats"},
+          {"id": "keep", "name": "Keep"},
+          {"id": "offer", "name": "Included and upsells"}
+        ],
+        "attention_ids": [
+          "must_have",
+          "pending",
+          "sandbox_first",
+          "second_record",
+          "production",
+          "provisioned"
+        ],
+        "seat_tile_ids": [
+          "seats_recorded",
+          "pending_admits",
+          "first_record"
+        ],
+        "keep_tile_ids": [
+          "second_record",
+          "last_keep",
+          "off_switch"
+        ],
+        "tile_ids": [
+          "must_have",
+          "plane_state",
+          "pending_admits",
+          "first_record",
+          "second_record",
+          "off_switch",
+          "seats_recorded",
+          "signed_l1"
+        ]
+      }
     },
     "provision_bands": {
       "sku": false,
@@ -5146,7 +5194,8 @@
         "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.",
         "Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.",
         "Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.",
-        "Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU."
+        "Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.",
+        "The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

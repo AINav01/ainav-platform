@@ -1292,6 +1292,38 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("client dashboard is the same dashboard", reason_code="CATALOG_PLANE")
     if dash.get("same_as") != "client_dashboard":
         raise IntegrityError("dashboard is the client dashboard", reason_code="CATALOG_PLANE")
+    board = client_dash.get("executive_board") or {}
+    if not isinstance(board, dict):
+        raise IntegrityError("catalog missing executive board", reason_code="CATALOG_PLANE")
+    if board.get("sku") is True or board.get("upsell") is True:
+        raise IntegrityError("executive board is not a SKU or an upsell", reason_code="CATALOG_SKU")
+    if board.get("included_with") != "L1":
+        raise IntegrityError("executive board is included with L1", reason_code="CATALOG_PLANE")
+    if board.get("same_as") != "client_dashboard":
+        raise IntegrityError("executive board is the client dashboard", reason_code="CATALOG_PLANE")
+    if board.get("default_view") != "client":
+        raise IntegrityError("executive board sits the client view first", reason_code="CATALOG_PLANE")
+    board_lede = str(board.get("lede") or "").lower()
+    if "sit the plane" not in board_lede or "one dashboard" not in board_lede:
+        raise IntegrityError("executive board lede is sit the plane on one dashboard", reason_code="CATALOG_PLANE")
+    section_ids = [item.get("id") for item in board.get("sections") or [] if isinstance(item, dict)]
+    if section_ids != ["write_rail", "attention", "seats", "keep", "offer"]:
+        raise IntegrityError("executive board is write rail, attention, seats, keep, offer", reason_code="CATALOG_PLANE")
+    attention_ids = list(board.get("attention_ids") or [])
+    if "must_have" not in attention_ids or "pending" not in attention_ids:
+        raise IntegrityError("executive board attention keeps must-have and pending", reason_code="CATALOG_PLANE")
+    if "seats_recorded" not in (board.get("seat_tile_ids") or []):
+        raise IntegrityError("executive board seats keep seats recorded", reason_code="CATALOG_PLANE")
+    if "second_record" not in (board.get("keep_tile_ids") or []):
+        raise IntegrityError("executive board keep keeps the second record", reason_code="CATALOG_PLANE")
+    if "signed_l1" not in (board.get("tile_ids") or []):
+        raise IntegrityError("executive board ledger keeps signed L1", reason_code="CATALOG_PLANE")
+    client_view = next(
+        (item for item in body.get("views") or [] if isinstance(item, dict) and item.get("id") == "client"),
+        {},
+    )
+    if "write_rail" not in (client_view.get("shows") or []) or "offer" not in (client_view.get("shows") or []):
+        raise IntegrityError("client view sits the executive board", reason_code="CATALOG_PLANE")
     dash_glance = dash.get("first_glance") or {}
     if not isinstance(dash_glance, dict):
         raise IntegrityError("dashboard first glance is required", reason_code="CATALOG_PLANE")

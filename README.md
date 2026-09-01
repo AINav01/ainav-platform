@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.64.0 (this tree)
+### 2.65.0 (this tree)
+
+The Floor is the sit-down executive
+dashboard. Client view first. Write rail,
+attention, seats, keep, and included
+versus upsell. Same dashboard included
+with L1. Not a second dashboard SKU. A
+green check is not `LIVE_PIN_OK`.
+
+### 2.64.0
 
 Included versus upsell is catalog law. L1
 seating and the client dashboard are

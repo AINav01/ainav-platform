@@ -1281,6 +1281,8 @@ footer a { color: inherit; }
 }
 .app-view-card h3 { margin: 0 0 0.35rem; }
 .app-view-card p { margin: 0; color: var(--mute); }
+#app-floor-board h2 { margin: 1.6rem 0 0.45rem; }
+#app-floor-board .cards.dash { margin-bottom: 0.4rem; }
 .app-contacts {
   display: grid;
   gap: 0.75rem;

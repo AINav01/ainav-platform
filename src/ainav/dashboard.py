@@ -680,6 +680,7 @@ def dashboard_markdown() -> str:
     prov = body.get("provisioning") or {}
     attached = prov.get("attached") or {}
     client_dash = body.get("client_dashboard") or {}
+    exec_board = client_dash.get("executive_board") or {}
     bands = body.get("provision_bands") or {}
     offer = body.get("included_and_upsells") or {}
     lines += [
@@ -692,6 +693,15 @@ def dashboard_markdown() -> str:
         f"SKU: {str(client_dash.get('sku')).lower()}. Upsell: "
         f"{str(client_dash.get('upsell')).lower()}. Included with: "
         f"{client_dash.get('included_with') or 'L1'}.",
+        "",
+        "## Executive board — sit the plane",
+        "",
+        f"{(exec_board.get('lede') or '')} Default view: "
+        f"{exec_board.get('default_view') or 'client'}. "
+        + "; ".join(
+            str(item.get("name") or item.get("id") or "")
+            for item in exec_board.get("sections") or []
+        ),
         "",
         "## Included with L1 · upsell band",
         "",
@@ -1133,6 +1143,12 @@ def dashboard_html() -> str:
         )
     provision_desks = "".join(desk_rows)
     must = body.get("must_have") or {}
+    exec_board = client_dash.get("executive_board") or {}
+    exec_board_lede = html.escape(str(exec_board.get("lede") or ""))
+    exec_board_sections = ", ".join(
+        html.escape(str(item.get("name") or item.get("id") or ""))
+        for item in exec_board.get("sections") or []
+    )
     client_dash_note = (
         f"{html.escape(must.get('why') or '')} "
         f"{html.escape((body.get('floor') or {}).get('lede') or '')} "
@@ -1316,6 +1332,8 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <h2>Write rail — one dashboard</h2>
 <p class="note">{dash_glance_lede}</p>
 <div class="rail">{write_rail}</div>
+<h2>Executive board — sit the plane</h2>
+<p class="note">{exec_board_lede} Sections: {exec_board_sections}. Default view: {html.escape(str(exec_board.get('default_view') or 'client'))}. Not a second dashboard SKU.</p>
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <h2>Success program — bake-off</h2>

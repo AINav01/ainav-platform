@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.64.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.65.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -195,7 +195,7 @@ Org: client org chart × existing SOD × one admit plane.
 ## Hierarchical views — one plane
 
 - **Entire plane** — Anyone on the tenant. Can: See the ledger and the freeze state. Cannot: A view is not a seat.
-- **Client executive** — The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them.. Can: See why this is must-have, the one dashboard included with L1, and the two provision bands. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
+- **Client executive** — The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them.. Can: Sit the executive board: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Cannot: Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.
 - **Owner / board** — Oversee. Can: Institute the plane. Request a freeze. Cannot: Click both admits. One title cannot be both seats.
 - **Seat A / seat B** — Treasury and controller. Can: Bind the action_hash. Refuse the write. Cannot: Be both seats. Let AI click.
 - **Examiner** — Internal audit. Can: Read first and second records and the seating map. Cannot: Admit. File. Certify.
@@ -224,7 +224,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.64.0.
+- As of: catalog release 2.65.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -299,6 +299,10 @@ Entra object id on every request. Conditional Access may identify. Identify is n
 Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Controllers already have Business Central Premium, Entra, and two-person journal SOD. They do not have a gate in front of the write. Two humans before the write. One dashboard included with L1 — not an upsell. Standard and advanced are provision bands, not products.
 
 Must-have for the named controller: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. One dashboard. The client executive dashboard is the executive control-plane dashboard. Included with L1 via industry.control_plane. Not an upsell. Not Standard versus Advanced dashboard products. Advanced provision adds classes and keep, not a second dashboard SKU. SKU: false. Upsell: false. Included with: L1.
+
+## Executive board — sit the plane
+
+Sit the plane. Two humans before the write. Honest zeros. One dashboard included with L1. Default view: client. Write rail; Attention; Seats; Keep; Included and upsells
 
 ## Included with L1 · upsell band
 

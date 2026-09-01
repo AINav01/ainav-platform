@@ -88,6 +88,21 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert any(item["id"] == "industry.payables" for item in body["provision_bands"]["priced_l1"])
     assert all(not item["attaches_udual"] for item in body["provision_bands"]["priced_hours"])
     assert body["client_dashboard"]["same_as"] == "dashboard"
+    board = body["client_dashboard"]["executive_board"]
+    assert board["sku"] is False
+    assert board["upsell"] is False
+    assert board["included_with"] == "L1"
+    assert board["default_view"] == "client"
+    assert [item["id"] for item in board["sections"]] == [
+        "write_rail",
+        "attention",
+        "seats",
+        "keep",
+        "offer",
+    ]
+    assert "seats_recorded" in board["seat_tile_ids"]
+    assert "second_record" in board["keep_tile_ids"]
+    assert "signed_l1" in board["tile_ids"]
     assert body["dashboard"]["same_as"] == "client_dashboard"
     dash_glance = body["dashboard"]["first_glance"]
     assert dash_glance["uses"] == "write_rail"
@@ -199,6 +214,7 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "client executive dashboard" in md.lower()
     assert "standard included" in md.lower() or "included seating" in md.lower()
     assert "upsell band" in md.lower()
+    assert "sit the plane" in md.lower()
     assert "not a gift" in md.lower() or "included with l1 · upsell band" in md.lower()
     assert "not a sku" in md.lower()
     assert "$0" in md
@@ -232,6 +248,8 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "included with l1" in html.lower()
     assert "upsell band" in html.lower()
     assert "Included with L1 · upsell band" in html
+    assert "Executive board — sit the plane" in html
+    assert "sit the plane" in html.lower()
     assert "not a gift" in html.lower()
     assert "fourth sku" in html.lower()
     assert "Inter-communication" in html
@@ -334,6 +352,15 @@ def test_plane_interface_validators_refuse_fiction():
     offer_col["plane_interface"]["included_and_upsells"]["first_glance"]["columns"][0]["upsell"] = True
     with pytest.raises(IntegrityError):
         validate_catalog(offer_col)
+    board_sku = copy.deepcopy(cat)
+    board_sku["plane_interface"]["client_dashboard"]["executive_board"]["sku"] = True
+    with pytest.raises(IntegrityError) as board_exc:
+        validate_catalog(board_sku)
+    assert board_exc.value.reason_code == "CATALOG_SKU"
+    board_view = copy.deepcopy(cat)
+    board_view["plane_interface"]["client_dashboard"]["executive_board"]["default_view"] = "entire"
+    with pytest.raises(IntegrityError):
+        validate_catalog(board_view)
     two_dash = copy.deepcopy(cat)
     two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
     with pytest.raises(IntegrityError):

@@ -179,6 +179,65 @@
   ],
   "certified": false,
   "client_dashboard": {
+    "executive_board": {
+      "attention_ids": [
+        "must_have",
+        "pending",
+        "sandbox_first",
+        "second_record",
+        "production",
+        "provisioned"
+      ],
+      "default_view": "client",
+      "included_with": "L1",
+      "keep_tile_ids": [
+        "second_record",
+        "last_keep",
+        "off_switch"
+      ],
+      "kind": "ainav.plane.executive_board.v1",
+      "lede": "Sit the plane. Two humans before the write. Honest zeros. One dashboard included with L1.",
+      "same_as": "client_dashboard",
+      "seat_tile_ids": [
+        "seats_recorded",
+        "pending_admits",
+        "first_record"
+      ],
+      "sections": [
+        {
+          "id": "write_rail",
+          "name": "Write rail"
+        },
+        {
+          "id": "attention",
+          "name": "Attention"
+        },
+        {
+          "id": "seats",
+          "name": "Seats"
+        },
+        {
+          "id": "keep",
+          "name": "Keep"
+        },
+        {
+          "id": "offer",
+          "name": "Included and upsells"
+        }
+      ],
+      "sku": false,
+      "tile_ids": [
+        "must_have",
+        "plane_state",
+        "pending_admits",
+        "first_record",
+        "second_record",
+        "off_switch",
+        "seats_recorded",
+        "signed_l1"
+      ],
+      "upsell": false
+    },
     "id": "client.executive.dashboard",
     "included_pack": "industry.control_plane",
     "included_with": "L1",
@@ -198,7 +257,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.64.0"
+    "release": "2.65.0"
   },
   "communications": [
     {
@@ -2678,7 +2737,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.64.0",
+  "release": "2.65.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -3194,14 +3253,18 @@
     },
     {
       "admit": false,
-      "can": "See why this is must-have, the one dashboard included with L1, and the two provision bands.",
+      "can": "Sit the executive board: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1.",
       "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
       "console": "client",
       "id": "client",
       "name": "Client executive",
       "shows": [
-        "signed_l1",
-        "tiles"
+        "write_rail",
+        "attention",
+        "seats",
+        "keep",
+        "offer",
+        "signed_l1"
       ],
       "who": "The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them."
     },

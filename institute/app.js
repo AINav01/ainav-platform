@@ -115,18 +115,65 @@
     });
   }
 
-  function setView(id, views) {
-    var copy = VIEW_COPY[id] || VIEW_COPY.entire;
-    if (views && views.length) {
-      var match = views.filter(function (item) {
-        return item.id === id || item.view === id;
-      })[0];
-      if (match) {
-        copy = {
-          title: match.name || match.label || copy.title,
-          note: match.note || match.can || copy.note
-        };
-      }
+  var SHOW_TO_TILE = {
+    seats: "seats_recorded",
+    maps: "compliance_maps",
+    signed_l1: "signed_l1",
+    off_switch: "off_switch",
+    pending_admits: "pending_admits",
+    first_record: "first_record",
+    second_record: "second_record"
+  };
+
+  function tilesForView(viewId, tiles, views, board) {
+    var list = tiles || [];
+    if (viewId === "entire") return list;
+    if (viewId === "client") {
+      var wanted = (board && board.tile_ids) || [];
+      if (!wanted.length) return list;
+      return list.filter(function (item) {
+        return wanted.indexOf(item.id) >= 0;
+      });
+    }
+    var view = (views || []).filter(function (item) {
+      return item.id === viewId;
+    })[0];
+    var shows = (view && view.shows) || [];
+    var ids = shows
+      .map(function (key) {
+        return SHOW_TO_TILE[key] || key;
+      })
+      .filter(Boolean);
+    if (!ids.length) return list;
+    return list.filter(function (item) {
+      return ids.indexOf(item.id) >= 0;
+    });
+  }
+
+  function pickById(items, ids) {
+    var map = {};
+    (items || []).forEach(function (item) {
+      if (item && item.id) map[item.id] = item;
+    });
+    return (ids || [])
+      .map(function (id) {
+        return map[id];
+      })
+      .filter(Boolean);
+  }
+
+  function setView(id, data) {
+    var views = (data && data.views) || [];
+    var board = ((data && data.client_dashboard) || {}).executive_board || {};
+    var copy = VIEW_COPY[id] || VIEW_COPY.client;
+    var match = views.filter(function (item) {
+      return item.id === id || item.view === id;
+    })[0];
+    if (match) {
+      copy = {
+        title: match.name || match.label || copy.title,
+        note: match.can || match.note || copy.note
+      };
     }
     var card = $("app-view-card");
     if (card) {
@@ -141,24 +188,65 @@
     Array.prototype.forEach.call(document.querySelectorAll("#app-view-tabs [data-view]"), function (btn) {
       btn.setAttribute("aria-selected", btn.getAttribute("data-view") === id ? "true" : "false");
     });
+    paintTiles($("app-floor-tiles"), tilesForView(id, data.tiles, views, board));
+    var boardRoot = $("app-floor-board");
+    if (boardRoot) boardRoot.hidden = !(id === "client" || id === "entire" || id === "provision");
+  }
+
+  function paintOfferBoard(root, offer) {
+    var glance = (offer && offer.first_glance) || {};
+    if (!root || !glance.columns || !glance.columns.length) return;
+    if (offer.sku || offer.fourth_sku || offer.included_means_free) return;
+    root.textContent = "";
+    glance.columns.forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-band", item.upsell === true ? "advanced" : "standard");
+      var h = document.createElement("h3");
+      h.textContent = item.name || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.price || "";
+      var ul = document.createElement("ul");
+      ul.className = "stack";
+      (item.items || []).forEach(function (line) {
+        var li = document.createElement("li");
+        li.textContent = line;
+        ul.appendChild(li);
+      });
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(ul);
+      root.appendChild(art);
+    });
   }
 
   function paintFloor(data) {
+    if (!data || data.sku || data.live_pin_ok) return;
     var glance = (data.dashboard && data.dashboard.first_glance) || {};
+    var board = (data.client_dashboard && data.client_dashboard.executive_board) || {};
+    if (board.sku || board.upsell) return;
     if (glance.lede) setText("app-floor-lede", glance.lede);
+    if (board.lede) setText("app-floor-board-lede", board.lede);
     paintRail($("app-write-rail"), glance.write_rail);
     paintStrip($("app-floor-strip"), data.tiles);
-    paintTiles($("app-floor-tiles"), data.tiles);
+    paintTiles($("app-floor-attention"), pickById(data.attention, board.attention_ids));
+    paintTiles(
+      $("app-floor-seats"),
+      pickById(data.tiles, (board.seat_tile_ids || []).concat(board.keep_tile_ids || []))
+    );
+    var offer = data.included_and_upsells || {};
+    if (offer.first_glance && offer.first_glance.lede) setText("app-floor-offer-lede", offer.first_glance.lede);
+    paintOfferBoard($("app-floor-offer"), offer);
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");
       tabs.addEventListener("click", function (event) {
         var btn = event.target.closest("[data-view]");
         if (!btn) return;
-        setView(btn.getAttribute("data-view"), data.views);
+        setView(btn.getAttribute("data-view"), data);
       });
     }
-    setView("entire", data.views);
+    setView(board.default_view || "client", data);
   }
 
   function paragraph(text) {

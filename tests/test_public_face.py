@@ -83,6 +83,15 @@ def test_public_face_is_static_catalog_sale():
     app = Path("institute/app.html").read_text(encoding="utf-8")
     js_app = Path("institute/app.js").read_text(encoding="utf-8")
     assert 'id="workspace-floor"' in app
+    assert 'id="app-floor-board"' in app
+    assert 'id="app-floor-attention"' in app
+    assert 'id="app-floor-seats"' in app
+    assert 'id="app-floor-offer"' in app
+    assert "Sit the plane" in app
+    assert "Walk the full plane" in app
+    assert 'data-view="client"' in app
+    assert "paintFloor" in js_app
+    assert 'setView(board.default_view || "client"' in js_app
     assert 'id="workspace-capital"' in app
     assert 'id="workspace-business"' in app
     assert 'id="workspace-programs"' in app
