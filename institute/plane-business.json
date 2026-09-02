@@ -579,7 +579,8 @@
       "provision spine",
       "duty hints",
       "owner board packet",
-      "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast"
+      "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast",
+      "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -589,7 +590,6 @@
       "G12/G13": "index.html#open",
       "Graph Read": "index.html#stack-walk",
       "Rocket Loader confirm": "index.html#e7-cloudflare",
-      "SSL Full confirm": "index.html#e7-cloudflare",
       "US Dataverse": "index.html#stack-walk",
       "billing": "index.html#open",
       "launch": "index.html#missing",
@@ -604,7 +604,6 @@
       "G12/G13",
       "billing",
       "launch",
-      "SSL Full confirm",
       "Rocket Loader confirm"
     ],
     "sku": false,
@@ -872,7 +871,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.74.0",
+  "release": "2.75.0",
   "scenarios": [
     {
       "id": "l1_only",

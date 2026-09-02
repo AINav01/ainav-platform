@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.74.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.75.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.74.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.75.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -362,6 +362,7 @@ Working well
 - Owner view sits the board packet: must-have, pending 0, 1 mailbox / 0 oid, signed L1 0, revenue $0, and the seat B ask.
 - Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats × proof day × signed L1 × P-ADM attach.
 - Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.
+- Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch.
 
 Could be improved — without inventing a fourth SKU
 
@@ -378,7 +379,7 @@ Could be improved — without inventing a fourth SKU
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.
 - Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.
 - Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused.
-- SSL/TLS Full not Flexible and Rocket Loader Off are Cloudflare dashboard confirms. This plane cannot claim them. Visitor cert WE1 is not proof of Full.
+- Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.
 
 They win the bake-off when
 
@@ -466,6 +467,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 42. [tree] TLS floor verified — Verify TLS 1.2 and 1.3. Refuse TLS 1.0 and 1.1. Not a certificate. Not Full.
 - 43. [tree] Mail and autodiscover not Cloudflare anycast — Autodiscover and MX resolve to Outlook, not Cloudflare anycast. Grey-cloud icons stay an owner confirm.
 - 44. [tree] Visitor cert is not SSL Full — Cloudflare Universal SSL is the visitor cert. It does not prove Full versus Flexible. Do not claim Full from this plane.
+- 45. [tree] Owner recorded Full (strict) — Record Automatic SSL/TLS currently Full (strict) from the owner dashboard. Visitor cert is not proof. ssl_full_claimed stays false. Not from this plane. Not launch.
 
 ## What happens next
 

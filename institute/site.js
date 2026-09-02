@@ -2103,11 +2103,13 @@
             quality.live_pin_ok ||
             quality.apex_is_institute ||
             quality.ssl_full_claimed ||
-            quality.rocket_loader_claimed
+            quality.rocket_loader_claimed ||
+            (quality.owner_ssl && quality.owner_ssl.from_this_plane)
           ) {
             /* refuse to paint a fiction quality board */
           } else {
             replacePlainList("e7-cloudflare-verified", quality.verified);
+            replacePlainList("e7-cloudflare-owner-recorded", quality.owner_recorded);
             replacePlainList("e7-cloudflare-confirm", quality.confirm);
             replacePlainList("e7-cloudflare-refuse", quality.refuse);
             replacePlainList("e7-cloudflare-quality-wait", quality.wait);

@@ -125,7 +125,7 @@
     "quality": {
       "apex_is_institute": false,
       "confirm": [
-        "SSL/TLS Full, not Flexible",
+        "Do not downgrade Full (strict) to Flexible or Off",
         "Rocket Loader Off and Auto Minify JavaScript Off",
         "MX and autodiscover grey cloud",
         "WAF challenge stays on the empty apex"
@@ -142,7 +142,26 @@
       "kind": "ainav.edge.quality.v1",
       "live": false,
       "live_pin_ok": false,
-      "note": "Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Visitor cert is not Full. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+      "note": "Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+      "owner_recorded": [
+        "Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane."
+      ],
+      "owner_ssl": {
+        "automatic": true,
+        "flexible": false,
+        "from_this_plane": false,
+        "key_exchange": "automatic",
+        "kind": "ainav.edge.owner_ssl.v1",
+        "live": false,
+        "live_pin_ok": false,
+        "mode": "full_strict",
+        "mode_label": "Full (strict)",
+        "next_scan": "2026-09-09",
+        "note": "Owner recorded Automatic SSL/TLS currently Full (strict). This plane did not set it. Visitor cert is not proof. Keep Automatic key exchange. Do not drop to Flexible or Off. Not Institute launch.",
+        "off": false,
+        "sku": false,
+        "visitor_cert_is_not_proof": true
+      },
       "refuse": [
         "asuid while Pages is the apex",
         "orange-cloud MX or autodiscover",
@@ -197,7 +216,7 @@
       "Recognized revenue",
       "Multi-host product HA",
       "LIVE_PIN_OK",
-      "Cloudflare SSL Full and Rocket Loader dashboard confirms"
+      "Cloudflare Rocket Loader and grey-cloud icon dashboard confirms"
     ],
     "catalog_shape": {
       "do_not_split": true,
@@ -231,7 +250,8 @@
       "2.71.0 instrument: Client offer is dashboard seating, pending bind 0, freeze request local, examiner walk not 17a-4, Entra-group templates not live, proof-day TTL outside digest, motions not SKUs, hostname rehearsal catalog-only, competitive one-pager not a patent",
       "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK",
       "2.73.0 Floor sits the review: catalog view_shows, provision spine, duty hints, honest freeze, examiner demo leaf, gaps hrefs, owner board packet, lab vs commercial. A green check is not LIVE_PIN_OK",
-      "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK"
+      "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK",
+      "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -285,7 +305,7 @@
       "Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.",
       "Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.",
       "Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused.",
-      "SSL/TLS Full not Flexible and Rocket Loader Off are Cloudflare dashboard confirms. This plane cannot claim them. Visitor cert WE1 is not proof of Full."
+      "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible."
     ],
     "success": {
       "bake_off": {
@@ -784,6 +804,14 @@
         "n": 44,
         "title": "Visitor cert is not SSL Full",
         "who": "tree"
+      },
+      {
+        "do": "Record Automatic SSL/TLS currently Full (strict) from the owner dashboard. Visitor cert is not proof. ssl_full_claimed stays false. Not from this plane. Not launch.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 45,
+        "title": "Owner recorded Full (strict)",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -850,7 +878,8 @@
       "Gaps board owner-only lines walk to Owner steps. This plane cannot invent the click.",
       "Owner view sits the board packet: must-have, pending 0, 1 mailbox / 0 oid, signed L1 0, revenue $0, and the seat B ask.",
       "Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach.",
-      "Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only."
+      "Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.",
+      "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch."
     ]
   },
   "fit": [

@@ -111,7 +111,23 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.74.0 (this tree)
+### 2.75.0 (this tree)
+
+Owner recorded Automatic SSL/TLS
+currently Full (strict). Next scan
+Sep 9. That recording is from the
+owner dashboard, not this plane.
+`ssl_full_claimed` stays false.
+Visitor cert is not proof. Do not
+drop to Flexible or Off. Keep
+Automatic key exchange. Rocket
+Loader Off stays owner confirm.
+Do not add asuid. Do not treat
+the apex 403 as launch. Gold floor
+stays 95 percent. A green check is
+not `LIVE_PIN_OK`.
+
+### 2.74.0
 
 Live Cloudflare quality probe
 verifies HTTP 301, apex 403 hold,

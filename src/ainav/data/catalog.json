@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.74.0",
+    "release": "2.75.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -4983,7 +4983,8 @@
         "provision spine",
         "duty hints",
         "owner board packet",
-        "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast"
+        "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast",
+        "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -4993,7 +4994,6 @@
         "G12/G13",
         "billing",
         "launch",
-        "SSL Full confirm",
         "Rocket Loader confirm"
       ],
       "this_plane_cannot": [
@@ -5014,7 +5014,6 @@
         "G12/G13": "index.html#open",
         "billing": "index.html#open",
         "launch": "index.html#missing",
-        "SSL Full confirm": "index.html#e7-cloudflare",
         "Rocket Loader confirm": "index.html#e7-cloudflare"
       }
     },
@@ -5167,7 +5166,8 @@
       "2.71.0 instrument: Client offer is dashboard seating, pending bind 0, freeze request local, examiner walk not 17a-4, Entra-group templates not live, proof-day TTL outside digest, motions not SKUs, hostname rehearsal catalog-only, competitive one-pager not a patent",
       "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK",
       "2.73.0 Floor sits the review: catalog view_shows, provision spine, duty hints, honest freeze, examiner demo leaf, gaps hrefs, owner board packet, lab vs commercial. A green check is not LIVE_PIN_OK",
-      "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK"
+      "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK",
+      "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -5178,7 +5178,7 @@
       "Recognized revenue",
       "Multi-host product HA",
       "LIVE_PIN_OK",
-      "Cloudflare SSL Full and Rocket Loader dashboard confirms"
+      "Cloudflare Rocket Loader and grey-cloud icon dashboard confirms"
     ],
     "note": "This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.",
     "catalog_shape": {
@@ -5353,6 +5353,22 @@
         "institute_host": "azure.swa",
         "ssl_full_claimed": false,
         "rocket_loader_claimed": false,
+        "owner_ssl": {
+          "kind": "ainav.edge.owner_ssl.v1",
+          "from_this_plane": false,
+          "sku": false,
+          "live": false,
+          "live_pin_ok": false,
+          "automatic": true,
+          "mode": "full_strict",
+          "mode_label": "Full (strict)",
+          "next_scan": "2026-09-09",
+          "visitor_cert_is_not_proof": true,
+          "flexible": false,
+          "off": false,
+          "key_exchange": "automatic",
+          "note": "Owner recorded Automatic SSL/TLS currently Full (strict). This plane did not set it. Visitor cert is not proof. Keep Automatic key exchange. Do not drop to Flexible or Off. Not Institute launch."
+        },
         "host_freshness": {
           "republish_is_not_launch": true,
           "from_this_plane": false,
@@ -5373,8 +5389,11 @@
           "www 301 to apex",
           "Visitor cert is Cloudflare Universal SSL — not proof of Full"
         ],
+        "owner_recorded": [
+          "Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane."
+        ],
         "confirm": [
-          "SSL/TLS Full, not Flexible",
+          "Do not downgrade Full (strict) to Flexible or Off",
           "Rocket Loader Off and Auto Minify JavaScript Off",
           "MX and autodiscover grey cloud",
           "WAF challenge stays on the empty apex"
@@ -5390,7 +5409,7 @@
           "DMARC p=reject after mail flows",
           "Bind ainav.institute / asuid when the owner says launch"
         ],
-        "note": "Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Visitor cert is not Full. It is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+        "note": "Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare."
       },
       "holding": {
         "id": "cloudflare.pages",
@@ -6654,7 +6673,7 @@
     "capital": "There is no priced round in this packet. There is no valuation. There is no forecast ARR. The honest investor unit is catalog list times zero booked times a two-human close.",
     "insulation": "The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
     "control_plane": "Ultimate, here, means last authority — not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.\n\nThe vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.\n\nA vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.\n\nAfter kit PASS, the second record, the off switch, and the rollback are segregation of duties — books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.\n\nOthers can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
-    "traction": "The admit plane is in code. Gold floor is 95 percent. Live Cloudflare quality probe verified 301, 403 hold, TLS 1.2+, and mail not Cloudflare anycast. SSL Full stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
+    "traction": "The admit plane is in code. Gold floor is 95 percent. Live Cloudflare quality probe verified 301, 403 hold, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
     "ask": "Cynthia, you agreed to be seat B and the Inception business executive. Mailbox chodnett@ainav.institute is recorded. Your own Entra object id and your own click are still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
     "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
     "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (you). Each needs a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat. A mailbox is not the click.",
@@ -6824,7 +6843,8 @@
       "Gaps board owner-only lines walk to Owner steps. This plane cannot invent the click.",
       "Owner view sits the board packet: must-have, pending 0, 1 mailbox / 0 oid, signed L1 0, revenue $0, and the seat B ask.",
       "Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats × proof day × signed L1 × P-ADM attach.",
-      "Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only."
+      "Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.",
+      "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6840,7 +6860,7 @@
       "Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.",
       "Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.",
       "Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused.",
-      "SSL/TLS Full not Flexible and Rocket Loader Off are Cloudflare dashboard confirms. This plane cannot claim them. Visitor cert WE1 is not proof of Full."
+      "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible."
     ],
     "success": {
       "sku": false,
@@ -7337,6 +7357,14 @@
         "who": "tree",
         "title": "Visitor cert is not SSL Full",
         "do": "Cloudflare Universal SSL is the visitor cert. It does not prove Full versus Flexible. Do not claim Full from this plane.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 45,
+        "who": "tree",
+        "title": "Owner recorded Full (strict)",
+        "do": "Record Automatic SSL/TLS currently Full (strict) from the owner dashboard. Visitor cert is not proof. ssl_full_claimed stays false. Not from this plane. Not launch.",
         "done": true,
         "marks_live_pin": false
       }

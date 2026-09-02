@@ -126,6 +126,16 @@ def test_catalog_rejects_edge_fiction():
     with pytest.raises(IntegrityError) as exc_fresh:
         validate_catalog(freshness)
     assert exc_fresh.value.reason_code == "CATALOG_EDGE"
+    owner_plane = copy.deepcopy(cat)
+    owner_plane["microsoft_stack"]["edge"]["quality"]["owner_ssl"]["from_this_plane"] = True
+    with pytest.raises(IntegrityError) as exc_own:
+        validate_catalog(owner_plane)
+    assert exc_own.value.reason_code == "CATALOG_EDGE"
+    flexible = copy.deepcopy(cat)
+    flexible["microsoft_stack"]["edge"]["quality"]["owner_ssl"]["mode"] = "flexible"
+    with pytest.raises(IntegrityError) as exc_flex:
+        validate_catalog(flexible)
+    assert exc_flex.value.reason_code == "CATALOG_EDGE"
 
 
 def test_catalog_edge_records_dns_full_not_launch():
@@ -175,6 +185,10 @@ def test_catalog_edge_records_dns_full_not_launch():
     assert any("Flexible" in item for item in quality["confirm"])
     assert any("asuid" in item.lower() for item in quality["refuse"])
     assert quality["rocket_loader_claimed"] is False
+    assert quality["owner_ssl"]["mode"] == "full_strict"
+    assert quality["owner_ssl"]["automatic"] is True
+    assert quality["owner_ssl"]["from_this_plane"] is False
+    assert any("Full (strict)" in item for item in quality["owner_recorded"])
     assert quality["host_freshness"]["republish_is_not_launch"] is True
     assert quality["host_freshness"]["from_this_plane"] is False
 
@@ -324,6 +338,8 @@ def test_institute_paints_e7_cloudflare_strip():
     assert "asuid absent" in html
     assert "not Cloudflare anycast" in html
     assert "not proof of Full" in html
+    assert "Full (strict)" in html
+    assert "e7-cloudflare-owner-recorded" in html
     assert "DMARC p=reject after mail flows" in html
     assert "e7-cloudflare-quality-wait" in js
     assert "refuse to paint a fiction scoreboard" in js
