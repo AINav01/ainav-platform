@@ -194,6 +194,11 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert body["governance_immutable"]["crypto"] is False
     assert body["governance_consequences"]["mandated"] is False
     assert "failsafe" in (body.get("estate_equation") or "")
+    assert [item["id"] for item in estate["first_glance"]["columns"]] == [
+        "other_uses",
+        "failsafe_oversee",
+        "records_maps",
+    ]
     assert all(row["may_bind"] is not True for row in assign["matrix"] if row["org_role"] != "admit")
     treasury = next(item for item in body["provision_bands"]["included_l1"] if item["id"] == "industry.treasury")
     assert treasury["attach"] == "included with L1"

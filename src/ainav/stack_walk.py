@@ -27,6 +27,7 @@ def stack_walk() -> dict[str, Any]:
         "complements": [dict(item) for item in walk.get("complements") or []],
         "cannot": list(walk.get("cannot") or []),
         "not_the_product": cat["microsoft_stack"]["not_the_product"],
+        "estate_equation": cat["equations"].get("estate"),
         "edge": {
             "id": cat["microsoft_stack"]["edge"]["id"],
             "full": cat["microsoft_stack"]["edge"]["full"],
@@ -46,6 +47,8 @@ def stack_walk_markdown() -> str:
         f"{body['not_the_product']}",
         "",
         f"**{body['thesis']}**",
+        "",
+        f"Estate: {body.get('estate_equation') or ''}. Same dashboard. Not a fourth SKU.",
         "",
         f"Implementation: {body['implementation']}",
         f"CLI: `{body['cli']}`. Probe is read-only: `python -m ainav connect --probe`.",

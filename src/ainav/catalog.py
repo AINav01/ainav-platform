@@ -1510,6 +1510,26 @@ def _validate_estate(catalog: dict[str, Any], body: dict[str, Any]) -> None:
     for stem in ("failsafe", "sealed records", "immutable", "not a fourth sku"):
         if stem not in lede:
             raise IntegrityError(f"estate first glance must keep {stem}", reason_code="CATALOG_PLANE")
+    columns = {item.get("id"): item for item in glance.get("columns") or [] if isinstance(item, dict)}
+    if set(columns) != {"other_uses", "failsafe_oversee", "records_maps"}:
+        raise IntegrityError(
+            "estate first glance needs other_uses, failsafe_oversee, and records_maps",
+            reason_code="CATALOG_PLANE",
+        )
+    for column in columns.values():
+        if column.get("sku") is True or column.get("upsell") is True:
+            raise IntegrityError("estate first glance column is not a SKU", reason_code="CATALOG_SKU")
+    uses_blob = " ".join(str(item) for item in (columns["other_uses"].get("items") or [])).lower()
+    if "bc.general_journal.post" not in uses_blob or "l1" not in uses_blob or "u-dual" not in uses_blob:
+        raise IntegrityError("estate first glance other uses keep the journal lead", reason_code="CATALOG_PLANE")
+    fail_blob = " ".join(str(item) for item in (columns["failsafe_oversee"].get("items") or [])).lower()
+    if "admit" not in fail_blob or "not seats" not in fail_blob:
+        raise IntegrityError("estate first glance failsafe keeps admit and not seats", reason_code="CATALOG_PLANE")
+    rec_blob = " ".join(str(item) for item in (columns["records_maps"].get("items") or [])).lower()
+    if "two records" not in rec_blob and "second record" not in rec_blob:
+        raise IntegrityError("estate first glance records keep the second record", reason_code="CATALOG_PLANE")
+    if "hash-chained" not in rec_blob or "maps" not in rec_blob:
+        raise IntegrityError("estate first glance maps stay claimed maps", reason_code="CATALOG_PLANE")
     uses = estate.get("other_uses") or {}
     if uses.get("lead") != "bc.general_journal.post":
         raise IntegrityError("other uses lead stays the general journal", reason_code="CATALOG_WEDGE")

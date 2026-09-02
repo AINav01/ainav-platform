@@ -763,6 +763,14 @@ def dashboard_markdown() -> str:
         f"{estate.get('thesis') or ''} SKU: {str(estate.get('sku')).lower()}. "
         f"Estate: {body.get('estate_equation') or ''}.",
         "",
+    ]
+    for item in (estate.get("first_glance") or {}).get("columns") or []:
+        lines.append(
+            f"- **{item.get('name')}** — {item.get('price') or ''}. "
+            + "; ".join(item.get("items") or [])
+        )
+    lines += [
+        "",
         f"### Other uses — {(estate.get('other_uses') or {}).get('lede') or ''}",
         "",
     ]
@@ -1310,6 +1318,14 @@ def dashboard_html() -> str:
         for key in ("internal", "remote")
     )
     estate = body.get("estate") or {}
+    estate_glance = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"price\">{html.escape(str(item.get('price') or ''))}</p>"
+            f"<p class=\"note\">{html.escape('; '.join(item.get('items') or []))}</p></article>"
+        )
+        for item in (estate.get("first_glance") or {}).get("columns") or []
+    )
     estate_bands = "".join(
         (
             f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
@@ -1511,6 +1527,7 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="lifecycle">{assign_disc_items}</div>
 <h2>Estate — same plane, more surfaces</h2>
 <p class="note">{html.escape(str((estate.get('first_glance') or {}).get('lede') or ''))} {html.escape(str(estate.get('thesis') or ''))} SKU: {html.escape(str(estate.get('sku')).lower())}.</p>
+<div class="lifecycle">{estate_glance}</div>
 <h2>Other uses</h2>
 <p class="note">{html.escape(str((estate.get('other_uses') or {}).get('lede') or ''))}</p>
 <div class="lifecycle">{estate_bands}</div>

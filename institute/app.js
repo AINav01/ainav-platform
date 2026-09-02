@@ -445,6 +445,7 @@
     if (!(estate.sku || estate.fourth_sku || estate.live_pin_ok)) {
       var glanceE = estate.first_glance || {};
       if (glanceE.lede) setText("app-floor-estate-lede", glanceE.lede);
+      paintOfferBoard($("app-floor-estate-glance"), { first_glance: glanceE });
       if (estate.other_uses && estate.other_uses.lede) setText("app-floor-uses-lede", estate.other_uses.lede);
       paintUses($("app-floor-uses"), estate.other_uses && estate.other_uses.bands ? estate.other_uses.bands : []);
       if (estate.failsafe && estate.failsafe.lede) setText("app-floor-failsafe-lede", estate.failsafe.lede);

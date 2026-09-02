@@ -456,6 +456,17 @@
       var estate = data.estate || {};
       if (estate.first_glance && estate.first_glance.lede) set("plane-estate-lede", estate.first_glance.lede);
       paintBoard(
+        "plane-estate-glance",
+        ((estate.first_glance && estate.first_glance.columns) || []).map(function (item) {
+          return Object.assign({}, item, {
+            note: (item.items || []).join(". ")
+          });
+        }),
+        function (item) {
+          return item.price || "same plane";
+        }
+      );
+      paintBoard(
         "plane-uses",
         ((estate.other_uses && estate.other_uses.bands) || []).map(function (item) {
           var wedge = (item.wedge || []).join(", ");

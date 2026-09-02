@@ -111,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.67.0 (this tree)
+### 2.68.0 (this tree)
+
+Estate first glance is catalog law:
+other uses, failsafe and oversee,
+records and maps sit on the sit-down
+Floor before assignment. Same dashboard
+included with L1. Maps stay
+`claimed=false`. Not a fourth SKU. A
+green check is not `LIVE_PIN_OK`.
+
+### 2.67.0
 
 Estate doctrine is catalog law: other
 uses, AI failsafe, executive and board

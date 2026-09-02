@@ -306,7 +306,7 @@
         "url_label": "Azure Policy"
       }
     ],
-    "implementation": "Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Probe never writes a SoR and never marks LIVE_PIN_OK.",
+    "implementation": "Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.",
     "path": [
       {
         "id": "cloudflare.dns",

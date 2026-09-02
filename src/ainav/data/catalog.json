@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.67.0",
+    "release": "2.68.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -3209,6 +3209,7 @@
               "Every L1 pack and library with included_in_sku=true",
               "Entra identity, Teams notify, twin, proof day / Acceptance Kit",
               "Client executive dashboard",
+              "Estate — same plane: other uses, failsafe, records, maps",
               "Standard provision seating"
             ]
           },
@@ -4213,7 +4214,48 @@
       "thesis": "Same use. More surfaces. AINav is the failsafe, not the AI. Owner and board oversee. They are not seats. Record keeping is two records and a keep. Immutable means sealed, consume-once, and hash-chained. AI governance is a catalog map. Not a certificate. Lead stays bc.general_journal.post.",
       "first_glance": {
         "sku": false,
-        "lede": "Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU."
+        "lede": "Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU.",
+        "columns": [
+          {
+            "id": "other_uses",
+            "name": "Other uses",
+            "price": "same Job C",
+            "sku": false,
+            "upsell": false,
+            "items": [
+              "Lead stays bc.general_journal.post",
+              "Prove — L1 GL desks",
+              "Deepen — paid U-DUAL commercial writes",
+              "Keep — P-ADM second record"
+            ]
+          },
+          {
+            "id": "failsafe_oversee",
+            "name": "Failsafe and oversee",
+            "price": "not the client's AI",
+            "sku": false,
+            "upsell": false,
+            "items": [
+              "Admit · off switch · reset · rollback",
+              "Owner and board oversee",
+              "They are not seats",
+              "One title cannot click both admits"
+            ]
+          },
+          {
+            "id": "records_maps",
+            "name": "Records and maps",
+            "price": "claimed=false",
+            "sku": false,
+            "upsell": false,
+            "items": [
+              "First record is the SoR write",
+              "Second record is the sealed DecisionRecord",
+              "Immutable: sealed, consume-once, hash-chained",
+              "AI governance maps. Counsel stays open (G12)"
+            ]
+          }
+        ]
       },
       "other_uses": {
         "lede": "Same Job C. More privileged writes on the same plane. Lead stays the general journal.",
@@ -4754,7 +4796,7 @@
       "live_pin_ok": false,
       "is_admit_plane": false,
       "thesis": "Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.",
-      "implementation": "Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Probe never writes a SoR and never marks LIVE_PIN_OK.",
+      "implementation": "Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.",
       "cli": "python -m ainav stack",
       "cannot": [
         "create users",
@@ -5997,7 +6039,8 @@
       "Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.",
       "The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.",
       "Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.",
-      "Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false."
+      "Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.",
+      "Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",

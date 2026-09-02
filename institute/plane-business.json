@@ -106,6 +106,47 @@
       ]
     },
     "first_glance": {
+      "columns": [
+        {
+          "id": "other_uses",
+          "items": [
+            "Lead stays bc.general_journal.post",
+            "Prove \u2014 L1 GL desks",
+            "Deepen \u2014 paid U-DUAL commercial writes",
+            "Keep \u2014 P-ADM second record"
+          ],
+          "name": "Other uses",
+          "price": "same Job C",
+          "sku": false,
+          "upsell": false
+        },
+        {
+          "id": "failsafe_oversee",
+          "items": [
+            "Admit \u00b7 off switch \u00b7 reset \u00b7 rollback",
+            "Owner and board oversee",
+            "They are not seats",
+            "One title cannot click both admits"
+          ],
+          "name": "Failsafe and oversee",
+          "price": "not the client's AI",
+          "sku": false,
+          "upsell": false
+        },
+        {
+          "id": "records_maps",
+          "items": [
+            "First record is the SoR write",
+            "Second record is the sealed DecisionRecord",
+            "Immutable: sealed, consume-once, hash-chained",
+            "AI governance maps. Counsel stays open (G12)"
+          ],
+          "name": "Records and maps",
+          "price": "claimed=false",
+          "sku": false,
+          "upsell": false
+        }
+      ],
       "lede": "Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU.",
       "sku": false
     },
@@ -255,6 +296,7 @@
             "Every L1 pack and library with included_in_sku=true",
             "Entra identity, Teams notify, twin, proof day / Acceptance Kit",
             "Client executive dashboard",
+            "Estate \u2014 same plane: other uses, failsafe, records, maps",
             "Standard provision seating"
           ],
           "name": "Included with L1",
@@ -445,7 +487,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.67.0",
+  "release": "2.68.0",
   "scenarios": [
     {
       "id": "l1_only",

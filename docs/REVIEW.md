@@ -147,7 +147,7 @@ Walk away:
 
 Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.
 
-Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Probe never writes a SoR and never marks LIVE_PIN_OK.
+Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.
 
 CLI: `python -m ainav stack`. Probe: `python -m ainav connect --probe`.
 
@@ -452,6 +452,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.
 - Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.
 - Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.
+- Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU.
 
 ## Expert review — could be improved
 
