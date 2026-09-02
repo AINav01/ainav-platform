@@ -700,6 +700,10 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-write-rail"' in floor
     assert 'id="plane-dash-lede"' in floor
     assert 'id="plane-assign"' in floor
+    assert 'id="plane-estate-lede"' in floor
+    assert 'id="plane-uses"' in floor
+    assert 'id="plane-failsafe"' in floor
+    assert floor.index('id="plane-estate-lede"') < floor.index('id="plane-assign"')
     assert 'id="plane-mfa"' in floor
     assert 'id="plane-legal"' in floor
     assert 'id="plane-tiles"' in floor

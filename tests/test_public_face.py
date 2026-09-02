@@ -96,6 +96,10 @@ def test_public_face_is_static_catalog_sale():
     assert 'id="app-floor-failsafe"' in app
     assert 'id="app-floor-uses"' in app
     assert 'id="app-floor-maps"' in app
+    assert app.index('id="app-floor-estate"') < app.index('id="app-floor-govern"')
+    assert "paintUses" in js_app
+    assert "paintOversee" in js_app
+    assert "Wedge: " in js_app
     assert "AINav, Inc. disclaimers" in app
     assert "AI failsafe" in app
     assert "paintMaps" in js_app

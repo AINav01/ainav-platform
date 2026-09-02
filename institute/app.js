@@ -9,7 +9,7 @@
     },
     client: {
       title: "Client executive",
-      note: "The client executive dashboard is this plane. Included with L1. Not an upsell."
+      note: "The client executive dashboard is this plane. Estate is the same plane: other uses, failsafe, records, maps. Included with L1. Not an upsell."
     },
     owner: {
       title: "Owner / board",
@@ -355,6 +355,75 @@
     });
   }
 
+  function paintUses(root, bands) {
+    if (!root || !bands || !bands.length) return;
+    root.textContent = "";
+    bands.forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.name || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.sku || "";
+      var p = document.createElement("p");
+      p.className = "note";
+      p.textContent = item.note || "";
+      var ul = document.createElement("ul");
+      ul.className = "stack";
+      var wedge = (item.wedge || []).join(", ");
+      if (wedge) {
+        var li = document.createElement("li");
+        li.textContent = "Wedge: " + wedge;
+        ul.appendChild(li);
+      }
+      var desks = (item.desks || []).join(", ");
+      if (desks) {
+        var li = document.createElement("li");
+        li.textContent = "Desks: " + desks;
+        ul.appendChild(li);
+      }
+      art.appendChild(h);
+      if (price.textContent) art.appendChild(price);
+      art.appendChild(p);
+      if (ul.childNodes.length) art.appendChild(ul);
+      root.appendChild(art);
+    });
+  }
+
+  function paintOversee(root, items) {
+    if (!root || !items || !items.length) return;
+    root.textContent = "";
+    items.forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.name || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.role || "oversee";
+      var ul = document.createElement("ul");
+      ul.className = "stack";
+      [
+        "Admit: " + String(!!item.admit),
+        "Freeze: " + (item.freeze || "request"),
+        "Keep: " + (item.keep || "view")
+      ].forEach(function (line) {
+        var li = document.createElement("li");
+        li.textContent = line;
+        ul.appendChild(li);
+      });
+      var p = document.createElement("p");
+      p.className = "note";
+      p.textContent = item.note || "";
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(ul);
+      art.appendChild(p);
+      root.appendChild(art);
+    });
+  }
+
   function paintFloor(data) {
     if (!data || data.sku || data.live_pin_ok) return;
     var glance = (data.dashboard && data.dashboard.first_glance) || {};
@@ -372,43 +441,45 @@
     var offer = data.included_and_upsells || {};
     if (offer.first_glance && offer.first_glance.lede) setText("app-floor-offer-lede", offer.first_glance.lede);
     paintOfferBoard($("app-floor-offer"), offer);
-    var assign = data.view_assignment || {};
-    if (assign.sku || assign.upsell || assign.assignment_live) return;
-    var glanceA = assign.first_glance || {};
-    if (glanceA.lede) setText("app-floor-assign-lede", glanceA.lede);
-    paintAssignment($("app-floor-assign"), assign, data.departments);
-    var auth = assign.authorize || {};
-    if (auth.note) setText("app-floor-auth-lede", auth.note);
-    paintLifecycle($("app-floor-auth"), data.authorizations || [], "grants");
-    paintLifecycle($("app-floor-revoke"), data.revocations || [], "effect");
-    var mfa = assign.mfa || {};
-    if (mfa.note) setText("app-floor-mfa-lede", mfa.note);
-    paintMfa($("app-floor-mfa"), mfa);
-    var disc = assign.disclaimers || {};
-    if (disc.lede) setText("app-floor-legal-lede", disc.lede);
-    paintNotes($("app-floor-legal"), disc.items || []);
-    paintNotes($("app-floor-advantage"), (assign.advantage && assign.advantage.items) || []);
     var estate = data.estate || {};
-    if (estate.sku || estate.fourth_sku || estate.live_pin_ok) return;
-    var glanceE = estate.first_glance || {};
-    if (glanceE.lede) setText("app-floor-estate-lede", glanceE.lede);
-    if (estate.other_uses && estate.other_uses.lede) setText("app-floor-uses-lede", estate.other_uses.lede);
-    paintNotes($("app-floor-uses"), estate.other_uses && estate.other_uses.bands ? estate.other_uses.bands : []);
-    if (estate.failsafe && estate.failsafe.lede) setText("app-floor-failsafe-lede", estate.failsafe.lede);
-    paintNotes($("app-floor-failsafe"), estate.failsafe && estate.failsafe.verbs ? estate.failsafe.verbs : []);
-    if (estate.executive && estate.executive.lede) setText("app-floor-exec-lede", estate.executive.lede);
-    paintNotes($("app-floor-exec"), [
-      Object.assign({ name: "Owner / executive" }, estate.executive && estate.executive.owner ? estate.executive.owner : {}),
-      Object.assign({ name: "Board" }, estate.executive && estate.executive.board ? estate.executive.board : {})
-    ]);
-    if (estate.records && estate.records.lede) setText("app-floor-records-lede", estate.records.lede);
-    paintNotes($("app-floor-records"), estate.records && estate.records.items ? estate.records.items : []);
-    if (estate.immutable && estate.immutable.lede) setText("app-floor-immutable-lede", estate.immutable.lede);
-    paintNotes($("app-floor-immutable"), (data.governance_immutable && data.governance_immutable.pins) || []);
-    if (estate.instruments && estate.instruments.lede) setText("app-floor-maps-lede", estate.instruments.lede);
-    paintMaps($("app-floor-maps"), data.maps || []);
-    var cons = data.governance_consequences || {};
-    if (cons.thesis) setText("app-floor-consequences", cons.thesis);
+    if (!(estate.sku || estate.fourth_sku || estate.live_pin_ok)) {
+      var glanceE = estate.first_glance || {};
+      if (glanceE.lede) setText("app-floor-estate-lede", glanceE.lede);
+      if (estate.other_uses && estate.other_uses.lede) setText("app-floor-uses-lede", estate.other_uses.lede);
+      paintUses($("app-floor-uses"), estate.other_uses && estate.other_uses.bands ? estate.other_uses.bands : []);
+      if (estate.failsafe && estate.failsafe.lede) setText("app-floor-failsafe-lede", estate.failsafe.lede);
+      paintNotes($("app-floor-failsafe"), estate.failsafe && estate.failsafe.verbs ? estate.failsafe.verbs : []);
+      if (estate.executive && estate.executive.lede) setText("app-floor-exec-lede", estate.executive.lede);
+      paintOversee($("app-floor-exec"), [
+        Object.assign({ name: "Owner / executive" }, estate.executive && estate.executive.owner ? estate.executive.owner : {}),
+        Object.assign({ name: "Board" }, estate.executive && estate.executive.board ? estate.executive.board : {})
+      ]);
+      if (estate.records && estate.records.lede) setText("app-floor-records-lede", estate.records.lede);
+      paintNotes($("app-floor-records"), estate.records && estate.records.items ? estate.records.items : []);
+      if (estate.immutable && estate.immutable.lede) setText("app-floor-immutable-lede", estate.immutable.lede);
+      paintNotes($("app-floor-immutable"), (data.governance_immutable && data.governance_immutable.pins) || []);
+      if (estate.instruments && estate.instruments.lede) setText("app-floor-maps-lede", estate.instruments.lede);
+      paintMaps($("app-floor-maps"), data.maps || []);
+      var cons = data.governance_consequences || {};
+      if (cons.thesis) setText("app-floor-consequences", cons.thesis);
+    }
+    var assign = data.view_assignment || {};
+    if (!(assign.sku || assign.upsell || assign.assignment_live)) {
+      var glanceA = assign.first_glance || {};
+      if (glanceA.lede) setText("app-floor-assign-lede", glanceA.lede);
+      paintAssignment($("app-floor-assign"), assign, data.departments);
+      var auth = assign.authorize || {};
+      if (auth.note) setText("app-floor-auth-lede", auth.note);
+      paintLifecycle($("app-floor-auth"), data.authorizations || [], "grants");
+      paintLifecycle($("app-floor-revoke"), data.revocations || [], "effect");
+      var mfa = assign.mfa || {};
+      if (mfa.note) setText("app-floor-mfa-lede", mfa.note);
+      paintMfa($("app-floor-mfa"), mfa);
+      var disc = assign.disclaimers || {};
+      if (disc.lede) setText("app-floor-legal-lede", disc.lede);
+      paintNotes($("app-floor-legal"), disc.items || []);
+      paintNotes($("app-floor-advantage"), (assign.advantage && assign.advantage.items) || []);
+    }
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");

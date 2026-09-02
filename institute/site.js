@@ -455,9 +455,22 @@
       });
       var estate = data.estate || {};
       if (estate.first_glance && estate.first_glance.lede) set("plane-estate-lede", estate.first_glance.lede);
-      paintBoard("plane-uses", estate.other_uses && estate.other_uses.bands ? estate.other_uses.bands : [], function (item) {
-        return item.sku || "desk";
-      });
+      paintBoard(
+        "plane-uses",
+        ((estate.other_uses && estate.other_uses.bands) || []).map(function (item) {
+          var wedge = (item.wedge || []).join(", ");
+          var desks = (item.desks || []).join(", ");
+          return Object.assign({}, item, {
+            note:
+              (item.note || "") +
+              (wedge ? " Wedge: " + wedge + "." : "") +
+              (desks ? " Desks: " + desks + "." : "")
+          });
+        }),
+        function (item) {
+          return item.sku || "desk";
+        }
+      );
       paintBoard("plane-failsafe", estate.failsafe && estate.failsafe.verbs ? estate.failsafe.verbs : [], function () {
         return "failsafe";
       });

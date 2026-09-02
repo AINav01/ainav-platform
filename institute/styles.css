@@ -1283,6 +1283,10 @@ footer a { color: inherit; }
 .app-view-card p { margin: 0; color: var(--mute); }
 #app-floor-board h2 { margin: 1.6rem 0 0.45rem; }
 #app-floor-board .cards.dash { margin-bottom: 0.4rem; }
+#app-floor-estate h2 { margin: 1.6rem 0 0.45rem; }
+#app-floor-estate .cards.dash { margin-bottom: 0.4rem; }
+#app-floor-estate .table-wrap { overflow-x: auto; margin: 0.6rem 0 1.2rem; }
+#app-floor-estate .cards.dash .stack { margin: 0.35rem 0 0; }
 #app-floor-govern h2 { margin: 1.6rem 0 0.45rem; }
 #app-floor-govern .cards.dash { margin-bottom: 0.4rem; }
 #app-floor-govern .table-wrap { overflow-x: auto; margin: 0.6rem 0 1.2rem; }
