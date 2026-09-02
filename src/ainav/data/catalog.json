@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.69.0",
+    "release": "2.70.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -306,11 +306,13 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities",
+    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities × proof-day Floor × action schema × admit client × examiner prove",
     "investor": "catalog list × zero booked × two-human close",
     "success": "walk-away × independence × consume-once × fail-closed × named dual seats",
     "estate": "other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps",
-    "audit": "internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse"
+    "audit": "internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse",
+    "proof": "write rail × two seats × one hash × fail-closed write",
+    "instrument": "action schema × admit client × AI inventory × examiner prove × grant TTL × passkey identify"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
@@ -2037,6 +2039,22 @@
           "policy_id": "dual-admit-v1"
         },
         "expect": "effect_applied"
+      },
+      {
+        "id": "kit.icfr.unauthorized_gl",
+        "action": {
+          "action_class": "bc.general_journal.post",
+          "payload": {
+            "account": "1000",
+            "amount": "1.00",
+            "memo": "icfr unauthorized gl"
+          },
+          "sor_target": "bc.sandbox",
+          "policy_id": "dual-admit-v1"
+        },
+        "expect": "effect_applied",
+        "maps": "sox.icfr",
+        "note": "ICFR kit case on the L1 wedge. Same BC twin. Not a SOX opinion."
       }
     ]
   },
@@ -2510,7 +2528,7 @@
         "name": "Client executive",
         "who": "The named controller. Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them.",
         "admit": false,
-        "can": "Sit the executive board: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1.",
+        "can": "Sit the ninety-minute proof-day Floor: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1.",
         "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
         "shows": [
           "write_rail",
@@ -3521,7 +3539,15 @@
           "same_plane": true,
           "vpn_sku": false
         },
-        "note": "MFA is a Microsoft identify step. It is not dual admit. Do not invent oids. Do not claim MFA is wired live from this plane."
+        "note": "MFA is a Microsoft identify step. It is not dual admit. Do not invent oids. Do not claim MFA is wired live from this plane.",
+        "passkey": {
+          "kind": "ainav.plane.passkey.v1",
+          "name": "Passkey / FIDO2",
+          "identify": true,
+          "is_admit": false,
+          "live": false,
+          "note": "A passkey identifies. It does not admit."
+        }
       },
       "disclaimers": {
         "legal": "AINav, Inc.",
@@ -4011,6 +4037,11 @@
           "id": "in_harness",
           "name": "In-harness AI governor",
           "note": "Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI."
+        },
+        {
+          "id": "grc_icfr",
+          "name": "GRC / ICFR tool",
+          "note": "AuditBoard-class and Workiva-class tools map controls. They do not consume-once an action_hash and they do not hold a fail-closed EffectLedger."
         }
       ],
       "proof_close": {
@@ -4624,6 +4655,84 @@
         "Room 2 as lead",
         "buying L1 closes clocks"
       ]
+    },
+    "proof_day_floor": {
+      "kind": "ainav.plane.proof_day_floor.v1",
+      "sku": false,
+      "same_dashboard": true,
+      "included_with": "L1",
+      "minutes": 90,
+      "client_shows": [
+        "write_rail",
+        "attention",
+        "seats",
+        "keep",
+        "offer"
+      ],
+      "client_hides": [
+        "estate",
+        "audit",
+        "assignment"
+      ],
+      "entire_shows": [
+        "board",
+        "govern",
+        "estate",
+        "audit"
+      ],
+      "examiner_shows": [
+        "estate",
+        "audit"
+      ],
+      "records_shows": [
+        "estate",
+        "audit"
+      ],
+      "owner_shows": [
+        "govern",
+        "estate",
+        "audit"
+      ],
+      "seats_hides": [
+        "board",
+        "govern",
+        "estate",
+        "audit"
+      ],
+      "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Same dashboard. Not a fourth SKU."
+    },
+    "admit_client": {
+      "kind": "ainav.admit_client.v1",
+      "sku": false,
+      "live": false,
+      "drafter_is_not_seat": true,
+      "note": "Drafting AIs wrap AdmitClient. The drafter id is not seat_a or seat_b."
+    },
+    "examiner": {
+      "kind": "ainav.examiner.v1",
+      "sku": false,
+      "live": false,
+      "read_only": true,
+      "seventeen_a4": false,
+      "worm": false,
+      "cli": "python -m ainav examiner-prove",
+      "note": "Read-only Merkle inclusion. Not 17a-4. Not WORM."
+    },
+    "ai_inventory": {
+      "kind": "ainav.plane.ai_inventory.v1",
+      "sku": false,
+      "live": false,
+      "items": [],
+      "do_not_invent_names": true,
+      "drafter_is_not_seat": true,
+      "note": "Empty fail-closed register. Invented names refused. Paint on Examiner. Not a SKU."
+    },
+    "grant_ttl": {
+      "kind": "ainav.plane.grant_ttl.v1",
+      "outside_digest": true,
+      "default_seconds": null,
+      "changes_policy_hash": false,
+      "note": "TTL is not in policy_hash. Immediate effect after admit still passes."
     }
   },
   "honest_missing": [
@@ -4672,7 +4781,10 @@
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
       "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
       "Owner-click runbooks with Microsoft admin links",
-      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch"
+      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch",
+      "Proof-day Floor: Client sits write rail, attention, seats, keep, offer. Estate and audit stay on Entire, Examiner, Records, and Owner",
+      "Instrument plane: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, passkey identify. Not live. Not formally verified",
+      "Walk-away ledger recorded=false count=0. Billing unattached. Not a ninth complement"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -4684,7 +4796,35 @@
       "Multi-host product HA",
       "LIVE_PIN_OK"
     ],
-    "note": "This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane."
+    "note": "This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.",
+    "catalog_shape": {
+      "one_file": true,
+      "path": "src/ainav/data/catalog.json",
+      "sections_named": true,
+      "extract": [
+        "src/ainav/data/action.schema.json"
+      ],
+      "do_not_split": true,
+      "note": "Do not split catalog.json. Named sections stay in one file. Action schema is a referenced artifact."
+    },
+    "formal": {
+      "claimed": false,
+      "verified": false,
+      "spec": "src/agent_gov/spec/consume_once.tla",
+      "note": "A compact TLA+ sketch of consume-once. Not formally verified."
+    },
+    "action_schema": {
+      "path": "src/ainav/data/action.schema.json",
+      "fields": [
+        "action_class",
+        "payload",
+        "proposal_id",
+        "sor_target",
+        "policy_id"
+      ],
+      "changes_gold_hashes": false,
+      "note": "HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen."
+    }
   },
   "microsoft_stack": {
     "identity": [
@@ -5646,7 +5786,16 @@
       "ask": "Ninety minutes on the twin. Walk out with a sealed record — or walk away."
     },
     "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
-    "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable."
+    "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable.",
+    "billing": {
+      "kind": "ainav.business.billing.v1",
+      "sku": false,
+      "provider": null,
+      "attached": false,
+      "recognized_revenue_claimed": false,
+      "ninth_complement": false,
+      "note": "No billing provider. Catalog list cannot become recognized revenue. Not a ninth Microsoft connection."
+    }
   },
   "ip": {
     "owner": "AINav, Inc.",
@@ -6253,7 +6402,12 @@
       "Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.",
       "Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.",
       "Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU.",
-      "Audit and regulated-entity rooms are catalog law: internal audit keeps, regulator archive is a Merkle walk, Room 1 is books, Room 2 is refuse. Not 17a-4. Not a crypto product. Same dashboard. Not a fourth SKU."
+      "Audit and regulated-entity rooms are catalog law: internal audit keeps, regulator archive is a Merkle walk, Room 1 is books, Room 2 is refuse. Not 17a-4. Not a crypto product. Same dashboard. Not a fourth SKU.",
+      "Proof-day Floor is catalog law: Client sits write rail, attention, seats, keep, and offer. Estate and audit stay on Entire, Examiner, Records, and Owner. Same dashboard. Not a fourth SKU.",
+      "Instrument plane is catalog law: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, and passkey identify. Not live. Not formally verified.",
+      "Walk-away ledger is catalog law: recorded false, count 0, items empty. Do not invent a named walk-away.",
+      "Billing is catalog law: no provider, unattached, recognized revenue unclaimed. Not a ninth Microsoft complement.",
+      "One walkable surface: Walk the full plane sits Floor Entire. control-plane.html is the same plane, not a second dashboard."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6262,7 +6416,7 @@
       "A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
-      "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.",
+      "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Not Institute launch.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
@@ -6403,6 +6557,13 @@
       "continuity": {
         "lede": "If either seat is missing, the write does not land. That is the product working.",
         "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not."
+      },
+      "walk_away_ledger": {
+        "recorded": false,
+        "count": 0,
+        "items": [],
+        "do_not_invent_names": true,
+        "note": "The first walk-away is not recorded."
       }
     },
     "upgrades": [

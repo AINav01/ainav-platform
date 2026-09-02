@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.69.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.70.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.69.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.70.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -98,6 +98,7 @@ The sale is the ninety-minute proof day. Ninety minutes. Client AI or a customer
 | Copilot asking a human | Copilot asking a human leaves Agentforce and the counterparty's model ungated. |
 | BC native dual approval | Workflow User Groups can require two humans. That is not consume-once action_hash and not a fail-closed EffectLedger. |
 | In-harness AI governor | Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI. |
+| GRC / ICFR tool | AuditBoard-class and Workiva-class tools map controls. They do not consume-once an action_hash and they do not hold a fail-closed EffectLedger. |
 
 Walk out of proof day with a sealed DecisionRecord and a Merkle / audit export. If either person is missing, or the apply fails, the write does not land and there is no fake success. Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not. Refusing is the product working.
 
@@ -334,6 +335,11 @@ Working well
 - Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.
 - Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU.
 - Audit and regulated-entity rooms are catalog law: internal audit keeps, regulator archive is a Merkle walk, Room 1 is books, Room 2 is refuse. Not 17a-4. Not a crypto product. Same dashboard. Not a fourth SKU.
+- Proof-day Floor is catalog law: Client sits write rail, attention, seats, keep, and offer. Estate and audit stay on Entire, Examiner, Records, and Owner. Same dashboard. Not a fourth SKU.
+- Instrument plane is catalog law: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, and passkey identify. Not live. Not formally verified.
+- Walk-away ledger is catalog law: recorded false, count 0, items empty. Do not invent a named walk-away.
+- Billing is catalog law: no provider, unattached, recognized revenue unclaimed. Not a ninth Microsoft complement.
+- One walkable surface: Walk the full plane sits Floor Entire. control-plane.html is the same plane, not a second dashboard.
 
 Could be improved — without inventing a fourth SKU
 
@@ -343,7 +349,7 @@ Could be improved — without inventing a fourth SKU
 - A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
-- Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.
+- Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Not Institute launch.
 - Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
 - No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.

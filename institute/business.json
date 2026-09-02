@@ -1,12 +1,22 @@
 {
   "acceptance_kit": {
     "cases": [
-      "kit.bc.journal"
+      "kit.bc.journal",
+      "kit.icfr.unauthorized_gl"
     ],
     "requires_sku": "L1",
     "signed_l1": false
   },
   "audit_equation": "internal audit \u00d7 regulator archive \u00d7 failure to comply \u00d7 Room 1 books \u00d7 Room 2 refuse",
+  "billing": {
+    "attached": false,
+    "kind": "ainav.business.billing.v1",
+    "ninth_complement": false,
+    "note": "No billing provider. Catalog list cannot become recognized revenue. Not a ninth Microsoft connection.",
+    "provider": null,
+    "recognized_revenue_claimed": false,
+    "sku": false
+  },
   "buyer": {
     "contact_email": null,
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",

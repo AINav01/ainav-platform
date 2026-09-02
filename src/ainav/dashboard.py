@@ -404,6 +404,13 @@ def public_dashboard() -> dict[str, Any]:
         "note": body.get("note"),
         "success": dict((cat.get("expert_review") or {}).get("success") or {}),
         "success_equation": cat["equations"].get("success"),
+        "proof_equation": cat["equations"].get("proof"),
+        "instrument_equation": cat["equations"].get("instrument"),
+        "proof_day_floor": dict(body.get("proof_day_floor") or {}),
+        "admit_client": dict(body.get("admit_client") or {}),
+        "examiner": dict(body.get("examiner") or {}),
+        "ai_inventory": dict(body.get("ai_inventory") or {}),
+        "grant_ttl": dict(body.get("grant_ttl") or {}),
     }
 
 

@@ -165,6 +165,18 @@
     "sku": false
   },
   "engineering": {
+    "action_schema": {
+      "changes_gold_hashes": false,
+      "fields": [
+        "action_class",
+        "payload",
+        "proposal_id",
+        "sor_target",
+        "policy_id"
+      ],
+      "note": "HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen.",
+      "path": "src/ainav/data/action.schema.json"
+    },
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
@@ -175,6 +187,16 @@
       "Multi-host product HA",
       "LIVE_PIN_OK"
     ],
+    "catalog_shape": {
+      "do_not_split": true,
+      "extract": [
+        "src/ainav/data/action.schema.json"
+      ],
+      "note": "Do not split catalog.json. Named sections stay in one file. Action schema is a referenced artifact.",
+      "one_file": true,
+      "path": "src/ainav/data/catalog.json",
+      "sections_named": true
+    },
     "closed_in_tree": [
       "Job C gold invariants (dual seats, single-use consume, fail-closed effect)",
       "Catalog law \u2014 three SKUs only",
@@ -190,10 +212,19 @@
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
       "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
       "Owner-click runbooks with Microsoft admin links",
-      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch"
+      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch",
+      "Proof-day Floor: Client sits write rail, attention, seats, keep, offer. Estate and audit stay on Entire, Examiner, Records, and Owner",
+      "Instrument plane: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, passkey identify. Not live. Not formally verified",
+      "Walk-away ledger recorded=false count=0. Billing unattached. Not a ninth complement"
     ],
     "complement": false,
     "connection": false,
+    "formal": {
+      "claimed": false,
+      "note": "A compact TLA+ sketch of consume-once. Not formally verified.",
+      "spec": "src/agent_gov/spec/consume_once.tla",
+      "verified": false
+    },
     "gold_ci": {
       "command": "make gold",
       "coverage_floor": 90,
@@ -231,7 +262,7 @@
       "A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.",
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger \u2014 not two deployed planes.",
-      "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. The public face is split against any launched SaaS domain. Pages is not the product host.",
+      "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Not Institute launch.",
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.",
@@ -372,7 +403,14 @@
         "name": "Cynthia Hodnett"
       },
       "sku": false,
-      "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK."
+      "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.",
+      "walk_away_ledger": {
+        "count": 0,
+        "do_not_invent_names": true,
+        "items": [],
+        "note": "The first walk-away is not recorded.",
+        "recorded": false
+      }
     },
     "upgrades": [
       {
@@ -662,7 +700,12 @@
       "Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.",
       "Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.",
       "Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU.",
-      "Audit and regulated-entity rooms are catalog law: internal audit keeps, regulator archive is a Merkle walk, Room 1 is books, Room 2 is refuse. Not 17a-4. Not a crypto product. Same dashboard. Not a fourth SKU."
+      "Audit and regulated-entity rooms are catalog law: internal audit keeps, regulator archive is a Merkle walk, Room 1 is books, Room 2 is refuse. Not 17a-4. Not a crypto product. Same dashboard. Not a fourth SKU.",
+      "Proof-day Floor is catalog law: Client sits write rail, attention, seats, keep, and offer. Estate and audit stay on Entire, Examiner, Records, and Owner. Same dashboard. Not a fourth SKU.",
+      "Instrument plane is catalog law: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, and passkey identify. Not live. Not formally verified.",
+      "Walk-away ledger is catalog law: recorded false, count 0, items empty. Do not invent a named walk-away.",
+      "Billing is catalog law: no provider, unattached, recognized revenue unclaimed. Not a ninth Microsoft complement.",
+      "One walkable surface: Walk the full plane sits Floor Entire. control-plane.html is the same plane, not a second dashboard."
     ]
   },
   "fit": [

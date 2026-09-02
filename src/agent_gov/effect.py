@@ -3,13 +3,26 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from datetime import datetime, timezone
 from typing import Any
 
+from agent_gov.clock import utc_now
 from agent_gov.errors import EffectBlocked
 from agent_gov.records import decision_record
 from agent_gov.store import AuthorityStore, default_store
 
 ApplyFn = Callable[[dict[str, Any]], Any]
+
+
+def _parse_created(ts: str) -> datetime:
+    raw = str(ts or "").replace("Z", "+00:00")
+    try:
+        parsed = datetime.fromisoformat(raw)
+    except ValueError as exc:
+        raise EffectBlocked("admit created_at is not parseable", reason_code="EFFECT_GRANT_TIME") from exc
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
 
 
 class EffectLedger:
@@ -32,8 +45,14 @@ class EffectLedger:
     finalize as applied (no SoR side effect).
     """
 
-    def __init__(self, store: AuthorityStore | None = None) -> None:
+    def __init__(
+        self,
+        store: AuthorityStore | None = None,
+        *,
+        grant_ttl_seconds: int | None = None,
+    ) -> None:
         self.store = store or default_store()
+        self.grant_ttl_seconds = grant_ttl_seconds
 
     def effect(
         self,
@@ -42,6 +61,7 @@ class EffectLedger:
         *,
         apply: ApplyFn | None = None,
         recover: bool = False,
+        grant_ttl_seconds: int | None = None,
     ) -> dict[str, Any]:
         if not request_id or not isinstance(request_id, str):
             raise EffectBlocked("request_id is required", reason_code="EFFECT_NO_REQUEST")
@@ -49,6 +69,18 @@ class EffectLedger:
             raise EffectBlocked("action_hash is required", reason_code="EFFECT_NO_HASH")
 
         admit = self.store.get_admit(request_id)
+        ttl = self.grant_ttl_seconds if grant_ttl_seconds is None else grant_ttl_seconds
+        if ttl is not None:
+            if not admit:
+                raise EffectBlocked("grant TTL requires an admit", reason_code="EFFECT_NO_ADMIT")
+            created = _parse_created(str(admit.get("created_at") or ""))
+            now = _parse_created(utc_now())
+            if (now - created).total_seconds() > int(ttl):
+                self._record_blocked(request_id, action_hash, admit, "EFFECT_GRANT_EXPIRED")
+                raise EffectBlocked(
+                    "admit grant expired before effect",
+                    reason_code="EFFECT_GRANT_EXPIRED",
+                )
         if recover:
             existing = self.store.get_effect(request_id)
             if existing and existing.get("record_type") == "effect_reserved":

@@ -272,6 +272,18 @@
     "sku": false
   },
   "engineering": {
+    "action_schema": {
+      "changes_gold_hashes": false,
+      "fields": [
+        "action_class",
+        "payload",
+        "proposal_id",
+        "sor_target",
+        "policy_id"
+      ],
+      "note": "HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen.",
+      "path": "src/ainav/data/action.schema.json"
+    },
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
@@ -282,6 +294,16 @@
       "Multi-host product HA",
       "LIVE_PIN_OK"
     ],
+    "catalog_shape": {
+      "do_not_split": true,
+      "extract": [
+        "src/ainav/data/action.schema.json"
+      ],
+      "note": "Do not split catalog.json. Named sections stay in one file. Action schema is a referenced artifact.",
+      "one_file": true,
+      "path": "src/ainav/data/catalog.json",
+      "sections_named": true
+    },
     "closed_in_tree": [
       "Job C gold invariants (dual seats, single-use consume, fail-closed effect)",
       "Catalog law \u2014 three SKUs only",
@@ -297,10 +319,19 @@
       "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
       "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
       "Owner-click runbooks with Microsoft admin links",
-      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch"
+      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch",
+      "Proof-day Floor: Client sits write rail, attention, seats, keep, offer. Estate and audit stay on Entire, Examiner, Records, and Owner",
+      "Instrument plane: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, passkey identify. Not live. Not formally verified",
+      "Walk-away ledger recorded=false count=0. Billing unattached. Not a ninth complement"
     ],
     "complement": false,
     "connection": false,
+    "formal": {
+      "claimed": false,
+      "note": "A compact TLA+ sketch of consume-once. Not formally verified.",
+      "spec": "src/agent_gov/spec/consume_once.tla",
+      "verified": false
+    },
     "gold_ci": {
       "command": "make gold",
       "coverage_floor": 90,

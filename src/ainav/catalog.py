@@ -373,6 +373,40 @@ def _validate_engineering(catalog: dict[str, Any]) -> None:
             raise IntegrityError("observed_green false cannot claim ran green", reason_code="CATALOG_ENGINEERING")
     else:
         raise IntegrityError("gold_ci.observed_green must be boolean", reason_code="CATALOG_ENGINEERING")
+    _validate_catalog_shape(body)
+    _validate_formal(body)
+
+
+def _validate_catalog_shape(body: dict[str, Any]) -> None:
+    shape = body.get("catalog_shape")
+    if not isinstance(shape, dict):
+        raise IntegrityError("engineering needs catalog_shape", reason_code="CATALOG_ENGINEERING")
+    if shape.get("one_file") is not True or shape.get("do_not_split") is not True:
+        raise IntegrityError("do not split catalog.json", reason_code="CATALOG_ENGINEERING")
+    if str(shape.get("path") or "") != "src/ainav/data/catalog.json":
+        raise IntegrityError("catalog_shape path is catalog.json", reason_code="CATALOG_ENGINEERING")
+    extract = [str(item) for item in shape.get("extract") or []]
+    if "src/ainav/data/action.schema.json" not in extract:
+        raise IntegrityError("catalog_shape extracts action.schema.json", reason_code="CATALOG_ENGINEERING")
+    schema = Path("src/ainav/data/action.schema.json")
+    if not schema.is_file():
+        raise IntegrityError("action.schema.json is missing", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_formal(body: dict[str, Any]) -> None:
+    formal = body.get("formal")
+    if not isinstance(formal, dict):
+        raise IntegrityError("engineering needs formal spec honesty", reason_code="CATALOG_ENGINEERING")
+    if formal.get("claimed") is True or formal.get("verified") is True:
+        raise IntegrityError("do not claim formally verified", reason_code="CATALOG_ENGINEERING")
+    spec = Path(str(formal.get("spec") or ""))
+    if spec.as_posix() != "src/agent_gov/spec/consume_once.tla":
+        raise IntegrityError("formal spec path is consume_once.tla", reason_code="CATALOG_ENGINEERING")
+    if not spec.is_file():
+        raise IntegrityError("formal spec file missing", reason_code="CATALOG_ENGINEERING")
+    text = spec.read_text(encoding="utf-8")
+    if "CONSUME" not in text.upper() and "consume" not in text.lower():
+        raise IntegrityError("formal spec must sketch consume-once", reason_code="CATALOG_ENGINEERING")
 
 
 def catalog_engineering() -> dict[str, Any]:
@@ -516,6 +550,33 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         if stem not in audit_eq:
             raise IntegrityError(
                 "audit equation is internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse",
+                reason_code="CATALOG_EQUATION",
+            )
+    proof = str(equations.get("proof") or "").lower()
+    for stem in ("write rail", "two seats", "one hash", "fail-closed"):
+        if stem not in proof:
+            raise IntegrityError(
+                "proof equation is write rail × two seats × one hash × fail-closed write",
+                reason_code="CATALOG_EQUATION",
+            )
+    instrument = str(equations.get("instrument") or "").lower()
+    for stem in (
+        "action schema",
+        "admit client",
+        "ai inventory",
+        "examiner prove",
+        "grant ttl",
+        "passkey identify",
+    ):
+        if stem not in instrument:
+            raise IntegrityError(
+                "instrument equation is action schema × admit client × AI inventory × examiner prove × grant TTL × passkey identify",
+                reason_code="CATALOG_EQUATION",
+            )
+    for stem in ("proof-day floor", "action schema", "admit client", "examiner prove"):
+        if stem not in interface:
+            raise IntegrityError(
+                f"interface equation must keep {stem}",
                 reason_code="CATALOG_EQUATION",
             )
 
@@ -913,6 +974,19 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("continuity is the write does not land", reason_code="CATALOG_REVIEW")
     if "bypass" not in str(continuity.get("note") or "").lower():
         raise IntegrityError("continuity is not a bypass", reason_code="CATALOG_REVIEW")
+    ledger = success.get("walk_away_ledger")
+    if not isinstance(ledger, dict):
+        raise IntegrityError("success needs a walk-away ledger", reason_code="CATALOG_REVIEW")
+    if ledger.get("recorded") is True:
+        raise IntegrityError("do not invent a recorded walk-away", reason_code="CATALOG_REVIEW")
+    if int(ledger.get("count") or 0) != 0:
+        raise IntegrityError("walk-away ledger count stays zero", reason_code="CATALOG_REVIEW")
+    if list(ledger.get("items") or []) != []:
+        raise IntegrityError("walk-away ledger items stay empty", reason_code="CATALOG_REVIEW")
+    if ledger.get("do_not_invent_names") is not True:
+        raise IntegrityError("walk-away ledger cannot invent names", reason_code="CATALOG_REVIEW")
+    if "not recorded" not in str(ledger.get("note") or "").lower():
+        raise IntegrityError("walk-away ledger note: first walk-away is not recorded", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1483,6 +1557,15 @@ def _validate_view_assignment(catalog: dict[str, Any], body: dict[str, Any]) -> 
     mfa_note = str(mfa.get("note") or "").lower()
     if "identify" not in mfa_note or "not dual admit" not in mfa_note or "wired live" not in mfa_note:
         raise IntegrityError("MFA note is identify, not admit, not live", reason_code="CATALOG_PLANE")
+    passkey = mfa.get("passkey")
+    if not isinstance(passkey, dict):
+        raise IntegrityError("MFA needs passkey identify", reason_code="CATALOG_PLANE")
+    if passkey.get("is_admit") is True or passkey.get("live") is True:
+        raise IntegrityError("passkey is identify, not admit, not live", reason_code="CATALOG_PLANE")
+    if passkey.get("identify") is not True:
+        raise IntegrityError("passkey identifies", reason_code="CATALOG_PLANE")
+    if "does not admit" not in str(passkey.get("note") or "").lower():
+        raise IntegrityError("passkey note: identify is not admit", reason_code="CATALOG_PLANE")
     disc = assign.get("disclaimers") or {}
     if str(disc.get("legal") or "") != str((catalog.get("entity") or {}).get("legal") or ""):
         raise IntegrityError("disclaimers are AINav, Inc.", reason_code="CATALOG_PLANE")
@@ -1729,6 +1812,68 @@ def _validate_audit(catalog: dict[str, Any], body: dict[str, Any]) -> None:
             raise IntegrityError("audit must refuse " + stem, reason_code="CATALOG_PLANE")
 
 
+def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    floor = body.get("proof_day_floor")
+    if not isinstance(floor, dict):
+        raise IntegrityError("catalog missing proof-day Floor", reason_code="CATALOG_PLANE")
+    if floor.get("sku") is True:
+        raise IntegrityError("proof-day Floor is not a SKU", reason_code="CATALOG_SKU")
+    if floor.get("same_dashboard") is not True or floor.get("included_with") != "L1":
+        raise IntegrityError("proof-day Floor is the same L1 dashboard", reason_code="CATALOG_PLANE")
+    if int(floor.get("minutes") or 0) != 90:
+        raise IntegrityError("proof-day Floor is ninety minutes", reason_code="CATALOG_PLANE")
+    shows = [str(item) for item in floor.get("client_shows") or []]
+    for needed in ("write_rail", "attention", "seats", "keep", "offer"):
+        if needed not in shows:
+            raise IntegrityError("Client proof-day Floor sits write rail, attention, seats, keep, offer", reason_code="CATALOG_PLANE")
+    hides = [str(item) for item in floor.get("client_hides") or []]
+    for needed in ("estate", "audit", "assignment"):
+        if needed not in hides:
+            raise IntegrityError("Client proof-day Floor hides estate, audit, and assignment", reason_code="CATALOG_PLANE")
+    client_view = next(
+        (item for item in body.get("views") or [] if isinstance(item, dict) and item.get("id") == "client"),
+        {},
+    )
+    if "ninety-minute" not in str(client_view.get("can") or "").lower():
+        raise IntegrityError("client view is the ninety-minute proof-day Floor", reason_code="CATALOG_PLANE")
+    admit = body.get("admit_client")
+    if not isinstance(admit, dict):
+        raise IntegrityError("catalog missing admit client", reason_code="CATALOG_PLANE")
+    if admit.get("sku") is True or admit.get("live") is True:
+        raise IntegrityError("admit client is not a SKU or live", reason_code="CATALOG_PLANE")
+    if admit.get("drafter_is_not_seat") is not True:
+        raise IntegrityError("drafter is not a seat", reason_code="CATALOG_PLANE")
+    examiner = body.get("examiner")
+    if not isinstance(examiner, dict):
+        raise IntegrityError("catalog missing examiner prove", reason_code="CATALOG_PLANE")
+    if examiner.get("sku") is True or examiner.get("live") is True:
+        raise IntegrityError("examiner is not a SKU or live", reason_code="CATALOG_PLANE")
+    if examiner.get("read_only") is not True:
+        raise IntegrityError("examiner prove is read-only", reason_code="CATALOG_PLANE")
+    if examiner.get("seventeen_a4") is True or examiner.get("worm") is True:
+        raise IntegrityError("examiner is not 17a-4 or WORM", reason_code="CATALOG_GOVERNANCE")
+    if "examiner-prove" not in str(examiner.get("cli") or ""):
+        raise IntegrityError("examiner cli is examiner-prove", reason_code="CATALOG_PLANE")
+    inventory = body.get("ai_inventory")
+    if not isinstance(inventory, dict):
+        raise IntegrityError("catalog missing AI inventory", reason_code="CATALOG_PLANE")
+    if inventory.get("sku") is True or inventory.get("live") is True:
+        raise IntegrityError("AI inventory is not a SKU or live", reason_code="CATALOG_PLANE")
+    if list(inventory.get("items") or []) != []:
+        raise IntegrityError("AI inventory stays empty", reason_code="CATALOG_PLANE")
+    if inventory.get("do_not_invent_names") is not True:
+        raise IntegrityError("AI inventory cannot invent names", reason_code="CATALOG_PLANE")
+    if inventory.get("drafter_is_not_seat") is not True:
+        raise IntegrityError("AI inventory: drafter is not a seat", reason_code="CATALOG_PLANE")
+    ttl = body.get("grant_ttl")
+    if not isinstance(ttl, dict):
+        raise IntegrityError("catalog missing grant TTL", reason_code="CATALOG_PLANE")
+    if ttl.get("outside_digest") is not True or ttl.get("changes_policy_hash") is True:
+        raise IntegrityError("grant TTL stays outside the lockfile digest", reason_code="CATALOG_PLANE")
+    if ttl.get("default_seconds") is not None:
+        raise IntegrityError("default grant TTL stays unset", reason_code="CATALOG_PLANE")
+
+
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     body = catalog.get("plane_interface")
     if not isinstance(body, dict):
@@ -1928,7 +2073,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         if str(floor_for.get(who) or "") != str(gov_for.get(who) or ""):
             raise IntegrityError(f"floor must-have for {who} must match governance", reason_code="CATALOG_PLANE")
     not_gate_ids = [item.get("id") for item in floor.get("not_the_gate") or []]
-    for needed in ("vendor_native", "teams", "pim", "copilot", "bc_workflow", "in_harness"):
+    for needed in ("vendor_native", "teams", "pim", "copilot", "bc_workflow", "in_harness", "grc_icfr"):
         if needed not in not_gate_ids:
             raise IntegrityError(f"not-the-gate must include {needed}", reason_code="CATALOG_PLANE")
     glance = floor.get("first_glance") or {}
@@ -2219,6 +2364,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     _validate_view_assignment(catalog, body)
     _validate_estate(catalog, body)
     _validate_audit(catalog, body)
+    _validate_instrument_plane(catalog, body)
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

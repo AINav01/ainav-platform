@@ -74,6 +74,9 @@ def main(argv: list[str] | None = None) -> int:
     proof = sub.add_parser("proof-day")
     proof.add_argument("--seat-a", default="", help="named Entra object id for seat A. Lab oid if omitted.")
     proof.add_argument("--seat-b", default="", help="named Entra object id for seat B. Lab oid if omitted.")
+    examiner = sub.add_parser("examiner-prove")
+    examiner.add_argument("--record-id", default="", help="DecisionRecord id to prove. Lab demo if omitted.")
+    sub.add_parser("action-schema")
     sub.add_parser("buyer")
     brief = sub.add_parser("brief")
     brief.add_argument("--for", dest="for_controller", default="")
@@ -256,6 +259,13 @@ def main(argv: list[str] | None = None) -> int:
         return _company_demo()
     if args.cmd == "proof-day":
         return _proof_day(seat_a=args.seat_a, seat_b=args.seat_b)
+    if args.cmd == "examiner-prove":
+        return _examiner_prove(record_id=args.record_id)
+    if args.cmd == "action-schema":
+        from ainav.examiner import action_schema
+
+        print(canonical_json(action_schema()))
+        return 0
     if args.cmd == "brief-pdf":
         from ainav.brief_pdf import write_brief
 
@@ -534,6 +544,29 @@ def _motherships(client_id: str) -> int:
             }
         )
     )
+    return 0
+
+
+def _examiner_prove(*, record_id: str = "") -> int:
+    from agent_gov import AdmitClient, MemoryAuthorityStore
+    from ainav.examiner import prove
+
+    store = MemoryAuthorityStore()
+    client = AdmitClient(store=store)
+    if not record_id:
+        rec = client.run_and_apply(
+            {
+                "action_class": "bc.general_journal.post",
+                "payload": {"account": "1000", "amount": "1.00", "memo": "examiner prove"},
+                "proposal_id": "prp-examiner-1",
+                "sor_target": "bc.sandbox",
+                "policy_id": "dual-admit-v1",
+            },
+            seat_a="oid-1",
+            seat_b="oid-2",
+        )
+        record_id = str(rec.get("record_id") or "")
+    print(canonical_json(prove(record_id, store=store)))
     return 0
 
 

@@ -225,6 +225,11 @@
       "id": "in_harness",
       "name": "In-harness AI governor",
       "note": "Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI."
+    },
+    {
+      "id": "grc_icfr",
+      "name": "GRC / ICFR tool",
+      "note": "AuditBoard-class and Workiva-class tools map controls. They do not consume-once an action_hash and they do not hold a fail-closed EffectLedger."
     }
   ],
   "prices": [

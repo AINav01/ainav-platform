@@ -9,7 +9,23 @@
     "teams_is_not_a_seat": true,
     "vpn_sku": false
   },
+  "admit_client": {
+    "drafter_is_not_seat": true,
+    "kind": "ainav.admit_client.v1",
+    "live": false,
+    "note": "Drafting AIs wrap AdmitClient. The drafter id is not seat_a or seat_b.",
+    "sku": false
+  },
   "agreed": true,
+  "ai_inventory": {
+    "do_not_invent_names": true,
+    "drafter_is_not_seat": true,
+    "items": [],
+    "kind": "ainav.plane.ai_inventory.v1",
+    "live": false,
+    "note": "Empty fail-closed register. Invented names refused. Paint on Examiner. Not a SKU.",
+    "sku": false
+  },
   "attention": [
     {
       "id": "must_have",
@@ -466,7 +482,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.69.0"
+    "release": "2.70.0"
   },
   "communications": [
     {
@@ -1019,7 +1035,7 @@
   ],
   "email": "chodnett@ainav.institute",
   "entra_oid": null,
-  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove",
   "estate": {
     "executive": {
       "board": {
@@ -1234,6 +1250,16 @@
     "upsell": false
   },
   "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
+  "examiner": {
+    "cli": "python -m ainav examiner-prove",
+    "kind": "ainav.examiner.v1",
+    "live": false,
+    "note": "Read-only Merkle inclusion. Not 17a-4. Not WORM.",
+    "read_only": true,
+    "seventeen_a4": false,
+    "sku": false,
+    "worm": false
+  },
   "exceptions": [
     {
       "id": "same_seat",
@@ -1511,6 +1537,11 @@
         "id": "in_harness",
         "name": "In-harness AI governor",
         "note": "Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI."
+      },
+      {
+        "id": "grc_icfr",
+        "name": "GRC / ICFR tool",
+        "note": "AuditBoard-class and Workiva-class tools map controls. They do not consume-once an action_hash and they do not hold a fail-closed EffectLedger."
       }
     ],
     "page": {
@@ -2071,6 +2102,13 @@
     "uncopyable": false,
     "worm": false
   },
+  "grant_ttl": {
+    "changes_policy_hash": false,
+    "default_seconds": null,
+    "kind": "ainav.plane.grant_ttl.v1",
+    "note": "TTL is not in policy_hash. Immediate effect after admit still passes.",
+    "outside_digest": true
+  },
   "included_and_upsells": {
     "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
     "first_glance": {
@@ -2135,6 +2173,7 @@
     "u_dual_never_free": true
   },
   "institute": "AINAV.Institute",
+  "instrument_equation": "action schema \u00d7 admit client \u00d7 AI inventory \u00d7 examiner prove \u00d7 grant TTL \u00d7 passkey identify",
   "invited": "Cynthia Hodnett",
   "kind": "ainav.plane.interface.v1",
   "ledger": {
@@ -2406,6 +2445,52 @@
   "org_equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
   "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
   "product": "AINav Control Plane",
+  "proof_day_floor": {
+    "client_hides": [
+      "estate",
+      "audit",
+      "assignment"
+    ],
+    "client_shows": [
+      "write_rail",
+      "attention",
+      "seats",
+      "keep",
+      "offer"
+    ],
+    "entire_shows": [
+      "board",
+      "govern",
+      "estate",
+      "audit"
+    ],
+    "examiner_shows": [
+      "estate",
+      "audit"
+    ],
+    "included_with": "L1",
+    "kind": "ainav.plane.proof_day_floor.v1",
+    "minutes": 90,
+    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Same dashboard. Not a fourth SKU.",
+    "owner_shows": [
+      "govern",
+      "estate",
+      "audit"
+    ],
+    "records_shows": [
+      "estate",
+      "audit"
+    ],
+    "same_dashboard": true,
+    "seats_hides": [
+      "board",
+      "govern",
+      "estate",
+      "audit"
+    ],
+    "sku": false
+  },
+  "proof_equation": "write rail \u00d7 two seats \u00d7 one hash \u00d7 fail-closed write",
   "provision_bands": {
     "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
     "desk_band_means": "standard = included with L1. advanced \u00b7 priced = a la carte attach. advanced \u00b7 with P-ADM = included when P-ADM is attached, not free. advanced \u00b7 with U-DUAL = included when paid U-DUAL is attached, not free.",
@@ -3355,7 +3440,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.69.0",
+  "release": "2.70.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -3742,7 +3827,14 @@
       "name": "Cynthia Hodnett"
     },
     "sku": false,
-    "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK."
+    "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.",
+    "walk_away_ledger": {
+      "count": 0,
+      "do_not_invent_names": true,
+      "items": [],
+      "note": "The first walk-away is not recorded.",
+      "recorded": false
+    }
   },
   "success_equation": "walk-away \u00d7 independence \u00d7 consume-once \u00d7 fail-closed \u00d7 named dual seats",
   "thesis": "Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.",
@@ -4148,6 +4240,14 @@
       "live": false,
       "mfa_live": false,
       "note": "MFA is a Microsoft identify step. It is not dual admit. Do not invent oids. Do not claim MFA is wired live from this plane.",
+      "passkey": {
+        "identify": true,
+        "is_admit": false,
+        "kind": "ainav.plane.passkey.v1",
+        "live": false,
+        "name": "Passkey / FIDO2",
+        "note": "A passkey identifies. It does not admit."
+      },
       "pim_is_not_dual": true,
       "remote": {
         "admit": false,
@@ -4224,7 +4324,7 @@
     },
     {
       "admit": false,
-      "can": "Sit the executive board: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1.",
+      "can": "Sit the ninety-minute proof-day Floor: write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1.",
       "cannot": "Treat the dashboard as a SKU. Treat standard provision as a SKU. Treat advanced provision as a SKU. Attach U-DUAL free. Invent a buyer.",
       "console": "client",
       "id": "client",

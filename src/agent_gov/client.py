@@ -29,7 +29,10 @@ class AdmitClient:
         self.lockfile = load_lockfile(lockfile if lockfile is not None else default_lockfile())
         self.store = store or default_store()
         self.ledger = ledger or ConsumeLedger(store=self.store)
-        self.effects = effects or EffectLedger(store=self.store)
+        self.effects = effects or EffectLedger(
+            store=self.store,
+            grant_ttl_seconds=self.lockfile.grant_ttl_seconds,
+        )
         self.verifier = verifier or DEFAULT_VERIFIER
 
     def admit(self, action: Any, *, seat_a: str, seat_b: str) -> dict[str, Any]:
@@ -49,7 +52,12 @@ class AdmitClient:
         *,
         apply: ApplyFn | None = None,
     ) -> dict[str, Any]:
-        return self.effects.effect(request_id, action_hash, apply=apply)
+        return self.effects.effect(
+            request_id,
+            action_hash,
+            apply=apply,
+            grant_ttl_seconds=self.lockfile.grant_ttl_seconds,
+        )
 
     def run_and_apply(
         self,

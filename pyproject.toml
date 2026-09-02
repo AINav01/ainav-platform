@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ainav-agent-gov"
-version = "2.69.0"
+version = "2.70.0"
 description = "AINav Job C: dual-admitted effect authority before privileged SoR writes"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -34,8 +34,8 @@ Repository = "https://github.com/AINav01/ainav-platform"
 where = ["src"]
 
 [tool.setuptools.package-data]
-agent_gov = ["py.typed", "dual_consume.lua", "gold/vectors.json"]
-ainav = ["data/catalog.json"]
+agent_gov = ["py.typed", "dual_consume.lua", "gold/vectors.json", "spec/consume_once.tla"]
+ainav = ["data/catalog.json", "data/action.schema.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -250,6 +250,15 @@
       }
     ]
   },
+  "billing": {
+    "attached": false,
+    "kind": "ainav.business.billing.v1",
+    "ninth_complement": false,
+    "note": "No billing provider. Catalog list cannot become recognized revenue. Not a ninth Microsoft connection.",
+    "provider": null,
+    "recognized_revenue_claimed": false,
+    "sku": false
+  },
   "billing_provider": false,
   "close": {
     "closed": false,
@@ -697,7 +706,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.69.0",
+  "release": "2.70.0",
   "scenarios": [
     {
       "id": "l1_only",
@@ -909,6 +918,13 @@
   "signed_l1": 0,
   "sku": false,
   "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. If-then catalog list is not a forecast. Not a priced round. Not LIVE_PIN_OK.",
+  "walk_away_ledger": {
+    "count": 0,
+    "do_not_invent_names": true,
+    "items": [],
+    "note": "The first walk-away is not recorded.",
+    "recorded": false
+  },
   "walk_away_recorded": false,
   "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
   "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable.",

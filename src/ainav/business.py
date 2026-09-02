@@ -42,6 +42,17 @@ def validate_business(catalog: dict[str, Any]) -> None:
         raise IntegrityError("audit stays on the same plane", reason_code="CATALOG_SKU")
     if model.get("regulated") != "room 1 books, room 2 refuse":
         raise IntegrityError("regulated is Room 1 books, Room 2 refuse", reason_code="CATALOG_BUSINESS")
+    billing = body.get("billing")
+    if not isinstance(billing, dict):
+        raise IntegrityError("business needs unattached billing honesty", reason_code="CATALOG_BUSINESS")
+    if billing.get("sku") is True or billing.get("attached") is True:
+        raise IntegrityError("billing is not a SKU and is not attached", reason_code="CATALOG_BUSINESS")
+    if billing.get("provider") is not None:
+        raise IntegrityError("billing provider stays null", reason_code="CATALOG_BUSINESS")
+    if billing.get("recognized_revenue_claimed") is True:
+        raise IntegrityError("billing cannot claim recognized revenue", reason_code="REVENUE_NOT_CLAIMED")
+    if billing.get("ninth_complement") is True:
+        raise IntegrityError("billing is not a ninth Microsoft complement", reason_code="CATALOG_BUSINESS")
 
 
 def doctrine() -> dict[str, Any]:
@@ -213,6 +224,7 @@ def public_business() -> dict[str, Any]:
         "sales": cat["business"]["sales"],
         "delivery": cat["business"]["delivery"],
         "economics": cat["business"]["economics"],
+        "billing": dict(cat["business"].get("billing") or {}),
         "acceptance_kit": {
             "requires_sku": "L1",
             "cases": [case["id"] for case in cat["acceptance_kit"]["cases"]],
@@ -287,6 +299,8 @@ def public_business_plane() -> dict[str, Any]:
         "named_customers": 0,
         "billing_provider": False,
         "walk_away_recorded": False,
+        "walk_away_ledger": dict(success.get("walk_away_ledger") or {}),
+        "billing": dict(cat["business"].get("billing") or {}),
         "release": cat["entity"]["release"],
         "legal": cat["entity"]["legal"],
         "institute": cat["entity"]["institute"],

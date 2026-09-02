@@ -111,7 +111,23 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.69.0 (this tree)
+### 2.70.0 (this tree)
+
+Proof-day Floor and the instrument
+plane are catalog law: Client sits
+write rail, attention, seats, keep,
+and offer. Estate and audit stay on
+Entire, Examiner, Records, and Owner.
+Action schema, admit client, empty AI
+inventory, examiner prove, grant TTL
+outside the digest, and passkey
+identify. Not live. Not formally
+verified. Walk-away ledger count 0.
+Billing unattached. Not a ninth
+complement. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.69.0
 
 Audit and regulated-entity rooms are
 catalog law: internal audit keeps,

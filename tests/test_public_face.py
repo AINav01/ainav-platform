@@ -120,6 +120,13 @@ def test_public_face_is_static_catalog_sale():
     assert "view_assignment" in js_app
     assert "Sit the plane" in app
     assert "Walk the full plane" in app
+    assert 'data-walk="entire"' in app
+    assert 'id="app-floor-inventory"' in app
+    assert "paintInventory" in js_app
+    assert 'id === "entire" || id === "owner" || id === "it" || id === "remote"' in js_app
+    assert 'showGlance || id === "owner"' not in js_app
+    assert app.index('id="app-write-rail"') < app.index('id="app-search"')
+    assert app.count("Owner book") == 1
     assert 'data-view="client"' in app
     assert "paintFloor" in js_app
     assert 'setView(board.default_view || "client"' in js_app

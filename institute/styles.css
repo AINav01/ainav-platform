@@ -205,6 +205,12 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
   .sku-fold { grid-template-columns: 1fr; }
   .write-rail { grid-template-columns: 1fr; }
   .write-rail li { min-height: 0; }
+  #app-floor-estate .include-upsell,
+  #app-floor-audit .include-upsell,
+  #app-floor-estate .cards.dash,
+  #app-floor-audit .cards.dash {
+    grid-template-columns: 1fr;
+  }
 }
 
 main { padding: 0 6vw 8rem; }

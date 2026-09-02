@@ -9,7 +9,7 @@
     },
     client: {
       title: "Client executive",
-      note: "The client executive dashboard is this plane. Estate is the same plane: other uses, failsafe, records, maps. Included with L1. Not an upsell."
+      note: "Sit the ninety-minute proof-day Floor: write rail, attention, seats, keep, and included versus upsell. Estate and audit stay on Entire. Same dashboard included with L1."
     },
     owner: {
       title: "Owner / board",
@@ -210,8 +210,8 @@
     var estateRoot = $("app-floor-estate");
     var auditRoot = $("app-floor-audit");
     var showGlance = id === "client" || id === "entire" || id === "provision";
-    var showGovern = showGlance || id === "owner" || id === "it" || id === "remote";
-    var showEstate = showGovern || id === "examiner" || id === "records";
+    var showGovern = id === "entire" || id === "owner" || id === "it" || id === "remote";
+    var showEstate = id === "entire" || id === "examiner" || id === "records" || id === "owner";
     if (boardRoot) boardRoot.hidden = !showGlance;
     if (governRoot) governRoot.hidden = !showGovern;
     if (estateRoot) estateRoot.hidden = !showEstate;
@@ -300,7 +300,7 @@
     if (!root || !mfa) return;
     if (mfa.sku || mfa.mfa_live || mfa.is_admit) return;
     root.textContent = "";
-    ["internal", "remote"].forEach(function (key) {
+    ["internal", "remote", "passkey"].forEach(function (key) {
       var item = mfa[key];
       if (!item) return;
       var art = document.createElement("article");
@@ -309,10 +309,13 @@
       h.textContent = item.name || key;
       var price = document.createElement("p");
       price.className = "price";
-      price.textContent = item.mfa || "";
+      price.textContent = key === "passkey" ? (item.note || "Identify. Not admit.") : (item.mfa || "");
       var ul = document.createElement("ul");
       ul.className = "stack";
-      [item.identify, "Admit: " + String(!!item.admit), "MFA live: " + String(!!item.mfa_live)].forEach(function (line) {
+      var lines = key === "passkey"
+        ? ["Identify: " + String(!!item.identify), "Admit: " + String(!!item.is_admit), "Live: " + String(!!item.live)]
+        : [item.identify, "Admit: " + String(!!item.admit), "MFA live: " + String(!!item.mfa_live)];
+      lines.forEach(function (line) {
         if (!line) return;
         var li = document.createElement("li");
         li.textContent = line;
@@ -323,6 +326,27 @@
       art.appendChild(ul);
       root.appendChild(art);
     });
+  }
+
+  function paintInventory(root, inventory) {
+    if (!root || !inventory) return;
+    if (inventory.sku || inventory.live) return;
+    root.textContent = "";
+    var art = document.createElement("article");
+    art.setAttribute("data-tone", "hold");
+    var h = document.createElement("h3");
+    h.textContent = "Drafters";
+    var price = document.createElement("p");
+    price.className = "price";
+    var items = inventory.items || [];
+    price.textContent = String(items.length) + " / not seats";
+    var note = document.createElement("p");
+    note.className = "note";
+    note.textContent = inventory.note || "Empty fail-closed register.";
+    art.appendChild(h);
+    art.appendChild(price);
+    art.appendChild(note);
+    root.appendChild(art);
   }
 
   function paintRooms12(root, rooms) {
@@ -494,6 +518,10 @@
       if (estate.failsafe && estate.failsafe.lede) setText("app-floor-failsafe-lede", estate.failsafe.lede);
       paintNotes($("app-floor-failsafe"), estate.failsafe && estate.failsafe.verbs ? estate.failsafe.verbs : []);
       if (estate.executive && estate.executive.lede) setText("app-floor-exec-lede", estate.executive.lede);
+      var inventory = data.ai_inventory || {};
+      if (inventory.lede) setText("app-floor-inventory-lede", inventory.note);
+      else if (inventory.note) setText("app-floor-inventory-lede", inventory.note);
+      paintInventory($("app-floor-inventory"), inventory);
       paintOversee($("app-floor-exec"), [
         Object.assign({ name: "Owner / executive" }, estate.executive && estate.executive.owner ? estate.executive.owner : {}),
         Object.assign({ name: "Board" }, estate.executive && estate.executive.board ? estate.executive.board : {})
@@ -551,6 +579,15 @@
       });
     }
     setView(board.default_view || "client", data);
+    var walk = document.querySelector("[data-walk=entire]");
+    if (walk && !walk.getAttribute("data-bound")) {
+      walk.setAttribute("data-bound", "true");
+      walk.addEventListener("click", function (event) {
+        event.preventDefault();
+        setView("entire", data);
+        if (location.hash !== "#floor") location.hash = "floor";
+      });
+    }
   }
 
   function paragraph(text) {

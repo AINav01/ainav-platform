@@ -187,13 +187,19 @@ def run_and_apply(
     """Admit, then run the effect gate (optional SoR apply callback)."""
     from agent_gov.effect import EffectLedger
 
+    lock = load_lockfile(lockfile if lockfile is not None else default_lockfile())
     rec = admit(
         action,
-        lockfile if lockfile is not None else default_lockfile(),
+        lock,
         ledger=ledger or ConsumeLedger(),
         seat_a=seat_a,
         seat_b=seat_b,
         verifier=verifier,
     )
-    gate = effects if effects is not None else EffectLedger()
-    return gate.effect(rec["request_id"], rec["action_hash"], apply=apply)
+    gate = effects if effects is not None else EffectLedger(grant_ttl_seconds=lock.grant_ttl_seconds)
+    return gate.effect(
+        rec["request_id"],
+        rec["action_hash"],
+        apply=apply,
+        grant_ttl_seconds=lock.grant_ttl_seconds,
+    )

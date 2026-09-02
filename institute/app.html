@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://blue-river-010091a0f.7.azurestaticapps.net/app.html" />
   <meta name="theme-color" content="#100e0b" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=2.69.0" />
+  <link rel="stylesheet" href="styles.css?v=2.70.0" />
   <script type="application/ld+json" id="schema-graph">{"@context":"https://schema.org","@type":"WebApplication","name":"AINAV.Institute"}</script>
 </head>
 <body class="app-page" data-workspace="floor">
@@ -20,15 +20,6 @@
     <input id="nav-open" class="nav-check" type="checkbox" aria-label="Menu" />
     <label class="nav-toggle" for="nav-open">Menu</label>
     <div class="nav-wrap nav-menu">
-      <button type="button" class="ghost" popovertarget="app-owner-book">Owner book</button>
-      <div id="app-owner-book" popover class="owner-book">
-        <p class="book-label">Owner</p>
-        <a href="index.html#closed">Closed</a>
-        <a href="index.html#missing">Owner</a>
-        <a href="index.html#open">Open</a>
-        <a href="kit.html">Kit</a>
-        <a href="identify.html">Identify</a>
-      </div>
       <details class="nav-more">
         <summary>Owner book</summary>
         <div class="owner-book">
@@ -37,6 +28,8 @@
           <a href="index.html#missing">Owner</a>
           <a href="index.html#open">Open</a>
           <a href="index.html#stack-walk">Stack walk</a>
+          <a href="kit.html">Kit</a>
+          <a href="identify.html">Identify</a>
         </div>
       </details>
       <nav class="primary" aria-label="Primary">
@@ -51,7 +44,7 @@
 
   <div class="app-shell">
     <nav class="app-rail" aria-label="Workspaces">
-        <p class="app-rail-kicker">Application · 2.69.0</p>
+        <p class="app-rail-kicker">Application · 2.70.0</p>
       <a href="#floor" data-workspace="floor">Floor</a>
       <a href="#capital" data-workspace="capital">Capital</a>
       <a href="#business" data-workspace="business">Business</a>
@@ -63,10 +56,6 @@
     </nav>
 
     <main id="app-main">
-      <label class="field" for="app-search">Catalog search
-        <input id="app-search" type="search" autocomplete="off" spellcheck="false" placeholder="floor, capital, Inception, kit" />
-      </label>
-      <div id="app-search-out" class="app-search-out" aria-live="polite"></div>
       <ainav-honest class="app-honest" aria-label="Honesty">
         <article>
           <h2>Not a priced round</h2>
@@ -103,6 +92,10 @@
           <span>Signed L1 <b>0</b></span>
           <span>Seats <b>1 mailbox / 0 oid</b></span>
         </div>
+        <label class="field" for="app-search">Catalog search
+          <input id="app-search" type="search" autocomplete="off" spellcheck="false" placeholder="floor, capital, Inception, kit" />
+        </label>
+        <div id="app-search-out" class="app-search-out" aria-live="polite"></div>
         <div class="app-views" id="app-view-tabs" role="tablist" aria-label="Hierarchical views">
           <button type="button" role="tab" aria-selected="true" data-view="client">Client</button>
           <button type="button" role="tab" aria-selected="false" data-view="entire">Entire</button>
@@ -166,6 +159,9 @@
         <div id="app-floor-estate">
         <h2>Estate — same plane</h2>
         <p class="note" id="app-floor-estate-lede">Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU.</p>
+        <h2>AI inventory</h2>
+        <p class="note" id="app-floor-inventory-lede">Empty fail-closed register. Drafters are not seats. Invented names refused. Not a SKU.</p>
+        <div class="cards dash" id="app-floor-inventory"></div>
         <div class="include-upsell" id="app-floor-estate-glance"></div>
         <h2>Other uses</h2>
         <p class="note" id="app-floor-uses-lede">Same Job C. More privileged writes on the same plane. Lead stays the general journal.</p>
@@ -236,7 +232,8 @@
         <h2>Ledger</h2>
         <div class="cards dash" id="app-floor-tiles"></div>
         <p class="hero-actions">
-          <a class="ghost" href="control-plane.html">Walk the full plane</a>
+          <a class="ghost" href="#floor" data-walk="entire">Walk the full plane</a>
+          <a class="ghost" href="control-plane.html">Same as Floor Entire</a>
           <a class="ghost" href="index.html#buyer">The write</a>
         </p>
       </section>
@@ -397,10 +394,10 @@
     <span>AINAV.Institute</span>
     <span>Catalog-honest application. Custom dashboards are the same plane. Not a CMS. Not a priced round. Not LIVE_PIN_OK.</span>
   </footer>
-  <script src="kit/ainav-elements.js?v=2.69.0" defer></script>
-  <script src="kit/speculate.js?v=2.69.0" defer></script>
-  <script src="search.js?v=2.69.0" defer></script>
-  <script src="insights.js?v=2.69.0" defer></script>
-  <script src="app.js?v=2.69.0" defer></script>
+  <script src="kit/ainav-elements.js?v=2.70.0" defer></script>
+  <script src="kit/speculate.js?v=2.70.0" defer></script>
+  <script src="search.js?v=2.70.0" defer></script>
+  <script src="insights.js?v=2.70.0" defer></script>
+  <script src="app.js?v=2.70.0" defer></script>
 </body>
 </html>

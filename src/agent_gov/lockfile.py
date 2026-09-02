@@ -54,6 +54,7 @@ class Lockfile:
     required_action_fields: tuple[str, ...] = REQUIRED_ACTION_FIELDS
     invariants: dict[str, bool] = field(default_factory=lambda: dict(HARD_INVARIANTS))
     policy_hash: str = ""
+    grant_ttl_seconds: int | None = None
 
     def to_canonical(self) -> dict[str, Any]:
         return {
@@ -145,6 +146,17 @@ def load_lockfile(document: Mapping[str, Any] | Lockfile) -> Lockfile:
         inv_raw = document.get("invariants", HARD_INVARIANTS)
         if not isinstance(inv_raw, Mapping):
             raise LockfileError("lockfile.invariants must be a mapping")
+        ttl_raw = document.get("grant_ttl_seconds")
+        grant_ttl: int | None
+        if ttl_raw is None:
+            grant_ttl = None
+        else:
+            try:
+                grant_ttl = int(ttl_raw)
+            except (TypeError, ValueError) as exc:
+                raise LockfileError("lockfile.grant_ttl_seconds must be an integer") from exc
+            if grant_ttl < 1:
+                raise LockfileError("lockfile.grant_ttl_seconds must be a positive integer")
         lock = Lockfile(
             schema_version=str(document.get("schema_version", LOCKFILE_SCHEMA)),
             product=str(document.get("product", "job_c")),
@@ -154,6 +166,7 @@ def load_lockfile(document: Mapping[str, Any] | Lockfile) -> Lockfile:
             required_action_fields=_required_fields(document.get("required_action_fields")),
             invariants={str(k): _as_bool(v, str(k)) for k, v in dict(inv_raw).items()},
             policy_hash=str(document.get("policy_hash", "")),
+            grant_ttl_seconds=grant_ttl,
         )
     except LockfileError:
         raise
