@@ -111,7 +111,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.65.0 (this tree)
+### 2.66.0 (this tree)
+
+Org-chart view assignment is catalog
+law. Personalized Floor views come from
+the client org chart. Authorize and
+de-authorize are fail-closed. Internal
+and remote MFA identify; they do not
+admit. AINav, Inc. disclaimers sit on
+the board. Same dashboard included with
+L1. Not a second dashboard SKU. A green
+check is not `LIVE_PIN_OK`.
+
+### 2.65.0
 
 The Floor is the sit-down executive
 dashboard. Client view first. Write rail,

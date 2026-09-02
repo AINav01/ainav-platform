@@ -87,6 +87,17 @@ def test_public_face_is_static_catalog_sale():
     assert 'id="app-floor-attention"' in app
     assert 'id="app-floor-seats"' in app
     assert 'id="app-floor-offer"' in app
+    assert 'id="app-floor-govern"' in app
+    assert 'id="app-floor-assign"' in app
+    assert 'id="app-floor-auth"' in app
+    assert 'id="app-floor-mfa"' in app
+    assert 'id="app-floor-legal"' in app
+    assert "AINav, Inc. disclaimers" in app
+    assert 'data-view="remote"' in app
+    assert 'data-view="provision"' in app
+    assert "paintAssignment" in js_app
+    assert "paintMfa" in js_app
+    assert "view_assignment" in js_app
     assert "Sit the plane" in app
     assert "Walk the full plane" in app
     assert 'data-view="client"' in app
@@ -111,3 +122,6 @@ def test_public_face_is_static_catalog_sale():
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert plane.index("index.html#closed") < plane.index("index.html#missing")
     assert plane.index("index.html#missing") < plane.index("index.html#open")
+    assert 'id="plane-assign"' in plane
+    assert 'id="plane-mfa"' in plane
+    assert "AINav, Inc. disclaimers" in plane

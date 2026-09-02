@@ -22,7 +22,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
 - Investor: catalog list × zero booked × two-human close
 - Investor packet: letter to Cynthia Hodnett with the full upsell catalog, list prices, ultimate-plane insulation, and the human interface / executive dashboard. Not a priced round. Not a forecast.
-- Interface: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
+- Interface: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.

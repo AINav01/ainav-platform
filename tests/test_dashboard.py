@@ -147,6 +147,37 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert offer["first_glance"]["columns"][0]["upsell"] is False
     assert offer["first_glance"]["columns"][1]["upsell"] is True
     assert offer["attach_means"] == body["provision_bands"]["attach_means"]
+    assign = body["view_assignment"]
+    assert assign["sku"] is False
+    assert assign["same_dashboard"] is True
+    assert assign["included_with"] == "L1"
+    assert assign["named_assignments"] == []
+    assert assign["assignment_live"] is False
+    assert assign["department_ai_cannot_receive"] is True
+    assert assign["cloud_agent_cannot_assign"] is True
+    assert assign["provision"]["standard"] == "provision.standard"
+    assert assign["provision"]["options"] == "provision.advanced"
+    assert "client" in assign["provision"]["standard_seats"]
+    assert "paid_udual" in assign["provision"]["options_unlock"]
+    assert assign["authorize"]["fail_closed"] is True
+    assert assign["deauthorize"]["effect"] == "console_hidden"
+    assert assign["mfa"]["mfa_live"] is False
+    assert assign["mfa"]["is_admit"] is False
+    assert assign["mfa"]["internal"]["admit"] is False
+    assert assign["mfa"]["remote"]["same_plane"] is True
+    assert assign["disclaimers"]["legal"] == "AINav, Inc."
+    assert assign["disclaimers"]["uses"] == "floor.protect"
+    assert {item["id"] for item in assign["advantage"]["items"]} >= {
+        "org_chart_assignment",
+        "identify_not_admit",
+        "independence",
+    }
+    dept_ids = {item["id"] for item in body["departments"]}
+    covered = {node for row in assign["matrix"] for node in row["org_nodes"]}
+    assert covered == dept_ids
+    admit_rows = [row for row in assign["matrix"] if row["org_role"] == "admit"]
+    assert all(row["may_bind"] is True for row in admit_rows)
+    assert all(row["may_bind"] is not True for row in assign["matrix"] if row["org_role"] != "admit")
     treasury = next(item for item in body["provision_bands"]["included_l1"] if item["id"] == "industry.treasury")
     assert treasury["attach"] == "included with L1"
     sales = next(item for item in body["provision_bands"]["included_udual"] if item["id"] == "industry.sales")
@@ -215,6 +246,11 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "standard included" in md.lower() or "included seating" in md.lower()
     assert "upsell band" in md.lower()
     assert "sit the plane" in md.lower()
+    assert "org-chart view assignment" in md.lower()
+    assert "authorize and de-authorize" in md.lower()
+    assert "internal and remote mfa" in md.lower()
+    assert "ainav, inc." in md.lower()
+    assert "does not admit" in md.lower()
     assert "not a gift" in md.lower() or "included with l1 · upsell band" in md.lower()
     assert "not a sku" in md.lower()
     assert "$0" in md
@@ -249,6 +285,10 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "upsell band" in html.lower()
     assert "Included with L1 · upsell band" in html
     assert "Executive board — sit the plane" in html
+    assert "Org-chart view assignment" in html
+    assert "Authorize and de-authorize" in html
+    assert "Internal and remote MFA" in html
+    assert "AINav, Inc." in html
     assert "sit the plane" in html.lower()
     assert "not a gift" in html.lower()
     assert "fourth sku" in html.lower()
@@ -361,6 +401,27 @@ def test_plane_interface_validators_refuse_fiction():
     board_view["plane_interface"]["client_dashboard"]["executive_board"]["default_view"] = "entire"
     with pytest.raises(IntegrityError):
         validate_catalog(board_view)
+    assign_sku = copy.deepcopy(cat)
+    assign_sku["plane_interface"]["view_assignment"]["sku"] = True
+    with pytest.raises(IntegrityError) as assign_exc:
+        validate_catalog(assign_sku)
+    assert assign_exc.value.reason_code == "CATALOG_SKU"
+    assign_live = copy.deepcopy(cat)
+    assign_live["plane_interface"]["view_assignment"]["assignment_live"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(assign_live)
+    mfa_admit = copy.deepcopy(cat)
+    mfa_admit["plane_interface"]["view_assignment"]["mfa"]["is_admit"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(mfa_admit)
+    mfa_live = copy.deepcopy(cat)
+    mfa_live["plane_interface"]["view_assignment"]["mfa"]["mfa_live"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(mfa_live)
+    named = copy.deepcopy(cat)
+    named["plane_interface"]["view_assignment"]["named_assignments"] = ["invented"]
+    with pytest.raises(IntegrityError):
+        validate_catalog(named)
     two_dash = copy.deepcopy(cat)
     two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
     with pytest.raises(IntegrityError):
@@ -599,11 +660,15 @@ def test_institute_control_plane_matches_catalog():
     assert "control-plane.html" in html
     assert "control-plane.json" in js
     assert "plane-depts" in js
+    assert "plane-assign" in js
     assert "plane-maps" in js
     floor = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert "Executive control-plane dashboard" in floor
     assert 'id="plane-write-rail"' in floor
     assert 'id="plane-dash-lede"' in floor
+    assert 'id="plane-assign"' in floor
+    assert 'id="plane-mfa"' in floor
+    assert 'id="plane-legal"' in floor
     assert 'id="plane-tiles"' in floor
     assert 'id="plane-cascade"' in floor
     assert 'data-keep="short"' in floor

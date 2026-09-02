@@ -375,6 +375,7 @@ def public_dashboard() -> dict[str, Any]:
         "client_dashboard": dict(body.get("client_dashboard") or {}),
         "provision_bands": _provision_bands(cat, body),
         "included_and_upsells": dict(body.get("included_and_upsells") or {}),
+        "view_assignment": dict(body.get("view_assignment") or {}),
         "must_have": must,
         "floor": dict(body.get("floor") or {}),
         "communications": [dict(item) for item in body.get("communications") or []],
@@ -702,6 +703,53 @@ def dashboard_markdown() -> str:
             str(item.get("name") or item.get("id") or "")
             for item in exec_board.get("sections") or []
         ),
+        "",
+        "## Org-chart view assignment",
+        "",
+        f"{((body.get('view_assignment') or {}).get('first_glance') or {}).get('lede') or ''} "
+        f"{(body.get('view_assignment') or {}).get('thesis') or ''} "
+        f"SKU: {str((body.get('view_assignment') or {}).get('sku')).lower()}. "
+        f"Same dashboard: {str((body.get('view_assignment') or {}).get('same_dashboard')).lower()}. "
+        f"Named assignments: {len((body.get('view_assignment') or {}).get('named_assignments') or [])}.",
+        "",
+    ]
+    depts = {item.get("id"): item for item in body.get("departments") or []}
+    for row in (body.get("view_assignment") or {}).get("matrix") or []:
+        nodes = row.get("org_nodes") or []
+        names = ", ".join(str((depts.get(node) or {}).get("name") or node) for node in nodes)
+        lines.append(
+            f"- **{names}** — {row.get('org_role')}. Default: {row.get('default_view')}. "
+            f"May bind: {str(row.get('may_bind')).lower()}. "
+            f"Band: {row.get('provision_band')}."
+        )
+    auth = (body.get("view_assignment") or {}).get("authorize") or {}
+    deauth = (body.get("view_assignment") or {}).get("deauthorize") or {}
+    mfa = (body.get("view_assignment") or {}).get("mfa") or {}
+    disc = (body.get("view_assignment") or {}).get("disclaimers") or {}
+    lines += [
+        "",
+        "## Authorize and de-authorize",
+        "",
+        f"{auth.get('note') or ''} Path: "
+        + " → ".join(str(item) for item in auth.get("path") or [])
+        + f". Fail-closed: {str(auth.get('fail_closed')).lower()}. "
+        f"De-authorize effect: {deauth.get('effect') or 'console_hidden'}. "
+        f"{deauth.get('note') or ''}",
+        "",
+        "## Internal and remote MFA",
+        "",
+        f"{mfa.get('note') or ''} Internal: {(mfa.get('internal') or {}).get('mfa') or ''}. "
+        f"Remote: {(mfa.get('remote') or {}).get('mfa') or ''}. "
+        f"MFA live: {str(mfa.get('mfa_live')).lower()}. Admit: {str(mfa.get('is_admit')).lower()}.",
+        "",
+        f"## {disc.get('legal') or 'AINav, Inc.'} disclaimers",
+        "",
+        f"{disc.get('lede') or ''}",
+        "",
+    ]
+    for item in disc.get("items") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    lines += [
         "",
         "## Included with L1 · upsell band",
         "",
@@ -1172,6 +1220,43 @@ def dashboard_html() -> str:
         for item in offer_glance.get("columns") or []
     )
     offer_refuse = "".join(f"<li>{html.escape(item)}</li>" for item in offer.get("refuse") or [])
+    assign = body.get("view_assignment") or {}
+    assign_depts = {item.get("id"): item for item in body.get("departments") or []}
+    assign_rows = "".join(
+        (
+            "<tr>"
+            f"<td>{html.escape(', '.join(str((assign_depts.get(node) or {}).get('name') or node) for node in (row.get('org_nodes') or [])))}</td>"
+            f"<td>{html.escape(str(row.get('org_role') or ''))}</td>"
+            f"<td>{html.escape(str(row.get('default_view') or ''))}</td>"
+            f"<td>{html.escape(str(row.get('may_bind')).lower())}</td>"
+            f"<td>{html.escape(str(row.get('provision_band') or ''))}</td>"
+            "</tr>"
+        )
+        for row in assign.get("matrix") or []
+    )
+    assign_auth = assign.get("authorize") or {}
+    assign_deauth = assign.get("deauthorize") or {}
+    assign_mfa = assign.get("mfa") or {}
+    assign_disc = assign.get("disclaimers") or {}
+    assign_disc_items = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in assign_disc.get("items") or []
+    )
+    assign_mfa_cols = "".join(
+        (
+            f"<article data-band=\"{'advanced' if key == 'remote' else 'standard'}\">"
+            f"<h3>{html.escape(str((assign_mfa.get(key) or {}).get('name') or key))}</h3>"
+            f"<p class=\"price\">{html.escape(str((assign_mfa.get(key) or {}).get('mfa') or ''))}</p>"
+            f"<p class=\"note\">{html.escape(str((assign_mfa.get(key) or {}).get('identify') or ''))}. "
+            f"Admit: {html.escape(str((assign_mfa.get(key) or {}).get('admit')).lower())}. "
+            f"MFA live: {html.escape(str((assign_mfa.get(key) or {}).get('mfa_live')).lower())}.</p>"
+            "</article>"
+        )
+        for key in ("internal", "remote")
+    )
     dash_glance = (body.get("dashboard") or {}).get("first_glance") or {}
     rail_items = list(dash_glance.get("write_rail") or [])
     if not rail_items:
@@ -1334,6 +1419,20 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <div class="rail">{write_rail}</div>
 <h2>Executive board — sit the plane</h2>
 <p class="note">{exec_board_lede} Sections: {exec_board_sections}. Default view: {html.escape(str(exec_board.get('default_view') or 'client'))}. Not a second dashboard SKU.</p>
+<h2>Org-chart view assignment</h2>
+<p class="note">{html.escape(str((assign.get('first_glance') or {}).get('lede') or ''))} {html.escape(str(assign.get('thesis') or ''))} SKU: {html.escape(str(assign.get('sku')).lower())}. Same dashboard: {html.escape(str(assign.get('same_dashboard')).lower())}. Named assignments: {len(assign.get('named_assignments') or [])}.</p>
+<table>
+<thead><tr><th>Department</th><th>Role</th><th>Default view</th><th>May bind</th><th>Band</th></tr></thead>
+<tbody>{assign_rows}</tbody>
+</table>
+<h2>Authorize and de-authorize</h2>
+<p class="note">{html.escape(str(assign_auth.get('note') or ''))} Fail-closed: {html.escape(str(assign_auth.get('fail_closed')).lower())}. De-authorize: {html.escape(str(assign_deauth.get('effect') or 'console_hidden'))}. {html.escape(str(assign_deauth.get('note') or ''))}</p>
+<h2>Internal and remote MFA</h2>
+<p class="note">{html.escape(str(assign_mfa.get('note') or ''))}</p>
+<div class="bands">{assign_mfa_cols}</div>
+<h2>{html.escape(str(assign_disc.get('legal') or 'AINav, Inc.'))} disclaimers</h2>
+<p class="note">{html.escape(str(assign_disc.get('lede') or ''))}</p>
+<div class="lifecycle">{assign_disc_items}</div>
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <h2>Success program — bake-off</h2>

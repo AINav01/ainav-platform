@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.65.0"
+    assert cat["entity"]["release"] == "2.66.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -127,6 +127,8 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     assert "authorization lifecycle" in cat["equations"]["interface"]
     assert "sealed records" in cat["equations"]["interface"]
     assert "provision bands" in cat["equations"]["interface"]
+    assert "view assignment" in cat["equations"]["interface"]
+    assert "MFA identify" in cat["equations"]["interface"]
     floor_must = cat["plane_interface"]["floor"]["must_have"]
     assert floor_must["mandated"] is False
     assert floor_must["certified"] is False
@@ -157,6 +159,20 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
         "keep",
         "offer",
     ]
+    assign = cat["plane_interface"]["view_assignment"]
+    assert assign["sku"] is False
+    assert assign["same_dashboard"] is True
+    assert assign["included_with"] == "L1"
+    assert assign["named_assignments"] == []
+    assert assign["assignment_live"] is False
+    assert assign["mfa"]["mfa_live"] is False
+    assert assign["mfa"]["is_admit"] is False
+    assert assign["disclaimers"]["legal"] == "AINav, Inc."
+    assert assign["authorize"]["fail_closed"] is True
+    assert assign["deauthorize"]["fail_closed"] is True
+    assert {row["org_nodes"][0] for row in assign["matrix"]} == {
+        item["id"] for item in cat["client_org"]["departments"]
+    }
     assert cat["plane_interface"]["dashboard"]["upsell"] is False
     assert "catalog list" in cat["equations"]["investor"]
     assert cat["investor"]["priced_round"] is False

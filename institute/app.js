@@ -22,6 +22,22 @@
     examiner: {
       title: "Examiner",
       note: "Second record and weekly keep. P-ADM is not attached. Claimed maps stay false."
+    },
+    remote: {
+      title: "Remote human",
+      note: "Same Entra object id from any network. MFA may identify. It does not admit."
+    },
+    it: {
+      title: "IT / identity",
+      note: "Host Copilot and agents. PIM is not dual. MFA is identify, not admit."
+    },
+    provision: {
+      title: "Provision / upsells",
+      note: "Standard seating plus options. Not a second dashboard SKU. U-DUAL never free."
+    },
+    records: {
+      title: "Records / keep",
+      note: "First record, second record, weekly keep. Not a certificate."
     }
   };
 
@@ -190,7 +206,11 @@
     });
     paintTiles($("app-floor-tiles"), tilesForView(id, data.tiles, views, board));
     var boardRoot = $("app-floor-board");
-    if (boardRoot) boardRoot.hidden = !(id === "client" || id === "entire" || id === "provision");
+    var governRoot = $("app-floor-govern");
+    var showGlance = id === "client" || id === "entire" || id === "provision";
+    var showGovern = showGlance || id === "owner" || id === "it" || id === "remote";
+    if (boardRoot) boardRoot.hidden = !showGlance;
+    if (governRoot) governRoot.hidden = !showGovern;
   }
 
   function paintOfferBoard(root, offer) {
@@ -220,6 +240,103 @@
     });
   }
 
+  function paintAssignment(root, assign, departments) {
+    if (!root) return;
+    var tbody = root.querySelector("tbody") || root;
+    tbody.textContent = "";
+    var depts = {};
+    (departments || []).forEach(function (item) {
+      if (item && item.id) depts[item.id] = item;
+    });
+    (assign.matrix || []).forEach(function (row) {
+      var tr = document.createElement("tr");
+      var names = (row.org_nodes || [])
+        .map(function (id) {
+          return (depts[id] && depts[id].name) || id;
+        })
+        .join(", ");
+      [
+        names,
+        row.org_role || "",
+        row.default_view || "",
+        row.may_bind === true ? "yes" : "no",
+        row.provision_band === "provision.advanced" ? "options" : "standard"
+      ].forEach(function (value) {
+        var td = document.createElement("td");
+        td.textContent = value;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function paintLifecycle(root, items, priceKey) {
+    if (!root || !items || !items.length) return;
+    root.textContent = "";
+    items.forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", item.live === true ? "list" : "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.name || item.label || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item[priceKey] || item.grants || item.effect || "";
+      var note = document.createElement("p");
+      note.className = "note";
+      note.textContent = item.note || "";
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(note);
+      root.appendChild(art);
+    });
+  }
+
+  function paintMfa(root, mfa) {
+    if (!root || !mfa) return;
+    if (mfa.sku || mfa.mfa_live || mfa.is_admit) return;
+    root.textContent = "";
+    ["internal", "remote"].forEach(function (key) {
+      var item = mfa[key];
+      if (!item) return;
+      var art = document.createElement("article");
+      art.setAttribute("data-band", key === "remote" ? "advanced" : "standard");
+      var h = document.createElement("h3");
+      h.textContent = item.name || key;
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.mfa || "";
+      var ul = document.createElement("ul");
+      ul.className = "stack";
+      [item.identify, "Admit: " + String(!!item.admit), "MFA live: " + String(!!item.mfa_live)].forEach(function (line) {
+        if (!line) return;
+        var li = document.createElement("li");
+        li.textContent = line;
+        ul.appendChild(li);
+      });
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(ul);
+      root.appendChild(art);
+    });
+  }
+
+  function paintNotes(root, items) {
+    if (!root || !items || !items.length) return;
+    root.textContent = "";
+    items.forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.name || "";
+      var p = document.createElement("p");
+      p.className = "note";
+      p.textContent = item.note || "";
+      art.appendChild(h);
+      art.appendChild(p);
+      root.appendChild(art);
+    });
+  }
+
   function paintFloor(data) {
     if (!data || data.sku || data.live_pin_ok) return;
     var glance = (data.dashboard && data.dashboard.first_glance) || {};
@@ -237,6 +354,22 @@
     var offer = data.included_and_upsells || {};
     if (offer.first_glance && offer.first_glance.lede) setText("app-floor-offer-lede", offer.first_glance.lede);
     paintOfferBoard($("app-floor-offer"), offer);
+    var assign = data.view_assignment || {};
+    if (assign.sku || assign.upsell || assign.assignment_live) return;
+    var glanceA = assign.first_glance || {};
+    if (glanceA.lede) setText("app-floor-assign-lede", glanceA.lede);
+    paintAssignment($("app-floor-assign"), assign, data.departments);
+    var auth = assign.authorize || {};
+    if (auth.note) setText("app-floor-auth-lede", auth.note);
+    paintLifecycle($("app-floor-auth"), data.authorizations || [], "grants");
+    paintLifecycle($("app-floor-revoke"), data.revocations || [], "effect");
+    var mfa = assign.mfa || {};
+    if (mfa.note) setText("app-floor-mfa-lede", mfa.note);
+    paintMfa($("app-floor-mfa"), mfa);
+    var disc = assign.disclaimers || {};
+    if (disc.lede) setText("app-floor-legal-lede", disc.lede);
+    paintNotes($("app-floor-legal"), disc.items || []);
+    paintNotes($("app-floor-advantage"), (assign.advantage && assign.advantage.items) || []);
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");

@@ -468,6 +468,11 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "interface equation must keep authorization lifecycle and sealed records",
             reason_code="CATALOG_EQUATION",
         )
+    if "view assignment" not in interface or "mfa identify" not in interface:
+        raise IntegrityError(
+            "interface equation must keep view assignment and MFA identify",
+            reason_code="CATALOG_EQUATION",
+        )
     if "must-have" not in interface:
         raise IntegrityError(
             "interface equation must keep must-have",
@@ -1244,6 +1249,182 @@ def _validate_face_kit(kit: Any) -> None:
         raise IntegrityError(f"application kit missing {missing[0]}", reason_code="CATALOG_PLANE")
 
 
+def _validate_view_assignment(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    assign = body.get("view_assignment")
+    if not isinstance(assign, dict):
+        raise IntegrityError("catalog missing view assignment", reason_code="CATALOG_PLANE")
+    if assign.get("sku") is True or assign.get("upsell") is True:
+        raise IntegrityError("view assignment is not a SKU", reason_code="CATALOG_SKU")
+    if assign.get("live") is True or assign.get("live_pin_ok") is True or assign.get("assignment_live") is True:
+        raise IntegrityError("view assignment cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if assign.get("same_dashboard") is not True:
+        raise IntegrityError("view assignment is the same dashboard", reason_code="CATALOG_PLANE")
+    if assign.get("included_with") != "L1":
+        raise IntegrityError("view assignment is included with L1", reason_code="CATALOG_PLANE")
+    if assign.get("do_not_invent_names") is not True:
+        raise IntegrityError("view assignment cannot invent named heads", reason_code="CATALOG_PLANE")
+    if list(assign.get("named_assignments") or []) != []:
+        raise IntegrityError("named assignments stay empty", reason_code="CATALOG_PLANE")
+    if assign.get("department_ai_cannot_receive") is not True:
+        raise IntegrityError("department AI cannot receive a view assignment", reason_code="CATALOG_PLANE")
+    if assign.get("cloud_agent_cannot_assign") is not True:
+        raise IntegrityError("Cloud Agent cannot assign views", reason_code="CATALOG_PLANE")
+    if assign.get("duty_aware") is not True or assign.get("zero_standing") is not True:
+        raise IntegrityError("view assignment is duty-aware and zero-standing", reason_code="CATALOG_PLANE")
+    thesis = str(assign.get("thesis") or "").lower()
+    for stem in ("org chart", "one dashboard", "fail-closed", "mfa", "does not admit"):
+        if stem not in thesis:
+            raise IntegrityError(f"view assignment thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    glance = assign.get("first_glance") or {}
+    if glance.get("sku") is True:
+        raise IntegrityError("view assignment first glance is not a SKU", reason_code="CATALOG_SKU")
+    if str(glance.get("legal") or "") != str((catalog.get("entity") or {}).get("legal") or ""):
+        raise IntegrityError("view assignment legal is AINav, Inc.", reason_code="CATALOG_PLANE")
+    lede = str(glance.get("lede") or "").lower()
+    if "org chart" not in lede or "fail-closed" not in lede or "does not admit" not in lede:
+        raise IntegrityError("view assignment first glance is org-chart, fail-closed, MFA identify", reason_code="CATALOG_PLANE")
+    provision = assign.get("provision") or {}
+    if provision.get("standard") != "provision.standard" or provision.get("options") != "provision.advanced":
+        raise IntegrityError("view assignment provision is standard plus options", reason_code="CATALOG_PLANE")
+    if provision.get("week_one") != "provisioning.standard_l1":
+        raise IntegrityError("view assignment week-one stays standard_l1", reason_code="CATALOG_PLANE")
+    seats = list(provision.get("standard_seats") or [])
+    for needed in ("client", "seats", "owner", "examiner", "remote", "it", "provision", "records"):
+        if needed not in seats:
+            raise IntegrityError(f"standard seats must include {needed}", reason_code="CATALOG_PLANE")
+    unlock = [str(item).lower() for item in provision.get("options_unlock") or []]
+    for needed in ("priced_desks", "padm_keep", "paid_udual", "hours"):
+        if needed not in unlock:
+            raise IntegrityError("options unlock priced desks, keep, paid U-DUAL, and hours", reason_code="CATALOG_PLANE")
+    view_ids = {item.get("id") for item in body.get("views") or [] if isinstance(item, dict)}
+    depts = {
+        item.get("id"): item
+        for item in ((catalog.get("client_org") or {}).get("departments") or [])
+        if isinstance(item, dict)
+    }
+    covered: set[str] = set()
+    matrix = assign.get("matrix") or []
+    if len(matrix) != len(depts):
+        raise IntegrityError("view assignment matrix covers every client department", reason_code="CATALOG_PLANE")
+    for row in matrix:
+        if not isinstance(row, dict):
+            raise IntegrityError("view assignment matrix row is an object", reason_code="CATALOG_PLANE")
+        nodes = list(row.get("org_nodes") or [])
+        if not nodes:
+            raise IntegrityError("view assignment row needs org nodes", reason_code="CATALOG_PLANE")
+        for node in nodes:
+            if node not in depts:
+                raise IntegrityError(f"view assignment unknown org node {node}", reason_code="CATALOG_PLANE")
+            if node in covered:
+                raise IntegrityError("view assignment org node is unique", reason_code="CATALOG_PLANE")
+            covered.add(node)
+            if depts[node].get("role") != row.get("org_role"):
+                raise IntegrityError("view assignment role must match the org chart", reason_code="CATALOG_PLANE")
+        default = row.get("default_view")
+        allowed = list(row.get("allowed_views") or [])
+        if default not in allowed:
+            raise IntegrityError("default view must be allowed", reason_code="CATALOG_PLANE")
+        for view in allowed:
+            if view not in view_ids:
+                raise IntegrityError(f"view assignment unknown view {view}", reason_code="CATALOG_PLANE")
+        if row.get("org_role") == "admit":
+            if row.get("may_bind") is not True:
+                raise IntegrityError("admit roles may bind", reason_code="CATALOG_PLANE")
+            if row.get("seat") not in {"seat_a", "seat_b"}:
+                raise IntegrityError("admit assignment names seat A or seat B", reason_code="CATALOG_PLANE")
+        elif row.get("may_bind") is True:
+            raise IntegrityError("only admit roles may bind", reason_code="CATALOG_PLANE")
+        band = row.get("provision_band")
+        if band not in {"provision.standard", "provision.advanced"}:
+            raise IntegrityError("assignment band is standard or advanced provision", reason_code="CATALOG_PLANE")
+    if covered != set(depts):
+        raise IntegrityError("view assignment must cover the org chart", reason_code="CATALOG_PLANE")
+    auth = assign.get("authorize") or {}
+    if auth.get("sku") is True or auth.get("live") is True or auth.get("standing") is True:
+        raise IntegrityError("authorize stays zero-standing and not a SKU", reason_code="CATALOG_PLANE")
+    if auth.get("fail_closed") is not True:
+        raise IntegrityError("authorize is fail-closed", reason_code="CATALOG_PLANE")
+    if auth.get("uses") != "authorizations":
+        raise IntegrityError("authorize uses the authorization lifecycle", reason_code="CATALOG_PLANE")
+    if "seat_bind" not in (auth.get("requires_dual_humans_for") or []):
+        raise IntegrityError("seat bind requires two humans", reason_code="CATALOG_PLANE")
+    if list(auth.get("path") or []) != ["identify", "view", "seat", "bind"]:
+        raise IntegrityError("authorize path is identify, view, seat, bind", reason_code="CATALOG_PLANE")
+    deauth = assign.get("deauthorize") or {}
+    if deauth.get("sku") is True or deauth.get("live") is True or deauth.get("standing") is True:
+        raise IntegrityError("de-authorize stays zero-standing and not a SKU", reason_code="CATALOG_PLANE")
+    if deauth.get("fail_closed") is not True:
+        raise IntegrityError("de-authorize is fail-closed", reason_code="CATALOG_PLANE")
+    if deauth.get("uses") != "revocations":
+        raise IntegrityError("de-authorize uses revocations", reason_code="CATALOG_PLANE")
+    if deauth.get("effect") != "console_hidden":
+        raise IntegrityError("de-authorize hides the console", reason_code="CATALOG_PLANE")
+    by = set(deauth.get("by") or [])
+    if not {"freeze", "seat_revoke", "view_revoke"} <= by:
+        raise IntegrityError("de-authorize by freeze, seat revoke, and view revoke", reason_code="CATALOG_PLANE")
+    if "seat_revoke" not in (deauth.get("requires_dual_humans_for") or []):
+        raise IntegrityError("seat revoke requires two humans", reason_code="CATALOG_PLANE")
+    mfa = assign.get("mfa") or {}
+    if mfa.get("sku") is True:
+        raise IntegrityError("MFA is not a SKU", reason_code="CATALOG_SKU")
+    if mfa.get("live") is True or mfa.get("mfa_live") is True:
+        raise IntegrityError("MFA cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if mfa.get("is_admit") is True:
+        raise IntegrityError("MFA is not admit", reason_code="CATALOG_PLANE")
+    if mfa.get("same_plane") is not True or mfa.get("vpn_sku") is True:
+        raise IntegrityError("remote MFA is the same plane, not a VPN SKU", reason_code="CATALOG_PLANE")
+    if mfa.get("pim_is_not_dual") is not True:
+        raise IntegrityError("PIM is not dual admit", reason_code="CATALOG_PLANE")
+    internal = mfa.get("internal") or {}
+    remote = mfa.get("remote") or {}
+    if internal.get("admit") is True or remote.get("admit") is True:
+        raise IntegrityError("internal and remote MFA do not admit", reason_code="CATALOG_PLANE")
+    if internal.get("mfa_live") is True or remote.get("mfa_live") is True:
+        raise IntegrityError("MFA cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if remote.get("same_plane") is not True or remote.get("vpn_sku") is True:
+        raise IntegrityError("remote MFA is the same plane", reason_code="CATALOG_PLANE")
+    mfa_note = str(mfa.get("note") or "").lower()
+    if "identify" not in mfa_note or "not dual admit" not in mfa_note or "wired live" not in mfa_note:
+        raise IntegrityError("MFA note is identify, not admit, not live", reason_code="CATALOG_PLANE")
+    disc = assign.get("disclaimers") or {}
+    if str(disc.get("legal") or "") != str((catalog.get("entity") or {}).get("legal") or ""):
+        raise IntegrityError("disclaimers are AINav, Inc.", reason_code="CATALOG_PLANE")
+    if disc.get("sku") is True or disc.get("certified") is True or disc.get("counsel") is True:
+        raise IntegrityError("disclaimers are not a SKU, certificate, or counsel", reason_code="CATALOG_PLANE")
+    if disc.get("signature") is True or disc.get("live_pin_ok") is True:
+        raise IntegrityError("disclaimers are not a signature or LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    if disc.get("uses") != "floor.protect":
+        raise IntegrityError("disclaimers use floor.protect", reason_code="CATALOG_PLANE")
+    protect = ((body.get("floor") or {}).get("protect") or {})
+    prot_items = {item.get("id"): item for item in protect.get("items") or [] if isinstance(item, dict)}
+    disc_items = {item.get("id"): item for item in disc.get("items") or [] if isinstance(item, dict)}
+    for needed in ("disclaimer", "attest", "policy", "update"):
+        if needed not in disc_items:
+            raise IntegrityError(f"disclaimers must include {needed}", reason_code="CATALOG_PLANE")
+        if str((disc_items.get(needed) or {}).get("note") or "") != str((prot_items.get(needed) or {}).get("note") or ""):
+            raise IntegrityError(f"disclaimer {needed} must match floor.protect", reason_code="CATALOG_PLANE")
+    disc_lede = str(disc.get("lede") or "").lower()
+    if "ainav, inc" not in disc_lede or "not counsel" not in disc_lede or "not a certificate" not in disc_lede:
+        raise IntegrityError("disclaimer lede is AINav, Inc. catalog-map", reason_code="CATALOG_PLANE")
+    advantage = assign.get("advantage") or {}
+    if advantage.get("sku") is True or advantage.get("live") is True:
+        raise IntegrityError("advantage is not a SKU or live", reason_code="CATALOG_PLANE")
+    adv_ids = [item.get("id") for item in advantage.get("items") or [] if isinstance(item, dict)]
+    for needed in ("org_chart_assignment", "fail_closed_revoke", "identify_not_admit", "duty_aware", "independence"):
+        if needed not in adv_ids:
+            raise IntegrityError(f"advantage must include {needed}", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in assign.get("refuse") or []]
+    for stem in (
+        "view assignment as sku",
+        "personalized dashboard as sku",
+        "mfa as dual admit",
+        "mfa live claimed",
+        "dashboard as sku",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("view assignment must refuse " + stem, reason_code="CATALOG_PLANE")
+
+
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     body = catalog.get("plane_interface")
     if not isinstance(body, dict):
@@ -1625,6 +1806,10 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         "new entra app",
         "graph write roles",
         "cloud agent clicks unblock",
+        "view assignment as sku",
+        "personalized dashboard as sku",
+        "mfa as dual admit",
+        "mfa live claimed",
     ):
         if stem not in refuse_blob:
             raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")
@@ -1727,6 +1912,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("rehearsal walks the public wedge", reason_code="CATALOG_PLANE")
     if rehearsal.get("named_humans") is True:
         raise IntegrityError("rehearsal cannot invent named humans", reason_code="CATALOG_PLANE")
+    _validate_view_assignment(catalog, body)
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

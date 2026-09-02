@@ -413,6 +413,46 @@
       }, function (item) {
         return item.role || "";
       });
+      var assign = data.view_assignment || {};
+      if (assign.first_glance && assign.first_glance.lede) set("plane-assign-lede", assign.first_glance.lede);
+      var deptsById = {};
+      (data.departments || []).forEach(function (item) {
+        if (item && item.id) deptsById[item.id] = item;
+      });
+      fillRows("plane-assign", assign.matrix || [], function (row) {
+        var names = (row.org_nodes || [])
+          .map(function (id) {
+            return (deptsById[id] && deptsById[id].name) || id;
+          })
+          .join(", ");
+        return [
+          names,
+          row.org_role || "",
+          row.default_view || "",
+          row.may_bind === true ? "yes" : "no",
+          row.provision_band === "provision.advanced" ? "options" : "standard"
+        ];
+      });
+      if (assign.mfa && assign.mfa.note) set("plane-mfa-lede", assign.mfa.note);
+      var mfaRoot = document.getElementById("plane-mfa");
+      if (mfaRoot && assign.mfa && !assign.mfa.sku && !assign.mfa.mfa_live && !assign.mfa.is_admit) {
+        mfaRoot.textContent = "";
+        ["internal", "remote"].forEach(function (key) {
+          var item = assign.mfa[key];
+          if (!item) return;
+          card(mfaRoot, {
+            name: item.name || key,
+            state: item.mfa || "",
+            note: (item.identify || "") + ". Admit: " + String(!!item.admit) + ". MFA live: " + String(!!item.mfa_live)
+          }, function (art) {
+            art.setAttribute("data-band", key === "remote" ? "advanced" : "standard");
+          });
+        });
+      }
+      if (assign.disclaimers && assign.disclaimers.lede) set("plane-legal-lede", assign.disclaimers.lede);
+      paintBoard("plane-legal", assign.disclaimers && assign.disclaimers.items ? assign.disclaimers.items : [], function () {
+        return "AINav, Inc.";
+      });
       fillRows("plane-maps", data.maps || [], function (item) {
         return [item.name, item.maps_to || "", item.scope || "", "claimed=" + String(item.claimed)];
       });
