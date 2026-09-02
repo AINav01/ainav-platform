@@ -757,54 +757,28 @@ def test_institute_control_plane_matches_catalog():
     assert "plane-assign" in js
     assert "plane-maps" in js
     floor = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    app = Path("institute/app.html").read_text(encoding="utf-8")
     assert "Executive control-plane dashboard" in floor
-    assert 'id="plane-write-rail"' in floor
     assert 'id="plane-dash-lede"' in floor
-    assert 'id="plane-assign"' in floor
-    assert 'id="plane-estate-lede"' in floor
-    assert 'id="plane-uses"' in floor
-    assert 'id="plane-failsafe"' in floor
-    assert 'id="plane-audit-lede"' in floor
-    assert 'id="plane-rooms12"' in floor
-    assert 'id="plane-regulated"' in floor
-    assert floor.index('id="plane-estate-lede"') < floor.index('id="plane-audit-lede"')
-    assert floor.index('id="plane-audit-lede"') < floor.index('id="plane-assign"')
-    assert 'id="plane-mfa"' in floor
-    assert 'id="plane-legal"' in floor
-    assert 'id="plane-tiles"' in floor
-    assert 'id="plane-cascade"' in floor
-    assert 'data-keep="short"' in floor
-    assert 'id="plane-path"' in floor
-    assert 'id="plane-view-tabs"' in floor
-    assert 'id="plane-lod"' in floor
-    assert 'id="plane-coverage"' in floor
-    assert 'id="plane-console"' in floor
-    assert 'id="plane-rehearsal"' in floor
-    assert 'id="plane-duties"' in floor
-    assert 'id="plane-attention"' in floor
-    assert 'id="plane-exceptions"' in floor
-    assert 'id="plane-inspector"' in floor
-    assert 'id="plane-page-first"' in floor
-    assert "ninety-minute proof" in floor
+    assert "app.html#floor" in floor
+    assert "pointer" in floor.lower()
+    assert "not a second dashboard" in floor.lower()
+    assert 'id="app-floor-assign"' in app
+    assert 'id="app-floor-estate"' in app
+    assert 'id="app-floor-audit"' in app
+    assert 'id="app-floor-packet"' in app
+    assert 'id="app-floor-provision"' in app
+    assert app.index('id="app-floor-estate"') < app.index('id="app-floor-audit"')
+    assert app.index('id="app-floor-audit"') < app.index('id="app-floor-assign"')
+    assert "ninety-minute proof" in floor.lower()
     assert "seat A · seat B" in floor
-    assert "owner / board request" in floor
-    assert "not a certificate" in floor
+    assert "owner / board request" in floor.lower()
+    assert "not a certificate" in floor.lower()
     assert "cannot weaken Job C" in floor
-    assert "last sealed keep" in floor
-    assert "not a time machine" in floor
-    assert "owner clicks" in floor
+    assert "last sealed keep" in floor.lower()
+    assert "not a time machine" in floor.lower()
+    assert "owner clicks" in floor.lower()
     assert "same Entra app" in floor
-    assert 'id="plane-authorizations"' in floor
-    assert 'id="plane-provision"' in floor
-    assert 'id="plane-records"' in floor
-    assert 'id="plane-bands"' in floor
-    assert 'id="plane-desks"' in floor
-    assert 'id="plane-week-one"' in floor
-    assert 'id="plane-scopes"' in floor
-    assert 'data-view-tab="client"' in floor
-    assert 'data-view-tab="provision"' in floor
-    assert 'data-view-tab="records"' in floor
-    assert 'data-view-tab="client"' in floor
     assert "data-rehearse" in js or "runRehearsal" in js
     assert "Cannot: " in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))

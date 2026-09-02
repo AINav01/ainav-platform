@@ -574,12 +574,25 @@
       "motions not SKUs",
       "hostname rehearsal catalog-only",
       "competitive one-pager not a patent",
-      "gaps board names owner-only opens"
+      "gaps board names owner-only opens",
+      "catalog-driven floor",
+      "provision spine",
+      "duty hints",
+      "owner board packet"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
     "live_pin_ok": false,
-    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK.",
+    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
+    "owner_only_hrefs": {
+      "G12/G13": "index.html#open",
+      "Graph Read": "index.html#stack-walk",
+      "US Dataverse": "index.html#stack-walk",
+      "billing": "index.html#open",
+      "launch": "index.html#missing",
+      "named-human proof day": "index.html#twin",
+      "seat B click": "index.html#missing"
+    },
     "owner_only_open": [
       "seat B click",
       "named-human proof day",
@@ -852,7 +865,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.72.0",
+  "release": "2.73.0",
   "scenarios": [
     {
       "id": "l1_only",

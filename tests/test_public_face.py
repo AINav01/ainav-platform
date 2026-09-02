@@ -65,9 +65,10 @@ def test_public_face_is_static_catalog_sale():
     ]
     assert "one dashboard" in dash_glance["lede"].lower()
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
-    assert 'id="plane-write-rail"' in plane
-    assert 'class="plane-dash"' in plane
+    assert 'id="plane-write-rail"' in html
+    assert 'id="app-write-rail"' in Path("institute/app.html").read_text(encoding="utf-8")
     assert 'id="plane-dash-lede"' in plane
+    assert "app.html#floor" in plane
     assert "plane-write-rail" in js
     assert [item["id"] for item in page["first_glance"]["write_rail"]] == [
         "seat_a",
@@ -123,13 +124,16 @@ def test_public_face_is_static_catalog_sale():
     assert 'data-walk="entire"' in app
     assert 'id="app-floor-inventory"' in app
     assert "paintInventory" in js_app
-    assert 'id === "entire" || id === "owner" || id === "it" || id === "remote"' in js_app
+    assert "view_shows" in js_app
+    assert "SECTION_ROOTS" in js_app
+    assert "paintDutyHints" in js_app
     assert 'showGlance || id === "owner"' not in js_app
     assert app.index('id="app-write-rail"') < app.index('id="app-search"')
     assert app.count("Owner book") == 1
     assert 'data-view="client"' in app
     assert "paintFloor" in js_app
-    assert 'setView(board.default_view || "client"' in js_app
+    assert "setView(initial, data)" in js_app
+    assert "board.default_view || \"client\"" in js_app
     assert 'id="workspace-capital"' in app
     assert 'id="workspace-business"' in app
     assert 'id="workspace-programs"' in app
@@ -152,6 +156,6 @@ def test_public_face_is_static_catalog_sale():
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     assert plane.index("index.html#closed") < plane.index("index.html#missing")
     assert plane.index("index.html#missing") < plane.index("index.html#open")
-    assert 'id="plane-assign"' in plane
-    assert 'id="plane-mfa"' in plane
-    assert "AINav, Inc. disclaimers" in plane
+    assert "app.html#floor" in plane
+    assert "pointer" in plane.lower()
+    assert "AINav, Inc. disclaimers" in Path("institute/app.html").read_text(encoding="utf-8")

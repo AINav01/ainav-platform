@@ -50,9 +50,38 @@
     if (node && value != null) node.textContent = value;
   }
 
-  function workspaceFromHash() {
+  var SECTION_ROOTS = {
+    board: "app-floor-board",
+    govern: "app-floor-govern",
+    estate: "app-floor-estate",
+    audit: "app-floor-audit",
+    freeze_console: "app-floor-freeze",
+    examiner_walk: "app-floor-prove",
+    continuity: "app-floor-continuity",
+    competitive: "app-floor-compete",
+    gaps: "app-floor-gaps",
+    provision_path: "app-floor-provision",
+    board_packet: "app-floor-packet",
+    pending_bind: "app-floor-pending"
+  };
+
+  function hashParts() {
     var raw = (location.hash || "#floor").replace("#", "").toLowerCase();
-    return WORKSPACES.indexOf(raw) >= 0 ? raw : "floor";
+    var parts = raw.split("/");
+    var workspace = WORKSPACES.indexOf(parts[0]) >= 0 ? parts[0] : "floor";
+    return { workspace: workspace, view: parts[1] || "" };
+  }
+
+  function workspaceFromHash() {
+    return hashParts().workspace;
+  }
+
+  function freezeRequested() {
+    try {
+      return sessionStorage.getItem("ainav-freeze-requested") === "1";
+    } catch (err) {
+      return false;
+    }
   }
 
   function showWorkspace(id) {
@@ -120,13 +149,33 @@
       seats_recorded: "Seats"
     };
     root.textContent = "";
+    if (freezeRequested()) {
+      var honesty = document.createElement("span");
+      honesty.id = "app-floor-strip-console";
+      honesty.appendChild(document.createTextNode("Console: "));
+      var req = document.createElement("b");
+      req.textContent = "freeze requested";
+      honesty.appendChild(req);
+      honesty.appendChild(document.createTextNode(" · Catalog: "));
+      var open = document.createElement("b");
+      open.textContent = "OPEN";
+      honesty.appendChild(open);
+      root.appendChild(honesty);
+    }
     tiles.forEach(function (item) {
       if (!wanted[item.id]) return;
       var span = document.createElement("span");
-      span.appendChild(document.createTextNode(wanted[item.id] + " "));
-      var b = document.createElement("b");
-      b.textContent = item.value;
-      span.appendChild(b);
+      if (item.id === "plane_state" && freezeRequested()) {
+        span.appendChild(document.createTextNode("Catalog "));
+        var b = document.createElement("b");
+        b.textContent = "OPEN";
+        span.appendChild(b);
+      } else {
+        span.appendChild(document.createTextNode(wanted[item.id] + " "));
+        var value = document.createElement("b");
+        value.textContent = item.value;
+        span.appendChild(value);
+      }
       root.appendChild(span);
     });
   }
@@ -178,6 +227,35 @@
       .filter(Boolean);
   }
 
+  function showsForView(id, data) {
+    var floor = (data && data.proof_day_floor) || {};
+    var mapped = floor.view_shows && floor.view_shows[id];
+    if (mapped && mapped.length) return mapped;
+    var fallback = {
+      client: ["board", "pending_bind"],
+      entire: ["board", "govern", "estate", "audit", "pending_bind", "freeze_console", "competitive", "continuity", "gaps"],
+      owner: ["govern", "estate", "audit", "freeze_console", "gaps", "board_packet"],
+      seats: ["continuity"],
+      examiner: ["estate", "audit", "examiner_walk"],
+      remote: ["govern"],
+      it: ["govern"],
+      provision: ["board", "provision_path"],
+      records: ["estate", "audit", "examiner_walk"]
+    };
+    return fallback[id] || fallback.client;
+  }
+
+  function paintDutyHints(floor) {
+    var hints = (floor && floor.duty_hints) || {};
+    Array.prototype.forEach.call(document.querySelectorAll("#app-view-tabs [data-view]"), function (btn) {
+      var view = btn.getAttribute("data-view");
+      var hint = hints[view];
+      if (!hint) return;
+      btn.setAttribute("title", hint);
+      btn.setAttribute("data-duty", hint);
+    });
+  }
+
   function setView(id, data) {
     var views = (data && data.views) || [];
     var board = ((data && data.client_dashboard) || {}).executive_board || {};
@@ -205,32 +283,16 @@
       btn.setAttribute("aria-selected", btn.getAttribute("data-view") === id ? "true" : "false");
     });
     paintTiles($("app-floor-tiles"), tilesForView(id, data.tiles, views, board));
-    var boardRoot = $("app-floor-board");
-    var governRoot = $("app-floor-govern");
-    var estateRoot = $("app-floor-estate");
-    var auditRoot = $("app-floor-audit");
-    var freezeRoot = $("app-floor-freeze");
-    var proveRoot = $("app-floor-prove");
-    var continuityRoot = $("app-floor-continuity");
-    var competeRoot = $("app-floor-compete");
-    var gapsRoot = $("app-floor-gaps");
-    var showGlance = id === "client" || id === "entire" || id === "provision";
-    var showGovern = id === "entire" || id === "owner" || id === "it" || id === "remote";
-    var showEstate = id === "entire" || id === "examiner" || id === "records" || id === "owner";
-    var showFreeze = id === "owner" || id === "entire";
-    var showProve = id === "examiner" || id === "records";
-    var showContinuity = id === "seats" || id === "entire";
-    var showCompete = id === "entire";
-    var showGaps = id === "owner" || id === "entire";
-    if (boardRoot) boardRoot.hidden = !showGlance;
-    if (governRoot) governRoot.hidden = !showGovern;
-    if (estateRoot) estateRoot.hidden = !showEstate;
-    if (auditRoot) auditRoot.hidden = !showEstate;
-    if (freezeRoot) freezeRoot.hidden = !showFreeze;
-    if (proveRoot) proveRoot.hidden = !showProve;
-    if (continuityRoot) continuityRoot.hidden = !showContinuity;
-    if (competeRoot) competeRoot.hidden = !showCompete;
-    if (gapsRoot) gapsRoot.hidden = !showGaps;
+    var shown = showsForView(id, data);
+    Object.keys(SECTION_ROOTS).forEach(function (key) {
+      var root = $(SECTION_ROOTS[key]);
+      if (!root) return;
+      root.hidden = shown.indexOf(key) < 0;
+    });
+    if (hashParts().workspace === "floor") {
+      var next = id && id !== "client" ? "#floor/" + id : "#floor";
+      if (location.hash !== next) location.hash = next;
+    }
   }
 
   function paintOfferBoard(root, offer) {
@@ -402,26 +464,22 @@
     });
   }
 
-  function paintFreeze(freeze) {
+  function paintFreeze(freeze, tiles) {
     if (!freeze || freeze.sku || freeze.live || freeze.verb !== "request") return;
     if (freeze.note) setText("app-floor-freeze-lede", freeze.note);
     var banner = $("app-floor-freeze-banner");
     var btn = $("app-floor-freeze-btn");
     var clear = $("app-floor-freeze-clear");
     function sync() {
-      var requested = false;
-      try {
-        requested = sessionStorage.getItem("ainav-freeze-requested") === "1";
-      } catch (err) {
-        requested = false;
-      }
+      var requested = freezeRequested();
       if (banner) {
         banner.hidden = !requested;
         banner.textContent = requested
-          ? "Freeze requested in this browser. Catalog plane stays OPEN. Inference may continue. Consequence does not."
+          ? "Console: freeze requested · Catalog: OPEN. Inference may continue. Consequence does not."
           : "";
       }
       document.body.setAttribute("data-frozen", requested ? "requested" : "open");
+      paintStrip($("app-floor-strip"), tiles || []);
     }
     if (btn && !btn.getAttribute("data-bound")) {
       btn.setAttribute("data-bound", "true");
@@ -453,23 +511,42 @@
     if (walk.note) setText("app-floor-prove-lede", walk.note);
     var btn = $("app-prove-btn");
     var input = $("app-prove-id");
-    function show(record, leaf, root, included) {
+    var demo = walk.demo || {};
+    function show(record, leaf, root, included, note) {
       setText("app-prove-record", emptyWell(record));
       setText("app-prove-leaf", emptyWell(leaf));
       setText("app-prove-root", emptyWell(root));
       setText("app-prove-included", included === true ? "true" : "false");
+      setText("app-prove-wired", note || "");
     }
-    var demo = walk.demo || {};
-    show(demo.record_id, demo.leaf, demo.root, demo.included);
+    function prove(typed) {
+      var record = (typed || "").trim();
+      if (!record || record === demo.record_id) {
+        show(
+          demo.record_id,
+          demo.leaf,
+          demo.root,
+          demo.included === true,
+          demo.note || "Catalog demo leaf. Named records stay 0."
+        );
+        return;
+      }
+      show(record, "", "", false, "Typed id is not wired live. Named records stay 0.");
+    }
+    prove((input && input.value) || "");
     if (btn && !btn.getAttribute("data-bound")) {
       btn.setAttribute("data-bound", "true");
       btn.addEventListener("click", function () {
-        var record = ((input && input.value) || "").trim();
-        if (!record) {
-          show("", "", "", false);
-          return;
+        prove((input && input.value) || "");
+      });
+    }
+    if (input && !input.getAttribute("data-bound")) {
+      input.setAttribute("data-bound", "true");
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          prove(input.value);
         }
-        show(record, "", "", false);
       });
     }
   }
@@ -512,19 +589,71 @@
   function paintGaps(gaps) {
     if (!gaps || gaps.sku || gaps.live || gaps.live_pin_ok || gaps.claimed) return;
     if (gaps.note) setText("app-floor-gaps-lede", gaps.note);
-    function fill(id, items) {
+    var hrefs = gaps.owner_only_hrefs || {};
+    function fill(id, items, link) {
       var root = $(id);
       if (!root) return;
       root.textContent = "";
       (items || []).forEach(function (line) {
         var li = document.createElement("li");
-        li.textContent = line;
+        var href = link ? hrefs[line] : "";
+        if (href) {
+          var a = document.createElement("a");
+          a.href = href;
+          a.textContent = line;
+          li.appendChild(a);
+        } else {
+          li.textContent = line;
+        }
         root.appendChild(li);
       });
     }
-    fill("app-floor-gaps-closed", gaps.in_tree_closed);
-    fill("app-floor-gaps-owner", gaps.owner_only_open);
-    fill("app-floor-gaps-cannot", gaps.this_plane_cannot);
+    fill("app-floor-gaps-closed", gaps.in_tree_closed, false);
+    fill("app-floor-gaps-owner", gaps.owner_only_open, true);
+    fill("app-floor-gaps-cannot", gaps.this_plane_cannot, false);
+  }
+
+  function paintProvision(root, provisioning) {
+    if (!root || !provisioning) return;
+    if (provisioning.sku || provisioning.live) return;
+    if (provisioning.u_dual_never_free !== true) return;
+    if (provisioning.note) setText("app-floor-provision-lede", provisioning.note);
+    root.textContent = "";
+    (provisioning.path || []).forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", item.id === "udual" ? "hold" : "lab");
+      var h = document.createElement("h3");
+      h.textContent = item.name || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.state || "";
+      var note = document.createElement("p");
+      note.className = "note";
+      note.textContent = item.note || "";
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(note);
+      root.appendChild(art);
+    });
+  }
+
+  function paintBoardPacket(packet, tiles) {
+    if (!packet || packet.sku || packet.live || packet.live_pin_ok) return;
+    if (packet.note) setText("app-floor-packet-lede", packet.note);
+    if (packet.ask) setText("app-floor-packet-ask", packet.ask);
+    paintTiles($("app-floor-packet-tiles"), pickById(tiles, packet.tile_ids || []));
+  }
+
+  function paintLabPin(lab) {
+    if (!lab || lab.sku || lab.live || lab.live_pin_ok || lab.commercial_close) return;
+    setText("app-lab-lab", lab.lab || lab.lab_pin || "AINAV-L1");
+    setText("app-lab-commercial", lab.commercial || "");
+    if (lab.note) setText("app-lab-lede", lab.note);
+  }
+
+  function showCatalogUnavailable(show) {
+    var banner = $("app-catalog-unavailable");
+    if (banner) banner.hidden = !show;
   }
 
   function paintMotions(root, motions) {
@@ -775,12 +904,16 @@
     }
     paintPending($("app-floor-pending-card"), data.pending_bind);
     if (data.pending_bind && data.pending_bind.note) setText("app-floor-pending-lede", data.pending_bind.note);
-    paintFreeze(data.freeze_console);
+    paintFreeze(data.freeze_console, data.tiles);
     paintProve(data.examiner_walk);
     paintContinuity((data.success && data.success.continuity) || {});
     paintCompete($("app-floor-compete-table"), data.competitive);
     if (data.competitive && data.competitive.note) setText("app-floor-compete-lede", data.competitive.note);
     paintGaps(data.gaps);
+    paintProvision($("app-floor-provision-path"), data.provisioning);
+    paintBoardPacket(data.board_packet, data.tiles);
+    paintLabPin(data.lab_vs_commercial);
+    paintDutyHints(data.proof_day_floor);
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");
@@ -790,14 +923,15 @@
         setView(btn.getAttribute("data-view"), data);
       });
     }
-    setView(board.default_view || "client", data);
+    var hashed = hashParts().view;
+    var initial = hashed && VIEW_COPY[hashed] ? hashed : board.default_view || "client";
+    setView(initial, data);
     var walk = document.querySelector("[data-walk=entire]");
     if (walk && !walk.getAttribute("data-bound")) {
       walk.setAttribute("data-bound", "true");
       walk.addEventListener("click", function (event) {
         event.preventDefault();
         setView("entire", data);
-        if (location.hash !== "#floor") location.hash = "floor";
       });
     }
   }
@@ -1096,9 +1230,16 @@
         return res.ok ? res.json() : null;
       })
       .then(function (data) {
-        if (data) paintFloor(data);
+        if (data) {
+          showCatalogUnavailable(false);
+          paintFloor(data);
+        } else {
+          showCatalogUnavailable(true);
+        }
       })
-      .catch(function () {});
+      .catch(function () {
+        showCatalogUnavailable(true);
+      });
     fetch("investor.json")
       .then(function (res) {
         return res.ok ? res.json() : null;

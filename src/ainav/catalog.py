@@ -588,6 +588,10 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         "examiner walk",
         "motions",
         "gaps board",
+        "provision spine",
+        "duty hints",
+        "board packet",
+        "lab pin",
     ):
         if stem not in interface:
             raise IntegrityError(
@@ -893,8 +897,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 32:
-        raise IntegrityError("expert review needs 16–32 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 40:
+        raise IntegrityError("expert review needs 16–40 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -917,6 +921,14 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         30: ("kit", "not a cms"),
         31: ("business", "not a priced round"),
         32: ("number two", "not all aspects"),
+        33: ("visibility", "view_shows"),
+        34: ("provision", "spine"),
+        35: ("duty hint", "view"),
+        36: ("freeze", "console"),
+        37: ("examiner", "leaf"),
+        38: ("gaps", "owner steps"),
+        39: ("board packet", "seat b"),
+        40: ("lab", "commercial"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1903,6 +1915,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
         raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
     _validate_instrument_271(catalog, body)
     _validate_instrument_272(catalog, body)
+    _validate_instrument_273(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -1950,8 +1963,109 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.72.0" in item and "95" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.72.0 gold floor 95", reason_code="CATALOG_ENGINEERING")
-    if catalog.get("entity", {}).get("release") != "2.72.0":
-        raise IntegrityError("entity.release is 2.72.0", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_273(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.73.0":
+        raise IntegrityError("entity.release is 2.73.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.73.0" in item and "floor" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.73.0 Floor view_shows", reason_code="CATALOG_ENGINEERING")
+    floor = body.get("proof_day_floor") or {}
+    view_shows = floor.get("view_shows")
+    if not isinstance(view_shows, dict) or not view_shows:
+        raise IntegrityError("proof-day Floor needs catalog view_shows", reason_code="CATALOG_PLANE")
+    client = [str(item) for item in view_shows.get("client") or []]
+    owner = [str(item) for item in view_shows.get("owner") or []]
+    entire = [str(item) for item in view_shows.get("entire") or []]
+    provision = [str(item) for item in view_shows.get("provision") or []]
+    if "gaps" in client or "estate" in client or "audit" in client:
+        raise IntegrityError("Client view_shows must stay lean", reason_code="CATALOG_PLANE")
+    if "gaps" not in owner or "gaps" not in entire:
+        raise IntegrityError("Owner and Entire view_shows must include gaps", reason_code="CATALOG_PLANE")
+    if "provision_path" not in provision:
+        raise IntegrityError("Provision view_shows must include provision_path", reason_code="CATALOG_PLANE")
+    if "board_packet" not in owner:
+        raise IntegrityError("Owner view_shows must include board_packet", reason_code="CATALOG_PLANE")
+    if "board_packet" not in (floor.get("owner_shows") or []):
+        raise IntegrityError("owner_shows must include board_packet", reason_code="CATALOG_PLANE")
+    if "provision_path" not in (floor.get("provision_shows") or []):
+        raise IntegrityError("provision_shows must include provision_path", reason_code="CATALOG_PLANE")
+    hints = floor.get("duty_hints")
+    if not isinstance(hints, dict):
+        raise IntegrityError("proof-day Floor needs duty hints", reason_code="CATALOG_PLANE")
+    for view in (
+        "client",
+        "entire",
+        "owner",
+        "seats",
+        "examiner",
+        "remote",
+        "it",
+        "provision",
+        "records",
+    ):
+        if view not in hints or not str(hints[view]).strip():
+            raise IntegrityError(f"duty hint missing for {view}", reason_code="CATALOG_PLANE")
+    demo = ((body.get("examiner_walk") or {}).get("demo") or {})
+    if demo.get("record_id") != "lab.demo.inclusion":
+        raise IntegrityError("examiner demo leaf must be lab.demo.inclusion", reason_code="CATALOG_PLANE")
+    if demo.get("included") is not True or demo.get("lab") is not True:
+        raise IntegrityError("examiner demo leaf is a lab inclusion, not a named record", reason_code="CATALOG_PLANE")
+    hrefs = (body.get("gaps") or {}).get("owner_only_hrefs")
+    if not isinstance(hrefs, dict) or not hrefs:
+        raise IntegrityError("owner-only gaps must have hrefs", reason_code="CATALOG_PLANE")
+    for stem in ("missing", "twin", "stack-walk", "open"):
+        if stem not in " ".join(str(item) for item in hrefs.values()):
+            raise IntegrityError(f"owner-only hrefs must walk to {stem}", reason_code="CATALOG_PLANE")
+    lab = body.get("lab_vs_commercial")
+    if not isinstance(lab, dict):
+        raise IntegrityError("catalog missing lab vs commercial", reason_code="CATALOG_PLANE")
+    if lab.get("sku") is True or lab.get("live") is True or lab.get("live_pin_ok") is True:
+        raise IntegrityError("lab vs commercial is not a SKU or live", reason_code="CATALOG_PLANE")
+    if lab.get("lab_pin") != "AINAV-L1":
+        raise IntegrityError("lab pin must stay AINAV-L1", reason_code="CATALOG_PLANE")
+    if lab.get("commercial_close") is not False:
+        raise IntegrityError("commercial close must stay false", reason_code="CATALOG_PLANE")
+    packet = body.get("board_packet")
+    if not isinstance(packet, dict):
+        raise IntegrityError("catalog missing board packet", reason_code="CATALOG_PLANE")
+    if packet.get("sku") is True or packet.get("live") is True or packet.get("live_pin_ok") is True:
+        raise IntegrityError("board packet is not a SKU or live", reason_code="CATALOG_PLANE")
+    tiles = [str(item) for item in packet.get("tile_ids") or []]
+    for needed in ("must_have", "pending_admits", "seats_recorded", "signed_l1", "recognized_revenue"):
+        if needed not in tiles:
+            raise IntegrityError(f"board packet must include {needed}", reason_code="CATALOG_PLANE")
+    if "seat b" not in str(packet.get("ask") or "").lower():
+        raise IntegrityError("board packet ask must stay seat B click", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("catalog-driven floor" in item or "view_shows" in item for item in well):
+        raise IntegrityError("working_well must keep catalog-driven Floor", reason_code="CATALOG_REVIEW")
+    if not any("provision spine" in item for item in well):
+        raise IntegrityError("working_well must keep the provision spine", reason_code="CATALOG_REVIEW")
+    if not any("board packet" in item for item in well):
+        raise IntegrityError("working_well must keep the board packet", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("seat b click" in item for item in improve):
+        raise IntegrityError("improve must still name seat B click", reason_code="CATALOG_REVIEW")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    for number, needle in (
+        (33, "visibility"),
+        (34, "provision"),
+        (35, "duty"),
+        (36, "freeze"),
+        (37, "examiner"),
+        (38, "gaps"),
+        (39, "packet"),
+        (40, "lab"),
+    ):
+        item = by_n.get(number) or {}
+        blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+        if needle not in blob:
+            raise IntegrityError(f"2.73.0 upgrade {number} must mention {needle}", reason_code="CATALOG_REVIEW")
+        if item.get("who") != "tree" or item.get("done") is not True:
+            raise IntegrityError(f"2.73.0 upgrade {number} must stay tree and done", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2018,10 +2132,18 @@ def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> N
     if int(walk.get("named_records") or 0) != 0:
         raise IntegrityError("examiner walk named records stay zero", reason_code="CATALOG_PLANE")
     demo = walk.get("demo") or {}
-    if demo.get("included") is True or demo.get("lab") is not True:
-        raise IntegrityError("examiner walk demo stays lab and not included", reason_code="CATALOG_PLANE")
-    if str(demo.get("record_id") or "") or str(demo.get("leaf") or "") or str(demo.get("root") or ""):
-        raise IntegrityError("examiner walk cannot invent a named record", reason_code="CATALOG_PLANE")
+    if demo.get("lab") is not True:
+        raise IntegrityError("examiner walk demo stays lab", reason_code="CATALOG_PLANE")
+    if demo.get("record_id") == "lab.demo.inclusion":
+        if demo.get("included") is not True:
+            raise IntegrityError("lab demo leaf is a lab inclusion, not a named record", reason_code="CATALOG_PLANE")
+        if demo.get("leaf") != "lab" or demo.get("root") != "catalog":
+            raise IntegrityError("lab demo leaf stays lab / catalog", reason_code="CATALOG_PLANE")
+    else:
+        if demo.get("included") is True:
+            raise IntegrityError("examiner walk demo stays not included unless it is the lab leaf", reason_code="CATALOG_PLANE")
+        if str(demo.get("record_id") or "") or str(demo.get("leaf") or "") or str(demo.get("root") or ""):
+            raise IntegrityError("examiner walk cannot invent a named record", reason_code="CATALOG_PLANE")
     groups = (body.get("view_assignment") or {}).get("entra_groups")
     if not isinstance(groups, dict):
         raise IntegrityError("catalog missing Entra-group view templates", reason_code="CATALOG_PLANE")

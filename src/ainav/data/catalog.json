@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.72.0",
+    "release": "2.73.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -306,7 +306,7 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities × proof-day Floor × action schema × admit client × examiner prove × pending bind × freeze console × examiner walk × motions × gaps board",
+    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities × proof-day Floor × action schema × admit client × examiner prove × pending bind × freeze console × examiner walk × motions × gaps board × provision spine × duty hints × board packet × lab pin",
     "investor": "catalog list × zero booked × two-human close",
     "success": "walk-away × independence × consume-once × fail-closed × named dual seats",
     "estate": "other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps",
@@ -4741,7 +4741,8 @@
         "estate",
         "audit",
         "freeze_console",
-        "gaps"
+        "gaps",
+        "board_packet"
       ],
       "seats_shows": [
         "continuity"
@@ -4752,7 +4753,76 @@
         "estate",
         "audit"
       ],
-      "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Gaps board sits Owner and Entire. Same dashboard. Not a fourth SKU."
+      "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Gaps board sits Owner and Entire. Visibility is catalog view_shows. Duty hints sit the tabs. Provision spine sits Provision. Owner sits the board packet. Same dashboard. Not a fourth SKU.",
+      "view_shows": {
+        "client": [
+          "board",
+          "pending_bind"
+        ],
+        "entire": [
+          "board",
+          "govern",
+          "estate",
+          "audit",
+          "pending_bind",
+          "freeze_console",
+          "competitive",
+          "continuity",
+          "gaps"
+        ],
+        "owner": [
+          "govern",
+          "estate",
+          "audit",
+          "freeze_console",
+          "gaps",
+          "board_packet"
+        ],
+        "seats": [
+          "continuity"
+        ],
+        "examiner": [
+          "estate",
+          "audit",
+          "examiner_walk"
+        ],
+        "remote": [
+          "govern"
+        ],
+        "it": [
+          "govern"
+        ],
+        "provision": [
+          "board",
+          "provision_path"
+        ],
+        "records": [
+          "estate",
+          "audit",
+          "examiner_walk"
+        ]
+      },
+      "duty_hints": {
+        "client": "sit the proof",
+        "entire": "encyclopedia drawer",
+        "owner": "freeze request, not admit",
+        "seats": "may bind",
+        "examiner": "keep, not a seat",
+        "remote": "identify, not admit",
+        "it": "PIM is not dual",
+        "provision": "week-one then attach",
+        "records": "second record 0"
+      },
+      "it_shows": [
+        "govern"
+      ],
+      "remote_shows": [
+        "govern"
+      ],
+      "provision_shows": [
+        "board",
+        "provision_path"
+      ]
     },
     "admit_client": {
       "kind": "ainav.admit_client.v1",
@@ -4827,13 +4897,14 @@
       "claimed": false,
       "named_records": 0,
       "demo": {
-        "record_id": "",
-        "leaf": "",
-        "root": "",
-        "included": false,
-        "lab": true
+        "record_id": "lab.demo.inclusion",
+        "leaf": "lab",
+        "root": "catalog",
+        "included": true,
+        "lab": true,
+        "note": "Catalog demo leaf. Not a named record. Named records stay 0. Not 17a-4."
       },
-      "note": "Browser Merkle inclusion walk. Wrap store.prove. Not 17a-4. Not WORM. 0 named records."
+      "note": "Browser Merkle inclusion walk. Empty field sits the catalog demo leaf. A typed id is not wired live. Named records stay 0. Not 17a-4. Not WORM."
     },
     "motions": {
       "kind": "ainav.plane.motions.v1",
@@ -4907,7 +4978,11 @@
         "motions not SKUs",
         "hostname rehearsal catalog-only",
         "competitive one-pager not a patent",
-        "gaps board names owner-only opens"
+        "gaps board names owner-only opens",
+        "catalog-driven floor",
+        "provision spine",
+        "duty hints",
+        "owner board packet"
       ],
       "owner_only_open": [
         "seat B click",
@@ -4925,7 +5000,16 @@
         "edit Cloudflare",
         "add asuid"
       ],
-      "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK."
+      "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
+      "owner_only_hrefs": {
+        "seat B click": "index.html#missing",
+        "named-human proof day": "index.html#twin",
+        "Graph Read": "index.html#stack-walk",
+        "US Dataverse": "index.html#stack-walk",
+        "G12/G13": "index.html#open",
+        "billing": "index.html#open",
+        "launch": "index.html#missing"
+      }
     },
     "competitive": {
       "kind": "ainav.plane.competitive.v1",
@@ -4995,6 +5079,32 @@
         }
       ],
       "note": "We win only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent."
+    },
+    "lab_vs_commercial": {
+      "kind": "ainav.plane.lab_vs_commercial.v1",
+      "sku": false,
+      "live": false,
+      "live_pin_ok": false,
+      "lab_pin": "AINAV-L1",
+      "commercial_close": false,
+      "lab": "AINAV-L1 lab oids · gold 95 · Plane OPEN",
+      "commercial": "named dual seats × proof day × signed L1 × P-ADM attach",
+      "note": "A green check is not the commercial close. Lab pin is not LIVE_PIN_OK."
+    },
+    "board_packet": {
+      "kind": "ainav.plane.board_packet.v1",
+      "sku": false,
+      "live": false,
+      "live_pin_ok": false,
+      "tile_ids": [
+        "must_have",
+        "pending_admits",
+        "seats_recorded",
+        "signed_l1",
+        "recognized_revenue"
+      ],
+      "ask": "Seat B click. Mailbox recorded. Oid and click still open.",
+      "note": "Owner view is the board packet. Five honest tiles and one ask. Not a forecast. Not LIVE_PIN_OK."
     }
   },
   "honest_missing": [
@@ -5048,7 +5158,8 @@
       "Instrument plane: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, passkey identify. Not live. Not formally verified",
       "Walk-away ledger recorded=false count=0. Billing unattached. Not a ninth complement",
       "2.71.0 instrument: Client offer is dashboard seating, pending bind 0, freeze request local, examiner walk not 17a-4, Entra-group templates not live, proof-day TTL outside digest, motions not SKUs, hostname rehearsal catalog-only, competitive one-pager not a patent",
-      "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK"
+      "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK",
+      "2.73.0 Floor sits the review: catalog view_shows, provision spine, duty hints, honest freeze, examiner demo leaf, gaps hrefs, owner board packet, lab vs commercial. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -6523,7 +6634,7 @@
     "capital": "There is no priced round in this packet. There is no valuation. There is no forecast ARR. The honest investor unit is catalog list times zero booked times a two-human close.",
     "insulation": "The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
     "control_plane": "Ultimate, here, means last authority — not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.\n\nThe vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.\n\nA vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.\n\nAfter kit PASS, the second record, the off switch, and the rollback are segregation of duties — books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.\n\nOthers can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
-    "traction": "The admit plane is in code. Gold floor is 95 percent. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
+    "traction": "The admit plane is in code. Gold floor is 95 percent. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
     "ask": "Cynthia, you agreed to be seat B and the Inception business executive. Mailbox chodnett@ainav.institute is recorded. Your own Entra object id and your own click are still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
     "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
     "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (you). Each needs a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat. A mailbox is not the click.",
@@ -6684,7 +6795,15 @@
       "Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.",
       "The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.",
       "Gold floor is 95 percent. make gold fails under 95. A green check is not LIVE_PIN_OK.",
-      "Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK."
+      "Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.",
+      "Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.",
+      "Provision spine sits the Provision tab: Qualify → L1 → kit PASS → P-ADM → paid U-DUAL. Attached 0/0/0. U-DUAL never free.",
+      "Duty hints sit the hierarchical tabs. Owner freezes. Seats bind. Examiner keeps. Identify is not admit.",
+      "Freeze strip names Console requested versus Catalog OPEN. Inference may continue. Consequence does not.",
+      "Examiner prove sits the catalog demo leaf when empty. A typed id is not wired live. Named records stay 0.",
+      "Gaps board owner-only lines walk to Owner steps. This plane cannot invent the click.",
+      "Owner view sits the board packet: must-have, pending 0, 1 mailbox / 0 oid, signed L1 0, revenue $0, and the seat B ask.",
+      "Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats × proof day × signed L1 × P-ADM attach."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6697,7 +6816,9 @@
       "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection. This plane cannot invent Graph consent.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1. Billing stays unattached and is not a ninth Microsoft complement.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running. Entra-group templates are not live assignments.",
-      "Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze."
+      "Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.",
+      "Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.",
+      "Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused."
     ],
     "success": {
       "sku": false,
@@ -7098,6 +7219,70 @@
         "who": "tree",
         "title": "Number two other aspects",
         "do": "Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 33,
+        "who": "tree",
+        "title": "Catalog-driven Floor visibility",
+        "do": "Drive Floor section visibility from proof_day_floor view_shows. Client stays lean. Encyclopedia is a drawer. Not a CMS.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 34,
+        "who": "tree",
+        "title": "Provision spine",
+        "do": "Sit Qualify → L1 → kit PASS → P-ADM → paid U-DUAL on the Provision tab. Week-one then attach. U-DUAL never free. Not a fourth SKU.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 35,
+        "who": "tree",
+        "title": "Duty hints on views",
+        "do": "Duty hints sit the tabs. Seats may bind. Owner freeze request, not admit. Examiner keep, not a seat.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 36,
+        "who": "tree",
+        "title": "Honest freeze strip",
+        "do": "Freeze requested is local. Catalog plane stays OPEN. Console request is not a catalog freeze. Inference may continue. Consequence does not.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 37,
+        "who": "tree",
+        "title": "Examiner catalog demo leaf",
+        "do": "Empty examiner prove sits the catalog demo leaf. A typed id is not wired live. Named records stay 0. Not 17a-4.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 38,
+        "who": "tree",
+        "title": "Gaps walk to owner steps",
+        "do": "Owner-only gaps walk to Owner steps. Seat B click and launch stay open. Do not invent the click.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 39,
+        "who": "tree",
+        "title": "Owner board packet",
+        "do": "Owner view sits the board packet. Five honest tiles and the seat B ask. Not a forecast. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 40,
+        "who": "tree",
+        "title": "Lab pin is not commercial close",
+        "do": "Lab pin is AINAV-L1 and gold 95. Commercial close is named dual seats × proof day × signed L1 × P-ADM attach. A green check is not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

@@ -15,7 +15,7 @@ from ainav.proof_day import run_proof_day
 
 def test_release_is_271():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.72.0"
+    assert cat["entity"]["release"] == "2.73.0"
     assert "pending bind" in cat["equations"]["interface"]
     assert "same l1" in cat["equations"]["motion"].lower()
     assert cat["proof_day"]["grant_ttl_seconds"] == 5400
@@ -80,8 +80,9 @@ def test_examiner_walk_is_not_17a4():
     assert walk["seventeen_a4"] is False
     assert walk["worm"] is False
     assert walk["named_records"] == 0
-    assert walk["demo"]["included"] is False
-    assert walk["demo"]["record_id"] == ""
+    assert walk["demo"]["lab"] is True
+    assert walk["demo"]["record_id"] == "lab.demo.inclusion"
+    assert walk["demo"]["included"] is True
     html = Path("institute/app.html").read_text(encoding="utf-8")
     assert 'id="app-floor-prove"' in html
     assert "Not 17a-4" in html
@@ -222,7 +223,7 @@ def test_catalog_refuses_271_fiction():
     assert exc7.value.reason_code == "CATALOG_GOVERNANCE"
 
     included = copy.deepcopy(cat)
-    included["plane_interface"]["examiner_walk"]["demo"]["included"] = True
+    included["plane_interface"]["examiner_walk"]["demo"]["included"] = False
     with pytest.raises(IntegrityError) as exc8:
         validate_catalog(included)
     assert exc8.value.reason_code == "CATALOG_PLANE"

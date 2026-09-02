@@ -342,6 +342,21 @@
       "standing": false
     }
   ],
+  "board_packet": {
+    "ask": "Seat B click. Mailbox recorded. Oid and click still open.",
+    "kind": "ainav.plane.board_packet.v1",
+    "live": false,
+    "live_pin_ok": false,
+    "note": "Owner view is the board packet. Five honest tiles and one ask. Not a forecast. Not LIVE_PIN_OK.",
+    "sku": false,
+    "tile_ids": [
+      "must_have",
+      "pending_admits",
+      "seats_recorded",
+      "signed_l1",
+      "recognized_revenue"
+    ]
+  },
   "cascade": [
     {
       "label": "Oversee",
@@ -482,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.72.0"
+    "release": "2.73.0"
   },
   "communications": [
     {
@@ -1104,7 +1119,7 @@
   ],
   "email": "chodnett@ainav.institute",
   "entra_oid": null,
-  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions \u00d7 gaps board",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions \u00d7 gaps board \u00d7 provision spine \u00d7 duty hints \u00d7 board packet \u00d7 lab pin",
   "estate": {
     "executive": {
       "board": {
@@ -1332,16 +1347,17 @@
   "examiner_walk": {
     "claimed": false,
     "demo": {
-      "included": false,
+      "included": true,
       "lab": true,
-      "leaf": "",
-      "record_id": "",
-      "root": ""
+      "leaf": "lab",
+      "note": "Catalog demo leaf. Not a named record. Named records stay 0. Not 17a-4.",
+      "record_id": "lab.demo.inclusion",
+      "root": "catalog"
     },
     "kind": "ainav.plane.examiner_walk.v1",
     "live": false,
     "named_records": 0,
-    "note": "Browser Merkle inclusion walk. Wrap store.prove. Not 17a-4. Not WORM. 0 named records.",
+    "note": "Browser Merkle inclusion walk. Empty field sits the catalog demo leaf. A typed id is not wired live. Named records stay 0. Not 17a-4. Not WORM.",
     "read_only": true,
     "seventeen_a4": false,
     "sku": false,
@@ -2056,12 +2072,25 @@
       "motions not SKUs",
       "hostname rehearsal catalog-only",
       "competitive one-pager not a patent",
-      "gaps board names owner-only opens"
+      "gaps board names owner-only opens",
+      "catalog-driven floor",
+      "provision spine",
+      "duty hints",
+      "owner board packet"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
     "live_pin_ok": false,
-    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK.",
+    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
+    "owner_only_hrefs": {
+      "G12/G13": "index.html#open",
+      "Graph Read": "index.html#stack-walk",
+      "US Dataverse": "index.html#stack-walk",
+      "billing": "index.html#open",
+      "launch": "index.html#missing",
+      "named-human proof day": "index.html#twin",
+      "seat B click": "index.html#missing"
+    },
     "owner_only_open": [
       "seat B click",
       "named-human proof day",
@@ -2330,6 +2359,17 @@
   "instrument_equation": "action schema \u00d7 admit client \u00d7 AI inventory \u00d7 examiner prove \u00d7 grant TTL \u00d7 passkey identify",
   "invited": "Cynthia Hodnett",
   "kind": "ainav.plane.interface.v1",
+  "lab_vs_commercial": {
+    "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+    "commercial_close": false,
+    "kind": "ainav.plane.lab_vs_commercial.v1",
+    "lab": "AINAV-L1 lab oids \u00b7 gold 95 \u00b7 Plane OPEN",
+    "lab_pin": "AINAV-L1",
+    "live": false,
+    "live_pin_ok": false,
+    "note": "A green check is not the commercial close. Lab pin is not LIVE_PIN_OK.",
+    "sku": false
+  },
   "ledger": {
     "events": [
       {
@@ -2669,6 +2709,17 @@
       "offer",
       "pending_bind"
     ],
+    "duty_hints": {
+      "client": "sit the proof",
+      "entire": "encyclopedia drawer",
+      "examiner": "keep, not a seat",
+      "it": "PIM is not dual",
+      "owner": "freeze request, not admit",
+      "provision": "week-one then attach",
+      "records": "second record 0",
+      "remote": "identify, not admit",
+      "seats": "may bind"
+    },
     "entire_shows": [
       "board",
       "govern",
@@ -2686,20 +2737,31 @@
       "examiner_walk"
     ],
     "included_with": "L1",
+    "it_shows": [
+      "govern"
+    ],
     "kind": "ainav.plane.proof_day_floor.v1",
     "minutes": 90,
-    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Gaps board sits Owner and Entire. Same dashboard. Not a fourth SKU.",
+    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Gaps board sits Owner and Entire. Visibility is catalog view_shows. Duty hints sit the tabs. Provision spine sits Provision. Owner sits the board packet. Same dashboard. Not a fourth SKU.",
     "owner_shows": [
       "govern",
       "estate",
       "audit",
       "freeze_console",
-      "gaps"
+      "gaps",
+      "board_packet"
+    ],
+    "provision_shows": [
+      "board",
+      "provision_path"
     ],
     "records_shows": [
       "estate",
       "audit",
       "examiner_walk"
+    ],
+    "remote_shows": [
+      "govern"
     ],
     "same_dashboard": true,
     "seats_hides": [
@@ -2711,7 +2773,55 @@
     "seats_shows": [
       "continuity"
     ],
-    "sku": false
+    "sku": false,
+    "view_shows": {
+      "client": [
+        "board",
+        "pending_bind"
+      ],
+      "entire": [
+        "board",
+        "govern",
+        "estate",
+        "audit",
+        "pending_bind",
+        "freeze_console",
+        "competitive",
+        "continuity",
+        "gaps"
+      ],
+      "examiner": [
+        "estate",
+        "audit",
+        "examiner_walk"
+      ],
+      "it": [
+        "govern"
+      ],
+      "owner": [
+        "govern",
+        "estate",
+        "audit",
+        "freeze_console",
+        "gaps",
+        "board_packet"
+      ],
+      "provision": [
+        "board",
+        "provision_path"
+      ],
+      "records": [
+        "estate",
+        "audit",
+        "examiner_walk"
+      ],
+      "remote": [
+        "govern"
+      ],
+      "seats": [
+        "continuity"
+      ]
+    }
   },
   "proof_equation": "write rail \u00d7 two seats \u00d7 one hash \u00d7 fail-closed write",
   "provision_bands": {
@@ -3663,7 +3773,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.72.0",
+  "release": "2.73.0",
   "revocations": [
     {
       "by": "Owner / board request",

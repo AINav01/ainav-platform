@@ -111,7 +111,25 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.72.0 (this tree)
+### 2.73.0 (this tree)
+
+Floor visibility is catalog
+`view_shows`. Client stays lean.
+Duty hints sit the tabs. Provision
+spine walks Qualify → L1 → kit →
+P-ADM → paid U-DUAL. Owner sits the
+board packet. Freeze strip names
+Console requested versus Catalog
+OPEN. Examiner empty field sits the
+catalog demo leaf. Owner-only gaps
+walk to Owner steps. Lab pin is not
+the commercial close. Sale-site
+Owner book is one popover.
+`control-plane.html` points at Floor
+Entire. Gold floor stays 95 percent.
+A green check is not `LIVE_PIN_OK`.
+
+### 2.72.0
 
 Gold floor is 95 percent. `make gold`
 fails under 95. The gaps board names

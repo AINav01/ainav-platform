@@ -899,7 +899,7 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.72.0",
+  "release": "2.73.0",
   "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {
@@ -1032,7 +1032,7 @@
   ],
   "solution": "Job C is that gate. Two distinct humans bind the same action_hash. The grant is consumed once \u2014 a replay is a refusal. The effect is fail-closed: if either person is missing, or the apply fails, the write does not land and there is no fake success. AINav is not the client's AI. It is the independent human failsafe and control plane: off switch, reset, rollback, first record (the admitted SoR write) and second record (the sealed DecisionRecord).",
   "stack": "A controller buys one of the three SKUs, then attaches desks to that SKU. Included desks are seating, not a discount on a second control plane. Priced L1 desks are $6,000\u2013$10,000. Priced P-ADM keep is $5,000\u2013$8,000 after kit PASS. Priced U-DUAL desks are $6,000\u2013$10,000 and never free. Fee-for-service is $3,500/day after L1 and never attaches U-DUAL. Hours are not a SKU.",
-  "traction": "The admit plane is in code. Gold floor is 95 percent. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
+  "traction": "The admit plane is in code. Gold floor is 95 percent. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
   "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (you). Each needs a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat. A mailbox is not the click.",
   "unit_economics_note": "Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no billing provider. Recognized revenue stays zero until a controller actually buys.",
   "upsell_note": "Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs are seating, not a discount on a second control plane.",

@@ -59,18 +59,13 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="plane-maps"' in html
     assert "control-plane.html" in html
     plane_html = Path("institute/control-plane.html").read_text(encoding="utf-8")
-    assert 'id="plane-assign"' in plane_html
-    assert 'id="plane-estate-lede"' in plane_html
-    assert 'id="plane-estate-glance"' in plane_html
-    assert 'id="plane-audit-lede"' in plane_html
-    assert 'id="plane-rooms12"' in plane_html
-    assert 'id="plane-regulated"' in plane_html
-    assert plane_html.index('id="plane-estate-lede"') < plane_html.index('id="plane-audit-lede"')
-    assert plane_html.index('id="plane-audit-lede"') < plane_html.index('id="plane-assign"')
-    assert 'id="plane-failsafe"' in plane_html
-    assert 'id="plane-immutable"' in plane_html
+    assert "app.html#floor" in plane_html
+    assert "pointer" in plane_html.lower()
+    assert "not a second dashboard" in plane_html.lower()
+    assert 'id="app-floor-assign"' in Path("institute/app.html").read_text(encoding="utf-8")
+    assert 'id="app-floor-estate"' in Path("institute/app.html").read_text(encoding="utf-8")
     assert 'id="plane-path"' in html
-    assert "walkable rehearsal" in html.lower() or "command console" in Path("institute/control-plane.html").read_text(encoding="utf-8").lower()
+    assert "walkable rehearsal" in html.lower() or "command console" in plane_html.lower() or "walk entire" in plane_html.lower()
     assert "control-plane.json" in js
     assert "governance.json" in js
     assert "The client utilizes AI" in html
@@ -247,7 +242,7 @@ def test_institute_foundation_is_catalog_honest():
     assert "1 mailbox / 0 oid" in html
     assert "0 / 1 invited" not in html
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
-    assert 'id="plane-offer"' in plane
+    assert "app.html#floor" in plane
     assert "1 mailbox / 0 oid" in plane
     assert "0 / 1 invited" not in plane
     assert 'id="complement-cards"' in html

@@ -1304,6 +1304,34 @@ footer a { color: inherit; }
   background: var(--ink);
   color: var(--paper);
 }
+.app-views button[data-duty]::after {
+  content: attr(data-duty);
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 400;
+  color: var(--mute);
+  margin-top: 0.15rem;
+}
+.app-views button[aria-selected="true"][data-duty]::after {
+  color: color-mix(in srgb, var(--paper) 72%, transparent);
+}
+.catalog-unavailable {
+  border: 1px solid var(--hold);
+  padding: 0.85rem 1rem;
+  color: #7a2c2c;
+  background: color-mix(in srgb, #7a2c2c 8%, var(--paper));
+}
+.lab-pin {
+  border: 1px solid var(--rule);
+  padding: 0.95rem 1.05rem 1.1rem;
+  margin: 0 0 1.1rem;
+  background: color-mix(in srgb, var(--paper) 70%, white);
+}
+.lab-pin .price { margin: 0.35rem 0; }
+.provision-spine article { min-height: 8rem; }
+#app-floor-packet .price { color: var(--gold-2); }
 .app-view-card {
   border: 1px solid var(--rule);
   padding: 0.95rem 1.05rem 1.1rem;
