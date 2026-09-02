@@ -44,6 +44,11 @@ def public_governance() -> dict[str, Any]:
         },
         "maps": [dict(item) for item in body.get("maps") or []],
         "risks": [dict(item) for item in body.get("risks") or []],
+        "immutable": dict(body.get("immutable") or {}),
+        "reporting": dict(body.get("reporting") or {}),
+        "consequences": dict(body.get("consequences") or {}),
+        "calendar": dict(body.get("calendar") or {}),
+        "estate_equation": load_catalog()["equations"].get("estate"),
         "refuse": list(body.get("refuse") or []),
         "note": body.get("note"),
     }
@@ -62,6 +67,7 @@ def governance_markdown() -> str:
         f"Plane: {load_catalog()['equations'].get('plane')}.",
         f"Org: {load_catalog()['equations'].get('org')}.",
         f"Insulation: {load_catalog()['equations'].get('insulation')}.",
+        f"Estate: {load_catalog()['equations'].get('estate')}.",
         "Independent of Microsoft. Not a patent. Not uncopyable.",
         f"Certified: {str(body['certified']).lower()}. Replaces counsel: "
         f"{str(body['replaces_counsel']).lower()}. SKU: false. LIVE_PIN_OK: false.",
@@ -132,6 +138,42 @@ def governance_markdown() -> str:
         lines.append(
             f"- **{item['id']}** — {item['name']} ({item['scope']}). "
             f"Maps to: {item['maps_to']}. Claimed: false."
+        )
+    immutable = body.get("immutable") or {}
+    lines += [
+        "",
+        "## Immutable (sealed, consume-once, hash-chained)",
+        "",
+        str(immutable.get("thesis") or ""),
+        f"Crypto: {str(immutable.get('crypto')).lower()}. WORM: {str(immutable.get('worm')).lower()}. "
+        f"17a-4: {str(immutable.get('seventeen_a4')).lower()}.",
+        "",
+    ]
+    for item in immutable.get("pins") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note')}")
+    reporting = body.get("reporting") or {}
+    lines += [
+        "",
+        "## Reporting and archive",
+        "",
+        str(reporting.get("lede") or ""),
+        f"- Archive: {reporting.get('archive')}",
+        f"- Chat is not the keep: {str(reporting.get('chat_is_not_keep')).lower()}.",
+        "",
+        "## Consequences (not a mandate)",
+        "",
+        str((body.get("consequences") or {}).get("thesis") or ""),
+        f"Mandated: {str((body.get('consequences') or {}).get('mandated')).lower()}. "
+        f"Buying L1 closes clocks: {str((body.get('consequences') or {}).get('buying_l1_closes_clocks')).lower()}.",
+        "",
+    ]
+    for item in (body.get("consequences") or {}).get("job_c") or []:
+        lines.append(f"- **{item.get('id')}** — {item.get('harm')}")
+    lines += ["", "## Calendar (counsel, claimed=false)", ""]
+    for item in (body.get("calendar") or {}).get("items") or []:
+        lines.append(
+            f"- **{item.get('id')}** — {item.get('name')} ({item.get('status')} {item.get('when')}). "
+            f"{item.get('note')} Claimed: false."
         )
     lines += ["", "## Risks if client AI writes without dual admit", ""]
     for item in body["risks"]:

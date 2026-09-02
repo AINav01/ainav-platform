@@ -92,7 +92,13 @@ def test_public_face_is_static_catalog_sale():
     assert 'id="app-floor-auth"' in app
     assert 'id="app-floor-mfa"' in app
     assert 'id="app-floor-legal"' in app
+    assert 'id="app-floor-estate"' in app
+    assert 'id="app-floor-failsafe"' in app
+    assert 'id="app-floor-uses"' in app
+    assert 'id="app-floor-maps"' in app
     assert "AINav, Inc. disclaimers" in app
+    assert "AI failsafe" in app
+    assert "paintMaps" in js_app
     assert 'data-view="remote"' in app
     assert 'data-view="provision"' in app
     assert "paintAssignment" in js_app
@@ -108,6 +114,9 @@ def test_public_face_is_static_catalog_sale():
     assert 'id="workspace-programs"' in app
     assert "paintBusiness" in js_app
     assert "If-then catalog list" in app
+    assert 'id="app-business-elevator-ten"' in app
+    assert 'id="app-business-why-client"' in app
+    assert 'id="app-capital-why-investor"' in app
     assert 'id="app-write-rail"' in app
     assert "Not a priced round" in app
     assert "Not LIVE_PIN_OK" in app

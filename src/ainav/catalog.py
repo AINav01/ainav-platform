@@ -473,6 +473,19 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "interface equation must keep view assignment and MFA identify",
             reason_code="CATALOG_EQUATION",
         )
+    for stem in ("failsafe", "immutable", "other uses", "executive oversee", "ai governance maps"):
+        if stem not in interface:
+            raise IntegrityError(
+                f"interface equation must keep {stem}",
+                reason_code="CATALOG_EQUATION",
+            )
+    estate_eq = str(equations.get("estate") or "").lower()
+    for stem in ("other uses", "failsafe", "executive oversee", "sealed records", "immutable", "ai governance maps"):
+        if stem not in estate_eq:
+            raise IntegrityError(
+                "estate equation is other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps",
+                reason_code="CATALOG_EQUATION",
+            )
     if "must-have" not in interface:
         raise IntegrityError(
             "interface equation must keep must-have",
@@ -1044,14 +1057,65 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
     if fail.get("ainav_is_client_ai") is True:
         raise IntegrityError("AINav is not the client's AI", reason_code="CATALOG_GOVERNANCE")
     maps = {item.get("id") for item in body.get("maps") or []}
-    if not {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr"} <= maps:
-        raise IntegrityError("governance must map NIST, EU AI Act, ISO 42001, and SOX", reason_code="CATALOG_GOVERNANCE")
+    if not {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr", "gdpr.art22", "coe.ai_convention"} <= maps:
+        raise IntegrityError(
+            "governance must map NIST, EU AI Act, ISO 42001, SOX, GDPR Art. 22, and the CoE convention",
+            reason_code="CATALOG_GOVERNANCE",
+        )
     if any(item.get("claimed") is True for item in body.get("maps") or []):
         raise IntegrityError("governance maps cannot claim certification", reason_code="CATALOG_GOVERNANCE")
     refuse = " ".join(body.get("refuse") or []).lower()
-    for stem in ("eu ai act certified", "nist certified", "replaces counsel", "client ai as dual"):
+    for stem in (
+        "eu ai act certified",
+        "nist certified",
+        "replaces counsel",
+        "client ai as dual",
+        "17a-4 ready",
+        "worm claimed",
+        "crypto ledger",
+        "gdpr certified",
+        "eu-ready",
+        "colorado sb 24-205",
+    ):
         if stem not in refuse:
             raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+    immutable = body.get("immutable") or {}
+    if immutable.get("sku") is True or immutable.get("certified") is True:
+        raise IntegrityError("immutable is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if immutable.get("crypto") is True or immutable.get("worm") is True or immutable.get("seventeen_a4") is True:
+        raise IntegrityError("immutable is not crypto, WORM, or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    if immutable.get("uncopyable") is True:
+        raise IntegrityError("immutable is not uncopyable", reason_code="CATALOG_GOVERNANCE")
+    imm_thesis = str(immutable.get("thesis") or "").lower()
+    if "sealed" not in imm_thesis or "consume-once" not in imm_thesis or "hash-chained" not in imm_thesis:
+        raise IntegrityError("immutable thesis is sealed, consume-once, hash-chained", reason_code="CATALOG_GOVERNANCE")
+    pin_ids = [item.get("id") for item in immutable.get("pins") or [] if isinstance(item, dict)]
+    for needed in ("consume_once", "action_hash", "sealed_chain", "fail_closed", "lockfile"):
+        if needed not in pin_ids:
+            raise IntegrityError(f"immutable pins must include {needed}", reason_code="CATALOG_GOVERNANCE")
+    reporting = body.get("reporting") or {}
+    if reporting.get("sku") is True or reporting.get("certified") is True:
+        raise IntegrityError("reporting is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if reporting.get("chat_is_not_keep") is not True or reporting.get("mailbox_is_not_second_record") is not True:
+        raise IntegrityError("a chat or mailbox is not the keep", reason_code="CATALOG_GOVERNANCE")
+    consequences = body.get("consequences") or {}
+    if consequences.get("mandated") is True or consequences.get("ainav_named_in_statute") is True:
+        raise IntegrityError("must-have is not a statute that names AINav", reason_code="CATALOG_GOVERNANCE")
+    if consequences.get("buying_l1_closes_clocks") is True:
+        raise IntegrityError("buying L1 does not close regulator clocks", reason_code="CATALOG_GOVERNANCE")
+    if consequences.get("certified") is True:
+        raise IntegrityError("consequences are not a certificate", reason_code="CATALOG_GOVERNANCE")
+    calendar = body.get("calendar") or {}
+    if calendar.get("sku") is True or calendar.get("certified") is True:
+        raise IntegrityError("governance calendar is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if calendar.get("counsel") is not True:
+        raise IntegrityError("governance calendar stays with counsel", reason_code="CATALOG_GOVERNANCE")
+    cal_ids = {item.get("id") for item in calendar.get("items") or [] if isinstance(item, dict)}
+    for needed in ("eu.ai_act.gpai_enforcement", "us.co.sb26_189", "eu.ai_act.annex_iii"):
+        if needed not in cal_ids:
+            raise IntegrityError(f"calendar must include {needed}", reason_code="CATALOG_GOVERNANCE")
+    if any(item.get("claimed") is True for item in calendar.get("items") or [] if isinstance(item, dict)):
+        raise IntegrityError("calendar items cannot claim certification", reason_code="CATALOG_GOVERNANCE")
     if not body.get("risks"):
         raise IntegrityError("governance must name non-compliance risks", reason_code="CATALOG_GOVERNANCE")
     cascade = body.get("cascade") or {}
@@ -1423,6 +1487,112 @@ def _validate_view_assignment(catalog: dict[str, Any], body: dict[str, Any]) -> 
     ):
         if stem not in refuse:
             raise IntegrityError("view assignment must refuse " + stem, reason_code="CATALOG_PLANE")
+
+
+def _validate_estate(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    estate = body.get("estate")
+    if not isinstance(estate, dict):
+        raise IntegrityError("catalog missing plane estate", reason_code="CATALOG_PLANE")
+    if estate.get("sku") is True or estate.get("upsell") is True or estate.get("fourth_sku") is True:
+        raise IntegrityError("estate is not a SKU", reason_code="CATALOG_SKU")
+    if estate.get("live") is True or estate.get("live_pin_ok") is True:
+        raise IntegrityError("estate cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if estate.get("same_dashboard") is not True or estate.get("included_with") != "L1":
+        raise IntegrityError("estate is the same L1 dashboard", reason_code="CATALOG_PLANE")
+    thesis = str(estate.get("thesis") or "").lower()
+    for stem in ("failsafe", "not the ai", "two records", "hash-chained", "catalog map", "bc.general_journal.post"):
+        if stem not in thesis:
+            raise IntegrityError(f"estate thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    glance = estate.get("first_glance") or {}
+    if glance.get("sku") is True:
+        raise IntegrityError("estate first glance is not a SKU", reason_code="CATALOG_SKU")
+    lede = str(glance.get("lede") or "").lower()
+    for stem in ("failsafe", "sealed records", "immutable", "not a fourth sku"):
+        if stem not in lede:
+            raise IntegrityError(f"estate first glance must keep {stem}", reason_code="CATALOG_PLANE")
+    uses = estate.get("other_uses") or {}
+    if uses.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("other uses lead stays the general journal", reason_code="CATALOG_WEDGE")
+    modules = {
+        item.get("id"): item
+        for item in catalog.get("modules") or []
+        if isinstance(item, dict)
+    }
+    bands = {item.get("id"): item for item in uses.get("bands") or [] if isinstance(item, dict)}
+    for needed in ("prove", "deepen", "keep"):
+        if needed not in bands:
+            raise IntegrityError(f"other uses must include {needed}", reason_code="CATALOG_PLANE")
+    prove = bands["prove"]
+    deepen = bands["deepen"]
+    keep = bands["keep"]
+    if prove.get("sku") != "L1" or deepen.get("sku") != "U-DUAL" or keep.get("sku") != "P-ADM":
+        raise IntegrityError("other uses bands stay L1 / U-DUAL / P-ADM", reason_code="CATALOG_SKU")
+    if list(prove.get("wedge") or []) != ["bc.general_journal.post"]:
+        raise IntegrityError("L1 other-uses wedge stays the general journal", reason_code="CATALOG_WEDGE")
+    if set(deepen.get("wedge") or []) != {"d365.quote.discount_override", "d365.order.submit"}:
+        raise IntegrityError("U-DUAL other-uses wedges stay quote and order", reason_code="CATALOG_WEDGE")
+    for band in (prove, deepen, keep):
+        for action_id in list(band.get("wedge") or []) + list(band.get("desks") or []):
+            module = modules.get(action_id)
+            if not module:
+                raise IntegrityError(f"other uses unknown module {action_id}", reason_code="CATALOG_PLANE")
+            if module.get("sku") != band.get("sku"):
+                raise IntegrityError(f"other uses {action_id} must stay on {band.get('sku')}", reason_code="CATALOG_SKU")
+    fail = estate.get("failsafe") or {}
+    if fail.get("ainav_is_client_ai") is True:
+        raise IntegrityError("estate failsafe is not the client's AI", reason_code="CATALOG_GOVERNANCE")
+    if fail.get("uses") != "governance.plane":
+        raise IntegrityError("estate failsafe uses governance.plane", reason_code="CATALOG_PLANE")
+    verb_ids = [item.get("id") for item in fail.get("verbs") or [] if isinstance(item, dict)]
+    for needed in ("admit", "off_switch", "reset", "rollback"):
+        if needed not in verb_ids:
+            raise IntegrityError(f"failsafe verbs must include {needed}", reason_code="CATALOG_PLANE")
+    gov_plane = ((catalog.get("governance") or {}).get("plane") or {})
+    verbs = {item.get("id"): item for item in fail.get("verbs") or [] if isinstance(item, dict)}
+    for key in ("off_switch", "reset", "rollback"):
+        if str((verbs.get(key) or {}).get("note") or "") != str((gov_plane.get(key) or {}).get("does") or ""):
+            raise IntegrityError(f"estate {key} must match governance.plane", reason_code="CATALOG_PLANE")
+    executive = estate.get("executive") or {}
+    if executive.get("dashboard_is_sku") is True or executive.get("dashboard_included_with") != "L1":
+        raise IntegrityError("executive dashboard is included with L1, not a SKU", reason_code="CATALOG_SKU")
+    for who in ("owner", "board"):
+        row = executive.get(who) or {}
+        if row.get("admit") is True or row.get("role") != "oversee":
+            raise IntegrityError(f"{who} oversees and does not admit", reason_code="CATALOG_PLANE")
+        if row.get("freeze") != "request":
+            raise IntegrityError(f"{who} may request a freeze", reason_code="CATALOG_PLANE")
+    records = estate.get("records") or {}
+    if records.get("certified") is True:
+        raise IntegrityError("estate records are not a certificate", reason_code="CATALOG_GOVERNANCE")
+    if records.get("uses") != "governance.records":
+        raise IntegrityError("estate records use governance.records", reason_code="CATALOG_PLANE")
+    rec_ids = [item.get("id") for item in records.get("items") or [] if isinstance(item, dict)]
+    for needed in ("first", "second", "keep"):
+        if needed not in rec_ids:
+            raise IntegrityError(f"estate records must include {needed}", reason_code="CATALOG_PLANE")
+    immutable = estate.get("immutable") or {}
+    if immutable.get("crypto") is True or immutable.get("worm") is True:
+        raise IntegrityError("estate immutable is not crypto or WORM", reason_code="CATALOG_GOVERNANCE")
+    if immutable.get("uses") != "governance.immutable":
+        raise IntegrityError("estate immutable uses governance.immutable", reason_code="CATALOG_PLANE")
+    instruments = estate.get("instruments") or {}
+    if instruments.get("certified") is True or instruments.get("mandated") is True:
+        raise IntegrityError("estate instruments are not certified or mandated", reason_code="CATALOG_GOVERNANCE")
+    if instruments.get("uses") != "governance.maps":
+        raise IntegrityError("estate instruments use governance.maps", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in estate.get("refuse") or []]
+    for stem in (
+        "estate as sku",
+        "other uses as fourth sku",
+        "failsafe as client ai",
+        "owner as both seats",
+        "board admits",
+        "worm claimed",
+        "crypto ledger",
+        "eu-ready",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("estate must refuse " + stem, reason_code="CATALOG_PLANE")
 
 
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:
@@ -1913,6 +2083,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     if rehearsal.get("named_humans") is True:
         raise IntegrityError("rehearsal cannot invent named humans", reason_code="CATALOG_PLANE")
     _validate_view_assignment(catalog, body)
+    _validate_estate(catalog, body)
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

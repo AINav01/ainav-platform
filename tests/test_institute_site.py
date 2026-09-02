@@ -58,7 +58,11 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="plane-depts"' in html
     assert 'id="plane-maps"' in html
     assert "control-plane.html" in html
-    assert 'id="plane-assign"' in Path("institute/control-plane.html").read_text(encoding="utf-8")
+    plane_html = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    assert 'id="plane-assign"' in plane_html
+    assert 'id="plane-estate-lede"' in plane_html
+    assert 'id="plane-failsafe"' in plane_html
+    assert 'id="plane-immutable"' in plane_html
     assert 'id="plane-path"' in html
     assert "walkable rehearsal" in html.lower() or "command console" in Path("institute/control-plane.html").read_text(encoding="utf-8").lower()
     assert "control-plane.json" in js

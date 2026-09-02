@@ -376,6 +376,11 @@ def public_dashboard() -> dict[str, Any]:
         "provision_bands": _provision_bands(cat, body),
         "included_and_upsells": dict(body.get("included_and_upsells") or {}),
         "view_assignment": dict(body.get("view_assignment") or {}),
+        "estate": dict(body.get("estate") or {}),
+        "estate_equation": cat["equations"].get("estate"),
+        "governance_immutable": dict(gov.get("immutable") or {}),
+        "governance_calendar": dict(gov.get("calendar") or {}),
+        "governance_consequences": dict(gov.get("consequences") or {}),
         "must_have": must,
         "floor": dict(body.get("floor") or {}),
         "communications": [dict(item) for item in body.get("communications") or []],
@@ -749,7 +754,54 @@ def dashboard_markdown() -> str:
     ]
     for item in disc.get("items") or []:
         lines.append(f"- **{item.get('name')}** — {item.get('note') or ''}")
+    estate = body.get("estate") or {}
     lines += [
+        "",
+        "## Estate — same plane, more surfaces",
+        "",
+        f"{((estate.get('first_glance') or {}).get('lede') or '')} "
+        f"{estate.get('thesis') or ''} SKU: {str(estate.get('sku')).lower()}. "
+        f"Estate: {body.get('estate_equation') or ''}.",
+        "",
+        f"### Other uses — {(estate.get('other_uses') or {}).get('lede') or ''}",
+        "",
+    ]
+    for band in (estate.get("other_uses") or {}).get("bands") or []:
+        lines.append(
+            f"- **{band.get('name')}** — wedge: "
+            + ", ".join(str(item) for item in band.get("wedge") or [])
+            + f". {band.get('note') or ''}"
+        )
+    lines += [
+        "",
+        f"### Failsafe — {(estate.get('failsafe') or {}).get('lede') or ''}",
+        "",
+    ]
+    for item in (estate.get("failsafe") or {}).get("verbs") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note')}")
+    exec_body = estate.get("executive") or {}
+    lines += [
+        "",
+        f"### Executive and board — {exec_body.get('lede') or ''}",
+        "",
+        f"- Owner: {(exec_body.get('owner') or {}).get('note')}",
+        f"- Board: {(exec_body.get('board') or {}).get('note')}",
+        "",
+        f"### Governance records — {(estate.get('records') or {}).get('lede') or ''}",
+        "",
+    ]
+    for item in (estate.get("records") or {}).get("items") or []:
+        lines.append(f"- **{item.get('name')}** — {item.get('note')}")
+    lines += [
+        "",
+        f"### Immutable — {(estate.get('immutable') or {}).get('lede') or ''}",
+        "",
+        f"Crypto: {str((estate.get('immutable') or {}).get('crypto')).lower()}. "
+        f"WORM: {str((estate.get('immutable') or {}).get('worm')).lower()}.",
+        "",
+        f"### AI governance maps — {(estate.get('instruments') or {}).get('lede') or ''}",
+        "",
+        str((body.get("governance_consequences") or {}).get("thesis") or ""),
         "",
         "## Included with L1 · upsell band",
         "",
@@ -1257,6 +1309,30 @@ def dashboard_html() -> str:
         )
         for key in ("internal", "remote")
     )
+    estate = body.get("estate") or {}
+    estate_bands = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"price\">{html.escape(str(item.get('sku') or ''))}</p>"
+            f"<p class=\"note\">Wedge: {html.escape(', '.join(str(x) for x in item.get('wedge') or []))}. "
+            f"{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in (estate.get("other_uses") or {}).get("bands") or []
+    )
+    estate_verbs = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in (estate.get("failsafe") or {}).get("verbs") or []
+    )
+    estate_records = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"note\">{html.escape(item.get('note') or '')}</p></article>"
+        )
+        for item in (estate.get("records") or {}).get("items") or []
+    )
     dash_glance = (body.get("dashboard") or {}).get("first_glance") or {}
     rail_items = list(dash_glance.get("write_rail") or [])
     if not rail_items:
@@ -1433,6 +1509,23 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <h2>{html.escape(str(assign_disc.get('legal') or 'AINav, Inc.'))} disclaimers</h2>
 <p class="note">{html.escape(str(assign_disc.get('lede') or ''))}</p>
 <div class="lifecycle">{assign_disc_items}</div>
+<h2>Estate — same plane, more surfaces</h2>
+<p class="note">{html.escape(str((estate.get('first_glance') or {}).get('lede') or ''))} {html.escape(str(estate.get('thesis') or ''))} SKU: {html.escape(str(estate.get('sku')).lower())}.</p>
+<h2>Other uses</h2>
+<p class="note">{html.escape(str((estate.get('other_uses') or {}).get('lede') or ''))}</p>
+<div class="lifecycle">{estate_bands}</div>
+<h2>AI failsafe</h2>
+<p class="note">{html.escape(str((estate.get('failsafe') or {}).get('lede') or ''))}</p>
+<div class="lifecycle">{estate_verbs}</div>
+<h2>Executive and board</h2>
+<p class="note">{html.escape(str((estate.get('executive') or {}).get('lede') or ''))} Owner: {html.escape(str(((estate.get('executive') or {}).get('owner') or {}).get('note') or ''))} Board: {html.escape(str(((estate.get('executive') or {}).get('board') or {}).get('note') or ''))}</p>
+<h2>Governance records</h2>
+<p class="note">{html.escape(str((estate.get('records') or {}).get('lede') or ''))}</p>
+<div class="lifecycle">{estate_records}</div>
+<h2>Immutable</h2>
+<p class="note">{html.escape(str((estate.get('immutable') or {}).get('lede') or ''))} Crypto: {html.escape(str((estate.get('immutable') or {}).get('crypto')).lower())}. WORM: {html.escape(str((estate.get('immutable') or {}).get('worm')).lower())}.</p>
+<h2>AI governance maps</h2>
+<p class="note">{html.escape(str((estate.get('instruments') or {}).get('lede') or ''))} {html.escape(str((body.get('governance_consequences') or {}).get('thesis') or ''))}</p>
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <h2>Success program — bake-off</h2>

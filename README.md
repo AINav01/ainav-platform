@@ -111,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.66.0 (this tree)
+### 2.67.0 (this tree)
+
+Estate doctrine is catalog law: other
+uses, AI failsafe, executive and board
+oversee, governance records, immutable
+pins, and AI governance maps. Same
+dashboard included with L1. Maps stay
+`claimed=false`. Not a fourth SKU. A
+green check is not `LIVE_PIN_OK`.
+
+### 2.66.0
 
 Org-chart view assignment is catalog
 law. Personalized Floor views come from

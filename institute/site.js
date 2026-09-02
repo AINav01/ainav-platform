@@ -453,6 +453,31 @@
       paintBoard("plane-legal", assign.disclaimers && assign.disclaimers.items ? assign.disclaimers.items : [], function () {
         return "AINav, Inc.";
       });
+      var estate = data.estate || {};
+      if (estate.first_glance && estate.first_glance.lede) set("plane-estate-lede", estate.first_glance.lede);
+      paintBoard("plane-uses", estate.other_uses && estate.other_uses.bands ? estate.other_uses.bands : [], function (item) {
+        return item.sku || "desk";
+      });
+      paintBoard("plane-failsafe", estate.failsafe && estate.failsafe.verbs ? estate.failsafe.verbs : [], function () {
+        return "failsafe";
+      });
+      if (estate.executive && estate.executive.lede) set("plane-exec-lede", estate.executive.lede);
+      paintBoard("plane-exec", [
+        Object.assign({ name: "Owner / executive" }, estate.executive && estate.executive.owner ? estate.executive.owner : {}),
+        Object.assign({ name: "Board" }, estate.executive && estate.executive.board ? estate.executive.board : {})
+      ], function (item) {
+        return item.role || "oversee";
+      });
+      paintBoard("plane-estate-records", estate.records && estate.records.items ? estate.records.items : [], function () {
+        return "record";
+      });
+      if (estate.immutable && estate.immutable.lede) set("plane-immutable-lede", estate.immutable.lede);
+      paintBoard("plane-immutable", (data.governance_immutable && data.governance_immutable.pins) || [], function () {
+        return "pin";
+      });
+      if (data.governance_consequences && data.governance_consequences.thesis) {
+        set("plane-consequences", data.governance_consequences.thesis);
+      }
       fillRows("plane-maps", data.maps || [], function (item) {
         return [item.name, item.maps_to || "", item.scope || "", "claimed=" + String(item.claimed)];
       });

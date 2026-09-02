@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.66.0",
+    "release": "2.67.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -306,9 +306,10 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify",
+    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps",
     "investor": "catalog list × zero booked × two-human close",
-    "success": "walk-away × independence × consume-once × fail-closed × named dual seats"
+    "success": "walk-away × independence × consume-once × fail-closed × named dual seats",
+    "estate": "other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
@@ -2419,10 +2420,26 @@
         "uses": "write_rail",
         "lede": "One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU.",
         "write_rail": [
-          {"id": "seat_a", "name": "Seat A", "note": "Treasury admits"},
-          {"id": "seat_b", "name": "Seat B", "note": "Controller admits"},
-          {"id": "hash", "name": "One hash", "note": "Consume once"},
-          {"id": "write", "name": "Then the write", "note": "Fail-closed SoR"}
+          {
+            "id": "seat_a",
+            "name": "Seat A",
+            "note": "Treasury admits"
+          },
+          {
+            "id": "seat_b",
+            "name": "Seat B",
+            "note": "Controller admits"
+          },
+          {
+            "id": "hash",
+            "name": "One hash",
+            "note": "Consume once"
+          },
+          {
+            "id": "write",
+            "name": "Then the write",
+            "note": "Fail-closed SoR"
+          }
         ]
       }
     },
@@ -3086,11 +3103,26 @@
         "default_view": "client",
         "lede": "Sit the plane. Two humans before the write. Honest zeros. One dashboard included with L1.",
         "sections": [
-          {"id": "write_rail", "name": "Write rail"},
-          {"id": "attention", "name": "Attention"},
-          {"id": "seats", "name": "Seats"},
-          {"id": "keep", "name": "Keep"},
-          {"id": "offer", "name": "Included and upsells"}
+          {
+            "id": "write_rail",
+            "name": "Write rail"
+          },
+          {
+            "id": "attention",
+            "name": "Attention"
+          },
+          {
+            "id": "seats",
+            "name": "Seats"
+          },
+          {
+            "id": "keep",
+            "name": "Keep"
+          },
+          {
+            "id": "offer",
+            "name": "Included and upsells"
+          }
         ],
         "attention_ids": [
           "must_have",
@@ -3261,9 +3293,15 @@
         {
           "id": "assign.treasury",
           "org_role": "admit",
-          "org_nodes": ["client.treasury"],
+          "org_nodes": [
+            "client.treasury"
+          ],
           "default_view": "seats",
-          "allowed_views": ["seats", "client", "entire"],
+          "allowed_views": [
+            "seats",
+            "client",
+            "entire"
+          ],
           "may_bind": true,
           "may_freeze": "refuse",
           "seat": "seat_a",
@@ -3272,9 +3310,15 @@
         {
           "id": "assign.controller",
           "org_role": "admit",
-          "org_nodes": ["client.controller"],
+          "org_nodes": [
+            "client.controller"
+          ],
           "default_view": "seats",
-          "allowed_views": ["seats", "client", "entire"],
+          "allowed_views": [
+            "seats",
+            "client",
+            "entire"
+          ],
           "may_bind": true,
           "may_freeze": "refuse",
           "seat": "seat_b",
@@ -3283,9 +3327,13 @@
         {
           "id": "assign.payables",
           "org_role": "draft",
-          "org_nodes": ["client.payables"],
+          "org_nodes": [
+            "client.payables"
+          ],
           "default_view": "entire",
-          "allowed_views": ["entire"],
+          "allowed_views": [
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": false,
           "seat": null,
@@ -3294,9 +3342,13 @@
         {
           "id": "assign.sales",
           "org_role": "draft",
-          "org_nodes": ["client.sales"],
+          "org_nodes": [
+            "client.sales"
+          ],
           "default_view": "entire",
-          "allowed_views": ["entire"],
+          "allowed_views": [
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": false,
           "seat": null,
@@ -3305,9 +3357,15 @@
         {
           "id": "assign.it",
           "org_role": "host",
-          "org_nodes": ["client.it"],
+          "org_nodes": [
+            "client.it"
+          ],
           "default_view": "it",
-          "allowed_views": ["it", "remote", "entire"],
+          "allowed_views": [
+            "it",
+            "remote",
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": false,
           "seat": null,
@@ -3316,9 +3374,15 @@
         {
           "id": "assign.compliance",
           "org_role": "keep",
-          "org_nodes": ["client.compliance"],
+          "org_nodes": [
+            "client.compliance"
+          ],
           "default_view": "records",
-          "allowed_views": ["records", "examiner", "entire"],
+          "allowed_views": [
+            "records",
+            "examiner",
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": false,
           "seat": null,
@@ -3327,9 +3391,15 @@
         {
           "id": "assign.internal_audit",
           "org_role": "keep",
-          "org_nodes": ["client.internal_audit"],
+          "org_nodes": [
+            "client.internal_audit"
+          ],
           "default_view": "examiner",
-          "allowed_views": ["examiner", "records", "entire"],
+          "allowed_views": [
+            "examiner",
+            "records",
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": false,
           "seat": null,
@@ -3338,9 +3408,13 @@
         {
           "id": "assign.legal",
           "org_role": "counsel",
-          "org_nodes": ["client.legal"],
+          "org_nodes": [
+            "client.legal"
+          ],
           "default_view": "entire",
-          "allowed_views": ["entire"],
+          "allowed_views": [
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": false,
           "seat": null,
@@ -3349,9 +3423,16 @@
         {
           "id": "assign.executive",
           "org_role": "oversee",
-          "org_nodes": ["client.executive"],
+          "org_nodes": [
+            "client.executive"
+          ],
           "default_view": "owner",
-          "allowed_views": ["owner", "client", "provision", "entire"],
+          "allowed_views": [
+            "owner",
+            "client",
+            "provision",
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": "request",
           "seat": null,
@@ -3360,9 +3441,14 @@
         {
           "id": "assign.board",
           "org_role": "oversee",
-          "org_nodes": ["client.board"],
+          "org_nodes": [
+            "client.board"
+          ],
           "default_view": "owner",
-          "allowed_views": ["owner", "entire"],
+          "allowed_views": [
+            "owner",
+            "entire"
+          ],
           "may_bind": false,
           "may_freeze": "request",
           "seat": null,
@@ -3376,8 +3462,15 @@
         "standing": false,
         "fail_closed": true,
         "grants": "view",
-        "path": ["identify", "view", "seat", "bind"],
-        "requires_dual_humans_for": ["seat_bind"],
+        "path": [
+          "identify",
+          "view",
+          "seat",
+          "bind"
+        ],
+        "requires_dual_humans_for": [
+          "seat_bind"
+        ],
         "uses": "authorizations",
         "note": "Two distinct humans bind the same action_hash before a seat that can admit or before any SoR write. A view-only grant may follow identify. Identify is not admit."
       },
@@ -3387,9 +3480,16 @@
         "live": false,
         "standing": false,
         "fail_closed": true,
-        "by": ["freeze", "seat_revoke", "view_revoke", "sku_detach"],
+        "by": [
+          "freeze",
+          "seat_revoke",
+          "view_revoke",
+          "sku_detach"
+        ],
         "effect": "console_hidden",
-        "requires_dual_humans_for": ["seat_revoke"],
+        "requires_dual_humans_for": [
+          "seat_revoke"
+        ],
         "uses": "revocations",
         "note": "Hiding a console is not dual admit. Seat revoke needs two humans. Freeze is fail-closed."
       },
@@ -3507,13 +3607,33 @@
         "uses": "not_the_gate",
         "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
         "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
-        "skus": ["L1", "P-ADM", "U-DUAL"],
+        "skus": [
+          "L1",
+          "P-ADM",
+          "U-DUAL"
+        ],
         "rail_kicker": "The gate · then the licensed copies",
         "write_rail": [
-          {"id": "seat_a", "name": "Seat A", "note": "Treasury admits"},
-          {"id": "seat_b", "name": "Seat B", "note": "Controller admits"},
-          {"id": "hash", "name": "One hash", "note": "Consume once"},
-          {"id": "write", "name": "Then the write", "note": "Fail-closed SoR"}
+          {
+            "id": "seat_a",
+            "name": "Seat A",
+            "note": "Treasury admits"
+          },
+          {
+            "id": "seat_b",
+            "name": "Seat B",
+            "note": "Controller admits"
+          },
+          {
+            "id": "hash",
+            "name": "One hash",
+            "note": "Consume once"
+          },
+          {
+            "id": "write",
+            "name": "Then the write",
+            "note": "Fail-closed SoR"
+          }
         ]
       },
       "public_face": {
@@ -3530,13 +3650,41 @@
           "cms": false,
           "href": "app.html",
           "workspaces": [
-            {"id": "floor", "label": "Floor", "kind": "dashboard"},
-            {"id": "capital", "label": "Capital", "kind": "dashboard"},
-            {"id": "business", "label": "Business", "kind": "dashboard"},
-            {"id": "programs", "label": "Programs", "kind": "dashboard"},
-            {"id": "sale", "label": "Sale", "href": "index.html"},
-            {"id": "owner", "label": "Owner", "href": "index.html#missing"},
-            {"id": "kit", "label": "Kit", "href": "kit.html"}
+            {
+              "id": "floor",
+              "label": "Floor",
+              "kind": "dashboard"
+            },
+            {
+              "id": "capital",
+              "label": "Capital",
+              "kind": "dashboard"
+            },
+            {
+              "id": "business",
+              "label": "Business",
+              "kind": "dashboard"
+            },
+            {
+              "id": "programs",
+              "label": "Programs",
+              "kind": "dashboard"
+            },
+            {
+              "id": "sale",
+              "label": "Sale",
+              "href": "index.html"
+            },
+            {
+              "id": "owner",
+              "label": "Owner",
+              "href": "index.html#missing"
+            },
+            {
+              "id": "kit",
+              "label": "Kit",
+              "href": "kit.html"
+            }
           ]
         },
         "kit": {
@@ -3555,85 +3703,255 @@
           "href": "kit.html",
           "thesis": "The kit compiles catalog law into JSON-LD, llms.txt, search, speculation, Lit elements, Eleventy output, Storybook stories, Playwright, axe, Lighthouse, SWA identify-not-admit, a read-only Function, fail-closed Insights, Pagefind on the kit only, and SWA CLI. Identify is not admit. The API does not write a SoR. Insights are not claimed. Not a CMS. Not LIVE_PIN_OK.",
           "tools": [
-            {"id": "jsonld", "status": "wired"},
-            {"id": "llms_txt", "status": "wired"},
-            {"id": "view_transitions", "status": "wired"},
-            {"id": "speculation_rules", "status": "wired"},
-            {"id": "popover", "status": "wired"},
-            {"id": "minisearch", "status": "wired"},
-            {"id": "playwright", "status": "wired"},
-            {"id": "axe", "status": "wired"},
-            {"id": "lighthouse", "status": "wired"},
-            {"id": "eleventy", "status": "wired"},
-            {"id": "lit", "status": "wired"},
-            {"id": "swa_auth", "status": "identify_not_admit"},
-            {"id": "swa_api", "status": "read_only"},
-            {"id": "app_insights", "status": "fail_closed"},
-            {"id": "pagefind", "status": "kit_only"},
-            {"id": "swa_cli", "status": "local_emulate"},
-            {"id": "storybook", "status": "catalog_stories"}
+            {
+              "id": "jsonld",
+              "status": "wired"
+            },
+            {
+              "id": "llms_txt",
+              "status": "wired"
+            },
+            {
+              "id": "view_transitions",
+              "status": "wired"
+            },
+            {
+              "id": "speculation_rules",
+              "status": "wired"
+            },
+            {
+              "id": "popover",
+              "status": "wired"
+            },
+            {
+              "id": "minisearch",
+              "status": "wired"
+            },
+            {
+              "id": "playwright",
+              "status": "wired"
+            },
+            {
+              "id": "axe",
+              "status": "wired"
+            },
+            {
+              "id": "lighthouse",
+              "status": "wired"
+            },
+            {
+              "id": "eleventy",
+              "status": "wired"
+            },
+            {
+              "id": "lit",
+              "status": "wired"
+            },
+            {
+              "id": "swa_auth",
+              "status": "identify_not_admit"
+            },
+            {
+              "id": "swa_api",
+              "status": "read_only"
+            },
+            {
+              "id": "app_insights",
+              "status": "fail_closed"
+            },
+            {
+              "id": "pagefind",
+              "status": "kit_only"
+            },
+            {
+              "id": "swa_cli",
+              "status": "local_emulate"
+            },
+            {
+              "id": "storybook",
+              "status": "catalog_stories"
+            }
           ]
         },
         "primary": [
-          {"id": "buyer", "href": "#buyer", "label": "The write"},
-          {"id": "twin", "href": "#twin", "label": "Proof day"},
-          {"id": "success", "href": "#success", "label": "Bake-off"},
-          {"id": "dashboard", "href": "app.html", "label": "Dashboard"},
-          {"id": "owner", "href": "#missing", "label": "Owner"}
+          {
+            "id": "buyer",
+            "href": "#buyer",
+            "label": "The write"
+          },
+          {
+            "id": "twin",
+            "href": "#twin",
+            "label": "Proof day"
+          },
+          {
+            "id": "success",
+            "href": "#success",
+            "label": "Bake-off"
+          },
+          {
+            "id": "dashboard",
+            "href": "app.html",
+            "label": "Dashboard"
+          },
+          {
+            "id": "owner",
+            "href": "#missing",
+            "label": "Owner"
+          }
         ],
         "owner_book": [
           {
             "id": "sale",
             "name": "Sale",
             "items": [
-              {"href": "#buyer", "label": "The write"},
-              {"href": "#twin", "label": "Proof day"},
-              {"href": "#success", "label": "Bake-off"},
-              {"href": "#product", "label": "Product"}
+              {
+                "href": "#buyer",
+                "label": "The write"
+              },
+              {
+                "href": "#twin",
+                "label": "Proof day"
+              },
+              {
+                "href": "#success",
+                "label": "Bake-off"
+              },
+              {
+                "href": "#product",
+                "label": "Product"
+              }
             ]
           },
           {
             "id": "owner",
             "name": "Owner",
             "items": [
-              {"href": "#closed", "label": "Closed"},
-              {"href": "#missing", "label": "Owner"},
-              {"href": "#open", "label": "Open"},
-              {"href": "#stack-walk", "label": "Stack walk"},
-              {"href": "#e7-cloudflare", "label": "E7 on Cloudflare"}
+              {
+                "href": "#closed",
+                "label": "Closed"
+              },
+              {
+                "href": "#missing",
+                "label": "Owner"
+              },
+              {
+                "href": "#open",
+                "label": "Open"
+              },
+              {
+                "href": "#stack-walk",
+                "label": "Stack walk"
+              },
+              {
+                "href": "#e7-cloudflare",
+                "label": "E7 on Cloudflare"
+              }
             ]
           },
           {
             "id": "book",
             "name": "Book",
             "items": [
-              {"href": "#about", "label": "About AINav"},
-              {"href": "#opportunity", "label": "Opportunity"},
-              {"href": "#fabric", "label": "Fabric"},
-              {"href": "#org", "label": "Organization"},
-              {"href": "#client-org", "label": "Client chart"},
-              {"href": "#review", "label": "Review"},
-              {"href": "#programs", "label": "Programs"},
-              {"href": "#packs", "label": "Packs"},
-              {"href": "#governance", "label": "Governance"},
-              {"href": "#control-plane", "label": "Control plane"},
-              {"href": "#ops", "label": "Operations"},
-              {"href": "#business", "label": "Business"},
-              {"href": "#finance", "label": "Finance"},
-              {"href": "#investor", "label": "Investor"},
-              {"href": "#delivery", "label": "Delivery"},
-              {"href": "#commercial", "label": "Commercial"},
-              {"href": "#mothership", "label": "Mothership"},
-              {"href": "#microsoft", "label": "Microsoft"},
-              {"href": "#agent-tools", "label": "Agent Tools"},
-              {"href": "#ip", "label": "IP"}
+              {
+                "href": "#about",
+                "label": "About AINav"
+              },
+              {
+                "href": "#opportunity",
+                "label": "Opportunity"
+              },
+              {
+                "href": "#fabric",
+                "label": "Fabric"
+              },
+              {
+                "href": "#org",
+                "label": "Organization"
+              },
+              {
+                "href": "#client-org",
+                "label": "Client chart"
+              },
+              {
+                "href": "#review",
+                "label": "Review"
+              },
+              {
+                "href": "#programs",
+                "label": "Programs"
+              },
+              {
+                "href": "#packs",
+                "label": "Packs"
+              },
+              {
+                "href": "#governance",
+                "label": "Governance"
+              },
+              {
+                "href": "#control-plane",
+                "label": "Control plane"
+              },
+              {
+                "href": "#ops",
+                "label": "Operations"
+              },
+              {
+                "href": "#business",
+                "label": "Business"
+              },
+              {
+                "href": "#finance",
+                "label": "Finance"
+              },
+              {
+                "href": "#investor",
+                "label": "Investor"
+              },
+              {
+                "href": "#delivery",
+                "label": "Delivery"
+              },
+              {
+                "href": "#commercial",
+                "label": "Commercial"
+              },
+              {
+                "href": "#mothership",
+                "label": "Mothership"
+              },
+              {
+                "href": "#microsoft",
+                "label": "Microsoft"
+              },
+              {
+                "href": "#agent-tools",
+                "label": "Agent Tools"
+              },
+              {
+                "href": "#ip",
+                "label": "IP"
+              }
             ]
           }
         ],
         "cta": [
-          {"href": "#twin", "label": "Ninety-minute proof day", "kind": "ask"},
-          {"href": "#success", "label": "When to walk away", "kind": "ghost"},
-          {"href": "#buyer", "label": "The write", "kind": "ghost"}
+          {
+            "href": "#twin",
+            "label": "Ninety-minute proof day",
+            "kind": "ask"
+          },
+          {
+            "href": "#success",
+            "label": "When to walk away",
+            "kind": "ghost"
+          },
+          {
+            "href": "#buyer",
+            "label": "The write",
+            "kind": "ghost"
+          }
         ],
         "cannot": [
           "invent an inbox",
@@ -3882,6 +4200,178 @@
           }
         ]
       }
+    },
+    "estate": {
+      "kind": "ainav.plane.estate.v1",
+      "sku": false,
+      "upsell": false,
+      "live": false,
+      "live_pin_ok": false,
+      "same_dashboard": true,
+      "included_with": "L1",
+      "fourth_sku": false,
+      "thesis": "Same use. More surfaces. AINav is the failsafe, not the AI. Owner and board oversee. They are not seats. Record keeping is two records and a keep. Immutable means sealed, consume-once, and hash-chained. AI governance is a catalog map. Not a certificate. Lead stays bc.general_journal.post.",
+      "first_glance": {
+        "sku": false,
+        "lede": "Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU."
+      },
+      "other_uses": {
+        "lede": "Same Job C. More privileged writes on the same plane. Lead stays the general journal.",
+        "lead": "bc.general_journal.post",
+        "bands": [
+          {
+            "id": "prove",
+            "name": "Prove — L1",
+            "sku": "L1",
+            "wedge": [
+              "bc.general_journal.post"
+            ],
+            "desks": [
+              "bc.payment_journal.post",
+              "bc.bank_reconciliation.post",
+              "bc.purchase_invoice.post",
+              "bc.cash_receipt.post",
+              "bc.sales_invoice.post",
+              "bc.fixed_asset.post",
+              "bc.inventory.adjust"
+            ],
+            "note": "Money that hits the GL. Priced desks attach to L1. Not SKUs."
+          },
+          {
+            "id": "deepen",
+            "name": "Deepen — paid U-DUAL",
+            "sku": "U-DUAL",
+            "wedge": [
+              "d365.quote.discount_override",
+              "d365.order.submit"
+            ],
+            "desks": [
+              "d365.invoice.post",
+              "d365.creditmemo.issue",
+              "d365.return.authorize",
+              "d365.price.override",
+              "d365.quote.void"
+            ],
+            "note": "Commercial writes. Never free with P-ADM. Sales twin until G14."
+          },
+          {
+            "id": "keep",
+            "name": "Keep — P-ADM",
+            "sku": "P-ADM",
+            "wedge": [
+              "purview.audit.export"
+            ],
+            "desks": [
+              "governance.decision.export",
+              "governance.second_record.export",
+              "governance.off_switch.export",
+              "governance.reset.export",
+              "governance.org.export",
+              "governance.risk.export"
+            ],
+            "note": "Not a write. Second record and freeze evidence. Not a certificate."
+          }
+        ],
+        "not": [
+          "fourth SKU",
+          "IdP replacement",
+          "agent inventory",
+          "cryptocurrency product"
+        ]
+      },
+      "failsafe": {
+        "lede": "AINav is the failsafe, not the client's AI. Four verbs. Same plane.",
+        "uses": "governance.plane",
+        "verbs": [
+          {
+            "id": "admit",
+            "name": "Admit",
+            "note": "Two distinct humans. Consume-once. That is the failsafe working."
+          },
+          {
+            "id": "off_switch",
+            "name": "Off switch",
+            "note": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not."
+          },
+          {
+            "id": "reset",
+            "name": "Reset",
+            "note": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep."
+          },
+          {
+            "id": "rollback",
+            "name": "Rollback",
+            "note": "A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted."
+          }
+        ],
+        "ainav_is_client_ai": false
+      },
+      "executive": {
+        "lede": "Owner and board oversee. They are not seats. One title cannot click both admits.",
+        "owner": {
+          "role": "oversee",
+          "admit": false,
+          "freeze": "request",
+          "keep": "view",
+          "note": "Institutes the plane. One title cannot be both seats. Do not invent a name."
+        },
+        "board": {
+          "role": "oversee",
+          "admit": false,
+          "freeze": "request",
+          "keep": "view",
+          "note": "Fiduciary oversight. Board keep after P-ADM. Do not invent a director."
+        },
+        "dashboard_included_with": "L1",
+        "dashboard_is_sku": false
+      },
+      "records": {
+        "lede": "Record keeping is two records and a keep.",
+        "uses": "governance.records",
+        "items": [
+          {
+            "id": "first",
+            "name": "First record",
+            "note": "The privileged SoR write after dual admit (journal, invoice, order)."
+          },
+          {
+            "id": "second",
+            "name": "Second record",
+            "note": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+          },
+          {
+            "id": "keep",
+            "name": "Keep",
+            "note": "Weekly export after kit PASS."
+          }
+        ],
+        "certified": false
+      },
+      "immutable": {
+        "lede": "Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box.",
+        "uses": "governance.immutable",
+        "crypto": false,
+        "worm": false
+      },
+      "instruments": {
+        "lede": "AI governance is a catalog map. Claimed is false. Counsel stays open (G12).",
+        "uses": "governance.maps",
+        "calendar_uses": "governance.calendar",
+        "consequences_uses": "governance.consequences",
+        "certified": false,
+        "mandated": false
+      },
+      "refuse": [
+        "estate as SKU",
+        "other uses as fourth SKU",
+        "failsafe as client AI",
+        "owner as both seats",
+        "board admits",
+        "WORM claimed",
+        "crypto ledger",
+        "mandated by SEC",
+        "EU-ready"
+      ]
     }
   },
   "honest_missing": [
@@ -4825,7 +5315,7 @@
     ]
   },
   "business": {
-    "thesis": "Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.",
+    "thesis": "Price L1 against the unauthorized journal that two humans did not admit. AINav is the failsafe, not the AI. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL. Other uses are desks on the same plane. Not a fourth SKU.",
     "model": {
       "prove": "L1",
       "keep": "P-ADM",
@@ -4836,7 +5326,12 @@
         "IdP replacement",
         "agent inventory",
         "free U-DUAL"
-      ]
+      ],
+      "estate": "same plane",
+      "failsafe": "not the client's AI",
+      "records": "first SoR write × second DecisionRecord × weekly keep",
+      "immutable": "sealed × consume-once × hash-chained",
+      "governance": "catalog maps, claimed=false"
     },
     "management": {
       "cadence": [
@@ -4889,7 +5384,15 @@
     "economics": {
       "recognized_revenue_claimed": false,
       "note": "Pipeline math uses catalog list prices. It is not recognized revenue."
-    }
+    },
+    "elevator": {
+      "ten": "Human control plane over every client AI that can draft a privileged system-of-record write.",
+      "thirty": "Controllers already have Business Central, Entra, and two-person journal duty. They do not have a gate in front of the write. AINav is that gate — not the AI. Two distinct humans bind the same action. The grant is used once. We prove it in ninety minutes on a Business Central twin. That is L1.",
+      "sixty": "Every new client AI is another unauthorized-write surface. The vendor of the draft is the worst failsafe for that draft. Job C sits outside the model. Treasury and controller bind one action hash. First record is the admitted write. Second record is the sealed decision. Off switch, reset, rollback — same plane. Three SKUs only. Not agent inventory. Not an identity provider.",
+      "ask": "Ninety minutes on the twin. Walk out with a sealed record — or walk away."
+    },
+    "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
+    "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable."
   },
   "ip": {
     "owner": "AINav, Inc.",
@@ -5448,7 +5951,15 @@
         }
       ]
     },
-    "letter_voice": "first_person"
+    "letter_voice": "first_person",
+    "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
+    "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable.",
+    "elevator": {
+      "ten": "Human control plane over every client AI that can draft a privileged system-of-record write.",
+      "thirty": "Controllers already have Business Central, Entra, and two-person journal duty. They do not have a gate in front of the write. AINav is that gate — not the AI. Two distinct humans bind the same action. The grant is used once. We prove it in ninety minutes on a Business Central twin. That is L1.",
+      "sixty": "Every new client AI is another unauthorized-write surface. The vendor of the draft is the worst failsafe for that draft. Job C sits outside the model. Treasury and controller bind one action hash. First record is the admitted write. Second record is the sealed decision. Off switch, reset, rollback — same plane. Three SKUs only. Not agent inventory. Not an identity provider.",
+      "ask": "Ninety minutes on the twin. Walk out with a sealed record — or walk away."
+    }
   },
   "expert_review": {
     "working_well": [
@@ -5476,16 +5987,17 @@
       "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
       "Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.",
       "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
-        "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.",
-        "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.",
-        "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
-        "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
-        "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.",
-        "Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.",
-        "Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.",
-        "Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.",
-        "The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.",
-        "Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU."
+      "Dashboard first glance is the same write rail. One dashboard included with L1. Client executive dashboard is the executive control-plane dashboard. Hierarchical views are the same plane, not a second product.",
+      "The public face is a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS.",
+      "The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.",
+      "The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
+      "Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.",
+      "Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.",
+      "Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.",
+      "Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.",
+      "The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.",
+      "Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.",
+      "Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -5847,47 +6359,47 @@
         "done": true,
         "marks_live_pin": false
       },
-        {
-          "n": 28,
-          "who": "tree",
-          "title": "Instrument dashboard first glance",
-          "do": "Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.",
-          "done": true,
-          "marks_live_pin": false
-        },
-        {
-          "n": 29,
-          "who": "tree",
-          "title": "Application face",
-          "do": "Paint a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS. Not LIVE_PIN_OK.",
-          "done": true,
-          "marks_live_pin": false
-        },
-        {
-          "n": 30,
-          "who": "tree",
-          "title": "Application kit",
-          "do": "Wire the application kit: JSON-LD, llms.txt, view transitions, speculation, popover, catalog search, Playwright, axe, Lighthouse, Eleventy compiler, Lit elements, SWA identify-not-admit, read-only Functions, fail-closed Insights, Pagefind on the kit, SWA CLI, and Storybook. Identify is not admit. API does not write SoR. Not a CMS. Not LIVE_PIN_OK.",
-          "done": true,
-          "marks_live_pin": false
-        },
-        {
-          "n": 31,
-          "who": "tree",
-          "title": "Business plane",
-          "do": "Paint the operating-company business plane on the same application: commercial close, if-then catalog list, bake-off, walk-away, and objections. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
-          "done": true,
-          "marks_live_pin": false
-        },
-        {
-          "n": 32,
-          "who": "tree",
-          "title": "Number two other aspects",
-          "do": "Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.",
-          "done": true,
-          "marks_live_pin": false
-        }
-      ]
+      {
+        "n": 28,
+        "who": "tree",
+        "title": "Instrument dashboard first glance",
+        "do": "Paint the same write rail on the dashboard first glance. One dashboard included with L1. Hierarchical views are the same plane. Not a second dashboard SKU. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 29,
+        "who": "tree",
+        "title": "Application face",
+        "do": "Paint a catalog-honest application on app.html. Custom dashboards are the same plane. Capital is not a priced round. Programs are Startups first, Inception second, not a member. Not a CMS. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 30,
+        "who": "tree",
+        "title": "Application kit",
+        "do": "Wire the application kit: JSON-LD, llms.txt, view transitions, speculation, popover, catalog search, Playwright, axe, Lighthouse, Eleventy compiler, Lit elements, SWA identify-not-admit, read-only Functions, fail-closed Insights, Pagefind on the kit, SWA CLI, and Storybook. Identify is not admit. API does not write SoR. Not a CMS. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 31,
+        "who": "tree",
+        "title": "Business plane",
+        "do": "Paint the operating-company business plane on the same application: commercial close, if-then catalog list, bake-off, walk-away, and objections. Not a priced round. Not a forecast. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 32,
+        "who": "tree",
+        "title": "Number two other aspects",
+        "do": "Record Cynthia Hodnett as number two for other aspects, not all aspects. Operating assignment. Not an officer. Not a click. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      }
+    ]
   },
   "governance": {
     "kind": "ainav.governance.v1",
@@ -6005,6 +6517,20 @@
         "scope": "US domestic / books",
         "maps_to": "Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.",
         "claimed": false
+      },
+      {
+        "id": "gdpr.art22",
+        "name": "GDPR Article 22 automated decisions",
+        "scope": "international / EU",
+        "maps_to": "Human admit before a write with legal or similarly significant effect. Not a GDPR opinion.",
+        "claimed": false
+      },
+      {
+        "id": "coe.ai_convention",
+        "name": "Council of Europe Framework Convention on AI",
+        "scope": "international",
+        "maps_to": "Human-rights and accountability baseline for parties. Not a membership. Not a filing.",
+        "claimed": false
       }
     ],
     "risks": [
@@ -6067,6 +6593,16 @@
         "id": "board_blind",
         "harm": "The board has an AI inventory and no evidence of who admitted the write or that the plane can freeze.",
         "note": "Board keep is P-ADM second record plus off-switch and reset evidence. Not a filing."
+      },
+      {
+        "id": "worm_claim",
+        "harm": "Selling sealed DecisionRecords as 17a-4 WORM or a crypto ledger.",
+        "note": "Immutable means consume-once and hash-chained. Not a coin. Not a WORM box."
+      },
+      {
+        "id": "false_mandate",
+        "harm": "Telling a controller the SEC or the EU AI Act requires AINav.",
+        "note": "Must-have is not mandated. Counsel files. The plane is the failsafe."
       }
     ],
     "refuse": [
@@ -6087,7 +6623,14 @@
       "invented department head",
       "department AI as dual",
       "one title as both seats",
-      "AINav replaces the org chart"
+      "AINav replaces the org chart",
+      "17a-4 ready",
+      "WORM claimed",
+      "crypto ledger",
+      "GDPR certified",
+      "mandated by EU AI Act",
+      "Colorado SB 24-205",
+      "EU-ready"
     ],
     "note": "Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
     "cascade": {
@@ -6164,6 +6707,185 @@
         "does": "A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted.",
         "does_not": "Silent undo or a time machine."
       }
+    },
+    "immutable": {
+      "kind": "ainav.governance.immutable.v1",
+      "sku": false,
+      "certified": false,
+      "crypto": false,
+      "worm": false,
+      "seventeen_a4": false,
+      "uncopyable": false,
+      "thesis": "Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box. Not a 17a-4 opinion. Not uncopyable.",
+      "pins": [
+        {
+          "id": "consume_once",
+          "name": "Consume-once grant",
+          "note": "grant_id binds two seats and one action_hash. A replay is a refusal."
+        },
+        {
+          "id": "action_hash",
+          "name": "Canonical action_hash",
+          "note": "SHA-256 of canonical JSON. Frozen gold vectors pin it."
+        },
+        {
+          "id": "sealed_chain",
+          "name": "Sealed DecisionRecords",
+          "note": "Hash-chained seq plus prev_receipt_hash. Merkle / audit can walk them."
+        },
+        {
+          "id": "fail_closed",
+          "name": "Fail-closed effect",
+          "note": "A failed apply is effect_apply_failed. Never a fake success."
+        },
+        {
+          "id": "lockfile",
+          "name": "Lockfile digest",
+          "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+        }
+      ],
+      "not": [
+        "cryptocurrency ledger",
+        "WORM appliance",
+        "17a-4 opinion",
+        "time-machine rollback",
+        "production wipe",
+        "LIVE_PIN_OK"
+      ],
+      "first_record_compensating": true,
+      "note": "The first record is a book write. Rollback is a new privileged write that itself requires dual admit. The second record shows the rollback was admitted."
+    },
+    "reporting": {
+      "kind": "ainav.governance.reporting.v1",
+      "sku": false,
+      "certified": false,
+      "lede": "Record keeping is two records and a keep.",
+      "first": {
+        "id": "first_record",
+        "what": "The privileged SoR write after dual admit (journal, invoice, order).",
+        "plane": "L1 / U-DUAL",
+        "note": "Books of original entry. Not a second SKU. Not LIVE_PIN_OK."
+      },
+      "second": {
+        "id": "second_record",
+        "what": "Sealed DecisionRecord and Merkle keep of who admitted the write.",
+        "plane": "P-ADM",
+        "note": "Supporting books-and-records for examiners and the client's customers. Not a certificate."
+      },
+      "keep": {
+        "id": "keep",
+        "what": "Weekly sealed DecisionRecord export after kit PASS.",
+        "plane": "P-ADM",
+        "note": "Treasurer can open it. Not live Purview. A chat is not the keep."
+      },
+      "archive": "Merkle walk of sealed DecisionRecords.",
+      "chat_is_not_keep": true,
+      "mailbox_is_not_second_record": true,
+      "sentinel_is_not_admit": true
+    },
+    "consequences": {
+      "kind": "ainav.governance.consequences.v1",
+      "sku": false,
+      "mandated": false,
+      "certified": false,
+      "ainav_named_in_statute": false,
+      "buying_l1_closes_clocks": false,
+      "thesis": "Must-have is controller judgment, not a statute that names AINav. Job C harms are why the controller buys. Instrument clocks stay with counsel.",
+      "job_c": [
+        {
+          "id": "unauthorized_write",
+          "harm": "An AI-drafted journal, invoice, or order lands without two seats."
+        },
+        {
+          "id": "no_second_record",
+          "harm": "The examiner cannot see who admitted the write."
+        },
+        {
+          "id": "board_blind",
+          "harm": "The board has an AI inventory and no freeze evidence."
+        },
+        {
+          "id": "seat_collapse",
+          "harm": "Copilot, PIM, Teams, or the Cloud Agent is treated as a seat."
+        }
+      ],
+      "instruments": [
+        {
+          "id": "books",
+          "harm": "ICFR weakness, restatement, exam deficiency. Not a SOX opinion."
+        },
+        {
+          "id": "deception",
+          "harm": "FTC or state ADMT: undeclared automated posting or fake human review."
+        },
+        {
+          "id": "eu_ai_act",
+          "harm": "GPAI or later high-risk clocks. Market access. Counsel files. Not EU-ready."
+        },
+        {
+          "id": "false_certification",
+          "harm": "Claiming EU / NIST / ISO certification that does not exist."
+        }
+      ],
+      "note": "Counsel files. The plane keeps the second record. Buying L1 does not close regulator clocks."
+    },
+    "calendar": {
+      "kind": "ainav.governance.calendar.v1",
+      "sku": false,
+      "certified": false,
+      "counsel": true,
+      "as_of": "2026-09-02",
+      "note": "Consider-only dates for counsel. Not in-tree certifications. Colorado SB 24-205 was repealed. Do not cite it.",
+      "items": [
+        {
+          "id": "eu.ai_act.gpai_enforcement",
+          "name": "EU AI Act GPAI enforcement",
+          "status": "current",
+          "when": "2026-08-02",
+          "note": "Commission / AI Office powers live. AINav is not the GPAI model.",
+          "claimed": false
+        },
+        {
+          "id": "us.ca.sb942",
+          "name": "California AI Transparency Act (SB 942)",
+          "status": "current",
+          "when": "2026-08-02",
+          "note": "Transparency for covered generative providers. Counsel names applicability.",
+          "claimed": false
+        },
+        {
+          "id": "us.co.sb26_189",
+          "name": "Colorado SB 26-189 ADMT",
+          "status": "upcoming",
+          "when": "2027-01-01",
+          "note": "Replaced SB 24-205. Notice and meaningful human review. Not a SKU.",
+          "claimed": false
+        },
+        {
+          "id": "us.ca.admt",
+          "name": "California CPPA ADMT enforcement",
+          "status": "upcoming",
+          "when": "2027-01-01",
+          "note": "Counsel. Not a filing from this plane.",
+          "claimed": false
+        },
+        {
+          "id": "eu.ai_act.annex_iii",
+          "name": "EU AI Act Annex III standalone high-risk",
+          "status": "upcoming",
+          "when": "2027-12-02",
+          "note": "Deployer human oversight later. AINav is the failsafe, not the high-risk system.",
+          "claimed": false
+        },
+        {
+          "id": "eu.ai_act.annex_i",
+          "name": "EU AI Act Annex I embedded high-risk",
+          "status": "upcoming",
+          "when": "2028-08-02",
+          "note": "Embedded product pathway. Not a reason to mint a fourth SKU this week.",
+          "claimed": false
+        }
+      ]
     }
   }
 }

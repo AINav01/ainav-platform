@@ -177,6 +177,23 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert covered == dept_ids
     admit_rows = [row for row in assign["matrix"] if row["org_role"] == "admit"]
     assert all(row["may_bind"] is True for row in admit_rows)
+    estate = body["estate"]
+    assert estate["sku"] is False
+    assert estate["fourth_sku"] is False
+    assert estate["same_dashboard"] is True
+    assert estate["other_uses"]["lead"] == "bc.general_journal.post"
+    assert {item["id"] for item in estate["other_uses"]["bands"]} == {"prove", "deepen", "keep"}
+    assert {item["id"] for item in estate["failsafe"]["verbs"]} >= {"admit", "off_switch", "reset", "rollback"}
+    assert estate["failsafe"]["ainav_is_client_ai"] is False
+    assert estate["executive"]["owner"]["admit"] is False
+    assert estate["executive"]["board"]["admit"] is False
+    assert {item["id"] for item in estate["records"]["items"]} >= {"first", "second", "keep"}
+    assert estate["immutable"]["crypto"] is False
+    assert estate["immutable"]["worm"] is False
+    assert estate["instruments"]["certified"] is False
+    assert body["governance_immutable"]["crypto"] is False
+    assert body["governance_consequences"]["mandated"] is False
+    assert "failsafe" in (body.get("estate_equation") or "")
     assert all(row["may_bind"] is not True for row in assign["matrix"] if row["org_role"] != "admit")
     treasury = next(item for item in body["provision_bands"]["included_l1"] if item["id"] == "industry.treasury")
     assert treasury["attach"] == "included with L1"
@@ -286,6 +303,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Included with L1 · upsell band" in html
     assert "Executive board — sit the plane" in html
     assert "Org-chart view assignment" in html
+    assert "Estate — same plane" in html
+    assert "AI failsafe" in html
+    assert "Immutable" in html
     assert "Authorize and de-authorize" in html
     assert "Internal and remote MFA" in html
     assert "AINav, Inc." in html
@@ -422,6 +442,19 @@ def test_plane_interface_validators_refuse_fiction():
     named["plane_interface"]["view_assignment"]["named_assignments"] = ["invented"]
     with pytest.raises(IntegrityError):
         validate_catalog(named)
+    estate_sku = copy.deepcopy(cat)
+    estate_sku["plane_interface"]["estate"]["sku"] = True
+    with pytest.raises(IntegrityError) as estate_exc:
+        validate_catalog(estate_sku)
+    assert estate_exc.value.reason_code == "CATALOG_SKU"
+    estate_ai = copy.deepcopy(cat)
+    estate_ai["plane_interface"]["estate"]["failsafe"]["ainav_is_client_ai"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(estate_ai)
+    estate_worm = copy.deepcopy(cat)
+    estate_worm["plane_interface"]["estate"]["immutable"]["worm"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(estate_worm)
     two_dash = copy.deepcopy(cat)
     two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
     with pytest.raises(IntegrityError):

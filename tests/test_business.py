@@ -18,6 +18,12 @@ def test_business_model_stays_three_skus():
     assert body["model"]["keep"] == "P-ADM"
     assert body["model"]["deepen"] == "U-DUAL"
     assert body["economics"]["recognized_revenue_claimed"] is False
+    assert "control plane" in body["elevator"]["ten"].lower()
+    assert "ninety" in body["elevator"]["thirty"].lower()
+    assert "gate in front of the write" in body["why_client"].lower()
+    assert "priced round" in body["why_investor"].lower()
+    assert body["model"]["estate"] == "same plane"
+    assert "failsafe" in body["thesis"].lower()
 
 
 def test_operating_company_runs_the_spine():

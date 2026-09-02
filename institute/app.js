@@ -207,10 +207,13 @@
     paintTiles($("app-floor-tiles"), tilesForView(id, data.tiles, views, board));
     var boardRoot = $("app-floor-board");
     var governRoot = $("app-floor-govern");
+    var estateRoot = $("app-floor-estate");
     var showGlance = id === "client" || id === "entire" || id === "provision";
     var showGovern = showGlance || id === "owner" || id === "it" || id === "remote";
+    var showEstate = showGovern || id === "examiner" || id === "records";
     if (boardRoot) boardRoot.hidden = !showGlance;
     if (governRoot) governRoot.hidden = !showGovern;
+    if (estateRoot) estateRoot.hidden = !showEstate;
   }
 
   function paintOfferBoard(root, offer) {
@@ -320,6 +323,21 @@
     });
   }
 
+  function paintMaps(root, items) {
+    if (!root) return;
+    var tbody = root.querySelector("tbody") || root;
+    tbody.textContent = "";
+    (items || []).forEach(function (item) {
+      var tr = document.createElement("tr");
+      [item.name || "", item.maps_to || "", item.scope || "", "false"].forEach(function (value) {
+        var td = document.createElement("td");
+        td.textContent = value;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
   function paintNotes(root, items) {
     if (!root || !items || !items.length) return;
     root.textContent = "";
@@ -370,6 +388,27 @@
     if (disc.lede) setText("app-floor-legal-lede", disc.lede);
     paintNotes($("app-floor-legal"), disc.items || []);
     paintNotes($("app-floor-advantage"), (assign.advantage && assign.advantage.items) || []);
+    var estate = data.estate || {};
+    if (estate.sku || estate.fourth_sku || estate.live_pin_ok) return;
+    var glanceE = estate.first_glance || {};
+    if (glanceE.lede) setText("app-floor-estate-lede", glanceE.lede);
+    if (estate.other_uses && estate.other_uses.lede) setText("app-floor-uses-lede", estate.other_uses.lede);
+    paintNotes($("app-floor-uses"), estate.other_uses && estate.other_uses.bands ? estate.other_uses.bands : []);
+    if (estate.failsafe && estate.failsafe.lede) setText("app-floor-failsafe-lede", estate.failsafe.lede);
+    paintNotes($("app-floor-failsafe"), estate.failsafe && estate.failsafe.verbs ? estate.failsafe.verbs : []);
+    if (estate.executive && estate.executive.lede) setText("app-floor-exec-lede", estate.executive.lede);
+    paintNotes($("app-floor-exec"), [
+      Object.assign({ name: "Owner / executive" }, estate.executive && estate.executive.owner ? estate.executive.owner : {}),
+      Object.assign({ name: "Board" }, estate.executive && estate.executive.board ? estate.executive.board : {})
+    ]);
+    if (estate.records && estate.records.lede) setText("app-floor-records-lede", estate.records.lede);
+    paintNotes($("app-floor-records"), estate.records && estate.records.items ? estate.records.items : []);
+    if (estate.immutable && estate.immutable.lede) setText("app-floor-immutable-lede", estate.immutable.lede);
+    paintNotes($("app-floor-immutable"), (data.governance_immutable && data.governance_immutable.pins) || []);
+    if (estate.instruments && estate.instruments.lede) setText("app-floor-maps-lede", estate.instruments.lede);
+    paintMaps($("app-floor-maps"), data.maps || []);
+    var cons = data.governance_consequences || {};
+    if (cons.thesis) setText("app-floor-consequences", cons.thesis);
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");
@@ -394,6 +433,8 @@
     } else if (data.one_liner) {
       setText("app-capital-lede", data.one_liner);
     }
+    if (data.why_client) setText("app-capital-why-client", data.why_client);
+    if (data.why_investor) setText("app-capital-why-investor", data.why_investor);
     setText("app-capital-open", data.letter_open || "");
     setText("app-capital-close", data.letter_close || data.signoff || "");
     var body = $("app-capital-body");
@@ -478,6 +519,12 @@
     if (two.all_aspects || two.officer || two.seat_clicked || two.entra_oid) return;
     if (data.thesis) setText("app-business-lede", data.thesis);
     setText("app-business-commercial", (data.commercial || "") + ". Closed: false. Lab pin is " + (data.lab_pin || "LIVE_PIN_OK") + ".");
+    var elevator = data.elevator || {};
+    if (elevator.ten) setText("app-business-elevator-ten", elevator.ten);
+    if (elevator.thirty) setText("app-business-elevator-thirty", elevator.thirty);
+    if (elevator.ask) setText("app-business-elevator-ask", elevator.ask);
+    if (data.why_client) setText("app-business-why-client", data.why_client);
+    if (data.why_investor) setText("app-business-why-investor", data.why_investor);
     var offer = data.included_and_upsells || {};
     if (!offer.sku && !offer.fourth_sku && !offer.included_means_free) {
       var glance = offer.first_glance || {};

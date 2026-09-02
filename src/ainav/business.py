@@ -23,6 +23,21 @@ def validate_business(catalog: dict[str, Any]) -> None:
         raise IntegrityError("business model cannot invent SKUs", reason_code="CATALOG_SKU")
     if body.get("economics", {}).get("recognized_revenue_claimed") is True:
         raise IntegrityError("recognized revenue cannot be claimed here", reason_code="REVENUE_NOT_CLAIMED")
+    elevator = body.get("elevator") or {}
+    if "control plane" not in str(elevator.get("ten") or "").lower():
+        raise IntegrityError("business elevator ten is the control-plane one-liner", reason_code="CATALOG_BUSINESS")
+    if "ninety" not in str(elevator.get("thirty") or "").lower() or "l1" not in str(elevator.get("thirty") or "").lower():
+        raise IntegrityError("business elevator thirty is the ninety-minute L1 proof", reason_code="CATALOG_BUSINESS")
+    if "walk away" not in str(elevator.get("ask") or "").lower():
+        raise IntegrityError("business elevator ask is ninety minutes or walk away", reason_code="CATALOG_BUSINESS")
+    if "gate in front of the write" not in str(body.get("why_client") or "").lower():
+        raise IntegrityError("why_client is the missing gate", reason_code="CATALOG_BUSINESS")
+    if "priced round" not in str(body.get("why_investor") or "").lower():
+        raise IntegrityError("why_investor stays not a priced round", reason_code="CATALOG_BUSINESS")
+    if "failsafe" not in str(body.get("thesis") or "").lower():
+        raise IntegrityError("business thesis keeps the failsafe", reason_code="CATALOG_BUSINESS")
+    if model.get("estate") != "same plane":
+        raise IntegrityError("other uses stay on the same plane", reason_code="CATALOG_SKU")
 
 
 def doctrine() -> dict[str, Any]:
@@ -185,6 +200,10 @@ def public_business() -> dict[str, Any]:
         "entity": cat["entity"]["legal"],
         "institute": cat["entity"]["institute"],
         "thesis": cat["business"]["thesis"],
+        "elevator": dict(cat["business"].get("elevator") or {}),
+        "why_client": cat["business"].get("why_client"),
+        "why_investor": cat["business"].get("why_investor"),
+        "estate_equation": cat["equations"].get("estate"),
         "model": cat["business"]["model"],
         "sales": cat["business"]["sales"],
         "delivery": cat["business"]["delivery"],
@@ -273,6 +292,11 @@ def public_business_plane() -> dict[str, Any]:
         ),
         "commercial": cat["equations"]["commercial"],
         "included_and_upsells": dict(cat["plane_interface"].get("included_and_upsells") or {}),
+        "elevator": dict(cat["business"].get("elevator") or {}),
+        "why_client": cat["business"].get("why_client"),
+        "why_investor": cat["business"].get("why_investor"),
+        "estate": dict(cat["plane_interface"].get("estate") or {}),
+        "estate_equation": cat["equations"].get("estate"),
         "lab_pin": cat["equations"]["lab_pin"],
         "close": {
             "named_dual_seats": False,

@@ -29,8 +29,18 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert "copilot" in joined
     assert "agent 365" in joined
     ids = {item["id"] for item in body["maps"]}
-    assert {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr"} <= ids
+    assert {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr", "gdpr.art22", "coe.ai_convention"} <= ids
     assert all(item["claimed"] is False for item in body["maps"])
+    assert body["immutable"]["crypto"] is False
+    assert body["immutable"]["worm"] is False
+    assert "consume-once" in body["immutable"]["thesis"].lower()
+    assert body["reporting"]["chat_is_not_keep"] is True
+    assert body["consequences"]["mandated"] is False
+    assert body["consequences"]["buying_l1_closes_clocks"] is False
+    assert all(item.get("claimed") is False for item in body["calendar"]["items"])
+    assert "immutable" in md.lower()
+    assert "calendar" in md.lower()
+    assert "estate" in (body.get("estate_equation") or "")
     assert any(item["id"] == "unauthorized_sor" for item in body["risks"])
     md = governance_markdown()
     assert "client utilizes ai" in md.lower()
