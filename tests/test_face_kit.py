@@ -58,7 +58,8 @@ def test_kit_files_and_csp_stay_honest():
     assert "speculate.js" in kit
     assert "ainav-honest" in app
     assert "app-search" in app
-    assert "popovertarget" in app
+    assert "Owner book" in app
+    assert app.count("Owner book") == 1
     assert "@view-transition" in css
     assert "--gold-ink: #7a5d26" in css
     assert "Identify is not admit" in identify

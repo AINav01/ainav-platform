@@ -303,6 +303,214 @@ def test_formal_spec_exists_and_is_not_claimed():
     assert "Replay" in text
 
 
+def test_draft_admit_client_run_and_prove():
+    store = MemoryAuthorityStore()
+    client = AdmitClient(store=store)
+    drafter = DraftAdmitClient("copilot-1", client)
+    with pytest.raises(AdmitDenied) as exc:
+        drafter.run_and_apply(sample_action(), seat_a="oid-1", seat_b="copilot-1")
+    assert exc.value.reason_code == "DRAFTER_IS_NOT_SEAT"
+    out = drafter.run_and_apply(sample_action(), seat_a="oid-1", seat_b="oid-2")
+    proof = drafter.prove(out["record_id"])
+    assert proof["record_id"] == out["record_id"]
+
+
+def test_grant_ttl_bad_time_and_missing_admit():
+    from agent_gov.effect import EffectLedger, _parse_created
+
+    with pytest.raises(EffectBlocked) as exc:
+        _parse_created("not-a-time")
+    assert exc.value.reason_code == "EFFECT_GRANT_TIME"
+    naive = _parse_created("2026-01-01T00:00:00")
+    assert naive.tzinfo is not None
+    store = MemoryAuthorityStore()
+    gate = EffectLedger(store=store, grant_ttl_seconds=30)
+    with pytest.raises(EffectBlocked) as exc2:
+        gate.effect("req_missing", "a" * 64)
+    assert exc2.value.reason_code == "EFFECT_NO_ADMIT"
+
+
+def test_lockfile_refuses_non_integer_ttl():
+    lock = default_lockfile()
+    doc = {**lock.to_canonical(), "policy_hash": lock.policy_hash, "grant_ttl_seconds": "soon"}
+    with pytest.raises(LockfileError):
+        load_lockfile(doc)
+
+
+def test_catalog_refuses_more_instrument_fiction():
+    cat = load_catalog()
+    shape = copy.deepcopy(cat)
+    del shape["engineering"]["catalog_shape"]
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(shape)
+    assert exc.value.reason_code == "CATALOG_ENGINEERING"
+    path = copy.deepcopy(cat)
+    path["engineering"]["catalog_shape"]["path"] = "split.json"
+    with pytest.raises(IntegrityError) as exc2:
+        validate_catalog(path)
+    assert exc2.value.reason_code == "CATALOG_ENGINEERING"
+    extract = copy.deepcopy(cat)
+    extract["engineering"]["catalog_shape"]["extract"] = []
+    with pytest.raises(IntegrityError) as exc3:
+        validate_catalog(extract)
+    assert exc3.value.reason_code == "CATALOG_ENGINEERING"
+    formal = copy.deepcopy(cat)
+    del formal["engineering"]["formal"]
+    with pytest.raises(IntegrityError) as exc4:
+        validate_catalog(formal)
+    assert exc4.value.reason_code == "CATALOG_ENGINEERING"
+    spec = copy.deepcopy(cat)
+    spec["engineering"]["formal"]["spec"] = "invented.tla"
+    with pytest.raises(IntegrityError) as exc5:
+        validate_catalog(spec)
+    assert exc5.value.reason_code == "CATALOG_ENGINEERING"
+    floor = copy.deepcopy(cat)
+    del floor["plane_interface"]["proof_day_floor"]
+    with pytest.raises(IntegrityError) as exc6:
+        validate_catalog(floor)
+    assert exc6.value.reason_code == "CATALOG_PLANE"
+    sku = copy.deepcopy(cat)
+    sku["plane_interface"]["proof_day_floor"]["sku"] = True
+    with pytest.raises(IntegrityError) as exc7:
+        validate_catalog(sku)
+    assert exc7.value.reason_code == "CATALOG_SKU"
+    minutes = copy.deepcopy(cat)
+    minutes["plane_interface"]["proof_day_floor"]["minutes"] = 30
+    with pytest.raises(IntegrityError) as exc8:
+        validate_catalog(minutes)
+    assert exc8.value.reason_code == "CATALOG_PLANE"
+    shows = copy.deepcopy(cat)
+    shows["plane_interface"]["proof_day_floor"]["client_shows"] = ["tiles"]
+    with pytest.raises(IntegrityError) as exc9:
+        validate_catalog(shows)
+    assert exc9.value.reason_code == "CATALOG_PLANE"
+    hides = copy.deepcopy(cat)
+    hides["plane_interface"]["proof_day_floor"]["client_hides"] = []
+    with pytest.raises(IntegrityError) as exc10:
+        validate_catalog(hides)
+    assert exc10.value.reason_code == "CATALOG_PLANE"
+    dash = copy.deepcopy(cat)
+    dash["plane_interface"]["proof_day_floor"]["included_with"] = "U-DUAL"
+    with pytest.raises(IntegrityError) as exc11:
+        validate_catalog(dash)
+    assert exc11.value.reason_code == "CATALOG_PLANE"
+    admit = copy.deepcopy(cat)
+    del admit["plane_interface"]["admit_client"]
+    with pytest.raises(IntegrityError) as exc12:
+        validate_catalog(admit)
+    assert exc12.value.reason_code == "CATALOG_PLANE"
+    live = copy.deepcopy(cat)
+    live["plane_interface"]["admit_client"]["live"] = True
+    with pytest.raises(IntegrityError) as exc13:
+        validate_catalog(live)
+    assert exc13.value.reason_code == "CATALOG_PLANE"
+    exam = copy.deepcopy(cat)
+    del exam["plane_interface"]["examiner"]
+    with pytest.raises(IntegrityError) as exc14:
+        validate_catalog(exam)
+    assert exc14.value.reason_code == "CATALOG_PLANE"
+    live_ex = copy.deepcopy(cat)
+    live_ex["plane_interface"]["examiner"]["live"] = True
+    with pytest.raises(IntegrityError) as exc15:
+        validate_catalog(live_ex)
+    assert exc15.value.reason_code == "CATALOG_PLANE"
+    ro = copy.deepcopy(cat)
+    ro["plane_interface"]["examiner"]["read_only"] = False
+    with pytest.raises(IntegrityError) as exc16:
+        validate_catalog(ro)
+    assert exc16.value.reason_code == "CATALOG_PLANE"
+    cli = copy.deepcopy(cat)
+    cli["plane_interface"]["examiner"]["cli"] = "invented"
+    with pytest.raises(IntegrityError) as exc17:
+        validate_catalog(cli)
+    assert exc17.value.reason_code == "CATALOG_PLANE"
+    inv = copy.deepcopy(cat)
+    del inv["plane_interface"]["ai_inventory"]
+    with pytest.raises(IntegrityError) as exc18:
+        validate_catalog(inv)
+    assert exc18.value.reason_code == "CATALOG_PLANE"
+    inv_sku = copy.deepcopy(cat)
+    inv_sku["plane_interface"]["ai_inventory"]["sku"] = True
+    with pytest.raises(IntegrityError) as exc19:
+        validate_catalog(inv_sku)
+    assert exc19.value.reason_code == "CATALOG_PLANE"
+    names = copy.deepcopy(cat)
+    names["plane_interface"]["ai_inventory"]["do_not_invent_names"] = False
+    with pytest.raises(IntegrityError) as exc20:
+        validate_catalog(names)
+    assert exc20.value.reason_code == "CATALOG_PLANE"
+    seat = copy.deepcopy(cat)
+    seat["plane_interface"]["ai_inventory"]["drafter_is_not_seat"] = False
+    with pytest.raises(IntegrityError) as exc21:
+        validate_catalog(seat)
+    assert exc21.value.reason_code == "CATALOG_PLANE"
+    ttl = copy.deepcopy(cat)
+    del ttl["plane_interface"]["grant_ttl"]
+    with pytest.raises(IntegrityError) as exc22:
+        validate_catalog(ttl)
+    assert exc22.value.reason_code == "CATALOG_PLANE"
+    default = copy.deepcopy(cat)
+    default["plane_interface"]["grant_ttl"]["default_seconds"] = 90
+    with pytest.raises(IntegrityError) as exc23:
+        validate_catalog(default)
+    assert exc23.value.reason_code == "CATALOG_PLANE"
+    outside = copy.deepcopy(cat)
+    outside["plane_interface"]["grant_ttl"]["outside_digest"] = False
+    with pytest.raises(IntegrityError) as exc24:
+        validate_catalog(outside)
+    assert exc24.value.reason_code == "CATALOG_PLANE"
+    passkey = copy.deepcopy(cat)
+    del passkey["plane_interface"]["view_assignment"]["mfa"]["passkey"]
+    with pytest.raises(IntegrityError) as exc25:
+        validate_catalog(passkey)
+    assert exc25.value.reason_code == "CATALOG_PLANE"
+    live_pk = copy.deepcopy(cat)
+    live_pk["plane_interface"]["view_assignment"]["mfa"]["passkey"]["live"] = True
+    with pytest.raises(IntegrityError) as exc26:
+        validate_catalog(live_pk)
+    assert exc26.value.reason_code == "CATALOG_PLANE"
+    identify = copy.deepcopy(cat)
+    identify["plane_interface"]["view_assignment"]["mfa"]["passkey"]["identify"] = False
+    with pytest.raises(IntegrityError) as exc27:
+        validate_catalog(identify)
+    assert exc27.value.reason_code == "CATALOG_PLANE"
+    note = copy.deepcopy(cat)
+    note["plane_interface"]["view_assignment"]["mfa"]["passkey"]["note"] = "wired"
+    with pytest.raises(IntegrityError) as exc28:
+        validate_catalog(note)
+    assert exc28.value.reason_code == "CATALOG_PLANE"
+    ledger = copy.deepcopy(cat)
+    del ledger["expert_review"]["success"]["walk_away_ledger"]
+    with pytest.raises(IntegrityError) as exc29:
+        validate_catalog(ledger)
+    assert exc29.value.reason_code == "CATALOG_REVIEW"
+    invent = copy.deepcopy(cat)
+    invent["expert_review"]["success"]["walk_away_ledger"]["do_not_invent_names"] = False
+    with pytest.raises(IntegrityError) as exc30:
+        validate_catalog(invent)
+    assert exc30.value.reason_code == "CATALOG_REVIEW"
+    recorded_note = copy.deepcopy(cat)
+    recorded_note["expert_review"]["success"]["walk_away_ledger"]["note"] = "silent"
+    with pytest.raises(IntegrityError) as exc31:
+        validate_catalog(recorded_note)
+    assert exc31.value.reason_code == "CATALOG_REVIEW"
+    billing = copy.deepcopy(cat)
+    del billing["business"]["billing"]
+    with pytest.raises(IntegrityError) as exc32:
+        validate_business(billing)
+    assert exc32.value.reason_code == "CATALOG_BUSINESS"
+    provider = copy.deepcopy(cat)
+    provider["business"]["billing"]["provider"] = "stripe"
+    with pytest.raises(IntegrityError) as exc33:
+        validate_business(provider)
+    assert exc33.value.reason_code == "CATALOG_BUSINESS"
+    sku_bill = copy.deepcopy(cat)
+    sku_bill["business"]["billing"]["sku"] = True
+    with pytest.raises(IntegrityError) as exc34:
+        validate_business(sku_bill)
+    assert exc34.value.reason_code == "CATALOG_BUSINESS"
+
+
 def test_cli_examiner_and_schema(capsys):
     from ainav.__main__ import main
 
