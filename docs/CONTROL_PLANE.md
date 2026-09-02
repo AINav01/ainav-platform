@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.66.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.67.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -177,7 +177,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 - **Azure Static Web Apps** — Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch. https://portal.azure.com/#view/Microsoft_Azure_StaticApps
 - **Business Central Sandbox** — Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production. https://businesscentral.dynamics.com/ainav.institute/Sandbox
 
-Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify.
+Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
@@ -224,7 +224,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.66.0.
+- As of: catalog release 2.67.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -335,6 +335,42 @@ AINav, Inc. Governance is a catalog map. It is not counsel, not a filing, and no
 - **Second record** — Sealed DecisionRecord and Merkle keep of who admitted the write.
 - **Host policy** — Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane.
 - **Lockfile digest** — Frozen vectors and lockfile digest. A rebrand breaks gold.
+
+## Estate — same plane, more surfaces
+
+Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU. Same use. More surfaces. AINav is the failsafe, not the AI. Owner and board oversee. They are not seats. Record keeping is two records and a keep. Immutable means sealed, consume-once, and hash-chained. AI governance is a catalog map. Not a certificate. Lead stays bc.general_journal.post. SKU: false. Estate: other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps.
+
+### Other uses — Same Job C. More privileged writes on the same plane. Lead stays the general journal.
+
+- **Prove — L1** — wedge: bc.general_journal.post. Money that hits the GL. Priced desks attach to L1. Not SKUs.
+- **Deepen — paid U-DUAL** — wedge: d365.quote.discount_override, d365.order.submit. Commercial writes. Never free with P-ADM. Sales twin until G14.
+- **Keep — P-ADM** — wedge: purview.audit.export. Not a write. Second record and freeze evidence. Not a certificate.
+
+### Failsafe — AINav is the failsafe, not the client's AI. Four verbs. Same plane.
+
+- **Admit** — Two distinct humans. Consume-once. That is the failsafe working.
+- **Off switch** — Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.
+- **Reset** — Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep.
+- **Rollback** — A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted.
+
+### Executive and board — Owner and board oversee. They are not seats. One title cannot click both admits.
+
+- Owner: Institutes the plane. One title cannot be both seats. Do not invent a name.
+- Board: Fiduciary oversight. Board keep after P-ADM. Do not invent a director.
+
+### Governance records — Record keeping is two records and a keep.
+
+- **First record** — The privileged SoR write after dual admit (journal, invoice, order).
+- **Second record** — Sealed DecisionRecord and Merkle keep of who admitted the write.
+- **Keep** — Weekly export after kit PASS.
+
+### Immutable — Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box.
+
+Crypto: false. WORM: false.
+
+### AI governance maps — AI governance is a catalog map. Claimed is false. Counsel stays open (G12).
+
+Must-have is controller judgment, not a statute that names AINav. Job C harms are why the controller buys. Instrument clocks stay with counsel.
 
 ## Included with L1 · upsell band
 
@@ -464,6 +500,8 @@ Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not b
 | Three lines of defense | second_record | claimed=false | 1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed. |
 | Board fiduciary oversight of material AI write risk | map_only | claimed=false | One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate. |
 | COSO internal control | first_record | claimed=false | Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. |
+| GDPR Article 22 automated decisions | map_only | claimed=false | Human admit before a write with legal or similarly significant effect. Not a GDPR opinion. |
+| Council of Europe Framework Convention on AI | map_only | claimed=false | Human-rights and accountability baseline for parties. Not a membership. Not a filing. |
 
 ## How humans sit from the top
 
@@ -546,7 +584,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 | Signed L1 | 0 | Counsel pack G13 stays open. |
 | Year-one if all three | $88,000–$135,000 | Catalog list. Not a forecast. |
 | Seats recorded | 1 mailbox / 0 oid | Cynthia Hodnett chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. |
-| AI compliance maps | 11 instruments / claimed=false | NIST, SOX, EU AI Act, ISO 42001. Not certified. |
+| AI compliance maps | 13 instruments / claimed=false | NIST, SOX, EU AI Act, ISO 42001. Not certified. |
 | Standing grants | 0 | Zero-standing. Identify is not admit. Single-use consume. |
 | Provisioned SKUs | 0 / 0 / 0 | L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK. |
 
@@ -563,6 +601,8 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - **Three lines of defense** — 1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed. Claimed: false.
 - **Board fiduciary oversight of material AI write risk** — One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate. Claimed: false.
 - **COSO internal control** — Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. Claimed: false.
+- **GDPR Article 22 automated decisions** — Human admit before a write with legal or similarly significant effect. Not a GDPR opinion. Claimed: false.
+- **Council of Europe Framework Convention on AI** — Human-rights and accountability baseline for parties. Not a membership. Not a filing. Claimed: false.
 
 ## Action coverage — same plane, none live
 

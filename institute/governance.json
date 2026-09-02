@@ -1,4 +1,62 @@
 {
+  "calendar": {
+    "as_of": "2026-09-02",
+    "certified": false,
+    "counsel": true,
+    "items": [
+      {
+        "claimed": false,
+        "id": "eu.ai_act.gpai_enforcement",
+        "name": "EU AI Act GPAI enforcement",
+        "note": "Commission / AI Office powers live. AINav is not the GPAI model.",
+        "status": "current",
+        "when": "2026-08-02"
+      },
+      {
+        "claimed": false,
+        "id": "us.ca.sb942",
+        "name": "California AI Transparency Act (SB 942)",
+        "note": "Transparency for covered generative providers. Counsel names applicability.",
+        "status": "current",
+        "when": "2026-08-02"
+      },
+      {
+        "claimed": false,
+        "id": "us.co.sb26_189",
+        "name": "Colorado SB 26-189 ADMT",
+        "note": "Replaced SB 24-205. Notice and meaningful human review. Not a SKU.",
+        "status": "upcoming",
+        "when": "2027-01-01"
+      },
+      {
+        "claimed": false,
+        "id": "us.ca.admt",
+        "name": "California CPPA ADMT enforcement",
+        "note": "Counsel. Not a filing from this plane.",
+        "status": "upcoming",
+        "when": "2027-01-01"
+      },
+      {
+        "claimed": false,
+        "id": "eu.ai_act.annex_iii",
+        "name": "EU AI Act Annex III standalone high-risk",
+        "note": "Deployer human oversight later. AINav is the failsafe, not the high-risk system.",
+        "status": "upcoming",
+        "when": "2027-12-02"
+      },
+      {
+        "claimed": false,
+        "id": "eu.ai_act.annex_i",
+        "name": "EU AI Act Annex I embedded high-risk",
+        "note": "Embedded product pathway. Not a reason to mint a fourth SKU this week.",
+        "status": "upcoming",
+        "when": "2028-08-02"
+      }
+    ],
+    "kind": "ainav.governance.calendar.v1",
+    "note": "Consider-only dates for counsel. Not in-tree certifications. Colorado SB 24-205 was repealed. Do not cite it.",
+    "sku": false
+  },
   "cascade": {
     "buyer_is_the_client": true,
     "client_institutes_ainav": true,
@@ -27,7 +85,54 @@
     "replaces_org_chart": false,
     "thesis": "AINav sits on the client's existing org chart. It does not replace departments. Treasury and controller hold the two admit seats. IT hosts Copilot and agents. Those AIs draft. Department AI is not a seat. Compliance and internal audit keep the second record. Legal is not replaced. The owner and board oversee and can freeze. Do not invent named heads."
   },
+  "consequences": {
+    "ainav_named_in_statute": false,
+    "buying_l1_closes_clocks": false,
+    "certified": false,
+    "instruments": [
+      {
+        "harm": "ICFR weakness, restatement, exam deficiency. Not a SOX opinion.",
+        "id": "books"
+      },
+      {
+        "harm": "FTC or state ADMT: undeclared automated posting or fake human review.",
+        "id": "deception"
+      },
+      {
+        "harm": "GPAI or later high-risk clocks. Market access. Counsel files. Not EU-ready.",
+        "id": "eu_ai_act"
+      },
+      {
+        "harm": "Claiming EU / NIST / ISO certification that does not exist.",
+        "id": "false_certification"
+      }
+    ],
+    "job_c": [
+      {
+        "harm": "An AI-drafted journal, invoice, or order lands without two seats.",
+        "id": "unauthorized_write"
+      },
+      {
+        "harm": "The examiner cannot see who admitted the write.",
+        "id": "no_second_record"
+      },
+      {
+        "harm": "The board has an AI inventory and no freeze evidence.",
+        "id": "board_blind"
+      },
+      {
+        "harm": "Copilot, PIM, Teams, or the Cloud Agent is treated as a seat.",
+        "id": "seat_collapse"
+      }
+    ],
+    "kind": "ainav.governance.consequences.v1",
+    "mandated": false,
+    "note": "Counsel files. The plane keeps the second record. Buying L1 does not close regulator clocks.",
+    "sku": false,
+    "thesis": "Must-have is controller judgment, not a statute that names AINav. Job C harms are why the controller buys. Instrument clocks stay with counsel."
+  },
   "control_equation": "client utilizes AI \u00d7 counterparties utilize AI \u00d7 AINav failsafe \u00d7 two-human control",
+  "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
   "failsafe": {
     "ainav": "Failsafe and human control \u2014 two seats admit, then the write.",
     "ainav_is_client_ai": false,
@@ -58,6 +163,53 @@
       "Teams vote",
       "counterparty AI"
     ]
+  },
+  "immutable": {
+    "certified": false,
+    "crypto": false,
+    "first_record_compensating": true,
+    "kind": "ainav.governance.immutable.v1",
+    "not": [
+      "cryptocurrency ledger",
+      "WORM appliance",
+      "17a-4 opinion",
+      "time-machine rollback",
+      "production wipe",
+      "LIVE_PIN_OK"
+    ],
+    "note": "The first record is a book write. Rollback is a new privileged write that itself requires dual admit. The second record shows the rollback was admitted.",
+    "pins": [
+      {
+        "id": "consume_once",
+        "name": "Consume-once grant",
+        "note": "grant_id binds two seats and one action_hash. A replay is a refusal."
+      },
+      {
+        "id": "action_hash",
+        "name": "Canonical action_hash",
+        "note": "SHA-256 of canonical JSON. Frozen gold vectors pin it."
+      },
+      {
+        "id": "sealed_chain",
+        "name": "Sealed DecisionRecords",
+        "note": "Hash-chained seq plus prev_receipt_hash. Merkle / audit can walk them."
+      },
+      {
+        "id": "fail_closed",
+        "name": "Fail-closed effect",
+        "note": "A failed apply is effect_apply_failed. Never a fake success."
+      },
+      {
+        "id": "lockfile",
+        "name": "Lockfile digest",
+        "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+      }
+    ],
+    "seventeen_a4": false,
+    "sku": false,
+    "thesis": "Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box. Not a 17a-4 opinion. Not uncopyable.",
+    "uncopyable": false,
+    "worm": false
   },
   "insulation_equation": "independence \u00d7 Job C lockfile \u00d7 fail-closed gold \u00d7 catalog law",
   "kind": "ainav.governance.v1",
@@ -140,6 +292,20 @@
       "maps_to": "Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.",
       "name": "COSO internal control",
       "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "gdpr.art22",
+      "maps_to": "Human admit before a write with legal or similarly significant effect. Not a GDPR opinion.",
+      "name": "GDPR Article 22 automated decisions",
+      "scope": "international / EU"
+    },
+    {
+      "claimed": false,
+      "id": "coe.ai_convention",
+      "maps_to": "Human-rights and accountability baseline for parties. Not a membership. Not a filing.",
+      "name": "Council of Europe Framework Convention on AI",
+      "scope": "international"
     }
   ],
   "must_have": {
@@ -216,9 +382,44 @@
     "invented department head",
     "department AI as dual",
     "one title as both seats",
-    "AINav replaces the org chart"
+    "AINav replaces the org chart",
+    "17a-4 ready",
+    "WORM claimed",
+    "crypto ledger",
+    "GDPR certified",
+    "mandated by EU AI Act",
+    "Colorado SB 24-205",
+    "EU-ready"
   ],
   "replaces_counsel": false,
+  "reporting": {
+    "archive": "Merkle walk of sealed DecisionRecords.",
+    "certified": false,
+    "chat_is_not_keep": true,
+    "first": {
+      "id": "first_record",
+      "note": "Books of original entry. Not a second SKU. Not LIVE_PIN_OK.",
+      "plane": "L1 / U-DUAL",
+      "what": "The privileged SoR write after dual admit (journal, invoice, order)."
+    },
+    "keep": {
+      "id": "keep",
+      "note": "Treasurer can open it. Not live Purview. A chat is not the keep.",
+      "plane": "P-ADM",
+      "what": "Weekly sealed DecisionRecord export after kit PASS."
+    },
+    "kind": "ainav.governance.reporting.v1",
+    "lede": "Record keeping is two records and a keep.",
+    "mailbox_is_not_second_record": true,
+    "second": {
+      "id": "second_record",
+      "note": "Supporting books-and-records for examiners and the client's customers. Not a certificate.",
+      "plane": "P-ADM",
+      "what": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+    },
+    "sentinel_is_not_admit": true,
+    "sku": false
+  },
   "risks": [
     {
       "harm": "A client-AI or agent tool posts a journal, quote, invoice, or credit without two seats.",
@@ -279,6 +480,16 @@
       "harm": "The board has an AI inventory and no evidence of who admitted the write or that the plane can freeze.",
       "id": "board_blind",
       "note": "Board keep is P-ADM second record plus off-switch and reset evidence. Not a filing."
+    },
+    {
+      "harm": "Selling sealed DecisionRecords as 17a-4 WORM or a crypto ledger.",
+      "id": "worm_claim",
+      "note": "Immutable means consume-once and hash-chained. Not a coin. Not a WORM box."
+    },
+    {
+      "harm": "Telling a controller the SEC or the EU AI Act requires AINav.",
+      "id": "false_mandate",
+      "note": "Must-have is not mandated. Counsel files. The plane is the failsafe."
     }
   ],
   "sku": false,

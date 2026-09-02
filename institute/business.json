@@ -44,7 +44,14 @@
     "note": "Pipeline math uses catalog list prices. It is not recognized revenue.",
     "recognized_revenue_claimed": false
   },
+  "elevator": {
+    "ask": "Ninety minutes on the twin. Walk out with a sealed record \u2014 or walk away.",
+    "sixty": "Every new client AI is another unauthorized-write surface. The vendor of the draft is the worst failsafe for that draft. Job C sits outside the model. Treasury and controller bind one action hash. First record is the admitted write. Second record is the sealed decision. Off switch, reset, rollback \u2014 same plane. Three SKUs only. Not agent inventory. Not an identity provider.",
+    "ten": "Human control plane over every client AI that can draft a privileged system-of-record write.",
+    "thirty": "Controllers already have Business Central, Entra, and two-person journal duty. They do not have a gate in front of the write. AINav is that gate \u2014 not the AI. Two distinct humans bind the same action. The grant is used once. We prove it in ninety minutes on a Business Central twin. That is L1."
+  },
   "entity": "AINav, Inc.",
+  "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
   "honest_missing": [
     "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
     "ainav.institute custom domain and incorporation date",
@@ -67,7 +74,11 @@
   "live": false,
   "model": {
     "deepen": "U-DUAL",
+    "estate": "same plane",
+    "failsafe": "not the client's AI",
+    "governance": "catalog maps, claimed=false",
     "hours": "fee-for-service",
+    "immutable": "sealed \u00d7 consume-once \u00d7 hash-chained",
     "keep": "P-ADM",
     "not": [
       "consultancy-as-product",
@@ -75,7 +86,8 @@
       "agent inventory",
       "free U-DUAL"
     ],
-    "prove": "L1"
+    "prove": "L1",
+    "records": "first SoR write \u00d7 second DecisionRecord \u00d7 weekly keep"
   },
   "next_pin": {
     "id": "bc.microsoft.sandbox",
@@ -169,5 +181,7 @@
     ],
     "motion": "qualify \u2192 proof day \u2192 sell L1 that week \u2192 kit PASS \u2192 attach P-ADM \u2192 offer paid U-DUAL"
   },
-  "thesis": "Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL."
+  "thesis": "Price L1 against the unauthorized journal that two humans did not admit. AINav is the failsafe, not the AI. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL. Other uses are desks on the same plane. Not a fourth SKU.",
+  "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
+  "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable."
 }

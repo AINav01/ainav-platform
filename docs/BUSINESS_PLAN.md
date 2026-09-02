@@ -22,13 +22,19 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
 - Investor: catalog list × zero booked × two-human close
 - Investor packet: letter to Cynthia Hodnett with the full upsell catalog, list prices, ultimate-plane insulation, and the human interface / executive dashboard. Not a priced round. Not a forecast.
-- Interface: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
+- Interface: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
+- Estate: other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps. Same dashboard. Not a fourth SKU.
 - Certified: false. Replaces counsel: false. The failsafe is Job C.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.
 - Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write.
-- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense, Board fiduciary oversight of material AI write risk, COSO internal control.
+- Immutable: sealed, consume-once, hash-chained. Not a coin. Not a WORM box. Not a 17a-4 opinion.
+- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense, Board fiduciary oversight of material AI write risk, COSO internal control, GDPR Article 22 automated decisions, Council of Europe Framework Convention on AI.
 - A client-AI or customer-AI draft without the client's two seats is the write that must not happen.
+- Must-have is not a mandate. Buying L1 does not close regulator clocks. Counsel files.
+- Elevator: Human control plane over every client AI that can draft a privileged system-of-record write.
+- Why a client: They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.
+- Why an investor: The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable.
 
 ## The sale
 
@@ -178,7 +184,7 @@ Same Job C lockfile. One consume ledger per client. Master never writes the clie
 
 ## Business operating system
 
-Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
+Price L1 against the unauthorized journal that two humans did not admit. AINav is the failsafe, not the AI. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL. Other uses are desks on the same plane. Not a fourth SKU.
 - BD: ICP qualify → proof-day brief → ninety minutes → L1 week
 - Motion: qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL
 - Services: Hours deepen the same admit plane. They never mint a SKU.

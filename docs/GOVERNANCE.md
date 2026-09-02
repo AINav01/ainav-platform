@@ -7,6 +7,7 @@ Umbrella: every client AI × one admit plane × two-human control.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 Insulation: independence × Job C lockfile × fail-closed gold × catalog law.
+Estate: other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps.
 Independent of Microsoft. Not a patent. Not uncopyable.
 Certified: false. Replaces counsel: false. SKU: false. LIVE_PIN_OK: false.
 
@@ -64,6 +65,44 @@ AINav sits on the client's existing org chart. It does not replace departments. 
 - **three_lod** — Three lines of defense (risk / compliance). Maps to: 1LOD is dual admit on the write. 2LOD is P-ADM keep / second record. 3LOD is not claimed.. Claimed: false.
 - **fiduciary.duty** — Board fiduciary oversight of material AI write risk (US domestic / board). Maps to: One human plane over every AI that can draft a book write. Not a legal opinion. Not a mandate.. Claimed: false.
 - **coso.ic** — COSO internal control (US domestic / books). Maps to: Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.. Claimed: false.
+- **gdpr.art22** — GDPR Article 22 automated decisions (international / EU). Maps to: Human admit before a write with legal or similarly significant effect. Not a GDPR opinion.. Claimed: false.
+- **coe.ai_convention** — Council of Europe Framework Convention on AI (international). Maps to: Human-rights and accountability baseline for parties. Not a membership. Not a filing.. Claimed: false.
+
+## Immutable (sealed, consume-once, hash-chained)
+
+Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box. Not a 17a-4 opinion. Not uncopyable.
+Crypto: false. WORM: false. 17a-4: false.
+
+- **Consume-once grant** — grant_id binds two seats and one action_hash. A replay is a refusal.
+- **Canonical action_hash** — SHA-256 of canonical JSON. Frozen gold vectors pin it.
+- **Sealed DecisionRecords** — Hash-chained seq plus prev_receipt_hash. Merkle / audit can walk them.
+- **Fail-closed effect** — A failed apply is effect_apply_failed. Never a fake success.
+- **Lockfile digest** — Frozen vectors and lockfile digest. A rebrand breaks gold.
+
+## Reporting and archive
+
+Record keeping is two records and a keep.
+- Archive: Merkle walk of sealed DecisionRecords.
+- Chat is not the keep: true.
+
+## Consequences (not a mandate)
+
+Must-have is controller judgment, not a statute that names AINav. Job C harms are why the controller buys. Instrument clocks stay with counsel.
+Mandated: false. Buying L1 closes clocks: false.
+
+- **unauthorized_write** — An AI-drafted journal, invoice, or order lands without two seats.
+- **no_second_record** — The examiner cannot see who admitted the write.
+- **board_blind** — The board has an AI inventory and no freeze evidence.
+- **seat_collapse** — Copilot, PIM, Teams, or the Cloud Agent is treated as a seat.
+
+## Calendar (counsel, claimed=false)
+
+- **eu.ai_act.gpai_enforcement** — EU AI Act GPAI enforcement (current 2026-08-02). Commission / AI Office powers live. AINav is not the GPAI model. Claimed: false.
+- **us.ca.sb942** — California AI Transparency Act (SB 942) (current 2026-08-02). Transparency for covered generative providers. Counsel names applicability. Claimed: false.
+- **us.co.sb26_189** — Colorado SB 26-189 ADMT (upcoming 2027-01-01). Replaced SB 24-205. Notice and meaningful human review. Not a SKU. Claimed: false.
+- **us.ca.admt** — California CPPA ADMT enforcement (upcoming 2027-01-01). Counsel. Not a filing from this plane. Claimed: false.
+- **eu.ai_act.annex_iii** — EU AI Act Annex III standalone high-risk (upcoming 2027-12-02). Deployer human oversight later. AINav is the failsafe, not the high-risk system. Claimed: false.
+- **eu.ai_act.annex_i** — EU AI Act Annex I embedded high-risk (upcoming 2028-08-02). Embedded product pathway. Not a reason to mint a fourth SKU this week. Claimed: false.
 
 ## Risks if client AI writes without dual admit
 
@@ -79,6 +118,8 @@ AINav sits on the client's existing org chart. It does not replace departments. 
 - **no_off_switch** — An incident happens and client AI keeps landing journals because nothing is fail-closed.. The off switch is refuse-without-admit. It does not power down Copilot.
 - **silent_rollback** — Someone unwrites a journal, invoice, or order without two seats.. Rollback is a compensating write that itself requires dual admit. Not a time machine.
 - **board_blind** — The board has an AI inventory and no evidence of who admitted the write or that the plane can freeze.. Board keep is P-ADM second record plus off-switch and reset evidence. Not a filing.
+- **worm_claim** — Selling sealed DecisionRecords as 17a-4 WORM or a crypto ledger.. Immutable means consume-once and hash-chained. Not a coin. Not a WORM box.
+- **false_mandate** — Telling a controller the SEC or the EU AI Act requires AINav.. Must-have is not mandated. Counsel files. The plane is the failsafe.
 
 ## Refuse
 
@@ -100,5 +141,12 @@ AINav sits on the client's existing org chart. It does not replace departments. 
 - department AI as dual
 - one title as both seats
 - AINav replaces the org chart
+- 17a-4 ready
+- WORM claimed
+- crypto ledger
+- GDPR certified
+- mandated by EU AI Act
+- Colorado SB 24-205
+- EU-ready
 
 Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.

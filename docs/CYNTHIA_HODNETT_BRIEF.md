@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.66.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.67.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.66.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.67.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -331,6 +331,7 @@ Working well
 - Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.
 - The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.
 - Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.
+- Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.
 
 Could be improved — without inventing a fourth SKU
 

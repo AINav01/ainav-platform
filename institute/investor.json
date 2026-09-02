@@ -8,9 +8,16 @@
   "confidential": true,
   "control_plane": "Ultimate, here, means last authority \u2014 not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.\n\nThe vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.\n\nA vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.\n\nAfter kit PASS, the second record, the off switch, and the rollback are segregation of duties \u2014 books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.\n\nOthers can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
   "date": "30 August 2026",
+  "elevator": {
+    "ask": "Ninety minutes on the twin. Walk out with a sealed record \u2014 or walk away.",
+    "sixty": "Every new client AI is another unauthorized-write surface. The vendor of the draft is the worst failsafe for that draft. Job C sits outside the model. Treasury and controller bind one action hash. First record is the admitted write. Second record is the sealed decision. Off switch, reset, rollback \u2014 same plane. Three SKUs only. Not agent inventory. Not an identity provider.",
+    "ten": "Human control plane over every client AI that can draft a privileged system-of-record write.",
+    "thirty": "Controllers already have Business Central, Entra, and two-person journal duty. They do not have a gate in front of the write. AINav is that gate \u2014 not the AI. Two distinct humans bind the same action. The grant is used once. We prove it in ninety minutes on a Business Central twin. That is L1."
+  },
   "email": "chodnett@ainav.institute",
   "equation": "catalog list \u00d7 zero booked \u00d7 two-human close",
   "equity_offered": false,
+  "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
   "executive_summary": {
     "ask": "Cynthia Hodnett as seat B. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
     "certified": false,
@@ -891,7 +898,7 @@
     "uncopyable",
     "patent granted"
   ],
-  "release": "2.66.0",
+  "release": "2.67.0",
   "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
   "scenarios": [
     {
@@ -1029,6 +1036,8 @@
   "unit_economics_note": "Every dollar below is catalog list. Not booked. Not ARR. Not a forecast. There is no billing provider. Recognized revenue stays zero until a controller actually buys.",
   "upsell_note": "Desks, libraries, and fee-for-service hours deepen the same three SKUs. They are not a fourth product. U-DUAL is never free with P-ADM. Hours never attach U-DUAL. Included packs are seating, not a discount on a second control plane.",
   "valuation_claimed": false,
+  "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
+  "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable.",
   "why_now": "Every new client AI is another unauthorized-write surface. The buyer is the controller who already has Business Central Premium, Entra, and two-person journal SOD. They institute AINav on the org chart they already have. They do not replace their ERP. They do not replace Copilot. They put two humans in front of the write.",
   "will_not_ask": "I will not ask you for stock, Global Admin, a priced round, a valuation, or to mark LIVE_PIN_OK. I will not invent an email, an officer title, or a second unique human in the catalog. You are not a rubber stamp. The Cloud Agent is not your stand-in.",
   "year_one_if_all_three": {

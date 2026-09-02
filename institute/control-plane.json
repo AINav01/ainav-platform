@@ -257,7 +257,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.66.0"
+    "release": "2.67.0"
   },
   "communications": [
     {
@@ -376,6 +376,22 @@
       "name": "COSO internal control",
       "record": "first_record",
       "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "gdpr.art22",
+      "maps_to": "Human admit before a write with legal or similarly significant effect. Not a GDPR opinion.",
+      "name": "GDPR Article 22 automated decisions",
+      "record": "map_only",
+      "scope": "international / EU"
+    },
+    {
+      "claimed": false,
+      "id": "coe.ai_convention",
+      "maps_to": "Human-rights and accountability baseline for parties. Not a membership. Not a filing.",
+      "name": "Council of Europe Framework Convention on AI",
+      "record": "map_only",
+      "scope": "international"
     }
   ],
   "coverage": [
@@ -794,7 +810,180 @@
   ],
   "email": "chodnett@ainav.institute",
   "entra_oid": null,
-  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps",
+  "estate": {
+    "executive": {
+      "board": {
+        "admit": false,
+        "freeze": "request",
+        "keep": "view",
+        "note": "Fiduciary oversight. Board keep after P-ADM. Do not invent a director.",
+        "role": "oversee"
+      },
+      "dashboard_included_with": "L1",
+      "dashboard_is_sku": false,
+      "lede": "Owner and board oversee. They are not seats. One title cannot click both admits.",
+      "owner": {
+        "admit": false,
+        "freeze": "request",
+        "keep": "view",
+        "note": "Institutes the plane. One title cannot be both seats. Do not invent a name.",
+        "role": "oversee"
+      }
+    },
+    "failsafe": {
+      "ainav_is_client_ai": false,
+      "lede": "AINav is the failsafe, not the client's AI. Four verbs. Same plane.",
+      "uses": "governance.plane",
+      "verbs": [
+        {
+          "id": "admit",
+          "name": "Admit",
+          "note": "Two distinct humans. Consume-once. That is the failsafe working."
+        },
+        {
+          "id": "off_switch",
+          "name": "Off switch",
+          "note": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not."
+        },
+        {
+          "id": "reset",
+          "name": "Reset",
+          "note": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep."
+        },
+        {
+          "id": "rollback",
+          "name": "Rollback",
+          "note": "A compensating SoR write that itself requires dual admit. The second record shows the rollback was admitted."
+        }
+      ]
+    },
+    "first_glance": {
+      "lede": "Same plane: other privileged writes, the failsafe verbs, executive oversee, sealed records, immutable pins, and AI governance maps. Not a fourth SKU.",
+      "sku": false
+    },
+    "fourth_sku": false,
+    "immutable": {
+      "crypto": false,
+      "lede": "Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box.",
+      "uses": "governance.immutable",
+      "worm": false
+    },
+    "included_with": "L1",
+    "instruments": {
+      "calendar_uses": "governance.calendar",
+      "certified": false,
+      "consequences_uses": "governance.consequences",
+      "lede": "AI governance is a catalog map. Claimed is false. Counsel stays open (G12).",
+      "mandated": false,
+      "uses": "governance.maps"
+    },
+    "kind": "ainav.plane.estate.v1",
+    "live": false,
+    "live_pin_ok": false,
+    "other_uses": {
+      "bands": [
+        {
+          "desks": [
+            "bc.payment_journal.post",
+            "bc.bank_reconciliation.post",
+            "bc.purchase_invoice.post",
+            "bc.cash_receipt.post",
+            "bc.sales_invoice.post",
+            "bc.fixed_asset.post",
+            "bc.inventory.adjust"
+          ],
+          "id": "prove",
+          "name": "Prove \u2014 L1",
+          "note": "Money that hits the GL. Priced desks attach to L1. Not SKUs.",
+          "sku": "L1",
+          "wedge": [
+            "bc.general_journal.post"
+          ]
+        },
+        {
+          "desks": [
+            "d365.invoice.post",
+            "d365.creditmemo.issue",
+            "d365.return.authorize",
+            "d365.price.override",
+            "d365.quote.void"
+          ],
+          "id": "deepen",
+          "name": "Deepen \u2014 paid U-DUAL",
+          "note": "Commercial writes. Never free with P-ADM. Sales twin until G14.",
+          "sku": "U-DUAL",
+          "wedge": [
+            "d365.quote.discount_override",
+            "d365.order.submit"
+          ]
+        },
+        {
+          "desks": [
+            "governance.decision.export",
+            "governance.second_record.export",
+            "governance.off_switch.export",
+            "governance.reset.export",
+            "governance.org.export",
+            "governance.risk.export"
+          ],
+          "id": "keep",
+          "name": "Keep \u2014 P-ADM",
+          "note": "Not a write. Second record and freeze evidence. Not a certificate.",
+          "sku": "P-ADM",
+          "wedge": [
+            "purview.audit.export"
+          ]
+        }
+      ],
+      "lead": "bc.general_journal.post",
+      "lede": "Same Job C. More privileged writes on the same plane. Lead stays the general journal.",
+      "not": [
+        "fourth SKU",
+        "IdP replacement",
+        "agent inventory",
+        "cryptocurrency product"
+      ]
+    },
+    "records": {
+      "certified": false,
+      "items": [
+        {
+          "id": "first",
+          "name": "First record",
+          "note": "The privileged SoR write after dual admit (journal, invoice, order)."
+        },
+        {
+          "id": "second",
+          "name": "Second record",
+          "note": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+        },
+        {
+          "id": "keep",
+          "name": "Keep",
+          "note": "Weekly export after kit PASS."
+        }
+      ],
+      "lede": "Record keeping is two records and a keep.",
+      "uses": "governance.records"
+    },
+    "refuse": [
+      "estate as SKU",
+      "other uses as fourth SKU",
+      "failsafe as client AI",
+      "owner as both seats",
+      "board admits",
+      "WORM claimed",
+      "crypto ledger",
+      "mandated by SEC",
+      "EU-ready"
+    ],
+    "same_dashboard": true,
+    "sku": false,
+    "thesis": "Same use. More surfaces. AINav is the failsafe, not the AI. Owner and board oversee. They are not seats. Record keeping is two records and a keep. Immutable means sealed, consume-once, and hash-chained. AI governance is a catalog map. Not a certificate. Lead stays bc.general_journal.post.",
+    "upsell": false
+  },
+  "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
   "exceptions": [
     {
       "id": "same_seat",
@@ -1473,6 +1662,157 @@
     }
   },
   "forecast": false,
+  "governance_calendar": {
+    "as_of": "2026-09-02",
+    "certified": false,
+    "counsel": true,
+    "items": [
+      {
+        "claimed": false,
+        "id": "eu.ai_act.gpai_enforcement",
+        "name": "EU AI Act GPAI enforcement",
+        "note": "Commission / AI Office powers live. AINav is not the GPAI model.",
+        "status": "current",
+        "when": "2026-08-02"
+      },
+      {
+        "claimed": false,
+        "id": "us.ca.sb942",
+        "name": "California AI Transparency Act (SB 942)",
+        "note": "Transparency for covered generative providers. Counsel names applicability.",
+        "status": "current",
+        "when": "2026-08-02"
+      },
+      {
+        "claimed": false,
+        "id": "us.co.sb26_189",
+        "name": "Colorado SB 26-189 ADMT",
+        "note": "Replaced SB 24-205. Notice and meaningful human review. Not a SKU.",
+        "status": "upcoming",
+        "when": "2027-01-01"
+      },
+      {
+        "claimed": false,
+        "id": "us.ca.admt",
+        "name": "California CPPA ADMT enforcement",
+        "note": "Counsel. Not a filing from this plane.",
+        "status": "upcoming",
+        "when": "2027-01-01"
+      },
+      {
+        "claimed": false,
+        "id": "eu.ai_act.annex_iii",
+        "name": "EU AI Act Annex III standalone high-risk",
+        "note": "Deployer human oversight later. AINav is the failsafe, not the high-risk system.",
+        "status": "upcoming",
+        "when": "2027-12-02"
+      },
+      {
+        "claimed": false,
+        "id": "eu.ai_act.annex_i",
+        "name": "EU AI Act Annex I embedded high-risk",
+        "note": "Embedded product pathway. Not a reason to mint a fourth SKU this week.",
+        "status": "upcoming",
+        "when": "2028-08-02"
+      }
+    ],
+    "kind": "ainav.governance.calendar.v1",
+    "note": "Consider-only dates for counsel. Not in-tree certifications. Colorado SB 24-205 was repealed. Do not cite it.",
+    "sku": false
+  },
+  "governance_consequences": {
+    "ainav_named_in_statute": false,
+    "buying_l1_closes_clocks": false,
+    "certified": false,
+    "instruments": [
+      {
+        "harm": "ICFR weakness, restatement, exam deficiency. Not a SOX opinion.",
+        "id": "books"
+      },
+      {
+        "harm": "FTC or state ADMT: undeclared automated posting or fake human review.",
+        "id": "deception"
+      },
+      {
+        "harm": "GPAI or later high-risk clocks. Market access. Counsel files. Not EU-ready.",
+        "id": "eu_ai_act"
+      },
+      {
+        "harm": "Claiming EU / NIST / ISO certification that does not exist.",
+        "id": "false_certification"
+      }
+    ],
+    "job_c": [
+      {
+        "harm": "An AI-drafted journal, invoice, or order lands without two seats.",
+        "id": "unauthorized_write"
+      },
+      {
+        "harm": "The examiner cannot see who admitted the write.",
+        "id": "no_second_record"
+      },
+      {
+        "harm": "The board has an AI inventory and no freeze evidence.",
+        "id": "board_blind"
+      },
+      {
+        "harm": "Copilot, PIM, Teams, or the Cloud Agent is treated as a seat.",
+        "id": "seat_collapse"
+      }
+    ],
+    "kind": "ainav.governance.consequences.v1",
+    "mandated": false,
+    "note": "Counsel files. The plane keeps the second record. Buying L1 does not close regulator clocks.",
+    "sku": false,
+    "thesis": "Must-have is controller judgment, not a statute that names AINav. Job C harms are why the controller buys. Instrument clocks stay with counsel."
+  },
+  "governance_immutable": {
+    "certified": false,
+    "crypto": false,
+    "first_record_compensating": true,
+    "kind": "ainav.governance.immutable.v1",
+    "not": [
+      "cryptocurrency ledger",
+      "WORM appliance",
+      "17a-4 opinion",
+      "time-machine rollback",
+      "production wipe",
+      "LIVE_PIN_OK"
+    ],
+    "note": "The first record is a book write. Rollback is a new privileged write that itself requires dual admit. The second record shows the rollback was admitted.",
+    "pins": [
+      {
+        "id": "consume_once",
+        "name": "Consume-once grant",
+        "note": "grant_id binds two seats and one action_hash. A replay is a refusal."
+      },
+      {
+        "id": "action_hash",
+        "name": "Canonical action_hash",
+        "note": "SHA-256 of canonical JSON. Frozen gold vectors pin it."
+      },
+      {
+        "id": "sealed_chain",
+        "name": "Sealed DecisionRecords",
+        "note": "Hash-chained seq plus prev_receipt_hash. Merkle / audit can walk them."
+      },
+      {
+        "id": "fail_closed",
+        "name": "Fail-closed effect",
+        "note": "A failed apply is effect_apply_failed. Never a fake success."
+      },
+      {
+        "id": "lockfile",
+        "name": "Lockfile digest",
+        "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+      }
+    ],
+    "seventeen_a4": false,
+    "sku": false,
+    "thesis": "Immutable means sealed, consume-once, and hash-chained. Not a coin. Not a WORM box. Not a 17a-4 opinion. Not uncopyable.",
+    "uncopyable": false,
+    "worm": false
+  },
   "included_and_upsells": {
     "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
     "first_glance": {
@@ -1753,6 +2093,20 @@
       "maps_to": "Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.",
       "name": "COSO internal control",
       "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "gdpr.art22",
+      "maps_to": "Human admit before a write with legal or similarly significant effect. Not a GDPR opinion.",
+      "name": "GDPR Article 22 automated decisions",
+      "scope": "international / EU"
+    },
+    {
+      "claimed": false,
+      "id": "coe.ai_convention",
+      "maps_to": "Human-rights and accountability baseline for parties. Not a membership. Not a filing.",
+      "name": "Council of Europe Framework Convention on AI",
+      "scope": "international"
     }
   ],
   "mechanics": [
@@ -2741,7 +3095,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.66.0",
+  "release": "2.67.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -3222,7 +3576,7 @@
       "label": "AI compliance maps",
       "note": "NIST, SOX, EU AI Act, ISO 42001. Not certified.",
       "tone": "map",
-      "value": "11 instruments / claimed=false"
+      "value": "13 instruments / claimed=false"
     },
     {
       "id": "standing_grants",

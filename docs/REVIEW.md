@@ -191,7 +191,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Insulation: independence × Job C lockfile × fail-closed gold × catalog law
 - Investor: catalog list × zero booked × two-human close
 - Investor packet: letter to Cynthia Hodnett with the full upsell catalog, list prices, ultimate-plane insulation, and the human interface / executive dashboard. Not a priced round. Not a forecast. Not an equity grant.
-- Interface: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
+- Interface: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.
 - Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.
 - Does: Keep the client's humans in control of writes drafted by the client's AI or by the client's customers' AI.
 - Separate from: client AI; Microsoft 365 Copilot; Agent 365; BYO MCP; cursor.cloud_agent; PIM activation; Teams vote; counterparty AI.
@@ -199,9 +199,9 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - Second record: Sealed DecisionRecord and Merkle keep of who admitted the write.
 - Off switch: Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.
 - Must-have: Every new client AI is another unauthorized-write surface unless one human plane sits over all of them.
-- Maps (claimed=false): nist.ai_rmf, omb.m24_10, sox.icfr, ftc.state_ai, eu.ai_act, iso.42001, oecd.ai, sec.books_records, three_lod, fiduciary.duty, coso.ic.
-- Risks: unauthorized_sor; audit_failure; false_certification; seat_collapse; cross_border_claim; bypass_tool; counterparty_ai_write; missing_second_record; ai_sprawl; no_off_switch; silent_rollback; board_blind.
-- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI; invented department head; department AI as dual; one title as both seats; AINav replaces the org chart.
+- Maps (claimed=false): nist.ai_rmf, omb.m24_10, sox.icfr, ftc.state_ai, eu.ai_act, iso.42001, oecd.ai, sec.books_records, three_lod, fiduciary.duty, coso.ic, gdpr.art22, coe.ai_convention.
+- Risks: unauthorized_sor; audit_failure; false_certification; seat_collapse; cross_border_claim; bypass_tool; counterparty_ai_write; missing_second_record; ai_sprawl; no_off_switch; silent_rollback; board_blind; worm_claim; false_mandate.
+- Refuse: EU AI Act certified; NIST certified; ISO 42001 certified; replaces counsel; AINav is the client's AI; client AI as dual; Cloud Agent as a seat; LIVE_PIN_OK from a governance map; customer's AI as dual; invented counterparty name; time-machine rollback; AINav powers down Copilot; mandated by SEC; AINav replaces all client AI; invented department head; department AI as dual; one title as both seats; AINav replaces the org chart; 17a-4 ready; WORM claimed; crypto ledger; GDPR certified; mandated by EU AI Act; Colorado SB 24-205; EU-ready.
 
 Must not change:
 
@@ -247,7 +247,7 @@ A la carte packs attach after the required SKU. They are not SKUs.
 Year-one catalog list if one controller buys all three: $88,000–$135,000. Catalog list if one controller buys L1, then attaches P-ADM, then pays for U-DUAL. Not recognized revenue.
 Pipeline attached: L1=0, P-ADM=0, U-DUAL=0. Signed L1=0.
 
-Price L1 against the unauthorized journal that two humans did not admit. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL.
+Price L1 against the unauthorized journal that two humans did not admit. AINav is the failsafe, not the AI. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL. Other uses are desks on the same plane. Not a fourth SKU.
 - Motion: qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL
 - Economics: Pipeline math uses catalog list prices. It is not recognized revenue.
 
@@ -451,6 +451,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.
 - The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.
 - Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.
+- Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.
 
 ## Expert review — could be improved
 

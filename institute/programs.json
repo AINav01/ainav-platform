@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.66.0",
+  "release": "2.67.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",

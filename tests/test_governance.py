@@ -38,11 +38,11 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert body["consequences"]["mandated"] is False
     assert body["consequences"]["buying_l1_closes_clocks"] is False
     assert all(item.get("claimed") is False for item in body["calendar"]["items"])
-    assert "immutable" in md.lower()
-    assert "calendar" in md.lower()
-    assert "estate" in (body.get("estate_equation") or "")
     assert any(item["id"] == "unauthorized_sor" for item in body["risks"])
     md = governance_markdown()
+    assert "immutable" in md.lower()
+    assert "calendar" in md.lower()
+    assert "other uses" in (body.get("estate_equation") or "")
     assert "client utilizes ai" in md.lower()
     assert "human control" in md.lower() or "humans control" in md.lower()
     assert "certified: false" in md.lower()

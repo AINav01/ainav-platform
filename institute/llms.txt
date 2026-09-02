@@ -2,7 +2,7 @@
 
 > Human control plane over every client AI that can draft a privileged system-of-record write. Catalog-honest application. Not a CMS. Not LIVE_PIN_OK.
 
-Release 2.66.0. Legal: AINav, Inc..
+Release 2.67.0. Legal: AINav, Inc..
 Recognized revenue $0. Named customers 0. Signed L1 0. Launch held.
 Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.
 GPU production is not claimed. Identify is not admit.
