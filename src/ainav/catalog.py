@@ -317,8 +317,13 @@ def _validate_engineering(catalog: dict[str, Any]) -> None:
         raise IntegrityError("gold_ci cannot mark LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
     if gold.get("is_admit_plane") is not False:
         raise IntegrityError("gold_ci is not the admit plane", reason_code="CATALOG_ENGINEERING")
-    if gold.get("coverage_floor") != 90:
-        raise IntegrityError("gold coverage floor is 90", reason_code="CATALOG_ENGINEERING")
+    if gold.get("coverage_floor") != 95:
+        raise IntegrityError("gold coverage floor is 95", reason_code="CATALOG_ENGINEERING")
+    pyproject = Path("pyproject.toml")
+    if not pyproject.is_file():
+        raise IntegrityError("pyproject.toml is missing", reason_code="CATALOG_ENGINEERING")
+    if "fail_under = 95" not in pyproject.read_text(encoding="utf-8"):
+        raise IntegrityError("pyproject fail_under must match gold floor 95", reason_code="CATALOG_ENGINEERING")
     if gold.get("command") != "make gold":
         raise IntegrityError("gold command is make gold", reason_code="CATALOG_ENGINEERING")
     note = str(gold.get("note") or "").lower()
@@ -582,6 +587,7 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         "freeze console",
         "examiner walk",
         "motions",
+        "gaps board",
     ):
         if stem not in interface:
             raise IntegrityError(
@@ -1896,6 +1902,56 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     if proof_day.get("lab_oids_are_not_named_seats") is not True:
         raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
     _validate_instrument_271(catalog, body)
+    _validate_instrument_272(catalog, body)
+
+
+def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    gaps = body.get("gaps")
+    if not isinstance(gaps, dict):
+        raise IntegrityError("catalog missing gaps board", reason_code="CATALOG_PLANE")
+    if gaps.get("sku") is True or gaps.get("live") is True or gaps.get("live_pin_ok") is True:
+        raise IntegrityError("gaps board is not a SKU or live", reason_code="CATALOG_PLANE")
+    if gaps.get("claimed") is True:
+        raise IntegrityError("gaps board cannot claim closed owner clicks", reason_code="CATALOG_PLANE")
+    if int(gaps.get("gold_floor") or 0) != 95:
+        raise IntegrityError("gaps gold_floor is 95", reason_code="CATALOG_PLANE")
+    gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
+    if gaps.get("gold_floor") != gold.get("coverage_floor"):
+        raise IntegrityError("gaps.gold_floor must match engineering.gold_ci.coverage_floor", reason_code="CATALOG_ENGINEERING")
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    cannot = [str(item).lower() for item in gaps.get("this_plane_cannot") or []]
+    if not closed or not owner or not cannot:
+        raise IntegrityError("gaps board needs in_tree_closed, owner_only_open, and this_plane_cannot", reason_code="CATALOG_PLANE")
+    for stem in ("gold floor 95", "client offer", "pending bind"):
+        if not any(stem in item for item in closed):
+            raise IntegrityError("gaps in_tree_closed must keep " + stem, reason_code="CATALOG_PLANE")
+    for stem in ("seat b", "graph", "dataverse", "g12", "billing", "launch"):
+        if not any(stem in item for item in owner):
+            raise IntegrityError("gaps owner_only_open must keep " + stem, reason_code="CATALOG_PLANE")
+    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid"):
+        if not any(stem in item for item in cannot):
+            raise IntegrityError("gaps this_plane_cannot must keep " + stem, reason_code="CATALOG_PLANE")
+    if "do not invent" not in str(gaps.get("note") or "").lower():
+        raise IntegrityError("gaps note must refuse invented owner clicks", reason_code="CATALOG_PLANE")
+    floor = body.get("proof_day_floor") or {}
+    if "gaps" not in (floor.get("owner_shows") or []) or "gaps" not in (floor.get("entire_shows") or []):
+        raise IntegrityError("gaps board sits Owner and Entire", reason_code="CATALOG_PLANE")
+    if "gaps" in (floor.get("client_shows") or []) or "gaps" in (floor.get("client_hides") or []):
+        raise IntegrityError("Client proof-day Floor does not sit the gaps board", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("gold floor" in item and "95" in item for item in well):
+        raise IntegrityError("working_well must keep gold floor 95", reason_code="CATALOG_REVIEW")
+    if not any("gaps board" in item for item in well):
+        raise IntegrityError("working_well must keep the gaps board", reason_code="CATALOG_REVIEW")
+    traction = str(((catalog.get("investor") or {}).get("traction") or "")).lower()
+    if "95" not in traction or "gold floor" not in traction:
+        raise IntegrityError("investor traction must keep gold floor 95", reason_code="CATALOG_INVESTOR")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.72.0" in item and "95" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.72.0 gold floor 95", reason_code="CATALOG_ENGINEERING")
+    if catalog.get("entity", {}).get("release") != "2.72.0":
+        raise IntegrityError("entity.release is 2.72.0", reason_code="CATALOG_PLANE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

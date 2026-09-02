@@ -1,6 +1,6 @@
 # AINav, Inc. — Investor packet for Cynthia Hodnett
 
-30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.71.0.
+30 August 2026. Confidential. For Cynthia Hodnett. From James Hodnett. Release 2.72.0.
 Not a priced round. Not a forecast. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
 **Human control plane over every client AI that can draft a privileged system-of-record write.**
@@ -251,7 +251,7 @@ Insulation equation: independence × Job C lockfile × fail-closed gold × catal
 
 ## Traction — honest
 
-The admit plane is in code. Gold is above 90 percent. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.
+The admit plane is in code. Gold floor is 95 percent. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.
 
 - Recognized revenue: $0
 - Named customers: 0

@@ -111,7 +111,23 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.71.0 (this tree)
+### 2.72.0 (this tree)
+
+Gold floor is 95 percent. `make gold`
+fails under 95. The gaps board names
+in-tree closed versus owner-only
+open. This plane cannot invent an
+entra oid, a seat click, or
+`LIVE_PIN_OK`. Client offer is still
+dashboard seating. Encyclopedia is a
+drawer on Entire. Freeze is
+request-only. Examiner walk is not
+17a-4. Motions are not SKUs.
+Walk-away ledger count 0. Billing
+unattached. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.71.0
 
 Pending bind, examiner walk, freeze
 console, Entra-group templates,

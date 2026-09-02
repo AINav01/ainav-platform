@@ -560,6 +560,44 @@
   },
   "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
   "forecast": false,
+  "gaps": {
+    "claimed": false,
+    "gold_floor": 95,
+    "in_tree_closed": [
+      "gold floor 95",
+      "client offer seating",
+      "pending bind 0",
+      "freeze request local",
+      "examiner walk not 17a-4",
+      "Entra-group templates not live",
+      "proof-day TTL outside digest",
+      "motions not SKUs",
+      "hostname rehearsal catalog-only",
+      "competitive one-pager not a patent",
+      "gaps board names owner-only opens"
+    ],
+    "kind": "ainav.plane.gaps.v1",
+    "live": false,
+    "live_pin_ok": false,
+    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK.",
+    "owner_only_open": [
+      "seat B click",
+      "named-human proof day",
+      "Graph Read",
+      "US Dataverse",
+      "G12/G13",
+      "billing",
+      "launch"
+    ],
+    "sku": false,
+    "this_plane_cannot": [
+      "invent entra_oid",
+      "invent seat click",
+      "mark LIVE_PIN_OK",
+      "edit Cloudflare",
+      "add asuid"
+    ]
+  },
   "honest_missing": [
     "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
     "ainav.institute custom domain and incorporation date",
@@ -814,7 +852,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.71.0",
+  "release": "2.72.0",
   "scenarios": [
     {
       "id": "l1_only",

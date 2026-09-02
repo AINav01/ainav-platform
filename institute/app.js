@@ -213,6 +213,7 @@
     var proveRoot = $("app-floor-prove");
     var continuityRoot = $("app-floor-continuity");
     var competeRoot = $("app-floor-compete");
+    var gapsRoot = $("app-floor-gaps");
     var showGlance = id === "client" || id === "entire" || id === "provision";
     var showGovern = id === "entire" || id === "owner" || id === "it" || id === "remote";
     var showEstate = id === "entire" || id === "examiner" || id === "records" || id === "owner";
@@ -220,6 +221,7 @@
     var showProve = id === "examiner" || id === "records";
     var showContinuity = id === "seats" || id === "entire";
     var showCompete = id === "entire";
+    var showGaps = id === "owner" || id === "entire";
     if (boardRoot) boardRoot.hidden = !showGlance;
     if (governRoot) governRoot.hidden = !showGovern;
     if (estateRoot) estateRoot.hidden = !showEstate;
@@ -228,6 +230,7 @@
     if (proveRoot) proveRoot.hidden = !showProve;
     if (continuityRoot) continuityRoot.hidden = !showContinuity;
     if (competeRoot) competeRoot.hidden = !showCompete;
+    if (gapsRoot) gapsRoot.hidden = !showGaps;
   }
 
   function paintOfferBoard(root, offer) {
@@ -506,6 +509,24 @@
     });
   }
 
+  function paintGaps(gaps) {
+    if (!gaps || gaps.sku || gaps.live || gaps.live_pin_ok || gaps.claimed) return;
+    if (gaps.note) setText("app-floor-gaps-lede", gaps.note);
+    function fill(id, items) {
+      var root = $(id);
+      if (!root) return;
+      root.textContent = "";
+      (items || []).forEach(function (line) {
+        var li = document.createElement("li");
+        li.textContent = line;
+        root.appendChild(li);
+      });
+    }
+    fill("app-floor-gaps-closed", gaps.in_tree_closed);
+    fill("app-floor-gaps-owner", gaps.owner_only_open);
+    fill("app-floor-gaps-cannot", gaps.this_plane_cannot);
+  }
+
   function paintMotions(root, motions) {
     if (!root || !motions) return;
     if (motions.sku || motions.fourth_sku || motions.live) return;
@@ -759,6 +780,7 @@
     paintContinuity((data.success && data.success.continuity) || {});
     paintCompete($("app-floor-compete-table"), data.competitive);
     if (data.competitive && data.competitive.note) setText("app-floor-compete-lede", data.competitive.note);
+    paintGaps(data.gaps);
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");

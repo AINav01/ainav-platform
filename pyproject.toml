@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ainav-agent-gov"
-version = "2.71.0"
+version = "2.72.0"
 description = "AINav Job C: dual-admitted effect authority before privileged SoR writes"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -50,5 +50,5 @@ source = ["agent_gov", "ainav"]
 branch = true
 
 [tool.coverage.report]
-fail_under = 90
+fail_under = 95
 show_missing = true

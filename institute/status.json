@@ -323,7 +323,8 @@
       "Proof-day Floor: Client sits write rail, attention, seats, keep, offer. Estate and audit stay on Entire, Examiner, Records, and Owner",
       "Instrument plane: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, passkey identify. Not live. Not formally verified",
       "Walk-away ledger recorded=false count=0. Billing unattached. Not a ninth complement",
-      "2.71.0 instrument: Client offer is dashboard seating, pending bind 0, freeze request local, examiner walk not 17a-4, Entra-group templates not live, proof-day TTL outside digest, motions not SKUs, hostname rehearsal catalog-only, competitive one-pager not a patent"
+      "2.71.0 instrument: Client offer is dashboard seating, pending bind 0, freeze request local, examiner walk not 17a-4, Entra-group templates not live, proof-day TTL outside digest, motions not SKUs, hostname rehearsal catalog-only, competitive one-pager not a patent",
+      "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -335,7 +336,7 @@
     },
     "gold_ci": {
       "command": "make gold",
-      "coverage_floor": 90,
+      "coverage_floor": 95,
       "exists": true,
       "id": "github.actions.gold",
       "is_admit_plane": false,

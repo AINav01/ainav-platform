@@ -313,6 +313,7 @@ def public_business_plane() -> dict[str, Any]:
         "included_and_upsells": dict(cat["plane_interface"].get("included_and_upsells") or {}),
         "motions": dict(cat["plane_interface"].get("motions") or {}),
         "competitive": dict(cat["plane_interface"].get("competitive") or {}),
+        "gaps": dict(cat["plane_interface"].get("gaps") or {}),
         "motion_equation": cat["equations"].get("motion"),
         "elevator": dict(cat["business"].get("elevator") or {}),
         "why_client": cat["business"].get("why_client"),

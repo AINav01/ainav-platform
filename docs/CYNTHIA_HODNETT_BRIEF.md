@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.71.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.72.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.71.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.72.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -351,6 +351,8 @@ Working well
 - Competitive one-pager wins only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.
 - Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.
 - The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.
+- Gold floor is 95 percent. make gold fails under 95. A green check is not LIVE_PIN_OK.
+- Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 

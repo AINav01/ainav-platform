@@ -417,6 +417,7 @@ def public_dashboard() -> dict[str, Any]:
         "motions": dict(body.get("motions") or {}),
         "hostname_rehearsal": dict(body.get("hostname_rehearsal") or {}),
         "competitive": dict(body.get("competitive") or {}),
+        "gaps": dict(body.get("gaps") or {}),
         "motion_equation": cat["equations"].get("motion"),
     }
 

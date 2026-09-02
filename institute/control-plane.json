@@ -482,7 +482,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.71.0"
+    "release": "2.72.0"
   },
   "communications": [
     {
@@ -1104,7 +1104,7 @@
   ],
   "email": "chodnett@ainav.institute",
   "entra_oid": null,
-  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions \u00d7 gaps board",
   "estate": {
     "executive": {
       "board": {
@@ -2042,6 +2042,44 @@
     "sku": false,
     "verb": "request"
   },
+  "gaps": {
+    "claimed": false,
+    "gold_floor": 95,
+    "in_tree_closed": [
+      "gold floor 95",
+      "client offer seating",
+      "pending bind 0",
+      "freeze request local",
+      "examiner walk not 17a-4",
+      "Entra-group templates not live",
+      "proof-day TTL outside digest",
+      "motions not SKUs",
+      "hostname rehearsal catalog-only",
+      "competitive one-pager not a patent",
+      "gaps board names owner-only opens"
+    ],
+    "kind": "ainav.plane.gaps.v1",
+    "live": false,
+    "live_pin_ok": false,
+    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK.",
+    "owner_only_open": [
+      "seat B click",
+      "named-human proof day",
+      "Graph Read",
+      "US Dataverse",
+      "G12/G13",
+      "billing",
+      "launch"
+    ],
+    "sku": false,
+    "this_plane_cannot": [
+      "invent entra_oid",
+      "invent seat click",
+      "mark LIVE_PIN_OK",
+      "edit Cloudflare",
+      "add asuid"
+    ]
+  },
   "governance_calendar": {
     "as_of": "2026-09-02",
     "certified": false,
@@ -2639,7 +2677,8 @@
       "pending_bind",
       "freeze_console",
       "competitive",
-      "continuity"
+      "continuity",
+      "gaps"
     ],
     "examiner_shows": [
       "estate",
@@ -2649,12 +2688,13 @@
     "included_with": "L1",
     "kind": "ainav.plane.proof_day_floor.v1",
     "minutes": 90,
-    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Same dashboard. Not a fourth SKU.",
+    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Gaps board sits Owner and Entire. Same dashboard. Not a fourth SKU.",
     "owner_shows": [
       "govern",
       "estate",
       "audit",
-      "freeze_console"
+      "freeze_console",
+      "gaps"
     ],
     "records_shows": [
       "estate",
@@ -3623,7 +3663,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.71.0",
+  "release": "2.72.0",
   "revocations": [
     {
       "by": "Owner / board request",
