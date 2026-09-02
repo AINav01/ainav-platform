@@ -214,15 +214,32 @@ def _validate_edge_quality(edge: dict[str, Any]) -> None:
         raise IntegrityError("edge quality is required", reason_code="CATALOG_EDGE")
     if quality.get("kind") != "ainav.edge.quality.v1":
         raise IntegrityError("edge quality kind is ainav.edge.quality.v1", reason_code="CATALOG_EDGE")
-    for flag in ("sku", "live", "live_pin_ok", "from_this_plane", "apex_is_institute", "ssl_full_claimed"):
+    for flag in (
+        "sku",
+        "live",
+        "live_pin_ok",
+        "from_this_plane",
+        "apex_is_institute",
+        "ssl_full_claimed",
+        "rocket_loader_claimed",
+    ):
         if quality.get(flag) is True:
             raise IntegrityError(f"edge quality cannot claim {flag}", reason_code="CATALOG_EDGE")
     if quality.get("e7_full") is not True:
         raise IntegrityError("edge quality records E7 DNS full", reason_code="CATALOG_EDGE")
     if str(quality.get("institute_host") or "") != "azure.swa":
         raise IntegrityError("edge quality host is Azure SWA", reason_code="CATALOG_EDGE")
+    freshness = quality.get("host_freshness") or {}
+    if not isinstance(freshness, dict):
+        raise IntegrityError("edge quality host_freshness is required", reason_code="CATALOG_EDGE")
+    if freshness.get("from_this_plane") is True:
+        raise IntegrityError("edge quality cannot claim host republish from this plane", reason_code="CATALOG_EDGE")
+    if freshness.get("republish_is_not_launch") is not True:
+        raise IntegrityError("edge quality: republish is not launch", reason_code="CATALOG_EDGE")
+    if freshness.get("published_host_is_swa") is not True or freshness.get("apex_is_not_the_host") is not True:
+        raise IntegrityError("edge quality host is SWA, not the apex", reason_code="CATALOG_EDGE")
     verified = " ".join(str(item).lower() for item in quality.get("verified") or [])
-    for stem in ("13/13", "403", "asuid", "301"):
+    for stem in ("13/13", "403", "asuid", "301", "tls", "anycast"):
         if stem not in verified:
             raise IntegrityError(f"edge quality verified must keep {stem}", reason_code="CATALOG_EDGE")
     confirm = " ".join(str(item).lower() for item in quality.get("confirm") or [])
@@ -592,6 +609,7 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         "duty hints",
         "board packet",
         "lab pin",
+        "edge quality",
     ):
         if stem not in interface:
             raise IntegrityError(
@@ -897,8 +915,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 40:
-        raise IntegrityError("expert review needs 16–40 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 44:
+        raise IntegrityError("expert review needs 16–44 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -929,6 +947,10 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         38: ("gaps", "owner steps"),
         39: ("board packet", "seat b"),
         40: ("lab", "commercial"),
+        41: ("quality", "probe"),
+        42: ("tls", "1.2"),
+        43: ("anycast", "outlook"),
+        44: ("visitor", "full"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1916,6 +1938,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_271(catalog, body)
     _validate_instrument_272(catalog, body)
     _validate_instrument_273(catalog, body)
+    _validate_instrument_274(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -1966,8 +1989,6 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_273(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.73.0":
-        raise IntegrityError("entity.release is 2.73.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.73.0" in item and "floor" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.73.0 Floor view_shows", reason_code="CATALOG_ENGINEERING")
@@ -2066,6 +2087,52 @@ def _validate_instrument_273(catalog: dict[str, Any], body: dict[str, Any]) -> N
             raise IntegrityError(f"2.73.0 upgrade {number} must mention {needle}", reason_code="CATALOG_REVIEW")
         if item.get("who") != "tree" or item.get("done") is not True:
             raise IntegrityError(f"2.73.0 upgrade {number} must stay tree and done", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_274(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.74.0":
+        raise IntegrityError("entity.release is 2.74.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.74.0" in item and "quality" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.74.0 Cloudflare quality", reason_code="CATALOG_ENGINEERING")
+    quality = ((catalog.get("microsoft_stack") or {}).get("edge") or {}).get("quality") or {}
+    if quality.get("ssl_full_claimed") is True or quality.get("apex_is_institute") is True:
+        raise IntegrityError("2.74.0 cannot claim SSL Full or apex Institute", reason_code="CATALOG_EDGE")
+    if quality.get("rocket_loader_claimed") is True:
+        raise IntegrityError("2.74.0 cannot claim Rocket Loader Off", reason_code="CATALOG_EDGE")
+    verified = " ".join(str(item).lower() for item in quality.get("verified") or [])
+    if "tls" not in verified or "anycast" not in verified:
+        raise IntegrityError("2.74.0 quality verified must keep tls and anycast", reason_code="CATALOG_EDGE")
+    gaps = body.get("gaps") or {}
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    if not any("seat b" in item for item in owner):
+        raise IntegrityError("2.74.0 owner-only must still name seat B click", reason_code="CATALOG_PLANE")
+    if not any("ssl full" in item for item in owner):
+        raise IntegrityError("2.74.0 owner-only must name SSL Full confirm", reason_code="CATALOG_PLANE")
+    hrefs = " ".join(str(item) for item in (gaps.get("owner_only_hrefs") or {}).values())
+    if "e7-cloudflare" not in hrefs:
+        raise IntegrityError("2.74.0 owner-only hrefs must walk to #e7-cloudflare", reason_code="CATALOG_PLANE")
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    if not any("quality" in item and "anycast" in item for item in closed):
+        raise IntegrityError("gaps in_tree_closed must keep the quality live probe", reason_code="CATALOG_PLANE")
+    interface = str((catalog.get("equations") or {}).get("interface") or "").lower()
+    if "edge quality" not in interface:
+        raise IntegrityError("interface equation must keep edge quality", reason_code="CATALOG_EQUATION")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("quality probe" in item or "live cloudflare quality" in item for item in well):
+        raise IntegrityError("working_well must keep the live quality probe", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("ssl" in item and "full" in item and "rocket" in item for item in improve):
+        raise IntegrityError("improve must keep SSL Full and Rocket Loader as owner confirm", reason_code="CATALOG_REVIEW")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    for number, needle in ((41, "probe"), (42, "tls"), (43, "anycast"), (44, "visitor")):
+        item = by_n.get(number) or {}
+        blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+        if needle not in blob:
+            raise IntegrityError(f"2.74.0 upgrade {number} must mention {needle}", reason_code="CATALOG_REVIEW")
+        if item.get("who") != "tree" or item.get("done") is not True:
+            raise IntegrityError(f"2.74.0 upgrade {number} must stay tree and done", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

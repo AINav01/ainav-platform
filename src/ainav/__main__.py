@@ -222,9 +222,12 @@ def main(argv: list[str] | None = None) -> int:
         print(canonical_json(stack_health(probe=True if args.probe else None)))
         return 0
     if args.cmd == "dns":
-        from ainav.microsoft.dns import probe_dns
+        from ainav.microsoft.dns import probe_dns, probe_edge_quality
 
-        print(canonical_json(probe_dns()))
+        dns = probe_dns()
+        out = dict(dns)
+        out["quality"] = probe_edge_quality(dns=dns)
+        print(canonical_json(out))
         return 0
     if args.cmd == "agent-tools":
         from ainav.microsoft.agent_tools import probe_agent_tools, public_review, steps_markdown

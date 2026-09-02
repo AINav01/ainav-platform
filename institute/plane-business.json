@@ -578,7 +578,8 @@
       "catalog-driven floor",
       "provision spine",
       "duty hints",
-      "owner board packet"
+      "owner board packet",
+      "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -587,6 +588,8 @@
     "owner_only_hrefs": {
       "G12/G13": "index.html#open",
       "Graph Read": "index.html#stack-walk",
+      "Rocket Loader confirm": "index.html#e7-cloudflare",
+      "SSL Full confirm": "index.html#e7-cloudflare",
       "US Dataverse": "index.html#stack-walk",
       "billing": "index.html#open",
       "launch": "index.html#missing",
@@ -600,7 +603,9 @@
       "US Dataverse",
       "G12/G13",
       "billing",
-      "launch"
+      "launch",
+      "SSL Full confirm",
+      "Rocket Loader confirm"
     ],
     "sku": false,
     "this_plane_cannot": [
@@ -608,7 +613,9 @@
       "invent seat click",
       "mark LIVE_PIN_OK",
       "edit Cloudflare",
-      "add asuid"
+      "add asuid",
+      "claim SSL Full from this plane",
+      "claim Rocket Loader from this plane"
     ]
   },
   "honest_missing": [
@@ -865,7 +872,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.73.0",
+  "release": "2.74.0",
   "scenarios": [
     {
       "id": "l1_only",

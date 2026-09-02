@@ -2102,7 +2102,8 @@
             quality.live ||
             quality.live_pin_ok ||
             quality.apex_is_institute ||
-            quality.ssl_full_claimed
+            quality.ssl_full_claimed ||
+            quality.rocket_loader_claimed
           ) {
             /* refuse to paint a fiction quality board */
           } else {

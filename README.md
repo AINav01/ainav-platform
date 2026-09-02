@@ -111,7 +111,21 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.73.0 (this tree)
+### 2.74.0 (this tree)
+
+Live Cloudflare quality probe
+verifies HTTP 301, apex 403 hold,
+pages 404, SWA 200, asuid absent,
+E7 13/13, TLS 1.2+, and mail not
+Cloudflare anycast. Visitor cert is
+not SSL Full. Rocket Loader Off and
+SSL Full stay owner dashboard
+confirms. Do not add asuid. Do not
+treat the apex 403 as launch. Gold
+floor stays 95 percent. A green
+check is not `LIVE_PIN_OK`.
+
+### 2.73.0
 
 Floor visibility is catalog
 `view_shows`. Client stays lean.

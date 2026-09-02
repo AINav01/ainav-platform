@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.73.0"
+    "release": "2.74.0"
   },
   "communications": [
     {
@@ -1119,7 +1119,7 @@
   ],
   "email": "chodnett@ainav.institute",
   "entra_oid": null,
-  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions \u00d7 gaps board \u00d7 provision spine \u00d7 duty hints \u00d7 board packet \u00d7 lab pin",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions \u00d7 gaps board \u00d7 provision spine \u00d7 duty hints \u00d7 board packet \u00d7 lab pin \u00d7 edge quality",
   "estate": {
     "executive": {
       "board": {
@@ -2076,7 +2076,8 @@
       "catalog-driven floor",
       "provision spine",
       "duty hints",
-      "owner board packet"
+      "owner board packet",
+      "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -2085,6 +2086,8 @@
     "owner_only_hrefs": {
       "G12/G13": "index.html#open",
       "Graph Read": "index.html#stack-walk",
+      "Rocket Loader confirm": "index.html#e7-cloudflare",
+      "SSL Full confirm": "index.html#e7-cloudflare",
       "US Dataverse": "index.html#stack-walk",
       "billing": "index.html#open",
       "launch": "index.html#missing",
@@ -2098,7 +2101,9 @@
       "US Dataverse",
       "G12/G13",
       "billing",
-      "launch"
+      "launch",
+      "SSL Full confirm",
+      "Rocket Loader confirm"
     ],
     "sku": false,
     "this_plane_cannot": [
@@ -2106,7 +2111,9 @@
       "invent seat click",
       "mark LIVE_PIN_OK",
       "edit Cloudflare",
-      "add asuid"
+      "add asuid",
+      "claim SSL Full from this plane",
+      "claim Rocket Loader from this plane"
     ]
   },
   "governance_calendar": {
@@ -3773,7 +3780,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.73.0",
+  "release": "2.74.0",
   "revocations": [
     {
       "by": "Owner / board request",

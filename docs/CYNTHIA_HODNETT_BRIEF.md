@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.73.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.74.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.73.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.74.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -361,6 +361,7 @@ Working well
 - Gaps board owner-only lines walk to Owner steps. This plane cannot invent the click.
 - Owner view sits the board packet: must-have, pending 0, 1 mailbox / 0 oid, signed L1 0, revenue $0, and the seat B ask.
 - Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats × proof day × signed L1 × P-ADM attach.
+- Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.
 
 Could be improved — without inventing a fourth SKU
 
@@ -377,6 +378,7 @@ Could be improved — without inventing a fourth SKU
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.
 - Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.
 - Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused.
+- SSL/TLS Full not Flexible and Rocket Loader Off are Cloudflare dashboard confirms. This plane cannot claim them. Visitor cert WE1 is not proof of Full.
 
 They win the bake-off when
 
@@ -460,6 +462,10 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 38. [tree] Gaps walk to owner steps — Owner-only gaps walk to Owner steps. Seat B click and launch stay open. Do not invent the click.
 - 39. [tree] Owner board packet — Owner view sits the board packet. Five honest tiles and the seat B ask. Not a forecast. Not LIVE_PIN_OK.
 - 40. [tree] Lab pin is not commercial close — Lab pin is AINAV-L1 and gold 95. Commercial close is named dual seats × proof day × signed L1 × P-ADM attach. A green check is not LIVE_PIN_OK.
+- 41. [tree] Live edge quality probe — Probe HTTP 301, apex 403, pages 404, SWA 200, asuid absent, and E7 13/13. Not SSL Full. Not launch.
+- 42. [tree] TLS floor verified — Verify TLS 1.2 and 1.3. Refuse TLS 1.0 and 1.1. Not a certificate. Not Full.
+- 43. [tree] Mail and autodiscover not Cloudflare anycast — Autodiscover and MX resolve to Outlook, not Cloudflare anycast. Grey-cloud icons stay an owner confirm.
+- 44. [tree] Visitor cert is not SSL Full — Cloudflare Universal SSL is the visitor cert. It does not prove Full versus Flexible. Do not claim Full from this plane.
 
 ## What happens next
 

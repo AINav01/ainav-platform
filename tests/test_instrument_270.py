@@ -29,7 +29,7 @@ from tests.helpers import sample_action
 
 def test_release_is_270():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.73.0"
+    assert cat["entity"]["release"] == "2.74.0"
     assert "write rail" in cat["equations"]["proof"]
     assert "examiner prove" in cat["equations"]["instrument"]
     assert "proof-day floor" in cat["equations"]["interface"].lower()
@@ -167,7 +167,7 @@ def test_lockfile_refuses_non_positive_ttl():
 
 def test_dashboard_exports_instrument_plane():
     dash = public_dashboard()
-    assert dash["release"] == "2.73.0"
+    assert dash["release"] == "2.74.0"
     assert dash["proof_day_floor"]["client_hides"] == ["estate", "audit", "assignment"]
     assert dash["ai_inventory"]["items"] == []
     assert dash["examiner"]["seventeen_a4"] is False

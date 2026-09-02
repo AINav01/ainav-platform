@@ -116,6 +116,16 @@ def test_catalog_rejects_edge_fiction():
     with pytest.raises(IntegrityError) as exc_apex:
         validate_catalog(institute)
     assert exc_apex.value.reason_code == "CATALOG_EDGE"
+    rocket = copy.deepcopy(cat)
+    rocket["microsoft_stack"]["edge"]["quality"]["rocket_loader_claimed"] = True
+    with pytest.raises(IntegrityError) as exc_rocket:
+        validate_catalog(rocket)
+    assert exc_rocket.value.reason_code == "CATALOG_EDGE"
+    freshness = copy.deepcopy(cat)
+    freshness["microsoft_stack"]["edge"]["quality"]["host_freshness"]["from_this_plane"] = True
+    with pytest.raises(IntegrityError) as exc_fresh:
+        validate_catalog(freshness)
+    assert exc_fresh.value.reason_code == "CATALOG_EDGE"
 
 
 def test_catalog_edge_records_dns_full_not_launch():
@@ -160,8 +170,13 @@ def test_catalog_edge_records_dns_full_not_launch():
     assert quality["institute_host"] == "azure.swa"
     assert any("403" in item for item in quality["verified"])
     assert any("13/13" in item for item in quality["verified"])
+    assert any("tls" in item.lower() for item in quality["verified"])
+    assert any("anycast" in item.lower() for item in quality["verified"])
     assert any("Flexible" in item for item in quality["confirm"])
     assert any("asuid" in item.lower() for item in quality["refuse"])
+    assert quality["rocket_loader_claimed"] is False
+    assert quality["host_freshness"]["republish_is_not_launch"] is True
+    assert quality["host_freshness"]["from_this_plane"] is False
 
 
 def test_live_scoreboard_mail_on_cloudflare_is_not_full_without_teams():
@@ -307,6 +322,8 @@ def test_institute_paints_e7_cloudflare_strip():
     assert "e7-cloudflare-quality-wait" in html
     assert "E7 DNS 13/13 full" in html
     assert "asuid absent" in html
+    assert "not Cloudflare anycast" in html
+    assert "not proof of Full" in html
     assert "DMARC p=reject after mail flows" in html
     assert "e7-cloudflare-quality-wait" in js
     assert "refuse to paint a fiction scoreboard" in js
