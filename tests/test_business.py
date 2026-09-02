@@ -66,6 +66,20 @@ def test_catalog_rejects_claimed_revenue():
     assert exc.value.reason_code == "REVENUE_NOT_CLAIMED"
 
 
+def test_catalog_rejects_audit_as_sku_and_room_2_as_buy():
+    cat = load_catalog()
+    audit_sku = copy.deepcopy(cat)
+    audit_sku["business"]["model"]["audit"] = "fourth sku"
+    with pytest.raises(IntegrityError) as exc:
+        validate_catalog(audit_sku)
+    assert exc.value.reason_code == "CATALOG_SKU"
+    room2 = copy.deepcopy(cat)
+    room2["business"]["model"]["regulated"] = "lead with mint"
+    with pytest.raises(IntegrityError) as room_exc:
+        validate_catalog(room2)
+    assert room_exc.value.reason_code == "CATALOG_BUSINESS"
+
+
 def test_kit_evidence_refuses_before_pass():
     company = OperatingCompany()
     account = company.qualify("early")

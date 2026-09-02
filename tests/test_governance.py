@@ -48,6 +48,14 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert body["regulated"]["seventeen_a4"] is False
     assert body["regulated"]["room_1"] == "books"
     assert body["regulated"]["room_2"] == "refuse"
+    gov = copy.deepcopy(load_catalog())
+    gov["governance"]["regulated"]["seventeen_a4"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(gov)
+    room2 = copy.deepcopy(load_catalog())
+    room2["governance"]["regulated"]["room_2"] = "lead"
+    with pytest.raises(IntegrityError):
+        validate_catalog(room2)
     assert "client utilizes ai" in md.lower()
     assert "human control" in md.lower() or "humans control" in md.lower()
     assert "certified: false" in md.lower()

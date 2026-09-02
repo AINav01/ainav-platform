@@ -471,6 +471,51 @@ def test_plane_interface_validators_refuse_fiction():
     estate_worm["plane_interface"]["estate"]["immutable"]["worm"] = True
     with pytest.raises(IntegrityError):
         validate_catalog(estate_worm)
+    audit_sku = copy.deepcopy(cat)
+    audit_sku["plane_interface"]["audit"]["sku"] = True
+    with pytest.raises(IntegrityError) as audit_exc:
+        validate_catalog(audit_sku)
+    assert audit_exc.value.reason_code == "CATALOG_SKU"
+    audit_a4 = copy.deepcopy(cat)
+    audit_a4["plane_interface"]["audit"]["seventeen_a4"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(audit_a4)
+    audit_crypto = copy.deepcopy(cat)
+    audit_crypto["plane_interface"]["audit"]["crypto_associated"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(audit_crypto)
+    audit_live = copy.deepcopy(cat)
+    audit_live["plane_interface"]["audit"]["live"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(audit_live)
+    audit_admit = copy.deepcopy(cat)
+    audit_admit["plane_interface"]["audit"]["rooms"]["internal"]["admit"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(audit_admit)
+    audit_worm = copy.deepcopy(cat)
+    audit_worm["plane_interface"]["audit"]["rooms"]["archive"]["worm"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(audit_worm)
+    room2_buy = copy.deepcopy(cat)
+    room2_buy["plane_interface"]["audit"]["regulated"]["room_2"]["buy"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(room2_buy)
+    room1_buy = copy.deepcopy(cat)
+    room1_buy["plane_interface"]["audit"]["regulated"]["room_1"]["buy"] = "new SKU"
+    with pytest.raises(IntegrityError):
+        validate_catalog(room1_buy)
+    claimed = copy.deepcopy(cat)
+    claimed["plane_interface"]["audit"]["regulated"]["items"][0]["claimed"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(claimed)
+    lead = copy.deepcopy(cat)
+    lead["plane_interface"]["audit"]["regulated"]["lead"] = "stablecoin.mint"
+    with pytest.raises(IntegrityError):
+        validate_catalog(lead)
+    missing_audit = copy.deepcopy(cat)
+    del missing_audit["plane_interface"]["audit"]
+    with pytest.raises(IntegrityError):
+        validate_catalog(missing_audit)
     two_dash = copy.deepcopy(cat)
     two_dash["plane_interface"]["client_dashboard"]["same_as"] = "another_dashboard"
     with pytest.raises(IntegrityError):
