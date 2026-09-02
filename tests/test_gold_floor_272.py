@@ -285,11 +285,12 @@ def test_gold_floor_and_pyproject_must_match():
         lambda c: c["counsel"]["order_form"].update({"unsigned": False}),
         lambda c: _drop_order_rule(c, "U-DUAL is never free"),
         lambda c: _drop_order_rule(c, "not SKUs"),
-        lambda c: c.update({"finance": None}),
-        lambda c: c["finance"].update({"signed_l1": 1}),
-        lambda c: c["finance"].update({"named_customers": 1}),
-        lambda c: c["finance"].update({"billing_provider": True}),
-        lambda c: c["finance"]["units"].pop("ffs", None) if isinstance(c["finance"].get("units"), dict) else None,
+        lambda c: c.update({"financial_model": None}),
+        lambda c: c["financial_model"].update({"recognized_revenue": 1}),
+        lambda c: c["financial_model"].update({"signed_l1": 1}),
+        lambda c: c["financial_model"].update({"named_customers": 1}),
+        lambda c: c["financial_model"].update({"billing_provider": True}),
+        lambda c: c["financial_model"].update({"pricing_models": []}),
         lambda c: _pack_attach_sku(c),
         lambda c: c["investor"].update({"live": True}),
         lambda c: c["investor"].update({"not_a_round": False}),
@@ -545,18 +546,21 @@ def _drop_order_rule(catalog, stem):
 
 
 def _pack_attach_sku(catalog):
-    units = catalog.get("finance", {}).get("units") or {}
-    pack = units.get("pack_attach")
-    if isinstance(pack, dict):
-        pack["sku"] = True
+    models = catalog.get("financial_model", {}).get("pricing_models") or []
+    for item in models:
+        if item.get("id") == "pack_attach":
+            item["sku"] = True
+            item["attaches_udual"] = True
+            return
 
 
 def _break_upgrade_16(catalog):
     upgrades = catalog.get("expert_review", {}).get("upgrades") or []
     for item in upgrades:
-        if item.get("number") == 16:
-            item["note"] = "A first screen."
+        if item.get("n") == 16:
+            item["title"] = "A first screen."
             item["do"] = "Paint the first screen."
+            return
 
 
 def _undone_tree_upgrade(catalog):
@@ -574,8 +578,8 @@ def _break_qualify(catalog):
 
 
 def _claim_patent_objection(catalog):
-    objections = catalog.get("expert_review", {}).get("success", {}).get("objections") or {}
-    for item in objections.values() if isinstance(objections, dict) else []:
+    objections = catalog.get("expert_review", {}).get("success", {}).get("objections") or []
+    for item in objections if isinstance(objections, list) else []:
         if isinstance(item, dict):
             item["answer"] = "This is uncopyable and a patent granted."
             return
@@ -602,7 +606,7 @@ def _break_seat_meaning(catalog):
 def _break_number_two_meaning(catalog):
     seat = catalog.get("expert_review", {}).get("success", {}).get("seat_b") or {}
     if isinstance(seat, dict):
-        seat["is_yes"] = ["seat B"]
+        seat["is"] = ["seat B"]
 
 
 def _break_invite_gate(catalog):
@@ -621,41 +625,29 @@ def _revert_invite_gate(catalog):
 
 def _break_l1_wedge(catalog):
     for module in catalog.get("modules") or []:
-        if module.get("id") == "bc.general_journal.post":
-            module["id"] = "bc.general_journal.post"
-    packs = catalog.get("skus") or []
-    for sku_item in packs:
-        if sku_item.get("id") == "L1" and sku_item.get("wedge"):
-            sku_item["wedge"] = ["d365.order.submit"]
-            return
-    for pack in catalog.get("industry_packs") or []:
-        if pack.get("id") == "industry.controller":
-            pack["modules"] = ["d365.order.submit"]
+        if module.get("id") == "bc.general_journal.post" and module.get("wedge") is True:
+            module["sku"] = "P-ADM"
             return
 
 
 def _break_udual_wedge(catalog):
-    for sku_item in catalog.get("skus") or []:
-        if sku_item.get("id") == "U-DUAL" and sku_item.get("wedge"):
-            sku_item["wedge"] = ["bc.general_journal.post"]
+    for module in catalog.get("modules") or []:
+        if module.get("id") == "d365.order.submit" and module.get("wedge") is True:
+            module["wedge"] = False
             return
 
 
 def _zero_desk_range(catalog):
-    for sku_item in catalog.get("skus") or []:
-        desks = sku_item.get("desks") or sku_item.get("priced_desks")
-        if isinstance(desks, dict) and "min" in desks:
-            desks["min"] = 0
-            desks["max"] = 0
+    for pack in catalog.get("industry_packs") or []:
+        if pack.get("included_in_sku") is True:
+            pack["attach_usd"] = {"min": 6000, "max": 8000, "term": "year"}
             return
 
 
 def _bad_desk_range(catalog):
-    for sku_item in catalog.get("skus") or []:
-        desks = sku_item.get("desks") or sku_item.get("priced_desks")
-        if isinstance(desks, dict) and "min" in desks:
-            desks["min"] = 10
-            desks["max"] = 1
+    for pack in catalog.get("industry_packs") or []:
+        if pack.get("included_in_sku") is not True and pack.get("ala_carte") is True:
+            pack["attach_usd"] = {"min": 0, "max": 0, "term": "year"}
             return
 
 
@@ -692,25 +684,25 @@ def _ainav_is_client_ai(catalog):
 
 
 def _break_off_switch(catalog):
-    switch = (catalog.get("governance") or {}).get("off_switch") or {}
+    switch = ((catalog.get("governance") or {}).get("plane") or {}).get("off_switch") or {}
     if isinstance(switch, dict):
         switch["does"] = "Freeze."
 
 
 def _break_off_switch_power(catalog):
-    switch = (catalog.get("governance") or {}).get("off_switch") or {}
+    switch = ((catalog.get("governance") or {}).get("plane") or {}).get("off_switch") or {}
     if isinstance(switch, dict):
         switch["does_not"] = "Replace Copilot."
 
 
 def _break_rollback(catalog):
-    rollback = (catalog.get("governance") or {}).get("rollback") or {}
+    rollback = ((catalog.get("governance") or {}).get("plane") or {}).get("rollback") or {}
     if isinstance(rollback, dict):
         rollback["does"] = "Undo."
 
 
 def _clear_must_have_audience(catalog):
-    audience = ((catalog.get("governance") or {}).get("must_have") or {}).get("audience") or {}
+    audience = ((catalog.get("governance") or {}).get("must_have") or {}).get("for") or {}
     if isinstance(audience, dict) and audience:
         key = next(iter(audience))
         audience[key] = ""
