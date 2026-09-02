@@ -270,6 +270,75 @@
   },
   "cms": false,
   "commercial": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "competitive": {
+    "columns": [
+      "covers_this_vendor",
+      "consume_once",
+      "fail_closed_sor",
+      "counterparty_ai"
+    ],
+    "kind": "ainav.plane.competitive.v1",
+    "live": false,
+    "note": "We win only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.",
+    "patent": false,
+    "rows": [
+      {
+        "consume_once": true,
+        "counterparty_ai": true,
+        "covers_this_vendor": true,
+        "fail_closed_sor": true,
+        "id": "job_c",
+        "name": "Job C"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "bc_workflow",
+        "name": "Workflow User Groups"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "copilot_studio",
+        "name": "Copilot Studio"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "pim",
+        "name": "PIM"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": false,
+        "fail_closed_sor": false,
+        "id": "grc_icfr",
+        "name": "GRC / ICFR"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "in_harness",
+        "name": "In-harness governor"
+      }
+    ],
+    "sku": false,
+    "uncopyable": false,
+    "we_win_only": [
+      "consume_once",
+      "fail_closed_sor",
+      "counterparty_ai"
+    ]
+  },
   "elevator": {
     "ask": "Ninety minutes on the twin. Walk out with a sealed record \u2014 or walk away.",
     "sixty": "Every new client AI is another unauthorized-write surface. The vendor of the draft is the worst failsafe for that draft. Job C sits outside the model. Treasury and controller bind one action hash. First record is the admitted write. Second record is the sealed decision. Off switch, reset, rollback \u2014 same plane. Three SKUs only. Not agent inventory. Not an identity provider.",
@@ -514,8 +583,8 @@
             "Every L1 pack and library with included_in_sku=true",
             "Entra identity, Teams notify, twin, proof day / Acceptance Kit",
             "Client executive dashboard",
-            "Estate \u2014 same plane: other uses, failsafe, records, maps",
-            "Audit \u2014 same plane: internal audit, regulator archive, Room 1 books",
+            "Same dashboard included with L1 \u2014 encyclopedia is a drawer on Entire",
+            "Proof-day Client stays write rail, attention, seats, keep, and offer",
             "Standard provision seating"
           ],
           "name": "Included with L1",
@@ -571,6 +640,45 @@
   "legal": "AINav, Inc.",
   "live": false,
   "live_pin_ok": false,
+  "motion_equation": "same L1 \u00d7 ninety minutes \u00d7 $28\u201340k \u00d7 qualify path \u00d7 counsel packet",
+  "motions": {
+    "fourth_sku": false,
+    "kind": "ainav.plane.motions.v1",
+    "large_client": {
+      "certificate": false,
+      "claimed": false,
+      "counsel_ready": {
+        "examiner_export": true,
+        "icfr_kit_case": true,
+        "msa_skeleton": true,
+        "off_switch_evidence": true,
+        "order_form": true
+      },
+      "g12_open": true,
+      "name": "Large-client motion",
+      "note": "Same three SKUs. Counsel-ready packet. Maps stay claimed=false. G12 still open. Do not claim SOX or 17a-4.",
+      "same_three_skus": true,
+      "seventeen_a4": false,
+      "sku": false,
+      "sox": false
+    },
+    "live": false,
+    "sku": false,
+    "small_client": {
+      "discount_udual": false,
+      "express_sku": false,
+      "minutes": 90,
+      "name": "Small-client motion",
+      "note": "Same L1. Same ninety minutes. Same $28\u201340k. Qualify path, not L1 Express.",
+      "price_usd": {
+        "max": 40000,
+        "min": 28000
+      },
+      "same_l1": true,
+      "sku": false,
+      "walk_away_if": "They only wanted Workflow User Groups"
+    }
+  },
   "named_customers": 0,
   "number_two": {
     "all_aspects": false,
@@ -706,7 +814,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.70.0",
+  "release": "2.71.0",
   "scenarios": [
     {
       "id": "l1_only",
@@ -922,7 +1030,7 @@
     "count": 0,
     "do_not_invent_names": true,
     "items": [],
-    "note": "The first walk-away is not recorded.",
+    "note": "The first walk-away is not recorded. Do not invent a named controller who walked. Count stays 0.",
     "recorded": false
   },
   "walk_away_recorded": false,

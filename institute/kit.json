@@ -23,7 +23,7 @@
     "priced round",
     "LIVE_PIN_OK"
   ],
-  "release": "2.70.0",
+  "release": "2.71.0",
   "sku": false,
   "thesis": "The kit compiles catalog law into JSON-LD, llms.txt, search, speculation, Lit elements, Eleventy output, Storybook stories, Playwright, axe, Lighthouse, SWA identify-not-admit, a read-only Function, fail-closed Insights, Pagefind on the kit only, and SWA CLI. Identify is not admit. The API does not write a SoR. Insights are not claimed. Not a CMS. Not LIVE_PIN_OK.",
   "tools": [

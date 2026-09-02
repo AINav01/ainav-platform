@@ -727,7 +727,15 @@
     },
     "continuity": {
       "lede": "If either seat is missing, the write does not land. That is the product working.",
-      "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not."
+      "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.",
+      "rehearsal": {
+        "live": false,
+        "note": "Tuesday rehearsal: seat B absent \u2192 write does not land \u2192 sealed deny.",
+        "sealed_deny": true,
+        "seat_missing": "seat_b",
+        "sku": false,
+        "write_lands": false
+      }
     },
     "live": false,
     "live_pin_ok": false,

@@ -411,6 +411,13 @@ def public_dashboard() -> dict[str, Any]:
         "examiner": dict(body.get("examiner") or {}),
         "ai_inventory": dict(body.get("ai_inventory") or {}),
         "grant_ttl": dict(body.get("grant_ttl") or {}),
+        "pending_bind": dict(body.get("pending_bind") or {}),
+        "freeze_console": dict(body.get("freeze_console") or {}),
+        "examiner_walk": dict(body.get("examiner_walk") or {}),
+        "motions": dict(body.get("motions") or {}),
+        "hostname_rehearsal": dict(body.get("hostname_rehearsal") or {}),
+        "competitive": dict(body.get("competitive") or {}),
+        "motion_equation": cat["equations"].get("motion"),
     }
 
 

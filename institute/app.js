@@ -209,13 +209,25 @@
     var governRoot = $("app-floor-govern");
     var estateRoot = $("app-floor-estate");
     var auditRoot = $("app-floor-audit");
+    var freezeRoot = $("app-floor-freeze");
+    var proveRoot = $("app-floor-prove");
+    var continuityRoot = $("app-floor-continuity");
+    var competeRoot = $("app-floor-compete");
     var showGlance = id === "client" || id === "entire" || id === "provision";
     var showGovern = id === "entire" || id === "owner" || id === "it" || id === "remote";
     var showEstate = id === "entire" || id === "examiner" || id === "records" || id === "owner";
+    var showFreeze = id === "owner" || id === "entire";
+    var showProve = id === "examiner" || id === "records";
+    var showContinuity = id === "seats" || id === "entire";
+    var showCompete = id === "entire";
     if (boardRoot) boardRoot.hidden = !showGlance;
     if (governRoot) governRoot.hidden = !showGovern;
     if (estateRoot) estateRoot.hidden = !showEstate;
     if (auditRoot) auditRoot.hidden = !showEstate;
+    if (freezeRoot) freezeRoot.hidden = !showFreeze;
+    if (proveRoot) proveRoot.hidden = !showProve;
+    if (continuityRoot) continuityRoot.hidden = !showContinuity;
+    if (competeRoot) competeRoot.hidden = !showCompete;
   }
 
   function paintOfferBoard(root, offer) {
@@ -347,6 +359,175 @@
     art.appendChild(price);
     art.appendChild(note);
     root.appendChild(art);
+  }
+
+  function emptyWell(value) {
+    return value ? String(value) : "empty";
+  }
+
+  function paintPending(root, pending) {
+    if (!pending) return;
+    if (pending.sku || pending.live || pending.named_pair) return;
+    setText("app-pending-amount", emptyWell(pending.amount));
+    setText("app-pending-memo", emptyWell(pending.memo));
+    setText("app-pending-seat-a", emptyWell(pending.seat_a));
+    setText("app-pending-seat-b", emptyWell(pending.seat_b));
+    setText("app-pending-hash", emptyWell(pending.action_hash));
+    setText("app-pending-count", String(pending.count || 0));
+    if (root) root.setAttribute("data-tone", "hold");
+  }
+
+  function paintGroups(root, groups) {
+    if (!root || !groups) return;
+    if (groups.sku || groups.live || groups.assignment_live || groups.named_head) return;
+    root.textContent = "";
+    (groups.templates || []).forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.group || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.default_view || "";
+      var note = document.createElement("p");
+      note.className = "note";
+      note.textContent = (item.org_node || "") + " · named head: false · live: false";
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(note);
+      root.appendChild(art);
+    });
+  }
+
+  function paintFreeze(freeze) {
+    if (!freeze || freeze.sku || freeze.live || freeze.verb !== "request") return;
+    if (freeze.note) setText("app-floor-freeze-lede", freeze.note);
+    var banner = $("app-floor-freeze-banner");
+    var btn = $("app-floor-freeze-btn");
+    var clear = $("app-floor-freeze-clear");
+    function sync() {
+      var requested = false;
+      try {
+        requested = sessionStorage.getItem("ainav-freeze-requested") === "1";
+      } catch (err) {
+        requested = false;
+      }
+      if (banner) {
+        banner.hidden = !requested;
+        banner.textContent = requested
+          ? "Freeze requested in this browser. Catalog plane stays OPEN. Inference may continue. Consequence does not."
+          : "";
+      }
+      document.body.setAttribute("data-frozen", requested ? "requested" : "open");
+    }
+    if (btn && !btn.getAttribute("data-bound")) {
+      btn.setAttribute("data-bound", "true");
+      btn.addEventListener("click", function () {
+        try {
+          sessionStorage.setItem("ainav-freeze-requested", "1");
+        } catch (err) {
+          /* local only */
+        }
+        sync();
+      });
+    }
+    if (clear && !clear.getAttribute("data-bound")) {
+      clear.setAttribute("data-bound", "true");
+      clear.addEventListener("click", function () {
+        try {
+          sessionStorage.removeItem("ainav-freeze-requested");
+        } catch (err) {
+          /* local only */
+        }
+        sync();
+      });
+    }
+    sync();
+  }
+
+  function paintProve(walk) {
+    if (!walk || walk.sku || walk.live || walk.seventeen_a4 || walk.worm) return;
+    if (walk.note) setText("app-floor-prove-lede", walk.note);
+    var btn = $("app-prove-btn");
+    var input = $("app-prove-id");
+    function show(record, leaf, root, included) {
+      setText("app-prove-record", emptyWell(record));
+      setText("app-prove-leaf", emptyWell(leaf));
+      setText("app-prove-root", emptyWell(root));
+      setText("app-prove-included", included === true ? "true" : "false");
+    }
+    var demo = walk.demo || {};
+    show(demo.record_id, demo.leaf, demo.root, demo.included);
+    if (btn && !btn.getAttribute("data-bound")) {
+      btn.setAttribute("data-bound", "true");
+      btn.addEventListener("click", function () {
+        var record = ((input && input.value) || "").trim();
+        if (!record) {
+          show("", "", "", false);
+          return;
+        }
+        show(record, "", "", false);
+      });
+    }
+  }
+
+  function paintContinuity(continuity) {
+    if (!continuity) return;
+    if (continuity.lede) setText("app-floor-continuity-lede", continuity.lede);
+    var btn = $("app-continuity-btn");
+    var out = $("app-continuity-out");
+    if (btn && !btn.getAttribute("data-bound")) {
+      btn.setAttribute("data-bound", "true");
+      btn.addEventListener("click", function () {
+        if (out) out.hidden = false;
+      });
+    }
+  }
+
+  function paintCompete(root, competitive) {
+    if (!root || !competitive) return;
+    if (competitive.sku || competitive.live || competitive.uncopyable || competitive.patent) return;
+    var tbody = root.querySelector("tbody") || root;
+    tbody.textContent = "";
+    (competitive.rows || []).forEach(function (item) {
+      var tr = document.createElement("tr");
+      [
+        item.name || "",
+        item.covers_this_vendor === true ? "yes" : "no",
+        item.consume_once === true ? "yes" : "no",
+        item.fail_closed_sor === true ? "yes" : "no",
+        item.counterparty_ai === true ? "yes" : "no"
+      ].forEach(function (value) {
+        var td = document.createElement("td");
+        td.textContent = value;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function paintMotions(root, motions) {
+    if (!root || !motions) return;
+    if (motions.sku || motions.fourth_sku || motions.live) return;
+    root.textContent = "";
+    ["small_client", "large_client"].forEach(function (key) {
+      var item = motions[key];
+      if (!item) return;
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.name || key;
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = key === "small_client" ? "same L1 · $28–40k · 90 min" : "same three SKUs · counsel packet";
+      var note = document.createElement("p");
+      note.className = "note";
+      note.textContent = item.note || "";
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(note);
+      root.appendChild(art);
+    });
   }
 
   function paintRooms12(root, rooms) {
@@ -568,7 +749,16 @@
       if (disc.lede) setText("app-floor-legal-lede", disc.lede);
       paintNotes($("app-floor-legal"), disc.items || []);
       paintNotes($("app-floor-advantage"), (assign.advantage && assign.advantage.items) || []);
+      paintGroups($("app-floor-groups"), assign.entra_groups);
+      if (assign.entra_groups && assign.entra_groups.note) setText("app-floor-groups-lede", assign.entra_groups.note);
     }
+    paintPending($("app-floor-pending-card"), data.pending_bind);
+    if (data.pending_bind && data.pending_bind.note) setText("app-floor-pending-lede", data.pending_bind.note);
+    paintFreeze(data.freeze_console);
+    paintProve(data.examiner_walk);
+    paintContinuity((data.success && data.success.continuity) || {});
+    paintCompete($("app-floor-compete-table"), data.competitive);
+    if (data.competitive && data.competitive.note) setText("app-floor-compete-lede", data.competitive.note);
     var tabs = $("app-view-tabs");
     if (tabs && !tabs.getAttribute("data-bound")) {
       tabs.setAttribute("data-bound", "true");
@@ -786,6 +976,13 @@
     if (two.note) setText("app-business-number-two", two.note);
     namedList($("app-business-manages"), two.manages);
     namedList($("app-business-cannot"), two.cannot);
+    if (data.motion_equation) setText("app-business-motion-lede", data.motion_equation);
+    else if (data.motions && data.motions.small_client && data.motions.small_client.note) {
+      setText("app-business-motion-lede", data.motions.small_client.note);
+    }
+    paintMotions($("app-business-motions"), data.motions);
+    paintCompete($("app-business-compete"), data.competitive);
+    if (data.competitive && data.competitive.note) setText("app-business-compete-lede", data.competitive.note);
   }
 
   function list(root, items) {

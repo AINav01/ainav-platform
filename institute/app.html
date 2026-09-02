@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://blue-river-010091a0f.7.azurestaticapps.net/app.html" />
   <meta name="theme-color" content="#100e0b" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=2.70.0" />
+  <link rel="stylesheet" href="styles.css?v=2.71.0" />
   <script type="application/ld+json" id="schema-graph">{"@context":"https://schema.org","@type":"WebApplication","name":"AINAV.Institute"}</script>
 </head>
 <body class="app-page" data-workspace="floor">
@@ -44,7 +44,7 @@
 
   <div class="app-shell">
     <nav class="app-rail" aria-label="Workspaces">
-        <p class="app-rail-kicker">Application · 2.70.0</p>
+        <p class="app-rail-kicker">Application · 2.71.0</p>
       <a href="#floor" data-workspace="floor">Floor</a>
       <a href="#capital" data-workspace="capital">Capital</a>
       <a href="#business" data-workspace="business">Business</a>
@@ -131,6 +131,22 @@
           <article data-tone="hold"><h3>Last sealed keep</h3><p class="price">none</p><p class="note">Weekly DecisionRecord after kit PASS.</p></article>
           <article data-tone="ready"><h3>Off switch</h3><p class="price">READY</p><p class="note">Does not power down Copilot.</p></article>
         </div>
+        <div id="app-floor-pending">
+        <h2>Pending bind</h2>
+        <p class="note" id="app-floor-pending-lede">Until a named pair exists the pending bind stays 0. Diagrams do not sell Job C.</p>
+        <article class="pending-bind" id="app-floor-pending-card" data-tone="hold">
+          <p class="kicker">bc.general_journal.post</p>
+          <div class="pending-wells">
+            <p><b>Amount</b><span id="app-pending-amount">empty</span></p>
+            <p><b>Memo</b><span id="app-pending-memo">empty</span></p>
+            <p><b>Seat A</b><span id="app-pending-seat-a">empty</span></p>
+            <p><b>Seat B</b><span id="app-pending-seat-b">empty</span></p>
+            <p><b>Hash</b><span id="app-pending-hash">empty</span></p>
+            <p><b>Refuse</b><span>yes</span></p>
+          </div>
+          <p class="price" id="app-pending-count">0</p>
+        </article>
+        </div>
         <h2>Included and upsells</h2>
         <p class="note" id="app-floor-offer-lede">Included with L1 is seating, not a gift. The upsell band is priced desks, keep, paid U-DUAL, and hours. Not a fourth SKU.</p>
         <div class="include-upsell" id="app-floor-offer">
@@ -140,8 +156,8 @@
             <ul class="stack">
               <li>Week-one prove: L1 + industry.treasury + lib.l1.wedge on the BC twin</li>
               <li>Client executive dashboard</li>
-              <li>Estate — same plane: other uses, failsafe, records, maps</li>
-              <li>Audit — same plane: internal audit, regulator archive, Room 1 books</li>
+              <li>Same dashboard included with L1 — encyclopedia is a drawer on Entire</li>
+              <li>Proof-day Client stays write rail, attention, seats, keep, and offer</li>
               <li>Standard provision seating</li>
             </ul>
           </article>
@@ -228,6 +244,56 @@
         <div class="cards dash" id="app-floor-legal"></div>
         <h2>Why the licensed button cannot copy this</h2>
         <div class="cards dash" id="app-floor-advantage"></div>
+        <h2>Entra-group templates</h2>
+        <p class="note" id="app-floor-groups-lede">Template mapping only. Not a named head. Assignment is not live. Cloud Agent cannot assign.</p>
+        <div class="cards dash" id="app-floor-groups"></div>
+        </div>
+        <div id="app-floor-freeze">
+        <h2>Freeze console</h2>
+        <p class="note" id="app-floor-freeze-lede">Owner and board request freeze. Local to this browser. Catalog plane stays OPEN. Inference may continue. Consequence does not.</p>
+        <p class="freeze-banner" id="app-floor-freeze-banner" hidden>Freeze requested in this browser. Catalog plane stays OPEN.</p>
+        <p class="hero-actions">
+          <button type="button" class="ghost" id="app-floor-freeze-btn">Request freeze</button>
+          <button type="button" class="ghost" id="app-floor-freeze-clear">Clear local request</button>
+        </p>
+        </div>
+        <div id="app-floor-prove">
+        <h2>Examiner walk</h2>
+        <p class="note" id="app-floor-prove-lede">Read-only Merkle inclusion. Not 17a-4. Not WORM. Named records 0.</p>
+        <label class="field" for="app-prove-id">Record id
+          <input id="app-prove-id" type="text" autocomplete="off" spellcheck="false" placeholder="sandbox record id" />
+        </label>
+        <p class="hero-actions">
+          <button type="button" class="ghost" id="app-prove-btn">Prove inclusion</button>
+        </p>
+        <div class="cards dash" id="app-floor-prove-out">
+          <article data-tone="hold"><h3>Record</h3><p class="price" id="app-prove-record">empty</p></article>
+          <article data-tone="hold"><h3>Leaf</h3><p class="price" id="app-prove-leaf">empty</p></article>
+          <article data-tone="hold"><h3>Root</h3><p class="price" id="app-prove-root">empty</p></article>
+          <article data-tone="hold"><h3>Included</h3><p class="price" id="app-prove-included">false</p><p class="note">Lab walk. Not a filing.</p></article>
+        </div>
+        </div>
+        <div id="app-floor-continuity">
+        <h2>Continuity rehearsal</h2>
+        <p class="note" id="app-floor-continuity-lede">If either seat is missing, the write does not land. That is the product working.</p>
+        <p class="hero-actions">
+          <button type="button" class="ghost" id="app-continuity-btn">Rehearse seat B absent</button>
+        </p>
+        <article class="pending-bind" id="app-continuity-out" data-tone="hold" hidden>
+          <p class="kicker">seat B absent</p>
+          <p class="price">sealed deny</p>
+          <p class="note">Write does not land. Not a bypass. Not a standing grant.</p>
+        </article>
+        </div>
+        <div id="app-floor-compete">
+        <h2>Competitive one-pager</h2>
+        <p class="note" id="app-floor-compete-lede">We win only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.</p>
+        <div class="table-wrap">
+          <table class="law" id="app-floor-compete-table">
+            <thead><tr><th>Plane</th><th>This vendor</th><th>Consume-once</th><th>Fail-closed SoR</th><th>Counterparty AI</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
         </div>
         <h2>Ledger</h2>
         <div class="cards dash" id="app-floor-tiles"></div>
@@ -347,6 +413,17 @@
         </div>
         <h2>Objections</h2>
         <div class="cards dash" id="app-business-objections"></div>
+        <h2>Motions</h2>
+        <p class="note" id="app-business-motion-lede">Same L1. Same ninety minutes. Same $28–40k. Qualify path, not L1 Express. Not a fourth SKU.</p>
+        <div class="cards dash" id="app-business-motions"></div>
+        <h2>Competitive one-pager</h2>
+        <p class="note" id="app-business-compete-lede">We win only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.</p>
+        <div class="table-wrap">
+          <table class="law" id="app-business-compete">
+            <thead><tr><th>Plane</th><th>This vendor</th><th>Consume-once</th><th>Fail-closed SoR</th><th>Counterparty AI</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
         <h2>If-then catalog list</h2>
         <div class="table-wrap">
           <table class="packet" id="app-business-scenarios">
@@ -394,10 +471,10 @@
     <span>AINAV.Institute</span>
     <span>Catalog-honest application. Custom dashboards are the same plane. Not a CMS. Not a priced round. Not LIVE_PIN_OK.</span>
   </footer>
-  <script src="kit/ainav-elements.js?v=2.70.0" defer></script>
-  <script src="kit/speculate.js?v=2.70.0" defer></script>
-  <script src="search.js?v=2.70.0" defer></script>
-  <script src="insights.js?v=2.70.0" defer></script>
-  <script src="app.js?v=2.70.0" defer></script>
+  <script src="kit/ainav-elements.js?v=2.71.0" defer></script>
+  <script src="kit/speculate.js?v=2.71.0" defer></script>
+  <script src="search.js?v=2.71.0" defer></script>
+  <script src="insights.js?v=2.71.0" defer></script>
+  <script src="app.js?v=2.71.0" defer></script>
 </body>
 </html>

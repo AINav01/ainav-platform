@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.70.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.71.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.70.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.71.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -340,20 +340,31 @@ Working well
 - Walk-away ledger is catalog law: recorded false, count 0, items empty. Do not invent a named walk-away.
 - Billing is catalog law: no provider, unattached, recognized revenue unclaimed. Not a ninth Microsoft complement.
 - One walkable surface: Walk the full plane sits Floor Entire. control-plane.html is the same plane, not a second dashboard.
+- Client offer is dashboard seating, not Estate or Audit encyclopedia. Encyclopedia is a drawer on Entire.
+- Pending bind stays 0 until a named pair. Two empty seat wells and a refuse. Diagrams do not sell Job C.
+- Freeze console is request-only. Local to the browser. Catalog plane stays OPEN. Inference may continue. Consequence does not.
+- Examiner walk is browser Merkle inclusion. Not 17a-4. Not WORM. Named records stay 0.
+- Entra-group view assignment is a template. assignment_live stays false. Cloud Agent cannot assign. Do not invent department heads.
+- Proof-day grant TTL is 90 minutes and stays outside the lockfile digest. Default lockfile TTL stays unset.
+- Small-client and large-client motions are not SKUs. Same L1. Same ninety minutes. Same $28–40k. No L1 Express. No certificate.
+- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty, then SWA as origin, asuid only then, launch only when James says launch.
+- Competitive one-pager wins only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.
+- Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.
+- The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.
 
 Could be improved — without inventing a fourth SKU
 
 - AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.
 - Mailbox recorded is not dual admit. Entra oid and seat B click are still open. Without the click, Copilot Studio RFI still wins the bake-off.
 - The closest substitute is already on the ICP desk: Business Central Workflow User Groups and Copilot Studio human review. Those are cheaper and licensed. AINav wins only if independence, consume-once, fail-closed SoR, and counterparty AI are the requirement.
-- A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded.
+- A controller who wants cheaper native dual approval should be walked away. The packet now says so. The first such walk-away is not recorded. Walk-away ledger count stays 0.
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
-- Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Not Institute launch.
-- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection.
-- No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1.
-- Ten departments are mapped. Most are licensed_not_wired. The map is not the company running.
-- Governance is a catalog map. It is not counsel, not a filing, and not a certificate.
+- Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Hostname rehearsal is catalog only. Not Institute launch.
+- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection. This plane cannot invent Graph consent.
+- No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1. Billing stays unattached and is not a ninth Microsoft complement.
+- Ten departments are mapped. Most are licensed_not_wired. The map is not the company running. Entra-group templates are not live assignments.
+- Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.
 
 They win the bake-off when
 

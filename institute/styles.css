@@ -208,9 +208,13 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
   #app-floor-estate .include-upsell,
   #app-floor-audit .include-upsell,
   #app-floor-estate .cards.dash,
-  #app-floor-audit .cards.dash {
+  #app-floor-audit .cards.dash,
+  #app-floor-prove .cards.dash,
+  #app-floor-groups.cards.dash,
+  #app-business-motions.cards.dash {
     grid-template-columns: 1fr;
   }
+  .pending-wells { grid-template-columns: 1fr; }
 }
 
 main { padding: 0 6vw 8rem; }
@@ -893,6 +897,27 @@ body[data-view="client"] [data-for~="client"] { opacity: 1; }
 .include-upsell article[data-band="advanced"] { box-shadow: inset 3px 0 0 var(--gold); }
 .include-upsell .price { margin: 0.2rem 0 0.7rem; color: var(--gold); }
 .include-upsell ul { margin: 0; }
+.pending-bind {
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.15rem 1.35rem;
+  background: color-mix(in srgb, var(--paper) 74%, white);
+  margin: 1rem 0;
+}
+.pending-wells {
+  display: grid;
+  gap: 0.6rem;
+}
+@media (min-width: 720px) {
+  .pending-wells { grid-template-columns: 1fr 1fr 1fr; }
+}
+.pending-wells p { margin: 0; }
+.pending-wells b { display: block; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--mute); }
+.freeze-banner {
+  border: 1px solid var(--gold);
+  padding: 0.85rem 1rem;
+  color: var(--gold-ink);
+  background: color-mix(in srgb, var(--gold) 12%, var(--paper));
+}
 table.law tr[data-group] th {
   background: var(--void);
   color: #f4efe6;

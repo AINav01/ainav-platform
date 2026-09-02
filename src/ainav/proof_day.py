@@ -56,6 +56,23 @@ def run_proof_day(
     if named_a == named_b:
         raise ProvisionError("proof day requires two distinct seats", reason_code="SEAT_DISTINCT")
     local = MasterMothership().standard_l1_pack(client_id)
+    ttl = spec.get("grant_ttl_seconds")
+    if ttl is not None:
+        from agent_gov import AdmitClient, load_lockfile
+
+        timed = load_lockfile(
+            {
+                **local.lockfile.to_canonical(),
+                "policy_hash": local.lockfile.policy_hash,
+                "grant_ttl_seconds": int(ttl),
+            }
+        )
+        local.lockfile = timed
+        local.client = AdmitClient(
+            lockfile=timed,
+            store=local.store,
+            verifier=local.verifier,
+        )
     action = {
         "action_class": spec["action_class"],
         "payload": {
@@ -117,6 +134,8 @@ def run_proof_day(
         "signed_l1": False,
         "live": False,
         "live_pin_ok": False,
+        "grant_ttl_seconds": spec.get("grant_ttl_seconds"),
+        "grant_ttl_outside_digest": True,
         "note": spec["note"],
     }
 

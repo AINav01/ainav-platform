@@ -573,10 +573,26 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
                 "instrument equation is action schema × admit client × AI inventory × examiner prove × grant TTL × passkey identify",
                 reason_code="CATALOG_EQUATION",
             )
-    for stem in ("proof-day floor", "action schema", "admit client", "examiner prove"):
+    for stem in (
+        "proof-day floor",
+        "action schema",
+        "admit client",
+        "examiner prove",
+        "pending bind",
+        "freeze console",
+        "examiner walk",
+        "motions",
+    ):
         if stem not in interface:
             raise IntegrityError(
                 f"interface equation must keep {stem}",
+                reason_code="CATALOG_EQUATION",
+            )
+    motion = str(equations.get("motion") or "").lower()
+    for stem in ("same l1", "ninety minutes", "qualify path", "counsel packet"):
+        if stem not in motion:
+            raise IntegrityError(
+                "motion equation is same L1 × ninety minutes × qualify path × counsel packet",
                 reason_code="CATALOG_EQUATION",
             )
 
@@ -1872,6 +1888,193 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
         raise IntegrityError("grant TTL stays outside the lockfile digest", reason_code="CATALOG_PLANE")
     if ttl.get("default_seconds") is not None:
         raise IntegrityError("default grant TTL stays unset", reason_code="CATALOG_PLANE")
+    if int(ttl.get("proof_day_seconds") or 0) != 5400:
+        raise IntegrityError("proof-day grant TTL is 90 minutes outside the digest", reason_code="CATALOG_PLANE")
+    proof_day = catalog.get("proof_day") or {}
+    if int(proof_day.get("grant_ttl_seconds") or 0) != int(ttl.get("proof_day_seconds") or 0):
+        raise IntegrityError("proof-day TTL must match grant_ttl.proof_day_seconds", reason_code="CATALOG_PLANE")
+    if proof_day.get("lab_oids_are_not_named_seats") is not True:
+        raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
+    _validate_instrument_271(catalog, body)
+
+
+def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    offer = body.get("included_and_upsells") or {}
+    included = next(
+        (
+            item
+            for item in ((offer.get("first_glance") or {}).get("columns") or [])
+            if isinstance(item, dict) and item.get("id") == "included_with_l1"
+        ),
+        {},
+    )
+    included_blob = " ".join(str(item) for item in included.get("items") or []).lower()
+    if "estate — same plane" in included_blob or "audit — same plane" in included_blob:
+        raise IntegrityError("Client offer cannot leak Estate or Audit encyclopedia", reason_code="CATALOG_PLANE")
+    if "encyclopedia" not in included_blob or "drawer" not in included_blob:
+        raise IntegrityError("Client offer keeps encyclopedia as a drawer on Entire", reason_code="CATALOG_PLANE")
+    floor = body.get("proof_day_floor") or {}
+    if "pending_bind" not in (floor.get("client_shows") or []):
+        raise IntegrityError("Client proof-day Floor sits the pending bind", reason_code="CATALOG_PLANE")
+    if "examiner_walk" not in (floor.get("examiner_shows") or []):
+        raise IntegrityError("Examiner proof-day Floor sits the examiner walk", reason_code="CATALOG_PLANE")
+    if "freeze_console" not in (floor.get("owner_shows") or []):
+        raise IntegrityError("Owner proof-day Floor sits the freeze console", reason_code="CATALOG_PLANE")
+    if "continuity" not in (floor.get("seats_shows") or []) and "continuity" not in (floor.get("entire_shows") or []):
+        raise IntegrityError("continuity rehearsal sits Seats or Entire", reason_code="CATALOG_PLANE")
+    pending = body.get("pending_bind")
+    if not isinstance(pending, dict):
+        raise IntegrityError("catalog missing pending bind", reason_code="CATALOG_PLANE")
+    if pending.get("sku") is True or pending.get("live") is True or pending.get("live_pin_ok") is True:
+        raise IntegrityError("pending bind is not a SKU or live", reason_code="CATALOG_PLANE")
+    if int(pending.get("count") or 0) != 0:
+        raise IntegrityError("pending bind count stays zero until a named pair", reason_code="CATALOG_PLANE")
+    if pending.get("named_pair") is True:
+        raise IntegrityError("pending bind cannot invent a named pair", reason_code="CATALOG_PLANE")
+    if pending.get("action_class") != "bc.general_journal.post":
+        raise IntegrityError("pending bind walks the public wedge", reason_code="CATALOG_PLANE")
+    if str(pending.get("seat_a") or "") or str(pending.get("seat_b") or "") or str(pending.get("action_hash") or ""):
+        raise IntegrityError("pending bind wells stay empty", reason_code="CATALOG_PLANE")
+    if pending.get("refuse") is not True or pending.get("local_rehearsal") is not True:
+        raise IntegrityError("pending bind is a local refuse rehearsal", reason_code="CATALOG_PLANE")
+    freeze = body.get("freeze_console")
+    if not isinstance(freeze, dict):
+        raise IntegrityError("catalog missing freeze console", reason_code="CATALOG_PLANE")
+    if freeze.get("sku") is True or freeze.get("live") is True or freeze.get("live_pin_ok") is True:
+        raise IntegrityError("freeze console is not a SKU or live", reason_code="CATALOG_PLANE")
+    if freeze.get("verb") != "request":
+        raise IntegrityError("freeze console verb is request", reason_code="CATALOG_PLANE")
+    if freeze.get("catalog_plane_stays_open") is not True:
+        raise IntegrityError("freeze request cannot close the catalog plane", reason_code="CATALOG_PLANE")
+    if freeze.get("local_to_browser") is not True:
+        raise IntegrityError("freeze console is local to the browser", reason_code="CATALOG_PLANE")
+    if freeze.get("inference_may_continue") is not True or freeze.get("consequence_does_not") is not True:
+        raise IntegrityError("freeze: inference may continue, consequence does not", reason_code="CATALOG_PLANE")
+    walk = body.get("examiner_walk")
+    if not isinstance(walk, dict):
+        raise IntegrityError("catalog missing examiner walk", reason_code="CATALOG_PLANE")
+    if walk.get("sku") is True or walk.get("live") is True:
+        raise IntegrityError("examiner walk is not a SKU or live", reason_code="CATALOG_PLANE")
+    if walk.get("read_only") is not True:
+        raise IntegrityError("examiner walk is read-only", reason_code="CATALOG_PLANE")
+    if walk.get("seventeen_a4") is True or walk.get("worm") is True or walk.get("claimed") is True:
+        raise IntegrityError("examiner walk is not 17a-4, WORM, or claimed", reason_code="CATALOG_GOVERNANCE")
+    if int(walk.get("named_records") or 0) != 0:
+        raise IntegrityError("examiner walk named records stay zero", reason_code="CATALOG_PLANE")
+    demo = walk.get("demo") or {}
+    if demo.get("included") is True or demo.get("lab") is not True:
+        raise IntegrityError("examiner walk demo stays lab and not included", reason_code="CATALOG_PLANE")
+    if str(demo.get("record_id") or "") or str(demo.get("leaf") or "") or str(demo.get("root") or ""):
+        raise IntegrityError("examiner walk cannot invent a named record", reason_code="CATALOG_PLANE")
+    groups = (body.get("view_assignment") or {}).get("entra_groups")
+    if not isinstance(groups, dict):
+        raise IntegrityError("catalog missing Entra-group view templates", reason_code="CATALOG_PLANE")
+    if groups.get("sku") is True or groups.get("live") is True or groups.get("assignment_live") is True:
+        raise IntegrityError("Entra-group assignment is not live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if groups.get("do_not_invent_names") is not True or groups.get("named_head") is True:
+        raise IntegrityError("Entra-group templates cannot invent named heads", reason_code="CATALOG_PLANE")
+    if groups.get("cloud_agent_cannot_assign") is not True:
+        raise IntegrityError("Cloud Agent cannot assign Entra groups", reason_code="CATALOG_PLANE")
+    templates = groups.get("templates") or []
+    if not templates:
+        raise IntegrityError("Entra-group templates are required", reason_code="CATALOG_PLANE")
+    for row in templates:
+        if not isinstance(row, dict):
+            raise IntegrityError("Entra-group template is an object", reason_code="CATALOG_PLANE")
+        if row.get("named_head") is True:
+            raise IntegrityError("Entra-group template cannot name a head", reason_code="CATALOG_PLANE")
+        if not row.get("org_node") or not row.get("group") or not row.get("default_view"):
+            raise IntegrityError("Entra-group template needs org node, group, and view", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in (body.get("view_assignment") or {}).get("refuse") or []]
+    for stem in ("entra group assignment live", "named department head"):
+        if stem not in refuse:
+            raise IntegrityError("view assignment must refuse " + stem, reason_code="CATALOG_PLANE")
+    motions = body.get("motions")
+    if not isinstance(motions, dict):
+        raise IntegrityError("catalog missing client motions", reason_code="CATALOG_PLANE")
+    if motions.get("sku") is True or motions.get("fourth_sku") is True or motions.get("live") is True:
+        raise IntegrityError("motions are not a SKU", reason_code="CATALOG_SKU")
+    small = motions.get("small_client") or {}
+    if small.get("sku") is True or small.get("express_sku") is True or small.get("discount_udual") is True:
+        raise IntegrityError("small-client motion is not a SKU and does not discount U-DUAL", reason_code="CATALOG_SKU")
+    if small.get("same_l1") is not True or int(small.get("minutes") or 0) != 90:
+        raise IntegrityError("small-client motion is the same L1 ninety minutes", reason_code="CATALOG_PLANE")
+    price = small.get("price_usd") or {}
+    if int(price.get("min") or 0) != 28000 or int(price.get("max") or 0) != 40000:
+        raise IntegrityError("small-client motion stays $28–40k", reason_code="CATALOG_PLANE")
+    if "workflow" not in str(small.get("walk_away_if") or "").lower():
+        raise IntegrityError("small-client motion walks away from Workflow User Groups", reason_code="CATALOG_PLANE")
+    large = motions.get("large_client") or {}
+    if large.get("sku") is True or large.get("certificate") is True or large.get("claimed") is True:
+        raise IntegrityError("large-client motion is not a certificate", reason_code="CATALOG_GOVERNANCE")
+    if large.get("sox") is True or large.get("seventeen_a4") is True:
+        raise IntegrityError("large-client motion cannot claim SOX or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    if large.get("same_three_skus") is not True or large.get("g12_open") is not True:
+        raise IntegrityError("large-client motion keeps three SKUs and G12 open", reason_code="CATALOG_PLANE")
+    packet = large.get("counsel_ready") or {}
+    for needed in ("order_form", "msa_skeleton", "icfr_kit_case", "examiner_export", "off_switch_evidence"):
+        if packet.get(needed) is not True:
+            raise IntegrityError(f"large-client counsel packet must include {needed}", reason_code="CATALOG_PLANE")
+    host = body.get("hostname_rehearsal")
+    if not isinstance(host, dict):
+        raise IntegrityError("catalog missing hostname rehearsal", reason_code="CATALOG_PLANE")
+    if host.get("sku") is True or host.get("live") is True or host.get("launch") is True:
+        raise IntegrityError("hostname rehearsal is not launch", reason_code="CATALOG_PLANE")
+    if host.get("asuid_added") is True or host.get("cloudflare_edited_from_this_plane") is True:
+        raise IntegrityError("hostname rehearsal cannot add asuid or edit Cloudflare", reason_code="CATALOG_PLANE")
+    if host.get("pages_is_not_institute") is not True:
+        raise IntegrityError("Pages is not the Institute", reason_code="CATALOG_PLANE")
+    cutover = [str(item).lower() for item in host.get("cutover") or []]
+    for stem in ("pages empty", "swa", "asuid only then", "james"):
+        if not any(stem in item for item in cutover):
+            raise IntegrityError("hostname rehearsal cutover must keep " + stem, reason_code="CATALOG_PLANE")
+    competitive = body.get("competitive")
+    if not isinstance(competitive, dict):
+        raise IntegrityError("catalog missing competitive one-pager", reason_code="CATALOG_PLANE")
+    if competitive.get("sku") is True or competitive.get("live") is True:
+        raise IntegrityError("competitive one-pager is not a SKU or live", reason_code="CATALOG_PLANE")
+    if competitive.get("uncopyable") is True or competitive.get("patent") is True:
+        raise IntegrityError("do not say uncopyable or patent", reason_code="CATALOG_PLANE")
+    if list(competitive.get("we_win_only") or []) != ["consume_once", "fail_closed_sor", "counterparty_ai"]:
+        raise IntegrityError("we win only on consume-once, fail-closed SoR, and counterparty AI", reason_code="CATALOG_PLANE")
+    if list(competitive.get("columns") or []) != [
+        "covers_this_vendor",
+        "consume_once",
+        "fail_closed_sor",
+        "counterparty_ai",
+    ]:
+        raise IntegrityError("competitive columns are vendor, consume-once, fail-closed, counterparty", reason_code="CATALOG_PLANE")
+    row_ids = [item.get("id") for item in competitive.get("rows") or [] if isinstance(item, dict)]
+    for needed in ("job_c", "bc_workflow", "copilot_studio", "pim", "grc_icfr", "in_harness"):
+        if needed not in row_ids:
+            raise IntegrityError(f"competitive one-pager must include {needed}", reason_code="CATALOG_PLANE")
+    job = next((item for item in competitive.get("rows") or [] if item.get("id") == "job_c"), {})
+    if not (
+        job.get("covers_this_vendor") is True
+        and job.get("consume_once") is True
+        and job.get("fail_closed_sor") is True
+        and job.get("counterparty_ai") is True
+    ):
+        raise IntegrityError("Job C wins all four competitive columns", reason_code="CATALOG_PLANE")
+    for item in competitive.get("rows") or []:
+        if item.get("id") == "job_c":
+            continue
+        if item.get("consume_once") is True or item.get("fail_closed_sor") is True or item.get("counterparty_ai") is True:
+            raise IntegrityError("substitutes do not win consume-once, fail-closed, or counterparty", reason_code="CATALOG_PLANE")
+    if "uncopyable" in str(competitive.get("note") or "").lower() and "do not say uncopyable" not in str(
+        competitive.get("note") or ""
+    ).lower():
+        raise IntegrityError("competitive note cannot claim uncopyable", reason_code="CATALOG_PLANE")
+    success = (catalog.get("expert_review") or {}).get("success") or {}
+    rehearsal = (success.get("continuity") or {}).get("rehearsal") or {}
+    if not isinstance(rehearsal, dict) or not rehearsal:
+        raise IntegrityError("continuity needs a Tuesday rehearsal", reason_code="CATALOG_REVIEW")
+    if rehearsal.get("sku") is True or rehearsal.get("live") is True:
+        raise IntegrityError("continuity rehearsal is not a SKU or live", reason_code="CATALOG_REVIEW")
+    if rehearsal.get("write_lands") is True or rehearsal.get("sealed_deny") is not True:
+        raise IntegrityError("continuity rehearsal: write does not land, sealed deny", reason_code="CATALOG_REVIEW")
+    if str(rehearsal.get("seat_missing") or "") != "seat_b":
+        raise IntegrityError("continuity rehearsal is seat B absent", reason_code="CATALOG_REVIEW")
 
 
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:

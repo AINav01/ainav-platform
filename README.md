@@ -111,7 +111,23 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.70.0 (this tree)
+### 2.71.0 (this tree)
+
+Pending bind, examiner walk, freeze
+console, Entra-group templates,
+proof-day grant TTL, small/large
+client motions, hostname rehearsal,
+and the competitive one-pager are
+catalog law. Client offer is
+dashboard seating — encyclopedia is
+a drawer on Entire. Freeze is
+request-only and local to the
+browser. Examiner walk is not 17a-4.
+Motions are not SKUs. Walk-away
+ledger count 0. Billing unattached.
+A green check is not `LIVE_PIN_OK`.
+
+### 2.70.0
 
 Proof-day Floor and the instrument
 plane are catalog law: Client sits

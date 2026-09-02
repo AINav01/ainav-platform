@@ -482,7 +482,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.70.0"
+    "release": "2.71.0"
   },
   "communications": [
     {
@@ -513,6 +513,75 @@
       "wired": false
     }
   ],
+  "competitive": {
+    "columns": [
+      "covers_this_vendor",
+      "consume_once",
+      "fail_closed_sor",
+      "counterparty_ai"
+    ],
+    "kind": "ainav.plane.competitive.v1",
+    "live": false,
+    "note": "We win only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.",
+    "patent": false,
+    "rows": [
+      {
+        "consume_once": true,
+        "counterparty_ai": true,
+        "covers_this_vendor": true,
+        "fail_closed_sor": true,
+        "id": "job_c",
+        "name": "Job C"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "bc_workflow",
+        "name": "Workflow User Groups"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "copilot_studio",
+        "name": "Copilot Studio"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "pim",
+        "name": "PIM"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": false,
+        "fail_closed_sor": false,
+        "id": "grc_icfr",
+        "name": "GRC / ICFR"
+      },
+      {
+        "consume_once": false,
+        "counterparty_ai": false,
+        "covers_this_vendor": true,
+        "fail_closed_sor": false,
+        "id": "in_harness",
+        "name": "In-harness governor"
+      }
+    ],
+    "sku": false,
+    "uncopyable": false,
+    "we_win_only": [
+      "consume_once",
+      "fail_closed_sor",
+      "counterparty_ai"
+    ]
+  },
   "compliance_matrix": [
     {
       "claimed": false,
@@ -1035,7 +1104,7 @@
   ],
   "email": "chodnett@ainav.institute",
   "entra_oid": null,
-  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove",
+  "equation": "must-have \u00d7 unauthorized journal post \u00d7 humans from the top \u00d7 one admit plane \u00d7 hierarchical access \u00d7 fail-closed tiles \u00d7 walkable rehearsal \u00d7 authorization lifecycle \u00d7 sealed records \u00d7 provision bands \u00d7 view assignment \u00d7 MFA identify \u00d7 failsafe \u00d7 immutable \u00d7 other uses \u00d7 executive oversee \u00d7 AI governance maps \u00d7 internal audit \u00d7 regulator archive \u00d7 regulated entities \u00d7 proof-day Floor \u00d7 action schema \u00d7 admit client \u00d7 examiner prove \u00d7 pending bind \u00d7 freeze console \u00d7 examiner walk \u00d7 motions",
   "estate": {
     "executive": {
       "board": {
@@ -1255,6 +1324,24 @@
     "kind": "ainav.examiner.v1",
     "live": false,
     "note": "Read-only Merkle inclusion. Not 17a-4. Not WORM.",
+    "read_only": true,
+    "seventeen_a4": false,
+    "sku": false,
+    "worm": false
+  },
+  "examiner_walk": {
+    "claimed": false,
+    "demo": {
+      "included": false,
+      "lab": true,
+      "leaf": "",
+      "record_id": "",
+      "root": ""
+    },
+    "kind": "ainav.plane.examiner_walk.v1",
+    "live": false,
+    "named_records": 0,
+    "note": "Browser Merkle inclusion walk. Wrap store.prove. Not 17a-4. Not WORM. 0 named records.",
     "read_only": true,
     "seventeen_a4": false,
     "sku": false,
@@ -1943,6 +2030,18 @@
     }
   },
   "forecast": false,
+  "freeze_console": {
+    "catalog_plane_stays_open": true,
+    "consequence_does_not": true,
+    "inference_may_continue": true,
+    "kind": "ainav.plane.freeze_console.v1",
+    "live": false,
+    "live_pin_ok": false,
+    "local_to_browser": true,
+    "note": "Owner and board request freeze. Local to this browser until an owner marks a real freeze. Catalog plane stays OPEN.",
+    "sku": false,
+    "verb": "request"
+  },
   "governance_calendar": {
     "as_of": "2026-09-02",
     "certified": false,
@@ -2106,8 +2205,25 @@
     "changes_policy_hash": false,
     "default_seconds": null,
     "kind": "ainav.plane.grant_ttl.v1",
-    "note": "TTL is not in policy_hash. Immediate effect after admit still passes.",
-    "outside_digest": true
+    "note": "TTL is not in policy_hash. Immediate effect after admit still passes. Proof-day may carry 5400 seconds outside the digest.",
+    "outside_digest": true,
+    "proof_day_seconds": 5400
+  },
+  "hostname_rehearsal": {
+    "asuid_added": false,
+    "cloudflare_edited_from_this_plane": false,
+    "cutover": [
+      "Pages empty",
+      "SWA as origin",
+      "asuid only then",
+      "launch only when James says launch"
+    ],
+    "kind": "ainav.plane.hostname_rehearsal.v1",
+    "launch": false,
+    "live": false,
+    "note": "One-hostname rehearsal in catalog, not in Cloudflare. Do not add asuid while Pages is apex origin. Launch is held.",
+    "pages_is_not_institute": true,
+    "sku": false
   },
   "included_and_upsells": {
     "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
@@ -2121,8 +2237,8 @@
             "Every L1 pack and library with included_in_sku=true",
             "Entra identity, Teams notify, twin, proof day / Acceptance Kit",
             "Client executive dashboard",
-            "Estate \u2014 same plane: other uses, failsafe, records, maps",
-            "Audit \u2014 same plane: internal audit, regulator archive, Room 1 books",
+            "Same dashboard included with L1 \u2014 encyclopedia is a drawer on Entire",
+            "Proof-day Client stays write rail, attention, seats, keep, and offer",
             "Standard provision seating"
           ],
           "name": "Included with L1",
@@ -2428,6 +2544,45 @@
       "name": "Rollback"
     }
   ],
+  "motion_equation": "same L1 \u00d7 ninety minutes \u00d7 $28\u201340k \u00d7 qualify path \u00d7 counsel packet",
+  "motions": {
+    "fourth_sku": false,
+    "kind": "ainav.plane.motions.v1",
+    "large_client": {
+      "certificate": false,
+      "claimed": false,
+      "counsel_ready": {
+        "examiner_export": true,
+        "icfr_kit_case": true,
+        "msa_skeleton": true,
+        "off_switch_evidence": true,
+        "order_form": true
+      },
+      "g12_open": true,
+      "name": "Large-client motion",
+      "note": "Same three SKUs. Counsel-ready packet. Maps stay claimed=false. G12 still open. Do not claim SOX or 17a-4.",
+      "same_three_skus": true,
+      "seventeen_a4": false,
+      "sku": false,
+      "sox": false
+    },
+    "live": false,
+    "sku": false,
+    "small_client": {
+      "discount_udual": false,
+      "express_sku": false,
+      "minutes": 90,
+      "name": "Small-client motion",
+      "note": "Same L1. Same ninety minutes. Same $28\u201340k. Qualify path, not L1 Express.",
+      "price_usd": {
+        "max": 40000,
+        "min": 28000
+      },
+      "same_l1": true,
+      "sku": false,
+      "walk_away_if": "They only wanted Workflow User Groups"
+    }
+  },
   "must_have": {
     "certified": false,
     "for": {
@@ -2443,6 +2598,23 @@
   },
   "note": "Interface seating of the three SKUs. Client dashboard included with L1. Org-chart view assignment is the same dashboard. Standard provision included. Advanced provision is the upsell band. MFA identifies. It does not admit. Not products. Not LIVE_PIN_OK.",
   "org_equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
+  "pending_bind": {
+    "action_class": "bc.general_journal.post",
+    "action_hash": "",
+    "amount": "",
+    "count": 0,
+    "kind": "ainav.plane.pending_bind.v1",
+    "live": false,
+    "live_pin_ok": false,
+    "local_rehearsal": true,
+    "memo": "",
+    "named_pair": false,
+    "note": "Until a named pair exists the pending bind stays 0. Diagrams do not sell Job C.",
+    "refuse": true,
+    "seat_a": "",
+    "seat_b": "",
+    "sku": false
+  },
   "plane_equation": "failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback \u00d7 two-human control",
   "product": "AINav Control Plane",
   "proof_day_floor": {
@@ -2456,30 +2628,38 @@
       "attention",
       "seats",
       "keep",
-      "offer"
+      "offer",
+      "pending_bind"
     ],
     "entire_shows": [
       "board",
       "govern",
       "estate",
-      "audit"
+      "audit",
+      "pending_bind",
+      "freeze_console",
+      "competitive",
+      "continuity"
     ],
     "examiner_shows": [
       "estate",
-      "audit"
+      "audit",
+      "examiner_walk"
     ],
     "included_with": "L1",
     "kind": "ainav.plane.proof_day_floor.v1",
     "minutes": 90,
-    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Same dashboard. Not a fourth SKU.",
+    "note": "Client is the ninety-minute proof-day Floor. Encyclopedia stays on Entire. Pending bind stays 0. Freeze is request-only. Same dashboard. Not a fourth SKU.",
     "owner_shows": [
       "govern",
       "estate",
-      "audit"
+      "audit",
+      "freeze_console"
     ],
     "records_shows": [
       "estate",
-      "audit"
+      "audit",
+      "examiner_walk"
     ],
     "same_dashboard": true,
     "seats_hides": [
@@ -2487,6 +2667,9 @@
       "govern",
       "estate",
       "audit"
+    ],
+    "seats_shows": [
+      "continuity"
     ],
     "sku": false
   },
@@ -3440,7 +3623,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.70.0",
+  "release": "2.71.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -3755,7 +3938,15 @@
     },
     "continuity": {
       "lede": "If either seat is missing, the write does not land. That is the product working.",
-      "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not."
+      "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.",
+      "rehearsal": {
+        "live": false,
+        "note": "Tuesday rehearsal: seat B absent \u2192 write does not land \u2192 sealed deny.",
+        "sealed_deny": true,
+        "seat_missing": "seat_b",
+        "sku": false,
+        "write_lands": false
+      }
     },
     "live": false,
     "live_pin_ok": false,
@@ -3832,7 +4023,7 @@
       "count": 0,
       "do_not_invent_names": true,
       "items": [],
-      "note": "The first walk-away is not recorded.",
+      "note": "The first walk-away is not recorded. Do not invent a named controller who walked. Count stays 0.",
       "recorded": false
     }
   },
@@ -4052,6 +4243,42 @@
     },
     "do_not_invent_names": true,
     "duty_aware": true,
+    "entra_groups": {
+      "assignment_live": false,
+      "cloud_agent_cannot_assign": true,
+      "do_not_invent_names": true,
+      "kind": "ainav.plane.entra_groups.v1",
+      "live": false,
+      "named_head": false,
+      "note": "Template mapping only. Not a named head. Assignment is not live. Cloud Agent cannot assign.",
+      "sku": false,
+      "templates": [
+        {
+          "default_view": "seats",
+          "group": "ainav.view.seats",
+          "named_head": false,
+          "org_node": "client.treasury"
+        },
+        {
+          "default_view": "seats",
+          "group": "ainav.view.seats",
+          "named_head": false,
+          "org_node": "client.controller"
+        },
+        {
+          "default_view": "owner",
+          "group": "ainav.view.owner",
+          "named_head": false,
+          "org_node": "client.executive"
+        },
+        {
+          "default_view": "examiner",
+          "group": "ainav.view.examiner",
+          "named_head": false,
+          "org_node": "client.internal_audit"
+        }
+      ]
+    },
     "first_glance": {
       "lede": "The client's org chart assigns who sits which view. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit.",
       "legal": "AINav, Inc.",
@@ -4298,7 +4525,9 @@
       "entra_oid_invented",
       "department ai as seat",
       "included means free",
-      "cloud agent assigns views"
+      "cloud agent assigns views",
+      "entra group assignment live",
+      "named department head"
     ],
     "same_dashboard": true,
     "sku": false,
