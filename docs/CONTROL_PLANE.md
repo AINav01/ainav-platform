@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.68.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.69.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -177,7 +177,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 - **Azure Static Web Apps** — Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch. https://portal.azure.com/#view/Microsoft_Azure_StaticApps
 - **Business Central Sandbox** — Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production. https://businesscentral.dynamics.com/ainav.institute/Sandbox
 
-Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps.
+Equation: must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities.
 Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 
@@ -224,7 +224,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.68.0.
+- As of: catalog release 2.69.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -376,11 +376,42 @@ Crypto: false. WORM: false.
 
 Must-have is controller judgment, not a statute that names AINav. Job C harms are why the controller buys. Instrument clocks stay with counsel.
 
+## Audit — same plane
+
+Three rooms on the same plane: internal audit, regulator archive, and failure-to-comply. Room 1 books. Room 2 refuse. Not a fourth SKU. Audit: internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse. SKU: false.
+
+- **Internal audit** — keeps, does not admit. Default view Examiner; First record is the SoR write; Second record is who admitted; industry.internal_audit after P-ADM. Not a named auditor
+- **Regulator archive** — Merkle walk. Archive is sealed DecisionRecords; P-ADM weekly keep after kit PASS; Not 17a-4. Not WORM. Not a filing; Counsel files. The plane keeps the second record
+- **Failure to comply** — not a mandate. Job C: unauthorized write, no second record, board blind; Instruments: ICFR, ADMT, EU clocks — counsel; Must-have is not a statute that names AINav; Buying L1 does not close regulator clocks
+
+### Audit rooms — Internal audit, regulator exam, and archive are not the same job.
+
+- **Internal audit** — Reads first and second records. Do not invent an audit partner.
+- **Regulator exam** — Walkable first and second record. Counsel files. Do not invent a regulator name.
+- **Archive** — Chat is not the keep. Mailbox is not the second record. 17a-4: false. WORM: false.
+
+### Room 1 and Room 2 — SEC-regulated entities are in-scope when they already have a privileged book write. Crypto-native products are Room 2.
+
+- **Regulated operating company** — Buy: L1 as today. Public issuer, ICFR, adviser, BD holdco, fund admin — if the SoR is BC/D365. Same journal incident.
+- **Crypto-native product** — Buy: false. Stablecoin mint/burn, RWA issuance, wallet custody, ATS match. Different SoR. Do not lead. Do not mint a module this week.
+
+- Room 1: **SEC books and records** — First and second record. Not 17a-4. Claimed: false.
+- Room 1: **Broker-dealer 17a-4** — Walk away if they think P-ADM is WORM. Claimed: false.
+- Room 1: **SOX / ICFR** — Unauthorized GL is the L1 incident. Claimed: false.
+- Room 2: **Stablecoins** — Reserve journal in BC is Room 1. On-chain mint is Room 2. Claimed: false.
+- Room 2: **RWAs / tokenization** — Booked receivable is Room 1. Issuing the token is Room 2. Claimed: false.
+- Room 2: **Crypto asset management** — NAV/fee in BC is Room 1. Wallet signing is Room 2. Claimed: false.
+- Room 1: **FINRA** — Supervision and BD books. Not a member story. Claimed: false.
+- Room 2: **FinCEN BSA / AML** — AINav does not file. Sentinel is not admit. Claimed: false.
+- Room 2: **MiCA / EU CASP** — Not EU-ready. Counsel files. Claimed: false.
+- Room 2: **CFTC** — Digital commodities / derivatives. Not a SKU. Claimed: false.
+- Room 2: **NYDFS / state MT / OCC** — Issuance and custody licenses. Not this plane. Claimed: false.
+
 ## Included with L1 · upsell band
 
 Included with L1 is seating, not a gift. The upsell band is priced desks, keep, paid U-DUAL, and hours. Not a fourth SKU. included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.
 
-- **Included with L1** — inside $28–40k · 2–4 weeks. SKU: false. Upsell: false. Week-one prove: L1 + industry.treasury + lib.l1.wedge on the BC twin; Every L1 pack and library with included_in_sku=true; Entra identity, Teams notify, twin, proof day / Acceptance Kit; Client executive dashboard; Estate — same plane: other uses, failsafe, records, maps; Standard provision seating
+- **Included with L1** — inside $28–40k · 2–4 weeks. SKU: false. Upsell: false. Week-one prove: L1 + industry.treasury + lib.l1.wedge on the BC twin; Every L1 pack and library with included_in_sku=true; Entra identity, Teams notify, twin, proof day / Acceptance Kit; Client executive dashboard; Estate — same plane: other uses, failsafe, records, maps; Audit — same plane: internal audit, regulator archive, Room 1 books; Standard provision seating
 - **Upsell band** — attach after L1. SKU: false. Upsell: true. Priced L1 desks (a la carte); P-ADM keep after kit PASS — $40–60k / year; Paid U-DUAL — $20–35k / year — never free; Priced U-DUAL desks; FFS hours $3,500 / day — hours never attach U-DUAL
 - Refuse: U-DUAL free with P-ADM
 - Refuse: dashboard as SKU

@@ -502,6 +502,35 @@
       if (data.governance_consequences && data.governance_consequences.thesis) {
         set("plane-consequences", data.governance_consequences.thesis);
       }
+      var audit = data.audit || {};
+      if (audit.first_glance && audit.first_glance.lede) set("plane-audit-lede", audit.first_glance.lede);
+      paintBoard(
+        "plane-audit-glance",
+        ((audit.first_glance && audit.first_glance.columns) || []).map(function (item) {
+          return Object.assign({}, item, {
+            note: (item.items || []).join(". ")
+          });
+        }),
+        function (item) {
+          return item.price || "same plane";
+        }
+      );
+      var rooms = audit.rooms || {};
+      paintBoard("plane-audit-rooms", [
+        Object.assign({ name: "Internal audit" }, rooms.internal || {}),
+        Object.assign({ name: "Regulator exam" }, rooms.regulator || {}),
+        Object.assign({ name: "Archive" }, rooms.archive || {})
+      ], function (item) {
+        return item.role || item.what || "keep";
+      });
+      var regulated = audit.regulated || {};
+      if (regulated.lede) set("plane-regulated-lede", regulated.lede);
+      paintBoard("plane-rooms12", [regulated.room_1 || {}, regulated.room_2 || {}], function (item) {
+        return item.buy === false ? "buy: false" : (item.buy || "");
+      });
+      fillRows("plane-regulated", regulated.items || [], function (item) {
+        return [item.name, item.room === "2" ? "2 refuse" : "1 books", "claimed=" + String(item.claimed === true), item.note || ""];
+      });
       fillRows("plane-maps", data.maps || [], function (item) {
         return [item.name, item.maps_to || "", item.scope || "", "claimed=" + String(item.claimed)];
       });

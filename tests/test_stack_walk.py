@@ -13,9 +13,11 @@ def test_stack_walk_is_catalog_honest_with_https_links():
     assert body["live_pin_ok"] is False
     assert body["sku"] is False
     assert body["is_admit_plane"] is False
-    assert body["release"] == "2.68.0"
+    assert body["release"] == "2.69.0"
     assert "failsafe" in (body.get("estate_equation") or "")
     assert "other uses" in (body.get("estate_equation") or "")
+    assert "internal audit" in (body.get("audit_equation") or "")
+    assert "room 2" in (body.get("audit_equation") or "").lower()
     ids = [item["id"] for item in body["path"]]
     assert ids == [
         "cloudflare.dns",
@@ -42,6 +44,8 @@ def test_stack_walk_is_catalog_honest_with_https_links():
     assert "LIVE_PIN_OK" in md
     assert "Estate:" in md
     assert "same dashboard" in md.lower()
+    assert "Audit:" in md
+    assert "room 1" in md.lower()
     page = stack_json()
     assert page["walk"]["path"][0]["id"] == "cloudflare.dns"
     assert page["live"] is False

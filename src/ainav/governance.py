@@ -49,6 +49,8 @@ def public_governance() -> dict[str, Any]:
         "consequences": dict(body.get("consequences") or {}),
         "calendar": dict(body.get("calendar") or {}),
         "estate_equation": load_catalog()["equations"].get("estate"),
+        "audit_equation": load_catalog()["equations"].get("audit"),
+        "regulated": dict(body.get("regulated") or {}),
         "refuse": list(body.get("refuse") or []),
         "note": body.get("note"),
     }
@@ -68,6 +70,7 @@ def governance_markdown() -> str:
         f"Org: {load_catalog()['equations'].get('org')}.",
         f"Insulation: {load_catalog()['equations'].get('insulation')}.",
         f"Estate: {load_catalog()['equations'].get('estate')}.",
+        f"Audit: {load_catalog()['equations'].get('audit')}.",
         "Independent of Microsoft. Not a patent. Not uncopyable.",
         f"Certified: {str(body['certified']).lower()}. Replaces counsel: "
         f"{str(body['replaces_counsel']).lower()}. SKU: false. LIVE_PIN_OK: false.",
@@ -169,6 +172,17 @@ def governance_markdown() -> str:
     ]
     for item in (body.get("consequences") or {}).get("job_c") or []:
         lines.append(f"- **{item.get('id')}** — {item.get('harm')}")
+    regulated = body.get("regulated") or {}
+    lines += [
+        "",
+        "## Regulated entities (Room 1 books, Room 2 refuse)",
+        "",
+        str(regulated.get("thesis") or ""),
+        f"Lead: {regulated.get('lead')}. Crypto associated: "
+        f"{str(regulated.get('crypto_associated')).lower()}. 17a-4: "
+        f"{str(regulated.get('seventeen_a4')).lower()}.",
+        "",
+    ]
     lines += ["", "## Calendar (counsel, claimed=false)", ""]
     for item in (body.get("calendar") or {}).get("items") or []:
         lines.append(

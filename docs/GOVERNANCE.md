@@ -8,6 +8,7 @@ Plane: failsafe × off-switch × reset × rollback × two-human control.
 Org: client org chart × existing SOD × one admit plane.
 Insulation: independence × Job C lockfile × fail-closed gold × catalog law.
 Estate: other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps.
+Audit: internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse.
 Independent of Microsoft. Not a patent. Not uncopyable.
 Certified: false. Replaces counsel: false. SKU: false. LIVE_PIN_OK: false.
 
@@ -94,6 +95,12 @@ Mandated: false. Buying L1 closes clocks: false.
 - **no_second_record** — The examiner cannot see who admitted the write.
 - **board_blind** — The board has an AI inventory and no freeze evidence.
 - **seat_collapse** — Copilot, PIM, Teams, or the Cloud Agent is treated as a seat.
+
+## Regulated entities (Room 1 books, Room 2 refuse)
+
+Room 1 is a regulated operating company with books. Room 2 is a crypto-native product. Lead stays the general journal. Not a cryptocurrency product.
+Lead: bc.general_journal.post. Crypto associated: false. 17a-4: false.
+
 
 ## Calendar (counsel, claimed=false)
 

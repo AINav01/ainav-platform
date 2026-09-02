@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.68.0",
+    "release": "2.69.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -306,10 +306,11 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps",
+    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities",
     "investor": "catalog list × zero booked × two-human close",
     "success": "walk-away × independence × consume-once × fail-closed × named dual seats",
-    "estate": "other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps"
+    "estate": "other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps",
+    "audit": "internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse"
   },
   "l1_incident_copy": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
   "skus": [
@@ -3210,6 +3211,7 @@
               "Entra identity, Teams notify, twin, proof day / Acceptance Kit",
               "Client executive dashboard",
               "Estate — same plane: other uses, failsafe, records, maps",
+              "Audit — same plane: internal audit, regulator archive, Room 1 books",
               "Standard provision seating"
             ]
           },
@@ -4414,6 +4416,214 @@
         "mandated by SEC",
         "EU-ready"
       ]
+    },
+    "audit": {
+      "kind": "ainav.plane.audit.v1",
+      "sku": false,
+      "upsell": false,
+      "live": false,
+      "live_pin_ok": false,
+      "same_dashboard": true,
+      "included_with": "L1",
+      "fourth_sku": false,
+      "crypto_associated": false,
+      "seventeen_a4": false,
+      "thesis": "Internal audit keeps. It does not admit. Regulator archive is a Merkle walk of sealed DecisionRecords. Not 17a-4. Not WORM. Failure to comply is Job C harms versus instrument clocks. Room 1 is a regulated operating company with books. Room 2 is a crypto-native product. Lead stays bc.general_journal.post. Buying L1 does not close regulator clocks.",
+      "first_glance": {
+        "sku": false,
+        "lede": "Three rooms on the same plane: internal audit, regulator archive, and failure-to-comply. Room 1 books. Room 2 refuse. Not a fourth SKU.",
+        "columns": [
+          {
+            "id": "internal_audit",
+            "name": "Internal audit",
+            "price": "keeps, does not admit",
+            "sku": false,
+            "upsell": false,
+            "items": [
+              "Default view Examiner",
+              "First record is the SoR write",
+              "Second record is who admitted",
+              "industry.internal_audit after P-ADM. Not a named auditor"
+            ]
+          },
+          {
+            "id": "regulator_archive",
+            "name": "Regulator archive",
+            "price": "Merkle walk",
+            "sku": false,
+            "upsell": false,
+            "items": [
+              "Archive is sealed DecisionRecords",
+              "P-ADM weekly keep after kit PASS",
+              "Not 17a-4. Not WORM. Not a filing",
+              "Counsel files. The plane keeps the second record"
+            ]
+          },
+          {
+            "id": "consequences",
+            "name": "Failure to comply",
+            "price": "not a mandate",
+            "sku": false,
+            "upsell": false,
+            "items": [
+              "Job C: unauthorized write, no second record, board blind",
+              "Instruments: ICFR, ADMT, EU clocks — counsel",
+              "Must-have is not a statute that names AINav",
+              "Buying L1 does not close regulator clocks"
+            ]
+          }
+        ]
+      },
+      "rooms": {
+        "lede": "Internal audit, regulator exam, and archive are not the same job.",
+        "internal": {
+          "id": "internal",
+          "role": "keep",
+          "admit": false,
+          "default_view": "examiner",
+          "pack": "industry.internal_audit",
+          "note": "Reads first and second records. Do not invent an audit partner."
+        },
+        "regulator": {
+          "id": "regulator",
+          "role": "exam",
+          "admit": false,
+          "filing": false,
+          "note": "Walkable first and second record. Counsel files. Do not invent a regulator name."
+        },
+        "archive": {
+          "id": "archive",
+          "uses": "governance.reporting",
+          "what": "Merkle walk of sealed DecisionRecords.",
+          "seventeen_a4": false,
+          "worm": false,
+          "note": "Chat is not the keep. Mailbox is not the second record."
+        }
+      },
+      "regulated": {
+        "lede": "SEC-regulated entities are in-scope when they already have a privileged book write. Crypto-native products are Room 2.",
+        "lead": "bc.general_journal.post",
+        "crypto_associated": false,
+        "room_1": {
+          "id": "room_1",
+          "name": "Regulated operating company",
+          "buy": "L1 as today",
+          "note": "Public issuer, ICFR, adviser, BD holdco, fund admin — if the SoR is BC/D365. Same journal incident.",
+          "examples": [
+            "sox.icfr",
+            "sec.books_records",
+            "adviser books",
+            "fund admin NAV journal"
+          ]
+        },
+        "room_2": {
+          "id": "room_2",
+          "name": "Crypto-native product",
+          "buy": false,
+          "note": "Stablecoin mint/burn, RWA issuance, wallet custody, ATS match. Different SoR. Do not lead. Do not mint a module this week.",
+          "examples": [
+            "stablecoin mint",
+            "RWA token",
+            "custody move",
+            "ATS match"
+          ]
+        },
+        "items": [
+          {
+            "id": "sec.books",
+            "name": "SEC books and records",
+            "room": "1",
+            "claimed": false,
+            "note": "First and second record. Not 17a-4."
+          },
+          {
+            "id": "sec.17a4",
+            "name": "Broker-dealer 17a-4",
+            "room": "1",
+            "claimed": false,
+            "refuse": true,
+            "note": "Walk away if they think P-ADM is WORM."
+          },
+          {
+            "id": "sox.icfr",
+            "name": "SOX / ICFR",
+            "room": "1",
+            "claimed": false,
+            "note": "Unauthorized GL is the L1 incident."
+          },
+          {
+            "id": "stablecoin",
+            "name": "Stablecoins",
+            "room": "2",
+            "claimed": false,
+            "note": "Reserve journal in BC is Room 1. On-chain mint is Room 2."
+          },
+          {
+            "id": "rwa",
+            "name": "RWAs / tokenization",
+            "room": "2",
+            "claimed": false,
+            "note": "Booked receivable is Room 1. Issuing the token is Room 2."
+          },
+          {
+            "id": "crypto_am",
+            "name": "Crypto asset management",
+            "room": "2",
+            "claimed": false,
+            "note": "NAV/fee in BC is Room 1. Wallet signing is Room 2."
+          },
+          {
+            "id": "finra",
+            "name": "FINRA",
+            "room": "1",
+            "claimed": false,
+            "note": "Supervision and BD books. Not a member story."
+          },
+          {
+            "id": "fincen",
+            "name": "FinCEN BSA / AML",
+            "room": "2",
+            "claimed": false,
+            "note": "AINav does not file. Sentinel is not admit."
+          },
+          {
+            "id": "mica",
+            "name": "MiCA / EU CASP",
+            "room": "2",
+            "claimed": false,
+            "note": "Not EU-ready. Counsel files."
+          },
+          {
+            "id": "cftc",
+            "name": "CFTC",
+            "room": "2",
+            "claimed": false,
+            "note": "Digital commodities / derivatives. Not a SKU."
+          },
+          {
+            "id": "nydfs",
+            "name": "NYDFS / state MT / OCC",
+            "room": "2",
+            "claimed": false,
+            "note": "Issuance and custody licenses. Not this plane."
+          }
+        ]
+      },
+      "consequences_uses": "governance.consequences",
+      "refuse": [
+        "audit as SKU",
+        "17a-4 ready",
+        "WORM claimed",
+        "crypto ledger",
+        "stablecoin SKU",
+        "RWA SKU",
+        "tokenization SKU",
+        "crypto asset-management SKU",
+        "mandated by SEC",
+        "EU-ready",
+        "Room 2 as lead",
+        "buying L1 closes clocks"
+      ]
     }
   },
   "honest_missing": [
@@ -5370,6 +5580,8 @@
         "free U-DUAL"
       ],
       "estate": "same plane",
+      "audit": "same plane",
+      "regulated": "room 1 books, room 2 refuse",
       "failsafe": "not the client's AI",
       "records": "first SoR write × second DecisionRecord × weekly keep",
       "immutable": "sealed × consume-once × hash-chained",
@@ -6040,7 +6252,8 @@
       "The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.",
       "Org-chart view assignment is catalog law. Personalized Floor views come from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies. It does not admit. AINav, Inc. disclaimers sit on the board. Not a second dashboard SKU.",
       "Estate doctrine is catalog law: other uses, AI failsafe, executive and board oversee, governance records, immutable pins, and AI governance maps. Same dashboard. Not a fourth SKU. Maps stay claimed=false.",
-      "Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU."
+      "Estate first glance is catalog law: other uses, failsafe and oversee, records and maps sit on the sit-down Floor before assignment. Same dashboard included with L1. Not a fourth SKU.",
+      "Audit and regulated-entity rooms are catalog law: internal audit keeps, regulator archive is a Merkle walk, Room 1 is books, Room 2 is refuse. Not 17a-4. Not a crypto product. Same dashboard. Not a fourth SKU."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6868,9 +7081,29 @@
         {
           "id": "false_certification",
           "harm": "Claiming EU / NIST / ISO certification that does not exist."
+        },
+        {
+          "id": "seventeen_a4",
+          "harm": "Selling P-ADM as 17a-4 WORM. Walk away."
+        },
+        {
+          "id": "room_2_lead",
+          "harm": "Leading with stablecoin, RWA, or custody as the product."
         }
       ],
       "note": "Counsel files. The plane keeps the second record. Buying L1 does not close regulator clocks."
+    },
+    "regulated": {
+      "kind": "ainav.governance.regulated.v1",
+      "sku": false,
+      "certified": false,
+      "crypto_associated": false,
+      "seventeen_a4": false,
+      "mandated": false,
+      "lead": "bc.general_journal.post",
+      "room_1": "books",
+      "room_2": "refuse",
+      "thesis": "Room 1 is a regulated operating company with books. Room 2 is a crypto-native product. Lead stays the general journal. Not a cryptocurrency product."
     },
     "calendar": {
       "kind": "ainav.governance.calendar.v1",

@@ -21,7 +21,7 @@
     },
     examiner: {
       title: "Examiner",
-      note: "Second record and weekly keep. P-ADM is not attached. Claimed maps stay false."
+      note: "Second record, weekly keep, and regulator archive. Internal audit keeps. It does not admit. P-ADM is not attached. Claimed maps stay false."
     },
     remote: {
       title: "Remote human",
@@ -208,12 +208,14 @@
     var boardRoot = $("app-floor-board");
     var governRoot = $("app-floor-govern");
     var estateRoot = $("app-floor-estate");
+    var auditRoot = $("app-floor-audit");
     var showGlance = id === "client" || id === "entire" || id === "provision";
     var showGovern = showGlance || id === "owner" || id === "it" || id === "remote";
     var showEstate = showGovern || id === "examiner" || id === "records";
     if (boardRoot) boardRoot.hidden = !showGlance;
     if (governRoot) governRoot.hidden = !showGovern;
     if (estateRoot) estateRoot.hidden = !showEstate;
+    if (auditRoot) auditRoot.hidden = !showEstate;
   }
 
   function paintOfferBoard(root, offer) {
@@ -320,6 +322,47 @@
       art.appendChild(price);
       art.appendChild(ul);
       root.appendChild(art);
+    });
+  }
+
+  function paintRooms12(root, rooms) {
+    if (!root || !rooms || !rooms.length) return;
+    root.textContent = "";
+    rooms.forEach(function (item) {
+      var art = document.createElement("article");
+      art.setAttribute("data-tone", "hold");
+      var h = document.createElement("h3");
+      h.textContent = item.name || "";
+      var price = document.createElement("p");
+      price.className = "price";
+      price.textContent = item.buy === false ? "buy: false" : (item.buy || "");
+      var p = document.createElement("p");
+      p.className = "note";
+      p.textContent = item.note || "";
+      art.appendChild(h);
+      art.appendChild(price);
+      art.appendChild(p);
+      root.appendChild(art);
+    });
+  }
+
+  function paintRegulated(root, items) {
+    if (!root) return;
+    var tbody = root.querySelector("tbody") || root;
+    tbody.textContent = "";
+    (items || []).forEach(function (item) {
+      var tr = document.createElement("tr");
+      [
+        item.name || "",
+        item.room === "2" ? "2 refuse" : "1 books",
+        "claimed=" + String(item.claimed === true),
+        item.note || ""
+      ].forEach(function (value) {
+        var td = document.createElement("td");
+        td.textContent = value;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
     });
   }
 
@@ -463,6 +506,23 @@
       paintMaps($("app-floor-maps"), data.maps || []);
       var cons = data.governance_consequences || {};
       if (cons.thesis) setText("app-floor-consequences", cons.thesis);
+    }
+    var audit = data.audit || {};
+    if (!(audit.sku || audit.fourth_sku || audit.live_pin_ok || audit.seventeen_a4 || audit.crypto_associated)) {
+      var glanceAu = audit.first_glance || {};
+      if (glanceAu.lede) setText("app-floor-audit-lede", glanceAu.lede);
+      paintOfferBoard($("app-floor-audit-glance"), { first_glance: glanceAu });
+      var rooms = audit.rooms || {};
+      if (rooms.lede) setText("app-floor-audit-rooms-lede", rooms.lede);
+      paintNotes($("app-floor-audit-rooms"), [
+        Object.assign({ name: "Internal audit" }, rooms.internal || {}),
+        Object.assign({ name: "Regulator exam" }, rooms.regulator || {}),
+        Object.assign({ name: "Archive" }, rooms.archive || {})
+      ]);
+      var regulated = audit.regulated || {};
+      if (regulated.lede) setText("app-floor-regulated-lede", regulated.lede);
+      paintRooms12($("app-floor-rooms12"), [regulated.room_1 || {}, regulated.room_2 || {}]);
+      paintRegulated($("app-floor-regulated"), regulated.items || []);
     }
     var assign = data.view_assignment || {};
     if (!(assign.sku || assign.upsell || assign.assignment_live)) {

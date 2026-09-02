@@ -38,6 +38,10 @@ def validate_business(catalog: dict[str, Any]) -> None:
         raise IntegrityError("business thesis keeps the failsafe", reason_code="CATALOG_BUSINESS")
     if model.get("estate") != "same plane":
         raise IntegrityError("other uses stay on the same plane", reason_code="CATALOG_SKU")
+    if model.get("audit") != "same plane":
+        raise IntegrityError("audit stays on the same plane", reason_code="CATALOG_SKU")
+    if model.get("regulated") != "room 1 books, room 2 refuse":
+        raise IntegrityError("regulated is Room 1 books, Room 2 refuse", reason_code="CATALOG_BUSINESS")
 
 
 def doctrine() -> dict[str, Any]:
@@ -204,6 +208,7 @@ def public_business() -> dict[str, Any]:
         "why_client": cat["business"].get("why_client"),
         "why_investor": cat["business"].get("why_investor"),
         "estate_equation": cat["equations"].get("estate"),
+        "audit_equation": cat["equations"].get("audit"),
         "model": cat["business"]["model"],
         "sales": cat["business"]["sales"],
         "delivery": cat["business"]["delivery"],
@@ -297,6 +302,8 @@ def public_business_plane() -> dict[str, Any]:
         "why_investor": cat["business"].get("why_investor"),
         "estate": dict(cat["plane_interface"].get("estate") or {}),
         "estate_equation": cat["equations"].get("estate"),
+        "audit": dict(cat["plane_interface"].get("audit") or {}),
+        "audit_equation": cat["equations"].get("audit"),
         "lab_pin": cat["equations"]["lab_pin"],
         "close": {
             "named_dual_seats": False,

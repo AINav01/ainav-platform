@@ -1287,6 +1287,10 @@ footer a { color: inherit; }
 #app-floor-estate .cards.dash { margin-bottom: 0.4rem; }
 #app-floor-estate .table-wrap { overflow-x: auto; margin: 0.6rem 0 1.2rem; }
 #app-floor-estate .cards.dash .stack { margin: 0.35rem 0 0; }
+#app-floor-audit h2 { margin: 1.6rem 0 0.45rem; }
+#app-floor-audit .cards.dash { margin-bottom: 0.4rem; }
+#app-floor-audit .table-wrap { overflow-x: auto; margin: 0.6rem 0 1.2rem; }
+#app-floor-audit .cards.dash .stack { margin: 0.35rem 0 0; }
 #app-floor-govern h2 { margin: 1.6rem 0 0.45rem; }
 #app-floor-govern .cards.dash { margin-bottom: 0.4rem; }
 #app-floor-govern .table-wrap { overflow-x: auto; margin: 0.6rem 0 1.2rem; }

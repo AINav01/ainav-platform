@@ -117,6 +117,7 @@ def public_investor() -> dict[str, Any]:
         "why_investor": body.get("why_investor") or cat["business"].get("why_investor"),
         "elevator": dict(body.get("elevator") or cat["business"].get("elevator") or {}),
         "estate_equation": cat["equations"].get("estate"),
+        "audit_equation": cat["equations"].get("audit"),
         "ask": body["ask"],
         "highlights": list(body.get("highlights") or []),
         "refuse": list(body.get("refuse") or []),

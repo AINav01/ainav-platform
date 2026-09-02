@@ -6,6 +6,7 @@
     "requires_sku": "L1",
     "signed_l1": false
   },
+  "audit_equation": "internal audit \u00d7 regulator archive \u00d7 failure to comply \u00d7 Room 1 books \u00d7 Room 2 refuse",
   "buyer": {
     "contact_email": null,
     "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
@@ -73,6 +74,7 @@
   "kind": "ainav.institute.business.v1",
   "live": false,
   "model": {
+    "audit": "same plane",
     "deepen": "U-DUAL",
     "estate": "same plane",
     "failsafe": "not the client's AI",
@@ -87,7 +89,8 @@
       "free U-DUAL"
     ],
     "prove": "L1",
-    "records": "first SoR write \u00d7 second DecisionRecord \u00d7 weekly keep"
+    "records": "first SoR write \u00d7 second DecisionRecord \u00d7 weekly keep",
+    "regulated": "room 1 books, room 2 refuse"
   },
   "next_pin": {
     "id": "bc.microsoft.sandbox",

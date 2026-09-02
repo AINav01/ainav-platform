@@ -17,7 +17,7 @@ from ainav.runbooks import all_runbooks
 
 def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.68.0"
+    assert cat["entity"]["release"] == "2.69.0"
     edge = cat["microsoft_stack"]["edge"]
     assert edge["id"] == "cloudflare.dns"
     assert edge["sku"] is False
@@ -185,6 +185,18 @@ def test_owner_is_james_and_cynthia_mailbox_is_recorded():
     ]
     assert all(item["sku"] is False and item["upsell"] is False for item in estate["first_glance"]["columns"])
     assert cat["equations"]["estate"].startswith("other uses")
+    audit = cat["plane_interface"]["audit"]
+    assert audit["sku"] is False
+    assert audit["seventeen_a4"] is False
+    assert audit["crypto_associated"] is False
+    assert audit["regulated"]["lead"] == "bc.general_journal.post"
+    assert audit["regulated"]["room_2"]["buy"] is False
+    assert [item["id"] for item in audit["first_glance"]["columns"]] == [
+        "internal_audit",
+        "regulator_archive",
+        "consequences",
+    ]
+    assert cat["equations"]["audit"].startswith("internal audit")
     assert "failsafe" in cat["equations"]["interface"]
     assert cat["governance"]["immutable"]["worm"] is False
     assert cat["governance"]["consequences"]["mandated"] is False

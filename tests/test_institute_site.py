@@ -62,7 +62,11 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="plane-assign"' in plane_html
     assert 'id="plane-estate-lede"' in plane_html
     assert 'id="plane-estate-glance"' in plane_html
-    assert plane_html.index('id="plane-estate-lede"') < plane_html.index('id="plane-assign"')
+    assert 'id="plane-audit-lede"' in plane_html
+    assert 'id="plane-rooms12"' in plane_html
+    assert 'id="plane-regulated"' in plane_html
+    assert plane_html.index('id="plane-estate-lede"') < plane_html.index('id="plane-audit-lede"')
+    assert plane_html.index('id="plane-audit-lede"') < plane_html.index('id="plane-assign"')
     assert 'id="plane-failsafe"' in plane_html
     assert 'id="plane-immutable"' in plane_html
     assert 'id="plane-path"' in html

@@ -23,6 +23,8 @@ def test_business_model_stays_three_skus():
     assert "gate in front of the write" in body["why_client"].lower()
     assert "priced round" in body["why_investor"].lower()
     assert body["model"]["estate"] == "same plane"
+    assert body["model"]["audit"] == "same plane"
+    assert body["model"]["regulated"] == "room 1 books, room 2 refuse"
     assert "failsafe" in body["thesis"].lower()
 
 

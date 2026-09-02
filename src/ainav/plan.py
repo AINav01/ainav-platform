@@ -35,6 +35,7 @@ def one_page() -> str:
         "- Investor packet: letter to Cynthia Hodnett with the full upsell catalog, list prices, ultimate-plane insulation, and the human interface / executive dashboard. Not a priced round. Not a forecast.",
         f"- Interface: {cat['equations'].get('interface')}. Dashboard tiles the admit ledger. Not invented P&L. Not a SKU.",
         f"- Estate: {cat['equations'].get('estate')}. Same dashboard. Not a fourth SKU.",
+        f"- Audit: {cat['equations'].get('audit')}. Same dashboard. Not 17a-4. Not a crypto product.",
         "- Certified: false. Replaces counsel: false. The failsafe is Job C.",
         "- Independent of Microsoft. Not a patent. Not uncopyable. G12 stays open.",
         "- First record: the admitted SoR write. Second record: the sealed DecisionRecord.",

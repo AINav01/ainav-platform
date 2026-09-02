@@ -43,6 +43,11 @@ def test_governance_is_a_failsafe_not_a_certificate():
     assert "immutable" in md.lower()
     assert "calendar" in md.lower()
     assert "other uses" in (body.get("estate_equation") or "")
+    assert "internal audit" in (body.get("audit_equation") or "")
+    assert body["regulated"]["crypto_associated"] is False
+    assert body["regulated"]["seventeen_a4"] is False
+    assert body["regulated"]["room_1"] == "books"
+    assert body["regulated"]["room_2"] == "refuse"
     assert "client utilizes ai" in md.lower()
     assert "human control" in md.lower() or "humans control" in md.lower()
     assert "certified: false" in md.lower()

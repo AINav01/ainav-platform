@@ -1,4 +1,5 @@
 {
+  "audit_equation": "internal audit \u00d7 regulator archive \u00d7 failure to comply \u00d7 Room 1 books \u00d7 Room 2 refuse",
   "calendar": {
     "as_of": "2026-09-02",
     "certified": false,
@@ -105,6 +106,14 @@
       {
         "harm": "Claiming EU / NIST / ISO certification that does not exist.",
         "id": "false_certification"
+      },
+      {
+        "harm": "Selling P-ADM as 17a-4 WORM. Walk away.",
+        "id": "seventeen_a4"
+      },
+      {
+        "harm": "Leading with stablecoin, RWA, or custody as the product.",
+        "id": "room_2_lead"
       }
     ],
     "job_c": [
@@ -391,6 +400,18 @@
     "Colorado SB 24-205",
     "EU-ready"
   ],
+  "regulated": {
+    "certified": false,
+    "crypto_associated": false,
+    "kind": "ainav.governance.regulated.v1",
+    "lead": "bc.general_journal.post",
+    "mandated": false,
+    "room_1": "books",
+    "room_2": "refuse",
+    "seventeen_a4": false,
+    "sku": false,
+    "thesis": "Room 1 is a regulated operating company with books. Room 2 is a crypto-native product. Lead stays the general journal. Not a cryptocurrency product."
+  },
   "replaces_counsel": false,
   "reporting": {
     "archive": "Merkle walk of sealed DecisionRecords.",

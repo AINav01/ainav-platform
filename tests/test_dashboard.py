@@ -194,6 +194,14 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert body["governance_immutable"]["crypto"] is False
     assert body["governance_consequences"]["mandated"] is False
     assert "failsafe" in (body.get("estate_equation") or "")
+    assert "internal audit" in (body.get("audit_equation") or "")
+    assert body["audit"]["sku"] is False
+    assert body["audit"]["seventeen_a4"] is False
+    assert [item["id"] for item in body["audit"]["first_glance"]["columns"]] == [
+        "internal_audit",
+        "regulator_archive",
+        "consequences",
+    ]
     assert [item["id"] for item in estate["first_glance"]["columns"]] == [
         "other_uses",
         "failsafe_oversee",
@@ -309,6 +317,9 @@ def test_dashboard_is_honest_and_not_a_sku():
     assert "Executive board — sit the plane" in html
     assert "Org-chart view assignment" in html
     assert "Estate — same plane" in html
+    assert "Audit — same plane" in html
+    assert "Audit equation" in html or "Audit:" in html
+    assert "Room 1 and Room 2" in html
     assert "AI failsafe" in html
     assert "Immutable" in html
     assert "Authorize and de-authorize" in html
@@ -708,7 +719,11 @@ def test_institute_control_plane_matches_catalog():
     assert 'id="plane-estate-lede"' in floor
     assert 'id="plane-uses"' in floor
     assert 'id="plane-failsafe"' in floor
-    assert floor.index('id="plane-estate-lede"') < floor.index('id="plane-assign"')
+    assert 'id="plane-audit-lede"' in floor
+    assert 'id="plane-rooms12"' in floor
+    assert 'id="plane-regulated"' in floor
+    assert floor.index('id="plane-estate-lede"') < floor.index('id="plane-audit-lede"')
+    assert floor.index('id="plane-audit-lede"') < floor.index('id="plane-assign"')
     assert 'id="plane-mfa"' in floor
     assert 'id="plane-legal"' in floor
     assert 'id="plane-tiles"' in floor

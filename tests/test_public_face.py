@@ -94,6 +94,14 @@ def test_public_face_is_static_catalog_sale():
     assert 'id="app-floor-legal"' in app
     assert 'id="app-floor-estate"' in app
     assert 'id="app-floor-estate-glance"' in app
+    assert 'id="app-floor-audit"' in app
+    assert 'id="app-floor-audit-glance"' in app
+    assert 'id="app-floor-rooms12"' in app
+    assert 'id="app-floor-regulated"' in app
+    assert "paintRegulated" in js_app
+    assert "paintRooms12" in js_app
+    assert app.index('id="app-floor-estate"') < app.index('id="app-floor-audit"')
+    assert app.index('id="app-floor-audit"') < app.index('id="app-floor-govern"')
     assert 'id="app-floor-failsafe"' in app
     assert 'id="app-floor-uses"' in app
     assert 'id="app-floor-maps"' in app

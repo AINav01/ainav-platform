@@ -473,7 +473,16 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "interface equation must keep view assignment and MFA identify",
             reason_code="CATALOG_EQUATION",
         )
-    for stem in ("failsafe", "immutable", "other uses", "executive oversee", "ai governance maps"):
+    for stem in (
+        "failsafe",
+        "immutable",
+        "other uses",
+        "executive oversee",
+        "ai governance maps",
+        "internal audit",
+        "regulator archive",
+        "regulated entities",
+    ):
         if stem not in interface:
             raise IntegrityError(
                 f"interface equation must keep {stem}",
@@ -502,6 +511,13 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
             "investor equation must keep two-human close",
             reason_code="CATALOG_EQUATION",
         )
+    audit_eq = str(equations.get("audit") or "").lower()
+    for stem in ("internal audit", "regulator archive", "failure to comply", "room 1", "room 2"):
+        if stem not in audit_eq:
+            raise IntegrityError(
+                "audit equation is internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse",
+                reason_code="CATALOG_EQUATION",
+            )
 
 
 def _validate_mailbox_law(catalog: dict[str, Any]) -> None:
@@ -1057,9 +1073,17 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
     if fail.get("ainav_is_client_ai") is True:
         raise IntegrityError("AINav is not the client's AI", reason_code="CATALOG_GOVERNANCE")
     maps = {item.get("id") for item in body.get("maps") or []}
-    if not {"nist.ai_rmf", "eu.ai_act", "iso.42001", "sox.icfr", "gdpr.art22", "coe.ai_convention"} <= maps:
+    if not {
+        "nist.ai_rmf",
+        "eu.ai_act",
+        "iso.42001",
+        "sox.icfr",
+        "gdpr.art22",
+        "coe.ai_convention",
+        "sec.books_records",
+    } <= maps:
         raise IntegrityError(
-            "governance must map NIST, EU AI Act, ISO 42001, SOX, GDPR Art. 22, and the CoE convention",
+            "governance must map NIST, EU AI Act, ISO 42001, SOX, SEC books, GDPR Art. 22, and the CoE convention",
             reason_code="CATALOG_GOVERNANCE",
         )
     if any(item.get("claimed") is True for item in body.get("maps") or []):
@@ -1116,6 +1140,15 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"calendar must include {needed}", reason_code="CATALOG_GOVERNANCE")
     if any(item.get("claimed") is True for item in calendar.get("items") or [] if isinstance(item, dict)):
         raise IntegrityError("calendar items cannot claim certification", reason_code="CATALOG_GOVERNANCE")
+    regulated = body.get("regulated") or {}
+    if regulated.get("sku") is True or regulated.get("certified") is True:
+        raise IntegrityError("regulated is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if regulated.get("crypto_associated") is True or regulated.get("seventeen_a4") is True:
+        raise IntegrityError("regulated is not crypto-associated or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    if regulated.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("regulated lead stays the general journal", reason_code="CATALOG_WEDGE")
+    if regulated.get("room_1") != "books" or regulated.get("room_2") != "refuse":
+        raise IntegrityError("Room 1 is books. Room 2 is refuse", reason_code="CATALOG_GOVERNANCE")
     if not body.get("risks"):
         raise IntegrityError("governance must name non-compliance risks", reason_code="CATALOG_GOVERNANCE")
     cascade = body.get("cascade") or {}
@@ -1615,6 +1648,87 @@ def _validate_estate(catalog: dict[str, Any], body: dict[str, Any]) -> None:
             raise IntegrityError("estate must refuse " + stem, reason_code="CATALOG_PLANE")
 
 
+def _validate_audit(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    audit = body.get("audit")
+    if not isinstance(audit, dict):
+        raise IntegrityError("catalog missing plane audit", reason_code="CATALOG_PLANE")
+    if audit.get("sku") is True or audit.get("upsell") is True or audit.get("fourth_sku") is True:
+        raise IntegrityError("audit is not a SKU", reason_code="CATALOG_SKU")
+    if audit.get("live") is True or audit.get("live_pin_ok") is True:
+        raise IntegrityError("audit cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if audit.get("same_dashboard") is not True or audit.get("included_with") != "L1":
+        raise IntegrityError("audit is the same L1 dashboard", reason_code="CATALOG_PLANE")
+    if audit.get("crypto_associated") is True or audit.get("seventeen_a4") is True:
+        raise IntegrityError("audit is not crypto-associated or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    thesis = str(audit.get("thesis") or "").lower()
+    for stem in (
+        "internal audit",
+        "does not admit",
+        "17a-4",
+        "room 1",
+        "room 2",
+        "bc.general_journal.post",
+        "does not close regulator clocks",
+    ):
+        if stem not in thesis:
+            raise IntegrityError(f"audit thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    glance = audit.get("first_glance") or {}
+    if glance.get("sku") is True:
+        raise IntegrityError("audit first glance is not a SKU", reason_code="CATALOG_SKU")
+    columns = {item.get("id"): item for item in glance.get("columns") or [] if isinstance(item, dict)}
+    if set(columns) != {"internal_audit", "regulator_archive", "consequences"}:
+        raise IntegrityError(
+            "audit first glance needs internal_audit, regulator_archive, and consequences",
+            reason_code="CATALOG_PLANE",
+        )
+    for column in columns.values():
+        if column.get("sku") is True or column.get("upsell") is True:
+            raise IntegrityError("audit first glance column is not a SKU", reason_code="CATALOG_SKU")
+    rooms = audit.get("rooms") or {}
+    internal = rooms.get("internal") or {}
+    if internal.get("admit") is True or internal.get("role") != "keep":
+        raise IntegrityError("internal audit keeps and does not admit", reason_code="CATALOG_PLANE")
+    if internal.get("default_view") != "examiner" or internal.get("pack") != "industry.internal_audit":
+        raise IntegrityError("internal audit sits Examiner on industry.internal_audit", reason_code="CATALOG_PLANE")
+    archive = rooms.get("archive") or {}
+    if archive.get("seventeen_a4") is True or archive.get("worm") is True:
+        raise IntegrityError("archive is not 17a-4 or WORM", reason_code="CATALOG_GOVERNANCE")
+    if "merkle" not in str(archive.get("what") or "").lower():
+        raise IntegrityError("archive is a Merkle walk", reason_code="CATALOG_PLANE")
+    regulated = audit.get("regulated") or {}
+    if regulated.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("regulated lead stays the general journal", reason_code="CATALOG_WEDGE")
+    if regulated.get("crypto_associated") is True:
+        raise IntegrityError("regulated is not crypto-associated", reason_code="CATALOG_GOVERNANCE")
+    room_1 = regulated.get("room_1") or {}
+    room_2 = regulated.get("room_2") or {}
+    if room_1.get("id") != "room_1" or room_2.get("id") != "room_2":
+        raise IntegrityError("regulated needs Room 1 and Room 2", reason_code="CATALOG_PLANE")
+    if room_1.get("buy") != "L1 as today":
+        raise IntegrityError("Room 1 buys L1 as today", reason_code="CATALOG_PLANE")
+    if room_2.get("buy") is not False:
+        raise IntegrityError("Room 2 is not a buy this week", reason_code="CATALOG_SKU")
+    item_ids = [item.get("id") for item in regulated.get("items") or [] if isinstance(item, dict)]
+    for needed in ("sec.books", "sec.17a4", "stablecoin", "rwa", "crypto_am", "mica"):
+        if needed not in item_ids:
+            raise IntegrityError(f"regulated items must include {needed}", reason_code="CATALOG_PLANE")
+    if any(item.get("claimed") is True for item in regulated.get("items") or [] if isinstance(item, dict)):
+        raise IntegrityError("regulated items cannot claim certification", reason_code="CATALOG_GOVERNANCE")
+    if audit.get("consequences_uses") != "governance.consequences":
+        raise IntegrityError("audit consequences use governance.consequences", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in audit.get("refuse") or []]
+    for stem in (
+        "audit as sku",
+        "17a-4 ready",
+        "worm claimed",
+        "stablecoin sku",
+        "room 2 as lead",
+        "buying l1 closes clocks",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("audit must refuse " + stem, reason_code="CATALOG_PLANE")
+
+
 def _validate_plane_interface(catalog: dict[str, Any]) -> None:
     body = catalog.get("plane_interface")
     if not isinstance(body, dict):
@@ -2104,6 +2218,7 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         raise IntegrityError("rehearsal cannot invent named humans", reason_code="CATALOG_PLANE")
     _validate_view_assignment(catalog, body)
     _validate_estate(catalog, body)
+    _validate_audit(catalog, body)
 
 
 def _validate_repositories(catalog: dict[str, Any]) -> None:

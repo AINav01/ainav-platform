@@ -1,11 +1,13 @@
 # AINav, Inc. — stack walk
 
-Release 2.68.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.69.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 **Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**
 
 Estate: other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps. Same dashboard. Not a fourth SKU.
+
+Audit: internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse. Not 17a-4. Room 1 books. Room 2 refuse.
 
 Implementation: Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.
 CLI: `python -m ainav stack`. Probe is read-only: `python -m ainav connect --probe`.

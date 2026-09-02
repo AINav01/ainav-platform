@@ -111,7 +111,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.68.0 (this tree)
+### 2.69.0 (this tree)
+
+Audit and regulated-entity rooms are
+catalog law: internal audit keeps,
+regulator archive is a Merkle walk,
+Room 1 is books, Room 2 is refuse.
+Not 17a-4. Not a crypto product. Same
+dashboard included with L1. Not a
+fourth SKU. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.68.0
 
 Estate first glance is catalog law:
 other uses, failsafe and oversee,

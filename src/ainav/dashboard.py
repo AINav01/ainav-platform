@@ -378,6 +378,8 @@ def public_dashboard() -> dict[str, Any]:
         "view_assignment": dict(body.get("view_assignment") or {}),
         "estate": dict(body.get("estate") or {}),
         "estate_equation": cat["equations"].get("estate"),
+        "audit": dict(body.get("audit") or {}),
+        "audit_equation": cat["equations"].get("audit"),
         "governance_immutable": dict(gov.get("immutable") or {}),
         "governance_calendar": dict(gov.get("calendar") or {}),
         "governance_consequences": dict(gov.get("consequences") or {}),
@@ -810,6 +812,45 @@ def dashboard_markdown() -> str:
         f"### AI governance maps — {(estate.get('instruments') or {}).get('lede') or ''}",
         "",
         str((body.get("governance_consequences") or {}).get("thesis") or ""),
+        "",
+        "## Audit — same plane",
+        "",
+        f"{((body.get('audit') or {}).get('first_glance') or {}).get('lede') or ''} "
+        f"Audit: {body.get('audit_equation') or ''}. SKU: {str((body.get('audit') or {}).get('sku')).lower()}.",
+        "",
+    ]
+    for item in ((body.get("audit") or {}).get("first_glance") or {}).get("columns") or []:
+        lines.append(
+            f"- **{item.get('name')}** — {item.get('price') or ''}. "
+            + "; ".join(item.get("items") or [])
+        )
+    rooms = ((body.get("audit") or {}).get("rooms") or {})
+    lines += [
+        "",
+        f"### Audit rooms — {rooms.get('lede') or ''}",
+        "",
+        f"- **Internal audit** — {(rooms.get('internal') or {}).get('note') or ''}",
+        f"- **Regulator exam** — {(rooms.get('regulator') or {}).get('note') or ''}",
+        f"- **Archive** — {(rooms.get('archive') or {}).get('note') or ''} "
+        f"17a-4: {str((rooms.get('archive') or {}).get('seventeen_a4')).lower()}. "
+        f"WORM: {str((rooms.get('archive') or {}).get('worm')).lower()}.",
+        "",
+        f"### Room 1 and Room 2 — {((body.get('audit') or {}).get('regulated') or {}).get('lede') or ''}",
+        "",
+    ]
+    room_1 = ((body.get("audit") or {}).get("regulated") or {}).get("room_1") or {}
+    room_2 = ((body.get("audit") or {}).get("regulated") or {}).get("room_2") or {}
+    lines += [
+        f"- **{room_1.get('name') or 'Room 1'}** — Buy: {room_1.get('buy')}. {room_1.get('note') or ''}",
+        f"- **{room_2.get('name') or 'Room 2'}** — Buy: {str(room_2.get('buy')).lower()}. {room_2.get('note') or ''}",
+        "",
+    ]
+    for item in ((body.get("audit") or {}).get("regulated") or {}).get("items") or []:
+        lines.append(
+            f"- Room {item.get('room')}: **{item.get('name')}** — {item.get('note') or ''} "
+            f"Claimed: {str(item.get('claimed')).lower()}."
+        )
+    lines += [
         "",
         "## Included with L1 · upsell band",
         "",
@@ -1349,6 +1390,46 @@ def dashboard_html() -> str:
         )
         for item in (estate.get("records") or {}).get("items") or []
     )
+    audit = body.get("audit") or {}
+    audit_glance = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(item.get('name') or '')}</h3>"
+            f"<p class=\"price\">{html.escape(str(item.get('price') or ''))}</p>"
+            f"<p class=\"note\">{html.escape('; '.join(item.get('items') or []))}</p></article>"
+        )
+        for item in (audit.get("first_glance") or {}).get("columns") or []
+    )
+    audit_rooms_body = audit.get("rooms") or {}
+    audit_rooms = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(name)}</h3>"
+            f"<p class=\"note\">{html.escape(str((audit_rooms_body.get(key) or {}).get('note') or ''))}</p></article>"
+        )
+        for name, key in (
+            ("Internal audit", "internal"),
+            ("Regulator exam", "regulator"),
+            ("Archive", "archive"),
+        )
+    )
+    audit_reg = audit.get("regulated") or {}
+    audit_rooms12 = "".join(
+        (
+            f"<article data-tone=\"hold\"><h3>{html.escape(str(item.get('name') or ''))}</h3>"
+            f"<p class=\"price\">Buy: {html.escape(str(item.get('buy')).lower() if item.get('buy') is False else item.get('buy') or '')}</p>"
+            f"<p class=\"note\">{html.escape(str(item.get('note') or ''))}</p></article>"
+        )
+        for item in (audit_reg.get("room_1"), audit_reg.get("room_2"))
+        if item
+    )
+    audit_regulated = "".join(
+        (
+            f"<tr><td>{html.escape(str(item.get('name') or ''))}</td>"
+            f"<td>{'2 refuse' if str(item.get('room')) == '2' else '1 books'}</td>"
+            f"<td>{html.escape(str(item.get('claimed')).lower())}</td>"
+            f"<td>{html.escape(str(item.get('note') or ''))}</td></tr>"
+        )
+        for item in audit_reg.get("items") or []
+    )
     dash_glance = (body.get("dashboard") or {}).get("first_glance") or {}
     rail_items = list(dash_glance.get("write_rail") or [])
     if not rail_items:
@@ -1543,6 +1624,20 @@ footer {{ border-top: 0.7pt solid #cfc6b6; padding: 8pt 18pt 12pt; font: 8pt Hel
 <p class="note">{html.escape(str((estate.get('immutable') or {}).get('lede') or ''))} Crypto: {html.escape(str((estate.get('immutable') or {}).get('crypto')).lower())}. WORM: {html.escape(str((estate.get('immutable') or {}).get('worm')).lower())}.</p>
 <h2>AI governance maps</h2>
 <p class="note">{html.escape(str((estate.get('instruments') or {}).get('lede') or ''))} {html.escape(str((body.get('governance_consequences') or {}).get('thesis') or ''))}</p>
+<h2>Audit — same plane</h2>
+<p class="note">{html.escape(str((audit.get('first_glance') or {}).get('lede') or ''))} Audit: {html.escape(str(body.get('audit_equation') or ''))}. SKU: {html.escape(str(audit.get('sku')).lower())}.</p>
+<div class="lifecycle">{audit_glance}</div>
+<h2>Audit rooms</h2>
+<p class="note">{html.escape(str(audit_rooms_body.get('lede') or ''))}</p>
+<div class="lifecycle">{audit_rooms}</div>
+<h2>Room 1 and Room 2</h2>
+<p class="note">{html.escape(str(audit_reg.get('lede') or ''))}</p>
+<div class="lifecycle">{audit_rooms12}</div>
+<h2>Regulated entities</h2>
+<table>
+<thead><tr><th>Instrument</th><th>Room</th><th>Claimed</th><th>Note</th></tr></thead>
+<tbody>{audit_regulated}</tbody>
+</table>
 <p class="thesis">{html.escape(body['thesis'])}</p>
 <p class="note"><strong>Must-have.</strong> {html.escape((body.get('must_have') or {}).get('why') or '')} {html.escape((body.get('must_have') or {}).get('incident') or '')} {html.escape((body.get('floor') or {}).get('already_have') or '')} {html.escape((body.get('floor') or {}).get('still_lack') or '')} Not the gate: vendor-native approval, Teams, PIM, Copilot. Walk out: sealed DecisionRecord. {html.escape(((body.get('floor') or {}).get('no_means') or {}).get('fail_closed') or '')} Mandated: false. Certified: false. Job C is two humans before the write.</p>
 <h2>Success program — bake-off</h2>
