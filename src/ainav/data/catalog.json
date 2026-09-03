@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.75.0",
+    "release": "2.76.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -306,7 +306,7 @@
     "plane": "failsafe × off-switch × reset × rollback × two-human control",
     "org": "client org chart × existing SOD × one admit plane",
     "insulation": "independence × Job C lockfile × fail-closed gold × catalog law",
-    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities × proof-day Floor × action schema × admit client × examiner prove × pending bind × freeze console × examiner walk × motions × gaps board × provision spine × duty hints × board packet × lab pin × edge quality",
+    "interface": "must-have × unauthorized journal post × humans from the top × one admit plane × hierarchical access × fail-closed tiles × walkable rehearsal × authorization lifecycle × sealed records × provision bands × view assignment × MFA identify × failsafe × immutable × other uses × executive oversee × AI governance maps × internal audit × regulator archive × regulated entities × proof-day Floor × action schema × admit client × examiner prove × pending bind × freeze console × examiner walk × motions × gaps board × provision spine × duty hints × board packet × lab pin × edge quality × graph owner consent",
     "investor": "catalog list × zero booked × two-human close",
     "success": "walk-away × independence × consume-once × fail-closed × named dual seats",
     "estate": "other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps",
@@ -4233,7 +4233,7 @@
           {
             "id": "graph.read_roles",
             "name": "Same app API permissions",
-            "note": "On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.",
+            "note": "On the same Entra app AINav Cloud Agent1 ([REDACTED]): trash leftover Speech, Azure Service Management, and Azure Key Vault first — tenant-wide Grant fails with no subscription or service principal while those sit on the app. Trash Organization.ReadWrite.All and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not create a new app.",
             "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
             "url_label": "Same app API permissions"
           },
@@ -4984,7 +4984,8 @@
         "duty hints",
         "owner board packet",
         "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast",
-        "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane"
+        "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane",
+        "owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal; Graph Writes still Granted; four Reads configured not granted; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5003,7 +5004,9 @@
         "edit Cloudflare",
         "add asuid",
         "claim SSL Full from this plane",
-        "claim Rocket Loader from this plane"
+        "claim Rocket Loader from this plane",
+        "claim Graph Read from this plane",
+        "grant Graph consent from this plane"
       ],
       "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
       "owner_only_hrefs": {
@@ -5167,7 +5170,8 @@
       "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK",
       "2.73.0 Floor sits the review: catalog view_shows, provision spine, duty hints, honest freeze, examiner demo leaf, gaps hrefs, owner board packet, lab vs commercial. A green check is not LIVE_PIN_OK",
       "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK",
-      "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK"
+      "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK",
+      "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -5422,6 +5426,57 @@
       },
       "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
     },
+    "graph": {
+      "kind": "ainav.graph.owner_consent.v1",
+      "sku": false,
+      "live": false,
+      "live_pin_ok": false,
+      "from_this_plane": false,
+      "status": "owner_consent_open",
+      "app": "AINav Cloud Agent1",
+      "app_id": "[REDACTED]",
+      "four_reads_configured": true,
+      "four_reads_granted": false,
+      "graph_write_claimed": false,
+      "tenant_wide_grant_ok": false,
+      "error": "no_subscription_or_service_principal",
+      "four_reads": [
+        "Team.ReadBasic.All",
+        "Sites.Read.All",
+        "SecurityIncident.Read.All",
+        "RoleEligibilitySchedule.Read.Directory"
+      ],
+      "remove_before_grant": [
+        "Speech speech",
+        "Azure Service Management user_impersonation",
+        "Azure Key Vault user_impersonation",
+        "Organization.ReadWrite.All Delegated",
+        "Organization.ReadWrite.All Application",
+        "User.ReadWrite.All Application"
+      ],
+      "keep": [
+        "Organization.Read.All Application",
+        "User.Read.All Application",
+        "Team.ReadBasic.All Application",
+        "Sites.Read.All Application",
+        "SecurityIncident.Read.All Application",
+        "RoleEligibilitySchedule.Read.Directory Application",
+        "Dynamics 365 Business Central API.ReadWrite.All",
+        "Dynamics 365 Business Central Automation.ReadWrite.All"
+      ],
+      "leave": [
+        "Dynamics CRM user_impersonation"
+      ],
+      "portal_also_listed": [
+        "Dynamics CRM",
+        "Dynamics 365 Business Central",
+        "Microsoft Graph"
+      ],
+      "owner_recorded": [
+        "Grant admin consent failed: organization does not have a subscription or service principal for Speech, Azure Service Management, Azure Key Vault, Dynamics CRM, Dynamics 365 Business Central, Microsoft Graph. From the owner portal, not this plane. Graph and Business Central already show Granted on some rows. Leftover Speech, ARM, and Key Vault block the all-at-once grant."
+      ],
+      "note": "Owner recorded tenant-wide Grant failed. This plane did not consent. Four Reads stay Not granted. Graph Writes still Granted. Remove leftover Speech, Azure Service Management, and Key Vault, then trash Graph Writes, then Grant. Not Graph Read closed. Not LIVE_PIN_OK."
+    },
     "agent_tools": {
       "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
       "product": "Microsoft 365 Agent Tools",
@@ -5655,7 +5710,7 @@
           "role": "notify",
           "status": "dns_full_graph_open",
           "in_tree": "SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat.",
-          "owner": "Admin-consent Team.ReadBasic.All on the same Entra app. Do not use Write. Do not create a new app.",
+          "owner": "Trash leftover Speech, Azure Service Management, and Key Vault first. Then admin-consent Team.ReadBasic.All on the same Entra app. Do not use Write. Do not create a new app.",
           "url": "https://admin.cloud.microsoft/?source=applauncher#/homepage",
           "url_label": "Microsoft 365 admin",
           "learn": "https://learn.microsoft.com/en-us/microsoftteams/teams-overview",
@@ -5667,8 +5722,8 @@
           "name": "Graph Read on the same app",
           "role": "consent",
           "status": "owner_consent_open",
-          "in_tree": "Health probes report 403 without Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. No Graph Write from this plane.",
-          "owner": "On the same Entra app AINav Cloud Agent1, grant those four Read roles. Do not use Write. Do not create a new app.",
+          "in_tree": "Health probes report 403 without Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Owner recorded tenant-wide Grant failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay Not granted. Graph Writes still Granted. No Graph Write from this plane.",
+          "owner": "Trash leftover Speech, Azure Service Management, and Key Vault on the same app first. Trash Graph Writes. Then Grant admin consent for the four Reads. Do not use Write. Do not create a new app.",
           "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade",
           "url_label": "Entra app registrations",
           "learn": "https://learn.microsoft.com/en-us/graph/permissions-reference",
@@ -6552,7 +6607,7 @@
     },
     {
       "id": "graph.read_roles",
-      "do": "On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.",
+      "do": "On the same Entra app AINav Cloud Agent1 ([REDACTED]): trash leftover Speech, Azure Service Management, and Azure Key Vault first — tenant-wide Grant fails with no subscription or service principal while those sit on the app. Trash Organization.ReadWrite.All and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not create a new app.",
       "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
       "url_label": "Same app API permissions"
     },
@@ -6844,7 +6899,8 @@
       "Owner view sits the board packet: must-have, pending 0, 1 mailbox / 0 oid, signed L1 0, revenue $0, and the seat B ask.",
       "Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats × proof day × signed L1 × P-ADM attach.",
       "Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.",
-      "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch."
+      "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch.",
+      "Owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay open. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6854,7 +6910,7 @@
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.",
       "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Hostname rehearsal is catalog only. Not Institute launch.",
-      "Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection. This plane cannot invent Graph consent.",
+      "Graph Read is still open. Owner recorded tenant-wide Grant failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Trash those leftovers and Graph Writes, then Grant. Teams, SharePoint, Defender, and PIM complements stay 403 until the four Reads are Granted. This plane cannot invent Graph consent.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1. Billing stays unattached and is not a ninth Microsoft complement.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running. Entra-group templates are not live assignments.",
       "Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.",
@@ -7033,7 +7089,7 @@
         "n": 3,
         "who": "owner",
         "title": "Graph read on the same app",
-        "do": "Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.",
+        "do": "Trash leftover Speech, Azure Service Management, and Key Vault first. Trash Graph Writes. Then admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.",
         "marks_live_pin": false
       },
       {
@@ -7365,6 +7421,14 @@
         "who": "tree",
         "title": "Owner recorded Full (strict)",
         "do": "Record Automatic SSL/TLS currently Full (strict) from the owner dashboard. Visitor cert is not proof. ssl_full_claimed stays false. Not from this plane. Not launch.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 46,
+        "who": "tree",
+        "title": "Owner recorded Grant blocked by leftover APIs",
+        "do": "Record tenant-wide Grant admin consent failed: no subscription or service principal for leftover Speech, Azure Service Management, and Key Vault. Remove those leftovers and Graph Writes, then Grant. Four Reads stay open. Not from this plane. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

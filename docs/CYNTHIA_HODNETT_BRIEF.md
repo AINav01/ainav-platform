@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.75.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.76.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.75.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.76.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -170,7 +170,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 | Microsoft 365 admin → Users | Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree. | https://admin.microsoft.com/Adminportal/Home#/users |
 | Entra users | Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. | https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers |
 | Agents > Tools registry | Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. | https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all |
-| Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
+| Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]): trash leftover Speech, Azure Service Management, and Azure Key Vault first — tenant-wide Grant fails with no subscription or service principal while those sit on the app. Trash Organization.ReadWrite.All and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
 | Power Platform environments | Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. | https://admin.powerplatform.microsoft.com/environments |
 | Delaware entity search | Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here. | https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx |
 | Microsoft for Startups | Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. | https://www.microsoft.com/en-us/startups |
@@ -363,6 +363,7 @@ Working well
 - Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats × proof day × signed L1 × P-ADM attach.
 - Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.
 - Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch.
+- Owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay open. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -373,7 +374,7 @@ Could be improved — without inventing a fourth SKU
 - Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.
 - Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger — not two deployed planes.
 - Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Hostname rehearsal is catalog only. Not Institute launch.
-- Graph read roles are missing. Teams, SharePoint, Defender, and PIM complements stay 403. DNS for Teams is not the Teams Graph connection. This plane cannot invent Graph consent.
+- Graph Read is still open. Owner recorded tenant-wide Grant failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Trash those leftovers and Graph Writes, then Grant. Teams, SharePoint, Defender, and PIM complements stay 403 until the four Reads are Granted. This plane cannot invent Graph consent.
 - No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1. Billing stays unattached and is not a ninth Microsoft complement.
 - Ten departments are mapped. Most are licensed_not_wired. The map is not the company running. Entra-group templates are not live assignments.
 - Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.
@@ -425,7 +426,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 
 - 1. [owner] Named dual seats — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - 2. [owner] Proof day on named humans — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
-- 3. [owner] Graph read on the same app — Admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
+- 3. [owner] Graph read on the same app — Trash leftover Speech, Azure Service Management, and Key Vault first. Trash Graph Writes. Then admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.
 - 4. [owner] US Dataverse — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
 - 5. [tree] Name the 2026 substitutes — Paint BC Workflow User Groups, Copilot Studio RFI, Joule/Agentforce HITL, and in-harness governors as copies they can make. Job C pins stay. Not uncopyable.
 - 6. [tree] Price the incident, not hours — Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.
@@ -468,6 +469,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 43. [tree] Mail and autodiscover not Cloudflare anycast — Autodiscover and MX resolve to Outlook, not Cloudflare anycast. Grey-cloud icons stay an owner confirm.
 - 44. [tree] Visitor cert is not SSL Full — Cloudflare Universal SSL is the visitor cert. It does not prove Full versus Flexible. Do not claim Full from this plane.
 - 45. [tree] Owner recorded Full (strict) — Record Automatic SSL/TLS currently Full (strict) from the owner dashboard. Visitor cert is not proof. ssl_full_claimed stays false. Not from this plane. Not launch.
+- 46. [tree] Owner recorded Grant blocked by leftover APIs — Record tenant-wide Grant admin consent failed: no subscription or service principal for leftover Speech, Azure Service Management, and Key Vault. Remove those leftovers and Graph Writes, then Grant. Four Reads stay open. Not from this plane. Not LIVE_PIN_OK.
 
 ## What happens next
 

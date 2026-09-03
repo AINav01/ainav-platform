@@ -1,6 +1,6 @@
 # AINav, Inc. — owner steps
 
-Release 2.75.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.76.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Owner: James Hodnett. Operator: cursor.cloud_agent (not a seat).
 Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Paid E7 and Teams Premium assigned. Number two for other aspects, not all aspects. Paid mail is not an Entra oid and not a click.
 
@@ -17,7 +17,7 @@ The nine gates below are the clicks. Cloudflare Pro activate is owner-only at [d
 3. Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.
    [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all)
 
-4. On the same Entra app AINav Cloud Agent1 ([REDACTED]), grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not use Write roles. Do not create a new app.
+4. On the same Entra app AINav Cloud Agent1 ([REDACTED]): trash leftover Speech, Azure Service Management, and Azure Key Vault first — tenant-wide Grant fails with no subscription or service principal while those sit on the app. Trash Organization.ReadWrite.All and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent for Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Do not create a new app.
    [Same app API permissions](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED])
 
 5. Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.

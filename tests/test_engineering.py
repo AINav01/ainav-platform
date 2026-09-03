@@ -57,7 +57,7 @@ def test_gold_workflow_exists_and_refuses_live_pin():
 
 def test_package_version_matches_catalog_release():
     release = load_catalog()["entity"]["release"]
-    assert release == "2.75.0"
+    assert release == "2.76.0"
     assert f'version = "{release}"' in Path("pyproject.toml").read_text(encoding="utf-8")
     assert f'"version": "{release}"' in Path("api/package.json").read_text(encoding="utf-8")
     assert f'"version": "{release}"' in Path("web/package.json").read_text(encoding="utf-8")

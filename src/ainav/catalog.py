@@ -206,6 +206,7 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
     else:
         raise IntegrityError("edge full must be boolean", reason_code="CATALOG_EDGE")
     _validate_stack_walk(catalog)
+    _validate_graph_owner_consent(catalog)
 
 
 def _validate_edge_quality(edge: dict[str, Any]) -> None:
@@ -320,6 +321,37 @@ def _validate_stack_walk(catalog: dict[str, Any]) -> None:
         raise IntegrityError("SharePoint Write is not from this plane", reason_code="CATALOG_STACK")
     if str(share.get("consented_ask") or "") != "Sites.Read.All":
         raise IntegrityError("SharePoint consented ask is Sites.Read.All", reason_code="CATALOG_STACK")
+
+
+def _validate_graph_owner_consent(catalog: dict[str, Any]) -> None:
+    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    if not isinstance(graph, dict) or graph.get("kind") != "ainav.graph.owner_consent.v1":
+        raise IntegrityError("graph owner consent kind is ainav.graph.owner_consent.v1", reason_code="CATALOG_STACK")
+    if graph.get("from_this_plane") is True or graph.get("live") is True or graph.get("live_pin_ok") is True:
+        raise IntegrityError("graph owner consent is not from this plane", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if graph.get("sku") is True:
+        raise IntegrityError("graph owner consent is not a SKU", reason_code="CATALOG_STACK")
+    if graph.get("graph_write_claimed") is True:
+        raise IntegrityError("this plane cannot claim Graph Write", reason_code="CATALOG_STACK")
+    remove = " ".join(str(item).lower() for item in graph.get("remove_before_grant") or [])
+    for stem in ("speech", "service management", "key vault", "readwrite"):
+        if stem not in remove:
+            raise IntegrityError(f"graph remove_before_grant must keep {stem}", reason_code="CATALOG_STACK")
+    reads = " ".join(str(item) for item in graph.get("four_reads") or [])
+    for stem in (
+        "Team.ReadBasic.All",
+        "Sites.Read.All",
+        "SecurityIncident.Read.All",
+        "RoleEligibilitySchedule.Read.Directory",
+    ):
+        if stem not in reads:
+            raise IntegrityError(f"graph four_reads must keep {stem}", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "service principal" not in recorded or "speech" not in recorded:
+        raise IntegrityError("graph owner_recorded must keep the leftover API failure", reason_code="CATALOG_STACK")
+    note = str(graph.get("note") or "").lower()
+    if "not live_pin_ok" not in note:
+        raise IntegrityError("graph note: not LIVE_PIN_OK", reason_code="CATALOG_STACK")
 
 
 def _validate_engineering(catalog: dict[str, Any]) -> None:
@@ -624,6 +656,7 @@ def _validate_operating(catalog: dict[str, Any]) -> None:
         "board packet",
         "lab pin",
         "edge quality",
+        "graph owner consent",
     ):
         if stem not in interface:
             raise IntegrityError(
@@ -929,8 +962,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 45:
-        raise IntegrityError("expert review needs 16–45 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 46:
+        raise IntegrityError("expert review needs 16–46 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -966,6 +999,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         43: ("anycast", "outlook"),
         44: ("visitor", "full"),
         45: ("full (strict)", "owner"),
+        46: ("leftover", "service principal"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1955,6 +1989,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_273(catalog, body)
     _validate_instrument_274(catalog, body)
     _validate_instrument_275(catalog, body)
+    _validate_instrument_276(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -1981,7 +2016,7 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
     for stem in ("seat b", "graph", "dataverse", "g12", "billing", "launch"):
         if not any(stem in item for item in owner):
             raise IntegrityError("gaps owner_only_open must keep " + stem, reason_code="CATALOG_PLANE")
-    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid"):
+    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph"):
         if not any(stem in item for item in cannot):
             raise IntegrityError("gaps this_plane_cannot must keep " + stem, reason_code="CATALOG_PLANE")
     if "do not invent" not in str(gaps.get("note") or "").lower():
@@ -2148,8 +2183,6 @@ def _validate_instrument_274(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_275(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.75.0":
-        raise IntegrityError("entity.release is 2.75.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.75.0" in item and "full (strict)" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.75.0 Full (strict)", reason_code="CATALOG_ENGINEERING")
@@ -2186,6 +2219,67 @@ def _validate_instrument_275(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("2.75.0 upgrade 45 must mention owner Full (strict)", reason_code="CATALOG_REVIEW")
     if item.get("who") != "tree" or item.get("done") is not True:
         raise IntegrityError("2.75.0 upgrade 45 must stay tree and done", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_276(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.76.0":
+        raise IntegrityError("entity.release is 2.76.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.76.0" in item and "service principal" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.76.0 leftover service principal", reason_code="CATALOG_ENGINEERING")
+    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    if graph.get("kind") != "ainav.graph.owner_consent.v1":
+        raise IntegrityError("2.76.0 graph kind is ainav.graph.owner_consent.v1", reason_code="CATALOG_STACK")
+    if graph.get("from_this_plane") is True or graph.get("four_reads_granted") is True:
+        raise IntegrityError("2.76.0 cannot claim Graph Read from this plane", reason_code="CATALOG_STACK")
+    if graph.get("graph_write_claimed") is True or graph.get("tenant_wide_grant_ok") is True:
+        raise IntegrityError("2.76.0 tenant-wide Grant is not ok", reason_code="CATALOG_STACK")
+    if graph.get("error") != "no_subscription_or_service_principal":
+        raise IntegrityError("2.76.0 owner recorded no subscription or service principal", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "speech" not in recorded or "service principal" not in recorded:
+        raise IntegrityError("2.76.0 owner_recorded must keep leftover Speech and service principal", reason_code="CATALOG_STACK")
+    walk = next(
+        (
+            item
+            for item in ((catalog.get("microsoft_stack") or {}).get("walk") or {}).get("path") or []
+            if item.get("id") == "graph.read"
+        ),
+        {},
+    )
+    if walk.get("status") != "owner_consent_open":
+        raise IntegrityError("2.76.0 graph.read stays owner_consent_open", reason_code="CATALOG_STACK")
+    owner_blob = f"{walk.get('owner') or ''} {walk.get('in_tree') or ''}".lower()
+    if "leftover" not in owner_blob or "key vault" not in owner_blob:
+        raise IntegrityError("2.76.0 graph.read walk must name leftover Key Vault", reason_code="CATALOG_STACK")
+    gaps = body.get("gaps") or {}
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    if not any("graph read" in item for item in owner):
+        raise IntegrityError("2.76.0 owner-only must still name Graph Read", reason_code="CATALOG_PLANE")
+    if not any("seat b" in item for item in owner):
+        raise IntegrityError("2.76.0 owner-only must still name seat B click", reason_code="CATALOG_PLANE")
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    if not any("service principal" in item and "leftover" in item for item in closed):
+        raise IntegrityError("gaps in_tree_closed must keep leftover service principal", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("leftover" in item and "service principal" in item for item in well):
+        raise IntegrityError("working_well must keep leftover service principal", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("leftover" in item and "graph" in item for item in improve):
+        raise IntegrityError("improve must keep leftover Graph Grant block", reason_code="CATALOG_REVIEW")
+    interface = str((catalog.get("equations") or {}).get("interface") or "").lower()
+    if "graph owner consent" not in interface:
+        raise IntegrityError("interface equation must keep graph owner consent", reason_code="CATALOG_EQUATION")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    item = by_n.get(46) or {}
+    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+    if "leftover" not in blob or "service principal" not in blob:
+        raise IntegrityError("2.76.0 upgrade 46 must mention leftover service principal", reason_code="CATALOG_REVIEW")
+    if item.get("who") != "tree" or item.get("done") is not True:
+        raise IntegrityError("2.76.0 upgrade 46 must stay tree and done", reason_code="CATALOG_REVIEW")
+    if item.get("marks_live_pin") is True:
+        raise IntegrityError("2.76.0 upgrade 46 cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2976,3 +3070,7 @@ def l1_incident_copy() -> str:
 
 def microsoft_stack() -> dict[str, Any]:
     return dict(load_catalog()["microsoft_stack"])
+
+
+def catalog_graph() -> dict[str, Any]:
+    return dict((load_catalog().get("microsoft_stack") or {}).get("graph") or {})

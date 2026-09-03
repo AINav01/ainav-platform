@@ -11,13 +11,13 @@ from ainav.dashboard import public_dashboard
 from ainav.microsoft.dns import catalog_edge
 
 
-def test_release_is_275():
+def test_release_keeps_275_history():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.75.0"
+    assert cat["entity"]["release"] == "2.76.0"
     assert any("2.75.0" in item and "full (strict)" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.74.0" in item and "quality" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     dash = public_dashboard()
-    assert dash["release"] == "2.75.0"
+    assert dash["release"] == "2.76.0"
 
 
 def test_owner_ssl_is_recorded_not_claimed():
@@ -43,7 +43,7 @@ def test_owner_ssl_is_recorded_not_claimed():
 def test_upgrade_45_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 45
+    assert len(cat["expert_review"]["upgrades"]) == 46
     assert upgrades[45]["who"] == "tree"
     assert upgrades[45]["done"] is True
     assert upgrades[45]["marks_live_pin"] is False
@@ -68,9 +68,6 @@ def _reject(mutator):
 
 
 def test_instrument_275_fail_closed():
-    def release(cat):
-        cat["entity"]["release"] = "2.74.0"
-
     def closed(cat):
         cat["engineering"]["closed_in_tree"] = [
             item for item in cat["engineering"]["closed_in_tree"] if "2.75.0" not in item
@@ -109,7 +106,6 @@ def test_instrument_275_fail_closed():
         ]
 
     for mutator in (
-        release,
         closed,
         claimed,
         mode,

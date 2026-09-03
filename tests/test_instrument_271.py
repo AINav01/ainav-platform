@@ -15,7 +15,7 @@ from ainav.proof_day import run_proof_day
 
 def test_release_is_271():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.75.0"
+    assert cat["entity"]["release"] == "2.76.0"
     assert "pending bind" in cat["equations"]["interface"]
     assert "same l1" in cat["equations"]["motion"].lower()
     assert cat["proof_day"]["grant_ttl_seconds"] == 5400

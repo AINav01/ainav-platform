@@ -111,7 +111,25 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.75.0 (this tree)
+### 2.76.0 (this tree)
+
+Owner recorded tenant-wide Grant
+admin consent failed: the tenant
+has no subscription or service
+principal for leftover Speech,
+Azure Service Management, and
+Key Vault on AINav Cloud Agent1.
+The portal also listed CRM, BC,
+and Graph. Graph Read stays open.
+Trash those leftovers and Graph
+Writes, then Grant the four Reads.
+`four_reads_granted` stays false.
+Not from this plane. Not
+`LIVE_PIN_OK`. Gold floor stays
+95 percent. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.75.0
 
 Owner recorded Automatic SSL/TLS
 currently Full (strict). Next scan
