@@ -17,7 +17,7 @@ This is the board packet for the admit plane. Job C needs a second human. The sa
 | Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 1 mailbox recorded / 0 oid. Cynthia agreed as seat B. Entra oid and click still open. |
 | Microsoft | Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. |
 | Must-have | Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent. |
-| Owner-only still open | Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
+| Owner-only still open | Named dual seats. Graph Writes revoke. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
 | The ask | Cynthia Hodnett as seat B. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. |
 
 ## A letter to Cynthia Hodnett

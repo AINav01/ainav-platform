@@ -39,6 +39,20 @@ def test_four_reads_granted_writes_still_open():
     assert "graph read" not in owner
     assert "seat b" in owner
     assert any("four reads" in item.lower() and "granted" in item.lower() for item in gaps["in_tree_closed"])
+    cat = load_catalog()
+    opens = cat["investor"]["executive_summary"]["opens"].lower()
+    assert "graph write" in opens
+    assert "graph read on the same" not in opens
+    missing = " ".join(cat["honest_missing"]).lower()
+    assert "graph write" in missing
+    assert "graph roles on the same" not in missing
+    depts = {item["id"]: item for item in cat["organization"]["departments"]}
+    people = " ".join(depts["dept.people"]["blocked_by"])
+    compliance = " ".join(depts["dept.compliance"]["blocked_by"])
+    assert "Team.ReadBasic.All" not in people
+    assert "Graph Write" in people
+    assert "SecurityIncident.Read.All" not in compliance
+    assert "Graph Write" in compliance
 
 
 def test_upgrade_47_is_tree_done():
@@ -59,6 +73,9 @@ def test_sale_site_walk_revokes_writes():
     assert "revokes the Writes" in html
     assert "2.77.0" in html
     assert "User.ReadWrite.All" in html
+    assert "Graph Writes still Granted on the same Entra app" in html
+    assert "Graph Read on the same Entra app" not in html
+    assert "Graph roles on the same Entra app" not in html
 
 
 def _reject(mutator):

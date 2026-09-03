@@ -360,8 +360,8 @@ Departments are the operating company, not SKUs. Out-of-gate means the map is co
 - **Treasury / Finance** — running_sandbox. systems: bc.premium. Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK. Blocked by: BC Production app not Enabled; signed L1 / two named treasury humans.
 - **Identity / IT / Host** — running_sandbox. systems: m365.e7, entra.id, azure.host, azure.keyvault, azure.monitor, azure.policy. Same Entra app. Azure host in eastus. West Europe is blocked by policy. Blocked by: LIVE_PIN_OK.
 - **Sales / Revenue** — licensed_not_wired. systems: sales.enterprise. Sales Enterprise license exists. Global Discovery returned zero instances. Blocked by: Power Platform environment with Dataverse; DATAVERSE_URL.
-- **People / Notify** — licensed_not_wired. systems: teams.enterprise, teams.premium. Teams is licensed. A chat is not a seat. Graph notify is not wired. Blocked by: Team.ReadBasic.All on the same Entra app.
-- **Security / Compliance** — licensed_not_wired. systems: defender.xdr, entra.pim, sentinel.siem, sharepoint.kit. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Blocked by: SecurityIncident.Read.All; RoleEligibilitySchedule.Read.Directory; Sites.Read.All; Sentinel on the existing LAW.
+- **People / Notify** — licensed_not_wired. systems: teams.enterprise, teams.premium. Teams is licensed. Team.ReadBasic.All is Granted. A chat is not a seat. Graph notify is not wired. Trash Graph Writes. Blocked by: Graph Writes still Granted; Teams notify not wired.
+- **Security / Compliance** — licensed_not_wired. systems: defender.xdr, entra.pim, sentinel.siem, sharepoint.kit. E7 licenses exist. Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Trash Graph Writes. Blocked by: Graph Writes still Granted; Sentinel on the existing LAW.
 - **Institute / GTM** — azure_hosted_not_custom. systems: repo.institute, azure.host. Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK. Blocked by: ainav.institute custom domain.
 - **Legal / Counsel** — open_gap. systems: catalog.legal. IP hygiene lives in this tree. Counsel pack is not signed. Blocked by: G12 legal; G13 signed L1.
 - **Product / Engineering** — running_code. systems: repo.agent_gov, repo.catalog. Job C admit plane and catalog. Three SKUs only. Not a live pin. Blocked by: product HA.
@@ -557,7 +557,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)
 - ainav.institute custom domain and incorporation date
 - Power Platform / Dataverse environment for Sales
-- Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
+- Graph Writes still Granted on the same Entra app
 - Recognized revenue / external billing provider
 - G12 legal (counsel pack unsigned)
 - Signed L1 counsel pack (G13)

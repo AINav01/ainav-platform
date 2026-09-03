@@ -204,8 +204,8 @@ Departments are the operating company, not SKUs. Out-of-gate means the map is co
 - **Treasury / Finance** — running_sandbox. Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK.
 - **Identity / IT / Host** — running_sandbox. Same Entra app. Azure host in eastus. West Europe is blocked by policy.
 - **Sales / Revenue** — licensed_not_wired. Sales Enterprise license exists. Global Discovery returned zero instances.
-- **People / Notify** — licensed_not_wired. Teams is licensed. A chat is not a seat. Graph notify is not wired.
-- **Security / Compliance** — licensed_not_wired. E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel.
+- **People / Notify** — licensed_not_wired. Teams is licensed. Team.ReadBasic.All is Granted. A chat is not a seat. Graph notify is not wired. Trash Graph Writes.
+- **Security / Compliance** — licensed_not_wired. E7 licenses exist. Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Trash Graph Writes.
 - **Institute / GTM** — azure_hosted_not_custom. Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK.
 - **Legal / Counsel** — open_gap. IP hygiene lives in this tree. Counsel pack is not signed.
 - **Product / Engineering** — running_code. Job C admit plane and catalog. Three SKUs only. Not a live pin.
@@ -260,7 +260,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)
 - ainav.institute custom domain and incorporation date
 - Power Platform / Dataverse environment for Sales
-- Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM
+- Graph Writes still Granted on the same Entra app
 - Recognized revenue / external billing provider
 - G12 legal (counsel pack unsigned)
 - Signed L1 counsel pack (G13)

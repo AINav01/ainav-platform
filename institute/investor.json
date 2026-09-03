@@ -57,7 +57,7 @@
       {
         "id": "opens",
         "name": "Owner-only still open",
-        "note": "Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane."
+        "note": "Named dual seats. Graph Writes revoke. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane."
       },
       {
         "id": "ask",
@@ -73,7 +73,7 @@
     "mandated": false,
     "microsoft": "Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.",
     "must_have": "Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent.",
-    "opens": "Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane.",
+    "opens": "Named dual seats. Graph Writes revoke. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane.",
     "priced_round": false,
     "proof": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
     "sku": false,

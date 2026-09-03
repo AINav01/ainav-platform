@@ -167,9 +167,10 @@
         "status": "licensed_not_wired",
         "production": false,
         "blocked_by": [
-          "Team.ReadBasic.All on the same Entra app"
+          "Graph Writes still Granted",
+          "Teams notify not wired"
         ],
-        "note": "Teams is licensed. A chat is not a seat. Graph notify is not wired."
+        "note": "Teams is licensed. Team.ReadBasic.All is Granted. A chat is not a seat. Graph notify is not wired. Trash Graph Writes."
       },
       {
         "id": "dept.compliance",
@@ -184,12 +185,10 @@
         "status": "licensed_not_wired",
         "production": false,
         "blocked_by": [
-          "SecurityIncident.Read.All",
-          "RoleEligibilitySchedule.Read.Directory",
-          "Sites.Read.All",
+          "Graph Writes still Granted",
           "Sentinel on the existing LAW"
         ],
-        "note": "E7 licenses exist. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel."
+        "note": "E7 licenses exist. Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Trash Graph Writes."
       },
       {
         "id": "dept.institute",
@@ -5121,7 +5120,7 @@
     "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
     "ainav.institute custom domain and incorporation date",
     "Power Platform / Dataverse environment for Sales",
-    "Graph roles on the same Entra app for Teams, SharePoint, Defender, PIM",
+    "Graph Writes still Granted on the same Entra app",
     "Recognized revenue / external billing provider",
     "G12 legal (counsel pack unsigned)",
     "Signed L1 counsel pack (G13)",
@@ -6787,7 +6786,7 @@
       "tiles": "Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 1 mailbox recorded / 0 oid. Cynthia agreed as seat B. Entra oid and click still open.",
       "microsoft": "Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit.",
       "must_have": "Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent.",
-      "opens": "Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane.",
+      "opens": "Named dual seats. Graph Writes revoke. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane.",
       "ask": "Cynthia Hodnett as seat B. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
       "items": [
         {
@@ -6823,7 +6822,7 @@
         {
           "id": "opens",
           "name": "Owner-only still open",
-          "note": "Named dual seats. Graph Read on the same Entra app. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane."
+          "note": "Named dual seats. Graph Writes revoke. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane."
         },
         {
           "id": "ask",
