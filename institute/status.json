@@ -361,7 +361,8 @@
       "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK",
       "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
       "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
-      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK"
+      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
+      "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,

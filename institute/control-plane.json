@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.78.0"
+    "release": "2.79.0"
   },
   "communications": [
     {
@@ -2081,7 +2081,8 @@
       "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane",
       "owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal; Graph Writes still Granted; four Reads configured not granted; not from this plane",
       "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
-      "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane"
+      "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane",
+      "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3784,7 +3785,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.78.0",
+  "release": "2.79.0",
   "revocations": [
     {
       "by": "Owner / board request",

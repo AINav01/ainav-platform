@@ -254,7 +254,8 @@
       "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK",
       "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
       "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
-      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK"
+      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
+      "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -309,7 +310,8 @@
       "Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.",
       "Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused.",
       "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.",
-      "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK."
+      "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.",
+      "Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie."
     ],
     "success": {
       "bake_off": {
@@ -840,6 +842,14 @@
         "n": 48,
         "title": "Quality check refused owner-gap close",
         "who": "tree"
+      },
+      {
+        "do": "Record twenty first-principles as catalog law. MFA identifies. Assignment is not live. Custom reports are not a SKU. Board fiduciary is not counsel. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 49,
+        "title": "Deep review recorded first-principles",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -910,7 +920,8 @@
       "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch.",
       "Owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay open. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.",
       "Owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.",
-      "Quality check aligned public surfaces with four Reads Granted. This plane refused to close owner-only gaps. Not from this plane. Not LIVE_PIN_OK."
+      "Quality check aligned public surfaces with four Reads Granted. This plane refused to close owner-only gaps. Not from this plane. Not LIVE_PIN_OK.",
+      "Deep first-principles review recorded twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.78.0",
+    "release": "2.79.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -4986,7 +4986,8 @@
         "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane",
         "owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal; Graph Writes still Granted; four Reads configured not granted; not from this plane",
         "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
-        "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane"
+        "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane",
+        "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5174,7 +5175,8 @@
       "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK",
       "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
       "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
-      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK"
+      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
+      "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -6912,7 +6914,30 @@
       "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch.",
       "Owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay open. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.",
       "Owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.",
-      "Quality check aligned public surfaces with four Reads Granted. This plane refused to close owner-only gaps. Not from this plane. Not LIVE_PIN_OK."
+      "Quality check aligned public surfaces with four Reads Granted. This plane refused to close owner-only gaps. Not from this plane. Not LIVE_PIN_OK.",
+      "Deep first-principles review recorded twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK."
+    ],
+    "first_principles": [
+      "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
+      "One dashboard included with L1. The executive dashboard is the Floor. Credentialed SWA identify is not seated. Not a second dashboard SKU.",
+      "Remote is the same Entra object id on the same plane. Not a VPN SKU. Not a second control plane.",
+      "Dashboard assignment is Entra-group templates. assignment_live stays false. Cloud Agent cannot assign. Do not invent department heads.",
+      "Inter-communication is notify only. Teams and mail are not seats. A chat is not dual admit.",
+      "Custom reports are not a SKU and not a BI product. Keep is the weekly sealed DecisionRecord export after kit PASS.",
+      "Immutability is sealed DecisionRecords, hash chain, and Merkle prove. Not 17a-4. Not WORM. Not a public log.",
+      "Auditable process is fail-closed admit, effect, sealed record. Browser freeze is request-only. Catalog plane stays OPEN.",
+      "Provisioning is two bands, not SKUs. Standard included with L1. Advanced is priced desks, P-ADM, paid U-DUAL, and hours. U-DUAL is never free.",
+      "Chain of command: owner and board oversee and may request freeze. They are not seats. Only seat A and seat B admit. Do not invent a director.",
+      "Fiduciary maps are not counsel. G12 stays open. Governance stays claimed=false. Not a certificate.",
+      "Digital twin is the wedge: bc.general_journal.post on the BC sandbox. Production blocked. Lab oids are not named seats.",
+      "Competitive win is independence, consume-once, fail-closed SoR, and counterparty AI. Walk away when they want cheaper native.",
+      "Three SKUs only. Cloudflare, MFA, dashboards, custom reports, board packs, and encyclopedia are not SKUs.",
+      "Gold coverage is a rehearsal floor, not LIVE_PIN_OK. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK.",
+      "Humans stay in the loop. Department AI is not a seat. The Cloud Agent is not a seat. The vendor of the draft is the worst failsafe.",
+      "Client Floor stays lean. Encyclopedia is a drawer on Entire. Formal TLA stays claimed=false. Not a CMS.",
+      "Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
+      "Detailed data and custom report generation are not a fourth product. Examiner Merkle walk is the audit surface. Named records stay 0.",
+      "Must-have for every client that drafts a privileged write: one plane, two humans, fail-closed SoR. Small client and large client are the same L1. No L1 Express."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6929,7 +6954,8 @@
       "Sale-site Owner book is one popover. Static map count stays catalog-derived. control-plane.html points at Floor Entire.",
       "Catalog-unavailable banner paints when control-plane.json does not load. Silent placeholders are refused.",
       "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.",
-      "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK."
+      "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.",
+      "Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie."
     ],
     "success": {
       "sku": false,
@@ -7458,6 +7484,14 @@
         "who": "tree",
         "title": "Quality check refused owner-gap close",
         "do": "Align public surfaces with four Reads Granted. Refuse to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK from this plane. Coverage floor stays 95. A green check is not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 49,
+        "who": "tree",
+        "title": "Deep review recorded first-principles",
+        "do": "Record twenty first-principles as catalog law. MFA identifies. Assignment is not live. Custom reports are not a SKU. Board fiduciary is not counsel. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

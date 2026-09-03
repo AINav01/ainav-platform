@@ -111,7 +111,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.78.0 (this tree)
+### 2.79.0 (this tree)
+
+Deep first-principles review.
+Twenty catalog-law improvements.
+MFA identifies. It does not admit.
+assignment_live stays false.
+Custom reports are not a SKU.
+Board fiduciary is not counsel.
+Gold 99 is the target.
+Claiming 99 without coverage is a lie.
+A green check is not `LIVE_PIN_OK`.
+
+### 2.78.0
 
 Quality check aligned public
 surfaces with four Reads Granted.

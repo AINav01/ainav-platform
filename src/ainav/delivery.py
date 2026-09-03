@@ -20,7 +20,7 @@ def validate_delivery(catalog: dict[str, Any]) -> None:
         raise IntegrityError("cloud and local must share one consume ledger", reason_code="CATALOG_DELIVERY")
     if (hosts.get("master") or {}).get("writes_client_sor") is True:
         raise IntegrityError("master cannot write client SoR", reason_code="CATALOG_DELIVERY")
-    for host in ("cloud", "local"):
+    for host in ("master", "cloud", "local"):
         body = hosts.get(host) or {}
         if body.get("live") is True:
             raise IntegrityError(f"{host} mothership cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")

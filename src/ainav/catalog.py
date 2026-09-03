@@ -244,6 +244,8 @@ def _validate_edge_quality(edge: dict[str, Any]) -> None:
         raise IntegrityError("edge quality owner_ssl is required", reason_code="CATALOG_EDGE")
     if owner_ssl.get("from_this_plane") is True or owner_ssl.get("live") is True or owner_ssl.get("live_pin_ok") is True:
         raise IntegrityError("owner_ssl cannot be claimed from this plane", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("sku") is True:
+        raise IntegrityError("owner_ssl is not a SKU", reason_code="CATALOG_EDGE")
     if owner_ssl.get("automatic") is not True or str(owner_ssl.get("mode") or "") != "full_strict":
         raise IntegrityError("owner_ssl records Automatic Full (strict)", reason_code="CATALOG_EDGE")
     if owner_ssl.get("visitor_cert_is_not_proof") is not True:
@@ -964,8 +966,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 48:
-        raise IntegrityError("expert review needs 16–48 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 49:
+        raise IntegrityError("expert review needs 16–49 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1004,6 +1006,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         46: ("leftover", "service principal"),
         47: ("four reads", "writes"),
         48: ("refus", "live_pin_ok"),
+        49: ("first-principles", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1015,9 +1018,20 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"tree upgrade {number} must keep {stems[0]}", reason_code="CATALOG_REVIEW")
     if not body.get("working_well") or not body.get("improve"):
         raise IntegrityError("expert review needs working_well and improve", reason_code="CATALOG_REVIEW")
+    _validate_first_principles(body.get("first_principles"))
     if any(item.get("marks_live_pin") is True for item in upgrades):
         raise IntegrityError("upgrades cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
     _validate_success_program(body.get("success"))
+
+
+def _validate_first_principles(items: Any) -> None:
+    if not isinstance(items, list) or len(items) < 20:
+        raise IntegrityError("expert review needs 20 first-principles", reason_code="CATALOG_REVIEW")
+    blob = " ".join(str(item).lower() for item in items)
+    if "identify is not admit" not in blob or "assignment_live" not in blob or "claiming 99" not in blob:
+        raise IntegrityError("first-principles must keep identify, assignment_live, and claiming 99", reason_code="CATALOG_REVIEW")
+    if "mfa admits" in blob or "live_pin_ok is closed" in blob:
+        raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
 
 def _validate_success_program(success: Any) -> None:
@@ -1312,6 +1326,8 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
         raise IntegrityError("buying L1 does not close regulator clocks", reason_code="CATALOG_GOVERNANCE")
     if consequences.get("certified") is True:
         raise IntegrityError("consequences are not a certificate", reason_code="CATALOG_GOVERNANCE")
+    if consequences.get("sku") is True:
+        raise IntegrityError("consequences are not a SKU", reason_code="CATALOG_GOVERNANCE")
     calendar = body.get("calendar") or {}
     if calendar.get("sku") is True or calendar.get("certified") is True:
         raise IntegrityError("governance calendar is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
@@ -1324,7 +1340,7 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
     if any(item.get("claimed") is True for item in calendar.get("items") or [] if isinstance(item, dict)):
         raise IntegrityError("calendar items cannot claim certification", reason_code="CATALOG_GOVERNANCE")
     regulated = body.get("regulated") or {}
-    if regulated.get("sku") is True or regulated.get("certified") is True:
+    if regulated.get("sku") is True or regulated.get("certified") is True or regulated.get("mandated") is True:
         raise IntegrityError("regulated is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
     if regulated.get("crypto_associated") is True or regulated.get("seventeen_a4") is True:
         raise IntegrityError("regulated is not crypto-associated or 17a-4", reason_code="CATALOG_GOVERNANCE")
@@ -1996,6 +2012,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_276(catalog, body)
     _validate_instrument_277(catalog, body)
     _validate_instrument_278(catalog, body)
+    _validate_instrument_279(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2314,8 +2331,6 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.78.0":
-        raise IntegrityError("entity.release is 2.78.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.78.0" in item and "refus" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_ENGINEERING")
@@ -2325,6 +2340,14 @@ def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> N
     opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
     if "graph write" not in opens or "graph read on the same" in opens:
         raise IntegrityError("2.78.0 investor opens must name Graph Writes, not Graph Read", reason_code="CATALOG_INVESTOR")
+
+
+def _validate_instrument_279(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.79.0":
+        raise IntegrityError("entity.release is 2.79.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.79.0" in item and "first-principles" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.79.0 first-principles review", reason_code="CATALOG_ENGINEERING")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2967,9 +2990,14 @@ def _validate_plane_interface(catalog: dict[str, Any]) -> None:
         item.get("id") for item in body.get("revocations") or []
     }:
         raise IntegrityError("revocations must include freeze and seat revoke", reason_code="CATALOG_PLANE")
+    for item in body.get("revocations") or []:
+        if item.get("live") is True or item.get("sku") is True:
+            raise IntegrityError("revocations are not live or a SKU", reason_code="CATALOG_PLANE")
     provision = body.get("provisioning") or {}
     if provision.get("sku") is True:
         raise IntegrityError("provisioning is not a SKU", reason_code="CATALOG_SKU")
+    if provision.get("live") is True or provision.get("live_pin_ok") is True:
+        raise IntegrityError("provisioning is not live", reason_code="CATALOG_PLANE")
     if provision.get("u_dual_never_free") is not True:
         raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
     attached = provision.get("attached") or {}

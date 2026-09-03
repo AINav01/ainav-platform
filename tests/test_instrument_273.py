@@ -12,7 +12,7 @@ from ainav.dashboard import public_dashboard
 
 def test_release_is_273():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.78.0"
+    assert cat["entity"]["release"] == "2.79.0"
     assert "provision spine" in cat["equations"]["interface"]
     assert "duty hints" in cat["equations"]["interface"]
     assert "board packet" in cat["equations"]["interface"]
@@ -37,7 +37,7 @@ def test_view_shows_keep_client_lean_and_owner_packet():
     assert "board_packet" in floor["owner_shows"]
     assert "provision_path" in floor["provision_shows"]
     dash = public_dashboard()
-    assert dash["release"] == "2.78.0"
+    assert dash["release"] == "2.79.0"
     assert "board_packet" in dash["proof_day_floor"]["view_shows"]["owner"]
     assert dash["board_packet"]["ask"].lower().startswith("seat b")
     assert dash["lab_vs_commercial"]["lab_pin"] == "AINAV-L1"
@@ -119,7 +119,7 @@ def test_sale_site_has_one_owner_book_and_thirteen_maps():
 def test_upgrades_33_to_40_are_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 48
+    assert len(cat["expert_review"]["upgrades"]) == 49
     for number in range(33, 41):
         assert upgrades[number]["who"] == "tree"
         assert upgrades[number]["done"] is True
