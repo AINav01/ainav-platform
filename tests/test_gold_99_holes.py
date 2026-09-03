@@ -383,3 +383,24 @@ def test_more_catalog_direct_holes():
             item["title"] = "Hold"
             item["do"] = "Hold"
     _reject(catmod._validate_instrument_276, cat, cat["plane_interface"])
+    cat = _cat()
+    cat["plane_interface"]["gaps"]["gold_floor"] = 95
+    _reject(catmod._validate_instrument_280, cat, cat["plane_interface"])
+    cat = _cat()
+    cat["engineering"]["gold_ci"]["coverage_floor"] = 95
+    _reject(catmod._validate_instrument_280, cat, cat["plane_interface"])
+    cat = _cat()
+    cat["microsoft_stack"]["graph"]["graph_write_claimed"] = True
+    _reject(catmod._validate_graph_owner_consent, cat)
+    cat = _cat()
+    cat["investor"]["control_plane"] = "The control plane is not a patent and not uncopyable."
+    _reject(catmod._validate_investor, cat)
+    cat = _cat()
+    for item in cat["owner_gates"]:
+        if item.get("id") == "invite.seat_b":
+            item["do"] = (
+                str(item.get("do") or "")
+                .replace("fallback", "hold")
+                .replace("not a seat", "a seat")
+            )
+    _reject(catmod._validate_owner_gates, cat)
