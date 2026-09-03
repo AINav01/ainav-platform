@@ -1,6 +1,6 @@
 # AINav, Inc. — owner steps
 
-Release 2.77.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.78.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Owner: James Hodnett. Operator: cursor.cloud_agent (not a seat).
 Invited second human: Cynthia Hodnett (treasury_controller / business_executive). Mailbox recorded: chodnett@ainav.institute. Paid E7 and Teams Premium assigned. Number two for other aspects, not all aspects. Paid mail is not an Entra oid and not a click.
 

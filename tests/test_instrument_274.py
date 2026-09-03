@@ -13,13 +13,13 @@ from ainav.microsoft.dns import catalog_edge
 
 def test_release_is_274():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.77.0"
+    assert cat["entity"]["release"] == "2.78.0"
     assert "edge quality" in cat["equations"]["interface"]
     assert any("2.74.0" in item and "quality" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.73.0" in item and "floor" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert cat["engineering"]["gold_ci"]["coverage_floor"] == 95
     dash = public_dashboard()
-    assert dash["release"] == "2.77.0"
+    assert dash["release"] == "2.78.0"
 
 
 def test_quality_never_claims_full_or_launch():
@@ -47,7 +47,7 @@ def test_quality_never_claims_full_or_launch():
 def test_upgrades_41_to_44_are_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 47
+    assert len(cat["expert_review"]["upgrades"]) == 48
     for number in range(41, 45):
         assert upgrades[number]["who"] == "tree"
         assert upgrades[number]["done"] is True
@@ -61,7 +61,7 @@ def test_sale_site_quality_board_lists_tls_and_anycast():
     assert "not proof of Full" in html
     assert "TLS 1.2 and 1.3" in html
     assert "rocket_loader_claimed" in js
-    assert "2.77.0" in html
+    assert "2.78.0" in html
     assert "Full (strict)" in html
     assert "e7-cloudflare-owner-recorded" in html
 

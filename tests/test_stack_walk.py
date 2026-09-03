@@ -13,7 +13,7 @@ def test_stack_walk_is_catalog_honest_with_https_links():
     assert body["live_pin_ok"] is False
     assert body["sku"] is False
     assert body["is_admit_plane"] is False
-    assert body["release"] == "2.77.0"
+    assert body["release"] == "2.78.0"
     assert "failsafe" in (body.get("estate_equation") or "")
     assert "other uses" in (body.get("estate_equation") or "")
     assert "internal audit" in (body.get("audit_equation") or "")

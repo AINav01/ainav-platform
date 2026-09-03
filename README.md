@@ -111,7 +111,17 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.77.0 (this tree)
+### 2.78.0 (this tree)
+
+Quality check aligned public
+surfaces with four Reads Granted.
+This plane refused to close owner-only
+gaps (seat B, Graph Writes, Dataverse,
+G12/G13, billing, launch, LIVE_PIN_OK).
+Coverage floor stays 95 percent. A green check
+is not `LIVE_PIN_OK`.
+
+### 2.77.0
 
 Owner recorded Grant succeeded.
 Four Reads Granted. Leftover

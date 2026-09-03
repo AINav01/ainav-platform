@@ -582,7 +582,8 @@
       "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast",
       "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane",
       "owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal; Graph Writes still Granted; four Reads configured not granted; not from this plane",
-      "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane"
+      "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
+      "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -875,7 +876,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.77.0",
+  "release": "2.78.0",
   "scenarios": [
     {
       "id": "l1_only",

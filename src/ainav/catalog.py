@@ -964,8 +964,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 47:
-        raise IntegrityError("expert review needs 16–47 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 48:
+        raise IntegrityError("expert review needs 16–48 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1003,6 +1003,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         45: ("full (strict)", "owner"),
         46: ("leftover", "service principal"),
         47: ("four reads", "writes"),
+        48: ("refus", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1994,6 +1995,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_275(catalog, body)
     _validate_instrument_276(catalog, body)
     _validate_instrument_277(catalog, body)
+    _validate_instrument_278(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2273,8 +2275,6 @@ def _validate_instrument_276(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.77.0":
-        raise IntegrityError("entity.release is 2.77.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.77.0" in item and "four reads" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.77.0 four Reads Granted", reason_code="CATALOG_ENGINEERING")
@@ -2331,6 +2331,31 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("2.77.0 upgrade 47 must stay tree and done", reason_code="CATALOG_REVIEW")
     if item.get("marks_live_pin") is True:
         raise IntegrityError("2.77.0 upgrade 47 cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+
+
+def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.78.0":
+        raise IntegrityError("entity.release is 2.78.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.78.0" in item and "refus" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_ENGINEERING")
+    gaps = body.get("gaps") or {}
+    if gaps.get("claimed") is True or gaps.get("live_pin_ok") is True:
+        raise IntegrityError("2.78.0 cannot claim owner gaps or LIVE_PIN_OK closed", reason_code="CATALOG_PLANE")
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    for stem in ("seat b", "graph write", "dataverse", "g12", "billing", "launch"):
+        if not any(stem in item for item in owner):
+            raise IntegrityError("2.78.0 owner-only must keep " + stem, reason_code="CATALOG_PLANE")
+    opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
+    if "graph write" not in opens or "graph read on the same" in opens:
+        raise IntegrityError("2.78.0 investor opens must name Graph Writes, not Graph Read", reason_code="CATALOG_INVESTOR")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    item = next((row for row in upgrades if row.get("n") == 48), {})
+    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+    if "refus" not in blob or "live_pin_ok" not in blob:
+        raise IntegrityError("2.78.0 upgrade 48 must refuse owner-gap close", reason_code="CATALOG_REVIEW")
+    if item.get("who") != "tree" or item.get("done") is not True or item.get("marks_live_pin") is True:
+        raise IntegrityError("2.78.0 upgrade 48 must stay tree, done, and not LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

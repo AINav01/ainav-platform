@@ -44,7 +44,7 @@ def test_finance_is_catalog_list_not_revenue():
 def test_expert_review_has_twenty_eight_upgrades():
     cat = load_catalog()
     upgrades = cat["expert_review"]["upgrades"]
-    assert len(upgrades) == 47
+    assert len(upgrades) == 48
     assert any(item.get("n") == 16 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 22 and item.get("done") is True for item in upgrades)
     assert any(item.get("n") == 23 and item.get("done") is True for item in upgrades)
