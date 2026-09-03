@@ -13,9 +13,9 @@ from ainav.dashboard import public_dashboard
 
 def test_release_is_272_and_gold_floor_is_95():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.79.0"
-    assert cat["engineering"]["gold_ci"]["coverage_floor"] == 95
-    assert "fail_under = 95" in Path("pyproject.toml").read_text(encoding="utf-8")
+    assert cat["entity"]["release"] == "2.80.0"
+    assert cat["engineering"]["gold_ci"]["coverage_floor"] == 99
+    assert "fail_under = 99" in Path("pyproject.toml").read_text(encoding="utf-8")
     assert f'version = "{cat["entity"]["release"]}"' in Path("pyproject.toml").read_text(encoding="utf-8")
     assert "gaps board" in cat["equations"]["interface"]
     assert any("2.72.0" in item and "95" in item for item in cat["engineering"]["closed_in_tree"])
@@ -32,7 +32,7 @@ def test_gaps_board_is_honest_and_paints_on_owner_entire():
     assert gaps["live"] is False
     assert gaps["live_pin_ok"] is False
     assert gaps["claimed"] is False
-    assert gaps["gold_floor"] == 95
+    assert gaps["gold_floor"] == 99
     closed = " ".join(gaps["in_tree_closed"]).lower()
     owner = " ".join(gaps["owner_only_open"]).lower()
     cannot = " ".join(gaps["this_plane_cannot"]).lower()
@@ -49,14 +49,14 @@ def test_gaps_board_is_honest_and_paints_on_owner_entire():
     assert "gaps" in floor["entire_shows"]
     assert "gaps" not in floor["client_shows"]
     dash = public_dashboard()
-    assert dash["release"] == "2.79.0"
-    assert dash["gaps"]["gold_floor"] == 95
+    assert dash["release"] == "2.80.0"
+    assert dash["gaps"]["gold_floor"] == 99
     assert dash["gaps"]["sku"] is False
     plane = public_business_plane()
-    assert plane["gaps"]["gold_floor"] == 95
+    assert plane["gaps"]["gold_floor"] == 99
     html = Path("institute/app.html").read_text(encoding="utf-8")
     assert 'id="app-floor-gaps"' in html
-    assert "Gold floor 95" in html
+    assert "Gold floor 99" in html
     js = Path("institute/app.js").read_text(encoding="utf-8")
     assert "view_shows" in js
     assert "paintGaps" in js

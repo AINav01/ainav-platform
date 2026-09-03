@@ -27,7 +27,7 @@ def test_catalog_engineering_records_gold_ci_not_launch():
     assert gold["observed_green"] is True
     assert gold["workflow"] == ".github/workflows/gold.yml"
     assert gold["command"] == "make gold"
-    assert gold["coverage_floor"] == 95
+    assert gold["coverage_floor"] == 99
     assert gold["marks_live_pin"] is False
     assert gold["is_admit_plane"] is False
     assert "not live_pin_ok" in gold["note"].lower()
@@ -57,7 +57,7 @@ def test_gold_workflow_exists_and_refuses_live_pin():
 
 def test_package_version_matches_catalog_release():
     release = load_catalog()["entity"]["release"]
-    assert release == "2.79.0"
+    assert release == "2.80.0"
     assert f'version = "{release}"' in Path("pyproject.toml").read_text(encoding="utf-8")
     assert f'"version": "{release}"' in Path("api/package.json").read_text(encoding="utf-8")
     assert f'"version": "{release}"' in Path("web/package.json").read_text(encoding="utf-8")
@@ -103,7 +103,7 @@ def test_catalog_allows_recorded_missing_gold_workflow():
     cat["engineering"]["closed_in_tree"] = [
         item
         for item in cat["engineering"]["closed_in_tree"]
-        if "gold" not in item.lower() or "2.72.0" in item or "2.78.0" in item or "2.79.0" in item
+        if "gold" not in item.lower() or "2.72.0" in item or "2.78.0" in item or "2.79.0" in item or "2.80.0" in item
     ]
     validate_catalog(cat)
 

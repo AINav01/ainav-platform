@@ -381,3 +381,51 @@ def test_visitor_cert_and_tls_versions(monkeypatch):
         "tls1_2",
         "tls1_3",
     }
+
+
+def test_redirect_handler_does_not_follow(monkeypatch):
+    held = {}
+
+    class _Opener:
+        def open(self, req, timeout=12):
+            raise OSError("skip live http")
+
+    def build(*handlers):
+        held["handler"] = handlers[0]
+        return _Opener()
+
+    monkeypatch.setattr("ainav.microsoft.dns.urllib.request.build_opener", build)
+    assert _http_probe("https://example.test/")["status"] == 0
+    assert held["handler"]().redirect_request(None, None, 302, "found", {}, "https://x") is None
+
+
+def test_tls_accepts_none_and_errors(monkeypatch):
+    assert _tls_accepts("ainav.institute", None) is False
+
+    class Boom:
+        def __init__(self, *args, **kwargs):
+            raise ValueError("no tls")
+
+    monkeypatch.setattr("ainav.microsoft.dns.ssl.SSLContext", Boom)
+    assert _tls_accepts("ainav.institute", ssl.TLSVersion.TLSv1_2) is False
+
+    class Ctx:
+        def __init__(self, *args, **kwargs):
+            self.check_hostname = False
+            self.verify_mode = ssl.CERT_NONE
+            self.minimum_version = None
+            self.maximum_version = None
+
+        def wrap_socket(self, sock, server_hostname=None):
+            raise OSError("handshake")
+
+    class Sock:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+    monkeypatch.setattr("ainav.microsoft.dns.ssl.SSLContext", Ctx)
+    monkeypatch.setattr("ainav.microsoft.dns.socket.create_connection", lambda *args, **kwargs: Sock())
+    assert _tls_accepts("ainav.institute", ssl.TLSVersion.TLSv1_2) is False

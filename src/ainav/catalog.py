@@ -14,6 +14,12 @@ from agent_gov.errors import IntegrityError
 ALLOWED_SKUS = frozenset({"L1", "P-ADM", "U-DUAL"})
 
 
+def _as_dict(value: Any, label: str, reason_code: str = "CATALOG_SHAPE") -> dict[str, Any]:
+    if not isinstance(value, dict):
+        raise IntegrityError(f"{label} must be an object", reason_code=reason_code)
+    return value
+
+
 @lru_cache(maxsize=1)
 def load_catalog() -> dict[str, Any]:
     raw = files("ainav.data").joinpath("catalog.json").read_text(encoding="utf-8")
@@ -23,6 +29,15 @@ def load_catalog() -> dict[str, Any]:
 
 
 def validate_catalog(catalog: dict[str, Any]) -> None:
+    try:
+        _validate_catalog_law(catalog)
+    except IntegrityError:
+        raise
+    except (AttributeError, TypeError, KeyError, ValueError) as exc:
+        raise IntegrityError("catalog shape must fail closed", reason_code="CATALOG_SHAPE") from exc
+
+
+def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     if catalog.get("schema_version") != "ainav.catalog.v1":
         raise IntegrityError("unsupported catalog schema", reason_code="CATALOG_SCHEMA")
     if catalog.get("entity", {}).get("job") != "C":
@@ -384,13 +399,13 @@ def _validate_engineering(catalog: dict[str, Any]) -> None:
         raise IntegrityError("gold_ci cannot mark LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
     if gold.get("is_admit_plane") is not False:
         raise IntegrityError("gold_ci is not the admit plane", reason_code="CATALOG_ENGINEERING")
-    if gold.get("coverage_floor") != 95:
-        raise IntegrityError("gold coverage floor is 95", reason_code="CATALOG_ENGINEERING")
+    if gold.get("coverage_floor") != 99:
+        raise IntegrityError("gold coverage floor is 99", reason_code="CATALOG_ENGINEERING")
     pyproject = Path("pyproject.toml")
     if not pyproject.is_file():
         raise IntegrityError("pyproject.toml is missing", reason_code="CATALOG_ENGINEERING")
-    if "fail_under = 95" not in pyproject.read_text(encoding="utf-8"):
-        raise IntegrityError("pyproject fail_under must match gold floor 95", reason_code="CATALOG_ENGINEERING")
+    if "fail_under = 99" not in pyproject.read_text(encoding="utf-8"):
+        raise IntegrityError("pyproject fail_under must match gold floor 99", reason_code="CATALOG_ENGINEERING")
     if gold.get("command") != "make gold":
         raise IntegrityError("gold command is make gold", reason_code="CATALOG_ENGINEERING")
     note = str(gold.get("note") or "").lower()
@@ -685,15 +700,16 @@ def _validate_mailbox_law(catalog: dict[str, Any]) -> None:
     if invited.get("inception_role") != "business_executive":
         raise IntegrityError("recorded invite Inception role is business_executive", reason_code="ORG_SECOND_OFFICER")
     stale = "invited, not recorded"
-    for item in ((catalog.get("plane_interface") or {}).get("authorizations") or []):
-        if item.get("id") != "seat":
+    plane = _as_dict(catalog.get("plane_interface") or {}, "plane interface")
+    for item in plane.get("authorizations") or []:
+        if not isinstance(item, dict) or item.get("id") != "seat":
             continue
         note = str(item.get("note") or "").lower()
         if "1 mailbox" not in note or "0 oid" not in note:
             raise IntegrityError("seat authorization must keep 1 mailbox / 0 oid", reason_code="CATALOG_PLANE")
         if stale in note or "0 recorded / 1 invited" in note:
             raise IntegrityError("seat authorization cannot revert to invited-not-recorded", reason_code="CATALOG_PLANE")
-    investor = catalog.get("investor") or {}
+    investor = _as_dict(catalog.get("investor") or {}, "investor packet")
     for field in ("letter_body", "letter_open", "seat_b", "ask"):
         if stale in str(investor.get(field) or "").lower():
             raise IntegrityError(
@@ -761,8 +777,10 @@ def _validate_buyer(catalog: dict[str, Any]) -> None:
     if "journal" not in str(write).lower():
         raise IntegrityError("buyer page must name the journal write", reason_code="CATALOG_BUYER")
     seats = set(body.get("seats") or [])
-    kit = catalog.get("acceptance_kit", {}).get("seats") or {}
-    expected = {kit.get("seat_a", {}).get("role"), kit.get("seat_b", {}).get("role")}
+    kit = _as_dict((catalog.get("acceptance_kit") or {}).get("seats") or {}, "acceptance kit seats")
+    seat_a = _as_dict(kit.get("seat_a") or {}, "acceptance kit seat_a")
+    seat_b = _as_dict(kit.get("seat_b") or {}, "acceptance kit seat_b")
+    expected = {seat_a.get("role"), seat_b.get("role")}
     if seats != expected:
         raise IntegrityError("buyer seats must be the catalog treasury pair", reason_code="CATALOG_BUYER")
     prices = " ".join(body.get("prices") or [])
@@ -966,8 +984,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 49:
-        raise IntegrityError("expert review needs 16–49 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 50:
+        raise IntegrityError("expert review needs 16–50 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1007,6 +1025,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         47: ("four reads", "writes"),
         48: ("refus", "live_pin_ok"),
         49: ("first-principles", "live_pin_ok"),
+        50: ("gold 99", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -2013,6 +2032,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_277(catalog, body)
     _validate_instrument_278(catalog, body)
     _validate_instrument_279(catalog, body)
+    _validate_instrument_280(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2023,8 +2043,8 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("gaps board is not a SKU or live", reason_code="CATALOG_PLANE")
     if gaps.get("claimed") is True:
         raise IntegrityError("gaps board cannot claim closed owner clicks", reason_code="CATALOG_PLANE")
-    if int(gaps.get("gold_floor") or 0) != 95:
-        raise IntegrityError("gaps gold_floor is 95", reason_code="CATALOG_PLANE")
+    if int(gaps.get("gold_floor") or 0) != 99:
+        raise IntegrityError("gaps gold_floor is 99", reason_code="CATALOG_PLANE")
     gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
     if gaps.get("gold_floor") != gold.get("coverage_floor"):
         raise IntegrityError("gaps.gold_floor must match engineering.gold_ci.coverage_floor", reason_code="CATALOG_ENGINEERING")
@@ -2167,7 +2187,8 @@ def _validate_instrument_274(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.74.0" in item and "quality" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.74.0 Cloudflare quality", reason_code="CATALOG_ENGINEERING")
-    quality = ((catalog.get("microsoft_stack") or {}).get("edge") or {}).get("quality") or {}
+    edge = _as_dict((catalog.get("microsoft_stack") or {}).get("edge") or {}, "Cloudflare edge")
+    quality = _as_dict(edge.get("quality") or {}, "edge quality")
     if quality.get("ssl_full_claimed") is True or quality.get("apex_is_institute") is True:
         raise IntegrityError("2.74.0 cannot claim SSL Full or apex Institute", reason_code="CATALOG_EDGE")
     if quality.get("rocket_loader_claimed") is True:
@@ -2209,10 +2230,11 @@ def _validate_instrument_275(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.75.0" in item and "full (strict)" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.75.0 Full (strict)", reason_code="CATALOG_ENGINEERING")
-    quality = ((catalog.get("microsoft_stack") or {}).get("edge") or {}).get("quality") or {}
+    edge = _as_dict((catalog.get("microsoft_stack") or {}).get("edge") or {}, "Cloudflare edge")
+    quality = _as_dict(edge.get("quality") or {}, "edge quality")
     if quality.get("ssl_full_claimed") is True or quality.get("apex_is_institute") is True:
         raise IntegrityError("2.75.0 cannot claim SSL Full from this plane", reason_code="CATALOG_EDGE")
-    owner_ssl = quality.get("owner_ssl") or {}
+    owner_ssl = _as_dict(quality.get("owner_ssl") or {}, "owner_ssl")
     if owner_ssl.get("mode") != "full_strict" or owner_ssl.get("automatic") is not True:
         raise IntegrityError("2.75.0 owner_ssl is Automatic Full (strict)", reason_code="CATALOG_EDGE")
     if owner_ssl.get("from_this_plane") is True:
@@ -2248,7 +2270,7 @@ def _validate_instrument_276(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.76.0" in item and "service principal" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.76.0 leftover service principal", reason_code="CATALOG_ENGINEERING")
-    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    graph = _as_dict((catalog.get("microsoft_stack") or {}).get("graph") or {}, "graph owner consent")
     if graph.get("kind") != "ainav.graph.owner_consent.v1":
         raise IntegrityError("2.76.0 graph kind is ainav.graph.owner_consent.v1", reason_code="CATALOG_STACK")
     if graph.get("from_this_plane") is True:
@@ -2258,11 +2280,12 @@ def _validate_instrument_276(catalog: dict[str, Any], body: dict[str, Any]) -> N
     recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
     if "speech" not in recorded or "service principal" not in recorded:
         raise IntegrityError("2.76.0 owner_recorded must keep leftover Speech and service principal", reason_code="CATALOG_STACK")
+    walk_body = _as_dict((catalog.get("microsoft_stack") or {}).get("walk") or {}, "stack walk")
     walk = next(
         (
             item
-            for item in ((catalog.get("microsoft_stack") or {}).get("walk") or {}).get("path") or []
-            if item.get("id") == "graph.read"
+            for item in walk_body.get("path") or []
+            if isinstance(item, dict) and item.get("id") == "graph.read"
         ),
         {},
     )
@@ -2295,7 +2318,7 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.77.0" in item and "four reads" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.77.0 four Reads Granted", reason_code="CATALOG_ENGINEERING")
-    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    graph = _as_dict((catalog.get("microsoft_stack") or {}).get("graph") or {}, "graph owner consent")
     if graph.get("four_reads_granted") is not True or graph.get("tenant_wide_grant_ok") is not True:
         raise IntegrityError("2.77.0 four Reads are Granted", reason_code="CATALOG_STACK")
     if graph.get("status") != "four_reads_granted_writes_open":
@@ -2308,11 +2331,12 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
     recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
     if "successfully granted" not in recorded or "four reads" not in recorded:
         raise IntegrityError("2.77.0 owner_recorded must keep Grant succeeded and four Reads", reason_code="CATALOG_STACK")
+    walk_body = _as_dict((catalog.get("microsoft_stack") or {}).get("walk") or {}, "stack walk")
     walk = next(
         (
             item
-            for item in ((catalog.get("microsoft_stack") or {}).get("walk") or {}).get("path") or []
-            if item.get("id") == "graph.read"
+            for item in walk_body.get("path") or []
+            if isinstance(item, dict) and item.get("id") == "graph.read"
         ),
         {},
     )
@@ -2343,11 +2367,22 @@ def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_279(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.79.0":
-        raise IntegrityError("entity.release is 2.79.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.79.0" in item and "first-principles" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.79.0 first-principles review", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_instrument_280(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.80.0":
+        raise IntegrityError("entity.release is 2.80.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.80.0" in item and "99" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.80.0 gold 99 floor", reason_code="CATALOG_ENGINEERING")
+    if int((body.get("gaps") or {}).get("gold_floor") or 0) != 99:
+        raise IntegrityError("2.80.0 gaps gold_floor is 99", reason_code="CATALOG_PLANE")
+    gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
+    if gold.get("coverage_floor") != 99:
+        raise IntegrityError("2.80.0 coverage_floor is 99", reason_code="CATALOG_ENGINEERING")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

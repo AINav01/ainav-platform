@@ -9,9 +9,11 @@ import pytest
 from agent_gov.errors import IntegrityError
 from ainav.catalog import load_catalog, validate_catalog
 from ainav.dashboard import (
+    ROLE_LABELS,
     dashboard_html,
     dashboard_markdown,
     public_dashboard,
+    seating_cascade,
     write_dashboard,
 )
 
@@ -783,3 +785,21 @@ def test_institute_control_plane_matches_catalog():
     assert "Cannot: " in js
     on_disk = json.loads(Path("institute/control-plane.json").read_text(encoding="utf-8"))
     assert on_disk == public_dashboard()
+
+
+def test_seating_cascade_skips_empty_names():
+    assert seating_cascade([{"role": "oversee", "name": ""}]) == []
+    rows = seating_cascade(
+        [
+            {"role": "oversee", "name": ""},
+            {"role": "oversee", "name": "James Hodnett"},
+            {"role": "unknown", "name": "Skip"},
+        ]
+    )
+    assert rows == [
+        {
+            "role": "oversee",
+            "label": ROLE_LABELS["oversee"],
+            "names": ["James Hodnett"],
+        }
+    ]

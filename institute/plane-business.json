@@ -562,7 +562,7 @@
   "forecast": false,
   "gaps": {
     "claimed": false,
-    "gold_floor": 95,
+    "gold_floor": 99,
     "in_tree_closed": [
       "gold floor 95",
       "client offer seating",
@@ -584,12 +584,13 @@
       "owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal; Graph Writes still Granted; four Reads configured not granted; not from this plane",
       "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
       "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane",
-      "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane"
+      "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane",
+      "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
     "live_pin_ok": false,
-    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 95 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
+    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 99 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
     "owner_only_hrefs": {
       "G12/G13": "index.html#open",
       "Graph Writes revoke": "index.html#stack-walk",
@@ -877,7 +878,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.79.0",
+  "release": "2.80.0",
   "scenarios": [
     {
       "id": "l1_only",

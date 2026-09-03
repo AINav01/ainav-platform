@@ -12,11 +12,11 @@ from ainav.dashboard import public_dashboard
 
 def test_release_keeps_277_history():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.79.0"
+    assert cat["entity"]["release"] == "2.80.0"
     assert any("2.77.0" in item and "four reads" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.76.0" in item and "service principal" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     dash = public_dashboard()
-    assert dash["release"] == "2.79.0"
+    assert dash["release"] == "2.80.0"
 
 
 def test_four_reads_granted_writes_still_open():
@@ -58,7 +58,7 @@ def test_four_reads_granted_writes_still_open():
 def test_upgrade_47_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 49
+    assert len(cat["expert_review"]["upgrades"]) == 50
     assert upgrades[47]["who"] == "tree"
     assert upgrades[47]["done"] is True
     assert upgrades[47]["marks_live_pin"] is False
@@ -71,7 +71,7 @@ def test_sale_site_walk_revokes_writes():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     assert "Four Reads are Granted" in html
     assert "revokes the Writes" in html
-    assert "2.79.0" in html
+    assert "2.80.0" in html
     assert "User.ReadWrite.All" in html
     assert "Graph Writes still Granted on the same Entra app" in html
     assert "Graph Read on the same Entra app" not in html

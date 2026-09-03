@@ -12,11 +12,11 @@ from ainav.dashboard import public_dashboard
 
 def test_release_keeps_276_history():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.79.0"
+    assert cat["entity"]["release"] == "2.80.0"
     assert any("2.76.0" in item and "service principal" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.75.0" in item and "full (strict)" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     dash = public_dashboard()
-    assert dash["release"] == "2.79.0"
+    assert dash["release"] == "2.80.0"
 
 
 def test_graph_consent_keeps_leftover_failure():
@@ -44,7 +44,7 @@ def test_graph_consent_keeps_leftover_failure():
 def test_upgrade_46_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 49
+    assert len(cat["expert_review"]["upgrades"]) == 50
     assert upgrades[46]["who"] == "tree"
     assert upgrades[46]["done"] is True
     assert upgrades[46]["marks_live_pin"] is False
@@ -57,7 +57,7 @@ def test_sale_site_walk_keeps_leftover_history():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     assert "leftovers Speech" in html
     assert "Key Vault" in html
-    assert "2.79.0" in html
+    assert "2.80.0" in html
     assert "Organization.ReadWrite.All" in html
 
 

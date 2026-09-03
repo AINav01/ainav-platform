@@ -309,7 +309,7 @@ def test_remaining_fail_closed_holes_push_gold_over_95():
     def downgrade_floor(self, *args, **kwargs):
         text = real_read(self, *args, **kwargs)
         if self.name == "pyproject.toml":
-            return text.replace("fail_under = 95", "fail_under = 90")
+            return text.replace("fail_under = 99", "fail_under = 90")
         return text
 
     def hide_schema(self, *args, **kwargs):

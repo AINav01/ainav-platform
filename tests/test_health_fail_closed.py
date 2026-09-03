@@ -276,3 +276,13 @@ def test_stack_health_defaults_to_probe_when_entra_configured(monkeypatch):
     assert body["probed"] is True
     assert body["live_pin_ok"] is False
     assert body["wrote_sor"] is False
+
+
+def test_token_missing_env_is_blocked(monkeypatch):
+    monkeypatch.delenv("ENTRA_TENANT_ID", raising=False)
+    monkeypatch.delenv("ENTRA_CLIENT_ID", raising=False)
+    monkeypatch.delenv("ENTRA_CLIENT_SECRET", raising=False)
+    body = health._token(health.GRAPH_SCOPE)
+    assert body["ok"] is False
+    assert body["status"] == "missing_env"
+    assert "ENTRA_TENANT_ID" in body["missing"]

@@ -111,7 +111,16 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.79.0 (this tree)
+### 2.80.0 (this tree)
+
+Gold 99 is the floor after measured
+coverage. Fail-closed catalog shape.
+Twenty first-principles stay catalog
+law, not live. MFA identifies. It
+does not admit. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.79.0
 
 Deep first-principles review.
 Twenty catalog-law improvements.

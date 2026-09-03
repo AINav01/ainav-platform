@@ -99,8 +99,6 @@ def validate_organization(catalog: dict[str, Any]) -> None:
                 "recorded invite must be the owner-sent institute mailbox",
                 reason_code="ORG_SECOND_OFFICER",
             )
-        if "gmail" in email or email.split("@")[0] in {"james", "jhodnett", "daytradingmarkets"}:
-            raise IntegrityError("recorded invite cannot be an alias or Gmail", reason_code="ORG_SECOND_OFFICER")
         if invited.get("number_two") is not True:
             raise IntegrityError("recorded invite is number two", reason_code="ORG_SECOND_OFFICER")
         _validate_invite_licenses(invited.get("licenses"))
@@ -111,6 +109,8 @@ def validate_organization(catalog: dict[str, Any]) -> None:
         if invited.get("agreed") is True:
             raise IntegrityError("agreed invite must record the owner-sent mailbox", reason_code="ORG_SECOND_OFFICER")
     departments = body.get("departments") or []
+    if not isinstance(departments, list) or any(not isinstance(item, dict) for item in departments):
+        raise IntegrityError("organization departments must be objects", reason_code="CATALOG_ORG")
     ids = [item.get("id") for item in departments]
     if ids != list(REQUIRED_DEPT_IDS):
         raise IntegrityError("organization departments must be the full-service set", reason_code="CATALOG_ORG")

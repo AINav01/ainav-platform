@@ -34,7 +34,10 @@ PLAYBOOK_STEP_IDS = (
 
 
 def validate_agent_tools(catalog: dict[str, Any]) -> None:
-    body = (catalog.get("microsoft_stack") or {}).get("agent_tools")
+    stack = catalog.get("microsoft_stack") or {}
+    if not isinstance(stack, dict):
+        raise IntegrityError("catalog missing microsoft stack", reason_code="MICROSOFT_PRODUCT")
+    body = stack.get("agent_tools")
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing agent_tools review", reason_code="MICROSOFT_PRODUCT")
     if body.get("is_sku") or body.get("is_connection") or body.get("is_admit_plane"):
