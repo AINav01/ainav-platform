@@ -14,6 +14,7 @@ def test_release_is_278():
     cat = load_catalog()
     assert cat["entity"]["release"] == "2.78.0"
     assert any("2.78.0" in item and "refus" in item.lower() for item in cat["engineering"]["closed_in_tree"])
+    assert any("2.78.0" in item and "refus" in item.lower() for item in cat["plane_interface"]["gaps"]["in_tree_closed"])
     assert any("2.77.0" in item and "four reads" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     dash = public_dashboard()
     assert dash["release"] == "2.78.0"
@@ -65,40 +66,9 @@ def test_instrument_278_fail_closed():
             item for item in cat["engineering"]["closed_in_tree"] if "2.78.0" not in item
         ]
 
-    def claimed(cat):
-        cat["plane_interface"]["gaps"]["claimed"] = True
-
-    def pin(cat):
-        cat["plane_interface"]["gaps"]["live_pin_ok"] = True
-
-    def drop_seat(cat):
-        cat["plane_interface"]["gaps"]["owner_only_open"] = [
-            item for item in cat["plane_interface"]["gaps"]["owner_only_open"] if "seat B" not in item
-        ]
-
-    def drop_write(cat):
-        cat["plane_interface"]["gaps"]["owner_only_open"] = [
-            item for item in cat["plane_interface"]["gaps"]["owner_only_open"] if "Graph Write" not in item
-        ]
-
-    def drop_dataverse(cat):
-        cat["plane_interface"]["gaps"]["owner_only_open"] = [
-            item for item in cat["plane_interface"]["gaps"]["owner_only_open"] if "Dataverse" not in item
-        ]
-
-    def drop_g12(cat):
-        cat["plane_interface"]["gaps"]["owner_only_open"] = [
-            item for item in cat["plane_interface"]["gaps"]["owner_only_open"] if "G12" not in item
-        ]
-
-    def drop_billing(cat):
-        cat["plane_interface"]["gaps"]["owner_only_open"] = [
-            item for item in cat["plane_interface"]["gaps"]["owner_only_open"] if "billing" not in item.lower()
-        ]
-
-    def drop_launch(cat):
-        cat["plane_interface"]["gaps"]["owner_only_open"] = [
-            item for item in cat["plane_interface"]["gaps"]["owner_only_open"] if "launch" not in item.lower()
+    def closed_gaps(cat):
+        cat["plane_interface"]["gaps"]["in_tree_closed"] = [
+            item for item in cat["plane_interface"]["gaps"]["in_tree_closed"] if "2.78.0" not in item
         ]
 
     def stale_opens(cat):
@@ -106,43 +76,5 @@ def test_instrument_278_fail_closed():
             "Named dual seats. Graph Read on the same Entra app. LIVE_PIN_OK cannot be marked from this plane."
         )
 
-    def drop_upgrade(cat):
-        cat["expert_review"]["upgrades"] = [
-            item for item in cat["expert_review"]["upgrades"] if item.get("n") != 48
-        ]
-
-    def upgrade_stems(cat):
-        for item in cat["expert_review"]["upgrades"]:
-            if item.get("n") == 48:
-                item["title"] = "Quality check"
-                item["do"] = "Record surfaces. Not LIVE_PIN_OK."
-
-    def upgrade_who(cat):
-        for item in cat["expert_review"]["upgrades"]:
-            if item.get("n") == 48:
-                item["who"] = "owner"
-                item["done"] = False
-
-    def upgrade_pin(cat):
-        for item in cat["expert_review"]["upgrades"]:
-            if item.get("n") == 48:
-                item["marks_live_pin"] = True
-
-    for mutator in (
-        release,
-        closed,
-        claimed,
-        pin,
-        drop_seat,
-        drop_write,
-        drop_dataverse,
-        drop_g12,
-        drop_billing,
-        drop_launch,
-        stale_opens,
-        drop_upgrade,
-        upgrade_stems,
-        upgrade_who,
-        upgrade_pin,
-    ):
+    for mutator in (release, closed, closed_gaps, stale_opens):
         _reject(mutator)

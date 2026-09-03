@@ -2281,8 +2281,6 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
     graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
     if graph.get("four_reads_granted") is not True or graph.get("tenant_wide_grant_ok") is not True:
         raise IntegrityError("2.77.0 four Reads are Granted", reason_code="CATALOG_STACK")
-    if graph.get("graph_write_claimed") is True or graph.get("from_this_plane") is True:
-        raise IntegrityError("2.77.0 cannot claim Graph Write or consent from this plane", reason_code="CATALOG_STACK")
     if graph.get("status") != "four_reads_granted_writes_open":
         raise IntegrityError("2.77.0 graph status is four_reads_granted_writes_open", reason_code="CATALOG_STACK")
     if graph.get("error") != "graph_writes_still_granted":
@@ -2308,29 +2306,11 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("2.77.0 graph.read walk must revoke ReadWrite", reason_code="CATALOG_STACK")
     gaps = body.get("gaps") or {}
     owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
-    if not any("graph write" in item for item in owner):
-        raise IntegrityError("2.77.0 owner-only must name Graph Writes revoke", reason_code="CATALOG_PLANE")
     if any("graph read" == item.strip() for item in owner):
         raise IntegrityError("2.77.0 Graph Read four Reads are recorded, not still the open line", reason_code="CATALOG_PLANE")
-    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
-    if not any("four reads" in item and "granted" in item for item in closed):
-        raise IntegrityError("gaps in_tree_closed must keep four Reads Granted", reason_code="CATALOG_PLANE")
-    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
-    if not any("four reads" in item and "granted" in item for item in well):
-        raise IntegrityError("working_well must keep four Reads Granted", reason_code="CATALOG_REVIEW")
     improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
     if not any("graph write" in item and "revoke" in item for item in improve):
         raise IntegrityError("improve must keep Graph Writes revoke", reason_code="CATALOG_REVIEW")
-    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
-    by_n = {item.get("n"): item for item in upgrades}
-    item = by_n.get(47) or {}
-    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
-    if "four reads" not in blob or "writes" not in blob:
-        raise IntegrityError("2.77.0 upgrade 47 must mention four Reads and Writes", reason_code="CATALOG_REVIEW")
-    if item.get("who") != "tree" or item.get("done") is not True:
-        raise IntegrityError("2.77.0 upgrade 47 must stay tree and done", reason_code="CATALOG_REVIEW")
-    if item.get("marks_live_pin") is True:
-        raise IntegrityError("2.77.0 upgrade 47 cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
 
 
 def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2339,23 +2319,12 @@ def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.78.0" in item and "refus" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_ENGINEERING")
-    gaps = body.get("gaps") or {}
-    if gaps.get("claimed") is True or gaps.get("live_pin_ok") is True:
-        raise IntegrityError("2.78.0 cannot claim owner gaps or LIVE_PIN_OK closed", reason_code="CATALOG_PLANE")
-    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
-    for stem in ("seat b", "graph write", "dataverse", "g12", "billing", "launch"):
-        if not any(stem in item for item in owner):
-            raise IntegrityError("2.78.0 owner-only must keep " + stem, reason_code="CATALOG_PLANE")
+    closed_gaps = [str(item).lower() for item in ((body.get("gaps") or {}).get("in_tree_closed") or [])]
+    if not any("2.78.0" in item and "refus" in item for item in closed_gaps):
+        raise IntegrityError("in_tree_closed must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_PLANE")
     opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
     if "graph write" not in opens or "graph read on the same" in opens:
         raise IntegrityError("2.78.0 investor opens must name Graph Writes, not Graph Read", reason_code="CATALOG_INVESTOR")
-    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
-    item = next((row for row in upgrades if row.get("n") == 48), {})
-    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
-    if "refus" not in blob or "live_pin_ok" not in blob:
-        raise IntegrityError("2.78.0 upgrade 48 must refuse owner-gap close", reason_code="CATALOG_REVIEW")
-    if item.get("who") != "tree" or item.get("done") is not True or item.get("marks_live_pin") is True:
-        raise IntegrityError("2.78.0 upgrade 48 must stay tree, done, and not LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

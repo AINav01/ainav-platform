@@ -121,8 +121,12 @@ def test_instrument_277_fail_closed():
         for item in cat["microsoft_stack"]["walk"]["path"]:
             if item.get("id") == "graph.read":
                 item["status"] = "owner_consent_open"
-                item["owner"] = "Grant the four Reads."
-                item["in_tree"] = "Leftover Speech, Azure Service Management, and Key Vault."
+
+    def walk_revoke(cat):
+        for item in cat["microsoft_stack"]["walk"]["path"]:
+            if item.get("id") == "graph.read":
+                item["owner"] = "Team.ReadBasic.All is Granted. Leftover Key Vault is gone."
+                item["in_tree"] = "Four Reads Granted. Leftover Speech and Key Vault are gone."
 
     def drop_writes_open(cat):
         cat["plane_interface"]["gaps"]["owner_only_open"] = [
@@ -195,6 +199,7 @@ def test_instrument_277_fail_closed():
         drop_writes,
         recorded,
         walk_status,
+        walk_revoke,
         drop_writes_open,
         drop_closed,
         well,
