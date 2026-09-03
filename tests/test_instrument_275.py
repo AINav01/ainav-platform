@@ -13,11 +13,11 @@ from ainav.microsoft.dns import catalog_edge
 
 def test_release_keeps_275_history():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.76.0"
+    assert cat["entity"]["release"] == "2.77.0"
     assert any("2.75.0" in item and "full (strict)" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.74.0" in item and "quality" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     dash = public_dashboard()
-    assert dash["release"] == "2.76.0"
+    assert dash["release"] == "2.77.0"
 
 
 def test_owner_ssl_is_recorded_not_claimed():
@@ -43,7 +43,7 @@ def test_owner_ssl_is_recorded_not_claimed():
 def test_upgrade_45_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 46
+    assert len(cat["expert_review"]["upgrades"]) == 47
     assert upgrades[45]["who"] == "tree"
     assert upgrades[45]["done"] is True
     assert upgrades[45]["marks_live_pin"] is False

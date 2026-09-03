@@ -1,6 +1,6 @@
 # AINav, Inc. — stack walk
 
-Release 2.76.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.77.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 **Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**
@@ -35,10 +35,10 @@ This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind 
    Owner: Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. [Power Platform environments](https://admin.powerplatform.microsoft.com/environments) · [Create an environment](https://learn.microsoft.com/en-us/power-platform/admin/create-environment)
 
 7. **Teams notify** — `dns_full_graph_open`. SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat.
-   Owner: Trash leftover Speech, Azure Service Management, and Key Vault first. Then admin-consent Team.ReadBasic.All on the same Entra app. Do not use Write. Do not create a new app. [Microsoft 365 admin](https://admin.cloud.microsoft/?source=applauncher#/homepage) · [Teams overview](https://learn.microsoft.com/en-us/microsoftteams/teams-overview)
+   Owner: Team.ReadBasic.All is Granted. Trash Graph Writes on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app. [Microsoft 365 admin](https://admin.cloud.microsoft/?source=applauncher#/homepage) · [Teams overview](https://learn.microsoft.com/en-us/microsoftteams/teams-overview)
 
-8. **Graph Read on the same app** — `owner_consent_open`. Health probes report 403 without Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory. Owner recorded tenant-wide Grant failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay Not granted. Graph Writes still Granted. No Graph Write from this plane.
-   Owner: Trash leftover Speech, Azure Service Management, and Key Vault on the same app first. Trash Graph Writes. Then Grant admin consent for the four Reads. Do not use Write. Do not create a new app. [Entra app registrations](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) · [Graph permissions](https://learn.microsoft.com/en-us/graph/permissions-reference)
+8. **Graph Read on the same app** — `four_reads_granted_writes_open`. Owner recorded Grant succeeded. Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Leftover Speech, Azure Service Management, and Key Vault are gone. Graph Writes still Granted. No Graph Write from this plane.
+   Owner: Four Reads are Granted. Trash Organization.ReadWrite.All and User.ReadWrite.All on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app. [Entra app registrations](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) · [Graph permissions](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
 9. **Agent Tools registry** — `owner_leave_available`. Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block.
    Owner: Leave five Work IQ / MCP Management tools Available. Block Dataverse MCP until paid U-DUAL. Reject BYO SoR writers. [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all) · [Manage tools for agents](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent)
@@ -55,14 +55,14 @@ This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind 
 - **Azure Monitor** — `declared_sandbox`. Mothership health. LAW is not Sentinel. Not a live pin.
    Owner: Read host health. Do not treat Monitor as the admit plane. [Azure Monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview) · [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/overview)
 
-- **SharePoint kit** — `graph_read_open`. Kit evidence store. Graph Write is not consented from this plane. Sites.Read.All is the owner gate.
-   Owner: Grant Sites.Read.All on the same app. Do not grant Write from this plane. [SharePoint](https://www.office.com/launch/sharepoint) · [SharePoint Graph](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint)
+- **SharePoint kit** — `graph_read_open`. Kit evidence store. Sites.Read.All is Granted. Graph Writes still Granted. Graph Write is not claimed from this plane.
+   Owner: Sites.Read.All is Granted. Trash Graph Writes on the same app. Do not grant Write from this plane. [SharePoint](https://www.office.com/launch/sharepoint) · [SharePoint Graph](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint)
 
-- **Defender XDR** — `graph_read_open`. E7 security sink. SecurityIncident.Read.All stays owner-consent. Not the admit plane.
-   Owner: Grant SecurityIncident.Read.All on the same app. No Write. [Microsoft Defender portal](https://security.microsoft.com) · [Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/)
+- **Defender XDR** — `graph_read_open`. E7 security sink. SecurityIncident.Read.All is Granted. Graph Writes still Granted. Not the admit plane.
+   Owner: SecurityIncident.Read.All is Granted. Trash Graph Writes on the same app. No Write. [Microsoft Defender portal](https://security.microsoft.com) · [Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/)
 
-- **Entra PIM** — `not_dual`. Eligible seats. A PIM activation is not dual admit. RoleEligibilitySchedule.Read.Directory stays owner-consent.
-   Owner: Grant the Read Directory role on the same app. Do not treat PIM as seat B. [Entra PIM](https://entra.microsoft.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/quickStart) · [PIM configure](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure)
+- **Entra PIM** — `not_dual`. Eligible seats. A PIM activation is not dual admit. RoleEligibilitySchedule.Read.Directory is Granted. Graph Writes still Granted.
+   Owner: RoleEligibilitySchedule.Read.Directory is Granted. Trash Graph Writes. Do not treat PIM as seat B. [Entra PIM](https://entra.microsoft.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/quickStart) · [PIM configure](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure)
 
 - **Microsoft Sentinel** — `declared_sandbox`. DecisionRecord export sink after P-ADM. The mothership LAW is not a Sentinel workspace.
    Owner: Do not treat Sentinel as the admit plane. Keep is the sealed DecisionRecord. [Microsoft Sentinel](https://portal.azure.com/#view/Microsoft_Azure_Security_Insights) · [Sentinel overview](https://learn.microsoft.com/en-us/azure/sentinel/overview)

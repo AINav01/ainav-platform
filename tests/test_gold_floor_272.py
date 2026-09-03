@@ -13,7 +13,7 @@ from ainav.dashboard import public_dashboard
 
 def test_release_is_272_and_gold_floor_is_95():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.76.0"
+    assert cat["entity"]["release"] == "2.77.0"
     assert cat["engineering"]["gold_ci"]["coverage_floor"] == 95
     assert "fail_under = 95" in Path("pyproject.toml").read_text(encoding="utf-8")
     assert f'version = "{cat["entity"]["release"]}"' in Path("pyproject.toml").read_text(encoding="utf-8")
@@ -49,7 +49,7 @@ def test_gaps_board_is_honest_and_paints_on_owner_entire():
     assert "gaps" in floor["entire_shows"]
     assert "gaps" not in floor["client_shows"]
     dash = public_dashboard()
-    assert dash["release"] == "2.76.0"
+    assert dash["release"] == "2.77.0"
     assert dash["gaps"]["gold_floor"] == 95
     assert dash["gaps"]["sku"] is False
     plane = public_business_plane()

@@ -111,7 +111,22 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.76.0 (this tree)
+### 2.77.0 (this tree)
+
+Owner recorded Grant succeeded.
+Four Reads Granted. Leftover
+Speech, ARM, and Key Vault gone.
+Graph Writes still Granted
+(`Organization.ReadWrite.All`,
+`User.ReadWrite.All`). Trash
+those Writes, then Grant again
+to revoke. Not Graph Read closed.
+Not from this plane. Not
+`LIVE_PIN_OK`. Gold floor stays
+95 percent. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.76.0
 
 Owner recorded tenant-wide Grant
 admin consent failed: the tenant

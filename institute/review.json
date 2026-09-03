@@ -210,7 +210,7 @@
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
-      "Graph Read on the same Entra app",
+      "Graph Writes still Granted on the same Entra app",
       "US Dataverse for Sales",
       "G12 legal / G13 signed L1",
       "Recognized revenue",
@@ -252,7 +252,8 @@
       "2.73.0 Floor sits the review: catalog view_shows, provision spine, duty hints, honest freeze, examiner demo leaf, gaps hrefs, owner board packet, lab vs commercial. A green check is not LIVE_PIN_OK",
       "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK",
       "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK",
-      "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK"
+      "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
+      "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -300,7 +301,7 @@
       "Sales Enterprise is licensed with zero Dataverse instances. U-DUAL cannot leave the twin.",
       "Cloud and local motherships are Azure-declared in catalog and still in-process on one ledger \u2014 not two deployed planes.",
       "Apex ainav.institute CNAMEs to empty Cloudflare Pages while Azure hosts the real site. Pages is not the Institute. Do not add asuid while Pages is the apex origin. The public face is split against any launched SaaS domain. Hostname rehearsal is catalog only. Not Institute launch.",
-      "Graph Read is still open. Owner recorded tenant-wide Grant failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Trash those leftovers and Graph Writes, then Grant. Teams, SharePoint, Defender, and PIM complements stay 403 until the four Reads are Granted. This plane cannot invent Graph consent.",
+      "Four Reads are Granted. Graph Writes still Granted. Trash Organization.ReadWrite.All and User.ReadWrite.All, then Grant again to revoke Writes. Leftover Speech, ARM, and Key Vault are gone. This plane cannot invent Graph consent. Not Graph Read closed.",
       "No billing provider. Catalog list cannot become recognized revenue. No named customer. No signed L1. Billing stays unattached and is not a ninth Microsoft complement.",
       "Ten departments are mapped. Most are licensed_not_wired. The map is not the company running. Entra-group templates are not live assignments.",
       "Governance is a catalog map. It is not counsel, not a filing, and not a certificate. Freeze requested in a browser is not a catalog freeze.",
@@ -476,7 +477,7 @@
         "who": "owner"
       },
       {
-        "do": "Trash leftover Speech, Azure Service Management, and Key Vault first. Trash Graph Writes. Then admin-consent Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, RoleEligibilitySchedule.Read.Directory. No Write. No new app.",
+        "do": "Four Reads are Granted. Trash Graph Writes. Grant again to revoke Organization.ReadWrite.All and User.ReadWrite.All. Keep the four Reads. No Write. No new app.",
         "marks_live_pin": false,
         "n": 3,
         "title": "Graph read on the same app",
@@ -821,6 +822,14 @@
         "n": 46,
         "title": "Owner recorded Grant blocked by leftover APIs",
         "who": "tree"
+      },
+      {
+        "do": "Record Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Trash Writes, then Grant again. Not Graph Read closed. Not from this plane. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 47,
+        "title": "Owner recorded four Reads Granted",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -889,7 +898,8 @@
       "Lab pin is not the commercial close. AINAV-L1 and gold 95 are rehearsal. Controllers buy named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach.",
       "Live Cloudflare quality probe is in the tree: HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not SSL Full. Confirm Full and Rocket Loader stay owner-only.",
       "Owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane. Visitor cert is not proof. ssl_full_claimed stays false. Not launch.",
-      "Owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay open. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK."
+      "Owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal. Four Reads stay open. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.",
+      "Owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK."
     ]
   },
   "fit": [
