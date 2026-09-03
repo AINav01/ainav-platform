@@ -123,6 +123,43 @@ def test_instrument_276_fail_closed():
             item for item in cat["expert_review"]["upgrades"] if item.get("n") != 46
         ]
 
+    def kind(cat):
+        cat["microsoft_stack"]["graph"]["kind"] = "ainav.graph.v0"
+
+    def sku(cat):
+        cat["microsoft_stack"]["graph"]["sku"] = True
+
+    def live(cat):
+        cat["microsoft_stack"]["graph"]["live"] = True
+
+    def remove(cat):
+        cat["microsoft_stack"]["graph"]["remove_before_grant"] = ["Organization.ReadWrite.All"]
+
+    def reads(cat):
+        cat["microsoft_stack"]["graph"]["four_reads"] = ["Team.ReadBasic.All"]
+
+    def note(cat):
+        cat["microsoft_stack"]["graph"]["note"] = "owner recorded a portal error"
+
+    def walk_owner(cat):
+        for item in cat["microsoft_stack"]["walk"]["path"]:
+            if item.get("id") == "graph.read":
+                item["owner"] = "Grant the four Reads."
+                item["in_tree"] = "Health probes report 403."
+
+    def improve(cat):
+        cat["expert_review"]["improve"] = [
+            item for item in cat["expert_review"]["improve"] if "leftover" not in item.lower()
+        ]
+
+    def interface(cat):
+        cat["equations"]["interface"] = cat["equations"]["interface"].replace(" × graph owner consent", "")
+
+    def pin(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 46:
+                item["marks_live_pin"] = True
+
     for mutator in (
         release,
         closed,
@@ -136,5 +173,15 @@ def test_instrument_276_fail_closed():
         drop_closed,
         well,
         upgrade,
+        kind,
+        sku,
+        live,
+        remove,
+        reads,
+        note,
+        walk_owner,
+        improve,
+        interface,
+        pin,
     ):
         _reject(mutator)
