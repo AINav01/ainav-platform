@@ -826,6 +826,16 @@
       "answer": "The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.",
       "hear": "What is my personal liability?",
       "id": "personal"
+    },
+    {
+      "answer": "Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.",
+      "hear": "What's your market share?",
+      "id": "share"
+    },
+    {
+      "answer": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.",
+      "hear": "What's the five-year plan?",
+      "id": "future"
     }
   ],
   "path": [
@@ -888,7 +898,10 @@
       "SOX certificate as the product",
       "Buy L1 and we are compliant",
       "D&O / personal-liability product",
-      "Maps as the sale"
+      "Maps as the sale",
+      "TAM / forecast as the product",
+      "Priced round as the sale",
+      "Category leader from a demo"
     ]
   },
   "recognized_revenue": 0,

@@ -243,6 +243,9 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="risk"' in html
     assert 'href="#risk">Executive risk</a>' in html
     assert "paintExecutiveRisk" in js
+    assert 'id="market"' in html
+    assert 'href="#market">Market</a>' in html
+    assert "paintMarketPosition" in js
     assert "Substitute vs Job C" in html
     assert "Workflow User Groups" in html
     assert "1 mailbox / 0 oid" in html

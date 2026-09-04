@@ -85,6 +85,9 @@ Walk away:
 - Buy L1 and we are compliant
 - D&O / personal-liability product
 - Maps as the sale
+- TAM / forecast as the product
+- Priced round as the sale
+- Category leader from a demo
 
 ### Objection cards
 
@@ -96,6 +99,8 @@ Walk away:
 - **AI will take over.** — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
 - **Will this make us SOX compliant?** — No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.
 - **What is my personal liability?** — The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.
+- **What's your market share?** — Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.
+- **What's the five-year plan?** — The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.
 
 ### CISO posture
 
@@ -115,6 +120,9 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Sell a SOX certificate
 - Does not: Close G12
 - Does not: Sell D&O
+- Does not: Invent TAM or forecast ARR
+- Does not: Claim a priced round
+- Does not: Mark Institute launch
 
 ### Seat B meaning
 

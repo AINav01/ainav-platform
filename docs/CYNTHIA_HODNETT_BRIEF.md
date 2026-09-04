@@ -370,6 +370,7 @@ Working well
 - Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.
 - Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.
 - Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.
+- AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -392,6 +393,7 @@ Could be improved — without inventing a fourth SKU
 - Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
 - Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
 - Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
+- Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -420,6 +422,9 @@ Walk away when
 - Buy L1 and we are compliant
 - D&O / personal-liability product
 - Maps as the sale
+- TAM / forecast as the product
+- Priced round as the sale
+- Category leader from a demo
 
 Objection cards
 
@@ -431,6 +436,8 @@ Objection cards
 - AI will take over. — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
 - Will this make us SOX compliant? — No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.
 - What is my personal liability? — The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.
+- What's your market share? — Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.
+- What's the five-year plan? — The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.
 
 CISO posture — holds
 

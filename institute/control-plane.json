@@ -1877,6 +1877,10 @@
               "label": "Executive risk"
             },
             {
+              "href": "#market",
+              "label": "Market"
+            },
+            {
               "href": "#product",
               "label": "Product"
             }
@@ -4100,7 +4104,10 @@
         "Sell doom-fear",
         "Sell a SOX certificate",
         "Close G12",
-        "Sell D&O"
+        "Sell D&O",
+        "Invent TAM or forecast ARR",
+        "Claim a priced round",
+        "Mark Institute launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4184,6 +4191,34 @@
     "live": false,
     "live_pin_ok": false,
     "mandated": false,
+    "market_position": {
+      "also": [
+        "Category is last authority, not another Copilot.",
+        "We win only on independence, consume-once, fail-closed SoR, and counterparty AI.",
+        "Not uncopyable. Not a patent. G12 stays open.",
+        "Complements stay eight. Cloudflare is DNS/edge, not a SKU.",
+        "Startups then Inception only after launch. Membership is not claimed.",
+        "Thought leadership points at the write rail. Not a blog SKU.",
+        "Switching cost after kit PASS is segregation of duties, not contract fiction."
+      ],
+      "category_leader": false,
+      "cms": false,
+      "fear_brand": false,
+      "forecast": false,
+      "future": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. That sale cannot invent seats, revenue, or LIVE_PIN_OK.",
+      "kind": "ainav.market_position.v1",
+      "launch": false,
+      "lede": "AINav, Inc. market position is an unlaunched independent admit plane. Last authority over the write, not another Copilot. Named customers: none. Recognized revenue: none.",
+      "live": false,
+      "live_pin_ok": false,
+      "not_the_future": "Not TAM. Not forecast ARR. Not a priced round. Not a valuation. Not a design partner. Not category leader from a demo. Not Institute launch from this plane.",
+      "note": "Catalog list times zero booked times a two-human close. Not a priced round. Not LIVE_PIN_OK.",
+      "now": "Now: a running Job C plane, an Azure-hosted Institute that is not launched, and catalog list times zero booked. Demand is 0. Substitutes are already licensed and cheaper.",
+      "priced_round": false,
+      "site": "This band sits after executive risk. First glance stays the write rail. Not a /market route. Not a forecast.",
+      "sku": false,
+      "tam": false
+    },
     "objections": [
       {
         "answer": "Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.",
@@ -4224,6 +4259,16 @@
         "answer": "The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.",
         "hear": "What is my personal liability?",
         "id": "personal"
+      },
+      {
+        "answer": "Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.",
+        "hear": "What's your market share?",
+        "id": "share"
+      },
+      {
+        "answer": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.",
+        "hear": "What's the five-year plan?",
+        "id": "future"
       }
     ],
     "qualify": {
@@ -4247,7 +4292,10 @@
         "SOX certificate as the product",
         "Buy L1 and we are compliant",
         "D&O / personal-liability product",
-        "Maps as the sale"
+        "Maps as the sale",
+        "TAM / forecast as the product",
+        "Priced round as the sale",
+        "Category leader from a demo"
       ]
     },
     "seat_b": {

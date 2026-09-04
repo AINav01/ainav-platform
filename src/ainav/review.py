@@ -347,6 +347,7 @@ def deep_dive(*, probe: bool = False) -> str:
     cont = cat["expert_review"]["success"]["continuity"]
     human = cat["expert_review"]["success"]["human_control"]
     risk = cat["expert_review"]["success"]["executive_risk"]
+    market = cat["expert_review"]["success"]["market_position"]
     lines += [
         "",
         f"**Continuity.** {cont['lede']} {cont['note']}",
@@ -354,6 +355,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"**Human control.** {human['lede']} {human['ours']} {human['not_ours']}",
         "",
         f"**Executive risk.** {risk['lede']} {risk['personal']} {risk['business']} {risk['compliance']} {risk['non_compliance']}",
+        "",
+        f"**Market position.** {market['lede']} {market['now']} {market['future']} {market['not_the_future']}",
         "",
         "## Stack walk",
         "",

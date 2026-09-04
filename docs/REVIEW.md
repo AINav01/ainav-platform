@@ -110,6 +110,9 @@ Walk away:
 - Buy L1 and we are compliant
 - D&O / personal-liability product
 - Maps as the sale
+- TAM / forecast as the product
+- Priced round as the sale
+- Category leader from a demo
 
 **Objections.**
 
@@ -121,6 +124,8 @@ Walk away:
 - **AI will take over.** — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
 - **Will this make us SOX compliant?** — No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.
 - **What is my personal liability?** — The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.
+- **What's your market share?** — Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.
+- **What's the five-year plan?** — The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.
 
 **CISO.** CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write.
 
@@ -138,6 +143,9 @@ Walk away:
 - Does not: Sell a SOX certificate
 - Does not: Close G12
 - Does not: Sell D&O
+- Does not: Invent TAM or forecast ARR
+- Does not: Claim a priced round
+- Does not: Mark Institute launch
 
 **Seat B meaning.** Mailbox recorded is not the click. Seat B meaning stays honest. Cynthia Hodnett · chodnett@ainav.institute.
 
@@ -159,6 +167,8 @@ Walk away:
 **Human control.** Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Fear is only useful if it names that write. Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale. Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.
 
 **Executive risk.** Executive risk is the unauthorized write under a name that certifies the books. Personal and business are the same journal. Compliance maps are not the sale. Personal: the controller or officer who certifies. 'I did not know the AI posted' is identify, not admit. We do not indemnify. We do not appoint officers. We do not sell D&O. Business: restatement, ICFR weakness, customer or counterparty write, examiner exception. Buying L1 does not close regulator clocks. Compliance-fear: maps, SOX opinion, EU AI Act certificate, NIST badge. Claimed stays false. G12 stays open. Not counsel. Walk it like cheaper native. Non-compliance that is ours: a privileged SoR line landed and two humans did not bind. That is write-fear. A missed map is counsel's clock.
+
+**Market position.** AINav, Inc. market position is an unlaunched independent admit plane. Last authority over the write, not another Copilot. Named customers: none. Recognized revenue: none. Now: a running Job C plane, an Azure-hosted Institute that is not launched, and catalog list times zero booked. Demand is 0. Substitutes are already licensed and cheaper. The only future that counts is a named controller who walks away from the licensed substitute and buys L1. That sale cannot invent seats, revenue, or LIVE_PIN_OK. Not TAM. Not forecast ARR. Not a priced round. Not a valuation. Not a design partner. Not category leader from a demo. Not Institute launch from this plane.
 
 ## Stack walk
 
@@ -506,6 +516,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.
 - Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.
 - Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.
+- AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.
 
 ## Expert review — could be improved
 
@@ -528,6 +539,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
 - Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
 - Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
+- Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.
 
 ## Success upgrades
 

@@ -1053,6 +1053,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep write-fear, doom-fear, and loss of control", reason_code="CATALOG_REVIEW")
     if "executive risk" not in blob or "non-compliance" not in blob or "sox opinion" not in blob:
         raise IntegrityError("first-principles must keep executive risk, non-compliance, and SOX opinion", reason_code="CATALOG_REVIEW")
+    if "market position" not in blob or "forecast" not in blob or "priced round" not in blob:
+        raise IntegrityError("first-principles must keep market position, forecast, and priced round", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1085,10 +1087,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("qualify must walk away from AI doom and a fear brand", reason_code="CATALOG_REVIEW")
     if "sox" not in walk or "compliant" not in walk or "d&o" not in walk:
         raise IntegrityError("qualify must walk away from SOX theater, fake compliance, and D&O", reason_code="CATALOG_REVIEW")
+    if "tam" not in walk or "forecast" not in walk or "priced round" not in walk:
+        raise IntegrityError("qualify must walk away from TAM, forecast, and a priced round", reason_code="CATALOG_REVIEW")
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1110,6 +1114,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not sell doom-fear", reason_code="CATALOG_REVIEW")
     if "sox" not in does_not or "g12" not in does_not or "d&o" not in does_not:
         raise IntegrityError("CISO posture does not sell a SOX certificate, close G12, or sell D&O", reason_code="CATALOG_REVIEW")
+    if "tam" not in does_not or "priced round" not in does_not or "institute launch" not in does_not:
+        raise IntegrityError("CISO posture does not invent TAM, a priced round, or Institute launch", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1143,6 +1149,7 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("walk-away ledger note: first walk-away is not recorded", reason_code="CATALOG_REVIEW")
     _validate_human_control(success.get("human_control"))
     _validate_executive_risk(success.get("executive_risk"))
+    _validate_market_position(success.get("market_position"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1212,6 +1219,40 @@ def _validate_executive_risk(body: Any) -> None:
     note = str(risk.get("note") or "").lower()
     if "sox opinion" not in note or "17a-4" not in note or "live_pin_ok" not in note:
         raise IntegrityError("executive risk note refuses SOX, 17a-4, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+
+
+def _validate_market_position(body: Any) -> None:
+    market = _as_dict(body, "market_position")
+    if market.get("sku") is True or market.get("cms") is True or market.get("fear_brand") is True:
+        raise IntegrityError("market position is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if market.get("forecast") is True or market.get("priced_round") is True or market.get("tam") is True:
+        raise IntegrityError("market position is not a forecast, priced round, or TAM", reason_code="CATALOG_REVIEW")
+    if market.get("launch") is True or market.get("category_leader") is True:
+        raise IntegrityError("market position cannot claim launch or category leader", reason_code="CATALOG_REVIEW")
+    if market.get("live") is True or market.get("live_pin_ok") is True:
+        raise IntegrityError("market position cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(market.get("lede") or "").lower()
+    if "market position" not in lede or "unlaunched" not in lede or "named customers" not in lede:
+        raise IntegrityError("market position lede is unlaunched with no named customers", reason_code="CATALOG_REVIEW")
+    now = str(market.get("now") or "").lower()
+    future = str(market.get("future") or "").lower()
+    not_future = str(market.get("not_the_future") or "").lower()
+    if "zero booked" not in now or "demand is 0" not in now:
+        raise IntegrityError("market now is zero booked and demand is 0", reason_code="CATALOG_REVIEW")
+    if "licensed substitute" not in future or "buys l1" not in future or "live_pin_ok" not in future:
+        raise IntegrityError("the only future that counts is the first L1", reason_code="CATALOG_REVIEW")
+    if "tam" not in not_future or "forecast" not in not_future or "priced round" not in not_future:
+        raise IntegrityError("market future refuses TAM, forecast, and a priced round", reason_code="CATALOG_REVIEW")
+    also = [str(item).lower() for item in market.get("also") or []]
+    blob = " ".join(also)
+    if len(also) < 5 or "last authority" not in blob or "eight" not in blob:
+        raise IntegrityError("market also-list keeps last authority and eight complements", reason_code="CATALOG_REVIEW")
+    site = str(market.get("site") or "").lower()
+    if "write rail" not in site or "/market" not in site or "forecast" not in site:
+        raise IntegrityError("market site stays after executive risk, not a /market forecast", reason_code="CATALOG_REVIEW")
+    note = str(market.get("note") or "").lower()
+    if "zero booked" not in note or "priced round" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("market note is catalog list times zero booked, not a priced round", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1581,8 +1622,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#product"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, human control, executive risk, product", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#product"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, product", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")

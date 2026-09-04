@@ -54,6 +54,7 @@ STRUCTURE = {
     "walk_away_ledger",
     "human_control",
     "executive_risk",
+    "market_position",
     "print",
     "pricing_models",
 }

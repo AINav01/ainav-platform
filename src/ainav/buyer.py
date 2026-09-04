@@ -83,6 +83,7 @@ def success_program() -> dict[str, Any]:
         "continuity": dict(body.get("continuity") or {}),
         "human_control": dict(body.get("human_control") or {}),
         "executive_risk": dict(body.get("executive_risk") or {}),
+        "market_position": dict(body.get("market_position") or {}),
     }
 
 

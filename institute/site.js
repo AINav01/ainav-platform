@@ -1864,6 +1864,7 @@
     }
     paintHumanControl(success.human_control);
     paintExecutiveRisk(success.executive_risk);
+    paintMarketPosition(success.market_position);
   }
 
   function paintHumanControl(control) {
@@ -1900,6 +1901,23 @@
     set("risk-site", risk.site);
     set("risk-note", risk.note);
     replacePlain("risk-also", risk.also);
+  }
+
+  function paintMarketPosition(market) {
+    if (!market || market.live || market.live_pin_ok || market.sku || market.forecast || market.priced_round || market.tam || market.launch || market.category_leader) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("market-lede", market.lede);
+    set("market-now", market.now);
+    set("market-future", market.future);
+    set("market-not", market.not_the_future);
+    set("market-site", market.site);
+    set("market-note", market.note);
+    replacePlain("market-also", market.also);
   }
 
   function replacePlain(id, items) {
