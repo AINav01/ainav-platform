@@ -159,6 +159,30 @@ def test_validate_institute_twin_direct_holes():
     live["twin"]["live"] = True
     with pytest.raises(IntegrityError):
         catmod._validate_institute_twin(live)
+    kind = copy.deepcopy(good)
+    kind["twin"]["kind"] = "nope"
+    with pytest.raises(IntegrityError):
+        catmod._validate_institute_twin(kind)
+    note = copy.deepcopy(good)
+    note["twin"]["note"] = "Certified launch."
+    with pytest.raises(IntegrityError):
+        catmod._validate_institute_twin(note)
+    quality_note = copy.deepcopy(load_catalog())
+    quality_note["microsoft_stack"]["edge"]["quality"]["note"] = (
+        "It is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_edge_quality(quality_note["microsoft_stack"]["edge"])
+    activate = copy.deepcopy(load_catalog())
+    for item in activate["microsoft_stack"]["edge"]["activate"]["now"]:
+        if item.get("id") == "waf.managed":
+            item["do"] = "Leave WAF on. Challenge holding."
+    with pytest.raises(IntegrityError):
+        catmod._validate_microsoft_edge(activate)
+    site = copy.deepcopy(load_catalog())
+    site["programs"]["website"]["public_edge"] = "pages"
+    with pytest.raises(IntegrityError):
+        validate_catalog(site)
 
 
 def test_edge_quality_probe_keeps_404_and_never_marks_institute(monkeypatch):
