@@ -88,3 +88,19 @@ def test_instrument_282_fail_closed():
     hole["expert_review"]["success"]["what_was_missing"]["fourth_sku"] = True
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_282(hole, hole["plane_interface"])
+    hole = copy.deepcopy(edge)
+    hole["expert_review"]["success"]["what_was_missing"]["kind"] = "ainav.wow.v1"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_282(hole, hole["plane_interface"])
+    hole = copy.deepcopy(edge)
+    hole["expert_review"]["success"]["what_was_missing"]["launch"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_282(hole, hole["plane_interface"])
+    hole = copy.deepcopy(edge)
+    hole["expert_review"]["first_principles"] = [
+        item
+        for item in hole["expert_review"]["first_principles"]
+        if "what you've been missing" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_282(hole, hole["plane_interface"])

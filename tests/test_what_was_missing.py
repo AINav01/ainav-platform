@@ -173,19 +173,68 @@ def test_validate_what_was_missing_direct_holes():
     good = dict(load_catalog()["expert_review"]["success"]["what_was_missing"])
     with pytest.raises(IntegrityError):
         catmod._validate_what_was_missing(None)
-    sku = dict(good)
-    sku["sku"] = True
+    for key in ("sku", "cms", "fourth_sku", "launch", "fear_brand", "forecast", "live", "live_pin_ok"):
+        hole = dict(good)
+        hole[key] = True
+        with pytest.raises(IntegrityError):
+            catmod._validate_what_was_missing(hole)
+    kind = dict(good)
+    kind["kind"] = "ainav.wow.v1"
     with pytest.raises(IntegrityError):
-        catmod._validate_what_was_missing(sku)
-    live = dict(good)
-    live["live"] = True
+        catmod._validate_what_was_missing(kind)
+    lede = dict(good)
+    lede["lede"] = "A new Copilot."
     with pytest.raises(IntegrityError):
-        catmod._validate_what_was_missing(live)
-    fourth = dict(good)
-    fourth["fourth_sku"] = True
+        catmod._validate_what_was_missing(lede)
+    site = dict(good)
+    site["site"] = "Put wow on the fold."
     with pytest.raises(IntegrityError):
-        catmod._validate_what_was_missing(fourth)
-    launch = dict(good)
-    launch["launch"] = True
+        catmod._validate_what_was_missing(site)
+    note = dict(good)
+    note["note"] = "Certified."
     with pytest.raises(IntegrityError):
-        catmod._validate_what_was_missing(launch)
+        catmod._validate_what_was_missing(note)
+    already = dict(good)
+    already["already_have"] = ["nope"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(already)
+    been = dict(good)
+    been["been_missing"] = ["nope"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(been)
+    caps = dict(good)
+    caps["capabilities"] = ["nope"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(caps)
+    tools = dict(good)
+    tools["tools_around"] = ["nope"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(tools)
+    refuse = dict(good)
+    refuse["refuse_to_become"] = ["nope"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(refuse)
+    short_already = dict(good)
+    short_already["already_have"] = [
+        "Business Central Entra Workflow Copilot Teams PIM"
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(short_already)
+    short_been = dict(good)
+    short_been["been_missing"] = [
+        "action_hash consume-once fail-closed freeze independence counterparty"
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(short_been)
+    short_caps = dict(good)
+    short_caps["capabilities"] = [
+        "Admit consume-once fail-closed keep freeze examiner walk-away twin dashboard"
+    ] * 6
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(short_caps)
+    short_tools = dict(good)
+    short_tools["tools_around"] = [
+        "Teams E7 Cloudflare Gold Kit SWA"
+    ] * 4
+    with pytest.raises(IntegrityError):
+        catmod._validate_what_was_missing(short_tools)
