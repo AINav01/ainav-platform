@@ -227,6 +227,12 @@ def public_search() -> dict[str, Any]:
             "href": "twin.html",
             "text": "Azure SWA is the Institute digital twin for review and updates. Cloudflare apex is empty 404. Gold 99. Not launch. Not LIVE_PIN_OK.",
         },
+        {
+            "id": "have",
+            "title": "What you've been missing",
+            "href": "index.html#have",
+            "text": "You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR. Not a fourth SKU. Not #missing.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

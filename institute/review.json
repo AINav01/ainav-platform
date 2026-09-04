@@ -305,6 +305,7 @@
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
       "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
       "2.81.0 Institute twin website for review: twin.html on Azure SWA. --publish-twin updates the twin only. --publish-institute stays launch_not_ready. Cloudflare apex stays empty 404. Gold 99 stays the floor. A green check is not LIVE_PIN_OK",
+      "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements. #have is the sale wow. #missing stays owner-honest. Not a fourth SKU. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -368,7 +369,8 @@
       "Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.",
       "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
       "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.",
-      "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch."
+      "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.",
+      "What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -427,7 +429,10 @@
           "Sell D&O",
           "Invent TAM or forecast ARR",
           "Claim a priced round",
-          "Mark Institute launch"
+          "Mark Institute launch",
+          "Mint a fourth SKU",
+          "Sell a CMS",
+          "Treat owner-missing as the sale wow"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -589,6 +594,11 @@
           "answer": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.",
           "hear": "What's the five-year plan?",
           "id": "future"
+        },
+        {
+          "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
+          "hear": "We already have dual control.",
+          "id": "have"
         }
       ],
       "qualify": {
@@ -615,7 +625,10 @@
           "Maps as the sale",
           "TAM / forecast as the product",
           "Priced round as the sale",
-          "Category leader from a demo"
+          "Category leader from a demo",
+          "Another Copilot as the wow",
+          "CMS as the product",
+          "Fourth SKU as what you've been missing"
         ]
       },
       "seat_b": {
@@ -647,6 +660,71 @@
         "items": [],
         "note": "The first walk-away is not recorded. Do not invent a named controller who walked. Count stays 0.",
         "recorded": false
+      },
+      "what_was_missing": {
+        "already_have": [
+          "Business Central Premium \u2014 two-person journal SOD",
+          "Entra ID \u2014 identify, MFA, Conditional Access",
+          "Workflow User Groups \u2014 native dual approval, replayable",
+          "Copilot Studio RFI \u2014 a human looked",
+          "Teams vote \u2014 a chat is not admit",
+          "PIM eligible \u2014 eligible is not admit",
+          "Defender / Purview \u2014 detect and retain, not bind the write",
+          "Microsoft 365 E7 \u2014 mailbox and identify, not a seat"
+        ],
+        "been_missing": [
+          "Two distinct humans bind one action_hash",
+          "Consume-once \u2014 the grant cannot be replayed",
+          "Fail-closed SoR \u2014 no admit, no write",
+          "Second record \u2014 sealed DecisionRecord, not the first record",
+          "Freeze \u2014 inference may continue, consequence does not",
+          "Independence \u2014 plane outside the drafting vendor",
+          "Counterparty AI \u2014 the same write when their model drafts into your SoR",
+          "Ninety-minute proof day \u2014 walk out with kit PASS, not a demo"
+        ],
+        "capabilities": [
+          "Admit \u2014 two humans, one hash. Not identify.",
+          "Consume-once \u2014 the grant dies on the write.",
+          "Fail-closed effect \u2014 no admit, no SoR line.",
+          "Keep / Merkle \u2014 second record. Examiner walk.",
+          "Freeze \u2014 off switch. Consequence does not.",
+          "Examiner walk \u2014 read-only Merkle prove. Not 17a-4.",
+          "Walk-away qualify \u2014 cheaper native is a refuse.",
+          "Twin review \u2014 see the Institute before launch.",
+          "One dashboard \u2014 included with L1. Not a second SKU."
+        ],
+        "cms": false,
+        "fear_brand": false,
+        "forecast": false,
+        "fourth_sku": false,
+        "kind": "ainav.what_was_missing.v1",
+        "launch": false,
+        "lede": "What you've been missing is not another Copilot. You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR.",
+        "live": false,
+        "live_pin_ok": false,
+        "note": "The wow is the missing admit plane. Not a fourth SKU. Not launch. Not LIVE_PIN_OK.",
+        "refuse_to_become": [
+          "Another Copilot",
+          "A CMS \u2014 Webflow, Squarespace, Storybook as the product",
+          "A GRC certificate",
+          "A forecast / TAM product",
+          "A ninth complement",
+          "Cloudflare as a SKU",
+          "LIVE_PIN_OK theater",
+          "Intercom / live-chat as the sale",
+          "HubSpot / Salesforce as the wow"
+        ],
+        "site": "This band sits after market position. First glance stays the write rail. Not a /have route. Not #missing. #missing stays owner-honest.",
+        "sku": false,
+        "tools_around": [
+          "Teams notify \u2014 complement. A chat is not a seat.",
+          "E7 identify \u2014 mailbox and MFA. Identify is not admit.",
+          "Cloudflare edge \u2014 DNS/edge. Not a SKU. Not the Institute.",
+          "Gold CI \u2014 coverage at or above 99. A green check is not LIVE_PIN_OK.",
+          "Kit Playwright / Lighthouse \u2014 proof tooling. Not a CMS.",
+          "Azure SWA twin \u2014 review host. Not launch.",
+          "status.json paint \u2014 catalog-honest live paint. Not a CMS."
+        ]
       }
     },
     "upgrades": [
@@ -1050,6 +1128,14 @@
         "n": 51,
         "title": "Institute twin website for review",
         "who": "tree"
+      },
+      {
+        "do": "Ship 2.82.0: sale-site #have contrast of you already have vs you've been missing. Whole-business capabilities are not SKUs. Tools around the plane stay complements. Not a fourth SKU. Not #missing. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 52,
+        "title": "What you've been missing",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -1073,7 +1159,7 @@
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
       "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
-      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, and one-seat-missing continuity.",
+      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, and what you've been missing.",
       "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
       "Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.",
       "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
@@ -1108,6 +1194,7 @@
       "The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.",
       "Gold floor is 95 percent. make gold fails under 95. A green check is not LIVE_PIN_OK.",
       "2.81.0 Institute twin website is the review surface. twin.html integrates the boards. --publish-twin is not launch. Cloudflare apex stays empty.",
+      "2.82.0 what you've been missing is catalog law: licensed copies versus the admit plane, whole-business capabilities that are not SKUs, tools around the plane that stay complements.",
       "Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.",
       "Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.",
       "Provision spine sits the Provision tab: Qualify \u2192 L1 \u2192 kit PASS \u2192 P-ADM \u2192 paid U-DUAL. Attached 0/0/0. U-DUAL never free.",

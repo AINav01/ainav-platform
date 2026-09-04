@@ -47,6 +47,7 @@ def test_deep_dive_is_catalog_honest():
     assert "G1/G10 LIVE_PIN_OK" in body
     assert "## Competitive field (honest)" in body
     assert "## Success program — bake-off, qualify, walk away" in body
+    assert "What you've been missing." in body
     assert "## Stack walk" in body
     assert "dash.cloudflare.com" in body
     assert "python -m ainav stack" in body
@@ -84,7 +85,7 @@ def test_review_json_cannot_claim_live():
     assert card["live"] is False
     assert card["probed"] is False
     assert card["expert_review"]["success"]["live_pin_ok"] is False
-    assert len(card["expert_review"]["upgrades"]) == 51
+    assert len(card["expert_review"]["upgrades"]) == 52
 
 
 def test_review_model_fit_covers_the_company():

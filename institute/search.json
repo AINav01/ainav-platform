@@ -52,8 +52,14 @@
       "id": "twin-review",
       "text": "Azure SWA is the Institute digital twin for review and updates. Cloudflare apex is empty 404. Gold 99. Not launch. Not LIVE_PIN_OK.",
       "title": "Twin review"
+    },
+    {
+      "href": "index.html#have",
+      "id": "have",
+      "text": "You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR. Not a fourth SKU. Not #missing.",
+      "title": "What you've been missing"
     }
   ],
-  "release": "2.81.0",
+  "release": "2.82.0",
   "sku": false
 }

@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.81.0"
+    "release": "2.82.0"
   },
   "communications": [
     {
@@ -1881,6 +1881,10 @@
               "label": "Market"
             },
             {
+              "href": "#have",
+              "label": "You've been missing"
+            },
+            {
               "href": "#product",
               "label": "Product"
             }
@@ -2097,6 +2101,7 @@
       "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane",
       "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane",
       "2.81.0 Institute twin website for review: twin.html on Azure SWA, --publish-twin is not launch, --publish-institute stays launch_not_ready, Cloudflare apex stays empty 404; not from this plane",
+      "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements; #have is the sale wow; #missing stays owner-honest; not a fourth SKU; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -3807,7 +3812,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.81.0",
+  "release": "2.82.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4116,7 +4121,10 @@
         "Sell D&O",
         "Invent TAM or forecast ARR",
         "Claim a priced round",
-        "Mark Institute launch"
+        "Mark Institute launch",
+        "Mint a fourth SKU",
+        "Sell a CMS",
+        "Treat owner-missing as the sale wow"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4278,6 +4286,11 @@
         "answer": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.",
         "hear": "What's the five-year plan?",
         "id": "future"
+      },
+      {
+        "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
+        "hear": "We already have dual control.",
+        "id": "have"
       }
     ],
     "qualify": {
@@ -4304,7 +4317,10 @@
         "Maps as the sale",
         "TAM / forecast as the product",
         "Priced round as the sale",
-        "Category leader from a demo"
+        "Category leader from a demo",
+        "Another Copilot as the wow",
+        "CMS as the product",
+        "Fourth SKU as what you've been missing"
       ]
     },
     "seat_b": {
@@ -4336,6 +4352,71 @@
       "items": [],
       "note": "The first walk-away is not recorded. Do not invent a named controller who walked. Count stays 0.",
       "recorded": false
+    },
+    "what_was_missing": {
+      "already_have": [
+        "Business Central Premium \u2014 two-person journal SOD",
+        "Entra ID \u2014 identify, MFA, Conditional Access",
+        "Workflow User Groups \u2014 native dual approval, replayable",
+        "Copilot Studio RFI \u2014 a human looked",
+        "Teams vote \u2014 a chat is not admit",
+        "PIM eligible \u2014 eligible is not admit",
+        "Defender / Purview \u2014 detect and retain, not bind the write",
+        "Microsoft 365 E7 \u2014 mailbox and identify, not a seat"
+      ],
+      "been_missing": [
+        "Two distinct humans bind one action_hash",
+        "Consume-once \u2014 the grant cannot be replayed",
+        "Fail-closed SoR \u2014 no admit, no write",
+        "Second record \u2014 sealed DecisionRecord, not the first record",
+        "Freeze \u2014 inference may continue, consequence does not",
+        "Independence \u2014 plane outside the drafting vendor",
+        "Counterparty AI \u2014 the same write when their model drafts into your SoR",
+        "Ninety-minute proof day \u2014 walk out with kit PASS, not a demo"
+      ],
+      "capabilities": [
+        "Admit \u2014 two humans, one hash. Not identify.",
+        "Consume-once \u2014 the grant dies on the write.",
+        "Fail-closed effect \u2014 no admit, no SoR line.",
+        "Keep / Merkle \u2014 second record. Examiner walk.",
+        "Freeze \u2014 off switch. Consequence does not.",
+        "Examiner walk \u2014 read-only Merkle prove. Not 17a-4.",
+        "Walk-away qualify \u2014 cheaper native is a refuse.",
+        "Twin review \u2014 see the Institute before launch.",
+        "One dashboard \u2014 included with L1. Not a second SKU."
+      ],
+      "cms": false,
+      "fear_brand": false,
+      "forecast": false,
+      "fourth_sku": false,
+      "kind": "ainav.what_was_missing.v1",
+      "launch": false,
+      "lede": "What you've been missing is not another Copilot. You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR.",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "The wow is the missing admit plane. Not a fourth SKU. Not launch. Not LIVE_PIN_OK.",
+      "refuse_to_become": [
+        "Another Copilot",
+        "A CMS \u2014 Webflow, Squarespace, Storybook as the product",
+        "A GRC certificate",
+        "A forecast / TAM product",
+        "A ninth complement",
+        "Cloudflare as a SKU",
+        "LIVE_PIN_OK theater",
+        "Intercom / live-chat as the sale",
+        "HubSpot / Salesforce as the wow"
+      ],
+      "site": "This band sits after market position. First glance stays the write rail. Not a /have route. Not #missing. #missing stays owner-honest.",
+      "sku": false,
+      "tools_around": [
+        "Teams notify \u2014 complement. A chat is not a seat.",
+        "E7 identify \u2014 mailbox and MFA. Identify is not admit.",
+        "Cloudflare edge \u2014 DNS/edge. Not a SKU. Not the Institute.",
+        "Gold CI \u2014 coverage at or above 99. A green check is not LIVE_PIN_OK.",
+        "Kit Playwright / Lighthouse \u2014 proof tooling. Not a CMS.",
+        "Azure SWA twin \u2014 review host. Not launch.",
+        "status.json paint \u2014 catalog-honest live paint. Not a CMS."
+      ]
     }
   },
   "success_equation": "walk-away \u00d7 independence \u00d7 consume-once \u00d7 fail-closed \u00d7 named dual seats",

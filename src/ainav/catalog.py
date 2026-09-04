@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 51:
-        raise IntegrityError("expert review needs 16–51 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 52:
+        raise IntegrityError("expert review needs 16–52 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1175,6 +1175,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         49: ("first-principles", "live_pin_ok"),
         50: ("gold 99", "live_pin_ok"),
         51: ("twin website", "live_pin_ok"),
+        52: ("been missing", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1208,6 +1209,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep Canada affinity and Advanced Data Residency", reason_code="CATALOG_REVIEW")
     if "digital twin" not in blob or "apex 404" not in blob or "gold 99" not in blob:
         raise IntegrityError("first-principles must keep the Institute twin and empty Cloudflare apex", reason_code="CATALOG_REVIEW")
+    if "what you've been missing" not in blob or "you already have" not in blob or "fourth sku" not in blob:
+        raise IntegrityError("first-principles must keep what you've been missing and you already have", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1242,10 +1245,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("qualify must walk away from SOX theater, fake compliance, and D&O", reason_code="CATALOG_REVIEW")
     if "tam" not in walk or "forecast" not in walk or "priced round" not in walk:
         raise IntegrityError("qualify must walk away from TAM, forecast, and a priced round", reason_code="CATALOG_REVIEW")
+    if "cms" not in walk or "fourth sku" not in walk or "been missing" not in walk:
+        raise IntegrityError("qualify must walk away from a CMS, a fourth SKU, and wow-as-product", reason_code="CATALOG_REVIEW")
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1269,6 +1274,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not sell a SOX certificate, close G12, or sell D&O", reason_code="CATALOG_REVIEW")
     if "tam" not in does_not or "priced round" not in does_not or "institute launch" not in does_not:
         raise IntegrityError("CISO posture does not invent TAM, a priced round, or Institute launch", reason_code="CATALOG_REVIEW")
+    if "fourth sku" not in does_not or "cms" not in does_not or "sale wow" not in does_not:
+        raise IntegrityError("CISO posture does not mint a fourth SKU, sell a CMS, or treat owner-missing as the sale wow", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1303,6 +1310,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_human_control(success.get("human_control"))
     _validate_executive_risk(success.get("executive_risk"))
     _validate_market_position(success.get("market_position"))
+    _validate_what_was_missing(success.get("what_was_missing"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1406,6 +1414,51 @@ def _validate_market_position(body: Any) -> None:
     note = str(market.get("note") or "").lower()
     if "zero booked" not in note or "priced round" not in note or "live_pin_ok" not in note:
         raise IntegrityError("market note is catalog list times zero booked, not a priced round", reason_code="CATALOG_REVIEW")
+
+
+def _validate_what_was_missing(body: Any) -> None:
+    missing = _as_dict(body, "what_was_missing")
+    if missing.get("kind") != "ainav.what_was_missing.v1":
+        raise IntegrityError("what_was_missing kind is ainav.what_was_missing.v1", reason_code="CATALOG_REVIEW")
+    if missing.get("sku") is True or missing.get("cms") is True or missing.get("fourth_sku") is True:
+        raise IntegrityError("what you've been missing is not a SKU, CMS, or fourth SKU", reason_code="CATALOG_REVIEW")
+    if missing.get("launch") is True or missing.get("fear_brand") is True or missing.get("forecast") is True:
+        raise IntegrityError("what you've been missing cannot claim launch, a fear brand, or a forecast", reason_code="CATALOG_REVIEW")
+    if missing.get("live") is True or missing.get("live_pin_ok") is True:
+        raise IntegrityError("what you've been missing cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(missing.get("lede") or "").lower()
+    if "been missing" not in lede or "copilot" not in lede or "cheaper" not in lede:
+        raise IntegrityError("what-was-missing lede is licensed copies versus the admit plane", reason_code="CATALOG_REVIEW")
+    already = " ".join(str(item).lower() for item in missing.get("already_have") or [])
+    for stem in ("business central", "entra", "workflow", "copilot", "teams", "pim"):
+        if stem not in already:
+            raise IntegrityError("already-have must name the licensed cheaper copies", reason_code="CATALOG_REVIEW")
+    been = " ".join(str(item).lower() for item in missing.get("been_missing") or [])
+    for stem in ("action_hash", "consume-once", "fail-closed", "freeze", "independence", "counterparty"):
+        if stem not in been:
+            raise IntegrityError("been-missing must name the admit plane", reason_code="CATALOG_REVIEW")
+    caps = " ".join(str(item).lower() for item in missing.get("capabilities") or [])
+    for stem in ("admit", "consume-once", "fail-closed", "keep", "freeze", "examiner", "walk-away", "twin", "dashboard"):
+        if stem not in caps:
+            raise IntegrityError("capabilities must name the whole-business plane, not SKUs", reason_code="CATALOG_REVIEW")
+    tools = " ".join(str(item).lower() for item in missing.get("tools_around") or [])
+    for stem in ("teams", "e7", "cloudflare", "gold", "kit", "swa"):
+        if stem not in tools:
+            raise IntegrityError("tools-around stay complements, not the product", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in missing.get("refuse_to_become") or [])
+    for stem in ("copilot", "cms", "grc", "forecast", "ninth", "cloudflare", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("refuse-to-become must keep Copilot, CMS, GRC, forecast, ninth, Cloudflare, LIVE_PIN", reason_code="CATALOG_REVIEW")
+    site = str(missing.get("site") or "").lower()
+    if "write rail" not in site or "/have" not in site or "#missing" not in site:
+        raise IntegrityError("what-was-missing site stays after market, not a /have route or #missing", reason_code="CATALOG_REVIEW")
+    note = str(missing.get("note") or "").lower()
+    if "fourth sku" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("what-was-missing note refuses a fourth SKU and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if len(missing.get("already_have") or []) < 6 or len(missing.get("been_missing") or []) < 6:
+        raise IntegrityError("what-was-missing needs the licensed-copy versus admit contrast", reason_code="CATALOG_REVIEW")
+    if len(missing.get("capabilities") or []) < 7 or len(missing.get("tools_around") or []) < 5:
+        raise IntegrityError("what-was-missing needs the whole-business capability and tools map", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1782,8 +1835,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#product"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, product", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
@@ -2321,6 +2374,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_279(catalog, body)
     _validate_instrument_280(catalog, body)
     _validate_instrument_281(catalog, body)
+    _validate_instrument_282(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2672,8 +2726,6 @@ def _validate_instrument_280(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_281(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.81.0":
-        raise IntegrityError("entity.release is 2.81.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.81.0" in item and "twin" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.81.0 Institute twin website", reason_code="CATALOG_ENGINEERING")
@@ -2687,6 +2739,22 @@ def _validate_instrument_281(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "twin website" not in principles or "publish-twin" not in principles:
         raise IntegrityError("first-principles must keep the twin website and publish-twin", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_282(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.82.0":
+        raise IntegrityError("entity.release is 2.82.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.82.0" in item and "been missing" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.82.0 what you've been missing", reason_code="CATALOG_ENGINEERING")
+    missing = ((catalog.get("expert_review") or {}).get("success") or {}).get("what_was_missing") or {}
+    if missing.get("kind") != "ainav.what_was_missing.v1":
+        raise IntegrityError("2.82.0 what_was_missing kind", reason_code="CATALOG_REVIEW")
+    if missing.get("fourth_sku") is True or missing.get("launch") is True:
+        raise IntegrityError("2.82.0 what_was_missing is not a fourth SKU or launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "what you've been missing" not in principles or "you already have" not in principles:
+        raise IntegrityError("first-principles must keep what you've been missing", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

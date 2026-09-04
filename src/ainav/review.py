@@ -351,6 +351,7 @@ def deep_dive(*, probe: bool = False) -> str:
     human = cat["expert_review"]["success"]["human_control"]
     risk = cat["expert_review"]["success"]["executive_risk"]
     market = cat["expert_review"]["success"]["market_position"]
+    have = cat["expert_review"]["success"]["what_was_missing"]
     us_dv = cat["microsoft_stack"]["us_dataverse"]
     lines += [
         "",
@@ -361,6 +362,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"**Executive risk.** {risk['lede']} {risk['personal']} {risk['business']} {risk['compliance']} {risk['non_compliance']}",
         "",
         f"**Market position.** {market['lede']} {market['now']} {market['future']} {market['not_the_future']}",
+        "",
+        f"**What you've been missing.** {have['lede']} {have['site']} {have['note']}",
         "",
         f"**US Dataverse.** {us_dv['lede']} {us_dv['finding']} {us_dv['note']}",
         "",

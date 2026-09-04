@@ -587,6 +587,7 @@
       "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane",
       "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane",
       "2.81.0 Institute twin website for review: twin.html on Azure SWA, --publish-twin is not launch, --publish-institute stays launch_not_ready, Cloudflare apex stays empty 404; not from this plane",
+      "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements; #have is the sale wow; #missing stays owner-honest; not a fourth SKU; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -844,6 +845,11 @@
       "answer": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.",
       "hear": "What's the five-year plan?",
       "id": "future"
+    },
+    {
+      "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
+      "hear": "We already have dual control.",
+      "id": "have"
     }
   ],
   "path": [
@@ -909,7 +915,10 @@
       "Maps as the sale",
       "TAM / forecast as the product",
       "Priced round as the sale",
-      "Category leader from a demo"
+      "Category leader from a demo",
+      "Another Copilot as the wow",
+      "CMS as the product",
+      "Fourth SKU as what you've been missing"
     ]
   },
   "recognized_revenue": 0,
@@ -920,7 +929,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.81.0",
+  "release": "2.82.0",
   "scenarios": [
     {
       "id": "l1_only",

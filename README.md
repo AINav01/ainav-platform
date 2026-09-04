@@ -111,7 +111,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.81.0 (this tree)
+### 2.82.0 (this tree)
+
+What you've been missing.
+Sale-site `#have` contrasts licensed
+copies against the admit plane.
+Whole-business capabilities are not
+SKUs. Tools around the plane stay
+complements. `#missing` stays
+owner-honest. Not a fourth SKU.
+Not launch. A green check is not
+`LIVE_PIN_OK`.
+
+### 2.81.0
 
 Institute twin website for review.
 `twin.html` on Azure SWA integrates

@@ -1865,6 +1865,7 @@
     paintHumanControl(success.human_control);
     paintExecutiveRisk(success.executive_risk);
     paintMarketPosition(success.market_position);
+    paintWhatWasMissing(success.what_was_missing);
   }
 
   function paintHumanControl(control) {
@@ -1918,6 +1919,24 @@
     set("market-site", market.site);
     set("market-note", market.note);
     replacePlain("market-also", market.also);
+  }
+
+  function paintWhatWasMissing(missing) {
+    if (!missing || missing.live || missing.live_pin_ok || missing.sku || missing.cms || missing.fourth_sku || missing.launch || missing.forecast) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("have-lede", missing.lede);
+    set("have-site", missing.site);
+    set("have-note", missing.note);
+    replacePlain("have-already", missing.already_have);
+    replacePlain("have-missing", missing.been_missing);
+    replacePlain("have-capabilities", missing.capabilities);
+    replacePlain("have-tools", missing.tools_around);
+    replacePlain("have-refuse", missing.refuse_to_become);
   }
 
   function replacePlain(id, items) {
