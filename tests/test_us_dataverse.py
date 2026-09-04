@@ -184,3 +184,136 @@ def test_validate_us_dataverse_direct_holes():
     live["live"] = True
     with pytest.raises(IntegrityError):
         catmod._validate_us_dataverse({"microsoft_stack": {"us_dataverse": live}})
+    kind = dict(good)
+    kind["kind"] = "nope"
+    with pytest.raises(IntegrityError):
+        catmod._validate_us_dataverse({"microsoft_stack": {"us_dataverse": kind}})
+    changed = dict(good)
+    changed["support_changes_made"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_us_dataverse({"microsoft_stack": {"us_dataverse": changed}})
+    learn = dict(good)
+    learn["learn"] = "nope"
+    with pytest.raises(IntegrityError):
+        catmod._validate_us_dataverse({"microsoft_stack": {"us_dataverse": learn}})
+    learn_key = dict(good)
+    learn_key["learn"] = dict(good["learn"])
+    learn_key["learn"]["geo_to_geo"] = "https://example.com"
+    with pytest.raises(IntegrityError):
+        catmod._validate_us_dataverse({"microsoft_stack": {"us_dataverse": learn_key}})
+
+
+def test_us_dataverse_owner_surfaces_fail_closed():
+    def sales_hop(cat):
+        for item in cat["microsoft_stack"]["walk"]["path"]:
+            if item.get("id") == "sales.enterprise":
+                item["in_tree"] = "Sales licensed."
+                item["owner"] = "Create a US Power Platform environment."
+
+    def sales_create(cat):
+        for item in cat["microsoft_stack"]["walk"]["path"]:
+            if item.get("id") == "sales.enterprise":
+                item["in_tree"] = (
+                    "Ticket 2609030040009525. Canada. United States is not pinned. "
+                    "Create a US Power Platform environment."
+                )
+
+    def walk_cannot(cat):
+        cat["microsoft_stack"]["walk"]["cannot"] = [
+            item
+            for item in cat["microsoft_stack"]["walk"]["cannot"]
+            if "canada" not in item.lower()
+        ]
+
+    def upgrade_create(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 4:
+                item["do"] = (
+                    "Ticket 2609030040009525 Canada ADR United States. "
+                    "Create a US Power Platform environment."
+                )
+
+    def upgrade_who(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 4:
+                item["who"] = "tree"
+                item["done"] = True
+
+    def integrate(cat):
+        for item in cat["plane_interface"]["floor"]["integrate"]["items"]:
+            if item.get("id") == "dataverse.us":
+                item["note"] = "Create Dataverse later."
+
+    def well(cat):
+        cat["expert_review"]["working_well"] = [
+            item
+            for item in cat["expert_review"]["working_well"]
+            if "2609030040009525" not in item
+        ]
+
+    def improve(cat):
+        cat["expert_review"]["improve"] = [
+            item for item in cat["expert_review"]["improve"] if "path b" not in item.lower()
+        ]
+
+    def cannot_close(cat):
+        cat["engineering"]["cannot_close"] = [
+            item for item in cat["engineering"]["cannot_close"] if "dataverse" not in item.lower()
+        ]
+
+    def gate(cat):
+        for item in cat["owner_gates"]:
+            if item.get("id") == "dataverse.us":
+                item["do"] = "Create a US Power Platform environment with Dataverse."
+
+    def gate_stem(cat):
+        for item in cat["owner_gates"]:
+            if item.get("id") == "dataverse.us":
+                item["do"] = "Do something else."
+
+    def principles_adr(cat):
+        catmod._validate_first_principles(
+            [
+                item
+                for item in cat["expert_review"]["first_principles"]
+                if "advanced data residency" not in item.lower()
+            ]
+        )
+
+    for mutator in (
+        sales_hop,
+        sales_create,
+        walk_cannot,
+        upgrade_create,
+        upgrade_who,
+        integrate,
+        well,
+        improve,
+        cannot_close,
+        gate,
+        gate_stem,
+    ):
+        _reject(mutator)
+
+    with pytest.raises(IntegrityError):
+        principles_adr(load_catalog())
+    missing = copy.deepcopy(load_catalog())
+    missing["honest_missing"] = [
+        item for item in missing["honest_missing"] if "canada" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_honest_missing(missing)
+    plane = copy.deepcopy(load_catalog())
+    plane["plane_interface"]["gaps"]["this_plane_cannot"] = [
+        item
+        for item in plane["plane_interface"]["gaps"]["this_plane_cannot"]
+        if "canada" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_272(plane, plane["plane_interface"])
+    integrate_only = copy.deepcopy(load_catalog())
+    for item in integrate_only["plane_interface"]["floor"]["integrate"]["items"]:
+        if item.get("id") == "dataverse.us":
+            item["note"] = "Create Dataverse later."
+    with pytest.raises(IntegrityError):
+        catmod._validate_us_dataverse(integrate_only)
