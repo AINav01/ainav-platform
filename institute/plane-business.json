@@ -585,7 +585,8 @@
       "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
       "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane",
       "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane",
-      "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane"
+      "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane",
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -621,13 +622,17 @@
       "claim SSL Full from this plane",
       "claim Rocket Loader from this plane",
       "claim Graph Read from this plane",
-      "grant Graph consent from this plane"
+      "grant Graph consent from this plane",
+      "treat Canada as United States",
+      "paste Dataverse environment id",
+      "purchase ADR",
+      "mark US Dataverse closed"
     ]
   },
   "honest_missing": [
     "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
     "ainav.institute custom domain and incorporation date",
-    "Power Platform / Dataverse environment for Sales",
+    "Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)",
     "Graph Writes still Granted on the same Entra app",
     "Recognized revenue / external billing provider",
     "G12 legal (counsel pack unsigned)",

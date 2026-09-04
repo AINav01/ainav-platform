@@ -259,7 +259,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 
 - Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)
 - ainav.institute custom domain and incorporation date
-- Power Platform / Dataverse environment for Sales
+- Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)
 - Graph Writes still Granted on the same Entra app
 - Recognized revenue / external billing provider
 - G12 legal (counsel pack unsigned)

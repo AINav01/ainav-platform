@@ -318,7 +318,7 @@
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
       "Graph Writes still Granted on the same Entra app",
-      "US Dataverse for Sales",
+      "US Dataverse for Sales (Canada affinity recorded; United States not pinned)",
       "G12 legal / G13 signed L1",
       "Recognized revenue",
       "Multi-host product HA",
@@ -363,7 +363,8 @@
       "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
       "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
-      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK"
+      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -456,7 +457,7 @@
   "honest_missing": [
     "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
     "ainav.institute custom domain and incorporation date",
-    "Power Platform / Dataverse environment for Sales",
+    "Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)",
     "Graph Writes still Granted on the same Entra app",
     "Recognized revenue / external billing provider",
     "G12 legal (counsel pack unsigned)",

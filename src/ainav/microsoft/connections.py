@@ -160,6 +160,28 @@ def stack_json() -> dict[str, Any]:
                 dict(item) for item in (cat["microsoft_stack"].get("walk") or {}).get("complements") or []
             ],
         },
+        "us_dataverse": {
+            "kind": (cat["microsoft_stack"].get("us_dataverse") or {}).get("kind"),
+            "closed": False,
+            "united_states": False,
+            "canada_is_united_states": False,
+            "adr_purchased": False,
+            "adr_eligible": False,
+            "geo_to_geo_available": False,
+            "dataverse_url_set": False,
+            "engineering_exception_granted": False,
+            "engineering_exception_routed": bool(
+                (cat["microsoft_stack"].get("us_dataverse") or {}).get("engineering_exception_routed")
+            ),
+            "ticket": (cat["microsoft_stack"].get("us_dataverse") or {}).get("ticket"),
+            "lede": (cat["microsoft_stack"].get("us_dataverse") or {}).get("lede"),
+            "finding": (cat["microsoft_stack"].get("us_dataverse") or {}).get("finding"),
+            "owner": (cat["microsoft_stack"].get("us_dataverse") or {}).get("owner"),
+            "note": (cat["microsoft_stack"].get("us_dataverse") or {}).get("note"),
+            "live": False,
+            "live_pin_ok": False,
+            "sku": False,
+        },
     }
 
 

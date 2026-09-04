@@ -103,7 +103,7 @@
       "url_label": "Same app API permissions"
     },
     {
-      "do": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+      "do": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
       "id": "dataverse.us",
       "url": "https://admin.powerplatform.microsoft.com/environments",
       "url_label": "Power Platform environments"

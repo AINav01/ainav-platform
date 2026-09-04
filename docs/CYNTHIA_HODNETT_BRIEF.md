@@ -171,7 +171,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 | Entra users | Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. | https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers |
 | Agents > Tools registry | Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. | https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all |
 | Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
-| Power Platform environments | Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. | https://admin.powerplatform.microsoft.com/environments |
+| Power Platform environments | Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas. | https://admin.powerplatform.microsoft.com/environments |
 | Delaware entity search | Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here. | https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx |
 | Microsoft for Startups | Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. | https://www.microsoft.com/en-us/startups |
 | Azure Static Web Apps | Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch. | https://portal.azure.com/#view/Microsoft_Azure_StaticApps |
@@ -371,6 +371,7 @@ Working well
 - Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.
 - Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.
 - AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.
+- Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -394,6 +395,7 @@ Could be improved — without inventing a fourth SKU
 - Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
 - Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
 - Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.
+- Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.
 
 They win the bake-off when
 
@@ -454,7 +456,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 1. [owner] Named dual seats — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - 2. [owner] Proof day on named humans — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
 - 3. [owner] Graph read on the same app — Four Reads are Granted. Trash Graph Writes. Grant again to revoke Organization.ReadWrite.All and User.ReadWrite.All. Keep the four Reads. No Write. No new app.
-- 4. [owner] US Dataverse — Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.
+- 4. [owner] US Dataverse — Ticket 2609030040009525: North America sandboxes follow Canada affinity. ADR cannot be purchased on a USA sign-up tenant. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste an environment id. Do not set DATAVERSE_URL from this plane.
 - 5. [tree] Name the 2026 substitutes — Paint BC Workflow User Groups, Copilot Studio RFI, Joule/Agentforce HITL, and in-harness governors as copies they can make. Job C pins stay. Not uncopyable.
 - 6. [tree] Price the incident, not hours — Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.
 - 7. [tree] Hold launch — Do not bind ainav.institute or publish until James says launch. --publish-institute stays launch_not_ready.

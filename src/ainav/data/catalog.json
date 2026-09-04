@@ -4251,7 +4251,7 @@
           {
             "id": "dataverse.us",
             "name": "Power Platform environments",
-            "note": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+            "note": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
             "url": "https://admin.powerplatform.microsoft.com/environments",
             "url_label": "Power Platform environments"
           },
@@ -5000,7 +5000,8 @@
         "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
         "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane",
         "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane",
-        "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane"
+        "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane",
+        "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5021,7 +5022,11 @@
         "claim SSL Full from this plane",
         "claim Rocket Loader from this plane",
         "claim Graph Read from this plane",
-        "grant Graph consent from this plane"
+        "grant Graph consent from this plane",
+        "treat Canada as United States",
+        "paste Dataverse environment id",
+        "purchase ADR",
+        "mark US Dataverse closed"
       ],
       "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 99 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
       "owner_only_hrefs": {
@@ -5134,7 +5139,7 @@
   "honest_missing": [
     "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
     "ainav.institute custom domain and incorporation date",
-    "Power Platform / Dataverse environment for Sales",
+    "Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)",
     "Graph Writes still Granted on the same Entra app",
     "Recognized revenue / external billing provider",
     "G12 legal (counsel pack unsigned)",
@@ -5190,13 +5195,14 @@
       "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
       "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
-      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK"
+      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
       "Graph Writes still Granted on the same Entra app",
-      "US Dataverse for Sales",
+      "US Dataverse for Sales (Canada affinity recorded; United States not pinned)",
       "G12 legal / G13 signed L1",
       "Recognized revenue",
       "Multi-host product HA",
@@ -5648,7 +5654,9 @@
         "grant Graph roles",
         "edit Cloudflare",
         "bind ainav.institute",
-        "mark LIVE_PIN_OK"
+        "mark LIVE_PIN_OK",
+        "treat Canada as United States",
+        "paste Dataverse environment id"
       ],
       "path": [
         {
@@ -5722,12 +5730,12 @@
           "name": "Sales Enterprise",
           "role": "sor_udual",
           "status": "licensed_not_wired",
-          "in_tree": "Sales Enterprise is licensed. Global Discovery returned zero instances. U-DUAL stays on the twin until G14.",
-          "owner": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+          "in_tree": "Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: North America sandboxes follow Canada affinity. United States is not pinned. Canada is not United States. U-DUAL stays on the twin until G14.",
+          "owner": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
           "url": "https://admin.powerplatform.microsoft.com/environments",
           "url_label": "Power Platform environments",
-          "learn": "https://learn.microsoft.com/en-us/power-platform/admin/create-environment",
-          "learn_label": "Create an environment"
+          "learn": "https://learn.microsoft.com/power-platform/admin/macro-regions",
+          "learn_label": "Macro regions"
         },
         {
           "id": "teams.enterprise",
@@ -5868,6 +5876,58 @@
           "learn_label": "Azure Policy"
         }
       ]
+    },
+    "us_dataverse": {
+      "kind": "ainav.us_dataverse.v1",
+      "sku": false,
+      "live": false,
+      "live_pin_ok": false,
+      "closed": false,
+      "united_states": false,
+      "canada_is_united_states": false,
+      "adr_purchased": false,
+      "adr_eligible": false,
+      "geo_to_geo_available": false,
+      "dataverse_url_set": false,
+      "engineering_exception_granted": false,
+      "engineering_exception_routed": true,
+      "support_changes_made": false,
+      "ticket": "2609030040009525",
+      "lede": "US Dataverse stays open. North America without Advanced Data Residency is a macro region. Placement affinity to Canada is documented, not a provisioning failure.",
+      "finding": "Microsoft Support ticket 2609030040009525 recorded why North America Sandboxes landed in Canada, why Advanced Data Residency cannot be purchased on a USA sign-up tenant, and why geo-to-geo is blocked by the same gate. Seat-count math is informational only. Engineering exception routed, not granted. No tenant or environment changes were made.",
+      "owner": "Reply-all on 2609030040009525 for written confirmation that no self-service or support path pins United States without ADR, and for the status of the engineering-exception review. Path B — accept Canada as a twin-only Sales environment, not United States — is owner-only. Then a new Cloud Agent with DATAVERSE_URL. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+      "is_not": [
+        "United States datacenter",
+        "ADR purchased",
+        "geo-to-geo available",
+        "DATAVERSE_URL set",
+        "Sales Hub confirmed",
+        "live SoR"
+      ],
+      "cannot": [
+        "treat Canada as United States",
+        "paste Dataverse environment id",
+        "purchase ADR",
+        "reset placement affinity",
+        "mark US Dataverse closed",
+        "mark LIVE_PIN_OK"
+      ],
+      "scope_not": [
+        "Microsoft 365 Exchange",
+        "Teams",
+        "SharePoint",
+        "OneDrive",
+        "Default environment",
+        "The Americas",
+        "Power BI",
+        "Fabric"
+      ],
+      "note": "Microsoft 365 workloads already in the United States are a separate service. Canada is not United States. A green check is not LIVE_PIN_OK.",
+      "learn": {
+        "macro_regions": "https://learn.microsoft.com/power-platform/admin/macro-regions",
+        "adr": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/advanced-data-residency",
+        "geo_to_geo": "https://learn.microsoft.com/power-platform/admin/geo-to-geo-migrations"
+      }
     }
   },
   "connections": {
@@ -6639,7 +6699,7 @@
     },
     {
       "id": "dataverse.us",
-      "do": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+      "do": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
       "url": "https://admin.powerplatform.microsoft.com/environments",
       "url_label": "Power Platform environments"
     },
@@ -6933,7 +6993,8 @@
       "Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.",
       "Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.",
-      "AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK."
+      "AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.",
+      "Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -6958,7 +7019,8 @@
       "Must-have for every client that drafts a privileged write: one plane, two humans, fail-closed SoR. Small client and large client are the same L1. No L1 Express.",
       "Human control is authority over consequence. Loss of control is identify pretending to be admit. Write-fear names the unauthorized journal. Doom-fear is AGI theater — walk it like cheaper native. Not a /fear route. Not a CMS. Not LIVE_PIN_OK.",
       "Executive risk is the write under a name that certifies the books. Personal and business are the same journal. Compliance maps stay claimed=false. Non-compliance that is ours is the landed write. Not a SOX opinion. Not D&O. Not a /risk route. Not LIVE_PIN_OK.",
-      "AINav, Inc. market position is last authority, not another Copilot. Demand is 0. The only future that counts is a named controller who walks away from the licensed substitute and buys L1. Not a forecast. Not TAM. Not a priced round. Not a /market route. Not LIVE_PIN_OK."
+      "AINav, Inc. market position is last authority, not another Copilot. Demand is 0. The only future that counts is a named controller who walks away from the licensed substitute and buys L1. Not a forecast. Not TAM. Not a priced round. Not a /market route. Not LIVE_PIN_OK.",
+      "US Dataverse stays open. North America without Advanced Data Residency is a macro region. Placement affinity to Canada is documented, not a provisioning failure. Do not treat Canada as United States. Do not paste a Dataverse environment id. Engineering exception routed, not granted. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -6980,7 +7042,8 @@
       "Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
       "Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.",
-      "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK."
+      "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
+      "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse."
     ],
     "success": {
       "sku": false,
@@ -7287,7 +7350,7 @@
         "n": 4,
         "who": "owner",
         "title": "US Dataverse",
-        "do": "Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.",
+        "do": "Ticket 2609030040009525: North America sandboxes follow Canada affinity. ADR cannot be purchased on a USA sign-up tenant. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste an environment id. Do not set DATAVERSE_URL from this plane.",
         "marks_live_pin": false
       },
       {

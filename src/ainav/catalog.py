@@ -109,6 +109,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     _validate_plane_interface(catalog)
     _validate_investor(catalog)
     _validate_microsoft_edge(catalog)
+    _validate_us_dataverse(catalog)
     _validate_engineering(catalog)
     _validate_honest_missing(catalog)
 
@@ -327,9 +328,16 @@ def _validate_stack_walk(catalog: dict[str, Any]) -> None:
     if "dash.cloudflare.com" not in str((walk.get("path") or [{}])[0].get("url") or ""):
         raise IntegrityError("first hop is the Cloudflare dashboard", reason_code="CATALOG_STACK")
     cannot = " ".join(str(item).lower() for item in walk.get("cannot") or [])
-    for stem in ("create users", "graph", "cloudflare", "live_pin_ok"):
+    for stem in ("create users", "graph", "cloudflare", "live_pin_ok", "canada", "environment id"):
         if stem not in cannot:
             raise IntegrityError(f"stack walk cannot must keep {stem}", reason_code="CATALOG_STACK")
+    sales = next((item for item in (walk.get("path") or []) if item.get("id") == "sales.enterprise"), {})
+    sales_blob = f"{sales.get('in_tree') or ''} {sales.get('owner') or ''}".lower()
+    for stem in ("canada", "2609030040009525", "united states is not pinned"):
+        if stem not in sales_blob:
+            raise IntegrityError("stack walk Sales hop must keep Canada affinity", reason_code="CATALOG_STACK")
+    if "create a us power platform" in sales_blob:
+        raise IntegrityError("stack walk cannot pretend United States is create-able", reason_code="CATALOG_STACK")
     share = next(
         (item for item in (catalog.get("connections") or {}).get("complements") or [] if item.get("id") == "sharepoint.kit"),
         {},
@@ -338,6 +346,96 @@ def _validate_stack_walk(catalog: dict[str, Any]) -> None:
         raise IntegrityError("SharePoint Write is not from this plane", reason_code="CATALOG_STACK")
     if str(share.get("consented_ask") or "") != "Sites.Read.All":
         raise IntegrityError("SharePoint consented ask is Sites.Read.All", reason_code="CATALOG_STACK")
+
+
+def _validate_us_dataverse(catalog: dict[str, Any]) -> None:
+    body = _as_dict((catalog.get("microsoft_stack") or {}).get("us_dataverse"), "US Dataverse")
+    if body.get("kind") != "ainav.us_dataverse.v1":
+        raise IntegrityError("US Dataverse kind is ainav.us_dataverse.v1", reason_code="CATALOG_STACK")
+    if body.get("sku") is True:
+        raise IntegrityError("US Dataverse is not a SKU", reason_code="CATALOG_SKU")
+    for flag in (
+        "live",
+        "live_pin_ok",
+        "closed",
+        "united_states",
+        "canada_is_united_states",
+        "adr_purchased",
+        "adr_eligible",
+        "geo_to_geo_available",
+        "dataverse_url_set",
+        "engineering_exception_granted",
+        "support_changes_made",
+    ):
+        if body.get(flag) is True:
+            raise IntegrityError(f"US Dataverse cannot claim {flag}", reason_code="CATALOG_STACK")
+    if body.get("engineering_exception_routed") is not True:
+        raise IntegrityError("US Dataverse engineering exception is routed, not granted", reason_code="CATALOG_STACK")
+    if str(body.get("ticket") or "") != "2609030040009525":
+        raise IntegrityError("US Dataverse must keep Support ticket 2609030040009525", reason_code="CATALOG_STACK")
+    lede = str(body.get("lede") or "").lower()
+    if "us dataverse stays open" not in lede or "macro region" not in lede or "canada" not in lede:
+        raise IntegrityError("US Dataverse lede is open, macro region, Canada affinity", reason_code="CATALOG_STACK")
+    finding = str(body.get("finding") or "").lower()
+    if "2609030040009525" not in finding or "advanced data residency" not in finding or "routed" not in finding:
+        raise IntegrityError("US Dataverse finding must keep the Support ticket", reason_code="CATALOG_STACK")
+    owner = str(body.get("owner") or "").lower()
+    if "reply" not in owner or "united states" not in owner or "path b" not in owner:
+        raise IntegrityError("US Dataverse owner step is reply-all and path B", reason_code="CATALOG_STACK")
+    is_not = " ".join(str(item).lower() for item in body.get("is_not") or [])
+    for stem in ("united states", "adr purchased", "dataverse_url", "live sor"):
+        if stem not in is_not:
+            raise IntegrityError(f"US Dataverse is_not must keep {stem}", reason_code="CATALOG_STACK")
+    cannot = " ".join(str(item).lower() for item in body.get("cannot") or [])
+    for stem in ("canada as united states", "environment id", "purchase adr", "live_pin_ok"):
+        if stem not in cannot:
+            raise IntegrityError(f"US Dataverse cannot must keep {stem}", reason_code="CATALOG_STACK")
+    scope = " ".join(str(item).lower() for item in body.get("scope_not") or [])
+    for stem in ("exchange", "default environment", "the americas", "power bi"):
+        if stem not in scope:
+            raise IntegrityError(f"US Dataverse scope_not must keep {stem}", reason_code="CATALOG_STACK")
+    note = str(body.get("note") or "").lower()
+    if "separate service" not in note or "canada is not united states" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("US Dataverse note: M365 is separate; Canada is not United States", reason_code="CATALOG_STACK")
+    learn = body.get("learn") or {}
+    if not isinstance(learn, dict):
+        raise IntegrityError("US Dataverse learn must be an object", reason_code="CATALOG_STACK")
+    for key, stem in (
+        ("macro_regions", "macro-regions"),
+        ("adr", "advanced-data-residency"),
+        ("geo_to_geo", "geo-to-geo"),
+    ):
+        if stem not in str(learn.get(key) or "").lower():
+            raise IntegrityError(f"US Dataverse learn must keep {key}", reason_code="CATALOG_STACK")
+    if "90299caf" in json.dumps(catalog).lower():
+        raise IntegrityError("do not paste a Dataverse environment id", reason_code="CATALOG_STACK")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    pin = next((item for item in upgrades if item.get("n") == 4), {})
+    if pin.get("who") != "owner" or pin.get("done") is True or pin.get("marks_live_pin") is True:
+        raise IntegrityError("upgrade 4 US Dataverse stays owner and open", reason_code="CATALOG_REVIEW")
+    pin_blob = f"{pin.get('title') or ''} {pin.get('do') or ''}".lower()
+    for stem in ("2609030040009525", "canada", "adr", "united states"):
+        if stem not in pin_blob:
+            raise IntegrityError("upgrade 4 must keep the Support Canada-affinity finding", reason_code="CATALOG_REVIEW")
+    if "create a us power platform" in pin_blob:
+        raise IntegrityError("upgrade 4 cannot pretend United States is create-able", reason_code="CATALOG_REVIEW")
+    interface_note = ""
+    for item in ((((catalog.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("items") or []):
+        if item.get("id") == "dataverse.us":
+            interface_note = str(item.get("note") or "").lower()
+            break
+    for stem in ("2609030040009525", "canada", "adr", "united states"):
+        if stem not in interface_note:
+            raise IntegrityError("plane integrate dataverse.us must keep the Support finding", reason_code="CATALOG_STACK")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("2609030040009525" in item and "canada" in item for item in well):
+        raise IntegrityError("working_well must keep the Support Canada-affinity ticket", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("2609030040009525" in item and "path b" in item for item in improve):
+        raise IntegrityError("improve must keep Support reply-all and path B", reason_code="CATALOG_REVIEW")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("cannot_close") or [])]
+    if not any("dataverse" in item and "canada" in item and "united states" in item for item in closed_eng):
+        raise IntegrityError("engineering cannot_close must keep US Dataverse Canada affinity", reason_code="CATALOG_ENGINEERING")
 
 
 def _validate_graph_owner_consent(catalog: dict[str, Any]) -> None:
@@ -508,6 +606,8 @@ def _validate_honest_missing(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest_missing must keep LIVE_PIN_OK", reason_code="CATALOG_HONEST")
     if not any("second unique" in item or "cynthia" in item for item in missing):
         raise IntegrityError("honest_missing must keep the second human", reason_code="CATALOG_HONEST")
+    if not any("dataverse" in item and "canada" in item for item in missing):
+        raise IntegrityError("honest_missing must keep US Dataverse Canada affinity", reason_code="CATALOG_HONEST")
     if any(item.strip() == "live_pin_ok is marked" for item in missing):
         raise IntegrityError("honest_missing cannot claim LIVE_PIN_OK closed", reason_code="CATALOG_HONEST")
 
@@ -1055,6 +1155,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep executive risk, non-compliance, and SOX opinion", reason_code="CATALOG_REVIEW")
     if "market position" not in blob or "forecast" not in blob or "priced round" not in blob:
         raise IntegrityError("first-principles must keep market position, forecast, and priced round", reason_code="CATALOG_REVIEW")
+    if "canada as united states" not in blob or "advanced data residency" not in blob or "affinity" not in blob:
+        raise IntegrityError("first-principles must keep Canada affinity and Advanced Data Residency", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1272,6 +1374,13 @@ def _validate_owner_gates(catalog: dict[str, Any]) -> None:
                 raise IntegrityError("invite.seat_b keeps the fallback and Teams Premium is not a seat", reason_code="ORG_SECOND_OFFICER")
             if "invited, not recorded" in do:
                 raise IntegrityError("invite.seat_b cannot revert to invited-not-recorded", reason_code="ORG_SECOND_OFFICER")
+        if item.get("id") == "dataverse.us":
+            do = str(item.get("do") or "").lower()
+            for stem in ("2609030040009525", "canada", "adr", "united states", "environment id"):
+                if stem not in do:
+                    raise IntegrityError("dataverse.us must keep the Support Canada-affinity finding", reason_code="CATALOG_STACK")
+            if "create a us power platform" in do:
+                raise IntegrityError("dataverse.us cannot pretend United States is create-able", reason_code="CATALOG_STACK")
 
 
 def _validate_icp(catalog: dict[str, Any]) -> None:
@@ -2186,7 +2295,7 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
     for stem in ("seat b", "graph", "dataverse", "g12", "billing", "launch"):
         if not any(stem in item for item in owner):
             raise IntegrityError("gaps owner_only_open must keep " + stem, reason_code="CATALOG_PLANE")
-    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph"):
+    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph", "canada", "environment id"):
         if not any(stem in item for item in cannot):
             raise IntegrityError("gaps this_plane_cannot must keep " + stem, reason_code="CATALOG_PLANE")
     if "do not invent" not in str(gaps.get("note") or "").lower():
@@ -3309,3 +3418,7 @@ def microsoft_stack() -> dict[str, Any]:
 
 def catalog_graph() -> dict[str, Any]:
     return dict((load_catalog().get("microsoft_stack") or {}).get("graph") or {})
+
+
+def catalog_us_dataverse() -> dict[str, Any]:
+    return dict((load_catalog().get("microsoft_stack") or {}).get("us_dataverse") or {})

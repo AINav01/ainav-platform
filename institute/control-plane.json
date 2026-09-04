@@ -1531,7 +1531,7 @@
         {
           "id": "dataverse.us",
           "name": "Power Platform environments",
-          "note": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+          "note": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
           "url": "https://admin.powerplatform.microsoft.com/environments",
           "url_label": "Power Platform environments"
         },
@@ -2095,7 +2095,8 @@
       "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
       "2.78.0 quality check aligned public surfaces with four Reads Granted; this plane refused to close owner-only gaps; not from this plane",
       "2.79.0 first-principles review recorded twenty improvements as catalog law, not live; MFA identifies; assignment_live stays false; custom reports are not a SKU; gold 99 is the target; claiming 99 without coverage is a lie; not from this plane",
-      "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane"
+      "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane",
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -2131,7 +2132,11 @@
       "claim SSL Full from this plane",
       "claim Rocket Loader from this plane",
       "claim Graph Read from this plane",
-      "grant Graph consent from this plane"
+      "grant Graph consent from this plane",
+      "treat Canada as United States",
+      "paste Dataverse environment id",
+      "purchase ADR",
+      "mark US Dataverse closed"
     ]
   },
   "governance_calendar": {

@@ -12,7 +12,7 @@ Audit: internal audit × regulator archive × failure to comply × Room 1 books 
 Implementation: Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.
 CLI: `python -m ainav stack`. Probe is read-only: `python -m ainav connect --probe`.
 
-This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind ainav.institute; mark LIVE_PIN_OK.
+This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind ainav.institute; mark LIVE_PIN_OK; treat Canada as United States; paste Dataverse environment id.
 
 ## Privileged-write path
 
@@ -31,8 +31,8 @@ This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind 
 5. **Business Central Premium** — `sandbox_journal`. Sandbox company AINav. Document AINAV-L1. Wedge bc.general_journal.post. Production stays blocked. Not LIVE_PIN_OK.
    Owner: Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. [Business Central Sandbox](https://businesscentral.dynamics.com/ainav.institute/Sandbox) · [BC companies](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/new-company)
 
-6. **Sales Enterprise** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. U-DUAL stays on the twin until G14.
-   Owner: Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR. [Power Platform environments](https://admin.powerplatform.microsoft.com/environments) · [Create an environment](https://learn.microsoft.com/en-us/power-platform/admin/create-environment)
+6. **Sales Enterprise** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: North America sandboxes follow Canada affinity. United States is not pinned. Canada is not United States. U-DUAL stays on the twin until G14.
+   Owner: Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas. [Power Platform environments](https://admin.powerplatform.microsoft.com/environments) · [Macro regions](https://learn.microsoft.com/power-platform/admin/macro-regions)
 
 7. **Teams notify** — `dns_full_graph_open`. SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat.
    Owner: Team.ReadBasic.All is Granted. Trash Graph Writes on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app. [Microsoft 365 admin](https://admin.cloud.microsoft/?source=applauncher#/homepage) · [Teams overview](https://learn.microsoft.com/en-us/microsoftteams/teams-overview)

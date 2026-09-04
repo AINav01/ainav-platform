@@ -55,6 +55,7 @@ STRUCTURE = {
     "human_control",
     "executive_risk",
     "market_position",
+    "us_dataverse",
     "print",
     "pricing_models",
 }

@@ -211,13 +211,35 @@
   "live": false,
   "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
   "product": "AINav Control Plane",
+  "us_dataverse": {
+    "adr_eligible": false,
+    "adr_purchased": false,
+    "canada_is_united_states": false,
+    "closed": false,
+    "dataverse_url_set": false,
+    "engineering_exception_granted": false,
+    "engineering_exception_routed": true,
+    "finding": "Microsoft Support ticket 2609030040009525 recorded why North America Sandboxes landed in Canada, why Advanced Data Residency cannot be purchased on a USA sign-up tenant, and why geo-to-geo is blocked by the same gate. Seat-count math is informational only. Engineering exception routed, not granted. No tenant or environment changes were made.",
+    "geo_to_geo_available": false,
+    "kind": "ainav.us_dataverse.v1",
+    "lede": "US Dataverse stays open. North America without Advanced Data Residency is a macro region. Placement affinity to Canada is documented, not a provisioning failure.",
+    "live": false,
+    "live_pin_ok": false,
+    "note": "Microsoft 365 workloads already in the United States are a separate service. Canada is not United States. A green check is not LIVE_PIN_OK.",
+    "owner": "Reply-all on 2609030040009525 for written confirmation that no self-service or support path pins United States without ADR, and for the status of the engineering-exception review. Path B \u2014 accept Canada as a twin-only Sales environment, not United States \u2014 is owner-only. Then a new Cloud Agent with DATAVERSE_URL. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+    "sku": false,
+    "ticket": "2609030040009525",
+    "united_states": false
+  },
   "walk": {
     "cannot": [
       "create users",
       "grant Graph roles",
       "edit Cloudflare",
       "bind ainav.institute",
-      "mark LIVE_PIN_OK"
+      "mark LIVE_PIN_OK",
+      "treat Canada as United States",
+      "paste Dataverse environment id"
     ],
     "cli": "python -m ainav stack",
     "complements": [
@@ -375,12 +397,12 @@
       },
       {
         "id": "sales.enterprise",
-        "in_tree": "Sales Enterprise is licensed. Global Discovery returned zero instances. U-DUAL stays on the twin until G14.",
-        "learn": "https://learn.microsoft.com/en-us/power-platform/admin/create-environment",
-        "learn_label": "Create an environment",
+        "in_tree": "Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: North America sandboxes follow Canada affinity. United States is not pinned. Canada is not United States. U-DUAL stays on the twin until G14.",
+        "learn": "https://learn.microsoft.com/power-platform/admin/macro-regions",
+        "learn_label": "Macro regions",
         "n": 6,
         "name": "Sales Enterprise",
-        "owner": "Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.",
+        "owner": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
         "role": "sor_udual",
         "status": "licensed_not_wired",
         "url": "https://admin.powerplatform.microsoft.com/environments",

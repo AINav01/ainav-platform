@@ -20,7 +20,7 @@ The nine gates below are the clicks. Cloudflare Pro activate is owner-only at [d
 4. On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.
    [Same app API permissions](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED])
 
-5. Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.
+5. Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.
    [Power Platform environments](https://admin.powerplatform.microsoft.com/environments)
 
 6. Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.

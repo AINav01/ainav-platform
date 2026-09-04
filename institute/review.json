@@ -211,7 +211,7 @@
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
       "Graph Writes still Granted on the same Entra app",
-      "US Dataverse for Sales",
+      "US Dataverse for Sales (Canada affinity recorded; United States not pinned)",
       "G12 legal / G13 signed L1",
       "Recognized revenue",
       "Multi-host product HA",
@@ -256,7 +256,8 @@
       "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
       "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
-      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK"
+      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -316,7 +317,8 @@
       "Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
       "Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.",
-      "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK."
+      "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
+      "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse."
     ],
     "success": {
       "bake_off": {
@@ -620,7 +622,7 @@
         "who": "owner"
       },
       {
-        "do": "Create a US Power Platform environment with Dataverse. New Cloud Agent with DATAVERSE_URL. Unblocks the Sales twin, not live SoR.",
+        "do": "Ticket 2609030040009525: North America sandboxes follow Canada affinity. ADR cannot be purchased on a USA sign-up tenant. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste an environment id. Do not set DATAVERSE_URL from this plane.",
         "marks_live_pin": false,
         "n": 4,
         "title": "US Dataverse",
@@ -1065,7 +1067,8 @@
       "Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.",
       "Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.",
-      "AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK."
+      "AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.",
+      "Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK."
     ]
   },
   "fit": [
@@ -1096,7 +1099,7 @@
     {
       "id": "u_dual",
       "label": "U-DUAL / Sales",
-      "note": "Sales Enterprise is licensed. Global Discovery returned zero instances. Attached=0. Twin only until G14.",
+      "note": "Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: Canada affinity; United States not pinned. Attached=0. Twin only until G14.",
       "status": "licensed_not_wired"
     },
     {

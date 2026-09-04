@@ -286,7 +286,7 @@
         <li><a href="https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers">Entra users</a> — Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.</li>
         <li><a href="https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all">Agents &gt; Tools registry</a> — Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.</li>
         <li><a href="https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]">Same app API permissions</a> — On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.</li>
-        <li><a href="https://admin.powerplatform.microsoft.com/environments">Power Platform environments</a> — Create a US Power Platform environment with Dataverse. Then start a new Cloud Agent with DATAVERSE_URL. This unblocks the Sales twin, not live SoR.</li>
+        <li><a href="https://admin.powerplatform.microsoft.com/environments">Power Platform environments</a> — Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.</li>
         <li><a href="https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx">Delaware entity search</a> — Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.</li>
         <li><a href="https://www.microsoft.com/en-us/startups">Microsoft for Startups</a> — Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.</li>
         <li><a href="https://portal.azure.com/#view/Microsoft_Azure_StaticApps">Azure Static Web Apps</a> — Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.</li>
@@ -1498,7 +1498,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <li><a href="https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers">Entra users</a> — mailbox recorded, oid open. She clicks seat B.</li>
         <li><a href="https://blue-river-010091a0f.7.azurestaticapps.net/">Azure-hosted Institute</a> — running_code. Cloud Agent is not a seat.</li>
         <li><a href="https://businesscentral.dynamics.com/ainav.institute/Sandbox">Business Central Sandbox</a> — sandbox_journal. Production blocked.</li>
-        <li><a href="https://admin.powerplatform.microsoft.com/environments">Power Platform environments</a> — licensed_not_wired. US Dataverse unblocks the Sales twin.</li>
+        <li><a href="https://admin.powerplatform.microsoft.com/environments">Power Platform environments</a> — licensed_not_wired. Ticket 2609030040009525: North America sandboxes follow Canada affinity. United States is not pinned. Canada is not United States.</li>
         <li><a href="https://admin.cloud.microsoft/?source=applauncher#/homepage">Microsoft 365 admin</a> — dns_full_graph_open. A chat is not a seat.</li>
         <li><a href="https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">Entra app registrations</a> — four Reads Granted. Writes still open. No Write from this plane.</li>
         <li><a href="https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all">Agents &gt; Tools registry</a> — Leave five Available. Block Dataverse MCP.</li>
@@ -1514,7 +1514,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <li><a href="https://portal.azure.com/#view/Microsoft_Azure_Security_Insights">Microsoft Sentinel</a> — SIEM sink. Not the admit plane.</li>
         <li><a href="https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview">Azure Policy</a> — cannot weaken Job C.</li>
       </ol>
-      <p class="note" id="stack-walk-cannot">This Cloud Agent cannot create users, grant Graph roles, edit Cloudflare, bind ainav.institute, or mark LIVE_PIN_OK.</p>
+      <p class="note" id="stack-walk-cannot">This Cloud Agent cannot create users, grant Graph roles, edit Cloudflare, bind ainav.institute, mark LIVE_PIN_OK, treat Canada as United States, or paste Dataverse environment id.</p>
       <h3 class="subhead">Six connections</h3>
       <div id="stack-cards" class="cards stack-cards">
         <article data-id="azure.host">
@@ -1741,7 +1741,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li>Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)</li>
             <li>ainav.institute custom domain and launch</li>
             <li>Graph Writes still Granted on the same Entra app</li>
-            <li>US Dataverse for Sales</li>
+            <li>US Dataverse for Sales (Canada affinity recorded; United States not pinned)</li>
             <li>G12 legal / G13 signed L1</li>
             <li>Recognized revenue</li>
             <li>Multi-host product HA</li>
@@ -1759,7 +1759,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <ul class="gaps" id="honest-missing">
         <li>Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)</li>
         <li>ainav.institute custom domain and incorporation date</li>
-        <li>Power Platform / Dataverse environment for Sales</li>
+        <li>Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)</li>
         <li>Graph Writes still Granted on the same Entra app</li>
         <li>Recognized revenue / external billing provider</li>
         <li>G12 legal (counsel pack unsigned)</li>
