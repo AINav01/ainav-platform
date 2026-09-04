@@ -1,6 +1,6 @@
 # AINav, Inc. — stack walk
 
-Release 2.80.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Release 2.81.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
 Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
 
 **Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**

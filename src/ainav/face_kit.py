@@ -162,6 +162,7 @@ def public_llms() -> str:
         f"- [Deep floor]({HOST}/control-plane.html): command console",
         f"- [Kit]({HOST}/kit.html): licensed complements, not a CMS",
         f"- [Identify]({HOST}/identify.html): Entra identify is not admit",
+        f"- [Twin review]({HOST}/twin.html): Azure SWA digital twin. Public apex empty. Not launch",
         "",
         "## Law",
         "",
@@ -220,6 +221,12 @@ def public_search() -> dict[str, Any]:
             "href": "identify.html",
             "text": "SWA Entra login identifies. Identify is not admit. Not seat B. Not LIVE_PIN_OK.",
         },
+        {
+            "id": "twin-review",
+            "title": "Twin review",
+            "href": "twin.html",
+            "text": "Azure SWA is the Institute digital twin for review and updates. Cloudflare apex is empty 404. Gold 99. Not launch. Not LIVE_PIN_OK.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",
@@ -244,6 +251,7 @@ def public_speculation() -> dict[str, Any]:
                     "/control-plane.html",
                     "/kit.html",
                     "/identify.html",
+                    "/twin.html",
                     "/index.html",
                 ],
             }
@@ -258,6 +266,7 @@ def public_sitemap() -> str:
         "/control-plane.html",
         "/kit.html",
         "/identify.html",
+        "/twin.html",
         "/llms.txt",
     ]
     lines = [

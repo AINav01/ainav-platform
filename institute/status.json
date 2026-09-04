@@ -411,6 +411,7 @@
       "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
       "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
+      "2.81.0 Institute twin website for review: twin.html on Azure SWA. --publish-twin updates the twin only. --publish-institute stays launch_not_ready. Cloudflare apex stays empty 404. Gold 99 stays the floor. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -600,6 +601,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
+  "release": "2.81.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -610,5 +612,15 @@
   },
   "signed_l1": false,
   "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "website": {
+    "authorized_release": false,
+    "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+    "launch_ready": false,
+    "pages_is_host": false,
+    "public_edge": "cloudflare",
+    "review_path": "twin.html",
+    "twin_host": "azure.swa",
+    "twin_review": true
+  },
   "wrote_sor": false
 }

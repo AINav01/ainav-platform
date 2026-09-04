@@ -61,7 +61,12 @@ def main(argv: list[str] | None = None) -> int:
     connect.add_argument(
         "--publish-institute",
         action="store_true",
-        help="PUT Azure Static Web App and upload institute/. Never custom domain. Never LIVE_PIN_OK.",
+        help="PUT Azure Static Web App and upload institute/. Held until launch. Never custom domain. Never LIVE_PIN_OK.",
+    )
+    connect.add_argument(
+        "--publish-twin",
+        action="store_true",
+        help="Upload institute/ to the Azure SWA digital twin for review. Not launch. Not Cloudflare. Never LIVE_PIN_OK.",
     )
     connect.add_argument(
         "--sandbox-wedge",
@@ -163,6 +168,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "connect":
         from ainav.microsoft.health import stack_health
 
+        if args.publish_twin:
+            from ainav.microsoft.institute_publish import publish_twin
+
+            published = publish_twin()
+            print(canonical_json({"publish": published, "health": stack_health(probe=True)}))
+            return 0 if published.get("ok") else 2
         if args.publish_institute:
             from ainav.microsoft.institute_publish import publish_institute
 

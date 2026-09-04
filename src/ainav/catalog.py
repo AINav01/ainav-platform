@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 50:
-        raise IntegrityError("expert review needs 16–50 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 51:
+        raise IntegrityError("expert review needs 16–51 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1174,6 +1174,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         48: ("refus", "live_pin_ok"),
         49: ("first-principles", "live_pin_ok"),
         50: ("gold 99", "live_pin_ok"),
+        51: ("twin website", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -2319,6 +2320,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_278(catalog, body)
     _validate_instrument_279(catalog, body)
     _validate_instrument_280(catalog, body)
+    _validate_instrument_281(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2659,8 +2661,6 @@ def _validate_instrument_279(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_280(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.80.0":
-        raise IntegrityError("entity.release is 2.80.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.80.0" in item and "99" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.80.0 gold 99 floor", reason_code="CATALOG_ENGINEERING")
@@ -2669,6 +2669,24 @@ def _validate_instrument_280(catalog: dict[str, Any], body: dict[str, Any]) -> N
     gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
     if gold.get("coverage_floor") != 99:
         raise IntegrityError("2.80.0 coverage_floor is 99", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_instrument_281(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.81.0":
+        raise IntegrityError("entity.release is 2.81.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.81.0" in item and "twin" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.81.0 Institute twin website", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("twin_review") is not True:
+        raise IntegrityError("2.81.0 twin website is the review surface", reason_code="CATALOG_PLANE")
+    if str(site.get("review_path") or "") != "twin.html":
+        raise IntegrityError("2.81.0 review path is twin.html", reason_code="CATALOG_PLANE")
+    if site.get("authorized_release") is True or site.get("launch_ready") is True:
+        raise IntegrityError("2.81.0 twin review is not public launch", reason_code="CATALOG_PLANE")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "twin website" not in principles or "publish-twin" not in principles:
+        raise IntegrityError("first-principles must keep the twin website and publish-twin", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -24,8 +24,23 @@ BLOCKED_LOCATIONS = frozenset({"westeurope", "west europe"})
 APP_LOCATION = Path("institute")
 
 
-def publish_institute(*, custom_domain: str | None = None, location: str = SWA_LOCATION) -> dict[str, Any]:
-    """PUT the Static Web App and deploy institute/. Not a live pin."""
+def publish_twin(*, custom_domain: str | None = None, location: str = SWA_LOCATION) -> dict[str, Any]:
+    """Upload institute/ to the Azure SWA digital twin. Not launch. Not Cloudflare."""
+    return publish_institute(custom_domain=custom_domain, location=location, twin=True)
+
+
+def publish_institute(
+    *,
+    custom_domain: str | None = None,
+    location: str = SWA_LOCATION,
+    twin: bool = False,
+) -> dict[str, Any]:
+    """PUT the Static Web App and deploy institute/. Not a live pin.
+
+    twin=True updates the Azure SWA review host only. It is not public launch.
+    --publish-institute stays launch_not_ready until the owner says launch.
+    """
+    kind = "ainav.institute_twin_publish.v1" if twin else "ainav.institute_publish.v1"
     if custom_domain:
         raise LivePinError(
             "ainav.institute custom domain is not claimed. Publish the Azure hostname only.",
@@ -38,10 +53,14 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
         )
     from ainav.catalog import load_catalog
 
-    if not load_catalog()["programs"]["website"].get("launch_ready"):
+    site = load_catalog()["programs"]["website"]
+    if not twin and not site.get("launch_ready"):
         return {
-            "kind": "ainav.institute_publish.v1",
+            "kind": kind,
             "ok": False,
+            "twin": False,
+            "launch": False,
+            "authorized_release": False,
             "live": False,
             "live_pin_ok": False,
             "custom_domain_claimed": False,
@@ -51,13 +70,17 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
             "reason": "launch_not_ready",
             "note": (
                 "Owner held publish until launch. Azure hostname stays. "
-                "ainav.institute is not bound. Not LIVE_PIN_OK."
+                "ainav.institute is not bound. Use --publish-twin for the SWA review host. "
+                "Not LIVE_PIN_OK."
             ),
         }
     if not entra_configured():
         return {
-            "kind": "ainav.institute_publish.v1",
+            "kind": kind,
             "ok": False,
+            "twin": bool(twin),
+            "launch": False,
+            "authorized_release": False,
             "live": False,
             "live_pin_ok": False,
             "custom_domain_claimed": False,
@@ -66,14 +89,14 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
             "missing": ["ENTRA_TENANT_ID", "ENTRA_CLIENT_ID", "ENTRA_CLIENT_SECRET"],
         }
     if not (APP_LOCATION / "index.html").is_file():
-        return _denied("institute_files_missing", 0, "institute/index.html missing", "")
+        return _denied("institute_files_missing", 0, "institute/index.html missing", "", kind=kind, twin=twin)
     arm = _token(ARM_SCOPE)
     if not arm.get("ok"):
-        return _denied(str(arm.get("status")), int(arm.get("http") or 0), "", "")
+        return _denied(str(arm.get("status")), int(arm.get("http") or 0), "", "", kind=kind, twin=twin)
     token = arm["token"]
     sub = os.environ.get("AZURE_SUBSCRIPTION_ID") or _subscription_id(token)
     if not sub:
-        return _denied("no_azure_subscription_visible", 0, "", "")
+        return _denied("no_azure_subscription_visible", 0, "", "", kind=kind, twin=twin)
     _request(
         "POST",
         f"https://management.azure.com/subscriptions/{sub}/providers/Microsoft.Web/register?api-version=2021-04-01",
@@ -94,7 +117,7 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
         },
     )
     if status not in {200, 201}:
-        return _denied("static_site_denied", status, body, sub)
+        return _denied("static_site_denied", status, body, sub, kind=kind, twin=twin)
     site = _wait_site(url, token)
     hostname = ""
     if isinstance(site, dict):
@@ -105,9 +128,17 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
     upload_detail = ""
     if api_key:
         uploaded, upload_detail = _swa_deploy(api_key)
+    note = (
+        "Azure SWA twin only. Cloudflare apex stays empty. Not launch. Not LIVE_PIN_OK."
+        if twin
+        else "Azure hostname only. ainav.institute is not bound. Not LIVE_PIN_OK."
+    )
     return {
-        "kind": "ainav.institute_publish.v1",
+        "kind": kind,
         "ok": bool(hostname) and uploaded,
+        "twin": bool(twin),
+        "launch": False,
+        "authorized_release": False,
         "live": False,
         "live_pin_ok": False,
         "custom_domain_claimed": False,
@@ -120,7 +151,7 @@ def publish_institute(*, custom_domain: str | None = None, location: str = SWA_L
         "url": public_url or None,
         "uploaded": uploaded,
         "upload_detail": upload_detail[:240],
-        "note": "Azure hostname only. ainav.institute is not bound. Not LIVE_PIN_OK.",
+        "note": note,
     }
 
 
@@ -177,9 +208,20 @@ def _swa_deploy(api_key: str) -> tuple[bool, str]:
     return out.returncode == 0, text[-240:]
 
 
-def _denied(reason: str, status: int, body: Any, sub: str) -> dict[str, Any]:
+def _denied(
+    reason: str,
+    status: int,
+    body: Any,
+    sub: str,
+    *,
+    kind: str = "ainav.institute_publish.v1",
+    twin: bool = False,
+) -> dict[str, Any]:
     fail = _fail(reason, status, body, sub)
-    fail["kind"] = "ainav.institute_publish.v1"
+    fail["kind"] = kind
+    fail["twin"] = bool(twin)
+    fail["launch"] = False
+    fail["authorized_release"] = False
     fail["custom_domain_claimed"] = False
     fail["uploaded"] = False
     fail["url"] = None

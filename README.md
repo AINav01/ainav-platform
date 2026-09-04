@@ -111,7 +111,19 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.80.0 (this tree)
+### 2.81.0 (this tree)
+
+Institute twin website for review.
+`twin.html` on Azure SWA integrates
+the sale, owner, quality, and gold-99
+release boards. `--publish-twin`
+updates the twin only.
+`--publish-institute` stays
+`launch_not_ready`. Cloudflare apex
+stays empty 404. Gold 99 is the floor.
+A green check is not `LIVE_PIN_OK`.
+
+### 2.80.0
 
 Gold 99 is the floor after measured
 coverage. Fail-closed catalog shape.

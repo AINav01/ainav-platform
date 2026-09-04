@@ -72,6 +72,10 @@ def validate_programs(catalog: dict[str, Any]) -> None:
             "apex origin is empty Cloudflare Pages",
             reason_code="PROGRAM_NOT_CLAIMED",
         )
+    if body.get("website", {}).get("twin_review") is not True:
+        raise IntegrityError("Institute twin website is the review surface", reason_code="PROGRAM_NOT_CLAIMED")
+    if str(body.get("website", {}).get("review_path") or "") != "twin.html":
+        raise IntegrityError("Institute twin review path is twin.html", reason_code="PROGRAM_NOT_CLAIMED")
     wedge = body.get("public_wedge")
     l1_actions = {
         m["id"]

@@ -2201,6 +2201,39 @@
           ) {
             twinNode.textContent = twin.lede + " " + (twin.note || "");
           }
+          var site = data.website || {};
+          var review = document.getElementById("twin-review-status");
+          if (
+            review &&
+            site.twin_review &&
+            !site.authorized_release &&
+            !site.launch_ready &&
+            !site.pages_is_host
+          ) {
+            review.textContent =
+              "twin_review=" +
+              site.twin_review +
+              " · review_path=" +
+              (site.review_path || "twin.html") +
+              " · authorized_release=" +
+              (site.authorized_release === true) +
+              " · launch_ready=" +
+              (site.launch_ready === true);
+          }
+          var hostStatus = document.getElementById("twin-host-status");
+          if (
+            hostStatus &&
+            site.twin_review &&
+            !site.authorized_release &&
+            !site.launch_ready
+          ) {
+            hostStatus.textContent =
+              "host=" +
+              (site.twin_host || "azure.swa") +
+              " · public_edge=" +
+              (site.public_edge || "cloudflare") +
+              " · authorized_release=false · launch_ready=false · pages_is_host=false";
+          }
         }
       }
       if (data.engineering) {

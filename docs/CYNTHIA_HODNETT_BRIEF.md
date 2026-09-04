@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.80.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.81.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.80.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.81.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -352,6 +352,7 @@ Working well
 - Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.
 - The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.
 - Gold floor is 95 percent. make gold fails under 95. A green check is not LIVE_PIN_OK.
+- 2.81.0 Institute twin website is the review surface. twin.html integrates the boards. --publish-twin is not launch. Cloudflare apex stays empty.
 - Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.
 - Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.
 - Provision spine sits the Provision tab: Qualify → L1 → kit PASS → P-ADM → paid U-DUAL. Attached 0/0/0. U-DUAL never free.
@@ -505,6 +506,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 48. [tree] Quality check refused owner-gap close — Align public surfaces with four Reads Granted. Refuse to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK from this plane. Coverage floor stays 95. A green check is not LIVE_PIN_OK.
 - 49. [tree] Deep review recorded first-principles — Record twenty first-principles as catalog law. MFA identifies. Assignment is not live. Custom reports are not a SKU. Board fiduciary is not counsel. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK.
 - 50. [tree] Gold 99 is the floor — Raise coverage_floor and fail_under to 99 after measured coverage held. Fail-closed catalog shape. First-principles stay catalog law. Not LIVE_PIN_OK.
+- 51. [tree] Institute twin website for review — Ship 2.81.0: twin.html on Azure SWA for review and updates. Integrate sale, owner, quality, and gold-99 release boards. --publish-twin is not launch. --publish-institute stays launch_not_ready. Cloudflare apex stays empty. Not LIVE_PIN_OK.
 
 ## What happens next
 

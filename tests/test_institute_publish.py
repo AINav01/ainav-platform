@@ -7,7 +7,7 @@ import pytest
 from agent_gov.errors import IntegrityError
 from ainav.catalog import load_catalog, validate_catalog
 from ainav.errors import LivePinError
-from ainav.microsoft.institute_publish import publish_institute
+from ainav.microsoft.institute_publish import publish_institute, publish_twin
 
 
 def test_publish_refuses_custom_domain_and_west_europe():
@@ -26,6 +26,47 @@ def test_publish_is_held_until_launch():
     assert body["uploaded"] is False
     assert body["custom_domain_claimed"] is False
     assert body["live_pin_ok"] is False
+    assert body["launch"] is False
+
+
+def test_publish_twin_skips_launch_hold_and_never_marks_launch(monkeypatch):
+    monkeypatch.setenv("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000001")
+    monkeypatch.setenv("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000002")
+    monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
+    monkeypatch.setenv("AZURE_SUBSCRIPTION_ID", "sub-1")
+    monkeypatch.setattr(
+        "ainav.microsoft.institute_publish._token",
+        lambda scope: {"ok": True, "token": "lab"},
+    )
+
+    def fake_request(method, url, token, payload=None):
+        if method == "POST" and "listSecrets" in url:
+            return 200, {"properties": {"apiKey": "tok"}}
+        if method == "GET" and "staticSites" in url:
+            return 200, {
+                "properties": {
+                    "provisioningState": "Succeeded",
+                    "defaultHostname": "blue-river-010091a0f.7.azurestaticapps.net",
+                }
+            }
+        return 201, {}
+
+    monkeypatch.setattr("ainav.microsoft.institute_publish._request", fake_request)
+    monkeypatch.setattr("ainav.microsoft.institute_publish._swa_deploy", lambda key: (True, "ok"))
+    body = publish_twin()
+    assert body["ok"] is True
+    assert body["kind"] == "ainav.institute_twin_publish.v1"
+    assert body["twin"] is True
+    assert body["launch"] is False
+    assert body["authorized_release"] is False
+    assert body["live"] is False
+    assert body["live_pin_ok"] is False
+    assert body["custom_domain_claimed"] is False
+    assert body["uploaded"] is True
+    assert "twin" in body["note"].lower()
+    held = publish_institute()
+    assert held["reason"] == "launch_not_ready"
+    assert held["uploaded"] is False
 
 
 def test_publish_missing_entra(monkeypatch):
@@ -170,6 +211,31 @@ def test_publish_helpers_fail_closed(monkeypatch):
     ok, detail = pub._swa_deploy("key")
     assert ok is True
     assert "uploaded" in detail
+
+
+def test_cli_publish_twin(monkeypatch, capsys):
+    from ainav.__main__ import main
+
+    monkeypatch.setattr(
+        "ainav.microsoft.institute_publish.publish_twin",
+        lambda: {
+            "ok": True,
+            "twin": True,
+            "launch": False,
+            "live": False,
+            "live_pin_ok": False,
+            "custom_domain_claimed": False,
+            "url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+        },
+    )
+    monkeypatch.setattr(
+        "ainav.microsoft.health.stack_health",
+        lambda probe=None: {"live_pin_ok": False},
+    )
+    assert main(["connect", "--publish-twin"]) == 0
+    out = capsys.readouterr().out
+    assert "blue-river" in out
+    assert "live_pin_ok" in out
 
 
 def test_cli_publish_institute(monkeypatch, capsys):

@@ -61,7 +61,14 @@ def test_institute_twin_is_swa_and_cloudflare_apex_is_empty():
     assert "edge.twin" in js
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#institute-twin"' not in nav
+    assert 'href="#twin-review"' not in nav
     assert 'href="#dataverse"' not in nav
+    assert 'href="twin.html"' in html
+    assert cat["programs"]["website"]["twin_review"] is True
+    assert cat["programs"]["website"]["review_path"] == "twin.html"
+    twin_page = Path("institute/twin.html").read_text(encoding="utf-8")
+    assert "Azure SWA" in twin_page
+    assert "Not launch" in twin_page
 
 
 def _reject(mutator):

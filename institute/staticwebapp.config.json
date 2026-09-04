@@ -34,6 +34,7 @@
       "/llms.txt",
       "/kit.html",
       "/identify.html",
+      "/twin.html",
       "/owner-gate.html",
       "/compiled/*",
       "/pagefind/*",
@@ -138,6 +139,10 @@
     },
     {
       "route": "/programs.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/twin.html",
       "headers": { "Cache-Control": "no-store" }
     },
     {

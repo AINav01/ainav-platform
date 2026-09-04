@@ -65,6 +65,25 @@ body {
 }
 .skip:focus { top: 1rem; }
 
+.twin-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.55rem 6vw;
+  background: var(--azure);
+  color: var(--void-ink);
+  font-size: 0.9rem;
+}
+.twin-ribbon a {
+  color: var(--gold-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+.twin-ribbon a:hover { text-decoration: underline; }
+.twin-ribbon strong { color: #fff; font-weight: 650; }
+
 .top {
   position: sticky;
   top: 0;
