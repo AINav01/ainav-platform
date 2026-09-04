@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from agent_gov.errors import IntegrityError
+from ainav import catalog as catmod
 from ainav.catalog import load_catalog, validate_catalog
 from ainav.dashboard import public_dashboard
 from ainav.institute_status import public_status
@@ -95,3 +96,20 @@ def test_instrument_281_fail_closed():
         mutator(cat)
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
+    edge = load_catalog()
+    hole = copy.deepcopy(edge)
+    hole["programs"]["website"]["twin_review"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_281(hole, hole["plane_interface"])
+    hole = copy.deepcopy(edge)
+    hole["programs"]["website"]["review_path"] = "app.html"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_281(hole, hole["plane_interface"])
+    hole = copy.deepcopy(edge)
+    hole["programs"]["website"]["authorized_release"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_281(hole, hole["plane_interface"])
+    hole = copy.deepcopy(edge)
+    hole["programs"]["website"]["launch_ready"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_281(hole, hole["plane_interface"])

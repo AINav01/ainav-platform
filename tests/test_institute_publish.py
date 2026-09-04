@@ -213,6 +213,37 @@ def test_publish_helpers_fail_closed(monkeypatch):
     assert "uploaded" in detail
 
 
+def test_publish_twin_hostname_without_token(monkeypatch):
+    monkeypatch.setenv("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000001")
+    monkeypatch.setenv("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000002")
+    monkeypatch.setenv("ENTRA_CLIENT_SECRET", "lab-secret")
+    monkeypatch.setenv("AZURE_SUBSCRIPTION_ID", "sub-1")
+    monkeypatch.setattr(
+        "ainav.microsoft.institute_publish._token",
+        lambda scope: {"ok": True, "token": "lab"},
+    )
+
+    def fake_request(method, url, token, payload=None):
+        if method == "POST" and "listSecrets" in url:
+            return 200, {"properties": "not-a-dict"}
+        if method == "GET" and "staticSites" in url:
+            return 200, {
+                "properties": {
+                    "provisioningState": "Succeeded",
+                    "defaultHostname": "blue-river-010091a0f.7.azurestaticapps.net",
+                }
+            }
+        return 201, {}
+
+    monkeypatch.setattr("ainav.microsoft.institute_publish._request", fake_request)
+    body = publish_twin()
+    assert body["ok"] is False
+    assert body["twin"] is True
+    assert body["launch"] is False
+    assert body["uploaded"] is False
+    assert body["hostname"] == "blue-river-010091a0f.7.azurestaticapps.net"
+
+
 def test_cli_publish_twin(monkeypatch, capsys):
     from ainav.__main__ import main
 
