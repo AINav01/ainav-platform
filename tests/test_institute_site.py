@@ -237,6 +237,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "<details class=\"nav-menu\">" not in html
     assert html.index('href="#closed"') < html.index('class="primary"')
     assert 'href="#success">Bake-off</a>' in html
+    assert 'id="control"' in html
+    assert 'href="#control">Human control</a>' in html
+    assert "paintHumanControl" in js
     assert "Substitute vs Job C" in html
     assert "Workflow User Groups" in html
     assert "1 mailbox / 0 oid" in html

@@ -1862,6 +1862,25 @@
         (success.continuity.lede || "") + " " + (success.continuity.note || "")
       );
     }
+    paintHumanControl(success.human_control);
+  }
+
+  function paintHumanControl(control) {
+    if (!control || control.live || control.live_pin_ok || control.sku || control.fear_brand || control.cms) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("control-lede", control.lede);
+    set("control-ours", control.ours);
+    set("control-not", control.not_ours);
+    set("control-site", control.site);
+    set("control-social", control.social);
+    set("control-note", control.note);
+    replacePlain("control-loss", control.loss);
+    replacePlain("control-restore", control.restore);
   }
 
   function replacePlain(id, items) {

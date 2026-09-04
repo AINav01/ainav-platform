@@ -79,6 +79,8 @@ Walk away:
 - AINav as the client's AI
 - LIVE_PIN_OK from a demo
 - Invented named customer or inbox
+- AI doom as the product
+- Fear brand / AGI theater
 
 ### Objection cards
 
@@ -87,6 +89,7 @@ Walk away:
 - **Two humans is slow.** — One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.
 - **Why not PIM?** — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
 - **Copilot Studio already asks a human.** — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
+- **AI will take over.** — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
 
 ### CISO posture
 
@@ -102,6 +105,7 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Mark LIVE_PIN_OK
 - Does not: Replace counsel
 - Does not: Power down Copilot
+- Does not: Sell doom-fear
 
 ### Seat B meaning
 

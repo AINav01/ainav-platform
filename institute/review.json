@@ -313,7 +313,8 @@
       "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.",
       "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.",
       "Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.",
-      "Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK."
+      "Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
+      "Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -365,7 +366,8 @@
           "Invent an Entra object id",
           "Mark LIVE_PIN_OK",
           "Replace counsel",
-          "Power down Copilot"
+          "Power down Copilot",
+          "Sell doom-fear"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -387,6 +389,35 @@
           "sku": false,
           "write_lands": false
         }
+      },
+      "human_control": {
+        "cms": false,
+        "fear_brand": false,
+        "kind": "ainav.human_control.v1",
+        "lede": "Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Fear is only useful if it names that write.",
+        "live": false,
+        "live_pin_ok": false,
+        "loss": [
+          "Identify pretends to be admit",
+          "Teams vote, Copilot confirm, or PIM eligible \u2014 replayable, not consume-once",
+          "One title clicks both seats",
+          "The vendor of the draft is the failsafe",
+          "One vendor HITL leaves counterparty models ungated",
+          "Seat missing and the write still lands"
+        ],
+        "not_ours": "Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.",
+        "note": "Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK.",
+        "ours": "Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale.",
+        "restore": [
+          "Two distinct humans bind one action_hash",
+          "Consume-once",
+          "Fail-closed SoR",
+          "Plane outside the drafting model",
+          "Freeze: inference may continue, consequence does not"
+        ],
+        "site": "First glance stays the write rail. This band sits after the bake-off. Not a /fear route. Not a CMS.",
+        "sku": false,
+        "social": "A human looked in Teams. The journal still posted. Not: AI will take your job."
       },
       "live": false,
       "live_pin_ok": false,
@@ -416,6 +447,11 @@
           "answer": "That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.",
           "hear": "Copilot Studio already asks a human.",
           "id": "copilot_rfi"
+        },
+        {
+          "answer": "Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.",
+          "hear": "AI will take over.",
+          "id": "doom"
         }
       ],
       "qualify": {
@@ -433,7 +469,9 @@
           "Copilot Studio RFI as the product",
           "AINav as the client's AI",
           "LIVE_PIN_OK from a demo",
-          "Invented named customer or inbox"
+          "Invented named customer or inbox",
+          "AI doom as the product",
+          "Fear brand / AGI theater"
         ]
       },
       "seat_b": {
@@ -932,7 +970,8 @@
       "Owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not from this plane. Not LIVE_PIN_OK.",
       "Quality check aligned public surfaces with four Reads Granted. This plane refused to close owner-only gaps. Not from this plane. Not LIVE_PIN_OK.",
       "Deep first-principles review recorded twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK.",
-      "Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK."
+      "Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.",
+      "Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

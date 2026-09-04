@@ -345,9 +345,12 @@ def deep_dive(*, probe: bool = False) -> str:
     for item in seat["is_not"]:
         lines.append(f"- Is not: {item}")
     cont = cat["expert_review"]["success"]["continuity"]
+    human = cat["expert_review"]["success"]["human_control"]
     lines += [
         "",
         f"**Continuity.** {cont['lede']} {cont['note']}",
+        "",
+        f"**Human control.** {human['lede']} {human['ours']} {human['not_ours']}",
         "",
         "## Stack walk",
         "",

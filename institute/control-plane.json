@@ -1869,6 +1869,10 @@
               "label": "Bake-off"
             },
             {
+              "href": "#control",
+              "label": "Human control"
+            },
+            {
               "href": "#product",
               "label": "Product"
             }
@@ -4088,7 +4092,8 @@
         "Invent an Entra object id",
         "Mark LIVE_PIN_OK",
         "Replace counsel",
-        "Power down Copilot"
+        "Power down Copilot",
+        "Sell doom-fear"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4110,6 +4115,35 @@
         "sku": false,
         "write_lands": false
       }
+    },
+    "human_control": {
+      "cms": false,
+      "fear_brand": false,
+      "kind": "ainav.human_control.v1",
+      "lede": "Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Fear is only useful if it names that write.",
+      "live": false,
+      "live_pin_ok": false,
+      "loss": [
+        "Identify pretends to be admit",
+        "Teams vote, Copilot confirm, or PIM eligible \u2014 replayable, not consume-once",
+        "One title clicks both seats",
+        "The vendor of the draft is the failsafe",
+        "One vendor HITL leaves counterparty models ungated",
+        "Seat missing and the write still lands"
+      ],
+      "not_ours": "Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.",
+      "note": "Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK.",
+      "ours": "Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale.",
+      "restore": [
+        "Two distinct humans bind one action_hash",
+        "Consume-once",
+        "Fail-closed SoR",
+        "Plane outside the drafting model",
+        "Freeze: inference may continue, consequence does not"
+      ],
+      "site": "First glance stays the write rail. This band sits after the bake-off. Not a /fear route. Not a CMS.",
+      "sku": false,
+      "social": "A human looked in Teams. The journal still posted. Not: AI will take your job."
     },
     "live": false,
     "live_pin_ok": false,
@@ -4139,6 +4173,11 @@
         "answer": "That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.",
         "hear": "Copilot Studio already asks a human.",
         "id": "copilot_rfi"
+      },
+      {
+        "answer": "Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.",
+        "hear": "AI will take over.",
+        "id": "doom"
       }
     ],
     "qualify": {
@@ -4156,7 +4195,9 @@
         "Copilot Studio RFI as the product",
         "AINav as the client's AI",
         "LIVE_PIN_OK from a demo",
-        "Invented named customer or inbox"
+        "Invented named customer or inbox",
+        "AI doom as the product",
+        "Fear brand / AGI theater"
       ]
     },
     "seat_b": {

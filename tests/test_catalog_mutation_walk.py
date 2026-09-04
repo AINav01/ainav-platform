@@ -52,6 +52,7 @@ STRUCTURE = {
     "seat_b",
     "continuity",
     "walk_away_ledger",
+    "human_control",
     "print",
     "pricing_models",
 }

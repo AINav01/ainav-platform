@@ -104,6 +104,8 @@ Walk away:
 - AINav as the client's AI
 - LIVE_PIN_OK from a demo
 - Invented named customer or inbox
+- AI doom as the product
+- Fear brand / AGI theater
 
 **Objections.**
 
@@ -112,6 +114,7 @@ Walk away:
 - **Two humans is slow.** — One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.
 - **Why not PIM?** — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
 - **Copilot Studio already asks a human.** — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
+- **AI will take over.** — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
 
 **CISO.** CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write.
 
@@ -125,6 +128,7 @@ Walk away:
 - Does not: Mark LIVE_PIN_OK
 - Does not: Replace counsel
 - Does not: Power down Copilot
+- Does not: Sell doom-fear
 
 **Seat B meaning.** Mailbox recorded is not the click. Seat B meaning stays honest. Cynthia Hodnett · chodnett@ainav.institute.
 
@@ -142,6 +146,8 @@ Walk away:
 - Is not: All aspects of the business
 
 **Continuity.** If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
+
+**Human control.** Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Fear is only useful if it names that write. Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale. Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.
 
 ## Stack walk
 
@@ -487,6 +493,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Quality check aligned public surfaces with four Reads Granted. This plane refused to close owner-only gaps. Not from this plane. Not LIVE_PIN_OK.
 - Deep first-principles review recorded twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK.
 - Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.
+- Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.
 
 ## Expert review — could be improved
 
@@ -507,6 +514,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.
 - Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.
 - Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
+- Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
 
 ## Success upgrades
 

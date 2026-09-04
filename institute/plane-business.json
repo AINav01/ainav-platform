@@ -811,6 +811,11 @@
       "answer": "That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.",
       "hear": "Copilot Studio already asks a human.",
       "id": "copilot_rfi"
+    },
+    {
+      "answer": "Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.",
+      "hear": "AI will take over.",
+      "id": "doom"
     }
   ],
   "path": [
@@ -867,7 +872,9 @@
       "Copilot Studio RFI as the product",
       "AINav as the client's AI",
       "LIVE_PIN_OK from a demo",
-      "Invented named customer or inbox"
+      "Invented named customer or inbox",
+      "AI doom as the product",
+      "Fear brand / AGI theater"
     ]
   },
   "recognized_revenue": 0,

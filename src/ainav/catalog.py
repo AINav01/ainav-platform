@@ -1049,6 +1049,8 @@ def _validate_first_principles(items: Any) -> None:
     blob = " ".join(str(item).lower() for item in items)
     if "identify is not admit" not in blob or "assignment_live" not in blob or "claiming 99" not in blob:
         raise IntegrityError("first-principles must keep identify, assignment_live, and claiming 99", reason_code="CATALOG_REVIEW")
+    if "write-fear" not in blob or "doom-fear" not in blob or "loss of control" not in blob:
+        raise IntegrityError("first-principles must keep write-fear, doom-fear, and loss of control", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1077,10 +1079,12 @@ def _validate_success_program(success: Any) -> None:
     must = " ".join(str(item).lower() for item in qualify.get("must") or [])
     if "workflow user groups" not in walk or "one human" not in walk:
         raise IntegrityError("qualify must walk away from cheaper native dual", reason_code="CATALOG_REVIEW")
+    if "doom" not in walk or "fear brand" not in walk:
+        raise IntegrityError("qualify must walk away from AI doom and a fear brand", reason_code="CATALOG_REVIEW")
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1098,6 +1102,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture must keep no Graph Write and fail-closed", reason_code="CATALOG_REVIEW")
     if "live_pin_ok" not in does_not or "inbox" not in does_not:
         raise IntegrityError("CISO posture cannot invent an inbox or LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "doom-fear" not in does_not:
+        raise IntegrityError("CISO posture does not sell doom-fear", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1129,6 +1135,39 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("walk-away ledger cannot invent names", reason_code="CATALOG_REVIEW")
     if "not recorded" not in str(ledger.get("note") or "").lower():
         raise IntegrityError("walk-away ledger note: first walk-away is not recorded", reason_code="CATALOG_REVIEW")
+    _validate_human_control(success.get("human_control"))
+
+
+def _validate_human_control(body: Any) -> None:
+    control = _as_dict(body, "human_control")
+    if control.get("sku") is True or control.get("cms") is True or control.get("fear_brand") is True:
+        raise IntegrityError("human control is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if control.get("live") is True or control.get("live_pin_ok") is True:
+        raise IntegrityError("human control cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(control.get("lede") or "").lower()
+    if "authority" not in lede or "loss of control" not in lede or "write" not in lede:
+        raise IntegrityError("human control lede is authority over the write", reason_code="CATALOG_REVIEW")
+    ours = str(control.get("ours") or "").lower()
+    not_ours = str(control.get("not_ours") or "").lower()
+    if "write-fear" not in ours or "doom-fear" not in not_ours:
+        raise IntegrityError("human control splits write-fear from doom-fear", reason_code="CATALOG_REVIEW")
+    if "agi" in ours or "fear brand" in ours:
+        raise IntegrityError("write-fear cannot become a fear brand", reason_code="CATALOG_REVIEW")
+    loss = [str(item).lower() for item in control.get("loss") or []]
+    restore = [str(item).lower() for item in control.get("restore") or []]
+    if len(loss) < 4 or not any("identify" in item and "admit" in item for item in loss):
+        raise IntegrityError("human control loss must name identify pretending to be admit", reason_code="CATALOG_REVIEW")
+    if not any("consume" in item for item in restore) or not any("fail-closed" in item for item in restore):
+        raise IntegrityError("human control restore must keep consume-once and fail-closed", reason_code="CATALOG_REVIEW")
+    site = str(control.get("site") or "").lower()
+    if "write rail" not in site or "/fear" not in site:
+        raise IntegrityError("human control site stays after the bake-off, not a /fear route", reason_code="CATALOG_REVIEW")
+    social = str(control.get("social") or "").lower()
+    if "teams" not in social or "take your job" not in social:
+        raise IntegrityError("human control social names the journal, not job-loss theater", reason_code="CATALOG_REVIEW")
+    note = str(control.get("note") or "").lower()
+    if "live_pin_ok" not in note or "fear brand" not in note:
+        raise IntegrityError("human control note refuses a fear brand and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1497,6 +1536,9 @@ def _validate_public_face(face: Any) -> None:
     book_ids = [item.get("id") for item in book]
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
+    sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#product"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, human control, product", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
