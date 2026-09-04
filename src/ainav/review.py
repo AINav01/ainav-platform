@@ -346,11 +346,14 @@ def deep_dive(*, probe: bool = False) -> str:
         lines.append(f"- Is not: {item}")
     cont = cat["expert_review"]["success"]["continuity"]
     human = cat["expert_review"]["success"]["human_control"]
+    risk = cat["expert_review"]["success"]["executive_risk"]
     lines += [
         "",
         f"**Continuity.** {cont['lede']} {cont['note']}",
         "",
         f"**Human control.** {human['lede']} {human['ours']} {human['not_ours']}",
+        "",
+        f"**Executive risk.** {risk['lede']} {risk['personal']} {risk['business']} {risk['compliance']} {risk['non_compliance']}",
         "",
         "## Stack walk",
         "",

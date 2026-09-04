@@ -452,6 +452,10 @@
             "label": "Human control"
           },
           {
+            "href": "#risk",
+            "label": "Executive risk"
+          },
+          {
             "href": "#product",
             "label": "Product"
           }
@@ -719,7 +723,10 @@
         "Mark LIVE_PIN_OK",
         "Replace counsel",
         "Power down Copilot",
-        "Sell doom-fear"
+        "Sell doom-fear",
+        "Sell a SOX certificate",
+        "Close G12",
+        "Sell D&O"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -741,6 +748,35 @@
         "sku": false,
         "write_lands": false
       }
+    },
+    "executive_risk": {
+      "also": [
+        "Board oversees. Overseeing is not admitting.",
+        "One title cannot wear both seats to shed personal risk.",
+        "Second record is the keep, not the first record.",
+        "Counterparty model into the client's SoR is the same write.",
+        "Small client and large client: same journal, same L1.",
+        "Insurance, D&O, and personal-liability product: walk away.",
+        "Privacy, model-risk, and job-loss theater: not the category unless they are the write."
+      ],
+      "business": "Business: restatement, ICFR weakness, customer or counterparty write, examiner exception. Buying L1 does not close regulator clocks.",
+      "certified": false,
+      "cms": false,
+      "compliance": "Compliance-fear: maps, SOX opinion, EU AI Act certificate, NIST badge. Claimed stays false. G12 stays open. Not counsel. Walk it like cheaper native.",
+      "counsel": false,
+      "d_and_o": false,
+      "fear_brand": false,
+      "kind": "ainav.executive_risk.v1",
+      "lede": "Executive risk is the unauthorized write under a name that certifies the books. Personal and business are the same journal. Compliance maps are not the sale.",
+      "live": false,
+      "live_pin_ok": false,
+      "non_compliance": "Non-compliance that is ours: a privileged SoR line landed and two humans did not bind. That is write-fear. A missed map is counsel's clock.",
+      "note": "Not a SOX opinion. Not 17a-4. Not counsel. Not a certificate. Not LIVE_PIN_OK.",
+      "personal": "Personal: the controller or officer who certifies. 'I did not know the AI posted' is identify, not admit. We do not indemnify. We do not appoint officers. We do not sell D&O.",
+      "seventeen_a4": false,
+      "site": "This band sits after human control. First glance stays the write rail. Not a /risk route. Not a GRC SKU.",
+      "sku": false,
+      "sox_opinion": false
     },
     "human_control": {
       "cms": false,
@@ -804,6 +840,16 @@
         "answer": "Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.",
         "hear": "AI will take over.",
         "id": "doom"
+      },
+      {
+        "answer": "No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.",
+        "hear": "Will this make us SOX compliant?",
+        "id": "sox"
+      },
+      {
+        "answer": "The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.",
+        "hear": "What is my personal liability?",
+        "id": "personal"
       }
     ],
     "qualify": {
@@ -823,7 +869,11 @@
         "LIVE_PIN_OK from a demo",
         "Invented named customer or inbox",
         "AI doom as the product",
-        "Fear brand / AGI theater"
+        "Fear brand / AGI theater",
+        "SOX certificate as the product",
+        "Buy L1 and we are compliant",
+        "D&O / personal-liability product",
+        "Maps as the sale"
       ]
     },
     "seat_b": {

@@ -81,6 +81,10 @@ Walk away:
 - Invented named customer or inbox
 - AI doom as the product
 - Fear brand / AGI theater
+- SOX certificate as the product
+- Buy L1 and we are compliant
+- D&O / personal-liability product
+- Maps as the sale
 
 ### Objection cards
 
@@ -90,6 +94,8 @@ Walk away:
 - **Why not PIM?** — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
 - **Copilot Studio already asks a human.** — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
 - **AI will take over.** — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
+- **Will this make us SOX compliant?** — No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.
+- **What is my personal liability?** — The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.
 
 ### CISO posture
 
@@ -106,6 +112,9 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Replace counsel
 - Does not: Power down Copilot
 - Does not: Sell doom-fear
+- Does not: Sell a SOX certificate
+- Does not: Close G12
+- Does not: Sell D&O
 
 ### Seat B meaning
 

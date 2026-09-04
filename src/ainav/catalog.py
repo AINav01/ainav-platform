@@ -1051,6 +1051,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep identify, assignment_live, and claiming 99", reason_code="CATALOG_REVIEW")
     if "write-fear" not in blob or "doom-fear" not in blob or "loss of control" not in blob:
         raise IntegrityError("first-principles must keep write-fear, doom-fear, and loss of control", reason_code="CATALOG_REVIEW")
+    if "executive risk" not in blob or "non-compliance" not in blob or "sox opinion" not in blob:
+        raise IntegrityError("first-principles must keep executive risk, non-compliance, and SOX opinion", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1081,10 +1083,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("qualify must walk away from cheaper native dual", reason_code="CATALOG_REVIEW")
     if "doom" not in walk or "fear brand" not in walk:
         raise IntegrityError("qualify must walk away from AI doom and a fear brand", reason_code="CATALOG_REVIEW")
+    if "sox" not in walk or "compliant" not in walk or "d&o" not in walk:
+        raise IntegrityError("qualify must walk away from SOX theater, fake compliance, and D&O", reason_code="CATALOG_REVIEW")
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1104,6 +1108,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture cannot invent an inbox or LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
     if "doom-fear" not in does_not:
         raise IntegrityError("CISO posture does not sell doom-fear", reason_code="CATALOG_REVIEW")
+    if "sox" not in does_not or "g12" not in does_not or "d&o" not in does_not:
+        raise IntegrityError("CISO posture does not sell a SOX certificate, close G12, or sell D&O", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1136,6 +1142,7 @@ def _validate_success_program(success: Any) -> None:
     if "not recorded" not in str(ledger.get("note") or "").lower():
         raise IntegrityError("walk-away ledger note: first walk-away is not recorded", reason_code="CATALOG_REVIEW")
     _validate_human_control(success.get("human_control"))
+    _validate_executive_risk(success.get("executive_risk"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1168,6 +1175,43 @@ def _validate_human_control(body: Any) -> None:
     note = str(control.get("note") or "").lower()
     if "live_pin_ok" not in note or "fear brand" not in note:
         raise IntegrityError("human control note refuses a fear brand and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+
+
+def _validate_executive_risk(body: Any) -> None:
+    risk = _as_dict(body, "executive_risk")
+    if risk.get("sku") is True or risk.get("cms") is True or risk.get("fear_brand") is True:
+        raise IntegrityError("executive risk is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if risk.get("counsel") is True or risk.get("certified") is True or risk.get("sox_opinion") is True:
+        raise IntegrityError("executive risk is not counsel, a certificate, or a SOX opinion", reason_code="CATALOG_REVIEW")
+    if risk.get("seventeen_a4") is True or risk.get("d_and_o") is True:
+        raise IntegrityError("executive risk is not 17a-4 or D&O", reason_code="CATALOG_REVIEW")
+    if risk.get("live") is True or risk.get("live_pin_ok") is True:
+        raise IntegrityError("executive risk cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(risk.get("lede") or "").lower()
+    if "executive risk" not in lede or "personal" not in lede or "business" not in lede or "write" not in lede:
+        raise IntegrityError("executive risk lede is personal and business as the same write", reason_code="CATALOG_REVIEW")
+    personal = str(risk.get("personal") or "").lower()
+    business = str(risk.get("business") or "").lower()
+    if "identify" not in personal or "admit" not in personal or "d&o" not in personal:
+        raise IntegrityError("personal risk is identify-not-admit, not D&O", reason_code="CATALOG_REVIEW")
+    if "restatement" not in business or "clocks" not in business:
+        raise IntegrityError("business risk names restatement and regulator clocks", reason_code="CATALOG_REVIEW")
+    compliance = str(risk.get("compliance") or "").lower()
+    non_comp = str(risk.get("non_compliance") or "").lower()
+    if "compliance-fear" not in compliance or "sox opinion" not in compliance or "g12" not in compliance:
+        raise IntegrityError("compliance-fear is a map, not a SOX opinion", reason_code="CATALOG_REVIEW")
+    if "non-compliance" not in non_comp or "write-fear" not in non_comp:
+        raise IntegrityError("non-compliance that is ours is the landed write", reason_code="CATALOG_REVIEW")
+    also = [str(item).lower() for item in risk.get("also") or []]
+    blob = " ".join(also)
+    if len(also) < 5 or "overseeing is not admitting" not in blob or "same l1" not in blob:
+        raise IntegrityError("executive risk also-list keeps board oversee and same L1", reason_code="CATALOG_REVIEW")
+    site = str(risk.get("site") or "").lower()
+    if "write rail" not in site or "/risk" not in site or "grc" not in site:
+        raise IntegrityError("executive risk site stays after human control, not a /risk GRC route", reason_code="CATALOG_REVIEW")
+    note = str(risk.get("note") or "").lower()
+    if "sox opinion" not in note or "17a-4" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("executive risk note refuses SOX, 17a-4, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1537,8 +1581,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#product"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, human control, product", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#product"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, human control, executive risk, product", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")

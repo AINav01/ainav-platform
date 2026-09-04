@@ -106,6 +106,10 @@ Walk away:
 - Invented named customer or inbox
 - AI doom as the product
 - Fear brand / AGI theater
+- SOX certificate as the product
+- Buy L1 and we are compliant
+- D&O / personal-liability product
+- Maps as the sale
 
 **Objections.**
 
@@ -115,6 +119,8 @@ Walk away:
 - **Why not PIM?** — PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.
 - **Copilot Studio already asks a human.** — That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.
 - **AI will take over.** — Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.
+- **Will this make us SOX compliant?** — No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.
+- **What is my personal liability?** — The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.
 
 **CISO.** CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write.
 
@@ -129,6 +135,9 @@ Walk away:
 - Does not: Replace counsel
 - Does not: Power down Copilot
 - Does not: Sell doom-fear
+- Does not: Sell a SOX certificate
+- Does not: Close G12
+- Does not: Sell D&O
 
 **Seat B meaning.** Mailbox recorded is not the click. Seat B meaning stays honest. Cynthia Hodnett · chodnett@ainav.institute.
 
@@ -148,6 +157,8 @@ Walk away:
 **Continuity.** If either seat is missing, the write does not land. That is the product working. Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.
 
 **Human control.** Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Fear is only useful if it names that write. Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale. Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.
+
+**Executive risk.** Executive risk is the unauthorized write under a name that certifies the books. Personal and business are the same journal. Compliance maps are not the sale. Personal: the controller or officer who certifies. 'I did not know the AI posted' is identify, not admit. We do not indemnify. We do not appoint officers. We do not sell D&O. Business: restatement, ICFR weakness, customer or counterparty write, examiner exception. Buying L1 does not close regulator clocks. Compliance-fear: maps, SOX opinion, EU AI Act certificate, NIST badge. Claimed stays false. G12 stays open. Not counsel. Walk it like cheaper native. Non-compliance that is ours: a privileged SoR line landed and two humans did not bind. That is write-fear. A missed map is counsel's clock.
 
 ## Stack walk
 
@@ -494,6 +505,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Deep first-principles review recorded twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Gold 99 is the target. Claiming 99 without coverage is a lie. Not LIVE_PIN_OK.
 - Gold floor is 99 percent. make gold fails under 99. A green check is not LIVE_PIN_OK.
 - Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.
+- Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.
 
 ## Expert review — could be improved
 
@@ -515,6 +527,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.
 - Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
 - Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
+- Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
 
 ## Success upgrades
 

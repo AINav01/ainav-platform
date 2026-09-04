@@ -1863,6 +1863,7 @@
       );
     }
     paintHumanControl(success.human_control);
+    paintExecutiveRisk(success.executive_risk);
   }
 
   function paintHumanControl(control) {
@@ -1881,6 +1882,24 @@
     set("control-note", control.note);
     replacePlain("control-loss", control.loss);
     replacePlain("control-restore", control.restore);
+  }
+
+  function paintExecutiveRisk(risk) {
+    if (!risk || risk.live || risk.live_pin_ok || risk.sku || risk.fear_brand || risk.cms || risk.counsel || risk.certified || risk.sox_opinion || risk.d_and_o) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("risk-lede", risk.lede);
+    set("risk-personal", risk.personal);
+    set("risk-business", risk.business);
+    set("risk-compliance", risk.compliance);
+    set("risk-non", risk.non_compliance);
+    set("risk-site", risk.site);
+    set("risk-note", risk.note);
+    replacePlain("risk-also", risk.also);
   }
 
   function replacePlain(id, items) {

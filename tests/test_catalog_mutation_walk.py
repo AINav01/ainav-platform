@@ -53,6 +53,7 @@ STRUCTURE = {
     "continuity",
     "walk_away_ledger",
     "human_control",
+    "executive_risk",
     "print",
     "pricing_models",
 }

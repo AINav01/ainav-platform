@@ -816,6 +816,16 @@
       "answer": "Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.",
       "hear": "AI will take over.",
       "id": "doom"
+    },
+    {
+      "answer": "No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.",
+      "hear": "Will this make us SOX compliant?",
+      "id": "sox"
+    },
+    {
+      "answer": "The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.",
+      "hear": "What is my personal liability?",
+      "id": "personal"
     }
   ],
   "path": [
@@ -874,7 +884,11 @@
       "LIVE_PIN_OK from a demo",
       "Invented named customer or inbox",
       "AI doom as the product",
-      "Fear brand / AGI theater"
+      "Fear brand / AGI theater",
+      "SOX certificate as the product",
+      "Buy L1 and we are compliant",
+      "D&O / personal-liability product",
+      "Maps as the sale"
     ]
   },
   "recognized_revenue": 0,
