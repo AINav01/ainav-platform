@@ -113,7 +113,11 @@ def probe_dns() -> dict[str, Any]:
             "swa_asuid_present": swa_txt,
             "azure_swa_hostname": SWA_HOST,
             "azure_swa_bound": False,
-            "note": "Apex CNAME is empty Cloudflare Pages. It is not bound to Azure Static Web Apps. Pages is not the Institute.",
+            "note": (
+                "Apex is Cloudflare anycast in front of empty Pages. "
+                "It is not bound to Azure Static Web Apps. Pages is not the Institute. "
+                "Azure SWA is the development twin."
+            ),
         },
         "microsoft_365": {
             "mx": mx,
@@ -219,6 +223,7 @@ def catalog_edge() -> dict[str, Any]:
         "activate": dict(edge.get("activate") or {}),
         "holding": dict(edge.get("holding") or {}),
         "quality": dict(edge.get("quality") or {}),
+        "twin": dict(edge.get("twin") or {}),
         "note": edge["note"],
     }
 
@@ -391,6 +396,13 @@ def probe_edge_quality(*, dns: dict[str, Any] | None = None) -> dict[str, Any]:
     tls_floor = bool(tls.get("tls1_2") or tls.get("tls1_3"))
     tls_legacy_refused = not tls.get("tls1_0") and not tls.get("tls1_1")
     www_301 = www.get("status") == 301
+    apex_headers = https_apex.get("headers") or {}
+    cloudflare_edge = str(apex_headers.get("server") or "").lower() == "cloudflare" or bool(
+        apex_headers.get("cf-ray")
+    )
+    apex_404 = https_apex.get("status") == 404
+    apex_csp = (https_apex.get("csp") or "").lower()
+    apex_has_institute_csp = "script-src 'self'" in apex_csp and "form-action 'none'" in apex_csp
     return {
         "kind": "ainav.edge.quality.probe.v1",
         "sku": False,
@@ -399,13 +411,18 @@ def probe_edge_quality(*, dns: dict[str, Any] | None = None) -> dict[str, Any]:
         "from_this_plane": False,
         "ssl_full_claimed": False,
         "apex_is_institute": False,
+        "authorized_release": False,
         "rocket_loader_claimed": False,
         "e7_full": bool(e7.get("full")),
         "asuid_absent": asuid_absent,
         "http_301": http_apex.get("status") == 301,
         "https_403_challenge": challenge,
+        "apex_404": apex_404,
+        "cloudflare_edge": cloudflare_edge,
+        "apex_has_institute_csp": apex_has_institute_csp,
         "pages_404": pages.get("status") == 404,
         "swa_200": swa_ok,
+        "twin_swa_200": swa_ok,
         "www_301": www_301,
         "tls_floor": tls_floor,
         "tls_legacy_refused": tls_legacy_refused,
@@ -423,9 +440,11 @@ def probe_edge_quality(*, dns: dict[str, Any] | None = None) -> dict[str, Any]:
         "mail": mail,
         "visitor_cert": cert,
         "note": (
-            "Live probe is HTTP 301, apex 403 hold, pages 404, SWA 200, asuid absent, "
-            "E7 13/13, TLS 1.2+, and mail not Cloudflare anycast. "
-            "Visitor cert is not SSL Full. Rocket Loader Off is not claimed. "
-            "This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+            "Live probe is HTTP 301, apex 404 empty on Cloudflare edge, pages 404, "
+            "SWA twin 200, asuid absent, E7 13/13, TLS 1.2+, and mail not Cloudflare anycast. "
+            "The 403 challenge hold is gone. Visitor cert is not SSL Full. "
+            "Cloudflare edge is not the Institute. Azure SWA is the development twin. "
+            "Authorized gold-99 release is owner-only. This is not Institute launch. "
+            "This Cloud Agent cannot edit Cloudflare."
         ),
     }

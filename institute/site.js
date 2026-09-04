@@ -2160,7 +2160,8 @@
             quality.apex_is_institute ||
             quality.ssl_full_claimed ||
             quality.rocket_loader_claimed ||
-            (quality.owner_ssl && quality.owner_ssl.from_this_plane)
+            (quality.owner_ssl && quality.owner_ssl.from_this_plane) ||
+            (edge.twin && (edge.twin.authorized || edge.twin.launch || edge.twin.live || edge.twin.live_pin_ok))
           ) {
             /* refuse to paint a fiction quality board */
           } else {
@@ -2185,6 +2186,20 @@
               (edge.holding.launch === true) +
               " · " +
               (edge.holding.note || "Empty Pages is not the Institute. Leave the zone as-is.");
+          }
+          var twinNode = document.getElementById("institute-twin");
+          var twin = edge.twin || {};
+          if (
+            twinNode &&
+            twin.lede &&
+            !twin.sku &&
+            !twin.live &&
+            !twin.live_pin_ok &&
+            !twin.launch &&
+            !twin.authorized &&
+            !twin.from_this_plane
+          ) {
+            twinNode.textContent = twin.lede + " " + (twin.note || "");
           }
         }
       }

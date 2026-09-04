@@ -4964,12 +4964,13 @@
       "cloudflare_edited_from_this_plane": false,
       "cutover": [
         "Pages empty",
-        "SWA as origin",
+        "SWA twin for gold 99",
+        "Cloudflare apex empty until authorized",
         "asuid only then",
         "launch only when James says launch"
       ],
       "pages_is_not_institute": true,
-      "note": "One-hostname rehearsal in catalog, not in Cloudflare. Do not add asuid while Pages is apex origin. Launch is held."
+      "note": "One-hostname rehearsal. Azure SWA is the development twin. Cloudflare apex is empty 404. Do not add asuid while Pages is the public origin. Authorized gold-99 release is owner-only. Launch is held."
     },
     "gaps": {
       "kind": "ainav.plane.gaps.v1",
@@ -4994,7 +4995,7 @@
         "provision spine",
         "duty hints",
         "owner board packet",
-        "edge quality live probe: HTTP 301, apex 403, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast",
+        "edge quality live probe: HTTP 301, apex 404 empty on Cloudflare edge, pages 404, SWA twin 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast",
         "owner recorded Automatic SSL/TLS Full (strict); visitor cert still not proof; not from this plane",
         "owner recorded Grant admin consent failed: leftover Speech, Azure Service Management, and Key Vault have no service principal; Graph Writes still Granted; four Reads configured not granted; not from this plane",
         "owner recorded Grant succeeded: four Reads Granted; leftover Speech, ARM, and Key Vault gone; Graph Writes still Granted; not from this plane",
@@ -5023,6 +5024,8 @@
         "claim Rocket Loader from this plane",
         "claim Graph Read from this plane",
         "grant Graph consent from this plane",
+        "publish Institute to Cloudflare from this plane",
+        "mark authorized release",
         "treat Canada as United States",
         "paste Dataverse environment id",
         "purchase ADR",
@@ -5196,7 +5199,8 @@
       "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
       "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
-      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK"
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
+      "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -5339,7 +5343,7 @@
           },
           {
             "id": "waf.managed",
-            "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is holding. It is not the Institute and not launch.",
+            "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is no longer holding. Apex is 404 empty on Cloudflare. That is not the Institute and not launch. Confirm you meant to drop the challenge.",
             "url": "https://dash.cloudflare.com",
             "url_label": "WAF"
           },
@@ -5409,9 +5413,9 @@
           "E7 DNS 13/13 full",
           "Outlook MX, SPF -all, DKIM, DMARC p=quarantine",
           "HTTP to HTTPS 301",
-          "Apex 403 Cloudflare challenge — holding, not the Institute",
+          "Apex 404 empty on Cloudflare edge — not the Institute",
           "ainav-institute.pages.dev 404 empty",
-          "Azure SWA 200 with Institute CSP",
+          "Azure SWA twin 200 with Institute CSP",
           "asuid absent",
           "TLS 1.2 and 1.3 accepted; TLS 1.0 and 1.1 refused",
           "Autodiscover and MX resolve to Outlook, not Cloudflare anycast",
@@ -5425,20 +5429,67 @@
           "Do not downgrade Full (strict) to Flexible or Off",
           "Rocket Loader Off and Auto Minify JavaScript Off",
           "MX and autodiscover grey cloud",
-          "WAF challenge stays on the empty apex"
+          "403 challenge drop was intended — apex is now 404 empty"
         ],
         "refuse": [
           "asuid while Pages is the apex",
           "orange-cloud MX or autodiscover",
           "Flexible SSL",
           "Rocket Loader",
-          "treat the apex 403 as launch"
+          "treat the apex 404 as launch",
+          "treat Cloudflare edge as the Institute"
         ],
         "wait": [
           "DMARC p=reject after mail flows",
           "Bind ainav.institute / asuid when the owner says launch"
         ],
-        "note": "Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+        "note": "Quality is E7 DNS full, Cloudflare edge on an empty 404 apex, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development twin. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare."
+      },
+      "twin": {
+        "kind": "ainav.institute.twin.v1",
+        "sku": false,
+        "live": false,
+        "live_pin_ok": false,
+        "launch": false,
+        "authorized": false,
+        "from_this_plane": false,
+        "gold_floor": 99,
+        "lede": "The Institute has a digital twin. Development is Azure SWA. The public hostname is on Cloudflare and is empty. Gold 99 is the release floor. Authorization is owner-only.",
+        "development": {
+          "role": "digital_twin",
+          "host": "azure.swa",
+          "url": "https://blue-river-010091a0f.7.azurestaticapps.net/",
+          "location": "eastus2",
+          "observed": "200 Institute CSP",
+          "is_public_apex": false
+        },
+        "public_edge": {
+          "host": "cloudflare",
+          "apex": "ainav.institute",
+          "origin": "ainav-institute.pages.dev",
+          "observed": "404 empty",
+          "challenge_hold": false,
+          "is_institute": false,
+          "edge": true
+        },
+        "release": {
+          "authorized": false,
+          "from_this_plane": false,
+          "requires": [
+            "James says launch or authorize public release",
+            "make gold at or above 99 on the twin",
+            "do not mark LIVE_PIN_OK"
+          ],
+          "path": "Keep Azure SWA as the development twin. When authorized, publish that gold tree to the Cloudflare public origin (empty Pages today). Do not auto-publish on a green CI check. This Cloud Agent cannot edit Cloudflare.",
+          "not": [
+            "auto-publish on green CI",
+            "treat apex 404 as launch",
+            "treat SWA 200 as public launch",
+            "treat Cloudflare edge as the Institute",
+            "add asuid from this plane"
+          ]
+        },
+        "note": "Cloudflare is the edge. Azure SWA is the twin. Apex 404 is not the Institute. A green check is not LIVE_PIN_OK. Not launch."
       },
       "holding": {
         "id": "cloudflare.pages",
@@ -5447,7 +5498,7 @@
         "institute": false,
         "launch": false,
         "sku": false,
-        "note": "Apex is a Pro 403 challenge. Pages origin 404. Azure SWA is the Institute host. Empty Pages is not the Institute. Leave the zone as-is. Transfer still in flight. Not launch."
+        "note": "Apex is 404 empty on Cloudflare. Pages origin 404. Azure SWA is the development twin, not the public apex. Empty Pages is not the Institute. Leave the zone as-is until James authorizes a gold-99 release. Not launch."
       },
       "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare."
     },
@@ -5665,8 +5716,8 @@
           "name": "Cloudflare DNS / edge",
           "role": "dns_edge",
           "status": "full",
-          "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex 403 is holding. asuid absent. DNS full is not Institute launch.",
-          "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Leave the apex 403. Do not add asuid. Do not bind ainav.institute until you say launch. This Cloud Agent cannot edit Cloudflare.",
+          "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex is 404 empty on Cloudflare edge. asuid absent. Azure SWA is the twin. DNS full is not Institute launch.",
+          "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99. This Cloud Agent cannot edit Cloudflare.",
           "url": "https://dash.cloudflare.com",
           "url_label": "Cloudflare dashboard",
           "learn": "https://developers.cloudflare.com/dns/",
@@ -6526,6 +6577,9 @@
       "public_deploy_claimed": false,
       "custom_domain_claimed": false,
       "launch_ready": false,
+      "authorized_release": false,
+      "twin_host": "azure.swa",
+      "public_edge": "cloudflare",
       "apex_origin": "ainav-institute.pages.dev",
       "pages_is_host": false
     },
@@ -6814,7 +6868,7 @@
     "capital": "There is no priced round in this packet. There is no valuation. There is no forecast ARR. The honest investor unit is catalog list times zero booked times a two-human close.",
     "insulation": "The vendor of the AI cannot credibly sit over that AI as the failsafe. Lockfile stays job_c. Gold is fail-closed. Catalog law refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
     "control_plane": "Ultimate, here, means last authority — not a claim that AINav owns every model. The client utilizes AI. The client's customers utilize AI. Every one of those systems can draft a privileged write. The product is the last human gate in front of that write: one admit plane, two distinct humans, fail-closed. That is the ultimate control plane. It is not another Copilot, Agentforce, Joule, or Now Assist.\n\nThe vendor of the drafting AI is the worst failsafe for that AI. Microsoft sells Copilot and Agent 365. Salesforce sells Agentforce. ServiceNow sells Now Assist. SAP sells Joule. Each can ship a human-in-the-loop button over its own draft. A treasurer who lets the author of the draft also lock the vault has no independent control. Independence is why one plane can sit over all of them at once.\n\nA vendor-native button only covers that vendor. Copilot asking a human leaves Agentforce and the counterparty's model ungated. A Teams vote is not dual admit. PIM is not dual admit. Once the controller institutes one plane over the whole estate, replacing it with a Copilot feature is a downgrade: it opens every other AI again. The umbrella is the insulation. Point solutions are not the category.\n\nAfter kit PASS, the second record, the off switch, and the rollback are segregation of duties — books-and-records, not a chatbot seat. Cancelling the plane is cancelling the gate. That switching cost is SOD, not contract fiction.\n\nOthers can copy a two-person Business Central approval, a Teams vote, or Copilot asking a human. They do not copy Job C: lockfile stays job_c, consume-once grant bound to seats and action_hash, fail-closed effect, frozen gold, hash-chained DecisionRecords, catalog law that refuses competitor SKUs. This is not a patent. This is not uncopyable. G12 stays open.",
-    "traction": "The admit plane is in code. Gold floor is 95 percent. Gold floor 99 is now the floor after measured coverage. Live Cloudflare quality probe verified 301, 403 hold, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
+    "traction": "The admit plane is in code. Gold floor is 95 percent. Gold floor 99 is now the floor after measured coverage. Live Cloudflare quality probe verified 301, apex 404 empty on Cloudflare edge, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development twin. Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute twin is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.",
     "ask": "Cynthia, you agreed to be seat B and the Inception business executive. Mailbox chodnett@ainav.institute is recorded. Your own Entra object id and your own click are still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK.",
     "sale_motion": "Qualify a controller who already has Business Central Premium, Entra, and two-person journal SOD. Hand them a proof-day brief they can forward. Ninety minutes on the twin. Sell L1 that week. Kit PASS. Attach P-ADM. Offer paid U-DUAL. Seat priced desks on the same plane. Honest exits are LOST, KIT_FAIL, and CHURN. No invented inbox. No invented design-partner name.",
     "tuesday": "Seat A is treasury_approver (James). Seat B is treasury_controller (you). Each needs a distinct Entra object id. When a privileged write is proposed, both of you see the same action_hash. Admit or refuse. Refusing is the product working. James clicking twice is not dual. The Cloud Agent is not a seat. A mailbox is not the click.",
@@ -6994,7 +7048,8 @@
       "Human control is authority over the write. Loss of control is a privileged SoR line two humans did not bind. Write-fear is the sale. Doom-fear is not the category. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive personal risk and business risk are the same unauthorized journal. Compliance-fear is a map. Non-compliance that is ours is the write that landed. Not a SOX opinion. Not counsel. Not D&O. Not LIVE_PIN_OK.",
       "AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.",
-      "Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK."
+      "Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK.",
+      "Deep Cloudflare quality 2026-09-04: HTTP 301, apex 404 empty on Cloudflare edge, pages 404, Azure SWA twin 200 with Institute CSP, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. The 403 challenge hold is gone. Visitor cert is Google Trust Services WE1 — not Full. Gold 99 is the twin release floor. Not launch. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7020,7 +7075,8 @@
       "Human control is authority over consequence. Loss of control is identify pretending to be admit. Write-fear names the unauthorized journal. Doom-fear is AGI theater — walk it like cheaper native. Not a /fear route. Not a CMS. Not LIVE_PIN_OK.",
       "Executive risk is the write under a name that certifies the books. Personal and business are the same journal. Compliance maps stay claimed=false. Non-compliance that is ours is the landed write. Not a SOX opinion. Not D&O. Not a /risk route. Not LIVE_PIN_OK.",
       "AINav, Inc. market position is last authority, not another Copilot. Demand is 0. The only future that counts is a named controller who walks away from the licensed substitute and buys L1. Not a forecast. Not TAM. Not a priced round. Not a /market route. Not LIVE_PIN_OK.",
-      "US Dataverse stays open. North America without Advanced Data Residency is a macro region. Placement affinity to Canada is documented, not a provisioning failure. Do not treat Canada as United States. Do not paste a Dataverse environment id. Engineering exception routed, not granted. Not LIVE_PIN_OK."
+      "US Dataverse stays open. North America without Advanced Data Residency is a macro region. Placement affinity to Canada is documented, not a provisioning failure. Do not treat Canada as United States. Do not paste a Dataverse environment id. Engineering exception routed, not granted. Not LIVE_PIN_OK.",
+      "The Institute has a digital twin on Azure SWA. The public hostname is on Cloudflare and is empty 404. Gold 99 is the release floor. Authorization is owner-only. Cloudflare edge is not the Institute. Do not treat apex 404 as launch. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7043,7 +7099,8 @@
       "Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.",
       "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
-      "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse."
+      "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.",
+      "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch."
     ],
     "success": {
       "sku": false,

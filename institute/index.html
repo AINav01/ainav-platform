@@ -1429,7 +1429,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <p class="note" id="e7-cloudflare-plan">plan=pro · plan_sku=false · from_this_plane=false</p>
       <ol class="stack integrate" id="e7-cloudflare-activate">
         <li><a href="https://dash.cloudflare.com">SSL/TLS</a> — Confirm SSL/TLS Full, not Flexible. Minimum TLS 1.2. HTTP to HTTPS 301 is already on. That redirect is not Institute launch.</li>
-        <li><a href="https://dash.cloudflare.com">WAF</a> — Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is holding. It is not the Institute and not launch.</li>
+        <li><a href="https://dash.cloudflare.com">WAF</a> — Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is no longer holding. Apex is 404 empty on Cloudflare. That is not the Institute and not launch. Confirm you meant to drop the challenge.</li>
         <li><a href="https://dash.cloudflare.com">Speed</a> — Rocket Loader Off. Auto Minify JavaScript Off. They break the static Institute after launch.</li>
         <li><a href="https://dash.cloudflare.com">DNS</a> — MX and autodiscover resolve to Outlook. Confirm they stay DNS only / grey cloud. Do not orange-cloud mail.</li>
       </ol>
@@ -1442,9 +1442,9 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li>E7 DNS 13/13 full</li>
             <li>Outlook MX, SPF -all, DKIM, DMARC p=quarantine</li>
             <li>HTTP to HTTPS 301</li>
-            <li>Apex 403 Cloudflare challenge — holding, not the Institute</li>
+            <li>Apex 404 empty on Cloudflare edge — not the Institute</li>
             <li>ainav-institute.pages.dev 404 empty</li>
-            <li>Azure SWA 200 with Institute CSP</li>
+            <li>Azure SWA twin 200 with Institute CSP</li>
             <li>asuid absent</li>
             <li>TLS 1.2 and 1.3 accepted; TLS 1.0 and 1.1 refused</li>
             <li>Autodiscover and MX resolve to Outlook, not Cloudflare anycast</li>
@@ -1464,7 +1464,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li>Do not downgrade Full (strict) to Flexible or Off</li>
             <li>Rocket Loader Off and Auto Minify JavaScript Off</li>
             <li>MX and autodiscover grey cloud</li>
-            <li>WAF challenge stays on the empty apex</li>
+            <li>403 challenge drop was intended — apex is now 404 empty</li>
           </ul>
         </article>
         <article>
@@ -1474,7 +1474,8 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li>orange-cloud MX or autodiscover</li>
             <li>Flexible SSL</li>
             <li>Rocket Loader</li>
-            <li>treat the apex 403 as launch</li>
+            <li>treat the apex 404 as launch</li>
+            <li>treat Cloudflare edge as the Institute</li>
           </ul>
         </article>
         <article>
@@ -1485,8 +1486,9 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           </ul>
         </article>
       </div>
-      <p class="note" id="e7-cloudflare-quality">Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.</p>
-      <p class="note" id="e7-cloudflare-holding">holding=ainav-institute.pages.dev · host=false · institute=false · launch=false · Apex is a Pro 403 challenge. Pages origin 404. Azure SWA is the Institute host. Empty Pages is not the Institute. Leave the zone as-is.</p>
+      <p class="note" id="e7-cloudflare-quality">Quality is E7 DNS full, Cloudflare edge on an empty 404 apex, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development twin. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.</p>
+      <p class="note" id="e7-cloudflare-holding">holding=ainav-institute.pages.dev · host=false · institute=false · launch=false · Apex is 404 empty on Cloudflare. Pages origin 404. Azure SWA is the development twin, not the public apex. Empty Pages is not the Institute. Leave the zone as-is until James authorizes a gold-99 release. Not launch.</p>
+      <p class="note" id="institute-twin">The Institute has a digital twin. Development is Azure SWA. The public hostname is on Cloudflare and is empty. Gold 99 is the release floor. Authorization is owner-only. Cloudflare is the edge. Azure SWA is the twin. Apex 404 is not the Institute. A green check is not LIVE_PIN_OK. Not launch.</p>
       <p class="note" id="e7-cloudflare-note">Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only — orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.</p>
       <p class="note" id="e7-cloudflare-status">full=true · sku=false · live=false · is_admit_plane=false · complement=false</p>
       <h3 class="subhead" id="stack-walk">Stack walk — hop by hop with links</h3>

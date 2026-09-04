@@ -183,8 +183,8 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
             raise IntegrityError(f"Pro activate now must keep {stem}", reason_code="CATALOG_EDGE")
     if "pro" not in already:
         raise IntegrityError("edge already must record Cloudflare Pro", reason_code="CATALOG_EDGE")
-    if "403" not in now_blob and "challenge" not in now_blob:
-        raise IntegrityError("Pro activate must keep the apex challenge as holding", reason_code="CATALOG_EDGE")
+    if "404" not in now_blob and "empty" not in now_blob:
+        raise IntegrityError("Pro activate must keep the empty 404 apex", reason_code="CATALOG_EDGE")
     if "grey" not in now_blob and "outlook" not in now_blob:
         raise IntegrityError("Pro activate DNS must keep Outlook / grey cloud", reason_code="CATALOG_EDGE")
     if "reject" not in wait_blob:
@@ -214,6 +214,7 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
         if "dns is full" not in note:
             raise IntegrityError("edge note: DNS is full", reason_code="CATALOG_EDGE")
         _validate_edge_quality(edge)
+        _validate_institute_twin(edge)
     elif edge.get("full") is False:
         if "sip" not in missing:
             raise IntegrityError("edge missing must include Teams SIP", reason_code="CATALOG_EDGE")
@@ -272,7 +273,7 @@ def _validate_edge_quality(edge: dict[str, Any]) -> None:
     if "full (strict)" not in recorded or "owner" not in recorded:
         raise IntegrityError("edge quality owner_recorded must keep Full (strict)", reason_code="CATALOG_EDGE")
     verified = " ".join(str(item).lower() for item in quality.get("verified") or [])
-    for stem in ("13/13", "403", "asuid", "301", "tls", "anycast"):
+    for stem in ("13/13", "404", "asuid", "301", "tls", "anycast"):
         if stem not in verified:
             raise IntegrityError(f"edge quality verified must keep {stem}", reason_code="CATALOG_EDGE")
     confirm = " ".join(str(item).lower() for item in quality.get("confirm") or [])
@@ -280,7 +281,7 @@ def _validate_edge_quality(edge: dict[str, Any]) -> None:
         if stem not in confirm:
             raise IntegrityError(f"edge quality confirm must keep {stem}", reason_code="CATALOG_EDGE")
     refuse = " ".join(str(item).lower() for item in quality.get("refuse") or [])
-    for stem in ("asuid", "orange-cloud", "403"):
+    for stem in ("asuid", "orange-cloud", "404"):
         if stem not in refuse:
             raise IntegrityError(f"edge quality refuse must keep {stem}", reason_code="CATALOG_EDGE")
     wait = " ".join(str(item).lower() for item in quality.get("wait") or [])
@@ -289,6 +290,49 @@ def _validate_edge_quality(edge: dict[str, Any]) -> None:
     note = str(quality.get("note") or "").lower()
     if "not institute launch" not in note or "cannot edit" not in note:
         raise IntegrityError("edge quality note: not launch and cannot edit", reason_code="CATALOG_EDGE")
+    if "twin" not in note or "404" not in note:
+        raise IntegrityError("edge quality note must keep the SWA twin and empty 404 apex", reason_code="CATALOG_EDGE")
+
+
+def _validate_institute_twin(edge: dict[str, Any]) -> None:
+    twin = _as_dict(edge.get("twin"), "Institute twin")
+    if twin.get("kind") != "ainav.institute.twin.v1":
+        raise IntegrityError("Institute twin kind is ainav.institute.twin.v1", reason_code="CATALOG_EDGE")
+    for flag in ("sku", "live", "live_pin_ok", "launch", "authorized", "from_this_plane"):
+        if twin.get(flag) is True:
+            raise IntegrityError(f"Institute twin cannot claim {flag}", reason_code="CATALOG_EDGE")
+    if int(twin.get("gold_floor") or 0) != 99:
+        raise IntegrityError("Institute twin gold_floor is 99", reason_code="CATALOG_EDGE")
+    lede = str(twin.get("lede") or "").lower()
+    if "digital twin" not in lede or "azure swa" not in lede or "cloudflare" not in lede:
+        raise IntegrityError("Institute twin lede is SWA development and Cloudflare empty", reason_code="CATALOG_EDGE")
+    dev = _as_dict(twin.get("development"), "Institute twin development")
+    if str(dev.get("host") or "") != "azure.swa" or str(dev.get("role") or "") != "digital_twin":
+        raise IntegrityError("Institute development twin is Azure SWA", reason_code="CATALOG_EDGE")
+    if "azurestaticapps.net" not in str(dev.get("url") or "").lower():
+        raise IntegrityError("Institute twin url is the Azure SWA hostname", reason_code="CATALOG_EDGE")
+    if dev.get("is_public_apex") is True:
+        raise IntegrityError("SWA twin is not the public apex", reason_code="CATALOG_EDGE")
+    public = _as_dict(twin.get("public_edge"), "Institute public edge")
+    if str(public.get("host") or "") != "cloudflare" or str(public.get("apex") or "") != "ainav.institute":
+        raise IntegrityError("public edge is Cloudflare on ainav.institute", reason_code="CATALOG_EDGE")
+    if public.get("is_institute") is True or public.get("challenge_hold") is True:
+        raise IntegrityError("Cloudflare apex is not the Institute and is not a 403 hold", reason_code="CATALOG_EDGE")
+    if "404" not in str(public.get("observed") or "").lower():
+        raise IntegrityError("public edge observed is 404 empty", reason_code="CATALOG_EDGE")
+    release = _as_dict(twin.get("release"), "Institute twin release")
+    if release.get("authorized") is True or release.get("from_this_plane") is True:
+        raise IntegrityError("Institute release is not authorized from this plane", reason_code="CATALOG_EDGE")
+    requires = " ".join(str(item).lower() for item in release.get("requires") or [])
+    if "gold" not in requires or "99" not in requires or "launch" not in requires:
+        raise IntegrityError("Institute release requires gold 99 and owner launch", reason_code="CATALOG_EDGE")
+    refused = " ".join(str(item).lower() for item in release.get("not") or [])
+    for stem in ("auto-publish", "apex 404", "cloudflare edge", "asuid"):
+        if stem not in refused:
+            raise IntegrityError(f"Institute release must refuse {stem}", reason_code="CATALOG_EDGE")
+    note = str(twin.get("note") or "").lower()
+    if "twin" not in note or "404" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("Institute twin note: SWA twin, empty 404, not LIVE_PIN_OK", reason_code="CATALOG_EDGE")
 
 
 def _validate_stack_walk(catalog: dict[str, Any]) -> None:
@@ -1157,6 +1201,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep market position, forecast, and priced round", reason_code="CATALOG_REVIEW")
     if "canada as united states" not in blob or "advanced data residency" not in blob or "affinity" not in blob:
         raise IntegrityError("first-principles must keep Canada affinity and Advanced Data Residency", reason_code="CATALOG_REVIEW")
+    if "digital twin" not in blob or "apex 404" not in blob or "gold 99" not in blob:
+        raise IntegrityError("first-principles must keep the Institute twin and empty Cloudflare apex", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -2295,7 +2341,7 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
     for stem in ("seat b", "graph", "dataverse", "g12", "billing", "launch"):
         if not any(stem in item for item in owner):
             raise IntegrityError("gaps owner_only_open must keep " + stem, reason_code="CATALOG_PLANE")
-    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph", "canada", "environment id"):
+    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph", "canada", "environment id", "authorized release"):
         if not any(stem in item for item in cannot):
             raise IntegrityError("gaps this_plane_cannot must keep " + stem, reason_code="CATALOG_PLANE")
     if "do not invent" not in str(gaps.get("note") or "").lower():
@@ -2756,7 +2802,7 @@ def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> N
     if host.get("pages_is_not_institute") is not True:
         raise IntegrityError("Pages is not the Institute", reason_code="CATALOG_PLANE")
     cutover = [str(item).lower() for item in host.get("cutover") or []]
-    for stem in ("pages empty", "swa", "asuid only then", "james"):
+    for stem in ("pages empty", "swa", "asuid only then", "james", "authorized"):
         if not any(stem in item for item in cutover):
             raise IntegrityError("hostname rehearsal cutover must keep " + stem, reason_code="CATALOG_PLANE")
     competitive = body.get("competitive")
@@ -3422,3 +3468,7 @@ def catalog_graph() -> dict[str, Any]:
 
 def catalog_us_dataverse() -> dict[str, Any]:
     return dict((load_catalog().get("microsoft_stack") or {}).get("us_dataverse") or {})
+
+
+def catalog_institute_twin() -> dict[str, Any]:
+    return dict(((load_catalog().get("microsoft_stack") or {}).get("edge") or {}).get("twin") or {})

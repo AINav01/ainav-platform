@@ -143,7 +143,7 @@
           "url_label": "SSL/TLS"
         },
         {
-          "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is holding. It is not the Institute and not launch.",
+          "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is no longer holding. Apex is 404 empty on Cloudflare. That is not the Institute and not launch. Confirm you meant to drop the challenge.",
           "id": "waf.managed",
           "url": "https://dash.cloudflare.com",
           "url_label": "WAF"
@@ -203,7 +203,7 @@
       "id": "cloudflare.pages",
       "institute": false,
       "launch": false,
-      "note": "Apex is a Pro 403 challenge. Pages origin 404. Azure SWA is the Institute host. Empty Pages is not the Institute. Leave the zone as-is. Transfer still in flight. Not launch.",
+      "note": "Apex is 404 empty on Cloudflare. Pages origin 404. Azure SWA is the development twin, not the public apex. Empty Pages is not the Institute. Leave the zone as-is until James authorizes a gold-99 release. Not launch.",
       "origin": "ainav-institute.pages.dev",
       "sku": false
     },
@@ -235,7 +235,7 @@
         "Do not downgrade Full (strict) to Flexible or Off",
         "Rocket Loader Off and Auto Minify JavaScript Off",
         "MX and autodiscover grey cloud",
-        "WAF challenge stays on the empty apex"
+        "403 challenge drop was intended \u2014 apex is now 404 empty"
       ],
       "e7_full": true,
       "from_this_plane": false,
@@ -249,7 +249,7 @@
       "kind": "ainav.edge.quality.v1",
       "live": false,
       "live_pin_ok": false,
-      "note": "Quality is E7 DNS full, a held apex, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+      "note": "Quality is E7 DNS full, Cloudflare edge on an empty 404 apex, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development twin. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
       "owner_recorded": [
         "Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane."
       ],
@@ -274,7 +274,8 @@
         "orange-cloud MX or autodiscover",
         "Flexible SSL",
         "Rocket Loader",
-        "treat the apex 403 as launch"
+        "treat the apex 404 as launch",
+        "treat Cloudflare edge as the Institute"
       ],
       "rocket_loader_claimed": false,
       "sku": false,
@@ -284,9 +285,9 @@
         "E7 DNS 13/13 full",
         "Outlook MX, SPF -all, DKIM, DMARC p=quarantine",
         "HTTP to HTTPS 301",
-        "Apex 403 Cloudflare challenge \u2014 holding, not the Institute",
+        "Apex 404 empty on Cloudflare edge \u2014 not the Institute",
         "ainav-institute.pages.dev 404 empty",
-        "Azure SWA 200 with Institute CSP",
+        "Azure SWA twin 200 with Institute CSP",
         "asuid absent",
         "TLS 1.2 and 1.3 accepted; TLS 1.0 and 1.1 refused",
         "Autodiscover and MX resolve to Outlook, not Cloudflare anycast",
@@ -299,7 +300,53 @@
       ]
     },
     "role": "dns_edge",
-    "sku": false
+    "sku": false,
+    "twin": {
+      "authorized": false,
+      "development": {
+        "host": "azure.swa",
+        "is_public_apex": false,
+        "location": "eastus2",
+        "observed": "200 Institute CSP",
+        "role": "digital_twin",
+        "url": "https://blue-river-010091a0f.7.azurestaticapps.net/"
+      },
+      "from_this_plane": false,
+      "gold_floor": 99,
+      "kind": "ainav.institute.twin.v1",
+      "launch": false,
+      "lede": "The Institute has a digital twin. Development is Azure SWA. The public hostname is on Cloudflare and is empty. Gold 99 is the release floor. Authorization is owner-only.",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "Cloudflare is the edge. Azure SWA is the twin. Apex 404 is not the Institute. A green check is not LIVE_PIN_OK. Not launch.",
+      "public_edge": {
+        "apex": "ainav.institute",
+        "challenge_hold": false,
+        "edge": true,
+        "host": "cloudflare",
+        "is_institute": false,
+        "observed": "404 empty",
+        "origin": "ainav-institute.pages.dev"
+      },
+      "release": {
+        "authorized": false,
+        "from_this_plane": false,
+        "not": [
+          "auto-publish on green CI",
+          "treat apex 404 as launch",
+          "treat SWA 200 as public launch",
+          "treat Cloudflare edge as the Institute",
+          "add asuid from this plane"
+        ],
+        "path": "Keep Azure SWA as the development twin. When authorized, publish that gold tree to the Cloudflare public origin (empty Pages today). Do not auto-publish on a green CI check. This Cloud Agent cannot edit Cloudflare.",
+        "requires": [
+          "James says launch or authorize public release",
+          "make gold at or above 99 on the twin",
+          "do not mark LIVE_PIN_OK"
+        ]
+      },
+      "sku": false
+    }
   },
   "engineering": {
     "action_schema": {
@@ -364,7 +411,8 @@
       "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
       "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
       "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
-      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK"
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
+      "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,

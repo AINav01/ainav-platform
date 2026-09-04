@@ -56,6 +56,10 @@ STRUCTURE = {
     "executive_risk",
     "market_position",
     "us_dataverse",
+    "twin",
+    "development",
+    "public_edge",
+    "release",
     "print",
     "pricing_models",
 }

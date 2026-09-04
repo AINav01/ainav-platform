@@ -61,6 +61,12 @@ def validate_programs(catalog: dict[str, Any]) -> None:
         )
     if body.get("website", {}).get("pages_is_host") is True:
         raise IntegrityError("Cloudflare Pages is not the Institute host", reason_code="PROGRAM_NOT_CLAIMED")
+    if body.get("website", {}).get("authorized_release") is True:
+        raise IntegrityError("authorized public release is owner-only", reason_code="PROGRAM_NOT_CLAIMED")
+    if str(body.get("website", {}).get("twin_host") or "") != "azure.swa":
+        raise IntegrityError("Institute development twin is Azure SWA", reason_code="PROGRAM_NOT_CLAIMED")
+    if str(body.get("website", {}).get("public_edge") or "") != "cloudflare":
+        raise IntegrityError("Institute public edge is Cloudflare", reason_code="PROGRAM_NOT_CLAIMED")
     if str(body.get("website", {}).get("apex_origin") or "") != "ainav-institute.pages.dev":
         raise IntegrityError(
             "apex origin is empty Cloudflare Pages",

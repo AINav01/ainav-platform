@@ -2803,7 +2803,7 @@ ET
 endstream
 endobj
 20 0 obj
-<< /Length 9515 >>
+<< /Length 9639 >>
 stream
 0.067 0.078 0.102 rg
 0 730 612 62 re f
@@ -3358,43 +3358,49 @@ BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 164.0 Tm
-(measured coverage. Live Cloudflare quality probe verified 301, 403 hold, TLS 1.2+, and) Tj
+(measured coverage. Live Cloudflare quality probe verified 301, apex 404 empty on) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 152.0 Tm
-(mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full \(strict\). Rocket Loader) Tj
+(Cloudflare edge, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 140.0 Tm
-(stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner) Tj
+(twin. Owner recorded Automatic SSL/TLS Full \(strict\). Rocket Loader stays owner confirm.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 128.0 Tm
-(board packet. There is a real Business Central Sandbox company named AINav and a sandbox) Tj
+(The Floor sits catalog view_shows, the provision spine, and the owner board packet. There) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 116.0 Tm
-(journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans.) Tj
+(is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1.) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 104.0 Tm
-(The Institute is hosted on Azure and is not launched. Production is blocked. Named) Tj
+(Those seats were lab operator identities, not two named treasury humans. The Institute) Tj
 ET
 BT
 /F1 9 Tf
 0.14 0.14 0.14 rg
 1 0 0 1 48.0 92.0 Tm
-(customers: none. Recognized revenue: none. Signed L1: none.) Tj
+(twin is hosted on Azure and is not launched. Production is blocked. Named customers: none.) Tj
+ET
+BT
+/F1 9 Tf
+0.14 0.14 0.14 rg
+1 0 0 1 48.0 80.0 Tm
+(Recognized revenue: none. Signed L1: none.) Tj
 ET
 BT
 /F3 7.5 Tf
@@ -3637,8 +3643,8 @@ xref
 0000030850 00000 n 
 0000039647 00000 n 
 0000051636 00000 n 
-0000061204 00000 n 
+0000061328 00000 n 
 trailer << /Size 22 /Root 1 0 R >>
 startxref
-65324
+65448
 %%EOF

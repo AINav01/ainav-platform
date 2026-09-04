@@ -251,7 +251,7 @@ Insulation equation: independence × Job C lockfile × fail-closed gold × catal
 
 ## Traction — honest
 
-The admit plane is in code. Gold floor is 95 percent. Gold floor 99 is now the floor after measured coverage. Live Cloudflare quality probe verified 301, 403 hold, TLS 1.2+, and mail not Cloudflare anycast. Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.
+The admit plane is in code. Gold floor is 95 percent. Gold floor 99 is now the floor after measured coverage. Live Cloudflare quality probe verified 301, apex 404 empty on Cloudflare edge, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development twin. Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader stays owner confirm. The Floor sits catalog view_shows, the provision spine, and the owner board packet. There is a real Business Central Sandbox company named AINav and a sandbox journal AINAV-L1. Those seats were lab operator identities, not two named treasury humans. The Institute twin is hosted on Azure and is not launched. Production is blocked. Named customers: none. Recognized revenue: none. Signed L1: none.
 
 - Recognized revenue: $0
 - Named customers: 0

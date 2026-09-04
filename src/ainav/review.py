@@ -518,6 +518,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"- Still missing: {'; '.join(status['e7_cloudflare']['missing']) or 'none. E7 DNS is full.'}.",
         f"- Not: {'; '.join(status['e7_cloudflare']['not'])}.",
         f"- {status['e7_cloudflare']['note']}",
+        f"- Twin: {((status['e7_cloudflare'].get('twin') or {}).get('lede') or '')} "
+        f"{((status['e7_cloudflare'].get('twin') or {}).get('note') or '')}",
         f"- Owner dashboard: {status['e7_cloudflare']['dashboard_url']}. "
         "This Cloud Agent cannot edit Cloudflare.",
         "",

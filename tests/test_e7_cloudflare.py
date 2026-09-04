@@ -178,7 +178,7 @@ def test_catalog_edge_records_dns_full_not_launch():
     assert quality["apex_is_institute"] is False
     assert quality["ssl_full_claimed"] is False
     assert quality["institute_host"] == "azure.swa"
-    assert any("403" in item for item in quality["verified"])
+    assert any("404" in item for item in quality["verified"])
     assert any("13/13" in item for item in quality["verified"])
     assert any("tls" in item.lower() for item in quality["verified"])
     assert any("anycast" in item.lower() for item in quality["verified"])
