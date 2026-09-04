@@ -33,6 +33,14 @@ def test_institute_twin_is_swa_and_cloudflare_apex_is_empty():
     assert cat["programs"]["website"]["twin_host"] == "azure.swa"
     assert cat["programs"]["website"]["public_edge"] == "cloudflare"
     assert cat["programs"]["website"]["authorized_release"] is False
+    wait = " ".join(
+        str(item.get("do") or "")
+        for item in cat["microsoft_stack"]["edge"]["activate"]["wait"]
+    ).lower()
+    assert "twin" in wait
+    assert "gold" in wait
+    assert "point the apex at azure swa wait" not in wait
+    assert "asuid" in wait
     quality = cat["microsoft_stack"]["edge"]["quality"]
     assert quality["apex_is_institute"] is False
     assert quality["ssl_full_claimed"] is False
@@ -183,6 +191,24 @@ def test_validate_institute_twin_direct_holes():
     site["programs"]["website"]["public_edge"] = "pages"
     with pytest.raises(IntegrityError):
         validate_catalog(site)
+    wait_twin = copy.deepcopy(load_catalog())
+    wait_twin["microsoft_stack"]["edge"]["activate"]["wait"] = [
+        {"id": "bind", "do": "Do not add asuid. Launch stays owner-only."},
+        {"id": "dmarc.reject", "do": "Do not raise DMARC to p=reject."},
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_microsoft_edge(wait_twin)
+    wait_swa = copy.deepcopy(load_catalog())
+    wait_swa["microsoft_stack"]["edge"]["activate"]["wait"] = [
+        {"id": "bind", "do": "asuid launch twin gold"},
+        {
+            "id": "origin",
+            "do": "Polish, Image Resizing, and Page Rules that point the apex at Azure SWA wait. That is launch.",
+        },
+        {"id": "dmarc.reject", "do": "reject"},
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_microsoft_edge(wait_swa)
 
 
 def test_edge_quality_probe_keeps_404_and_never_marks_institute(monkeypatch):

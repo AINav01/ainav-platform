@@ -35,7 +35,7 @@ Azure hosts → Microsoft 365 E7 / Entra identifies → AINav admits → Busines
 - **L1 / Business Central** — `sandbox_journal`. Sandbox company AINav document `AINAV-L1` on 2026-08-28 for 250.00. Wedge `bc.general_journal.post`. lab operator oids — not two named treasury humans. Production stays blocked. Not LIVE_PIN_OK.
 - **P-ADM attach** — `unattached`. Attaches after L1 Acceptance Kit PASS. Attached=0. Never bundles free U-DUAL.
 - **U-DUAL / Sales** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: Canada affinity; United States not pinned. Attached=0. Twin only until G14.
-- **Institute / DNS** — `azure_hosted_not_custom`. ainav-institute on eastus2. launch_ready=false. Apex CNAME is empty Cloudflare Pages. No asuid. Do not publish until launch.
+- **Institute / DNS** — `azure_hosted_not_custom`. ainav-institute on eastus2. launch_ready=false. twin_host=azure.swa public_edge=cloudflare authorized_release=false. Apex is empty Cloudflare Pages. Azure SWA is the development twin. No asuid. Do not publish until launch.
 - **Programs** — `qualify_not_claimed`. Microsoft for Startups first. NVIDIA Inception second. Membership claimed: false. Crypto-associated: false. GPU production: false.
 - **Commercial spine** — `catalog_list_not_revenue`. Year-one catalog list if one controller buys all three: $88,000–$135,000. Signed L1=0. Named customers: none. Recognized revenue: none.
 
@@ -364,8 +364,10 @@ This Cloud Agent cannot approve tools.
 - Azure hostname: https://blue-river-010091a0f.7.azurestaticapps.net
 - Site: ainav-institute in eastus2
 - public_deploy_claimed=False custom_domain_claimed=False launch_ready=False
-- Nameservers stay on Cloudflare. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute host.
+- Nameservers stay on Cloudflare. Apex is empty Cloudflare Pages. Pages is not the Institute host.
 - Squarespace registrar transfer is still in flight. Leave the zone as-is.
+- Twin host=azure.swa public_edge=cloudflare authorized_release=False. Azure SWA is the development twin.
+- Keep Azure SWA as the development twin. When authorized, publish that gold tree to the Cloudflare public origin (empty Pages today). Do not auto-publish on a green CI check. This Cloud Agent cannot edit Cloudflare.
 - Microsoft 365 mail is pointed (MX, SPF, DKIM, autodiscover, Entra enrollment).
 - E7-on-Cloudflare full=true. Orange-cloud MX is not dual admit. This is not Institute launch.
 - No Azure SWA `asuid`. Custom domain list on the Static Web App is empty.
@@ -476,7 +478,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.
 - The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
 - Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
-- Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.
+- Cloudflare quality is E7 DNS full and an empty 404 apex on Cloudflare. Azure SWA is the development twin. Confirm Full not Flexible. Do not add asuid. Do not treat the edge as the Institute. Not Institute launch.
 - Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.
 - Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.
 - The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.
@@ -496,7 +498,7 @@ Recognized revenue: 0. Signed L1: 0. Named customers: 0. Billing provider: false
 - Entra-group view assignment is a template. assignment_live stays false. Cloud Agent cannot assign. Do not invent department heads.
 - Proof-day grant TTL is 90 minutes and stays outside the lockfile digest. Default lockfile TTL stays unset.
 - Small-client and large-client motions are not SKUs. Same L1. Same ninety minutes. Same $28–40k. No L1 Express. No certificate.
-- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty, then SWA as origin, asuid only then, launch only when James says launch.
+- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty. Azure SWA is the development twin. Gold 99 release to Cloudflare Pages when James authorizes. asuid only then if James binds SWA as public. Default is no asuid. Launch only when James says launch.
 - Competitive one-pager wins only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.
 - Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.
 - The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.

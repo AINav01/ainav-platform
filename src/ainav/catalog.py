@@ -175,6 +175,10 @@ def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
     ).lower()
     if "launch" not in wait_blob or "asuid" not in wait_blob:
         raise IntegrityError("Pro activate wait keeps launch and asuid", reason_code="CATALOG_EDGE")
+    if "twin" not in wait_blob or "gold" not in wait_blob:
+        raise IntegrityError("Pro activate wait keeps the SWA twin and gold-99 release", reason_code="CATALOG_EDGE")
+    if "point the apex at azure swa wait" in wait_blob:
+        raise IntegrityError("Pro activate wait cannot treat SWA as the public origin", reason_code="CATALOG_EDGE")
     now_blob = " ".join(
         f"{item.get('id') or ''} {item.get('do') or ''}" for item in activate.get("now") or []
     ).lower()

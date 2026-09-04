@@ -327,7 +327,7 @@ Working well
 - The application kit is licensed complements. Eleventy compiles catalog. Identify is not admit. The read-only Function does not write a SoR. Insights are not claimed. Pagefind stays on the kit. Not a CMS.
 - The application business plane paints if-then catalog list, bake-off, walk-away, and the commercial close. Not a priced round. Not a forecast. Not LIVE_PIN_OK.
 - Number two is catalog law: other aspects, not all aspects. Not an officer. Not a click.
-- Cloudflare quality is E7 DNS full and a held apex. Confirm Full not Flexible. Do not add asuid. Not Institute launch.
+- Cloudflare quality is E7 DNS full and an empty 404 apex on Cloudflare. Azure SWA is the development twin. Confirm Full not Flexible. Do not add asuid. Do not treat the edge as the Institute. Not Institute launch.
 - Owner assigned paid Microsoft 365 E7 and Teams Premium to Cynthia. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat.
 - Included versus upsell is catalog law: L1 seating and the client dashboard are included with L1. Advanced is the upsell band — priced desks, P-ADM keep, paid U-DUAL, and hours. Included is not free. Not a fourth SKU.
 - The Floor is the sit-down executive dashboard. Client view first. Write rail, attention, seats, keep, and included versus upsell. Same dashboard included with L1. Not a second dashboard SKU.
@@ -347,7 +347,7 @@ Working well
 - Entra-group view assignment is a template. assignment_live stays false. Cloud Agent cannot assign. Do not invent department heads.
 - Proof-day grant TTL is 90 minutes and stays outside the lockfile digest. Default lockfile TTL stays unset.
 - Small-client and large-client motions are not SKUs. Same L1. Same ninety minutes. Same $28–40k. No L1 Express. No certificate.
-- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty, then SWA as origin, asuid only then, launch only when James says launch.
+- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty. Azure SWA is the development twin. Gold 99 release to Cloudflare Pages when James authorizes. asuid only then if James binds SWA as public. Default is no asuid. Launch only when James says launch.
 - Competitive one-pager wins only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.
 - Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.
 - The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.

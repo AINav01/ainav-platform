@@ -2315,7 +2315,7 @@
       "Pages empty",
       "SWA twin for gold 99",
       "Cloudflare apex empty until authorized",
-      "asuid only then",
+      "asuid only then if James binds SWA as public; default is no asuid \u2014 publish gold to Pages",
       "launch only when James says launch"
     ],
     "kind": "ainav.plane.hostname_rehearsal.v1",

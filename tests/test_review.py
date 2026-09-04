@@ -17,6 +17,8 @@ def test_deep_dive_is_catalog_honest():
     assert "Squarespace registrar transfer" in body
     assert "empty Cloudflare Pages" in body
     assert "Pages is not the Institute" in body
+    assert "development twin" in body
+    assert "authorized_release=" in body
     assert "Squarespace Coming Soon" not in body
     assert "launch_not_ready" in body
     assert "E7 on Cloudflare" in body
