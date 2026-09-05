@@ -271,6 +271,13 @@ def test_us_dataverse_owner_surfaces_fail_closed():
             if item.get("id") == "dataverse.us":
                 item["do"] = "Do something else."
 
+    def gate_create(cat):
+        for item in cat["owner_gates"]:
+            if item.get("id") == "dataverse.us":
+                item["do"] = (
+                    f"{item['do']} Create a US Power Platform environment."
+                )
+
     def principles_adr(cat):
         catmod._validate_first_principles(
             [
@@ -292,6 +299,7 @@ def test_us_dataverse_owner_surfaces_fail_closed():
         cannot_close,
         gate,
         gate_stem,
+        gate_create,
     ):
         _reject(mutator)
 

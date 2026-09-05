@@ -64,7 +64,26 @@ def test_instrument_283_fail_closed():
     def kind(cat):
         cat["expert_review"]["success"]["managed_face"]["kind"] = "ainav.cms.v1"
 
-    for mutator in (release, closed, managed, dynamic, kind):
+    def first_class(cat):
+        cat["programs"]["website"]["first_class"] = False
+
+    def cms(cat):
+        cat["programs"]["website"]["cms"] = True
+
+    def demo_path(cat):
+        cat["programs"]["website"]["demo_path"] = "/demo"
+
+    def demo_sku(cat):
+        cat["programs"]["website"]["demo_is_sku"] = True
+
+    def principles(cat):
+        cat["expert_review"]["first_principles"] = [
+            item
+            for item in cat["expert_review"]["first_principles"]
+            if "managed first-class" not in item.lower()
+        ]
+
+    for mutator in (release, closed, managed, dynamic, kind, first_class, cms, demo_path, demo_sku, principles):
         cat = copy.deepcopy(load_catalog())
         mutator(cat)
         with pytest.raises(IntegrityError):
@@ -74,3 +93,23 @@ def test_instrument_283_fail_closed():
     hole["entity"]["release"] = "2.82.0"
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_283(hole, hole["plane_interface"])
+    kind_hole = copy.deepcopy(edge)
+    kind_hole["expert_review"]["success"]["managed_face"]["kind"] = "ainav.cms.v1"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_283(kind_hole, kind_hole["plane_interface"])
+    cms_hole = copy.deepcopy(edge)
+    cms_hole["programs"]["website"]["cms"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_283(cms_hole, cms_hole["plane_interface"])
+    first_class_hole = copy.deepcopy(edge)
+    first_class_hole["programs"]["website"]["first_class"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_283(first_class_hole, first_class_hole["plane_interface"])
+    principles_hole = copy.deepcopy(edge)
+    principles_hole["expert_review"]["first_principles"] = [
+        item
+        for item in principles_hole["expert_review"]["first_principles"]
+        if "managed first-class" not in item.lower() and "ninety-minute" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_283(principles_hole, principles_hole["plane_interface"])

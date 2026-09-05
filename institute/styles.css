@@ -1011,6 +1011,39 @@ table.law tr[data-group] th {
 }
 .first-class article {
   border-top: 3px solid var(--gold);
+  display: grid;
+  gap: 0.55rem;
+}
+.first-class article h3,
+.product-stage article h3 {
+  margin: 0;
+}
+.class-kicker {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+}
+.first-class article[data-lane="demo"] {
+  background: color-mix(in srgb, var(--void) 88%, #2a2418);
+  color: var(--void-ink);
+  border-top-color: var(--gold-2);
+}
+.first-class article[data-lane="demo"] h3 {
+  color: #fff;
+}
+.first-class article[data-lane="demo"] p,
+.first-class article[data-lane="demo"] .class-kicker,
+.first-class article[data-lane="demo"] .note,
+.first-class article[data-lane="demo"] a {
+  color: var(--gold-2);
+}
+.first-class article[data-lane="demo"] #class-demo {
+  color: var(--void-ink);
+}
+.first-class article[data-lane="managed"] {
+  background: color-mix(in srgb, var(--azure) 10%, var(--paper));
 }
 .demo-console {
   margin-top: 1.5rem;
@@ -1039,10 +1072,17 @@ table.law tr[data-group] th {
   .demo-stages { grid-template-columns: repeat(3, 1fr); }
 }
 .demo-stages li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
   border: 1px solid color-mix(in srgb, var(--gold-2) 35%, transparent);
   padding: 0.55rem 0.75rem;
   font-family: var(--display);
   letter-spacing: 0.04em;
+}
+.demo-stages li b {
+  color: var(--gold-2);
+  font-size: 1.05rem;
 }
 .demo-console .twin-panel {
   background: color-mix(in srgb, var(--void) 70%, #2a2418);
@@ -1076,6 +1116,10 @@ table.law tr[data-group] th {
 }
 .product-stage article[data-sku] {
   border-top: 3px solid var(--gold);
+}
+.product-stage article[data-included] {
+  border-top: 3px solid var(--azure);
+  background: color-mix(in srgb, var(--azure) 8%, var(--paper));
 }
 .product-stage article h3 {
   font-family: var(--display);

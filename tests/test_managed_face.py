@@ -104,6 +104,34 @@ def test_managed_face_fail_closed():
             if item.get("id") != "managed"
         ]
 
+    def ciso(cat):
+        cat["expert_review"]["success"]["ciso"]["does_not"] = [
+            item
+            for item in cat["expert_review"]["success"]["ciso"]["does_not"]
+            if "dynamic app" not in item.lower() and "calendly" not in item.lower()
+        ]
+
+    def lede(cat):
+        cat["expert_review"]["success"]["managed_face"]["lede"] = "A nicer homepage."
+
+    def product(cat):
+        cat["expert_review"]["success"]["managed_face"]["product"] = "A nicer SKU page."
+
+    def demo(cat):
+        cat["expert_review"]["success"]["managed_face"]["demo"] = "Book a call."
+
+    def managed(cat):
+        cat["expert_review"]["success"]["managed_face"]["managed"] = "Hire a webmaster."
+
+    def refuse(cat):
+        cat["expert_review"]["success"]["managed_face"]["refuse"] = ["A CMS"]
+
+    def site(cat):
+        cat["expert_review"]["success"]["managed_face"]["site"] = "A nicer homepage."
+
+    def note(cat):
+        cat["expert_review"]["success"]["managed_face"]["note"] = "Looks finished."
+
     for mutator in (
         cms,
         dynamic,
@@ -115,6 +143,14 @@ def test_managed_face_fail_closed():
         principles,
         walk,
         managed_objection,
+        ciso,
+        lede,
+        product,
+        demo,
+        managed,
+        refuse,
+        site,
+        note,
     ):
         _reject(mutator)
 
@@ -132,3 +168,78 @@ def test_validate_managed_face_direct_holes():
     kind["kind"] = "ainav.cms.v1"
     with pytest.raises(IntegrityError):
         catmod._validate_managed_face(kind)
+    for field, value in (
+        ("lede", "A nicer homepage."),
+        ("product", "A nicer SKU page."),
+        ("demo", "Book a call."),
+        ("managed", "Hire a webmaster."),
+        ("site", "A nicer homepage."),
+        ("note", "Looks finished."),
+    ):
+        hole = dict(good)
+        hole[field] = value
+        with pytest.raises(IntegrityError):
+            catmod._validate_managed_face(hole)
+    refuse = dict(good)
+    refuse["refuse"] = ["A CMS"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_managed_face(refuse)
+    for stem in ("static", "cms", "admit plane", "three skus", "dashboard", "ninety-minute", "graph is not called", "calendly", "azure swa", "gold", "publish-twin", "write rail", "#twin", "/demo", "webflow", "live_pin_ok"):
+        if stem in ("static", "cms"):
+            hole = dict(good)
+            hole["lede"] = "Managed first-class application. Not a shop."
+            if stem == "cms":
+                hole["lede"] = "Managed first-class static application."
+            with pytest.raises(IntegrityError):
+                catmod._validate_managed_face(hole)
+        elif stem in ("admit plane", "three skus", "dashboard"):
+            hole = dict(good)
+            hole["product"] = "Prove, keep, deepen. Included dashboard. Three SKUs."
+            if stem == "admit plane":
+                hole["product"] = "Three SKUs. One dashboard."
+            elif stem == "three skus":
+                hole["product"] = "The admit plane. One dashboard."
+            else:
+                hole["product"] = "The admit plane. Three SKUs."
+            with pytest.raises(IntegrityError):
+                catmod._validate_managed_face(hole)
+        elif stem in ("ninety-minute", "graph is not called", "calendly"):
+            hole = dict(good)
+            if stem == "ninety-minute":
+                hole["demo"] = "Browser rehearsal. Graph is not called. Not Calendly."
+            elif stem == "graph is not called":
+                hole["demo"] = "Ninety-minute proof. Not Calendly."
+            else:
+                hole["demo"] = "Ninety-minute proof. Graph is not called."
+            with pytest.raises(IntegrityError):
+                catmod._validate_managed_face(hole)
+        elif stem in ("azure swa", "gold", "publish-twin"):
+            hole = dict(good)
+            if stem == "azure swa":
+                hole["managed"] = "Catalog plus gold plus --publish-twin."
+            elif stem == "gold":
+                hole["managed"] = "Azure SWA plus --publish-twin."
+            else:
+                hole["managed"] = "Azure SWA plus gold."
+            with pytest.raises(IntegrityError):
+                catmod._validate_managed_face(hole)
+        elif stem in ("write rail", "#twin", "/demo"):
+            hole = dict(good)
+            if stem == "write rail":
+                hole["site"] = "Demo is #twin. Not a /demo route."
+            elif stem == "#twin":
+                hole["site"] = "First glance stays the write rail. Not a /demo route."
+            else:
+                hole["site"] = "First glance stays the write rail. Demo is #twin."
+            with pytest.raises(IntegrityError):
+                catmod._validate_managed_face(hole)
+        else:
+            hole = dict(good)
+            hole["note"] = "Not LIVE_PIN_OK." if stem == "webflow" else "Not Webflow."
+            with pytest.raises(IntegrityError):
+                catmod._validate_managed_face(hole)
+    for missing in ("cms", "dynamic", "fourth sku", "/demo", "calendly", "launch", "live_pin"):
+        hole = dict(good)
+        hole["refuse"] = [item for item in good["refuse"] if missing not in item.lower()]
+        with pytest.raises(IntegrityError):
+            catmod._validate_managed_face(hole)
