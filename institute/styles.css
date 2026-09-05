@@ -1,3 +1,39 @@
+@font-face {
+  font-family: "Newsreader";
+  src: url("fonts/newsreader-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("fonts/newsreader-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("fonts/newsreader-500-italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fonts/source-sans-3-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("fonts/source-sans-3-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink: #12100c;
   --paper: #f3eee4;
@@ -15,8 +51,8 @@
   --space: clamp(1.25rem, 4vw, 2.75rem);
   --measure: 40rem;
   --wide: 72rem;
-  --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --shadow: 0 18px 40px rgba(16, 14, 11, 0.06);
 }
@@ -98,12 +134,21 @@ body {
   backdrop-filter: saturate(1.15) blur(18px);
 }
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   font-family: var(--display);
   letter-spacing: 0.16em;
   font-size: 0.8rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
+}
+.brand-mark {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 2px;
+  display: block;
 }
 .brand .dot { color: var(--gold); }
 .brand .inst { font-style: italic; letter-spacing: 0.04em; text-transform: none; }
@@ -238,6 +283,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
+#twin, #demo-console, #product, #class-glance { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);
@@ -537,7 +583,18 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
   border-top: 0;
 }
 .band h2, .band .lede, .band .incident { color: var(--void-ink); }
-.band .note { color: color-mix(in srgb, var(--void-ink) 62%, transparent); }
+.band .note { color: color-mix(in srgb, var(--void-ink) 82%, transparent); }
+.band .cards article,
+.band .product-stage article,
+.band .sku-fold li {
+  color: var(--ink);
+}
+.band .cards article p,
+.band .product-stage article p,
+.band .cards article .note,
+.band .product-stage article .note {
+  color: var(--mute);
+}
 .band .ask {
   border-color: var(--void-ink);
   color: var(--void-ink);
@@ -983,7 +1040,10 @@ table.law tr[data-group] th {
 .refuse { color: var(--mute); }
 
 .ask, .ghost {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
   margin-top: 0.35rem;
   border: 1px solid var(--ink);
   background: var(--ink);
@@ -1009,10 +1069,14 @@ table.law tr[data-group] th {
   padding: 1.2rem 1.15rem 1.4rem;
   background: color-mix(in srgb, var(--paper) 70%, white);
 }
+.first-class {
+  margin-top: 1.85rem;
+}
 .first-class article {
   border-top: 3px solid var(--gold);
   display: grid;
   gap: 0.55rem;
+  min-height: 12.5rem;
 }
 .first-class article h3,
 .product-stage article h3 {
@@ -1295,15 +1359,49 @@ table.law tr[data-group] th {
 }
 
 footer {
-  padding: 1.85rem 6vw 2.8rem;
+  padding: 2.4rem 6vw 3.2rem;
   border-top: 1px solid var(--rule);
   color: var(--mute);
   font-size: 0.88rem;
   display: grid;
-  gap: 0.4rem;
+  gap: 1.15rem;
   background: color-mix(in srgb, var(--paper-2) 42%, var(--paper));
 }
 footer a { color: inherit; }
+.site-end {
+  display: grid;
+  gap: 1.4rem;
+  max-width: var(--wide);
+}
+@media (min-width: 800px) {
+  .site-end { grid-template-columns: minmax(14rem, 1.2fr) 1fr 1fr 1fr; align-items: start; }
+}
+.site-end .brand { margin-bottom: 0.45rem; }
+.site-end h2 {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin: 0 0 0.55rem;
+}
+.site-end a { display: block; text-decoration: none; margin: 0.28rem 0; }
+.site-end a:hover { color: var(--ink); }
+.hero-diagram {
+  margin: 1.6rem 0 0;
+  max-width: var(--wide);
+}
+.hero-diagram img,
+.hero-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.lost {
+  min-height: 80vh;
+  display: grid;
+  align-content: center;
+}
 
 @view-transition { navigation: auto; }
 @media (prefers-reduced-motion: reduce) {
@@ -1553,28 +1651,3 @@ footer a { color: inherit; }
   .app-page #app-main { padding: 1.1rem 5vw 3.4rem; }
   #app-capital-exec tbody th { width: 7rem; }
 }
-
-@view-transition { navigation: auto; }
-@media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
-}
-.app-page { view-transition-name: ainav-app; }
-[popover].owner-book {
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  padding: 1rem 1.1rem 1.2rem;
-  max-width: 16rem;
-}
-.app-search-out {
-  display: grid;
-  gap: 0.45rem;
-  margin: 0 0 1rem;
-}
-.app-search-out article {
-  border: 1px solid var(--rule);
-  padding: 0.65rem 0.8rem;
-  background: color-mix(in srgb, var(--paper) 74%, white);
-}
-.app-search-out a { color: inherit; }
-.site-search { margin: 0; min-width: 12rem; }
-.field.site-search input { width: 100%; }

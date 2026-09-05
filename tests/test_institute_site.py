@@ -41,6 +41,11 @@ def test_institute_foundation_is_catalog_honest():
     assert swa["responseOverrides"]["404"]["rewrite"] == "/404.html"
     assert Path("institute/404.html").exists()
     assert Path("institute/favicon.svg").exists()
+    assert Path("institute/graphics/og.jpg").exists()
+    assert Path("institute/graphics/write-rail.svg").exists()
+    assert Path("institute/fonts/LICENSE.txt").exists()
+    assert "/fonts/*" in swa["navigationFallback"]["exclude"]
+    assert "/graphics/*" in swa["navigationFallback"]["exclude"]
     robots = Path("institute/robots.txt").read_text(encoding="utf-8")
     assert "Sitemap:" in robots
     manifest = json.loads(Path("institute/site.webmanifest").read_text(encoding="utf-8"))

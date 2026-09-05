@@ -52,6 +52,18 @@ def test_managed_face_is_catalog_law_and_on_the_sale_site():
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#class-glance"' not in nav
     assert html.index('id="twin"') < html.index('id="product"')
+    assert 'property="og:image"' in html
+    assert "graphics/og.jpg" in html
+    assert "graphics/write-rail.svg" in html
+    assert "fonts/newsreader-500.woff2" in html
+    assert html.index('id="class-glance"') < html.index('id="hero-contrast"')
+    assert Path("institute/graphics/write-rail.svg").is_file()
+    assert Path("institute/graphics/og.jpg").is_file()
+    assert Path("institute/fonts/newsreader-500.woff2").is_file()
+    assert Path("institute/fonts/source-sans-3-400.woff2").is_file()
+    lost = Path("institute/404.html").read_text(encoding="utf-8")
+    assert "This write did not land." in lost
+    assert "graphics/write-rail.svg" in lost
 
 
 def _reject(mutator):

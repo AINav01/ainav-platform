@@ -1,0 +1,5 @@
+Newsreader (c) Production Type
+Source Sans 3 (c) Adobe
+Licensed under the SIL Open Font License, Version 1.1.
+https://scripts.sil.org/OFL
+Self-hosted for AINAV.Institute. CSP font-src 'self'. Not a webfont CDN.

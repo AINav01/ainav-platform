@@ -43,7 +43,13 @@
       "/robots.txt",
       "/sitemap.xml",
       "/site.webmanifest",
-      "/*.webp"
+      "/fonts/*",
+      "/graphics/*",
+      "/*.webp",
+      "/*.jpg",
+      "/*.png",
+      "/*.svg",
+      "/*.woff2"
     ]
   },
   "globalHeaders": {
