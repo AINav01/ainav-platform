@@ -176,6 +176,10 @@ def public_status() -> dict[str, Any]:
             "client_twin_is_sku": False,
             "close_bench": bool(site.get("close_bench")),
             "close_is_sku": False,
+            "operating_company": bool(site.get("operating_company")),
+            "firm_href": site.get("firm_href") or "#firm",
+            "firm_is_sku": False,
+            "firm_is_crm": False,
         },
         "bc": {
             "connection": "bc.premium",

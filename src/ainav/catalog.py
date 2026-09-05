@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 55:
-        raise IntegrityError("expert review needs 16–55 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 56:
+        raise IntegrityError("expert review needs 16–56 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1179,6 +1179,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         53: ("first-class", "live_pin_ok"),
         54: ("client twin", "live_pin_ok"),
         55: ("close bench", "live_pin_ok"),
+        56: ("operating company", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1220,6 +1221,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
     if "close bench" not in blob or "three planes" not in blob:
         raise IntegrityError("first-principles must keep the first-class close bench", reason_code="CATALOG_REVIEW")
+    if "operating company" not in blob or "five hundred" not in blob or "capacity" not in blob:
+        raise IntegrityError("first-principles must keep the first-class operating company", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1263,7 +1266,7 @@ def _validate_success_program(success: Any) -> None:
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed", "path", "close"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed", "path", "close", "firm"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1297,6 +1300,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not mint a fourth SKU as the client twin", reason_code="CATALOG_REVIEW")
     if "auto-promote" not in does_not:
         raise IntegrityError("CISO posture does not auto-promote a sandbox to production", reason_code="CATALOG_REVIEW")
+    if "sales team" not in does_not or "commission" not in does_not:
+        raise IntegrityError("CISO posture does not invent a sales team or pay a commission from this plane", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1335,6 +1340,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_managed_face(success.get("managed_face"))
     _validate_client_twin(success.get("client_twin"))
     _validate_close_bench(success.get("close_bench"))
+    _validate_operating_company(success.get("operating_company"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1598,6 +1604,75 @@ def _validate_close_bench(body: Any) -> None:
     note = str(bench.get("note") or "").lower()
     if "assigned stays false" not in note or "live_pin_ok" not in note:
         raise IntegrityError("close-bench note keeps assigned false and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+
+
+def _validate_operating_company(body: Any) -> None:
+    firm = _as_dict(body, "operating_company")
+    if firm.get("kind") != "ainav.operating_company.v1":
+        raise IntegrityError("operating_company kind is ainav.operating_company.v1", reason_code="CATALOG_REVIEW")
+    if firm.get("sku") is True or firm.get("fourth_sku") is True or firm.get("crm") is True:
+        raise IntegrityError("operating company is not a SKU or a CRM", reason_code="CATALOG_REVIEW")
+    if firm.get("hubspot") is True or firm.get("salesforce") is True:
+        raise IntegrityError("operating company is not HubSpot or Salesforce", reason_code="CATALOG_REVIEW")
+    if firm.get("assigned") is True or firm.get("launch") is True or firm.get("production") is True:
+        raise IntegrityError("operating company is not assigned, launch, or production", reason_code="CATALOG_REVIEW")
+    if firm.get("cms") is True or firm.get("dynamic") is True:
+        raise IntegrityError("operating company is not a CMS or a dynamic app", reason_code="CATALOG_REVIEW")
+    if firm.get("live") is True or firm.get("live_pin_ok") is True:
+        raise IntegrityError("operating company cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if firm.get("named_client") is not None or firm.get("named_contractor") is not None:
+        raise IntegrityError("operating company cannot invent a named client or contractor", reason_code="CATALOG_REVIEW")
+    if firm.get("sales_team_claimed") is True or firm.get("payouts_booked") is True:
+        raise IntegrityError("operating company cannot claim a sales team or booked payouts", reason_code="CATALOG_REVIEW")
+    if firm.get("recognized_revenue_claimed") is True:
+        raise IntegrityError("operating company cannot claim recognized revenue", reason_code="CATALOG_REVIEW")
+    lede = str(firm.get("lede") or "").lower()
+    if "one spine" not in lede or "five hundred" not in lede or "capacity" not in lede:
+        raise IntegrityError("operating-company lede is one spine at 500/500 capacity", reason_code="CATALOG_REVIEW")
+    cap = firm.get("capacity") or {}
+    if int(cap.get("live_target") or 0) != 500 or int(cap.get("pipeline_target") or 0) != 500:
+        raise IntegrityError("operating-company capacity targets are 500 live and 500 pipeline", reason_code="CATALOG_REVIEW")
+    if int(cap.get("live") or 0) != 0 or int(cap.get("pipeline") or 0) != 0 or int(cap.get("sandboxes") or 0) != 0:
+        raise IntegrityError("operating-company live, pipeline, and sandboxes stay zero", reason_code="CATALOG_REVIEW")
+    if "capacity" not in str(cap.get("note") or "").lower() or "booked" not in str(cap.get("note") or "").lower():
+        raise IntegrityError("operating-company capacity note keeps targets as capacity not booked", reason_code="CATALOG_REVIEW")
+    rails = firm.get("rails") or []
+    ids = [item.get("id") for item in rails if isinstance(item, dict)]
+    if ids != ["pipeline", "live", "sandbox", "production"]:
+        raise IntegrityError("operating-company rails are pipeline, live book, sandbox, production", reason_code="CATALOG_REVIEW")
+    roles = firm.get("roles") or []
+    role_ids = [item.get("id") for item in roles if isinstance(item, dict)]
+    if role_ids != ["owner", "number_two", "bd", "closer", "kit", "service", "ic"]:
+        raise IntegrityError("operating-company roles are owner, number two, BD, closer, kit, service, IC", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in roles
+        if isinstance(item, dict)
+    )
+    if "not a seat" not in blob or "hodnett" not in blob or "cynthia" not in blob:
+        raise IntegrityError("operating-company roles keep owner, Cynthia, and ICs are not seats", reason_code="CATALOG_REVIEW")
+    comp = firm.get("comp") or {}
+    if comp.get("kind") != "ainav.comp.v1":
+        raise IntegrityError("operating-company comp kind is ainav.comp.v1", reason_code="CATALOG_REVIEW")
+    if comp.get("booked") is True or int(comp.get("paid_count") or 0) != 0:
+        raise IntegrityError("operating-company comp stays unbooked and unpaid", reason_code="CATALOG_REVIEW")
+    if comp.get("from_this_plane") is True or comp.get("payroll_provider") is not None:
+        raise IntegrityError("operating-company cannot pay from this plane or invent payroll", reason_code="CATALOG_REVIEW")
+    if comp.get("ic_is_not_seat") is not True:
+        raise IntegrityError("operating-company ICs are not seats", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in firm.get("refuse") or [])
+    for stem in ("500 live", "named contractor", "commission", "hubspot", "shared twin", "fourth sku", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("operating-company refuse keeps 500 live, contractor, commission, HubSpot", reason_code="CATALOG_REVIEW")
+    site = str(firm.get("site") or "").lower()
+    if "#firm-console" not in site or "#firm" not in site or "#twin" not in site:
+        raise IntegrityError("operating-company site is #firm-console on #firm; demo is #twin", reason_code="CATALOG_REVIEW")
+    note = str(firm.get("note") or "").lower()
+    if "live stays 0" not in note or "payouts stay 0" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("operating-company note keeps live 0, payouts 0, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+    needs = " ".join(str(item).lower() for item in firm.get("needs") or [])
+    if "commission" not in needs or "payout" not in needs or "g12" not in needs:
+        raise IntegrityError("operating-company needs keep commission rates, payout vehicle, and G12", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1974,8 +2049,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path", "#firm"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin, firm", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
@@ -2517,6 +2592,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_283(catalog, body)
     _validate_instrument_284(catalog, body)
     _validate_instrument_285(catalog, body)
+    _validate_instrument_286(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2936,8 +3012,6 @@ def _validate_instrument_284(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_285(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.85.0":
-        raise IntegrityError("entity.release is 2.85.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.85.0" in item and "close bench" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.85.0 first-class close bench", reason_code="CATALOG_ENGINEERING")
@@ -2954,6 +3028,29 @@ def _validate_instrument_285(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "close bench" not in principles or "three planes" not in principles:
         raise IntegrityError("first-principles must keep the first-class close bench", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_286(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.86.0":
+        raise IntegrityError("entity.release is 2.86.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.86.0" in item and "operating company" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.86.0 first-class operating company", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("operating_company") is not True:
+        raise IntegrityError("2.86.0 website has a first-class operating company", reason_code="CATALOG_PLANE")
+    if site.get("firm_is_sku") is True or site.get("firm_is_crm") is True:
+        raise IntegrityError("2.86.0 operating company is not a SKU or a CRM", reason_code="CATALOG_PLANE")
+    if str(site.get("firm_href") or "") != "#firm":
+        raise IntegrityError("2.86.0 firm bench is #firm", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    if firm.get("kind") != "ainav.operating_company.v1":
+        raise IntegrityError("2.86.0 operating_company kind", reason_code="CATALOG_REVIEW")
+    if firm.get("sales_team_claimed") is True or firm.get("payouts_booked") is True or firm.get("sku") is True:
+        raise IntegrityError("2.86.0 operating company is not a sales team, booked payouts, or a SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "operating company" not in principles or "five hundred" not in principles:
+        raise IntegrityError("first-principles must keep the first-class operating company", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

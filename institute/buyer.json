@@ -470,6 +470,10 @@
           {
             "href": "#path",
             "label": "Client twin"
+          },
+          {
+            "href": "#firm",
+            "label": "Run the firm"
           }
         ],
         "name": "Sale"
@@ -749,7 +753,8 @@
         "Treat Calendly as the demo",
         "Institute twin as client production",
         "A fourth SKU as the client twin",
-        "Auto-promote a sandbox to production"
+        "Auto-promote a sandbox to production",
+        "Invent a sales team or pay a commission from this plane"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -1043,8 +1048,136 @@
         "answer": "The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.",
         "hear": "Just flip the demo live.",
         "id": "close"
+      },
+      {
+        "answer": "The firm is this bench. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. HubSpot is not the product.",
+        "hear": "Just stand up HubSpot and pay the team.",
+        "id": "firm"
       }
     ],
+    "operating_company": {
+      "assigned": false,
+      "capacity": {
+        "live": 0,
+        "live_target": 500,
+        "note": "Targets are capacity. They are not booked clients.",
+        "pipeline": 0,
+        "pipeline_target": 500,
+        "sandboxes": 0
+      },
+      "cms": false,
+      "comp": {
+        "bd": "After recognized L1 receipt if they qualified. Owner-set rate. Not booked.",
+        "booked": false,
+        "closer": "After recognized L1 receipt only. Owner-set rate. Not booked.",
+        "from_this_plane": false,
+        "hours": "FFS never commissions a SKU and never attaches free U-DUAL.",
+        "ic_is_not_seat": true,
+        "kind": "ainav.comp.v1",
+        "note": "Policy is catalog law. Payouts stay 0. This plane cannot pay.",
+        "paid_count": 0,
+        "payroll_provider": null,
+        "residual": "After collected P-ADM only. Owner-set. Not booked."
+      },
+      "crm": false,
+      "dynamic": false,
+      "fourth_sku": false,
+      "glance": "0 of 500 live. 0 of 500 pipeline. One spine. Segregated twins. Commissions unpaid. Not a CRM.",
+      "hubspot": false,
+      "kind": "ainav.operating_company.v1",
+      "launch": false,
+      "lede": "The firm is one spine. BD qualifies. Sales closes L1 on the Institute twin. Close assigns a segregated sandbox. Kit then P-ADM keep. Paid U-DUAL and FFS service that twin. Production stays owner-gated. Five hundred live and five hundred pipeline are capacity targets. Live stays 0. Pipeline stays 0. Not a CRM. Not a fourth SKU.",
+      "live": false,
+      "live_pin_ok": false,
+      "named_client": null,
+      "named_contractor": null,
+      "needs": [
+        "Owner-set commission rates",
+        "Payout vehicle \u2014 BC vendor, Wise, or Gusto. Not invented from this plane",
+        "Contractor MSA. G12 stays open",
+        "Seat B click",
+        "First signed L1",
+        "Azure budget for N segregated sandboxes",
+        "Dataverse if Sales Enterprise becomes the 500-lead CRM \u2014 Canada affinity still open"
+      ],
+      "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Not LIVE_PIN_OK.",
+      "payouts_booked": false,
+      "production": false,
+      "rails": [
+        {
+          "id": "pipeline",
+          "name": "Pipeline",
+          "note": "0 of 500. BD qualifies. Do not invent a lead."
+        },
+        {
+          "id": "live",
+          "name": "Live book",
+          "note": "0 of 500. Signed L1 then sandbox. Not production."
+        },
+        {
+          "id": "sandbox",
+          "name": "Client twin",
+          "note": "One live client, one segregated sandbox. Never shared."
+        },
+        {
+          "id": "production",
+          "name": "Production",
+          "note": "Owner LIVE_PIN_OK only. Not auto-promote."
+        }
+      ],
+      "recognized_revenue_claimed": false,
+      "refuse": [
+        "Invent 500 live clients",
+        "Invent 500 named leads",
+        "Invent a named contractor",
+        "Pay a commission from this plane",
+        "HubSpot or Salesforce as the firm",
+        "Shared twin as production",
+        "A fourth SKU as the operating company",
+        "LIVE_PIN_OK theater"
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "name": "Owner",
+          "note": "James Hodnett. Sole. Marks payouts and LIVE_PIN_OK."
+        },
+        {
+          "id": "number_two",
+          "name": "Number two",
+          "note": "Cynthia. Mailbox recorded. Not all aspects. Not a click."
+        },
+        {
+          "id": "bd",
+          "name": "Business development",
+          "note": "Qualify ICP. Walk cheaper native. Independent contractor OK. Not a seat."
+        },
+        {
+          "id": "closer",
+          "name": "Closer",
+          "note": "Ninety minutes. Sell L1. Not dual admit."
+        },
+        {
+          "id": "kit",
+          "name": "Kit operator",
+          "note": "Acceptance Kit on the assigned sandbox."
+        },
+        {
+          "id": "service",
+          "name": "Service",
+          "note": "P-ADM keep and FFS on that twin. Hours never mint a SKU."
+        },
+        {
+          "id": "ic",
+          "name": "Independent contractor",
+          "note": "1099. Not a seat. Not dual admit. Named count stays 0."
+        }
+      ],
+      "sales_team_claimed": false,
+      "salesforce": false,
+      "site": "The firm bench is #firm-console on #firm. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM.",
+      "sku": false
+    },
     "qualify": {
       "lede": "Walk away from the cheap-native buyer. Proof day is for the controller who cannot let any AI post.",
       "must": [

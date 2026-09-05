@@ -260,6 +260,7 @@ def test_institute_foundation_is_catalog_honest():
     assert "paintManagedFace" in js
     assert 'id="path"' in html
     assert 'href="#path">Client twin</a>' in html
+    assert 'href="#firm">Run the firm</a>' in html
     assert "paintClientTwin" in js
     assert 'id="close-console"' in html
     assert "paintCloseBench" in js

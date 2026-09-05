@@ -1869,6 +1869,7 @@
     paintManagedFace(success.managed_face);
     paintClientTwin(success.client_twin);
     paintCloseBench(success.close_bench);
+    paintOperatingCompany(success.operating_company);
   }
 
   function paintHumanControl(control) {
@@ -2015,6 +2016,47 @@
     planes.forEach(function (plane) {
       if (!plane || !plane.id) return;
       set("path-plane-" + plane.id, plane.note);
+    });
+  }
+
+  function paintOperatingCompany(firm) {
+    if (
+      !firm ||
+      firm.live ||
+      firm.live_pin_ok ||
+      firm.sku ||
+      firm.fourth_sku ||
+      firm.crm ||
+      firm.hubspot ||
+      firm.salesforce ||
+      firm.assigned ||
+      firm.launch ||
+      firm.production ||
+      firm.named_client ||
+      firm.named_contractor ||
+      firm.sales_team_claimed ||
+      firm.payouts_booked ||
+      firm.cms ||
+      firm.dynamic
+    ) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("firm-lede", firm.lede);
+    set("class-firm", firm.glance || firm.lede);
+    set("firm-site", firm.site);
+    set("firm-note", firm.note);
+    var cap = firm.capacity || {};
+    if (cap.live === 0) set("firm-live", "0");
+    if (cap.pipeline === 0) set("firm-pipeline", "0");
+    set("firm-ics", "0");
+    set("firm-payouts", "0");
+    (firm.rails || []).forEach(function (rail) {
+      if (!rail || !rail.id) return;
+      set("firm-rail-" + rail.id, rail.note);
     });
   }
 
@@ -2766,6 +2808,91 @@
       writePathLedger(
         "denied",
         "promote_denied · production blocked\nInstitute twin is the remote demo. Client twin is a sandbox.\nDo not auto-promote. LIVE_PIN_OK is owner-only.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  function writeFirmLedger(kind, text) {
+    var box = document.getElementById("firm-ledger");
+    if (!box) return;
+    var row = document.createElement("pre");
+    row.className = kind === "ok" ? "ok" : "denied";
+    row.textContent = text;
+    box.insertBefore(row, box.firstChild);
+  }
+
+  var firmQualify = document.getElementById("firm-qualify");
+  if (firmQualify) {
+    firmQualify.addEventListener("click", function () {
+      window.location.hash = "#success";
+    });
+  }
+
+  var firmInventLead = document.getElementById("firm-invent-lead");
+  if (firmInventLead) {
+    firmInventLead.addEventListener("click", function () {
+      var status = document.getElementById("firm-pipeline-status");
+      if (status) status.textContent = "Refused. Do not invent 500 leads. Pipeline stays 0 of 500.";
+      writeFirmLedger(
+        "denied",
+        "pipeline_denied · invented leads\n500 is capacity. It is not a booked pipeline.\nNamed leads stay 0.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmInventLive = document.getElementById("firm-invent-live");
+  if (firmInventLive) {
+    firmInventLive.addEventListener("click", function () {
+      var status = document.getElementById("firm-live-status");
+      if (status) status.textContent = "Refused. Do not invent 500 live clients. Live stays 0 of 500.";
+      writeFirmLedger(
+        "denied",
+        "live_denied · invented book\n500 live is capacity. Signed L1 stays 0.\nOne live client would get one segregated sandbox.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmHire = document.getElementById("firm-hire");
+  if (firmHire) {
+    firmHire.addEventListener("click", function () {
+      var name = ((document.getElementById("firm-ic-name") || {}).value || "").trim();
+      var status = document.getElementById("firm-people-status");
+      if (/acme|contoso|fabrikam|northwind/i.test(name) || name) {
+        if (status) status.textContent = "Refused. Do not invent a named contractor.";
+        writeFirmLedger(
+          "denied",
+          "hire_denied · invented contractor\nICs are not seats. Named contractors stay 0.\nG12 MSA stays open.\nlive=false · live_pin_ok=false"
+        );
+        return;
+      }
+      if (status) status.textContent = "Refused. Named contractors stay 0. ICs are not seats.";
+      writeFirmLedger(
+        "denied",
+        "hire_denied · no named 1099\nRoles exist. Headcount stays uninvented.\nThis plane cannot hire.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmPay = document.getElementById("firm-pay");
+  if (firmPay) {
+    firmPay.addEventListener("click", function () {
+      var status = document.getElementById("firm-people-status");
+      if (status) status.textContent = "Refused. This plane cannot pay a commission. Payouts stay 0.";
+      writeFirmLedger(
+        "denied",
+        "payout_denied · no recognized receipt\nComp is catalog policy. Booked=false. paid_count=0.\nOwner marks payout after bank receipt.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmCrm = document.getElementById("firm-crm");
+  if (firmCrm) {
+    firmCrm.addEventListener("click", function () {
+      var status = document.getElementById("firm-people-status");
+      if (status) status.textContent = "Refused. HubSpot is not the firm. This bench is the operating company.";
+      writeFirmLedger(
+        "denied",
+        "crm_denied · HubSpot / Salesforce\nThe product is the admit plane. The firm is this bench.\nNot a CRM SKU. Not LIVE_PIN_OK."
       );
     });
   }

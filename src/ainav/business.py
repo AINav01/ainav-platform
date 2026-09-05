@@ -53,6 +53,19 @@ def validate_business(catalog: dict[str, Any]) -> None:
         raise IntegrityError("billing cannot claim recognized revenue", reason_code="REVENUE_NOT_CLAIMED")
     if billing.get("ninth_complement") is True:
         raise IntegrityError("billing is not a ninth Microsoft complement", reason_code="CATALOG_BUSINESS")
+    cap = (body.get("management") or {}).get("capacity") or {}
+    if cap and (int(cap.get("live") or 0) != 0 or int(cap.get("pipeline") or 0) != 0):
+        raise IntegrityError("firm capacity live and pipeline stay zero", reason_code="CATALOG_BUSINESS")
+    people = (body.get("management") or {}).get("people") or {}
+    if people.get("sales_team_claimed") is True or int(people.get("contractor_count") or 0) != 0:
+        raise IntegrityError("firm cannot invent a sales team or named contractors", reason_code="CATALOG_BUSINESS")
+    if people.get("named_contractors"):
+        raise IntegrityError("firm cannot invent named contractors", reason_code="CATALOG_BUSINESS")
+    comp = (body.get("management") or {}).get("comp") or {}
+    if comp.get("booked") is True or comp.get("from_this_plane") is True or int(comp.get("paid_count") or 0) != 0:
+        raise IntegrityError("firm cannot book or pay commissions from this plane", reason_code="CATALOG_BUSINESS")
+    if "commission payout" not in [str(item).lower() for item in ((body.get("management") or {}).get("cannot_mark") or [])]:
+        raise IntegrityError("firm management cannot_mark keeps commission payout", reason_code="CATALOG_BUSINESS")
 
 
 def doctrine() -> dict[str, Any]:

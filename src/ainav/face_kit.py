@@ -245,6 +245,12 @@ def public_search() -> dict[str, Any]:
             "href": "index.html#path",
             "text": "First-class close bench. Three planes. Qualify, remote proof, close L1, assigned sandbox. Not a fourth SKU. Not production.",
         },
+        {
+            "id": "firm",
+            "title": "Run the firm",
+            "href": "index.html#firm",
+            "text": "First-class operating company. 500 live and 500 pipeline are capacity. BD, sales, ICs, commissions, segregated twins. Not a CRM. Not a fourth SKU.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

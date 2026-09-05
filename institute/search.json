@@ -70,8 +70,14 @@
       "id": "path",
       "text": "First-class close bench. Three planes. Qualify, remote proof, close L1, assigned sandbox. Not a fourth SKU. Not production.",
       "title": "Client twin"
+    },
+    {
+      "href": "index.html#firm",
+      "id": "firm",
+      "text": "First-class operating company. 500 live and 500 pipeline are capacity. BD, sales, ICs, commissions, segregated twins. Not a CRM. Not a fourth SKU.",
+      "title": "Run the firm"
     }
   ],
-  "release": "2.85.0",
+  "release": "2.86.0",
   "sku": false
 }

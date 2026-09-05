@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.85.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.86.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.85.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.86.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -378,6 +378,7 @@ Working well
 - AINav, Inc. market position is an unlaunched independent admit plane. Named customers stay 0. Catalog list times zero booked. The only future that counts is the first L1. Not a forecast. Not TAM. Not a priced round. Not LIVE_PIN_OK.
 - Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK.
 - Deep Cloudflare quality 2026-09-04: HTTP 301, apex 404 empty on Cloudflare edge, pages 404, Azure SWA twin 200 with Institute CSP, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. The 403 challenge hold is gone. Visitor cert is Google Trust Services WE1 — not Full. Gold 99 is the twin release floor. Not launch. Not LIVE_PIN_OK.
+- 2.86.0 first-class operating company is catalog law: 500 live and 500 pipeline are capacity. Live 0. Pipeline 0. One spine. Segregated twins. Commissions unpaid. Not a CRM. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -407,6 +408,7 @@ Could be improved — without inventing a fourth SKU
 - Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
 - Client-assigned sandbox twin sits on the sale site after the product. Remote demo stays #twin. Close is signed L1. Assigned stays false until a real L1. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
 - First-class close bench sits on #path: three planes, qualify/proof/close/assign console. It cannot invent Acme or auto-promote. Not a fourth SKU. Not LIVE_PIN_OK.
+- First-class operating company sits on #firm: 500/500 capacity, BD/sales/IC/comp console. It cannot invent a lead, pay a commission, or share a twin. Not a CRM. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -460,6 +462,7 @@ Objection cards
 - We need a real managed website. — This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.
 - Just give us a shared demo tenant we can keep. — The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.
 - Just flip the demo live. — The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.
+- Just stand up HubSpot and pay the team. — The firm is this bench. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. HubSpot is not the product.
 
 CISO posture — holds
 
@@ -528,6 +531,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 53. [tree] Managed first-class face — Ship 2.83.0: first-class product, ninety-minute demo, and managed static website. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
 - 54. [tree] Client-assigned sandbox twin — Ship 2.84.0: client twin is a sale path, not a SKU. Remote demo on the Institute twin. Close is signed L1. Assigned sandbox for paid enhance. Not production. Not LIVE_PIN_OK.
 - 55. [tree] First-class close bench — Ship 2.85.0: first-class close bench on #path. Three planes. Remote proof. Signed L1. Assigned sandbox. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
+- 56. [tree] First-class operating company — Ship 2.86.0: first-class operating company on #firm. 500 live and 500 pipeline are capacity. BD, sales, ICs, commissions, segregated twins. Not a CRM. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
 
 ## What happens next
 

@@ -291,7 +291,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #class-glance { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #class-glance { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);
@@ -1134,6 +1134,23 @@ table.law tr[data-group] th {
 .first-class article[data-lane="path"] #class-path {
   color: var(--void-ink);
 }
+.first-class article[data-lane="firm"] {
+  background: color-mix(in srgb, var(--void) 86%, #1a2430);
+  color: var(--void-ink);
+  border-top-color: var(--gold-2);
+}
+.first-class article[data-lane="firm"] h3 {
+  color: #fff;
+}
+.first-class article[data-lane="firm"] p,
+.first-class article[data-lane="firm"] .class-kicker,
+.first-class article[data-lane="firm"] .note,
+.first-class article[data-lane="firm"] a {
+  color: var(--gold-2);
+}
+.first-class article[data-lane="firm"] #class-firm {
+  color: var(--void-ink);
+}
 .demo-console {
   margin-top: 1.5rem;
   padding: 1.25rem 1.15rem 1.4rem;
@@ -1226,6 +1243,27 @@ table.law tr[data-group] th {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+}
+.firm-rail li[data-rail="pipeline"],
+.firm-rail li[data-rail="live"] {
+  background: var(--void);
+  color: var(--void-ink);
+  border-color: var(--void);
+}
+.firm-rail li[data-rail="pipeline"]::before,
+.firm-rail li[data-rail="live"]::before,
+.firm-rail li[data-rail="sandbox"]::before { color: var(--gold-2); }
+.firm-rail li[data-rail="pipeline"] span,
+.firm-rail li[data-rail="live"] span,
+.firm-rail li[data-rail="sandbox"] span { color: #d8d2c6; }
+.firm-rail li[data-rail="sandbox"] {
+  background: color-mix(in srgb, var(--void) 78%, #1f2a24);
+  color: var(--void-ink);
+  border-color: color-mix(in srgb, var(--gold-2) 28%, transparent);
+}
+.firm-rail li[data-rail="production"] {
+  border-top: 3px solid var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
 }
 .product-stage article[data-sku] {
   border-top: 3px solid var(--gold);
