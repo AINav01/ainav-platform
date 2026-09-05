@@ -1,0 +1,637 @@
+{
+  "agent_tools": {
+    "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+    "block_until_dual": [
+      "dataverse.mcp",
+      "byo.sor_write"
+    ],
+    "cloud_agent_can_approve": false,
+    "is_admit_plane": false,
+    "leave_available": [
+      "workiq.user",
+      "workiq.teams",
+      "workiq.sharepoint",
+      "workiq.mail",
+      "mcp.management"
+    ],
+    "live": false,
+    "product": "Microsoft 365 Agent Tools",
+    "wired": false
+  },
+  "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+  "bc": {
+    "amount": "250.00",
+    "connection": "bc.premium",
+    "date": "2026-08-28",
+    "environment": "sandbox",
+    "live_pin_ok": false,
+    "note": "Sandbox journal exists. Production is blocked. This is not LIVE_PIN_OK.",
+    "operating_company": "AINav",
+    "operating_company_id": "9b8d1202-be8f-f111-8327-7ced8db3712c",
+    "product": "Dynamics 365 Business Central Premium",
+    "sandbox_document": "AINAV-L1",
+    "wedge": "bc.general_journal.post"
+  },
+  "commercial_equation": "named dual seats \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "complements": [
+    {
+      "binds": [
+        "seat object ids"
+      ],
+      "id": "entra.id",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Seat object ids. Not an IdP replacement. Copilot is not the admit plane.",
+      "product": "Microsoft Entra ID",
+      "role": "identity",
+      "wired": false
+    },
+    {
+      "binds": [
+        "connection secret hold"
+      ],
+      "id": "azure.keyvault",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Connection secret hold on the host. Not a live pin.",
+      "product": "Azure Key Vault",
+      "role": "secrets",
+      "wired": false
+    },
+    {
+      "binds": [
+        "mothership health"
+      ],
+      "id": "azure.monitor",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Mothership health. LAW is not Sentinel. Not a live pin.",
+      "product": "Azure Monitor",
+      "role": "observe",
+      "wired": false
+    },
+    {
+      "binds": [
+        "Acceptance Kit evidence"
+      ],
+      "id": "sharepoint.kit",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Kit evidence store. Not a seat. Graph is not called from this page.",
+      "product": "SharePoint",
+      "role": "evidence",
+      "wired": false
+    },
+    {
+      "binds": [
+        "E7 security sink"
+      ],
+      "id": "defender.xdr",
+      "live": false,
+      "mode": "sandbox",
+      "note": "E7 security sink. SecurityIncident.Read.All is not granted. Not the admit plane.",
+      "product": "Microsoft Defender XDR",
+      "role": "security",
+      "wired": false
+    },
+    {
+      "binds": [
+        "eligible dual seats"
+      ],
+      "id": "entra.pim",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Eligible seats. A PIM activation is not dual admit.",
+      "product": "Microsoft Entra Privileged Identity Management",
+      "role": "seat_eligibility",
+      "wired": false
+    },
+    {
+      "binds": [
+        "DecisionRecord export sink"
+      ],
+      "id": "sentinel.siem",
+      "live": false,
+      "mode": "sandbox",
+      "note": "DecisionRecord export sink. The mothership LAW is not a Sentinel workspace.",
+      "product": "Microsoft Sentinel",
+      "role": "siem",
+      "wired": false
+    },
+    {
+      "binds": [
+        "lockfile host constraints"
+      ],
+      "id": "azure.policy",
+      "live": false,
+      "mode": "sandbox",
+      "note": "Host policy. West Europe is blocked. Cannot weaken Job C.",
+      "product": "Azure Policy",
+      "role": "host_policy",
+      "wired": false
+    }
+  ],
+  "custom_domain_claimed": false,
+  "e7_cloudflare": {
+    "activate": {
+      "from_this_plane": false,
+      "now": [
+        {
+          "do": "Confirm SSL/TLS Full, not Flexible. Minimum TLS 1.2. HTTP to HTTPS 301 is already on. That redirect is not Institute launch.",
+          "id": "ssl.full",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "SSL/TLS"
+        },
+        {
+          "do": "Leave Cloudflare Managed and OWASP Core (Pro) on the empty apex. The 403 challenge is no longer holding. Apex is 404 empty on Cloudflare. That is not the Institute and not launch. Confirm you meant to drop the challenge.",
+          "id": "waf.managed",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "WAF"
+        },
+        {
+          "do": "Rocket Loader Off. Auto Minify JavaScript Off. They break the static Institute after launch.",
+          "id": "perf.off",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "Speed"
+        },
+        {
+          "do": "MX and autodiscover resolve to Outlook. Confirm they stay DNS only / grey cloud. Do not orange-cloud mail.",
+          "id": "dns.only",
+          "url": "https://dash.cloudflare.com",
+          "url_label": "DNS"
+        }
+      ],
+      "wait": [
+        {
+          "do": "Do not add asuid or bind Azure SWA as the public apex. SWA stays the development twin. Pages is the empty Cloudflare origin. Launch stays owner-only.",
+          "id": "bind"
+        },
+        {
+          "do": "Do not point the apex at Azure SWA with Page Rules. Keep SWA as the twin. When James authorizes a gold-99 release, publish that gold tree to the Cloudflare public origin. That is launch. This plane cannot publish.",
+          "id": "origin"
+        },
+        {
+          "do": "Do not raise DMARC to p=reject until mail to Cynthia actually flows. Quarantine is enough.",
+          "id": "dmarc.reject"
+        }
+      ]
+    },
+    "already": [
+      "Cloudflare Pro plan",
+      "Cloudflare nameservers",
+      "Outlook MX",
+      "SPF include Outlook",
+      "Entra MS= TXT",
+      "autodiscover CNAME",
+      "enterpriseenrollment CNAME",
+      "enterpriseregistration CNAME",
+      "DKIM selectors",
+      "DMARC p=quarantine",
+      "sip CNAME",
+      "lyncdiscover CNAME",
+      "_sip._tls SRV",
+      "_sipfederationtls._tcp SRV"
+    ],
+    "apex": "ainav.institute",
+    "complement": false,
+    "connection": false,
+    "dashboard_url": "https://dash.cloudflare.com",
+    "from_this_plane": false,
+    "full": true,
+    "holding": {
+      "host": false,
+      "id": "cloudflare.pages",
+      "institute": false,
+      "launch": false,
+      "note": "Apex is 404 empty on Cloudflare. Pages origin 404. Azure SWA is the development twin, not the public apex. Empty Pages is not the Institute. Leave the zone as-is until James authorizes a gold-99 release. Not launch.",
+      "origin": "ainav-institute.pages.dev",
+      "sku": false
+    },
+    "id": "cloudflare.dns",
+    "is_admit_plane": false,
+    "live": false,
+    "live_pin_ok": false,
+    "missing": [],
+    "not": [
+      "SKU",
+      "seat",
+      "ninth Microsoft complement",
+      "hop on the privileged write",
+      "dual admit",
+      "Institute launch",
+      "Azure SWA custom domain",
+      "Zero Trust as the admit plane",
+      "Cloudflare Email Security as live",
+      "Cloudflare Pro as a SKU",
+      "Cloudflare Pages as the Institute host"
+    ],
+    "note": "Nameservers for ainav.institute. Cloudflare Pro is the edge plan, not a SKU. Microsoft 365 E7 mail, Entra, Teams SIP, and lync SRV already point through Cloudflare. DNS is full. Cloudflare is not the product, not a seat, not dual admit. MX and autodiscover stay DNS-only \u2014 orange-cloud is not dual admit. This is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+    "plan": "pro",
+    "plan_sku": false,
+    "product": "Cloudflare",
+    "quality": {
+      "apex_is_institute": false,
+      "confirm": [
+        "Do not downgrade Full (strict) to Flexible or Off",
+        "Rocket Loader Off and Auto Minify JavaScript Off",
+        "MX and autodiscover grey cloud",
+        "403 challenge drop was intended \u2014 apex is now 404 empty"
+      ],
+      "e7_full": true,
+      "from_this_plane": false,
+      "host_freshness": {
+        "apex_is_not_the_host": true,
+        "from_this_plane": false,
+        "published_host_is_swa": true,
+        "republish_is_not_launch": true
+      },
+      "institute_host": "azure.swa",
+      "kind": "ainav.edge.quality.v1",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "Quality is E7 DNS full, Cloudflare edge on an empty 404 apex, TLS 1.2+, and mail not Cloudflare anycast. Azure SWA is the development twin. Owner recorded Automatic SSL/TLS Full (strict). Visitor cert is not proof. Rocket Loader stays owner confirm. It is not Institute launch. This Cloud Agent cannot edit Cloudflare.",
+      "owner_recorded": [
+        "Automatic SSL/TLS currently Full (strict). Next scan Sep 9. From the owner dashboard, not this plane."
+      ],
+      "owner_ssl": {
+        "automatic": true,
+        "flexible": false,
+        "from_this_plane": false,
+        "key_exchange": "automatic",
+        "kind": "ainav.edge.owner_ssl.v1",
+        "live": false,
+        "live_pin_ok": false,
+        "mode": "full_strict",
+        "mode_label": "Full (strict)",
+        "next_scan": "2026-09-09",
+        "note": "Owner recorded Automatic SSL/TLS currently Full (strict). This plane did not set it. Visitor cert is not proof. Keep Automatic key exchange. Do not drop to Flexible or Off. Not Institute launch.",
+        "off": false,
+        "sku": false,
+        "visitor_cert_is_not_proof": true
+      },
+      "refuse": [
+        "asuid while Pages is the apex",
+        "orange-cloud MX or autodiscover",
+        "Flexible SSL",
+        "Rocket Loader",
+        "treat the apex 404 as launch",
+        "treat Cloudflare edge as the Institute"
+      ],
+      "rocket_loader_claimed": false,
+      "sku": false,
+      "ssl_full_claimed": false,
+      "verified": [
+        "Cloudflare nameservers bella and dilbert",
+        "E7 DNS 13/13 full",
+        "Outlook MX, SPF -all, DKIM, DMARC p=quarantine",
+        "HTTP to HTTPS 301",
+        "Apex 404 empty on Cloudflare edge \u2014 not the Institute",
+        "ainav-institute.pages.dev 404 empty",
+        "Azure SWA twin 200 with Institute CSP",
+        "asuid absent",
+        "TLS 1.2 and 1.3 accepted; TLS 1.0 and 1.1 refused",
+        "Autodiscover and MX resolve to Outlook, not Cloudflare anycast",
+        "www 301 to apex",
+        "Visitor cert is Cloudflare Universal SSL \u2014 not proof of Full"
+      ],
+      "wait": [
+        "DMARC p=reject after mail flows",
+        "Bind ainav.institute / asuid when the owner says launch"
+      ]
+    },
+    "role": "dns_edge",
+    "sku": false,
+    "twin": {
+      "authorized": false,
+      "development": {
+        "host": "azure.swa",
+        "is_public_apex": false,
+        "location": "eastus2",
+        "observed": "200 Institute CSP",
+        "role": "digital_twin",
+        "url": "https://blue-river-010091a0f.7.azurestaticapps.net/"
+      },
+      "from_this_plane": false,
+      "gold_floor": 99,
+      "kind": "ainav.institute.twin.v1",
+      "launch": false,
+      "lede": "The Institute has a digital twin. Development is Azure SWA. The public hostname is on Cloudflare and is empty. Gold 99 is the release floor. Authorization is owner-only.",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "Cloudflare is the edge. Azure SWA is the twin. Apex 404 is not the Institute. A green check is not LIVE_PIN_OK. Not launch.",
+      "public_edge": {
+        "apex": "ainav.institute",
+        "challenge_hold": false,
+        "edge": true,
+        "host": "cloudflare",
+        "is_institute": false,
+        "observed": "404 empty",
+        "origin": "ainav-institute.pages.dev"
+      },
+      "release": {
+        "authorized": false,
+        "from_this_plane": false,
+        "not": [
+          "auto-publish on green CI",
+          "treat apex 404 as launch",
+          "treat SWA 200 as public launch",
+          "treat Cloudflare edge as the Institute",
+          "add asuid from this plane"
+        ],
+        "path": "Keep Azure SWA as the development twin. When authorized, publish that gold tree to the Cloudflare public origin (empty Pages today). Do not auto-publish on a green CI check. This Cloud Agent cannot edit Cloudflare.",
+        "requires": [
+          "James says launch or authorize public release",
+          "make gold at or above 99 on the twin",
+          "do not mark LIVE_PIN_OK"
+        ]
+      },
+      "sku": false
+    }
+  },
+  "engineering": {
+    "action_schema": {
+      "changes_gold_hashes": false,
+      "fields": [
+        "action_class",
+        "payload",
+        "proposal_id",
+        "sor_target",
+        "policy_id"
+      ],
+      "note": "HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen.",
+      "path": "src/ainav/data/action.schema.json"
+    },
+    "cannot_close": [
+      "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
+      "ainav.institute custom domain and launch",
+      "Graph Writes still Granted on the same Entra app",
+      "US Dataverse for Sales (Canada affinity recorded; United States not pinned)",
+      "G12 legal / G13 signed L1",
+      "Recognized revenue",
+      "Multi-host product HA",
+      "LIVE_PIN_OK",
+      "Cloudflare Rocket Loader and grey-cloud icon dashboard confirms"
+    ],
+    "catalog_shape": {
+      "do_not_split": true,
+      "extract": [
+        "src/ainav/data/action.schema.json"
+      ],
+      "note": "Do not split catalog.json. Named sections stay in one file. Action schema is a referenced artifact.",
+      "one_file": true,
+      "path": "src/ainav/data/catalog.json",
+      "sections_named": true
+    },
+    "closed_in_tree": [
+      "Job C gold invariants (dual seats, single-use consume, fail-closed effect)",
+      "Catalog law \u2014 three SKUs only",
+      "E7-on-Cloudflare DNS full (mail, Entra, Teams SIP / lync SRV)",
+      "GitHub Actions gold workflow ran green (make gold). A green check is not LIVE_PIN_OK",
+      "Institute owner board is one click from Closed",
+      "Owner board lists LIVE_PIN_OK as honest-missing, not as an agent close",
+      "Health, sandbox, Institute publish, connections, and delivery fail-closed probes covered",
+      "Institute, review, and brief generated from the catalog",
+      "Cynthia Hodnett mailbox recorded (chodnett@ainav.institute). Owner assigned paid E7 and Teams Premium. Paid mail is not an Entra oid and not a click",
+      "Mailbox law fail-closed: seat note, owner gate, and letter cannot revert to invited-not-recorded",
+      "Institute first screen paints substitute vs Job C in one glance",
+      "Success program: bake-off win/lose, qualify/walk-away, objections, CISO posture, seat B meaning, continuity",
+      "Stack walk with admin links on every hop. Cloudflare is DNS/edge, not a write hop",
+      "Owner-click runbooks with Microsoft admin links",
+      "Cloudflare quality board: E7 DNS full, held apex. Confirm Full not Flexible. Not Institute launch",
+      "Proof-day Floor: Client sits write rail, attention, seats, keep, offer. Estate and audit stay on Entire, Examiner, Records, and Owner",
+      "Instrument plane: action schema, admit client, empty AI inventory, examiner prove, grant TTL outside the digest, passkey identify. Not live. Not formally verified",
+      "Walk-away ledger recorded=false count=0. Billing unattached. Not a ninth complement",
+      "2.71.0 instrument: Client offer is dashboard seating, pending bind 0, freeze request local, examiner walk not 17a-4, Entra-group templates not live, proof-day TTL outside digest, motions not SKUs, hostname rehearsal catalog-only, competitive one-pager not a patent",
+      "2.72.0 gold floor: coverage_floor 95, pyproject fail_under 95, gaps board names owner-only opens. A green check is not LIVE_PIN_OK",
+      "2.73.0 Floor sits the review: catalog view_shows, provision spine, duty hints, honest freeze, examiner demo leaf, gaps hrefs, owner board packet, lab vs commercial. A green check is not LIVE_PIN_OK",
+      "2.74.0 Cloudflare quality: live probe verifies 301, 403 hold, pages 404, SWA 200, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. Visitor cert is not Full. SSL Full and Rocket Loader stay owner confirm. A green check is not LIVE_PIN_OK",
+      "2.75.0 owner recorded Automatic SSL/TLS currently Full (strict). Next scan Sep 9. Visitor cert is not proof. ssl_full_claimed stays false. Rocket Loader stays owner confirm. Not launch. A green check is not LIVE_PIN_OK",
+      "2.76.0 owner recorded Grant admin consent failed: no subscription or service principal for Speech, Azure Service Management, Azure Key Vault (portal also listed CRM, BC, Graph). Leftover APIs block the all-at-once Grant. Four Reads stay Not granted. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
+      "2.77.0 owner recorded Grant succeeded. Four Reads Granted. Leftover Speech, ARM, and Key Vault gone. Graph Writes still Granted. Not Graph Read closed. Not LIVE_PIN_OK",
+      "2.78.0 quality check aligned public surfaces with four Reads Granted. This plane refused to close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, and LIVE_PIN_OK. Coverage floor stays 95. A green check is not LIVE_PIN_OK",
+      "2.79.0 first-principles review: twenty catalog-law improvements. MFA identifies. assignment_live stays false. Custom reports are not a SKU. Board fiduciary is not counsel. Coverage 99 is the target. Claiming 99 without coverage is a lie. A green check is not LIVE_PIN_OK",
+      "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
+      "2.81.0 Institute twin website for review: twin.html on Azure SWA. --publish-twin updates the twin only. --publish-institute stays launch_not_ready. Cloudflare apex stays empty 404. Gold 99 stays the floor. A green check is not LIVE_PIN_OK",
+      "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements. #have is the sale wow. #missing stays owner-honest. Not a fourth SKU. A green check is not LIVE_PIN_OK",
+      "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app. A green check is not LIVE_PIN_OK",
+      "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
+      "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
+    ],
+    "complement": false,
+    "connection": false,
+    "formal": {
+      "claimed": false,
+      "note": "A compact TLA+ sketch of consume-once. Not formally verified.",
+      "spec": "src/agent_gov/spec/consume_once.tla",
+      "verified": false
+    },
+    "gold_ci": {
+      "command": "make gold",
+      "coverage_floor": 99,
+      "exists": true,
+      "id": "github.actions.gold",
+      "is_admit_plane": false,
+      "marks_live_pin": false,
+      "note": "Gold CI ran green on GitHub Actions. A green check is not LIVE_PIN_OK, not signed L1, and not Institute launch. This Cloud Agent cannot enable Actions if the org has it off.",
+      "observed_green": true,
+      "workflow": ".github/workflows/gold.yml"
+    },
+    "is_admit_plane": false,
+    "kind": "ainav.engineering.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "note": "This Cloud Agent closes in-tree gaps only. Owner clicks stay owner clicks. Engineering is not a SKU and not the admit plane.",
+    "sku": false
+  },
+  "entity": "AINav, Inc.",
+  "fabric": {
+    "e7_not_the_product": [
+      "Microsoft 365 Copilot",
+      "Agent 365"
+    ],
+    "live": false,
+    "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+    "path": [
+      {
+        "id": "azure.host",
+        "lane": "host",
+        "note": "ainav-institute on eastus2. Custom domain not bound.",
+        "product": "Microsoft Azure",
+        "status": "hosted_sandbox"
+      },
+      {
+        "id": "m365.e7",
+        "lane": "identity",
+        "note": "Seat object ids. Copilot is not a seat. PIM is not dual admit.",
+        "product": "Microsoft 365 E7 / Microsoft Entra ID",
+        "status": "connected_sandbox"
+      },
+      {
+        "id": "admit",
+        "lane": "admit",
+        "note": "Two distinct humans. One action hash. Then the write.",
+        "product": "AINav Control Plane",
+        "status": "running_code"
+      },
+      {
+        "id": "bc.premium",
+        "lane": "sor",
+        "note": "sandbox \u00b7 AINav \u00b7 bc.general_journal.post. Production blocked.",
+        "product": "Dynamics 365 Business Central Premium",
+        "status": "sandbox_journal"
+      },
+      {
+        "id": "sales.enterprise",
+        "lane": "sor",
+        "note": "License exists. No Dataverse instance. Twin only until G14.",
+        "product": "Dynamics 365 Sales Enterprise",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "teams.enterprise",
+        "lane": "notify",
+        "note": "Effect notify. A chat is not a seat.",
+        "product": "Microsoft Teams Enterprise",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "teams.premium",
+        "lane": "notify",
+        "note": "Protected notify. A meeting is not a seat.",
+        "product": "Microsoft Teams Premium",
+        "status": "licensed_not_wired"
+      }
+    ],
+    "product": "AINav Control Plane"
+  },
+  "honest_missing": [
+    "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
+    "ainav.institute custom domain and incorporation date",
+    "Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)",
+    "Graph Writes still Granted on the same Entra app",
+    "Recognized revenue / external billing provider",
+    "G12 legal (counsel pack unsigned)",
+    "Signed L1 counsel pack (G13)",
+    "Multi-host product HA",
+    "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)"
+  ],
+  "host": {
+    "connection": "azure.host",
+    "institute_site": "ainav-institute",
+    "location": "eastus / eastus2"
+  },
+  "identity": {
+    "connection": "m365.e7",
+    "note": "Seat object ids. Not an IdP replacement. Copilot is not the admit plane.",
+    "product": "Microsoft 365 E7 / Microsoft Entra ID"
+  },
+  "institute": "AINAV.Institute",
+  "invited_second_human": {
+    "agreed": true,
+    "email": "chodnett@ainav.institute",
+    "entra_oid": null,
+    "name": "Cynthia Hodnett",
+    "recorded": true,
+    "seat_clicked": false
+  },
+  "job": "C",
+  "kind": "ainav.institute.status.v1",
+  "lab_pin": "LIVE_PIN_OK",
+  "launch_ready": false,
+  "live": false,
+  "live_pin_ok": false,
+  "notify": {
+    "connections": [
+      "teams.enterprise",
+      "teams.premium"
+    ],
+    "note": "Licensed. A chat is not a seat.",
+    "wired": false
+  },
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "opportunity": {
+    "attached": {
+      "L1": 0,
+      "P-ADM": 0,
+      "U-DUAL": 0
+    },
+    "deepen": "U-DUAL",
+    "keep": "P-ADM",
+    "list": {
+      "L1": {
+        "id": "L1",
+        "kind": "prove",
+        "max": 40000,
+        "min": 28000,
+        "name": "FIRST_OFFER",
+        "term": "2\u20134 weeks"
+      },
+      "P-ADM": {
+        "id": "P-ADM",
+        "kind": "keep",
+        "max": 60000,
+        "min": 40000,
+        "name": "ADMIT_COVERAGE",
+        "term": "annual"
+      },
+      "U-DUAL": {
+        "id": "U-DUAL",
+        "kind": "deepen",
+        "max": 35000,
+        "min": 20000,
+        "name": "DEPTH_PACK",
+        "term": "annual"
+      }
+    },
+    "named_customers": [],
+    "note": "Pipeline math uses catalog list prices. It is not recognized revenue.",
+    "prove": "L1",
+    "recognized_revenue": null,
+    "signed_l1": 0,
+    "year_one_list_if_all_three": {
+      "max": 135000,
+      "min": 88000,
+      "note": "Catalog list if one controller buys L1, then attaches P-ADM, then pays for U-DUAL. Not recognized revenue."
+    }
+  },
+  "product": "AINav Control Plane",
+  "production": false,
+  "release": "2.84.0",
+  "sales": {
+    "connection": "sales.enterprise",
+    "instances": 0,
+    "licensed": true,
+    "note": "License exists. No Dataverse instance. Twin only until G14.",
+    "product": "Dynamics 365 Sales Enterprise",
+    "wired": false
+  },
+  "signed_l1": false,
+  "success_equation": "LIVE_PIN_OK \u00d7 proof day \u00d7 signed L1 \u00d7 P-ADM attach",
+  "website": {
+    "authorized_release": false,
+    "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+    "client_twin_is_sku": false,
+    "cms": false,
+    "demo_is_sku": false,
+    "demo_path": "#twin",
+    "dynamic": false,
+    "first_class": true,
+    "launch_ready": false,
+    "managed": true,
+    "pages_is_host": false,
+    "path_href": "#path",
+    "public_edge": "cloudflare",
+    "review_path": "twin.html",
+    "twin_host": "azure.swa",
+    "twin_review": true
+  },
+  "wrote_sor": false
+}

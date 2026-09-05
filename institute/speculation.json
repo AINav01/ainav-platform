@@ -1,0 +1,16 @@
+{
+  "prefetch": [
+    {
+      "eagerness": "moderate",
+      "source": "list",
+      "urls": [
+        "/app.html",
+        "/control-plane.html",
+        "/kit.html",
+        "/identify.html",
+        "/twin.html",
+        "/index.html"
+      ]
+    }
+  ]
+}

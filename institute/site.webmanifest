@@ -1,0 +1,26 @@
+{
+  "name": "AINAV.Institute",
+  "short_name": "AINAV",
+  "description": "Dual-admitted effect authority before privileged system-of-record writes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4efe6",
+  "theme_color": "#f4efe6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "graphics/apple-touch.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "graphics/emblem.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

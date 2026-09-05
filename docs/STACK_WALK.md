@@ -1,0 +1,76 @@
+# AINav, Inc. — stack walk
+
+Release 2.84.0. Catalog-honest. Not LIVE_PIN_OK. Not a launch.
+Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.
+
+**Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write.**
+
+Estate: other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps. Same dashboard. Not a fourth SKU.
+
+Audit: internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse. Not 17a-4. Room 1 books. Room 2 refuse.
+
+Implementation: Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.
+CLI: `python -m ainav stack`. Probe is read-only: `python -m ainav connect --probe`.
+
+This Cloud Agent cannot: create users; grant Graph roles; edit Cloudflare; bind ainav.institute; mark LIVE_PIN_OK; treat Canada as United States; paste Dataverse environment id.
+
+## Privileged-write path
+
+1. **Cloudflare DNS / edge** — `full`. probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex is 404 empty on Cloudflare edge. asuid absent. Azure SWA is the twin. DNS full is not Institute launch.
+   Owner: Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99. This Cloud Agent cannot edit Cloudflare. [Cloudflare dashboard](https://dash.cloudflare.com) · [Cloudflare DNS docs](https://developers.cloudflare.com/dns/)
+
+2. **Azure host** — `hosted_not_custom`. Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound.
+   Owner: Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps) · [SWA custom domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external)
+
+3. **Entra identify** — `mailbox_recorded_oid_open`. Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Owner assigned paid Microsoft 365 E7 and Teams Premium. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat. probe_graph reads org and users when the same app has User.Read.All.
+   Owner: She signs in once. Confirm a distinct object id. She clicks seat B. You do not click both seats. James keeps the fallback E7. [Entra users](https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers) · [Entra users](https://learn.microsoft.com/en-us/entra/identity/users/users-overview)
+
+4. **AINav Control Plane** — `running_code`. Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat.
+   Owner: She clicks seat B with her own object id. Lab oids are not two named treasury humans. [Azure-hosted Institute](https://blue-river-010091a0f.7.azurestaticapps.net/) · [ainav-platform](https://github.com/AINav01/ainav-platform)
+
+5. **Business Central Premium** — `sandbox_journal`. Sandbox company AINav. Document AINAV-L1. Wedge bc.general_journal.post. Production stays blocked. Not LIVE_PIN_OK.
+   Owner: Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. [Business Central Sandbox](https://businesscentral.dynamics.com/ainav.institute/Sandbox) · [BC companies](https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/new-company)
+
+6. **Sales Enterprise** — `licensed_not_wired`. Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: North America sandboxes follow Canada affinity. United States is not pinned. Canada is not United States. U-DUAL stays on the twin until G14.
+   Owner: Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas. [Power Platform environments](https://admin.powerplatform.microsoft.com/environments) · [Macro regions](https://learn.microsoft.com/power-platform/admin/macro-regions)
+
+7. **Teams notify** — `dns_full_graph_open`. SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat.
+   Owner: Team.ReadBasic.All is Granted. Trash Graph Writes on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app. [Microsoft 365 admin](https://admin.cloud.microsoft/?source=applauncher#/homepage) · [Teams overview](https://learn.microsoft.com/en-us/microsoftteams/teams-overview)
+
+8. **Graph Read on the same app** — `four_reads_granted_writes_open`. Owner recorded Grant succeeded. Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Leftover Speech, Azure Service Management, and Key Vault are gone. Graph Writes still Granted. No Graph Write from this plane.
+   Owner: Four Reads are Granted. Trash Organization.ReadWrite.All and User.ReadWrite.All on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app. [Entra app registrations](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) · [Graph permissions](https://learn.microsoft.com/en-us/graph/permissions-reference)
+
+9. **Agent Tools registry** — `owner_leave_available`. Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block.
+   Owner: Leave five Work IQ / MCP Management tools Available. Block Dataverse MCP until paid U-DUAL. Reject BYO SoR writers. [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all) · [Manage tools for agents](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent)
+
+10. **Institute launch** — `held`. --publish-institute stays launch_not_ready. Apex CNAME is empty Cloudflare Pages. Azure hostname is hosted.
+   Owner: Say launch only when you want ainav.institute bound. Empty Pages is not the Institute. Do not add asuid while Pages is the apex origin. [Azure Static Web Apps](https://portal.azure.com/#view/Microsoft_Azure_StaticApps) · [Bind a custom domain](https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external)
+
+
+## Complements (not hops on the write)
+
+- **Azure Key Vault** — `declared_sandbox`. host_bind can create a vault. Secrets are not LIVE_PIN_OK.
+   Owner: Hold connection secrets here. Do not paste them into the catalog. [Key Vaults](https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults) · [Key Vault overview](https://learn.microsoft.com/en-us/azure/key-vault/general/overview)
+
+- **Azure Monitor** — `declared_sandbox`. Mothership health. LAW is not Sentinel. Not a live pin.
+   Owner: Read host health. Do not treat Monitor as the admit plane. [Azure Monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview) · [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/overview)
+
+- **SharePoint kit** — `graph_read_open`. Kit evidence store. Sites.Read.All is Granted. Graph Writes still Granted. Graph Write is not claimed from this plane.
+   Owner: Sites.Read.All is Granted. Trash Graph Writes on the same app. Do not grant Write from this plane. [SharePoint](https://www.office.com/launch/sharepoint) · [SharePoint Graph](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint)
+
+- **Defender XDR** — `graph_read_open`. E7 security sink. SecurityIncident.Read.All is Granted. Graph Writes still Granted. Not the admit plane.
+   Owner: SecurityIncident.Read.All is Granted. Trash Graph Writes on the same app. No Write. [Microsoft Defender portal](https://security.microsoft.com) · [Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/)
+
+- **Entra PIM** — `not_dual`. Eligible seats. A PIM activation is not dual admit. RoleEligibilitySchedule.Read.Directory is Granted. Graph Writes still Granted.
+   Owner: RoleEligibilitySchedule.Read.Directory is Granted. Trash Graph Writes. Do not treat PIM as seat B. [Entra PIM](https://entra.microsoft.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/quickStart) · [PIM configure](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure)
+
+- **Microsoft Sentinel** — `declared_sandbox`. DecisionRecord export sink after P-ADM. The mothership LAW is not a Sentinel workspace.
+   Owner: Do not treat Sentinel as the admit plane. Keep is the sealed DecisionRecord. [Microsoft Sentinel](https://portal.azure.com/#view/Microsoft_Azure_Security_Insights) · [Sentinel overview](https://learn.microsoft.com/en-us/azure/sentinel/overview)
+
+- **Azure Policy** — `cannot_weaken`. Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane.
+   Owner: Keep West Europe blocked if that is the host rule. Do not loosen Job C from Policy. [Azure Policy](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview) · [Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/overview)
+
+
+## Stop
+
+A green health probe is not LIVE_PIN_OK. DNS full is not Institute launch. Sandbox AINAV-L1 is not Production. Mailbox recorded is not a seat B click.

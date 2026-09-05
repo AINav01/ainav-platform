@@ -1,0 +1,202 @@
+{
+  "acceptance_kit": {
+    "cases": [
+      "kit.bc.journal",
+      "kit.icfr.unauthorized_gl"
+    ],
+    "requires_sku": "L1",
+    "signed_l1": false
+  },
+  "audit_equation": "internal audit \u00d7 regulator archive \u00d7 failure to comply \u00d7 Room 1 books \u00d7 Room 2 refuse",
+  "billing": {
+    "attached": false,
+    "kind": "ainav.business.billing.v1",
+    "ninth_complement": false,
+    "note": "No billing provider. Catalog list cannot become recognized revenue. Not a ninth Microsoft connection.",
+    "provider": null,
+    "recognized_revenue_claimed": false,
+    "sku": false
+  },
+  "buyer": {
+    "contact_email": null,
+    "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+    "seats": [
+      "treasury_approver",
+      "treasury_controller"
+    ],
+    "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit."
+  },
+  "delivery": {
+    "hosts": [
+      "master",
+      "cloud",
+      "local"
+    ],
+    "law": "Same Job C lockfile. One consume ledger per client. Master never writes the client SoR.",
+    "raci": {
+      "buyer": "Controller \u2014 forwards the proof-day brief. No invented inbox.",
+      "cloud": "Azure-declared client plane \u2014 same ledger, sandbox twin.",
+      "local": "Client operators \u2014 seats and twin. Same ledger as cloud.",
+      "master": "AINav, Inc. \u2014 lockfile, catalog, gold. Does not write client SoR.",
+      "operator": "Cursor Cloud Agent \u2014 operates. Not a seat. Not dual admit.",
+      "owner": "James Hodnett \u2014 sole owner. Runs AINav, Inc."
+    },
+    "shared_ledger": true,
+    "week_one": [
+      "provision master lockfile",
+      "provision cloud + local pair on one ledger",
+      "proof day or Acceptance Kit on the BC twin",
+      "notify Teams Enterprise and Premium",
+      "store kit evidence in SharePoint sandbox",
+      "refuse live pin"
+    ]
+  },
+  "economics": {
+    "note": "Pipeline math uses catalog list prices. It is not recognized revenue.",
+    "recognized_revenue_claimed": false
+  },
+  "elevator": {
+    "ask": "Ninety minutes on the twin. Walk out with a sealed record \u2014 or walk away.",
+    "sixty": "Every new client AI is another unauthorized-write surface. The vendor of the draft is the worst failsafe for that draft. Job C sits outside the model. Treasury and controller bind one action hash. First record is the admitted write. Second record is the sealed decision. Off switch, reset, rollback \u2014 same plane. Three SKUs only. Not agent inventory. Not an identity provider.",
+    "ten": "Human control plane over every client AI that can draft a privileged system-of-record write.",
+    "thirty": "Controllers already have Business Central, Entra, and two-person journal duty. They do not have a gate in front of the write. AINav is that gate \u2014 not the AI. Two distinct humans bind the same action. The grant is used once. We prove it in ninety minutes on a Business Central twin. That is L1."
+  },
+  "entity": "AINav, Inc.",
+  "estate_equation": "other uses \u00d7 failsafe \u00d7 executive oversee \u00d7 sealed records \u00d7 immutable \u00d7 AI governance maps",
+  "honest_missing": [
+    "Second unique human (mailbox chodnett@ainav.institute recorded; Entra oid and seat B click still open)",
+    "ainav.institute custom domain and incorporation date",
+    "Power Platform / Dataverse for Sales (ticket 2609030040009525: Canada affinity; ADR ineligible; United States not pinned)",
+    "Graph Writes still Granted on the same Entra app",
+    "Recognized revenue / external billing provider",
+    "G12 legal (counsel pack unsigned)",
+    "Signed L1 counsel pack (G13)",
+    "Multi-host product HA",
+    "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)"
+  ],
+  "icp": {
+    "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",
+    "erp": "Dynamics 365 Business Central Premium",
+    "identity": "Microsoft Entra ID",
+    "named_customers": []
+  },
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.business.v1",
+  "live": false,
+  "model": {
+    "audit": "same plane",
+    "deepen": "U-DUAL",
+    "estate": "same plane",
+    "failsafe": "not the client's AI",
+    "governance": "catalog maps, claimed=false",
+    "hours": "fee-for-service",
+    "immutable": "sealed \u00d7 consume-once \u00d7 hash-chained",
+    "keep": "P-ADM",
+    "not": [
+      "consultancy-as-product",
+      "IdP replacement",
+      "agent inventory",
+      "free U-DUAL"
+    ],
+    "prove": "L1",
+    "records": "first SoR write \u00d7 second DecisionRecord \u00d7 weekly keep",
+    "regulated": "room 1 books, room 2 refuse"
+  },
+  "next_pin": {
+    "id": "bc.microsoft.sandbox",
+    "live": false,
+    "live_pin_ok": false,
+    "sent": false
+  },
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "organization": {
+    "all_wired_claimed": false,
+    "departments": [
+      {
+        "id": "dept.treasury",
+        "name": "Treasury / Finance",
+        "status": "running_sandbox"
+      },
+      {
+        "id": "dept.identity",
+        "name": "Identity / IT / Host",
+        "status": "running_sandbox"
+      },
+      {
+        "id": "dept.sales",
+        "name": "Sales / Revenue",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "dept.people",
+        "name": "People / Notify",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "dept.compliance",
+        "name": "Security / Compliance",
+        "status": "licensed_not_wired"
+      },
+      {
+        "id": "dept.institute",
+        "name": "Institute / GTM",
+        "status": "azure_hosted_not_custom"
+      },
+      {
+        "id": "dept.legal",
+        "name": "Legal / Counsel",
+        "status": "open_gap"
+      },
+      {
+        "id": "dept.product",
+        "name": "Product / Engineering",
+        "status": "running_code"
+      },
+      {
+        "id": "dept.delivery",
+        "name": "Delivery / Customer Success",
+        "status": "running_code"
+      },
+      {
+        "id": "dept.programs",
+        "name": "Programs / Partnerships",
+        "status": "qualify_not_claimed"
+      }
+    ],
+    "full_service": true,
+    "second_officer": null
+  },
+  "programs_order": [
+    "microsoft.founders_hub",
+    "nvidia.inception",
+    "nvidia.developer",
+    "github.for_startups",
+    "microsoft.isv_success",
+    "nvidia.connect"
+  ],
+  "proof_day": {
+    "cli": "python -m ainav proof-day",
+    "live": false,
+    "minutes": 90,
+    "signed_l1": false
+  },
+  "sales": {
+    "forbidden": [
+      "bundle free U-DUAL",
+      "soft dual as a close",
+      "claim LIVE_PIN_OK to close",
+      "Institute twin as client production",
+      "client twin as a fourth SKU"
+    ],
+    "motion": "qualify \u2192 remote proof on the Institute twin \u2192 tailor SOD \u2192 sell L1 that week \u2192 kit PASS \u2192 assign segregated client sandbox \u2192 attach P-ADM \u2192 offer paid U-DUAL and paid enhance on that twin"
+  },
+  "thesis": "Price L1 against the unauthorized journal that two humans did not admit. AINav is the failsafe, not the AI. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL. Other uses are desks on the same plane. Not a fourth SKU.",
+  "why_client": "They already have the stack. They do not have a gate in front of the write. Client AI and customer AI can draft a privileged journal. Vendor-native HITL only covers that vendor. Job C is two humans, consume-once, fail-closed, over every drafting AI. Other uses are more writes on the same plane.",
+  "why_investor": "The category is last authority, not another Copilot. Independence is the pin. Switching cost after kit PASS is segregation of duties. The commercial spine is L1 then P-ADM then paid U-DUAL. Catalog list times zero booked times a two-human close. Not a priced round. Not a patent. Not uncopyable."
+}

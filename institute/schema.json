@@ -1,0 +1,94 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@id": "https://blue-river-010091a0f.7.azurestaticapps.net/#org",
+      "@type": "Organization",
+      "description": "Human control plane over every client AI that can draft a privileged system-of-record write",
+      "legalName": "AINav, Inc.",
+      "name": "AINav, Inc.",
+      "url": "https://blue-river-010091a0f.7.azurestaticapps.net/"
+    },
+    {
+      "@id": "https://blue-river-010091a0f.7.azurestaticapps.net/app.html",
+      "@type": "WebApplication",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "recognized_revenue",
+          "value": "0"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "signed_l1",
+          "value": "0"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "live_pin_ok",
+          "value": "false"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "cms",
+          "value": "false"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "membership_claimed",
+          "value": "false"
+        }
+      ],
+      "applicationCategory": "BusinessApplication",
+      "isAccessibleForFree": true,
+      "name": "AINAV.Institute",
+      "offers": {
+        "@type": "AggregateOffer",
+        "availability": "https://schema.org/PreOrder",
+        "highPrice": "60000",
+        "lowPrice": "20000",
+        "offerCount": 3,
+        "offers": [
+          {
+            "@type": "Offer",
+            "availability": "https://schema.org/PreOrder",
+            "description": "Catalog list $28,000\u2013$40,000. Not booked. Not recognized revenue.",
+            "name": "L1 FIRST_OFFER",
+            "price": "28000",
+            "priceCurrency": "USD",
+            "sku": "L1"
+          },
+          {
+            "@type": "Offer",
+            "availability": "https://schema.org/PreOrder",
+            "description": "Catalog list $40,000\u2013$60,000. Not booked. Not recognized revenue.",
+            "name": "P-ADM ADMIT_COVERAGE",
+            "price": "40000",
+            "priceCurrency": "USD",
+            "sku": "P-ADM"
+          },
+          {
+            "@type": "Offer",
+            "availability": "https://schema.org/PreOrder",
+            "description": "Catalog list $20,000\u2013$35,000. Not booked. Not recognized revenue.",
+            "name": "U-DUAL DEPTH_PACK",
+            "price": "20000",
+            "priceCurrency": "USD",
+            "sku": "U-DUAL"
+          }
+        ],
+        "priceCurrency": "USD"
+      },
+      "operatingSystem": "Web",
+      "url": "https://blue-river-010091a0f.7.azurestaticapps.net/app.html"
+    }
+  ],
+  "cms": false,
+  "kind": "ainav.institute.schema.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "membership_claimed": false,
+  "priced_round": false,
+  "release": "2.84.0",
+  "sku": false
+}

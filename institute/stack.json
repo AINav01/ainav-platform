@@ -1,0 +1,466 @@
+{
+  "complements": [
+    {
+      "binds": [
+        "seat object ids"
+      ],
+      "id": "entra.id",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Entra ID",
+      "role": "identity",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "connection secret hold"
+      ],
+      "id": "azure.keyvault",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Key Vault",
+      "role": "secrets",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "mothership health"
+      ],
+      "id": "azure.monitor",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Monitor",
+      "role": "observe",
+      "surfaces": [
+        "ainav_inc",
+        "ainav",
+        "institute"
+      ]
+    },
+    {
+      "binds": [
+        "Acceptance Kit evidence"
+      ],
+      "id": "sharepoint.kit",
+      "live": false,
+      "mode": "sandbox",
+      "product": "SharePoint",
+      "role": "evidence",
+      "surfaces": [
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "E7 security sink"
+      ],
+      "id": "defender.xdr",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Defender XDR",
+      "role": "security",
+      "surfaces": [
+        "ainav_inc"
+      ]
+    },
+    {
+      "binds": [
+        "eligible dual seats"
+      ],
+      "id": "entra.pim",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Entra Privileged Identity Management",
+      "role": "seat_eligibility",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "DecisionRecord export sink"
+      ],
+      "id": "sentinel.siem",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Sentinel",
+      "role": "siem",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "lockfile host constraints"
+      ],
+      "id": "azure.policy",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Azure Policy",
+      "role": "host_policy",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "binds": [
+        "master mothership target",
+        "AINAV.Institute static site"
+      ],
+      "id": "azure.host",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Azure",
+      "role": "hosting",
+      "surfaces": [
+        "ainav_inc",
+        "ainav",
+        "institute"
+      ]
+    },
+    {
+      "binds": [
+        "Entra Suite seat ids",
+        "Purview/Sentinel audit sink",
+        "Teams licensing"
+      ],
+      "id": "m365.e7",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft 365 E7",
+      "role": "tenant",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "effect notify"
+      ],
+      "id": "teams.enterprise",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Teams Enterprise",
+      "role": "notify",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "protected effect notify"
+      ],
+      "id": "teams.premium",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Microsoft Teams Premium",
+      "role": "notify",
+      "surfaces": [
+        "ainav_inc",
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "bc.general_journal.post"
+      ],
+      "id": "bc.premium",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Dynamics 365 Business Central Premium",
+      "role": "sor",
+      "surfaces": [
+        "ainav"
+      ]
+    },
+    {
+      "binds": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ],
+      "id": "sales.enterprise",
+      "live": false,
+      "mode": "sandbox",
+      "product": "Dynamics 365 Sales Enterprise",
+      "role": "sor",
+      "surfaces": [
+        "ainav"
+      ]
+    }
+  ],
+  "e7_not_the_product": [
+    "Microsoft 365 Copilot",
+    "Agent 365"
+  ],
+  "entity": "AINav, Inc.",
+  "institute": "AINAV.Institute",
+  "kind": "ainav.institute.stack.v1",
+  "live": false,
+  "not_the_product": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+  "product": "AINav Control Plane",
+  "us_dataverse": {
+    "adr_eligible": false,
+    "adr_purchased": false,
+    "canada_is_united_states": false,
+    "closed": false,
+    "dataverse_url_set": false,
+    "engineering_exception_granted": false,
+    "engineering_exception_routed": true,
+    "finding": "Microsoft Support ticket 2609030040009525 recorded why North America Sandboxes landed in Canada, why Advanced Data Residency cannot be purchased on a USA sign-up tenant, and why geo-to-geo is blocked by the same gate. Seat-count math is informational only. Engineering exception routed, not granted. No tenant or environment changes were made.",
+    "geo_to_geo_available": false,
+    "kind": "ainav.us_dataverse.v1",
+    "lede": "US Dataverse stays open. North America without Advanced Data Residency is a macro region. Placement affinity to Canada is documented, not a provisioning failure.",
+    "live": false,
+    "live_pin_ok": false,
+    "note": "Microsoft 365 workloads already in the United States are a separate service. Canada is not United States. A green check is not LIVE_PIN_OK.",
+    "owner": "Reply-all on 2609030040009525 for written confirmation that no self-service or support path pins United States without ADR, and for the status of the engineering-exception review. Path B \u2014 accept Canada as a twin-only Sales environment, not United States \u2014 is owner-only. Then a new Cloud Agent with DATAVERSE_URL. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+    "sku": false,
+    "ticket": "2609030040009525",
+    "united_states": false
+  },
+  "walk": {
+    "cannot": [
+      "create users",
+      "grant Graph roles",
+      "edit Cloudflare",
+      "bind ainav.institute",
+      "mark LIVE_PIN_OK",
+      "treat Canada as United States",
+      "paste Dataverse environment id"
+    ],
+    "cli": "python -m ainav stack",
+    "complements": [
+      {
+        "id": "azure.keyvault",
+        "in_tree": "host_bind can create a vault. Secrets are not LIVE_PIN_OK.",
+        "learn": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview",
+        "learn_label": "Key Vault overview",
+        "name": "Azure Key Vault",
+        "owner": "Hold connection secrets here. Do not paste them into the catalog.",
+        "role": "secrets",
+        "status": "declared_sandbox",
+        "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults",
+        "url_label": "Key Vaults"
+      },
+      {
+        "id": "azure.monitor",
+        "in_tree": "Mothership health. LAW is not Sentinel. Not a live pin.",
+        "learn": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+        "learn_label": "Azure Monitor",
+        "name": "Azure Monitor",
+        "owner": "Read host health. Do not treat Monitor as the admit plane.",
+        "role": "observe",
+        "status": "declared_sandbox",
+        "url": "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview",
+        "url_label": "Azure Monitor"
+      },
+      {
+        "id": "sharepoint.kit",
+        "in_tree": "Kit evidence store. Sites.Read.All is Granted. Graph Writes still Granted. Graph Write is not claimed from this plane.",
+        "learn": "https://learn.microsoft.com/en-us/graph/api/resources/sharepoint",
+        "learn_label": "SharePoint Graph",
+        "name": "SharePoint kit",
+        "owner": "Sites.Read.All is Granted. Trash Graph Writes on the same app. Do not grant Write from this plane.",
+        "role": "evidence",
+        "status": "graph_read_open",
+        "url": "https://www.office.com/launch/sharepoint",
+        "url_label": "SharePoint"
+      },
+      {
+        "id": "defender.xdr",
+        "in_tree": "E7 security sink. SecurityIncident.Read.All is Granted. Graph Writes still Granted. Not the admit plane.",
+        "learn": "https://learn.microsoft.com/en-us/defender-xdr/",
+        "learn_label": "Defender XDR",
+        "name": "Defender XDR",
+        "owner": "SecurityIncident.Read.All is Granted. Trash Graph Writes on the same app. No Write.",
+        "role": "security",
+        "status": "graph_read_open",
+        "url": "https://security.microsoft.com",
+        "url_label": "Microsoft Defender portal"
+      },
+      {
+        "id": "entra.pim",
+        "in_tree": "Eligible seats. A PIM activation is not dual admit. RoleEligibilitySchedule.Read.Directory is Granted. Graph Writes still Granted.",
+        "learn": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+        "learn_label": "PIM configure",
+        "name": "Entra PIM",
+        "owner": "RoleEligibilitySchedule.Read.Directory is Granted. Trash Graph Writes. Do not treat PIM as seat B.",
+        "role": "seat_eligibility",
+        "status": "not_dual",
+        "url": "https://entra.microsoft.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/quickStart",
+        "url_label": "Entra PIM"
+      },
+      {
+        "id": "sentinel.siem",
+        "in_tree": "DecisionRecord export sink after P-ADM. The mothership LAW is not a Sentinel workspace.",
+        "learn": "https://learn.microsoft.com/en-us/azure/sentinel/overview",
+        "learn_label": "Sentinel overview",
+        "name": "Microsoft Sentinel",
+        "owner": "Do not treat Sentinel as the admit plane. Keep is the sealed DecisionRecord.",
+        "role": "siem",
+        "status": "declared_sandbox",
+        "url": "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights",
+        "url_label": "Microsoft Sentinel"
+      },
+      {
+        "id": "azure.policy",
+        "in_tree": "Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane.",
+        "learn": "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+        "learn_label": "Azure Policy",
+        "name": "Azure Policy",
+        "owner": "Keep West Europe blocked if that is the host rule. Do not loosen Job C from Policy.",
+        "role": "host_policy",
+        "status": "cannot_weaken",
+        "url": "https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview",
+        "url_label": "Azure Policy"
+      }
+    ],
+    "implementation": "Job C gold invariants plus fail-closed probes in ainav.microsoft.health, dns, host_bind, bc_sandbox, and institute_publish. Estate is the same plane, not a hop. Probe never writes a SoR and never marks LIVE_PIN_OK.",
+    "path": [
+      {
+        "id": "cloudflare.dns",
+        "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex is 404 empty on Cloudflare edge. asuid absent. Azure SWA is the twin. DNS full is not Institute launch.",
+        "learn": "https://developers.cloudflare.com/dns/",
+        "learn_label": "Cloudflare DNS docs",
+        "n": 1,
+        "name": "Cloudflare DNS / edge",
+        "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99. This Cloud Agent cannot edit Cloudflare.",
+        "role": "dns_edge",
+        "status": "full",
+        "url": "https://dash.cloudflare.com",
+        "url_label": "Cloudflare dashboard"
+      },
+      {
+        "id": "azure.host",
+        "in_tree": "Institute is on Azure Static Web Apps eastus2. host_bind and institute_publish stay fail-closed. Custom domain is not bound.",
+        "learn": "https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external",
+        "learn_label": "SWA custom domain",
+        "n": 2,
+        "name": "Azure host",
+        "owner": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS.",
+        "role": "hosting",
+        "status": "hosted_not_custom",
+        "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+        "url_label": "Azure Static Web Apps"
+      },
+      {
+        "id": "entra.id",
+        "in_tree": "Cynthia Hodnett mailbox chodnett@ainav.institute is recorded. Owner assigned paid Microsoft 365 E7 and Teams Premium. Paid mail is not an Entra oid and not a click. Teams Premium is not a seat. probe_graph reads org and users when the same app has User.Read.All.",
+        "learn": "https://learn.microsoft.com/en-us/entra/identity/users/users-overview",
+        "learn_label": "Entra users",
+        "n": 3,
+        "name": "Entra identify",
+        "owner": "She signs in once. Confirm a distinct object id. She clicks seat B. You do not click both seats. James keeps the fallback E7.",
+        "role": "identity",
+        "status": "mailbox_recorded_oid_open",
+        "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
+        "url_label": "Entra users"
+      },
+      {
+        "id": "admit",
+        "in_tree": "Job C gold: two distinct humans bind one action_hash, consume-once, fail-closed EffectLedger, hash-chained DecisionRecords. Cloud Agent is not a seat.",
+        "learn": "https://github.com/AINav01/ainav-platform",
+        "learn_label": "ainav-platform",
+        "n": 4,
+        "name": "AINav Control Plane",
+        "owner": "She clicks seat B with her own object id. Lab oids are not two named treasury humans.",
+        "role": "admit",
+        "status": "running_code",
+        "url": "https://blue-river-010091a0f.7.azurestaticapps.net/",
+        "url_label": "Azure-hosted Institute"
+      },
+      {
+        "id": "bc.premium",
+        "in_tree": "Sandbox company AINav. Document AINAV-L1. Wedge bc.general_journal.post. Production stays blocked. Not LIVE_PIN_OK.",
+        "learn": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/new-company",
+        "learn_label": "BC companies",
+        "n": 5,
+        "name": "Business Central Premium",
+        "owner": "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write.",
+        "role": "sor_l1",
+        "status": "sandbox_journal",
+        "url": "https://businesscentral.dynamics.com/ainav.institute/Sandbox",
+        "url_label": "Business Central Sandbox"
+      },
+      {
+        "id": "sales.enterprise",
+        "in_tree": "Sales Enterprise is licensed. Global Discovery returned zero instances. Ticket 2609030040009525: North America sandboxes follow Canada affinity. United States is not pinned. Canada is not United States. U-DUAL stays on the twin until G14.",
+        "learn": "https://learn.microsoft.com/power-platform/admin/macro-regions",
+        "learn_label": "Macro regions",
+        "n": 6,
+        "name": "Sales Enterprise",
+        "owner": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+        "role": "sor_udual",
+        "status": "licensed_not_wired",
+        "url": "https://admin.powerplatform.microsoft.com/environments",
+        "url_label": "Power Platform environments"
+      },
+      {
+        "id": "teams.enterprise",
+        "in_tree": "SIP and lync SRV already point through Cloudflare. DNS is not the Teams Graph connection. A chat is not a seat.",
+        "learn": "https://learn.microsoft.com/en-us/microsoftteams/teams-overview",
+        "learn_label": "Teams overview",
+        "n": 7,
+        "name": "Teams notify",
+        "owner": "Team.ReadBasic.All is Granted. Trash Graph Writes on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app.",
+        "role": "notify",
+        "status": "dns_full_graph_open",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/homepage",
+        "url_label": "Microsoft 365 admin"
+      },
+      {
+        "id": "graph.read",
+        "in_tree": "Owner recorded Grant succeeded. Team.ReadBasic.All, Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Leftover Speech, Azure Service Management, and Key Vault are gone. Graph Writes still Granted. No Graph Write from this plane.",
+        "learn": "https://learn.microsoft.com/en-us/graph/permissions-reference",
+        "learn_label": "Graph permissions",
+        "n": 8,
+        "name": "Graph Read on the same app",
+        "owner": "Four Reads are Granted. Trash Organization.ReadWrite.All and User.ReadWrite.All on the same app. Grant again to revoke Writes. Do not use Write. Do not create a new app.",
+        "role": "consent",
+        "status": "four_reads_granted_writes_open",
+        "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade",
+        "url_label": "Entra app registrations"
+      },
+      {
+        "id": "agent_tools",
+        "in_tree": "Catalog playbook. A tool invocation is not dual admit. This Cloud Agent cannot click Unblock or Block.",
+        "learn": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent",
+        "learn_label": "Manage tools for agents",
+        "n": 9,
+        "name": "Agent Tools registry",
+        "owner": "Leave five Work IQ / MCP Management tools Available. Block Dataverse MCP until paid U-DUAL. Reject BYO SoR writers.",
+        "role": "govern_mcp",
+        "status": "owner_leave_available",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Agents > Tools registry"
+      },
+      {
+        "id": "institute.launch",
+        "in_tree": "--publish-institute stays launch_not_ready. Apex CNAME is empty Cloudflare Pages. Azure hostname is hosted.",
+        "learn": "https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external",
+        "learn_label": "Bind a custom domain",
+        "n": 10,
+        "name": "Institute launch",
+        "owner": "Say launch only when you want ainav.institute bound. Empty Pages is not the Institute. Do not add asuid while Pages is the apex origin.",
+        "role": "hold",
+        "status": "held",
+        "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+        "url_label": "Azure Static Web Apps"
+      }
+    ],
+    "thesis": "Azure hosts. Entra identifies. AINav admits. Business Central and Sales receive. Teams notifies. Complements hold secrets, evidence, policy, and audit. Cloudflare is DNS/edge, not a hop on the privileged write."
+  }
+}

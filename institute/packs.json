@@ -1,0 +1,848 @@
+{
+  "fee_for_service": [
+    {
+      "attaches_udual": false,
+      "billable": false,
+      "id": "ffs.acceptance_kit",
+      "name": "Acceptance Kit / proof day",
+      "note": "Inside L1. Not a SKU.",
+      "rate_usd_per_day": null,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.integration_assist",
+      "name": "Integration assist",
+      "note": "Hours on the same admit plane. Not a SKU. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.replay_workshop",
+      "name": "Replay / Merkle workshop",
+      "note": "Audit replay with the client. Not a SKU.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.qbr",
+      "name": "Quarterly business review",
+      "note": "Same-plane review. Not a SKU. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.mothership_ops",
+      "name": "Mothership operations assist",
+      "note": "Local mothership runbook hours. Not a SKU.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.pack_seating",
+      "name": "Industry pack seating",
+      "note": "Hours to seat an a la carte pack after L1. Not a SKU. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.desk_workshop",
+      "name": "Desk workshop",
+      "note": "Hours to seat a new a la carte desk after L1. Not a SKU. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.keep_wiring",
+      "name": "P-ADM keep wiring",
+      "note": "Hours to wire P-ADM keep sinks. Not live Purview. Not a SKU. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.governance_workshop",
+      "name": "AI governance / failsafe workshop",
+      "note": "Hours to map the client's AI inventory onto the admit plane. Not a SKU. Does not certify. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.institute_failsafe",
+      "name": "Institute AINav failsafe",
+      "note": "Hours to institute L1 and the stable of desks/keep for the client's AI and their customers' AI. Not a SKU. Does not certify. Does not attach U-DUAL. Does not invent a counterparty name.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.board_briefing",
+      "name": "Owner / board / examiner briefing",
+      "note": "Hours to brief the owner, board, or examiner on the human plane: off switch, reset, rollback, first and second records. Not a SKU. Not a filing. Does not certify. Does not attach U-DUAL. Does not invent a board name.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.org_workshop",
+      "name": "Client org-chart workshop",
+      "note": "Hours to map the client's existing departments onto the admit plane. Not a SKU. Does not invent named heads. Does not replace the org chart. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    },
+    {
+      "attaches_udual": false,
+      "billable": true,
+      "id": "ffs.ip_hygiene",
+      "name": "IP / independence hygiene",
+      "note": "Hours to walk reserved work, Microsoft-not-the-product, and competitor-alias refuse. Not a SKU. Not a patent. Does not claim uncopyable. Does not attach U-DUAL.",
+      "rate_usd_per_day": 3500,
+      "requires_l1": true,
+      "sku": false
+    }
+  ],
+  "industry": [
+    {
+      "ala_carte": false,
+      "id": "industry.treasury",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Treasury wedge",
+      "note": "Standard L1 industry shape. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.sales",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ],
+      "name": "Sales deepen",
+      "note": "A la carte U-DUAL depth. Not a fourth SKU.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.controller",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Controller desk",
+      "note": "Same L1 wedge, controller seating. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.quote_desk",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "d365.quote.discount_override"
+      ],
+      "name": "Quote desk",
+      "note": "A la carte U-DUAL slice. Not a fourth SKU.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.payables",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.payment_journal.post",
+        "bc.purchase_invoice.post"
+      ],
+      "name": "Payables desk",
+      "note": "A la carte L1 seating. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.bank",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.bank_reconciliation.post"
+      ],
+      "name": "Bank desk",
+      "note": "A la carte L1 seating. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.invoice_desk",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "d365.invoice.post"
+      ],
+      "name": "Invoice desk",
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.credit",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "d365.creditmemo.issue"
+      ],
+      "name": "Credit desk",
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.cash",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.cash_receipt.post",
+        "bc.sales_invoice.post"
+      ],
+      "name": "Cash desk",
+      "note": "A la carte L1 seating. Cash receipt and sales invoice. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.fixed_asset",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.fixed_asset.post"
+      ],
+      "name": "Fixed-asset desk",
+      "note": "A la carte L1 seating. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.inventory",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.inventory.adjust"
+      ],
+      "name": "Inventory desk",
+      "note": "A la carte L1 seating. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.returns",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "d365.return.authorize"
+      ],
+      "name": "Returns desk",
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.pricing",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "d365.price.override",
+        "d365.quote.void"
+      ],
+      "name": "Pricing desk",
+      "note": "A la carte U-DUAL seating. Not a fourth SKU.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.retention",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "defender.incident.export",
+        "monitor.workbook.export",
+        "keyvault.decision.seal"
+      ],
+      "name": "Retention keep",
+      "note": "A la carte P-ADM keep. Not live Defender. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.governance",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "AI failsafe desk",
+      "note": "L1 seating of the failsafe. Client AI may draft. Two humans admit. Not a SKU. Not a certification.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.oversight",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "name": "Oversight keep",
+      "note": "A la carte P-ADM keep. Examiner DecisionRecords and risk register. Not a certification. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.cascade",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Counterparty AI desk",
+      "note": "A la carte L1 seating. The client's customers utilize AI. The client's two humans admit. Not a SKU. Do not invent counterparty names.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.second_record",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "name": "Second-record keep",
+      "note": "A la carte P-ADM keep. Second record for examiners and the client's customers. Not the SoR first record. Not a certificate. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.control_plane",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Human control plane",
+      "note": "L1 seating of the umbrella plane. One human gate over every client AI that can draft a write. Not a SKU. Not the client's AI.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.off_switch",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Off-switch desk",
+      "note": "A la carte L1 seating. Fail-closed freeze: no dual admit, no write. Does not power down Copilot. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.rollback",
+      "included": false,
+      "max": 10000,
+      "min": 6000,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Rollback desk",
+      "note": "A la carte L1 seating. Compensating journal after dual admit. Not a time machine. Not a silent undo. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.board",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "name": "Board / examiner keep",
+      "note": "A la carte P-ADM keep. Owner, board, and examiner pack: who admitted, freeze evidence, last sealed keep. Not a filing. Not a certificate. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.org",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Client org seating",
+      "note": "L1 seating of the client's existing org chart. Departments are not SKUs. Department AI is not a seat. Do not invent named heads.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.internal_audit",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "name": "Internal-audit keep",
+      "note": "A la carte P-ADM keep. Internal audit and compliance get the seating map and second record. Not a named auditor. Not a filing. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.independence",
+      "included": true,
+      "max": 0,
+      "min": 0,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Independent plane",
+      "note": "L1 seating that the admit plane is not Microsoft, Copilot, or the client's AI. Not a SKU. Not a patent.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "ala_carte": true,
+      "id": "industry.ip_keep",
+      "included": false,
+      "max": 8000,
+      "min": 5000,
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "name": "IP / reserved-work keep",
+      "note": "A la carte P-ADM keep. Counsel-facing reserved-work notice. Not a patent filing. Not uncopyable. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    }
+  ],
+  "kind": "ainav.institute.packs.v1",
+  "libraries": [
+    {
+      "id": "lib.l1.wedge",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "Standard L1 library. Journal wedge plus identity and notify. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.udual.sales",
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ],
+      "note": "Paid U-DUAL library. Quote and order wedges. Never free with P-ADM.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.export",
+      "modules": [
+        "purview.audit.export"
+      ],
+      "note": "P-ADM keep library. Purview export only. Not live Purview. Not a SKU.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.kit.evidence",
+      "modules": [
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "Acceptance Kit evidence path. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.payables",
+      "modules": [
+        "bc.payment_journal.post",
+        "bc.purchase_invoice.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.bank",
+      "modules": [
+        "bc.bank_reconciliation.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.udual.quote_to_cash",
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit",
+        "d365.invoice.post"
+      ],
+      "note": "A la carte U-DUAL library. Never free with P-ADM.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.siem",
+      "modules": [
+        "purview.audit.export",
+        "sentinel.decision.export",
+        "sharepoint.kit.seal"
+      ],
+      "note": "A la carte P-ADM keep library. Not live Sentinel. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.cash",
+      "modules": [
+        "bc.cash_receipt.post",
+        "bc.sales_invoice.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Priced as industry.cash. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.fixed_asset",
+      "modules": [
+        "bc.fixed_asset.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "A la carte L1 library. Priced as industry.fixed_asset. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.udual.returns",
+      "modules": [
+        "d365.return.authorize"
+      ],
+      "note": "A la carte U-DUAL library. Never free with P-ADM.",
+      "requires_sku": "U-DUAL",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.retention",
+      "modules": [
+        "purview.audit.export",
+        "defender.incident.export",
+        "monitor.workbook.export",
+        "keyvault.decision.seal"
+      ],
+      "note": "A la carte P-ADM keep library. Not live Defender. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.failsafe",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 failsafe library. Client AI is not a seat. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.governance",
+      "modules": [
+        "purview.audit.export",
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "note": "A la carte P-ADM governance keep. Not a certification. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.cascade",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 cascade library. Counterparty AI is not a seat. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.records",
+      "modules": [
+        "purview.audit.export",
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "note": "P-ADM first-line keep plus second-record export. Not a certificate. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.plane",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 control-plane library. One admit plane over the client's AI estate. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.off_switch",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 off-switch library. Fail-closed freeze. Not powering down Copilot. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.board",
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "note": "P-ADM board/examiner keep. Second record plus freeze and reset evidence. Not a filing. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.org",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 org-seating library. Existing SOD. Department AI is not a seat. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.audit",
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "note": "P-ADM internal-audit keep. Seating map plus second record. Not a named auditor. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    },
+    {
+      "id": "lib.l1.independence",
+      "modules": [
+        "bc.general_journal.post",
+        "entra.seat.verify",
+        "teams.notify"
+      ],
+      "note": "L1 independence library. Microsoft is not the product. Lockfile stays job_c. Not a SKU.",
+      "requires_sku": "L1",
+      "sku": false
+    },
+    {
+      "id": "lib.padm.ip",
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "note": "P-ADM reserved-work keep. Not a patent. Not LIVE_PIN_OK.",
+      "requires_sku": "P-ADM",
+      "sku": false
+    }
+  ],
+  "live": false,
+  "live_pin_ok": false,
+  "note": "Industry desks, libraries, fee-for-service hours, and repositories are not SKUs.",
+  "repositories": [
+    {
+      "id": "repo.agent_gov",
+      "live": false,
+      "note": "Job C admit plane. Not a SKU.",
+      "path": "src/agent_gov",
+      "sku": false
+    },
+    {
+      "id": "repo.catalog",
+      "live": false,
+      "note": "Commercial law. Not a SKU.",
+      "path": "src/ainav/data/catalog.json",
+      "sku": false
+    },
+    {
+      "id": "repo.institute",
+      "live": false,
+      "note": "AINAV.Institute. Not a SKU. Public deploy is not claimed.",
+      "path": "institute",
+      "sku": false
+    },
+    {
+      "id": "repo.finance",
+      "live": false,
+      "note": "Catalog-list financial model. Not a SKU. Not recognized revenue.",
+      "path": "src/ainav/finance.py",
+      "sku": false
+    },
+    {
+      "id": "repo.brief",
+      "live": false,
+      "note": "Executive brief generator. Not a SKU. Not a contract.",
+      "path": "src/ainav/brief_pdf.py",
+      "sku": false
+    },
+    {
+      "id": "repo.review",
+      "live": false,
+      "note": "Company review generator. Not a SKU.",
+      "path": "src/ainav/review.py",
+      "sku": false
+    },
+    {
+      "id": "repo.packs",
+      "live": false,
+      "note": "Industry pack and library attach. Not a SKU.",
+      "path": "src/ainav/packs.py",
+      "sku": false
+    },
+    {
+      "id": "repo.runbooks",
+      "live": false,
+      "note": "Industry seating runbooks. Not a SKU.",
+      "path": "src/ainav/runbooks.py",
+      "sku": false
+    },
+    {
+      "id": "repo.owner",
+      "live": false,
+      "note": "Owner-only gates with Microsoft links. Not a SKU. Not a seat.",
+      "path": "src/ainav/owner_steps.py",
+      "sku": false
+    },
+    {
+      "id": "repo.legal",
+      "live": false,
+      "note": "Unsigned order form and MSA skeleton. Not a SKU. G12 stays open.",
+      "path": "src/ainav/counsel.py",
+      "sku": false
+    },
+    {
+      "id": "repo.governance",
+      "live": false,
+      "note": "AI governance doctrine. Maps only. Not a SKU. Not a certification.",
+      "path": "src/ainav/governance.py",
+      "sku": false
+    }
+  ],
+  "sku": false
+}

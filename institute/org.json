@@ -1,0 +1,307 @@
+{
+  "all_running_claimed": false,
+  "all_wired_claimed": false,
+  "blocked_now": [
+    "dept.sales",
+    "dept.people",
+    "dept.compliance",
+    "dept.institute",
+    "dept.legal",
+    "dept.programs"
+  ],
+  "contacts": {
+    "business_executive": null,
+    "developer": null,
+    "invited": {
+      "agreed": true,
+      "all_aspects": false,
+      "email": "chodnett@ainav.institute",
+      "entra_oid": null,
+      "equity": false,
+      "inception_role": "business_executive",
+      "licenses": {
+        "e7": true,
+        "fallback_stays_on_owner": true,
+        "from_this_plane": false,
+        "kind": "ainav.invite.licenses.v1",
+        "live": false,
+        "live_pin_ok": false,
+        "note": "Owner assigned paid Microsoft 365 E7 and Teams Premium to chodnett@ainav.institute. James keeps the fallback E7. Teams Premium is not a seat. Paid mail is not an Entra oid and not a click.",
+        "seat": false,
+        "second_unique_human": false,
+        "sku": false,
+        "teams_premium": true
+      },
+      "name": "Cynthia Hodnett",
+      "note": "Owner recorded chodnett@ainav.institute after she agreed to be seat B. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. Number two for other aspects, not all aspects. Paid mail is not an Entra object id. Paid mail is not a click. Teams Premium is not a seat. Not an officer. Not a stockholder. The Cloud Agent is not a seat.",
+      "number_two": true,
+      "officer": false,
+      "recorded": true,
+      "seat_clicked": false,
+      "seat_role": "treasury_controller",
+      "second_unique_human": false
+    },
+    "note": "NVIDIA Inception requires two unique contacts (developer + business executive) with business emails; aliases and gmail are refused. Sole owner does not collapse this. The Cloud Agent is not a contact or a seat.",
+    "owner": "James Hodnett",
+    "second_unique_human": false
+  },
+  "departments": [
+    {
+      "blocked_by": [
+        "BC Production app not Enabled",
+        "signed L1 / two named treasury humans"
+      ],
+      "id": "dept.treasury",
+      "name": "Treasury / Finance",
+      "note": "Business Central Sandbox company AINav. Production stays blocked. Not LIVE_PIN_OK.",
+      "production": false,
+      "role": "books",
+      "status": "running_sandbox",
+      "systems": [
+        "bc.premium"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "LIVE_PIN_OK"
+      ],
+      "id": "dept.identity",
+      "name": "Identity / IT / Host",
+      "note": "Same Entra app. Azure host in eastus. West Europe is blocked by policy.",
+      "production": false,
+      "role": "identity_host",
+      "status": "running_sandbox",
+      "systems": [
+        "m365.e7",
+        "entra.id",
+        "azure.host",
+        "azure.keyvault",
+        "azure.monitor",
+        "azure.policy"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "Power Platform environment with Dataverse",
+        "DATAVERSE_URL"
+      ],
+      "id": "dept.sales",
+      "name": "Sales / Revenue",
+      "note": "Sales Enterprise license exists. Global Discovery returned zero instances.",
+      "production": false,
+      "role": "pipeline",
+      "status": "licensed_not_wired",
+      "systems": [
+        "sales.enterprise"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "Graph Writes still Granted",
+        "Teams notify not wired"
+      ],
+      "id": "dept.people",
+      "name": "People / Notify",
+      "note": "Teams is licensed. Team.ReadBasic.All is Granted. A chat is not a seat. Graph notify is not wired. Trash Graph Writes.",
+      "production": false,
+      "role": "notify",
+      "status": "licensed_not_wired",
+      "systems": [
+        "teams.enterprise",
+        "teams.premium"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "Graph Writes still Granted",
+        "Sentinel on the existing LAW"
+      ],
+      "id": "dept.compliance",
+      "name": "Security / Compliance",
+      "note": "E7 licenses exist. Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Trash Graph Writes.",
+      "production": false,
+      "role": "audit_sink",
+      "status": "licensed_not_wired",
+      "systems": [
+        "defender.xdr",
+        "entra.pim",
+        "sentinel.siem",
+        "sharepoint.kit"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "ainav.institute custom domain"
+      ],
+      "id": "dept.institute",
+      "name": "Institute / GTM",
+      "note": "Azure hostname is published. Apex CNAME is empty Cloudflare Pages. Pages is not the Institute. Not LIVE_PIN_OK.",
+      "production": false,
+      "role": "public",
+      "status": "azure_hosted_not_custom",
+      "systems": [
+        "repo.institute",
+        "azure.host"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "G12 legal",
+        "G13 signed L1"
+      ],
+      "id": "dept.legal",
+      "name": "Legal / Counsel",
+      "note": "IP hygiene lives in this tree. Counsel pack is not signed.",
+      "production": false,
+      "role": "counsel",
+      "status": "open_gap",
+      "systems": [
+        "catalog.legal"
+      ],
+      "wired_now": false
+    },
+    {
+      "blocked_by": [
+        "product HA"
+      ],
+      "id": "dept.product",
+      "name": "Product / Engineering",
+      "note": "Job C admit plane and catalog. Three SKUs only. Not a live pin.",
+      "production": false,
+      "role": "plane",
+      "status": "running_code",
+      "systems": [
+        "repo.agent_gov",
+        "repo.catalog"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "named customer",
+        "LIVE_PIN_OK"
+      ],
+      "id": "dept.delivery",
+      "name": "Delivery / Customer Success",
+      "note": "Master / cloud / local motherships and week-one runbook. Do not invent a customer.",
+      "production": false,
+      "role": "pair",
+      "status": "running_code",
+      "systems": [
+        "delivery"
+      ],
+      "wired_now": true
+    },
+    {
+      "blocked_by": [
+        "public website",
+        "incorporation date",
+        "second unique human contact"
+      ],
+      "id": "dept.programs",
+      "name": "Programs / Partnerships",
+      "note": "Microsoft for Startups first. NVIDIA Inception second. Membership is not claimed.",
+      "production": false,
+      "role": "qualify",
+      "status": "qualify_not_claimed",
+      "systems": [
+        "programs"
+      ],
+      "wired_now": false
+    }
+  ],
+  "entity": "AINav, Inc.",
+  "full_service": true,
+  "human_gates": [
+    "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
+    "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
+    "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
+    "On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.",
+    "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+    "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
+    "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",
+    "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
+    "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production."
+  ],
+  "incorporation_date": null,
+  "institute": "AINAV.Institute",
+  "kind": "ainav.org.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "note": "Departments are the operating company, not SKUs. Out-of-gate means the map is complete. It does not mean Sales, Teams, Institute, legal, or programs are live.",
+  "number_two": {
+    "all_aspects": false,
+    "cannot": [
+      "All aspects of the business",
+      "Seat A or both seats",
+      "Second officer",
+      "Equity",
+      "Global Admin",
+      "LIVE_PIN_OK",
+      "Signed L1",
+      "Graph consent",
+      "Dataverse",
+      "Institute launch",
+      "Cloud Agent",
+      "Invented customer or inbox"
+    ],
+    "entra_oid": null,
+    "equity": false,
+    "inception_role": "business_executive",
+    "kind": "ainav.number_two.v1",
+    "mailbox": "chodnett@ainav.institute",
+    "manages": [
+      "Seat B admit or refuse",
+      "Proof day as controller",
+      "Qualify or walk away",
+      "Treasury judgment on books that stay zero",
+      "Inception business executive contact when programs open",
+      "Packet honesty",
+      "Weekly kit and pipeline notes as the second human"
+    ],
+    "name": "Cynthia Hodnett",
+    "note": "Owner assigned number two to manage other aspects, not all aspects. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. Teams Premium is not a seat. Operating assignment. Paid mail is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett.",
+    "officer": false,
+    "role": "number_two",
+    "scope": "other_aspects",
+    "seat_clicked": false,
+    "seat_role": "treasury_controller",
+    "seated": false,
+    "second_officer": false,
+    "second_unique_human": false,
+    "sku": false
+  },
+  "open_gaps": [
+    "G1/G10 LIVE_PIN_OK",
+    "G12 legal",
+    "G13 signed L1",
+    "G14 live SoR",
+    "Product HA"
+  ],
+  "probed": false,
+  "programs": {
+    "application_order": [
+      "microsoft.founders_hub",
+      "nvidia.inception",
+      "nvidia.developer",
+      "github.for_startups",
+      "microsoft.isv_success",
+      "nvidia.connect"
+    ],
+    "membership_claimed": false,
+    "ready_to_apply": false
+  },
+  "second_officer": null,
+  "wired_now": [
+    "dept.treasury",
+    "dept.identity",
+    "dept.product",
+    "dept.delivery"
+  ]
+}

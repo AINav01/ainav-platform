@@ -1,0 +1,136 @@
+{
+  "entity": "AINav, Inc.",
+  "invited": {
+    "agreed": true,
+    "all_aspects": false,
+    "email": "chodnett@ainav.institute",
+    "entra_oid": null,
+    "equity": false,
+    "inception_role": "business_executive",
+    "licenses": {
+      "e7": true,
+      "fallback_stays_on_owner": true,
+      "from_this_plane": false,
+      "kind": "ainav.invite.licenses.v1",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "Owner assigned paid Microsoft 365 E7 and Teams Premium to chodnett@ainav.institute. James keeps the fallback E7. Teams Premium is not a seat. Paid mail is not an Entra oid and not a click.",
+      "seat": false,
+      "second_unique_human": false,
+      "sku": false,
+      "teams_premium": true
+    },
+    "name": "Cynthia Hodnett",
+    "number_two": true,
+    "officer": false,
+    "recorded": true,
+    "seat_clicked": false,
+    "seat_role": "treasury_controller"
+  },
+  "kind": "ainav.owner_steps.v1",
+  "launch_ready": false,
+  "live": false,
+  "live_pin_ok": false,
+  "number_two": {
+    "all_aspects": false,
+    "cannot": [
+      "All aspects of the business",
+      "Seat A or both seats",
+      "Second officer",
+      "Equity",
+      "Global Admin",
+      "LIVE_PIN_OK",
+      "Signed L1",
+      "Graph consent",
+      "Dataverse",
+      "Institute launch",
+      "Cloud Agent",
+      "Invented customer or inbox"
+    ],
+    "entra_oid": null,
+    "equity": false,
+    "inception_role": "business_executive",
+    "kind": "ainav.number_two.v1",
+    "mailbox": "chodnett@ainav.institute",
+    "manages": [
+      "Seat B admit or refuse",
+      "Proof day as controller",
+      "Qualify or walk away",
+      "Treasury judgment on books that stay zero",
+      "Inception business executive contact when programs open",
+      "Packet honesty",
+      "Weekly kit and pipeline notes as the second human"
+    ],
+    "name": "Cynthia Hodnett",
+    "note": "Owner assigned number two to manage other aspects, not all aspects. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. Teams Premium is not a seat. Operating assignment. Paid mail is not a click. Not an officer. Not a stockholder. Sole owner stays James Hodnett.",
+    "officer": false,
+    "role": "number_two",
+    "scope": "other_aspects",
+    "seat_clicked": false,
+    "seat_role": "treasury_controller",
+    "seated": false,
+    "second_officer": false,
+    "second_unique_human": false,
+    "sku": false
+  },
+  "operator_is_seat": false,
+  "owner": "James Hodnett",
+  "release": "2.84.0",
+  "signed_l1": false,
+  "steps": [
+    {
+      "do": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
+      "id": "invite.seat_b",
+      "url": "https://admin.microsoft.com/Adminportal/Home#/users",
+      "url_label": "Microsoft 365 admin \u2192 Users"
+    },
+    {
+      "do": "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
+      "id": "entra.confirm_oid",
+      "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
+      "url_label": "Entra users"
+    },
+    {
+      "do": "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
+      "id": "agent_tools.leave_available",
+      "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+      "url_label": "Agents > Tools registry"
+    },
+    {
+      "do": "On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.",
+      "id": "graph.read_roles",
+      "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
+      "url_label": "Same app API permissions"
+    },
+    {
+      "do": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+      "id": "dataverse.us",
+      "url": "https://admin.powerplatform.microsoft.com/environments",
+      "url_label": "Power Platform environments"
+    },
+    {
+      "do": "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
+      "id": "incorporation.date",
+      "url": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx",
+      "url_label": "Delaware entity search"
+    },
+    {
+      "do": "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",
+      "id": "founders_hub",
+      "url": "https://www.microsoft.com/en-us/startups",
+      "url_label": "Microsoft for Startups"
+    },
+    {
+      "do": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
+      "id": "institute.launch",
+      "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+      "url_label": "Azure Static Web Apps"
+    },
+    {
+      "do": "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.",
+      "id": "bc.production",
+      "url": "https://businesscentral.dynamics.com/ainav.institute/Sandbox",
+      "url_label": "Business Central Sandbox"
+    }
+  ]
+}

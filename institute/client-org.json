@@ -1,0 +1,135 @@
+{
+  "departments": [
+    {
+      "ai": "May draft cash and bank journals. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.treasury",
+      "name": "Treasury",
+      "named_head": null,
+      "note": "Usually seat A. Existing two-person SOD. Not a SKU.",
+      "pack": "industry.treasury",
+      "role": "admit",
+      "seat": "treasury_approver"
+    },
+    {
+      "ai": "May draft the books. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.controller",
+      "name": "Controller / accounting",
+      "named_head": null,
+      "note": "Usually seat B. First record is the admitted SoR write. Not a SKU.",
+      "pack": "industry.controller",
+      "role": "admit",
+      "seat": "treasury_controller"
+    },
+    {
+      "ai": "AP Copilot may draft invoices and payments. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.payables",
+      "name": "Payables",
+      "named_head": null,
+      "note": "Same two treasury humans admit. Not a fourth SKU.",
+      "pack": "industry.payables",
+      "role": "draft",
+      "seat": null
+    },
+    {
+      "ai": "Sales Copilot may draft quotes and orders. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.sales",
+      "name": "Sales / quote desk",
+      "named_head": null,
+      "note": "Paid U-DUAL deepens the same plane. Not a second product.",
+      "pack": "industry.sales",
+      "role": "draft",
+      "seat": null
+    },
+    {
+      "ai": "Owns Copilot, Agent 365, BYO MCP. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.it",
+      "name": "IT / identity",
+      "named_head": null,
+      "note": "Hosts identity. Blocks bypass tools. PIM activation is not dual admit.",
+      "pack": null,
+      "role": "host",
+      "seat": null
+    },
+    {
+      "ai": "May draft risk memos. Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.compliance",
+      "name": "Security / compliance",
+      "named_head": null,
+      "note": "2LOD keep. Second record after P-ADM. Not a certificate.",
+      "pack": "industry.oversight",
+      "role": "keep",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.internal_audit",
+      "name": "Internal audit",
+      "named_head": null,
+      "note": "Reads first and second records. Do not invent an audit partner.",
+      "pack": "industry.internal_audit",
+      "role": "keep",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.legal",
+      "name": "Legal / counsel",
+      "named_head": null,
+      "note": "AINav does not replace counsel. G12 stays open on our side. Do not invent a firm.",
+      "pack": null,
+      "role": "counsel",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat unless they are one of the two named humans.",
+      "department_ai_is_seat": false,
+      "id": "client.executive",
+      "name": "Owner / executive",
+      "named_head": null,
+      "note": "Institutes AINav. Can ask for freeze. One title cannot be both seats.",
+      "pack": "industry.control_plane",
+      "role": "oversee",
+      "seat": null
+    },
+    {
+      "ai": "Not a seat.",
+      "department_ai_is_seat": false,
+      "id": "client.board",
+      "name": "Board",
+      "named_head": null,
+      "note": "Fiduciary oversight. Inventory of models is not a control. Do not invent a director.",
+      "pack": "industry.board",
+      "role": "oversee",
+      "seat": null
+    }
+  ],
+  "do_not_invent_department_heads": true,
+  "do_not_invent_names": true,
+  "equation": "client org chart \u00d7 existing SOD \u00d7 one admit plane",
+  "kind": "ainav.client_org.v1",
+  "live": false,
+  "live_pin_ok": false,
+  "named_customers": [],
+  "note": "Catalog template only. Not a named customer. Not AINav, Inc. departments. Not a SKU. Not LIVE_PIN_OK.",
+  "replaces_org_chart": false,
+  "seats": {
+    "seat_a": {
+      "role": "treasury_approver",
+      "usually": "client.treasury"
+    },
+    "seat_b": {
+      "role": "treasury_controller",
+      "usually": "client.controller"
+    }
+  },
+  "sku": false,
+  "thesis": "AINav sits on the client's existing org chart. It does not replace departments. Treasury and controller hold the two admit seats. IT hosts Copilot and agents. Those AIs draft. Department AI is not a seat. Compliance and internal audit keep the second record. Legal is not replaced. The owner and board oversee and can freeze. Do not invent named heads."
+}
