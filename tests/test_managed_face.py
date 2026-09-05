@@ -57,6 +57,8 @@ def test_managed_face_is_catalog_law_and_on_the_sale_site():
     assert "graphics/write-rail.svg" in html
     assert "fonts/newsreader-500.woff2" in html
     assert html.index('id="class-glance"') < html.index('id="hero-contrast"')
+    assert "hero-diagram" not in html
+    assert ".book-open" in css
     assert Path("institute/graphics/write-rail.svg").is_file()
     assert Path("institute/graphics/og.jpg").is_file()
     assert Path("institute/fonts/newsreader-500.woff2").is_file()

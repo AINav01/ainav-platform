@@ -18,7 +18,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preload" href="fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=2.83.1" />
+  <link rel="preload" href="graphics/write-rail.svg" as="image" />
+  <link rel="stylesheet" href="styles.css?v=2.83.2" />
   <script type="application/ld+json" id="schema-graph">
   {"@context":"https://schema.org","@type":"Organization","name":"AINav, Inc.","legalName":"AINav, Inc.","url":"https://blue-river-010091a0f.7.azurestaticapps.net/","description":"Dual-admitted effect authority before privileged system-of-record writes"}
   </script>
@@ -37,7 +38,7 @@
     <input id="nav-open" class="nav-check" type="checkbox" aria-label="Menu" />
     <label class="nav-toggle" for="nav-open">Menu</label>
     <div class="nav-wrap nav-menu" id="site-nav">
-        <button type="button" class="ghost" popovertarget="site-owner-book">Owner book</button>
+        <button type="button" class="ghost book-open" popovertarget="site-owner-book">Owner book</button>
         <div id="site-owner-book" popover class="owner-book">
           <p class="book-label">Owner</p>
           <a href="#closed">Closed</a>
@@ -80,7 +81,7 @@
           <a href="#ip">IP</a>
         </div>
         <label class="field site-search" for="site-search">Search
-          <input id="site-search" type="search" autocomplete="off" spellcheck="false" placeholder="write rail, capital, programs" />
+          <input id="site-search" type="search" autocomplete="off" spellcheck="false" placeholder="write rail" />
         </label>
         <div id="site-search-out" class="app-search-out" aria-live="polite"></div>
         <nav class="primary" aria-label="Primary">
@@ -105,9 +106,6 @@
         <li data-step="hash"><b>One hash</b><span>Consume once</span></li>
         <li data-step="write"><b>Then the write</b><span>Fail-closed SoR</span></li>
       </ol>
-      <figure class="hero-diagram" aria-hidden="true">
-        <img src="graphics/write-rail.svg" alt="" width="920" height="168" />
-      </figure>
       <div class="hero-actions">
         <a class="ask" href="#twin">Ninety-minute proof day</a>
         <a class="ghost" href="#success">When to walk away</a>
