@@ -122,3 +122,11 @@ def test_instrument_286_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_286(principles_hole, principles_hole["plane_interface"])
+    pay_hole = copy.deepcopy(edge)
+    pay_hole["expert_review"]["success"]["operating_company"]["payouts_booked"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_286(pay_hole, pay_hole["plane_interface"])
+    crm_site = copy.deepcopy(edge)
+    crm_site["programs"]["website"]["firm_is_crm"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_286(crm_site, crm_site["plane_interface"])

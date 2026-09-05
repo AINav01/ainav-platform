@@ -107,3 +107,7 @@ def test_instrument_285_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_285(principles_hole, principles_hole["plane_interface"])
+    assigned_hole = copy.deepcopy(edge)
+    assigned_hole["expert_review"]["success"]["close_bench"]["assigned"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_285(assigned_hole, assigned_hole["plane_interface"])

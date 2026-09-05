@@ -130,6 +130,41 @@ def test_operating_company_fail_closed():
     def mgmt_pay(cat):
         cat["business"]["management"]["comp"]["from_this_plane"] = True
 
+    def hubspot(cat):
+        cat["expert_review"]["success"]["operating_company"]["hubspot"] = True
+
+    def assigned(cat):
+        cat["expert_review"]["success"]["operating_company"]["assigned"] = True
+
+    def cms(cat):
+        cat["expert_review"]["success"]["operating_company"]["cms"] = True
+
+    def revenue(cat):
+        cat["expert_review"]["success"]["operating_company"]["recognized_revenue_claimed"] = True
+
+    def target(cat):
+        cat["expert_review"]["success"]["operating_company"]["capacity"]["live_target"] = 50
+
+    def sandboxes(cat):
+        cat["expert_review"]["success"]["operating_company"]["capacity"]["sandboxes"] = 3
+
+    def people_count(cat):
+        cat["business"]["management"]["people"]["contractor_count"] = 4
+
+    def people_named(cat):
+        cat["business"]["management"]["people"]["named_contractors"] = ["Acme"]
+
+    def people_team(cat):
+        cat["business"]["management"]["people"]["sales_team_claimed"] = True
+
+    def cannot(cat):
+        cat["business"]["management"]["cannot_mark"] = [
+            item for item in cat["business"]["management"]["cannot_mark"] if "commission" not in item.lower()
+        ]
+
+    def booked(cat):
+        cat["business"]["management"]["comp"]["booked"] = True
+
     for mutator in (
         sku,
         crm,
@@ -150,5 +185,16 @@ def test_operating_company_fail_closed():
         upgrade,
         mgmt_live,
         mgmt_pay,
+        hubspot,
+        assigned,
+        cms,
+        revenue,
+        target,
+        sandboxes,
+        people_count,
+        people_named,
+        people_team,
+        cannot,
+        booked,
     ):
         _reject(mutator)
