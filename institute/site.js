@@ -1866,6 +1866,7 @@
     paintExecutiveRisk(success.executive_risk);
     paintMarketPosition(success.market_position);
     paintWhatWasMissing(success.what_was_missing);
+    paintManagedFace(success.managed_face);
   }
 
   function paintHumanControl(control) {
@@ -1937,6 +1938,22 @@
     replacePlain("have-capabilities", missing.capabilities);
     replacePlain("have-tools", missing.tools_around);
     replacePlain("have-refuse", missing.refuse_to_become);
+  }
+
+  function paintManagedFace(face) {
+    if (!face || face.live || face.live_pin_ok || face.sku || face.cms || face.dynamic || face.launch || face.fourth_sku) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("class-lede", face.lede);
+    set("class-product", face.product);
+    set("class-demo", face.demo);
+    set("class-managed", face.managed);
+    set("class-note", face.note);
+    set("product-lede", face.product);
   }
 
   function replacePlain(id, items) {

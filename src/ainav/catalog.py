@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 52:
-        raise IntegrityError("expert review needs 16–52 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 53:
+        raise IntegrityError("expert review needs 16–53 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1176,6 +1176,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         50: ("gold 99", "live_pin_ok"),
         51: ("twin website", "live_pin_ok"),
         52: ("been missing", "live_pin_ok"),
+        53: ("first-class", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1211,6 +1212,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the Institute twin and empty Cloudflare apex", reason_code="CATALOG_REVIEW")
     if "what you've been missing" not in blob or "you already have" not in blob or "fourth sku" not in blob:
         raise IntegrityError("first-principles must keep what you've been missing and you already have", reason_code="CATALOG_REVIEW")
+    if "managed first-class" not in blob or "dynamic app" not in blob or "/demo" not in blob:
+        raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1247,10 +1250,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("qualify must walk away from TAM, forecast, and a priced round", reason_code="CATALOG_REVIEW")
     if "cms" not in walk or "fourth sku" not in walk or "been missing" not in walk:
         raise IntegrityError("qualify must walk away from a CMS, a fourth SKU, and wow-as-product", reason_code="CATALOG_REVIEW")
+    if "dynamic" not in walk or "calendly" not in walk:
+        raise IntegrityError("qualify must walk away from a dynamic app and Calendly as the demo", reason_code="CATALOG_REVIEW")
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1276,6 +1281,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not invent TAM, a priced round, or Institute launch", reason_code="CATALOG_REVIEW")
     if "fourth sku" not in does_not or "cms" not in does_not or "sale wow" not in does_not:
         raise IntegrityError("CISO posture does not mint a fourth SKU, sell a CMS, or treat owner-missing as the sale wow", reason_code="CATALOG_REVIEW")
+    if "dynamic app" not in does_not or "calendly" not in does_not:
+        raise IntegrityError("CISO posture does not sell a dynamic app or Calendly as the demo", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1311,6 +1318,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_executive_risk(success.get("executive_risk"))
     _validate_market_position(success.get("market_position"))
     _validate_what_was_missing(success.get("what_was_missing"))
+    _validate_managed_face(success.get("managed_face"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1459,6 +1467,40 @@ def _validate_what_was_missing(body: Any) -> None:
         raise IntegrityError("what-was-missing needs the licensed-copy versus admit contrast", reason_code="CATALOG_REVIEW")
     if len(missing.get("capabilities") or []) < 7 or len(missing.get("tools_around") or []) < 5:
         raise IntegrityError("what-was-missing needs the whole-business capability and tools map", reason_code="CATALOG_REVIEW")
+
+
+def _validate_managed_face(body: Any) -> None:
+    face = _as_dict(body, "managed_face")
+    if face.get("kind") != "ainav.managed_face.v1":
+        raise IntegrityError("managed_face kind is ainav.managed_face.v1", reason_code="CATALOG_REVIEW")
+    if face.get("sku") is True or face.get("cms") is True or face.get("fourth_sku") is True:
+        raise IntegrityError("managed face is not a SKU, CMS, or fourth SKU", reason_code="CATALOG_REVIEW")
+    if face.get("dynamic") is True or face.get("launch") is True:
+        raise IntegrityError("managed face is not a dynamic app or launch", reason_code="CATALOG_REVIEW")
+    if face.get("live") is True or face.get("live_pin_ok") is True:
+        raise IntegrityError("managed face cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(face.get("lede") or "").lower()
+    if "managed first-class" not in lede or "static" not in lede or "cms" not in lede:
+        raise IntegrityError("managed-face lede is a managed first-class static application", reason_code="CATALOG_REVIEW")
+    product = str(face.get("product") or "").lower()
+    demo = str(face.get("demo") or "").lower()
+    managed = str(face.get("managed") or "").lower()
+    if "admit plane" not in product or "three skus" not in product or "dashboard" not in product:
+        raise IntegrityError("managed-face product is the admit plane", reason_code="CATALOG_REVIEW")
+    if "ninety-minute" not in demo or "graph is not called" not in demo or "calendly" not in demo:
+        raise IntegrityError("managed-face demo is the ninety-minute proof", reason_code="CATALOG_REVIEW")
+    if "azure swa" not in managed or "gold" not in managed or "publish-twin" not in managed:
+        raise IntegrityError("managed-face host is catalog plus gold plus twin publish", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in face.get("refuse") or [])
+    for stem in ("cms", "dynamic", "fourth sku", "/demo", "calendly", "launch", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("managed-face refuse keeps CMS, dynamic, fourth SKU, /demo, Calendly, launch, LIVE_PIN", reason_code="CATALOG_REVIEW")
+    site = str(face.get("site") or "").lower()
+    if "write rail" not in site or "#twin" not in site or "/demo" not in site:
+        raise IntegrityError("managed-face site stays the write rail; demo is #twin", reason_code="CATALOG_REVIEW")
+    note = str(face.get("note") or "").lower()
+    if "webflow" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("managed-face note refuses Webflow and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -2375,6 +2417,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_280(catalog, body)
     _validate_instrument_281(catalog, body)
     _validate_instrument_282(catalog, body)
+    _validate_instrument_283(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2742,8 +2785,6 @@ def _validate_instrument_281(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_282(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.82.0":
-        raise IntegrityError("entity.release is 2.82.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.82.0" in item and "been missing" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.82.0 what you've been missing", reason_code="CATALOG_ENGINEERING")
@@ -2755,6 +2796,27 @@ def _validate_instrument_282(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "what you've been missing" not in principles or "you already have" not in principles:
         raise IntegrityError("first-principles must keep what you've been missing", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_283(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.83.0":
+        raise IntegrityError("entity.release is 2.83.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.83.0" in item and "first-class" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.83.0 managed first-class face", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("managed") is not True or site.get("first_class") is not True:
+        raise IntegrityError("2.83.0 website is a managed first-class face", reason_code="CATALOG_PLANE")
+    if site.get("dynamic") is True or site.get("cms") is True:
+        raise IntegrityError("2.83.0 website is not a dynamic app or CMS", reason_code="CATALOG_PLANE")
+    if str(site.get("demo_path") or "") != "#twin" or site.get("demo_is_sku") is True:
+        raise IntegrityError("2.83.0 demo is #twin and not a SKU", reason_code="CATALOG_PLANE")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    if face.get("kind") != "ainav.managed_face.v1":
+        raise IntegrityError("2.83.0 managed_face kind", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "managed first-class" not in principles or "ninety-minute" not in principles:
+        raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -249,6 +249,10 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="have"' in html
     assert 'href="#have">You\'ve been missing</a>' in html
     assert "paintWhatWasMissing" in js
+    assert 'id="class-glance"' in html
+    assert 'id="demo-console"' in html
+    assert 'id="product-stage"' in html
+    assert "paintManagedFace" in js
     assert "Substitute vs Job C" in html
     assert "Workflow User Groups" in html
     assert "1 mailbox / 0 oid" in html

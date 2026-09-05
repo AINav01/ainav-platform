@@ -111,7 +111,18 @@ Proof day is the sale: `python -m ainav proof-day`. The Institute buyer page gen
 | `verify_record` / `verify_chain` | Tamper check |
 | `audit` / `prove` | Verified counts + Merkle inclusion proof |
 
-### 2.82.0 (this tree)
+### 2.83.0 (this tree)
+
+Managed first-class face.
+The product is the admit plane.
+The demo is the ninety-minute proof.
+The website is a managed static
+application: catalog, gold 99, twin
+publish. Not a CMS. Not a dynamic
+app. Not a `/demo` route. Not launch.
+A green check is not `LIVE_PIN_OK`.
+
+### 2.82.0
 
 What you've been missing.
 Sale-site `#have` contrasts licensed

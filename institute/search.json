@@ -58,8 +58,14 @@
       "id": "have",
       "text": "You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR. Not a fourth SKU. Not #missing.",
       "title": "What you've been missing"
+    },
+    {
+      "href": "index.html#twin",
+      "id": "demo",
+      "text": "Ninety-minute proof day. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
+      "title": "First-class demo"
     }
   ],
-  "release": "2.82.0",
+  "release": "2.83.0",
   "sku": false
 }

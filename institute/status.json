@@ -413,6 +413,7 @@
       "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
       "2.81.0 Institute twin website for review: twin.html on Azure SWA. --publish-twin updates the twin only. --publish-institute stays launch_not_ready. Cloudflare apex stays empty 404. Gold 99 stays the floor. A green check is not LIVE_PIN_OK",
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements. #have is the sale wow. #missing stays owner-honest. Not a fourth SKU. A green check is not LIVE_PIN_OK",
+      "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -602,7 +603,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.82.0",
+  "release": "2.83.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -616,7 +617,13 @@
   "website": {
     "authorized_release": false,
     "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+    "cms": false,
+    "demo_is_sku": false,
+    "demo_path": "#twin",
+    "dynamic": false,
+    "first_class": true,
     "launch_ready": false,
+    "managed": true,
     "pages_is_host": false,
     "public_edge": "cloudflare",
     "review_path": "twin.html",

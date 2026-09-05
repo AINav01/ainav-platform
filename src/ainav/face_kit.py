@@ -233,6 +233,12 @@ def public_search() -> dict[str, Any]:
             "href": "index.html#have",
             "text": "You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR. Not a fourth SKU. Not #missing.",
         },
+        {
+            "id": "demo",
+            "title": "First-class demo",
+            "href": "index.html#twin",
+            "text": "Ninety-minute proof day. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

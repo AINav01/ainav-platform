@@ -611,7 +611,7 @@
       }
     ],
     "sku": false,
-    "thesis": "The Institute is a catalog-honest static application. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not LIVE_PIN_OK."
+    "thesis": "The Institute is a catalog-honest static application. Managed first-class face: catalog is law, gold 99, twin publish. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not a dynamic app. Not LIVE_PIN_OK."
   },
   "refuse": [
     "Teams vote as dual",
@@ -740,7 +740,9 @@
         "Mark Institute launch",
         "Mint a fourth SKU",
         "Sell a CMS",
-        "Treat owner-missing as the sale wow"
+        "Treat owner-missing as the sale wow",
+        "Sell a dynamic app",
+        "Treat Calendly as the demo"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -823,6 +825,31 @@
     },
     "live": false,
     "live_pin_ok": false,
+    "managed_face": {
+      "cms": false,
+      "demo": "The first-class demo is the ninety-minute proof day on this twin. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
+      "dynamic": false,
+      "fourth_sku": false,
+      "kind": "ainav.managed_face.v1",
+      "launch": false,
+      "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
+      "live": false,
+      "live_pin_ok": false,
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace.",
+      "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
+      "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
+      "refuse": [
+        "A CMS",
+        "A dynamic app",
+        "A fourth SKU",
+        "A /demo route",
+        "Calendly / Intercom as the demo",
+        "Launch from this plane",
+        "LIVE_PIN_OK theater"
+      ],
+      "site": "First glance stays the write rail. Demo is #twin. Product is #product. Not a /demo route. Not a CMS.",
+      "sku": false
+    },
     "mandated": false,
     "market_position": {
       "also": [
@@ -907,6 +934,11 @@
         "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
         "hear": "We already have dual control.",
         "id": "have"
+      },
+      {
+        "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.",
+        "hear": "We need a real managed website.",
+        "id": "managed"
       }
     ],
     "qualify": {
@@ -936,7 +968,9 @@
         "Category leader from a demo",
         "Another Copilot as the wow",
         "CMS as the product",
-        "Fourth SKU as what you've been missing"
+        "Fourth SKU as what you've been missing",
+        "Dynamic app as the Institute",
+        "Calendly as the demo"
       ]
     },
     "seat_b": {

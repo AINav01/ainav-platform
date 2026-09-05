@@ -166,6 +166,12 @@ def public_status() -> dict[str, Any]:
             "launch_ready": False,
             "pages_is_host": False,
             "azure_url": site.get("azure_url"),
+            "managed": bool(site.get("managed")),
+            "first_class": bool(site.get("first_class")),
+            "dynamic": False,
+            "cms": False,
+            "demo_path": site.get("demo_path") or "#twin",
+            "demo_is_sku": False,
         },
         "bc": {
             "connection": "bc.premium",

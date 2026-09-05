@@ -1009,6 +1009,77 @@ table.law tr[data-group] th {
   padding: 1.2rem 1.15rem 1.4rem;
   background: color-mix(in srgb, var(--paper) 70%, white);
 }
+.first-class article {
+  border-top: 3px solid var(--gold);
+}
+.demo-console {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.15rem 1.4rem;
+  background: var(--void);
+  color: var(--void-ink);
+  border: 1px solid color-mix(in srgb, var(--gold-2) 28%, transparent);
+  box-shadow: var(--shadow);
+}
+.demo-console-kicker {
+  margin: 0 0 0.85rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+}
+.demo-stages {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.15rem;
+}
+@media (min-width: 700px) {
+  .demo-stages { grid-template-columns: repeat(3, 1fr); }
+}
+.demo-stages li {
+  border: 1px solid color-mix(in srgb, var(--gold-2) 35%, transparent);
+  padding: 0.55rem 0.75rem;
+  font-family: var(--display);
+  letter-spacing: 0.04em;
+}
+.demo-console .twin-panel {
+  background: color-mix(in srgb, var(--void) 70%, #2a2418);
+  border-color: color-mix(in srgb, var(--gold-2) 22%, transparent);
+  color: var(--void-ink);
+}
+.demo-console .twin-panel h3 { color: #fff; }
+.demo-console .note,
+.demo-console .field,
+.demo-console .check { color: #d8d2c6; }
+.demo-console .field input {
+  background: #1a1712;
+  color: var(--void-ink);
+  border-color: color-mix(in srgb, var(--gold-2) 28%, transparent);
+}
+.demo-console .ask {
+  background: var(--gold-2);
+  border-color: var(--gold-2);
+  color: var(--void);
+}
+.demo-console .ask:hover { background: #d8b56a; }
+.demo-console .ghost {
+  color: var(--void-ink);
+  border-color: color-mix(in srgb, var(--void-ink) 35%, transparent);
+}
+.demo-console .ghost:hover { background: color-mix(in srgb, var(--void-ink) 10%, transparent); }
+.demo-console .ledger {
+  background: #1a1712;
+  color: #d8d2c6;
+  border: 1px solid color-mix(in srgb, var(--gold-2) 22%, transparent);
+}
+.product-stage article[data-sku] {
+  border-top: 3px solid var(--gold);
+}
+.product-stage article h3 {
+  font-family: var(--display);
+}
 .field, .check {
   display: grid;
   gap: 0.35rem;

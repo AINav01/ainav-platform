@@ -306,6 +306,7 @@
       "2.80.0 gold 99 is the floor: coverage_floor 99, pyproject fail_under 99, fail-closed catalog shape, twenty first-principles stay catalog law. A green check is not LIVE_PIN_OK",
       "2.81.0 Institute twin website for review: twin.html on Azure SWA. --publish-twin updates the twin only. --publish-institute stays launch_not_ready. Cloudflare apex stays empty 404. Gold 99 stays the floor. A green check is not LIVE_PIN_OK",
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements. #have is the sale wow. #missing stays owner-honest. Not a fourth SKU. A green check is not LIVE_PIN_OK",
+      "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -370,7 +371,8 @@
       "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
       "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.",
       "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.",
-      "What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK."
+      "What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.",
+      "Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -432,7 +434,9 @@
           "Mark Institute launch",
           "Mint a fourth SKU",
           "Sell a CMS",
-          "Treat owner-missing as the sale wow"
+          "Treat owner-missing as the sale wow",
+          "Sell a dynamic app",
+          "Treat Calendly as the demo"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -515,6 +519,31 @@
       },
       "live": false,
       "live_pin_ok": false,
+      "managed_face": {
+        "cms": false,
+        "demo": "The first-class demo is the ninety-minute proof day on this twin. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
+        "dynamic": false,
+        "fourth_sku": false,
+        "kind": "ainav.managed_face.v1",
+        "launch": false,
+        "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
+        "live": false,
+        "live_pin_ok": false,
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace.",
+        "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
+        "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
+        "refuse": [
+          "A CMS",
+          "A dynamic app",
+          "A fourth SKU",
+          "A /demo route",
+          "Calendly / Intercom as the demo",
+          "Launch from this plane",
+          "LIVE_PIN_OK theater"
+        ],
+        "site": "First glance stays the write rail. Demo is #twin. Product is #product. Not a /demo route. Not a CMS.",
+        "sku": false
+      },
       "mandated": false,
       "market_position": {
         "also": [
@@ -599,6 +628,11 @@
           "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
           "hear": "We already have dual control.",
           "id": "have"
+        },
+        {
+          "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.",
+          "hear": "We need a real managed website.",
+          "id": "managed"
         }
       ],
       "qualify": {
@@ -628,7 +662,9 @@
           "Category leader from a demo",
           "Another Copilot as the wow",
           "CMS as the product",
-          "Fourth SKU as what you've been missing"
+          "Fourth SKU as what you've been missing",
+          "Dynamic app as the Institute",
+          "Calendly as the demo"
         ]
       },
       "seat_b": {
@@ -1136,6 +1172,14 @@
         "n": 52,
         "title": "What you've been missing",
         "who": "tree"
+      },
+      {
+        "do": "Ship 2.83.0: first-class product, ninety-minute demo, and managed static website. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 53,
+        "title": "Managed first-class face",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -1159,7 +1203,7 @@
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
       "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
-      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, and what you've been missing.",
+      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, what you've been missing, and the managed first-class face.",
       "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
       "Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.",
       "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
@@ -1195,6 +1239,7 @@
       "Gold floor is 95 percent. make gold fails under 95. A green check is not LIVE_PIN_OK.",
       "2.81.0 Institute twin website is the review surface. twin.html integrates the boards. --publish-twin is not launch. Cloudflare apex stays empty.",
       "2.82.0 what you've been missing is catalog law: licensed copies versus the admit plane, whole-business capabilities that are not SKUs, tools around the plane that stay complements.",
+      "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app.",
       "Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.",
       "Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.",
       "Provision spine sits the Provision tab: Qualify \u2192 L1 \u2192 kit PASS \u2192 P-ADM \u2192 paid U-DUAL. Attached 0/0/0. U-DUAL never free.",

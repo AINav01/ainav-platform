@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.82.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.83.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.82.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.83.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -318,7 +318,7 @@ Working well
 - Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.
 - Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.
 - Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.
-- Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, and what you've been missing.
+- Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, what you've been missing, and the managed first-class face.
 - Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.
 - Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.
 - Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.
@@ -354,6 +354,7 @@ Working well
 - Gold floor is 95 percent. make gold fails under 95. A green check is not LIVE_PIN_OK.
 - 2.81.0 Institute twin website is the review surface. twin.html integrates the boards. --publish-twin is not launch. Cloudflare apex stays empty.
 - 2.82.0 what you've been missing is catalog law: licensed copies versus the admit plane, whole-business capabilities that are not SKUs, tools around the plane that stay complements.
+- 2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app.
 - Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.
 - Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.
 - Provision spine sits the Provision tab: Qualify → L1 → kit PASS → P-ADM → paid U-DUAL. Attached 0/0/0. U-DUAL never free.
@@ -401,6 +402,7 @@ Could be improved — without inventing a fourth SKU
 - Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.
 - Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.
 - What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.
+- Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -435,6 +437,8 @@ Walk away when
 - Another Copilot as the wow
 - CMS as the product
 - Fourth SKU as what you've been missing
+- Dynamic app as the Institute
+- Calendly as the demo
 
 Objection cards
 
@@ -449,6 +453,7 @@ Objection cards
 - What's your market share? — Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.
 - What's the five-year plan? — The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.
 - We already have dual control. — You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.
+- We need a real managed website. — This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.
 
 CISO posture — holds
 
@@ -514,6 +519,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 50. [tree] Gold 99 is the floor — Raise coverage_floor and fail_under to 99 after measured coverage held. Fail-closed catalog shape. First-principles stay catalog law. Not LIVE_PIN_OK.
 - 51. [tree] Institute twin website for review — Ship 2.81.0: twin.html on Azure SWA for review and updates. Integrate sale, owner, quality, and gold-99 release boards. --publish-twin is not launch. --publish-institute stays launch_not_ready. Cloudflare apex stays empty. Not LIVE_PIN_OK.
 - 52. [tree] What you've been missing — Ship 2.82.0: sale-site #have contrast of you already have vs you've been missing. Whole-business capabilities are not SKUs. Tools around the plane stay complements. Not a fourth SKU. Not #missing. Not LIVE_PIN_OK.
+- 53. [tree] Managed first-class face — Ship 2.83.0: first-class product, ninety-minute demo, and managed static website. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
 
 ## What happens next
 

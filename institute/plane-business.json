@@ -588,6 +588,7 @@
       "2.80.0 gold 99 is the floor after measured coverage; fail-closed catalog shape; twenty first-principles stay catalog law; not from this plane",
       "2.81.0 Institute twin website for review: twin.html on Azure SWA, --publish-twin is not launch, --publish-institute stays launch_not_ready, Cloudflare apex stays empty 404; not from this plane",
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements; #have is the sale wow; #missing stays owner-honest; not a fourth SKU; not from this plane",
+      "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application; not a CMS; not a dynamic app; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -850,6 +851,11 @@
       "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
       "hear": "We already have dual control.",
       "id": "have"
+    },
+    {
+      "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.",
+      "hear": "We need a real managed website.",
+      "id": "managed"
     }
   ],
   "path": [
@@ -918,7 +924,9 @@
       "Category leader from a demo",
       "Another Copilot as the wow",
       "CMS as the product",
-      "Fourth SKU as what you've been missing"
+      "Fourth SKU as what you've been missing",
+      "Dynamic app as the Institute",
+      "Calendly as the demo"
     ]
   },
   "recognized_revenue": 0,
@@ -929,7 +937,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.82.0",
+  "release": "2.83.0",
   "scenarios": [
     {
       "id": "l1_only",
