@@ -377,6 +377,8 @@ def deep_dive(*, probe: bool = False) -> str:
         "",
         f"**Operating company.** {operating_company['lede']} {operating_company['site']} {operating_company['note']}",
         "",
+        f"**Operating day.** Qualify, proof, close, assign, service, launch gate. Gold is not launch. Launch stays false.",
+        "",
         f"**US Dataverse.** {us_dv['lede']} {us_dv['finding']} {us_dv['note']}",
         "",
         "## Stack walk",

@@ -14,6 +14,8 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     cat = load_catalog()
     blob = " ".join(cat["expert_review"]["first_principles"]).lower()
     assert "operating company" in blob
+    assert "operating day" in blob
+    assert "launch gate" in blob
     assert "five hundred" in blob
     assert "capacity" in blob
     firm = cat["expert_review"]["success"]["operating_company"]
@@ -31,6 +33,20 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert firm["capacity"]["pipeline"] == 0
     assert [item["id"] for item in firm["rails"]] == ["pipeline", "live", "sandbox", "production"]
     assert [item["id"] for item in firm["roles"]] == ["owner", "number_two", "bd", "closer", "kit", "service", "ic"]
+    assert [item["id"] for item in firm["day"]["stages"]] == [
+        "qualify",
+        "proof",
+        "close",
+        "assign",
+        "service",
+        "launch",
+    ]
+    assert firm["day"]["kind"] == "ainav.operating_day.v1"
+    assert firm["gates"]["kind"] == "ainav.launch_gate.v1"
+    assert firm["gates"]["launch"] is False
+    assert firm["gates"]["gold_is_not_launch"] is True
+    assert firm["service"]["live"] == 0
+    assert firm["service"]["hours_attach_udual"] is False
     assert firm["comp"]["booked"] is False
     assert firm["comp"]["paid_count"] == 0
     assert firm["comp"]["from_this_plane"] is False
@@ -41,11 +57,16 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     assert 'id="firm-console"' in html
     assert 'id="firm-rails"' in html
+    assert 'id="firm-day"' in html
+    assert 'id="firm-gates"' in html
     assert "paintOperatingCompany" in js
     assert "Run the firm" in html
     assert "firm-invent-lead" in html
     assert "firm-pay" in html
     assert "firm-crm" in html
+    assert "firm-mark-launch" in html
+    assert "firm-keep" in html
+    assert "firm-hours-udual" in html
     assert 'href="/firm"' not in html
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#firm"' not in nav
@@ -165,6 +186,44 @@ def test_operating_company_fail_closed():
     def booked(cat):
         cat["business"]["management"]["comp"]["booked"] = True
 
+    def day_kind(cat):
+        cat["expert_review"]["success"]["operating_company"]["day"]["kind"] = "ainav.crm.v1"
+
+    def day_stages(cat):
+        cat["expert_review"]["success"]["operating_company"]["day"]["stages"] = [{"id": "crm"}]
+
+    def gate_launch(cat):
+        cat["expert_review"]["success"]["operating_company"]["gates"]["launch"] = True
+
+    def gate_ready(cat):
+        cat["expert_review"]["success"]["operating_company"]["gates"]["items"][0]["ready"] = True
+
+    def gold_is_launch(cat):
+        cat["expert_review"]["success"]["operating_company"]["gates"]["gold_is_not_launch"] = False
+
+    def service_hours(cat):
+        cat["expert_review"]["success"]["operating_company"]["service"]["ffs_hours"] = 12
+
+    def service_udual(cat):
+        cat["expert_review"]["success"]["operating_company"]["service"]["hours_attach_udual"] = True
+
+    def cannot_launch(cat):
+        cat["business"]["management"]["cannot_mark"] = [
+            item for item in cat["business"]["management"]["cannot_mark"] if "launch" not in item.lower()
+        ]
+
+    def upgrade_day(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 57:
+                item["do"] = "Ship a CRM."
+
+    def ciso_gate(cat):
+        cat["expert_review"]["success"]["ciso"]["does_not"] = [
+            item
+            for item in cat["expert_review"]["success"]["ciso"]["does_not"]
+            if "launch gate" not in item.lower()
+        ]
+
     for mutator in (
         sku,
         crm,
@@ -196,5 +255,15 @@ def test_operating_company_fail_closed():
         people_team,
         cannot,
         booked,
+        day_kind,
+        day_stages,
+        gate_launch,
+        gate_ready,
+        gold_is_launch,
+        service_hours,
+        service_udual,
+        cannot_launch,
+        upgrade_day,
+        ciso_gate,
     ):
         _reject(mutator)

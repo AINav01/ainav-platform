@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.86.0"
+    "release": "2.87.0"
   },
   "communications": [
     {
@@ -2114,6 +2114,7 @@
       "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance; not a fourth SKU; not production; not from this plane",
       "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox; not a fourth SKU; not production; not from this plane",
       "2.86.0 first-class operating company: 500 live and 500 pipeline are capacity, BD/sales/ICs/comp on one spine, segregated twins; not a CRM; not a fourth SKU; not production; not from this plane",
+      "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch; gold is not launch; servicing is P-ADM keep and FFS on the assigned twin; not a CRM; not production; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -3824,7 +3825,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.86.0",
+  "release": "2.87.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4142,7 +4143,8 @@
         "Institute twin as client production",
         "A fourth SKU as the client twin",
         "Auto-promote a sandbox to production",
-        "Invent a sales team or pay a commission from this plane"
+        "Invent a sales team or pay a commission from this plane",
+        "Mark the launch gate from this plane"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4438,7 +4440,7 @@
         "id": "close"
       },
       {
-        "answer": "The firm is this bench. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. HubSpot is not the product.",
+        "answer": "The firm is this operating day. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product.",
         "hear": "Just stand up HubSpot and pay the team.",
         "id": "firm"
       }
@@ -4468,13 +4470,90 @@
         "residual": "After collected P-ADM only. Owner-set. Not booked."
       },
       "crm": false,
+      "day": {
+        "kind": "ainav.operating_day.v1",
+        "launch": false,
+        "live_pin_ok": false,
+        "sku": false,
+        "stages": [
+          {
+            "id": "qualify",
+            "name": "Qualify",
+            "note": "BD. ICP and walk-away. Do not invent a lead."
+          },
+          {
+            "id": "proof",
+            "name": "Proof",
+            "note": "Ninety minutes on the Institute twin. Not Calendly."
+          },
+          {
+            "id": "close",
+            "name": "Close",
+            "note": "Signed L1 on the close bench. Still 0."
+          },
+          {
+            "id": "assign",
+            "name": "Assign",
+            "note": "One live client, one segregated sandbox. Never shared."
+          },
+          {
+            "id": "service",
+            "name": "Service",
+            "note": "P-ADM keep and FFS on that twin. Hours never mint a SKU."
+          },
+          {
+            "id": "launch",
+            "name": "Launch",
+            "note": "Owner says launch and gold holds 99. This plane cannot mark it."
+          }
+        ]
+      },
       "dynamic": false,
       "fourth_sku": false,
-      "glance": "0 of 500 live. 0 of 500 pipeline. One spine. Segregated twins. Commissions unpaid. Not a CRM.",
+      "gates": {
+        "authorized_release": false,
+        "gold_is_not_launch": true,
+        "items": [
+          {
+            "id": "seat_b",
+            "name": "Seat B click",
+            "note": "Mailbox recorded. She clicks.",
+            "ready": false
+          },
+          {
+            "id": "signed_l1",
+            "name": "First signed L1",
+            "note": "Owner-only. Count stays 0.",
+            "ready": false
+          },
+          {
+            "id": "live_pin",
+            "name": "LIVE_PIN_OK",
+            "note": "Owner-only. This plane cannot mark it.",
+            "ready": false
+          },
+          {
+            "id": "owner_launch",
+            "name": "Owner launch word",
+            "note": "James says launch. Gold holds 99.",
+            "ready": false
+          },
+          {
+            "id": "gold",
+            "name": "Gold 99",
+            "note": "Release floor. Gold is not launch.",
+            "ready": false
+          }
+        ],
+        "kind": "ainav.launch_gate.v1",
+        "launch": false,
+        "live_pin_ok": false
+      },
+      "glance": "Operating day. Launch gate closed. 0 of 500 live. 0 of 500 pipeline.",
       "hubspot": false,
       "kind": "ainav.operating_company.v1",
       "launch": false,
-      "lede": "The firm is one spine. BD qualifies. Sales closes L1 on the Institute twin. Close assigns a segregated sandbox. Kit then P-ADM keep. Paid U-DUAL and FFS service that twin. Production stays owner-gated. Five hundred live and five hundred pipeline are capacity targets. Live stays 0. Pipeline stays 0. Not a CRM. Not a fourth SKU.",
+      "lede": "The firm is one spine and one operating day. BD qualifies. Sales proofs on the Institute twin. Close assigns a segregated sandbox. Service keeps P-ADM and FFS on that twin. The launch gate stays closed. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Gold is not launch. Not a CRM. Not a fourth SKU.",
       "live": false,
       "live_pin_ok": false,
       "named_client": null,
@@ -4488,7 +4567,7 @@
         "Azure budget for N segregated sandboxes",
         "Dataverse if Sales Enterprise becomes the 500-lead CRM \u2014 Canada affinity still open"
       ],
-      "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Not LIVE_PIN_OK.",
+      "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Launch stays false. Not LIVE_PIN_OK.",
       "payouts_booked": false,
       "production": false,
       "rails": [
@@ -4522,7 +4601,9 @@
         "HubSpot or Salesforce as the firm",
         "Shared twin as production",
         "A fourth SKU as the operating company",
-        "LIVE_PIN_OK theater"
+        "LIVE_PIN_OK theater",
+        "Mark launch from this plane",
+        "Free U-DUAL from service hours"
       ],
       "roles": [
         {
@@ -4563,7 +4644,17 @@
       ],
       "sales_team_claimed": false,
       "salesforce": false,
-      "site": "The firm bench is #firm-console on #firm. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM.",
+      "service": {
+        "ffs_hours": 0,
+        "hours_attach_udual": false,
+        "hours_mint_sku": false,
+        "kind": "ainav.service_book.v1",
+        "live": 0,
+        "note": "Servicing is P-ADM keep and FFS on the assigned twin. Live stays 0. Hours never mint a SKU and never attach free U-DUAL.",
+        "padm": 0,
+        "shared_twin": false
+      },
+      "site": "The firm bench is #firm-console on #firm. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
       "sku": false
     },
     "qualify": {

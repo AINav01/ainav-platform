@@ -64,8 +64,11 @@ def validate_business(catalog: dict[str, Any]) -> None:
     comp = (body.get("management") or {}).get("comp") or {}
     if comp.get("booked") is True or comp.get("from_this_plane") is True or int(comp.get("paid_count") or 0) != 0:
         raise IntegrityError("firm cannot book or pay commissions from this plane", reason_code="CATALOG_BUSINESS")
-    if "commission payout" not in [str(item).lower() for item in ((body.get("management") or {}).get("cannot_mark") or [])]:
+    cannot = [str(item).lower() for item in ((body.get("management") or {}).get("cannot_mark") or [])]
+    if "commission payout" not in cannot:
         raise IntegrityError("firm management cannot_mark keeps commission payout", reason_code="CATALOG_BUSINESS")
+    if "launch" not in cannot:
+        raise IntegrityError("firm management cannot_mark keeps launch", reason_code="CATALOG_BUSINESS")
 
 
 def doctrine() -> dict[str, Any]:

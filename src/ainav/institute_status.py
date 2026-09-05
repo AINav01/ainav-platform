@@ -180,6 +180,10 @@ def public_status() -> dict[str, Any]:
             "firm_href": site.get("firm_href") or "#firm",
             "firm_is_sku": False,
             "firm_is_crm": False,
+            "operating_day": bool(site.get("operating_day")),
+            "operating_day_is_sku": False,
+            "launch_gate": bool(site.get("launch_gate")),
+            "launch_is_ready": False,
         },
         "bc": {
             "connection": "bc.premium",

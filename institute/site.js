@@ -2054,10 +2054,58 @@
     if (cap.pipeline === 0) set("firm-pipeline", "0");
     set("firm-ics", "0");
     set("firm-payouts", "0");
+    set("firm-launch", "No");
     (firm.rails || []).forEach(function (rail) {
       if (!rail || !rail.id) return;
       set("firm-rail-" + rail.id, rail.note);
     });
+    var day = firm.day || {};
+    if (day.launch || day.live_pin_ok || day.sku) return;
+    (day.stages || []).forEach(function (stage) {
+      if (!stage || !stage.id) return;
+      set("firm-day-" + stage.id, stage.note);
+    });
+    var roles = document.getElementById("firm-roles");
+    if (roles && firm.roles && firm.roles.length) {
+      roles.textContent = "";
+      firm.roles.forEach(function (role) {
+        if (!role) return;
+        var li = document.createElement("li");
+        var name = document.createElement("b");
+        name.textContent = role.name || role.id || "";
+        li.appendChild(name);
+        var note = document.createElement("span");
+        note.textContent = role.note || "";
+        li.appendChild(note);
+        roles.appendChild(li);
+      });
+    }
+    var comp = firm.comp || {};
+    if (comp.booked || comp.paid_count || comp.from_this_plane || comp.payroll_provider) return;
+    set("firm-comp-note", comp.note);
+    var gates = firm.gates || {};
+    if (gates.launch || gates.authorized_release || gates.live_pin_ok || !gates.gold_is_not_launch) return;
+    var gateList = document.getElementById("firm-gates");
+    if (gateList && gates.items && gates.items.length) {
+      gateList.textContent = "";
+      gates.items.forEach(function (item) {
+        if (!item) return;
+        var li = document.createElement("li");
+        li.setAttribute("data-ready", item.ready ? "yes" : "no");
+        var name = document.createElement("b");
+        name.textContent = item.name || item.id || "";
+        li.appendChild(name);
+        var note = document.createElement("span");
+        note.textContent = item.ready ? item.note || "" : "Open. " + (item.note || "");
+        li.appendChild(note);
+        gateList.appendChild(li);
+      });
+    }
+    var book = firm.service || {};
+    if (book.live || book.padm || book.ffs_hours || book.hours_mint_sku || book.hours_attach_udual || book.shared_twin) {
+      return;
+    }
+    if (book.note) set("firm-service-status", "P-ADM 0. FFS hours 0. Live book empty.");
   }
 
   function replacePlain(id, items) {
@@ -2889,10 +2937,82 @@
   if (firmCrm) {
     firmCrm.addEventListener("click", function () {
       var status = document.getElementById("firm-people-status");
-      if (status) status.textContent = "Refused. HubSpot is not the firm. This bench is the operating company.";
+      if (status) status.textContent = "Refused. HubSpot is not the firm. This bench is the operating day.";
       writeFirmLedger(
         "denied",
-        "crm_denied · HubSpot / Salesforce\nThe product is the admit plane. The firm is this bench.\nNot a CRM SKU. Not LIVE_PIN_OK."
+        "crm_denied · HubSpot / Salesforce\nThe product is the admit plane. The firm is this operating day.\nNot a CRM SKU. Gold is not launch.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmCalendly = document.getElementById("firm-invent-calendly");
+  if (firmCalendly) {
+    firmCalendly.addEventListener("click", function () {
+      var status = document.getElementById("firm-proof-status");
+      if (status) status.textContent = "Refused. Calendly is not the proof. Demo is #twin.";
+      writeFirmLedger(
+        "denied",
+        "proof_denied · Calendly\nNinety minutes stay on the Institute twin.\nGraph is not called.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmAssignShared = document.getElementById("firm-assign-shared");
+  if (firmAssignShared) {
+    firmAssignShared.addEventListener("click", function () {
+      var status = document.getElementById("firm-assign-status");
+      if (status) status.textContent = "Refused. One live client, one segregated sandbox. Shared twin is a walk-away.";
+      writeFirmLedger(
+        "denied",
+        "assign_denied · shared twin\nAssigned stays 0 until a real L1.\nInstitute twin is not client production.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmKeep = document.getElementById("firm-keep");
+  if (firmKeep) {
+    firmKeep.addEventListener("click", function () {
+      var status = document.getElementById("firm-service-status");
+      if (status) status.textContent = "Refused. Live book is 0. P-ADM attaches after kit PASS on an assigned twin.";
+      writeFirmLedger(
+        "denied",
+        "service_denied · empty live book\nP-ADM 0. FFS hours 0.\nHours never mint a SKU.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmHours = document.getElementById("firm-hours-udual");
+  if (firmHours) {
+    firmHours.addEventListener("click", function () {
+      var status = document.getElementById("firm-service-status");
+      if (status) status.textContent = "Refused. Hours never attach free U-DUAL. Hours never mint a SKU.";
+      writeFirmLedger(
+        "denied",
+        "udual_denied · service hours\nFFS deepens the same admit plane.\nU-DUAL stays a paid SKU.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmMarkLaunch = document.getElementById("firm-mark-launch");
+  if (firmMarkLaunch) {
+    firmMarkLaunch.addEventListener("click", function () {
+      var status = document.getElementById("firm-launch-status");
+      if (status) status.textContent = "Refused. Launch gate closed. Gold is not launch. Owner says launch.";
+      writeFirmLedger(
+        "denied",
+        "launch_denied · gate closed\nSeat B click open. Signed L1 0. LIVE_PIN_OK false.\nGold 99 is the release floor, not launch.\nlaunch=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmMarkPin = document.getElementById("firm-mark-pin");
+  if (firmMarkPin) {
+    firmMarkPin.addEventListener("click", function () {
+      var status = document.getElementById("firm-launch-status");
+      if (status) status.textContent = "Refused. LIVE_PIN_OK is owner-only. This plane cannot mark it.";
+      writeFirmLedger(
+        "denied",
+        "pin_denied · LIVE_PIN_OK\nProduction write stays owner-gated.\nDo not auto-promote a sandbox.\nlive=false · live_pin_ok=false"
       );
     });
   }

@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.86.0",
+  "release": "2.87.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -242,10 +242,14 @@
     "firm_is_sku": false,
     "first_class": true,
     "in_repo": "institute/index.html",
+    "launch_gate": true,
+    "launch_is_ready": false,
     "launch_ready": false,
     "managed": true,
     "name": "AINAV.Institute",
     "operating_company": true,
+    "operating_day": true,
+    "operating_day_is_sku": false,
     "pages_is_host": false,
     "path_href": "#path",
     "public_deploy_claimed": false,

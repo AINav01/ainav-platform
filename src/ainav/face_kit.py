@@ -249,7 +249,7 @@ def public_search() -> dict[str, Any]:
             "id": "firm",
             "title": "Run the firm",
             "href": "index.html#firm",
-            "text": "First-class operating company. 500 live and 500 pipeline are capacity. BD, sales, ICs, commissions, segregated twins. Not a CRM. Not a fourth SKU.",
+            "text": "First-class operating day and launch gate. Qualify, proof, close, assign, service, launch. 500/500 capacity. Gold is not launch. Not a CRM. Not a fourth SKU.",
         },
     ]
     return {

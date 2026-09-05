@@ -592,6 +592,7 @@
       "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance; not a fourth SKU; not production; not from this plane",
       "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox; not a fourth SKU; not production; not from this plane",
       "2.86.0 first-class operating company: 500 live and 500 pipeline are capacity, BD/sales/ICs/comp on one spine, segregated twins; not a CRM; not a fourth SKU; not production; not from this plane",
+      "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch; gold is not launch; servicing is P-ADM keep and FFS on the assigned twin; not a CRM; not production; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -871,7 +872,7 @@
       "id": "close"
     },
     {
-      "answer": "The firm is this bench. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. HubSpot is not the product.",
+      "answer": "The firm is this operating day. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product.",
       "hear": "Just stand up HubSpot and pay the team.",
       "id": "firm"
     }
@@ -955,7 +956,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.86.0",
+  "release": "2.87.0",
   "scenarios": [
     {
       "id": "l1_only",
