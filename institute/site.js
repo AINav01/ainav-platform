@@ -1868,6 +1868,7 @@
     paintWhatWasMissing(success.what_was_missing);
     paintManagedFace(success.managed_face);
     paintClientTwin(success.client_twin);
+    paintCloseBench(success.close_bench);
   }
 
   function paintHumanControl(control) {
@@ -1980,12 +1981,41 @@
     set("path-deploy", twin.deploy);
     set("path-site", twin.site);
     set("path-note", twin.note);
-    set("class-path", twin.lede);
+    set("class-path", twin.glance || twin.lede);
     set("path-assigned", twin.assigned ? "Yes" : "No");
     set("path-named", twin.named_client || "None");
     replacePlain("path-stages", twin.stages);
     replacePlain("path-is", twin.is);
     replacePlain("path-not", twin.is_not);
+  }
+
+  function paintCloseBench(bench) {
+    if (
+      !bench ||
+      bench.live ||
+      bench.live_pin_ok ||
+      bench.sku ||
+      bench.fourth_sku ||
+      bench.assigned ||
+      bench.launch ||
+      bench.production ||
+      bench.named_client ||
+      bench.cms ||
+      bench.dynamic
+    ) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("path-lede", bench.lede);
+    set("class-path", bench.glance || bench.lede);
+    var planes = bench.planes || [];
+    planes.forEach(function (plane) {
+      if (!plane || !plane.id) return;
+      set("path-plane-" + plane.id, plane.note);
+    });
   }
 
   function replacePlain(id, items) {
@@ -2010,42 +2040,46 @@
       fillBuyer(buyerPayload());
     });
 
+  function downloadProofDayBrief(statusId) {
+    var page = lastBuyer || buyerPayload();
+    var brief = {
+      kind: "ainav.proof_day.brief.v1",
+      forwardable: true,
+      write_that_must_not_happen: page.write_that_must_not_happen,
+      incident: page.incident,
+      seats: page.seats,
+      prices: page.prices,
+      proof_day: page.proof_day,
+      refuse: page.refuse,
+      ask: "Ask for a ninety-minute proof day on the existing treasury SOD.",
+      bake_off: (page.success && page.success.bake_off) || null,
+      qualify: (page.success && page.success.qualify) || null,
+      walk_away:
+        (page.success && page.success.qualify && page.success.qualify.walk_away) || [],
+      contact_email: null,
+      mailto: null,
+      named_customer: null,
+      signed_l1: false,
+      live: false
+    };
+    var blob = new Blob([JSON.stringify(brief, null, 2)], { type: "application/json" });
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "ainav-proof-day-brief.json";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    var status = document.getElementById(statusId);
+    if (status) {
+      status.hidden = false;
+      status.textContent = "Brief downloaded. Forward it. There is no contact inbox on this page.";
+    }
+  }
+
   var ask = document.getElementById("ask-proof-day");
   if (ask) {
     ask.addEventListener("click", function () {
-      var page = lastBuyer || buyerPayload();
-      var brief = {
-        kind: "ainav.proof_day.brief.v1",
-        forwardable: true,
-        write_that_must_not_happen: page.write_that_must_not_happen,
-        incident: page.incident,
-        seats: page.seats,
-        prices: page.prices,
-        proof_day: page.proof_day,
-        refuse: page.refuse,
-        ask: "Ask for a ninety-minute proof day on the existing treasury SOD.",
-        bake_off: (page.success && page.success.bake_off) || null,
-        qualify: (page.success && page.success.qualify) || null,
-        walk_away:
-          (page.success && page.success.qualify && page.success.qualify.walk_away) || [],
-        contact_email: null,
-        mailto: null,
-        named_customer: null,
-        signed_l1: false,
-        live: false
-      };
-      var blob = new Blob([JSON.stringify(brief, null, 2)], { type: "application/json" });
-      var link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "ainav-proof-day-brief.json";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      var status = document.getElementById("brief-status");
-      if (status) {
-        status.hidden = false;
-        status.textContent = "Brief downloaded. Forward it. There is no contact inbox on this page.";
-      }
+      downloadProofDayBrief("brief-status");
     });
   }
 
@@ -2642,6 +2676,96 @@
         "evidence_preview · sharepoint.kit\neffect=" +
           twin.lastEffect.action_class +
           "\nNo Sites.Read.All. No SharePoint write.\nAcceptance Kit evidence stays on the twin. live=false"
+      );
+    });
+  }
+
+  function writePathLedger(kind, text) {
+    var box = document.getElementById("path-ledger");
+    if (!box) return;
+    var row = document.createElement("pre");
+    row.className = kind === "ok" ? "ok" : "denied";
+    row.textContent = text;
+    box.insertBefore(row, box.firstChild);
+  }
+
+  var pathWalk = document.getElementById("path-walk");
+  if (pathWalk) {
+    pathWalk.addEventListener("click", function () {
+      var status = document.getElementById("path-qualify-status");
+      if (status) status.textContent = "Walked cheaper native. Count stays 0. Do not invent a named controller.";
+      writePathLedger(
+        "ok",
+        "walk_preview · cheaper native\nQualify refused Workflow User Groups / Copilot Studio RFI as the product.\nWalk-away ledger recorded=false count=0.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var pathInvent = document.getElementById("path-invent");
+  if (pathInvent) {
+    pathInvent.addEventListener("click", function () {
+      var status = document.getElementById("path-qualify-status");
+      if (status) status.textContent = "Refused. Do not invent a named customer.";
+      writePathLedger(
+        "denied",
+        "qualify_denied · invented name\nAcme / Contoso / Fabrikam are not clients.\nNamed client stays none. Assigned stays no.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var pathBrief = document.getElementById("path-copy-brief");
+  if (pathBrief) {
+    pathBrief.addEventListener("click", function () {
+      downloadProofDayBrief("path-proof-status");
+      writePathLedger(
+        "ok",
+        "brief_preview · ainav.proof_day.brief.v1\nForwardable. No inbox. No named customer.\nRemote demo stays #twin.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var pathAssign = document.getElementById("path-assign");
+  if (pathAssign) {
+    pathAssign.addEventListener("click", function () {
+      var a = ((document.getElementById("path-seat-a") || {}).value || "").trim();
+      var b = ((document.getElementById("path-seat-b") || {}).value || "").trim();
+      var status = document.getElementById("path-close-status");
+      if (/acme|contoso|fabrikam|northwind/i.test(a + " " + b)) {
+        if (status) status.textContent = "Refused. Do not invent a named customer.";
+        writePathLedger(
+          "denied",
+          "assign_denied · invented name\nSeat titles are not a named client.\nAssigned stays no. Count stays 0.\nlive=false · live_pin_ok=false"
+        );
+        return;
+      }
+      if (status) status.textContent = "Refused. Signed L1 is 0. Assigned stays no.";
+      writePathLedger(
+        "denied",
+        "assign_denied · no signed L1\nThe client twin is assigned after qualify or with L1.\nThis plane cannot invent the assignment.\nAssigned=false · named_client=null · count=0\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var pathUdual = document.getElementById("path-udual");
+  if (pathUdual) {
+    pathUdual.addEventListener("click", function () {
+      var status = document.getElementById("path-close-status");
+      if (status) status.textContent = "Refused. Hours never attach free U-DUAL.";
+      writePathLedger(
+        "denied",
+        "enhance_denied · free U-DUAL\nPaid enhance stays on the assigned sandbox.\nHours deepen the same admit plane. They never mint a SKU.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var pathPromote = document.getElementById("path-promote");
+  if (pathPromote) {
+    pathPromote.addEventListener("click", function () {
+      var status = document.getElementById("path-close-status");
+      if (status) status.textContent = "Refused. Production is owner-gated. LIVE_PIN_OK stays false.";
+      writePathLedger(
+        "denied",
+        "promote_denied · production blocked\nInstitute twin is the remote demo. Client twin is a sandbox.\nDo not auto-promote. LIVE_PIN_OK is owner-only.\nlive=false · live_pin_ok=false"
       );
     });
   }

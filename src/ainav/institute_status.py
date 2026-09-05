@@ -174,6 +174,8 @@ def public_status() -> dict[str, Any]:
             "demo_is_sku": False,
             "path_href": site.get("path_href") or "#path",
             "client_twin_is_sku": False,
+            "close_bench": bool(site.get("close_bench")),
+            "close_is_sku": False,
         },
         "bc": {
             "connection": "bc.premium",

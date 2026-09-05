@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 54:
-        raise IntegrityError("expert review needs 16–54 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 55:
+        raise IntegrityError("expert review needs 16–55 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1178,6 +1178,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         52: ("been missing", "live_pin_ok"),
         53: ("first-class", "live_pin_ok"),
         54: ("client twin", "live_pin_ok"),
+        55: ("close bench", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1217,6 +1218,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
     if "client-assigned" not in blob or "segregated" not in blob or "client twin" not in blob:
         raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
+    if "close bench" not in blob or "three planes" not in blob:
+        raise IntegrityError("first-principles must keep the first-class close bench", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1260,7 +1263,7 @@ def _validate_success_program(success: Any) -> None:
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed", "path"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed", "path", "close"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1292,6 +1295,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat the Institute twin as client production", reason_code="CATALOG_REVIEW")
     if "client twin" not in does_not:
         raise IntegrityError("CISO posture does not mint a fourth SKU as the client twin", reason_code="CATALOG_REVIEW")
+    if "auto-promote" not in does_not:
+        raise IntegrityError("CISO posture does not auto-promote a sandbox to production", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1329,6 +1334,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_what_was_missing(success.get("what_was_missing"))
     _validate_managed_face(success.get("managed_face"))
     _validate_client_twin(success.get("client_twin"))
+    _validate_close_bench(success.get("close_bench"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1554,6 +1560,44 @@ def _validate_client_twin(body: Any) -> None:
     note = str(twin.get("note") or "").lower()
     if "assigned stays false" not in note or "live_pin_ok" not in note:
         raise IntegrityError("client-twin note keeps assigned false and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+
+
+def _validate_close_bench(body: Any) -> None:
+    bench = _as_dict(body, "close_bench")
+    if bench.get("kind") != "ainav.close_bench.v1":
+        raise IntegrityError("close_bench kind is ainav.close_bench.v1", reason_code="CATALOG_REVIEW")
+    if bench.get("sku") is True or bench.get("fourth_sku") is True or bench.get("assigned") is True:
+        raise IntegrityError("close bench is not a SKU and is not assigned", reason_code="CATALOG_REVIEW")
+    if bench.get("launch") is True or bench.get("production") is True or bench.get("cms") is True:
+        raise IntegrityError("close bench is not launch, production, or a CMS", reason_code="CATALOG_REVIEW")
+    if bench.get("dynamic") is True or bench.get("live") is True or bench.get("live_pin_ok") is True:
+        raise IntegrityError("close bench cannot mark LIVE_PIN_OK or become a dynamic app", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if bench.get("named_client") is not None:
+        raise IntegrityError("close bench cannot invent a named client", reason_code="CATALOG_REVIEW")
+    lede = str(bench.get("lede") or "").lower()
+    if "first-class close" not in lede or "segregated" not in lede or "owner-gated" not in lede:
+        raise IntegrityError("close-bench lede is a first-class close on a segregated sandbox", reason_code="CATALOG_REVIEW")
+    planes = bench.get("planes") or []
+    ids = [item.get("id") for item in planes if isinstance(item, dict)]
+    if ids != ["institute", "client", "production"]:
+        raise IntegrityError("close bench planes are Institute twin, client sandbox, production", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in planes
+        if isinstance(item, dict)
+    )
+    if "remote demo" not in blob or "segregated" not in blob or "live_pin_ok" not in blob:
+        raise IntegrityError("close bench planes keep remote demo, segregated sandbox, LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in bench.get("refuse") or [])
+    for stem in ("fourth sku", "client production", "named client", "auto-promote", "calendly", "u-dual", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("close-bench refuse keeps fourth SKU, production, named client, auto-promote", reason_code="CATALOG_REVIEW")
+    site = str(bench.get("site") or "").lower()
+    if "#close-console" not in site or "#path" not in site or "#twin" not in site:
+        raise IntegrityError("close-bench site is #close-console on #path; demo is #twin", reason_code="CATALOG_REVIEW")
+    note = str(bench.get("note") or "").lower()
+    if "assigned stays false" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("close-bench note keeps assigned false and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -2472,6 +2516,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_282(catalog, body)
     _validate_instrument_283(catalog, body)
     _validate_instrument_284(catalog, body)
+    _validate_instrument_285(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2872,8 +2917,6 @@ def _validate_instrument_283(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_284(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.84.0":
-        raise IntegrityError("entity.release is 2.84.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.84.0" in item and "client" in item and "twin" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.84.0 client-assigned sandbox twin", reason_code="CATALOG_ENGINEERING")
@@ -2890,6 +2933,27 @@ def _validate_instrument_284(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "client-assigned" not in principles or "segregated" not in principles:
         raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_285(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.85.0":
+        raise IntegrityError("entity.release is 2.85.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.85.0" in item and "close bench" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.85.0 first-class close bench", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("close_bench") is not True:
+        raise IntegrityError("2.85.0 website has a first-class close bench", reason_code="CATALOG_PLANE")
+    if site.get("close_is_sku") is True:
+        raise IntegrityError("2.85.0 close bench is not a SKU", reason_code="CATALOG_PLANE")
+    bench = ((catalog.get("expert_review") or {}).get("success") or {}).get("close_bench") or {}
+    if bench.get("kind") != "ainav.close_bench.v1":
+        raise IntegrityError("2.85.0 close_bench kind", reason_code="CATALOG_REVIEW")
+    if bench.get("assigned") is True or bench.get("production") is True or bench.get("sku") is True:
+        raise IntegrityError("2.85.0 close bench is not assigned, production, or a SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "close bench" not in principles or "three planes" not in principles:
+        raise IntegrityError("first-principles must keep the first-class close bench", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

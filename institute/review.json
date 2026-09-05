@@ -308,6 +308,7 @@
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements. #have is the sale wow. #missing stays owner-honest. Not a fourth SKU. A green check is not LIVE_PIN_OK",
       "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app. A green check is not LIVE_PIN_OK",
       "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
+      "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -374,7 +375,8 @@
       "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.",
       "What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.",
       "Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.",
-      "Client-assigned sandbox twin sits on the sale site after the product. Remote demo stays #twin. Close is signed L1. Assigned stays false until a real L1. Not a fourth SKU. Not production. Not LIVE_PIN_OK."
+      "Client-assigned sandbox twin sits on the sale site after the product. Remote demo stays #twin. Close is signed L1. Assigned stays false until a real L1. Not a fourth SKU. Not production. Not LIVE_PIN_OK.",
+      "First-class close bench sits on #path: three planes, qualify/proof/close/assign console. It cannot invent Acme or auto-promote. Not a fourth SKU. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -440,7 +442,8 @@
           "Sell a dynamic app",
           "Treat Calendly as the demo",
           "Institute twin as client production",
-          "A fourth SKU as the client twin"
+          "A fourth SKU as the client twin",
+          "Auto-promote a sandbox to production"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -458,6 +461,7 @@
         "do_not_invent_names": true,
         "enhance": "Paid packs and FFS hours on the assigned client twin. Continuous enhancement and debug stay on that sandbox. Custom features are pay-for-service on the same admit plane. Never a SKU.",
         "fourth_sku": false,
+        "glance": "Qualify. Remote proof. Close L1. Assign a segregated sandbox. Paid enhance stays there. Not production.",
         "is": [
           "A sale path, not a product SKU",
           "Remote demo on the Institute twin",
@@ -482,7 +486,7 @@
         "named_client": null,
         "note": "Assigned stays false. Named client stays none. Count stays 0. Not production. Not LIVE_PIN_OK.",
         "production": false,
-        "site": "This band sits after the product. First glance stays the write rail. Demo is #twin. Path is #path. Not a /demo route. Not a fourth SKU.",
+        "site": "This band sits after the product. First glance stays the write rail. Demo is #twin. Path is #path. The close bench is #close-console. Not a /demo route. Not a fourth SKU.",
         "sku": false,
         "stages": [
           "Qualify \u2014 ICP and walk-away. No invented inbox.",
@@ -493,6 +497,49 @@
           "Assigned sandbox \u2014 client-specific segregated digital twin. Not the Institute review twin. Not production.",
           "Paid enhance \u2014 packs and FFS hours on that client twin. Hours deepen the same admit plane. Never mint a SKU. Hours never attach free U-DUAL."
         ]
+      },
+      "close_bench": {
+        "assigned": false,
+        "cms": false,
+        "dynamic": false,
+        "fourth_sku": false,
+        "glance": "Qualify. Remote proof. Close L1. Assign a segregated sandbox. Paid enhance stays there. Not production.",
+        "kind": "ainav.close_bench.v1",
+        "launch": false,
+        "lede": "The first-class close is this bench. Qualify. Remote proof on the Institute twin. Tailor the SOD pair. Close signed L1. Assign a segregated sandbox. Paid enhance stays there. Production stays owner-gated. Not a SKU.",
+        "live": false,
+        "live_pin_ok": false,
+        "named_client": null,
+        "note": "The bench rehearses the close. Assigned stays false. Named client stays none. Not LIVE_PIN_OK.",
+        "planes": [
+          {
+            "id": "institute",
+            "name": "Institute twin",
+            "note": "Remote demo. This host. Not client production."
+          },
+          {
+            "id": "client",
+            "name": "Client sandbox",
+            "note": "Assigned after L1. Segregated. Not shared."
+          },
+          {
+            "id": "production",
+            "name": "Production",
+            "note": "Owner LIVE_PIN_OK only. Not auto-promote."
+          }
+        ],
+        "production": false,
+        "refuse": [
+          "A fourth SKU",
+          "Institute twin as client production",
+          "Invented named client",
+          "Auto-promote sandbox to production",
+          "Calendly as the close",
+          "Free U-DUAL from hours",
+          "LIVE_PIN_OK theater"
+        ],
+        "site": "The close bench is #close-console on #path. Demo is #twin. First glance stays the write rail. Not a /demo route.",
+        "sku": false
       },
       "continuity": {
         "lede": "If either seat is missing, the write does not land. That is the product working.",
@@ -685,6 +732,11 @@
           "answer": "The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.",
           "hear": "Just give us a shared demo tenant we can keep.",
           "id": "path"
+        },
+        {
+          "answer": "The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.",
+          "hear": "Just flip the demo live.",
+          "id": "close"
         }
       ],
       "qualify": {
@@ -1240,6 +1292,14 @@
         "n": 54,
         "title": "Client-assigned sandbox twin",
         "who": "tree"
+      },
+      {
+        "do": "Ship 2.85.0: first-class close bench on #path. Three planes. Remote proof. Signed L1. Assigned sandbox. Not a fourth SKU. Not production. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 55,
+        "title": "First-class close bench",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -1301,6 +1361,7 @@
       "2.82.0 what you've been missing is catalog law: licensed copies versus the admit plane, whole-business capabilities that are not SKUs, tools around the plane that stay complements.",
       "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app.",
       "2.84.0 client-assigned sandbox twin is the sale path. Remote demo on the Institute twin. Close is signed L1. Assigned segregated sandbox for paid enhance, debug, and custom packs. Not a fourth SKU. Not production. Not LIVE_PIN_OK.",
+      "2.85.0 first-class close bench is the operational sale face. Three planes: Institute twin, client sandbox, production. Remote proof stays #twin. Assigned stays false. Not a fourth SKU. Not LIVE_PIN_OK.",
       "Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.",
       "Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.",
       "Provision spine sits the Provision tab: Qualify \u2192 L1 \u2192 kit PASS \u2192 P-ADM \u2192 paid U-DUAL. Attached 0/0/0. U-DUAL never free.",

@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.84.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.85.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.84.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.85.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -356,6 +356,7 @@ Working well
 - 2.82.0 what you've been missing is catalog law: licensed copies versus the admit plane, whole-business capabilities that are not SKUs, tools around the plane that stay complements.
 - 2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app.
 - 2.84.0 client-assigned sandbox twin is the sale path. Remote demo on the Institute twin. Close is signed L1. Assigned segregated sandbox for paid enhance, debug, and custom packs. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
+- 2.85.0 first-class close bench is the operational sale face. Three planes: Institute twin, client sandbox, production. Remote proof stays #twin. Assigned stays false. Not a fourth SKU. Not LIVE_PIN_OK.
 - Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.
 - Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.
 - Provision spine sits the Provision tab: Qualify → L1 → kit PASS → P-ADM → paid U-DUAL. Attached 0/0/0. U-DUAL never free.
@@ -405,6 +406,7 @@ Could be improved — without inventing a fourth SKU
 - What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.
 - Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
 - Client-assigned sandbox twin sits on the sale site after the product. Remote demo stays #twin. Close is signed L1. Assigned stays false until a real L1. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
+- First-class close bench sits on #path: three planes, qualify/proof/close/assign console. It cannot invent Acme or auto-promote. Not a fourth SKU. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -457,6 +459,7 @@ Objection cards
 - We already have dual control. — You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.
 - We need a real managed website. — This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.
 - Just give us a shared demo tenant we can keep. — The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.
+- Just flip the demo live. — The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.
 
 CISO posture — holds
 
@@ -524,6 +527,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 52. [tree] What you've been missing — Ship 2.82.0: sale-site #have contrast of you already have vs you've been missing. Whole-business capabilities are not SKUs. Tools around the plane stay complements. Not a fourth SKU. Not #missing. Not LIVE_PIN_OK.
 - 53. [tree] Managed first-class face — Ship 2.83.0: first-class product, ninety-minute demo, and managed static website. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
 - 54. [tree] Client-assigned sandbox twin — Ship 2.84.0: client twin is a sale path, not a SKU. Remote demo on the Institute twin. Close is signed L1. Assigned sandbox for paid enhance. Not production. Not LIVE_PIN_OK.
+- 55. [tree] First-class close bench — Ship 2.85.0: first-class close bench on #path. Three planes. Remote proof. Signed L1. Assigned sandbox. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
 
 ## What happens next
 

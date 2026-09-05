@@ -38,7 +38,8 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="path-console"' in html
     assert "paintClientTwin" in js
     assert 'href="#path">Client twin</a>' in html
-    assert "From proof to a client twin" in html
+    assert "Close on a client twin" in html
+    assert 'id="close-console"' in html
     assert "Assigned sandbox" in html
     assert "fourth SKU" in html
     assert 'href="/path"' not in html
@@ -157,7 +158,7 @@ def test_client_twin_fail_closed():
 
     def upgrade(cat):
         for item in cat["expert_review"]["upgrades"]:
-            if item.get("n") == 54:
+            if item.get("n") == 55:
                 item["do"] = "Ship a sandbox demo."
 
     for mutator in (

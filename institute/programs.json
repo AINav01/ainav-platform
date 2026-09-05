@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.84.0",
+  "release": "2.85.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -230,6 +230,8 @@
     "azure_site": "ainav-institute",
     "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
     "client_twin_is_sku": false,
+    "close_bench": true,
+    "close_is_sku": false,
     "cms": false,
     "custom_domain_claimed": false,
     "demo_is_sku": false,

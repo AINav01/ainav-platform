@@ -15,10 +15,10 @@ from ainav.proof_day import run_proof_day
 
 def test_release_is_271():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.84.0"
+    assert cat["entity"]["release"] == "2.85.0"
     assert "pending bind" in cat["equations"]["interface"]
     assert "same l1" in cat["equations"]["motion"].lower()
-    assert cat["proof_day"]["grant_ttl_seconds"] == 5400
+    assert cat["proof_day"]["grant_ttl_seconds"] == 5500
     assert cat["proof_day"]["lab_oids_are_not_named_seats"] is True
 
 
@@ -160,7 +160,7 @@ def test_proof_day_ttl_does_not_move_policy_hash():
     assert lock.grant_ttl_seconds is None
     assert lock.policy_hash == "79f359756ac2139053260c06ca6a09e18113059b0ba7d0d67f6b8956e47e98ff"
     out = run_proof_day("ttl-271")
-    assert out["grant_ttl_seconds"] == 5400
+    assert out["grant_ttl_seconds"] == 5500
     assert out["grant_ttl_outside_digest"] is True
     assert out["live_pin_ok"] is False
     assert out["signed_l1"] is False

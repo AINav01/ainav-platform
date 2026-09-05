@@ -243,7 +243,7 @@ def public_search() -> dict[str, Any]:
             "id": "path",
             "title": "Client twin",
             "href": "index.html#path",
-            "text": "Qualify, remote proof, close L1, assigned segregated sandbox. Paid enhance on that twin. Not a fourth SKU. Not production.",
+            "text": "First-class close bench. Three planes. Qualify, remote proof, close L1, assigned sandbox. Not a fourth SKU. Not production.",
         },
     ]
     return {

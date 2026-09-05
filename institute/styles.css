@@ -291,7 +291,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #class-glance { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #class-glance { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);
@@ -1117,6 +1117,23 @@ table.law tr[data-group] th {
 .first-class article[data-lane="managed"] {
   background: color-mix(in srgb, var(--azure) 10%, var(--paper));
 }
+.first-class article[data-lane="path"] {
+  background: color-mix(in srgb, var(--void) 82%, #1f2a24);
+  color: var(--void-ink);
+  border-top-color: var(--gold-2);
+}
+.first-class article[data-lane="path"] h3 {
+  color: #fff;
+}
+.first-class article[data-lane="path"] p,
+.first-class article[data-lane="path"] .class-kicker,
+.first-class article[data-lane="path"] .note,
+.first-class article[data-lane="path"] a {
+  color: var(--gold-2);
+}
+.first-class article[data-lane="path"] #class-path {
+  color: var(--void-ink);
+}
 .demo-console {
   margin-top: 1.5rem;
   padding: 1.25rem 1.15rem 1.4rem;
@@ -1142,6 +1159,7 @@ table.law tr[data-group] th {
 }
 @media (min-width: 700px) {
   .demo-stages { grid-template-columns: repeat(3, 1fr); }
+  .path-stages-rail { grid-template-columns: repeat(4, 1fr); }
 }
 .demo-stages li {
   display: flex;
@@ -1185,6 +1203,29 @@ table.law tr[data-group] th {
   background: #1a1712;
   color: #d8d2c6;
   border: 1px solid color-mix(in srgb, var(--gold-2) 22%, transparent);
+}
+.path-rail li[data-plane="institute"] {
+  background: var(--void);
+  color: var(--void-ink);
+  border-color: var(--void);
+}
+.path-rail li[data-plane="institute"]::before,
+.path-rail li[data-plane="client"]::before { color: var(--gold-2); }
+.path-rail li[data-plane="institute"] span,
+.path-rail li[data-plane="client"] span { color: #d8d2c6; }
+.path-rail li[data-plane="client"] {
+  background: color-mix(in srgb, var(--void) 78%, #1f2a24);
+  color: var(--void-ink);
+  border-color: color-mix(in srgb, var(--gold-2) 28%, transparent);
+}
+.path-rail li[data-plane="production"] {
+  border-top: 3px solid var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+.close-console .ask[href] {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 .product-stage article[data-sku] {
   border-top: 3px solid var(--gold);
