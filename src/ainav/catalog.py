@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 53:
-        raise IntegrityError("expert review needs 16–53 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 54:
+        raise IntegrityError("expert review needs 16–54 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1177,6 +1177,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         51: ("twin website", "live_pin_ok"),
         52: ("been missing", "live_pin_ok"),
         53: ("first-class", "live_pin_ok"),
+        54: ("client twin", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1214,6 +1215,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep what you've been missing and you already have", reason_code="CATALOG_REVIEW")
     if "managed first-class" not in blob or "dynamic app" not in blob or "/demo" not in blob:
         raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
+    if "client-assigned" not in blob or "segregated" not in blob or "client twin" not in blob:
+        raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1252,10 +1255,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("qualify must walk away from a CMS, a fourth SKU, and wow-as-product", reason_code="CATALOG_REVIEW")
     if "dynamic" not in walk or "calendly" not in walk:
         raise IntegrityError("qualify must walk away from a dynamic app and Calendly as the demo", reason_code="CATALOG_REVIEW")
+    if "shared twin" not in walk or "client twin" not in walk:
+        raise IntegrityError("qualify must walk away from a shared twin as production and a client twin as a SKU", reason_code="CATALOG_REVIEW")
     if "two existing treasury" not in must or "one title" not in must:
         raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
     objections = {item.get("id"): item for item in success.get("objections") or []}
-    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed"):
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed", "path"):
         if needed not in objections:
             raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -1283,6 +1288,10 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not mint a fourth SKU, sell a CMS, or treat owner-missing as the sale wow", reason_code="CATALOG_REVIEW")
     if "dynamic app" not in does_not or "calendly" not in does_not:
         raise IntegrityError("CISO posture does not sell a dynamic app or Calendly as the demo", reason_code="CATALOG_REVIEW")
+    if "institute twin" not in does_not or "client production" not in does_not:
+        raise IntegrityError("CISO posture does not treat the Institute twin as client production", reason_code="CATALOG_REVIEW")
+    if "client twin" not in does_not:
+        raise IntegrityError("CISO posture does not mint a fourth SKU as the client twin", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1319,6 +1328,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_market_position(success.get("market_position"))
     _validate_what_was_missing(success.get("what_was_missing"))
     _validate_managed_face(success.get("managed_face"))
+    _validate_client_twin(success.get("client_twin"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1501,6 +1511,49 @@ def _validate_managed_face(body: Any) -> None:
     note = str(face.get("note") or "").lower()
     if "webflow" not in note or "live_pin_ok" not in note:
         raise IntegrityError("managed-face note refuses Webflow and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+
+
+def _validate_client_twin(body: Any) -> None:
+    twin = _as_dict(body, "client_twin")
+    if twin.get("kind") != "ainav.client_twin.v1":
+        raise IntegrityError("client_twin kind is ainav.client_twin.v1", reason_code="CATALOG_REVIEW")
+    if twin.get("sku") is True or twin.get("fourth_sku") is True or twin.get("assigned") is True:
+        raise IntegrityError("client twin is not a SKU and is not assigned", reason_code="CATALOG_REVIEW")
+    if twin.get("launch") is True or twin.get("production") is True:
+        raise IntegrityError("client twin is not launch or production", reason_code="CATALOG_REVIEW")
+    if twin.get("live") is True or twin.get("live_pin_ok") is True:
+        raise IntegrityError("client twin cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if twin.get("named_client") is not None:
+        raise IntegrityError("client twin cannot invent a named client", reason_code="CATALOG_REVIEW")
+    if int(twin.get("count") or 0) != 0:
+        raise IntegrityError("client twin count stays zero until a real L1", reason_code="CATALOG_REVIEW")
+    if twin.get("do_not_invent_names") is not True:
+        raise IntegrityError("client twin cannot invent names", reason_code="CATALOG_REVIEW")
+    lede = str(twin.get("lede") or "").lower()
+    if "client-assigned" not in lede or "segregated" not in lede or "sandbox" not in lede:
+        raise IntegrityError("client-twin lede is a client-assigned segregated sandbox", reason_code="CATALOG_REVIEW")
+    stages = " ".join(str(item).lower() for item in twin.get("stages") or [])
+    for stem in ("qualify", "remote proof", "close l1", "assigned sandbox", "paid enhance"):
+        if stem not in stages:
+            raise IntegrityError("client-twin stages keep qualify, remote proof, close L1, assigned sandbox", reason_code="CATALOG_REVIEW")
+    is_yes = " ".join(str(item).lower() for item in twin.get("is") or [])
+    is_not = " ".join(str(item).lower() for item in twin.get("is_not") or [])
+    if "sale path" not in is_yes or "institute twin" not in is_yes or "segregated" not in is_yes:
+        raise IntegrityError("client twin is a sale path on a segregated sandbox", reason_code="CATALOG_REVIEW")
+    if "fourth sku" not in is_not or "client production" not in is_not or "live_pin_ok" not in is_not:
+        raise IntegrityError("client twin is not a fourth SKU or production", reason_code="CATALOG_REVIEW")
+    enhance = str(twin.get("enhance") or "").lower()
+    deploy = str(twin.get("deploy") or "").lower()
+    if "hours" not in enhance or "never a sku" not in enhance:
+        raise IntegrityError("client-twin enhance is paid hours on the same plane", reason_code="CATALOG_REVIEW")
+    if "l1 kit" not in deploy or "live_pin_ok" not in deploy:
+        raise IntegrityError("client-twin deploy is the L1 kit, not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    site = str(twin.get("site") or "").lower()
+    if "write rail" not in site or "#path" not in site or "fourth sku" not in site:
+        raise IntegrityError("client-twin site stays after the product as #path", reason_code="CATALOG_REVIEW")
+    note = str(twin.get("note") or "").lower()
+    if "assigned stays false" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("client-twin note keeps assigned false and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -1877,8 +1930,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
@@ -2418,6 +2471,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_281(catalog, body)
     _validate_instrument_282(catalog, body)
     _validate_instrument_283(catalog, body)
+    _validate_instrument_284(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -2799,8 +2853,6 @@ def _validate_instrument_282(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_283(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.83.0":
-        raise IntegrityError("entity.release is 2.83.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.83.0" in item and "first-class" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.83.0 managed first-class face", reason_code="CATALOG_ENGINEERING")
@@ -2817,6 +2869,27 @@ def _validate_instrument_283(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "managed first-class" not in principles or "ninety-minute" not in principles:
         raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_284(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.84.0":
+        raise IntegrityError("entity.release is 2.84.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.84.0" in item and "client" in item and "twin" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.84.0 client-assigned sandbox twin", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if str(site.get("path_href") or "") != "#path":
+        raise IntegrityError("2.84.0 sale path is #path", reason_code="CATALOG_PLANE")
+    if site.get("client_twin_is_sku") is True:
+        raise IntegrityError("2.84.0 client twin is not a SKU", reason_code="CATALOG_PLANE")
+    twin = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_twin") or {}
+    if twin.get("kind") != "ainav.client_twin.v1":
+        raise IntegrityError("2.84.0 client_twin kind", reason_code="CATALOG_REVIEW")
+    if twin.get("assigned") is True or twin.get("production") is True or twin.get("sku") is True:
+        raise IntegrityError("2.84.0 client twin is not assigned, production, or a SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "client-assigned" not in principles or "segregated" not in principles:
+        raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

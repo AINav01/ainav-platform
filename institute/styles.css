@@ -291,7 +291,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #class-glance { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #class-glance { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);

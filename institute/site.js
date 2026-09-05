@@ -1867,6 +1867,7 @@
     paintMarketPosition(success.market_position);
     paintWhatWasMissing(success.what_was_missing);
     paintManagedFace(success.managed_face);
+    paintClientTwin(success.client_twin);
   }
 
   function paintHumanControl(control) {
@@ -1954,6 +1955,37 @@
     set("class-managed", face.managed);
     set("class-note", face.note);
     set("product-lede", face.product);
+  }
+
+  function paintClientTwin(twin) {
+    if (
+      !twin ||
+      twin.live ||
+      twin.live_pin_ok ||
+      twin.sku ||
+      twin.fourth_sku ||
+      twin.assigned ||
+      twin.launch ||
+      twin.production ||
+      twin.named_client
+    ) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("path-lede", twin.lede);
+    set("path-enhance", twin.enhance);
+    set("path-deploy", twin.deploy);
+    set("path-site", twin.site);
+    set("path-note", twin.note);
+    set("class-path", twin.lede);
+    set("path-assigned", twin.assigned ? "Yes" : "No");
+    set("path-named", twin.named_client || "None");
+    replacePlain("path-stages", twin.stages);
+    replacePlain("path-is", twin.is);
+    replacePlain("path-not", twin.is_not);
   }
 
   function replacePlain(id, items) {

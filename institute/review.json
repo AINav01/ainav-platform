@@ -307,6 +307,7 @@
       "2.81.0 Institute twin website for review: twin.html on Azure SWA. --publish-twin updates the twin only. --publish-institute stays launch_not_ready. Cloudflare apex stays empty 404. Gold 99 stays the floor. A green check is not LIVE_PIN_OK",
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements. #have is the sale wow. #missing stays owner-honest. Not a fourth SKU. A green check is not LIVE_PIN_OK",
       "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app. A green check is not LIVE_PIN_OK",
+      "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -372,7 +373,8 @@
       "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.",
       "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.",
       "What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.",
-      "Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK."
+      "Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.",
+      "Client-assigned sandbox twin sits on the sale site after the product. Remote demo stays #twin. Close is signed L1. Assigned stays false until a real L1. Not a fourth SKU. Not production. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -436,7 +438,9 @@
           "Sell a CMS",
           "Treat owner-missing as the sale wow",
           "Sell a dynamic app",
-          "Treat Calendly as the demo"
+          "Treat Calendly as the demo",
+          "Institute twin as client production",
+          "A fourth SKU as the client twin"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -446,6 +450,49 @@
           "Mailbox is not an Entra oid and not a click"
         ],
         "lede": "CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write."
+      },
+      "client_twin": {
+        "assigned": false,
+        "count": 0,
+        "deploy": "Deployment is the L1 kit on a BC sandbox, then P-ADM. Production write only if the owner marks LIVE_PIN_OK. This plane cannot mark it.",
+        "do_not_invent_names": true,
+        "enhance": "Paid packs and FFS hours on the assigned client twin. Continuous enhancement and debug stay on that sandbox. Custom features are pay-for-service on the same admit plane. Never a SKU.",
+        "fourth_sku": false,
+        "is": [
+          "A sale path, not a product SKU",
+          "Remote demo on the Institute twin",
+          "Client-assigned after qualify or with L1",
+          "Segregated sandbox \u2014 not shared multi-tenant production",
+          "The place for paid enhance, debug, and custom packs"
+        ],
+        "is_not": [
+          "A fourth SKU",
+          "The Institute review twin as client production",
+          "Production write or LIVE_PIN_OK",
+          "A named client until a real L1",
+          "Auto-promote from sandbox to production",
+          "Calendly, HubSpot, or Intercom as the close",
+          "Hours that attach free U-DUAL"
+        ],
+        "kind": "ainav.client_twin.v1",
+        "launch": false,
+        "lede": "The sale path is qualify, remote proof, tailor, close L1, kit, assigned sandbox, paid enhance. The Institute twin is the remote demo. The client twin is a client-assigned segregated sandbox after qualify or with L1. Not production. Not a SKU.",
+        "live": false,
+        "live_pin_ok": false,
+        "named_client": null,
+        "note": "Assigned stays false. Named client stays none. Count stays 0. Not production. Not LIVE_PIN_OK.",
+        "production": false,
+        "site": "This band sits after the product. First glance stays the write rail. Demo is #twin. Path is #path. Not a /demo route. Not a fourth SKU.",
+        "sku": false,
+        "stages": [
+          "Qualify \u2014 ICP and walk-away. No invented inbox.",
+          "Remote proof \u2014 ninety minutes on the Institute twin. Browser. Graph is not called. Not Calendly.",
+          "Tailor \u2014 same plane, client SOD pair and journal class. Do not invent a named customer.",
+          "Close L1 \u2014 signed order. Owner-only. Still open.",
+          "Kit \u2014 L1 kit on the BC sandbox. PASS then P-ADM.",
+          "Assigned sandbox \u2014 client-specific segregated digital twin. Not the Institute review twin. Not production.",
+          "Paid enhance \u2014 packs and FFS hours on that client twin. Hours deepen the same admit plane. Never mint a SKU. Hours never attach free U-DUAL."
+        ]
       },
       "continuity": {
         "lede": "If either seat is missing, the write does not land. That is the product working.",
@@ -633,6 +680,11 @@
           "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.",
           "hear": "We need a real managed website.",
           "id": "managed"
+        },
+        {
+          "answer": "The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.",
+          "hear": "Just give us a shared demo tenant we can keep.",
+          "id": "path"
         }
       ],
       "qualify": {
@@ -664,7 +716,7 @@
           "CMS as the product",
           "Fourth SKU as what you've been missing",
           "Dynamic app as the Institute",
-          "Calendly as the demo"
+          "Calendly as the demo, a shared twin as production, or a client twin as a SKU"
         ]
       },
       "seat_b": {
@@ -1180,6 +1232,14 @@
         "n": 53,
         "title": "Managed first-class face",
         "who": "tree"
+      },
+      {
+        "do": "Ship 2.84.0: client twin is a sale path, not a SKU. Remote demo on the Institute twin. Close is signed L1. Assigned sandbox for paid enhance. Not production. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 54,
+        "title": "Client-assigned sandbox twin",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -1203,7 +1263,7 @@
       "Independence is the real competitive pin: the vendor of the drafting AI is the worst failsafe for that AI. Catalog refuses Copilot, Agentforce, Joule, Credo-class, and Cordum-class aliases as SKUs.",
       "Institute not-the-gate now names BC Workflow User Groups and in-harness governors next to Teams, PIM, and Copilot. Insulation lists what they can copy. This is not a patent.",
       "Institute first screen shows substitute vs Job C in one glance. Job C is a SoR write-gate, not agent inventory.",
-      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, what you've been missing, and the managed first-class face.",
+      "Success program is catalog law: bake-off win/lose, qualify and walk away, objection cards, CISO posture, seat B meaning, one-seat-missing continuity, what you've been missing, the managed first-class face, and the client-assigned sandbox twin.",
       "Stack walk is catalog law: every hop has an admin link and an honest status. Cloudflare is DNS/edge, not a hop on the privileged write.",
       "Institute public face is a catalog-honest static sale. First glance is a write rail, Job C vs not-the-gate, and three SKUs. Primary nav is the write, proof day, bake-off, dashboard, and owner. The owner book is not the first glance.",
       "Cloudflare Pro is the edge plan, not a SKU. This Cloud Agent cannot activate it. MX stays DNS-only. Apex challenge is not Institute launch.",
@@ -1240,6 +1300,7 @@
       "2.81.0 Institute twin website is the review surface. twin.html integrates the boards. --publish-twin is not launch. Cloudflare apex stays empty.",
       "2.82.0 what you've been missing is catalog law: licensed copies versus the admit plane, whole-business capabilities that are not SKUs, tools around the plane that stay complements.",
       "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application. Not a CMS. Not a dynamic app.",
+      "2.84.0 client-assigned sandbox twin is the sale path. Remote demo on the Institute twin. Close is signed L1. Assigned segregated sandbox for paid enhance, debug, and custom packs. Not a fourth SKU. Not production. Not LIVE_PIN_OK.",
       "Gaps board names in-tree closed versus owner-only open. This plane cannot invent an entra oid, a seat click, or LIVE_PIN_OK.",
       "Floor visibility is catalog proof_day_floor view_shows. Client stays lean. Encyclopedia stays a drawer.",
       "Provision spine sits the Provision tab: Qualify \u2192 L1 \u2192 kit PASS \u2192 P-ADM \u2192 paid U-DUAL. Attached 0/0/0. U-DUAL never free.",

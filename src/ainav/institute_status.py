@@ -172,6 +172,8 @@ def public_status() -> dict[str, Any]:
             "cms": False,
             "demo_path": site.get("demo_path") or "#twin",
             "demo_is_sku": False,
+            "path_href": site.get("path_href") or "#path",
+            "client_twin_is_sku": False,
         },
         "bc": {
             "connection": "bc.premium",

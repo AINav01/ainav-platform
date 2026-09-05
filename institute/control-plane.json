@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.83.0"
+    "release": "2.84.0"
   },
   "communications": [
     {
@@ -1887,6 +1887,10 @@
             {
               "href": "#product",
               "label": "Product"
+            },
+            {
+              "href": "#path",
+              "label": "Client twin"
             }
           ],
           "name": "Sale"
@@ -2032,7 +2036,7 @@
         }
       ],
       "sku": false,
-      "thesis": "The Institute is a catalog-honest static application. Managed first-class face: catalog is law, gold 99, twin publish. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not a dynamic app. Not LIVE_PIN_OK."
+      "thesis": "The Institute is a catalog-honest static application. Managed first-class face: catalog is law, gold 99, twin publish. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The sale path is qualify, remote proof, close L1, then a client-assigned segregated sandbox. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not a dynamic app. Not LIVE_PIN_OK."
     },
     "scopes": [
       {
@@ -2103,6 +2107,7 @@
       "2.81.0 Institute twin website for review: twin.html on Azure SWA, --publish-twin is not launch, --publish-institute stays launch_not_ready, Cloudflare apex stays empty 404; not from this plane",
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements; #have is the sale wow; #missing stays owner-honest; not a fourth SKU; not from this plane",
       "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application; not a CMS; not a dynamic app; not from this plane",
+      "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance; not a fourth SKU; not production; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -3813,7 +3818,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.83.0",
+  "release": "2.84.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4127,7 +4132,9 @@
         "Sell a CMS",
         "Treat owner-missing as the sale wow",
         "Sell a dynamic app",
-        "Treat Calendly as the demo"
+        "Treat Calendly as the demo",
+        "Institute twin as client production",
+        "A fourth SKU as the client twin"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4137,6 +4144,49 @@
         "Mailbox is not an Entra oid and not a click"
       ],
       "lede": "CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write."
+    },
+    "client_twin": {
+      "assigned": false,
+      "count": 0,
+      "deploy": "Deployment is the L1 kit on a BC sandbox, then P-ADM. Production write only if the owner marks LIVE_PIN_OK. This plane cannot mark it.",
+      "do_not_invent_names": true,
+      "enhance": "Paid packs and FFS hours on the assigned client twin. Continuous enhancement and debug stay on that sandbox. Custom features are pay-for-service on the same admit plane. Never a SKU.",
+      "fourth_sku": false,
+      "is": [
+        "A sale path, not a product SKU",
+        "Remote demo on the Institute twin",
+        "Client-assigned after qualify or with L1",
+        "Segregated sandbox \u2014 not shared multi-tenant production",
+        "The place for paid enhance, debug, and custom packs"
+      ],
+      "is_not": [
+        "A fourth SKU",
+        "The Institute review twin as client production",
+        "Production write or LIVE_PIN_OK",
+        "A named client until a real L1",
+        "Auto-promote from sandbox to production",
+        "Calendly, HubSpot, or Intercom as the close",
+        "Hours that attach free U-DUAL"
+      ],
+      "kind": "ainav.client_twin.v1",
+      "launch": false,
+      "lede": "The sale path is qualify, remote proof, tailor, close L1, kit, assigned sandbox, paid enhance. The Institute twin is the remote demo. The client twin is a client-assigned segregated sandbox after qualify or with L1. Not production. Not a SKU.",
+      "live": false,
+      "live_pin_ok": false,
+      "named_client": null,
+      "note": "Assigned stays false. Named client stays none. Count stays 0. Not production. Not LIVE_PIN_OK.",
+      "production": false,
+      "site": "This band sits after the product. First glance stays the write rail. Demo is #twin. Path is #path. Not a /demo route. Not a fourth SKU.",
+      "sku": false,
+      "stages": [
+        "Qualify \u2014 ICP and walk-away. No invented inbox.",
+        "Remote proof \u2014 ninety minutes on the Institute twin. Browser. Graph is not called. Not Calendly.",
+        "Tailor \u2014 same plane, client SOD pair and journal class. Do not invent a named customer.",
+        "Close L1 \u2014 signed order. Owner-only. Still open.",
+        "Kit \u2014 L1 kit on the BC sandbox. PASS then P-ADM.",
+        "Assigned sandbox \u2014 client-specific segregated digital twin. Not the Institute review twin. Not production.",
+        "Paid enhance \u2014 packs and FFS hours on that client twin. Hours deepen the same admit plane. Never mint a SKU. Hours never attach free U-DUAL."
+      ]
     },
     "continuity": {
       "lede": "If either seat is missing, the write does not land. That is the product working.",
@@ -4324,6 +4374,11 @@
         "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.",
         "hear": "We need a real managed website.",
         "id": "managed"
+      },
+      {
+        "answer": "The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.",
+        "hear": "Just give us a shared demo tenant we can keep.",
+        "id": "path"
       }
     ],
     "qualify": {
@@ -4355,7 +4410,7 @@
         "CMS as the product",
         "Fourth SKU as what you've been missing",
         "Dynamic app as the Institute",
-        "Calendly as the demo"
+        "Calendly as the demo, a shared twin as production, or a client twin as a SKU"
       ]
     },
     "seat_b": {

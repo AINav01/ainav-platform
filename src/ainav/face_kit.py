@@ -239,6 +239,12 @@ def public_search() -> dict[str, Any]:
             "href": "index.html#twin",
             "text": "Ninety-minute proof day. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
         },
+        {
+            "id": "path",
+            "title": "Client twin",
+            "href": "index.html#path",
+            "text": "Qualify, remote proof, close L1, assigned segregated sandbox. Paid enhance on that twin. Not a fourth SKU. Not production.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

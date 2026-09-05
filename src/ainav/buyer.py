@@ -86,6 +86,7 @@ def success_program() -> dict[str, Any]:
         "market_position": dict(body.get("market_position") or {}),
         "what_was_missing": dict(body.get("what_was_missing") or {}),
         "managed_face": dict(body.get("managed_face") or {}),
+        "client_twin": dict(body.get("client_twin") or {}),
     }
 
 

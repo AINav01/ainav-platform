@@ -186,9 +186,9 @@ Same Job C lockfile. One consume ledger per client. Master never writes the clie
 ## Business operating system
 
 Price L1 against the unauthorized journal that two humans did not admit. AINav is the failsafe, not the AI. Prove it in ninety minutes. Keep with P-ADM. Deepen with paid U-DUAL. Other uses are desks on the same plane. Not a fourth SKU.
-- BD: ICP qualify → proof-day brief → ninety minutes → L1 week
-- Motion: qualify → proof day → sell L1 that week → kit PASS → attach P-ADM → offer paid U-DUAL
-- Services: Hours deepen the same admit plane. They never mint a SKU.
+- BD: ICP qualify → proof-day brief → ninety minutes on the Institute twin → L1 week. Walk if they want a shared twin as production.
+- Motion: qualify → remote proof on the Institute twin → tailor SOD → sell L1 that week → kit PASS → assign segregated client sandbox → attach P-ADM → offer paid U-DUAL and paid enhance on that twin
+- Services: Hours deepen the same admit plane on the assigned client twin. They never mint a SKU. Hours never attach free U-DUAL.
 - Economics: Pipeline math uses catalog list prices. It is not recognized revenue.
 - Complements are not SKUs. Industry packs and FFS hours are not SKUs.
 

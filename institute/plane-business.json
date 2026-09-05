@@ -589,6 +589,7 @@
       "2.81.0 Institute twin website for review: twin.html on Azure SWA, --publish-twin is not launch, --publish-institute stays launch_not_ready, Cloudflare apex stays empty 404; not from this plane",
       "2.82.0 what you've been missing: licensed copies versus the admit plane, whole-business capabilities are not SKUs, tools around the plane stay complements; #have is the sale wow; #missing stays owner-honest; not a fourth SKU; not from this plane",
       "2.83.0 managed first-class face: product is the admit plane, demo is the ninety-minute proof, website is a managed static application; not a CMS; not a dynamic app; not from this plane",
+      "2.84.0 client-assigned sandbox twin: remote demo on the Institute twin, close is signed L1, assigned segregated sandbox for paid enhance; not a fourth SKU; not production; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -856,6 +857,11 @@
       "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.",
       "hear": "We need a real managed website.",
       "id": "managed"
+    },
+    {
+      "answer": "The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.",
+      "hear": "Just give us a shared demo tenant we can keep.",
+      "id": "path"
     }
   ],
   "path": [
@@ -926,7 +932,7 @@
       "CMS as the product",
       "Fourth SKU as what you've been missing",
       "Dynamic app as the Institute",
-      "Calendly as the demo"
+      "Calendly as the demo, a shared twin as production, or a client twin as a SKU"
     ]
   },
   "recognized_revenue": 0,
@@ -937,7 +943,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.83.0",
+  "release": "2.84.0",
   "scenarios": [
     {
       "id": "l1_only",

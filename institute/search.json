@@ -64,8 +64,14 @@
       "id": "demo",
       "text": "Ninety-minute proof day. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
       "title": "First-class demo"
+    },
+    {
+      "href": "index.html#path",
+      "id": "path",
+      "text": "Qualify, remote proof, close L1, assigned segregated sandbox. Paid enhance on that twin. Not a fourth SKU. Not production.",
+      "title": "Client twin"
     }
   ],
-  "release": "2.83.0",
+  "release": "2.84.0",
   "sku": false
 }

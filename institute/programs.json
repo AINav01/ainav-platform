@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.83.0",
+  "release": "2.84.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -229,6 +229,7 @@
     "azure_location": "eastus2",
     "azure_site": "ainav-institute",
     "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+    "client_twin_is_sku": false,
     "cms": false,
     "custom_domain_claimed": false,
     "demo_is_sku": false,
@@ -240,6 +241,7 @@
     "managed": true,
     "name": "AINAV.Institute",
     "pages_is_host": false,
+    "path_href": "#path",
     "public_deploy_claimed": false,
     "public_edge": "cloudflare",
     "review_path": "twin.html",

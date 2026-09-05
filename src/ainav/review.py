@@ -353,6 +353,7 @@ def deep_dive(*, probe: bool = False) -> str:
     market = cat["expert_review"]["success"]["market_position"]
     have = cat["expert_review"]["success"]["what_was_missing"]
     managed = cat["expert_review"]["success"]["managed_face"]
+    client_twin = cat["expert_review"]["success"]["client_twin"]
     us_dv = cat["microsoft_stack"]["us_dataverse"]
     lines += [
         "",
@@ -367,6 +368,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"**What you've been missing.** {have['lede']} {have['site']} {have['note']}",
         "",
         f"**Managed first-class face.** {managed['lede']} {managed['product']} {managed['demo']} {managed['managed']}",
+        "",
+        f"**Client twin.** {client_twin['lede']} {client_twin['enhance']} {client_twin['deploy']} {client_twin['site']} {client_twin['note']}",
         "",
         f"**US Dataverse.** {us_dv['lede']} {us_dv['finding']} {us_dv['note']}",
         "",

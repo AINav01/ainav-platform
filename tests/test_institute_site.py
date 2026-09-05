@@ -258,6 +258,9 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="demo-console"' in html
     assert 'id="product-stage"' in html
     assert "paintManagedFace" in js
+    assert 'id="path"' in html
+    assert 'href="#path">Client twin</a>' in html
+    assert "paintClientTwin" in js
     assert "Substitute vs Job C" in html
     assert "Workflow User Groups" in html
     assert "1 mailbox / 0 oid" in html

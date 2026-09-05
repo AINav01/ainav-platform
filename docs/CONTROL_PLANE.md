@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.83.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.84.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -92,7 +92,7 @@ Walk away:
 - CMS as the product
 - Fourth SKU as what you've been missing
 - Dynamic app as the Institute
-- Calendly as the demo
+- Calendly as the demo, a shared twin as production, or a client twin as a SKU
 
 ### Objection cards
 
@@ -108,6 +108,7 @@ Walk away:
 - **What's the five-year plan?** — The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.
 - **We already have dual control.** — You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.
 - **We need a real managed website.** — This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.
+- **Just give us a shared demo tenant we can keep.** — The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.
 
 ### CISO posture
 
@@ -135,6 +136,8 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Treat owner-missing as the sale wow
 - Does not: Sell a dynamic app
 - Does not: Treat Calendly as the demo
+- Does not: Institute twin as client production
+- Does not: A fourth SKU as the client twin
 
 ### Seat B meaning
 
@@ -258,7 +261,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.83.0.
+- As of: catalog release 2.84.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.

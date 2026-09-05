@@ -15,14 +15,14 @@ from ainav.microsoft.institute_publish import publish_institute, publish_twin
 
 def test_release_is_281_twin_website_for_review():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.83.0"
+    assert cat["entity"]["release"] == "2.84.0"
     assert cat["programs"]["website"]["twin_review"] is True
     assert cat["programs"]["website"]["review_path"] == "twin.html"
     assert cat["programs"]["website"]["authorized_release"] is False
     assert cat["programs"]["website"]["launch_ready"] is False
     assert any("2.81.0" in item and "twin" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 53
+    assert len(cat["expert_review"]["upgrades"]) == 54
     assert upgrades[51]["who"] == "tree"
     assert upgrades[51]["done"] is True
     assert upgrades[51]["marks_live_pin"] is False
@@ -35,7 +35,7 @@ def test_release_is_281_twin_website_for_review():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
-    assert "2.83.0" in html
+    assert "2.84.0" in html
     assert 'id="twin-review"' in html
     assert 'href="twin.html"' in html
     assert "Twin review" in twin
@@ -46,9 +46,9 @@ def test_release_is_281_twin_website_for_review():
     assert 'href="#twin-review"' not in nav
     assert "twin-review-status" in js
     dash = public_dashboard()
-    assert dash["release"] == "2.83.0"
+    assert dash["release"] == "2.84.0"
     status = public_status()
-    assert status["release"] == "2.83.0"
+    assert status["release"] == "2.84.0"
     assert status["website"]["twin_review"] is True
     assert status["website"]["review_path"] == "twin.html"
     assert status["website"]["authorized_release"] is False
