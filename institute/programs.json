@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.94.0",
+  "release": "2.95.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -268,9 +268,11 @@
     "review_path": "twin.html",
     "twin_host": "azure.swa",
     "twin_review": true,
+    "universe_day_live": false,
     "universe_href": "#universe",
     "universe_is_sku": false,
     "universe_operable": true,
+    "universe_sit_down": true,
     "universe_wells_live": false
   }
 }

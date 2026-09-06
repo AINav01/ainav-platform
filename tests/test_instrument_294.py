@@ -16,7 +16,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_294_operable_universe():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.94.0"
+    assert cat["entity"]["release"] == "2.95.0"
     universe = cat["expert_review"]["success"]["client_universe"]
     assert universe["operable"] is True
     assert universe["refuse_is_visible"] is True
@@ -45,7 +45,7 @@ def test_release_is_294_operable_universe():
     assert "honest zeros" in principles
     assert "refuse is visible" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 64
+    assert len(cat["expert_review"]["upgrades"]) == 65
     assert upgrades[64]["who"] == "tree"
     assert upgrades[64]["done"] is True
     assert upgrades[64]["marks_live_pin"] is False
@@ -59,7 +59,7 @@ def test_release_is_294_operable_universe():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "2.94.0" in html
+    assert "2.95.0" in html
     assert 'id="universe-wells"' in html
     assert 'id="universe-groups"' in html
     assert 'id="universe-refuse"' in html
@@ -82,9 +82,9 @@ def test_release_is_294_operable_universe():
     assert "Mark <b>unnamed</b>" in app or "unnamed" in app
     assert 'id="app-floor-universe"' in app
     dash = public_dashboard()
-    assert dash["release"] == "2.94.0"
+    assert dash["release"] == "2.95.0"
     status = public_status()
-    assert status["release"] == "2.94.0"
+    assert status["release"] == "2.95.0"
     assert status["website"]["universe_operable"] is True
     assert status["website"]["universe_wells_live"] is False
     held = publish_institute()
@@ -155,7 +155,9 @@ def test_instrument_294_fail_closed():
             validate_catalog(cat)
     edge = load_catalog()
     hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "2.93.0"
+    hole["engineering"]["closed_in_tree"] = [
+        item for item in hole["engineering"]["closed_in_tree"] if "2.94.0" not in item
+    ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_294(hole, hole["plane_interface"])
     live = copy.deepcopy(edge)

@@ -381,7 +381,7 @@ def deep_dive(*, probe: bool = False) -> str:
         "",
         f"**Brand.** {brand['lede']} {brand['site']} {brand['note']}",
         "",
-        f"**Client universe.** {client_universe['lede']} {client_universe['site']} {client_universe['note']} Honest zeros. Refuse is visible.",
+        f"**Client universe.** {client_universe['lede']} {client_universe['site']} {client_universe['note']} Honest zeros. Refuse is visible. Sit-down client day.",
         "",
         f"**Operating day.** Qualify, proof, close, assign, service, launch gate. Gold is not launch. Launch stays false.",
         "",

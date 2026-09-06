@@ -199,6 +199,8 @@ def public_status() -> dict[str, Any]:
             "universe_href": site.get("universe_href") or "#universe",
             "universe_operable": bool(site.get("universe_operable")),
             "universe_wells_live": False,
+            "universe_sit_down": bool(site.get("universe_sit_down")),
+            "universe_day_live": False,
         },
         "bc": {
             "connection": "bc.premium",

@@ -1140,8 +1140,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 64:
-        raise IntegrityError("expert review needs 16–64 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 65:
+        raise IntegrityError("expert review needs 16–65 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1196,6 +1196,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         62: ("brand", "live_pin_ok"),
         63: ("universe", "live_pin_ok"),
         64: ("operable", "live_pin_ok"),
+        65: ("sit-down", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1261,6 +1262,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the segregated branded sandbox and not a /universe route", reason_code="CATALOG_REVIEW")
     if "operable client universe" not in blob or "honest zeros" not in blob or "refuse is visible" not in blob:
         raise IntegrityError("first-principles must keep the operable client universe, honest zeros, and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "sit-down client day" not in blob or "now is recorded" not in blob or "not a live named day" not in blob:
+        raise IntegrityError("first-principles must keep the sit-down client day", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1356,6 +1359,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat MFA as admit or invent a named client universe", reason_code="CATALOG_REVIEW")
     if "refuse as a live record" not in does_not or "wells as named records" not in does_not:
         raise IntegrityError("CISO posture does not treat refuse or universe wells as named records", reason_code="CATALOG_REVIEW")
+    if "sit-down day as a live named day" not in does_not or "seat b click on the day board" not in does_not:
+        raise IntegrityError("CISO posture does not treat the sit-down day as a live named day", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1953,6 +1958,65 @@ def _validate_client_universe(body: Any) -> None:
         raise IntegrityError("client universe rails walk to identify, control, close, governance, and packs", reason_code="CATALOG_REVIEW")
     if "honest zeros" not in site or "refuse is visible" not in site:
         raise IntegrityError("client universe site keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if universe.get("sit_down") is not True:
+        raise IntegrityError("client universe is a sit-down client day", reason_code="CATALOG_REVIEW")
+    if universe.get("day_is_live") is True or universe.get("day_invented") is True:
+        raise IntegrityError("sit-down client day is not a live named day", reason_code="CATALOG_REVIEW")
+    _validate_client_universe_day(universe.get("day"))
+    if universe.get("spine_states") != CLIENT_UNIVERSE_SPINE_STATES:
+        raise IntegrityError("client universe spine states stay ready, owner_only, blocked, after_l1", reason_code="CATALOG_REVIEW")
+    if "sit-down client day" not in site or "now / next / after l1" not in site:
+        raise IntegrityError("client universe site keeps the sit-down client day", reason_code="CATALOG_REVIEW")
+
+
+def _validate_client_universe_day(body: Any) -> None:
+    day = _as_dict(body, "client_universe_day")
+    if day.get("kind") != "ainav.client_universe_day.v1":
+        raise IntegrityError("client universe day kind is ainav.client_universe_day.v1", reason_code="CATALOG_REVIEW")
+    if day.get("live") is True or day.get("invented") is True or day.get("sku") is True:
+        raise IntegrityError("sit-down client day is not live, invented, or a SKU", reason_code="CATALOG_REVIEW")
+    lanes = [item for item in (day.get("lanes") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in lanes] != CLIENT_UNIVERSE_DAY_LANE_IDS:
+        raise IntegrityError("sit-down client day lanes are now, next, after_l1, blocked", reason_code="CATALOG_REVIEW")
+    by_id = {item.get("id"): item for item in lanes}
+    expected = {
+        "now": CLIENT_UNIVERSE_DAY_NOW_IDS,
+        "next": CLIENT_UNIVERSE_DAY_NEXT_IDS,
+        "after_l1": CLIENT_UNIVERSE_DAY_AFTER_IDS,
+        "blocked": CLIENT_UNIVERSE_DAY_BLOCKED_IDS,
+    }
+    hrefs = {}
+    for lane_id, item_ids in expected.items():
+        items = [row for row in (by_id[lane_id].get("items") or []) if isinstance(row, dict)]
+        if [row.get("id") for row in items] != item_ids:
+            raise IntegrityError(f"sit-down client day {lane_id} items stay exact", reason_code="CATALOG_REVIEW")
+        for row in items:
+            hrefs[row.get("id")] = str(row.get("href") or "")
+    if hrefs != CLIENT_UNIVERSE_DAY_HREFS:
+        raise IntegrityError("sit-down client day walks to identify, control, close, and owner missing", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{row.get('name') or ''} {row.get('note') or ''}".lower()
+        for lane in lanes
+        for row in (lane.get("items") or [])
+        if isinstance(row, dict)
+    )
+    for stem in (
+        "chodnett@ainav.institute",
+        "mailbox is not oid",
+        "identify is not admit",
+        "honest zeros",
+        "she clicks",
+        "cannot invent an oid",
+        "unnamed until signed l1",
+        "never shared",
+        "refused",
+        "not from this plane",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"sit-down client day must keep {stem}", reason_code="CATALOG_REVIEW")
+    note = str(day.get("note") or "").lower()
+    if "sit-down client day" not in note or "not a live named day" not in note:
+        raise IntegrityError("sit-down client day note stays honest", reason_code="CATALOG_REVIEW")
 
 
 def _validate_operating_day(body: Any) -> None:
@@ -2079,6 +2143,32 @@ CLIENT_UNIVERSE_HREFS = {
     "keep": "#product",
     "deepen": "#product",
     "packs": "#packs",
+}
+CLIENT_UNIVERSE_DAY_LANE_IDS = ["now", "next", "after_l1", "blocked"]
+CLIENT_UNIVERSE_DAY_NOW_IDS = ["mailbox", "identify", "zeros"]
+CLIENT_UNIVERSE_DAY_NEXT_IDS = ["seat_b", "oid"]
+CLIENT_UNIVERSE_DAY_AFTER_IDS = ["named", "assigned", "records"]
+CLIENT_UNIVERSE_DAY_BLOCKED_IDS = ["mfa_admit", "named_now", "live_pin"]
+CLIENT_UNIVERSE_DAY_HREFS = {
+    "mailbox": "identify.html",
+    "identify": "identify.html",
+    "zeros": "#universe",
+    "seat_b": "#control",
+    "oid": "identify.html",
+    "named": "#path",
+    "assigned": "#path",
+    "records": "#governance",
+    "mfa_admit": "#universe",
+    "named_now": "#universe",
+    "live_pin": "#missing",
+}
+CLIENT_UNIVERSE_SPINE_STATES = {
+    "identify": "ready",
+    "admit": "owner_only",
+    "write": "blocked",
+    "record": "blocked",
+    "keep": "after_l1",
+    "pack": "after_l1",
 }
 MICROSOFT_DAY_ON = {
     "qualify": ["m365.e7", "teams.enterprise", "teams.premium", "entra.id", "entra.pim"],
@@ -3117,6 +3207,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_292(catalog, body)
     _validate_instrument_293(catalog, body)
     _validate_instrument_294(catalog, body)
+    _validate_instrument_295(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3795,8 +3886,6 @@ def _validate_instrument_293(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_294(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.94.0":
-        raise IntegrityError("entity.release is 2.94.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.94.0" in item and "operable" in item and "universe" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.94.0 operable client universe", reason_code="CATALOG_ENGINEERING")
@@ -3831,6 +3920,38 @@ def _validate_instrument_294(catalog: dict[str, Any], body: dict[str, Any]) -> N
     ops = str((catalog.get("operations") or {}).get("note") or "").lower()
     if "sku attach" not in ops or "#universe" not in ops or "honest zeros" not in ops:
         raise IntegrityError("2.94.0 operations note keeps SKU attach, #universe, and honest zeros", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_295(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.95.0":
+        raise IntegrityError("entity.release is 2.95.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.95.0" in item and "sit-down" in item and "day" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.95.0 sit-down client day", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("universe_sit_down") is not True or site.get("universe_operable") is not True:
+        raise IntegrityError("2.95.0 website has a sit-down client day", reason_code="CATALOG_PLANE")
+    if site.get("universe_is_sku") is True or site.get("universe_day_live") is True:
+        raise IntegrityError("2.95.0 sit-down day is not a SKU and is not live", reason_code="CATALOG_PLANE")
+    universe = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_universe") or {}
+    if universe.get("sit_down") is not True or universe.get("day_is_live") is True or universe.get("day_invented") is True:
+        raise IntegrityError("2.95.0 sit-down client day stays not live and not invented", reason_code="CATALOG_REVIEW")
+    if universe.get("spine_states") != CLIENT_UNIVERSE_SPINE_STATES:
+        raise IntegrityError("2.95.0 spine states stay ready, owner_only, blocked, after_l1", reason_code="CATALOG_REVIEW")
+    day = universe.get("day") or {}
+    if day.get("kind") != "ainav.client_universe_day.v1" or day.get("live") is True:
+        raise IntegrityError("2.95.0 sit-down day kind stays catalog law and not live", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (day.get("lanes") or []) if isinstance(item, dict)] != CLIENT_UNIVERSE_DAY_LANE_IDS:
+        raise IntegrityError("2.95.0 sit-down day lanes stay now, next, after_l1, blocked", reason_code="CATALOG_REVIEW")
+    site_note = str(universe.get("site") or "").lower()
+    if "sit-down client day" not in site_note or "now / next / after l1" not in site_note:
+        raise IntegrityError("2.95.0 universe site keeps the sit-down client day", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "sit-down client day" not in principles or "not a live named day" not in principles:
+        raise IntegrityError("first-principles must keep the sit-down client day", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#universe" not in ops or "sit-down client day" not in ops:
+        raise IntegrityError("2.95.0 operations note keeps SKU attach, #universe, and sit-down client day", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -2249,7 +2249,9 @@
       universe.mfa_admits ||
       universe.certified ||
       universe.forecast ||
-      universe.wells_are_live
+      universe.wells_are_live ||
+      universe.day_is_live ||
+      universe.day_invented
     ) {
       return;
     }
@@ -2291,6 +2293,32 @@
     (universe.surfaces || []).forEach(function (item) {
       if (item && item.id) byId[item.id] = item;
     });
+    var dayRoot = document.getElementById("universe-day");
+    if (dayRoot && universe.day && universe.day.lanes && !universe.day.live && !universe.day.invented) {
+      dayRoot.textContent = "";
+      universe.day.lanes.forEach(function (lane) {
+        if (!lane) return;
+        var section = document.createElement("section");
+        section.setAttribute("data-lane", lane.id || "");
+        var title = document.createElement("h3");
+        title.textContent = lane.name || lane.id || "";
+        section.appendChild(title);
+        var list = document.createElement("ol");
+        (lane.items || []).forEach(function (item) {
+          if (item) list.appendChild(rail(item));
+        });
+        section.appendChild(list);
+        dayRoot.appendChild(section);
+      });
+    }
+    var spine = document.getElementById("universe-spine");
+    var states = universe.spine_states || {};
+    if (spine) {
+      Object.keys(states).forEach(function (id) {
+        var node = spine.querySelector('[data-rail="' + id + '"]');
+        if (node) node.setAttribute("data-state", states[id]);
+      });
+    }
     if (groupsRoot && universe.groups && universe.groups.length) {
       groupsRoot.textContent = "";
       universe.groups.forEach(function (group) {

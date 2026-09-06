@@ -16,7 +16,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_293_client_universe():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.94.0"
+    assert cat["entity"]["release"] == "2.95.0"
     universe = cat["expert_review"]["success"]["client_universe"]
     assert universe["kind"] == "ainav.client_universe.v1"
     assert universe["sku"] is False
@@ -50,7 +50,7 @@ def test_release_is_293_client_universe():
     assert "assigned client universe" in missing
     assert "named client" in missing
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 64
+    assert len(cat["expert_review"]["upgrades"]) == 65
     assert upgrades[63]["who"] == "tree"
     assert upgrades[63]["done"] is True
     assert upgrades[63]["marks_live_pin"] is False
@@ -64,7 +64,7 @@ def test_release_is_293_client_universe():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "2.94.0" in html
+    assert "2.95.0" in html
     assert 'id="universe-groups"' in html
     assert 'id="universe-lede"' in html
     assert 'id="universe-status"' in html
@@ -86,9 +86,9 @@ def test_release_is_293_client_universe():
     assert "index.html#universe" in app
     assert 'href="#universe"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     dash = public_dashboard()
-    assert dash["release"] == "2.94.0"
+    assert dash["release"] == "2.95.0"
     status = public_status()
-    assert status["release"] == "2.94.0"
+    assert status["release"] == "2.95.0"
     assert status["website"]["client_universe"] is True
     assert status["website"]["universe_is_sku"] is False
     assert status["website"]["universe_href"] == "#universe"
@@ -344,8 +344,8 @@ def test_client_universe_and_first_principles_fail_closed():
     with pytest.raises(IntegrityError):
         catmod._validate_first_principles(
             [
-                item.replace("MFA identifies", "MFA gates").replace("not a /universe route", "not a second dashboard")
-                if "client business universe" in item.lower()
+                item.replace("MFA identifies", "MFA gates").replace("Not a /universe route", "Not a second dashboard").replace("not a /universe route", "not a second dashboard")
+                if "universe" in item.lower()
                 else item
                 for item in cat["expert_review"]["first_principles"]
             ]
@@ -354,7 +354,7 @@ def test_client_universe_and_first_principles_fail_closed():
         catmod._validate_first_principles(
             [
                 item.replace("segregated branded", "assigned").replace("Not a /universe route", "Not a second dashboard")
-                if "client business universe" in item.lower()
+                if "universe" in item.lower()
                 else item
                 for item in cat["expert_review"]["first_principles"]
             ]

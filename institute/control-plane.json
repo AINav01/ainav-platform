@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.94.0"
+    "release": "2.95.0"
   },
   "communications": [
     {
@@ -2130,7 +2130,8 @@
       "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane",
       "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane",
       "2.93.0 first-class client business universe: MFA identifies, identify is not admit, segregated branded sandbox, audit trail, maps claimed=false, packs are not SKUs; not a fourth SKU; not a /universe route; not from this plane",
-      "2.94.0 operable client universe: honest zeros, refuse is visible, rails walk to existing boards; not a fourth SKU; not a /universe route; not from this plane"
+      "2.94.0 operable client universe: honest zeros, refuse is visible, rails walk to existing boards; not a fourth SKU; not a /universe route; not from this plane",
+      "2.95.0 sit-down client day: now / next / after L1 / blocked on #universe; mailbox recorded; seat B click owner-only; unnamed until signed L1; not a live named day; not a fourth SKU; not a /universe route; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3848,7 +3849,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.94.0",
+  "release": "2.95.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4296,7 +4297,9 @@
         "Invent a named client universe",
         "Treat the universe as a SKU",
         "Treat refuse as a live record",
-        "Treat universe wells as named records"
+        "Treat universe wells as named records",
+        "Treat the sit-down day as a live named day",
+        "Invent seat B click on the day board"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4355,10 +4358,122 @@
       "assigned": false,
       "certified": false,
       "cms": false,
+      "day": {
+        "invented": false,
+        "kind": "ainav.client_universe_day.v1",
+        "lanes": [
+          {
+            "id": "now",
+            "items": [
+              {
+                "href": "identify.html",
+                "id": "mailbox",
+                "name": "Mailbox recorded",
+                "note": "chodnett@ainav.institute. Mailbox is not oid. Mailbox is not the click.",
+                "state": "recorded"
+              },
+              {
+                "href": "identify.html",
+                "id": "identify",
+                "name": "MFA identifies",
+                "note": "Identify is not admit. Credentialed SWA identify is not seated.",
+                "state": "ready"
+              },
+              {
+                "href": "#universe",
+                "id": "zeros",
+                "name": "Honest zeros",
+                "note": "Unnamed. Assigned no. Records 0. Packs 0. Maps claimed=false.",
+                "state": "recorded"
+              }
+            ],
+            "name": "Now"
+          },
+          {
+            "id": "next",
+            "items": [
+              {
+                "href": "#control",
+                "id": "seat_b",
+                "name": "Seat B click",
+                "note": "She clicks. James does not click both. Owner-only. This plane cannot invent the click.",
+                "state": "owner_only"
+              },
+              {
+                "href": "identify.html",
+                "id": "oid",
+                "name": "Distinct Entra oid",
+                "note": "This plane cannot invent an oid.",
+                "state": "owner_only"
+              }
+            ],
+            "name": "Next"
+          },
+          {
+            "id": "after_l1",
+            "items": [
+              {
+                "href": "#path",
+                "id": "named",
+                "name": "Named client mark",
+                "note": "Unnamed until signed L1.",
+                "state": "after_l1"
+              },
+              {
+                "href": "#path",
+                "id": "assigned",
+                "name": "Assigned sandbox",
+                "note": "Never shared. Not production. Not the Institute twin.",
+                "state": "after_l1"
+              },
+              {
+                "href": "#governance",
+                "id": "records",
+                "name": "First and second record",
+                "note": "SoR write then sealed DecisionRecord.",
+                "state": "after_l1"
+              }
+            ],
+            "name": "After L1"
+          },
+          {
+            "id": "blocked",
+            "items": [
+              {
+                "href": "#universe",
+                "id": "mfa_admit",
+                "name": "MFA as admit",
+                "note": "Refused. Identify is not admit.",
+                "state": "refused"
+              },
+              {
+                "href": "#universe",
+                "id": "named_now",
+                "name": "Invent a named client",
+                "note": "Refused. Unnamed until signed L1.",
+                "state": "refused"
+              },
+              {
+                "href": "#missing",
+                "id": "live_pin",
+                "name": "LIVE_PIN_OK",
+                "note": "Not from this plane.",
+                "state": "blocked"
+              }
+            ],
+            "name": "Blocked"
+          }
+        ],
+        "live": false,
+        "note": "Sit-down client day. Now is recorded. Next is owner-only. After L1 stays unnamed. Blocked stays refused. Not a live named day. Not LIVE_PIN_OK.",
+        "sku": false
+      },
+      "day_invented": false,
+      "day_is_live": false,
       "fear_brand": false,
       "forecast": false,
       "fourth_sku": false,
-      "glance": "Unnamed until signed L1. MFA identifies. Two seats admit. First and second record 0. Packs 0. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
+      "glance": "Sit-down client day. Now mailbox recorded. Next seat B. After L1 unnamed. MFA identifies. Honest zeros. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
       "groups": [
         {
           "id": "control",
@@ -4405,7 +4520,7 @@
       "live_pin_ok": false,
       "mfa_admits": false,
       "named_client": false,
-      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Sit-down client day. Not a live named day. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
       "operable": true,
       "owner_only": [
         "Seat B click",
@@ -4431,8 +4546,17 @@
         "A /universe route"
       ],
       "refuse_is_visible": true,
-      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. Not a /universe route.",
+      "sit_down": true,
+      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. The sit-down client day is now / next / after L1. Not a /universe route.",
       "sku": false,
+      "spine_states": {
+        "admit": "owner_only",
+        "identify": "ready",
+        "keep": "after_l1",
+        "pack": "after_l1",
+        "record": "blocked",
+        "write": "blocked"
+      },
       "surfaces": [
         {
           "href": "identify.html",
