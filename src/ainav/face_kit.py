@@ -261,7 +261,7 @@ def public_search() -> dict[str, Any]:
             "id": "universe",
             "title": "Client universe",
             "href": "index.html#universe",
-            "text": "Post-close client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs.",
+            "text": "Operable post-close client universe. MFA identifies. Identify is not admit. Honest zeros. Refuse is visible. Segregated branded sandbox unnamed until signed L1. Maps claimed=false. Packs are not SKUs.",
         },
     ]
     return {

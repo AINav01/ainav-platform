@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.93.0",
+    "release": "2.94.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2012,7 +2012,7 @@
       "KIT_FAIL",
       "CHURN"
     ],
-    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Not a second company."
+    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. Not a second company."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -5037,7 +5037,8 @@
         "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane",
         "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane",
         "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane",
-        "2.93.0 first-class client business universe: MFA identifies, identify is not admit, segregated branded sandbox, audit trail, maps claimed=false, packs are not SKUs; not a fourth SKU; not a /universe route; not from this plane"
+        "2.93.0 first-class client business universe: MFA identifies, identify is not admit, segregated branded sandbox, audit trail, maps claimed=false, packs are not SKUs; not a fourth SKU; not a /universe route; not from this plane",
+        "2.94.0 operable client universe: honest zeros, refuse is visible, rails walk to existing boards; not a fourth SKU; not a /universe route; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5261,7 +5262,8 @@
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK",
       "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.92.0 first-class brand system. One mark set across the firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.94.0 operable client universe. Honest zeros sit the board. Refuse is visible. Rails walk. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -6703,7 +6705,9 @@
       "brand_href": "#brand",
       "client_universe": true,
       "universe_is_sku": false,
-      "universe_href": "#universe"
+      "universe_href": "#universe",
+      "universe_operable": true,
+      "universe_wells_live": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -7184,7 +7188,8 @@
       "2.90.0 Microsoft day map is catalog law: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.",
       "2.91.0 Microsoft operating-day roster is catalog law: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK.",
       "2.92.0 first-class brand system is catalog law: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
-      "2.93.0 first-class client business universe is catalog law: MFA identifies. Identify is not admit. Two seats admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs, libraries, and FFS hours are not SKUs. Not a /universe route. Not LIVE_PIN_OK."
+      "2.93.0 first-class client business universe is catalog law: MFA identifies. Identify is not admit. Two seats admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs, libraries, and FFS hours are not SKUs. Not a /universe route. Not LIVE_PIN_OK.",
+      "2.94.0 operable client universe is catalog law: honest zeros sit the board. Refuse is visible. Rails walk to identify, control, close, governance, and packs. Maps stay claimed=false. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7224,7 +7229,8 @@
       "The Microsoft day map is how the whole business runs on the declared Microsoft substrate. Qualify, proof, close, assign, service, and launch each name the connections they sit on. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. The day map is not wired. Not LIVE_PIN_OK.",
       "The Microsoft run is the operating-day roster. Licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK.",
       "The brand system is one mark set across the firm. Legal is AINav, Inc. Product is AINav Control Plane. Institute is AINAV.Institute. Sale is L1, P-ADM, and U-DUAL. Write-fear names the unauthorized journal. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
-      "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Governance maps stay claimed=false. Non-compliance that is ours is the landed write. Packs are not SKUs. Client universe sits on #universe. Not a /universe route. Not LIVE_PIN_OK."
+      "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Governance maps stay claimed=false. Non-compliance that is ours is the landed write. Packs are not SKUs. Client universe sits on #universe. Not a /universe route. Not LIVE_PIN_OK.",
+      "The operable client universe sits the post-close board. Honest zeros sit the board: unnamed mark, assigned no, first record 0, second record 0, maps claimed=false, packs 0. Refuse is visible. Rails walk to identify, control, close, governance, and packs. Not a /universe route. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7261,7 +7267,8 @@
       "2.90.0 Microsoft day map sits on #firm-ms-day: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.",
       "2.91.0 Microsoft operating-day roster sits on #firm-ms: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.",
       "2.92.0 first-class brand system sits on #brand: legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Trademark filing and public apex brand stay owner-only. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
-      "2.93.0 first-class client business universe sits on #universe: MFA identifies, two seats admit, segregated branded sandbox, audit trail, maps claimed=false, P-ADM keep, paid U-DUAL, custom packs. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Trademark filing and public apex brand stay owner-only. Not a SKU. Not MFA-as-admit. Not LIVE_PIN_OK."
+      "2.93.0 first-class client business universe sits on #universe: MFA identifies, two seats admit, segregated branded sandbox, audit trail, maps claimed=false, P-ADM keep, paid U-DUAL, custom packs. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Trademark filing and public apex brand stay owner-only. Not a SKU. Not MFA-as-admit. Not LIVE_PIN_OK.",
+      "2.94.0 operable client universe sits on #universe: honest zeros, visible refuse, rails that walk. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Not LIVE_PIN_OK."
     ],
     "success": {
       "sku": false,
@@ -7462,7 +7469,9 @@
           "Treat the brand as a SKU",
           "Treat MFA as admit",
           "Invent a named client universe",
-          "Treat the universe as a SKU"
+          "Treat the universe as a SKU",
+          "Treat refuse as a live record",
+          "Treat universe wells as named records"
         ]
       },
       "seat_b": {
@@ -8496,76 +8505,89 @@
         "certified": false,
         "forecast": false,
         "lede": "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans bind one hash. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs are not SKUs.",
-        "glance": "Unnamed until signed L1. MFA identifies. Two seats admit. First and second record. Packs after the required SKU. Maps claimed=false. Not a fourth SKU. Not LIVE_PIN_OK.",
+        "glance": "Unnamed until signed L1. MFA identifies. Two seats admit. First and second record 0. Packs 0. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
         "surfaces": [
           {
             "id": "identify",
             "name": "MFA / Entra identify",
-            "note": "Identify is not admit. MFA and Conditional Access identify. Credentialed SWA identify is not seated."
+            "note": "Identify is not admit. MFA and Conditional Access identify. Credentialed SWA identify is not seated.",
+            "href": "identify.html"
           },
           {
             "id": "admit",
             "name": "Two seats",
-            "note": "Seat A treasury. Seat B controller. One hash. Consume once. Mailbox is not the click."
+            "note": "Seat A treasury. Seat B controller. One hash. Consume once. Mailbox is not the click.",
+            "href": "#control"
           },
           {
             "id": "write",
             "name": "Fail-closed SoR",
-            "note": "No admit, no write. First record is the SoR write. Graph is not called from this plane."
+            "note": "No admit, no write. First record is the SoR write. Graph is not called from this plane.",
+            "href": "#buyer"
           },
           {
             "id": "record",
             "name": "Audit trail",
-            "note": "Second record is the sealed DecisionRecord. Weekly keep after kit PASS. Not 17a-4. Not WORM."
+            "note": "Second record is the sealed DecisionRecord. Weekly keep after kit PASS. Not 17a-4. Not WORM.",
+            "href": "#governance"
           },
           {
             "id": "brand",
             "name": "AINav / client marks",
-            "note": "AINav Control Plane plus an unnamed client mark until signed L1. Never shared. Not a production brand."
+            "note": "AINav Control Plane plus an unnamed client mark until signed L1. Never shared. Not a production brand.",
+            "href": "#brand"
           },
           {
             "id": "sandbox",
             "name": "Segregated twin",
-            "note": "Assigned after signed L1. Not the Institute twin. Never shared. Not production."
+            "note": "Assigned after signed L1. Not the Institute twin. Never shared. Not production.",
+            "href": "#path"
           },
           {
             "id": "govern",
             "name": "Maps",
-            "note": "NIST AI RMF, SOX ICFR, EU AI Act, ISO 42001. claimed=false. Buying L1 is not a certificate."
+            "note": "NIST AI RMF, SOX ICFR, EU AI Act, ISO 42001. claimed=false. Buying L1 is not a certificate.",
+            "href": "#governance"
           },
           {
             "id": "consequence",
             "name": "Non-compliance",
-            "note": "The landed write. Buying L1 does not close clocks. Not D&O. Not a SOX opinion. Maps stay claimed=false."
+            "note": "The landed write. Buying L1 does not close clocks. Not D&O. Not a SOX opinion. Maps stay claimed=false.",
+            "href": "#risk"
           },
           {
             "id": "need",
             "name": "Product need",
-            "note": "Independent admit plane. Write-fear names the unauthorized journal. Not doom-fear. Not a fear brand."
+            "note": "Independent admit plane. Write-fear names the unauthorized journal. Not doom-fear. Not a fear brand.",
+            "href": "#have"
           },
           {
             "id": "lead",
             "name": "Thought leadership",
-            "note": "Last authority, not another Copilot. Not TAM. Not a forecast. Not a priced round."
+            "note": "Last authority, not another Copilot. Not TAM. Not a forecast. Not a priced round.",
+            "href": "#market"
           },
           {
             "id": "keep",
             "name": "P-ADM",
-            "note": "Keep after kit PASS. Hours never mint a SKU. Hours never attach free U-DUAL."
+            "note": "Keep after kit PASS. Hours never mint a SKU. Hours never attach free U-DUAL.",
+            "href": "#product"
           },
           {
             "id": "deepen",
             "name": "U-DUAL",
-            "note": "Paid. Never free with P-ADM. Additional action classes on the same admit plane."
+            "note": "Paid. Never free with P-ADM. Additional action classes on the same admit plane.",
+            "href": "#product"
           },
           {
             "id": "packs",
             "name": "Custom packs / modules",
-            "note": "A la carte after the required SKU. FFS $3500/day. Libraries and industry packs are not SKUs."
+            "note": "A la carte after the required SKU. FFS $3500/day. Libraries and industry packs are not SKUs.",
+            "href": "#packs"
           }
         ],
-        "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Not a /universe route.",
-        "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+        "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. Not a /universe route.",
+        "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
         "refuse": [
           "Treat MFA as admit",
           "Invent a named client",
@@ -8587,7 +8609,59 @@
           "LIVE_PIN_OK",
           "Launch",
           "G12/G13"
-        ]
+        ],
+        "wells": {
+          "client_mark": "",
+          "named_client": false,
+          "assigned": false,
+          "first_record": 0,
+          "second_record": 0,
+          "maps_claimed": false,
+          "packs_attached": 0,
+          "note": "Honest zeros. Unnamed until signed L1. Maps claimed=false. Refuse is visible. Not LIVE_PIN_OK."
+        },
+        "groups": [
+          {
+            "id": "control",
+            "name": "Control",
+            "rails": [
+              "identify",
+              "admit",
+              "write",
+              "record"
+            ]
+          },
+          {
+            "id": "marks",
+            "name": "Marks",
+            "rails": [
+              "brand",
+              "sandbox"
+            ]
+          },
+          {
+            "id": "govern",
+            "name": "Govern",
+            "rails": [
+              "govern",
+              "consequence"
+            ]
+          },
+          {
+            "id": "offer",
+            "name": "Offer",
+            "rails": [
+              "need",
+              "lead",
+              "keep",
+              "deepen",
+              "packs"
+            ]
+          }
+        ],
+        "operable": true,
+        "refuse_is_visible": true,
+        "wells_are_live": false
       }
     },
     "upgrades": [
@@ -9085,6 +9159,14 @@
         "who": "tree",
         "title": "Client business universe",
         "do": "Ship 2.93.0 first-class client business universe on #universe. MFA identifies. Identify is not admit. Segregated branded sandbox. Audit trail. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 64,
+        "who": "tree",
+        "title": "Operable client universe",
+        "do": "Ship 2.94.0 operable client universe on #universe. Honest zeros. Refuse is visible. Rails walk. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

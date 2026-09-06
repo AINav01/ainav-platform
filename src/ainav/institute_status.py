@@ -197,6 +197,8 @@ def public_status() -> dict[str, Any]:
             "client_universe": bool(site.get("client_universe")),
             "universe_is_sku": False,
             "universe_href": site.get("universe_href") or "#universe",
+            "universe_operable": bool(site.get("universe_operable")),
+            "universe_wells_live": False,
         },
         "bc": {
             "connection": "bc.premium",

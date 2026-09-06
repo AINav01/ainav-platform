@@ -426,7 +426,8 @@
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK",
       "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.92.0 first-class brand system. One mark set across the firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.94.0 operable client universe. Honest zeros sit the board. Refuse is visible. Rails walk. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -619,7 +620,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.93.0",
+  "release": "2.94.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -669,7 +670,9 @@
     "twin_host": "azure.swa",
     "twin_review": true,
     "universe_href": "#universe",
-    "universe_is_sku": false
+    "universe_is_sku": false,
+    "universe_operable": true,
+    "universe_wells_live": false
   },
   "wrote_sor": false
 }

@@ -1429,8 +1429,95 @@ table.law tr[data-group] th {
   color: #d8d2c6;
   font-size: 0.86rem;
 }
+.universe-console {
+  background: var(--void);
+  color: var(--void-ink);
+  border-color: var(--void);
+}
+.universe-console h3,
+.universe-console h4 {
+  color: var(--void-ink);
+}
+.universe-console .note {
+  color: color-mix(in srgb, var(--void-ink) 82%, transparent);
+}
+.universe-console .kicker {
+  color: var(--gold-2);
+}
+.universe-groups {
+  display: grid;
+  gap: 1rem;
+  margin: 0.65rem 0 1rem;
+}
+@media (min-width: 1100px) {
+  .universe-groups { grid-template-columns: repeat(2, 1fr); }
+}
+.universe-groups h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+}
+.universe-groups .universe-surfaces {
+  margin: 0;
+  grid-template-columns: 1fr;
+}
 .universe-spine {
   margin-top: 1.2rem;
+}
+.universe-spine a {
+  color: inherit;
+  text-decoration: none;
+}
+.universe-spine a:hover b,
+.universe-surfaces a:hover b {
+  color: var(--gold);
+}
+.universe-surfaces a,
+.universe-surfaces a b {
+  color: var(--gold-2);
+  text-decoration: none;
+}
+.universe-refuse {
+  margin: 0.55rem 0 0.7rem;
+  padding: 0.95rem 1.05rem;
+  border: 1px dashed color-mix(in srgb, var(--void-ink) 28%, transparent);
+  background: color-mix(in srgb, var(--paper) 92%, white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+.universe-refuse.is-live {
+  border: 3px solid var(--gold);
+  background: color-mix(in srgb, var(--gold) 22%, var(--paper));
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 35%, transparent);
+}
+.universe-refuses {
+  display: grid;
+  gap: 0.45rem;
+}
+@media (min-width: 900px) {
+  .universe-refuses { grid-template-columns: repeat(5, 1fr); }
+}
+#universe-console .ghost {
+  color: var(--void-ink);
+  border-color: color-mix(in srgb, var(--void-ink) 35%, transparent);
+}
+#universe-console .ghost:hover,
+#universe-console .ghost[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--gold) 16%, transparent);
+  border-color: var(--gold-2);
+  color: var(--gold-2);
+}
+#universe-ledger {
+  margin-top: 0.7rem;
+}
+#universe-ledger .denied {
+  color: var(--gold-2);
 }
 @media (min-width: 900px) {
   .universe-spine { grid-template-columns: repeat(3, 1fr); }

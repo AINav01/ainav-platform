@@ -890,7 +890,9 @@
         "Treat the brand as a SKU",
         "Treat MFA as admit",
         "Invent a named client universe",
-        "Treat the universe as a SKU"
+        "Treat the universe as a SKU",
+        "Treat refuse as a live record",
+        "Treat universe wells as named records"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -952,7 +954,46 @@
       "fear_brand": false,
       "forecast": false,
       "fourth_sku": false,
-      "glance": "Unnamed until signed L1. MFA identifies. Two seats admit. First and second record. Packs after the required SKU. Maps claimed=false. Not a fourth SKU. Not LIVE_PIN_OK.",
+      "glance": "Unnamed until signed L1. MFA identifies. Two seats admit. First and second record 0. Packs 0. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
+      "groups": [
+        {
+          "id": "control",
+          "name": "Control",
+          "rails": [
+            "identify",
+            "admit",
+            "write",
+            "record"
+          ]
+        },
+        {
+          "id": "marks",
+          "name": "Marks",
+          "rails": [
+            "brand",
+            "sandbox"
+          ]
+        },
+        {
+          "id": "govern",
+          "name": "Govern",
+          "rails": [
+            "govern",
+            "consequence"
+          ]
+        },
+        {
+          "id": "offer",
+          "name": "Offer",
+          "rails": [
+            "need",
+            "lead",
+            "keep",
+            "deepen",
+            "packs"
+          ]
+        }
+      ],
       "kind": "ainav.client_universe.v1",
       "launch": false,
       "lede": "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans bind one hash. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs are not SKUs.",
@@ -960,7 +1001,8 @@
       "live_pin_ok": false,
       "mfa_admits": false,
       "named_client": false,
-      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+      "operable": true,
       "owner_only": [
         "Seat B click",
         "Signed L1",
@@ -984,75 +1026,100 @@
         "LIVE_PIN_OK theater",
         "A /universe route"
       ],
-      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Not a /universe route.",
+      "refuse_is_visible": true,
+      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. Not a /universe route.",
       "sku": false,
       "surfaces": [
         {
+          "href": "identify.html",
           "id": "identify",
           "name": "MFA / Entra identify",
           "note": "Identify is not admit. MFA and Conditional Access identify. Credentialed SWA identify is not seated."
         },
         {
+          "href": "#control",
           "id": "admit",
           "name": "Two seats",
           "note": "Seat A treasury. Seat B controller. One hash. Consume once. Mailbox is not the click."
         },
         {
+          "href": "#buyer",
           "id": "write",
           "name": "Fail-closed SoR",
           "note": "No admit, no write. First record is the SoR write. Graph is not called from this plane."
         },
         {
+          "href": "#governance",
           "id": "record",
           "name": "Audit trail",
           "note": "Second record is the sealed DecisionRecord. Weekly keep after kit PASS. Not 17a-4. Not WORM."
         },
         {
+          "href": "#brand",
           "id": "brand",
           "name": "AINav / client marks",
           "note": "AINav Control Plane plus an unnamed client mark until signed L1. Never shared. Not a production brand."
         },
         {
+          "href": "#path",
           "id": "sandbox",
           "name": "Segregated twin",
           "note": "Assigned after signed L1. Not the Institute twin. Never shared. Not production."
         },
         {
+          "href": "#governance",
           "id": "govern",
           "name": "Maps",
           "note": "NIST AI RMF, SOX ICFR, EU AI Act, ISO 42001. claimed=false. Buying L1 is not a certificate."
         },
         {
+          "href": "#risk",
           "id": "consequence",
           "name": "Non-compliance",
           "note": "The landed write. Buying L1 does not close clocks. Not D&O. Not a SOX opinion. Maps stay claimed=false."
         },
         {
+          "href": "#have",
           "id": "need",
           "name": "Product need",
           "note": "Independent admit plane. Write-fear names the unauthorized journal. Not doom-fear. Not a fear brand."
         },
         {
+          "href": "#market",
           "id": "lead",
           "name": "Thought leadership",
           "note": "Last authority, not another Copilot. Not TAM. Not a forecast. Not a priced round."
         },
         {
+          "href": "#product",
           "id": "keep",
           "name": "P-ADM",
           "note": "Keep after kit PASS. Hours never mint a SKU. Hours never attach free U-DUAL."
         },
         {
+          "href": "#product",
           "id": "deepen",
           "name": "U-DUAL",
           "note": "Paid. Never free with P-ADM. Additional action classes on the same admit plane."
         },
         {
+          "href": "#packs",
           "id": "packs",
           "name": "Custom packs / modules",
           "note": "A la carte after the required SKU. FFS $3500/day. Libraries and industry packs are not SKUs."
         }
-      ]
+      ],
+      "wells": {
+        "assigned": false,
+        "client_mark": "",
+        "first_record": 0,
+        "maps_claimed": false,
+        "named_client": false,
+        "note": "Honest zeros. Unnamed until signed L1. Maps claimed=false. Refuse is visible. Not LIVE_PIN_OK.",
+        "packs_attached": 0,
+        "second_record": 0
+      },
+      "wells_are_live": false
     },
     "close_bench": {
       "assigned": false,

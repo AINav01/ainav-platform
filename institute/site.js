@@ -2248,7 +2248,8 @@
       universe.named_client ||
       universe.mfa_admits ||
       universe.certified ||
-      universe.forecast
+      universe.forecast ||
+      universe.wells_are_live
     ) {
       return;
     }
@@ -2259,20 +2260,54 @@
     set("universe-lede", universe.lede);
     set("universe-glance", universe.glance);
     set("universe-status", (universe.site || "") + " " + (universe.note || ""));
-    var list = document.getElementById("universe-surfaces");
-    if (list && universe.surfaces && universe.surfaces.length) {
-      list.textContent = "";
-      universe.surfaces.forEach(function (item) {
-        if (!item) return;
-        var li = document.createElement("li");
-        li.setAttribute("data-surface", item.id || "");
-        var name = document.createElement("b");
-        name.textContent = item.name || item.id || "";
+    var wells = universe.wells || {};
+    set("universe-mark", wells.client_mark ? String(wells.client_mark) : "unnamed");
+    set("universe-assigned", wells.assigned ? "yes" : "no");
+    set("universe-first", String(wells.first_record || 0));
+    set("universe-second", String(wells.second_record || 0));
+    set("universe-maps", wells.maps_claimed ? "claimed" : "claimed=false");
+    set("universe-packs", String(wells.packs_attached || 0));
+    function rail(item) {
+      var li = document.createElement("li");
+      li.setAttribute("data-surface", item.id || "");
+      var name = document.createElement("b");
+      name.textContent = item.name || item.id || "";
+      var href = String(item.href || "");
+      if (href && (href.charAt(0) === "#" || href.indexOf("identify.html") === 0)) {
+        var a = document.createElement("a");
+        a.setAttribute("href", href);
+        a.appendChild(name);
+        li.appendChild(a);
+      } else {
         li.appendChild(name);
-        var note = document.createElement("span");
-        note.textContent = item.note || "";
-        li.appendChild(note);
-        list.appendChild(li);
+      }
+      var note = document.createElement("span");
+      note.textContent = item.note || "";
+      li.appendChild(note);
+      return li;
+    }
+    var groupsRoot = document.getElementById("universe-groups");
+    var byId = {};
+    (universe.surfaces || []).forEach(function (item) {
+      if (item && item.id) byId[item.id] = item;
+    });
+    if (groupsRoot && universe.groups && universe.groups.length) {
+      groupsRoot.textContent = "";
+      universe.groups.forEach(function (group) {
+        if (!group) return;
+        var section = document.createElement("section");
+        section.setAttribute("data-group", group.id || "");
+        var title = document.createElement("h4");
+        title.textContent = group.name || group.id || "";
+        section.appendChild(title);
+        var list = document.createElement("ol");
+        list.className = "brand-surfaces universe-surfaces";
+        (group.rails || []).forEach(function (railId) {
+          var item = byId[railId];
+          if (item) list.appendChild(rail(item));
+        });
+        section.appendChild(list);
+        groupsRoot.appendChild(section);
       });
     }
   }
@@ -3326,9 +3361,23 @@
     });
   }
 
-  function refuseUniverse(message, ledger) {
-    var status = document.getElementById("universe-status");
-    if (status) status.textContent = message;
+  function writeUniverseLedger(text) {
+    var box = document.getElementById("universe-ledger");
+    if (!box) return;
+    var row = document.createElement("pre");
+    row.className = "denied";
+    row.textContent = text;
+    box.insertBefore(row, box.firstChild);
+  }
+
+  function refuseUniverse(button, message, ledger) {
+    var refuse = document.getElementById("universe-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeUniverseLedger(ledger);
     writeFirmLedger("denied", ledger);
   }
 
@@ -3336,6 +3385,7 @@
   if (universeMfa) {
     universeMfa.addEventListener("click", function () {
       refuseUniverse(
+        universeMfa,
         "Refused. MFA identifies. Identify is not admit. Credentialed SWA identify is not seated.",
         "universe_denied · MFA as admit\nMFA and Conditional Access identify.\nThey do not admit.\nlive=false · live_pin_ok=false"
       );
@@ -3346,6 +3396,7 @@
   if (universeNamed) {
     universeNamed.addEventListener("click", function () {
       refuseUniverse(
+        universeNamed,
         "Refused. The client sandbox stays unnamed until signed L1. This plane cannot invent a named client.",
         "universe_denied · invent a named client\nAssigned stays false.\nNamed client stays false.\nlive=false · live_pin_ok=false"
       );
@@ -3356,6 +3407,7 @@
   if (universeSandbox) {
     universeSandbox.addEventListener("click", function () {
       refuseUniverse(
+        universeSandbox,
         "Refused. The segregated branded sandbox is not production. Lab pin AINAV-L1 is not commercial close.",
         "universe_denied · sandbox as production\nNever shared. Not the Institute twin.\nAssigned after signed L1.\nlive=false · live_pin_ok=false"
       );
@@ -3366,6 +3418,7 @@
   if (universeCertify) {
     universeCertify.addEventListener("click", function () {
       refuseUniverse(
+        universeCertify,
         "Refused. Maps stay claimed=false. Buying L1 does not close regulator clocks. Not a certificate.",
         "universe_denied · certify maps\nNIST, SOX, EU AI Act, ISO 42001 stay maps.\nNot D&O. Not a SOX opinion.\nlive=false · live_pin_ok=false"
       );
@@ -3376,6 +3429,7 @@
   if (universeFourth) {
     universeFourth.addEventListener("click", function () {
       refuseUniverse(
+        universeFourth,
         "Refused. Three SKUs only. Packs, libraries, and FFS hours are not SKUs.",
         "universe_denied · fourth SKU\nP-ADM keep. Paid U-DUAL deepen.\nHours never mint a SKU.\nlive=false · live_pin_ok=false"
       );

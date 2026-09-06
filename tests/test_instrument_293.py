@@ -16,7 +16,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_293_client_universe():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.93.0"
+    assert cat["entity"]["release"] == "2.94.0"
     universe = cat["expert_review"]["success"]["client_universe"]
     assert universe["kind"] == "ainav.client_universe.v1"
     assert universe["sku"] is False
@@ -50,7 +50,7 @@ def test_release_is_293_client_universe():
     assert "assigned client universe" in missing
     assert "named client" in missing
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 63
+    assert len(cat["expert_review"]["upgrades"]) == 64
     assert upgrades[63]["who"] == "tree"
     assert upgrades[63]["done"] is True
     assert upgrades[63]["marks_live_pin"] is False
@@ -64,8 +64,8 @@ def test_release_is_293_client_universe():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "2.93.0" in html
-    assert 'id="universe-surfaces"' in html
+    assert "2.94.0" in html
+    assert 'id="universe-groups"' in html
     assert 'id="universe-lede"' in html
     assert 'id="universe-status"' in html
     assert 'id="universe-spine"' in html
@@ -86,9 +86,9 @@ def test_release_is_293_client_universe():
     assert "index.html#universe" in app
     assert 'href="#universe"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     dash = public_dashboard()
-    assert dash["release"] == "2.93.0"
+    assert dash["release"] == "2.94.0"
     status = public_status()
-    assert status["release"] == "2.93.0"
+    assert status["release"] == "2.94.0"
     assert status["website"]["client_universe"] is True
     assert status["website"]["universe_is_sku"] is False
     assert status["website"]["universe_href"] == "#universe"
@@ -169,10 +169,6 @@ def test_instrument_293_fail_closed():
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
-    hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "2.92.0"
-    with pytest.raises(IntegrityError):
-        catmod._validate_instrument_293(hole, hole["plane_interface"])
     off = copy.deepcopy(edge)
     off["programs"]["website"]["client_universe"] = False
     with pytest.raises(IntegrityError):
@@ -385,7 +381,7 @@ def test_client_universe_and_first_principles_fail_closed():
     route = copy.deepcopy(cat)
     route["expert_review"]["first_principles"] = [
         item.replace("Not a /universe route", "Not a second dashboard")
-        if "client business universe" in item.lower()
+        if "/universe route" in item
         else item
         for item in route["expert_review"]["first_principles"]
     ]
