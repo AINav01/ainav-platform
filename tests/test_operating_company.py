@@ -288,6 +288,30 @@ def test_operating_company_fail_closed():
             if "microsoft as the product" not in item.lower()
         ]
 
+    def ciso_teams(cat):
+        cat["expert_review"]["success"]["ciso"]["does_not"] = [
+            item
+            for item in cat["expert_review"]["success"]["ciso"]["does_not"]
+            if "teams channel" not in item.lower()
+        ]
+
+    def ms_lede(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["lede"] = "Stand up HubSpot."
+
+    def ms_refuse(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["refuse"] = ["A blog"]
+
+    def ms_owner(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["owner_only"] = ["A blog"]
+
+    def ms_note(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["note"] = "Live later."
+
+    def ms_site(cat):
+        cat["expert_review"]["success"]["operating_company"]["site"] = (
+            "The firm bench is #firm-console on #firm. The operating day is qualify, proof, close, assign, service, launch gate. Demo is #twin."
+        )
+
     def ciso_gate(cat):
         cat["expert_review"]["success"]["ciso"]["does_not"] = [
             item
@@ -343,7 +367,13 @@ def test_operating_company_fail_closed():
         ms_product,
         ms_ninth,
         ms_spine,
+        ms_lede,
+        ms_refuse,
+        ms_owner,
+        ms_note,
+        ms_site,
         ciso_ms,
+        ciso_teams,
         ciso_gate,
     ):
         _reject(mutator)

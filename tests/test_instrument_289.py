@@ -142,3 +142,15 @@ def test_instrument_289_fail_closed():
     site_hole["programs"]["website"]["microsoft_is_the_product"] = True
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_289(site_hole, site_hole["plane_interface"])
+    required_hole = copy.deepcopy(edge)
+    required_hole["connections"]["required_ids"] = ["azure.host"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_289(required_hole, required_hole["plane_interface"])
+    complements_hole = copy.deepcopy(edge)
+    complements_hole["connections"]["complements"] = complements_hole["connections"]["complements"][:7]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_289(complements_hole, complements_hole["plane_interface"])
+    ninth_flag = copy.deepcopy(edge)
+    ninth_flag["expert_review"]["success"]["operating_company"]["microsoft_run"]["ninth_complement"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_289(ninth_flag, ninth_flag["plane_interface"])
