@@ -423,7 +423,8 @@
       "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm. Microsoft is not the product. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
       "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
-      "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
+      "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK",
+      "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -522,7 +523,10 @@
     "G12 legal (counsel pack unsigned)",
     "Signed L1 counsel pack (G13)",
     "Multi-host product HA",
-    "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)"
+    "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)",
+    "Teams team and channel ids stay unset. This Cloud Agent cannot invent them.",
+    "SHAREPOINT_SITE_ID stays unset. This Cloud Agent cannot invent a SharePoint site.",
+    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel."
   ],
   "host": {
     "connection": "azure.host",
@@ -611,7 +615,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.90.0",
+  "release": "2.91.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -643,6 +647,8 @@
     "microsoft_day_map": true,
     "microsoft_day_map_is_sku": false,
     "microsoft_is_the_product": false,
+    "microsoft_roster": true,
+    "microsoft_roster_is_sku": false,
     "microsoft_run": true,
     "microsoft_run_is_sku": false,
     "operating_company": true,

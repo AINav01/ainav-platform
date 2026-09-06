@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.90.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.91.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.90.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.91.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -383,6 +383,7 @@ Working well
 - 2.88.0 operating-day quality review is catalog law: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.
 - 2.89.0 first-class Microsoft run is catalog law: six required connections and eight complements sit on the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
 - 2.90.0 Microsoft day map is catalog law: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
+- 2.91.0 Microsoft operating-day roster is catalog law: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -418,6 +419,7 @@ Could be improved — without inventing a fourth SKU
 - Operating-day quality review: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.
 - 2.89.0 first-class Microsoft run sits on #firm: six required connections and eight complements mapped to the operating day. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 - 2.90.0 Microsoft day map sits on #firm-ms-day: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
+- 2.91.0 Microsoft operating-day roster sits on #firm-ms: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -545,6 +547,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 58. [tree] Operating-day quality review — Ship 2.88.0: quality review of the operating day. site.js versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not launch. Not LIVE_PIN_OK.
 - 59. [tree] First-class Microsoft run — Ship 2.89.0: first-class Microsoft run on #firm. Six required connections and eight complements mapped to the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
 - 60. [tree] Microsoft day map — Ship 2.90.0: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
+- 61. [tree] Microsoft operating-day roster — Ship 2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK.
 
 ## What happens next
 

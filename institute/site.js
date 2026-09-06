@@ -2121,9 +2121,12 @@
         });
       }
     }
+    if (firm.needs && firm.needs.length) {
+      set("firm-needs", firm.needs.join(". ") + ".");
+    }
     var book = firm.service || {};
     if (!book.live && !book.padm && !book.ffs_hours && !book.hours_mint_sku && !book.hours_attach_udual && !book.shared_twin) {
-      if (book.note) set("firm-service-status", "P-ADM 0. FFS hours 0. Live book empty.");
+      if (book.note) set("firm-service-status", book.note);
     }
     var run = firm.microsoft_run || {};
     if (
@@ -2133,7 +2136,8 @@
       !run.crm &&
       !run.wired_claimed &&
       !run.microsoft_is_the_product &&
-      !run.ninth_complement
+      !run.ninth_complement &&
+      !run.roster_is_sku
     ) {
       set("firm-ms-lede", run.lede);
       var dayMap = document.getElementById("firm-ms-day");
@@ -2174,7 +2178,16 @@
           spine.appendChild(li);
         });
       }
-      if (run.note) set("firm-ms-status", "Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds.");
+      if (run.note) set("firm-ms-status", run.note);
+      var opens = document.getElementById("firm-ms-opens");
+      if (opens && run.owner_only && run.owner_only.length) {
+        opens.textContent = "";
+        run.owner_only.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          opens.appendChild(li);
+        });
+      }
     }
   }
 
@@ -3143,6 +3156,30 @@
       writeFirmLedger(
         "denied",
         "day_map_denied · catalog law\nEvery stage names its Microsoft substrate.\nAssign sits on Azure host. Not wired.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmWireSharepoint = document.getElementById("firm-wire-sharepoint");
+  if (firmWireSharepoint) {
+    firmWireSharepoint.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. SHAREPOINT_SITE_ID stays owner-only. This plane cannot invent a SharePoint site.";
+      writeFirmLedger(
+        "denied",
+        "sharepoint_denied · licensed_not_wired\nSHAREPOINT_SITE_ID stays unset.\nKit evidence is not dual admit.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmWireSentinel = document.getElementById("firm-wire-sentinel");
+  if (firmWireSentinel) {
+    firmWireSentinel.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. Sentinel on the existing LAW stays owner-only. LAW is not Sentinel.";
+      writeFirmLedger(
+        "denied",
+        "sentinel_denied · law_is_not_sentinel\nThe mothership LAW is not Sentinel.\nThis plane cannot enable Sentinel.\nlive=false · live_pin_ok=false"
       );
     });
   }

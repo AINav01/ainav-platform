@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.90.0"
+    "release": "2.91.0"
   },
   "communications": [
     {
@@ -2118,7 +2118,8 @@
       "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch; not from this plane",
       "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm; Microsoft is not the product; licensed-not-wired stays honest; not from this plane",
       "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate; assign sits on Azure host; licensed-not-wired stays honest; not from this plane",
-      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
+      "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane",
+      "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3835,7 +3836,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.90.0",
+  "release": "2.91.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4158,7 +4159,8 @@
         "Treat Microsoft as the product",
         "Invent a ninth complement",
         "Invent Teams channel ids or DATAVERSE_URL from this plane",
-        "Treat the Microsoft day map as wired"
+        "Treat the Microsoft day map as wired",
+        "Treat the roster as wired"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4564,7 +4566,7 @@
         "launch": false,
         "live_pin_ok": false
       },
-      "glance": "Operating day. Launch gate closed. 0 of 500 live. 0 of 500 pipeline.",
+      "glance": "Operating day on the Microsoft roster. Licensed-not-wired. Launch gate closed. 0 of 500 live. 0 of 500 pipeline.",
       "hubspot": false,
       "kind": "ainav.operating_company.v1",
       "launch": false,
@@ -4658,12 +4660,12 @@
         "fourth_sku": false,
         "from_this_plane": false,
         "kind": "ainav.microsoft_run.v1",
-        "lede": "The Microsoft run is how the firm is managed. Every operating-day stage runs on the declared Microsoft substrate. Six required connections and eight complements. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. Licensed-not-wired stays honest.",
+        "lede": "The Microsoft run is the operating-day roster. Every operating-day stage runs on the declared Microsoft substrate. Six required connections and eight complements. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. Licensed-not-wired stays visible. The roster is not wired.",
         "live": false,
         "live_pin_ok": false,
         "microsoft_is_the_product": false,
         "ninth_complement": false,
-        "note": "The Microsoft run is catalog law on #firm-ms. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
+        "note": "The Microsoft run is catalog law on #firm-ms. The roster is the operating-day face. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays visible. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
         "owner_only": [
           "Seat B click",
           "Graph Writes revoke-then-grant",
@@ -4697,6 +4699,8 @@
           "bc.premium",
           "sales.enterprise"
         ],
+        "roster": true,
+        "roster_is_sku": false,
         "sku": false,
         "spine": [
           {
@@ -5049,7 +5053,7 @@
         "padm": 0,
         "shared_twin": false
       },
-      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The day map is #firm-ms-day. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The roster is #firm-ms. The day map is #firm-ms-day. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
       "sku": false
     },
     "qualify": {

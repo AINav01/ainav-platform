@@ -656,6 +656,12 @@ def _validate_honest_missing(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest_missing must keep the second human", reason_code="CATALOG_HONEST")
     if not any("dataverse" in item and "canada" in item for item in missing):
         raise IntegrityError("honest_missing must keep US Dataverse Canada affinity", reason_code="CATALOG_HONEST")
+    if not any("teams" in item and "channel" in item for item in missing):
+        raise IntegrityError("honest_missing must keep Teams team and channel ids", reason_code="CATALOG_HONEST")
+    if not any("sharepoint" in item for item in missing):
+        raise IntegrityError("honest_missing must keep SHAREPOINT_SITE_ID", reason_code="CATALOG_HONEST")
+    if not any("sentinel" in item and "law" in item for item in missing):
+        raise IntegrityError("honest_missing must keep Sentinel on the existing LAW", reason_code="CATALOG_HONEST")
     if any(item.strip() == "live_pin_ok is marked" for item in missing):
         raise IntegrityError("honest_missing cannot claim LIVE_PIN_OK closed", reason_code="CATALOG_HONEST")
 
@@ -1132,8 +1138,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 60:
-        raise IntegrityError("expert review needs 16–59 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 61:
+        raise IntegrityError("expert review needs 16–61 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1184,6 +1190,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         58: ("quality review", "live_pin_ok"),
         59: ("microsoft run", "live_pin_ok"),
         60: ("day map", "live_pin_ok"),
+        61: ("roster", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1235,6 +1242,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
     if "day map" not in blob or "assign sits on azure host" not in blob:
         raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
+    if "roster" not in blob or "licensed-not-wired is visible" not in blob:
+        raise IntegrityError("first-principles must keep the Microsoft operating-day roster", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1322,6 +1331,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not invent Teams channel ids or DATAVERSE_URL", reason_code="CATALOG_REVIEW")
     if "day map" not in does_not:
         raise IntegrityError("CISO posture does not treat the Microsoft day map as wired", reason_code="CATALOG_REVIEW")
+    if "roster as wired" not in does_not:
+        raise IntegrityError("CISO posture does not treat the roster as wired", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1649,6 +1660,9 @@ def _validate_operating_company(body: Any) -> None:
     lede = str(firm.get("lede") or "").lower()
     if "one spine" not in lede or "five hundred" not in lede or "capacity" not in lede:
         raise IntegrityError("operating-company lede is one spine at 500/500 capacity", reason_code="CATALOG_REVIEW")
+    glance = str(firm.get("glance") or "").lower()
+    if "roster" not in glance or "licensed-not-wired" not in glance:
+        raise IntegrityError("operating-company glance is the Microsoft roster and licensed-not-wired", reason_code="CATALOG_REVIEW")
     cap = firm.get("capacity") or {}
     if int(cap.get("live_target") or 0) != 500 or int(cap.get("pipeline_target") or 0) != 500:
         raise IntegrityError("operating-company capacity targets are 500 live and 500 pipeline", reason_code="CATALOG_REVIEW")
@@ -1815,6 +1829,10 @@ def _validate_microsoft_run(body: Any) -> None:
     ):
         if run.get(flag) is True:
             raise IntegrityError(f"microsoft run cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if run.get("roster") is not True:
+        raise IntegrityError("microsoft run is the operating-day roster", reason_code="CATALOG_REVIEW")
+    if run.get("roster_is_sku") is True:
+        raise IntegrityError("microsoft roster is not a SKU", reason_code="CATALOG_REVIEW")
     if list(run.get("required_ids") or []) != REQUIRED_MS_IDS:
         raise IntegrityError("microsoft run required_ids are the six declared connections", reason_code="CATALOG_REVIEW")
     if list(run.get("complement_ids") or []) != COMPLEMENT_MS_IDS:
@@ -2817,6 +2835,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_288(catalog, body)
     _validate_instrument_289(catalog, body)
     _validate_instrument_290(catalog, body)
+    _validate_instrument_291(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3360,8 +3379,6 @@ def _validate_instrument_289(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_290(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.90.0":
-        raise IntegrityError("entity.release is 2.90.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.90.0" in item and "day map" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.90.0 Microsoft day map", reason_code="CATALOG_ENGINEERING")
@@ -3383,6 +3400,34 @@ def _validate_instrument_290(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "day map" not in principles or "assign sits on azure host" not in principles:
         raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_291(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.91.0":
+        raise IntegrityError("entity.release is 2.91.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.91.0" in item and "roster" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.91.0 Microsoft operating-day roster", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_roster") is not True:
+        raise IntegrityError("2.91.0 website has a first-class Microsoft roster", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_roster_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.91.0 Microsoft roster is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    run = firm.get("microsoft_run") or {}
+    if run.get("roster") is not True:
+        raise IntegrityError("2.91.0 microsoft run is the operating-day roster", reason_code="CATALOG_REVIEW")
+    if run.get("roster_is_sku") is True:
+        raise IntegrityError("2.91.0 Microsoft roster is not a SKU", reason_code="CATALOG_REVIEW")
+    glance = str(firm.get("glance") or "").lower()
+    if "roster" not in glance or "licensed-not-wired" not in glance:
+        raise IntegrityError("2.91.0 glance keeps the Microsoft roster and licensed-not-wired", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "roster" not in principles or "licensed-not-wired is visible" not in principles:
+        raise IntegrityError("first-principles must keep the Microsoft operating-day roster", reason_code="CATALOG_REVIEW")
+    missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
+    if "teams" not in missing or "sharepoint" not in missing or "sentinel" not in missing:
+        raise IntegrityError("honest_missing must keep Teams, SharePoint, and Sentinel", reason_code="CATALOG_HONEST")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

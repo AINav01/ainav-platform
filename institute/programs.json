@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.90.0",
+  "release": "2.91.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -249,6 +249,8 @@
     "microsoft_day_map": true,
     "microsoft_day_map_is_sku": false,
     "microsoft_is_the_product": false,
+    "microsoft_roster": true,
+    "microsoft_roster_is_sku": false,
     "microsoft_run": true,
     "microsoft_run_is_sku": false,
     "name": "AINAV.Institute",

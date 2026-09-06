@@ -291,7 +291,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #class-glance { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);
@@ -1311,6 +1311,34 @@ table.law tr[data-group] th {
 }
 .firm-ms-panel {
   margin-top: 1rem;
+}
+.firm-ms-day li[data-wired="no"]::after,
+.firm-ms li[data-wired="no"]::after {
+  content: "licensed · not wired";
+  display: inline-block;
+  width: fit-content;
+  margin-top: 0.15rem;
+  padding: 0.08rem 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--hold) 55%, transparent);
+  color: var(--hold);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.firm-ms-floor {
+  margin-top: 0.75rem;
+}
+.firm-ms-floor span[data-wired="no"]::after {
+  content: "licensed · not wired";
+  display: inline-block;
+  margin-left: 0.35rem;
+  color: var(--hold);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+#firm-ms-opens {
+  margin: 0.75rem 0 0.5rem;
 }
 .firm-ms-day {
   margin: 0.65rem 0 1rem;

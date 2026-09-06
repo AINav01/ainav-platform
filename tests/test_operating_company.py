@@ -24,6 +24,8 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert "not the product" in blob
     assert "day map" in blob
     assert "assign sits on azure host" in blob
+    assert "roster" in blob
+    assert "licensed-not-wired is visible" in blob
     assert "five hundred" in blob
     assert "capacity" in blob
     firm = cat["expert_review"]["success"]["operating_company"]
@@ -69,6 +71,9 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert run["wired_claimed"] is False
     assert run["microsoft_is_the_product"] is False
     assert run["ninth_complement"] is False
+    assert run["roster"] is True
+    assert run["roster_is_sku"] is False
+    assert "roster" in firm["glance"].lower()
     assert len(run["complement_ids"]) == 8
     assert len(run["required_ids"]) == 6
     assert [item["id"] for item in run["spine"]] == run["required_ids"] + run["complement_ids"]
@@ -92,8 +97,14 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert 'id="firm-rails"' in html
     assert 'id="firm-day"' in html
     assert 'id="firm-gates"' in html
-    assert 'src="site.js?v=2.90.0"' in html
-    assert 'src="site.js?v=2.90.0"' in twin
+    assert 'src="site.js?v=2.91.0"' in html
+    assert 'src="site.js?v=2.91.0"' in twin
+    assert html.find('id="firm-ms"') < html.find('id="firm-day"')
+    assert 'id="firm-open-assign"' in html
+    assert "firm-wire-sharepoint" in html
+    assert "firm-wire-sentinel" in html
+    assert 'id="firm-ms-opens"' in html
+    assert 'href="#firm-ms"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     assert 'id="ops-note"' in html
     assert 'href="#firm"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     assert "Held. Floor held. Gold is not launch." in html
@@ -289,6 +300,27 @@ def test_operating_company_fail_closed():
             if item.get("n") == 60:
                 item["do"] = "Ship a CRM."
 
+    def upgrade_roster(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 61:
+                item["do"] = "Ship a CRM."
+
+    def glance(cat):
+        cat["expert_review"]["success"]["operating_company"]["glance"] = "Operating day. Launch gate closed."
+
+    def roster_off(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["roster"] = False
+
+    def roster_sku(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["roster_is_sku"] = True
+
+    def ciso_roster(cat):
+        cat["expert_review"]["success"]["ciso"]["does_not"] = [
+            item
+            for item in cat["expert_review"]["success"]["ciso"]["does_not"]
+            if "roster as wired" not in item.lower()
+        ]
+
     def ms_wired(cat):
         cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["wired_claimed"] = True
 
@@ -456,6 +488,11 @@ def test_operating_company_fail_closed():
         upgrade_quality,
         upgrade_ms,
         upgrade_day_map,
+        upgrade_roster,
+        glance,
+        roster_off,
+        roster_sku,
+        ciso_roster,
         ms_wired,
         ms_product,
         ms_ninth,

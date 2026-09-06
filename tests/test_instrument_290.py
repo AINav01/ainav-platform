@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_290_microsoft_day_map():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.90.0"
+    assert cat["entity"]["release"] == "2.91.0"
     firm = cat["expert_review"]["success"]["operating_company"]
     run = firm["microsoft_run"]
     assert run["kind"] == "ainav.microsoft_run.v1"
@@ -33,7 +33,7 @@ def test_release_is_290_microsoft_day_map():
         for item in cat["engineering"]["closed_in_tree"]
     )
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 60
+    assert len(cat["expert_review"]["upgrades"]) == 61
     assert upgrades[60]["who"] == "tree"
     assert upgrades[60]["done"] is True
     assert upgrades[60]["marks_live_pin"] is False
@@ -43,7 +43,7 @@ def test_release_is_290_microsoft_day_map():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
-    assert "2.90.0" in html
+    assert "2.91.0" in html
     assert 'id="firm-ms-day"' in html
     assert "firm-wire-day" in html
     assert "firm-day-on-assign" in html
@@ -51,9 +51,9 @@ def test_release_is_290_microsoft_day_map():
     assert "index.html#firm-ms" in twin
     assert "day map" in twin.lower()
     dash = public_dashboard()
-    assert dash["release"] == "2.90.0"
+    assert dash["release"] == "2.91.0"
     status = public_status()
-    assert status["release"] == "2.90.0"
+    assert status["release"] == "2.91.0"
     assert status["website"]["microsoft_day_map"] is True
     assert status["website"]["microsoft_day_map_is_sku"] is False
     held = publish_institute()
@@ -62,9 +62,6 @@ def test_release_is_290_microsoft_day_map():
 
 
 def test_instrument_290_fail_closed():
-    def release(cat):
-        cat["entity"]["release"] = "2.89.0"
-
     def closed(cat):
         cat["engineering"]["closed_in_tree"] = [
             item for item in cat["engineering"]["closed_in_tree"] if "2.90.0" not in item
@@ -103,7 +100,6 @@ def test_instrument_290_fail_closed():
         ]
 
     for mutator in (
-        release,
         closed,
         map_off,
         map_sku,
@@ -119,10 +115,6 @@ def test_instrument_290_fail_closed():
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
-    hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "2.89.0"
-    with pytest.raises(IntegrityError):
-        catmod._validate_instrument_290(hole, hole["plane_interface"])
     map_hole = copy.deepcopy(edge)
     map_hole["programs"]["website"]["microsoft_day_map"] = False
     with pytest.raises(IntegrityError):
