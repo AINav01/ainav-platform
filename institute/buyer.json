@@ -508,6 +508,10 @@
         "id": "book",
         "items": [
           {
+            "href": "#brand",
+            "label": "Brand"
+          },
+          {
             "href": "#about",
             "label": "About AINav"
           },
@@ -731,6 +735,123 @@
         }
       ]
     },
+    "brand": {
+      "cms": false,
+      "face": {
+        "display": "Newsreader",
+        "gold": "#8a6a2c",
+        "gold_2": "#c9a45a",
+        "ink": "#12100c",
+        "note": "Institute face tokens. Not a CMS theme SKU.",
+        "paper": "#f3eee4",
+        "sans": "Source Sans 3",
+        "void": "#100e0b"
+      },
+      "fear_brand": false,
+      "fourth_sku": false,
+      "glance": "Marks on #brand. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
+      "kind": "ainav.brand.v1",
+      "launch": false,
+      "lede": "One mark set across the firm. Legal is AINav, Inc. Product is AINav Control Plane. Institute is AINAV.Institute. Sale is L1, P-ADM, and U-DUAL. Write-fear names the unauthorized journal. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand.",
+      "live": false,
+      "live_pin_ok": false,
+      "lockfile_stays_job_c": true,
+      "marks": {
+        "institute": "AINAV.Institute",
+        "job": "Job C",
+        "legal": "AINav, Inc.",
+        "lockfile": "job_c",
+        "product": "AINav Control Plane"
+      },
+      "microsoft_is_the_product": false,
+      "note": "Marks stay catalog law. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
+      "owner_only": [
+        "Trademark filing",
+        "Public apex brand",
+        "Teams display name and team ids",
+        "Client twin name after signed L1",
+        "Production brand",
+        "Launch",
+        "LIVE_PIN_OK"
+      ],
+      "refuse": [
+        "Rebrand Job C",
+        "Rebrand the lockfile off job_c",
+        "Treat Microsoft as the product",
+        "Fear brand",
+        "Doom-fear",
+        "A fourth SKU as a brand",
+        "Invent a Teams team name as live",
+        "Treat the sandbox as production brand",
+        "HubSpot as the firm brand",
+        "Mark Institute launched",
+        "LIVE_PIN_OK theater"
+      ],
+      "site": "Brand system on #brand. Firm is #firm. Twin is #twin. Close is #path. Not a /brand route.",
+      "sku": false,
+      "surfaces": [
+        {
+          "id": "legal",
+          "mark": "AINav, Inc.",
+          "note": "Delaware C corporation. Sole owner James Hodnett."
+        },
+        {
+          "id": "product",
+          "mark": "AINav Control Plane",
+          "note": "Job C. Three SKUs. Lockfile stays job_c."
+        },
+        {
+          "id": "institute",
+          "mark": "AINAV.Institute",
+          "note": "Sale face. Twin review. Not launched."
+        },
+        {
+          "id": "firm",
+          "mark": "AINav, Inc.",
+          "note": "Operating company. Not HubSpot. Not a CRM."
+        },
+        {
+          "id": "sale",
+          "mark": "L1 \u00b7 P-ADM \u00b7 U-DUAL",
+          "note": "Prove, keep, deepen. Write-fear. Not doom-fear."
+        },
+        {
+          "id": "twin",
+          "mark": "AINAV.Institute twin",
+          "note": "Azure SWA review. Not client production."
+        },
+        {
+          "id": "sandbox",
+          "mark": "unnamed until signed L1",
+          "note": "Segregated after L1. Never shared. Lab pin AINAV-L1 is not commercial close. BC company AINav exists. Not production."
+        },
+        {
+          "id": "teams",
+          "mark": "Microsoft Teams",
+          "note": "Notify. Not a seat. Team and channel ids stay unset. Microsoft mark."
+        },
+        {
+          "id": "teams_premium",
+          "mark": "Microsoft Teams Premium",
+          "note": "Paid on Cynthia. Not a seat. Microsoft mark."
+        },
+        {
+          "id": "sales",
+          "mark": "Dynamics 365 Sales Enterprise",
+          "note": "Microsoft mark. Not the firm CRM."
+        },
+        {
+          "id": "owner",
+          "mark": "James Hodnett",
+          "note": "Sole. Marks payouts and LIVE_PIN_OK."
+        }
+      ],
+      "trademark_filed": false,
+      "voice": {
+        "not_ours": "Doom-fear is AGI theater. Not a fear brand.",
+        "ours": "Write-fear names the unauthorized journal two humans did not admit."
+      }
+    },
     "certified": false,
     "ciso": {
       "does_not": [
@@ -760,7 +881,9 @@
         "Invent a ninth complement",
         "Invent Teams channel ids or DATAVERSE_URL from this plane",
         "Treat the Microsoft day map as wired",
-        "Treat the roster as wired"
+        "Treat the roster as wired",
+        "Rebrand Job C",
+        "Treat the brand as a SKU"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -1653,7 +1776,7 @@
         "padm": 0,
         "shared_twin": false
       },
-      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The roster is #firm-ms. The day map is #firm-ms-day. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The roster is #firm-ms. The day map is #firm-ms-day. The brand is #brand. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
       "sku": false
     },
     "qualify": {

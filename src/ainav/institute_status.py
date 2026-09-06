@@ -191,6 +191,9 @@ def public_status() -> dict[str, Any]:
             "microsoft_day_map_is_sku": False,
             "microsoft_roster": bool(site.get("microsoft_roster")),
             "microsoft_roster_is_sku": False,
+            "brand": bool(site.get("brand")),
+            "brand_is_sku": False,
+            "brand_href": site.get("brand_href") or "#brand",
         },
         "bc": {
             "connection": "bc.premium",

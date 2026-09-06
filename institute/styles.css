@@ -292,6 +292,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 55%, t
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
 #twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance { scroll-margin-top: 6.4rem; }
+#brand { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);
@@ -678,6 +679,14 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
   letter-spacing: 0.03em;
 }
 .plane-strip b { color: var(--gold-2); font-size: 0.92rem; }
+.plane-strip a,
+.firm-ms-floor a {
+  color: var(--gold-2);
+}
+.plane-strip a:hover,
+.firm-ms-floor a:hover {
+  color: var(--gold);
+}
 .plane-strip.plane-page-first {
   background: color-mix(in srgb, var(--paper-2) 82%, white);
   color: var(--ink);
@@ -1388,6 +1397,33 @@ table.law tr[data-group] th {
   letter-spacing: 0.04em;
 }
 .firm-ms span {
+  color: #d8d2c6;
+  font-size: 0.86rem;
+}
+.brand-panel {
+  margin-top: 1rem;
+}
+.brand-surfaces {
+  margin: 0.65rem 0 1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+@media (min-width: 1100px) {
+  .brand-surfaces { grid-template-columns: repeat(2, 1fr); }
+}
+.brand-surfaces li {
+  display: grid;
+  gap: 0.15rem;
+  border-left: 2px solid var(--gold);
+  padding: 0.15rem 0 0.15rem 0.7rem;
+}
+.brand-surfaces b {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.brand-surfaces span {
   color: #d8d2c6;
   font-size: 0.86rem;
 }

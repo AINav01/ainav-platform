@@ -356,6 +356,7 @@ def deep_dive(*, probe: bool = False) -> str:
     client_twin = cat["expert_review"]["success"]["client_twin"]
     close_bench = cat["expert_review"]["success"]["close_bench"]
     operating_company = cat["expert_review"]["success"]["operating_company"]
+    brand = cat["expert_review"]["success"]["brand"]
     us_dv = cat["microsoft_stack"]["us_dataverse"]
     lines += [
         "",
@@ -376,6 +377,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"**Close bench.** {close_bench['lede']} {close_bench['site']} {close_bench['note']}",
         "",
         f"**Operating company.** {operating_company['lede']} {operating_company['site']} {operating_company['note']}",
+        "",
+        f"**Brand.** {brand['lede']} {brand['site']} {brand['note']}",
         "",
         f"**Operating day.** Qualify, proof, close, assign, service, launch gate. Gold is not launch. Launch stays false.",
         "",

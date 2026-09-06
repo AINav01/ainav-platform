@@ -269,6 +269,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - Teams team and channel ids stay unset. This Cloud Agent cannot invent them.
 - SHAREPOINT_SITE_ID stays unset. This Cloud Agent cannot invent a SharePoint site.
 - Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel.
+- Trademark filing and public apex brand stay owner-only. This Cloud Agent cannot file a mark or launch the Institute brand.
 
 ## OPEN (do not mark closed)
 

@@ -251,6 +251,12 @@ def public_search() -> dict[str, Any]:
             "href": "index.html#firm",
             "text": "First-class operating day and launch gate. Qualify, proof, close, assign, service, launch. 500/500 capacity. Gold is not launch. Not a CRM. Not a fourth SKU.",
         },
+        {
+            "id": "brand",
+            "title": "Brand",
+            "href": "index.html#brand",
+            "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

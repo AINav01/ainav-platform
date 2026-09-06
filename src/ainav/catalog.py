@@ -662,6 +662,8 @@ def _validate_honest_missing(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest_missing must keep SHAREPOINT_SITE_ID", reason_code="CATALOG_HONEST")
     if not any("sentinel" in item and "law" in item for item in missing):
         raise IntegrityError("honest_missing must keep Sentinel on the existing LAW", reason_code="CATALOG_HONEST")
+    if not any("trademark" in item and "apex brand" in item for item in missing):
+        raise IntegrityError("honest_missing must keep trademark filing and public apex brand", reason_code="CATALOG_HONEST")
     if any(item.strip() == "live_pin_ok is marked" for item in missing):
         raise IntegrityError("honest_missing cannot claim LIVE_PIN_OK closed", reason_code="CATALOG_HONEST")
 
@@ -1138,7 +1140,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 61:
+    if not 16 <= len(upgrades) <= 62:
         raise IntegrityError("expert review needs 16–61 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
@@ -1191,6 +1193,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         59: ("microsoft run", "live_pin_ok"),
         60: ("day map", "live_pin_ok"),
         61: ("roster", "live_pin_ok"),
+        62: ("brand", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1244,6 +1247,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
     if "roster" not in blob or "licensed-not-wired is visible" not in blob:
         raise IntegrityError("first-principles must keep the Microsoft operating-day roster", reason_code="CATALOG_REVIEW")
+    if "brand system" not in blob or "lockfile stays job_c" not in blob:
+        raise IntegrityError("first-principles must keep the brand system and lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    if "microsoft marks" not in blob or "teams is notify" not in blob:
+        raise IntegrityError("first-principles must keep Microsoft marks and Teams is notify", reason_code="CATALOG_REVIEW")
+    if "not a production brand" not in blob or "not a fear brand" not in blob:
+        raise IntegrityError("first-principles must keep sandbox is not a production brand and not a fear brand", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1333,6 +1342,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat the Microsoft day map as wired", reason_code="CATALOG_REVIEW")
     if "roster as wired" not in does_not:
         raise IntegrityError("CISO posture does not treat the roster as wired", reason_code="CATALOG_REVIEW")
+    if "rebrand job c" not in does_not or "brand as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not rebrand Job C or treat the brand as a SKU", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1372,6 +1383,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_client_twin(success.get("client_twin"))
     _validate_close_bench(success.get("close_bench"))
     _validate_operating_company(success.get("operating_company"))
+    _validate_brand(success.get("brand"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1721,6 +1733,90 @@ def _validate_operating_company(body: Any) -> None:
     _validate_microsoft_run(firm.get("microsoft_run"))
 
 
+def _validate_brand(body: Any) -> None:
+    brand = _as_dict(body, "brand")
+    if brand.get("kind") != "ainav.brand.v1":
+        raise IntegrityError("brand kind is ainav.brand.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "trademark_filed",
+        "microsoft_is_the_product",
+    ):
+        if brand.get(flag) is True:
+            raise IntegrityError(f"brand cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if brand.get("lockfile_stays_job_c") is not True:
+        raise IntegrityError("brand lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    marks = brand.get("marks") or {}
+    if marks.get("legal") != "AINav, Inc." or marks.get("product") != "AINav Control Plane":
+        raise IntegrityError("brand marks keep AINav, Inc. and AINav Control Plane", reason_code="CATALOG_REVIEW")
+    if marks.get("institute") != "AINAV.Institute" or marks.get("lockfile") != "job_c":
+        raise IntegrityError("brand marks keep AINAV.Institute and lockfile job_c", reason_code="CATALOG_REVIEW")
+    if "job c" not in str(marks.get("job") or "").lower():
+        raise IntegrityError("brand marks keep Job C", reason_code="CATALOG_REVIEW")
+    voice = " ".join(str((brand.get("voice") or {}).get(key) or "").lower() for key in ("ours", "not_ours"))
+    if "write-fear" not in voice or "doom-fear" not in voice or "fear brand" not in voice:
+        raise IntegrityError("brand voice splits write-fear from doom-fear and a fear brand", reason_code="CATALOG_REVIEW")
+    surfaces = [item for item in (brand.get("surfaces") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in surfaces] != BRAND_SURFACE_IDS:
+        raise IntegrityError("brand surfaces are legal through owner", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('mark') or ''} {item.get('note') or ''}".lower()
+        for item in surfaces
+    )
+    for stem in (
+        "delaware",
+        "job c",
+        "lockfile stays job_c",
+        "not launched",
+        "not hubspot",
+        "write-fear",
+        "azure swa",
+        "ainav-l1",
+        "ids stay unset",
+        "paid on cynthia",
+        "not the firm crm",
+        "live_pin_ok",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"brand surfaces must keep {stem}", reason_code="CATALOG_REVIEW")
+    face = brand.get("face") or {}
+    if str(face.get("paper") or "") != "#f3eee4" or str(face.get("ink") or "") != "#12100c":
+        raise IntegrityError("brand face keeps paper and ink tokens", reason_code="CATALOG_REVIEW")
+    if str(face.get("gold") or "") != "#8a6a2c" or str(face.get("gold_2") or "") != "#c9a45a":
+        raise IntegrityError("brand face keeps gold tokens", reason_code="CATALOG_REVIEW")
+    if str(face.get("void") or "") != "#100e0b":
+        raise IntegrityError("brand face keeps the void token", reason_code="CATALOG_REVIEW")
+    if "newsreader" not in str(face.get("display") or "").lower() or "source sans 3" not in str(face.get("sans") or "").lower():
+        raise IntegrityError("brand face keeps Newsreader and Source Sans 3", reason_code="CATALOG_REVIEW")
+    if "cms" not in str(face.get("note") or "").lower():
+        raise IntegrityError("brand face is not a CMS theme SKU", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in brand.get("refuse") or [])
+    for stem in ("rebrand job c", "lockfile", "microsoft as the product", "fear brand", "doom-fear", "teams team name", "production brand", "hubspot", "launched", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("brand refuse keeps rebrand, fear brand, Microsoft as the product, sandbox production", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in brand.get("owner_only") or [])
+    for stem in ("trademark", "apex brand", "teams", "client twin", "production brand", "launch", "live_pin"):
+        if stem not in owner:
+            raise IntegrityError("brand owner_only keeps trademark, apex brand, Teams ids, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    site = str(brand.get("site") or "").lower()
+    if "#brand" not in site or "not a /brand route" not in site:
+        raise IntegrityError("brand site is #brand, not a /brand route", reason_code="CATALOG_REVIEW")
+    if "#firm" not in site or "#twin" not in site or "#path" not in site:
+        raise IntegrityError("brand site keeps firm, twin, and close", reason_code="CATALOG_REVIEW")
+    note = str(brand.get("note") or "").lower()
+    if "lockfile stays job_c" not in note or "live_pin_ok" not in note or "fear brand" not in note:
+        raise IntegrityError("brand note keeps lockfile, fear brand refuse, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+    lede = str(brand.get("lede") or "").lower()
+    if "one mark set" not in lede or "write-fear" not in lede or "lockfile stays job_c" not in lede:
+        raise IntegrityError("brand lede is one mark set, write-fear, lockfile stays job_c", reason_code="CATALOG_REVIEW")
+
+
 def _validate_operating_day(body: Any) -> None:
     day = _as_dict(body, "operating_day")
     if day.get("kind") != "ainav.operating_day.v1":
@@ -1802,6 +1898,19 @@ COMPLEMENT_MS_IDS = [
     "azure.policy",
 ]
 OPERATING_DAY_IDS = ["qualify", "proof", "close", "assign", "service", "launch"]
+BRAND_SURFACE_IDS = [
+    "legal",
+    "product",
+    "institute",
+    "firm",
+    "sale",
+    "twin",
+    "sandbox",
+    "teams",
+    "teams_premium",
+    "sales",
+    "owner",
+]
 MICROSOFT_DAY_ON = {
     "qualify": ["m365.e7", "teams.enterprise", "teams.premium", "entra.id", "entra.pim"],
     "proof": ["azure.host", "m365.e7"],
@@ -2836,6 +2945,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_289(catalog, body)
     _validate_instrument_290(catalog, body)
     _validate_instrument_291(catalog, body)
+    _validate_instrument_292(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3403,8 +3513,6 @@ def _validate_instrument_290(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_291(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.91.0":
-        raise IntegrityError("entity.release is 2.91.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.91.0" in item and "roster" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.91.0 Microsoft operating-day roster", reason_code="CATALOG_ENGINEERING")
@@ -3428,6 +3536,55 @@ def _validate_instrument_291(catalog: dict[str, Any], body: dict[str, Any]) -> N
     missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
     if "teams" not in missing or "sharepoint" not in missing or "sentinel" not in missing:
         raise IntegrityError("honest_missing must keep Teams, SharePoint, and Sentinel", reason_code="CATALOG_HONEST")
+
+
+def _validate_instrument_292(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.92.0":
+        raise IntegrityError("entity.release is 2.92.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.92.0" in item and "brand" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.92.0 first-class brand system", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("brand") is not True:
+        raise IntegrityError("2.92.0 website has a first-class brand system", reason_code="CATALOG_PLANE")
+    if site.get("brand_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.92.0 brand is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    if str(site.get("brand_href") or "") != "#brand":
+        raise IntegrityError("2.92.0 brand bench is #brand", reason_code="CATALOG_PLANE")
+    brand = ((catalog.get("expert_review") or {}).get("success") or {}).get("brand") or {}
+    if brand.get("kind") != "ainav.brand.v1":
+        raise IntegrityError("2.92.0 brand kind", reason_code="CATALOG_REVIEW")
+    if brand.get("sku") is True or brand.get("cms") is True or brand.get("fear_brand") is True:
+        raise IntegrityError("2.92.0 brand is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if brand.get("lockfile_stays_job_c") is not True:
+        raise IntegrityError("2.92.0 lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    marks = brand.get("marks") or {}
+    entity = catalog.get("entity") or {}
+    ip = catalog.get("ip") or {}
+    if marks.get("legal") != entity.get("legal") or marks.get("product") != entity.get("product"):
+        raise IntegrityError("2.92.0 brand marks stay lockstep with entity", reason_code="CATALOG_REVIEW")
+    if marks.get("institute") != entity.get("institute") or marks.get("product") != ip.get("product_mark"):
+        raise IntegrityError("2.92.0 brand marks stay lockstep with entity and ip", reason_code="CATALOG_REVIEW")
+    if marks.get("institute") != ip.get("institute_mark") or marks.get("legal") != ip.get("owner"):
+        raise IntegrityError("2.92.0 brand marks stay lockstep with ip owner and institute mark", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (brand.get("surfaces") or []) if isinstance(item, dict)] != BRAND_SURFACE_IDS:
+        raise IntegrityError("2.92.0 brand surfaces stay the declared mark set", reason_code="CATALOG_REVIEW")
+    site_note = str(brand.get("site") or "").lower()
+    if "#brand" not in site_note or "not a /brand route" not in site_note:
+        raise IntegrityError("2.92.0 brand site is #brand, not a /brand route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "brand system" not in principles or "lockfile stays job_c" not in principles:
+        raise IntegrityError("first-principles must keep the brand system and lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    if "write-fear" not in principles or "microsoft marks" not in principles:
+        raise IntegrityError("first-principles must keep write-fear and Microsoft marks", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#firm" not in ops or "operating day" not in ops:
+        raise IntegrityError("2.92.0 operations note keeps SKU attach, #firm, and the operating day", reason_code="CATALOG_REVIEW")
+    if "#brand" not in ops:
+        raise IntegrityError("2.92.0 operations note points at the brand on #brand", reason_code="CATALOG_REVIEW")
+    missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
+    if "trademark" not in missing or "apex brand" not in missing:
+        raise IntegrityError("honest_missing must keep trademark filing and public apex brand", reason_code="CATALOG_HONEST")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

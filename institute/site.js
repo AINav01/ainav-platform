@@ -1870,6 +1870,7 @@
     paintClientTwin(success.client_twin);
     paintCloseBench(success.close_bench);
     paintOperatingCompany(success.operating_company);
+    paintBrand(success.brand);
   }
 
   function paintHumanControl(control) {
@@ -2188,6 +2189,48 @@
           opens.appendChild(li);
         });
       }
+    }
+  }
+
+  function paintBrand(brand) {
+    if (
+      !brand ||
+      brand.sku ||
+      brand.cms ||
+      brand.fear_brand ||
+      brand.live ||
+      brand.live_pin_ok ||
+      brand.launch ||
+      brand.trademark_filed ||
+      brand.microsoft_is_the_product
+    ) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("brand-lede", brand.lede);
+    set("brand-status", (brand.site || "") + " " + (brand.note || ""));
+    var voice = brand.voice || {};
+    if (voice.ours || voice.not_ours) {
+      set("brand-voice", [voice.ours, voice.not_ours].filter(Boolean).join(" "));
+    }
+    var list = document.getElementById("brand-surfaces");
+    if (list && brand.surfaces && brand.surfaces.length) {
+      list.textContent = "";
+      brand.surfaces.forEach(function (item) {
+        if (!item) return;
+        var li = document.createElement("li");
+        li.setAttribute("data-surface", item.id || "");
+        var name = document.createElement("b");
+        name.textContent = item.mark || item.id || "";
+        li.appendChild(name);
+        var note = document.createElement("span");
+        note.textContent = item.note || "";
+        li.appendChild(note);
+        list.appendChild(li);
+      });
     }
   }
 
@@ -3180,6 +3223,62 @@
       writeFirmLedger(
         "denied",
         "sentinel_denied · law_is_not_sentinel\nThe mothership LAW is not Sentinel.\nThis plane cannot enable Sentinel.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  function refuseBrand(message, ledger) {
+    var status = document.getElementById("brand-status");
+    if (status) status.textContent = message;
+    writeFirmLedger("denied", ledger);
+  }
+
+  var brandRebrand = document.getElementById("brand-rebrand");
+  if (brandRebrand) {
+    brandRebrand.addEventListener("click", function () {
+      refuseBrand(
+        "Refused. Lockfile stays job_c. A rebrand of Job C breaks gold.",
+        "brand_denied · rebrand Job C\nLockfile product stays job_c.\nrefuse_lockfile_rebrand.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var brandFear = document.getElementById("brand-fear");
+  if (brandFear) {
+    brandFear.addEventListener("click", function () {
+      refuseBrand(
+        "Refused. Write-fear names the unauthorized journal. Doom-fear is not a brand.",
+        "brand_denied · fear brand\nWrite-fear is the sale.\nAGI theater walks like cheaper native.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var brandMsProduct = document.getElementById("brand-ms-product");
+  if (brandMsProduct) {
+    brandMsProduct.addEventListener("click", function () {
+      refuseBrand(
+        "Refused. Microsoft marks name integrations. Microsoft is not the product.",
+        "brand_denied · Microsoft is the substrate\nTeams, Sales, and Azure stay their marks.\nThe product is the admit plane.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var brandTeamsName = document.getElementById("brand-teams-name");
+  if (brandTeamsName) {
+    brandTeamsName.addEventListener("click", function () {
+      refuseBrand(
+        "Refused. Teams team and channel ids stay unset. This plane cannot invent a live team name.",
+        "brand_denied · invent Teams team name\nNotify is not a seat.\nIds stay owner-only.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var brandSandboxProd = document.getElementById("brand-sandbox-prod");
+  if (brandSandboxProd) {
+    brandSandboxProd.addEventListener("click", function () {
+      refuseBrand(
+        "Refused. The sandbox is unnamed until signed L1. Lab pin AINAV-L1 is not commercial close.",
+        "brand_denied · sandbox as production brand\nClient twin stays unnamed until signed L1.\nNever shared. Not production.\nlive=false · live_pin_ok=false"
       );
     });
   }

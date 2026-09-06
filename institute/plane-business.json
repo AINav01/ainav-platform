@@ -597,7 +597,8 @@
       "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm; Microsoft is not the product; licensed-not-wired stays honest; not from this plane",
       "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate; assign sits on Azure host; licensed-not-wired stays honest; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane",
-      "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane"
+      "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane",
+      "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -624,7 +625,8 @@
       "Rocket Loader confirm",
       "Teams team and channel ids",
       "SHAREPOINT_SITE_ID",
-      "Sentinel on the existing LAW"
+      "Sentinel on the existing LAW",
+      "trademark filing and public apex brand"
     ],
     "sku": false,
     "this_plane_cannot": [
@@ -661,7 +663,8 @@
     "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)",
     "Teams team and channel ids stay unset. This Cloud Agent cannot invent them.",
     "SHAREPOINT_SITE_ID stays unset. This Cloud Agent cannot invent a SharePoint site.",
-    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel."
+    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel.",
+    "Trademark filing and public apex brand stay owner-only. This Cloud Agent cannot file a mark or launch the Institute brand."
   ],
   "included_and_upsells": {
     "attach_means": "included means included with requires_sku when that SKU is attached. It is not free. U-DUAL included desks require paid U-DUAL. P-ADM included libraries require attached P-ADM.",
@@ -970,7 +973,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.91.0",
+  "release": "2.92.0",
   "scenarios": [
     {
       "id": "l1_only",

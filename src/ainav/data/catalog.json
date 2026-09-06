@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.91.0",
+    "release": "2.92.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2012,7 +2012,7 @@
       "KIT_FAIL",
       "CHURN"
     ],
-    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. Not a second company."
+    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. Not a second company."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -3948,6 +3948,10 @@
             "name": "Book",
             "items": [
               {
+                "href": "#brand",
+                "label": "Brand"
+              },
+              {
                 "href": "#about",
                 "label": "About AINav"
               },
@@ -5027,7 +5031,8 @@
         "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm; Microsoft is not the product; licensed-not-wired stays honest; not from this plane",
         "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate; assign sits on Azure host; licensed-not-wired stays honest; not from this plane",
         "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane",
-        "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane"
+        "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane",
+        "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5040,7 +5045,8 @@
         "Rocket Loader confirm",
         "Teams team and channel ids",
         "SHAREPOINT_SITE_ID",
-        "Sentinel on the existing LAW"
+        "Sentinel on the existing LAW",
+        "trademark filing and public apex brand"
       ],
       "this_plane_cannot": [
         "invent entra_oid",
@@ -5183,7 +5189,8 @@
     "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)",
     "Teams team and channel ids stay unset. This Cloud Agent cannot invent them.",
     "SHAREPOINT_SITE_ID stays unset. This Cloud Agent cannot invent a SharePoint site.",
-    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel."
+    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel.",
+    "Trademark filing and public apex brand stay owner-only. This Cloud Agent cannot file a mark or launch the Institute brand."
   ],
   "engineering": {
     "kind": "ainav.engineering.v1",
@@ -5246,7 +5253,8 @@
       "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK",
-      "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.92.0 first-class brand system. One mark set across the firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -6682,7 +6690,10 @@
       "microsoft_day_map": true,
       "microsoft_day_map_is_sku": false,
       "microsoft_roster": true,
-      "microsoft_roster_is_sku": false
+      "microsoft_roster_is_sku": false,
+      "brand": true,
+      "brand_is_sku": false,
+      "brand_href": "#brand"
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -7161,7 +7172,8 @@
       "2.88.0 operating-day quality review is catalog law: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.",
       "2.89.0 first-class Microsoft run is catalog law: six required connections and eight complements sit on the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.",
       "2.90.0 Microsoft day map is catalog law: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.",
-      "2.91.0 Microsoft operating-day roster is catalog law: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK."
+      "2.91.0 Microsoft operating-day roster is catalog law: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK.",
+      "2.92.0 first-class brand system is catalog law: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7199,7 +7211,8 @@
       "A quality review of the operating day is catalog law. site.js is versioned with the release. Gold 99 held is not launch and is not an open gap like seat B. #ops is the SKU attach chain; the operating day is #firm. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.",
       "The Microsoft run is how AINav, Inc. manages the firm. Six required connections and eight complements sit on the operating day. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. HubSpot is not the firm. Licensed-not-wired stays honest. This plane cannot invent Teams ids, Dataverse URL, or Graph Writes revoked. Not a ninth complement. Not LIVE_PIN_OK.",
       "The Microsoft day map is how the whole business runs on the declared Microsoft substrate. Qualify, proof, close, assign, service, and launch each name the connections they sit on. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. The day map is not wired. Not LIVE_PIN_OK.",
-      "The Microsoft run is the operating-day roster. Licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK."
+      "The Microsoft run is the operating-day roster. Licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK.",
+      "The brand system is one mark set across the firm. Legal is AINav, Inc. Product is AINav Control Plane. Institute is AINAV.Institute. Sale is L1, P-ADM, and U-DUAL. Write-fear names the unauthorized journal. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7234,7 +7247,8 @@
       "Operating-day quality review: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.",
       "2.89.0 first-class Microsoft run sits on #firm: six required connections and eight complements mapped to the operating day. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.",
       "2.90.0 Microsoft day map sits on #firm-ms-day: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.",
-      "2.91.0 Microsoft operating-day roster sits on #firm-ms: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK."
+      "2.91.0 Microsoft operating-day roster sits on #firm-ms: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.",
+      "2.92.0 first-class brand system sits on #brand: legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Trademark filing and public apex brand stay owner-only. Not a SKU. Not a fear brand. Not LIVE_PIN_OK."
     ],
     "success": {
       "sku": false,
@@ -7430,7 +7444,9 @@
           "Invent a ninth complement",
           "Invent Teams channel ids or DATAVERSE_URL from this plane",
           "Treat the Microsoft day map as wired",
-          "Treat the roster as wired"
+          "Treat the roster as wired",
+          "Rebrand Job C",
+          "Treat the brand as a SKU"
         ]
       },
       "seat_b": {
@@ -8328,8 +8344,125 @@
           "roster": true,
           "roster_is_sku": false
         },
-        "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The roster is #firm-ms. The day map is #firm-ms-day. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+        "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The roster is #firm-ms. The day map is #firm-ms-day. The brand is #brand. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
         "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Launch stays false. Microsoft is not the product. Not LIVE_PIN_OK."
+      },
+      "brand": {
+        "kind": "ainav.brand.v1",
+        "sku": false,
+        "fourth_sku": false,
+        "cms": false,
+        "fear_brand": false,
+        "live": false,
+        "live_pin_ok": false,
+        "launch": false,
+        "trademark_filed": false,
+        "microsoft_is_the_product": false,
+        "lockfile_stays_job_c": true,
+        "lede": "One mark set across the firm. Legal is AINav, Inc. Product is AINav Control Plane. Institute is AINAV.Institute. Sale is L1, P-ADM, and U-DUAL. Write-fear names the unauthorized journal. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand.",
+        "glance": "Marks on #brand. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
+        "marks": {
+          "legal": "AINav, Inc.",
+          "product": "AINav Control Plane",
+          "institute": "AINAV.Institute",
+          "job": "Job C",
+          "lockfile": "job_c"
+        },
+        "voice": {
+          "ours": "Write-fear names the unauthorized journal two humans did not admit.",
+          "not_ours": "Doom-fear is AGI theater. Not a fear brand."
+        },
+        "surfaces": [
+          {
+            "id": "legal",
+            "mark": "AINav, Inc.",
+            "note": "Delaware C corporation. Sole owner James Hodnett."
+          },
+          {
+            "id": "product",
+            "mark": "AINav Control Plane",
+            "note": "Job C. Three SKUs. Lockfile stays job_c."
+          },
+          {
+            "id": "institute",
+            "mark": "AINAV.Institute",
+            "note": "Sale face. Twin review. Not launched."
+          },
+          {
+            "id": "firm",
+            "mark": "AINav, Inc.",
+            "note": "Operating company. Not HubSpot. Not a CRM."
+          },
+          {
+            "id": "sale",
+            "mark": "L1 · P-ADM · U-DUAL",
+            "note": "Prove, keep, deepen. Write-fear. Not doom-fear."
+          },
+          {
+            "id": "twin",
+            "mark": "AINAV.Institute twin",
+            "note": "Azure SWA review. Not client production."
+          },
+          {
+            "id": "sandbox",
+            "mark": "unnamed until signed L1",
+            "note": "Segregated after L1. Never shared. Lab pin AINAV-L1 is not commercial close. BC company AINav exists. Not production."
+          },
+          {
+            "id": "teams",
+            "mark": "Microsoft Teams",
+            "note": "Notify. Not a seat. Team and channel ids stay unset. Microsoft mark."
+          },
+          {
+            "id": "teams_premium",
+            "mark": "Microsoft Teams Premium",
+            "note": "Paid on Cynthia. Not a seat. Microsoft mark."
+          },
+          {
+            "id": "sales",
+            "mark": "Dynamics 365 Sales Enterprise",
+            "note": "Microsoft mark. Not the firm CRM."
+          },
+          {
+            "id": "owner",
+            "mark": "James Hodnett",
+            "note": "Sole. Marks payouts and LIVE_PIN_OK."
+          }
+        ],
+        "face": {
+          "paper": "#f3eee4",
+          "ink": "#12100c",
+          "gold": "#8a6a2c",
+          "gold_2": "#c9a45a",
+          "void": "#100e0b",
+          "display": "Newsreader",
+          "sans": "Source Sans 3",
+          "note": "Institute face tokens. Not a CMS theme SKU."
+        },
+        "refuse": [
+          "Rebrand Job C",
+          "Rebrand the lockfile off job_c",
+          "Treat Microsoft as the product",
+          "Fear brand",
+          "Doom-fear",
+          "A fourth SKU as a brand",
+          "Invent a Teams team name as live",
+          "Treat the sandbox as production brand",
+          "HubSpot as the firm brand",
+          "Mark Institute launched",
+          "LIVE_PIN_OK theater"
+        ],
+        "owner_only": [
+          "Trademark filing",
+          "Public apex brand",
+          "Teams display name and team ids",
+          "Client twin name after signed L1",
+          "Production brand",
+          "Launch",
+          "LIVE_PIN_OK"
+        ],
+        "site": "Brand system on #brand. Firm is #firm. Twin is #twin. Close is #path. Not a /brand route.",
+        "note": "Marks stay catalog law. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK."
       }
     },
     "upgrades": [
@@ -8811,6 +8944,14 @@
         "who": "tree",
         "title": "Microsoft operating-day roster",
         "do": "Ship 2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 62,
+        "who": "tree",
+        "title": "Brand system",
+        "do": "Ship 2.92.0 first-class brand system on #brand. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

@@ -424,7 +424,8 @@
       "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK",
-      "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.92.0 first-class brand system. One mark set across the firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -526,7 +527,8 @@
     "G1/G10 LIVE_PIN_OK (owner-only; never from this plane)",
     "Teams team and channel ids stay unset. This Cloud Agent cannot invent them.",
     "SHAREPOINT_SITE_ID stays unset. This Cloud Agent cannot invent a SharePoint site.",
-    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel."
+    "Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel.",
+    "Trademark filing and public apex brand stay owner-only. This Cloud Agent cannot file a mark or launch the Institute brand."
   ],
   "host": {
     "connection": "azure.host",
@@ -615,7 +617,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.91.0",
+  "release": "2.92.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -629,6 +631,9 @@
   "website": {
     "authorized_release": false,
     "azure_url": "https://blue-river-010091a0f.7.azurestaticapps.net",
+    "brand": true,
+    "brand_href": "#brand",
+    "brand_is_sku": false,
     "client_twin_is_sku": false,
     "close_bench": true,
     "close_is_sku": false,
