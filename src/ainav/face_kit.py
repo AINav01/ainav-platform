@@ -257,6 +257,12 @@ def public_search() -> dict[str, Any]:
             "href": "index.html#brand",
             "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
         },
+        {
+            "id": "universe",
+            "title": "Client universe",
+            "href": "index.html#universe",
+            "text": "Post-close client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

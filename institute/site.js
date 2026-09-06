@@ -1871,6 +1871,7 @@
     paintCloseBench(success.close_bench);
     paintOperatingCompany(success.operating_company);
     paintBrand(success.brand);
+    paintClientUniverse(success.client_universe);
   }
 
   function paintHumanControl(control) {
@@ -2225,6 +2226,48 @@
         li.setAttribute("data-surface", item.id || "");
         var name = document.createElement("b");
         name.textContent = item.mark || item.id || "";
+        li.appendChild(name);
+        var note = document.createElement("span");
+        note.textContent = item.note || "";
+        li.appendChild(note);
+        list.appendChild(li);
+      });
+    }
+  }
+
+  function paintClientUniverse(universe) {
+    if (
+      !universe ||
+      universe.sku ||
+      universe.cms ||
+      universe.fear_brand ||
+      universe.live ||
+      universe.live_pin_ok ||
+      universe.launch ||
+      universe.assigned ||
+      universe.named_client ||
+      universe.mfa_admits ||
+      universe.certified ||
+      universe.forecast
+    ) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("universe-lede", universe.lede);
+    set("universe-glance", universe.glance);
+    set("universe-status", (universe.site || "") + " " + (universe.note || ""));
+    var list = document.getElementById("universe-surfaces");
+    if (list && universe.surfaces && universe.surfaces.length) {
+      list.textContent = "";
+      universe.surfaces.forEach(function (item) {
+        if (!item) return;
+        var li = document.createElement("li");
+        li.setAttribute("data-surface", item.id || "");
+        var name = document.createElement("b");
+        name.textContent = item.name || item.id || "";
         li.appendChild(name);
         var note = document.createElement("span");
         note.textContent = item.note || "";
@@ -3279,6 +3322,62 @@
       refuseBrand(
         "Refused. The sandbox is unnamed until signed L1. Lab pin AINAV-L1 is not commercial close.",
         "brand_denied · sandbox as production brand\nClient twin stays unnamed until signed L1.\nNever shared. Not production.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  function refuseUniverse(message, ledger) {
+    var status = document.getElementById("universe-status");
+    if (status) status.textContent = message;
+    writeFirmLedger("denied", ledger);
+  }
+
+  var universeMfa = document.getElementById("universe-mfa-admit");
+  if (universeMfa) {
+    universeMfa.addEventListener("click", function () {
+      refuseUniverse(
+        "Refused. MFA identifies. Identify is not admit. Credentialed SWA identify is not seated.",
+        "universe_denied · MFA as admit\nMFA and Conditional Access identify.\nThey do not admit.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var universeNamed = document.getElementById("universe-named-client");
+  if (universeNamed) {
+    universeNamed.addEventListener("click", function () {
+      refuseUniverse(
+        "Refused. The client sandbox stays unnamed until signed L1. This plane cannot invent a named client.",
+        "universe_denied · invent a named client\nAssigned stays false.\nNamed client stays false.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var universeSandbox = document.getElementById("universe-sandbox-prod");
+  if (universeSandbox) {
+    universeSandbox.addEventListener("click", function () {
+      refuseUniverse(
+        "Refused. The segregated branded sandbox is not production. Lab pin AINAV-L1 is not commercial close.",
+        "universe_denied · sandbox as production\nNever shared. Not the Institute twin.\nAssigned after signed L1.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var universeCertify = document.getElementById("universe-certify");
+  if (universeCertify) {
+    universeCertify.addEventListener("click", function () {
+      refuseUniverse(
+        "Refused. Maps stay claimed=false. Buying L1 does not close regulator clocks. Not a certificate.",
+        "universe_denied · certify maps\nNIST, SOX, EU AI Act, ISO 42001 stay maps.\nNot D&O. Not a SOX opinion.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var universeFourth = document.getElementById("universe-fourth-sku");
+  if (universeFourth) {
+    universeFourth.addEventListener("click", function () {
+      refuseUniverse(
+        "Refused. Three SKUs only. Packs, libraries, and FFS hours are not SKUs.",
+        "universe_denied · fourth SKU\nP-ADM keep. Paid U-DUAL deepen.\nHours never mint a SKU.\nlive=false · live_pin_ok=false"
       );
     });
   }

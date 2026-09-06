@@ -293,6 +293,7 @@ main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
 #twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
+#universe { scroll-margin-top: 6.4rem; }
 
 .hero {
   max-width: var(--wide);
@@ -1423,9 +1424,19 @@ table.law tr[data-group] th {
   font-size: 0.82rem;
   letter-spacing: 0.04em;
 }
-.brand-surfaces span {
+.brand-surfaces span,
+.universe-surfaces span {
   color: #d8d2c6;
   font-size: 0.86rem;
+}
+.universe-spine {
+  margin-top: 1.2rem;
+}
+@media (min-width: 900px) {
+  .universe-spine { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1200px) {
+  .universe-spine { grid-template-columns: repeat(6, 1fr); }
 }
 .firm-ops {
   margin-top: 1rem;

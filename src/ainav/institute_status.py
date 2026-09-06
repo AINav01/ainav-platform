@@ -194,6 +194,9 @@ def public_status() -> dict[str, Any]:
             "brand": bool(site.get("brand")),
             "brand_is_sku": False,
             "brand_href": site.get("brand_href") or "#brand",
+            "client_universe": bool(site.get("client_universe")),
+            "universe_is_sku": False,
+            "universe_href": site.get("universe_href") or "#universe",
         },
         "bc": {
             "connection": "bc.premium",

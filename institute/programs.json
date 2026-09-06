@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.92.0",
+  "release": "2.93.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -233,6 +233,7 @@
     "brand_href": "#brand",
     "brand_is_sku": false,
     "client_twin_is_sku": false,
+    "client_universe": true,
     "close_bench": true,
     "close_is_sku": false,
     "cms": false,
@@ -266,6 +267,8 @@
     "public_edge": "cloudflare",
     "review_path": "twin.html",
     "twin_host": "azure.swa",
-    "twin_review": true
+    "twin_review": true,
+    "universe_href": "#universe",
+    "universe_is_sku": false
   }
 }

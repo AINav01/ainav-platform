@@ -270,6 +270,7 @@ LIVE_PIN_OK × proof day × signed L1 × P-ADM attach
 - SHAREPOINT_SITE_ID stays unset. This Cloud Agent cannot invent a SharePoint site.
 - Sentinel on the existing LAW stays open. This Cloud Agent cannot enable Sentinel.
 - Trademark filing and public apex brand stay owner-only. This Cloud Agent cannot file a mark or launch the Institute brand.
+- Assigned client universe and named client brand stay owner-only until signed L1. This Cloud Agent cannot invent a named client.
 
 ## OPEN (do not mark closed)
 

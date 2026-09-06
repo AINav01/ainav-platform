@@ -16,7 +16,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_292_brand_system():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.92.0"
+    assert cat["entity"]["release"] == "2.93.0"
     brand = cat["expert_review"]["success"]["brand"]
     assert brand["kind"] == "ainav.brand.v1"
     assert brand["sku"] is False
@@ -52,7 +52,7 @@ def test_release_is_292_brand_system():
     assert "trademark" in missing
     assert "apex brand" in missing
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 62
+    assert len(cat["expert_review"]["upgrades"]) == 63
     assert upgrades[62]["who"] == "tree"
     assert upgrades[62]["done"] is True
     assert upgrades[62]["marks_live_pin"] is False
@@ -66,7 +66,7 @@ def test_release_is_292_brand_system():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "2.92.0" in html
+    assert "2.93.0" in html
     assert 'id="brand-surfaces"' in html
     assert 'id="brand-lede"' in html
     assert 'id="brand-status"' in html
@@ -89,9 +89,9 @@ def test_release_is_292_brand_system():
     assert "index.html#brand" in app
     assert 'href="#brand"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     dash = public_dashboard()
-    assert dash["release"] == "2.92.0"
+    assert dash["release"] == "2.93.0"
     status = public_status()
-    assert status["release"] == "2.92.0"
+    assert status["release"] == "2.93.0"
     assert status["website"]["brand"] is True
     assert status["website"]["brand_is_sku"] is False
     held = publish_institute()
@@ -171,11 +171,11 @@ def test_instrument_292_fail_closed():
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
-    hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "2.91.0"
-    with pytest.raises(IntegrityError):
-        catmod._validate_instrument_292(hole, hole["plane_interface"])
     brand_hole = copy.deepcopy(edge)
+    kind_run = copy.deepcopy(edge)
+    kind_run["expert_review"]["success"]["brand"]["kind"] = "ainav.brand.v0"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(kind_run, kind_run["plane_interface"])
     brand_hole["programs"]["website"]["brand"] = False
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_292(brand_hole, brand_hole["plane_interface"])

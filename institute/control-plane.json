@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.92.0"
+    "release": "2.93.0"
   },
   "communications": [
     {
@@ -1933,6 +1933,10 @@
               "label": "Brand"
             },
             {
+              "href": "#universe",
+              "label": "Universe"
+            },
+            {
               "href": "#about",
               "label": "About AINav"
             },
@@ -2124,7 +2128,8 @@
       "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate; assign sits on Azure host; licensed-not-wired stays honest; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane",
       "2.91.0 Microsoft operating-day roster: licensed-not-wired visible; assign path to the close bench; Teams, SharePoint, and Sentinel stay open; eight complements; not from this plane",
-      "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane"
+      "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane",
+      "2.93.0 first-class client business universe: MFA identifies, identify is not admit, segregated branded sandbox, audit trail, maps claimed=false, packs are not SKUs; not a fourth SKU; not a /universe route; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3842,7 +3847,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.92.0",
+  "release": "2.93.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4285,7 +4290,10 @@
         "Treat the Microsoft day map as wired",
         "Treat the roster as wired",
         "Rebrand Job C",
-        "Treat the brand as a SKU"
+        "Treat the brand as a SKU",
+        "Treat MFA as admit",
+        "Invent a named client universe",
+        "Treat the universe as a SKU"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4338,6 +4346,115 @@
         "Kit \u2014 L1 kit on the BC sandbox. PASS then P-ADM.",
         "Assigned sandbox \u2014 client-specific segregated digital twin. Not the Institute review twin. Not production.",
         "Paid enhance \u2014 packs and FFS hours on that client twin. Hours deepen the same admit plane. Never mint a SKU. Hours never attach free U-DUAL."
+      ]
+    },
+    "client_universe": {
+      "assigned": false,
+      "certified": false,
+      "cms": false,
+      "fear_brand": false,
+      "forecast": false,
+      "fourth_sku": false,
+      "glance": "Unnamed until signed L1. MFA identifies. Two seats admit. First and second record. Packs after the required SKU. Maps claimed=false. Not a fourth SKU. Not LIVE_PIN_OK.",
+      "kind": "ainav.client_universe.v1",
+      "launch": false,
+      "lede": "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans bind one hash. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs are not SKUs.",
+      "live": false,
+      "live_pin_ok": false,
+      "mfa_admits": false,
+      "named_client": false,
+      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+      "owner_only": [
+        "Seat B click",
+        "Signed L1",
+        "Assigned sandbox name",
+        "Client brand after L1",
+        "LIVE_PIN_OK",
+        "Launch",
+        "G12/G13"
+      ],
+      "production": false,
+      "refuse": [
+        "Treat MFA as admit",
+        "Invent a named client",
+        "Treat the sandbox as production",
+        "Mint a fourth SKU",
+        "Fear brand",
+        "Mark maps certified",
+        "Close regulator clocks by buying L1",
+        "Invent ARR graphs",
+        "HubSpot as the client CRM",
+        "LIVE_PIN_OK theater",
+        "A /universe route"
+      ],
+      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Not a /universe route.",
+      "sku": false,
+      "surfaces": [
+        {
+          "id": "identify",
+          "name": "MFA / Entra identify",
+          "note": "Identify is not admit. MFA and Conditional Access identify. Credentialed SWA identify is not seated."
+        },
+        {
+          "id": "admit",
+          "name": "Two seats",
+          "note": "Seat A treasury. Seat B controller. One hash. Consume once. Mailbox is not the click."
+        },
+        {
+          "id": "write",
+          "name": "Fail-closed SoR",
+          "note": "No admit, no write. First record is the SoR write. Graph is not called from this plane."
+        },
+        {
+          "id": "record",
+          "name": "Audit trail",
+          "note": "Second record is the sealed DecisionRecord. Weekly keep after kit PASS. Not 17a-4. Not WORM."
+        },
+        {
+          "id": "brand",
+          "name": "AINav / client marks",
+          "note": "AINav Control Plane plus an unnamed client mark until signed L1. Never shared. Not a production brand."
+        },
+        {
+          "id": "sandbox",
+          "name": "Segregated twin",
+          "note": "Assigned after signed L1. Not the Institute twin. Never shared. Not production."
+        },
+        {
+          "id": "govern",
+          "name": "Maps",
+          "note": "NIST AI RMF, SOX ICFR, EU AI Act, ISO 42001. claimed=false. Buying L1 is not a certificate."
+        },
+        {
+          "id": "consequence",
+          "name": "Non-compliance",
+          "note": "The landed write. Buying L1 does not close clocks. Not D&O. Not a SOX opinion. Maps stay claimed=false."
+        },
+        {
+          "id": "need",
+          "name": "Product need",
+          "note": "Independent admit plane. Write-fear names the unauthorized journal. Not doom-fear. Not a fear brand."
+        },
+        {
+          "id": "lead",
+          "name": "Thought leadership",
+          "note": "Last authority, not another Copilot. Not TAM. Not a forecast. Not a priced round."
+        },
+        {
+          "id": "keep",
+          "name": "P-ADM",
+          "note": "Keep after kit PASS. Hours never mint a SKU. Hours never attach free U-DUAL."
+        },
+        {
+          "id": "deepen",
+          "name": "U-DUAL",
+          "note": "Paid. Never free with P-ADM. Additional action classes on the same admit plane."
+        },
+        {
+          "id": "packs",
+          "name": "Custom packs / modules",
+          "note": "A la carte after the required SKU. FFS $3500/day. Libraries and industry packs are not SKUs."
+        }
       ]
     },
     "close_bench": {

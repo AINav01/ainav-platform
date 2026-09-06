@@ -1140,8 +1140,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 62:
-        raise IntegrityError("expert review needs 16–61 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 63:
+        raise IntegrityError("expert review needs 16–63 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1194,6 +1194,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         60: ("day map", "live_pin_ok"),
         61: ("roster", "live_pin_ok"),
         62: ("brand", "live_pin_ok"),
+        63: ("universe", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1253,6 +1254,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep Microsoft marks and Teams is notify", reason_code="CATALOG_REVIEW")
     if "not a production brand" not in blob or "not a fear brand" not in blob:
         raise IntegrityError("first-principles must keep sandbox is not a production brand and not a fear brand", reason_code="CATALOG_REVIEW")
+    if "client business universe" not in blob or "mfa identifies" not in blob:
+        raise IntegrityError("first-principles must keep the client business universe and MFA identifies", reason_code="CATALOG_REVIEW")
+    if "segregated branded" not in blob or "not a /universe route" not in blob:
+        raise IntegrityError("first-principles must keep the segregated branded sandbox and not a /universe route", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1344,6 +1349,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat the roster as wired", reason_code="CATALOG_REVIEW")
     if "rebrand job c" not in does_not or "brand as a sku" not in does_not:
         raise IntegrityError("CISO posture does not rebrand Job C or treat the brand as a SKU", reason_code="CATALOG_REVIEW")
+    if "mfa as admit" not in does_not or "named client universe" not in does_not or "universe as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat MFA as admit or invent a named client universe", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1384,6 +1391,7 @@ def _validate_success_program(success: Any) -> None:
     _validate_close_bench(success.get("close_bench"))
     _validate_operating_company(success.get("operating_company"))
     _validate_brand(success.get("brand"))
+    _validate_client_universe(success.get("client_universe"))
 
 
 def _validate_human_control(body: Any) -> None:
@@ -1817,6 +1825,102 @@ def _validate_brand(body: Any) -> None:
         raise IntegrityError("brand lede is one mark set, write-fear, lockfile stays job_c", reason_code="CATALOG_REVIEW")
 
 
+def _validate_client_universe(body: Any) -> None:
+    universe = _as_dict(body, "client_universe")
+    if universe.get("kind") != "ainav.client_universe.v1":
+        raise IntegrityError("client universe kind is ainav.client_universe.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "assigned",
+        "production",
+        "named_client",
+        "mfa_admits",
+        "certified",
+        "forecast",
+    ):
+        if universe.get(flag) is True:
+            raise IntegrityError(f"client universe cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    surfaces = [item for item in (universe.get("surfaces") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in surfaces] != CLIENT_UNIVERSE_RAIL_IDS:
+        raise IntegrityError("client universe rails are identify through packs", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in surfaces
+    )
+    for stem in (
+        "identify is not admit",
+        "mfa",
+        "one hash",
+        "consume once",
+        "no admit, no write",
+        "first record",
+        "decisionrecord",
+        "17a-4",
+        "unnamed",
+        "never shared",
+        "not production",
+        "claimed=false",
+        "landed write",
+        "close clocks",
+        "write-fear",
+        "doom-fear",
+        "not tam",
+        "not a forecast",
+        "kit pass",
+        "hours never mint",
+        "never free",
+        "not skus",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"client universe rails must keep {stem}", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in universe.get("refuse") or [])
+    for stem in (
+        "mfa as admit",
+        "named client",
+        "sandbox as production",
+        "fourth sku",
+        "fear brand",
+        "maps certified",
+        "close regulator clocks",
+        "arr graphs",
+        "hubspot",
+        "live_pin",
+        "/universe route",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("client universe refuse keeps MFA-as-admit, named client, and /universe route", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in universe.get("owner_only") or [])
+    for stem in ("seat b", "signed l1", "assigned sandbox", "client brand", "live_pin", "launch", "g12"):
+        if stem not in owner:
+            raise IntegrityError("client universe owner_only keeps seat B, signed L1, assigned name, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    site = str(universe.get("site") or "").lower()
+    if "#universe" not in site or "not a /universe route" not in site:
+        raise IntegrityError("client universe site is #universe, not a /universe route", reason_code="CATALOG_REVIEW")
+    if "#path" not in site or "#twin" not in site or "#brand" not in site or "#firm" not in site:
+        raise IntegrityError("client universe site keeps close, twin, brand, and firm", reason_code="CATALOG_REVIEW")
+    if "write rail" not in site:
+        raise IntegrityError("client universe site keeps first glance as the write rail", reason_code="CATALOG_REVIEW")
+    note = str(universe.get("note") or "").lower()
+    if "mfa identifies" not in note or "identify is not admit" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("client universe note keeps MFA identifies, identify is not admit, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+    if "claimed=false" not in note or "close regulator clocks" not in note:
+        raise IntegrityError("client universe note keeps maps claimed=false and regulator clocks open", reason_code="CATALOG_REVIEW")
+    lede = str(universe.get("lede") or "").lower()
+    if "client business universe" not in lede or "mfa identifies" not in lede or "identify is not admit" not in lede:
+        raise IntegrityError("client universe lede is MFA identifies and identify is not admit", reason_code="CATALOG_REVIEW")
+    if "segregated branded" not in lede or "packs are not skus" not in lede:
+        raise IntegrityError("client universe lede keeps the segregated branded sandbox and packs are not SKUs", reason_code="CATALOG_REVIEW")
+    glance = str(universe.get("glance") or "").lower()
+    if "unnamed" not in glance or "mfa identifies" not in glance or "claimed=false" not in glance:
+        raise IntegrityError("client universe glance keeps unnamed, MFA identifies, and maps claimed=false", reason_code="CATALOG_REVIEW")
+
+
 def _validate_operating_day(body: Any) -> None:
     day = _as_dict(body, "operating_day")
     if day.get("kind") != "ainav.operating_day.v1":
@@ -1910,6 +2014,21 @@ BRAND_SURFACE_IDS = [
     "teams_premium",
     "sales",
     "owner",
+]
+CLIENT_UNIVERSE_RAIL_IDS = [
+    "identify",
+    "admit",
+    "write",
+    "record",
+    "brand",
+    "sandbox",
+    "govern",
+    "consequence",
+    "need",
+    "lead",
+    "keep",
+    "deepen",
+    "packs",
 ]
 MICROSOFT_DAY_ON = {
     "qualify": ["m365.e7", "teams.enterprise", "teams.premium", "entra.id", "entra.pim"],
@@ -2946,6 +3065,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_290(catalog, body)
     _validate_instrument_291(catalog, body)
     _validate_instrument_292(catalog, body)
+    _validate_instrument_293(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3539,8 +3659,6 @@ def _validate_instrument_291(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_292(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.92.0":
-        raise IntegrityError("entity.release is 2.92.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.92.0" in item and "brand" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.92.0 first-class brand system", reason_code="CATALOG_ENGINEERING")
@@ -3585,6 +3703,46 @@ def _validate_instrument_292(catalog: dict[str, Any], body: dict[str, Any]) -> N
     missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
     if "trademark" not in missing or "apex brand" not in missing:
         raise IntegrityError("honest_missing must keep trademark filing and public apex brand", reason_code="CATALOG_HONEST")
+
+
+def _validate_instrument_293(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.93.0":
+        raise IntegrityError("entity.release is 2.93.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.93.0" in item and "universe" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.93.0 first-class client business universe", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("client_universe") is not True:
+        raise IntegrityError("2.93.0 website has a first-class client business universe", reason_code="CATALOG_PLANE")
+    if site.get("universe_is_sku") is True or site.get("brand_is_sku") is True:
+        raise IntegrityError("2.93.0 client universe is not a SKU", reason_code="CATALOG_PLANE")
+    if str(site.get("universe_href") or "") != "#universe":
+        raise IntegrityError("2.93.0 client universe bench is #universe", reason_code="CATALOG_PLANE")
+    universe = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_universe") or {}
+    if universe.get("kind") != "ainav.client_universe.v1":
+        raise IntegrityError("2.93.0 client universe kind", reason_code="CATALOG_REVIEW")
+    if universe.get("sku") is True or universe.get("mfa_admits") is True or universe.get("assigned") is True:
+        raise IntegrityError("2.93.0 client universe is not a SKU, MFA-as-admit, or assigned", reason_code="CATALOG_REVIEW")
+    if universe.get("named_client") is True or universe.get("certified") is True or universe.get("forecast") is True:
+        raise IntegrityError("2.93.0 client universe cannot invent a named client, certificate, or forecast", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (universe.get("surfaces") or []) if isinstance(item, dict)] != CLIENT_UNIVERSE_RAIL_IDS:
+        raise IntegrityError("2.93.0 client universe rails stay identify through packs", reason_code="CATALOG_REVIEW")
+    site_note = str(universe.get("site") or "").lower()
+    if "#universe" not in site_note or "not a /universe route" not in site_note:
+        raise IntegrityError("2.93.0 client universe site is #universe, not a /universe route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "client business universe" not in principles or "mfa identifies" not in principles:
+        raise IntegrityError("first-principles must keep the client business universe and MFA identifies", reason_code="CATALOG_REVIEW")
+    if "identify is not admit" not in principles or "not a /universe route" not in principles:
+        raise IntegrityError("first-principles must keep identify is not admit and not a /universe route", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#firm" not in ops or "operating day" not in ops:
+        raise IntegrityError("2.93.0 operations note keeps SKU attach, #firm, and the operating day", reason_code="CATALOG_REVIEW")
+    if "#brand" not in ops or "#universe" not in ops:
+        raise IntegrityError("2.93.0 operations note points at the brand and the client universe", reason_code="CATALOG_REVIEW")
+    missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
+    if "named client" not in missing or "assigned client universe" not in missing:
+        raise IntegrityError("honest_missing must keep assigned client universe and named client brand", reason_code="CATALOG_HONEST")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

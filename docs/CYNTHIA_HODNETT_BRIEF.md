@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.92.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.93.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.92.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.93.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -385,6 +385,7 @@ Working well
 - 2.90.0 Microsoft day map is catalog law: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
 - 2.91.0 Microsoft operating-day roster is catalog law: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. The roster is not wired. Not LIVE_PIN_OK.
 - 2.92.0 first-class brand system is catalog law: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.
+- 2.93.0 first-class client business universe is catalog law: MFA identifies. Identify is not admit. Two seats admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs, libraries, and FFS hours are not SKUs. Not a /universe route. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -422,6 +423,7 @@ Could be improved — without inventing a fourth SKU
 - 2.90.0 Microsoft day map sits on #firm-ms-day: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 - 2.91.0 Microsoft operating-day roster sits on #firm-ms: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 - 2.92.0 first-class brand system sits on #brand: legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Trademark filing and public apex brand stay owner-only. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.
+- 2.93.0 first-class client business universe sits on #universe: MFA identifies, two seats admit, segregated branded sandbox, audit trail, maps claimed=false, P-ADM keep, paid U-DUAL, custom packs. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Trademark filing and public apex brand stay owner-only. Not a SKU. Not MFA-as-admit. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -551,6 +553,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 60. [tree] Microsoft day map — Ship 2.90.0: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
 - 61. [tree] Microsoft operating-day roster — Ship 2.91.0 Microsoft operating-day roster. Licensed-not-wired visible. Assign path to the close bench. Teams, SharePoint, and Sentinel stay open. Eight complements. Not LIVE_PIN_OK.
 - 62. [tree] Brand system — Ship 2.92.0 first-class brand system on #brand. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.
+- 63. [tree] Client business universe — Ship 2.93.0 first-class client business universe on #universe. MFA identifies. Identify is not admit. Segregated branded sandbox. Audit trail. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK.
 
 ## What happens next
 
