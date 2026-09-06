@@ -153,6 +153,29 @@ def test_instrument_295_fail_closed():
     spine["expert_review"]["success"]["client_universe"]["spine_states"]["admit"] = "ready"
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_295(spine, spine["plane_interface"])
+    sit = copy.deepcopy(edge)
+    sit["expert_review"]["success"]["client_universe"]["sit_down"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_295(sit, sit["plane_interface"])
+    empty = copy.deepcopy(edge)
+    empty["expert_review"]["success"]["client_universe"]["day"]["lanes"] = []
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_295(empty, empty["plane_interface"])
+    site_note = copy.deepcopy(edge)
+    site_note["expert_review"]["success"]["client_universe"]["site"] = (
+        "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. "
+        "Firm is #firm. First glance stays the write rail. Honest zeros. Refuse is visible. Not a /universe route."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_295(site_note, site_note["plane_interface"])
+    principles_hole = copy.deepcopy(edge)
+    principles_hole["expert_review"]["first_principles"] = [
+        item
+        for item in principles_hole["expert_review"]["first_principles"]
+        if "sit-down client day" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_295(principles_hole, principles_hole["plane_interface"])
 
 
 def test_sit_down_day_fail_closed():
@@ -173,6 +196,17 @@ def test_sit_down_day_fail_closed():
     named["lanes"][0]["items"][0]["href"] = "/acme"
     with pytest.raises(IntegrityError):
         catmod._validate_client_universe_day(named)
+    site = copy.deepcopy(cat["expert_review"]["success"]["client_universe"])
+    site["site"] = (
+        "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. "
+        "Firm is #firm. First glance stays the write rail. Honest zeros. Refuse is visible. Not a /universe route."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_client_universe(site)
+    day_note = copy.deepcopy(cat["expert_review"]["success"]["client_universe"]["day"])
+    day_note["note"] = "A day board."
+    with pytest.raises(IntegrityError):
+        catmod._validate_client_universe_day(day_note)
     with pytest.raises(IntegrityError):
         catmod._validate_first_principles(
             [
