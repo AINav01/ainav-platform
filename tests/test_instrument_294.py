@@ -166,6 +166,34 @@ def test_instrument_294_fail_closed():
     href_hole["expert_review"]["success"]["client_universe"]["surfaces"][5]["href"] = "/client"
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_294(href_hole, href_hole["plane_interface"])
+    operable = copy.deepcopy(edge)
+    operable["expert_review"]["success"]["client_universe"]["operable"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_294(operable, operable["plane_interface"])
+    well_count = copy.deepcopy(edge)
+    well_count["expert_review"]["success"]["client_universe"]["wells"]["first_record"] = 1
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_294(well_count, well_count["plane_interface"])
+    group_ids = copy.deepcopy(edge)
+    group_ids["expert_review"]["success"]["client_universe"]["groups"] = []
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_294(group_ids, group_ids["plane_interface"])
+    site_note = copy.deepcopy(edge)
+    site_note["expert_review"]["success"]["client_universe"]["site"] = "Client universe on #universe. Not a /universe route."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_294(site_note, site_note["plane_interface"])
+    principles = copy.deepcopy(edge)
+    principles["expert_review"]["first_principles"] = [
+        item
+        for item in principles["expert_review"]["first_principles"]
+        if "operable client universe" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_294(principles, principles["plane_interface"])
+    ops = copy.deepcopy(edge)
+    ops["operations"]["note"] = "SKU attach chain. The operating day is #firm. Brand is #brand. The client universe is #universe."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_294(ops, ops["plane_interface"])
 
 
 def test_operable_universe_fail_closed():
@@ -190,6 +218,25 @@ def test_operable_universe_fail_closed():
     href["surfaces"][0]["href"] = "/universe"
     with pytest.raises(IntegrityError):
         catmod._validate_client_universe(href)
+    wells_live = copy.deepcopy(cat["expert_review"]["success"]["client_universe"])
+    wells_live["wells_are_live"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_client_universe(wells_live)
+    wells_shape = copy.deepcopy(cat["expert_review"]["success"]["client_universe"])
+    wells_shape["wells"] = "named"
+    with pytest.raises(IntegrityError):
+        catmod._validate_client_universe(wells_shape)
+    packs = copy.deepcopy(cat["expert_review"]["success"]["client_universe"])
+    packs["wells"]["packs_attached"] = 1
+    with pytest.raises(IntegrityError):
+        catmod._validate_client_universe(packs)
+    site = copy.deepcopy(cat["expert_review"]["success"]["client_universe"])
+    site["site"] = (
+        "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. "
+        "Firm is #firm. First glance stays the write rail. Not a /universe route."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_client_universe(site)
     with pytest.raises(IntegrityError):
         catmod._validate_first_principles(
             [
