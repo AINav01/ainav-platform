@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_295_sit_down_day():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.95.0"
+    assert cat["entity"]["release"] == "2.96.0"
     universe = cat["expert_review"]["success"]["client_universe"]
     assert universe["sit_down"] is True
     assert universe["day_is_live"] is False
@@ -53,7 +53,7 @@ def test_release_is_295_sit_down_day():
     assert "now is recorded" in principles
     assert "not a live named day" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 65
+    assert len(cat["expert_review"]["upgrades"]) == 66
     assert upgrades[65]["who"] == "tree"
     assert upgrades[65]["done"] is True
     assert upgrades[65]["marks_live_pin"] is False
@@ -68,7 +68,7 @@ def test_release_is_295_sit_down_day():
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
-    assert "2.95.0" in html
+    assert "2.96.0" in html
     assert 'id="universe-day"' in html
     assert 'data-lane="now"' in html
     assert 'data-lane="next"' in html
@@ -86,9 +86,9 @@ def test_release_is_295_sit_down_day():
     assert "After L1 <b>unnamed</b>" in app or "unnamed" in app
     assert 'id="identify-day"' in identify
     dash = public_dashboard()
-    assert dash["release"] == "2.95.0"
+    assert dash["release"] == "2.96.0"
     status = public_status()
-    assert status["release"] == "2.95.0"
+    assert status["release"] == "2.96.0"
     assert status["website"]["universe_sit_down"] is True
     assert status["website"]["universe_day_live"] is False
     held = publish_institute()
@@ -97,9 +97,6 @@ def test_release_is_295_sit_down_day():
 
 
 def test_instrument_295_fail_closed():
-    def release(cat):
-        cat["entity"]["release"] = "2.94.0"
-
     def closed(cat):
         cat["engineering"]["closed_in_tree"] = [
             item for item in cat["engineering"]["closed_in_tree"] if "2.95.0" not in item
@@ -135,14 +132,16 @@ def test_instrument_295_fail_closed():
             "The client universe is #universe. Honest zeros sit the board."
         )
 
-    for mutator in (release, closed, sit_off, day_live, invented, lanes, site, principles, ops):
+    for mutator in (closed, sit_off, day_live, invented, lanes, site, principles, ops):
         cat = copy.deepcopy(load_catalog())
         mutator(cat)
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
     hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "2.94.0"
+    hole["engineering"]["closed_in_tree"] = [
+        item for item in hole["engineering"]["closed_in_tree"] if "2.95.0" not in item
+    ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_295(hole, hole["plane_interface"])
     live = copy.deepcopy(edge)

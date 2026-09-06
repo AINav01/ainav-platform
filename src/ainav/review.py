@@ -358,6 +358,7 @@ def deep_dive(*, probe: bool = False) -> str:
     operating_company = cat["expert_review"]["success"]["operating_company"]
     brand = cat["expert_review"]["success"]["brand"]
     client_universe = cat["expert_review"]["success"]["client_universe"]
+    industry_drawer = cat["expert_review"]["success"]["industry_drawer"]
     us_dv = cat["microsoft_stack"]["us_dataverse"]
     lines += [
         "",
@@ -382,6 +383,8 @@ def deep_dive(*, probe: bool = False) -> str:
         f"**Brand.** {brand['lede']} {brand['site']} {brand['note']}",
         "",
         f"**Client universe.** {client_universe['lede']} {client_universe['site']} {client_universe['note']} Honest zeros. Refuse is visible. Sit-down client day.",
+        "",
+        f"**Industry drawer.** {industry_drawer['lede']} {industry_drawer['site']} {industry_drawer['note']} Sit / maps / attach / refuse. Maps claimed=false. Papers are not filings.",
         "",
         f"**Operating day.** Qualify, proof, close, assign, service, launch gate. Gold is not launch. Launch stays false.",
         "",

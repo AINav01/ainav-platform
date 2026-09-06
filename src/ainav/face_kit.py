@@ -263,6 +263,12 @@ def public_search() -> dict[str, Any]:
             "href": "index.html#universe",
             "text": "Sit-down client day. Now mailbox recorded. Next seat B. After L1 unnamed. MFA identifies. Identify is not admit. Honest zeros. Refuse is visible. Segregated branded sandbox unnamed until signed L1. Maps claimed=false. Packs are not SKUs.",
         },
+        {
+            "id": "industry",
+            "title": "Industry drawer",
+            "href": "index.html#industry",
+            "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Not a /industry route.",
+        },
     ]
     return {
         "kind": "ainav.institute.search.v1",

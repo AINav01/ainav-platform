@@ -91,6 +91,7 @@ def success_program() -> dict[str, Any]:
         "operating_company": dict(body.get("operating_company") or {}),
         "brand": dict(body.get("brand") or {}),
         "client_universe": dict(body.get("client_universe") or {}),
+        "industry_drawer": dict(body.get("industry_drawer") or {}),
     }
 
 

@@ -201,6 +201,11 @@ def public_status() -> dict[str, Any]:
             "universe_wells_live": False,
             "universe_sit_down": bool(site.get("universe_sit_down")),
             "universe_day_live": False,
+            "industry_drawer": bool(site.get("industry_drawer")),
+            "industry_is_sku": False,
+            "industry_href": site.get("industry_href") or "#industry",
+            "industry_drawer_live": False,
+            "industry_certified": False,
         },
         "bc": {
             "connection": "bc.premium",

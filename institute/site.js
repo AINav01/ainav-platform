@@ -1872,6 +1872,7 @@
     paintOperatingCompany(success.operating_company);
     paintBrand(success.brand);
     paintClientUniverse(success.client_universe);
+    paintIndustryDrawer(success.industry_drawer);
   }
 
   function paintHumanControl(control) {
@@ -2336,6 +2337,90 @@
         });
         section.appendChild(list);
         groupsRoot.appendChild(section);
+      });
+    }
+  }
+
+  function paintIndustryDrawer(drawer) {
+    if (
+      !drawer ||
+      drawer.sku ||
+      drawer.cms ||
+      drawer.fear_brand ||
+      drawer.certified ||
+      drawer.live ||
+      drawer.live_pin_ok ||
+      drawer.launch ||
+      drawer.named_vertical ||
+      drawer.filing ||
+      drawer.drawer_is_live ||
+      drawer.drawer_invented
+    ) {
+      return;
+    }
+    function set(id, text) {
+      var node = document.getElementById(id);
+      if (node && text) node.textContent = text;
+    }
+    set("industry-lede", drawer.lede);
+    set("industry-glance", drawer.glance);
+    set("industry-status", (drawer.site || "") + " " + (drawer.note || ""));
+    set("class-industry", drawer.glance);
+    function rail(item) {
+      var li = document.createElement("li");
+      if (item.id) li.setAttribute("data-day", item.id);
+      var name = document.createElement("b");
+      name.textContent = item.name || item.id || "";
+      var href = String(item.href || "");
+      if (href && (href.charAt(0) === "#" || href.indexOf("identify.html") === 0 || href.indexOf("app.html") === 0)) {
+        var a = document.createElement("a");
+        a.setAttribute("href", href);
+        a.appendChild(name);
+        li.appendChild(a);
+      } else {
+        li.appendChild(name);
+      }
+      var note = document.createElement("span");
+      note.textContent = item.note || "";
+      li.appendChild(note);
+      return li;
+    }
+    var dayRoot = document.getElementById("industry-day");
+    if (dayRoot && drawer.lanes && drawer.lanes.length) {
+      dayRoot.textContent = "";
+      drawer.lanes.forEach(function (lane) {
+        if (!lane) return;
+        var section = document.createElement("section");
+        section.setAttribute("data-lane", lane.id || "");
+        var title = document.createElement("h3");
+        title.textContent = lane.name || lane.id || "";
+        section.appendChild(title);
+        var list = document.createElement("ol");
+        (lane.items || []).forEach(function (item) {
+          if (item) list.appendChild(rail(item));
+        });
+        section.appendChild(list);
+        dayRoot.appendChild(section);
+      });
+    }
+    var papers = document.getElementById("industry-papers");
+    if (papers && drawer.papers && drawer.papers.length) {
+      papers.textContent = "";
+      drawer.papers.forEach(function (item) {
+        if (!item) return;
+        var li = rail(item);
+        li.setAttribute("data-paper", item.id || "");
+        papers.appendChild(li);
+      });
+    }
+    var areas = document.getElementById("industry-areas");
+    if (areas && drawer.areas && drawer.areas.length) {
+      areas.textContent = "";
+      drawer.areas.forEach(function (item) {
+        if (!item) return;
+        var li = rail(item);
+        li.setAttribute("data-area", item.id || "");
+        areas.appendChild(li);
       });
     }
   }
@@ -3460,6 +3545,70 @@
         universeFourth,
         "Refused. Three SKUs only. Packs, libraries, and FFS hours are not SKUs.",
         "universe_denied · fourth SKU\nP-ADM keep. Paid U-DUAL deepen.\nHours never mint a SKU.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  function writeIndustryLedger(text) {
+    var box = document.getElementById("industry-ledger");
+    if (!box) return;
+    var row = document.createElement("pre");
+    row.className = "denied";
+    row.textContent = text;
+    box.insertBefore(row, box.firstChild);
+  }
+
+  function refuseIndustry(button, message, ledger) {
+    var refuse = document.getElementById("industry-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeIndustryLedger(ledger);
+    writeFirmLedger("denied", ledger);
+  }
+
+  var industryCertify = document.getElementById("industry-certify");
+  if (industryCertify) {
+    industryCertify.addEventListener("click", function () {
+      refuseIndustry(
+        industryCertify,
+        "Refused. Maps stay claimed=false. Buying L1 is not a certificate. Not a live filing.",
+        "industry_denied · certify maps\nDomestic and international maps stay claimed=false.\nNot a SOX opinion. Not D&O.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryPackSku = document.getElementById("industry-pack-sku");
+  if (industryPackSku) {
+    industryPackSku.addEventListener("click", function () {
+      refuseIndustry(
+        industryPackSku,
+        "Refused. Packs, libraries, and repositories are not SKUs.",
+        "industry_denied · packs as SKUs\nIncluded is not free. Upsell is not a fourth SKU.\nHours never mint a SKU.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryNamed = document.getElementById("industry-named-vertical");
+  if (industryNamed) {
+    industryNamed.addEventListener("click", function () {
+      refuseIndustry(
+        industryNamed,
+        "Refused. This plane cannot invent a named vertical as a fourth SKU.",
+        "industry_denied · invent a named vertical\nSit is Dynamics BC treasury / controller.\nNot a GRC product.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryRoute = document.getElementById("industry-route");
+  if (industryRoute) {
+    industryRoute.addEventListener("click", function () {
+      refuseIndustry(
+        industryRoute,
+        "Refused. The industry drawer sits on #industry. Not a /industry route.",
+        "industry_denied · /industry route\nFirst glance stays the write rail.\nEncyclopedia stays a drawer.\nlive=false · live_pin_ok=false"
       );
     });
   }

@@ -88,8 +88,14 @@
       "id": "universe",
       "text": "Sit-down client day. Now mailbox recorded. Next seat B. After L1 unnamed. MFA identifies. Identify is not admit. Honest zeros. Refuse is visible. Segregated branded sandbox unnamed until signed L1. Maps claimed=false. Packs are not SKUs.",
       "title": "Client universe"
+    },
+    {
+      "href": "index.html#industry",
+      "id": "industry",
+      "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Not a /industry route.",
+      "title": "Industry drawer"
     }
   ],
-  "release": "2.95.0",
+  "release": "2.96.0",
   "sku": false
 }

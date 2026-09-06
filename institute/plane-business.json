@@ -601,7 +601,8 @@
       "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane",
       "2.93.0 first-class client business universe: MFA identifies, identify is not admit, segregated branded sandbox, audit trail, maps claimed=false, packs are not SKUs; not a fourth SKU; not a /universe route; not from this plane",
       "2.94.0 operable client universe: honest zeros, refuse is visible, rails walk to existing boards; not a fourth SKU; not a /universe route; not from this plane",
-      "2.95.0 sit-down client day: now / next / after L1 / blocked on #universe; mailbox recorded; seat B click owner-only; unnamed until signed L1; not a live named day; not a fourth SKU; not a /universe route; not from this plane"
+      "2.95.0 sit-down client day: now / next / after L1 / blocked on #universe; mailbox recorded; seat B click owner-only; unnamed until signed L1; not a live named day; not a fourth SKU; not a /universe route; not from this plane",
+      "2.96.0 sit-down industry drawer: sit / maps / attach / refuse on #industry; Dynamics BC treasury; domestic and international maps claimed=false; papers are not filings; packs, libraries, and repositories are not SKUs; not a /industry route; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -977,7 +978,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.95.0",
+  "release": "2.96.0",
   "scenarios": [
     {
       "id": "l1_only",

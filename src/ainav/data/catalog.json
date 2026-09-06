@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.95.0",
+    "release": "2.96.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2012,7 +2012,7 @@
       "KIT_FAIL",
       "CHURN"
     ],
-    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. Not a second company."
+    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Maps stay claimed=false. Packs are not SKUs. Not a second company."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -5039,7 +5039,8 @@
         "2.92.0 first-class brand system: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales; write-fear; lockfile stays job_c; Microsoft marks are theirs; not a SKU; not a fear brand; not from this plane",
         "2.93.0 first-class client business universe: MFA identifies, identify is not admit, segregated branded sandbox, audit trail, maps claimed=false, packs are not SKUs; not a fourth SKU; not a /universe route; not from this plane",
         "2.94.0 operable client universe: honest zeros, refuse is visible, rails walk to existing boards; not a fourth SKU; not a /universe route; not from this plane",
-        "2.95.0 sit-down client day: now / next / after L1 / blocked on #universe; mailbox recorded; seat B click owner-only; unnamed until signed L1; not a live named day; not a fourth SKU; not a /universe route; not from this plane"
+        "2.95.0 sit-down client day: now / next / after L1 / blocked on #universe; mailbox recorded; seat B click owner-only; unnamed until signed L1; not a live named day; not a fourth SKU; not a /universe route; not from this plane",
+        "2.96.0 sit-down industry drawer: sit / maps / attach / refuse on #industry; Dynamics BC treasury; domestic and international maps claimed=false; papers are not filings; packs, libraries, and repositories are not SKUs; not a /industry route; not from this plane"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5265,7 +5266,8 @@
       "2.92.0 first-class brand system. One mark set across the firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.94.0 operable client universe. Honest zeros sit the board. Refuse is visible. Rails walk. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "2.95.0 sit-down client day. Now mailbox recorded. Next seat B click. After L1 unnamed. Blocked stays refused. Honest zeros. Refuse is visible. Not a live named day. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.95.0 sit-down client day. Now mailbox recorded. Next seat B click. After L1 unnamed. Blocked stays refused. Honest zeros. Refuse is visible. Not a live named day. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.96.0 sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Papers are not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -6711,7 +6713,12 @@
       "universe_operable": true,
       "universe_wells_live": false,
       "universe_sit_down": true,
-      "universe_day_live": false
+      "universe_day_live": false,
+      "industry_drawer": true,
+      "industry_is_sku": false,
+      "industry_href": "#industry",
+      "industry_drawer_live": false,
+      "industry_certified": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -7194,7 +7201,8 @@
       "2.92.0 first-class brand system is catalog law: one mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
       "2.93.0 first-class client business universe is catalog law: MFA identifies. Identify is not admit. Two seats admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs, libraries, and FFS hours are not SKUs. Not a /universe route. Not LIVE_PIN_OK.",
       "2.94.0 operable client universe is catalog law: honest zeros sit the board. Refuse is visible. Rails walk to identify, control, close, governance, and packs. Maps stay claimed=false. Not LIVE_PIN_OK.",
-      "2.95.0 sit-down client day is catalog law: now / next / after L1 / blocked. Mailbox recorded. Seat B click owner-only. Unnamed until signed L1. Not a live named day. Not LIVE_PIN_OK."
+      "2.95.0 sit-down client day is catalog law: now / next / after L1 / blocked. Mailbox recorded. Seat B click owner-only. Unnamed until signed L1. Not a live named day. Not LIVE_PIN_OK.",
+      "2.96.0 sit-down industry drawer is catalog law: sit / maps / attach / refuse. Dynamics BC treasury. Domestic and international maps stay claimed=false. White papers are catalog drawers, not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7236,7 +7244,8 @@
       "The brand system is one mark set across the firm. Legal is AINav, Inc. Product is AINav Control Plane. Institute is AINAV.Institute. Sale is L1, P-ADM, and U-DUAL. Write-fear names the unauthorized journal. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
       "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Governance maps stay claimed=false. Non-compliance that is ours is the landed write. Packs are not SKUs. Client universe sits on #universe. Not a /universe route. Not LIVE_PIN_OK.",
       "The operable client universe sits the post-close board. Honest zeros sit the board: unnamed mark, assigned no, first record 0, second record 0, maps claimed=false, packs 0. Refuse is visible. Rails walk to identify, control, close, governance, and packs. Not a /universe route. Not LIVE_PIN_OK.",
-      "The sit-down client day is the post-close operator face. Now is recorded: mailbox, MFA identifies, honest zeros. Next is owner-only: seat B click and a distinct Entra oid. After L1 stays unnamed until signed L1. Blocked stays refused. Not a live named day. Not a /universe route. Not LIVE_PIN_OK."
+      "The sit-down client day is the post-close operator face. Now is recorded: mailbox, MFA identifies, honest zeros. Next is owner-only: seat B click and a distinct Entra oid. After L1 stays unnamed until signed L1. Blocked stays refused. Not a live named day. Not a /universe route. Not LIVE_PIN_OK.",
+      "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. White papers are catalog drawers, not filings. Segregated website areas stay the write rail, encyclopedia drawer, owner book, client sandbox after L1, and #industry. Not a /industry route. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7275,7 +7284,8 @@
       "2.92.0 first-class brand system sits on #brand: legal, product, Institute, firm, sale, twin, sandbox, Teams, Teams Premium, and Sales. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Trademark filing and public apex brand stay owner-only. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
       "2.93.0 first-class client business universe sits on #universe: MFA identifies, two seats admit, segregated branded sandbox, audit trail, maps claimed=false, P-ADM keep, paid U-DUAL, custom packs. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Trademark filing and public apex brand stay owner-only. Not a SKU. Not MFA-as-admit. Not LIVE_PIN_OK.",
       "2.94.0 operable client universe sits on #universe: honest zeros, visible refuse, rails that walk. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Not LIVE_PIN_OK.",
-      "2.95.0 sit-down client day sits on #universe: now / next / after L1 / blocked. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Not a live named day. Not LIVE_PIN_OK."
+      "2.95.0 sit-down client day sits on #universe: now / next / after L1 / blocked. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Not a live named day. Not LIVE_PIN_OK.",
+      "2.96.0 sit-down industry drawer sits on #industry: sit / maps / attach / refuse. Maps stay claimed=false. Papers are not filings. Packs are not SKUs. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not LIVE_PIN_OK."
     ],
     "success": {
       "sku": false,
@@ -7480,7 +7490,11 @@
           "Treat refuse as a live record",
           "Treat universe wells as named records",
           "Treat the sit-down day as a live named day",
-          "Invent seat B click on the day board"
+          "Invent seat B click on the day board",
+          "Treat the industry drawer as a live filing",
+          "Invent a named vertical as a SKU",
+          "Treat maps as certificates on the industry drawer",
+          "Treat packs as SKUs on the industry drawer"
         ]
       },
       "seat_b": {
@@ -8792,6 +8806,238 @@
             }
           ]
         }
+      },
+      "industry_drawer": {
+        "kind": "ainav.industry_drawer.v1",
+        "sku": false,
+        "fourth_sku": false,
+        "cms": false,
+        "fear_brand": false,
+        "certified": false,
+        "live": false,
+        "live_pin_ok": false,
+        "launch": false,
+        "named_vertical": false,
+        "filing": false,
+        "sit_down": true,
+        "drawer_is_live": false,
+        "drawer_invented": false,
+        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs.",
+        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Not a /industry route. Not LIVE_PIN_OK.",
+        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Not a /industry route.",
+        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
+        "lanes": [
+          {
+            "id": "sit",
+            "name": "Sit",
+            "items": [
+              {
+                "id": "bc_treasury",
+                "name": "Dynamics BC treasury / controller",
+                "note": "Week-one prove. Journal wedge. industry.treasury + lib.l1.wedge.",
+                "href": "#packs",
+                "state": "recorded"
+              },
+              {
+                "id": "desks",
+                "name": "Same-plane desks",
+                "note": "Payables, bank, cash after L1. Not a fourth SKU.",
+                "href": "#packs",
+                "state": "after_l1"
+              },
+              {
+                "id": "maps_false",
+                "name": "Maps claimed=false",
+                "note": "Buying L1 is not a certificate.",
+                "href": "#governance",
+                "state": "recorded"
+              }
+            ]
+          },
+          {
+            "id": "maps",
+            "name": "Maps",
+            "items": [
+              {
+                "id": "domestic",
+                "name": "US domestic",
+                "note": "NIST AI RMF, SOX ICFR, books, COSO, fiduciary. claimed=false.",
+                "href": "#governance",
+                "state": "recorded"
+              },
+              {
+                "id": "international",
+                "name": "International",
+                "note": "EU AI Act, ISO 42001, OECD, GDPR Art 22. claimed=false. Not a conformity assessment.",
+                "href": "#governance",
+                "state": "recorded"
+              },
+              {
+                "id": "noncompliance",
+                "name": "Non-compliance that is ours",
+                "note": "The landed write. Buying L1 does not close clocks.",
+                "href": "#risk",
+                "state": "recorded"
+              }
+            ]
+          },
+          {
+            "id": "attach",
+            "name": "Attach",
+            "items": [
+              {
+                "id": "included",
+                "name": "Included with L1",
+                "note": "industry.treasury + lib.l1.wedge. Included is not free.",
+                "href": "#packs",
+                "state": "recorded"
+              },
+              {
+                "id": "upsell",
+                "name": "Upsell band",
+                "note": "Priced desks, P-ADM, paid U-DUAL, FFS. Not SKUs.",
+                "href": "#packs",
+                "state": "after_l1"
+              },
+              {
+                "id": "library",
+                "name": "Libraries",
+                "note": "Libraries seat the same plane. Not products.",
+                "href": "#packs",
+                "state": "after_l1"
+              },
+              {
+                "id": "repo",
+                "name": "Repositories",
+                "note": "repo.packs / repo.governance / repo.runbooks. Not SKUs.",
+                "href": "#packs",
+                "state": "recorded"
+              },
+              {
+                "id": "paper",
+                "name": "White papers",
+                "note": "Catalog drawers. Not certificates. Not filings.",
+                "href": "#industry",
+                "state": "recorded"
+              }
+            ]
+          },
+          {
+            "id": "refuse",
+            "name": "Refuse",
+            "items": [
+              {
+                "id": "grc_product",
+                "name": "Healthcare GRC / AI compliance CMS",
+                "note": "Refused. Not a GRC product.",
+                "href": "#industry",
+                "state": "refused"
+              },
+              {
+                "id": "cert_mill",
+                "name": "ISO / EU AI Act certificate mill",
+                "note": "Refused. Maps are not filings.",
+                "href": "#industry",
+                "state": "refused"
+              },
+              {
+                "id": "pack_sku",
+                "name": "Packs as SKUs",
+                "note": "Refused. Packs deepen L1.",
+                "href": "#industry",
+                "state": "refused"
+              },
+              {
+                "id": "industry_route",
+                "name": "A /industry route",
+                "note": "Refused. Drawer is #industry.",
+                "href": "#industry",
+                "state": "refused"
+              },
+              {
+                "id": "named_vertical",
+                "name": "Invent a named vertical",
+                "note": "Refused. Not a fourth SKU.",
+                "href": "#industry",
+                "state": "refused"
+              }
+            ]
+          }
+        ],
+        "papers": [
+          {
+            "id": "unauthorized_journal",
+            "name": "The unauthorized journal",
+            "note": "The write that must not happen. Two humans admit.",
+            "href": "#buyer"
+          },
+          {
+            "id": "independence",
+            "name": "Independence",
+            "note": "The vendor of the draft is the worst failsafe.",
+            "href": "#success"
+          },
+          {
+            "id": "maps_are_not_filings",
+            "name": "Maps are not filings",
+            "note": "Domestic and international maps stay claimed=false.",
+            "href": "#governance"
+          },
+          {
+            "id": "noncompliance_is_the_write",
+            "name": "Non-compliance is the write",
+            "note": "Non-compliance that is ours is the landed write.",
+            "href": "#risk"
+          }
+        ],
+        "areas": [
+          {
+            "id": "public",
+            "name": "Write rail",
+            "note": "First glance. Not the industry drawer.",
+            "href": "#buyer"
+          },
+          {
+            "id": "encyclopedia",
+            "name": "Encyclopedia drawer",
+            "note": "Entire. Client Floor stays lean.",
+            "href": "app.html"
+          },
+          {
+            "id": "owner",
+            "name": "Owner",
+            "note": "Owner-only. Not the first glance.",
+            "href": "#missing"
+          },
+          {
+            "id": "sandbox",
+            "name": "Client sandbox after L1",
+            "note": "Unnamed until signed L1. Never shared.",
+            "href": "#path"
+          },
+          {
+            "id": "industry",
+            "name": "Industry drawer",
+            "note": "Sit / maps / attach / refuse. Not a /industry route.",
+            "href": "#industry"
+          }
+        ],
+        "refuse": [
+          "Treat maps as certificates",
+          "Mint packs as SKUs",
+          "Invent a named vertical",
+          "A /industry route",
+          "Healthcare GRC product",
+          "ISO certificate mill",
+          "Close regulator clocks by buying L1",
+          "LIVE_PIN_OK theater"
+        ],
+        "owner_only": [
+          "Signed L1",
+          "Assigned industry packs on a named twin",
+          "LIVE_PIN_OK",
+          "G12/G13"
+        ]
       }
     },
     "upgrades": [
@@ -9305,6 +9551,14 @@
         "who": "tree",
         "title": "Sit-down client day",
         "do": "Ship 2.95.0 sit-down client day on #universe. Now / next / after L1 / blocked. Honest zeros. Refuse is visible. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 66,
+        "who": "tree",
+        "title": "Sit-down industry drawer",
+        "do": "Ship 2.96.0 sit-down industry drawer on #industry. Sit / maps / attach / refuse. Maps claimed=false. Papers are not filings. Packs are not SKUs. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }
