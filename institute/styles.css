@@ -1309,6 +1309,36 @@ table.law tr[data-group] th {
   background: color-mix(in srgb, var(--void) 88%, #2a1c14);
   color: var(--void-ink);
 }
+.firm-ms-panel {
+  margin-top: 1rem;
+}
+.firm-ms {
+  margin: 0.65rem 0 1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+@media (min-width: 1100px) {
+  .firm-ms { grid-template-columns: repeat(2, 1fr); }
+}
+.firm-ms li {
+  display: grid;
+  gap: 0.15rem;
+  border-left: 2px solid var(--gold);
+  padding: 0.15rem 0 0.15rem 0.7rem;
+}
+.firm-ms li[data-class="complement"] {
+  border-left-color: var(--gold-2);
+}
+.firm-ms b {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.firm-ms span {
+  color: #d8d2c6;
+  font-size: 0.86rem;
+}
 .firm-ops {
   margin-top: 1rem;
 }

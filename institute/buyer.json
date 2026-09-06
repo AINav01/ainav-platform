@@ -755,7 +755,10 @@
         "A fourth SKU as the client twin",
         "Auto-promote a sandbox to production",
         "Invent a sales team or pay a commission from this plane",
-        "Mark the launch gate from this plane"
+        "Mark the launch gate from this plane",
+        "Treat Microsoft as the product",
+        "Invent a ninth complement",
+        "Invent Teams channel ids or DATAVERSE_URL from this plane"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -1051,7 +1054,7 @@
         "id": "close"
       },
       {
-        "answer": "The firm is this operating day. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product.",
+        "answer": "The firm is this operating day on the Microsoft run. Six required connections and eight complements. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product. Microsoft is not the product.",
         "hear": "Just stand up HubSpot and pay the team.",
         "id": "firm"
       }
@@ -1168,6 +1171,261 @@
       "lede": "The firm is one spine and one operating day. BD qualifies. Sales proofs on the Institute twin. Close assigns a segregated sandbox. Service keeps P-ADM and FFS on that twin. The launch gate stays closed. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Gold is not launch. Not a CRM. Not a fourth SKU.",
       "live": false,
       "live_pin_ok": false,
+      "microsoft_run": {
+        "complement_ids": [
+          "entra.id",
+          "azure.keyvault",
+          "azure.monitor",
+          "sharepoint.kit",
+          "defender.xdr",
+          "entra.pim",
+          "sentinel.siem",
+          "azure.policy"
+        ],
+        "crm": false,
+        "fourth_sku": false,
+        "from_this_plane": false,
+        "kind": "ainav.microsoft_run.v1",
+        "lede": "The Microsoft run is how the firm is managed. Six required connections and eight complements sit on the operating day. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. Licensed-not-wired stays honest.",
+        "live": false,
+        "live_pin_ok": false,
+        "microsoft_is_the_product": false,
+        "ninth_complement": false,
+        "note": "The Microsoft run is catalog law on #firm-ms. Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
+        "owner_only": [
+          "Seat B click",
+          "Graph Writes revoke-then-grant",
+          "Teams team and channel ids",
+          "SHAREPOINT_SITE_ID",
+          "US Dataverse / DATAVERSE_URL",
+          "Sentinel on the existing LAW",
+          "G12/G13",
+          "billing",
+          "launch",
+          "LIVE_PIN_OK"
+        ],
+        "refuse": [
+          "HubSpot as the firm",
+          "Invent DATAVERSE_URL",
+          "Invent Teams channel ids",
+          "Invent a SharePoint site",
+          "Mark Graph Writes revoked from this plane",
+          "Treat Canada as United States",
+          "Treat LAW as Sentinel",
+          "A ninth Microsoft complement",
+          "Microsoft as the product",
+          "Microsoft is not the product \u2014 do not invert it",
+          "Mark launch from this plane"
+        ],
+        "required_ids": [
+          "azure.host",
+          "m365.e7",
+          "teams.enterprise",
+          "teams.premium",
+          "bc.premium",
+          "sales.enterprise"
+        ],
+        "sku": false,
+        "spine": [
+          {
+            "class": "required",
+            "day": "proof",
+            "dept": "dept.identity",
+            "id": "azure.host",
+            "job": "host",
+            "live": false,
+            "name": "Microsoft Azure",
+            "note": "SWA twin hosts the Institute review. Client sandboxes stay unassigned. Not the public apex.",
+            "production": false,
+            "sku": false,
+            "status": "twin_hosted",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "qualify",
+            "dept": "dept.identity",
+            "id": "m365.e7",
+            "job": "tenant",
+            "live": false,
+            "name": "Microsoft 365 E7",
+            "note": "Paid E7 and Teams Premium assigned. Mailbox is not an oid and not a click.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_read",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "qualify",
+            "dept": "dept.people",
+            "id": "teams.enterprise",
+            "job": "notify",
+            "live": false,
+            "name": "Microsoft Teams Enterprise",
+            "note": "Licensed. Team and channel ids stay unset. A chat is not a seat.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_not_wired",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "qualify",
+            "dept": "dept.people",
+            "id": "teams.premium",
+            "job": "notify",
+            "live": false,
+            "name": "Microsoft Teams Premium",
+            "note": "Paid on Cynthia's mailbox. Teams Premium is not a seat. Channel ids stay unset.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_not_wired",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "close",
+            "dept": "dept.treasury",
+            "id": "bc.premium",
+            "job": "sor",
+            "live": false,
+            "name": "Dynamics 365 Business Central Premium",
+            "note": "Sandbox company AINav exists. Production stays blocked. Not LIVE_PIN_OK.",
+            "production": false,
+            "sku": false,
+            "status": "sandbox_company",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "close",
+            "dept": "dept.sales",
+            "id": "sales.enterprise",
+            "job": "sor",
+            "live": false,
+            "name": "Dynamics 365 Sales Enterprise",
+            "note": "License exists. Zero Dataverse instances. Canada is not United States. Not the firm CRM.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_not_wired",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "qualify",
+            "dept": "dept.identity",
+            "id": "entra.id",
+            "job": "identity",
+            "live": false,
+            "name": "Microsoft Entra ID",
+            "note": "Consumes object ids. Does not replace the IdP. Mailbox is not a click.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_read",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "dept": "dept.identity",
+            "id": "azure.keyvault",
+            "job": "secrets",
+            "live": false,
+            "name": "Azure Key Vault",
+            "note": "Hold connection secrets. Do not paste them into the catalog.",
+            "production": false,
+            "sku": false,
+            "status": "declared_sandbox",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "dept": "dept.identity",
+            "id": "azure.monitor",
+            "job": "observe",
+            "live": false,
+            "name": "Azure Monitor",
+            "note": "Mothership health. LAW is not Sentinel. Not the admit plane.",
+            "production": false,
+            "sku": false,
+            "status": "declared_sandbox",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "dept": "dept.compliance",
+            "id": "sharepoint.kit",
+            "job": "evidence",
+            "live": false,
+            "name": "SharePoint",
+            "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes still Granted.",
+            "production": false,
+            "sku": false,
+            "status": "graph_read_open",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "dept": "dept.compliance",
+            "id": "defender.xdr",
+            "job": "security",
+            "live": false,
+            "name": "Microsoft Defender XDR",
+            "note": "E7 security sink. Not the admit plane. Graph Writes still Granted.",
+            "production": false,
+            "sku": false,
+            "status": "graph_read_open",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "qualify",
+            "dept": "dept.compliance",
+            "id": "entra.pim",
+            "job": "eligibility",
+            "live": false,
+            "name": "Microsoft Entra Privileged Identity Management",
+            "note": "Eligible seats. A PIM activation is not dual admit.",
+            "production": false,
+            "sku": false,
+            "status": "not_dual",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "dept": "dept.compliance",
+            "id": "sentinel.siem",
+            "job": "siem",
+            "live": false,
+            "name": "Microsoft Sentinel",
+            "note": "DecisionRecord export sink after P-ADM. The mothership LAW is not Sentinel.",
+            "production": false,
+            "sku": false,
+            "status": "law_is_not_sentinel",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "launch",
+            "dept": "dept.identity",
+            "id": "azure.policy",
+            "job": "host_policy",
+            "live": false,
+            "name": "Azure Policy",
+            "note": "West Europe stays blocked. Policy cannot loosen Job C or mark LIVE_PIN_OK.",
+            "production": false,
+            "sku": false,
+            "status": "cannot_weaken",
+            "wired": false
+          }
+        ],
+        "wired_claimed": false
+      },
       "named_client": null,
       "named_contractor": null,
       "needs": [
@@ -1177,9 +1435,12 @@
         "Seat B click",
         "First signed L1",
         "Azure budget for N segregated sandboxes",
-        "Dataverse if Sales Enterprise becomes the 500-lead CRM \u2014 Canada affinity still open"
+        "Dataverse if Sales Enterprise becomes the 500-lead CRM \u2014 Canada affinity still open",
+        "Teams team and channel ids",
+        "SHAREPOINT_SITE_ID",
+        "Sentinel on the existing LAW"
       ],
-      "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Launch stays false. Not LIVE_PIN_OK.",
+      "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Launch stays false. Microsoft is not the product. Not LIVE_PIN_OK.",
       "payouts_booked": false,
       "production": false,
       "rails": [
@@ -1215,7 +1476,13 @@
         "A fourth SKU as the operating company",
         "LIVE_PIN_OK theater",
         "Mark launch from this plane",
-        "Free U-DUAL from service hours"
+        "Free U-DUAL from service hours",
+        "Invent DATAVERSE_URL",
+        "Invent Teams channel ids",
+        "Invent a SharePoint site",
+        "Mark Graph Writes revoked from this plane",
+        "A ninth Microsoft complement",
+        "Microsoft as the product"
       ],
       "roles": [
         {
@@ -1266,7 +1533,7 @@
         "padm": 0,
         "shared_twin": false
       },
-      "site": "The firm bench is #firm-console on #firm. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
       "sku": false
     },
     "qualify": {

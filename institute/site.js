@@ -2125,6 +2125,36 @@
     if (!book.live && !book.padm && !book.ffs_hours && !book.hours_mint_sku && !book.hours_attach_udual && !book.shared_twin) {
       if (book.note) set("firm-service-status", "P-ADM 0. FFS hours 0. Live book empty.");
     }
+    var run = firm.microsoft_run || {};
+    if (
+      !run.live &&
+      !run.live_pin_ok &&
+      !run.sku &&
+      !run.crm &&
+      !run.wired_claimed &&
+      !run.microsoft_is_the_product &&
+      !run.ninth_complement
+    ) {
+      set("firm-ms-lede", run.lede);
+      var spine = document.getElementById("firm-ms-spine");
+      if (spine && run.spine && run.spine.length) {
+        spine.textContent = "";
+        run.spine.forEach(function (item) {
+          if (!item) return;
+          var li = document.createElement("li");
+          li.setAttribute("data-wired", item.wired ? "yes" : "no");
+          li.setAttribute("data-class", item.class || "required");
+          var name = document.createElement("b");
+          name.textContent = item.name || item.id || "";
+          li.appendChild(name);
+          var note = document.createElement("span");
+          note.textContent = item.note || "";
+          li.appendChild(note);
+          spine.appendChild(li);
+        });
+      }
+      if (run.note) set("firm-ms-status", "Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds.");
+    }
   }
 
   function replacePlain(id, items) {
@@ -3032,6 +3062,54 @@
       writeFirmLedger(
         "denied",
         "pin_denied · LIVE_PIN_OK\nProduction write stays owner-gated.\nDo not auto-promote a sandbox.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmWireTeams = document.getElementById("firm-wire-teams");
+  if (firmWireTeams) {
+    firmWireTeams.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. Teams team and channel ids stay owner-only. A chat is not a seat.";
+      writeFirmLedger(
+        "denied",
+        "teams_denied · licensed_not_wired\nTEAMS_*_TEAM_ID and TEAMS_*_CHANNEL_ID stay unset.\nNotify is not dual admit.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmCloseDataverse = document.getElementById("firm-close-dataverse");
+  if (firmCloseDataverse) {
+    firmCloseDataverse.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. US Dataverse stays open. Canada is not United States.";
+      writeFirmLedger(
+        "denied",
+        "dataverse_denied · Canada affinity\nTicket 2609030040009525. DATAVERSE_URL stays unset.\nSales Enterprise is not the firm CRM.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmTrashWrites = document.getElementById("firm-trash-writes");
+  if (firmTrashWrites) {
+    firmTrashWrites.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. Graph Writes revoke-then-grant is owner-only. This plane cannot grant.";
+      writeFirmLedger(
+        "denied",
+        "graph_denied · Writes still Granted\nTrash Organization.ReadWrite.All and User.ReadWrite.All, then Grant again.\nThis plane cannot invent consent.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmMsProduct = document.getElementById("firm-ms-product");
+  if (firmMsProduct) {
+    firmMsProduct.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. Microsoft is not the product. Complements stay eight.";
+      writeFirmLedger(
+        "denied",
+        "product_denied · Microsoft is the substrate\nIdentity, notify, SoR, keep, host.\nThe product is the admit plane.\nlive=false · live_pin_ok=false"
       );
     });
   }

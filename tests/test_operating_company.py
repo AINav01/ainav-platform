@@ -19,6 +19,9 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert "quality review" in blob
     assert "403 challenge" in blob
     assert "sku attach" in blob
+    assert "microsoft run" in blob
+    assert "eight complements" in blob
+    assert "not the product" in blob
     assert "five hundred" in blob
     assert "capacity" in blob
     firm = cat["expert_review"]["success"]["operating_company"]
@@ -59,6 +62,15 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert firm["comp"]["booked"] is False
     assert firm["comp"]["paid_count"] == 0
     assert firm["comp"]["from_this_plane"] is False
+    run = firm["microsoft_run"]
+    assert run["kind"] == "ainav.microsoft_run.v1"
+    assert run["wired_claimed"] is False
+    assert run["microsoft_is_the_product"] is False
+    assert run["ninth_complement"] is False
+    assert len(run["complement_ids"]) == 8
+    assert len(run["required_ids"]) == 6
+    assert [item["id"] for item in run["spine"]] == run["required_ids"] + run["complement_ids"]
+    assert all(item["wired"] is False for item in run["spine"])
     exported = success_program()["operating_company"]
     assert exported["lede"] == firm["lede"]
     html = Path("institute/index.html").read_text(encoding="utf-8")
@@ -68,8 +80,8 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert 'id="firm-rails"' in html
     assert 'id="firm-day"' in html
     assert 'id="firm-gates"' in html
-    assert 'src="site.js?v=2.88.0"' in html
-    assert 'src="site.js?v=2.88.0"' in twin
+    assert 'src="site.js?v=2.89.0"' in html
+    assert 'src="site.js?v=2.89.0"' in twin
     assert 'id="ops-note"' in html
     assert 'href="#firm"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     assert "Held. Floor held. Gold is not launch." in html
@@ -83,6 +95,12 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert "firm-mark-launch" in html
     assert "firm-keep" in html
     assert "firm-hours-udual" in html
+    assert 'id="firm-ms"' in html
+    assert "firm-wire-teams" in html
+    assert "firm-close-dataverse" in html
+    assert "firm-trash-writes" in html
+    assert "firm-ms-product" in html
+    assert "index.html#firm-ms" in twin
     assert 'href="/firm"' not in html
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#firm"' not in nav
@@ -246,6 +264,30 @@ def test_operating_company_fail_closed():
             if item.get("n") == 58:
                 item["do"] = "Ship a CRM."
 
+    def upgrade_ms(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 59:
+                item["do"] = "Ship a CRM."
+
+    def ms_wired(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["wired_claimed"] = True
+
+    def ms_product(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["microsoft_is_the_product"] = True
+
+    def ms_ninth(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["ninth_complement"] = True
+
+    def ms_spine(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["spine"][0]["wired"] = True
+
+    def ciso_ms(cat):
+        cat["expert_review"]["success"]["ciso"]["does_not"] = [
+            item
+            for item in cat["expert_review"]["success"]["ciso"]["does_not"]
+            if "microsoft as the product" not in item.lower()
+        ]
+
     def ciso_gate(cat):
         cat["expert_review"]["success"]["ciso"]["does_not"] = [
             item
@@ -296,6 +338,12 @@ def test_operating_company_fail_closed():
         cannot_launch,
         upgrade_day,
         upgrade_quality,
+        upgrade_ms,
+        ms_wired,
+        ms_product,
+        ms_ninth,
+        ms_spine,
+        ciso_ms,
         ciso_gate,
     ):
         _reject(mutator)

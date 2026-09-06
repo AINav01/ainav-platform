@@ -184,6 +184,9 @@ def public_status() -> dict[str, Any]:
             "operating_day_is_sku": False,
             "launch_gate": bool(site.get("launch_gate")),
             "launch_is_ready": False,
+            "microsoft_run": bool(site.get("microsoft_run")),
+            "microsoft_run_is_sku": False,
+            "microsoft_is_the_product": False,
         },
         "bc": {
             "connection": "bc.premium",

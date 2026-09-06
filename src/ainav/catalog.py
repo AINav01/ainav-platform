@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 58:
-        raise IntegrityError("expert review needs 16–58 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 59:
+        raise IntegrityError("expert review needs 16–59 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1182,6 +1182,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         56: ("operating company", "live_pin_ok"),
         57: ("operating day", "live_pin_ok"),
         58: ("quality review", "live_pin_ok"),
+        59: ("microsoft run", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1229,6 +1230,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the first-class operating day and launch gate", reason_code="CATALOG_REVIEW")
     if "quality review" not in blob or "403 challenge" not in blob or "sku attach" not in blob:
         raise IntegrityError("first-principles must keep the operating-day quality review", reason_code="CATALOG_REVIEW")
+    if "microsoft run" not in blob or "eight complements" not in blob or "not the product" not in blob:
+        raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1310,6 +1313,10 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not invent a sales team or pay a commission from this plane", reason_code="CATALOG_REVIEW")
     if "launch gate" not in does_not:
         raise IntegrityError("CISO posture does not mark the launch gate from this plane", reason_code="CATALOG_REVIEW")
+    if "microsoft as the product" not in does_not or "ninth complement" not in does_not:
+        raise IntegrityError("CISO posture does not treat Microsoft as the product or invent a ninth complement", reason_code="CATALOG_REVIEW")
+    if "teams channel" not in does_not or "dataverse_url" not in does_not:
+        raise IntegrityError("CISO posture does not invent Teams channel ids or DATAVERSE_URL", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1669,7 +1676,7 @@ def _validate_operating_company(body: Any) -> None:
     if comp.get("ic_is_not_seat") is not True:
         raise IntegrityError("operating-company ICs are not seats", reason_code="CATALOG_REVIEW")
     refuse = " ".join(str(item).lower() for item in firm.get("refuse") or [])
-    for stem in ("500 live", "named contractor", "commission", "hubspot", "shared twin", "fourth sku", "live_pin", "mark launch", "u-dual"):
+    for stem in ("500 live", "named contractor", "commission", "hubspot", "shared twin", "fourth sku", "live_pin", "mark launch", "u-dual", "dataverse", "ninth", "microsoft as the product"):
         if stem not in refuse:
             raise IntegrityError("operating-company refuse keeps 500 live, contractor, commission, HubSpot", reason_code="CATALOG_REVIEW")
     site = str(firm.get("site") or "").lower()
@@ -1677,6 +1684,8 @@ def _validate_operating_company(body: Any) -> None:
         raise IntegrityError("operating-company site is #firm-console on #firm; demo is #twin", reason_code="CATALOG_REVIEW")
     if "operating day" not in site or "launch gate" not in site:
         raise IntegrityError("operating-company site keeps the operating day and launch gate", reason_code="CATALOG_REVIEW")
+    if "#firm-ms" not in site or "microsoft run" not in site:
+        raise IntegrityError("operating-company site keeps the Microsoft run on #firm-ms", reason_code="CATALOG_REVIEW")
     note = str(firm.get("note") or "").lower()
     if "live stays 0" not in note or "payouts stay 0" not in note or "live_pin_ok" not in note:
         raise IntegrityError("operating-company note keeps live 0, payouts 0, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
@@ -1688,6 +1697,7 @@ def _validate_operating_company(body: Any) -> None:
     _validate_operating_day(firm.get("day"))
     _validate_launch_gate(firm.get("gates"))
     _validate_service_book(firm.get("service"))
+    _validate_microsoft_run(firm.get("microsoft_run"))
 
 
 def _validate_operating_day(body: Any) -> None:
@@ -1750,6 +1760,77 @@ def _validate_service_book(body: Any) -> None:
     note = str(book.get("note") or "").lower()
     if "p-adm" not in note or "u-dual" not in note or "live stays 0" not in note:
         raise IntegrityError("service book note keeps P-ADM, U-DUAL refuse, and live 0", reason_code="CATALOG_REVIEW")
+
+
+REQUIRED_MS_IDS = [
+    "azure.host",
+    "m365.e7",
+    "teams.enterprise",
+    "teams.premium",
+    "bc.premium",
+    "sales.enterprise",
+]
+COMPLEMENT_MS_IDS = [
+    "entra.id",
+    "azure.keyvault",
+    "azure.monitor",
+    "sharepoint.kit",
+    "defender.xdr",
+    "entra.pim",
+    "sentinel.siem",
+    "azure.policy",
+]
+
+
+def _validate_microsoft_run(body: Any) -> None:
+    run = _as_dict(body, "microsoft_run")
+    if run.get("kind") != "ainav.microsoft_run.v1":
+        raise IntegrityError("microsoft_run kind is ainav.microsoft_run.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "crm",
+        "fourth_sku",
+        "live",
+        "live_pin_ok",
+        "from_this_plane",
+        "wired_claimed",
+        "microsoft_is_the_product",
+        "ninth_complement",
+    ):
+        if run.get(flag) is True:
+            raise IntegrityError(f"microsoft run cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if list(run.get("required_ids") or []) != REQUIRED_MS_IDS:
+        raise IntegrityError("microsoft run required_ids are the six declared connections", reason_code="CATALOG_REVIEW")
+    if list(run.get("complement_ids") or []) != COMPLEMENT_MS_IDS:
+        raise IntegrityError("microsoft run complement_ids stay the eight complements", reason_code="CATALOG_REVIEW")
+    spine = [item for item in (run.get("spine") or []) if isinstance(item, dict)]
+    ids = [item.get("id") for item in spine]
+    if ids != REQUIRED_MS_IDS + COMPLEMENT_MS_IDS:
+        raise IntegrityError("microsoft run spine is six required then eight complements", reason_code="CATALOG_REVIEW")
+    if any(item.get("wired") is True or item.get("live") is True or item.get("production") is True or item.get("sku") is True for item in spine):
+        raise IntegrityError("microsoft run spine stays unwired, not live, not production, not a SKU", reason_code="CATALOG_REVIEW")
+    if sum(1 for item in spine if item.get("class") == "complement") != 8:
+        raise IntegrityError("microsoft run keeps exactly eight complements", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''} {item.get('status') or ''}".lower()
+        for item in spine
+    )
+    if "not a seat" not in blob or "canada" not in blob or "law is not sentinel" not in blob:
+        raise IntegrityError("microsoft run keeps seat honesty, Canada, and LAW is not Sentinel", reason_code="CATALOG_REVIEW")
+    lede = str(run.get("lede") or "").lower()
+    if "microsoft run" not in lede or "eight complements" not in lede or "not the product" not in lede:
+        raise IntegrityError("microsoft-run lede keeps eight complements and Microsoft is not the product", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in run.get("refuse") or [])
+    for stem in ("dataverse", "teams", "sharepoint", "graph writes", "ninth", "not the product", "hubspot", "launch"):
+        if stem not in refuse:
+            raise IntegrityError("microsoft-run refuse keeps Dataverse, Teams, SharePoint, Graph Writes, ninth complement", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in run.get("owner_only") or [])
+    for stem in ("seat b", "graph", "dataverse", "launch", "live_pin"):
+        if stem not in owner:
+            raise IntegrityError("microsoft-run owner_only keeps seat B, Graph, Dataverse, launch, LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    note = str(run.get("note") or "").lower()
+    if "#firm-ms" not in note or "eight" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("microsoft-run note is #firm-ms, eight complements, not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -2672,6 +2753,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_286(catalog, body)
     _validate_instrument_287(catalog, body)
     _validate_instrument_288(catalog, body)
+    _validate_instrument_289(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3160,8 +3242,6 @@ def _validate_instrument_287(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_288(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.88.0":
-        raise IntegrityError("entity.release is 2.88.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.88.0" in item and "quality review" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.88.0 operating-day quality review", reason_code="CATALOG_ENGINEERING")
@@ -3188,6 +3268,34 @@ def _validate_instrument_288(catalog: dict[str, Any], body: dict[str, Any]) -> N
     )
     if "403-vs-404" not in confirm:
         raise IntegrityError("2.88.0 edge quality confirm keeps the 403 observation", reason_code="CATALOG_EDGE")
+
+
+def _validate_instrument_289(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.89.0":
+        raise IntegrityError("entity.release is 2.89.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.89.0" in item and "microsoft run" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.89.0 first-class Microsoft run", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_run") is not True:
+        raise IntegrityError("2.89.0 website has a first-class Microsoft run", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_run_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.89.0 Microsoft run is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    run = firm.get("microsoft_run") or {}
+    if run.get("kind") != "ainav.microsoft_run.v1":
+        raise IntegrityError("2.89.0 microsoft_run kind", reason_code="CATALOG_REVIEW")
+    if run.get("wired_claimed") is True or run.get("microsoft_is_the_product") is True or run.get("ninth_complement") is True:
+        raise IntegrityError("2.89.0 Microsoft run is not wired, not the product, and not a ninth complement", reason_code="CATALOG_REVIEW")
+    connections = catalog.get("connections") or {}
+    if list(connections.get("required_ids") or []) != REQUIRED_MS_IDS:
+        raise IntegrityError("2.89.0 connections.required_ids stay the six declared connections", reason_code="CATALOG_REVIEW")
+    complement_ids = [item.get("id") for item in (connections.get("complements") or []) if isinstance(item, dict)]
+    if complement_ids != COMPLEMENT_MS_IDS:
+        raise IntegrityError("2.89.0 connections.complements stay the eight complements", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "microsoft run" not in principles or "eight complements" not in principles or "not the product" not in principles:
+        raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

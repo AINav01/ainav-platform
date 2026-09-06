@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 2.88.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 2.89.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.88.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 2.89.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -381,6 +381,7 @@ Working well
 - 2.86.0 first-class operating company is catalog law: 500 live and 500 pipeline are capacity. Live 0. Pipeline 0. One spine. Segregated twins. Commissions unpaid. Not a CRM. Not LIVE_PIN_OK.
 - 2.87.0 first-class operating day and launch gate is catalog law: qualify, proof, close, assign, service, launch. Gold is not launch. Live 0. Pipeline 0. Servicing empty. Launch stays false. Not a CRM. Not LIVE_PIN_OK.
 - 2.88.0 operating-day quality review is catalog law: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.
+- 2.89.0 first-class Microsoft run is catalog law: six required connections and eight complements sit on the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -414,6 +415,7 @@ Could be improved — without inventing a fourth SKU
 - First-class operating company sits on #firm: 500/500 capacity, BD/sales/IC/comp console. It cannot invent a lead, pay a commission, or share a twin. Not a CRM. Not LIVE_PIN_OK.
 - First-class operating day and launch gate sit on #firm-console: qualify, proof, close, assign, service, launch. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK.
 - Operating-day quality review: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.
+- 2.89.0 first-class Microsoft run sits on #firm: six required connections and eight complements mapped to the operating day. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -467,7 +469,7 @@ Objection cards
 - We need a real managed website. — This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.
 - Just give us a shared demo tenant we can keep. — The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.
 - Just flip the demo live. — The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.
-- Just stand up HubSpot and pay the team. — The firm is this operating day. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product.
+- Just stand up HubSpot and pay the team. — The firm is this operating day on the Microsoft run. Six required connections and eight complements. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product. Microsoft is not the product.
 
 CISO posture — holds
 
@@ -539,6 +541,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 56. [tree] First-class operating company — Ship 2.86.0: first-class operating company on #firm. 500 live and 500 pipeline are capacity. BD, sales, ICs, commissions, segregated twins. Not a CRM. Not a fourth SKU. Not production. Not LIVE_PIN_OK.
 - 57. [tree] First-class operating day — Ship 2.87.0: first-class operating day and launch gate on #firm. Qualify, proof, close, assign, service, launch. Gold is not launch. Not a CRM. Not production. Not LIVE_PIN_OK.
 - 58. [tree] Operating-day quality review — Ship 2.88.0: quality review of the operating day. site.js versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not launch. Not LIVE_PIN_OK.
+- 59. [tree] First-class Microsoft run — Ship 2.89.0: first-class Microsoft run on #firm. Six required connections and eight complements mapped to the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.
 
 ## What happens next
 
