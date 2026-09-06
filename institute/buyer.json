@@ -1150,9 +1150,10 @@
             "ready": false
           },
           {
+            "held": true,
             "id": "gold",
             "name": "Gold 99",
-            "note": "Release floor. Gold is not launch.",
+            "note": "Floor held. Gold is not launch.",
             "ready": false
           }
         ],

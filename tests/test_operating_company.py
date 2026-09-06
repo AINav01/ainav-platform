@@ -16,6 +16,9 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert "operating company" in blob
     assert "operating day" in blob
     assert "launch gate" in blob
+    assert "quality review" in blob
+    assert "403 challenge" in blob
+    assert "sku attach" in blob
     assert "five hundred" in blob
     assert "capacity" in blob
     firm = cat["expert_review"]["success"]["operating_company"]
@@ -45,6 +48,12 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert firm["gates"]["kind"] == "ainav.launch_gate.v1"
     assert firm["gates"]["launch"] is False
     assert firm["gates"]["gold_is_not_launch"] is True
+    gold = next(item for item in firm["gates"]["items"] if item["id"] == "gold")
+    assert gold["held"] is True
+    assert gold["ready"] is False
+    assert "floor held" in gold["note"].lower()
+    assert cat["operations"]["note"].lower().startswith("sku attach")
+    assert "#firm" in cat["operations"]["note"]
     assert firm["service"]["live"] == 0
     assert firm["service"]["hours_attach_udual"] is False
     assert firm["comp"]["booked"] is False
@@ -59,7 +68,14 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert 'id="firm-rails"' in html
     assert 'id="firm-day"' in html
     assert 'id="firm-gates"' in html
+    assert 'src="site.js?v=2.88.0"' in html
+    assert 'src="site.js?v=2.88.0"' in twin
+    assert 'id="ops-note"' in html
+    assert 'href="#firm"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
+    assert "Held. Floor held. Gold is not launch." in html
+    assert 'data-held="yes"' in html
     assert "paintOperatingCompany" in js
+    assert 'item.held ? "Held. "' in js
     assert "Run the firm" in html
     assert "firm-invent-lead" in html
     assert "firm-pay" in html
@@ -201,6 +217,14 @@ def test_operating_company_fail_closed():
     def gold_is_launch(cat):
         cat["expert_review"]["success"]["operating_company"]["gates"]["gold_is_not_launch"] = False
 
+    def gold_held(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["gates"]["items"]:
+            if item.get("id") == "gold":
+                item["held"] = False
+
+    def ops_note(cat):
+        cat["operations"]["note"] = "A second company."
+
     def service_hours(cat):
         cat["expert_review"]["success"]["operating_company"]["service"]["ffs_hours"] = 12
 
@@ -215,6 +239,11 @@ def test_operating_company_fail_closed():
     def upgrade_day(cat):
         for item in cat["expert_review"]["upgrades"]:
             if item.get("n") == 57:
+                item["do"] = "Ship a CRM."
+
+    def upgrade_quality(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 58:
                 item["do"] = "Ship a CRM."
 
     def ciso_gate(cat):
@@ -260,10 +289,13 @@ def test_operating_company_fail_closed():
         gate_launch,
         gate_ready,
         gold_is_launch,
+        gold_held,
+        ops_note,
         service_hours,
         service_udual,
         cannot_launch,
         upgrade_day,
+        upgrade_quality,
         ciso_gate,
     ):
         _reject(mutator)

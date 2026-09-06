@@ -2060,11 +2060,12 @@
       set("firm-rail-" + rail.id, rail.note);
     });
     var day = firm.day || {};
-    if (day.launch || day.live_pin_ok || day.sku) return;
-    (day.stages || []).forEach(function (stage) {
-      if (!stage || !stage.id) return;
-      set("firm-day-" + stage.id, stage.note);
-    });
+    if (!day.launch && !day.live_pin_ok && !day.sku) {
+      (day.stages || []).forEach(function (stage) {
+        if (!stage || !stage.id) return;
+        set("firm-day-" + stage.id, stage.note);
+      });
+    }
     var roles = document.getElementById("firm-roles");
     if (roles && firm.roles && firm.roles.length) {
       roles.textContent = "";
@@ -2081,31 +2082,49 @@
       });
     }
     var comp = firm.comp || {};
-    if (comp.booked || comp.paid_count || comp.from_this_plane || comp.payroll_provider) return;
-    set("firm-comp-note", comp.note);
+    if (!comp.booked && !comp.paid_count && !comp.from_this_plane && !comp.payroll_provider) {
+      set("firm-comp-note", comp.note);
+      var compList = document.getElementById("firm-comp");
+      if (compList && (comp.closer || comp.bd || comp.residual || comp.hours)) {
+        compList.textContent = "";
+        [
+          ["Closer", comp.closer],
+          ["BD", comp.bd],
+          ["Residual", comp.residual],
+          ["Hours", comp.hours]
+        ].forEach(function (row) {
+          if (!row[1]) return;
+          var li = document.createElement("li");
+          li.textContent = row[0] + " — " + row[1];
+          compList.appendChild(li);
+        });
+      }
+    }
     var gates = firm.gates || {};
-    if (gates.launch || gates.authorized_release || gates.live_pin_ok || !gates.gold_is_not_launch) return;
-    var gateList = document.getElementById("firm-gates");
-    if (gateList && gates.items && gates.items.length) {
-      gateList.textContent = "";
-      gates.items.forEach(function (item) {
-        if (!item) return;
-        var li = document.createElement("li");
-        li.setAttribute("data-ready", item.ready ? "yes" : "no");
-        var name = document.createElement("b");
-        name.textContent = item.name || item.id || "";
-        li.appendChild(name);
-        var note = document.createElement("span");
-        note.textContent = item.ready ? item.note || "" : "Open. " + (item.note || "");
-        li.appendChild(note);
-        gateList.appendChild(li);
-      });
+    if (!gates.launch && !gates.authorized_release && !gates.live_pin_ok && gates.gold_is_not_launch) {
+      var gateList = document.getElementById("firm-gates");
+      if (gateList && gates.items && gates.items.length) {
+        gateList.textContent = "";
+        gates.items.forEach(function (item) {
+          if (!item) return;
+          var li = document.createElement("li");
+          li.setAttribute("data-ready", item.ready ? "yes" : "no");
+          if (item.held) li.setAttribute("data-held", "yes");
+          var name = document.createElement("b");
+          name.textContent = item.name || item.id || "";
+          li.appendChild(name);
+          var note = document.createElement("span");
+          var prefix = item.ready ? "" : item.held ? "Held. " : "Open. ";
+          note.textContent = prefix + (item.note || "");
+          li.appendChild(note);
+          gateList.appendChild(li);
+        });
+      }
     }
     var book = firm.service || {};
-    if (book.live || book.padm || book.ffs_hours || book.hours_mint_sku || book.hours_attach_udual || book.shared_twin) {
-      return;
+    if (!book.live && !book.padm && !book.ffs_hours && !book.hours_mint_sku && !book.hours_attach_udual && !book.shared_twin) {
+      if (book.note) set("firm-service-status", "P-ADM 0. FFS hours 0. Live book empty.");
     }
-    if (book.note) set("firm-service-status", "P-ADM 0. FFS hours 0. Live book empty.");
   }
 
   function replacePlain(id, items) {

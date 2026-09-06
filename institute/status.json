@@ -235,7 +235,8 @@
         "Do not downgrade Full (strict) to Flexible or Off",
         "Rocket Loader Off and Auto Minify JavaScript Off",
         "MX and autodiscover grey cloud",
-        "403 challenge drop was intended \u2014 apex is now 404 empty"
+        "403 challenge drop was intended \u2014 apex is now 404 empty",
+        "This plane observed HTTP 403 challenge on ainav.institute. Pages stays 404. Confirm 403-vs-404. Not launch."
       ],
       "e7_full": true,
       "from_this_plane": false,
@@ -418,6 +419,7 @@
       "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
       "2.86.0 first-class operating company: 500 live and 500 pipeline are capacity, BD/sales/ICs/comp on one spine, segregated twins. Not a CRM. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
       "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch. Gold is not launch. Servicing is P-ADM keep and FFS on the assigned twin. Not a CRM. Not production. A green check is not LIVE_PIN_OK",
+      "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -607,7 +609,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.87.0",
+  "release": "2.88.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,

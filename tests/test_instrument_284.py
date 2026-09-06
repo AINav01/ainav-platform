@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_284_client_assigned_sandbox_twin():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.87.0"
+    assert cat["entity"]["release"] == "2.88.0"
     twin = cat["expert_review"]["success"]["client_twin"]
     assert twin["kind"] == "ainav.client_twin.v1"
     assert twin["sku"] is False
@@ -29,7 +29,7 @@ def test_release_is_284_client_assigned_sandbox_twin():
     assert cat["programs"]["website"]["client_twin_is_sku"] is False
     assert any("2.84.0" in item and "client" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 57
+    assert len(cat["expert_review"]["upgrades"]) == 58
     assert upgrades[54]["who"] == "tree"
     assert upgrades[54]["done"] is True
     assert upgrades[54]["marks_live_pin"] is False
@@ -37,13 +37,13 @@ def test_release_is_284_client_assigned_sandbox_twin():
     assert "client twin" in blob
     assert "live_pin_ok" in blob
     html = Path("institute/index.html").read_text(encoding="utf-8")
-    assert "2.87.0" in html
+    assert "2.88.0" in html
     assert 'id="path"' in html
     assert 'id="path-console"' in html
     dash = public_dashboard()
-    assert dash["release"] == "2.87.0"
+    assert dash["release"] == "2.88.0"
     status = public_status()
-    assert status["release"] == "2.87.0"
+    assert status["release"] == "2.88.0"
     assert status["website"]["path_href"] == "#path"
     assert status["website"]["client_twin_is_sku"] is False
     held = publish_institute()

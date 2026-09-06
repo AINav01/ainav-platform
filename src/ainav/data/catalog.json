@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.87.0",
+    "release": "2.88.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2011,7 +2011,8 @@
       "LOST",
       "KIT_FAIL",
       "CHURN"
-    ]
+    ],
+    "note": "SKU attach chain. The operating day is #firm. Not a second company."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -5022,6 +5023,7 @@
         "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox; not a fourth SKU; not production; not from this plane",
         "2.86.0 first-class operating company: 500 live and 500 pipeline are capacity, BD/sales/ICs/comp on one spine, segregated twins; not a CRM; not a fourth SKU; not production; not from this plane",
         "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch; gold is not launch; servicing is P-ADM keep and FFS on the assigned twin; not a CRM; not production; not from this plane",
+        "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch; not from this plane",
         "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
       ],
       "owner_only_open": [
@@ -5226,6 +5228,7 @@
       "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
       "2.86.0 first-class operating company: 500 live and 500 pipeline are capacity, BD/sales/ICs/comp on one spine, segregated twins. Not a CRM. Not a fourth SKU. Not production. A green check is not LIVE_PIN_OK",
       "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch. Gold is not launch. Servicing is P-ADM keep and FFS on the assigned twin. Not a CRM. Not production. A green check is not LIVE_PIN_OK",
+      "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -5456,7 +5459,8 @@
           "Do not downgrade Full (strict) to Flexible or Off",
           "Rocket Loader Off and Auto Minify JavaScript Off",
           "MX and autodiscover grey cloud",
-          "403 challenge drop was intended — apex is now 404 empty"
+          "403 challenge drop was intended — apex is now 404 empty",
+          "This plane observed HTTP 403 challenge on ainav.institute. Pages stays 404. Confirm 403-vs-404. Not launch."
         ],
         "refuse": [
           "asuid while Pages is the apex",
@@ -7130,7 +7134,8 @@
       "Microsoft Support ticket 2609030040009525 recorded North America Sandbox Canada affinity and the Advanced Data Residency USA-tenant eligibility boundary. United States is not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK.",
       "Deep Cloudflare quality 2026-09-04: HTTP 301, apex 404 empty on Cloudflare edge, pages 404, Azure SWA twin 200 with Institute CSP, asuid absent, E7 13/13, TLS 1.2+, mail not Cloudflare anycast. The 403 challenge hold is gone. Visitor cert is Google Trust Services WE1 — not Full. Gold 99 is the twin release floor. Not launch. Not LIVE_PIN_OK.",
       "2.86.0 first-class operating company is catalog law: 500 live and 500 pipeline are capacity. Live 0. Pipeline 0. One spine. Segregated twins. Commissions unpaid. Not a CRM. Not LIVE_PIN_OK.",
-      "2.87.0 first-class operating day and launch gate is catalog law: qualify, proof, close, assign, service, launch. Gold is not launch. Live 0. Pipeline 0. Servicing empty. Launch stays false. Not a CRM. Not LIVE_PIN_OK."
+      "2.87.0 first-class operating day and launch gate is catalog law: qualify, proof, close, assign, service, launch. Gold is not launch. Live 0. Pipeline 0. Servicing empty. Launch stays false. Not a CRM. Not LIVE_PIN_OK.",
+      "2.88.0 operating-day quality review is catalog law: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7164,7 +7169,8 @@
       "The client twin is a client-assigned segregated sandbox after qualify or with signed L1. Remote demo stays on the Institute twin. Close is signed L1. Paid enhance, debug, and custom packs stay on that sandbox. Hours never mint a SKU and never attach free U-DUAL. The Institute twin is not client production. The client twin is not a fourth SKU. Production write stays owner-gated. Not LIVE_PIN_OK.",
       "The first-class close bench is the operational sale face. Three planes stay distinct: Institute twin for remote demo, client-assigned segregated sandbox after L1, production write only after LIVE_PIN_OK. The bench rehearses qualify, proof, close, and assign. It cannot invent a named client or auto-promote. Not a fourth SKU. Not LIVE_PIN_OK.",
       "The operating company is one spine. Business development qualifies. Sales closes L1. Close assigns a segregated sandbox. Kit then P-ADM keep. Paid U-DUAL and FFS service that twin. Independent contractors are not seats. Commissions pay only after recognized receipt. Five hundred live and five hundred pipeline are capacity, not booked clients. HubSpot is not the firm. Not a CRM. Not a fourth SKU. Not LIVE_PIN_OK.",
-      "The operating day is the 10/10 firm face. Qualify, proof, close, assign, service, launch gate. Servicing is P-ADM keep and FFS on the assigned twin. The launch gate stays closed until the owner says launch and gold holds 99. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK."
+      "The operating day is the 10/10 firm face. Qualify, proof, close, assign, service, launch gate. Servicing is P-ADM keep and FFS on the assigned twin. The launch gate stays closed until the owner says launch and gold holds 99. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK.",
+      "A quality review of the operating day is catalog law. site.js is versioned with the release. Gold 99 held is not launch and is not an open gap like seat B. #ops is the SKU attach chain; the operating day is #firm. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7189,12 +7195,14 @@
       "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
       "Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.",
       "Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.",
+      "Quality review 2.88.0 observed HTTP 403 challenge on ainav.institute from this plane. Pages stays 404. Catalog still records apex 404 empty. Confirm 403-vs-404. Not launch. Not LIVE_PIN_OK.",
       "What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.",
       "Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.",
       "Client-assigned sandbox twin sits on the sale site after the product. Remote demo stays #twin. Close is signed L1. Assigned stays false until a real L1. Not a fourth SKU. Not production. Not LIVE_PIN_OK.",
       "First-class close bench sits on #path: three planes, qualify/proof/close/assign console. It cannot invent Acme or auto-promote. Not a fourth SKU. Not LIVE_PIN_OK.",
       "First-class operating company sits on #firm: 500/500 capacity, BD/sales/IC/comp console. It cannot invent a lead, pay a commission, or share a twin. Not a CRM. Not LIVE_PIN_OK.",
-      "First-class operating day and launch gate sit on #firm-console: qualify, proof, close, assign, service, launch. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK."
+      "First-class operating day and launch gate sit on #firm-console: qualify, proof, close, assign, service, launch. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK.",
+      "Operating-day quality review: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK."
     ],
     "success": {
       "sku": false,
@@ -7886,7 +7894,8 @@
               "id": "gold",
               "name": "Gold 99",
               "ready": false,
-              "note": "Release floor. Gold is not launch."
+              "held": true,
+              "note": "Floor held. Gold is not launch."
             }
           ]
         },
@@ -8351,6 +8360,14 @@
         "who": "tree",
         "title": "First-class operating day",
         "do": "Ship 2.87.0: first-class operating day and launch gate on #firm. Qualify, proof, close, assign, service, launch. Gold is not launch. Not a CRM. Not production. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 58,
+        "who": "tree",
+        "title": "Operating-day quality review",
+        "do": "Ship 2.88.0: quality review of the operating day. site.js versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not launch. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

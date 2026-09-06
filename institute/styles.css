@@ -1296,6 +1296,15 @@ table.law tr[data-group] th {
 .firm-gates li[data-ready="no"] {
   border-left-color: var(--gold);
 }
+.firm-gates li[data-held="yes"] {
+  border-left-color: var(--gold-2);
+}
+#firm-console-honest {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 1100px) {
+  #firm-console-honest { grid-template-columns: repeat(5, 1fr); }
+}
 .firm-launch-panel {
   background: color-mix(in srgb, var(--void) 88%, #2a1c14);
   color: var(--void-ink);

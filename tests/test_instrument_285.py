@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_285_first_class_close_bench():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.87.0"
+    assert cat["entity"]["release"] == "2.88.0"
     bench = cat["expert_review"]["success"]["close_bench"]
     assert bench["kind"] == "ainav.close_bench.v1"
     assert bench["sku"] is False
@@ -27,7 +27,7 @@ def test_release_is_285_first_class_close_bench():
     assert cat["programs"]["website"]["close_is_sku"] is False
     assert any("2.85.0" in item and "close bench" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 57
+    assert len(cat["expert_review"]["upgrades"]) == 58
     assert upgrades[55]["who"] == "tree"
     assert upgrades[55]["done"] is True
     assert upgrades[55]["marks_live_pin"] is False
@@ -35,13 +35,13 @@ def test_release_is_285_first_class_close_bench():
     assert "close bench" in blob
     assert "live_pin_ok" in blob
     html = Path("institute/index.html").read_text(encoding="utf-8")
-    assert "2.87.0" in html
+    assert "2.88.0" in html
     assert 'id="close-console"' in html
     assert 'id="path-planes"' in html
     dash = public_dashboard()
-    assert dash["release"] == "2.87.0"
+    assert dash["release"] == "2.88.0"
     status = public_status()
-    assert status["release"] == "2.87.0"
+    assert status["release"] == "2.88.0"
     assert status["website"]["close_bench"] is True
     assert status["website"]["close_is_sku"] is False
     held = publish_institute()

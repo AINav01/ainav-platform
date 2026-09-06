@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.87.0"
+    "release": "2.88.0"
   },
   "communications": [
     {
@@ -2115,6 +2115,7 @@
       "2.85.0 first-class close bench: three planes, remote proof, signed L1, assigned sandbox; not a fourth SKU; not production; not from this plane",
       "2.86.0 first-class operating company: 500 live and 500 pipeline are capacity, BD/sales/ICs/comp on one spine, segregated twins; not a CRM; not a fourth SKU; not production; not from this plane",
       "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch; gold is not launch; servicing is P-ADM keep and FFS on the assigned twin; not a CRM; not production; not from this plane",
+      "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -3825,7 +3826,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.87.0",
+  "release": "2.88.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4539,9 +4540,10 @@
             "ready": false
           },
           {
+            "held": true,
             "id": "gold",
             "name": "Gold 99",
-            "note": "Release floor. Gold is not launch.",
+            "note": "Floor held. Gold is not launch.",
             "ready": false
           }
         ],

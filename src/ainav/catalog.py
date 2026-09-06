@@ -281,7 +281,7 @@ def _validate_edge_quality(edge: dict[str, Any]) -> None:
         if stem not in verified:
             raise IntegrityError(f"edge quality verified must keep {stem}", reason_code="CATALOG_EDGE")
     confirm = " ".join(str(item).lower() for item in quality.get("confirm") or [])
-    for stem in ("flexible", "rocket", "grey"):
+    for stem in ("flexible", "rocket", "grey", "403-vs-404"):
         if stem not in confirm:
             raise IntegrityError(f"edge quality confirm must keep {stem}", reason_code="CATALOG_EDGE")
     refuse = " ".join(str(item).lower() for item in quality.get("refuse") or [])
@@ -1132,8 +1132,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 57:
-        raise IntegrityError("expert review needs 16–57 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 58:
+        raise IntegrityError("expert review needs 16–58 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1181,6 +1181,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         55: ("close bench", "live_pin_ok"),
         56: ("operating company", "live_pin_ok"),
         57: ("operating day", "live_pin_ok"),
+        58: ("quality review", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1226,6 +1227,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the first-class operating company", reason_code="CATALOG_REVIEW")
     if "operating day" not in blob or "launch gate" not in blob or "gold is not launch" not in blob:
         raise IntegrityError("first-principles must keep the first-class operating day and launch gate", reason_code="CATALOG_REVIEW")
+    if "quality review" not in blob or "403 challenge" not in blob or "sku attach" not in blob:
+        raise IntegrityError("first-principles must keep the operating-day quality review", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1720,6 +1723,11 @@ def _validate_launch_gate(body: Any) -> None:
         raise IntegrityError("launch gate items are seat B, signed L1, LIVE_PIN_OK, owner launch, gold", reason_code="CATALOG_REVIEW")
     if any(item.get("ready") is True for item in gates.get("items") or [] if isinstance(item, dict)):
         raise IntegrityError("launch gate items stay not ready", reason_code="CATALOG_REVIEW")
+    gold = next((item for item in gates.get("items") or [] if isinstance(item, dict) and item.get("id") == "gold"), {})
+    if gold.get("held") is not True:
+        raise IntegrityError("gold 99 is held as the release floor, not an open gap", reason_code="CATALOG_REVIEW")
+    if any(item.get("held") is True for item in gates.get("items") or [] if isinstance(item, dict) and item.get("id") != "gold"):
+        raise IntegrityError("only gold 99 may be held on the launch gate", reason_code="CATALOG_REVIEW")
     blob = " ".join(
         f"{item.get('name') or ''} {item.get('note') or ''}".lower()
         for item in gates.get("items") or []
@@ -1727,6 +1735,8 @@ def _validate_launch_gate(body: Any) -> None:
     )
     if "she clicks" not in blob or "gold is not launch" not in blob or "james says launch" not in blob:
         raise IntegrityError("launch gate keeps seat B click, gold is not launch, and owner launch word", reason_code="CATALOG_REVIEW")
+    if "floor held" not in blob:
+        raise IntegrityError("gold gate note keeps floor held", reason_code="CATALOG_REVIEW")
 
 
 def _validate_service_book(body: Any) -> None:
@@ -2661,6 +2671,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_285(catalog, body)
     _validate_instrument_286(catalog, body)
     _validate_instrument_287(catalog, body)
+    _validate_instrument_288(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3120,8 +3131,6 @@ def _validate_instrument_286(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_287(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.87.0":
-        raise IntegrityError("entity.release is 2.87.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.87.0" in item and "operating day" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.87.0 first-class operating day", reason_code="CATALOG_ENGINEERING")
@@ -3148,6 +3157,37 @@ def _validate_instrument_287(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "operating day" not in principles or "launch gate" not in principles:
         raise IntegrityError("first-principles must keep the first-class operating day and launch gate", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_288(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.88.0":
+        raise IntegrityError("entity.release is 2.88.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.88.0" in item and "quality review" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.88.0 operating-day quality review", reason_code="CATALOG_ENGINEERING")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    gold = next(
+        (item for item in (firm.get("gates") or {}).get("items") or [] if isinstance(item, dict) and item.get("id") == "gold"),
+        {},
+    )
+    if gold.get("held") is not True or gold.get("ready") is True:
+        raise IntegrityError("2.88.0 gold 99 is held and not ready", reason_code="CATALOG_REVIEW")
+    ops = catalog.get("operations") or {}
+    note = str(ops.get("note") or "").lower()
+    if "operating day" not in note or "#firm" not in note or "sku attach" not in note:
+        raise IntegrityError("2.88.0 operations note points at the operating day on #firm", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "quality review" not in principles or "403 challenge" not in principles or "sku attach" not in principles:
+        raise IntegrityError("first-principles must keep the operating-day quality review", reason_code="CATALOG_REVIEW")
+    confirm = " ".join(
+        str(item).lower()
+        for item in (
+            (((catalog.get("microsoft_stack") or {}).get("edge") or {}).get("quality") or {}).get("confirm")
+            or []
+        )
+    )
+    if "403-vs-404" not in confirm:
+        raise IntegrityError("2.88.0 edge quality confirm keeps the 403 observation", reason_code="CATALOG_EDGE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
