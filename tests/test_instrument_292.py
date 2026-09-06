@@ -260,3 +260,153 @@ def test_brand_and_first_principles_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_success_program(ciso)
+    for flag in (
+        "fourth_sku",
+        "cms",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "trademark_filed",
+        "microsoft_is_the_product",
+    ):
+        hole = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+        hole[flag] = True
+        with pytest.raises(IntegrityError):
+            catmod._validate_brand(hole)
+    kind = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    kind["kind"] = "ainav.brand.v0"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(kind)
+    lockflag = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    lockflag["lockfile_stays_job_c"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(lockflag)
+    legal = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    legal["marks"]["legal"] = "Fear, Inc."
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(legal)
+    institute = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    institute["marks"]["institute"] = "Fear.Institute"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(institute)
+    job = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    job["marks"]["job"] = "Job D"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(job)
+    voice = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    voice["voice"] = {"ours": "authority", "not_ours": "something else"}
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(voice)
+    surfaces = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    surfaces["surfaces"] = []
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(surfaces)
+    stem = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    stem["surfaces"][0]["note"] = "A corporation."
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(stem)
+    face = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    face["face"]["paper"] = "#ffffff"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(face)
+    gold = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    gold["face"]["gold"] = "#000000"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(gold)
+    void = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    void["face"]["void"] = "#000000"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(void)
+    fonts = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    fonts["face"]["display"] = "Comic Sans"
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(fonts)
+    theme = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    theme["face"]["note"] = "A theme."
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(theme)
+    refuse = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    refuse["refuse"] = ["something else"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(refuse)
+    owner = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    owner["owner_only"] = ["something else"]
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(owner)
+    firm_site = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    firm_site["site"] = "Brand system on #brand. Not a /brand route."
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(firm_site)
+    note = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    note["note"] = "Marks stay catalog law."
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(note)
+    lede = copy.deepcopy(cat["expert_review"]["success"]["brand"])
+    lede["lede"] = "A mark set."
+    with pytest.raises(IntegrityError):
+        catmod._validate_brand(lede)
+    marks_principles = list(cat["expert_review"]["first_principles"])
+    marks_principles = [
+        item.replace("Microsoft marks are theirs", "Marks stay mixed")
+        if "brand system" in item.lower()
+        else item
+        for item in marks_principles
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(marks_principles)
+    sandbox_principles = list(cat["expert_review"]["first_principles"])
+    sandbox_principles = [
+        item.replace("The sandbox is not a production brand", "The sandbox is a review surface")
+        .replace("Not a fear brand", "Not a slogan")
+        if "brand system" in item.lower()
+        else item
+        for item in sandbox_principles
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(sandbox_principles)
+    href = copy.deepcopy(cat)
+    href["programs"]["website"]["brand_href"] = "/brand"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(href, href["plane_interface"])
+    cms = copy.deepcopy(cat)
+    cms["expert_review"]["success"]["brand"]["cms"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(cms, cms["plane_interface"])
+    lock_run = copy.deepcopy(cat)
+    lock_run["expert_review"]["success"]["brand"]["lockfile_stays_job_c"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(lock_run, lock_run["plane_interface"])
+    ip_mark = copy.deepcopy(cat)
+    ip_mark["ip"]["institute_mark"] = "Fear.Institute"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(ip_mark, ip_mark["plane_interface"])
+    product_ip = copy.deepcopy(cat)
+    product_ip["ip"]["product_mark"] = "Fear Plane"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(product_ip, product_ip["plane_interface"])
+    surfaces_run = copy.deepcopy(cat)
+    surfaces_run["expert_review"]["success"]["brand"]["surfaces"] = []
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(surfaces_run, surfaces_run["plane_interface"])
+    write = copy.deepcopy(cat)
+    write["expert_review"]["first_principles"] = [
+        item.replace("Write-fear", "Authority").replace("write-fear", "authority")
+        for item in write["expert_review"]["first_principles"]
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(write, write["plane_interface"])
+    ops_sku = copy.deepcopy(cat)
+    ops_sku["operations"]["note"] = "The brand is #brand. The operating day is elsewhere."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(ops_sku, ops_sku["plane_interface"])
+    ops_brand = copy.deepcopy(cat)
+    ops_brand["operations"]["note"] = "SKU attach chain. The operating day is #firm."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(ops_brand, ops_brand["plane_interface"])
+    apex = copy.deepcopy(cat)
+    apex["honest_missing"] = [
+        item if "trademark" not in item.lower() else "Trademark filing stays owner-only."
+        for item in apex["honest_missing"]
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_292(apex, apex["plane_interface"])
