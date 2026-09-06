@@ -22,6 +22,8 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert "microsoft run" in blob
     assert "eight complements" in blob
     assert "not the product" in blob
+    assert "day map" in blob
+    assert "assign sits on azure host" in blob
     assert "five hundred" in blob
     assert "capacity" in blob
     firm = cat["expert_review"]["success"]["operating_company"]
@@ -71,6 +73,16 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert len(run["required_ids"]) == 6
     assert [item["id"] for item in run["spine"]] == run["required_ids"] + run["complement_ids"]
     assert all(item["wired"] is False for item in run["spine"])
+    assert [item["id"] for item in run["day_map"]] == [
+        "qualify",
+        "proof",
+        "close",
+        "assign",
+        "service",
+        "launch",
+    ]
+    assert all(item["wired"] is False for item in run["day_map"])
+    assert next(item for item in run["day_map"] if item["id"] == "assign")["on"] == ["azure.host"]
     exported = success_program()["operating_company"]
     assert exported["lede"] == firm["lede"]
     html = Path("institute/index.html").read_text(encoding="utf-8")
@@ -80,8 +92,8 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert 'id="firm-rails"' in html
     assert 'id="firm-day"' in html
     assert 'id="firm-gates"' in html
-    assert 'src="site.js?v=2.89.0"' in html
-    assert 'src="site.js?v=2.89.0"' in twin
+    assert 'src="site.js?v=2.90.0"' in html
+    assert 'src="site.js?v=2.90.0"' in twin
     assert 'id="ops-note"' in html
     assert 'href="#firm"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     assert "Held. Floor held. Gold is not launch." in html
@@ -96,10 +108,13 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert "firm-keep" in html
     assert "firm-hours-udual" in html
     assert 'id="firm-ms"' in html
+    assert 'id="firm-ms-day"' in html
     assert "firm-wire-teams" in html
     assert "firm-close-dataverse" in html
     assert "firm-trash-writes" in html
     assert "firm-ms-product" in html
+    assert "firm-wire-day" in html
+    assert "firm-day-on-assign" in html
     assert "index.html#firm-ms" in twin
     assert 'href="/firm"' not in html
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
@@ -269,6 +284,11 @@ def test_operating_company_fail_closed():
             if item.get("n") == 59:
                 item["do"] = "Ship a CRM."
 
+    def upgrade_day_map(cat):
+        for item in cat["expert_review"]["upgrades"]:
+            if item.get("n") == 60:
+                item["do"] = "Ship a CRM."
+
     def ms_wired(cat):
         cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["wired_claimed"] = True
 
@@ -307,9 +327,81 @@ def test_operating_company_fail_closed():
     def ms_note(cat):
         cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["note"] = "Live later."
 
+    def ms_day_map(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"] = []
+
+    def ms_assign(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "assign":
+                item["on"] = ["sales.enterprise"]
+
+    def ms_lede_stages(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["lede"] = (
+            "The Microsoft run is how the firm is managed. Six required connections and eight complements. Microsoft is not the product."
+        )
+
+    def ms_note_day(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["note"] = (
+            "The Microsoft run is catalog law on #firm-ms. Complements stay eight. Not LIVE_PIN_OK."
+        )
+
+    def ms_qualify_note(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "qualify":
+                item["note"] = "Identity only."
+
+    def ms_proof_note(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "proof":
+                item["note"] = "Mailbox is not a click."
+
+    def ms_close_note(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "close":
+                item["note"] = "SoR after signed L1."
+
+    def ms_assign_note(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "assign":
+                item["note"] = "Assigned stays 0."
+
+    def ms_service_note(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "service":
+                item["note"] = "Keep on the assigned twin."
+
+    def ms_launch_note(cat):
+        for item in cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["day_map"]:
+            if item.get("id") == "launch":
+                item["note"] = "Policy cannot mark launch."
+
+    def ms_days_empty(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["spine"][0]["days"] = []
+
+    def ms_days_foreign(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["spine"][0]["days"] = ["proof", "crm"]
+
+    def ms_days_mismatch(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["spine"][0]["days"] = ["proof", "close"]
+
+    def ms_days_lockstep(cat):
+        cat["expert_review"]["success"]["operating_company"]["microsoft_run"]["spine"][0]["days"] = ["proof"]
+
+    def ciso_day_map(cat):
+        cat["expert_review"]["success"]["ciso"]["does_not"] = [
+            item
+            for item in cat["expert_review"]["success"]["ciso"]["does_not"]
+            if "day map" not in item.lower()
+        ]
+
     def ms_site(cat):
         cat["expert_review"]["success"]["operating_company"]["site"] = (
             "The firm bench is #firm-console on #firm. The operating day is qualify, proof, close, assign, service, launch gate. Demo is #twin."
+        )
+
+    def ms_site_day(cat):
+        cat["expert_review"]["success"]["operating_company"]["site"] = (
+            "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The operating day is qualify, proof, close, assign, service, launch gate. Demo is #twin. Gold is not launch."
         )
 
     def ciso_gate(cat):
@@ -363,6 +455,7 @@ def test_operating_company_fail_closed():
         upgrade_day,
         upgrade_quality,
         upgrade_ms,
+        upgrade_day_map,
         ms_wired,
         ms_product,
         ms_ninth,
@@ -371,7 +464,23 @@ def test_operating_company_fail_closed():
         ms_refuse,
         ms_owner,
         ms_note,
+        ms_day_map,
+        ms_assign,
+        ms_lede_stages,
+        ms_note_day,
+        ms_qualify_note,
+        ms_proof_note,
+        ms_close_note,
+        ms_assign_note,
+        ms_service_note,
+        ms_launch_note,
+        ms_days_empty,
+        ms_days_foreign,
+        ms_days_mismatch,
+        ms_days_lockstep,
+        ciso_day_map,
         ms_site,
+        ms_site_day,
         ciso_ms,
         ciso_teams,
         ciso_gate,

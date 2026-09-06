@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "2.89.0"
+    "release": "2.90.0"
   },
   "communications": [
     {
@@ -2117,6 +2117,7 @@
       "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch; gold is not launch; servicing is P-ADM keep and FFS on the assigned twin; not a CRM; not production; not from this plane",
       "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch; not from this plane",
       "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm; Microsoft is not the product; licensed-not-wired stays honest; not from this plane",
+      "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate; assign sits on Azure host; licensed-not-wired stays honest; not from this plane",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
@@ -3834,7 +3835,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "2.89.0",
+  "release": "2.90.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4156,7 +4157,8 @@
         "Mark the launch gate from this plane",
         "Treat Microsoft as the product",
         "Invent a ninth complement",
-        "Invent Teams channel ids or DATAVERSE_URL from this plane"
+        "Invent Teams channel ids or DATAVERSE_URL from this plane",
+        "Treat the Microsoft day map as wired"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4581,15 +4583,87 @@
           "azure.policy"
         ],
         "crm": false,
+        "day_map": [
+          {
+            "id": "qualify",
+            "live": false,
+            "name": "Qualify",
+            "note": "Runs on Microsoft 365 E7, Teams Enterprise, Teams Premium, Entra ID, and Entra PIM. Identity and notify. Not a CRM.",
+            "on": [
+              "m365.e7",
+              "teams.enterprise",
+              "teams.premium",
+              "entra.id",
+              "entra.pim"
+            ],
+            "wired": false
+          },
+          {
+            "id": "proof",
+            "live": false,
+            "name": "Proof",
+            "note": "Runs on Azure host and Microsoft 365 E7. Institute twin on Azure SWA. Mailbox is not a click.",
+            "on": [
+              "azure.host",
+              "m365.e7"
+            ],
+            "wired": false
+          },
+          {
+            "id": "close",
+            "live": false,
+            "name": "Close",
+            "note": "Runs on Business Central Premium and Sales Enterprise. SoR after signed L1. Canada is not United States.",
+            "on": [
+              "bc.premium",
+              "sales.enterprise"
+            ],
+            "wired": false
+          },
+          {
+            "id": "assign",
+            "live": false,
+            "name": "Assign",
+            "note": "Runs on Azure host. One live client, one segregated sandbox. Assigned stays 0.",
+            "on": [
+              "azure.host"
+            ],
+            "wired": false
+          },
+          {
+            "id": "service",
+            "live": false,
+            "name": "Service",
+            "note": "Runs on Key Vault, Monitor, SharePoint, Defender XDR, and Sentinel. Keep on the assigned twin. LAW is not Sentinel.",
+            "on": [
+              "azure.keyvault",
+              "azure.monitor",
+              "sharepoint.kit",
+              "defender.xdr",
+              "sentinel.siem"
+            ],
+            "wired": false
+          },
+          {
+            "id": "launch",
+            "live": false,
+            "name": "Launch",
+            "note": "Runs on Azure Policy. Policy cannot mark launch or LIVE_PIN_OK.",
+            "on": [
+              "azure.policy"
+            ],
+            "wired": false
+          }
+        ],
         "fourth_sku": false,
         "from_this_plane": false,
         "kind": "ainav.microsoft_run.v1",
-        "lede": "The Microsoft run is how the firm is managed. Six required connections and eight complements sit on the operating day. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. Licensed-not-wired stays honest.",
+        "lede": "The Microsoft run is how the firm is managed. Every operating-day stage runs on the declared Microsoft substrate. Six required connections and eight complements. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. Licensed-not-wired stays honest.",
         "live": false,
         "live_pin_ok": false,
         "microsoft_is_the_product": false,
         "ninth_complement": false,
-        "note": "The Microsoft run is catalog law on #firm-ms. Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
+        "note": "The Microsoft run is catalog law on #firm-ms. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
         "owner_only": [
           "Seat B click",
           "Graph Writes revoke-then-grant",
@@ -4628,6 +4702,10 @@
           {
             "class": "required",
             "day": "proof",
+            "days": [
+              "proof",
+              "assign"
+            ],
             "dept": "dept.identity",
             "id": "azure.host",
             "job": "host",
@@ -4642,6 +4720,10 @@
           {
             "class": "required",
             "day": "qualify",
+            "days": [
+              "qualify",
+              "proof"
+            ],
             "dept": "dept.identity",
             "id": "m365.e7",
             "job": "tenant",
@@ -4656,6 +4738,9 @@
           {
             "class": "required",
             "day": "qualify",
+            "days": [
+              "qualify"
+            ],
             "dept": "dept.people",
             "id": "teams.enterprise",
             "job": "notify",
@@ -4670,6 +4755,9 @@
           {
             "class": "required",
             "day": "qualify",
+            "days": [
+              "qualify"
+            ],
             "dept": "dept.people",
             "id": "teams.premium",
             "job": "notify",
@@ -4684,6 +4772,9 @@
           {
             "class": "required",
             "day": "close",
+            "days": [
+              "close"
+            ],
             "dept": "dept.treasury",
             "id": "bc.premium",
             "job": "sor",
@@ -4698,6 +4789,9 @@
           {
             "class": "required",
             "day": "close",
+            "days": [
+              "close"
+            ],
             "dept": "dept.sales",
             "id": "sales.enterprise",
             "job": "sor",
@@ -4712,6 +4806,9 @@
           {
             "class": "complement",
             "day": "qualify",
+            "days": [
+              "qualify"
+            ],
             "dept": "dept.identity",
             "id": "entra.id",
             "job": "identity",
@@ -4726,6 +4823,9 @@
           {
             "class": "complement",
             "day": "service",
+            "days": [
+              "service"
+            ],
             "dept": "dept.identity",
             "id": "azure.keyvault",
             "job": "secrets",
@@ -4740,6 +4840,9 @@
           {
             "class": "complement",
             "day": "service",
+            "days": [
+              "service"
+            ],
             "dept": "dept.identity",
             "id": "azure.monitor",
             "job": "observe",
@@ -4754,6 +4857,9 @@
           {
             "class": "complement",
             "day": "service",
+            "days": [
+              "service"
+            ],
             "dept": "dept.compliance",
             "id": "sharepoint.kit",
             "job": "evidence",
@@ -4768,6 +4874,9 @@
           {
             "class": "complement",
             "day": "service",
+            "days": [
+              "service"
+            ],
             "dept": "dept.compliance",
             "id": "defender.xdr",
             "job": "security",
@@ -4782,6 +4891,9 @@
           {
             "class": "complement",
             "day": "qualify",
+            "days": [
+              "qualify"
+            ],
             "dept": "dept.compliance",
             "id": "entra.pim",
             "job": "eligibility",
@@ -4796,6 +4908,9 @@
           {
             "class": "complement",
             "day": "service",
+            "days": [
+              "service"
+            ],
             "dept": "dept.compliance",
             "id": "sentinel.siem",
             "job": "siem",
@@ -4810,6 +4925,9 @@
           {
             "class": "complement",
             "day": "launch",
+            "days": [
+              "launch"
+            ],
             "dept": "dept.identity",
             "id": "azure.policy",
             "job": "host_policy",
@@ -4931,7 +5049,7 @@
         "padm": 0,
         "shared_twin": false
       },
-      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The day map is #firm-ms-day. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
       "sku": false
     },
     "qualify": {

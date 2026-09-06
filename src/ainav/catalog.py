@@ -1132,7 +1132,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 59:
+    if not 16 <= len(upgrades) <= 60:
         raise IntegrityError("expert review needs 16–59 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
@@ -1183,6 +1183,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         57: ("operating day", "live_pin_ok"),
         58: ("quality review", "live_pin_ok"),
         59: ("microsoft run", "live_pin_ok"),
+        60: ("day map", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1232,6 +1233,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the operating-day quality review", reason_code="CATALOG_REVIEW")
     if "microsoft run" not in blob or "eight complements" not in blob or "not the product" not in blob:
         raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
+    if "day map" not in blob or "assign sits on azure host" not in blob:
+        raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1317,6 +1320,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat Microsoft as the product or invent a ninth complement", reason_code="CATALOG_REVIEW")
     if "teams channel" not in does_not or "dataverse_url" not in does_not:
         raise IntegrityError("CISO posture does not invent Teams channel ids or DATAVERSE_URL", reason_code="CATALOG_REVIEW")
+    if "day map" not in does_not:
+        raise IntegrityError("CISO posture does not treat the Microsoft day map as wired", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -1686,6 +1691,8 @@ def _validate_operating_company(body: Any) -> None:
         raise IntegrityError("operating-company site keeps the operating day and launch gate", reason_code="CATALOG_REVIEW")
     if "#firm-ms" not in site or "microsoft run" not in site:
         raise IntegrityError("operating-company site keeps the Microsoft run on #firm-ms", reason_code="CATALOG_REVIEW")
+    if "#firm-ms-day" not in site or "day map" not in site:
+        raise IntegrityError("operating-company site keeps the Microsoft day map on #firm-ms-day", reason_code="CATALOG_REVIEW")
     note = str(firm.get("note") or "").lower()
     if "live stays 0" not in note or "payouts stay 0" not in note or "live_pin_ok" not in note:
         raise IntegrityError("operating-company note keeps live 0, payouts 0, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
@@ -1780,6 +1787,15 @@ COMPLEMENT_MS_IDS = [
     "sentinel.siem",
     "azure.policy",
 ]
+OPERATING_DAY_IDS = ["qualify", "proof", "close", "assign", "service", "launch"]
+MICROSOFT_DAY_ON = {
+    "qualify": ["m365.e7", "teams.enterprise", "teams.premium", "entra.id", "entra.pim"],
+    "proof": ["azure.host", "m365.e7"],
+    "close": ["bc.premium", "sales.enterprise"],
+    "assign": ["azure.host"],
+    "service": ["azure.keyvault", "azure.monitor", "sharepoint.kit", "defender.xdr", "sentinel.siem"],
+    "launch": ["azure.policy"],
+}
 
 
 def _validate_microsoft_run(body: Any) -> None:
@@ -1820,6 +1836,8 @@ def _validate_microsoft_run(body: Any) -> None:
     lede = str(run.get("lede") or "").lower()
     if "microsoft run" not in lede or "eight complements" not in lede or "not the product" not in lede:
         raise IntegrityError("microsoft-run lede keeps eight complements and Microsoft is not the product", reason_code="CATALOG_REVIEW")
+    if "every operating-day stage" not in lede:
+        raise IntegrityError("microsoft-run lede keeps every operating-day stage on the Microsoft substrate", reason_code="CATALOG_REVIEW")
     refuse = " ".join(str(item).lower() for item in run.get("refuse") or [])
     for stem in ("dataverse", "teams", "sharepoint", "graph writes", "ninth", "not the product", "hubspot", "launch"):
         if stem not in refuse:
@@ -1831,6 +1849,50 @@ def _validate_microsoft_run(body: Any) -> None:
     note = str(run.get("note") or "").lower()
     if "#firm-ms" not in note or "eight" not in note or "live_pin_ok" not in note:
         raise IntegrityError("microsoft-run note is #firm-ms, eight complements, not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "#firm-ms-day" not in note or "day map" not in note or "assign sits on azure host" not in note:
+        raise IntegrityError("microsoft-run note keeps the day map on #firm-ms-day and assign on Azure host", reason_code="CATALOG_REVIEW")
+    day_map = [item for item in (run.get("day_map") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in day_map] != OPERATING_DAY_IDS:
+        raise IntegrityError("microsoft day map is qualify, proof, close, assign, service, launch", reason_code="CATALOG_REVIEW")
+    if any(item.get("wired") is True or item.get("live") is True for item in day_map):
+        raise IntegrityError("microsoft day map stays unwired and not live", reason_code="CATALOG_REVIEW")
+    covered: list[str] = []
+    for item in day_map:
+        stage = str(item.get("id") or "")
+        on = list(item.get("on") or [])
+        if on != MICROSOFT_DAY_ON.get(stage):
+            raise IntegrityError("microsoft day map on-ids stay the declared substrate", reason_code="CATALOG_REVIEW")
+        covered.extend(on)
+        stage_note = str(item.get("note") or "").lower()
+        if stage == "qualify" and "not a crm" not in stage_note:
+            raise IntegrityError("qualify day map is identity and notify, not a CRM", reason_code="CATALOG_REVIEW")
+        if stage == "proof" and "twin" not in stage_note:
+            raise IntegrityError("proof day map keeps the Institute twin", reason_code="CATALOG_REVIEW")
+        if stage == "close" and "canada" not in stage_note:
+            raise IntegrityError("close day map keeps Canada is not United States", reason_code="CATALOG_REVIEW")
+        if stage == "assign" and "sandbox" not in stage_note:
+            raise IntegrityError("assign day map keeps the segregated sandbox on Azure host", reason_code="CATALOG_REVIEW")
+        if stage == "service" and "sentinel" not in stage_note:
+            raise IntegrityError("service day map keeps LAW is not Sentinel", reason_code="CATALOG_REVIEW")
+        if stage == "launch" and "live_pin" not in stage_note:
+            raise IntegrityError("launch day map cannot mark LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if sorted(set(covered)) != sorted(REQUIRED_MS_IDS + COMPLEMENT_MS_IDS):
+        raise IntegrityError("microsoft day map covers every required connection and complement", reason_code="CATALOG_REVIEW")
+    spine_by_id = {item.get("id"): item for item in spine}
+    for item in spine:
+        days = list(item.get("days") or [])
+        if not days or days[0] != item.get("day"):
+            raise IntegrityError("microsoft run spine days start with the primary day", reason_code="CATALOG_REVIEW")
+        if any(day not in OPERATING_DAY_IDS for day in days):
+            raise IntegrityError("microsoft run spine days stay on the operating day", reason_code="CATALOG_REVIEW")
+        for day in days:
+            if item.get("id") not in MICROSOFT_DAY_ON[day]:
+                raise IntegrityError("microsoft run spine days match the day map", reason_code="CATALOG_REVIEW")
+    for stage, on_ids in MICROSOFT_DAY_ON.items():
+        for conn_id in on_ids:
+            days = list((spine_by_id.get(conn_id) or {}).get("days") or [])
+            if stage not in days:
+                raise IntegrityError("microsoft day map and spine days stay in lockstep", reason_code="CATALOG_REVIEW")
 
 
 def _validate_owner_gates(catalog: dict[str, Any]) -> None:
@@ -2754,6 +2816,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_287(catalog, body)
     _validate_instrument_288(catalog, body)
     _validate_instrument_289(catalog, body)
+    _validate_instrument_290(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -3271,8 +3334,6 @@ def _validate_instrument_288(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_289(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.89.0":
-        raise IntegrityError("entity.release is 2.89.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.89.0" in item and "microsoft run" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.89.0 first-class Microsoft run", reason_code="CATALOG_ENGINEERING")
@@ -3296,6 +3357,32 @@ def _validate_instrument_289(catalog: dict[str, Any], body: dict[str, Any]) -> N
     principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
     if "microsoft run" not in principles or "eight complements" not in principles or "not the product" not in principles:
         raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_290(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.90.0":
+        raise IntegrityError("entity.release is 2.90.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.90.0" in item and "day map" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.90.0 Microsoft day map", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_day_map") is not True:
+        raise IntegrityError("2.90.0 website has a first-class Microsoft day map", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_day_map_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.90.0 Microsoft day map is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    run = firm.get("microsoft_run") or {}
+    day_map = [item for item in (run.get("day_map") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in day_map] != OPERATING_DAY_IDS:
+        raise IntegrityError("2.90.0 day map is the whole operating day", reason_code="CATALOG_REVIEW")
+    if any(item.get("wired") is True or item.get("live") is True for item in day_map):
+        raise IntegrityError("2.90.0 day map stays unwired and not live", reason_code="CATALOG_REVIEW")
+    assign = next((item for item in day_map if item.get("id") == "assign"), {})
+    if list(assign.get("on") or []) != ["azure.host"]:
+        raise IntegrityError("2.90.0 assign sits on Azure host", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "day map" not in principles or "assign sits on azure host" not in principles:
+        raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -1312,6 +1312,30 @@ table.law tr[data-group] th {
 .firm-ms-panel {
   margin-top: 1rem;
 }
+.firm-ms-day {
+  margin: 0.65rem 0 1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+@media (min-width: 1100px) {
+  .firm-ms-day { grid-template-columns: repeat(3, 1fr); }
+}
+.firm-ms-day li {
+  display: grid;
+  gap: 0.15rem;
+  border-left: 2px solid var(--azure);
+  padding: 0.15rem 0 0.15rem 0.7rem;
+}
+.firm-ms-day b {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+.firm-ms-day span {
+  color: #d8d2c6;
+  font-size: 0.86rem;
+}
 .firm-ms {
   margin: 0.65rem 0 1rem;
   padding: 0;

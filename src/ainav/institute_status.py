@@ -187,6 +187,8 @@ def public_status() -> dict[str, Any]:
             "microsoft_run": bool(site.get("microsoft_run")),
             "microsoft_run_is_sku": False,
             "microsoft_is_the_product": False,
+            "microsoft_day_map": bool(site.get("microsoft_day_map")),
+            "microsoft_day_map_is_sku": False,
         },
         "bc": {
             "connection": "bc.premium",

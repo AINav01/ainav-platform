@@ -2136,6 +2136,23 @@
       !run.ninth_complement
     ) {
       set("firm-ms-lede", run.lede);
+      var dayMap = document.getElementById("firm-ms-day");
+      if (dayMap && run.day_map && run.day_map.length) {
+        dayMap.textContent = "";
+        run.day_map.forEach(function (item) {
+          if (!item) return;
+          var li = document.createElement("li");
+          li.setAttribute("data-wired", item.wired ? "yes" : "no");
+          var name = document.createElement("b");
+          name.textContent = item.name || item.id || "";
+          li.appendChild(name);
+          var note = document.createElement("span");
+          note.textContent = item.note || "";
+          li.appendChild(note);
+          dayMap.appendChild(li);
+          set("firm-day-on-" + item.id, item.note);
+        });
+      }
       var spine = document.getElementById("firm-ms-spine");
       if (spine && run.spine && run.spine.length) {
         spine.textContent = "";
@@ -2148,7 +2165,11 @@
           name.textContent = item.name || item.id || "";
           li.appendChild(name);
           var note = document.createElement("span");
-          note.textContent = item.note || "";
+          var meta = [item.job, item.day, item.status]
+            .filter(Boolean)
+            .join(" · ")
+            .replace(/_/g, " ");
+          note.textContent = (meta ? meta + ". " : "") + (item.note || "");
           li.appendChild(note);
           spine.appendChild(li);
         });
@@ -3110,6 +3131,18 @@
       writeFirmLedger(
         "denied",
         "product_denied · Microsoft is the substrate\nIdentity, notify, SoR, keep, host.\nThe product is the admit plane.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var firmWireDay = document.getElementById("firm-wire-day");
+  if (firmWireDay) {
+    firmWireDay.addEventListener("click", function () {
+      var status = document.getElementById("firm-ms-status");
+      if (status) status.textContent = "Refused. The day map is catalog law. Licensed-not-wired stays honest.";
+      writeFirmLedger(
+        "denied",
+        "day_map_denied · catalog law\nEvery stage names its Microsoft substrate.\nAssign sits on Azure host. Not wired.\nlive=false · live_pin_ok=false"
       );
     });
   }

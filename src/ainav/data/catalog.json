@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "2.89.0",
+    "release": "2.90.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -5025,6 +5025,7 @@
         "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch; gold is not launch; servicing is P-ADM keep and FFS on the assigned twin; not a CRM; not production; not from this plane",
         "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch; not from this plane",
         "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm; Microsoft is not the product; licensed-not-wired stays honest; not from this plane",
+        "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate; assign sits on Azure host; licensed-not-wired stays honest; not from this plane",
         "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded as catalog law; United States not pinned; not from this plane"
       ],
       "owner_only_open": [
@@ -5238,6 +5239,7 @@
       "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch. Gold is not launch. Servicing is P-ADM keep and FFS on the assigned twin. Not a CRM. Not production. A green check is not LIVE_PIN_OK",
       "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch. A green check is not LIVE_PIN_OK",
       "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm. Microsoft is not the product. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
+      "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -6671,7 +6673,9 @@
       "launch_is_ready": false,
       "microsoft_run": true,
       "microsoft_run_is_sku": false,
-      "microsoft_is_the_product": false
+      "microsoft_is_the_product": false,
+      "microsoft_day_map": true,
+      "microsoft_day_map_is_sku": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -7148,7 +7152,8 @@
       "2.86.0 first-class operating company is catalog law: 500 live and 500 pipeline are capacity. Live 0. Pipeline 0. One spine. Segregated twins. Commissions unpaid. Not a CRM. Not LIVE_PIN_OK.",
       "2.87.0 first-class operating day and launch gate is catalog law: qualify, proof, close, assign, service, launch. Gold is not launch. Live 0. Pipeline 0. Servicing empty. Launch stays false. Not a CRM. Not LIVE_PIN_OK.",
       "2.88.0 operating-day quality review is catalog law: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.",
-      "2.89.0 first-class Microsoft run is catalog law: six required connections and eight complements sit on the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK."
+      "2.89.0 first-class Microsoft run is catalog law: six required connections and eight complements sit on the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.",
+      "2.90.0 Microsoft day map is catalog law: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7184,7 +7189,8 @@
       "The operating company is one spine. Business development qualifies. Sales closes L1. Close assigns a segregated sandbox. Kit then P-ADM keep. Paid U-DUAL and FFS service that twin. Independent contractors are not seats. Commissions pay only after recognized receipt. Five hundred live and five hundred pipeline are capacity, not booked clients. HubSpot is not the firm. Not a CRM. Not a fourth SKU. Not LIVE_PIN_OK.",
       "The operating day is the 10/10 firm face. Qualify, proof, close, assign, service, launch gate. Servicing is P-ADM keep and FFS on the assigned twin. The launch gate stays closed until the owner says launch and gold holds 99. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK.",
       "A quality review of the operating day is catalog law. site.js is versioned with the release. Gold 99 held is not launch and is not an open gap like seat B. #ops is the SKU attach chain; the operating day is #firm. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.",
-      "The Microsoft run is how AINav, Inc. manages the firm. Six required connections and eight complements sit on the operating day. Microsoft is identity, notify, SoR, keep, and host — not the product. HubSpot is not the firm. Licensed-not-wired stays honest. This plane cannot invent Teams ids, Dataverse URL, or Graph Writes revoked. Not a ninth complement. Not LIVE_PIN_OK."
+      "The Microsoft run is how AINav, Inc. manages the firm. Six required connections and eight complements sit on the operating day. Microsoft is identity, notify, SoR, keep, and host — not the product. HubSpot is not the firm. Licensed-not-wired stays honest. This plane cannot invent Teams ids, Dataverse URL, or Graph Writes revoked. Not a ninth complement. Not LIVE_PIN_OK.",
+      "The Microsoft day map is how the whole business runs on the declared Microsoft substrate. Qualify, proof, close, assign, service, and launch each name the connections they sit on. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. The day map is not wired. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7217,7 +7223,8 @@
       "First-class operating company sits on #firm: 500/500 capacity, BD/sales/IC/comp console. It cannot invent a lead, pay a commission, or share a twin. Not a CRM. Not LIVE_PIN_OK.",
       "First-class operating day and launch gate sit on #firm-console: qualify, proof, close, assign, service, launch. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK.",
       "Operating-day quality review: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.",
-      "2.89.0 first-class Microsoft run sits on #firm: six required connections and eight complements mapped to the operating day. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK."
+      "2.89.0 first-class Microsoft run sits on #firm: six required connections and eight complements mapped to the operating day. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.",
+      "2.90.0 Microsoft day map sits on #firm-ms-day: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK."
     ],
     "success": {
       "sku": false,
@@ -7411,7 +7418,8 @@
           "Mark the launch gate from this plane",
           "Treat Microsoft as the product",
           "Invent a ninth complement",
-          "Invent Teams channel ids or DATAVERSE_URL from this plane"
+          "Invent Teams channel ids or DATAVERSE_URL from this plane",
+          "Treat the Microsoft day map as wired"
         ]
       },
       "seat_b": {
@@ -7947,7 +7955,7 @@
           "wired_claimed": false,
           "microsoft_is_the_product": false,
           "ninth_complement": false,
-          "lede": "The Microsoft run is how the firm is managed. Six required connections and eight complements sit on the operating day. Microsoft is identity, notify, SoR, keep, and host — not the product. Licensed-not-wired stays honest.",
+          "lede": "The Microsoft run is how the firm is managed. Every operating-day stage runs on the declared Microsoft substrate. Six required connections and eight complements. Microsoft is identity, notify, SoR, keep, and host — not the product. Licensed-not-wired stays honest.",
           "required_ids": [
             "azure.host",
             "m365.e7",
@@ -7973,6 +7981,10 @@
               "class": "required",
               "job": "host",
               "day": "proof",
+              "days": [
+                "proof",
+                "assign"
+              ],
               "dept": "dept.identity",
               "status": "twin_hosted",
               "wired": false,
@@ -7987,6 +7999,10 @@
               "class": "required",
               "job": "tenant",
               "day": "qualify",
+              "days": [
+                "qualify",
+                "proof"
+              ],
               "dept": "dept.identity",
               "status": "licensed_read",
               "wired": false,
@@ -8001,6 +8017,9 @@
               "class": "required",
               "job": "notify",
               "day": "qualify",
+              "days": [
+                "qualify"
+              ],
               "dept": "dept.people",
               "status": "licensed_not_wired",
               "wired": false,
@@ -8015,6 +8034,9 @@
               "class": "required",
               "job": "notify",
               "day": "qualify",
+              "days": [
+                "qualify"
+              ],
               "dept": "dept.people",
               "status": "licensed_not_wired",
               "wired": false,
@@ -8029,6 +8051,9 @@
               "class": "required",
               "job": "sor",
               "day": "close",
+              "days": [
+                "close"
+              ],
               "dept": "dept.treasury",
               "status": "sandbox_company",
               "wired": false,
@@ -8043,6 +8068,9 @@
               "class": "required",
               "job": "sor",
               "day": "close",
+              "days": [
+                "close"
+              ],
               "dept": "dept.sales",
               "status": "licensed_not_wired",
               "wired": false,
@@ -8057,6 +8085,9 @@
               "class": "complement",
               "job": "identity",
               "day": "qualify",
+              "days": [
+                "qualify"
+              ],
               "dept": "dept.identity",
               "status": "licensed_read",
               "wired": false,
@@ -8071,6 +8102,9 @@
               "class": "complement",
               "job": "secrets",
               "day": "service",
+              "days": [
+                "service"
+              ],
               "dept": "dept.identity",
               "status": "declared_sandbox",
               "wired": false,
@@ -8085,6 +8119,9 @@
               "class": "complement",
               "job": "observe",
               "day": "service",
+              "days": [
+                "service"
+              ],
               "dept": "dept.identity",
               "status": "declared_sandbox",
               "wired": false,
@@ -8099,6 +8136,9 @@
               "class": "complement",
               "job": "evidence",
               "day": "service",
+              "days": [
+                "service"
+              ],
               "dept": "dept.compliance",
               "status": "graph_read_open",
               "wired": false,
@@ -8113,6 +8153,9 @@
               "class": "complement",
               "job": "security",
               "day": "service",
+              "days": [
+                "service"
+              ],
               "dept": "dept.compliance",
               "status": "graph_read_open",
               "wired": false,
@@ -8127,6 +8170,9 @@
               "class": "complement",
               "job": "eligibility",
               "day": "qualify",
+              "days": [
+                "qualify"
+              ],
               "dept": "dept.compliance",
               "status": "not_dual",
               "wired": false,
@@ -8141,6 +8187,9 @@
               "class": "complement",
               "job": "siem",
               "day": "service",
+              "days": [
+                "service"
+              ],
               "dept": "dept.compliance",
               "status": "law_is_not_sentinel",
               "wired": false,
@@ -8155,6 +8204,9 @@
               "class": "complement",
               "job": "host_policy",
               "day": "launch",
+              "days": [
+                "launch"
+              ],
               "dept": "dept.identity",
               "status": "cannot_weaken",
               "wired": false,
@@ -8162,6 +8214,78 @@
               "production": false,
               "sku": false,
               "note": "West Europe stays blocked. Policy cannot loosen Job C or mark LIVE_PIN_OK."
+            }
+          ],
+          "day_map": [
+            {
+              "id": "qualify",
+              "name": "Qualify",
+              "on": [
+                "m365.e7",
+                "teams.enterprise",
+                "teams.premium",
+                "entra.id",
+                "entra.pim"
+              ],
+              "wired": false,
+              "live": false,
+              "note": "Runs on Microsoft 365 E7, Teams Enterprise, Teams Premium, Entra ID, and Entra PIM. Identity and notify. Not a CRM."
+            },
+            {
+              "id": "proof",
+              "name": "Proof",
+              "on": [
+                "azure.host",
+                "m365.e7"
+              ],
+              "wired": false,
+              "live": false,
+              "note": "Runs on Azure host and Microsoft 365 E7. Institute twin on Azure SWA. Mailbox is not a click."
+            },
+            {
+              "id": "close",
+              "name": "Close",
+              "on": [
+                "bc.premium",
+                "sales.enterprise"
+              ],
+              "wired": false,
+              "live": false,
+              "note": "Runs on Business Central Premium and Sales Enterprise. SoR after signed L1. Canada is not United States."
+            },
+            {
+              "id": "assign",
+              "name": "Assign",
+              "on": [
+                "azure.host"
+              ],
+              "wired": false,
+              "live": false,
+              "note": "Runs on Azure host. One live client, one segregated sandbox. Assigned stays 0."
+            },
+            {
+              "id": "service",
+              "name": "Service",
+              "on": [
+                "azure.keyvault",
+                "azure.monitor",
+                "sharepoint.kit",
+                "defender.xdr",
+                "sentinel.siem"
+              ],
+              "wired": false,
+              "live": false,
+              "note": "Runs on Key Vault, Monitor, SharePoint, Defender XDR, and Sentinel. Keep on the assigned twin. LAW is not Sentinel."
+            },
+            {
+              "id": "launch",
+              "name": "Launch",
+              "on": [
+                "azure.policy"
+              ],
+              "wired": false,
+              "live": false,
+              "note": "Runs on Azure Policy. Policy cannot mark launch or LIVE_PIN_OK."
             }
           ],
           "owner_only": [
@@ -8189,9 +8313,9 @@
             "Microsoft is not the product — do not invert it",
             "Mark launch from this plane"
           ],
-          "note": "The Microsoft run is catalog law on #firm-ms. Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds. Not LIVE_PIN_OK."
+          "note": "The Microsoft run is catalog law on #firm-ms. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. This plane cannot invent owner binds. Not LIVE_PIN_OK."
         },
-        "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+        "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The day map is #firm-ms-day. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
         "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Launch stays false. Microsoft is not the product. Not LIVE_PIN_OK."
       }
     },
@@ -8658,6 +8782,14 @@
         "who": "tree",
         "title": "First-class Microsoft run",
         "do": "Ship 2.89.0: first-class Microsoft run on #firm. Six required connections and eight complements mapped to the operating day. Microsoft is not the product. Licensed-not-wired stays honest. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 60,
+        "who": "tree",
+        "title": "Microsoft day map",
+        "do": "Ship 2.90.0: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

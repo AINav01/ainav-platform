@@ -421,6 +421,7 @@
       "2.87.0 first-class operating day and launch gate: qualify, proof, close, assign, service, launch. Gold is not launch. Servicing is P-ADM keep and FFS on the assigned twin. Not a CRM. Not production. A green check is not LIVE_PIN_OK",
       "2.88.0 operating-day quality review: site.js versioned, gold 99 held is not an open gap, #ops is the SKU attach chain, apex 403 challenge from this plane is not 404 empty and not launch. A green check is not LIVE_PIN_OK",
       "2.89.0 first-class Microsoft run: six required connections and eight complements mapped to the operating day on #firm. Microsoft is not the product. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
+      "2.90.0 Microsoft day map: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays honest. A green check is not LIVE_PIN_OK",
       "Microsoft Support ticket 2609030040009525: North America Sandbox Canada affinity and ADR USA-tenant boundary recorded. United States not pinned. Canada is not United States. Engineering exception routed, not granted. Not LIVE_PIN_OK",
       "Deep Cloudflare quality 2026-09-04: apex 404 empty on Cloudflare edge, SWA twin 200, gold 99 release owner-only. 403 hold gone. Not launch. Not LIVE_PIN_OK"
     ],
@@ -610,7 +611,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.89.0",
+  "release": "2.90.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -639,6 +640,8 @@
     "launch_is_ready": false,
     "launch_ready": false,
     "managed": true,
+    "microsoft_day_map": true,
+    "microsoft_day_map_is_sku": false,
     "microsoft_is_the_product": false,
     "microsoft_run": true,
     "microsoft_run_is_sku": false,
