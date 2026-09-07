@@ -2365,8 +2365,12 @@
         drawer.rooms.named_vertical ||
         drawer.rooms.rooms_are_live ||
         drawer.rooms.wells_are_live ||
-        drawer.rooms.operable === false
-      ))
+        drawer.rooms.operable === false ||
+        drawer.rooms.fully_operable === false ||
+        drawer.rooms.every_refuse_clicks === false
+      )) ||
+      drawer.fully_operable === false ||
+      drawer.every_refuse_clicks === false
     ) {
       return;
     }
@@ -2376,21 +2380,37 @@
     }
     set("industry-lede", drawer.lede);
     set("industry-glance", drawer.glance);
-    set("industry-status", (drawer.site || "") + " " + (drawer.note || ""));
+    set("industry-status", drawer.site || "");
     set("class-industry", drawer.glance);
+    function refuseButton(item, attr) {
+      var name = document.createElement("b");
+      name.textContent = item.name || item.id || "";
+      var btn = document.createElement("button");
+      btn.setAttribute("type", "button");
+      btn.className = "ghost room-refuse";
+      btn.setAttribute("data-room-refuse", item.id || "");
+      if (item.refuse_text) btn.setAttribute("data-refuse-text", item.refuse_text);
+      btn.setAttribute("aria-pressed", "false");
+      btn.appendChild(name);
+      return btn;
+    }
     function rail(item) {
       var li = document.createElement("li");
       if (item.id) li.setAttribute("data-day", item.id);
-      var name = document.createElement("b");
-      name.textContent = item.name || item.id || "";
-      var href = String(item.href || "");
-      if (href && (href.charAt(0) === "#" || href.indexOf("identify.html") === 0 || href.indexOf("app.html") === 0)) {
-        var a = document.createElement("a");
-        a.setAttribute("href", href);
-        a.appendChild(name);
-        li.appendChild(a);
+      if (item.refuse) {
+        li.appendChild(refuseButton(item));
       } else {
-        li.appendChild(name);
+        var name = document.createElement("b");
+        name.textContent = item.name || item.id || "";
+        var href = String(item.href || "");
+        if (href && (href.charAt(0) === "#" || href.indexOf("identify.html") === 0 || href.indexOf("app.html") === 0)) {
+          var a = document.createElement("a");
+          a.setAttribute("href", href);
+          a.appendChild(name);
+          li.appendChild(a);
+        } else {
+          li.appendChild(name);
+        }
       }
       var note = document.createElement("span");
       note.textContent = item.note || "";
@@ -2441,6 +2461,7 @@
     set("industry-assigned", rooms.assigned ? "yes" : "no");
     set("industry-named", rooms.named_vertical || wells.named ? String(wells.named || "yes") : "no");
     set("industry-first", String(wells.room_1 || 0));
+    set("industry-second", String(wells.room_2 || 0));
     set("industry-maps", "claimed=false");
     set("industry-crypto", rooms.crypto_product ? "yes" : "no");
     set("industry-seventeen", rooms.seventeen_a4 ? "yes" : "no");
@@ -2450,13 +2471,7 @@
       var name = document.createElement("b");
       name.textContent = item.name || item.id || "";
       if (item.refuse) {
-        var btn = document.createElement("button");
-        btn.setAttribute("type", "button");
-        btn.className = "ghost room-refuse";
-        btn.setAttribute("data-room-refuse", item.id || "");
-        btn.setAttribute("aria-pressed", "false");
-        btn.appendChild(name);
-        li.appendChild(btn);
+        li.appendChild(refuseButton(item));
       } else {
         var href = String(item.href || "");
         if (href && (href.charAt(0) === "#" || href.indexOf("identify.html") === 0 || href.indexOf("app.html") === 0)) {
@@ -3670,6 +3685,26 @@
     room_2: {
       message: "Refused. Room 2 is refuse. Not a /crypto route.",
       ledger: "industry_denied · Room 2 spine\nRoom 1 walks to packs.\nRoom 2 stays refused.\nlive=false · live_pin_ok=false"
+    },
+    grc_product: {
+      message: "Refused. Not a GRC product. Maps stay claimed=false.",
+      ledger: "industry_denied · healthcare GRC\nMaps stay claimed=false.\nNot a live filing.\nlive=false · live_pin_ok=false"
+    },
+    cert_mill: {
+      message: "Refused. Maps are not filings. Buying L1 is not a certificate.",
+      ledger: "industry_denied · certificate mill\nMaps stay claimed=false.\nNot a SOX opinion.\nlive=false · live_pin_ok=false"
+    },
+    pack_sku: {
+      message: "Refused. Packs, libraries, and repositories are not SKUs.",
+      ledger: "industry_denied · packs as SKUs\nIncluded is not free. Upsell is not a fourth SKU.\nHours never mint a SKU.\nlive=false · live_pin_ok=false"
+    },
+    industry_route: {
+      message: "Refused. The industry drawer sits on #industry. Not a /industry route.",
+      ledger: "industry_denied · /industry route\nFirst glance stays the write rail.\nEncyclopedia stays a drawer.\nlive=false · live_pin_ok=false"
+    },
+    named_vertical: {
+      message: "Refused. This plane cannot invent a named vertical as a fourth SKU.",
+      ledger: "industry_denied · invent a named vertical\nSit is Dynamics BC treasury / controller.\nNot a GRC product.\nlive=false · live_pin_ok=false"
     }
   };
 
@@ -3680,14 +3715,20 @@
       var btn = ev.target.closest("button[data-room-refuse], button.room-refuse");
       if (!btn || !root.contains(btn)) return;
       var id = btn.getAttribute("data-room-refuse") || "";
-      var pack = ROOM_2_REFUSE[id];
-      if (!pack) return;
+      var pack = ROOM_2_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
       ev.preventDefault();
-      refuseIndustry(btn, pack.message, pack.ledger);
+      refuseIndustry(
+        btn,
+        message,
+        pack.ledger || ("industry_denied · " + id + "\nCatalog is the message.\nEvery refuse clicks.\nlive=false · live_pin_ok=false")
+      );
     });
   }
   bindIndustryRoomRefuses(document.getElementById("industry-rooms"));
   bindIndustryRoomRefuses(document.getElementById("industry-room-spine"));
+  bindIndustryRoomRefuses(document.getElementById("industry-day"));
 
   var industryCertify = document.getElementById("industry-certify");
   if (industryCertify) {

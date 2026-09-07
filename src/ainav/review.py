@@ -384,7 +384,7 @@ def deep_dive(*, probe: bool = False) -> str:
         "",
         f"**Client universe.** {client_universe['lede']} {client_universe['site']} {client_universe['note']} Honest zeros. Refuse is visible. Sit-down client day.",
         "",
-        f"**Industry drawer.** {industry_drawer['lede']} {industry_drawer['site']} {industry_drawer['note']} Sit / maps / attach / refuse. Maps claimed=false. Papers are not filings. Room 1 is books. Room 2 is refuse. Honest zeros. Refuse is visible.",
+        f"**Industry drawer.** {industry_drawer['lede']} {industry_drawer['site']} {industry_drawer['note']} Sit / maps / attach / refuse. Maps claimed=false. Papers are not filings. Room 1 is books. Room 2 is refuse. Honest zeros. Refuse is visible. Every refuse clicks. Catalog is the message.",
         "",
         f"**Operating day.** Qualify, proof, close, assign, service, launch gate. Gold is not launch. Launch stays false.",
         "",

@@ -1527,6 +1527,8 @@ table.law tr[data-group] th {
 .industry-rooms [data-room="room_2"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
+.industry-day [data-lane="refuse"] button.room-refuse,
+.industry-day [data-lane="refuse"] button.room-refuse b,
 .industry-rooms button.room-refuse,
 .industry-rooms button.room-refuse b,
 #industry-room-spine button.room-refuse,
@@ -1539,8 +1541,10 @@ table.law tr[data-group] th {
   text-align: left;
   cursor: pointer;
 }
+.industry-day [data-lane="refuse"] button.room-refuse:hover b,
 .industry-rooms button.room-refuse:hover b,
 #industry-room-spine button.room-refuse:hover b { color: var(--gold); }
+.industry-day [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b,
 .industry-rooms button.room-refuse[aria-pressed="true"] b,
 #industry-room-spine button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
 .universe-spine li[data-state="refused"] {

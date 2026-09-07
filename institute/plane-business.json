@@ -604,7 +604,8 @@
       "2.95.0 sit-down client day: now / next / after L1 / blocked on #universe; mailbox recorded; seat B click owner-only; unnamed until signed L1; not a live named day; not a fourth SKU; not a /universe route; not from this plane",
       "2.96.0 sit-down industry drawer: sit / maps / attach / refuse on #industry; Dynamics BC treasury; domestic and international maps claimed=false; papers are not filings; packs, libraries, and repositories are not SKUs; not a /industry route; not from this plane",
       "2.97.0 sit-down industry rooms: Room 1 books / Room 2 refuse on #industry; banks, reserve journals, and booked receivables sit the BC write; tokenization, RWAs, stablecoin mint, and crypto AMS stay Room 2; not a crypto product; not 17a-4; not from this plane",
-      "2.98.0 operable industry rooms: honest zeros sit the board; refuse is visible; Room 1 walks to #packs; Room 2 refuse stays on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane"
+      "2.98.0 operable industry rooms: honest zeros sit the board; refuse is visible; Room 1 walks to #packs; Room 2 refuse stays on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
+      "2.99.0 fully operable industry drawer: every refuse clicks; catalog is the message; Room 2 records stay 0; refuse lane is not a route; not a live named vertical; not a crypto product; not 17a-4; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -980,7 +981,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "2.98.0",
+  "release": "2.99.0",
   "scenarios": [
     {
       "id": "l1_only",

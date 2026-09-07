@@ -210,6 +210,7 @@ def public_status() -> dict[str, Any]:
             "industry_crypto": False,
             "industry_seventeen_a4": False,
             "industry_operable": bool(site.get("industry_operable")),
+            "industry_fully_operable": bool(site.get("industry_fully_operable")),
             "industry_rooms_live": False,
             "industry_wells_live": False,
         },

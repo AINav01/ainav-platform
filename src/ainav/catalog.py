@@ -1140,8 +1140,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 68:
-        raise IntegrityError("expert review needs 16–68 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 69:
+        raise IntegrityError("expert review needs 16–69 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1200,6 +1200,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         66: ("sit-down industry", "live_pin_ok"),
         67: ("room 1", "live_pin_ok"),
         68: ("operable industry", "live_pin_ok"),
+        69: ("every refuse", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1273,6 +1274,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     if "operable industry rooms" not in blob or "honest zeros" not in blob or "refuse is visible" not in blob:
         raise IntegrityError("first-principles must keep operable industry rooms, honest zeros, and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "fully operable industry drawer" not in blob or "every refuse clicks" not in blob or "catalog is the message" not in blob:
+        raise IntegrityError("first-principles must keep the fully operable industry drawer", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1378,6 +1381,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat AINav as a crypto product or sell 17a-4 WORM", reason_code="CATALOG_REVIEW")
     if "room 2 refuse as a live record" not in does_not or "room 1 wells as named records" not in does_not:
         raise IntegrityError("CISO posture does not treat Room 2 refuse or Room 1 wells as live records", reason_code="CATALOG_REVIEW")
+    if "refuse lane walk as a live route" not in does_not:
+        raise IntegrityError("CISO posture does not treat a refuse lane walk as a live route", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2159,6 +2164,8 @@ def _validate_industry_drawer(body: Any) -> None:
         raise IntegrityError("industry drawer lede keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     if "honest zeros" not in lede or "refuse is visible" not in lede:
         raise IntegrityError("industry drawer lede keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in lede or "catalog is the message" not in lede:
+        raise IntegrityError("industry drawer lede keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
     glance = str(drawer.get("glance") or "").lower()
     if "sit-down industry drawer" not in glance or "not a /industry route" not in glance:
         raise IntegrityError("industry drawer glance keeps sit-down and not a /industry route", reason_code="CATALOG_REVIEW")
@@ -2166,6 +2173,8 @@ def _validate_industry_drawer(body: Any) -> None:
         raise IntegrityError("industry drawer glance keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     if "honest zeros" not in glance or "refuse is visible" not in glance:
         raise IntegrityError("industry drawer glance keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in glance:
+        raise IntegrityError("industry drawer glance keeps every refuse clicks", reason_code="CATALOG_REVIEW")
     site = str(drawer.get("site") or "").lower()
     if "#industry" not in site or "not a /industry route" not in site:
         raise IntegrityError("industry drawer site is #industry, not a /industry route", reason_code="CATALOG_REVIEW")
@@ -2173,6 +2182,10 @@ def _validate_industry_drawer(body: Any) -> None:
         raise IntegrityError("industry drawer site keeps sit / maps / attach / refuse and the write rail", reason_code="CATALOG_REVIEW")
     if "honest zeros" not in site or "refuse is visible" not in site:
         raise IntegrityError("industry drawer site keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in site or "catalog is the message" not in site:
+        raise IntegrityError("industry drawer site keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
+    if drawer.get("fully_operable") is not True or drawer.get("every_refuse_clicks") is not True:
+        raise IntegrityError("industry drawer is fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
     note = str(drawer.get("note") or "").lower()
     if "maps stay claimed=false" not in note or "not a live filing" not in note or "landed write" not in note:
         raise IntegrityError("industry drawer note keeps maps claimed=false and not a live filing", reason_code="CATALOG_REVIEW")
@@ -2180,6 +2193,16 @@ def _validate_industry_drawer(body: Any) -> None:
         raise IntegrityError("industry drawer note keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     if "honest zeros" not in note or "refuse is visible" not in note:
         raise IntegrityError("industry drawer note keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in note or "catalog is the message" not in note:
+        raise IntegrityError("industry drawer note keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
+    refuse_lane = next((lane for lane in lanes if lane.get("id") == "refuse"), {})
+    refuse_items = [row for row in (refuse_lane.get("items") or []) if isinstance(row, dict)]
+    if any(row.get("refuse") is not True for row in refuse_items) or len(refuse_items) != len(INDUSTRY_DRAWER_REFUSE_IDS):
+        raise IntegrityError("industry drawer refuse lane items stay refuse", reason_code="CATALOG_REVIEW")
+    if {row.get("id"): row.get("refuse_text") for row in refuse_items} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_DRAWER_REFUSE_IDS
+    }:
+        raise IntegrityError("industry drawer refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
     _validate_industry_rooms(drawer.get("rooms"))
 
 
@@ -2217,9 +2240,17 @@ def _validate_industry_rooms(body: Any) -> None:
         raise IntegrityError("industry room spine states stay ready, refused, after_l1", reason_code="CATALOG_REVIEW")
     if any(item.get("refuse") is not True for item in room_2):
         raise IntegrityError("industry Room 2 items stay refuse", reason_code="CATALOG_REVIEW")
+    if {item.get("id"): item.get("refuse_text") for item in room_2} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_ROOM_2_IDS
+    }:
+        raise IntegrityError("industry Room 2 catalog is the message", reason_code="CATALOG_REVIEW")
+    if rooms.get("fully_operable") is not True or rooms.get("every_refuse_clicks") is not True:
+        raise IntegrityError("industry rooms are fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
     site = str(rooms.get("site") or "").lower()
     if "operable industry rooms" not in site or "honest zeros" not in site or "refuse is visible" not in site:
         raise IntegrityError("industry rooms site keeps operable, honest zeros, and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in site or "catalog is the message" not in site:
+        raise IntegrityError("industry rooms site keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
     if "#packs" not in site or "#industry" not in site or "not a /crypto route" not in site:
         raise IntegrityError("industry rooms site keeps packs, #industry, and not a /crypto route", reason_code="CATALOG_REVIEW")
     blob = " ".join(
@@ -2451,6 +2482,18 @@ INDUSTRY_ROOM_SPINE_STATES = {
     "room_1": "ready",
     "room_2": "refused",
     "after_l1": "after_l1",
+}
+INDUSTRY_REFUSE_TEXT = {
+    "grc_product": "Refused. Not a GRC product. Maps stay claimed=false.",
+    "cert_mill": "Refused. Maps are not filings. Buying L1 is not a certificate.",
+    "pack_sku": "Refused. Packs, libraries, and repositories are not SKUs.",
+    "industry_route": "Refused. The industry drawer sits on #industry. Not a /industry route.",
+    "named_vertical": "Refused. This plane cannot invent a named vertical as a fourth SKU.",
+    "stablecoin_mint": "Refused. Not a stablecoin SKU. Room 2 is refuse.",
+    "rwa_issue": "Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse.",
+    "crypto_ams": "Refused. Not a crypto asset-management SKU. Room 2 is refuse.",
+    "wallet": "Refused. Wallet is not a seat. Room 2 is refuse.",
+    "seventeen_a4": "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
 }
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
@@ -3501,6 +3544,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_296(catalog, body)
     _validate_instrument_297(catalog, body)
     _validate_instrument_298(catalog, body)
+    _validate_instrument_299(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4303,8 +4347,6 @@ def _validate_instrument_297(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_298(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.98.0":
-        raise IntegrityError("entity.release is 2.98.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.98.0" in item and "operable" in item and "room" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.98.0 operable industry rooms", reason_code="CATALOG_ENGINEERING")
@@ -4338,6 +4380,51 @@ def _validate_instrument_298(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("2.98.0 operations note keeps SKU attach, #industry, and Room 1", reason_code="CATALOG_REVIEW")
     if "honest zeros" not in ops and "operable" not in ops:
         raise IntegrityError("2.98.0 operations note keeps honest zeros or operable industry rooms", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_299(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.99.0":
+        raise IntegrityError("entity.release is 2.99.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.99.0" in item and "fully operable" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.99.0 fully operable industry drawer", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_fully_operable") is not True or site.get("industry_operable") is not True:
+        raise IntegrityError("2.99.0 website has a fully operable industry drawer", reason_code="CATALOG_PLANE")
+    if site.get("industry_rooms_live") is True or site.get("industry_wells_live") is True:
+        raise IntegrityError("2.99.0 industry rooms and wells are not live", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("fully_operable") is not True or drawer.get("every_refuse_clicks") is not True:
+        raise IntegrityError("2.99.0 industry drawer is fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
+    rooms = drawer.get("rooms") or {}
+    if rooms.get("fully_operable") is not True or rooms.get("every_refuse_clicks") is not True:
+        raise IntegrityError("2.99.0 industry rooms are fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "every refuse clicks" not in site_note or "catalog is the message" not in site_note:
+        raise IntegrityError("2.99.0 industry drawer site keeps every refuse clicks", reason_code="CATALOG_REVIEW")
+    rooms_site = str(rooms.get("site") or "").lower()
+    if "every refuse clicks" not in rooms_site or "catalog is the message" not in rooms_site:
+        raise IntegrityError("2.99.0 industry rooms site keeps every refuse clicks", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "fully operable industry drawer" not in principles or "every refuse clicks" not in principles or "catalog is the message" not in principles:
+        raise IntegrityError("first-principles must keep the fully operable industry drawer", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "every refuse clicks" not in ops:
+        raise IntegrityError("2.99.0 operations note keeps SKU attach, #industry, and every refuse clicks", reason_code="CATALOG_REVIEW")
+    refuse_lane = next(
+        (lane for lane in (drawer.get("lanes") or []) if isinstance(lane, dict) and lane.get("id") == "refuse"),
+        {},
+    )
+    refuse_items = [row for row in (refuse_lane.get("items") or []) if isinstance(row, dict)]
+    if {row.get("id"): row.get("refuse_text") for row in refuse_items} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_DRAWER_REFUSE_IDS
+    }:
+        raise IntegrityError("2.99.0 refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
+    room_2 = [item for item in (rooms.get("room_2") or []) if isinstance(item, dict)]
+    if {item.get("id"): item.get("refuse_text") for item in room_2} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_ROOM_2_IDS
+    }:
+        raise IntegrityError("2.99.0 Room 2 catalog is the message", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
