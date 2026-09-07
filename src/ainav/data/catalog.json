@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "3.04.0",
+    "release": "3.05.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2012,7 +2012,7 @@
       "KIT_FAIL",
       "CHURN"
     ],
-    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Maps stay claimed=false. Packs are not SKUs. Not a second company. Honest control sits on #industry: need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Honest agents sit on #agent-tools. Agents > All is the registry. An agent is not a seat. Agent 365 is not AINav. Around the write stays maps. Total agents is a Microsoft card. 3.03.0 honest access sits on #agent-tools. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.04.0 honest operators sit on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. SKU attach stays L1 then P-ADM then U-DUAL."
+    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Maps stay claimed=false. Packs are not SKUs. Not a second company. Honest control sits on #industry: need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Honest agents sit on #agent-tools. Agents > All is the registry. An agent is not a seat. Agent 365 is not AINav. Around the write stays maps. Total agents is a Microsoft card. 3.03.0 honest access sits on #agent-tools. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.04.0 honest operators sit on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.05.0 honest build sits on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. SKU attach stays L1 then P-ADM then U-DUAL."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -5048,7 +5048,8 @@
         "3.01.0 honest control. Need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY claimed=false. Company policy is not a SKU. Not a live filing. Not AI Governess. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
         "3.02.0 honest agents. Agents > All. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
         "3.03.0 honest access. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-        "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+        "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+        "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5283,7 +5284,8 @@
       "3.01.0 honest control: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false, employee AI oversight, company policy is not a SKU; not a live filing; not AI Governess; not a fear brand; not from this plane",
       "3.02.0 honest agents. Agents > All. Tools registry. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Leave five Available. Block Dataverse MCP. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.03.0 honest access. This plane does not need additional access. Grok Build is an operator map. Not a seat. Not AINav. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -7164,6 +7166,124 @@
           "Do not treat a Grok bot as dual admit or as the operator."
         ]
       }
+    },
+    "build": {
+      "kind": "ainav.honest.build.v1",
+      "product": "Honest build",
+      "honest": true,
+      "sku": false,
+      "is_sku": false,
+      "fourth_sku": false,
+      "is_connection": false,
+      "is_admit_plane": false,
+      "cms": false,
+      "live": false,
+      "live_pin_ok": false,
+      "launch": false,
+      "wired": false,
+      "claimed": false,
+      "need_full": false,
+      "full_access_needed": false,
+      "more_secrets_needed": false,
+      "twin_is_launch": false,
+      "packs_are_skus": false,
+      "href": "#agent-tools",
+      "site": "Honest build on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. First glance stays the write rail. Not a /build route. Not LIVE_PIN_OK.",
+      "lede": "Do not give full access. This plane does not need full access. Build L1, P-ADM, U-DUAL, modules, packs, and repositories on the twin. The twin is not launch. Packs, modules, and repositories are not SKUs.",
+      "note": "Honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Launch stays owner-only. More secrets are not how we build.",
+      "three": [
+        {
+          "id": "enough",
+          "title": "Already enough",
+          "name": "Already enough",
+          "role": "have",
+          "note": "Repo, catalog, gold, twin publish. Graph read. Azure host read. BC sandbox read. Not full access.",
+          "does": "Stay honest on the twin without more secrets.",
+          "does_not": "Need Microsoft admin, grok login, Graph Writes, or Cloudflare edit.",
+          "href": "#agent-tools",
+          "installed": null,
+          "seat": false
+        },
+        {
+          "id": "build",
+          "title": "Build here",
+          "name": "Build here",
+          "role": "catalog",
+          "note": "L1, P-ADM, U-DUAL. Modules, packs, and repositories are not SKUs. Certified on the twin.",
+          "does": "Write catalog law, gold 99, and republish the twin.",
+          "does_not": "Become a fourth SKU. Become launch. Become a live SoR write.",
+          "href": "#agent-tools",
+          "installed": null,
+          "seat": false
+        },
+        {
+          "id": "launch",
+          "title": "Launch is James",
+          "name": "Launch is James",
+          "role": "owner_only",
+          "note": "Seat B click. Signed L1. LIVE_PIN_OK. Apex bind. Launch word. Owner-only.",
+          "does": "James clicks what this plane cannot.",
+          "does_not": "Be done by Cursor Cloud Agent. Be done by more secrets.",
+          "href": "#agent-tools",
+          "installed": null,
+          "seat": false
+        }
+      ],
+      "refuse": [
+        {
+          "id": "full_access_as_admit",
+          "title": "full access as admit",
+          "name": "full access as admit",
+          "note": "Refused. Full access is not admit.",
+          "href": "#agent-tools",
+          "refuse": true,
+          "refuse_text": "Refused. Full access is not admit.",
+          "state": "refused",
+          "text": "Refused. Full access is not admit."
+        },
+        {
+          "id": "more_secrets_as_build",
+          "title": "more secrets as build",
+          "name": "more secrets as build",
+          "note": "Refused. More secrets are not how we build.",
+          "href": "#agent-tools",
+          "refuse": true,
+          "refuse_text": "Refused. More secrets are not how we build.",
+          "state": "refused",
+          "text": "Refused. More secrets are not how we build."
+        },
+        {
+          "id": "twin_as_launch",
+          "title": "twin as launch",
+          "name": "twin as launch",
+          "note": "Refused. The twin is not launch.",
+          "href": "#agent-tools",
+          "refuse": true,
+          "refuse_text": "Refused. The twin is not launch.",
+          "state": "refused",
+          "text": "Refused. The twin is not launch."
+        },
+        {
+          "id": "pack_as_sku",
+          "title": "pack as sku",
+          "name": "pack as sku",
+          "note": "Refused. Packs, modules, and repositories are not SKUs.",
+          "href": "#agent-tools",
+          "refuse": true,
+          "refuse_text": "Refused. Packs, modules, and repositories are not SKUs.",
+          "state": "refused",
+          "text": "Refused. Packs, modules, and repositories are not SKUs."
+        }
+      ],
+      "owner_playbook": {
+        "actor": "James Hodnett",
+        "cannot_be_done_by": "cursor.cloud_agent",
+        "steps": [
+          "Do not give this plane full access.",
+          "Build standard, upsells, modules, and repositories on the twin.",
+          "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+        ]
+      }
     }
   },
   "connections": {
@@ -7861,7 +7981,12 @@
       "honest_operators_live": false,
       "operator_swap": false,
       "grok_is_recorded": false,
-      "bot_is_operator": false
+      "bot_is_operator": false,
+      "honest_build": true,
+      "honest_build_live": false,
+      "full_access_needed": false,
+      "twin_is_launch": false,
+      "packs_are_skus": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -8353,7 +8478,8 @@
       "3.01.0 honest control is catalog law: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
       "3.02.0 honest agents is catalog law: Agents > All, Tools registry, an agent is not a seat, Agent 365 is not AINav. Census stays claimed=false. Leave five Available. Block Dataverse MCP. Cursor Cloud Agent operates host and twin. Not LIVE_PIN_OK.",
       "3.03.0 honest access is catalog law: this plane does not need additional access. Grok Build is an operator map. Grok Build is not a seat. A Grok bot is not dual admit. Cursor Cloud Agent stays the recorded operator. Not LIVE_PIN_OK.",
-      "3.04.0 honest operators is catalog law: Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Owner cannot be the operator. Not LIVE_PIN_OK."
+      "3.04.0 honest operators is catalog law: Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Owner cannot be the operator. Not LIVE_PIN_OK.",
+      "3.05.0 honest build is catalog law: this plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -8404,7 +8530,8 @@
       "Honest control sits on #industry after the complete drawer. Need is two humans bind one hash. If you don't have it, the write does not land. Thinking you have it under control without seat B is not seated. Get it under control is the second unique human and a fail-closed SoR write. Fiduciary is why two humans bind, not a D&O opinion and not a penalty product. GENIUS and CLARITY stay claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a /fear route. Not AI Governess. Not LIVE_PIN_OK.",
       "Honest agents sit on #agent-tools. James reviews Agents > All. An agent is not a seat. A tool is not a seat. A pin is not admit. Agent 365 is Microsoft's inventory plane, not AINav. Inventory stays claimed=false. Cursor Cloud Agent operates host and twin and cannot sign in. Leave five Available. Block Dataverse MCP. First glance stays the write rail. Not a /agents route. Not LIVE_PIN_OK. Around the write stays maps. Total agents is a Microsoft card.",
       "Honest access does not need additional access. This plane already has the repo, the catalog, twin publish, and Graph read. Grok Build is not a seat. A Grok bot is not dual admit. Mapping xAI's terminal coding agent does not require grok login or XAI_API_KEY on this plane. Not a /access route. Not LIVE_PIN_OK.",
-      "Honest operators: Cursor is recorded. Grok Build is mapped. Grok bot is not admit. They are not interchangeable. Owner cannot be the operator. Not a /operators route. Not LIVE_PIN_OK."
+      "Honest operators: Cursor is recorded. Grok Build is mapped. Grok bot is not admit. They are not interchangeable. Owner cannot be the operator. Not a /operators route. Not LIVE_PIN_OK.",
+      "3.05.0 honest build is catalog law: this plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -8452,7 +8579,8 @@
       "3.01.0 honest control sits on #industry: need, consequence, now, around the corner, human control, fiduciary. GENIUS and CLARITY stay claimed=false. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
       "3.02.0 honest agents sit on #agent-tools. Owner reviews https://admin.cloud.microsoft/?#/agents/all. This plane cannot take a census. Seat B click and signed L1 stay owner-only. Not from this plane.",
       "3.03.0 honest access sits on #agent-tools. This plane does not need Microsoft admin, grok login, or XAI_API_KEY. Grok Build stays installed=null. SuperGrok / X Premium Plus is not recorded. Seat B click and signed L1 stay owner-only. Not from this plane.",
-      "3.04.0 honest operators sit on #agent-tools. Cursor stays recorded. Grok Build stays mapped. A Grok bot is not Cynthia's click. SuperGrok stays owner-only. Not from this plane."
+      "3.04.0 honest operators sit on #agent-tools. Cursor stays recorded. Grok Build stays mapped. A Grok bot is not Cynthia's click. SuperGrok stays owner-only. Not from this plane.",
+      "3.05.0 honest build sits on #agent-tools. Do not give full access. Build L1, P-ADM, U-DUAL, modules, packs, and repositories on the twin. Launch stays owner-only. Seat B click and signed L1 stay owner-only. Not from this plane."
     ],
     "success": {
       "sku": false,
@@ -8687,7 +8815,10 @@
           "Treat additional access as admit",
           "Treat Grok Build as the recorded operator",
           "Treat a Grok bot as the operator",
-          "Swap Cursor for Grok"
+          "Swap Cursor for Grok",
+          "Treat full access as admit",
+          "Treat more secrets as build",
+          "Treat the twin as launch"
         ]
       },
       "seat_b": {
@@ -10617,6 +10748,14 @@
         "live": false,
         "swap": false,
         "grok_is_recorded": false
+      },
+      "honest_build": {
+        "kind": "ainav.honest.build.v1",
+        "honest": true,
+        "href": "#agent-tools",
+        "live": false,
+        "need_full": false,
+        "twin_is_launch": false
       }
     },
     "upgrades": [
@@ -11202,6 +11341,14 @@
         "who": "tree",
         "title": "Honest operators",
         "do": "Ship 3.04.0 honest operators on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 75,
+        "who": "tree",
+        "title": "Honest build",
+        "do": "Ship 3.05.0 honest build on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }

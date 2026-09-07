@@ -79,6 +79,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.microsoft.access import validate_honest_access
     from ainav.microsoft.agents import validate_microsoft_agents
     from ainav.microsoft.operators import validate_honest_operators
+    from ainav.microsoft.build import validate_honest_build
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
@@ -89,6 +90,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_microsoft_agents(catalog)
     validate_honest_access(catalog)
     validate_honest_operators(catalog)
+    validate_honest_build(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1146,7 +1148,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 74:
+    if not 16 <= len(upgrades) <= 75:
         raise IntegrityError("expert review needs 16–74 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
@@ -1212,6 +1214,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         72: ("honest agents", "live_pin_ok"),
         73: ("honest access", "live_pin_ok"),
         74: ("honest operators", "live_pin_ok"),
+        75: ("honest build", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1305,6 +1308,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest operators and Cursor is recorded", reason_code="CATALOG_REVIEW")
     if "grok build is mapped" not in blob or "grok bot is not admit" not in blob:
         raise IntegrityError("first-principles must keep Grok Build is mapped and Grok bot is not admit", reason_code="CATALOG_REVIEW")
+    if "honest build" not in blob or "does not need full access" not in blob:
+        raise IntegrityError("first-principles must keep honest build and does not need full access", reason_code="CATALOG_REVIEW")
+    if "twin is not launch" not in blob:
+        raise IntegrityError("first-principles must keep twin is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and repositories are not skus" not in blob:
+        raise IntegrityError("first-principles must keep packs, modules, and repositories are not SKUs", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1477,6 +1486,21 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest operators sit on #agent-tools", reason_code="CATALOG_REVIEW")
     if hosted_ops.get("live") is True or hosted_ops.get("swap") is True or hosted_ops.get("grok_is_recorded") is True:
         raise IntegrityError("success honest operators stay not live and do not swap", reason_code="CATALOG_REVIEW")
+    if "full access as admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat full access as admit", reason_code="CATALOG_REVIEW")
+    if "more secrets as build" not in does_not:
+        raise IntegrityError("CISO posture does not treat more secrets as build", reason_code="CATALOG_REVIEW")
+    if "the twin as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat the twin as launch", reason_code="CATALOG_REVIEW")
+    hosted_build = success.get("honest_build")
+    if not isinstance(hosted_build, dict):
+        raise IntegrityError("success program keeps honest build", reason_code="CATALOG_REVIEW")
+    if hosted_build.get("kind") != "ainav.honest.build.v1" or hosted_build.get("honest") is not True:
+        raise IntegrityError("success honest build stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_build.get("href") != "#agent-tools":
+        raise IntegrityError("success honest build sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_build.get("live") is True or hosted_build.get("need_full") is True or hosted_build.get("twin_is_launch") is True:
+        raise IntegrityError("success honest build stays not live and does not need full access", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2882,6 +2906,33 @@ HONEST_OPERATOR_HREFS = {
     "grok_as_recorded": "#agent-tools",
     "bot_as_operator": "#agent-tools",
 }
+HONEST_BUILD_IDS = ["enough", "build", "launch"]
+HONEST_BUILD_ROLES = {
+    "enough": "have",
+    "build": "catalog",
+    "launch": "owner_only",
+}
+HONEST_BUILD_REFUSE_IDS = [
+    "full_access_as_admit",
+    "more_secrets_as_build",
+    "twin_as_launch",
+    "pack_as_sku",
+]
+HONEST_BUILD_REFUSE_TEXT = {
+    "full_access_as_admit": "Refused. Full access is not admit.",
+    "more_secrets_as_build": "Refused. More secrets are not how we build.",
+    "twin_as_launch": "Refused. The twin is not launch.",
+    "pack_as_sku": "Refused. Packs, modules, and repositories are not SKUs.",
+}
+HONEST_BUILD_HREFS = {
+    "enough": "#agent-tools",
+    "build": "#agent-tools",
+    "launch": "#agent-tools",
+    "full_access_as_admit": "#agent-tools",
+    "more_secrets_as_build": "#agent-tools",
+    "twin_as_launch": "#agent-tools",
+    "pack_as_sku": "#agent-tools",
+}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -3941,6 +3992,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_302(catalog, body)
     _validate_instrument_303(catalog, body)
     _validate_instrument_304(catalog, body)
+    _validate_instrument_305(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4951,8 +5003,6 @@ def _validate_instrument_303(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_304(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.04.0":
-        raise IntegrityError("entity.release is 3.04.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.04.0" in item and "honest operators" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.04.0 honest operators", reason_code="CATALOG_ENGINEERING")
@@ -4996,6 +5046,54 @@ def _validate_instrument_304(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.microsoft.operators import validate_honest_operators
 
     validate_honest_operators(catalog)
+
+
+def _validate_instrument_305(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.05.0":
+        raise IntegrityError("entity.release is 3.05.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.05.0" in item and "honest build" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.05.0 honest build", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_build") is not True or site.get("honest_operators") is not True:
+        raise IntegrityError("3.05.0 website has honest build", reason_code="CATALOG_PLANE")
+    if site.get("honest_build_live") is True or site.get("full_access_needed") is True:
+        raise IntegrityError("3.05.0 honest build is not live and does not need full access", reason_code="CATALOG_PLANE")
+    if site.get("twin_is_launch") is True or site.get("packs_are_skus") is True:
+        raise IntegrityError("3.05.0 the twin is not launch and packs are not SKUs", reason_code="CATALOG_PLANE")
+    build = (catalog.get("microsoft_stack") or {}).get("build") or {}
+    if build.get("kind") != "ainav.honest.build.v1" or build.get("honest") is not True:
+        raise IntegrityError("3.05.0 honest build kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if build.get("need_full") is True:
+        raise IntegrityError("3.05.0 this plane does not need full access", reason_code="CATALOG_REVIEW")
+    if build.get("twin_is_launch") is True:
+        raise IntegrityError("3.05.0 the twin is not launch", reason_code="CATALOG_REVIEW")
+    if build.get("packs_are_skus") is True:
+        raise IntegrityError("3.05.0 packs are not SKUs", reason_code="CATALOG_REVIEW")
+    site_note = str(build.get("site") or "").lower()
+    if "honest build" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps honest build", reason_code="CATALOG_REVIEW")
+    if "does not need full access" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps does not need full access", reason_code="CATALOG_REVIEW")
+    if "twin is not launch" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps twin is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and repositories are not skus" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps packs, modules, and repositories are not SKUs", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest build" not in principles:
+        raise IntegrityError("first-principles must keep honest build", reason_code="CATALOG_REVIEW")
+    if "does not need full access" not in principles:
+        raise IntegrityError("first-principles must keep does not need full access", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.05.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.05.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest build" not in ops:
+        raise IntegrityError("3.05.0 operations note keeps honest build", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.build import validate_honest_build
+
+    validate_honest_build(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -924,7 +924,10 @@
         "Treat additional access as admit",
         "Treat Grok Build as the recorded operator",
         "Treat a Grok bot as the operator",
-        "Swap Cursor for Grok"
+        "Swap Cursor for Grok",
+        "Treat full access as admit",
+        "Treat more secrets as build",
+        "Treat the twin as launch"
       ],
       "holds": [
         "No Graph Write from this plane",

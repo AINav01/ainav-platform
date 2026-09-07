@@ -1636,6 +1636,14 @@ table.law tr[data-group] th {
 .operator-three [data-operator="cursor"] { box-shadow: inset 3px 0 0 var(--gold); }
 .operator-three [data-operator="grok_build"] { box-shadow: inset 3px 0 0 var(--gold-2); }
 .operator-three [data-operator="grok_bot"] { box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55); }
+.build-three [data-build="enough"] { box-shadow: inset 3px 0 0 var(--gold); }
+.build-three [data-build="build"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.build-three [data-build="launch"] { box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55); }
+#build-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+}
 #operator-zeros {
   display: flex;
   flex-wrap: wrap;

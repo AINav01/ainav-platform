@@ -232,6 +232,11 @@ def public_status() -> dict[str, Any]:
             "operator_swap": False,
             "grok_is_recorded": False,
             "bot_is_operator": False,
+            "honest_build": bool(site.get("honest_build")),
+            "honest_build_live": False,
+            "full_access_needed": False,
+            "twin_is_launch": False,
+            "packs_are_skus": False,
         },
         "bc": {
             "connection": "bc.premium",

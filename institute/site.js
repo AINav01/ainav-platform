@@ -4150,6 +4150,76 @@
     })
     .catch(function () {});
 
+  var BUILD_REFUSE = {
+    full_access_as_admit: {
+      message: "Refused. Full access is not admit.",
+      ledger: "build_denied · full access\nThis plane does not need full access.\nFull access is not admit.\nlive=false · live_pin_ok=false"
+    },
+    more_secrets_as_build: {
+      message: "Refused. More secrets are not how we build.",
+      ledger: "build_denied · more secrets\nMore secrets are not how we build.\nThe twin is enough.\nlive=false · live_pin_ok=false"
+    },
+    twin_as_launch: {
+      message: "Refused. The twin is not launch.",
+      ledger: "build_denied · twin as launch\nThe twin is not launch.\nJames says launch.\nlive=false · live_pin_ok=false"
+    },
+    pack_as_sku: {
+      message: "Refused. Packs, modules, and repositories are not SKUs.",
+      ledger: "build_denied · pack as SKU\nPacks, modules, and repositories are not SKUs.\nThree SKUs only.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeBuildLedger(text) {
+    var node = document.getElementById("build-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseBuild(button, message, ledger) {
+    var refuse = document.getElementById("build-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeBuildLedger(ledger);
+  }
+
+  function bindBuildRefuses(root) {
+    if (!root || root.getAttribute("data-build-bound")) return;
+    root.setAttribute("data-build-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-build-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-build-refuse") || "";
+      var pack = BUILD_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseBuild(
+        btn,
+        message,
+        pack.ledger || ("build_denied · " + id + "\nThis plane does not need full access.\nThe twin is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindBuildRefuses(document.getElementById("agent-tools"));
+
+  fetch("build.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.need_full || data.twin_is_launch || data.is_admit_plane) return;
+      var status = document.getElementById("build-status");
+      if (status) {
+        status.textContent =
+          "honest=true · need_full=false · twin_is_launch=false · packs_are_skus=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

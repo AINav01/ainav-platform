@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_288_operating_day_quality_review():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.04.0"
+    assert cat["entity"]["release"] == "3.05.0"
     firm = cat["expert_review"]["success"]["operating_company"]
     gold = next(item for item in firm["gates"]["items"] if item["id"] == "gold")
     assert gold["held"] is True
@@ -30,7 +30,7 @@ def test_release_is_288_operating_day_quality_review():
         for item in cat["engineering"]["closed_in_tree"]
     )
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 74
+    assert len(cat["expert_review"]["upgrades"]) == 75
     assert upgrades[58]["who"] == "tree"
     assert upgrades[58]["done"] is True
     assert upgrades[58]["marks_live_pin"] is False
@@ -46,17 +46,17 @@ def test_release_is_288_operating_day_quality_review():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
-    assert "3.04.0" in html
-    assert 'src="site.js?v=3.04.0"' in html
-    assert 'src="site.js?v=3.04.0"' in twin
+    assert "3.05.0" in html
+    assert 'src="site.js?v=3.05.0"' in html
+    assert 'src="site.js?v=3.05.0"' in twin
     assert "Held. Floor held. Gold is not launch." in html
     assert 'id="ops-note"' in html
     assert "SKU attach chain" in html
     assert 'item.held ? "Held. "' in js
     dash = public_dashboard()
-    assert dash["release"] == "3.04.0"
+    assert dash["release"] == "3.05.0"
     status = public_status()
-    assert status["release"] == "3.04.0"
+    assert status["release"] == "3.05.0"
     held = publish_institute()
     assert held["ok"] is False
     assert held["reason"] == "launch_not_ready"
