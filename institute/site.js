@@ -2357,7 +2357,16 @@
       drawer.drawer_invented ||
       drawer.crypto_product ||
       drawer.seventeen_a4 ||
-      (drawer.rooms && (drawer.rooms.live || drawer.rooms.crypto_product || drawer.rooms.seventeen_a4))
+      (drawer.rooms && (
+        drawer.rooms.live ||
+        drawer.rooms.crypto_product ||
+        drawer.rooms.seventeen_a4 ||
+        drawer.rooms.assigned ||
+        drawer.rooms.named_vertical ||
+        drawer.rooms.rooms_are_live ||
+        drawer.rooms.wells_are_live ||
+        drawer.rooms.operable === false
+      ))
     ) {
       return;
     }
@@ -2428,6 +2437,42 @@
     }
     var roomsRoot = document.getElementById("industry-rooms");
     var rooms = drawer.rooms || {};
+    var wells = rooms.wells || {};
+    set("industry-assigned", rooms.assigned ? "yes" : "no");
+    set("industry-named", rooms.named_vertical || wells.named ? String(wells.named || "yes") : "no");
+    set("industry-first", String(wells.room_1 || 0));
+    set("industry-maps", "claimed=false");
+    set("industry-crypto", rooms.crypto_product ? "yes" : "no");
+    set("industry-seventeen", rooms.seventeen_a4 ? "yes" : "no");
+    function roomRail(item) {
+      var li = document.createElement("li");
+      if (item.id) li.setAttribute("data-room", item.id);
+      var name = document.createElement("b");
+      name.textContent = item.name || item.id || "";
+      if (item.refuse) {
+        var btn = document.createElement("button");
+        btn.setAttribute("type", "button");
+        btn.className = "ghost room-refuse";
+        btn.setAttribute("data-room-refuse", item.id || "");
+        btn.setAttribute("aria-pressed", "false");
+        btn.appendChild(name);
+        li.appendChild(btn);
+      } else {
+        var href = String(item.href || "");
+        if (href && (href.charAt(0) === "#" || href.indexOf("identify.html") === 0 || href.indexOf("app.html") === 0)) {
+          var a = document.createElement("a");
+          a.setAttribute("href", href);
+          a.appendChild(name);
+          li.appendChild(a);
+        } else {
+          li.appendChild(name);
+        }
+      }
+      var note = document.createElement("span");
+      note.textContent = item.note || "";
+      li.appendChild(note);
+      return li;
+    }
     if (roomsRoot && rooms.room_1 && rooms.room_2) {
       roomsRoot.textContent = "";
       [
@@ -2441,10 +2486,18 @@
         section.appendChild(title);
         var list = document.createElement("ol");
         (lane.items || []).forEach(function (item) {
-          if (item) list.appendChild(rail(item));
+          if (item) list.appendChild(roomRail(item));
         });
         section.appendChild(list);
         roomsRoot.appendChild(section);
+      });
+    }
+    var spine = document.getElementById("industry-room-spine");
+    var states = rooms.spine_states || {};
+    if (spine) {
+      Object.keys(states).forEach(function (id) {
+        var node = spine.querySelector('[data-spine="' + id + '"]');
+        if (node) node.setAttribute("data-state", states[id]);
       });
     }
   }
@@ -3592,6 +3645,49 @@
     writeIndustryLedger(ledger);
     writeFirmLedger("denied", ledger);
   }
+
+  var ROOM_2_REFUSE = {
+    stablecoin_mint: {
+      message: "Refused. Not a stablecoin SKU. Room 2 is refuse.",
+      ledger: "industry_denied · stablecoin mint\nOn-chain mint stays Room 2.\nNot a fourth SKU.\nlive=false · live_pin_ok=false"
+    },
+    rwa_issue: {
+      message: "Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse.",
+      ledger: "industry_denied · RWA issuance\nIssuing the token stays Room 2.\nBooked receivable is Room 1.\nlive=false · live_pin_ok=false"
+    },
+    crypto_ams: {
+      message: "Refused. Not a crypto asset-management SKU. Room 2 is refuse.",
+      ledger: "industry_denied · crypto AMS\nWallet signing stays Room 2.\nNot a crypto product.\nlive=false · live_pin_ok=false"
+    },
+    wallet: {
+      message: "Refused. Wallet is not a seat. Room 2 is refuse.",
+      ledger: "industry_denied · wallet seat\nCustody move and ATS match stay Room 2.\nWallet is not a seat.\nlive=false · live_pin_ok=false"
+    },
+    seventeen_a4: {
+      message: "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
+      ledger: "industry_denied · 17a-4 WORM\nRoom 1 is books. Room 2 is refuse.\nNot a crypto ledger.\nlive=false · live_pin_ok=false"
+    },
+    room_2: {
+      message: "Refused. Room 2 is refuse. Not a /crypto route.",
+      ledger: "industry_denied · Room 2 spine\nRoom 1 walks to packs.\nRoom 2 stays refused.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function bindIndustryRoomRefuses(root) {
+    if (!root || root.getAttribute("data-bound")) return;
+    root.setAttribute("data-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-room-refuse], button.room-refuse");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-room-refuse") || "";
+      var pack = ROOM_2_REFUSE[id];
+      if (!pack) return;
+      ev.preventDefault();
+      refuseIndustry(btn, pack.message, pack.ledger);
+    });
+  }
+  bindIndustryRoomRefuses(document.getElementById("industry-rooms"));
+  bindIndustryRoomRefuses(document.getElementById("industry-room-spine"));
 
   var industryCertify = document.getElementById("industry-certify");
   if (industryCertify) {

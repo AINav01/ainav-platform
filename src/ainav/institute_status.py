@@ -209,6 +209,9 @@ def public_status() -> dict[str, Any]:
             "industry_rooms": bool(site.get("industry_rooms")),
             "industry_crypto": False,
             "industry_seventeen_a4": False,
+            "industry_operable": bool(site.get("industry_operable")),
+            "industry_rooms_live": False,
+            "industry_wells_live": False,
         },
         "bc": {
             "connection": "bc.premium",

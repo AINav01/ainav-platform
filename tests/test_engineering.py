@@ -57,7 +57,7 @@ def test_gold_workflow_exists_and_refuses_live_pin():
 
 def test_package_version_matches_catalog_release():
     release = load_catalog()["entity"]["release"]
-    assert release == "2.97.0"
+    assert release == "2.98.0"
     assert f'version = "{release}"' in Path("pyproject.toml").read_text(encoding="utf-8")
     assert f'"version": "{release}"' in Path("api/package.json").read_text(encoding="utf-8")
     assert f'"version": "{release}"' in Path("web/package.json").read_text(encoding="utf-8")
@@ -103,7 +103,7 @@ def test_catalog_allows_recorded_missing_gold_workflow():
     cat["engineering"]["closed_in_tree"] = [
         item
         for item in cat["engineering"]["closed_in_tree"]
-        if "gold" not in item.lower() or "2.72.0" in item or "2.78.0" in item or "2.79.0" in item or "2.80.0" in item or "2.81.0" in item or "2.82.0" in item or "2.83.0" in item or "2.84.0" in item or "2.85.0" in item or "2.86.0" in item or "2.87.0" in item or "2.88.0" in item or "2.89.0" in item or "2.90.0" in item or "2.91.0" in item or "2.92.0" in item or "2.93.0" in item or "2.94.0" in item or "2.95.0" in item or "2.96.0" in item or "2.97.0" in item
+        if "gold" not in item.lower() or "2.72.0" in item or "2.78.0" in item or "2.79.0" in item or "2.80.0" in item or "2.81.0" in item or "2.82.0" in item or "2.83.0" in item or "2.84.0" in item or "2.85.0" in item or "2.86.0" in item or "2.87.0" in item or "2.88.0" in item or "2.89.0" in item or "2.90.0" in item or "2.91.0" in item or "2.92.0" in item or "2.93.0" in item or "2.94.0" in item or "2.95.0" in item or "2.96.0" in item or "2.97.0" in item or "2.98.0" in item
     ]
     validate_catalog(cat)
 

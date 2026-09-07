@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "2.97.0",
+  "release": "2.98.0",
   "sku": false,
   "website": {
     "apex_origin": "ainav-institute.pages.dev",
@@ -252,8 +252,11 @@
     "industry_drawer_live": false,
     "industry_href": "#industry",
     "industry_is_sku": false,
+    "industry_operable": true,
     "industry_rooms": true,
+    "industry_rooms_live": false,
     "industry_seventeen_a4": false,
+    "industry_wells_live": false,
     "launch_gate": true,
     "launch_is_ready": false,
     "launch_ready": false,

@@ -1527,6 +1527,28 @@ table.law tr[data-group] th {
 .industry-rooms [data-room="room_2"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
+.industry-rooms button.room-refuse,
+.industry-rooms button.room-refuse b,
+#industry-room-spine button.room-refuse,
+#industry-room-spine button.room-refuse b {
+  color: var(--gold-2);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.industry-rooms button.room-refuse:hover b,
+#industry-room-spine button.room-refuse:hover b { color: var(--gold); }
+.industry-rooms button.room-refuse[aria-pressed="true"] b,
+#industry-room-spine button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
+.universe-spine li[data-state="refused"] {
+  box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
+}
+#industry-room-spine {
+  margin-top: 1.2rem;
+}
 .universe-day [data-lane="blocked"] {
   box-shadow: inset 3px 0 0 color-mix(in srgb, var(--hold) 80%, var(--gold));
 }
