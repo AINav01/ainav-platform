@@ -30,7 +30,7 @@ The client utilizes AI. The client's customers utilize AI. Every one of those sy
 - First record: the admitted SoR write. Second record: the sealed DecisionRecord.
 - Off switch is fail-closed. Reset is the last sealed keep. Rollback is a compensating write.
 - Immutable: sealed, consume-once, hash-chained. Not a coin. Not a WORM box. Not a 17a-4 opinion.
-- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense, Board fiduciary oversight of material AI write risk, COSO internal control, GDPR Article 22 automated decisions, Council of Europe Framework Convention on AI.
+- Maps: NIST AI Risk Management Framework, OMB M-24-10 (federal agency AI), SOX / internal control over financial reporting, FTC and state AI / automated-decision laws, EU AI Act, ISO/IEC 42001 AI management system, OECD AI Principles, Books and records (first / second record), Three lines of defense, Board fiduciary oversight of material AI write risk, COSO internal control, GDPR Article 22 automated decisions, Council of Europe Framework Convention on AI, GENIUS Act (payment stablecoins), CLARITY Act (digital asset market structure).
 - A client-AI or customer-AI draft without the client's two seats is the write that must not happen.
 - Must-have is not a mandate. Buying L1 does not close regulator clocks. Counsel files.
 - Elevator: Human control plane over every client AI that can draft a privileged system-of-record write.

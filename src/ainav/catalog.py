@@ -1140,8 +1140,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 70:
-        raise IntegrityError("expert review needs 16–70 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 71:
+        raise IntegrityError("expert review needs 16–71 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1202,6 +1202,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         68: ("operable industry", "live_pin_ok"),
         69: ("every refuse", "live_pin_ok"),
         70: ("complete industry", "live_pin_ok"),
+        71: ("honest control", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1279,6 +1280,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the fully operable industry drawer", reason_code="CATALOG_REVIEW")
     if "complete industry drawer" not in blob:
         raise IntegrityError("first-principles must keep the complete industry drawer", reason_code="CATALOG_REVIEW")
+    if "honest control" not in blob or "if you don't have it" not in blob or "genius" not in blob or "clarity" not in blob:
+        raise IntegrityError("first-principles must keep honest control, if you don't have it, GENIUS, and CLARITY", reason_code="CATALOG_REVIEW")
+    if "company policy is not a sku" not in blob or "not ai governess" not in blob:
+        raise IntegrityError("first-principles must keep company policy is not a SKU and not AI Governess", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1388,6 +1393,16 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat a refuse lane walk as a live route", reason_code="CATALOG_REVIEW")
     if "complete industry drawer as a live named vertical" not in does_not:
         raise IntegrityError("CISO posture does not treat the complete industry drawer as a live named vertical", reason_code="CATALOG_REVIEW")
+    if "genius" not in does_not or "clarity" not in does_not:
+        raise IntegrityError("CISO posture does not treat GENIUS or CLARITY as closed", reason_code="CATALOG_REVIEW")
+    if "fear as the first glance" not in does_not:
+        raise IntegrityError("CISO posture does not treat fear as the first glance", reason_code="CATALOG_REVIEW")
+    if "company policy as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat company policy as a SKU", reason_code="CATALOG_REVIEW")
+    if "ai governess" not in does_not:
+        raise IntegrityError("CISO posture does not call the product AI Governess", reason_code="CATALOG_REVIEW")
+    if "honest control board as a live filing" not in does_not:
+        raise IntegrityError("CISO posture does not treat the honest control board as a live filing", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2218,7 +2233,17 @@ def _validate_industry_drawer(body: Any) -> None:
         key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_DRAWER_REFUSE_IDS
     }:
         raise IntegrityError("industry drawer refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
+    refuse_blob = " ".join(str(item).lower() for item in drawer.get("refuse") or [])
+    for stem in ("genius act close", "clarity act close", "d&o", "governess", "company policy as a sku", "fear as the first glance"):
+        if stem not in refuse_blob:
+            raise IntegrityError("industry drawer refuse keeps GENIUS, CLARITY, D&O, Governess, policy SKU, and fear first glance", reason_code="CATALOG_REVIEW")
+    for field in ("lede", "glance", "site", "note"):
+        if "honest control" not in str(drawer.get(field) or "").lower():
+            raise IntegrityError(f"industry drawer {field} keeps honest control", reason_code="CATALOG_REVIEW")
+    if drawer.get("honest_control") is not True:
+        raise IntegrityError("industry drawer is honest control", reason_code="CATALOG_REVIEW")
     _validate_industry_rooms(drawer.get("rooms"))
+    _validate_industry_control(drawer.get("control"))
 
 
 def _validate_industry_rooms(body: Any) -> None:
@@ -2291,6 +2316,93 @@ def _validate_industry_rooms(body: Any) -> None:
     ):
         if stem not in blob:
             raise IntegrityError(f"industry rooms must keep {stem}", reason_code="CATALOG_REVIEW")
+
+
+def _validate_industry_control(body: Any) -> None:
+    control = _as_dict(body, "industry_control")
+    if control.get("kind") != "ainav.industry_control.v1":
+        raise IntegrityError("industry control kind is ainav.industry_control.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "certified",
+        "claimed",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "dno",
+        "genius_closed",
+        "clarity_closed",
+        "governess",
+        "policy_sku",
+        "control_is_live",
+    ):
+        if control.get(flag) is True:
+            raise IntegrityError(f"industry control cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if control.get("honest") is not True or control.get("every_refuse_clicks") is not True:
+        raise IntegrityError("industry control is honest and every refuse clicks", reason_code="CATALOG_REVIEW")
+    lanes = [item for item in (control.get("lanes") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in lanes] != INDUSTRY_CONTROL_LANE_IDS:
+        raise IntegrityError("industry control lanes stay need, human, fiduciary, maps_oversight, refuse", reason_code="CATALOG_REVIEW")
+    by_id = {item.get("id"): item for item in lanes}
+    expected = {
+        "need": INDUSTRY_CONTROL_NEED_IDS,
+        "human": INDUSTRY_CONTROL_HUMAN_IDS,
+        "fiduciary": INDUSTRY_CONTROL_FIDUCIARY_IDS,
+        "maps_oversight": INDUSTRY_CONTROL_MAPS_IDS,
+        "refuse": INDUSTRY_CONTROL_REFUSE_IDS,
+    }
+    hrefs = {}
+    for lane_id, item_ids in expected.items():
+        items = [row for row in (by_id[lane_id].get("items") or []) if isinstance(row, dict)]
+        if [row.get("id") for row in items] != item_ids:
+            raise IntegrityError(f"industry control {lane_id} items stay exact", reason_code="CATALOG_REVIEW")
+        for row in items:
+            hrefs[row.get("id")] = str(row.get("href") or "")
+    if hrefs != INDUSTRY_CONTROL_HREFS:
+        raise IntegrityError("industry control walks to control, risk, governance, missing, have, buyer, and #industry", reason_code="CATALOG_REVIEW")
+    refuse_lane = next((lane for lane in lanes if lane.get("id") == "refuse"), {})
+    refuse_items = [row for row in (refuse_lane.get("items") or []) if isinstance(row, dict)]
+    if any(row.get("refuse") is not True for row in refuse_items) or len(refuse_items) != len(INDUSTRY_CONTROL_REFUSE_IDS):
+        raise IntegrityError("industry control refuse lane items stay refuse", reason_code="CATALOG_REVIEW")
+    if {row.get("id"): row.get("refuse_text") for row in refuse_items} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_CONTROL_REFUSE_IDS
+    }:
+        raise IntegrityError("industry control refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{row.get('name') or ''} {row.get('note') or ''}".lower()
+        for lane in lanes
+        for row in (lane.get("items") or [])
+        if isinstance(row, dict)
+    )
+    for stem in (
+        "write does not land",
+        "thinking you have it",
+        "around the corner",
+        "mailbox is not oid",
+        "do not claim we have it",
+        "not a d&o opinion",
+        "landed write",
+        "genius",
+        "clarity",
+        "department ai is not a seat",
+        "company policy is not a sku",
+        "refuse rehearsal",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"industry control must keep {stem}", reason_code="CATALOG_REVIEW")
+    for field in ("lede", "glance", "site", "note"):
+        text = str(control.get(field) or "").lower()
+        if "honest control" not in text:
+            raise IntegrityError(f"industry control {field} keeps honest control", reason_code="CATALOG_REVIEW")
+    if "if you don't have it" not in str(control.get("lede") or "").lower():
+        raise IntegrityError("industry control lede keeps if you don't have it", reason_code="CATALOG_REVIEW")
+    if "not ai governess" not in str(control.get("lede") or "").lower():
+        raise IntegrityError("industry control lede keeps not AI Governess", reason_code="CATALOG_REVIEW")
+    if "claimed=false" not in str(control.get("note") or "").lower():
+        raise IntegrityError("industry control note keeps claimed=false", reason_code="CATALOG_REVIEW")
 
 
 def _validate_operating_day(body: Any) -> None:
@@ -2513,6 +2625,47 @@ INDUSTRY_REFUSE_TEXT = {
     "crypto_ams": "Refused. Not a crypto asset-management SKU. Room 2 is refuse.",
     "wallet": "Refused. Wallet is not a seat. Room 2 is refuse.",
     "seventeen_a4": "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
+    "genius_close": "Refused. GENIUS is a map. claimed=false. Not a close.",
+    "clarity_close": "Refused. CLARITY is a map. claimed=false. Not a close.",
+    "dno_product": "Refused. Not D&O. Not a penalty product. Fiduciary is why two humans bind.",
+    "governess_product": "Refused. Not AI Governess. The product is Job C.",
+    "policy_sku": "Refused. Company policy is not a SKU. Catalog is the doctrine.",
+    "fear_first_glance": "Refused. Fear is not the first glance. First glance stays the write rail.",
+}
+INDUSTRY_CONTROL_LANE_IDS = ["need", "human", "fiduciary", "maps_oversight", "refuse"]
+INDUSTRY_CONTROL_NEED_IDS = ["if_you_dont", "consequence", "now", "corner"]
+INDUSTRY_CONTROL_HUMAN_IDS = ["lack", "thinking", "get_it"]
+INDUSTRY_CONTROL_FIDUCIARY_IDS = ["board", "penalties"]
+INDUSTRY_CONTROL_MAPS_IDS = ["genius", "clarity", "employee", "doctrine", "change"]
+INDUSTRY_CONTROL_REFUSE_IDS = [
+    "genius_close",
+    "clarity_close",
+    "dno_product",
+    "governess_product",
+    "policy_sku",
+    "fear_first_glance",
+]
+INDUSTRY_CONTROL_HREFS = {
+    "if_you_dont": "#control",
+    "consequence": "#risk",
+    "now": "#industry",
+    "corner": "#missing",
+    "lack": "#control",
+    "thinking": "#have",
+    "get_it": "#buyer",
+    "board": "#governance",
+    "penalties": "#risk",
+    "genius": "#governance",
+    "clarity": "#governance",
+    "employee": "#control",
+    "doctrine": "#industry",
+    "change": "#industry",
+    "genius_close": "#industry",
+    "clarity_close": "#industry",
+    "dno_product": "#industry",
+    "governess_product": "#industry",
+    "policy_sku": "#industry",
+    "fear_first_glance": "#industry",
 }
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
@@ -2806,6 +2959,8 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
         "gdpr.art22",
         "coe.ai_convention",
         "sec.books_records",
+        "genius.act",
+        "clarity.act",
     } <= maps:
         raise IntegrityError(
             "governance must map NIST, EU AI Act, ISO 42001, SOX, SEC books, GDPR Art. 22, and the CoE convention",
@@ -2825,6 +2980,8 @@ def _validate_governance(catalog: dict[str, Any]) -> None:
         "gdpr certified",
         "eu-ready",
         "colorado sb 24-205",
+        "genius certified",
+        "clarity certified",
     ):
         if stem not in refuse:
             raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
@@ -3565,6 +3722,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_298(catalog, body)
     _validate_instrument_299(catalog, body)
     _validate_instrument_300(catalog, body)
+    _validate_instrument_301(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4446,8 +4604,6 @@ def _validate_instrument_299(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_300(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.00.0":
-        raise IntegrityError("entity.release is 3.00.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.00.0" in item and "complete" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.00.0 complete industry drawer", reason_code="CATALOG_ENGINEERING")
@@ -4474,6 +4630,42 @@ def _validate_instrument_300(catalog: dict[str, Any], body: dict[str, Any]) -> N
     ops = str((catalog.get("operations") or {}).get("note") or "").lower()
     if "sku attach" not in ops or "#industry" not in ops or "complete industry drawer" not in ops:
         raise IntegrityError("3.00.0 operations note keeps SKU attach, #industry, and complete industry drawer", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_301(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.01.0":
+        raise IntegrityError("entity.release is 3.01.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.01.0" in item and "honest control" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.01.0 honest control", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_control") is not True or site.get("industry_honest") is not True:
+        raise IntegrityError("3.01.0 website has honest control", reason_code="CATALOG_PLANE")
+    if site.get("industry_control_live") is True or site.get("industry_rooms_live") is True:
+        raise IntegrityError("3.01.0 industry control is not live", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("honest_control") is not True or drawer.get("complete") is not True:
+        raise IntegrityError("3.01.0 industry drawer is honest control and complete", reason_code="CATALOG_REVIEW")
+    control = drawer.get("control") or {}
+    if control.get("kind") != "ainav.industry_control.v1" or control.get("honest") is not True:
+        raise IntegrityError("3.01.0 industry control kind stays catalog law and honest", reason_code="CATALOG_REVIEW")
+    if control.get("control_is_live") is True or control.get("claimed") is True or control.get("genius_closed") is True:
+        raise IntegrityError("3.01.0 industry control stays not live and not claimed", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "honest control" not in site_note or "genius" not in site_note or "clarity" not in site_note:
+        raise IntegrityError("3.01.0 industry drawer site keeps honest control, GENIUS, and CLARITY", reason_code="CATALOG_REVIEW")
+    control_site = str(control.get("site") or "").lower()
+    if "honest control" not in control_site or "not ai governess" not in control_site:
+        raise IntegrityError("3.01.0 industry control site keeps honest control and not AI Governess", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest control" not in principles or "if you don't have it" not in principles:
+        raise IntegrityError("first-principles must keep honest control", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "honest control" not in ops:
+        raise IntegrityError("3.01.0 operations note keeps SKU attach, #industry, and honest control", reason_code="CATALOG_REVIEW")
+    maps = {item.get("id") for item in ((catalog.get("governance") or {}).get("maps") or [])}
+    if "genius.act" not in maps or "clarity.act" not in maps:
+        raise IntegrityError("3.01.0 governance maps GENIUS and CLARITY", reason_code="CATALOG_GOVERNANCE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

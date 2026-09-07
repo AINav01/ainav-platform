@@ -433,7 +433,8 @@
       "2.97.0 sit-down industry rooms. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a /crypto route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.98.0 operable industry rooms. Honest zeros sit the board. Refuse is visible. Room 1 walks. Room 2 stays refused. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.99.0 fully operable industry drawer: every refuse on #industry clicks; catalog is the message; Room 2 records stay 0; refuse lane is not a route; Room 1 walks; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
-      "3.00.0 complete industry drawer: sit / maps / attach / refuse; Room 1 books; Room 2 refuse; every refuse clicks; catalog is the message; honest zeros; assembled on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane"
+      "3.00.0 complete industry drawer: sit / maps / attach / refuse; Room 1 books; Room 2 refuse; every refuse clicks; catalog is the message; honest zeros; assembled on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
+      "3.01.0 honest control: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false, employee AI oversight, company policy is not a SKU; not a live filing; not AI Governess; not a fear brand; not from this plane"
     ],
     "complement": false,
     "connection": false,
@@ -626,7 +627,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "3.00.0",
+  "release": "3.01.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -657,10 +658,13 @@
     "first_class": true,
     "industry_certified": false,
     "industry_complete": true,
+    "industry_control": true,
+    "industry_control_live": false,
     "industry_crypto": false,
     "industry_drawer": true,
     "industry_drawer_live": false,
     "industry_fully_operable": true,
+    "industry_honest": true,
     "industry_href": "#industry",
     "industry_is_sku": false,
     "industry_operable": true,

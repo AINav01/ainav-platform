@@ -2372,7 +2372,21 @@
       )) ||
       drawer.fully_operable === false ||
       drawer.every_refuse_clicks === false ||
-      drawer.complete === false
+      drawer.complete === false ||
+      drawer.honest_control === false ||
+      (drawer.control && (
+        drawer.control.live ||
+        drawer.control.claimed ||
+        drawer.control.genius_closed ||
+        drawer.control.clarity_closed ||
+        drawer.control.governess ||
+        drawer.control.dno ||
+        drawer.control.policy_sku ||
+        drawer.control.fear_brand ||
+        drawer.control.control_is_live ||
+        drawer.control.honest === false ||
+        drawer.control.every_refuse_clicks === false
+      ))
     ) {
       return;
     }
@@ -2467,6 +2481,31 @@
     set("industry-maps", "claimed=false");
     set("industry-crypto", rooms.crypto_product ? "yes" : "no");
     set("industry-seventeen", rooms.seventeen_a4 ? "yes" : "no");
+    var control = drawer.control || {};
+    set("industry-control-honest", control.honest === false ? "no" : "yes");
+    set("industry-genius", control.genius_closed ? "yes" : "no");
+    set("industry-clarity", control.clarity_closed ? "yes" : "no");
+    var controlRoot = document.getElementById("industry-control");
+    if (controlRoot && control.lanes && control.lanes.length) {
+      controlRoot.textContent = "";
+      control.lanes.forEach(function (lane) {
+        if (!lane) return;
+        var section = document.createElement("section");
+        section.setAttribute("data-lane", lane.id || "");
+        var title = document.createElement("h3");
+        title.textContent = lane.name || lane.id || "";
+        section.appendChild(title);
+        var list = document.createElement("ol");
+        (lane.items || []).forEach(function (item) {
+          if (!item) return;
+          var li = rail(item);
+          li.setAttribute("data-control", item.id || "");
+          list.appendChild(li);
+        });
+        section.appendChild(list);
+        controlRoot.appendChild(section);
+      });
+    }
     function roomRail(item) {
       var li = document.createElement("li");
       if (item.id) li.setAttribute("data-room", item.id);
@@ -3707,6 +3746,30 @@
     named_vertical: {
       message: "Refused. This plane cannot invent a named vertical as a fourth SKU.",
       ledger: "industry_denied · invent a named vertical\nSit is Dynamics BC treasury / controller.\nNot a GRC product.\nlive=false · live_pin_ok=false"
+    },
+    genius_close: {
+      message: "Refused. GENIUS is a map. claimed=false. Not a close.",
+      ledger: "industry_denied · GENIUS close\nMaps stay claimed=false.\nRoom 2 stays refuse.\nlive=false · live_pin_ok=false"
+    },
+    clarity_close: {
+      message: "Refused. CLARITY is a map. claimed=false. Not a close.",
+      ledger: "industry_denied · CLARITY close\nMaps stay claimed=false.\nNot a crypto product.\nlive=false · live_pin_ok=false"
+    },
+    dno_product: {
+      message: "Refused. Not D&O. Not a penalty product. Fiduciary is why two humans bind.",
+      ledger: "industry_denied · D&O product\nFiduciary is why two humans bind.\nNot a SOX opinion.\nlive=false · live_pin_ok=false"
+    },
+    governess_product: {
+      message: "Refused. Not AI Governess. The product is Job C.",
+      ledger: "industry_denied · AI Governess\nThe product is Job C.\nNot a fourth SKU.\nlive=false · live_pin_ok=false"
+    },
+    policy_sku: {
+      message: "Refused. Company policy is not a SKU. Catalog is the doctrine.",
+      ledger: "industry_denied · policy SKU\nCompany policy is not a SKU.\nCatalog is the doctrine.\nlive=false · live_pin_ok=false"
+    },
+    fear_first_glance: {
+      message: "Refused. Fear is not the first glance. First glance stays the write rail.",
+      ledger: "industry_denied · fear first glance\nFirst glance stays the write rail.\nFear management is refuse rehearsal.\nlive=false · live_pin_ok=false"
     }
   };
 
@@ -3731,6 +3794,7 @@
   bindIndustryRoomRefuses(document.getElementById("industry-rooms"));
   bindIndustryRoomRefuses(document.getElementById("industry-room-spine"));
   bindIndustryRoomRefuses(document.getElementById("industry-day"));
+  bindIndustryRoomRefuses(document.getElementById("industry-control"));
 
   var industryCertify = document.getElementById("industry-certify");
   if (industryCertify) {
@@ -3794,6 +3858,50 @@
         industrySeventeen,
         "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
         "industry_denied · 17a-4 WORM\nRoom 1 is books. Room 2 is refuse.\nNot a crypto ledger.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryGenius = document.getElementById("industry-genius-close");
+  if (industryGenius) {
+    industryGenius.addEventListener("click", function () {
+      refuseIndustry(
+        industryGenius,
+        "Refused. GENIUS is a map. claimed=false. Not a close.",
+        "industry_denied · GENIUS close\nMaps stay claimed=false.\nRoom 2 stays refuse.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryDno = document.getElementById("industry-dno");
+  if (industryDno) {
+    industryDno.addEventListener("click", function () {
+      refuseIndustry(
+        industryDno,
+        "Refused. Not D&O. Not a penalty product. Fiduciary is why two humans bind.",
+        "industry_denied · D&O product\nFiduciary is why two humans bind.\nNot a SOX opinion.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryGoverness = document.getElementById("industry-governess");
+  if (industryGoverness) {
+    industryGoverness.addEventListener("click", function () {
+      refuseIndustry(
+        industryGoverness,
+        "Refused. Not AI Governess. The product is Job C.",
+        "industry_denied · AI Governess\nThe product is Job C.\nNot a fourth SKU.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryFear = document.getElementById("industry-fear");
+  if (industryFear) {
+    industryFear.addEventListener("click", function () {
+      refuseIndustry(
+        industryFear,
+        "Refused. Fear is not the first glance. First glance stays the write rail.",
+        "industry_denied · fear first glance\nFirst glance stays the write rail.\nFear management is refuse rehearsal.\nlive=false · live_pin_ok=false"
       );
     });
   }

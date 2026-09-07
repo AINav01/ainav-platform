@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 3.00.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 3.01.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -169,6 +169,11 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Treat Room 1 wells as named records
 - Does not: Treat a refuse lane walk as a live route
 - Does not: Treat the complete industry drawer as a live named vertical
+- Does not: Treat GENIUS or CLARITY as closed
+- Does not: Treat fear as the first glance
+- Does not: Treat company policy as a SKU
+- Does not: Call the product AI Governess
+- Does not: Treat the honest control board as a live filing
 
 ### Seat B meaning
 
@@ -292,7 +297,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 3.00.0.
+- As of: catalog release 3.01.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.
@@ -605,6 +610,8 @@ Attached L1 0 / P-ADM 0 / U-DUAL 0. U-DUAL never free: true. Catalog list. Not b
 | COSO internal control | first_record | claimed=false | Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. |
 | GDPR Article 22 automated decisions | map_only | claimed=false | Human admit before a write with legal or similarly significant effect. Not a GDPR opinion. |
 | Council of Europe Framework Convention on AI | map_only | claimed=false | Human-rights and accountability baseline for parties. Not a membership. Not a filing. |
+| GENIUS Act (payment stablecoins) | first_record | claimed=false | Reserve journal in BC is Room 1. On-chain mint stays Room 2. claimed=false. Not a close. Not a stablecoin SKU. |
+| CLARITY Act (digital asset market structure) | map_only | claimed=false | Books stay Room 1. Issuance and ATS stay Room 2. claimed=false. Not a close. Not a crypto product. |
 
 ## How humans sit from the top
 
@@ -687,7 +694,7 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 | Signed L1 | 0 | Counsel pack G13 stays open. |
 | Year-one if all three | $88,000–$135,000 | Catalog list. Not a forecast. |
 | Seats recorded | 1 mailbox / 0 oid | Cynthia Hodnett chodnett@ainav.institute recorded. Mailbox is not an Entra oid and not a click. |
-| AI compliance maps | 13 instruments / claimed=false | NIST, SOX, EU AI Act, ISO 42001. Not certified. |
+| AI compliance maps | 15 instruments / claimed=false | NIST, SOX, EU AI Act, ISO 42001. Not certified. |
 | Standing grants | 0 | Zero-standing. Identify is not admit. Single-use consume. |
 | Provisioned SKUs | 0 / 0 / 0 | L1 / P-ADM / U-DUAL attached. Not LIVE_PIN_OK. |
 
@@ -706,6 +713,8 @@ Admit ledger and freeze state. Not invented P&L. Not live Production BC.
 - **COSO internal control** — Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion. Claimed: false.
 - **GDPR Article 22 automated decisions** — Human admit before a write with legal or similarly significant effect. Not a GDPR opinion. Claimed: false.
 - **Council of Europe Framework Convention on AI** — Human-rights and accountability baseline for parties. Not a membership. Not a filing. Claimed: false.
+- **GENIUS Act (payment stablecoins)** — Reserve journal in BC is Room 1. On-chain mint stays Room 2. claimed=false. Not a close. Not a stablecoin SKU. Claimed: false.
+- **CLARITY Act (digital asset market structure)** — Books stay Room 1. Issuance and ATS stay Room 2. claimed=false. Not a close. Not a crypto product. Claimed: false.
 
 ## Action coverage — same plane, none live
 

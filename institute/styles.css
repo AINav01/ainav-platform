@@ -1527,10 +1527,46 @@ table.law tr[data-group] th {
 .industry-rooms [data-room="room_2"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
+.industry-control {
+  margin-top: 1.15rem;
+  padding-top: 0.15rem;
+}
+@media (min-width: 900px) {
+  .industry-control { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1400px) {
+  .industry-control { grid-template-columns: repeat(5, 1fr); }
+}
+.industry-control [data-lane="need"],
+.industry-control [data-lane="human"],
+.industry-control [data-lane="fiduciary"] { box-shadow: inset 3px 0 0 var(--gold); }
+.industry-control [data-lane="maps_oversight"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.industry-control [data-lane="refuse"] {
+  box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
+}
+.industry-control [data-lane="refuse"] button.room-refuse,
+.industry-control [data-lane="refuse"] button.room-refuse b {
+  color: var(--gold-2);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.industry-control [data-lane="refuse"] button.room-refuse:hover b { color: var(--gold); }
+.industry-control [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
+#industry-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+}
 .industry-day [data-lane="refuse"] button.room-refuse,
 .industry-day [data-lane="refuse"] button.room-refuse b,
 .industry-rooms button.room-refuse,
 .industry-rooms button.room-refuse b,
+.industry-control button.room-refuse,
+.industry-control button.room-refuse b,
 #industry-room-spine button.room-refuse,
 #industry-room-spine button.room-refuse b {
   color: var(--gold-2);
@@ -1543,9 +1579,11 @@ table.law tr[data-group] th {
 }
 .industry-day [data-lane="refuse"] button.room-refuse:hover b,
 .industry-rooms button.room-refuse:hover b,
+.industry-control button.room-refuse:hover b,
 #industry-room-spine button.room-refuse:hover b { color: var(--gold); }
 .industry-day [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b,
 .industry-rooms button.room-refuse[aria-pressed="true"] b,
+.industry-control button.room-refuse[aria-pressed="true"] b,
 #industry-room-spine button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
 .universe-spine li[data-state="refused"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);

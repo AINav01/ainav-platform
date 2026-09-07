@@ -68,6 +68,8 @@ AINav sits on the client's existing org chart. It does not replace departments. 
 - **coso.ic** — COSO internal control (US domestic / books). Maps to: Dual admit is a control activity. Off switch is fail-closed. Not a COSO opinion.. Claimed: false.
 - **gdpr.art22** — GDPR Article 22 automated decisions (international / EU). Maps to: Human admit before a write with legal or similarly significant effect. Not a GDPR opinion.. Claimed: false.
 - **coe.ai_convention** — Council of Europe Framework Convention on AI (international). Maps to: Human-rights and accountability baseline for parties. Not a membership. Not a filing.. Claimed: false.
+- **genius.act** — GENIUS Act (payment stablecoins) (US domestic / books). Maps to: Reserve journal in BC is Room 1. On-chain mint stays Room 2. claimed=false. Not a close. Not a stablecoin SKU.. Claimed: false.
+- **clarity.act** — CLARITY Act (digital asset market structure) (US domestic). Maps to: Books stay Room 1. Issuance and ATS stay Room 2. claimed=false. Not a close. Not a crypto product.. Claimed: false.
 
 ## Immutable (sealed, consume-once, hash-chained)
 
@@ -155,5 +157,10 @@ Lead: bc.general_journal.post. Crypto associated: false. 17a-4: false.
 - mandated by EU AI Act
 - Colorado SB 24-205
 - EU-ready
+- GENIUS certified
+- CLARITY certified
+- AI Governess product
+- company policy as SKU
+- fear as first glance
 
 Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.

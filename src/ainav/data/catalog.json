@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "3.00.0",
+    "release": "3.01.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2012,7 +2012,7 @@
       "KIT_FAIL",
       "CHURN"
     ],
-    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Maps stay claimed=false. Packs are not SKUs. Not a second company."
+    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Maps stay claimed=false. Packs are not SKUs. Not a second company. Honest control sits on #industry: need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -5044,7 +5044,8 @@
         "2.97.0 sit-down industry rooms: Room 1 books / Room 2 refuse on #industry; banks, reserve journals, and booked receivables sit the BC write; tokenization, RWAs, stablecoin mint, and crypto AMS stay Room 2; not a crypto product; not 17a-4; not from this plane",
         "2.98.0 operable industry rooms: honest zeros sit the board; refuse is visible; Room 1 walks to #packs; Room 2 refuse stays on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
         "2.99.0 fully operable industry drawer: every refuse clicks; catalog is the message; Room 2 records stay 0; refuse lane is not a route; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
-        "3.00.0 complete industry drawer. Sit / maps / attach / refuse. Room 1 books. Room 2 refuse. Every refuse clicks. Catalog is the message. Honest zeros. Assembled on #industry. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+        "3.00.0 complete industry drawer. Sit / maps / attach / refuse. Room 1 books. Room 2 refuse. Every refuse clicks. Catalog is the message. Honest zeros. Assembled on #industry. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+        "3.01.0 honest control. Need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY claimed=false. Company policy is not a SKU. Not a live filing. Not AI Governess. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5275,7 +5276,8 @@
       "2.97.0 sit-down industry rooms. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a /crypto route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.98.0 operable industry rooms. Honest zeros sit the board. Refuse is visible. Room 1 walks. Room 2 stays refused. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.99.0 fully operable industry drawer: every refuse on #industry clicks; catalog is the message; Room 2 records stay 0; refuse lane is not a route; Room 1 walks; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
-      "3.00.0 complete industry drawer: sit / maps / attach / refuse; Room 1 books; Room 2 refuse; every refuse clicks; catalog is the message; honest zeros; assembled on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane"
+      "3.00.0 complete industry drawer: sit / maps / attach / refuse; Room 1 books; Room 2 refuse; every refuse clicks; catalog is the message; honest zeros; assembled on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
+      "3.01.0 honest control: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false, employee AI oversight, company policy is not a SKU; not a live filing; not AI Governess; not a fear brand; not from this plane"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -6734,7 +6736,10 @@
       "industry_rooms_live": false,
       "industry_wells_live": false,
       "industry_fully_operable": true,
-      "industry_complete": true
+      "industry_complete": true,
+      "industry_control": true,
+      "industry_control_live": false,
+      "industry_honest": true
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -7222,7 +7227,8 @@
       "2.97.0 sit-down industry rooms are catalog law: Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Not a crypto product. Not 17a-4. Not a /crypto route. Not LIVE_PIN_OK.",
       "2.98.0 operable industry rooms are catalog law: honest zeros sit the board. Refuse is visible. Room 1 walks to packs. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
       "2.99.0 fully operable industry drawer is catalog law: every refuse on #industry clicks. Catalog is the message. Room 2 records stay 0. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
-      "3.00.0 complete industry drawer is catalog law: sit / maps / attach / refuse, Room 1 books, and Room 2 refuse sit together on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK."
+      "3.00.0 complete industry drawer is catalog law: sit / maps / attach / refuse, Room 1 books, and Room 2 refuse sit together on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
+      "3.01.0 honest control is catalog law: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a live filing. Not AI Governess. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -7269,7 +7275,8 @@
       "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Not a crypto product. Not 17a-4. Not a tokenization SKU. Not a /crypto route. Not LIVE_PIN_OK.",
       "The operable industry rooms sit the book write versus refuse. Honest zeros sit the board: Room 1 assigned no, named vertical no, first record 0. Refuse is visible. Room 1 walks to packs. Room 2 stays refused. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
       "The fully operable industry drawer makes every refuse on #industry a visible refuse. Catalog is the message. Room 2 records stay 0. Every refuse clicks. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
-      "The complete industry drawer puts sit / maps / attach / refuse, Room 1 books, and Room 2 refuse together on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK."
+      "The complete industry drawer puts sit / maps / attach / refuse, Room 1 books, and Room 2 refuse together on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
+      "Honest control sits on #industry after the complete drawer. Need is two humans bind one hash. If you don't have it, the write does not land. Thinking you have it under control without seat B is not seated. Get it under control is the second unique human and a fail-closed SoR write. Fiduciary is why two humans bind, not a D&O opinion and not a penalty product. GENIUS and CLARITY stay claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a /fear route. Not AI Governess. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -7313,7 +7320,8 @@
       "2.97.0 sit-down industry rooms sit on #industry: Room 1 books / Room 2 refuse. Banks and reserve journals sit the write. Tokenization, RWAs, stablecoins, and crypto AMS stay refused as product. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
       "2.98.0 operable industry rooms sit on #industry: honest zeros, visible refuse, Room 1 walks, Room 2 stays refused. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
       "2.99.0 fully operable industry drawer sits on #industry: every refuse clicks, catalog is the message, Room 2 records stay 0. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
-      "3.00.0 complete industry drawer sits on #industry: sit / maps / attach / refuse, Room 1 walks, every refuse clicks, catalog is the message, Room 2 records stay 0. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK."
+      "3.00.0 complete industry drawer sits on #industry: sit / maps / attach / refuse, Room 1 walks, every refuse clicks, catalog is the message, Room 2 records stay 0. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
+      "3.01.0 honest control sits on #industry: need, consequence, now, around the corner, human control, fiduciary. GENIUS and CLARITY stay claimed=false. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not AI Governess. Not LIVE_PIN_OK."
     ],
     "success": {
       "sku": false,
@@ -7530,7 +7538,12 @@
           "Treat Room 2 refuse as a live record",
           "Treat Room 1 wells as named records",
           "Treat a refuse lane walk as a live route",
-          "Treat the complete industry drawer as a live named vertical"
+          "Treat the complete industry drawer as a live named vertical",
+          "Treat GENIUS or CLARITY as closed",
+          "Treat fear as the first glance",
+          "Treat company policy as a SKU",
+          "Call the product AI Governess",
+          "Treat the honest control board as a live filing"
         ]
       },
       "seat_b": {
@@ -7580,7 +7593,7 @@
         "live_pin_ok": false,
         "cms": false,
         "fear_brand": false,
-        "lede": "Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Fear is only useful if it names that write.",
+        "lede": "Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Thinking you have it under control without seat B is not seated. Get it under control is the second unique human. Fear is only useful if it names that write.",
         "ours": "Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale.",
         "not_ours": "Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.",
         "loss": [
@@ -7589,18 +7602,24 @@
           "One title clicks both seats",
           "The vendor of the draft is the failsafe",
           "One vendor HITL leaves counterparty models ungated",
-          "Seat missing and the write still lands"
+          "Seat missing and the write still lands",
+          "Thinking you have it under control is mailbox without a click",
+          "Employee AI drafts; department AI is not a seat",
+          "Change without two humans is not under control"
         ],
         "restore": [
           "Two distinct humans bind one action_hash",
           "Consume-once",
           "Fail-closed SoR",
           "Plane outside the drafting model",
-          "Freeze: inference may continue, consequence does not"
+          "Freeze: inference may continue, consequence does not",
+          "Get it under control is the second unique human. Do not claim we have it",
+          "Fear management is refuse rehearsal, not a /fear brand",
+          "Change is sit / maps / attach / refuse"
         ],
         "site": "First glance stays the write rail. This band sits after the bake-off. Not a /fear route. Not a CMS.",
         "social": "A human looked in Teams. The journal still posted. Not: AI will take your job.",
-        "note": "Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK."
+        "note": "Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK. Honest control sits on #industry. Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK."
       },
       "executive_risk": {
         "kind": "ainav.executive_risk.v1",
@@ -7614,10 +7633,10 @@
         "sox_opinion": false,
         "seventeen_a4": false,
         "d_and_o": false,
-        "lede": "Executive risk is the unauthorized write under a name that certifies the books. Personal and business are the same journal. Compliance maps are not the sale.",
+        "lede": "Executive risk is the unauthorized write under a name that certifies the books. Personal and business are the same journal. Fiduciary is why two humans bind, not a penalty product. Compliance maps are not the sale.",
         "personal": "Personal: the controller or officer who certifies. 'I did not know the AI posted' is identify, not admit. We do not indemnify. We do not appoint officers. We do not sell D&O.",
         "business": "Business: restatement, ICFR weakness, customer or counterparty write, examiner exception. Buying L1 does not close regulator clocks.",
-        "compliance": "Compliance-fear: maps, SOX opinion, EU AI Act certificate, NIST badge. Claimed stays false. G12 stays open. Not counsel. Walk it like cheaper native.",
+        "compliance": "Compliance-fear: maps, SOX opinion, EU AI Act certificate, NIST badge, GENIUS close, CLARITY close. Claimed stays false. G12 stays open. Not counsel. Walk it like cheaper native.",
         "non_compliance": "Non-compliance that is ours: a privileged SoR line landed and two humans did not bind. That is write-fear. A missed map is counsel's clock.",
         "also": [
           "Board oversees. Overseeing is not admitting.",
@@ -7626,10 +7645,13 @@
           "Counterparty model into the client's SoR is the same write.",
           "Small client and large client: same journal, same L1.",
           "Insurance, D&O, and personal-liability product: walk away.",
-          "Privacy, model-risk, and job-loss theater: not the category unless they are the write."
+          "Privacy, model-risk, and job-loss theater: not the category unless they are the write.",
+          "Fiduciary duty is why two humans bind. Not a D&O product and not a penalty SKU.",
+          "GENIUS and CLARITY stay claimed=false. Buying L1 does not close those clocks.",
+          "Internal doctrine is catalog law. Company policy is not a SKU."
         ],
         "site": "This band sits after human control. First glance stays the write rail. Not a /risk route. Not a GRC SKU.",
-        "note": "Not a SOX opinion. Not 17a-4. Not counsel. Not a certificate. Not LIVE_PIN_OK."
+        "note": "Not a SOX opinion. Not 17a-4. Not counsel. Not a certificate. Not LIVE_PIN_OK. Fiduciary is why two humans bind. Not a SOX opinion. Not 17a-4. Not counsel. Not a certificate. Not LIVE_PIN_OK."
       },
       "market_position": {
         "kind": "ainav.market_position.v1",
@@ -7678,7 +7700,8 @@
           "Teams vote — a chat is not admit",
           "PIM eligible — eligible is not admit",
           "Defender / Purview — detect and retain, not bind the write",
-          "Microsoft 365 E7 — mailbox and identify, not a seat"
+          "Microsoft 365 E7 — mailbox and identify, not a seat",
+          "Company policy / AI acceptable-use — doctrine is not a seat"
         ],
         "been_missing": [
           "Two distinct humans bind one action_hash",
@@ -7688,7 +7711,8 @@
           "Freeze — inference may continue, consequence does not",
           "Independence — plane outside the drafting vendor",
           "Counterparty AI — the same write when their model drafts into your SoR",
-          "Ninety-minute proof day — walk out with kit PASS, not a demo"
+          "Ninety-minute proof day — walk out with kit PASS, not a demo",
+          "Employee AI oversight — department AI is not a seat"
         ],
         "capabilities": [
           "Admit — two humans, one hash. Not identify.",
@@ -7719,7 +7743,10 @@
           "Cloudflare as a SKU",
           "LIVE_PIN_OK theater",
           "Intercom / live-chat as the sale",
-          "HubSpot / Salesforce as the wow"
+          "HubSpot / Salesforce as the wow",
+          "AI Governess",
+          "GENIUS / CLARITY close",
+          "D&O / penalty product"
         ],
         "site": "This band sits after market position. First glance stays the write rail. Not a /have route. Not #missing. #missing stays owner-honest.",
         "note": "The wow is the missing admit plane. Not a fourth SKU. Not launch. Not LIVE_PIN_OK."
@@ -8858,10 +8885,10 @@
         "sit_down": true,
         "drawer_is_live": false,
         "drawer_invented": false,
-        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4.",
-        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK.",
-        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route.",
-        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
+        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Company policy is not a SKU.",
+        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK. Honest control. Need. Consequence. Now. Around the corner. GENIUS and CLARITY claimed=false. Not AI Governess.",
+        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route. Honest control on #industry. Need is #control. Consequence is #risk. GENIUS and CLARITY stay claimed=false. Not AI Governess.",
+        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK. Honest control. If you don't have it, the write does not land. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Not AI Governess.",
         "lanes": [
           {
             "id": "sit",
@@ -9095,7 +9122,13 @@
           "Mint a crypto asset-management SKU",
           "Sell 17a-4 WORM",
           "Treat AINav as a crypto product",
-          "Lead with Room 2"
+          "Lead with Room 2",
+          "GENIUS Act close",
+          "CLARITY Act close",
+          "D&O / penalty product",
+          "AI Governess product",
+          "Company policy as a SKU",
+          "Fear as the first glance"
         ],
         "owner_only": [
           "Signed L1",
@@ -9117,9 +9150,9 @@
           "rooms_are_live": false,
           "wells_are_live": false,
           "lead": "bc.general_journal.post",
-          "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible.",
-          "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
-          "site": "Fully operable industry rooms on #industry. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Room 2 records stay 0. Not a /crypto route.",
+          "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+          "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+          "site": "Fully operable industry rooms on #industry. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Room 2 records stay 0. Not a /crypto route. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
           "wells": {
             "room_1": 0,
             "room_2": 0,
@@ -9206,7 +9239,216 @@
         },
         "fully_operable": true,
         "every_refuse_clicks": true,
-        "complete": true
+        "complete": true,
+        "control": {
+          "kind": "ainav.industry_control.v1",
+          "sku": false,
+          "fourth_sku": false,
+          "cms": false,
+          "fear_brand": false,
+          "certified": false,
+          "claimed": false,
+          "live": false,
+          "live_pin_ok": false,
+          "launch": false,
+          "dno": false,
+          "genius_closed": false,
+          "clarity_closed": false,
+          "governess": false,
+          "policy_sku": false,
+          "control_is_live": false,
+          "honest": true,
+          "every_refuse_clicks": true,
+          "lede": "Honest control sits on #industry after the complete drawer. Need is two humans bind one hash. If you don't have it, the write does not land. Thinking you have it under control without seat B is not seated. Get it under control is the second unique human and a fail-closed SoR write. Fiduciary is why two humans bind, not a D&O opinion. GENIUS and CLARITY stay claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a /fear route. Not AI Governess. Not LIVE_PIN_OK.",
+          "glance": "Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Lack of control. Thinking you have it. Get it under control. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Employee AI oversight. Company policy is not a SKU. Every refuse clicks. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
+          "site": "Honest control on #industry. Need is #control. Consequence is #risk. Maps is #governance. Around the corner is #missing. First glance stays the write rail. Complete industry drawer. Every refuse clicks. Catalog is the message. GENIUS and CLARITY stay claimed=false. Not a live filing. Not AI Governess. Not a /fear route. Not LIVE_PIN_OK.",
+          "note": "Honest control. Need is two humans bind one hash. If you don't have it, the write does not land. Thinking you have it under control without seat B is not seated. MFA identifies. It does not admit. Get it under control is the second unique human. Do not claim we have it. Fiduciary is why two humans bind. Not a D&O opinion. Not a SOX opinion. Not a penalty product. GENIUS and CLARITY stay claimed=false. Buying L1 does not close regulator clocks. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
+          "lanes": [
+            {
+              "id": "need",
+              "name": "Need",
+              "items": [
+                {
+                  "id": "if_you_dont",
+                  "name": "If you don't have it",
+                  "note": "One human cannot bind Job C. The write does not land.",
+                  "href": "#control",
+                  "state": "recorded"
+                },
+                {
+                  "id": "consequence",
+                  "name": "Consequence",
+                  "note": "Thinking you have it under control without seat B is not seated. MFA identifies. It does not admit.",
+                  "href": "#risk",
+                  "state": "recorded"
+                },
+                {
+                  "id": "now",
+                  "name": "Now",
+                  "note": "Complete industry drawer. Every refuse clicks. Catalog is the message. Gold 99. Twin on Azure SWA.",
+                  "href": "#industry",
+                  "state": "recorded"
+                },
+                {
+                  "id": "corner",
+                  "name": "Around the corner",
+                  "note": "Seat B click, Entra oid, signed L1, LIVE_PIN_OK, launch. Owner-only. This plane cannot invent them.",
+                  "href": "#missing",
+                  "state": "owner_only"
+                }
+              ]
+            },
+            {
+              "id": "human",
+              "name": "Human control",
+              "items": [
+                {
+                  "id": "lack",
+                  "name": "Lack of control",
+                  "note": "A privileged SoR line two humans did not bind. Mailbox is not oid. Mailbox is not the click.",
+                  "href": "#control",
+                  "state": "recorded"
+                },
+                {
+                  "id": "thinking",
+                  "name": "Thinking you have it",
+                  "note": "Identify pretending to be admit. A Teams vote is not dual admit. PIM eligible is not admit.",
+                  "href": "#have",
+                  "state": "recorded"
+                },
+                {
+                  "id": "get_it",
+                  "name": "Get it under control",
+                  "note": "Second unique human. One action_hash. Consume-once. Fail-closed SoR. Do not claim we have it.",
+                  "href": "#buyer",
+                  "state": "recorded"
+                }
+              ]
+            },
+            {
+              "id": "fiduciary",
+              "name": "Fiduciary",
+              "items": [
+                {
+                  "id": "board",
+                  "name": "Board / executive duty",
+                  "note": "Two humans bind because the write is the duty. Inventory of models is not a control. Not a D&O opinion.",
+                  "href": "#governance",
+                  "state": "recorded"
+                },
+                {
+                  "id": "penalties",
+                  "name": "Penalties / non-compliance",
+                  "note": "Non-compliance that is ours is the landed write. Not a SOX opinion. Not D&O. Not a certificate.",
+                  "href": "#risk",
+                  "state": "recorded"
+                }
+              ]
+            },
+            {
+              "id": "maps_oversight",
+              "name": "Maps / oversight",
+              "items": [
+                {
+                  "id": "genius",
+                  "name": "GENIUS Act",
+                  "note": "Payment-stablecoin map. claimed=false. Not a close. Reserve journal is Room 1. On-chain mint stays Room 2.",
+                  "href": "#governance",
+                  "state": "recorded"
+                },
+                {
+                  "id": "clarity",
+                  "name": "CLARITY Act",
+                  "note": "Digital-asset market-structure map. claimed=false. Not a close. Not a crypto product.",
+                  "href": "#governance",
+                  "state": "recorded"
+                },
+                {
+                  "id": "employee",
+                  "name": "Employee AI oversight",
+                  "note": "Department AI is not a seat. Loss of oversight is identify pretending to be admit.",
+                  "href": "#control",
+                  "state": "recorded"
+                },
+                {
+                  "id": "doctrine",
+                  "name": "Internal doctrine / policy",
+                  "note": "Company policy is not a SKU. Catalog is the doctrine. Policy does not mint a fourth SKU.",
+                  "href": "#industry",
+                  "state": "recorded"
+                },
+                {
+                  "id": "change",
+                  "name": "Change / fear management",
+                  "note": "Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a /fear brand.",
+                  "href": "#industry",
+                  "state": "recorded"
+                }
+              ]
+            },
+            {
+              "id": "refuse",
+              "name": "Refuse",
+              "items": [
+                {
+                  "id": "genius_close",
+                  "name": "GENIUS Act close",
+                  "note": "Refused. Maps stay claimed=false.",
+                  "href": "#industry",
+                  "state": "refused",
+                  "refuse": true,
+                  "refuse_text": "Refused. GENIUS is a map. claimed=false. Not a close."
+                },
+                {
+                  "id": "clarity_close",
+                  "name": "CLARITY Act close",
+                  "note": "Refused. Maps stay claimed=false.",
+                  "href": "#industry",
+                  "state": "refused",
+                  "refuse": true,
+                  "refuse_text": "Refused. CLARITY is a map. claimed=false. Not a close."
+                },
+                {
+                  "id": "dno_product",
+                  "name": "D&O / penalty product",
+                  "note": "Refused. Fiduciary is why two humans bind.",
+                  "href": "#industry",
+                  "state": "refused",
+                  "refuse": true,
+                  "refuse_text": "Refused. Not D&O. Not a penalty product. Fiduciary is why two humans bind."
+                },
+                {
+                  "id": "governess_product",
+                  "name": "AI Governess product",
+                  "note": "Refused. The product is Job C.",
+                  "href": "#industry",
+                  "state": "refused",
+                  "refuse": true,
+                  "refuse_text": "Refused. Not AI Governess. The product is Job C."
+                },
+                {
+                  "id": "policy_sku",
+                  "name": "Company policy as a SKU",
+                  "note": "Refused. Doctrine is not a product.",
+                  "href": "#industry",
+                  "state": "refused",
+                  "refuse": true,
+                  "refuse_text": "Refused. Company policy is not a SKU. Catalog is the doctrine."
+                },
+                {
+                  "id": "fear_first_glance",
+                  "name": "Fear as the first glance",
+                  "note": "Refused. First glance stays the write.",
+                  "href": "#industry",
+                  "state": "refused",
+                  "refuse": true,
+                  "refuse_text": "Refused. Fear is not the first glance. First glance stays the write rail."
+                }
+              ]
+            }
+          ]
+        },
+        "honest_control": true
       }
     },
     "upgrades": [
@@ -9762,6 +10004,14 @@
         "do": "Ship 3.00.0 complete industry drawer on #industry. Sit / maps / attach / refuse. Room 1 walks. Every refuse clicks. Catalog is the message. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
+      },
+      {
+        "n": 71,
+        "who": "tree",
+        "title": "Honest control",
+        "do": "Ship 3.01.0 honest control on #industry. Need, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
       }
     ]
   },
@@ -9895,6 +10145,20 @@
         "scope": "international",
         "maps_to": "Human-rights and accountability baseline for parties. Not a membership. Not a filing.",
         "claimed": false
+      },
+      {
+        "id": "genius.act",
+        "name": "GENIUS Act (payment stablecoins)",
+        "scope": "US domestic / books",
+        "maps_to": "Reserve journal in BC is Room 1. On-chain mint stays Room 2. claimed=false. Not a close. Not a stablecoin SKU.",
+        "claimed": false
+      },
+      {
+        "id": "clarity.act",
+        "name": "CLARITY Act (digital asset market structure)",
+        "scope": "US domestic",
+        "maps_to": "Books stay Room 1. Issuance and ATS stay Room 2. claimed=false. Not a close. Not a crypto product.",
+        "claimed": false
       }
     ],
     "risks": [
@@ -9994,7 +10258,12 @@
       "GDPR certified",
       "mandated by EU AI Act",
       "Colorado SB 24-205",
-      "EU-ready"
+      "EU-ready",
+      "GENIUS certified",
+      "CLARITY certified",
+      "AI Governess product",
+      "company policy as SKU",
+      "fear as first glance"
     ],
     "note": "Catalog map only. One human plane sits over the client's AI estate. Not booked. Not a certification. Not a statute. Not recognized revenue. Do not invent counterparties, boards, or regulators. G12 legal stays open. The failsafe is Job C, not a fourth SKU.",
     "cascade": {

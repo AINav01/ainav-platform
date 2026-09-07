@@ -315,6 +315,20 @@
       "maps_to": "Human-rights and accountability baseline for parties. Not a membership. Not a filing.",
       "name": "Council of Europe Framework Convention on AI",
       "scope": "international"
+    },
+    {
+      "claimed": false,
+      "id": "genius.act",
+      "maps_to": "Reserve journal in BC is Room 1. On-chain mint stays Room 2. claimed=false. Not a close. Not a stablecoin SKU.",
+      "name": "GENIUS Act (payment stablecoins)",
+      "scope": "US domestic / books"
+    },
+    {
+      "claimed": false,
+      "id": "clarity.act",
+      "maps_to": "Books stay Room 1. Issuance and ATS stay Room 2. claimed=false. Not a close. Not a crypto product.",
+      "name": "CLARITY Act (digital asset market structure)",
+      "scope": "US domestic"
     }
   ],
   "must_have": {
@@ -398,7 +412,12 @@
     "GDPR certified",
     "mandated by EU AI Act",
     "Colorado SB 24-205",
-    "EU-ready"
+    "EU-ready",
+    "GENIUS certified",
+    "CLARITY certified",
+    "AI Governess product",
+    "company policy as SKU",
+    "fear as first glance"
   ],
   "regulated": {
     "certified": false,
