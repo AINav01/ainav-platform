@@ -200,6 +200,22 @@ def test_instrument_296_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_296(principles_hole, principles_hole["plane_interface"])
+    certified_drawer = copy.deepcopy(edge)
+    certified_drawer["expert_review"]["success"]["industry_drawer"]["certified"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_296(certified_drawer, certified_drawer["plane_interface"])
+    sit_note = copy.deepcopy(edge)
+    sit_note["expert_review"]["success"]["industry_drawer"]["site"] = (
+        "Packs is #packs. Maps is #governance. Sit / maps / attach / refuse. Not a /industry route."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_296(sit_note, sit_note["plane_interface"])
+    ops_hole = copy.deepcopy(edge)
+    ops_hole["operations"]["note"] = (
+        "SKU attach chain. The industry bench is #industry. Packs are not SKUs."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_296(ops_hole, ops_hole["plane_interface"])
 
 
 def test_industry_drawer_fail_closed():

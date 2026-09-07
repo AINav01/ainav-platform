@@ -204,6 +204,23 @@ def test_instrument_297_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_297(principles_hole, principles_hole["plane_interface"])
+    worm = copy.deepcopy(edge)
+    worm["expert_review"]["success"]["industry_drawer"]["rooms"]["seventeen_a4"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_297(worm, worm["plane_interface"])
+    ops_hole = copy.deepcopy(edge)
+    ops_hole["operations"]["note"] = (
+        "SKU attach chain. The sit-down industry drawer is sit / maps / attach / refuse on #industry. "
+        "Maps stay claimed=false. Packs are not SKUs."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_297(ops_hole, ops_hole["plane_interface"])
+    href_site = copy.deepcopy(edge["expert_review"]["success"]["industry_drawer"])
+    href_site["site"] = (
+        "First glance stays the write rail. Sit / maps / attach / refuse. Not a /industry route."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_drawer(href_site)
 
 
 def test_industry_rooms_fail_closed():
