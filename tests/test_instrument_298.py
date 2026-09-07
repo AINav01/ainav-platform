@@ -263,6 +263,21 @@ def test_instrument_298_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_298(closed_hole, closed_hole["plane_interface"])
+    visible = copy.deepcopy(edge)
+    visible["expert_review"]["success"]["industry_drawer"]["rooms"]["refuse_is_visible"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_298(visible, visible["plane_interface"])
+    zeros = copy.deepcopy(edge)
+    zeros["expert_review"]["success"]["industry_drawer"]["rooms"]["honest_zeros"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_298(zeros, zeros["plane_interface"])
+    ops_room = copy.deepcopy(edge)
+    ops_room["operations"]["note"] = (
+        "SKU attach chain. The sit-down industry drawer is sit / maps / attach / refuse on #industry. "
+        "Honest zeros. Operable industry rooms. Maps stay claimed=false. Packs are not SKUs."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_298(ops_room, ops_room["plane_interface"])
 
 
 def test_industry_rooms_operable_fail_closed():

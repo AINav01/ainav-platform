@@ -320,6 +320,30 @@ def test_instrument_299_fail_closed():
     room_text["expert_review"]["success"]["industry_drawer"]["rooms"]["room_2"][0]["refuse_text"] = "Refused."
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_299(room_text, room_text["plane_interface"])
+    operable = copy.deepcopy(edge)
+    operable["programs"]["website"]["industry_operable"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_299(operable, operable["plane_interface"])
+    wells_flag = copy.deepcopy(edge)
+    wells_flag["programs"]["website"]["industry_wells_live"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_299(wells_flag, wells_flag["plane_interface"])
+    drawer_flag = copy.deepcopy(edge)
+    drawer_flag["expert_review"]["success"]["industry_drawer"]["fully_operable"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_299(drawer_flag, drawer_flag["plane_interface"])
+    clicks_flag = copy.deepcopy(edge)
+    clicks_flag["expert_review"]["success"]["industry_drawer"]["every_refuse_clicks"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_299(clicks_flag, clicks_flag["plane_interface"])
+    rooms_flag = copy.deepcopy(edge)
+    rooms_flag["expert_review"]["success"]["industry_drawer"]["rooms"]["fully_operable"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_299(rooms_flag, rooms_flag["plane_interface"])
+    rooms_clicks = copy.deepcopy(edge)
+    rooms_clicks["expert_review"]["success"]["industry_drawer"]["rooms"]["every_refuse_clicks"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_299(rooms_clicks, rooms_clicks["plane_interface"])
 
 
 def test_industry_drawer_fully_operable_fail_closed():
@@ -392,6 +416,24 @@ def test_industry_drawer_fully_operable_fail_closed():
     )
     with pytest.raises(IntegrityError):
         catmod._validate_industry_rooms(rooms_site)
+    zeros_site = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"])
+    zeros_site["site"] = (
+        "Industry drawer on #industry. Packs is #packs. Maps is #governance. "
+        "Non-compliance is #risk. First glance stays the write rail. "
+        "Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. "
+        "Fully operable industry drawer. Every refuse clicks. Catalog is the message. "
+        "Not a crypto product. Not 17a-4. Not a /industry route."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_drawer(zeros_site)
+    packs_site = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["rooms"])
+    packs_site["site"] = (
+        "Fully operable industry rooms on #industry. Every refuse clicks. "
+        "Catalog is the message. Honest zeros sit the board. Refuse is visible. "
+        "Room 1 walks. Room 2 refuse stays. Room 2 records stay 0."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_rooms(packs_site)
     with pytest.raises(IntegrityError):
         catmod._validate_first_principles(
             [
