@@ -2367,10 +2367,12 @@
         drawer.rooms.wells_are_live ||
         drawer.rooms.operable === false ||
         drawer.rooms.fully_operable === false ||
-        drawer.rooms.every_refuse_clicks === false
+        drawer.rooms.every_refuse_clicks === false ||
+        drawer.rooms.complete === false
       )) ||
       drawer.fully_operable === false ||
-      drawer.every_refuse_clicks === false
+      drawer.every_refuse_clicks === false ||
+      drawer.complete === false
     ) {
       return;
     }

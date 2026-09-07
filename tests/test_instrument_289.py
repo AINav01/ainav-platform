@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_289_first_class_microsoft_run():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "2.99.0"
+    assert cat["entity"]["release"] == "3.00.0"
     firm = cat["expert_review"]["success"]["operating_company"]
     run = firm["microsoft_run"]
     assert run["kind"] == "ainav.microsoft_run.v1"
@@ -36,7 +36,7 @@ def test_release_is_289_first_class_microsoft_run():
         for item in cat["engineering"]["closed_in_tree"]
     )
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 69
+    assert len(cat["expert_review"]["upgrades"]) == 70
     assert upgrades[59]["who"] == "tree"
     assert upgrades[59]["done"] is True
     assert upgrades[59]["marks_live_pin"] is False
@@ -46,7 +46,7 @@ def test_release_is_289_first_class_microsoft_run():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
-    assert "2.99.0" in html
+    assert "3.00.0" in html
     assert 'id="firm-ms"' in html
     assert "firm-wire-teams" in html
     assert "firm-close-dataverse" in html
@@ -54,9 +54,9 @@ def test_release_is_289_first_class_microsoft_run():
     assert "microsoft_run" in js
     assert "index.html#firm-ms" in twin
     dash = public_dashboard()
-    assert dash["release"] == "2.99.0"
+    assert dash["release"] == "3.00.0"
     status = public_status()
-    assert status["release"] == "2.99.0"
+    assert status["release"] == "3.00.0"
     assert status["website"]["microsoft_run"] is True
     assert status["website"]["microsoft_is_the_product"] is False
     held = publish_institute()

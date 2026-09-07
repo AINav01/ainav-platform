@@ -905,7 +905,8 @@
         "Mint a tokenization SKU",
         "Treat Room 2 refuse as a live record",
         "Treat Room 1 wells as named records",
-        "Treat a refuse lane walk as a live route"
+        "Treat a refuse lane walk as a live route",
+        "Treat the complete industry drawer as a live named vertical"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -1403,6 +1404,7 @@
       ],
       "certified": false,
       "cms": false,
+      "complete": true,
       "drawer_invented": false,
       "drawer_is_live": false,
       "every_refuse_clicks": true,
@@ -1410,7 +1412,7 @@
       "filing": false,
       "fourth_sku": false,
       "fully_operable": true,
-      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Fully operable. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK.",
+      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK.",
       "kind": "ainav.industry_drawer.v1",
       "lanes": [
         {
@@ -1561,11 +1563,11 @@
         }
       ],
       "launch": false,
-      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4.",
+      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4.",
       "live": false,
       "live_pin_ok": false,
       "named_vertical": false,
-      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Fully operable. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
+      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
       "owner_only": [
         "Signed L1",
         "Assigned industry packs on a named twin",
@@ -1629,6 +1631,7 @@
       ],
       "rooms": {
         "assigned": false,
+        "complete": true,
         "crypto_product": false,
         "every_refuse_clicks": true,
         "fourth_sku": false,
@@ -1636,10 +1639,10 @@
         "honest_zeros": true,
         "kind": "ainav.industry_rooms.v1",
         "lead": "bc.general_journal.post",
-        "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible.",
+        "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible.",
         "live": false,
         "named_vertical": false,
-        "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Fully operable. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
+        "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
         "operable": true,
         "refuse_is_visible": true,
         "room_1": [
@@ -1714,7 +1717,7 @@
         ],
         "rooms_are_live": false,
         "seventeen_a4": false,
-        "site": "Fully operable industry rooms on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Room 2 records stay 0. Not a /crypto route.",
+        "site": "Fully operable industry rooms on #industry. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Room 2 records stay 0. Not a /crypto route.",
         "spine_states": {
           "after_l1": "after_l1",
           "room_1": "ready",
@@ -1728,7 +1731,7 @@
         "wells_are_live": false
       },
       "sit_down": true,
-      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route.",
+      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route.",
       "sku": false
     },
     "live": false,

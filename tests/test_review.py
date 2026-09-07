@@ -65,6 +65,7 @@ def test_deep_dive_is_catalog_honest():
     assert "Refuse is visible" in body
     assert "Every refuse clicks" in body
     assert "Catalog is the message" in body
+    assert "Complete industry drawer" in body
     assert "Operating day." in body
     assert "## Stack walk" in body
     assert "dash.cloudflare.com" in body
@@ -103,7 +104,7 @@ def test_review_json_cannot_claim_live():
     assert card["live"] is False
     assert card["probed"] is False
     assert card["expert_review"]["success"]["live_pin_ok"] is False
-    assert len(card["expert_review"]["upgrades"]) == 69
+    assert len(card["expert_review"]["upgrades"]) == 70
 
 
 def test_review_model_fit_covers_the_company():

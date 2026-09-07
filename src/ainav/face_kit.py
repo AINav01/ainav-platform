@@ -267,7 +267,7 @@ def public_search() -> dict[str, Any]:
             "id": "industry",
             "title": "Industry drawer",
             "href": "index.html#industry",
-            "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a crypto product. Not a /industry route.",
+            "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a crypto product. Not a /industry route.",
         },
     ]
     return {

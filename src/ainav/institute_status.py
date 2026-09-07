@@ -211,6 +211,7 @@ def public_status() -> dict[str, Any]:
             "industry_seventeen_a4": False,
             "industry_operable": bool(site.get("industry_operable")),
             "industry_fully_operable": bool(site.get("industry_fully_operable")),
+            "industry_complete": bool(site.get("industry_complete")),
             "industry_rooms_live": False,
             "industry_wells_live": False,
         },
