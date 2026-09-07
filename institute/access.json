@@ -1,0 +1,431 @@
+{
+  "additional_access_needed": false,
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "grok_installed": null,
+  "grok_is_product": false,
+  "grok_is_seat": false,
+  "grok_wired": false,
+  "have": [
+    {
+      "href": "#agent-tools",
+      "id": "repo",
+      "installed": null,
+      "name": "Repo + catalog",
+      "note": "This Cloud Agent already has the tree, the catalog, gold, and twin publish.",
+      "title": "Repo + catalog"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "catalog",
+      "installed": null,
+      "name": "Catalog as law",
+      "note": "The catalog is the system of record. Mapping Grok does not rewrite Job C.",
+      "title": "Catalog as law"
+    },
+    {
+      "href": "#twin",
+      "id": "twin_publish",
+      "installed": null,
+      "name": "Twin publish",
+      "note": "The review twin publishes from this plane. That is enough to show honest access.",
+      "title": "Twin publish"
+    },
+    {
+      "href": "#control",
+      "id": "graph_read",
+      "installed": null,
+      "name": "Graph read",
+      "note": "Read-only Graph is already on the control plane. It is not admit.",
+      "title": "Graph read"
+    }
+  ],
+  "honest": true,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.honest.access.v1",
+  "lanes": [
+    {
+      "href": "#agent-tools",
+      "id": "have",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "repo",
+          "installed": null,
+          "name": "Repo + catalog",
+          "note": "This Cloud Agent already has the tree, the catalog, gold, and twin publish.",
+          "title": "Repo + catalog"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "catalog",
+          "installed": null,
+          "name": "Catalog as law",
+          "note": "The catalog is the system of record. Mapping Grok does not rewrite Job C.",
+          "title": "Catalog as law"
+        },
+        {
+          "href": "#twin",
+          "id": "twin_publish",
+          "installed": null,
+          "name": "Twin publish",
+          "note": "The review twin publishes from this plane. That is enough to show honest access.",
+          "title": "Twin publish"
+        },
+        {
+          "href": "#control",
+          "id": "graph_read",
+          "installed": null,
+          "name": "Graph read",
+          "note": "Read-only Graph is already on the control plane. It is not admit.",
+          "title": "Graph read"
+        }
+      ],
+      "name": "Have",
+      "note": "What this plane already has. Enough to stay honest.",
+      "title": "Have"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "need_not",
+      "items": [
+        {
+          "href": "#missing",
+          "id": "admin_sign_in",
+          "installed": null,
+          "name": "Microsoft admin",
+          "note": "This plane cannot sign in to admin.cloud.microsoft. James clicks.",
+          "title": "Microsoft admin"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "grok_login",
+          "installed": null,
+          "name": "grok login",
+          "note": "Mapping Grok Build does not require grok login on this plane.",
+          "title": "grok login"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "xai_api_key",
+          "installed": null,
+          "name": "XAI_API_KEY",
+          "note": "A public map of Grok Build is not a live xAI bind.",
+          "title": "XAI_API_KEY"
+        },
+        {
+          "href": "#control",
+          "id": "graph_write",
+          "installed": null,
+          "name": "Graph Writes",
+          "note": "Write scopes stay owner-only. More write is not more admit.",
+          "title": "Graph Writes"
+        }
+      ],
+      "name": "Need not",
+      "note": "Access this plane does not need. Asking for it would make the map worse.",
+      "title": "Need not"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "owner_only",
+      "items": [
+        {
+          "href": "#missing",
+          "id": "agents_all",
+          "installed": null,
+          "name": "Agents > All click",
+          "note": "A live Microsoft census is owner-only. This plane maps the URL.",
+          "title": "Agents > All click"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "supergrok",
+          "installed": null,
+          "name": "SuperGrok / X Premium Plus",
+          "note": "Whether James buys SuperGrok is owner-only. Not recorded here.",
+          "title": "SuperGrok / X Premium Plus"
+        },
+        {
+          "href": "#buyer",
+          "id": "seat_b",
+          "installed": null,
+          "name": "Seat B click",
+          "note": "The second unique human is still Cynthia. A bot is not that click.",
+          "title": "Seat B click"
+        }
+      ],
+      "name": "Owner only",
+      "note": "James clicks. This Cloud Agent cannot.",
+      "title": "Owner only"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "operators",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "cursor",
+          "installed": null,
+          "name": "Cursor Cloud Agent",
+          "note": "Recorded operator of this tree. Not a seat. Owner cannot be the operator.",
+          "operator": true,
+          "recorded": true,
+          "seat": false,
+          "title": "Cursor Cloud Agent"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "grok_build",
+          "installed": null,
+          "name": "Grok Build",
+          "note": "xAI terminal coding agent. SuperGrok / X Premium Plus. Operator map. Not a seat. installed=null.",
+          "operator": true,
+          "recorded": false,
+          "seat": false,
+          "title": "Grok Build"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "grok_bot",
+          "installed": null,
+          "name": "Grok bot",
+          "note": "Grok Build ACP bots and agent orchestration. Not dual admit. Not Job C.",
+          "operator": true,
+          "recorded": false,
+          "seat": false,
+          "title": "Grok bot"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "github_copilot_agent",
+          "installed": null,
+          "name": "GitHub Copilot coding agent",
+          "note": "Operator map. Not a seat. Not this recorded operator.",
+          "operator": true,
+          "recorded": false,
+          "seat": false,
+          "title": "GitHub Copilot coding agent"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "claude_code",
+          "installed": null,
+          "name": "Claude Code",
+          "note": "Operator map. Not a seat. Not this recorded operator.",
+          "operator": true,
+          "recorded": false,
+          "seat": false,
+          "title": "Claude Code"
+        },
+        {
+          "href": "#control",
+          "id": "azure_copilot",
+          "installed": null,
+          "name": "Azure Copilot",
+          "note": "Operator map on the Azure plane. Not a seat. Not this recorded operator.",
+          "operator": true,
+          "recorded": false,
+          "seat": false,
+          "title": "Azure Copilot"
+        }
+      ],
+      "name": "Operators",
+      "note": "Coding agents and bots. Maps. Not seats. Only Cursor is recorded here.",
+      "title": "Operators"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "refuse",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "ask_admin",
+          "name": "Microsoft admin as this Cloud Agent",
+          "note": "Refused. This plane does not need Microsoft admin. James clicks.",
+          "refuse": true,
+          "refuse_text": "Refused. This plane does not need Microsoft admin. James clicks.",
+          "state": "refused",
+          "text": "Refused. This plane does not need Microsoft admin. James clicks.",
+          "title": "Microsoft admin as this Cloud Agent"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "grok_as_seat",
+          "name": "Grok Build as a seat",
+          "note": "Refused. Grok Build is not a seat. Two humans bind.",
+          "refuse": true,
+          "refuse_text": "Refused. Grok Build is not a seat. Two humans bind.",
+          "state": "refused",
+          "text": "Refused. Grok Build is not a seat. Two humans bind.",
+          "title": "Grok Build as a seat"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "grok_as_product",
+          "name": "Grok Build as the product",
+          "note": "Refused. Grok Build is an operator map. Not AINav.",
+          "refuse": true,
+          "refuse_text": "Refused. Grok Build is an operator map. Not AINav.",
+          "state": "refused",
+          "text": "Refused. Grok Build is an operator map. Not AINav.",
+          "title": "Grok Build as the product"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "bot_as_admit",
+          "name": "Grok bot as dual admit",
+          "note": "Refused. A Grok bot is not dual admit.",
+          "refuse": true,
+          "refuse_text": "Refused. A Grok bot is not dual admit.",
+          "state": "refused",
+          "text": "Refused. A Grok bot is not dual admit.",
+          "title": "Grok bot as dual admit"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "more_access_as_admit",
+          "name": "Additional access as admit",
+          "note": "Refused. More access is not admit.",
+          "refuse": true,
+          "refuse_text": "Refused. More access is not admit.",
+          "state": "refused",
+          "text": "Refused. More access is not admit.",
+          "title": "Additional access as admit"
+        }
+      ],
+      "name": "Refuse",
+      "note": "What this board will not become.",
+      "title": "Refuse"
+    }
+  ],
+  "lede": "Honest access. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. Mapping xAI's terminal coding agent does not require grok login or XAI_API_KEY.",
+  "live": false,
+  "live_pin_ok": false,
+  "need_more": false,
+  "need_not": [
+    {
+      "href": "#missing",
+      "id": "admin_sign_in",
+      "installed": null,
+      "name": "Microsoft admin",
+      "note": "This plane cannot sign in to admin.cloud.microsoft. James clicks.",
+      "title": "Microsoft admin"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "grok_login",
+      "installed": null,
+      "name": "grok login",
+      "note": "Mapping Grok Build does not require grok login on this plane.",
+      "title": "grok login"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "xai_api_key",
+      "installed": null,
+      "name": "XAI_API_KEY",
+      "note": "A public map of Grok Build is not a live xAI bind.",
+      "title": "XAI_API_KEY"
+    },
+    {
+      "href": "#control",
+      "id": "graph_write",
+      "installed": null,
+      "name": "Graph Writes",
+      "note": "Write scopes stay owner-only. More write is not more admit.",
+      "title": "Graph Writes"
+    }
+  ],
+  "note": "Honest access. This Cloud Agent does not need Microsoft admin, grok login, or an xAI key. Grok Build is xAI's terminal coding agent. Not a seat. The recorded operator stays cursor.cloud_agent. Owner cannot be the operator.",
+  "operators": [
+    {
+      "href": "#agent-tools",
+      "id": "cursor",
+      "installed": null,
+      "name": "Cursor Cloud Agent",
+      "note": "Recorded operator of this tree. Not a seat. Owner cannot be the operator.",
+      "operator": true,
+      "recorded": true,
+      "seat": false,
+      "title": "Cursor Cloud Agent"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "grok_build",
+      "installed": null,
+      "name": "Grok Build",
+      "note": "xAI terminal coding agent. SuperGrok / X Premium Plus. Operator map. Not a seat. installed=null.",
+      "operator": true,
+      "recorded": false,
+      "seat": false,
+      "title": "Grok Build"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "grok_bot",
+      "installed": null,
+      "name": "Grok bot",
+      "note": "Grok Build ACP bots and agent orchestration. Not dual admit. Not Job C.",
+      "operator": true,
+      "recorded": false,
+      "seat": false,
+      "title": "Grok bot"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "github_copilot_agent",
+      "installed": null,
+      "name": "GitHub Copilot coding agent",
+      "note": "Operator map. Not a seat. Not this recorded operator.",
+      "operator": true,
+      "recorded": false,
+      "seat": false,
+      "title": "GitHub Copilot coding agent"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "claude_code",
+      "installed": null,
+      "name": "Claude Code",
+      "note": "Operator map. Not a seat. Not this recorded operator.",
+      "operator": true,
+      "recorded": false,
+      "seat": false,
+      "title": "Claude Code"
+    },
+    {
+      "href": "#control",
+      "id": "azure_copilot",
+      "installed": null,
+      "name": "Azure Copilot",
+      "note": "Operator map on the Azure plane. Not a seat. Not this recorded operator.",
+      "operator": true,
+      "recorded": false,
+      "seat": false,
+      "title": "Azure Copilot"
+    }
+  ],
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Open Agents > All if a live Microsoft census is wanted.",
+      "Buy SuperGrok / X Premium Plus only if Grok Build is wanted on a James machine.",
+      "Do not give this Cloud Agent Microsoft admin or XAI_API_KEY."
+    ]
+  },
+  "product": "Honest access",
+  "site": "Honest access on #agent-tools. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. First glance stays the write rail. Not a /access route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Sign in to admin.cloud.microsoft as the owner.",
+    "Request grok login or XAI_API_KEY as additional access.",
+    "Treat Grok Build as a seat.",
+    "Treat a Grok bot as dual admit.",
+    "Treat more access as admit."
+  ],
+  "wired": false
+}

@@ -26,7 +26,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_299_fully_operable_industry_drawer():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.02.0"
+    assert cat["entity"]["release"] == "3.03.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     rooms = drawer["rooms"]
     assert drawer["fully_operable"] is True
@@ -98,7 +98,7 @@ def test_release_is_299_fully_operable_industry_drawer():
     assert "every refuse clicks" in principles
     assert "catalog is the message" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 72
+    assert len(cat["expert_review"]["upgrades"]) == 73
     assert upgrades[69]["who"] == "tree"
     assert upgrades[69]["done"] is True
     assert upgrades[69]["marks_live_pin"] is False
@@ -115,7 +115,7 @@ def test_release_is_299_fully_operable_industry_drawer():
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
-    assert "3.02.0" in html
+    assert "3.03.0" in html
     assert 'id="industry-zeros"' in html
     assert 'id="industry-second"' in html
     assert "Room 2 records" in html
@@ -159,9 +159,9 @@ def test_release_is_299_fully_operable_industry_drawer():
     assert "Every refuse" in identify
     assert "the message" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.02.0"
+    assert dash["release"] == "3.03.0"
     exported_status = public_status()
-    assert exported_status["release"] == "3.02.0"
+    assert exported_status["release"] == "3.03.0"
     assert exported_status["website"]["industry_fully_operable"] is True
     assert exported_status["website"]["industry_operable"] is True
     assert exported_status["website"]["industry_rooms_live"] is False

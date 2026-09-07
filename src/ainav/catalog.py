@@ -76,6 +76,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.business import validate_business
     from ainav.ip import validate_ip_doctrine
     from ainav.microsoft.agent_tools import validate_agent_tools
+    from ainav.microsoft.access import validate_honest_access
     from ainav.microsoft.agents import validate_microsoft_agents
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
@@ -85,6 +86,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_connections(catalog)
     validate_agent_tools(catalog)
     validate_microsoft_agents(catalog)
+    validate_honest_access(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1142,7 +1144,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 72:
+    if not 16 <= len(upgrades) <= 73:
         raise IntegrityError("expert review needs 16–72 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
@@ -1206,6 +1208,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         70: ("complete industry", "live_pin_ok"),
         71: ("honest control", "live_pin_ok"),
         72: ("honest agents", "live_pin_ok"),
+        73: ("honest access", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1291,6 +1294,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest agents, an agent is not a seat, and Agent 365", reason_code="CATALOG_REVIEW")
     if "around the write" not in blob or "total agents" not in blob:
         raise IntegrityError("first-principles must keep around the write and Total agents", reason_code="CATALOG_REVIEW")
+    if "honest access" not in blob or "does not need additional access" not in blob:
+        raise IntegrityError("first-principles must keep honest access and does not need additional access", reason_code="CATALOG_REVIEW")
+    if "grok build is not a seat" not in blob:
+        raise IntegrityError("first-principles must keep Grok Build is not a seat", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1431,6 +1438,23 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success microsoft agents sit on #agent-tools", reason_code="CATALOG_REVIEW")
     if hosted.get("live") is True or hosted.get("inventory_claimed") is True or hosted.get("agent_365_is_product") is True:
         raise IntegrityError("success microsoft agents stay not live and not a census", reason_code="CATALOG_REVIEW")
+    if "grok build as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat Grok Build as a seat", reason_code="CATALOG_REVIEW")
+    if "grok bot as dual admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Grok bot as dual admit", reason_code="CATALOG_REVIEW")
+    if "microsoft admin as this cloud agent" not in does_not:
+        raise IntegrityError("CISO posture does not request Microsoft admin as this Cloud Agent", reason_code="CATALOG_REVIEW")
+    if "additional access as admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat additional access as admit", reason_code="CATALOG_REVIEW")
+    access = success.get("honest_access")
+    if not isinstance(access, dict):
+        raise IntegrityError("success program keeps honest access", reason_code="CATALOG_REVIEW")
+    if access.get("kind") != "ainav.honest.access.v1" or access.get("honest") is not True:
+        raise IntegrityError("success honest access stays catalog law", reason_code="CATALOG_REVIEW")
+    if access.get("href") != "#agent-tools":
+        raise IntegrityError("success honest access sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if access.get("live") is True or access.get("need_more") is True or access.get("grok_is_product") is True:
+        raise IntegrityError("success honest access stays not live and does not need more", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2766,6 +2790,56 @@ MICROSOFT_AGENT_HREFS = {
     "tools_as_sku": "#agent-tools",
     "copilot_studio_as_job_c": "#agent-tools",
 }
+HONEST_ACCESS_LANE_IDS = ["have", "need_not", "owner_only", "operators", "refuse"]
+HONEST_ACCESS_HAVE_IDS = ["repo", "catalog", "twin_publish", "graph_read"]
+HONEST_ACCESS_NEED_NOT_IDS = ["admin_sign_in", "grok_login", "xai_api_key", "graph_write"]
+HONEST_ACCESS_OWNER_IDS = ["agents_all", "supergrok", "seat_b"]
+HONEST_ACCESS_OPERATOR_IDS = [
+    "cursor",
+    "grok_build",
+    "grok_bot",
+    "github_copilot_agent",
+    "claude_code",
+    "azure_copilot",
+]
+HONEST_ACCESS_REFUSE_IDS = [
+    "ask_admin",
+    "grok_as_seat",
+    "grok_as_product",
+    "bot_as_admit",
+    "more_access_as_admit",
+]
+HONEST_ACCESS_REFUSE_TEXT = {
+    "ask_admin": "Refused. This plane does not need Microsoft admin. James clicks.",
+    "grok_as_seat": "Refused. Grok Build is not a seat. Two humans bind.",
+    "grok_as_product": "Refused. Grok Build is an operator map. Not AINav.",
+    "bot_as_admit": "Refused. A Grok bot is not dual admit.",
+    "more_access_as_admit": "Refused. More access is not admit.",
+}
+HONEST_ACCESS_HREFS = {
+    "repo": "#agent-tools",
+    "catalog": "#agent-tools",
+    "twin_publish": "#twin",
+    "graph_read": "#control",
+    "admin_sign_in": "#missing",
+    "grok_login": "#agent-tools",
+    "xai_api_key": "#agent-tools",
+    "graph_write": "#control",
+    "agents_all": "#missing",
+    "supergrok": "#agent-tools",
+    "seat_b": "#buyer",
+    "cursor": "#agent-tools",
+    "grok_build": "#agent-tools",
+    "grok_bot": "#agent-tools",
+    "github_copilot_agent": "#agent-tools",
+    "claude_code": "#agent-tools",
+    "azure_copilot": "#control",
+    "ask_admin": "#agent-tools",
+    "grok_as_seat": "#agent-tools",
+    "grok_as_product": "#agent-tools",
+    "bot_as_admit": "#agent-tools",
+    "more_access_as_admit": "#agent-tools",
+}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -3823,6 +3897,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_300(catalog, body)
     _validate_instrument_301(catalog, body)
     _validate_instrument_302(catalog, body)
+    _validate_instrument_303(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4767,8 +4842,6 @@ def _validate_instrument_301(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_302(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.02.0":
-        raise IntegrityError("entity.release is 3.02.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.02.0" in item and "honest agents" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.02.0 honest agents", reason_code="CATALOG_ENGINEERING")
@@ -4800,6 +4873,40 @@ def _validate_instrument_302(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.microsoft.agents import validate_microsoft_agents
 
     validate_microsoft_agents(catalog)
+
+
+def _validate_instrument_303(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.03.0":
+        raise IntegrityError("entity.release is 3.03.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.03.0" in item and "honest access" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.03.0 honest access", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_access") is not True or site.get("microsoft_agents_honest") is not True:
+        raise IntegrityError("3.03.0 website has honest access", reason_code="CATALOG_PLANE")
+    if site.get("honest_access_live") is True or site.get("additional_access_needed") is True:
+        raise IntegrityError("3.03.0 honest access is not live and does not need more", reason_code="CATALOG_PLANE")
+    if site.get("grok_is_product") is True or site.get("grok_is_seat") is True:
+        raise IntegrityError("3.03.0 Grok is not the product and not a seat", reason_code="CATALOG_PLANE")
+    access = (catalog.get("microsoft_stack") or {}).get("access") or {}
+    if access.get("kind") != "ainav.honest.access.v1" or access.get("honest") is not True:
+        raise IntegrityError("3.03.0 honest access kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if access.get("need_more") is True or access.get("grok_is_product") is True:
+        raise IntegrityError("3.03.0 this plane does not need more and Grok is not the product", reason_code="CATALOG_REVIEW")
+    site_note = str(access.get("site") or "").lower()
+    if "honest access" not in site_note or "does not need additional access" not in site_note:
+        raise IntegrityError("3.03.0 access site keeps honest access and does not need additional access", reason_code="CATALOG_REVIEW")
+    if "grok build is not a seat" not in site_note:
+        raise IntegrityError("3.03.0 access site keeps Grok Build is not a seat", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest access" not in principles or "grok build is not a seat" not in principles:
+        raise IntegrityError("first-principles must keep honest access", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#agent-tools" not in ops or "honest access" not in ops:
+        raise IntegrityError("3.03.0 operations note keeps SKU attach, #agent-tools, and honest access", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.access import validate_honest_access
+
+    validate_honest_access(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

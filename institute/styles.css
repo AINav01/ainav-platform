@@ -1592,6 +1592,40 @@ table.law tr[data-group] th {
 }
 .agents-board [data-lane="refuse"] button.room-refuse:hover b { color: var(--gold); }
 .agents-board [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
+.access-board {
+  margin-top: 1.15rem;
+  padding-top: 0.15rem;
+}
+@media (min-width: 900px) {
+  .access-board { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1400px) {
+  .access-board { grid-template-columns: repeat(3, 1fr); }
+}
+.access-board [data-lane="have"],
+.access-board [data-lane="need_not"],
+.access-board [data-lane="operators"] { box-shadow: inset 3px 0 0 var(--gold); }
+.access-board [data-lane="owner_only"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.access-board [data-lane="refuse"] {
+  box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
+}
+.access-board [data-lane="refuse"] button.room-refuse,
+.access-board [data-lane="refuse"] button.room-refuse b {
+  color: var(--gold-2);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.access-board [data-lane="refuse"] button.room-refuse:hover b { color: var(--gold); }
+.access-board [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
+#access-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+}
 .agent-around {
   margin: 0.85rem 0 1.15rem;
   display: grid;

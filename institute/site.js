@@ -3997,6 +3997,93 @@
     })
     .catch(function () {});
 
+  var ACCESS_REFUSE = {
+    ask_admin: {
+      message: "Refused. This plane does not need Microsoft admin. James clicks.",
+      ledger: "access_denied · Microsoft admin\nThis plane does not need additional access.\nJames clicks.\nlive=false · live_pin_ok=false"
+    },
+    grok_as_seat: {
+      message: "Refused. Grok Build is not a seat. Two humans bind.",
+      ledger: "access_denied · Grok Build as a seat\nGrok Build is not a seat.\nTwo humans bind.\nlive=false · live_pin_ok=false"
+    },
+    grok_as_product: {
+      message: "Refused. Grok Build is an operator map. Not AINav.",
+      ledger: "access_denied · Grok Build as the product\nGrok Build is an operator map.\nNot AINav.\nlive=false · live_pin_ok=false"
+    },
+    bot_as_admit: {
+      message: "Refused. A Grok bot is not dual admit.",
+      ledger: "access_denied · Grok bot as dual admit\nA Grok bot is not dual admit.\nJob C stays two humans.\nlive=false · live_pin_ok=false"
+    },
+    more_access_as_admit: {
+      message: "Refused. More access is not admit.",
+      ledger: "access_denied · additional access as admit\nThis plane does not need additional access.\nMore access is not admit.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeAccessLedger(text) {
+    var node = document.getElementById("access-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseAccess(button, message, ledger) {
+    var refuse = document.getElementById("access-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeAccessLedger(ledger);
+  }
+
+  function bindAccessRefuses(root) {
+    if (!root || root.getAttribute("data-bound")) return;
+    root.setAttribute("data-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-access-refuse], button.room-refuse");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-access-refuse") || "";
+      var pack = ACCESS_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseAccess(
+        btn,
+        message,
+        pack.ledger || ("access_denied · " + id + "\nThis plane does not need additional access.\nGrok Build is not a seat.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindAccessRefuses(document.getElementById("access-board"));
+
+  function bindAccessConsole(id, key) {
+    var btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var pack = ACCESS_REFUSE[key] || {};
+      refuseAccess(btn, pack.message, pack.ledger);
+    });
+  }
+  bindAccessConsole("access-need-more-btn", "more_access_as_admit");
+  bindAccessConsole("access-grok-seat-btn", "grok_as_seat");
+  bindAccessConsole("access-grok-product-btn", "grok_as_product");
+  bindAccessConsole("access-admin-btn", "ask_admin");
+
+  fetch("access.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.need_more || data.grok_is_product || data.is_admit_plane) return;
+      var status = document.getElementById("access-status");
+      if (status) {
+        status.textContent =
+          "honest=true · need_more=false · grok_is_product=false · grok_is_seat=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

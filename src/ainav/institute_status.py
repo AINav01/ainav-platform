@@ -222,6 +222,11 @@ def public_status() -> dict[str, Any]:
             "microsoft_agents_live": False,
             "microsoft_census": False,
             "agent_365_is_product": False,
+            "honest_access": bool(site.get("honest_access")),
+            "honest_access_live": False,
+            "additional_access_needed": False,
+            "grok_is_product": False,
+            "grok_is_seat": False,
         },
         "bc": {
             "connection": "bc.premium",

@@ -221,9 +221,10 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.02.0",
+  "release": "3.03.0",
   "sku": false,
   "website": {
+    "additional_access_needed": false,
     "agent_365_is_product": false,
     "apex_origin": "ainav-institute.pages.dev",
     "authorized_release": false,
@@ -246,6 +247,10 @@
     "firm_is_crm": false,
     "firm_is_sku": false,
     "first_class": true,
+    "grok_is_product": false,
+    "grok_is_seat": false,
+    "honest_access": true,
+    "honest_access_live": false,
     "in_repo": "institute/index.html",
     "industry_certified": false,
     "industry_complete": true,

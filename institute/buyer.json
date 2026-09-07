@@ -917,7 +917,11 @@
         "Claim a live agent census from this plane",
         "Treat a pinned agent as dual admit",
         "Paste Total agents into the catalog",
-        "Treat ownerless or unmanaged agents as a census"
+        "Treat ownerless or unmanaged agents as a census",
+        "Treat Grok Build as a seat",
+        "Treat a Grok bot as dual admit",
+        "Request Microsoft admin as this Cloud Agent",
+        "Treat additional access as admit"
       ],
       "holds": [
         "No Graph Write from this plane",
