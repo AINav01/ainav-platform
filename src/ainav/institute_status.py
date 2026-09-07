@@ -206,6 +206,9 @@ def public_status() -> dict[str, Any]:
             "industry_href": site.get("industry_href") or "#industry",
             "industry_drawer_live": False,
             "industry_certified": False,
+            "industry_rooms": bool(site.get("industry_rooms")),
+            "industry_crypto": False,
+            "industry_seventeen_a4": False,
         },
         "bc": {
             "connection": "bc.premium",

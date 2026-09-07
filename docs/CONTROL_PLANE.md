@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 2.96.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 2.97.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -161,6 +161,10 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Invent a named vertical as a SKU
 - Does not: Treat maps as certificates on the industry drawer
 - Does not: Treat packs as SKUs on the industry drawer
+- Does not: Treat AINav as a crypto product
+- Does not: Sell 17a-4 WORM
+- Does not: Lead with Room 2
+- Does not: Mint a tokenization SKU
 
 ### Seat B meaning
 
@@ -284,7 +288,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 2.96.0.
+- As of: catalog release 2.97.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.

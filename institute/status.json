@@ -429,7 +429,8 @@
       "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.94.0 operable client universe. Honest zeros sit the board. Refuse is visible. Rails walk. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.95.0 sit-down client day. Now mailbox recorded. Next seat B click. After L1 unnamed. Blocked stays refused. Honest zeros. Refuse is visible. Not a live named day. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "2.96.0 sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Papers are not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.96.0 sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Papers are not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.97.0 sit-down industry rooms. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a /crypto route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -622,7 +623,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "2.96.0",
+  "release": "2.97.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -652,10 +653,13 @@
     "firm_is_sku": false,
     "first_class": true,
     "industry_certified": false,
+    "industry_crypto": false,
     "industry_drawer": true,
     "industry_drawer_live": false,
     "industry_href": "#industry",
     "industry_is_sku": false,
+    "industry_rooms": true,
+    "industry_seventeen_a4": false,
     "launch_gate": true,
     "launch_is_ready": false,
     "launch_ready": false,

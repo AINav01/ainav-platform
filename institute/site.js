@@ -2354,7 +2354,10 @@
       drawer.named_vertical ||
       drawer.filing ||
       drawer.drawer_is_live ||
-      drawer.drawer_invented
+      drawer.drawer_invented ||
+      drawer.crypto_product ||
+      drawer.seventeen_a4 ||
+      (drawer.rooms && (drawer.rooms.live || drawer.rooms.crypto_product || drawer.rooms.seventeen_a4))
     ) {
       return;
     }
@@ -2421,6 +2424,27 @@
         var li = rail(item);
         li.setAttribute("data-area", item.id || "");
         areas.appendChild(li);
+      });
+    }
+    var roomsRoot = document.getElementById("industry-rooms");
+    var rooms = drawer.rooms || {};
+    if (roomsRoot && rooms.room_1 && rooms.room_2) {
+      roomsRoot.textContent = "";
+      [
+        { id: "room_1", name: "Room 1 · books", items: rooms.room_1 },
+        { id: "room_2", name: "Room 2 · refuse", items: rooms.room_2 }
+      ].forEach(function (lane) {
+        var section = document.createElement("section");
+        section.setAttribute("data-room", lane.id);
+        var title = document.createElement("h3");
+        title.textContent = lane.name;
+        section.appendChild(title);
+        var list = document.createElement("ol");
+        (lane.items || []).forEach(function (item) {
+          if (item) list.appendChild(rail(item));
+        });
+        section.appendChild(list);
+        roomsRoot.appendChild(section);
       });
     }
   }
@@ -3609,6 +3633,28 @@
         industryRoute,
         "Refused. The industry drawer sits on #industry. Not a /industry route.",
         "industry_denied · /industry route\nFirst glance stays the write rail.\nEncyclopedia stays a drawer.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industryToken = document.getElementById("industry-token-sku");
+  if (industryToken) {
+    industryToken.addEventListener("click", function () {
+      refuseIndustry(
+        industryToken,
+        "Refused. Not a tokenization SKU. Not a stablecoin SKU. Not an RWA SKU. Not a crypto asset-management SKU. Room 2 is refuse.",
+        "industry_denied · token SKU\nRoom 1 is books. Room 2 is refuse.\nNot a crypto product.\nlive=false · live_pin_ok=false"
+      );
+    });
+  }
+
+  var industrySeventeen = document.getElementById("industry-seventeen-a4");
+  if (industrySeventeen) {
+    industrySeventeen.addEventListener("click", function () {
+      refuseIndustry(
+        industrySeventeen,
+        "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
+        "industry_denied · 17a-4 WORM\nRoom 1 is books. Room 2 is refuse.\nNot a crypto ledger.\nlive=false · live_pin_ok=false"
       );
     });
   }

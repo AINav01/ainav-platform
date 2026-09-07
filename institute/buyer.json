@@ -898,7 +898,11 @@
         "Treat the industry drawer as a live filing",
         "Invent a named vertical as a SKU",
         "Treat maps as certificates on the industry drawer",
-        "Treat packs as SKUs on the industry drawer"
+        "Treat packs as SKUs on the industry drawer",
+        "Treat AINav as a crypto product",
+        "Sell 17a-4 WORM",
+        "Lead with Room 2",
+        "Mint a tokenization SKU"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -1401,7 +1405,7 @@
       "fear_brand": false,
       "filing": false,
       "fourth_sku": false,
-      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Not a /industry route. Not LIVE_PIN_OK.",
+      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK.",
       "kind": "ainav.industry_drawer.v1",
       "lanes": [
         {
@@ -1542,11 +1546,11 @@
         }
       ],
       "launch": false,
-      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs.",
+      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4.",
       "live": false,
       "live_pin_ok": false,
       "named_vertical": false,
-      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
+      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
       "owner_only": [
         "Signed L1",
         "Assigned industry packs on a named twin",
@@ -1577,6 +1581,18 @@
           "id": "noncompliance_is_the_write",
           "name": "Non-compliance is the write",
           "note": "Non-compliance that is ours is the landed write."
+        },
+        {
+          "href": "#buyer",
+          "id": "room_1_is_the_journal",
+          "name": "Room 1 is the journal",
+          "note": "Booked receivable, reserve journal, and fund NAV in BC are Room 1."
+        },
+        {
+          "href": "#industry",
+          "id": "not_a_crypto_product",
+          "name": "Not a crypto product",
+          "note": "Immutable is consume-once, not a coin. Not 17a-4."
         }
       ],
       "refuse": [
@@ -1587,10 +1603,87 @@
         "Healthcare GRC product",
         "ISO certificate mill",
         "Close regulator clocks by buying L1",
-        "LIVE_PIN_OK theater"
+        "LIVE_PIN_OK theater",
+        "Mint a tokenization SKU",
+        "Mint a stablecoin SKU",
+        "Mint an RWA SKU",
+        "Mint a crypto asset-management SKU",
+        "Sell 17a-4 WORM",
+        "Treat AINav as a crypto product",
+        "Lead with Room 2"
       ],
+      "rooms": {
+        "crypto_product": false,
+        "fourth_sku": false,
+        "kind": "ainav.industry_rooms.v1",
+        "lead": "bc.general_journal.post",
+        "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2.",
+        "live": false,
+        "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Not a fourth SKU. Not LIVE_PIN_OK.",
+        "room_1": [
+          {
+            "href": "#packs",
+            "id": "bank",
+            "name": "Bank desk",
+            "note": "industry.bank. Same admit plane. Not 17a-4.",
+            "state": "recorded"
+          },
+          {
+            "href": "#packs",
+            "id": "reserve",
+            "name": "Reserve journal / fund NAV",
+            "note": "Stablecoin reserve journal or fund NAV in BC is Room 1.",
+            "state": "recorded"
+          },
+          {
+            "href": "#industry",
+            "id": "receivable",
+            "name": "Booked receivable",
+            "note": "Tokenized RWA on the books is Room 1. Issuing the token is Room 2.",
+            "state": "recorded"
+          }
+        ],
+        "room_2": [
+          {
+            "href": "#industry",
+            "id": "stablecoin_mint",
+            "name": "Stablecoin mint / burn",
+            "note": "On-chain mint is Room 2. Not a stablecoin SKU.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "rwa_issue",
+            "name": "RWA issuance / tokenization",
+            "note": "Issuing the token is Room 2. Not a tokenization SKU.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "crypto_ams",
+            "name": "Crypto asset management",
+            "note": "Wallet signing is Room 2. Not a crypto asset-management SKU.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "wallet",
+            "name": "Wallet is not a seat",
+            "note": "Custody move and ATS match stay Room 2. Wallet is not a seat.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "seventeen_a4",
+            "name": "17a-4 WORM / crypto ledger",
+            "note": "Not 17a-4. Not a coin. Walk away if they think P-ADM is WORM.",
+            "state": "refused"
+          }
+        ],
+        "seventeen_a4": false
+      },
       "sit_down": true,
-      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Not a /industry route.",
+      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a /industry route.",
       "sku": false
     },
     "live": false,

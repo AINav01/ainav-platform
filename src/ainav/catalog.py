@@ -1140,8 +1140,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 66:
-        raise IntegrityError("expert review needs 16–66 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 67:
+        raise IntegrityError("expert review needs 16–67 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1198,6 +1198,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         64: ("operable", "live_pin_ok"),
         65: ("sit-down", "live_pin_ok"),
         66: ("sit-down industry", "live_pin_ok"),
+        67: ("room 1", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1267,6 +1268,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep the sit-down client day", reason_code="CATALOG_REVIEW")
     if "sit-down industry drawer" not in blob or "maps stay claimed=false" not in blob or "not a /industry route" not in blob:
         raise IntegrityError("first-principles must keep the sit-down industry drawer", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in blob or "not a crypto product" not in blob or "not 17a-4" not in blob:
+        raise IntegrityError("first-principles must keep Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1368,6 +1371,8 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat the industry drawer as a live filing", reason_code="CATALOG_REVIEW")
     if "maps as certificates on the industry drawer" not in does_not or "packs as skus on the industry drawer" not in does_not:
         raise IntegrityError("CISO posture does not treat maps as certificates or packs as SKUs", reason_code="CATALOG_REVIEW")
+    if "crypto product" not in does_not or "17a-4 worm" not in does_not or "room 2" not in does_not or "tokenization sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat AINav as a crypto product or sell 17a-4 WORM", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2105,7 +2110,7 @@ def _validate_industry_drawer(body: Any) -> None:
     if paper_hrefs != INDUSTRY_DRAWER_PAPER_HREFS:
         raise IntegrityError("industry drawer papers walk to write, bake-off, governance, and risk", reason_code="CATALOG_REVIEW")
     paper_blob = " ".join(f"{item.get('name') or ''} {item.get('note') or ''}".lower() for item in papers)
-    for stem in ("write that must not happen", "worst failsafe", "claimed=false", "landed write"):
+    for stem in ("write that must not happen", "worst failsafe", "claimed=false", "landed write", "reserve journal", "not a coin"):
         if stem not in paper_blob:
             raise IntegrityError(f"industry drawer papers must keep {stem}", reason_code="CATALOG_REVIEW")
     areas = [item for item in (drawer.get("areas") or []) if isinstance(item, dict)]
@@ -2128,6 +2133,13 @@ def _validate_industry_drawer(body: Any) -> None:
         "certificate mill",
         "close regulator clocks",
         "live_pin",
+        "tokenization sku",
+        "stablecoin sku",
+        "rwa sku",
+        "crypto asset-management sku",
+        "17a-4 worm",
+        "crypto product",
+        "room 2",
     ):
         if stem not in refuse:
             raise IntegrityError("industry drawer refuse keeps maps-as-certificates and /industry route", reason_code="CATALOG_REVIEW")
@@ -2138,9 +2150,13 @@ def _validate_industry_drawer(body: Any) -> None:
     lede = str(drawer.get("lede") or "").lower()
     if "sit-down industry drawer" not in lede or "maps stay claimed=false" not in lede or "not skus" not in lede:
         raise IntegrityError("industry drawer lede keeps sit-down, maps claimed=false, and not SKUs", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in lede or "not a crypto product" not in lede:
+        raise IntegrityError("industry drawer lede keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     glance = str(drawer.get("glance") or "").lower()
     if "sit-down industry drawer" not in glance or "not a /industry route" not in glance:
         raise IntegrityError("industry drawer glance keeps sit-down and not a /industry route", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in glance or "not a crypto product" not in glance:
+        raise IntegrityError("industry drawer glance keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
     site = str(drawer.get("site") or "").lower()
     if "#industry" not in site or "not a /industry route" not in site:
         raise IntegrityError("industry drawer site is #industry, not a /industry route", reason_code="CATALOG_REVIEW")
@@ -2149,6 +2165,49 @@ def _validate_industry_drawer(body: Any) -> None:
     note = str(drawer.get("note") or "").lower()
     if "maps stay claimed=false" not in note or "not a live filing" not in note or "landed write" not in note:
         raise IntegrityError("industry drawer note keeps maps claimed=false and not a live filing", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in note or "not a crypto product" not in note or "not 17a-4" not in note:
+        raise IntegrityError("industry drawer note keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    _validate_industry_rooms(drawer.get("rooms"))
+
+
+def _validate_industry_rooms(body: Any) -> None:
+    rooms = _as_dict(body, "industry_rooms")
+    if rooms.get("kind") != "ainav.industry_rooms.v1":
+        raise IntegrityError("industry rooms kind is ainav.industry_rooms.v1", reason_code="CATALOG_REVIEW")
+    for flag in ("live", "crypto_product", "seventeen_a4", "fourth_sku"):
+        if rooms.get(flag) is True:
+            raise IntegrityError(f"industry rooms cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if rooms.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("industry rooms lead stays bc.general_journal.post", reason_code="CATALOG_REVIEW")
+    room_1 = [item for item in (rooms.get("room_1") or []) if isinstance(item, dict)]
+    room_2 = [item for item in (rooms.get("room_2") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in room_1] != INDUSTRY_ROOM_1_IDS:
+        raise IntegrityError("industry Room 1 items stay bank, reserve, receivable", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in room_2] != INDUSTRY_ROOM_2_IDS:
+        raise IntegrityError("industry Room 2 items stay mint, RWA, crypto AMS, wallet, 17a-4", reason_code="CATALOG_REVIEW")
+    hrefs_1 = {item.get("id"): str(item.get("href") or "") for item in room_1}
+    hrefs_2 = {item.get("id"): str(item.get("href") or "") for item in room_2}
+    if hrefs_1 != INDUSTRY_ROOM_1_HREFS or hrefs_2 != INDUSTRY_ROOM_2_HREFS:
+        raise IntegrityError("industry rooms walk to packs and #industry", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in room_1 + room_2
+    )
+    blob += f" {rooms.get('lede') or ''} {rooms.get('note') or ''}".lower()
+    for stem in (
+        "industry.bank",
+        "reserve journal",
+        "booked receivable",
+        "issuing the token",
+        "mint",
+        "wallet signing",
+        "17a-4",
+        "not a coin",
+        "ats match",
+        "wallet is not a seat",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"industry rooms must keep {stem}", reason_code="CATALOG_REVIEW")
 
 
 def _validate_operating_day(body: Any) -> None:
@@ -2330,12 +2389,30 @@ INDUSTRY_DRAWER_PAPER_IDS = [
     "independence",
     "maps_are_not_filings",
     "noncompliance_is_the_write",
+    "room_1_is_the_journal",
+    "not_a_crypto_product",
 ]
 INDUSTRY_DRAWER_PAPER_HREFS = {
     "unauthorized_journal": "#buyer",
     "independence": "#success",
     "maps_are_not_filings": "#governance",
     "noncompliance_is_the_write": "#risk",
+    "room_1_is_the_journal": "#buyer",
+    "not_a_crypto_product": "#industry",
+}
+INDUSTRY_ROOM_1_IDS = ["bank", "reserve", "receivable"]
+INDUSTRY_ROOM_2_IDS = ["stablecoin_mint", "rwa_issue", "crypto_ams", "wallet", "seventeen_a4"]
+INDUSTRY_ROOM_1_HREFS = {
+    "bank": "#packs",
+    "reserve": "#packs",
+    "receivable": "#industry",
+}
+INDUSTRY_ROOM_2_HREFS = {
+    "stablecoin_mint": "#industry",
+    "rwa_issue": "#industry",
+    "crypto_ams": "#industry",
+    "wallet": "#industry",
+    "seventeen_a4": "#industry",
 }
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
@@ -3384,6 +3461,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_294(catalog, body)
     _validate_instrument_295(catalog, body)
     _validate_instrument_296(catalog, body)
+    _validate_instrument_297(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4129,8 +4207,6 @@ def _validate_instrument_295(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_296(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "2.96.0":
-        raise IntegrityError("entity.release is 2.96.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.96.0" in item and "sit-down" in item and "industry" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.96.0 sit-down industry drawer", reason_code="CATALOG_ENGINEERING")
@@ -4159,6 +4235,34 @@ def _validate_instrument_296(catalog: dict[str, Any], body: dict[str, Any]) -> N
     ops = str((catalog.get("operations") or {}).get("note") or "").lower()
     if "sku attach" not in ops or "#industry" not in ops or "sit-down industry drawer" not in ops:
         raise IntegrityError("2.96.0 operations note keeps SKU attach, #industry, and sit-down industry drawer", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_297(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "2.97.0":
+        raise IntegrityError("entity.release is 2.97.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.97.0" in item and "room" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.97.0 sit-down industry rooms", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_rooms") is not True or site.get("industry_drawer") is not True:
+        raise IntegrityError("2.97.0 website has sit-down industry rooms", reason_code="CATALOG_PLANE")
+    if site.get("industry_crypto") is True or site.get("industry_seventeen_a4") is True:
+        raise IntegrityError("2.97.0 industry rooms are not a crypto product and not 17a-4", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    rooms = drawer.get("rooms") or {}
+    if rooms.get("kind") != "ainav.industry_rooms.v1" or rooms.get("live") is True:
+        raise IntegrityError("2.97.0 industry rooms kind stays catalog law and not live", reason_code="CATALOG_REVIEW")
+    if rooms.get("crypto_product") is True or rooms.get("seventeen_a4") is True:
+        raise IntegrityError("2.97.0 industry rooms stay not a crypto product and not 17a-4", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "room 1" not in site_note or "not a crypto product" not in site_note:
+        raise IntegrityError("2.97.0 industry drawer site keeps Room 1 and not a crypto product", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "room 1 is books" not in principles or "not a crypto product" not in principles:
+        raise IntegrityError("first-principles must keep Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "room 1" not in ops:
+        raise IntegrityError("2.97.0 operations note keeps SKU attach, #industry, and Room 1", reason_code="CATALOG_REVIEW")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -322,7 +322,8 @@
       "2.93.0 first-class client business universe. MFA identifies. Identify is not admit. Segregated branded sandbox unnamed until signed L1. First and second record. Maps claimed=false. Packs are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.94.0 operable client universe. Honest zeros sit the board. Refuse is visible. Rails walk. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "2.95.0 sit-down client day. Now mailbox recorded. Next seat B click. After L1 unnamed. Blocked stays refused. Honest zeros. Refuse is visible. Not a live named day. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "2.96.0 sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Papers are not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "2.96.0 sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Papers are not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "2.97.0 sit-down industry rooms. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a /crypto route. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -400,7 +401,8 @@
       "2.93.0 first-class client business universe sits on #universe: MFA identifies, two seats admit, segregated branded sandbox, audit trail, maps claimed=false, P-ADM keep, paid U-DUAL, custom packs. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Trademark filing and public apex brand stay owner-only. Not a SKU. Not MFA-as-admit. Not LIVE_PIN_OK.",
       "2.94.0 operable client universe sits on #universe: honest zeros, visible refuse, rails that walk. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Not LIVE_PIN_OK.",
       "2.95.0 sit-down client day sits on #universe: now / next / after L1 / blocked. Assigned stays false. Named client stays false. Seat B click and signed L1 stay owner-only. Not a live named day. Not LIVE_PIN_OK.",
-      "2.96.0 sit-down industry drawer sits on #industry: sit / maps / attach / refuse. Maps stay claimed=false. Papers are not filings. Packs are not SKUs. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not LIVE_PIN_OK."
+      "2.96.0 sit-down industry drawer sits on #industry: sit / maps / attach / refuse. Maps stay claimed=false. Papers are not filings. Packs are not SKUs. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not LIVE_PIN_OK.",
+      "2.97.0 sit-down industry rooms sit on #industry: Room 1 books / Room 2 refuse. Banks and reserve journals sit the write. Tokenization, RWAs, stablecoins, and crypto AMS stay refused as product. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -604,7 +606,11 @@
           "Treat the industry drawer as a live filing",
           "Invent a named vertical as a SKU",
           "Treat maps as certificates on the industry drawer",
-          "Treat packs as SKUs on the industry drawer"
+          "Treat packs as SKUs on the industry drawer",
+          "Treat AINav as a crypto product",
+          "Sell 17a-4 WORM",
+          "Lead with Room 2",
+          "Mint a tokenization SKU"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1107,7 +1113,7 @@
         "fear_brand": false,
         "filing": false,
         "fourth_sku": false,
-        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Not a /industry route. Not LIVE_PIN_OK.",
+        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK.",
         "kind": "ainav.industry_drawer.v1",
         "lanes": [
           {
@@ -1248,11 +1254,11 @@
           }
         ],
         "launch": false,
-        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs.",
+        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4.",
         "live": false,
         "live_pin_ok": false,
         "named_vertical": false,
-        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
+        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK.",
         "owner_only": [
           "Signed L1",
           "Assigned industry packs on a named twin",
@@ -1283,6 +1289,18 @@
             "id": "noncompliance_is_the_write",
             "name": "Non-compliance is the write",
             "note": "Non-compliance that is ours is the landed write."
+          },
+          {
+            "href": "#buyer",
+            "id": "room_1_is_the_journal",
+            "name": "Room 1 is the journal",
+            "note": "Booked receivable, reserve journal, and fund NAV in BC are Room 1."
+          },
+          {
+            "href": "#industry",
+            "id": "not_a_crypto_product",
+            "name": "Not a crypto product",
+            "note": "Immutable is consume-once, not a coin. Not 17a-4."
           }
         ],
         "refuse": [
@@ -1293,10 +1311,87 @@
           "Healthcare GRC product",
           "ISO certificate mill",
           "Close regulator clocks by buying L1",
-          "LIVE_PIN_OK theater"
+          "LIVE_PIN_OK theater",
+          "Mint a tokenization SKU",
+          "Mint a stablecoin SKU",
+          "Mint an RWA SKU",
+          "Mint a crypto asset-management SKU",
+          "Sell 17a-4 WORM",
+          "Treat AINav as a crypto product",
+          "Lead with Room 2"
         ],
+        "rooms": {
+          "crypto_product": false,
+          "fourth_sku": false,
+          "kind": "ainav.industry_rooms.v1",
+          "lead": "bc.general_journal.post",
+          "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2.",
+          "live": false,
+          "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Not a fourth SKU. Not LIVE_PIN_OK.",
+          "room_1": [
+            {
+              "href": "#packs",
+              "id": "bank",
+              "name": "Bank desk",
+              "note": "industry.bank. Same admit plane. Not 17a-4.",
+              "state": "recorded"
+            },
+            {
+              "href": "#packs",
+              "id": "reserve",
+              "name": "Reserve journal / fund NAV",
+              "note": "Stablecoin reserve journal or fund NAV in BC is Room 1.",
+              "state": "recorded"
+            },
+            {
+              "href": "#industry",
+              "id": "receivable",
+              "name": "Booked receivable",
+              "note": "Tokenized RWA on the books is Room 1. Issuing the token is Room 2.",
+              "state": "recorded"
+            }
+          ],
+          "room_2": [
+            {
+              "href": "#industry",
+              "id": "stablecoin_mint",
+              "name": "Stablecoin mint / burn",
+              "note": "On-chain mint is Room 2. Not a stablecoin SKU.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "rwa_issue",
+              "name": "RWA issuance / tokenization",
+              "note": "Issuing the token is Room 2. Not a tokenization SKU.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "crypto_ams",
+              "name": "Crypto asset management",
+              "note": "Wallet signing is Room 2. Not a crypto asset-management SKU.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "wallet",
+              "name": "Wallet is not a seat",
+              "note": "Custody move and ATS match stay Room 2. Wallet is not a seat.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "seventeen_a4",
+              "name": "17a-4 WORM / crypto ledger",
+              "note": "Not 17a-4. Not a coin. Walk away if they think P-ADM is WORM.",
+              "state": "refused"
+            }
+          ],
+          "seventeen_a4": false
+        },
         "sit_down": true,
-        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Not a /industry route.",
+        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not a /industry route.",
         "sku": false
       },
       "live": false,
@@ -2676,6 +2771,14 @@
         "n": 66,
         "title": "Sit-down industry drawer",
         "who": "tree"
+      },
+      {
+        "do": "Ship 2.97.0 sit-down industry rooms. Room 1 is books. Room 2 is refuse. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 67,
+        "title": "Sit-down industry rooms",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -2769,7 +2872,8 @@
       "2.93.0 first-class client business universe is catalog law: MFA identifies. Identify is not admit. Two seats admit. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs, libraries, and FFS hours are not SKUs. Not a /universe route. Not LIVE_PIN_OK.",
       "2.94.0 operable client universe is catalog law: honest zeros sit the board. Refuse is visible. Rails walk to identify, control, close, governance, and packs. Maps stay claimed=false. Not LIVE_PIN_OK.",
       "2.95.0 sit-down client day is catalog law: now / next / after L1 / blocked. Mailbox recorded. Seat B click owner-only. Unnamed until signed L1. Not a live named day. Not LIVE_PIN_OK.",
-      "2.96.0 sit-down industry drawer is catalog law: sit / maps / attach / refuse. Dynamics BC treasury. Domestic and international maps stay claimed=false. White papers are catalog drawers, not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK."
+      "2.96.0 sit-down industry drawer is catalog law: sit / maps / attach / refuse. Dynamics BC treasury. Domestic and international maps stay claimed=false. White papers are catalog drawers, not filings. Packs, libraries, and repositories are not SKUs. Not a /industry route. Not LIVE_PIN_OK.",
+      "2.97.0 sit-down industry rooms are catalog law: Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Not a crypto product. Not 17a-4. Not a /crypto route. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

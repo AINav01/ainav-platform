@@ -92,10 +92,10 @@
     {
       "href": "index.html#industry",
       "id": "industry",
-      "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Not a /industry route.",
+      "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Not a crypto product. Not a /industry route.",
       "title": "Industry drawer"
     }
   ],
-  "release": "2.96.0",
+  "release": "2.97.0",
   "sku": false
 }

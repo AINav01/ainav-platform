@@ -1517,6 +1517,16 @@ table.law tr[data-group] th {
 .industry-day [data-lane="refuse"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
+.industry-rooms {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .industry-rooms { grid-template-columns: repeat(2, 1fr); }
+}
+.industry-rooms [data-room="room_1"] { box-shadow: inset 3px 0 0 var(--gold); }
+.industry-rooms [data-room="room_2"] {
+  box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
+}
 .universe-day [data-lane="blocked"] {
   box-shadow: inset 3px 0 0 color-mix(in srgb, var(--hold) 80%, var(--gold));
 }
