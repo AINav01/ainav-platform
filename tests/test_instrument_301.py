@@ -260,3 +260,90 @@ def test_industry_control_fail_closed():
     upgrade["expert_review"]["upgrades"][-1]["do"] = "Ship 3.01.0. Not LIVE_PIN_OK."
     with pytest.raises(IntegrityError):
         validate_catalog(upgrade)
+    principles_policy = copy.deepcopy(cat["expert_review"]["first_principles"])
+    principles_policy = [
+        item.replace("Company policy is not a SKU.", "Doctrine stays catalog law.").replace(
+            "Not AI Governess.", "Not a fourth name."
+        )
+        for item in principles_policy
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(principles_policy)
+    for missing in (
+        "Treat GENIUS or CLARITY as closed",
+        "Treat fear as the first glance",
+        "Treat company policy as a SKU",
+        "Call the product AI Governess",
+    ):
+        ciso_hole = copy.deepcopy(cat["expert_review"]["success"])
+        ciso_hole["ciso"]["does_not"] = [item for item in ciso_hole["ciso"]["does_not"] if item != missing]
+        with pytest.raises(IntegrityError):
+            catmod._validate_success_program(ciso_hole)
+    drawer = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"])
+    drawer["refuse"] = [item for item in drawer["refuse"] if "GENIUS" not in item and "CLARITY" not in item]
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_drawer(drawer)
+    for field in ("lede", "glance", "note"):
+        field_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"])
+        field_hole[field] = field_hole[field].replace("Honest control", "Control").replace("honest control", "control")
+        with pytest.raises(IntegrityError):
+            catmod._validate_industry_drawer(field_hole)
+    control = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    control["lede"] = control["lede"].replace("If you don't have it", "If it is missing")
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(control)
+    governess_lede = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    governess_lede["lede"] = governess_lede["lede"].replace("Not AI Governess.", "Not another name.")
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(governess_lede)
+    note_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    note_hole["note"] = note_hole["note"].replace("claimed=false", "mapped")
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(note_hole)
+    for flag in ("sku", "dno", "clarity_closed", "policy_sku", "fear_brand", "launch"):
+        flag_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+        flag_hole[flag] = True
+        with pytest.raises(IntegrityError):
+            catmod._validate_industry_control(flag_hole)
+    kind_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    kind_hole["kind"] = "ainav.industry_rooms.v1"
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(kind_hole)
+    lanes_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    lanes_hole["lanes"] = lanes_hole["lanes"][1:]
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(lanes_hole)
+    href_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    href_hole["lanes"][0]["items"][0]["href"] = "/fear"
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(href_hole)
+    stem_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    stem_hole["lanes"][0]["items"][0]["note"] = "Missing the plane."
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(stem_hole)
+    kind_301 = copy.deepcopy(cat)
+    kind_301["expert_review"]["success"]["industry_drawer"]["control"]["kind"] = "ainav.industry_rooms.v1"
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_301(kind_301, kind_301["plane_interface"])
+    site_301 = copy.deepcopy(cat)
+    site_301["expert_review"]["success"]["industry_drawer"]["control"]["site"] = (
+        "Control on #industry. Need is #control. Not a live filing."
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_301(site_301, site_301["plane_interface"])
+    ops_301 = copy.deepcopy(cat)
+    ops_301["operations"]["note"] = "SKU attach chain. #industry. Complete industry drawer."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_301(ops_301, ops_301["plane_interface"])
+    refuse_text = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    refuse_text["lanes"][-1]["items"][0]["refuse_text"] = "Refused."
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(refuse_text)
+    glance_hole = copy.deepcopy(cat["expert_review"]["success"]["industry_drawer"]["control"])
+    glance_hole["glance"] = glance_hole["glance"].replace("Honest control", "Control")
+    with pytest.raises(IntegrityError):
+        catmod._validate_industry_control(glance_hole)
+    gov = copy.deepcopy(cat)
+    gov["governance"]["refuse"] = [item for item in gov["governance"]["refuse"] if "GENIUS" not in item and "CLARITY" not in item]
+    with pytest.raises(IntegrityError):
+        validate_catalog(gov)
