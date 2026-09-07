@@ -4084,6 +4084,72 @@
     })
     .catch(function () {});
 
+  var OPERATOR_REFUSE = {
+    swap_operator: {
+      message: "Refused. Cursor stays the recorded operator.",
+      ledger: "operator_denied · swap\nCursor stays recorded.\nGrok Build stays mapped.\nlive=false · live_pin_ok=false"
+    },
+    grok_as_recorded: {
+      message: "Refused. Grok Build is mapped. Not this recorded operator.",
+      ledger: "operator_denied · Grok as recorded\nGrok Build is mapped.\nNot this recorded operator.\nlive=false · live_pin_ok=false"
+    },
+    bot_as_operator: {
+      message: "Refused. A Grok bot is not the operator. Not dual admit.",
+      ledger: "operator_denied · Grok bot as operator\nA Grok bot is not the operator.\nNot dual admit.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeOperatorLedger(text) {
+    var node = document.getElementById("operator-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseOperator(button, message, ledger) {
+    var refuse = document.getElementById("operator-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeOperatorLedger(ledger);
+  }
+
+  function bindOperatorRefuses(root) {
+    if (!root || root.getAttribute("data-bound")) return;
+    root.setAttribute("data-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-operator-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-operator-refuse") || "";
+      var pack = OPERATOR_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseOperator(
+        btn,
+        message,
+        pack.ledger || ("operator_denied · " + id + "\nCursor stays recorded.\nGrok Build stays mapped.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindOperatorRefuses(document.getElementById("agent-tools"));
+
+  fetch("operators.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.swap || data.grok_is_recorded || data.is_admit_plane) return;
+      var status = document.getElementById("operator-status");
+      if (status) {
+        status.textContent =
+          "honest=true · swap=false · grok_is_recorded=false · bot_is_operator=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

@@ -329,7 +329,8 @@
       "3.00.0 complete industry drawer: sit / maps / attach / refuse; Room 1 books; Room 2 refuse; every refuse clicks; catalog is the message; honest zeros; assembled on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
       "3.01.0 honest control: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false, employee AI oversight, company policy is not a SKU; not a live filing; not AI Governess; not a fear brand; not from this plane",
       "3.02.0 honest agents. Agents > All. Tools registry. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Leave five Available. Block Dataverse MCP. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.03.0 honest access. This plane does not need additional access. Grok Build is an operator map. Not a seat. Not AINav. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.03.0 honest access. This plane does not need additional access. Grok Build is an operator map. Not a seat. Not AINav. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -414,7 +415,8 @@
       "3.00.0 complete industry drawer sits on #industry: sit / maps / attach / refuse, Room 1 walks, every refuse clicks, catalog is the message, Room 2 records stay 0. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
       "3.01.0 honest control sits on #industry: need, consequence, now, around the corner, human control, fiduciary. GENIUS and CLARITY stay claimed=false. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
       "3.02.0 honest agents sit on #agent-tools. Owner reviews https://admin.cloud.microsoft/?#/agents/all. This plane cannot take a census. Seat B click and signed L1 stay owner-only. Not from this plane.",
-      "3.03.0 honest access sits on #agent-tools. This plane does not need Microsoft admin, grok login, or XAI_API_KEY. Grok Build stays installed=null. SuperGrok / X Premium Plus is not recorded. Seat B click and signed L1 stay owner-only. Not from this plane."
+      "3.03.0 honest access sits on #agent-tools. This plane does not need Microsoft admin, grok login, or XAI_API_KEY. Grok Build stays installed=null. SuperGrok / X Premium Plus is not recorded. Seat B click and signed L1 stay owner-only. Not from this plane.",
+      "3.04.0 honest operators sit on #agent-tools. Cursor stays recorded. Grok Build stays mapped. A Grok bot is not Cynthia's click. SuperGrok stays owner-only. Not from this plane."
     ],
     "success": {
       "bake_off": {
@@ -641,7 +643,10 @@
           "Treat Grok Build as a seat",
           "Treat a Grok bot as dual admit",
           "Request Microsoft admin as this Cloud Agent",
-          "Treat additional access as admit"
+          "Treat additional access as admit",
+          "Treat Grok Build as the recorded operator",
+          "Treat a Grok bot as the operator",
+          "Swap Cursor for Grok"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1085,6 +1090,14 @@
         "kind": "ainav.honest.access.v1",
         "live": false,
         "need_more": false
+      },
+      "honest_operators": {
+        "grok_is_recorded": false,
+        "honest": true,
+        "href": "#agent-tools",
+        "kind": "ainav.honest.operators.v1",
+        "live": false,
+        "swap": false
       },
       "human_control": {
         "cms": false,
@@ -3147,6 +3160,14 @@
         "n": 73,
         "title": "Honest access",
         "who": "tree"
+      },
+      {
+        "do": "Ship 3.04.0 honest operators on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 74,
+        "title": "Honest operators",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -3247,7 +3268,8 @@
       "3.00.0 complete industry drawer is catalog law: sit / maps / attach / refuse, Room 1 books, and Room 2 refuse sit together on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.",
       "3.01.0 honest control is catalog law: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
       "3.02.0 honest agents is catalog law: Agents > All, Tools registry, an agent is not a seat, Agent 365 is not AINav. Census stays claimed=false. Leave five Available. Block Dataverse MCP. Cursor Cloud Agent operates host and twin. Not LIVE_PIN_OK.",
-      "3.03.0 honest access is catalog law: this plane does not need additional access. Grok Build is an operator map. Grok Build is not a seat. A Grok bot is not dual admit. Cursor Cloud Agent stays the recorded operator. Not LIVE_PIN_OK."
+      "3.03.0 honest access is catalog law: this plane does not need additional access. Grok Build is an operator map. Grok Build is not a seat. A Grok bot is not dual admit. Cursor Cloud Agent stays the recorded operator. Not LIVE_PIN_OK.",
+      "3.04.0 honest operators is catalog law: Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Owner cannot be the operator. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

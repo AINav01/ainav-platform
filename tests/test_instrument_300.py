@@ -23,7 +23,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_300_complete_industry_drawer():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.03.0"
+    assert cat["entity"]["release"] == "3.04.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     rooms = drawer["rooms"]
     assert drawer["complete"] is True
@@ -69,7 +69,7 @@ def test_release_is_300_complete_industry_drawer():
     assert "every refuse clicks" in principles
     assert "catalog is the message" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 73
+    assert len(cat["expert_review"]["upgrades"]) == 74
     assert upgrades[70]["who"] == "tree"
     assert upgrades[70]["done"] is True
     assert upgrades[70]["marks_live_pin"] is False
@@ -84,7 +84,7 @@ def test_release_is_300_complete_industry_drawer():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
-    assert "3.03.0" in html
+    assert "3.04.0" in html
     assert "complete industry drawer" in html.lower()
     assert "sit / maps / attach / refuse" in html.lower()
     assert [item["id"] for item in rooms["room_1"]] == INDUSTRY_ROOM_1_IDS
@@ -98,9 +98,9 @@ def test_release_is_300_complete_industry_drawer():
     assert "Complete" in identify
     assert "complete industry drawer" in twin.lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.03.0"
+    assert dash["release"] == "3.04.0"
     status = public_status()
-    assert status["release"] == "3.03.0"
+    assert status["release"] == "3.04.0"
     assert status["website"]["industry_complete"] is True
     assert status["website"]["industry_fully_operable"] is True
     held = publish_institute()

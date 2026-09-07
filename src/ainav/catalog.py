@@ -78,6 +78,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.microsoft.agent_tools import validate_agent_tools
     from ainav.microsoft.access import validate_honest_access
     from ainav.microsoft.agents import validate_microsoft_agents
+    from ainav.microsoft.operators import validate_honest_operators
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
@@ -87,6 +88,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_agent_tools(catalog)
     validate_microsoft_agents(catalog)
     validate_honest_access(catalog)
+    validate_honest_operators(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1144,8 +1146,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 73:
-        raise IntegrityError("expert review needs 16–72 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 74:
+        raise IntegrityError("expert review needs 16–74 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1209,6 +1211,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         71: ("honest control", "live_pin_ok"),
         72: ("honest agents", "live_pin_ok"),
         73: ("honest access", "live_pin_ok"),
+        74: ("honest operators", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1298,6 +1301,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest access and does not need additional access", reason_code="CATALOG_REVIEW")
     if "grok build is not a seat" not in blob:
         raise IntegrityError("first-principles must keep Grok Build is not a seat", reason_code="CATALOG_REVIEW")
+    if "honest operators" not in blob or "cursor is recorded" not in blob:
+        raise IntegrityError("first-principles must keep honest operators and Cursor is recorded", reason_code="CATALOG_REVIEW")
+    if "grok build is mapped" not in blob or "grok bot is not admit" not in blob:
+        raise IntegrityError("first-principles must keep Grok Build is mapped and Grok bot is not admit", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1455,6 +1462,21 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest access sits on #agent-tools", reason_code="CATALOG_REVIEW")
     if access.get("live") is True or access.get("need_more") is True or access.get("grok_is_product") is True:
         raise IntegrityError("success honest access stays not live and does not need more", reason_code="CATALOG_REVIEW")
+    if "grok build as the recorded operator" not in does_not:
+        raise IntegrityError("CISO posture does not treat Grok Build as the recorded operator", reason_code="CATALOG_REVIEW")
+    if "grok bot as the operator" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Grok bot as the operator", reason_code="CATALOG_REVIEW")
+    if "swap cursor for grok" not in does_not:
+        raise IntegrityError("CISO posture does not swap Cursor for Grok", reason_code="CATALOG_REVIEW")
+    hosted_ops = success.get("honest_operators")
+    if not isinstance(hosted_ops, dict):
+        raise IntegrityError("success program keeps honest operators", reason_code="CATALOG_REVIEW")
+    if hosted_ops.get("kind") != "ainav.honest.operators.v1" or hosted_ops.get("honest") is not True:
+        raise IntegrityError("success honest operators stay catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_ops.get("href") != "#agent-tools":
+        raise IntegrityError("success honest operators sit on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_ops.get("live") is True or hosted_ops.get("swap") is True or hosted_ops.get("grok_is_recorded") is True:
+        raise IntegrityError("success honest operators stay not live and do not swap", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2840,6 +2862,26 @@ HONEST_ACCESS_HREFS = {
     "bot_as_admit": "#agent-tools",
     "more_access_as_admit": "#agent-tools",
 }
+HONEST_OPERATOR_IDS = ["cursor", "grok_build", "grok_bot"]
+HONEST_OPERATOR_ROLES = {
+    "cursor": "recorded",
+    "grok_build": "mapped",
+    "grok_bot": "not_admit",
+}
+HONEST_OPERATOR_REFUSE_IDS = ["swap_operator", "grok_as_recorded", "bot_as_operator"]
+HONEST_OPERATOR_REFUSE_TEXT = {
+    "swap_operator": "Refused. Cursor stays the recorded operator.",
+    "grok_as_recorded": "Refused. Grok Build is mapped. Not this recorded operator.",
+    "bot_as_operator": "Refused. A Grok bot is not the operator. Not dual admit.",
+}
+HONEST_OPERATOR_HREFS = {
+    "cursor": "#agent-tools",
+    "grok_build": "#agent-tools",
+    "grok_bot": "#agent-tools",
+    "swap_operator": "#agent-tools",
+    "grok_as_recorded": "#agent-tools",
+    "bot_as_operator": "#agent-tools",
+}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -3898,6 +3940,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_301(catalog, body)
     _validate_instrument_302(catalog, body)
     _validate_instrument_303(catalog, body)
+    _validate_instrument_304(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4876,8 +4919,6 @@ def _validate_instrument_302(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_303(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.03.0":
-        raise IntegrityError("entity.release is 3.03.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.03.0" in item and "honest access" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.03.0 honest access", reason_code="CATALOG_ENGINEERING")
@@ -4907,6 +4948,54 @@ def _validate_instrument_303(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.microsoft.access import validate_honest_access
 
     validate_honest_access(catalog)
+
+
+def _validate_instrument_304(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.04.0":
+        raise IntegrityError("entity.release is 3.04.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.04.0" in item and "honest operators" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.04.0 honest operators", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_operators") is not True or site.get("honest_access") is not True:
+        raise IntegrityError("3.04.0 website has honest operators", reason_code="CATALOG_PLANE")
+    if site.get("honest_operators_live") is True or site.get("operator_swap") is True:
+        raise IntegrityError("3.04.0 honest operators are not live and do not swap", reason_code="CATALOG_PLANE")
+    if site.get("grok_is_recorded") is True or site.get("bot_is_operator") is True:
+        raise IntegrityError("3.04.0 Grok is not recorded and a bot is not the operator", reason_code="CATALOG_PLANE")
+    operators = (catalog.get("microsoft_stack") or {}).get("operators") or {}
+    if operators.get("kind") != "ainav.honest.operators.v1" or operators.get("honest") is not True:
+        raise IntegrityError("3.04.0 honest operators kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if operators.get("swap") is True:
+        raise IntegrityError("3.04.0 Cursor stays recorded and Grok stays mapped", reason_code="CATALOG_REVIEW")
+    if operators.get("grok_is_recorded") is True:
+        raise IntegrityError("3.04.0 Grok Build stays mapped, not recorded", reason_code="CATALOG_REVIEW")
+    if operators.get("bot_is_operator") is True:
+        raise IntegrityError("3.04.0 a Grok bot is not the operator", reason_code="CATALOG_REVIEW")
+    site_note = str(operators.get("site") or "").lower()
+    if "honest operators" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps honest operators", reason_code="CATALOG_REVIEW")
+    if "cursor is recorded" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps Cursor is recorded", reason_code="CATALOG_REVIEW")
+    if "grok build is mapped" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps Grok Build is mapped", reason_code="CATALOG_REVIEW")
+    if "grok bot is not admit" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps Grok bot is not admit", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest operators" not in principles:
+        raise IntegrityError("first-principles must keep honest operators", reason_code="CATALOG_REVIEW")
+    if "cursor is recorded" not in principles:
+        raise IntegrityError("first-principles must keep Cursor is recorded", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.04.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.04.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest operators" not in ops:
+        raise IntegrityError("3.04.0 operations note keeps honest operators", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.operators import validate_honest_operators
+
+    validate_honest_operators(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

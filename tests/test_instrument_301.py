@@ -24,7 +24,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_301_honest_control():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.03.0"
+    assert cat["entity"]["release"] == "3.04.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     control = drawer["control"]
     rooms = drawer["rooms"]
@@ -76,7 +76,7 @@ def test_release_is_301_honest_control():
     assert "if you don't have it" in principles
     assert "company policy is not a sku" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 73
+    assert len(cat["expert_review"]["upgrades"]) == 74
     assert upgrades[71]["who"] == "tree"
     assert upgrades[71]["done"] is True
     assert upgrades[71]["marks_live_pin"] is False
@@ -91,7 +91,7 @@ def test_release_is_301_honest_control():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
-    assert "3.03.0" in html
+    assert "3.04.0" in html
     assert "honest control" in html.lower()
     assert "if you don't have it" in html.lower()
     assert "genius act" in html.lower()
@@ -112,9 +112,9 @@ def test_release_is_301_honest_control():
     assert "Honest" in identify
     assert "honest control" in twin.lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.03.0"
+    assert dash["release"] == "3.04.0"
     status = public_status()
-    assert status["release"] == "3.03.0"
+    assert status["release"] == "3.04.0"
     assert status["website"]["industry_control"] is True
     assert status["website"]["industry_honest"] is True
     assert status["website"]["industry_control_live"] is False

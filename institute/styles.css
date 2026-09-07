@@ -1626,6 +1626,21 @@ table.law tr[data-group] th {
   flex-wrap: wrap;
   gap: 0.65rem 1.1rem;
 }
+.operator-three {
+  margin-top: 1.15rem;
+  padding-top: 0.15rem;
+}
+@media (min-width: 900px) {
+  .operator-three { grid-template-columns: repeat(3, 1fr); }
+}
+.operator-three [data-operator="cursor"] { box-shadow: inset 3px 0 0 var(--gold); }
+.operator-three [data-operator="grok_build"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.operator-three [data-operator="grok_bot"] { box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55); }
+#operator-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+}
 .agent-around {
   margin: 0.85rem 0 1.15rem;
   display: grid;

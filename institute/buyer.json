@@ -921,7 +921,10 @@
         "Treat Grok Build as a seat",
         "Treat a Grok bot as dual admit",
         "Request Microsoft admin as this Cloud Agent",
-        "Treat additional access as admit"
+        "Treat additional access as admit",
+        "Treat Grok Build as the recorded operator",
+        "Treat a Grok bot as the operator",
+        "Swap Cursor for Grok"
       ],
       "holds": [
         "No Graph Write from this plane",

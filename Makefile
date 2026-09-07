@@ -17,6 +17,7 @@ regen:
 	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" > institute/agent-tools.json
 	python3 -c "from ainav.microsoft.agents import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" > institute/agents.json
 	python3 -c "from ainav.microsoft.access import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" > institute/access.json
+	python3 -c "from ainav.microsoft.operators import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" > institute/operators.json
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" > institute/review.json
 	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" > institute/finance.json
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" > institute/packs.json
@@ -62,6 +63,7 @@ plan-check:
 	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agent-tools.json -
 	python3 -c "from ainav.microsoft.agents import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agents.json -
 	python3 -c "from ainav.microsoft.access import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/access.json -
+	python3 -c "from ainav.microsoft.operators import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/operators.json -
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" | diff -q institute/review.json -
 	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" | diff -q institute/finance.json -
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" | diff -q institute/packs.json -

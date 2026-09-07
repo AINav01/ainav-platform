@@ -227,6 +227,11 @@ def public_status() -> dict[str, Any]:
             "additional_access_needed": False,
             "grok_is_product": False,
             "grok_is_seat": False,
+            "honest_operators": bool(site.get("honest_operators")),
+            "honest_operators_live": False,
+            "operator_swap": False,
+            "grok_is_recorded": False,
+            "bot_is_operator": False,
         },
         "bc": {
             "connection": "bc.premium",
