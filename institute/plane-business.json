@@ -607,7 +607,8 @@
       "2.98.0 operable industry rooms: honest zeros sit the board; refuse is visible; Room 1 walks to #packs; Room 2 refuse stays on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
       "2.99.0 fully operable industry drawer: every refuse clicks; catalog is the message; Room 2 records stay 0; refuse lane is not a route; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
       "3.00.0 complete industry drawer. Sit / maps / attach / refuse. Room 1 books. Room 2 refuse. Every refuse clicks. Catalog is the message. Honest zeros. Assembled on #industry. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.01.0 honest control. Need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY claimed=false. Company policy is not a SKU. Not a live filing. Not AI Governess. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.01.0 honest control. Need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY claimed=false. Company policy is not a SKU. Not a live filing. Not AI Governess. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.02.0 honest agents. Agents > All. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -983,7 +984,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "3.01.0",
+  "release": "3.02.0",
   "scenarios": [
     {
       "id": "l1_only",

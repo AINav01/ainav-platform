@@ -3906,6 +3906,97 @@
     });
   }
 
+  var AGENT_REFUSE = {
+    agent_as_seat: {
+      message: "Refused. An agent is not a seat. Two humans bind.",
+      ledger: "agent_denied · agent as seat\nAn agent is not a seat.\nTwo humans bind.\nlive=false · live_pin_ok=false"
+    },
+    agent365_as_product: {
+      message: "Refused. Agent 365 is Microsoft's inventory plane. Not AINav.",
+      ledger: "agent_denied · Agent 365 product\nAgent 365 inventories Microsoft agents.\nJob C admits the write.\nlive=false · live_pin_ok=false"
+    },
+    live_census: {
+      message: "Refused. This plane cannot sign in. Inventory stays claimed=false.",
+      ledger: "agent_denied · live census\nThis Cloud Agent cannot sign in.\nCensus stays claimed=false.\nlive=false · live_pin_ok=false"
+    },
+    pin_as_admit: {
+      message: "Refused. A pinned agent is not dual admit.",
+      ledger: "agent_denied · pin as admit\nA pin is visibility.\nNot dual admit.\nlive=false · live_pin_ok=false"
+    },
+    tools_as_sku: {
+      message: "Refused. Agent Tools are not a SKU. Complements only.",
+      ledger: "agent_denied · tools as SKU\nLeave five Available.\nComplements only.\nlive=false · live_pin_ok=false"
+    },
+    copilot_studio_as_job_c: {
+      message: "Refused. Copilot Studio RFI is a human looked. Not Job C.",
+      ledger: "agent_denied · Copilot Studio as Job C\nA human looked is not admit.\nWalk it like cheaper native.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeAgentLedger(text) {
+    var node = document.getElementById("agent-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseAgent(button, message, ledger) {
+    var refuse = document.getElementById("agent-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeAgentLedger(ledger);
+  }
+
+  function bindAgentRefuses(root) {
+    if (!root || root.getAttribute("data-bound")) return;
+    root.setAttribute("data-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-agent-refuse], button.room-refuse");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-agent-refuse") || "";
+      var pack = AGENT_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseAgent(
+        btn,
+        message,
+        pack.ledger || ("agent_denied · " + id + "\nAn agent is not a seat.\nCensus stays claimed=false.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindAgentRefuses(document.getElementById("agents-board"));
+
+  function bindAgentConsole(id, key) {
+    var btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var pack = AGENT_REFUSE[key] || {};
+      refuseAgent(btn, pack.message, pack.ledger);
+    });
+  }
+  bindAgentConsole("agent-census-btn", "live_census");
+  bindAgentConsole("agent-365-btn", "agent365_as_product");
+  bindAgentConsole("agent-seat-btn", "agent_as_seat");
+  bindAgentConsole("agent-pin-btn", "pin_as_admit");
+
+  fetch("agents.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.inventory_claimed || data.agent_365_is_product || data.is_admit_plane) return;
+      var status = document.getElementById("agent-tools-status");
+      if (status) {
+        status.textContent =
+          "honest=true · inventory_claimed=false · agent_365_is_product=false · cloud_agent_can_approve=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 3.01.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 3.02.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -174,6 +174,12 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Treat company policy as a SKU
 - Does not: Call the product AI Governess
 - Does not: Treat the honest control board as a live filing
+- Does not: Treat Agent 365 as AINav
+- Does not: Treat an agent as a seat
+- Does not: Claim a live agent census from this plane
+- Does not: Treat a pinned agent as dual admit
+- Does not: Paste Total agents into the catalog
+- Does not: Treat ownerless or unmanaged agents as a census
 
 ### Seat B meaning
 
@@ -297,7 +303,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 3.01.0.
+- As of: catalog release 3.02.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.

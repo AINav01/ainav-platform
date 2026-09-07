@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.01.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.02.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.01.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.02.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -394,6 +394,7 @@ Working well
 - 2.99.0 fully operable industry drawer is catalog law: every refuse on #industry clicks. Catalog is the message. Room 2 records stay 0. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.
 - 3.00.0 complete industry drawer is catalog law: sit / maps / attach / refuse, Room 1 books, and Room 2 refuse sit together on #industry. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Room 1 walks. Room 2 stays refused. Assigned stays false. Named vertical stays false. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.
 - 3.01.0 honest control is catalog law: need, if you don't have it, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.
+- 3.02.0 honest agents is catalog law: Agents > All, Tools registry, an agent is not a seat, Agent 365 is not AINav. Census stays claimed=false. Leave five Available. Block Dataverse MCP. Cursor Cloud Agent operates host and twin. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -440,6 +441,7 @@ Could be improved — without inventing a fourth SKU
 - 2.99.0 fully operable industry drawer sits on #industry: every refuse clicks, catalog is the message, Room 2 records stay 0. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.
 - 3.00.0 complete industry drawer sits on #industry: sit / maps / attach / refuse, Room 1 walks, every refuse clicks, catalog is the message, Room 2 records stay 0. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK.
 - 3.01.0 honest control sits on #industry: need, consequence, now, around the corner, human control, fiduciary. GENIUS and CLARITY stay claimed=false. Assigned stays false. Named vertical stays false. Seat B click and signed L1 stay owner-only. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.
+- 3.02.0 honest agents sit on #agent-tools. Owner reviews https://admin.cloud.microsoft/?#/agents/all. This plane cannot take a census. Seat B click and signed L1 stay owner-only. Not from this plane.
 
 They win the bake-off when
 
@@ -578,6 +580,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 69. [tree] Fully operable industry drawer — Ship 2.99.0 fully operable industry drawer on #industry. Every refuse clicks. Catalog is the message. Room 2 records stay 0. Not LIVE_PIN_OK.
 - 70. [tree] Complete industry drawer — Ship 3.00.0 complete industry drawer on #industry. Sit / maps / attach / refuse. Room 1 walks. Every refuse clicks. Catalog is the message. Not LIVE_PIN_OK.
 - 71. [tree] Honest control — Ship 3.01.0 honest control on #industry. Need, consequence, now, around the corner, human control, fiduciary, GENIUS and CLARITY claimed=false. Not LIVE_PIN_OK.
+- 72. [tree] Honest agents — Ship 3.02.0 honest agents on #agent-tools. Agents > All. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Not LIVE_PIN_OK.
 
 ## What happens next
 

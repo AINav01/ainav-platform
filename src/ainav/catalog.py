@@ -76,6 +76,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.business import validate_business
     from ainav.ip import validate_ip_doctrine
     from ainav.microsoft.agent_tools import validate_agent_tools
+    from ainav.microsoft.agents import validate_microsoft_agents
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
@@ -83,6 +84,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_programs(catalog)
     validate_connections(catalog)
     validate_agent_tools(catalog)
+    validate_microsoft_agents(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1140,8 +1142,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 71:
-        raise IntegrityError("expert review needs 16–71 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 72:
+        raise IntegrityError("expert review needs 16–72 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1203,6 +1205,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         69: ("every refuse", "live_pin_ok"),
         70: ("complete industry", "live_pin_ok"),
         71: ("honest control", "live_pin_ok"),
+        72: ("honest agents", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1284,6 +1287,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest control, if you don't have it, GENIUS, and CLARITY", reason_code="CATALOG_REVIEW")
     if "company policy is not a sku" not in blob or "not ai governess" not in blob:
         raise IntegrityError("first-principles must keep company policy is not a SKU and not AI Governess", reason_code="CATALOG_REVIEW")
+    if "honest agents" not in blob or "agent is not a seat" not in blob or "agent 365" not in blob:
+        raise IntegrityError("first-principles must keep honest agents, an agent is not a seat, and Agent 365", reason_code="CATALOG_REVIEW")
+    if "around the write" not in blob or "total agents" not in blob:
+        raise IntegrityError("first-principles must keep around the write and Total agents", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1403,6 +1410,27 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not call the product AI Governess", reason_code="CATALOG_REVIEW")
     if "honest control board as a live filing" not in does_not:
         raise IntegrityError("CISO posture does not treat the honest control board as a live filing", reason_code="CATALOG_REVIEW")
+    if "agent 365 as ainav" not in does_not:
+        raise IntegrityError("CISO posture does not treat Agent 365 as AINav", reason_code="CATALOG_REVIEW")
+    if "agent as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat an agent as a seat", reason_code="CATALOG_REVIEW")
+    if "live agent census" not in does_not:
+        raise IntegrityError("CISO posture does not claim a live agent census from this plane", reason_code="CATALOG_REVIEW")
+    if "pinned agent as dual admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat a pinned agent as dual admit", reason_code="CATALOG_REVIEW")
+    if "total agents" not in does_not:
+        raise IntegrityError("CISO posture does not paste Total agents into the catalog", reason_code="CATALOG_REVIEW")
+    if "ownerless" not in does_not or "unmanaged" not in does_not:
+        raise IntegrityError("CISO posture does not treat ownerless or unmanaged agents as a census", reason_code="CATALOG_REVIEW")
+    hosted = success.get("microsoft_agents")
+    if not isinstance(hosted, dict):
+        raise IntegrityError("success program keeps honest agents", reason_code="CATALOG_REVIEW")
+    if hosted.get("kind") != "ainav.microsoft.agents.v1" or hosted.get("honest") is not True:
+        raise IntegrityError("success microsoft agents stay catalog law", reason_code="CATALOG_REVIEW")
+    if hosted.get("href") != "#agent-tools":
+        raise IntegrityError("success microsoft agents sit on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted.get("live") is True or hosted.get("inventory_claimed") is True or hosted.get("agent_365_is_product") is True:
+        raise IntegrityError("success microsoft agents stay not live and not a census", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2667,6 +2695,77 @@ INDUSTRY_CONTROL_HREFS = {
     "policy_sku": "#industry",
     "fear_first_glance": "#industry",
 }
+AGENTS_ALL_URL = "https://admin.cloud.microsoft/?#/agents/all"
+AGENTS_TOOLS_URL = "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all"
+MICROSOFT_AGENT_TYPE_IDS = ["microsoft", "external_partner", "published_by_org", "shared_by_creator"]
+MICROSOFT_AGENT_LANE_IDS = ["operate", "registry", "draft", "never", "mcp", "refuse"]
+MICROSOFT_AGENT_OPERATE_IDS = ["owner", "cloud_agent", "dual", "five"]
+MICROSOFT_AGENT_REGISTRY_IDS = ["all_agents", "tools", "types"]
+MICROSOFT_AGENT_DRAFT_IDS = [
+    "m365_copilot",
+    "copilot_studio",
+    "sharepoint",
+    "dynamics",
+    "security",
+    "cursor",
+]
+MICROSOFT_AGENT_AROUND_IDS = [
+    "github_copilot",
+    "azure_foundry",
+    "researcher_analyst",
+    "channel_apps",
+    "purview_defender",
+    "entra_agent_id",
+    "copilot_tuning",
+    "ownerless_unmanaged",
+    "power_platform",
+    "sentinel",
+]
+MICROSOFT_AGENT_NEVER_IDS = ["agent_365", "copilot", "cloud_agent_seat", "pin"]
+MICROSOFT_AGENT_MCP_IDS = ["leave_five", "block_dataverse"]
+MICROSOFT_AGENT_REFUSE_IDS = [
+    "agent_as_seat",
+    "agent365_as_product",
+    "live_census",
+    "pin_as_admit",
+    "tools_as_sku",
+    "copilot_studio_as_job_c",
+]
+MICROSOFT_AGENT_REFUSE_TEXT = {
+    "agent_as_seat": "Refused. An agent is not a seat. Two humans bind.",
+    "agent365_as_product": "Refused. Agent 365 is Microsoft's inventory plane. Not AINav.",
+    "live_census": "Refused. This plane cannot sign in. Inventory stays claimed=false.",
+    "pin_as_admit": "Refused. A pinned agent is not dual admit.",
+    "tools_as_sku": "Refused. Agent Tools are not a SKU. Complements only.",
+    "copilot_studio_as_job_c": "Refused. Copilot Studio RFI is a human looked. Not Job C.",
+}
+MICROSOFT_AGENT_HREFS = {
+    "owner": "#missing",
+    "cloud_agent": "#agent-tools",
+    "dual": "#buyer",
+    "five": "#agent-tools",
+    "all_agents": "#agent-tools",
+    "tools": "#agent-tools",
+    "types": "#agent-tools",
+    "m365_copilot": "#control",
+    "copilot_studio": "#success",
+    "sharepoint": "#agent-tools",
+    "dynamics": "#buyer",
+    "security": "#control",
+    "cursor": "#agent-tools",
+    "agent_365": "#agent-tools",
+    "copilot": "#control",
+    "cloud_agent_seat": "#agent-tools",
+    "pin": "#agent-tools",
+    "leave_five": "#agent-tools",
+    "block_dataverse": "#agent-tools",
+    "agent_as_seat": "#agent-tools",
+    "agent365_as_product": "#agent-tools",
+    "live_census": "#agent-tools",
+    "pin_as_admit": "#agent-tools",
+    "tools_as_sku": "#agent-tools",
+    "copilot_studio_as_job_c": "#agent-tools",
+}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -3723,6 +3822,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_299(catalog, body)
     _validate_instrument_300(catalog, body)
     _validate_instrument_301(catalog, body)
+    _validate_instrument_302(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -4633,8 +4733,6 @@ def _validate_instrument_300(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_301(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.01.0":
-        raise IntegrityError("entity.release is 3.01.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.01.0" in item and "honest control" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.01.0 honest control", reason_code="CATALOG_ENGINEERING")
@@ -4666,6 +4764,42 @@ def _validate_instrument_301(catalog: dict[str, Any], body: dict[str, Any]) -> N
     maps = {item.get("id") for item in ((catalog.get("governance") or {}).get("maps") or [])}
     if "genius.act" not in maps or "clarity.act" not in maps:
         raise IntegrityError("3.01.0 governance maps GENIUS and CLARITY", reason_code="CATALOG_GOVERNANCE")
+
+
+def _validate_instrument_302(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.02.0":
+        raise IntegrityError("entity.release is 3.02.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.02.0" in item and "honest agents" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.02.0 honest agents", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_agents") is not True or site.get("microsoft_agents_honest") is not True:
+        raise IntegrityError("3.02.0 website has honest agents", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_agents_live") is True or site.get("microsoft_census") is True:
+        raise IntegrityError("3.02.0 microsoft agents are not live and census stays false", reason_code="CATALOG_PLANE")
+    if site.get("agent_365_is_product") is True:
+        raise IntegrityError("3.02.0 Agent 365 is not the product", reason_code="CATALOG_PLANE")
+    agents = (catalog.get("microsoft_stack") or {}).get("agents") or {}
+    if agents.get("kind") != "ainav.microsoft.agents.v1" or agents.get("honest") is not True:
+        raise IntegrityError("3.02.0 microsoft agents kind stays catalog law and honest", reason_code="CATALOG_REVIEW")
+    if agents.get("inventory_claimed") is True or agents.get("agent_365_is_product") is True:
+        raise IntegrityError("3.02.0 agents stay not a census and Agent 365 is not the product", reason_code="CATALOG_REVIEW")
+    if agents.get("admin_url") != AGENTS_ALL_URL:
+        raise IntegrityError("3.02.0 agents admin_url is Agents > All", reason_code="CATALOG_REVIEW")
+    site_note = str(agents.get("site") or "").lower()
+    if "honest agents" not in site_note or "agent is not a seat" not in site_note:
+        raise IntegrityError("3.02.0 agents site keeps honest agents and not a seat", reason_code="CATALOG_REVIEW")
+    if "around the write" not in site_note or "total agents" not in site_note:
+        raise IntegrityError("3.02.0 agents site keeps around the write and Total agents", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest agents" not in principles or "agent is not a seat" not in principles:
+        raise IntegrityError("first-principles must keep honest agents", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#agent-tools" not in ops or "honest agents" not in ops:
+        raise IntegrityError("3.02.0 operations note keeps SKU attach, #agent-tools, and honest agents", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.agents import validate_microsoft_agents
+
+    validate_microsoft_agents(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

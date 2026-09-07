@@ -217,6 +217,11 @@ def public_status() -> dict[str, Any]:
             "industry_control_live": False,
             "industry_rooms_live": False,
             "industry_wells_live": False,
+            "microsoft_agents": bool(site.get("microsoft_agents")),
+            "microsoft_agents_honest": bool(site.get("microsoft_agents_honest")),
+            "microsoft_agents_live": False,
+            "microsoft_census": False,
+            "agent_365_is_product": False,
         },
         "bc": {
             "connection": "bc.premium",

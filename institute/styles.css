@@ -1556,10 +1556,49 @@ table.law tr[data-group] th {
 }
 .industry-control [data-lane="refuse"] button.room-refuse:hover b { color: var(--gold); }
 .industry-control [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
-#industry-zeros {
+#industry-zeros,
+#agent-zeros {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem 1.1rem;
+}
+.agents-board {
+  margin-top: 1.15rem;
+  padding-top: 0.15rem;
+}
+@media (min-width: 900px) {
+  .agents-board { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1400px) {
+  .agents-board { grid-template-columns: repeat(3, 1fr); }
+}
+.agents-board [data-lane="operate"],
+.agents-board [data-lane="registry"],
+.agents-board [data-lane="draft"] { box-shadow: inset 3px 0 0 var(--gold); }
+.agents-board [data-lane="never"],
+.agents-board [data-lane="mcp"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.agents-board [data-lane="refuse"] {
+  box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
+}
+.agents-board [data-lane="refuse"] button.room-refuse,
+.agents-board [data-lane="refuse"] button.room-refuse b {
+  color: var(--gold-2);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.agents-board [data-lane="refuse"] button.room-refuse:hover b { color: var(--gold); }
+.agents-board [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
+.agent-around {
+  margin: 0.85rem 0 1.15rem;
+  display: grid;
+  gap: 0.35rem 1.25rem;
+}
+@media (min-width: 900px) {
+  .agent-around { grid-template-columns: repeat(2, 1fr); }
 }
 .industry-day [data-lane="refuse"] button.room-refuse,
 .industry-day [data-lane="refuse"] button.room-refuse b,

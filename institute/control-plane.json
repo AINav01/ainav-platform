@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "3.01.0"
+    "release": "3.02.0"
   },
   "communications": [
     {
@@ -2153,7 +2153,8 @@
       "2.98.0 operable industry rooms: honest zeros sit the board; refuse is visible; Room 1 walks to #packs; Room 2 refuse stays on #industry; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
       "2.99.0 fully operable industry drawer: every refuse clicks; catalog is the message; Room 2 records stay 0; refuse lane is not a route; not a live named vertical; not a crypto product; not 17a-4; not from this plane",
       "3.00.0 complete industry drawer. Sit / maps / attach / refuse. Room 1 books. Room 2 refuse. Every refuse clicks. Catalog is the message. Honest zeros. Assembled on #industry. Not a live named vertical. Not a crypto product. Not 17a-4. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.01.0 honest control. Need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY claimed=false. Company policy is not a SKU. Not a live filing. Not AI Governess. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.01.0 honest control. Need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY claimed=false. Company policy is not a SKU. Not a live filing. Not AI Governess. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.02.0 honest agents. Agents > All. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3885,7 +3886,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "3.01.0",
+  "release": "3.02.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4352,7 +4353,13 @@
         "Treat fear as the first glance",
         "Treat company policy as a SKU",
         "Call the product AI Governess",
-        "Treat the honest control board as a live filing"
+        "Treat the honest control board as a live filing",
+        "Treat Agent 365 as AINav",
+        "Treat an agent as a seat",
+        "Claim a live agent census from this plane",
+        "Treat a pinned agent as dual admit",
+        "Paste Total agents into the catalog",
+        "Treat ownerless or unmanaged agents as a census"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -5459,6 +5466,14 @@
       "site": "This band sits after executive risk. First glance stays the write rail. Not a /market route. Not a forecast.",
       "sku": false,
       "tam": false
+    },
+    "microsoft_agents": {
+      "agent_365_is_product": false,
+      "honest": true,
+      "href": "#agent-tools",
+      "inventory_claimed": false,
+      "kind": "ainav.microsoft.agents.v1",
+      "live": false
     },
     "objections": [
       {

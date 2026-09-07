@@ -221,9 +221,10 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.01.0",
+  "release": "3.02.0",
   "sku": false,
   "website": {
+    "agent_365_is_product": false,
     "apex_origin": "ainav-institute.pages.dev",
     "authorized_release": false,
     "azure_location": "eastus2",
@@ -266,6 +267,10 @@
     "launch_is_ready": false,
     "launch_ready": false,
     "managed": true,
+    "microsoft_agents": true,
+    "microsoft_agents_honest": true,
+    "microsoft_agents_live": false,
+    "microsoft_census": false,
     "microsoft_day_map": true,
     "microsoft_day_map_is_sku": false,
     "microsoft_is_the_product": false,

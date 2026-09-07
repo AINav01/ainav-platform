@@ -15,6 +15,7 @@ regen:
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" > institute/org.json
 	python3 -c "from ainav.institute_status import public_status; import json; print(json.dumps(public_status(), indent=2, sort_keys=True))" > institute/status.json
 	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" > institute/agent-tools.json
+	python3 -c "from ainav.microsoft.agents import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" > institute/agents.json
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" > institute/review.json
 	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" > institute/finance.json
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" > institute/packs.json
@@ -58,6 +59,7 @@ plan-check:
 	python3 -c "from ainav.org import public_org; import json; print(json.dumps(public_org(), indent=2, sort_keys=True))" | diff -q institute/org.json -
 	python3 -c "from ainav.institute_status import public_status; import json; print(json.dumps(public_status(), indent=2, sort_keys=True))" | diff -q institute/status.json -
 	python3 -c "from ainav.microsoft.agent_tools import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agent-tools.json -
+	python3 -c "from ainav.microsoft.agents import public_review; import json; print(json.dumps(public_review(), indent=2, sort_keys=True))" | diff -q institute/agents.json -
 	python3 -c "from ainav.review import public_card; import json; print(json.dumps(public_card(), indent=2, sort_keys=True))" | diff -q institute/review.json -
 	python3 -c "from ainav.finance import public_finance; import json; print(json.dumps(public_finance(), indent=2, sort_keys=True))" | diff -q institute/finance.json -
 	python3 -c "from ainav.packs import public_packs; import json; print(json.dumps(public_packs(), indent=2, sort_keys=True))" | diff -q institute/packs.json -
