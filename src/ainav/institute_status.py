@@ -293,6 +293,13 @@ def public_status() -> dict[str, Any]:
             "elements_are_live": False,
             "better_is_launch": False,
             "rehearsal_is_live_pin": False,
+            "honest_remainder": bool(site.get("honest_remainder")),
+            "honest_remainder_live": False,
+            "remainder_is_launch": False,
+            "leftover_copy_is_live_pin": False,
+            "owner_hrefs_are_clicks": False,
+            "gold_995_is_production": False,
+            "deep_remainder_is_seated": False,
         },
         "bc": {
             "connection": "bc.premium",

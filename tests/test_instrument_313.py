@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_313_honest_path():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.14.0"
+    assert cat["entity"]["release"] == "3.15.0"
     path = cat["honest_path"]
     assert path["kind"] == "ainav.honest.path.v1"
     assert path["honest"] is True
@@ -67,7 +67,7 @@ def test_release_is_313_honest_path():
     assert "honest path" in principles
     assert "an industry is not a named client" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 84
+    assert len(cat["expert_review"]["upgrades"]) == 85
     assert upgrades[83]["who"] == "tree"
     assert upgrades[83]["done"] is True
     assert upgrades[83]["marks_live_pin"] is False
@@ -105,18 +105,18 @@ def test_release_is_313_honest_path():
     assert "pages-lede" not in js
     assert "honest path" in twin.lower()
     assert "an industry is not a named client" in twin.lower()
-    assert "Digital twin · 3.14.0" in twin
-    assert "AINAV.Institute twin · 3.14.0" in twin
+    assert "Digital twin · 3.15.0" in twin
+    assert "AINAV.Institute twin · 3.15.0" in twin
     assert "3.12.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.14.0" in kit
+    assert "Application kit · 3.15.0" in kit
     assert "An industry is a named client" in identify
     assert "Open path" in identify
     assert "An industry is a named client" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.14.0"
+    assert dash["release"] == "3.15.0"
     status = public_status()
-    assert status["release"] == "3.14.0"
+    assert status["release"] == "3.15.0"
     assert status["website"]["honest_path"] is True
     assert status["website"]["honest_path_live"] is False
     assert status["website"]["industry_is_named_client"] is False

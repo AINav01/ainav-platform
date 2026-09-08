@@ -1,0 +1,165 @@
+{
+  "certified": false,
+  "considered": true,
+  "created": false,
+  "deep_remainder_is_seated": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "remainder",
+      "live": false,
+      "name": "Remainder",
+      "note": "This plane closed leftover gold-99.5 copy and owner hrefs. Not launch.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "leftover",
+      "live": false,
+      "name": "Leftover",
+      "note": "Current-floor gold 99.5 is catalog law. Historical gold 99 stays historical.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "hrefs",
+      "live": false,
+      "name": "Hrefs",
+      "note": "Twelve owner-only lines walk. A walk is not a click.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "gold",
+      "live": false,
+      "name": "Gold",
+      "note": "Gold 99.5 held is not production and not LIVE_PIN_OK.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "owner_only",
+      "live": false,
+      "name": "Owner-only",
+      "note": "Seat B, oid, signed L1, Teams ids, SHAREPOINT_SITE_ID, Sentinel, Graph Writes, US Dataverse stay owner-only.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "gold_995_is_production": false,
+  "honest": true,
+  "href": "#missing",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.remainder.v1",
+  "lede": "A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight.",
+  "leftover_copy_is_live_pin": false,
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_hrefs_are_clicks": false,
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a remainder close as launch.",
+      "Do not treat leftover copy as LIVE_PIN_OK.",
+      "Do not treat owner hrefs as owner clicks.",
+      "Do not treat gold 99.5 as production.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "deep_remainder_is_seated": false,
+    "gold_995_is_production": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.remainder.v1",
+    "launch": false,
+    "leftover_copy_is_live_pin": false,
+    "live": false,
+    "live_pin_ok": false,
+    "owner_hrefs_are_clicks": false,
+    "recorded": true,
+    "remainder_is_launch": false
+  },
+  "product": "Honest remainder",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#missing",
+      "id": "remainder_as_launch",
+      "name": "A remainder close as launch",
+      "note": "Refused. A remainder close is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A remainder close is not launch.",
+      "state": "refused",
+      "text": "Refused. A remainder close is not launch.",
+      "title": "A remainder close as launch"
+    },
+    {
+      "href": "#missing",
+      "id": "leftover_copy_as_live_pin",
+      "name": "Leftover copy as LIVE_PIN_OK",
+      "note": "Refused. Leftover copy is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. Leftover copy is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. Leftover copy is not LIVE_PIN_OK.",
+      "title": "Leftover copy as LIVE_PIN_OK"
+    },
+    {
+      "href": "#missing",
+      "id": "owner_hrefs_as_owner_clicks",
+      "name": "Owner hrefs as owner clicks",
+      "note": "Refused. Owner hrefs are not owner clicks.",
+      "refuse": true,
+      "refuse_text": "Refused. Owner hrefs are not owner clicks.",
+      "state": "refused",
+      "text": "Refused. Owner hrefs are not owner clicks.",
+      "title": "Owner hrefs as owner clicks"
+    },
+    {
+      "href": "#missing",
+      "id": "gold_995_as_production",
+      "name": "Gold 99.5 as production",
+      "note": "Refused. Gold 99.5 is not production.",
+      "refuse": true,
+      "refuse_text": "Refused. Gold 99.5 is not production.",
+      "state": "refused",
+      "text": "Refused. Gold 99.5 is not production.",
+      "title": "Gold 99.5 as production"
+    },
+    {
+      "href": "#missing",
+      "id": "deep_remainder_as_seated",
+      "name": "A deep remainder as seated",
+      "note": "Refused. A deep remainder is not a seated second human.",
+      "refuse": true,
+      "refuse_text": "Refused. A deep remainder is not a seated second human.",
+      "state": "refused",
+      "text": "Refused. A deep remainder is not a seated second human.",
+      "title": "A deep remainder as seated"
+    }
+  ],
+  "remainder_is_launch": false,
+  "site": "Honest remainder on #missing. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. First glance stays the write rail. Not a /remainder route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat a remainder close as launch.",
+    "Treat leftover copy as LIVE_PIN_OK.",
+    "Treat owner hrefs as owner clicks.",
+    "Treat gold 99.5 as production.",
+    "Treat a deep remainder as seated."
+  ],
+  "wired": false
+}

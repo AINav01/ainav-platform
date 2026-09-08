@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.14.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.15.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.14.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.15.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -347,7 +347,7 @@ Working well
 - Entra-group view assignment is a template. assignment_live stays false. Cloud Agent cannot assign. Do not invent department heads.
 - Proof-day grant TTL is 90 minutes and stays outside the lockfile digest. Default lockfile TTL stays unset.
 - Small-client and large-client motions are not SKUs. Same L1. Same ninety minutes. Same $28–40k. No L1 Express. No certificate.
-- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty. Azure SWA is the development twin. Gold 99 release to Cloudflare Pages when James authorizes. asuid only then if James binds SWA as public. Default is no asuid. Launch only when James says launch.
+- One-hostname rehearsal is catalog law, not Cloudflare. Pages empty. Azure SWA is the development twin. Gold 99.5 release to Cloudflare Pages when James authorizes. asuid only then if James binds SWA as public. Default is no asuid. Launch only when James says launch.
 - Competitive one-pager wins only on consume-once, fail-closed SoR, and counterparty AI. Do not say uncopyable. Do not say patent.
 - Continuity rehearsal: seat B absent is the product working. Write does not land. Sealed deny.
 - The Floor is one instrument. Write rail is primary. Encyclopedia is a drawer. Never a fourth SKU. Never a crypto lead. Never a CMS.
@@ -407,6 +407,7 @@ Working well
 - 3.12.0 honest operate is catalog law: recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK.
 - 3.13.0 honest path is catalog law: recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK.
 - 3.14.0 honest production is catalog law: recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.
+- 3.15.0 honest remainder is catalog law: leftover gold-99.5 copy and owner hrefs closed in the tree. A remainder close is not launch. Owner-only stays owner-only. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -431,7 +432,7 @@ Could be improved — without inventing a fourth SKU
 - Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
 - Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.
 - Support ticket 2609030040009525 diagnosed Canada affinity and Advanced Data Residency ineligibility. Reply-all for written confirmation or exception status. Path B (accept Canada as twin-only) is owner-only. This plane cannot close US Dataverse.
-- Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.
+- Apex 403 hold dropped to 404 empty on Cloudflare. Confirm that was intended. Authorized gold-99.5 release to the Cloudflare public origin stays owner-only. This plane cannot edit Cloudflare or mark launch.
 - Quality review 2.88.0 observed HTTP 403 challenge on ainav.institute from this plane. Pages stays 404. Catalog still records apex 404 empty. Confirm 403-vs-404. Not launch. Not LIVE_PIN_OK.
 - What-you've-been-missing sits on the sale site after market position. #missing stays owner-honest. Additional software around the plane stays complements. Not a fourth SKU. Not a CMS. Not LIVE_PIN_OK.
 - Managed first-class face sits on the sale site: product, ninety-minute demo, Azure SWA host. Not a CMS. Not a dynamic app. Not a /demo route. Not LIVE_PIN_OK.
@@ -439,7 +440,7 @@ Could be improved — without inventing a fourth SKU
 - First-class close bench sits on #path: three planes, qualify/proof/close/assign console. It cannot invent Acme or auto-promote. Not a fourth SKU. Not LIVE_PIN_OK.
 - First-class operating company sits on #firm: 500/500 capacity, BD/sales/IC/comp console. It cannot invent a lead, pay a commission, or share a twin. Not a CRM. Not LIVE_PIN_OK.
 - First-class operating day and launch gate sit on #firm-console: qualify, proof, close, assign, service, launch. Gold is not launch. This plane cannot mark launch or LIVE_PIN_OK.
-- Operating-day quality review: site.js is versioned. Gold 99 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.
+- Operating-day quality review: site.js is versioned. Gold 99.5 held is not an open gap. #ops is the SKU attach chain. Apex 403 challenge from this plane is not 404 empty and not launch. Not LIVE_PIN_OK.
 - 2.89.0 first-class Microsoft run sits on #firm: six required connections and eight complements mapped to the operating day. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 - 2.90.0 Microsoft day map sits on #firm-ms-day: every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Licensed-not-wired stays honest. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
 - 2.91.0 Microsoft operating-day roster sits on #firm-ms: licensed-not-wired is visible. Assign has a path to the close bench. Teams, SharePoint, and Sentinel stay open. Owner still sets Teams ids, SharePoint site, US Dataverse, Graph Writes revoke, Sentinel on LAW, G12/G13, billing, launch. Microsoft is not the product. Not LIVE_PIN_OK.
@@ -463,6 +464,7 @@ Could be improved — without inventing a fourth SKU
 - Owner asked to close all gaps, integrate Cursor apps, add Grok, run operational simulations, and make this 10/10. This plane records honest operate. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch.
 - Owner asked for a deep operational review of independent industry segregation, individual client BD, digital twins, sales to close, production, debug, upgrade, redeploy, pay-for development, billing, standard, upsells, libraries, repositories, and rollback. This plane records honest path. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch.
 - Owner asked to make all much better, fix all, close all gaps, and simulate production in all its elements. This plane records honest production. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK.
+- 3.15.0 honest remainder sits on #missing. This plane closed leftover gold-99.5 copy and completed owner hrefs. Owner-only stays owner-only. A remainder close is not launch. Not from this plane.
 
 They win the bake-off when
 
@@ -614,6 +616,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 82. [tree] Honest operate — Ship 3.12.0 honest operate on #agent-tools. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Not LIVE_PIN_OK.
 - 83. [tree] Honest path — Ship 3.13.0 honest path on #path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Not LIVE_PIN_OK.
 - 84. [tree] Honest production — Ship 3.14.0 honest production on #firm. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Not LIVE_PIN_OK.
+- 85. [tree] Honest remainder — Ship 3.15.0 honest remainder on #missing. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Not LIVE_PIN_OK.
 
 ## What happens next
 

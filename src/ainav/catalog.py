@@ -1154,8 +1154,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 84:
-        raise IntegrityError("expert review needs 16–84 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 85:
+        raise IntegrityError("expert review needs 16–85 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1230,6 +1230,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         82: ("honest operate", "live_pin_ok"),
         83: ("honest path", "live_pin_ok"),
         84: ("honest production", "live_pin_ok"),
+        85: ("honest remainder", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1367,6 +1368,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep fixing all is not this plane and rehearsed elements are not live", reason_code="CATALOG_REVIEW")
     if "making all much better is not launch" not in blob or "a rehearsal is not live_pin_ok" not in blob:
         raise IntegrityError("first-principles must keep making all much better is not launch and a rehearsal is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "honest remainder" not in blob or "a remainder close is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest remainder", reason_code="CATALOG_REVIEW")
+    if "leftover copy is not live_pin_ok" not in blob or "owner hrefs are not owner clicks" not in blob:
+        raise IntegrityError("first-principles must keep leftover copy is not LIVE_PIN_OK and owner hrefs are not owner clicks", reason_code="CATALOG_REVIEW")
+    if "gold 99.5 is not production" not in blob or "a deep remainder is not a seated second human" not in blob:
+        raise IntegrityError("first-principles must keep gold 99.5 is not production and a deep remainder is not seated", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1734,6 +1741,16 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat making all much better as launch", reason_code="CATALOG_REVIEW")
     if "a rehearsal as live_pin_ok" not in does_not:
         raise IntegrityError("CISO posture does not treat a rehearsal as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "a remainder close as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a remainder close as launch", reason_code="CATALOG_REVIEW")
+    if "leftover copy as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat leftover copy as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "owner hrefs as owner clicks" not in does_not:
+        raise IntegrityError("CISO posture does not treat owner hrefs as owner clicks", reason_code="CATALOG_REVIEW")
+    if "gold 99.5 as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat gold 99.5 as production", reason_code="CATALOG_REVIEW")
+    if "a deep remainder as seated" not in does_not:
+        raise IntegrityError("CISO posture does not treat a deep remainder as seated", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -1747,6 +1764,19 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest production is not this plane and rehearsed elements are not live", reason_code="CATALOG_REVIEW")
     if hosted_production.get("better_is_launch") is True or hosted_production.get("rehearsal_is_live_pin") is True:
         raise IntegrityError("success honest production is not launch and is not a live pin", reason_code="CATALOG_REVIEW")
+    hosted_remainder = success.get("honest_remainder")
+    if not isinstance(hosted_remainder, dict):
+        raise IntegrityError("success program keeps honest remainder", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("kind") != "ainav.honest.remainder.v1" or hosted_remainder.get("honest") is not True:
+        raise IntegrityError("success honest remainder stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("href") != "#missing":
+        raise IntegrityError("success honest remainder sits on #missing", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("live") is True or hosted_remainder.get("remainder_is_launch") is True:
+        raise IntegrityError("success honest remainder stays not live and a remainder close is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("leftover_copy_is_live_pin") is True or hosted_remainder.get("owner_hrefs_are_clicks") is True:
+        raise IntegrityError("success honest remainder is not a live pin and owner hrefs are not clicks", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("gold_995_is_production") is True or hosted_remainder.get("deep_remainder_is_seated") is True:
+        raise IntegrityError("success honest remainder is not production and is not seated", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3397,6 +3427,22 @@ HONEST_PRODUCTION_REFUSE_TEXT = {
     "rehearsal_as_live_pin": "Refused. A rehearsal is not LIVE_PIN_OK.",
 }
 HONEST_PRODUCTION_HREFS = {key: "#firm" for key in HONEST_PRODUCTION_REFUSE_IDS}
+HONEST_REMAINDER_FACT_IDS = ["remainder", "leftover", "hrefs", "gold", "owner_only"]
+HONEST_REMAINDER_REFUSE_IDS = [
+    "remainder_as_launch",
+    "leftover_copy_as_live_pin",
+    "owner_hrefs_as_owner_clicks",
+    "gold_995_as_production",
+    "deep_remainder_as_seated",
+]
+HONEST_REMAINDER_REFUSE_TEXT = {
+    "remainder_as_launch": "Refused. A remainder close is not launch.",
+    "leftover_copy_as_live_pin": "Refused. Leftover copy is not LIVE_PIN_OK.",
+    "owner_hrefs_as_owner_clicks": "Refused. Owner hrefs are not owner clicks.",
+    "gold_995_as_production": "Refused. Gold 99.5 is not production.",
+    "deep_remainder_as_seated": "Refused. A deep remainder is not a seated second human.",
+}
+HONEST_REMAINDER_HREFS = {key: "#missing" for key in HONEST_REMAINDER_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4466,6 +4512,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_312(catalog, body)
     _validate_instrument_313(catalog, body)
     _validate_instrument_314(catalog, body)
+    _validate_instrument_315(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5954,8 +6001,6 @@ def _validate_instrument_313(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_314(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.14.0":
-        raise IntegrityError("entity.release is 3.14.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.14.0" in item and "honest production" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.14.0 honest production", reason_code="CATALOG_ENGINEERING")
@@ -6003,6 +6048,63 @@ def _validate_instrument_314(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_production import validate_honest_production
 
     validate_honest_production(catalog)
+
+
+def _validate_instrument_315(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.15.0":
+        raise IntegrityError("entity.release is 3.15.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.15.0" in item and "honest remainder" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.15.0 honest remainder", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_remainder") is not True or site.get("honest_production") is not True:
+        raise IntegrityError("3.15.0 website has honest remainder", reason_code="CATALOG_PLANE")
+    if site.get("honest_remainder_live") is True or site.get("remainder_is_launch") is True:
+        raise IntegrityError("3.15.0 remainder is not live and a remainder close is not launch", reason_code="CATALOG_PLANE")
+    if site.get("leftover_copy_is_live_pin") is True or site.get("owner_hrefs_are_clicks") is True:
+        raise IntegrityError("3.15.0 leftover copy is not LIVE_PIN_OK and owner hrefs are not clicks", reason_code="CATALOG_PLANE")
+    if site.get("gold_995_is_production") is True or site.get("deep_remainder_is_seated") is True:
+        raise IntegrityError("3.15.0 gold 99.5 is not production and a deep remainder is not seated", reason_code="CATALOG_PLANE")
+    remainder = catalog.get("honest_remainder") or {}
+    if remainder.get("kind") != "ainav.honest.remainder.v1" or remainder.get("honest") is not True:
+        raise IntegrityError("3.15.0 honest remainder kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if remainder.get("remainder_is_launch") is True or remainder.get("leftover_copy_is_live_pin") is True:
+        raise IntegrityError("3.15.0 a remainder close is not launch and leftover copy is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if remainder.get("certified") is True:
+        raise IntegrityError("3.15.0 honest remainder is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(remainder.get("site") or "").lower()
+    if "honest remainder" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps honest remainder", reason_code="CATALOG_REVIEW")
+    if "a remainder close is not launch" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps a remainder close is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /remainder route" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps not a /remainder route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest remainder" not in principles:
+        raise IntegrityError("first-principles must keep honest remainder", reason_code="CATALOG_REVIEW")
+    if "a remainder close is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a remainder close is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.15.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#missing" not in ops:
+        raise IntegrityError("3.15.0 operations note keeps #missing", reason_code="CATALOG_REVIEW")
+    if "honest remainder" not in ops:
+        raise IntegrityError("3.15.0 operations note keeps honest remainder", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a remainder close" not in managed:
+        raise IntegrityError("3.15.0 managed face refuses a remainder close", reason_code="CATALOG_PLANE")
+    gaps = body.get("gaps") or {}
+    hrefs = gaps.get("owner_only_hrefs") if isinstance(gaps.get("owner_only_hrefs"), dict) else {}
+    for item in gaps.get("owner_only_open") or []:
+        if item not in hrefs:
+            raise IntegrityError("owner-only href missing for " + str(item), reason_code="CATALOG_PLANE")
+    from ainav.honest_remainder import validate_honest_remainder
+
+    validate_honest_remainder(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

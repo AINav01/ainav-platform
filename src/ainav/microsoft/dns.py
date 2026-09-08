@@ -444,7 +444,7 @@ def probe_edge_quality(*, dns: dict[str, Any] | None = None) -> dict[str, Any]:
             "SWA twin 200, asuid absent, E7 13/13, TLS 1.2+, and mail not Cloudflare anycast. "
             "The 403 challenge hold is gone. Visitor cert is not SSL Full. "
             "Cloudflare edge is not the Institute. Azure SWA is the development twin. "
-            "Authorized gold-99 release is owner-only. This is not Institute launch. "
+            "Authorized gold-99.5 release is owner-only. This is not Institute launch. "
             "This Cloud Agent cannot edit Cloudflare."
         ),
     }

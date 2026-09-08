@@ -12,7 +12,7 @@ from ainav.dashboard import public_dashboard
 
 def test_release_is_279():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.14.0"
+    assert cat["entity"]["release"] == "3.15.0"
     assert any("2.79.0" in item and "first-principles" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.78.0" in item and "refus" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     principles = cat["expert_review"]["first_principles"]
@@ -23,7 +23,7 @@ def test_release_is_279():
     assert "claiming 99" in blob
     assert "mfa admits" not in blob
     dash = public_dashboard()
-    assert dash["release"] == "3.14.0"
+    assert dash["release"] == "3.15.0"
 
 
 def test_first_principles_refuse_invented_live():
@@ -39,7 +39,7 @@ def test_first_principles_refuse_invented_live():
 def test_upgrade_49_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 84
+    assert len(cat["expert_review"]["upgrades"]) == 85
     assert upgrades[49]["who"] == "tree"
     assert upgrades[49]["done"] is True
     assert upgrades[49]["marks_live_pin"] is False

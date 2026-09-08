@@ -970,7 +970,12 @@
         "Treat fixing all as this plane",
         "Treat rehearsed elements as live",
         "Treat making all much better as launch",
-        "Treat a rehearsal as LIVE_PIN_OK"
+        "Treat a rehearsal as LIVE_PIN_OK",
+        "Treat a remainder close as launch",
+        "Treat leftover copy as LIVE_PIN_OK",
+        "Treat owner hrefs as owner clicks",
+        "Treat gold 99.5 as production",
+        "Treat a deep remainder as seated"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2034,7 +2039,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "3.14.0"
+    "release": "3.15.0"
   },
   "communications": [
     {
@@ -2168,21 +2168,26 @@
       "3.12.0 honest operate. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.14.0 gold 99.5 is the floor after measured coverage"
+      "3.14.0 gold 99.5 is the floor after measured coverage",
+      "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
     "live_pin_ok": false,
-    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 99.5 is catalog law. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
+    "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 99.5 is catalog law. Owner hrefs walk; a walk is not a click. A remainder close is not launch. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
     "owner_only_hrefs": {
       "G12/G13": "index.html#open",
       "Graph Writes revoke": "index.html#stack-walk",
       "Rocket Loader confirm": "index.html#e7-cloudflare",
+      "SHAREPOINT_SITE_ID": "index.html#stack-walk",
+      "Sentinel on the existing LAW": "index.html#stack-walk",
+      "Teams team and channel ids": "index.html#stack-walk",
       "US Dataverse": "index.html#stack-walk",
       "billing": "index.html#open",
       "launch": "index.html#missing",
       "named-human proof day": "index.html#twin",
-      "seat B click": "index.html#missing"
+      "seat B click": "index.html#missing",
+      "trademark filing and public apex brand": "index.html#open"
     },
     "owner_only_open": [
       "seat B click",
@@ -2393,7 +2398,7 @@
     "cloudflare_edited_from_this_plane": false,
     "cutover": [
       "Pages empty",
-      "SWA twin for gold 99",
+      "SWA twin for gold 99.5",
       "Cloudflare apex empty until authorized",
       "asuid only then if James binds SWA as public; default is no asuid \u2014 publish gold to Pages",
       "launch only when James says launch"
@@ -2401,7 +2406,7 @@
     "kind": "ainav.plane.hostname_rehearsal.v1",
     "launch": false,
     "live": false,
-    "note": "One-hostname rehearsal. Azure SWA is the development twin. Cloudflare apex is empty 404. Do not add asuid while Pages is the public origin. Authorized gold-99 release is owner-only. Launch is held.",
+    "note": "One-hostname rehearsal. Azure SWA is the development twin. Cloudflare apex is empty 404. Do not add asuid while Pages is the public origin. Authorized gold-99.5 release is owner-only. Launch is held.",
     "pages_is_not_institute": true,
     "sku": false
   },
@@ -3900,7 +3905,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "3.14.0",
+  "release": "3.15.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4426,7 +4431,12 @@
         "Treat fixing all as this plane",
         "Treat rehearsed elements as live",
         "Treat making all much better as launch",
-        "Treat a rehearsal as LIVE_PIN_OK"
+        "Treat a rehearsal as LIVE_PIN_OK",
+        "Treat a remainder close as launch",
+        "Treat leftover copy as LIVE_PIN_OK",
+        "Treat owner hrefs as owner clicks",
+        "Treat gold 99.5 as production",
+        "Treat a deep remainder as seated"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4968,6 +4978,17 @@
       "launch_day_certified": false,
       "live": false,
       "twin_is_launch_day": false
+    },
+    "honest_remainder": {
+      "deep_remainder_is_seated": false,
+      "gold_995_is_production": false,
+      "honest": true,
+      "href": "#missing",
+      "kind": "ainav.honest.remainder.v1",
+      "leftover_copy_is_live_pin": false,
+      "live": false,
+      "owner_hrefs_are_clicks": false,
+      "remainder_is_launch": false
     },
     "honest_whole": {
       "honest": true,
@@ -5605,7 +5626,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

@@ -167,7 +167,7 @@
           "id": "bind"
         },
         {
-          "do": "Do not point the apex at Azure SWA with Page Rules. Keep SWA as the twin. When James authorizes a gold-99 release, publish that gold tree to the Cloudflare public origin. That is launch. This plane cannot publish.",
+          "do": "Do not point the apex at Azure SWA with Page Rules. Keep SWA as the twin. When James authorizes a gold-99.5 release, publish that gold tree to the Cloudflare public origin. That is launch. This plane cannot publish.",
           "id": "origin"
         },
         {
@@ -203,7 +203,7 @@
       "id": "cloudflare.pages",
       "institute": false,
       "launch": false,
-      "note": "Apex is 404 empty on Cloudflare. Pages origin 404. Azure SWA is the development twin, not the public apex. Empty Pages is not the Institute. Leave the zone as-is until James authorizes a gold-99 release. Not launch.",
+      "note": "Apex is 404 empty on Cloudflare. Pages origin 404. Azure SWA is the development twin, not the public apex. Empty Pages is not the Institute. Leave the zone as-is until James authorizes a gold-99.5 release. Not launch.",
       "origin": "ainav-institute.pages.dev",
       "sku": false
     },
@@ -448,7 +448,8 @@
       "3.12.0 honest operate. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.14.0 gold 99.5 is the floor: coverage_floor 99.5, pyproject fail_under 99.5. A green check is not LIVE_PIN_OK"
+      "3.14.0 gold 99.5 is the floor: coverage_floor 99.5, pyproject fail_under 99.5. A green check is not LIVE_PIN_OK",
+      "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -641,7 +642,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "3.14.0",
+  "release": "3.15.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -676,6 +677,7 @@
     "copilot_studio_is_seat": false,
     "copilot_studio_is_sku": false,
     "cursor_app_is_seat": false,
+    "deep_remainder_is_seated": false,
     "demo_is_sku": false,
     "demo_path": "#twin",
     "dynamic": false,
@@ -686,6 +688,7 @@
     "first_class": true,
     "fix_all_is_this_plane": false,
     "full_access_needed": false,
+    "gold_995_is_production": false,
     "gold_is_launch": false,
     "graph_read_is_live_pin": false,
     "grok_is_product": false,
@@ -714,6 +717,8 @@
     "honest_production_live": false,
     "honest_readiness": true,
     "honest_readiness_live": false,
+    "honest_remainder": true,
+    "honest_remainder_live": false,
     "honest_whole": true,
     "honest_whole_live": false,
     "hours_is_sku": false,
@@ -739,6 +744,7 @@
     "launch_gate": true,
     "launch_is_ready": false,
     "launch_ready": false,
+    "leftover_copy_is_live_pin": false,
     "licensed_is_wired": false,
     "managed": true,
     "microsoft_agents": true,
@@ -758,6 +764,7 @@
     "operating_day_is_sku": false,
     "operator_swap": false,
     "outlook_is_click": false,
+    "owner_hrefs_are_clicks": false,
     "packs_are_skus": false,
     "pages_is_host": false,
     "path_href": "#path",
@@ -770,6 +777,7 @@
     "public_edge": "cloudflare",
     "redeploy_is_launch": false,
     "rehearsal_is_live_pin": false,
+    "remainder_is_launch": false,
     "review_path": "twin.html",
     "rollback_is_live_pin": false,
     "shared_sandbox_is_production": false,

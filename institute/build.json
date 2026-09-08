@@ -92,7 +92,7 @@
       "title": "Already enough"
     },
     {
-      "does": "Write catalog law, gold 99, and republish the twin.",
+      "does": "Write catalog law, gold 99.5, and republish the twin.",
       "does_not": "Become a fourth SKU. Become launch. Become a live SoR write.",
       "href": "#agent-tools",
       "id": "build",

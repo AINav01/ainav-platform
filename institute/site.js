@@ -4781,6 +4781,65 @@
   }
   bindProdRefuses(document.getElementById("prod-consider"));
 
+  var REMAIN_REFUSE = {
+    remainder_as_launch: {
+      message: "Refused. A remainder close is not launch.",
+      ledger: "remain_denied · remainder close as launch\nA remainder close is not launch.\nOwner-only stays owner-only.\nlive=false · live_pin_ok=false"
+    },
+    leftover_copy_as_live_pin: {
+      message: "Refused. Leftover copy is not LIVE_PIN_OK.",
+      ledger: "remain_denied · leftover copy as LIVE_PIN_OK\nLeftover copy is not LIVE_PIN_OK.\nHistorical gold 99 stays historical.\nlive=false · live_pin_ok=false"
+    },
+    owner_hrefs_as_owner_clicks: {
+      message: "Refused. Owner hrefs are not owner clicks.",
+      ledger: "remain_denied · owner hrefs as owner clicks\nOwner hrefs are not owner clicks.\nA walk is not a click.\nlive=false · live_pin_ok=false"
+    },
+    gold_995_as_production: {
+      message: "Refused. Gold 99.5 is not production.",
+      ledger: "remain_denied · gold 99.5 as production\nGold 99.5 is not production.\nGold is not launch.\nlive=false · live_pin_ok=false"
+    },
+    deep_remainder_as_seated: {
+      message: "Refused. A deep remainder is not a seated second human.",
+      ledger: "remain_denied · deep remainder as seated\nA deep remainder is not a seated second human.\nSeat B stays open.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeRemainLedger(text) {
+    var node = document.getElementById("remain-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseRemain(button, message, ledger) {
+    var refuse = document.getElementById("remain-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeRemainLedger(ledger);
+  }
+
+  function bindRemainRefuses(root) {
+    if (!root || root.getAttribute("data-remain-bound")) return;
+    root.setAttribute("data-remain-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-remain-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-remain-refuse") || "";
+      var pack = REMAIN_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseRemain(
+        btn,
+        message,
+        pack.ledger || ("remain_denied · " + id + "\nA remainder close is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindRemainRefuses(document.getElementById("remain-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -4837,6 +4896,21 @@
       if (status) {
         status.textContent =
           "honest=true · recorded=true · production_sim_is_production=false · fix_all_is_this_plane=false · elements_are_live=false · live=false";
+      }
+    })
+    .catch(function () {});
+
+  fetch("remainder.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.remainder_is_launch || data.leftover_copy_is_live_pin || data.owner_hrefs_are_clicks || data.gold_995_is_production || data.deep_remainder_is_seated || data.certified) return;
+      var status = document.getElementById("remain-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · remainder_is_launch=false · leftover_copy_is_live_pin=false · owner_hrefs_are_clicks=false · live=false";
       }
     })
     .catch(function () {});

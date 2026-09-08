@@ -59,6 +59,11 @@ def test_first_principles_late_honest_boards():
     _reject(catmod._validate_first_principles, _scrub_principles("rehearsed elements are not live"))
     _reject(catmod._validate_first_principles, _scrub_principles("making all much better is not launch"))
     _reject(catmod._validate_first_principles, _scrub_principles("a rehearsal is not live_pin_ok"))
+    _reject(catmod._validate_first_principles, _scrub_principles("a remainder close is not launch"))
+    _reject(catmod._validate_first_principles, _scrub_principles("leftover copy is not live_pin_ok"))
+    _reject(catmod._validate_first_principles, _scrub_principles("owner hrefs are not owner clicks"))
+    _reject(catmod._validate_first_principles, _scrub_principles("gold 99.5 is not production"))
+    _reject(catmod._validate_first_principles, _scrub_principles("a deep remainder is not a seated second human"))
 
 
 def test_ciso_and_success_hosted_holes():
