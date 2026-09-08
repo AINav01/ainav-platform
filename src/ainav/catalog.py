@@ -82,6 +82,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.microsoft.build import validate_honest_build
     from ainav.microsoft.readiness import validate_honest_readiness
     from ainav.industry_certify import validate_honest_industry
+    from ainav.honest_whole import validate_honest_whole
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
@@ -95,6 +96,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_honest_build(catalog)
     validate_honest_readiness(catalog)
     validate_honest_industry(catalog)
+    validate_honest_whole(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1152,8 +1154,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 77:
-        raise IntegrityError("expert review needs 16–77 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 78:
+        raise IntegrityError("expert review needs 16–78 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1221,6 +1223,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         75: ("honest build", "live_pin_ok"),
         76: ("honest readiness", "live_pin_ok"),
         77: ("honest industry", "live_pin_ok"),
+        78: ("honest whole", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1328,6 +1331,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep owner gaps stay owner-only", reason_code="CATALOG_REVIEW")
     if "honest industry certify" not in blob or "industry certify is not launch" not in blob:
         raise IntegrityError("first-principles must keep honest industry certify", reason_code="CATALOG_REVIEW")
+    if "honest whole" not in blob or "the whole firm is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest whole", reason_code="CATALOG_REVIEW")
+    if "10/10 review is not launch" not in blob:
+        raise IntegrityError("first-principles must keep 10/10 review is not launch", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1553,6 +1560,27 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest industry stays not live and packs are not SKUs", reason_code="CATALOG_REVIEW")
     if hosted_industry.get("industry_certified_launch") is True:
         raise IntegrityError("success honest industry cannot certify launch", reason_code="CATALOG_REVIEW")
+    if "the whole firm as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat the whole firm as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 review as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 review as launch", reason_code="CATALOG_REVIEW")
+    if "the stitch as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat the stitch as a SKU", reason_code="CATALOG_REVIEW")
+    if "the twin as the institute apex" not in does_not:
+        raise IntegrityError("CISO posture does not treat the twin as the Institute apex", reason_code="CATALOG_REVIEW")
+    if "a green check as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a green check as launch", reason_code="CATALOG_REVIEW")
+    hosted_whole = success.get("honest_whole")
+    if not isinstance(hosted_whole, dict):
+        raise IntegrityError("success program keeps honest whole", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("kind") != "ainav.honest.whole.v1" or hosted_whole.get("honest") is not True:
+        raise IntegrityError("success honest whole stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("href") != "#whole":
+        raise IntegrityError("success honest whole sits on #whole", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("live") is True or hosted_whole.get("whole_is_launch") is True or hosted_whole.get("ten_is_launch") is True:
+        raise IntegrityError("success honest whole stays not live and is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("stitch_is_sku") is True:
+        raise IntegrityError("success honest whole stitch is not a SKU", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3082,6 +3110,31 @@ HONEST_INDUSTRY_REFUSE_TEXT = {
     "industry_certify_as_launch": "Refused. Industry certify is not launch.",
 }
 HONEST_INDUSTRY_HREFS = {key: "#packs" for key in list(HONEST_INDUSTRY_LIBRARY_PAIRS) + HONEST_INDUSTRY_REFUSE_IDS}
+HONEST_WHOLE_LANE_IDS = ["write", "skus", "industry", "build", "business", "website", "launch"]
+HONEST_WHOLE_LANE_HREFS = {
+    "write": "#buyer",
+    "skus": "#product",
+    "industry": "#packs",
+    "build": "#agent-tools",
+    "business": "#investor",
+    "website": "#twin",
+    "launch": "#missing",
+}
+HONEST_WHOLE_REFUSE_IDS = [
+    "whole_as_launch",
+    "ten_as_launch",
+    "stitch_as_sku",
+    "website_as_apex",
+    "ci_as_launch",
+]
+HONEST_WHOLE_REFUSE_TEXT = {
+    "whole_as_launch": "Refused. The whole firm is not launch.",
+    "ten_as_launch": "Refused. A 10/10 review is not launch.",
+    "stitch_as_sku": "Refused. The stitch is not a SKU.",
+    "website_as_apex": "Refused. The twin is not the Institute apex.",
+    "ci_as_launch": "Refused. A green check is not launch.",
+}
+HONEST_WHOLE_HREFS = {key: "#whole" for key in HONEST_WHOLE_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4144,6 +4197,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_305(catalog, body)
     _validate_instrument_306(catalog, body)
     _validate_instrument_307(catalog, body)
+    _validate_instrument_308(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5292,8 +5346,6 @@ def _validate_instrument_306(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_307(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.07.0":
-        raise IntegrityError("entity.release is 3.07.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.07.0" in item and "honest industry" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.07.0 honest industry", reason_code="CATALOG_ENGINEERING")
@@ -5337,6 +5389,52 @@ def _validate_instrument_307(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.industry_certify import validate_honest_industry
 
     validate_honest_industry(catalog)
+
+
+def _validate_instrument_308(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.08.0":
+        raise IntegrityError("entity.release is 3.08.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.08.0" in item and "honest whole" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.08.0 honest whole", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_whole") is not True or site.get("honest_industry") is not True:
+        raise IntegrityError("3.08.0 website has honest whole", reason_code="CATALOG_PLANE")
+    if site.get("honest_whole_live") is True or site.get("whole_is_launch") is True or site.get("ten_is_launch") is True:
+        raise IntegrityError("3.08.0 honest whole is not live and is not launch", reason_code="CATALOG_PLANE")
+    if site.get("stitch_is_sku") is True:
+        raise IntegrityError("3.08.0 stitch is not a SKU", reason_code="CATALOG_PLANE")
+    whole = catalog.get("honest_whole") or {}
+    if whole.get("kind") != "ainav.honest.whole.v1" or whole.get("honest") is not True:
+        raise IntegrityError("3.08.0 honest whole kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if whole.get("whole_is_launch") is True or whole.get("ten_is_launch") is True:
+        raise IntegrityError("3.08.0 the whole firm is not launch", reason_code="CATALOG_REVIEW")
+    if whole.get("certified") is True:
+        raise IntegrityError("3.08.0 honest whole is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(whole.get("site") or "").lower()
+    if "honest whole" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps honest whole", reason_code="CATALOG_REVIEW")
+    if "the whole firm is not launch" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps the whole firm is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /whole route" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps not a /whole route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest whole" not in principles:
+        raise IntegrityError("first-principles must keep honest whole", reason_code="CATALOG_REVIEW")
+    if "the whole firm is not launch" not in principles:
+        raise IntegrityError("first-principles must keep the whole firm is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.08.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#whole" not in ops:
+        raise IntegrityError("3.08.0 operations note keeps #whole", reason_code="CATALOG_REVIEW")
+    if "honest whole" not in ops:
+        raise IntegrityError("3.08.0 operations note keeps honest whole", reason_code="CATALOG_REVIEW")
+    from ainav.honest_whole import validate_honest_whole
+
+    validate_honest_whole(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

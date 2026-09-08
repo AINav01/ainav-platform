@@ -74,7 +74,7 @@
     "ip.reserved.export"
   ],
   "named_vertical_is_sku": false,
-  "note": "Honest industry certify. Standard and upsell desks, modules, libraries, and repositories are catalog law by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.",
+  "note": "Honest industry certify. Standard and upsell desks, modules, libraries, and repositories are catalog law by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. Unpaired packs: credit, inventory, pricing. Unpaired libraries stay inventory.",
   "owner_playbook": {
     "actor": "James Hodnett",
     "cannot_be_done_by": "cursor.cloud_agent",

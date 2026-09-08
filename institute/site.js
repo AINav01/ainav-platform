@@ -4368,6 +4368,80 @@
     })
     .catch(function () {});
 
+  var WHOLE_REFUSE = {
+    whole_as_launch: {
+      message: "Refused. The whole firm is not launch.",
+      ledger: "whole_denied · whole as launch\nThe whole firm is not launch.\nA 10/10 review is not launch.\nlive=false · live_pin_ok=false"
+    },
+    ten_as_launch: {
+      message: "Refused. A 10/10 review is not launch.",
+      ledger: "whole_denied · 10/10 as launch\nA 10/10 review is not launch.\nThe whole firm is not launch.\nlive=false · live_pin_ok=false"
+    },
+    stitch_as_sku: {
+      message: "Refused. The stitch is not a SKU.",
+      ledger: "whole_denied · stitch as sku\nThe stitch is not a SKU.\nThe whole firm is not launch.\nlive=false · live_pin_ok=false"
+    },
+    website_as_apex: {
+      message: "Refused. The twin is not the Institute apex.",
+      ledger: "whole_denied · twin as apex\nThe twin is not the Institute apex.\nThe whole firm is not launch.\nlive=false · live_pin_ok=false"
+    },
+    ci_as_launch: {
+      message: "Refused. A green check is not launch.",
+      ledger: "whole_denied · green check as launch\nA green check is not launch.\nThe whole firm is not launch.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeWholeLedger(text) {
+    var node = document.getElementById("whole-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseWhole(button, message, ledger) {
+    var refuse = document.getElementById("whole-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeWholeLedger(ledger);
+  }
+
+  function bindWholeRefuses(root) {
+    if (!root || root.getAttribute("data-whole-bound")) return;
+    root.setAttribute("data-whole-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-whole-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-whole-refuse") || "";
+      var pack = WHOLE_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseWhole(
+        btn,
+        message,
+        pack.ledger || ("whole_denied · " + id + "\nThe whole firm is not launch.\nA 10/10 review is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindWholeRefuses(document.getElementById("whole"));
+
+  fetch("whole.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.whole_is_launch || data.ten_is_launch || data.stitch_is_sku || data.certified) return;
+      var status = document.getElementById("whole-status");
+      if (status) {
+        status.textContent =
+          "honest=true · whole_is_launch=false · ten_is_launch=false · stitch_is_sku=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

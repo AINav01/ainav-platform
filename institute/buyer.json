@@ -935,7 +935,12 @@
         "Treat an industry pack as a SKU",
         "Treat a library as a SKU",
         "Treat a repository as a SKU",
-        "Treat industry certify as launch"
+        "Treat industry certify as launch",
+        "Treat the whole firm as launch",
+        "Treat a 10/10 review as launch",
+        "Treat the stitch as a SKU",
+        "Treat the twin as the Institute apex",
+        "Treat a green check as launch"
       ],
       "holds": [
         "No Graph Write from this plane",

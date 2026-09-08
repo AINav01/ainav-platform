@@ -168,6 +168,9 @@ def public_llms() -> str:
         "",
         face["thesis"],
         "",
+        "Honest industry certify sits on #packs. Packs are not SKUs. Industry certify is not launch.",
+        "Honest whole sits on #whole. Business, build, and website on one board. A 10/10 review is not launch. The whole firm is not launch.",
+        "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
         "",
     ]
@@ -268,6 +271,18 @@ def public_search() -> dict[str, Any]:
             "title": "Industry drawer",
             "href": "index.html#industry",
             "text": "Sit-down industry drawer. Sit Dynamics BC treasury. Domestic and international maps claimed=false. White papers are not filings. Included versus upsell. Libraries and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a crypto product. Not a /industry route.",
+        },
+        {
+            "id": "packs",
+            "title": "Honest industry certify",
+            "href": "index.html#packs",
+            "text": "Honest industry certify on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Credit, inventory, and pricing stay unpaired.",
+        },
+        {
+            "id": "whole",
+            "title": "Honest whole",
+            "href": "index.html#whole",
+            "text": "Honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. First glance stays the write rail. Not a /whole route.",
         },
     ]
     return {

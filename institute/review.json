@@ -333,7 +333,8 @@
       "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -422,7 +423,8 @@
       "3.04.0 honest operators sit on #agent-tools. Cursor stays recorded. Grok Build stays mapped. A Grok bot is not Cynthia's click. SuperGrok stays owner-only. Not from this plane.",
       "3.05.0 honest build sits on #agent-tools. Do not give full access. Build L1, P-ADM, U-DUAL, modules, packs, and repositories on the twin. Launch stays owner-only. Seat B click and signed L1 stay owner-only. Not from this plane.",
       "3.06.0 honest readiness sits on #agent-tools. Twin certified is not launch day. Gold is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.",
-      "3.07.0 honest industry certify sits on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Seat B click and signed L1 stay owner-only. Not from this plane."
+      "3.07.0 honest industry certify sits on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.",
+      "3.08.0 honest whole sits on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Seat B click and signed L1 stay owner-only. Not from this plane."
     ],
     "success": {
       "bake_off": {
@@ -663,7 +665,12 @@
           "Treat an industry pack as a SKU",
           "Treat a library as a SKU",
           "Treat a repository as a SKU",
-          "Treat industry certify as launch"
+          "Treat industry certify as launch",
+          "Treat the whole firm as launch",
+          "Treat a 10/10 review as launch",
+          "Treat the stitch as a SKU",
+          "Treat the twin as the Institute apex",
+          "Treat a green check as launch"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1140,6 +1147,15 @@
         "launch_day_certified": false,
         "live": false,
         "twin_is_launch_day": false
+      },
+      "honest_whole": {
+        "honest": true,
+        "href": "#whole",
+        "kind": "ainav.honest.whole.v1",
+        "live": false,
+        "stitch_is_sku": false,
+        "ten_is_launch": false,
+        "whole_is_launch": false
       },
       "human_control": {
         "cms": false,
@@ -3234,6 +3250,14 @@
         "n": 77,
         "title": "Honest industry certify",
         "who": "tree"
+      },
+      {
+        "do": "Ship 3.08.0 honest whole on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 78,
+        "title": "Honest whole",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -3338,7 +3362,8 @@
       "3.04.0 honest operators is catalog law: Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Owner cannot be the operator. Not LIVE_PIN_OK.",
       "3.05.0 honest build is catalog law: this plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK.",
       "3.06.0 honest readiness is catalog law: quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.",
-      "3.07.0 honest industry certify is catalog law: standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK."
+      "3.07.0 honest industry certify is catalog law: standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.",
+      "3.08.0 honest whole is catalog law: business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

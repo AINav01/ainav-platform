@@ -440,7 +440,8 @@
       "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -633,7 +634,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "3.07.0",
+  "release": "3.08.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -680,6 +681,8 @@
     "honest_operators_live": false,
     "honest_readiness": true,
     "honest_readiness_live": false,
+    "honest_whole": true,
+    "honest_whole_live": false,
     "industry_certified": false,
     "industry_certified_launch": false,
     "industry_complete": true,
@@ -723,6 +726,8 @@
     "public_edge": "cloudflare",
     "review_path": "twin.html",
     "sim_is_production": false,
+    "stitch_is_sku": false,
+    "ten_is_launch": false,
     "twin_host": "azure.swa",
     "twin_is_launch": false,
     "twin_is_launch_day": false,
@@ -733,7 +738,8 @@
     "universe_operable": true,
     "universe_sit_down": true,
     "universe_wells_live": false,
-    "update_is_live_pin": false
+    "update_is_live_pin": false,
+    "whole_is_launch": false
   },
   "wrote_sor": false
 }

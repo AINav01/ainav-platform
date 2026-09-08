@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "3.07.0"
+    "release": "3.08.0"
   },
   "communications": [
     {
@@ -2159,7 +2159,8 @@
       "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3891,7 +3892,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "3.07.0",
+  "release": "3.08.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4382,7 +4383,12 @@
         "Treat an industry pack as a SKU",
         "Treat a library as a SKU",
         "Treat a repository as a SKU",
-        "Treat industry certify as launch"
+        "Treat industry certify as launch",
+        "Treat the whole firm as launch",
+        "Treat a 10/10 review as launch",
+        "Treat the stitch as a SKU",
+        "Treat the twin as the Institute apex",
+        "Treat a green check as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4859,6 +4865,15 @@
       "launch_day_certified": false,
       "live": false,
       "twin_is_launch_day": false
+    },
+    "honest_whole": {
+      "honest": true,
+      "href": "#whole",
+      "kind": "ainav.honest.whole.v1",
+      "live": false,
+      "stitch_is_sku": false,
+      "ten_is_launch": false,
+      "whole_is_launch": false
     },
     "human_control": {
       "cms": false,

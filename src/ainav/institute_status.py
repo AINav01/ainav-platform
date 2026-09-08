@@ -247,6 +247,11 @@ def public_status() -> dict[str, Any]:
             "honest_industry": bool(site.get("honest_industry")),
             "honest_industry_live": False,
             "industry_certified_launch": False,
+            "honest_whole": bool(site.get("honest_whole")),
+            "honest_whole_live": False,
+            "whole_is_launch": False,
+            "ten_is_launch": False,
+            "stitch_is_sku": False,
         },
         "bc": {
             "connection": "bc.premium",
