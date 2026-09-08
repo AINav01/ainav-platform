@@ -1751,6 +1751,7 @@ table.law tr[data-group] th {
   .pages-facts { grid-template-columns: 1fr 1fr; }
 }
 .pages-facts section {
+  min-height: 6.4rem;
   padding: 0.75rem 0.85rem 0.8rem 1rem;
   background: color-mix(in srgb, var(--paper) 68%, white);
   box-shadow: inset 3px 0 0 var(--gold);
