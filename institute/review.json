@@ -332,7 +332,8 @@
       "3.03.0 honest access. This plane does not need additional access. Grok Build is an operator map. Not a seat. Not AINav. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -420,7 +421,8 @@
       "3.03.0 honest access sits on #agent-tools. This plane does not need Microsoft admin, grok login, or XAI_API_KEY. Grok Build stays installed=null. SuperGrok / X Premium Plus is not recorded. Seat B click and signed L1 stay owner-only. Not from this plane.",
       "3.04.0 honest operators sit on #agent-tools. Cursor stays recorded. Grok Build stays mapped. A Grok bot is not Cynthia's click. SuperGrok stays owner-only. Not from this plane.",
       "3.05.0 honest build sits on #agent-tools. Do not give full access. Build L1, P-ADM, U-DUAL, modules, packs, and repositories on the twin. Launch stays owner-only. Seat B click and signed L1 stay owner-only. Not from this plane.",
-      "3.06.0 honest readiness sits on #agent-tools. Twin certified is not launch day. Gold is not launch. Seat B click and signed L1 stay owner-only. Not from this plane."
+      "3.06.0 honest readiness sits on #agent-tools. Twin certified is not launch day. Gold is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.",
+      "3.07.0 honest industry certify sits on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Seat B click and signed L1 stay owner-only. Not from this plane."
     ],
     "success": {
       "bake_off": {
@@ -657,7 +659,11 @@
           "Treat gold as launch",
           "Treat twin certified as launch day",
           "Treat simulation as production",
-          "Treat an update as LIVE_PIN_OK"
+          "Treat an update as LIVE_PIN_OK",
+          "Treat an industry pack as a SKU",
+          "Treat a library as a SKU",
+          "Treat a repository as a SKU",
+          "Treat industry certify as launch"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1109,6 +1115,14 @@
         "live": false,
         "need_full": false,
         "twin_is_launch": false
+      },
+      "honest_industry": {
+        "honest": true,
+        "href": "#packs",
+        "industry_certified_launch": false,
+        "kind": "ainav.honest.industry.v1",
+        "live": false,
+        "packs_are_skus": false
       },
       "honest_operators": {
         "grok_is_recorded": false,
@@ -3212,6 +3226,14 @@
         "n": 76,
         "title": "Honest readiness",
         "who": "tree"
+      },
+      {
+        "do": "Ship 3.07.0 honest industry certify on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 77,
+        "title": "Honest industry certify",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -3315,7 +3337,8 @@
       "3.03.0 honest access is catalog law: this plane does not need additional access. Grok Build is an operator map. Grok Build is not a seat. A Grok bot is not dual admit. Cursor Cloud Agent stays the recorded operator. Not LIVE_PIN_OK.",
       "3.04.0 honest operators is catalog law: Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Owner cannot be the operator. Not LIVE_PIN_OK.",
       "3.05.0 honest build is catalog law: this plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK.",
-      "3.06.0 honest readiness is catalog law: quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK."
+      "3.06.0 honest readiness is catalog law: quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.",
+      "3.07.0 honest industry certify is catalog law: standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

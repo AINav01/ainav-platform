@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "3.06.0"
+    "release": "3.07.0"
   },
   "communications": [
     {
@@ -2158,7 +2158,8 @@
       "3.03.0 honest access. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3890,7 +3891,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "3.06.0",
+  "release": "3.07.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4377,7 +4378,11 @@
         "Treat gold as launch",
         "Treat twin certified as launch day",
         "Treat simulation as production",
-        "Treat an update as LIVE_PIN_OK"
+        "Treat an update as LIVE_PIN_OK",
+        "Treat an industry pack as a SKU",
+        "Treat a library as a SKU",
+        "Treat a repository as a SKU",
+        "Treat industry certify as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4829,6 +4834,14 @@
       "live": false,
       "need_full": false,
       "twin_is_launch": false
+    },
+    "honest_industry": {
+      "honest": true,
+      "href": "#packs",
+      "industry_certified_launch": false,
+      "kind": "ainav.honest.industry.v1",
+      "live": false,
+      "packs_are_skus": false
     },
     "honest_operators": {
       "grok_is_recorded": false,

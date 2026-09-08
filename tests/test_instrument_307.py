@@ -88,7 +88,7 @@ def test_release_is_307_honest_industry():
     assert 'href="/packs"' not in nav
     assert "bindIndustryRefuses" in js
     assert "refuseIndustry" in js
-    assert "industry-lede" not in js
+    assert "industry-cert-lede" not in js
     assert "ready-lede" not in js
     assert "build-lede" not in js
     assert "operator-lede" not in js

@@ -931,7 +931,11 @@
         "Treat gold as launch",
         "Treat twin certified as launch day",
         "Treat simulation as production",
-        "Treat an update as LIVE_PIN_OK"
+        "Treat an update as LIVE_PIN_OK",
+        "Treat an industry pack as a SKU",
+        "Treat a library as a SKU",
+        "Treat a repository as a SKU",
+        "Treat industry certify as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
