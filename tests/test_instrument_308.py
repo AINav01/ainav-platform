@@ -87,6 +87,11 @@ def test_release_is_308_honest_whole():
     assert "ready-lede" not in js
     assert "honest whole" in twin.lower()
     assert "the whole firm is not launch" in twin.lower()
+    assert "Digital twin · 3.08.0" in twin
+    assert "AINAV.Institute twin · 3.08.0" in twin
+    assert "3.07.0" not in twin
+    kit = Path("institute/kit.html").read_text(encoding="utf-8")
+    assert "Application kit · 3.08.0" in kit
     assert "Whole is launch" in identify
     dash = public_dashboard()
     assert dash["release"] == "3.08.0"
