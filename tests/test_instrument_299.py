@@ -161,7 +161,7 @@ def test_release_is_299_fully_operable_industry_drawer():
     dash = public_dashboard()
     assert dash["release"] == "3.14.0"
     exported_status = public_status()
-        assert exported_status["release"] == "3.14.0"
+    assert exported_status["release"] == "3.14.0"
     assert exported_status["website"]["industry_fully_operable"] is True
     assert exported_status["website"]["industry_operable"] is True
     assert exported_status["website"]["industry_rooms_live"] is False
