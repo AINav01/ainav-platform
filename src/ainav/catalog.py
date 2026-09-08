@@ -80,6 +80,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.microsoft.agents import validate_microsoft_agents
     from ainav.microsoft.operators import validate_honest_operators
     from ainav.microsoft.build import validate_honest_build
+    from ainav.microsoft.readiness import validate_honest_readiness
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
@@ -91,6 +92,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_honest_access(catalog)
     validate_honest_operators(catalog)
     validate_honest_build(catalog)
+    validate_honest_readiness(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1148,8 +1150,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 75:
-        raise IntegrityError("expert review needs 16–74 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 76:
+        raise IntegrityError("expert review needs 16–76 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1215,6 +1217,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         73: ("honest access", "live_pin_ok"),
         74: ("honest operators", "live_pin_ok"),
         75: ("honest build", "live_pin_ok"),
+        76: ("honest readiness", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1314,6 +1317,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep twin is not launch", reason_code="CATALOG_REVIEW")
     if "packs, modules, and repositories are not skus" not in blob:
         raise IntegrityError("first-principles must keep packs, modules, and repositories are not SKUs", reason_code="CATALOG_REVIEW")
+    if "honest readiness" not in blob or "gold is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest readiness and gold is not launch", reason_code="CATALOG_REVIEW")
+    if "twin certified is not launch day" not in blob:
+        raise IntegrityError("first-principles must keep twin certified is not launch day", reason_code="CATALOG_REVIEW")
+    if "owner gaps stay owner-only" not in blob:
+        raise IntegrityError("first-principles must keep owner gaps stay owner-only", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1501,6 +1510,25 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest build sits on #agent-tools", reason_code="CATALOG_REVIEW")
     if hosted_build.get("live") is True or hosted_build.get("need_full") is True or hosted_build.get("twin_is_launch") is True:
         raise IntegrityError("success honest build stays not live and does not need full access", reason_code="CATALOG_REVIEW")
+    if "gold as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat gold as launch", reason_code="CATALOG_REVIEW")
+    if "twin certified as launch day" not in does_not:
+        raise IntegrityError("CISO posture does not treat twin certified as launch day", reason_code="CATALOG_REVIEW")
+    if "simulation as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat simulation as production", reason_code="CATALOG_REVIEW")
+    if "an update as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat an update as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    hosted_ready = success.get("honest_readiness")
+    if not isinstance(hosted_ready, dict):
+        raise IntegrityError("success program keeps honest readiness", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("kind") != "ainav.honest.readiness.v1" or hosted_ready.get("honest") is not True:
+        raise IntegrityError("success honest readiness stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("href") != "#agent-tools":
+        raise IntegrityError("success honest readiness sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("live") is True or hosted_ready.get("gold_is_launch") is True or hosted_ready.get("twin_is_launch_day") is True:
+        raise IntegrityError("success honest readiness stays not live and is not launch day", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("launch_day_certified") is True:
+        raise IntegrityError("success honest readiness cannot certify launch day", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -2933,6 +2961,52 @@ HONEST_BUILD_HREFS = {
     "twin_as_launch": "#agent-tools",
     "pack_as_sku": "#agent-tools",
 }
+HONEST_READY_IDS = [
+    "quality",
+    "operability",
+    "simulation",
+    "deliverability",
+    "updateability",
+    "debugging",
+    "launch",
+]
+HONEST_READY_ROLES = {
+    "quality": "certified",
+    "operability": "certified",
+    "simulation": "certified",
+    "deliverability": "certified",
+    "updateability": "certified",
+    "debugging": "certified",
+    "launch": "owner_only",
+}
+HONEST_READY_REFUSE_IDS = [
+    "gold_as_launch",
+    "twin_as_launch_day",
+    "sim_as_production",
+    "update_as_live_pin",
+    "close_owner_from_plane",
+]
+HONEST_READY_REFUSE_TEXT = {
+    "gold_as_launch": "Refused. Gold is not launch.",
+    "twin_as_launch_day": "Refused. Twin certified is not launch day.",
+    "sim_as_production": "Refused. Simulation is not production.",
+    "update_as_live_pin": "Refused. An update is not LIVE_PIN_OK.",
+    "close_owner_from_plane": "Refused. Owner gaps stay owner-only.",
+}
+HONEST_READY_HREFS = {
+    "quality": "#agent-tools",
+    "operability": "#agent-tools",
+    "simulation": "#agent-tools",
+    "deliverability": "#agent-tools",
+    "updateability": "#agent-tools",
+    "debugging": "#agent-tools",
+    "launch": "#agent-tools",
+    "gold_as_launch": "#agent-tools",
+    "twin_as_launch_day": "#agent-tools",
+    "sim_as_production": "#agent-tools",
+    "update_as_live_pin": "#agent-tools",
+    "close_owner_from_plane": "#agent-tools",
+}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -3993,6 +4067,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_303(catalog, body)
     _validate_instrument_304(catalog, body)
     _validate_instrument_305(catalog, body)
+    _validate_instrument_306(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5049,8 +5124,6 @@ def _validate_instrument_304(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_305(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.05.0":
-        raise IntegrityError("entity.release is 3.05.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.05.0" in item and "honest build" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.05.0 honest build", reason_code="CATALOG_ENGINEERING")
@@ -5094,6 +5167,54 @@ def _validate_instrument_305(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.microsoft.build import validate_honest_build
 
     validate_honest_build(catalog)
+
+
+def _validate_instrument_306(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.06.0":
+        raise IntegrityError("entity.release is 3.06.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.06.0" in item and "honest readiness" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.06.0 honest readiness", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_readiness") is not True or site.get("honest_build") is not True:
+        raise IntegrityError("3.06.0 website has honest readiness", reason_code="CATALOG_PLANE")
+    if site.get("honest_readiness_live") is True or site.get("gold_is_launch") is True:
+        raise IntegrityError("3.06.0 honest readiness is not live and gold is not launch", reason_code="CATALOG_PLANE")
+    if site.get("twin_is_launch_day") is True or site.get("launch_day_certified") is True:
+        raise IntegrityError("3.06.0 twin certified is not launch day", reason_code="CATALOG_PLANE")
+    ready = (catalog.get("microsoft_stack") or {}).get("readiness") or {}
+    if ready.get("kind") != "ainav.honest.readiness.v1" or ready.get("honest") is not True:
+        raise IntegrityError("3.06.0 honest readiness kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if ready.get("gold_is_launch") is True:
+        raise IntegrityError("3.06.0 gold is not launch", reason_code="CATALOG_REVIEW")
+    if ready.get("twin_is_launch_day") is True:
+        raise IntegrityError("3.06.0 twin certified is not launch day", reason_code="CATALOG_REVIEW")
+    if ready.get("launch_day_certified") is True:
+        raise IntegrityError("3.06.0 this plane cannot certify launch day", reason_code="CATALOG_REVIEW")
+    site_note = str(ready.get("site") or "").lower()
+    if "honest readiness" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps honest readiness", reason_code="CATALOG_REVIEW")
+    if "gold is not launch" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps gold is not launch", reason_code="CATALOG_REVIEW")
+    if "twin certified is not launch day" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps twin certified is not launch day", reason_code="CATALOG_REVIEW")
+    if "owner gaps stay owner-only" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps owner gaps stay owner-only", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest readiness" not in principles:
+        raise IntegrityError("first-principles must keep honest readiness", reason_code="CATALOG_REVIEW")
+    if "gold is not launch" not in principles:
+        raise IntegrityError("first-principles must keep gold is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.06.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.06.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest readiness" not in ops:
+        raise IntegrityError("3.06.0 operations note keeps honest readiness", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.readiness import validate_honest_readiness
+
+    validate_honest_readiness(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

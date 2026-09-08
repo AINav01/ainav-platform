@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.05.0",
+  "release": "3.06.0",
   "sku": false,
   "website": {
     "additional_access_needed": false,
@@ -249,6 +249,7 @@
     "firm_is_sku": false,
     "first_class": true,
     "full_access_needed": false,
+    "gold_is_launch": false,
     "grok_is_product": false,
     "grok_is_recorded": false,
     "grok_is_seat": false,
@@ -258,6 +259,8 @@
     "honest_build_live": false,
     "honest_operators": true,
     "honest_operators_live": false,
+    "honest_readiness": true,
+    "honest_readiness_live": false,
     "in_repo": "institute/index.html",
     "industry_certified": false,
     "industry_complete": true,
@@ -275,6 +278,7 @@
     "industry_rooms_live": false,
     "industry_seventeen_a4": false,
     "industry_wells_live": false,
+    "launch_day_certified": false,
     "launch_gate": true,
     "launch_is_ready": false,
     "launch_ready": false,
@@ -301,14 +305,17 @@
     "public_deploy_claimed": false,
     "public_edge": "cloudflare",
     "review_path": "twin.html",
+    "sim_is_production": false,
     "twin_host": "azure.swa",
     "twin_is_launch": false,
+    "twin_is_launch_day": false,
     "twin_review": true,
     "universe_day_live": false,
     "universe_href": "#universe",
     "universe_is_sku": false,
     "universe_operable": true,
     "universe_sit_down": true,
-    "universe_wells_live": false
+    "universe_wells_live": false,
+    "update_is_live_pin": false
   }
 }

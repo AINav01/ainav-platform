@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_291_microsoft_operating_day_roster():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.05.0"
+    assert cat["entity"]["release"] == "3.06.0"
     firm = cat["expert_review"]["success"]["operating_company"]
     run = firm["microsoft_run"]
     assert run["kind"] == "ainav.microsoft_run.v1"
@@ -39,7 +39,7 @@ def test_release_is_291_microsoft_operating_day_roster():
     assert "sharepoint" in missing
     assert "sentinel" in missing
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 75
+    assert len(cat["expert_review"]["upgrades"]) == 76
     assert upgrades[61]["who"] == "tree"
     assert upgrades[61]["done"] is True
     assert upgrades[61]["marks_live_pin"] is False
@@ -51,7 +51,7 @@ def test_release_is_291_microsoft_operating_day_roster():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "3.05.0" in html
+    assert "3.06.0" in html
     assert html.find('id="firm-ms"') < html.find('id="firm-day"')
     assert 'id="firm-open-assign"' in html
     assert "firm-wire-sharepoint" in html
@@ -67,9 +67,9 @@ def test_release_is_291_microsoft_operating_day_roster():
     assert "Microsoft operating day" in app
     assert "index.html#firm-ms" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.05.0"
+    assert dash["release"] == "3.06.0"
     status = public_status()
-    assert status["release"] == "3.05.0"
+    assert status["release"] == "3.06.0"
     assert status["website"]["microsoft_roster"] is True
     assert status["website"]["microsoft_roster_is_sku"] is False
     held = publish_institute()

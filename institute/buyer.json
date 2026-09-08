@@ -927,7 +927,11 @@
         "Swap Cursor for Grok",
         "Treat full access as admit",
         "Treat more secrets as build",
-        "Treat the twin as launch"
+        "Treat the twin as launch",
+        "Treat gold as launch",
+        "Treat twin certified as launch day",
+        "Treat simulation as production",
+        "Treat an update as LIVE_PIN_OK"
       ],
       "holds": [
         "No Graph Write from this plane",

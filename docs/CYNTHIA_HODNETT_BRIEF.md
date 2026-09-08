@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.05.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.06.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.05.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.06.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -398,6 +398,7 @@ Working well
 - 3.03.0 honest access is catalog law: this plane does not need additional access. Grok Build is an operator map. Grok Build is not a seat. A Grok bot is not dual admit. Cursor Cloud Agent stays the recorded operator. Not LIVE_PIN_OK.
 - 3.04.0 honest operators is catalog law: Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Owner cannot be the operator. Not LIVE_PIN_OK.
 - 3.05.0 honest build is catalog law: this plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK.
+- 3.06.0 honest readiness is catalog law: quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -448,6 +449,7 @@ Could be improved — without inventing a fourth SKU
 - 3.03.0 honest access sits on #agent-tools. This plane does not need Microsoft admin, grok login, or XAI_API_KEY. Grok Build stays installed=null. SuperGrok / X Premium Plus is not recorded. Seat B click and signed L1 stay owner-only. Not from this plane.
 - 3.04.0 honest operators sit on #agent-tools. Cursor stays recorded. Grok Build stays mapped. A Grok bot is not Cynthia's click. SuperGrok stays owner-only. Not from this plane.
 - 3.05.0 honest build sits on #agent-tools. Do not give full access. Build L1, P-ADM, U-DUAL, modules, packs, and repositories on the twin. Launch stays owner-only. Seat B click and signed L1 stay owner-only. Not from this plane.
+- 3.06.0 honest readiness sits on #agent-tools. Twin certified is not launch day. Gold is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.
 
 They win the bake-off when
 
@@ -590,6 +592,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 73. [tree] Honest access — Ship 3.03.0 honest access on #agent-tools. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. Not LIVE_PIN_OK.
 - 74. [tree] Honest operators — Ship 3.04.0 honest operators on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK.
 - 75. [tree] Honest build — Ship 3.05.0 honest build on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK.
+- 76. [tree] Honest readiness — Ship 3.06.0 honest readiness on #agent-tools. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.
 
 ## What happens next
 

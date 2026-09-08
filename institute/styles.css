@@ -1644,6 +1644,18 @@ table.law tr[data-group] th {
   flex-wrap: wrap;
   gap: 0.65rem 1.1rem;
 }
+.ready-lanes [data-ready="quality"],
+.ready-lanes [data-ready="operability"],
+.ready-lanes [data-ready="simulation"] { box-shadow: inset 3px 0 0 var(--gold); }
+.ready-lanes [data-ready="deliverability"],
+.ready-lanes [data-ready="updateability"],
+.ready-lanes [data-ready="debugging"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.ready-lanes [data-ready="launch"] { box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55); }
+#ready-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+}
 #operator-zeros {
   display: flex;
   flex-wrap: wrap;

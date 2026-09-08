@@ -4220,6 +4220,80 @@
     })
     .catch(function () {});
 
+  var READY_REFUSE = {
+    gold_as_launch: {
+      message: "Refused. Gold is not launch.",
+      ledger: "ready_denied · gold as launch\nGold is not launch.\nTwin certified is not launch day.\nlive=false · live_pin_ok=false"
+    },
+    twin_as_launch_day: {
+      message: "Refused. Twin certified is not launch day.",
+      ledger: "ready_denied · twin as launch day\nTwin certified is not launch day.\nJames says launch.\nlive=false · live_pin_ok=false"
+    },
+    sim_as_production: {
+      message: "Refused. Simulation is not production.",
+      ledger: "ready_denied · simulation as production\nSimulation is not production.\nThe twin stays a twin.\nlive=false · live_pin_ok=false"
+    },
+    update_as_live_pin: {
+      message: "Refused. An update is not LIVE_PIN_OK.",
+      ledger: "ready_denied · update as live pin\nAn update is not LIVE_PIN_OK.\nRegen is not launch.\nlive=false · live_pin_ok=false"
+    },
+    close_owner_from_plane: {
+      message: "Refused. Owner gaps stay owner-only.",
+      ledger: "ready_denied · close owner from plane\nOwner gaps stay owner-only.\nSeat B stays James.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeReadyLedger(text) {
+    var node = document.getElementById("ready-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseReady(button, message, ledger) {
+    var refuse = document.getElementById("ready-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeReadyLedger(ledger);
+  }
+
+  function bindReadyRefuses(root) {
+    if (!root || root.getAttribute("data-ready-bound")) return;
+    root.setAttribute("data-ready-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-ready-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-ready-refuse") || "";
+      var pack = READY_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseReady(
+        btn,
+        message,
+        pack.ledger || ("ready_denied · " + id + "\nGold is not launch.\nTwin certified is not launch day.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindReadyRefuses(document.getElementById("agent-tools"));
+
+  fetch("ready.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.gold_is_launch || data.twin_is_launch_day || data.is_admit_plane || data.launch_day_certified) return;
+      var status = document.getElementById("ready-status");
+      if (status) {
+        status.textContent =
+          "honest=true · gold_is_launch=false · twin_is_launch_day=false · launch_day_certified=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

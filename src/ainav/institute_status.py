@@ -237,6 +237,13 @@ def public_status() -> dict[str, Any]:
             "full_access_needed": False,
             "twin_is_launch": False,
             "packs_are_skus": False,
+            "honest_readiness": bool(site.get("honest_readiness")),
+            "honest_readiness_live": False,
+            "gold_is_launch": False,
+            "twin_is_launch_day": False,
+            "sim_is_production": False,
+            "update_is_live_pin": False,
+            "launch_day_certified": False,
         },
         "bc": {
             "connection": "bc.premium",

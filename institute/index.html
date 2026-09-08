@@ -19,7 +19,7 @@
   <link rel="preload" href="fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="graphics/write-rail.svg" as="image" />
-  <link rel="stylesheet" href="styles.css?v=3.05.0" />
+  <link rel="stylesheet" href="styles.css?v=3.06.0" />
   <script type="application/ld+json" id="schema-graph">
   {"@context":"https://schema.org","@type":"Organization","name":"AINav, Inc.","legalName":"AINav, Inc.","url":"https://blue-river-010091a0f.7.azurestaticapps.net/","description":"Dual-admitted effect authority before privileged system-of-record writes"}
   </script>
@@ -27,7 +27,7 @@
 <body>
   <a class="skip" href="#main">Skip to the law</a>
   <p class="twin-ribbon" id="twin-ribbon">
-    <span><strong>Twin</strong> · Azure SWA · Release 3.05.0 · Public apex empty 404 · Not launch</span>
+    <span><strong>Twin</strong> · Azure SWA · Release 3.06.0 · Public apex empty 404 · Not launch</span>
     <a href="twin.html">Twin review</a>
   </p>
   <header class="top">
@@ -1670,7 +1670,7 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
     </section>
 
     <section id="control-plane" class="plane-floor">
-      <p class="kicker">Ultimate control plane · 3.05.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
+      <p class="kicker">Ultimate control plane · 3.06.0 · must-have · not a SKU · not LIVE_PIN_OK</p>
       <h2>Human control plane — interface</h2>
       <p class="note">Must-have for the named controller. From the top of the client's org chart through every drafting desk. Open the floor. Catalog from <code>control-plane.json</code>.</p>
       <p class="lede" id="plane-thesis">Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the owner down. Treasury and controller admit. Department AI is not a seat.</p>
@@ -2704,6 +2704,59 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       </div>
       <div class="ledger" id="build-ledger" aria-live="polite"></div>
       <p class="note" id="build-status">need_full=false · twin_is_launch=false · packs_are_skus=false · live=false</p>
+      <p class="kicker" id="ready-kicker">Honest readiness · Gold is not launch · Twin certified is not launch day</p>
+      <p class="lede" id="ready-lede">
+        Run quality, operability, simulation, deliverability, updateability, and debugging on the twin.
+        Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only.
+        Simulation is not production. An update is not LIVE_PIN_OK.
+      </p>
+      <div class="plane-strip" id="ready-zeros" aria-label="Honest readiness zeros">
+        <span>Gold is launch <b id="ready-gold-launch">no</b></span>
+        <span>Twin is launch day <b id="ready-twin-day">no</b></span>
+        <span>Sim is production <b id="ready-sim-prod">no</b></span>
+        <span>LIVE_PIN_OK <b id="ready-live-pin">no</b></span>
+      </div>
+      <div class="universe-day operator-three ready-lanes" id="ready-lanes" aria-label="Honest readiness">
+        <section data-ready="quality">
+          <h3>Quality</h3>
+          <p><a href="#agent-tools"><b>Certified</b></a> Gold 99. Fail-closed. Edge quality. Not launch.</p>
+        </section>
+        <section data-ready="operability">
+          <h3>Operability</h3>
+          <p><a href="#agent-tools"><b>Certified</b></a> SKU attach. Health. Commercial stages. Not a live SoR write.</p>
+        </section>
+        <section data-ready="simulation">
+          <h3>Simulation</h3>
+          <p><a href="#agent-tools"><b>Certified</b></a> Twin. BC sandbox. Lua rehearsal. Not production.</p>
+        </section>
+        <section data-ready="deliverability">
+          <h3>Deliverability</h3>
+          <p><a href="#agent-tools"><b>Certified</b></a> Twin publish. Kit. Institute stays launch_not_ready.</p>
+        </section>
+        <section data-ready="updateability">
+          <h3>Updateability</h3>
+          <p><a href="#agent-tools"><b>Certified</b></a> Catalog regen. Version pins. Republish is not launch.</p>
+        </section>
+        <section data-ready="debugging">
+          <h3>Debugging</h3>
+          <p><a href="#agent-tools"><b>Certified</b></a> Examiner. Refuse rehearsal. Fail-closed probes. Not a census.</p>
+        </section>
+        <section data-ready="launch">
+          <h3>Launch is James</h3>
+          <p><a href="#agent-tools"><b>Owner only</b></a> Seat B. Signed L1. LIVE_PIN_OK. Apex bind. Launch word. Not from this plane.</p>
+        </section>
+      </div>
+      <p class="kicker" id="ready-refuse-kicker">Refuse rehearsal · do not certify launch day</p>
+      <p class="universe-refuse" id="ready-refuse" role="status" aria-live="assertive">Waiting. Click a refuse. Twin certified is not launch day.</p>
+      <div class="hero-actions">
+        <button type="button" class="ghost room-refuse" data-ready-refuse="gold_as_launch" data-refuse-text="Refused. Gold is not launch." aria-pressed="false">Mark gold launch</button>
+        <button type="button" class="ghost room-refuse" data-ready-refuse="twin_as_launch_day" data-refuse-text="Refused. Twin certified is not launch day." aria-pressed="false">Certify launch day</button>
+        <button type="button" class="ghost room-refuse" data-ready-refuse="sim_as_production" data-refuse-text="Refused. Simulation is not production." aria-pressed="false">Promote the sim</button>
+        <button type="button" class="ghost room-refuse" data-ready-refuse="update_as_live_pin" data-refuse-text="Refused. An update is not LIVE_PIN_OK." aria-pressed="false">Pin the update</button>
+        <button type="button" class="ghost room-refuse" data-ready-refuse="close_owner_from_plane" data-refuse-text="Refused. Owner gaps stay owner-only." aria-pressed="false">Close owner gaps</button>
+      </div>
+      <div class="ledger" id="ready-ledger" aria-live="polite"></div>
+      <p class="note" id="ready-status">gold_is_launch=false · twin_is_launch_day=false · launch_day_certified=false · live=false</p>
     </section>
 
     <section id="ip">
@@ -2885,10 +2938,10 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       </div>
     </div>
   </footer>
-  <script src="kit/ainav-elements.js?v=3.05.0" defer></script>
-  <script src="kit/speculate.js?v=3.05.0" defer></script>
-  <script src="search.js?v=3.05.0" defer></script>
-  <script src="insights.js?v=3.05.0" defer></script>
-  <script src="site.js?v=3.05.0" defer></script>
+  <script src="kit/ainav-elements.js?v=3.06.0" defer></script>
+  <script src="kit/speculate.js?v=3.06.0" defer></script>
+  <script src="search.js?v=3.06.0" defer></script>
+  <script src="insights.js?v=3.06.0" defer></script>
+  <script src="site.js?v=3.06.0" defer></script>
 </body>
 </html>

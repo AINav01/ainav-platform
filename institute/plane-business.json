@@ -611,7 +611,8 @@
       "3.02.0 honest agents. Agents > All. An agent is not a seat. Agent 365 is not AINav. Census claimed=false. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.03.0 honest access. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.04.0 honest operators. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -987,7 +988,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "3.05.0",
+  "release": "3.06.0",
   "scenarios": [
     {
       "id": "l1_only",
