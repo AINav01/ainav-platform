@@ -286,6 +286,13 @@ def public_status() -> dict[str, Any]:
             "hours_is_sku": False,
             "rollback_is_live_pin": False,
             "redeploy_is_launch": False,
+            "honest_production": bool(site.get("honest_production")),
+            "honest_production_live": False,
+            "production_sim_is_production": False,
+            "fix_all_is_this_plane": False,
+            "elements_are_live": False,
+            "better_is_launch": False,
+            "rehearsal_is_live_pin": False,
         },
         "bc": {
             "connection": "bc.premium",

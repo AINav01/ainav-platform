@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.13.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.14.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.13.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.14.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -406,6 +406,7 @@ Working well
 - 3.11.0 honest connect is catalog law: recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK.
 - 3.12.0 honest operate is catalog law: recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK.
 - 3.13.0 honest path is catalog law: recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK.
+- 3.14.0 honest production is catalog law: recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -461,6 +462,7 @@ Could be improved — without inventing a fourth SKU
 - 3.08.0 honest whole sits on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.
 - Owner asked to close all gaps, integrate Cursor apps, add Grok, run operational simulations, and make this 10/10. This plane records honest operate. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch.
 - Owner asked for a deep operational review of independent industry segregation, individual client BD, digital twins, sales to close, production, debug, upgrade, redeploy, pay-for development, billing, standard, upsells, libraries, repositories, and rollback. This plane records honest path. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch.
+- Owner asked to make all much better, fix all, close all gaps, and simulate production in all its elements. This plane records honest production. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -611,6 +613,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 81. [tree] Honest connect — Ship 3.11.0 honest connect on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Not LIVE_PIN_OK.
 - 82. [tree] Honest operate — Ship 3.12.0 honest operate on #agent-tools. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Not LIVE_PIN_OK.
 - 83. [tree] Honest path — Ship 3.13.0 honest path on #path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Not LIVE_PIN_OK.
+- 84. [tree] Honest production — Ship 3.14.0 honest production on #firm. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Not LIVE_PIN_OK.
 
 ## What happens next
 

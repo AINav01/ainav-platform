@@ -1154,8 +1154,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 83:
-        raise IntegrityError("expert review needs 16–83 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 84:
+        raise IntegrityError("expert review needs 16–84 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1229,6 +1229,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         81: ("honest connect", "live_pin_ok"),
         82: ("honest operate", "live_pin_ok"),
         83: ("honest path", "live_pin_ok"),
+        84: ("honest production", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1360,6 +1361,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep a shared sandbox is not production and hours are not a SKU", reason_code="CATALOG_REVIEW")
     if "rollback is not live_pin_ok" not in blob or "a redeploy is not launch" not in blob:
         raise IntegrityError("first-principles must keep rollback is not LIVE_PIN_OK and a redeploy is not launch", reason_code="CATALOG_REVIEW")
+    if "honest production" not in blob or "a production sim is not production" not in blob:
+        raise IntegrityError("first-principles must keep honest production", reason_code="CATALOG_REVIEW")
+    if "fixing all is not this plane" not in blob or "rehearsed elements are not live" not in blob:
+        raise IntegrityError("first-principles must keep fixing all is not this plane and rehearsed elements are not live", reason_code="CATALOG_REVIEW")
+    if "making all much better is not launch" not in blob or "a rehearsal is not live_pin_ok" not in blob:
+        raise IntegrityError("first-principles must keep making all much better is not launch and a rehearsal is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1717,6 +1724,29 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest path is not production and hours are not a SKU", reason_code="CATALOG_REVIEW")
     if hosted_path.get("rollback_is_live_pin") is True or hosted_path.get("redeploy_is_launch") is True:
         raise IntegrityError("success honest path is not a live pin and is not launch", reason_code="CATALOG_REVIEW")
+    if "a production sim as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a production sim as production", reason_code="CATALOG_REVIEW")
+    if "fixing all as this plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat fixing all as this plane", reason_code="CATALOG_REVIEW")
+    if "rehearsed elements as live" not in does_not:
+        raise IntegrityError("CISO posture does not treat rehearsed elements as live", reason_code="CATALOG_REVIEW")
+    if "making all much better as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat making all much better as launch", reason_code="CATALOG_REVIEW")
+    if "a rehearsal as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat a rehearsal as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    hosted_production = success.get("honest_production")
+    if not isinstance(hosted_production, dict):
+        raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("kind") != "ainav.honest.production.v1" or hosted_production.get("honest") is not True:
+        raise IntegrityError("success honest production stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("href") != "#firm":
+        raise IntegrityError("success honest production sits on #firm", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("live") is True or hosted_production.get("production_sim_is_production") is True:
+        raise IntegrityError("success honest production stays not live and a production sim is not production", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("fix_all_is_this_plane") is True or hosted_production.get("elements_are_live") is True:
+        raise IntegrityError("success honest production is not this plane and rehearsed elements are not live", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("better_is_launch") is True or hosted_production.get("rehearsal_is_live_pin") is True:
+        raise IntegrityError("success honest production is not launch and is not a live pin", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3351,6 +3381,22 @@ HONEST_PATH_REFUSE_TEXT = {
     "redeploy_as_launch": "Refused. A redeploy is not launch.",
 }
 HONEST_PATH_HREFS = {key: "#path" for key in HONEST_PATH_REFUSE_IDS}
+HONEST_PRODUCTION_FACT_IDS = ["day", "attach", "write", "service", "gate"]
+HONEST_PRODUCTION_REFUSE_IDS = [
+    "production_sim_as_production",
+    "fix_all_as_this_plane",
+    "elements_as_live",
+    "better_as_launch",
+    "rehearsal_as_live_pin",
+]
+HONEST_PRODUCTION_REFUSE_TEXT = {
+    "production_sim_as_production": "Refused. A production sim is not production.",
+    "fix_all_as_this_plane": "Refused. Fixing all is not this plane.",
+    "elements_as_live": "Refused. Rehearsed elements are not live.",
+    "better_as_launch": "Refused. Making all much better is not launch.",
+    "rehearsal_as_live_pin": "Refused. A rehearsal is not LIVE_PIN_OK.",
+}
+HONEST_PRODUCTION_HREFS = {key: "#firm" for key in HONEST_PRODUCTION_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4419,6 +4465,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_311(catalog, body)
     _validate_instrument_312(catalog, body)
     _validate_instrument_313(catalog, body)
+    _validate_instrument_314(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5857,8 +5904,6 @@ def _validate_instrument_312(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_313(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.13.0":
-        raise IntegrityError("entity.release is 3.13.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.13.0" in item and "honest path" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.13.0 honest path", reason_code="CATALOG_ENGINEERING")
@@ -5906,6 +5951,58 @@ def _validate_instrument_313(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_path import validate_honest_path
 
     validate_honest_path(catalog)
+
+
+def _validate_instrument_314(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.14.0":
+        raise IntegrityError("entity.release is 3.14.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.14.0" in item and "honest production" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.14.0 honest production", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_production") is not True or site.get("honest_path") is not True:
+        raise IntegrityError("3.14.0 website has honest production", reason_code="CATALOG_PLANE")
+    if site.get("honest_production_live") is True or site.get("production_sim_is_production") is True:
+        raise IntegrityError("3.14.0 production is not live and a production sim is not production", reason_code="CATALOG_PLANE")
+    if site.get("fix_all_is_this_plane") is True or site.get("elements_are_live") is True:
+        raise IntegrityError("3.14.0 fixing all is not this plane and rehearsed elements are not live", reason_code="CATALOG_PLANE")
+    if site.get("better_is_launch") is True or site.get("rehearsal_is_live_pin") is True:
+        raise IntegrityError("3.14.0 making all much better is not launch and a rehearsal is not LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    production = catalog.get("honest_production") or {}
+    if production.get("kind") != "ainav.honest.production.v1" or production.get("honest") is not True:
+        raise IntegrityError("3.14.0 honest production kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if production.get("production_sim_is_production") is True or production.get("fix_all_is_this_plane") is True:
+        raise IntegrityError("3.14.0 a production sim is not production and fixing all is not this plane", reason_code="CATALOG_REVIEW")
+    if production.get("certified") is True:
+        raise IntegrityError("3.14.0 honest production is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(production.get("site") or "").lower()
+    if "honest production" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps honest production", reason_code="CATALOG_REVIEW")
+    if "a production sim is not production" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps a production sim is not production", reason_code="CATALOG_REVIEW")
+    if "not a /firm route" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps not a /firm route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest production" not in principles:
+        raise IntegrityError("first-principles must keep honest production", reason_code="CATALOG_REVIEW")
+    if "a production sim is not production" not in principles:
+        raise IntegrityError("first-principles must keep a production sim is not production", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.14.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#firm" not in ops:
+        raise IntegrityError("3.14.0 operations note keeps #firm", reason_code="CATALOG_REVIEW")
+    if "honest production" not in ops:
+        raise IntegrityError("3.14.0 operations note keeps honest production", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a production sim" not in managed:
+        raise IntegrityError("3.14.0 managed face refuses a production sim", reason_code="CATALOG_PLANE")
+    from ainav.honest_production import validate_honest_production
+
+    validate_honest_production(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

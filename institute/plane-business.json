@@ -619,7 +619,8 @@
       "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.11.0 honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.12.0 honest operate. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -995,7 +996,7 @@
     "invented walk-away",
     "LIVE_PIN_OK"
   ],
-  "release": "3.13.0",
+  "release": "3.14.0",
   "scenarios": [
     {
       "id": "l1_only",

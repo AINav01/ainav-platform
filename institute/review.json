@@ -339,7 +339,8 @@
       "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.11.0 honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.12.0 honest operate. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -431,7 +432,8 @@
       "3.07.0 honest industry certify sits on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.",
       "3.08.0 honest whole sits on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.",
       "Owner asked to close all gaps, integrate Cursor apps, add Grok, run operational simulations, and make this 10/10. This plane records honest operate. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch.",
-      "Owner asked for a deep operational review of independent industry segregation, individual client BD, digital twins, sales to close, production, debug, upgrade, redeploy, pay-for development, billing, standard, upsells, libraries, repositories, and rollback. This plane records honest path. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch."
+      "Owner asked for a deep operational review of independent industry segregation, individual client BD, digital twins, sales to close, production, debug, upgrade, redeploy, pay-for development, billing, standard, upsells, libraries, repositories, and rollback. This plane records honest path. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch.",
+      "Owner asked to make all much better, fix all, close all gaps, and simulate production in all its elements. This plane records honest production. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -702,7 +704,12 @@
           "Treat a shared sandbox as production",
           "Treat hours as a SKU",
           "Treat rollback as LIVE_PIN_OK",
-          "Treat a redeploy as launch"
+          "Treat a redeploy as launch",
+          "Treat a production sim as production",
+          "Treat fixing all as this plane",
+          "Treat rehearsed elements as live",
+          "Treat making all much better as launch",
+          "Treat a rehearsal as LIVE_PIN_OK"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1224,6 +1231,17 @@
         "is_sku": false,
         "kind": "ainav.honest.power_pages.v1",
         "live": false
+      },
+      "honest_production": {
+        "better_is_launch": false,
+        "elements_are_live": false,
+        "fix_all_is_this_plane": false,
+        "honest": true,
+        "href": "#firm",
+        "kind": "ainav.honest.production.v1",
+        "live": false,
+        "production_sim_is_production": false,
+        "rehearsal_is_live_pin": false
       },
       "honest_readiness": {
         "gold_is_launch": false,
@@ -1870,7 +1888,7 @@
         "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
         "live": false,
         "live_pin_ok": false,
-        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox.",
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim.",
         "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
         "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
         "refuse": [
@@ -3386,6 +3404,14 @@
         "n": 83,
         "title": "Honest path",
         "who": "tree"
+      },
+      {
+        "do": "Ship 3.14.0 honest production on #firm. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 84,
+        "title": "Honest production",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -3496,7 +3522,8 @@
       "3.10.0 honest Copilot Studio is catalog law: considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK.",
       "3.11.0 honest connect is catalog law: recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK.",
       "3.12.0 honest operate is catalog law: recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK.",
-      "3.13.0 honest path is catalog law: recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK."
+      "3.13.0 honest path is catalog law: recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK.",
+      "3.14.0 honest production is catalog law: recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

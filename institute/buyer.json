@@ -965,7 +965,12 @@
         "Treat a shared sandbox as production",
         "Treat hours as a SKU",
         "Treat rollback as LIVE_PIN_OK",
-        "Treat a redeploy as launch"
+        "Treat a redeploy as launch",
+        "Treat a production sim as production",
+        "Treat fixing all as this plane",
+        "Treat rehearsed elements as live",
+        "Treat making all much better as launch",
+        "Treat a rehearsal as LIVE_PIN_OK"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2029,7 +2034,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

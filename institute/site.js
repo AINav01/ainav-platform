@@ -4722,6 +4722,65 @@
   }
   bindCycleRefuses(document.getElementById("path-consider"));
 
+  var PROD_REFUSE = {
+    production_sim_as_production: {
+      message: "Refused. A production sim is not production.",
+      ledger: "prod_denied · production sim as production\nA production sim is not production.\nLaunch stays closed.\nlive=false · live_pin_ok=false"
+    },
+    fix_all_as_this_plane: {
+      message: "Refused. Fixing all is not this plane.",
+      ledger: "prod_denied · fixing all as this plane\nFixing all is not this plane.\nOwner gaps stay owner-only.\nlive=false · live_pin_ok=false"
+    },
+    elements_as_live: {
+      message: "Refused. Rehearsed elements are not live.",
+      ledger: "prod_denied · rehearsed elements as live\nRehearsed elements are not live.\nLive stays 0.\nlive=false · live_pin_ok=false"
+    },
+    better_as_launch: {
+      message: "Refused. Making all much better is not launch.",
+      ledger: "prod_denied · making all much better as launch\nMaking all much better is not launch.\nOwner says launch.\nlive=false · live_pin_ok=false"
+    },
+    rehearsal_as_live_pin: {
+      message: "Refused. A rehearsal is not LIVE_PIN_OK.",
+      ledger: "prod_denied · rehearsal as LIVE_PIN_OK\nA rehearsal is not LIVE_PIN_OK.\nGold is not launch.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeProdLedger(text) {
+    var node = document.getElementById("prod-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseProd(button, message, ledger) {
+    var refuse = document.getElementById("prod-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeProdLedger(ledger);
+  }
+
+  function bindProdRefuses(root) {
+    if (!root || root.getAttribute("data-prod-bound")) return;
+    root.setAttribute("data-prod-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-prod-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-prod-refuse") || "";
+      var pack = PROD_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseProd(
+        btn,
+        message,
+        pack.ledger || ("prod_denied · " + id + "\nA production sim is not production.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindProdRefuses(document.getElementById("prod-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -4763,6 +4822,21 @@
       if (status) {
         status.textContent =
           "honest=true · recorded=true · industry_is_named_client=false · shared_sandbox_is_production=false · hours_is_sku=false · live=false";
+      }
+    })
+    .catch(function () {});
+
+  fetch("production.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.production_sim_is_production || data.fix_all_is_this_plane || data.elements_are_live || data.better_is_launch || data.rehearsal_is_live_pin || data.certified) return;
+      var status = document.getElementById("prod-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · production_sim_is_production=false · fix_all_is_this_plane=false · elements_are_live=false · live=false";
       }
     })
     .catch(function () {});

@@ -1876,19 +1876,22 @@ table.law tr[data-group] th {
 #studio-consider,
 #connect-consider,
 #operate-consider,
-#path-consider {
+#path-consider,
+#prod-consider {
   padding: 1.45rem 1.45rem 1.65rem;
 }
 #pages-consider .ghost,
 #studio-consider .ghost,
 #connect-consider .ghost,
 #operate-consider .ghost,
-#path-consider .ghost {
+#path-consider .ghost,
+#prod-consider .ghost {
   min-height: 2.45rem;
   padding: 0.45rem 0.85rem;
 }
 #operate-consider,
-#path-consider {
+#path-consider,
+#prod-consider {
   max-width: var(--wide);
   margin: 1.35rem 0 0;
   padding: 1.45rem 1.45rem 1.65rem;
@@ -1897,24 +1900,30 @@ table.law tr[data-group] th {
   border: 1px solid color-mix(in srgb, var(--gold-2) 24%, var(--rule));
   box-shadow: var(--shadow);
 }
-#path-consider { margin: 0 0 1.35rem; }
+#path-consider,
+#prod-consider { margin: 0 0 1.35rem; }
 #operate-consider > h2,
-#path-consider > h2 {
+#path-consider > h2,
+#prod-consider > h2 {
   margin: 0 0 0.55rem;
   color: var(--ink);
   font-size: clamp(1.85rem, 3.4vw, 2.55rem);
 }
 #operate-consider .lede,
-#path-consider .lede {
+#path-consider .lede,
+#prod-consider .lede {
   color: var(--ink);
   max-width: 40rem;
 }
 #operate-consider .kicker,
-#path-consider .kicker { color: var(--gold-ink); }
+#path-consider .kicker,
+#prod-consider .kicker { color: var(--gold-ink); }
 #operate-consider .note,
-#path-consider .note { color: var(--mute); }
+#path-consider .note,
+#prod-consider .note { color: var(--mute); }
 #operate-consider .ghost,
-#path-consider .ghost {
+#path-consider .ghost,
+#prod-consider .ghost {
   color: var(--ink);
   border-color: var(--ink);
   background: transparent;
@@ -1922,15 +1931,19 @@ table.law tr[data-group] th {
 #operate-consider .ghost:hover,
 #operate-consider .ghost[aria-pressed="true"],
 #path-consider .ghost:hover,
-#path-consider .ghost[aria-pressed="true"] {
+#path-consider .ghost[aria-pressed="true"],
+#prod-consider .ghost:hover,
+#prod-consider .ghost[aria-pressed="true"] {
   background: color-mix(in srgb, var(--gold) 14%, var(--paper));
   border-color: var(--gold);
   color: var(--ink);
 }
 .operate-facts [data-fact="ten"],
-.cycle-facts [data-fact="service"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.cycle-facts [data-fact="service"],
+.prod-facts [data-fact="gate"] { box-shadow: inset 3px 0 0 var(--gold-2); }
 #operate-zeros,
-#cycle-zeros {
+#cycle-zeros,
+#prod-zeros {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 1.15rem;
@@ -1943,12 +1956,14 @@ table.law tr[data-group] th {
   letter-spacing: 0.02em;
 }
 #operate-zeros b,
-#cycle-zeros b { color: var(--gold-2); }
+#cycle-zeros b,
+#prod-zeros b { color: var(--gold-2); }
 @media (min-width: 1100px) {
   .pages-facts { grid-template-columns: repeat(3, 1fr); }
   .pages-facts.connect-facts,
   .pages-facts.operate-facts,
-  .pages-facts.cycle-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pages-facts.cycle-facts,
+  .pages-facts.prod-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 #missing .gaps {
   display: grid;
