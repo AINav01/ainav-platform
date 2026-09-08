@@ -265,6 +265,13 @@ def public_status() -> dict[str, Any]:
             "copilot_studio_is_admit": False,
             "copilot_studio_is_complement": False,
             "copilot_studio_is_seat": False,
+            "honest_connect": bool(site.get("honest_connect")),
+            "honest_connect_live": False,
+            "connected_is_live": False,
+            "licensed_is_wired": False,
+            "available_is_seat": False,
+            "graph_read_is_live_pin": False,
+            "cursor_app_is_seat": False,
         },
         "bc": {
             "connection": "bc.premium",

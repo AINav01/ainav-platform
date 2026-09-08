@@ -1154,7 +1154,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 80:
+    if not 16 <= len(upgrades) <= 81:
         raise IntegrityError("expert review needs 16–80 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
@@ -1226,6 +1226,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         78: ("honest whole", "live_pin_ok"),
         79: ("honest power pages", "live_pin_ok"),
         80: ("honest copilot studio", "live_pin_ok"),
+        81: ("honest connect", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1341,6 +1342,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest Power Pages", reason_code="CATALOG_REVIEW")
     if "honest copilot studio" not in blob or "copilot studio is not job c" not in blob:
         raise IntegrityError("first-principles must keep honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if "honest connect" not in blob or "connected is not live" not in blob:
+        raise IntegrityError("first-principles must keep honest connect", reason_code="CATALOG_REVIEW")
+    if "licensed is not wired" not in blob or "available is not a seat" not in blob:
+        raise IntegrityError("first-principles must keep licensed is not wired and available is not a seat", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1629,6 +1634,29 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest Copilot Studio stays not live and is not Job C", reason_code="CATALOG_REVIEW")
     if hosted_studio.get("is_admit_plane") is True or hosted_studio.get("is_seat") is True:
         raise IntegrityError("success honest Copilot Studio is not the admit plane and is not seat B", reason_code="CATALOG_REVIEW")
+    if "connected as live" not in does_not:
+        raise IntegrityError("CISO posture does not treat connected as live", reason_code="CATALOG_REVIEW")
+    if "licensed as wired" not in does_not:
+        raise IntegrityError("CISO posture does not treat licensed as wired", reason_code="CATALOG_REVIEW")
+    if "available as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat available as a seat", reason_code="CATALOG_REVIEW")
+    if "graph read as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Graph read as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "cursor app as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Cursor app as a seat", reason_code="CATALOG_REVIEW")
+    hosted_connect = success.get("honest_connect")
+    if not isinstance(hosted_connect, dict):
+        raise IntegrityError("success program keeps honest connect", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("kind") != "ainav.honest.connect.v1" or hosted_connect.get("honest") is not True:
+        raise IntegrityError("success honest connect stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("href") != "#missing":
+        raise IntegrityError("success honest connect sits on #missing", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("live") is True or hosted_connect.get("connected_is_live") is True:
+        raise IntegrityError("success honest connect stays not live", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("licensed_is_wired") is True or hosted_connect.get("available_is_seat") is True:
+        raise IntegrityError("success honest connect is not wired and is not a seat", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("graph_read_is_live_pin") is True or hosted_connect.get("cursor_app_is_seat") is True:
+        raise IntegrityError("success honest connect is not a live pin and is not a seat", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3215,6 +3243,22 @@ HONEST_COPILOT_STUDIO_REFUSE_TEXT = {
     "studio_as_seat": "Refused. Copilot Studio RFI is not seat B.",
 }
 HONEST_COPILOT_STUDIO_HREFS = {key: "#success" for key in HONEST_COPILOT_STUDIO_REFUSE_IDS}
+HONEST_CONNECT_FACT_IDS = ["connected", "authorized", "available", "blocked", "live"]
+HONEST_CONNECT_REFUSE_IDS = [
+    "connected_as_live",
+    "licensed_as_wired",
+    "available_as_seat",
+    "graph_read_as_live_pin",
+    "cursor_app_as_seat",
+]
+HONEST_CONNECT_REFUSE_TEXT = {
+    "connected_as_live": "Refused. Connected is not live.",
+    "licensed_as_wired": "Refused. Licensed is not wired.",
+    "available_as_seat": "Refused. Available is not a seat.",
+    "graph_read_as_live_pin": "Refused. A Graph read is not LIVE_PIN_OK.",
+    "cursor_app_as_seat": "Refused. A Cursor app is not a seat.",
+}
+HONEST_CONNECT_HREFS = {key: "#missing" for key in HONEST_CONNECT_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4280,6 +4324,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_308(catalog, body)
     _validate_instrument_309(catalog, body)
     _validate_instrument_310(catalog, body)
+    _validate_instrument_311(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5568,8 +5613,6 @@ def _validate_instrument_309(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_310(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.10.0":
-        raise IntegrityError("entity.release is 3.10.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.10.0" in item and "copilot studio" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.10.0 honest Copilot Studio", reason_code="CATALOG_ENGINEERING")
@@ -5617,6 +5660,58 @@ def _validate_instrument_310(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.copilot_studio import validate_honest_copilot_studio
 
     validate_honest_copilot_studio(catalog)
+
+
+def _validate_instrument_311(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.11.0":
+        raise IntegrityError("entity.release is 3.11.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.11.0" in item and "honest connect" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.11.0 honest connect", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_connect") is not True or site.get("honest_copilot_studio") is not True:
+        raise IntegrityError("3.11.0 website has honest connect", reason_code="CATALOG_PLANE")
+    if site.get("honest_connect_live") is True or site.get("connected_is_live") is True:
+        raise IntegrityError("3.11.0 connect is not live", reason_code="CATALOG_PLANE")
+    if site.get("licensed_is_wired") is True or site.get("available_is_seat") is True:
+        raise IntegrityError("3.11.0 licensed is not wired and available is not a seat", reason_code="CATALOG_PLANE")
+    if site.get("graph_read_is_live_pin") is True or site.get("cursor_app_is_seat") is True:
+        raise IntegrityError("3.11.0 a Graph read is not LIVE_PIN_OK and a Cursor app is not a seat", reason_code="CATALOG_PLANE")
+    connect = catalog.get("honest_connect") or {}
+    if connect.get("kind") != "ainav.honest.connect.v1" or connect.get("honest") is not True:
+        raise IntegrityError("3.11.0 honest connect kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if connect.get("connected_is_live") is True or connect.get("licensed_is_wired") is True:
+        raise IntegrityError("3.11.0 connected is not live and licensed is not wired", reason_code="CATALOG_REVIEW")
+    if connect.get("certified") is True:
+        raise IntegrityError("3.11.0 honest connect is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(connect.get("site") or "").lower()
+    if "honest connect" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps honest connect", reason_code="CATALOG_REVIEW")
+    if "connected is not live" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps connected is not live", reason_code="CATALOG_REVIEW")
+    if "not a /connect route" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps not a /connect route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest connect" not in principles:
+        raise IntegrityError("first-principles must keep honest connect", reason_code="CATALOG_REVIEW")
+    if "connected is not live" not in principles:
+        raise IntegrityError("first-principles must keep connected is not live", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.11.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#missing" not in ops:
+        raise IntegrityError("3.11.0 operations note keeps #missing", reason_code="CATALOG_REVIEW")
+    if "honest connect" not in ops:
+        raise IntegrityError("3.11.0 operations note keeps honest connect", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not connected-as-live" not in managed:
+        raise IntegrityError("3.11.0 managed face refuses connected-as-live", reason_code="CATALOG_PLANE")
+    from ainav.honest_connect import validate_honest_connect
+
+    validate_honest_connect(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

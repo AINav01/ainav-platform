@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_308_honest_whole():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.10.0"
+    assert cat["entity"]["release"] == "3.11.0"
     whole = cat["honest_whole"]
     assert whole["kind"] == "ainav.honest.whole.v1"
     assert whole["honest"] is True
@@ -56,7 +56,7 @@ def test_release_is_308_honest_whole():
     assert "honest whole" in principles
     assert "the whole firm is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 80
+    assert len(cat["expert_review"]["upgrades"]) == 81
     assert upgrades[78]["who"] == "tree"
     assert upgrades[78]["done"] is True
     assert upgrades[78]["marks_live_pin"] is False
@@ -67,7 +67,7 @@ def test_release_is_308_honest_whole():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
-    assert "3.10.0" in html
+    assert "3.11.0" in html
     assert "honest whole" in html.lower()
     assert "the whole firm is not launch" in html.lower()
     assert "a 10/10 review is not launch" in html.lower()
@@ -87,16 +87,16 @@ def test_release_is_308_honest_whole():
     assert "ready-lede" not in js
     assert "honest whole" in twin.lower()
     assert "the whole firm is not launch" in twin.lower()
-    assert "Digital twin · 3.10.0" in twin
-    assert "AINAV.Institute twin · 3.10.0" in twin
+    assert "Digital twin · 3.11.0" in twin
+    assert "AINAV.Institute twin · 3.11.0" in twin
     assert "3.07.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.10.0" in kit
+    assert "Application kit · 3.11.0" in kit
     assert "Whole is launch" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.10.0"
+    assert dash["release"] == "3.11.0"
     status = public_status()
-    assert status["release"] == "3.10.0"
+    assert status["release"] == "3.11.0"
     assert status["website"]["honest_whole"] is True
     assert status["website"]["honest_whole_live"] is False
     assert status["website"]["whole_is_launch"] is False

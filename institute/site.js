@@ -4545,6 +4545,80 @@
   }
   bindStudioRefuses(document.getElementById("studio-consider"));
 
+  var CONNECT_REFUSE = {
+    connected_as_live: {
+      message: "Refused. Connected is not live.",
+      ledger: "connect_denied · connected as live\nConnected is not live.\nRead-only is not LIVE_PIN_OK.\nlive=false · live_pin_ok=false"
+    },
+    licensed_as_wired: {
+      message: "Refused. Licensed is not wired.",
+      ledger: "connect_denied · licensed as wired\nLicensed is not wired.\nA SKU is not a connection.\nlive=false · live_pin_ok=false"
+    },
+    available_as_seat: {
+      message: "Refused. Available is not a seat.",
+      ledger: "connect_denied · available as a seat\nAvailable is not a seat.\nTools are not seats.\nlive=false · live_pin_ok=false"
+    },
+    graph_read_as_live_pin: {
+      message: "Refused. A Graph read is not LIVE_PIN_OK.",
+      ledger: "connect_denied · graph read as live pin\nA Graph read is not LIVE_PIN_OK.\nFour Reads are not launch.\nlive=false · live_pin_ok=false"
+    },
+    cursor_app_as_seat: {
+      message: "Refused. A Cursor app is not a seat.",
+      ledger: "connect_denied · cursor app as a seat\nA Cursor app is not a seat.\nAzure MCP ready is not authorized.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeConnectLedger(text) {
+    var node = document.getElementById("connect-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseConnect(button, message, ledger) {
+    var refuse = document.getElementById("connect-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeConnectLedger(ledger);
+  }
+
+  function bindConnectRefuses(root) {
+    if (!root || root.getAttribute("data-connect-bound")) return;
+    root.setAttribute("data-connect-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-connect-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-connect-refuse") || "";
+      var pack = CONNECT_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseConnect(
+        btn,
+        message,
+        pack.ledger || ("connect_denied · " + id + "\nConnected is not live.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindConnectRefuses(document.getElementById("connect-consider"));
+
+  fetch("connect.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.connected_is_live || data.licensed_is_wired || data.available_is_seat || data.certified) return;
+      var status = document.getElementById("connect-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · connected_is_live=false · licensed_is_wired=false · available_is_seat=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("studio.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

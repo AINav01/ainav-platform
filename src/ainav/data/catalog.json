@@ -5,7 +5,7 @@
     "institute": "AINAV.Institute",
     "product": "AINav Control Plane",
     "job": "C",
-    "release": "3.10.0",
+    "release": "3.11.0",
     "category": "Human control plane over every client AI that can draft a privileged system-of-record write"
   },
   "operating": {
@@ -2012,7 +2012,7 @@
       "KIT_FAIL",
       "CHURN"
     ],
-    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Maps stay claimed=false. Packs are not SKUs. Not a second company. Honest control sits on #industry: need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Honest agents sit on #agent-tools. Agents > All is the registry. An agent is not a seat. Agent 365 is not AINav. Around the write stays maps. Total agents is a Microsoft card. 3.03.0 honest access sits on #agent-tools. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.04.0 honest operators sit on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.05.0 honest build sits on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. SKU attach stays L1 then P-ADM then U-DUAL. 3.06.0 honest readiness sits on #agent-tools. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. SKU attach stays L1 then P-ADM then U-DUAL. 3.07.0 honest industry certify sits on #packs. Standard and upsell desks by industry. Packs, libraries, and repositories are not SKUs. Industry certify is not launch. SKU attach stays L1 then P-ADM then U-DUAL. 3.08.0 honest whole sits on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. SKU attach stays L1 then P-ADM then U-DUAL. 3.09.0 honest Power Pages sits on #twin. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. SKU attach stays L1 then P-ADM then U-DUAL. 3.10.0 honest Copilot Studio sits on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. Complements stay eight. SKU attach stays L1 then P-ADM then U-DUAL."
+    "note": "SKU attach chain. The operating day is #firm. The Microsoft roster is #firm-ms. The brand is #brand. The client universe is #universe. Honest zeros sit the board. The sit-down client day is now / next / after L1. The sit-down industry drawer is sit / maps / attach / refuse on #industry. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Maps stay claimed=false. Packs are not SKUs. Not a second company. Honest control sits on #industry: need, consequence, now, around the corner, fiduciary. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Honest agents sit on #agent-tools. Agents > All is the registry. An agent is not a seat. Agent 365 is not AINav. Around the write stays maps. Total agents is a Microsoft card. 3.03.0 honest access sits on #agent-tools. This plane does not need additional access. Grok Build is not a seat. A Grok bot is not dual admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.04.0 honest operators sit on #agent-tools. Cursor is recorded. Grok Build is mapped. A Grok bot is not admit. SKU attach stays L1 then P-ADM then U-DUAL. 3.05.0 honest build sits on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. SKU attach stays L1 then P-ADM then U-DUAL. 3.06.0 honest readiness sits on #agent-tools. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. SKU attach stays L1 then P-ADM then U-DUAL. 3.07.0 honest industry certify sits on #packs. Standard and upsell desks by industry. Packs, libraries, and repositories are not SKUs. Industry certify is not launch. SKU attach stays L1 then P-ADM then U-DUAL. 3.08.0 honest whole sits on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. SKU attach stays L1 then P-ADM then U-DUAL. 3.09.0 honest Power Pages sits on #twin. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. SKU attach stays L1 then P-ADM then U-DUAL. 3.10.0 honest Copilot Studio sits on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. Complements stay eight. SKU attach stays L1 then P-ADM then U-DUAL. 3.11.0 honest connect sits on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. SKU attach stays L1 then P-ADM then U-DUAL."
   },
   "acceptance_kit": {
     "requires_sku": "L1",
@@ -5054,7 +5054,8 @@
         "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
         "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
         "3.09.0 honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-        "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+        "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+        "3.11.0 honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
       ],
       "owner_only_open": [
         "seat B click",
@@ -5295,7 +5296,8 @@
       "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.09.0 honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.11.0 honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
@@ -8205,7 +8207,14 @@
       "copilot_studio_is_sku": false,
       "copilot_studio_is_admit": false,
       "copilot_studio_is_complement": false,
-      "copilot_studio_is_seat": false
+      "copilot_studio_is_seat": false,
+      "honest_connect": true,
+      "honest_connect_live": false,
+      "connected_is_live": false,
+      "licensed_is_wired": false,
+      "available_is_seat": false,
+      "graph_read_is_live_pin": false,
+      "cursor_app_is_seat": false
     },
     "apply_prerequisites": [
       "Azure hostname is published; ainav.institute custom domain is not claimed",
@@ -8703,7 +8712,8 @@
       "3.07.0 honest industry certify is catalog law: standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.",
       "3.08.0 honest whole is catalog law: business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK.",
       "3.09.0 honest Power Pages is catalog law: considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK.",
-      "3.10.0 honest Copilot Studio is catalog law: considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK."
+      "3.10.0 honest Copilot Studio is catalog law: considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK.",
+      "3.11.0 honest connect is catalog law: recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK."
     ],
     "first_principles": [
       "Job C: two distinct humans bind one action_hash. Identify is not admit. MFA and Conditional Access identify. They do not admit.",
@@ -8760,7 +8770,8 @@
       "Honest industry certify sits on #packs. Standard and upsell desks, modules, libraries, and shared repositories are catalog law by industry. Packs are not SKUs. Industry certify is not launch. Not a /industry route. Not LIVE_PIN_OK.",
       "Honest whole sits on #whole. Business, build, and website read as one firm. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. First glance stays the write rail. Not a /whole route. Not LIVE_PIN_OK.",
       "Honest Power Pages sits on #twin. Power Pages is not the Institute host. Power Pages is not a SKU. A Dataverse-backed portal is not Job C. Complements stay eight. US Dataverse stays open. Not a /power-pages route. Not LIVE_PIN_OK.",
-      "Honest Copilot Studio sits on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. A human looked is not dual admit. Complements stay eight. Not a /copilot-studio route. Not LIVE_PIN_OK."
+      "Honest Copilot Studio sits on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. A human looked is not dual admit. Complements stay eight. Not a /copilot-studio route. Not LIVE_PIN_OK.",
+      "Honest connect sits on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. First glance stays the write rail. Not a /connect route. Not LIVE_PIN_OK."
     ],
     "improve": [
       "AINAV-L1 used lab operator oids. That is a sandbox write, not two named treasury humans.",
@@ -9073,7 +9084,12 @@
           "Treat Copilot Studio as a SKU",
           "Treat Copilot Studio as the admit plane",
           "Treat Copilot Studio as a complement",
-          "Treat Copilot Studio as seat B"
+          "Treat Copilot Studio as seat B",
+          "Treat connected as live",
+          "Treat licensed as wired",
+          "Treat available as a seat",
+          "Treat a Graph read as LIVE_PIN_OK",
+          "Treat a Cursor app as a seat"
         ]
       },
       "seat_b": {
@@ -9294,7 +9310,7 @@
         "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
         "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
         "demo": "The first-class demo is the ninety-minute proof day on this twin. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
-        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio.",
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live.",
         "refuse": [
           "A CMS",
           "A dynamic app",
@@ -11060,6 +11076,17 @@
         "is_admit_plane": false,
         "is_complement": false,
         "is_seat": false
+      },
+      "honest_connect": {
+        "kind": "ainav.honest.connect.v1",
+        "honest": true,
+        "href": "#missing",
+        "live": false,
+        "connected_is_live": false,
+        "licensed_is_wired": false,
+        "available_is_seat": false,
+        "graph_read_is_live_pin": false,
+        "cursor_app_is_seat": false
       }
     },
     "upgrades": [
@@ -11693,6 +11720,14 @@
         "who": "tree",
         "title": "Honest Copilot Studio",
         "do": "Ship 3.10.0 honest Copilot Studio on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false
+      },
+      {
+        "n": 81,
+        "who": "tree",
+        "title": "Honest connect",
+        "do": "Ship 3.11.0 honest connect on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Not LIVE_PIN_OK.",
         "done": true,
         "marks_live_pin": false
       }
@@ -13295,6 +13330,153 @@
       "steps": [
         "Do not treat Copilot Studio RFI as Job C.",
         "Do not treat a human looked as dual admit.",
+        "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+      ]
+    }
+  },
+  "honest_connect": {
+    "kind": "ainav.honest.connect.v1",
+    "product": "Honest connect",
+    "microsoft_product": "Microsoft stack",
+    "honest": true,
+    "considered": true,
+    "recorded": true,
+    "sku": false,
+    "is_sku": false,
+    "fourth_sku": false,
+    "is_connection": false,
+    "is_complement": false,
+    "is_admit_plane": false,
+    "is_job_c": false,
+    "is_seat": false,
+    "connected_is_live": false,
+    "licensed_is_wired": false,
+    "available_is_seat": false,
+    "graph_read_is_live_pin": false,
+    "cursor_app_is_seat": false,
+    "cms": false,
+    "host": false,
+    "is_host": false,
+    "apex": false,
+    "closes_dual_admit": false,
+    "wired": false,
+    "claimed": false,
+    "certified": false,
+    "live": false,
+    "live_pin_ok": false,
+    "launch": false,
+    "created": false,
+    "href": "#missing",
+    "site": "Honest connect on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. First glance stays the write rail. Not a /connect route. Not LIVE_PIN_OK.",
+    "lede": "Licensed is not wired. Connected is not authorized. Available is not a seat. A Graph read is not LIVE_PIN_OK. Nine read-only probes are not live. Complements stay eight.",
+    "note": "Honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK.",
+    "facts": [
+      {
+        "id": "connected",
+        "name": "Connected",
+        "note": "Read-only Graph and ARM. Nine recorded. Not live.",
+        "sku": false,
+        "admit": false,
+        "live": false
+      },
+      {
+        "id": "authorized",
+        "name": "Authorized",
+        "note": "Graph Writes still Granted. Twin authorized=false. Not launch.",
+        "sku": false,
+        "admit": false,
+        "live": false
+      },
+      {
+        "id": "available",
+        "name": "Available",
+        "note": "Leave five Available. Dataverse MCP stays Blocked. Registry is owner-only.",
+        "sku": false,
+        "admit": false,
+        "live": false
+      },
+      {
+        "id": "blocked",
+        "name": "Blocked",
+        "note": "Teams ids, DATAVERSE_URL, SHAREPOINT_SITE_ID, Sentinel on LAW. Owner-only.",
+        "sku": false,
+        "admit": false,
+        "live": false
+      },
+      {
+        "id": "live",
+        "name": "LIVE_PIN_OK",
+        "note": "A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat.",
+        "sku": false,
+        "admit": false,
+        "live": false
+      }
+    ],
+    "refuse": [
+      {
+        "id": "connected_as_live",
+        "title": "Connected as live",
+        "name": "Connected as live",
+        "note": "Refused. Connected is not live.",
+        "href": "#missing",
+        "refuse": true,
+        "refuse_text": "Refused. Connected is not live.",
+        "state": "refused",
+        "text": "Refused. Connected is not live."
+      },
+      {
+        "id": "licensed_as_wired",
+        "title": "Licensed as wired",
+        "name": "Licensed as wired",
+        "note": "Refused. Licensed is not wired.",
+        "href": "#missing",
+        "refuse": true,
+        "refuse_text": "Refused. Licensed is not wired.",
+        "state": "refused",
+        "text": "Refused. Licensed is not wired."
+      },
+      {
+        "id": "available_as_seat",
+        "title": "Available as a seat",
+        "name": "Available as a seat",
+        "note": "Refused. Available is not a seat.",
+        "href": "#missing",
+        "refuse": true,
+        "refuse_text": "Refused. Available is not a seat.",
+        "state": "refused",
+        "text": "Refused. Available is not a seat."
+      },
+      {
+        "id": "graph_read_as_live_pin",
+        "title": "A Graph read as LIVE_PIN_OK",
+        "name": "A Graph read as LIVE_PIN_OK",
+        "note": "Refused. A Graph read is not LIVE_PIN_OK.",
+        "href": "#missing",
+        "refuse": true,
+        "refuse_text": "Refused. A Graph read is not LIVE_PIN_OK.",
+        "state": "refused",
+        "text": "Refused. A Graph read is not LIVE_PIN_OK."
+      },
+      {
+        "id": "cursor_app_as_seat",
+        "title": "A Cursor app as a seat",
+        "name": "A Cursor app as a seat",
+        "note": "Refused. A Cursor app is not a seat.",
+        "href": "#missing",
+        "refuse": true,
+        "refuse_text": "Refused. A Cursor app is not a seat.",
+        "state": "refused",
+        "text": "Refused. A Cursor app is not a seat."
+      }
+    ],
+    "owner_playbook": {
+      "actor": "James Hodnett",
+      "cannot_be_done_by": "cursor.cloud_agent",
+      "steps": [
+        "Do not treat a read-only probe as live.",
+        "Do not treat a licensed SKU as wired.",
+        "Do not treat Agent Tools Available as a seat.",
+        "Trash Graph Writes on the same app, then Grant again.",
         "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
       ]
     }

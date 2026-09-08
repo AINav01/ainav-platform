@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "3.10.0"
+    "release": "3.11.0"
   },
   "communications": [
     {
@@ -2162,7 +2162,8 @@
       "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.09.0 honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.11.0 honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3894,7 +3895,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "3.10.0",
+  "release": "3.11.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4400,7 +4401,12 @@
         "Treat Copilot Studio as a SKU",
         "Treat Copilot Studio as the admit plane",
         "Treat Copilot Studio as a complement",
-        "Treat Copilot Studio as seat B"
+        "Treat Copilot Studio as seat B",
+        "Treat connected as live",
+        "Treat licensed as wired",
+        "Treat available as a seat",
+        "Treat a Graph read as LIVE_PIN_OK",
+        "Treat a Cursor app as a seat"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -4852,6 +4858,17 @@
       "live": false,
       "need_full": false,
       "twin_is_launch": false
+    },
+    "honest_connect": {
+      "available_is_seat": false,
+      "connected_is_live": false,
+      "cursor_app_is_seat": false,
+      "graph_read_is_live_pin": false,
+      "honest": true,
+      "href": "#missing",
+      "kind": "ainav.honest.connect.v1",
+      "licensed_is_wired": false,
+      "live": false
     },
     "honest_copilot_studio": {
       "honest": true,
@@ -5535,7 +5552,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

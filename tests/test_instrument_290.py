@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_290_microsoft_day_map():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.10.0"
+    assert cat["entity"]["release"] == "3.11.0"
     firm = cat["expert_review"]["success"]["operating_company"]
     run = firm["microsoft_run"]
     assert run["kind"] == "ainav.microsoft_run.v1"
@@ -33,7 +33,7 @@ def test_release_is_290_microsoft_day_map():
         for item in cat["engineering"]["closed_in_tree"]
     )
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 80
+    assert len(cat["expert_review"]["upgrades"]) == 81
     assert upgrades[60]["who"] == "tree"
     assert upgrades[60]["done"] is True
     assert upgrades[60]["marks_live_pin"] is False
@@ -43,7 +43,7 @@ def test_release_is_290_microsoft_day_map():
     html = Path("institute/index.html").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
-    assert "3.10.0" in html
+    assert "3.11.0" in html
     assert 'id="firm-ms-day"' in html
     assert "firm-wire-day" in html
     assert "firm-day-on-assign" in html
@@ -51,9 +51,9 @@ def test_release_is_290_microsoft_day_map():
     assert "index.html#firm-ms" in twin
     assert "day map" in twin.lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.10.0"
+    assert dash["release"] == "3.11.0"
     status = public_status()
-    assert status["release"] == "3.10.0"
+    assert status["release"] == "3.11.0"
     assert status["website"]["microsoft_day_map"] is True
     assert status["website"]["microsoft_day_map_is_sku"] is False
     held = publish_institute()
