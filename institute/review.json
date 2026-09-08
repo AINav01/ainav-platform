@@ -335,7 +335,8 @@
       "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.09.0 honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.09.0 honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.10.0 honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -676,7 +677,12 @@
           "Treat Power Pages as a SKU",
           "Treat Power Pages as the CMS",
           "Treat Power Pages as the Institute apex",
-          "Treat Power Pages as a Dataverse close"
+          "Treat Power Pages as a Dataverse close",
+          "Treat Copilot Studio as Job C",
+          "Treat Copilot Studio as a SKU",
+          "Treat Copilot Studio as the admit plane",
+          "Treat Copilot Studio as a complement",
+          "Treat Copilot Studio as seat B"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1128,6 +1134,17 @@
         "live": false,
         "need_full": false,
         "twin_is_launch": false
+      },
+      "honest_copilot_studio": {
+        "honest": true,
+        "href": "#success",
+        "is_admit_plane": false,
+        "is_complement": false,
+        "is_job_c": false,
+        "is_seat": false,
+        "is_sku": false,
+        "kind": "ainav.honest.copilot_studio.v1",
+        "live": false
       },
       "honest_industry": {
         "honest": true,
@@ -1800,7 +1817,7 @@
         "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
         "live": false,
         "live_pin_ok": false,
-        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages.",
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio.",
         "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
         "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
         "refuse": [
@@ -3284,6 +3301,14 @@
         "n": 79,
         "title": "Honest Power Pages",
         "who": "tree"
+      },
+      {
+        "do": "Ship 3.10.0 honest Copilot Studio on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 80,
+        "title": "Honest Copilot Studio",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -3390,7 +3415,8 @@
       "3.06.0 honest readiness is catalog law: quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.",
       "3.07.0 honest industry certify is catalog law: standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.",
       "3.08.0 honest whole is catalog law: business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK.",
-      "3.09.0 honest Power Pages is catalog law: considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK."
+      "3.09.0 honest Power Pages is catalog law: considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK.",
+      "3.10.0 honest Copilot Studio is catalog law: considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

@@ -945,7 +945,12 @@
         "Treat Power Pages as a SKU",
         "Treat Power Pages as the CMS",
         "Treat Power Pages as the Institute apex",
-        "Treat Power Pages as a Dataverse close"
+        "Treat Power Pages as a Dataverse close",
+        "Treat Copilot Studio as Job C",
+        "Treat Copilot Studio as a SKU",
+        "Treat Copilot Studio as the admit plane",
+        "Treat Copilot Studio as a complement",
+        "Treat Copilot Studio as seat B"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2009,7 +2014,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

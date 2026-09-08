@@ -258,6 +258,13 @@ def public_status() -> dict[str, Any]:
             "power_pages_is_sku": False,
             "power_pages_is_cms": False,
             "power_pages_closes_dataverse": False,
+            "honest_copilot_studio": bool(site.get("honest_copilot_studio")),
+            "honest_copilot_studio_live": False,
+            "copilot_studio_is_job_c": False,
+            "copilot_studio_is_sku": False,
+            "copilot_studio_is_admit": False,
+            "copilot_studio_is_complement": False,
+            "copilot_studio_is_seat": False,
         },
         "bc": {
             "connection": "bc.premium",

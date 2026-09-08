@@ -1154,8 +1154,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 79:
-        raise IntegrityError("expert review needs 16–79 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 80:
+        raise IntegrityError("expert review needs 16–80 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1225,6 +1225,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         77: ("honest industry", "live_pin_ok"),
         78: ("honest whole", "live_pin_ok"),
         79: ("honest power pages", "live_pin_ok"),
+        80: ("honest copilot studio", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1338,6 +1339,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep 10/10 review is not launch", reason_code="CATALOG_REVIEW")
     if "honest power pages" not in blob or "power pages is not the institute host" not in blob:
         raise IntegrityError("first-principles must keep honest Power Pages", reason_code="CATALOG_REVIEW")
+    if "honest copilot studio" not in blob or "copilot studio is not job c" not in blob:
+        raise IntegrityError("first-principles must keep honest Copilot Studio", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1605,6 +1608,27 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest Power Pages stays not live and is not a host", reason_code="CATALOG_REVIEW")
     if hosted_pages.get("cms") is True or hosted_pages.get("closes_dataverse") is True:
         raise IntegrityError("success honest Power Pages is not the CMS and does not close Dataverse", reason_code="CATALOG_REVIEW")
+    if "copilot studio as job c" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as Job C", reason_code="CATALOG_REVIEW")
+    if "copilot studio as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as a SKU", reason_code="CATALOG_REVIEW")
+    if "copilot studio as the admit plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as the admit plane", reason_code="CATALOG_REVIEW")
+    if "copilot studio as a complement" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as a complement", reason_code="CATALOG_REVIEW")
+    if "copilot studio as seat b" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as seat B", reason_code="CATALOG_REVIEW")
+    hosted_studio = success.get("honest_copilot_studio")
+    if not isinstance(hosted_studio, dict):
+        raise IntegrityError("success program keeps honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("kind") != "ainav.honest.copilot_studio.v1" or hosted_studio.get("honest") is not True:
+        raise IntegrityError("success honest Copilot Studio stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("href") != "#success":
+        raise IntegrityError("success honest Copilot Studio sits on #success", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("live") is True or hosted_studio.get("is_job_c") is True or hosted_studio.get("is_sku") is True:
+        raise IntegrityError("success honest Copilot Studio stays not live and is not Job C", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("is_admit_plane") is True or hosted_studio.get("is_seat") is True:
+        raise IntegrityError("success honest Copilot Studio is not the admit plane and is not seat B", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3175,6 +3199,22 @@ HONEST_POWER_PAGES_REFUSE_TEXT = {
     "power_pages_as_dataverse_close": "Refused. Power Pages does not close US Dataverse.",
 }
 HONEST_POWER_PAGES_HREFS = {key: "#twin" for key in HONEST_POWER_PAGES_REFUSE_IDS}
+HONEST_COPILOT_STUDIO_FACT_IDS = ["product", "admit", "sku", "complements", "seat"]
+HONEST_COPILOT_STUDIO_REFUSE_IDS = [
+    "studio_as_job_c",
+    "studio_as_sku",
+    "studio_as_admit",
+    "studio_as_complement",
+    "studio_as_seat",
+]
+HONEST_COPILOT_STUDIO_REFUSE_TEXT = {
+    "studio_as_job_c": "Refused. Copilot Studio is not Job C.",
+    "studio_as_sku": "Refused. Copilot Studio is not a SKU.",
+    "studio_as_admit": "Refused. Copilot Studio is not the admit plane.",
+    "studio_as_complement": "Refused. Copilot Studio is not a complement.",
+    "studio_as_seat": "Refused. Copilot Studio RFI is not seat B.",
+}
+HONEST_COPILOT_STUDIO_HREFS = {key: "#success" for key in HONEST_COPILOT_STUDIO_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4239,6 +4279,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_307(catalog, body)
     _validate_instrument_308(catalog, body)
     _validate_instrument_309(catalog, body)
+    _validate_instrument_310(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5477,8 +5518,6 @@ def _validate_instrument_308(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_309(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.09.0":
-        raise IntegrityError("entity.release is 3.09.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.09.0" in item and "power pages" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.09.0 honest Power Pages", reason_code="CATALOG_ENGINEERING")
@@ -5526,6 +5565,58 @@ def _validate_instrument_309(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.power_pages import validate_honest_power_pages
 
     validate_honest_power_pages(catalog)
+
+
+def _validate_instrument_310(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.10.0":
+        raise IntegrityError("entity.release is 3.10.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.10.0" in item and "copilot studio" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.10.0 honest Copilot Studio", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_copilot_studio") is not True or site.get("honest_power_pages") is not True:
+        raise IntegrityError("3.10.0 website has honest Copilot Studio", reason_code="CATALOG_PLANE")
+    if site.get("honest_copilot_studio_live") is True or site.get("copilot_studio_is_job_c") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not live and is not Job C", reason_code="CATALOG_PLANE")
+    if site.get("copilot_studio_is_sku") is True or site.get("copilot_studio_is_admit") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not a SKU and is not the admit plane", reason_code="CATALOG_PLANE")
+    if site.get("copilot_studio_is_complement") is True or site.get("copilot_studio_is_seat") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not a complement and is not seat B", reason_code="CATALOG_PLANE")
+    studio = catalog.get("honest_copilot_studio") or {}
+    if studio.get("kind") != "ainav.honest.copilot_studio.v1" or studio.get("honest") is not True:
+        raise IntegrityError("3.10.0 honest Copilot Studio kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if studio.get("is_job_c") is True or studio.get("is_sku") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not Job C and is not a SKU", reason_code="CATALOG_REVIEW")
+    if studio.get("certified") is True:
+        raise IntegrityError("3.10.0 honest Copilot Studio is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(studio.get("site") or "").lower()
+    if "honest copilot studio" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if "copilot studio is not job c" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps Copilot Studio is not Job C", reason_code="CATALOG_REVIEW")
+    if "not a /copilot-studio route" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps not a /copilot-studio route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest copilot studio" not in principles:
+        raise IntegrityError("first-principles must keep honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if "copilot studio is not job c" not in principles:
+        raise IntegrityError("first-principles must keep Copilot Studio is not Job C", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.10.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#success" not in ops:
+        raise IntegrityError("3.10.0 operations note keeps #success", reason_code="CATALOG_REVIEW")
+    if "honest copilot studio" not in ops:
+        raise IntegrityError("3.10.0 operations note keeps honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not copilot studio" not in managed:
+        raise IntegrityError("3.10.0 managed face refuses Copilot Studio", reason_code="CATALOG_PLANE")
+    from ainav.copilot_studio import validate_honest_copilot_studio
+
+    validate_honest_copilot_studio(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

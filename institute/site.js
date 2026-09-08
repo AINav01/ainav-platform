@@ -4486,6 +4486,80 @@
   }
   bindPagesRefuses(document.getElementById("pages-consider"));
 
+  var STUDIO_REFUSE = {
+    studio_as_job_c: {
+      message: "Refused. Copilot Studio is not Job C.",
+      ledger: "studio_denied · copilot studio as job c\nCopilot Studio is not Job C.\nA human looked is not dual admit.\nlive=false · live_pin_ok=false"
+    },
+    studio_as_sku: {
+      message: "Refused. Copilot Studio is not a SKU.",
+      ledger: "studio_denied · copilot studio as sku\nCopilot Studio is not a SKU.\nL1, P-ADM, U-DUAL only.\nlive=false · live_pin_ok=false"
+    },
+    studio_as_admit: {
+      message: "Refused. Copilot Studio is not the admit plane.",
+      ledger: "studio_denied · copilot studio as admit\nCopilot Studio is not the admit plane.\nTwo humans. One hash. Then the write.\nlive=false · live_pin_ok=false"
+    },
+    studio_as_complement: {
+      message: "Refused. Copilot Studio is not a complement.",
+      ledger: "studio_denied · copilot studio as complement\nCopilot Studio is not a complement.\nComplements stay eight.\nlive=false · live_pin_ok=false"
+    },
+    studio_as_seat: {
+      message: "Refused. Copilot Studio RFI is not seat B.",
+      ledger: "studio_denied · copilot studio as seat b\nCopilot Studio RFI is not seat B.\nMailbox is not a click.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeStudioLedger(text) {
+    var node = document.getElementById("studio-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseStudio(button, message, ledger) {
+    var refuse = document.getElementById("studio-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeStudioLedger(ledger);
+  }
+
+  function bindStudioRefuses(root) {
+    if (!root || root.getAttribute("data-studio-bound")) return;
+    root.setAttribute("data-studio-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-studio-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-studio-refuse") || "";
+      var pack = STUDIO_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseStudio(
+        btn,
+        message,
+        pack.ledger || ("studio_denied · " + id + "\nCopilot Studio is not Job C.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindStudioRefuses(document.getElementById("studio-consider"));
+
+  fetch("studio.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.is_job_c || data.is_sku || data.is_admit_plane || data.certified) return;
+      var status = document.getElementById("studio-status");
+      if (status) {
+        status.textContent =
+          "honest=true · considered=true · is_job_c=false · is_sku=false · is_admit_plane=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("pages.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
