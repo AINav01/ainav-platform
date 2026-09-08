@@ -181,11 +181,36 @@ def test_instrument_307_fail_closed():
         catmod._validate_instrument_307(cert, cert["plane_interface"])
     site_hole = copy.deepcopy(edge)
     site_hole["industry_certify"]["site"] = site_hole["industry_certify"]["site"].replace(
-        "Packs are not SKUs. Industry certify is not launch. ",
+        "Packs are not SKUs. ",
         "",
     )
     with pytest.raises(IntegrityError):
         catmod._validate_instrument_307(site_hole, site_hole["plane_interface"])
+    site_name = copy.deepcopy(edge)
+    site_name["industry_certify"]["site"] = site_name["industry_certify"]["site"].replace(
+        "Honest industry certify",
+        "Industry board",
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_307(site_name, site_name["plane_interface"])
+    site_launch = copy.deepcopy(edge)
+    site_launch["industry_certify"]["site"] = site_launch["industry_certify"]["site"].replace(
+        "Industry certify is not launch. ",
+        "",
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_307(site_launch, site_launch["plane_interface"])
+    site_route = copy.deepcopy(edge)
+    site_route["industry_certify"]["site"] = site_route["industry_certify"]["site"].replace(
+        "Not a /industry route. ",
+        "",
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_307(site_route, site_route["plane_interface"])
+    ready_off = copy.deepcopy(edge)
+    ready_off["programs"]["website"]["honest_readiness"] = False
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_307(ready_off, ready_off["plane_interface"])
     honest = copy.deepcopy(edge)
     honest["industry_certify"]["honest"] = False
     with pytest.raises(IntegrityError):
@@ -251,3 +276,10 @@ def test_instrument_307_fail_closed():
     ]
     with pytest.raises(IntegrityError):
         catmod._validate_first_principles(first_launch)
+    principles_launch = copy.deepcopy(edge)
+    principles_launch["expert_review"]["first_principles"] = [
+        item.replace("Industry certify is not launch.", "Industry stays mapped.")
+        for item in principles_launch["expert_review"]["first_principles"]
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_307(principles_launch, principles_launch["plane_interface"])
