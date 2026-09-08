@@ -337,7 +337,7 @@
         "learn_label": "Cloudflare DNS docs",
         "n": 1,
         "name": "Cloudflare DNS / edge",
-        "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99. This Cloud Agent cannot edit Cloudflare.",
+        "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99.5. This Cloud Agent cannot edit Cloudflare.",
         "role": "dns_edge",
         "status": "full",
         "url": "https://dash.cloudflare.com",

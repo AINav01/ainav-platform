@@ -5824,7 +5824,7 @@
           "role": "dns_edge",
           "status": "full",
           "in_tree": "probe_dns. Cloudflare Pro is the edge plan, not a SKU. E7 mail, Entra, Teams SIP, and lync SRV already point. Missing: none. HTTPS 301 is on. Apex is 404 empty on Cloudflare edge. asuid absent. Azure SWA is the twin. DNS full is not Institute launch.",
-          "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99. This Cloud Agent cannot edit Cloudflare.",
+          "owner": "Confirm Pro: SSL Full not Flexible, Rocket Loader off, MX and autodiscover grey cloud. Apex 404 is empty Pages, not the Institute. Do not add asuid. Do not bind or release ainav.institute until you say launch and gold is 99.5. This Cloud Agent cannot edit Cloudflare.",
           "url": "https://dash.cloudflare.com",
           "url_label": "Cloudflare dashboard",
           "learn": "https://developers.cloudflare.com/dns/",
@@ -9329,7 +9329,7 @@
           "Teams notify — complement. A chat is not a seat.",
           "E7 identify — mailbox and MFA. Identify is not admit.",
           "Cloudflare edge — DNS/edge. Not a SKU. Not the Institute.",
-          "Gold CI — coverage at or above 99. A green check is not LIVE_PIN_OK.",
+          "Gold CI — coverage at or above 99.5. A green check is not LIVE_PIN_OK.",
           "Kit Playwright / Lighthouse — proof tooling. Not a CMS.",
           "Azure SWA twin — review host. Not launch.",
           "status.json paint — catalog-honest live paint. Not a CMS."
