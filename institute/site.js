@@ -4294,6 +4294,80 @@
     })
     .catch(function () {});
 
+  var INDUSTRY_REFUSE = {
+    industry_pack_as_sku: {
+      message: "Refused. Packs are not SKUs.",
+      ledger: "industry_denied · pack as sku\nPacks are not SKUs.\nIndustry certify is not launch.\nlive=false · live_pin_ok=false"
+    },
+    industry_lib_as_sku: {
+      message: "Refused. Libraries are not SKUs.",
+      ledger: "industry_denied · library as sku\nLibraries are not SKUs.\nIndustry certify is not launch.\nlive=false · live_pin_ok=false"
+    },
+    industry_repo_as_sku: {
+      message: "Refused. Repositories are not SKUs.",
+      ledger: "industry_denied · repository as sku\nRepositories are not SKUs.\nIndustry certify is not launch.\nlive=false · live_pin_ok=false"
+    },
+    named_vertical_as_sku: {
+      message: "Refused. A named vertical is not a SKU.",
+      ledger: "industry_denied · named vertical as sku\nA named vertical is not a SKU.\nIndustry certify is not launch.\nlive=false · live_pin_ok=false"
+    },
+    industry_certify_as_launch: {
+      message: "Refused. Industry certify is not launch.",
+      ledger: "industry_denied · industry certify as launch\nIndustry certify is not launch.\nJames says launch.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeIndustryLedger(text) {
+    var node = document.getElementById("industry-cert-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseIndustry(button, message, ledger) {
+    var refuse = document.getElementById("industry-cert-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeIndustryLedger(ledger);
+  }
+
+  function bindIndustryRefuses(root) {
+    if (!root || root.getAttribute("data-industry-bound")) return;
+    root.setAttribute("data-industry-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-industry-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-industry-refuse") || "";
+      var pack = INDUSTRY_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseIndustry(
+        btn,
+        message,
+        pack.ledger || ("industry_denied · " + id + "\nPacks are not SKUs.\nIndustry certify is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindIndustryRefuses(document.getElementById("packs"));
+
+  fetch("industry.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.packs_are_skus || data.industry_certified_launch || data.is_admit_plane || data.certified) return;
+      var status = document.getElementById("industry-cert-status");
+      if (status) {
+        status.textContent =
+          "honest=true · packs_are_skus=false · industry_certified_launch=false · certified=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("schema.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

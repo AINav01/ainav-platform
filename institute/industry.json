@@ -1,0 +1,671 @@
+{
+  "certified": false,
+  "certify_is_launch": false,
+  "complete": true,
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "honest": true,
+  "href": "#packs",
+  "industry_certified_launch": false,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.honest.industry.v1",
+  "lede": "Detail every industry desk: standard or upsell, required SKU, modules, paired library, shared repositories. Packs are not SKUs. Industry certify is not launch. Credit, inventory, and pricing stay unpaired until a dedicated library.",
+  "libraries": [
+    "lib.l1.wedge",
+    "lib.udual.sales",
+    "lib.padm.export",
+    "lib.kit.evidence",
+    "lib.l1.payables",
+    "lib.l1.bank",
+    "lib.udual.quote_to_cash",
+    "lib.padm.siem",
+    "lib.l1.cash",
+    "lib.l1.fixed_asset",
+    "lib.udual.returns",
+    "lib.padm.retention",
+    "lib.l1.failsafe",
+    "lib.padm.governance",
+    "lib.l1.cascade",
+    "lib.padm.records",
+    "lib.l1.plane",
+    "lib.l1.off_switch",
+    "lib.padm.board",
+    "lib.l1.org",
+    "lib.padm.audit",
+    "lib.l1.independence",
+    "lib.padm.ip"
+  ],
+  "libraries_are_skus": false,
+  "live": false,
+  "live_pin_ok": false,
+  "modules": [
+    "bc.general_journal.post",
+    "entra.seat.verify",
+    "teams.notify",
+    "d365.quote.discount_override",
+    "d365.order.submit",
+    "purview.audit.export",
+    "bc.payment_journal.post",
+    "bc.bank_reconciliation.post",
+    "bc.purchase_invoice.post",
+    "d365.invoice.post",
+    "d365.creditmemo.issue",
+    "sentinel.decision.export",
+    "sharepoint.kit.seal",
+    "bc.cash_receipt.post",
+    "bc.sales_invoice.post",
+    "bc.fixed_asset.post",
+    "bc.inventory.adjust",
+    "d365.return.authorize",
+    "d365.price.override",
+    "d365.quote.void",
+    "defender.incident.export",
+    "monitor.workbook.export",
+    "keyvault.decision.seal",
+    "governance.decision.export",
+    "governance.risk.export",
+    "governance.second_record.export",
+    "governance.off_switch.export",
+    "governance.reset.export",
+    "governance.org.export",
+    "ip.reserved.export"
+  ],
+  "named_vertical_is_sku": false,
+  "note": "Honest industry certify. Standard and upsell desks, modules, libraries, and repositories are catalog law by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat packs, libraries, or repositories as SKUs.",
+      "Do not treat industry certify as launch.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "packs_are_skus": false,
+  "probes": {
+    "certified": false,
+    "industry_certified_launch": false,
+    "kind": "ainav.honest.industry.v1",
+    "launch": false,
+    "libraries": 23,
+    "live": false,
+    "live_pin_ok": false,
+    "modules": 30,
+    "packs": 26,
+    "packs_are_skus": false,
+    "repositories": 11,
+    "standard": 8,
+    "unpaired_libraries": [
+      "lib.kit.evidence",
+      "lib.padm.export",
+      "lib.padm.siem"
+    ],
+    "unpaired_packs": [
+      "industry.credit",
+      "industry.inventory",
+      "industry.pricing"
+    ],
+    "upsell": 18
+  },
+  "product": "Honest industry certify",
+  "refuse": [
+    {
+      "href": "#packs",
+      "id": "industry_pack_as_sku",
+      "name": "industry pack as a SKU",
+      "note": "Refused. Packs are not SKUs.",
+      "refuse": true,
+      "refuse_text": "Refused. Packs are not SKUs.",
+      "state": "refused",
+      "text": "Refused. Packs are not SKUs.",
+      "title": "industry pack as a SKU"
+    },
+    {
+      "href": "#packs",
+      "id": "industry_lib_as_sku",
+      "name": "library as a SKU",
+      "note": "Refused. Libraries are not SKUs.",
+      "refuse": true,
+      "refuse_text": "Refused. Libraries are not SKUs.",
+      "state": "refused",
+      "text": "Refused. Libraries are not SKUs.",
+      "title": "library as a SKU"
+    },
+    {
+      "href": "#packs",
+      "id": "industry_repo_as_sku",
+      "name": "repository as a SKU",
+      "note": "Refused. Repositories are not SKUs.",
+      "refuse": true,
+      "refuse_text": "Refused. Repositories are not SKUs.",
+      "state": "refused",
+      "text": "Refused. Repositories are not SKUs.",
+      "title": "repository as a SKU"
+    },
+    {
+      "href": "#packs",
+      "id": "named_vertical_as_sku",
+      "name": "named vertical as a SKU",
+      "note": "Refused. A named vertical is not a SKU.",
+      "refuse": true,
+      "refuse_text": "Refused. A named vertical is not a SKU.",
+      "state": "refused",
+      "text": "Refused. A named vertical is not a SKU.",
+      "title": "named vertical as a SKU"
+    },
+    {
+      "href": "#packs",
+      "id": "industry_certify_as_launch",
+      "name": "industry certify as launch",
+      "note": "Refused. Industry certify is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. Industry certify is not launch.",
+      "state": "refused",
+      "text": "Refused. Industry certify is not launch.",
+      "title": "industry certify as launch"
+    }
+  ],
+  "repositories": [
+    "repo.agent_gov",
+    "repo.catalog",
+    "repo.institute",
+    "repo.finance",
+    "repo.brief",
+    "repo.review",
+    "repo.packs",
+    "repo.runbooks",
+    "repo.owner",
+    "repo.legal",
+    "repo.governance"
+  ],
+  "repositories_are_skus": false,
+  "rows": [
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.treasury",
+      "included": true,
+      "libraries": [
+        "lib.l1.wedge"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Treasury wedge",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.sales",
+      "included": true,
+      "libraries": [
+        "lib.udual.sales"
+      ],
+      "live": false,
+      "modules": [
+        "d365.quote.discount_override",
+        "d365.order.submit"
+      ],
+      "name": "Sales deepen",
+      "repositories": "shared",
+      "requires_sku": "U-DUAL",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.controller",
+      "included": true,
+      "libraries": [
+        "lib.l1.wedge"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Controller desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.quote_desk",
+      "included": true,
+      "libraries": [
+        "lib.udual.sales"
+      ],
+      "live": false,
+      "modules": [
+        "d365.quote.discount_override"
+      ],
+      "name": "Quote desk",
+      "repositories": "shared",
+      "requires_sku": "U-DUAL",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.payables",
+      "included": false,
+      "libraries": [
+        "lib.l1.payables"
+      ],
+      "live": false,
+      "modules": [
+        "bc.payment_journal.post",
+        "bc.purchase_invoice.post"
+      ],
+      "name": "Payables desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.bank",
+      "included": false,
+      "libraries": [
+        "lib.l1.bank"
+      ],
+      "live": false,
+      "modules": [
+        "bc.bank_reconciliation.post"
+      ],
+      "name": "Bank desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.invoice_desk",
+      "included": false,
+      "libraries": [
+        "lib.udual.quote_to_cash"
+      ],
+      "live": false,
+      "modules": [
+        "d365.invoice.post"
+      ],
+      "name": "Invoice desk",
+      "repositories": "shared",
+      "requires_sku": "U-DUAL",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.credit",
+      "included": false,
+      "libraries": [],
+      "live": false,
+      "modules": [
+        "d365.creditmemo.issue"
+      ],
+      "name": "Credit desk",
+      "repositories": "shared",
+      "requires_sku": "U-DUAL",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.cash",
+      "included": false,
+      "libraries": [
+        "lib.l1.cash"
+      ],
+      "live": false,
+      "modules": [
+        "bc.cash_receipt.post",
+        "bc.sales_invoice.post"
+      ],
+      "name": "Cash desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.fixed_asset",
+      "included": false,
+      "libraries": [
+        "lib.l1.fixed_asset"
+      ],
+      "live": false,
+      "modules": [
+        "bc.fixed_asset.post"
+      ],
+      "name": "Fixed-asset desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.inventory",
+      "included": false,
+      "libraries": [],
+      "live": false,
+      "modules": [
+        "bc.inventory.adjust"
+      ],
+      "name": "Inventory desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.returns",
+      "included": false,
+      "libraries": [
+        "lib.udual.returns"
+      ],
+      "live": false,
+      "modules": [
+        "d365.return.authorize"
+      ],
+      "name": "Returns desk",
+      "repositories": "shared",
+      "requires_sku": "U-DUAL",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.pricing",
+      "included": false,
+      "libraries": [],
+      "live": false,
+      "modules": [
+        "d365.price.override",
+        "d365.quote.void"
+      ],
+      "name": "Pricing desk",
+      "repositories": "shared",
+      "requires_sku": "U-DUAL",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.retention",
+      "included": false,
+      "libraries": [
+        "lib.padm.retention"
+      ],
+      "live": false,
+      "modules": [
+        "defender.incident.export",
+        "monitor.workbook.export",
+        "keyvault.decision.seal"
+      ],
+      "name": "Retention keep",
+      "repositories": "shared",
+      "requires_sku": "P-ADM",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.governance",
+      "included": true,
+      "libraries": [
+        "lib.l1.failsafe"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "AI failsafe desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.oversight",
+      "included": false,
+      "libraries": [
+        "lib.padm.governance"
+      ],
+      "live": false,
+      "modules": [
+        "governance.decision.export",
+        "governance.risk.export"
+      ],
+      "name": "Oversight keep",
+      "repositories": "shared",
+      "requires_sku": "P-ADM",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.cascade",
+      "included": false,
+      "libraries": [
+        "lib.l1.cascade"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Counterparty AI desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.second_record",
+      "included": false,
+      "libraries": [
+        "lib.padm.records"
+      ],
+      "live": false,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export"
+      ],
+      "name": "Second-record keep",
+      "repositories": "shared",
+      "requires_sku": "P-ADM",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.control_plane",
+      "included": true,
+      "libraries": [
+        "lib.l1.plane"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Human control plane",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.off_switch",
+      "included": false,
+      "libraries": [
+        "lib.l1.off_switch"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Off-switch desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.rollback",
+      "included": false,
+      "libraries": [
+        "lib.l1.wedge"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Rollback desk",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.board",
+      "included": false,
+      "libraries": [
+        "lib.padm.board"
+      ],
+      "live": false,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.off_switch.export",
+        "governance.reset.export"
+      ],
+      "name": "Board / examiner keep",
+      "repositories": "shared",
+      "requires_sku": "P-ADM",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.org",
+      "included": true,
+      "libraries": [
+        "lib.l1.org"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Client org seating",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.internal_audit",
+      "included": false,
+      "libraries": [
+        "lib.padm.audit"
+      ],
+      "live": false,
+      "modules": [
+        "governance.decision.export",
+        "governance.second_record.export",
+        "governance.org.export"
+      ],
+      "name": "Internal-audit keep",
+      "repositories": "shared",
+      "requires_sku": "P-ADM",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "standard",
+      "href": "#packs",
+      "id": "industry.independence",
+      "included": true,
+      "libraries": [
+        "lib.l1.independence"
+      ],
+      "live": false,
+      "modules": [
+        "bc.general_journal.post"
+      ],
+      "name": "Independent plane",
+      "repositories": "shared",
+      "requires_sku": "L1",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "class": "upsell",
+      "href": "#packs",
+      "id": "industry.ip_keep",
+      "included": false,
+      "libraries": [
+        "lib.padm.ip"
+      ],
+      "live": false,
+      "modules": [
+        "ip.reserved.export"
+      ],
+      "name": "IP / reserved-work keep",
+      "repositories": "shared",
+      "requires_sku": "P-ADM",
+      "seat": false,
+      "sku": false
+    }
+  ],
+  "site": "Honest industry certify on #packs. Standard, upsells, modules, libraries, and shared repositories by industry. Packs are not SKUs. Industry certify is not launch. First glance stays the write rail. Not a /industry route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat an industry pack as a SKU.",
+    "Treat a library as a SKU.",
+    "Treat a repository as a SKU.",
+    "Treat a named vertical as a SKU.",
+    "Treat industry certify as launch."
+  ],
+  "wired": false
+}

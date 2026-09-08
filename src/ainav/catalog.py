@@ -81,6 +81,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     from ainav.microsoft.operators import validate_honest_operators
     from ainav.microsoft.build import validate_honest_build
     from ainav.microsoft.readiness import validate_honest_readiness
+    from ainav.industry_certify import validate_honest_industry
     from ainav.microsoft.connections import validate_connections
     from ainav.programs import validate_programs
 
@@ -93,6 +94,7 @@ def _validate_catalog_law(catalog: dict[str, Any]) -> None:
     validate_honest_operators(catalog)
     validate_honest_build(catalog)
     validate_honest_readiness(catalog)
+    validate_honest_industry(catalog)
     validate_business(catalog)
     from ainav.delivery import validate_delivery
 
@@ -1150,8 +1152,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 76:
-        raise IntegrityError("expert review needs 16–76 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 77:
+        raise IntegrityError("expert review needs 16–77 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1218,6 +1220,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         74: ("honest operators", "live_pin_ok"),
         75: ("honest build", "live_pin_ok"),
         76: ("honest readiness", "live_pin_ok"),
+        77: ("honest industry", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1323,6 +1326,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep twin certified is not launch day", reason_code="CATALOG_REVIEW")
     if "owner gaps stay owner-only" not in blob:
         raise IntegrityError("first-principles must keep owner gaps stay owner-only", reason_code="CATALOG_REVIEW")
+    if "honest industry certify" not in blob or "industry certify is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest industry certify", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1529,6 +1534,25 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest readiness stays not live and is not launch day", reason_code="CATALOG_REVIEW")
     if hosted_ready.get("launch_day_certified") is True:
         raise IntegrityError("success honest readiness cannot certify launch day", reason_code="CATALOG_REVIEW")
+    if "an industry pack as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat an industry pack as a SKU", reason_code="CATALOG_REVIEW")
+    if "a library as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat a library as a SKU", reason_code="CATALOG_REVIEW")
+    if "a repository as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat a repository as a SKU", reason_code="CATALOG_REVIEW")
+    if "industry certify as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat industry certify as launch", reason_code="CATALOG_REVIEW")
+    hosted_industry = success.get("honest_industry")
+    if not isinstance(hosted_industry, dict):
+        raise IntegrityError("success program keeps honest industry", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("kind") != "ainav.honest.industry.v1" or hosted_industry.get("honest") is not True:
+        raise IntegrityError("success honest industry stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("href") != "#packs":
+        raise IntegrityError("success honest industry sits on #packs", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("live") is True or hosted_industry.get("packs_are_skus") is True:
+        raise IntegrityError("success honest industry stays not live and packs are not SKUs", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("industry_certified_launch") is True:
+        raise IntegrityError("success honest industry cannot certify launch", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3007,6 +3031,57 @@ HONEST_READY_HREFS = {
     "update_as_live_pin": "#agent-tools",
     "close_owner_from_plane": "#agent-tools",
 }
+HONEST_INDUSTRY_PACK_COUNT = 26
+HONEST_INDUSTRY_STANDARD_COUNT = 8
+HONEST_INDUSTRY_UPSELL_COUNT = 18
+MODULE_COUNT = 30
+LIBRARY_COUNT = 23
+REPOSITORY_COUNT = 11
+HONEST_INDUSTRY_UNPAIRED_PACKS = frozenset({"industry.credit", "industry.inventory", "industry.pricing"})
+HONEST_INDUSTRY_UNPAIRED_LIBS = frozenset({"lib.kit.evidence", "lib.padm.export", "lib.padm.siem"})
+HONEST_INDUSTRY_LIBRARY_PAIRS = {
+    "industry.treasury": ["lib.l1.wedge"],
+    "industry.sales": ["lib.udual.sales"],
+    "industry.controller": ["lib.l1.wedge"],
+    "industry.quote_desk": ["lib.udual.sales"],
+    "industry.payables": ["lib.l1.payables"],
+    "industry.bank": ["lib.l1.bank"],
+    "industry.invoice_desk": ["lib.udual.quote_to_cash"],
+    "industry.credit": [],
+    "industry.cash": ["lib.l1.cash"],
+    "industry.fixed_asset": ["lib.l1.fixed_asset"],
+    "industry.inventory": [],
+    "industry.returns": ["lib.udual.returns"],
+    "industry.pricing": [],
+    "industry.retention": ["lib.padm.retention"],
+    "industry.governance": ["lib.l1.failsafe"],
+    "industry.oversight": ["lib.padm.governance"],
+    "industry.cascade": ["lib.l1.cascade"],
+    "industry.second_record": ["lib.padm.records"],
+    "industry.control_plane": ["lib.l1.plane"],
+    "industry.off_switch": ["lib.l1.off_switch"],
+    "industry.rollback": ["lib.l1.wedge"],
+    "industry.board": ["lib.padm.board"],
+    "industry.org": ["lib.l1.org"],
+    "industry.internal_audit": ["lib.padm.audit"],
+    "industry.independence": ["lib.l1.independence"],
+    "industry.ip_keep": ["lib.padm.ip"],
+}
+HONEST_INDUSTRY_REFUSE_IDS = [
+    "industry_pack_as_sku",
+    "industry_lib_as_sku",
+    "industry_repo_as_sku",
+    "named_vertical_as_sku",
+    "industry_certify_as_launch",
+]
+HONEST_INDUSTRY_REFUSE_TEXT = {
+    "industry_pack_as_sku": "Refused. Packs are not SKUs.",
+    "industry_lib_as_sku": "Refused. Libraries are not SKUs.",
+    "industry_repo_as_sku": "Refused. Repositories are not SKUs.",
+    "named_vertical_as_sku": "Refused. A named vertical is not a SKU.",
+    "industry_certify_as_launch": "Refused. Industry certify is not launch.",
+}
+HONEST_INDUSTRY_HREFS = {key: "#packs" for key in list(HONEST_INDUSTRY_LIBRARY_PAIRS) + HONEST_INDUSTRY_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4068,6 +4143,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_304(catalog, body)
     _validate_instrument_305(catalog, body)
     _validate_instrument_306(catalog, body)
+    _validate_instrument_307(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5170,8 +5246,6 @@ def _validate_instrument_305(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_306(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.06.0":
-        raise IntegrityError("entity.release is 3.06.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.06.0" in item and "honest readiness" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.06.0 honest readiness", reason_code="CATALOG_ENGINEERING")
@@ -5215,6 +5289,54 @@ def _validate_instrument_306(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.microsoft.readiness import validate_honest_readiness
 
     validate_honest_readiness(catalog)
+
+
+def _validate_instrument_307(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.07.0":
+        raise IntegrityError("entity.release is 3.07.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.07.0" in item and "honest industry" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.07.0 honest industry", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_industry") is not True or site.get("honest_readiness") is not True:
+        raise IntegrityError("3.07.0 website has honest industry", reason_code="CATALOG_PLANE")
+    if site.get("honest_industry_live") is True or site.get("industry_certified_launch") is True:
+        raise IntegrityError("3.07.0 honest industry is not live and is not launch", reason_code="CATALOG_PLANE")
+    if site.get("packs_are_skus") is True:
+        raise IntegrityError("3.07.0 packs are not SKUs", reason_code="CATALOG_PLANE")
+    industry = catalog.get("industry_certify") or {}
+    if industry.get("kind") != "ainav.honest.industry.v1" or industry.get("honest") is not True:
+        raise IntegrityError("3.07.0 honest industry kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if industry.get("packs_are_skus") is True:
+        raise IntegrityError("3.07.0 packs are not SKUs", reason_code="CATALOG_REVIEW")
+    if industry.get("industry_certified_launch") is True:
+        raise IntegrityError("3.07.0 industry certify is not launch", reason_code="CATALOG_REVIEW")
+    if industry.get("certified") is True:
+        raise IntegrityError("3.07.0 industry certify is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(industry.get("site") or "").lower()
+    if "honest industry" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps honest industry", reason_code="CATALOG_REVIEW")
+    if "packs are not skus" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps packs are not SKUs", reason_code="CATALOG_REVIEW")
+    if "industry certify is not launch" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps industry certify is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /industry route" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps not a /industry route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest industry certify" not in principles:
+        raise IntegrityError("first-principles must keep honest industry certify", reason_code="CATALOG_REVIEW")
+    if "industry certify is not launch" not in principles:
+        raise IntegrityError("first-principles must keep industry certify is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.07.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#packs" not in ops:
+        raise IntegrityError("3.07.0 operations note keeps #packs", reason_code="CATALOG_REVIEW")
+    if "honest industry" not in ops:
+        raise IntegrityError("3.07.0 operations note keeps honest industry", reason_code="CATALOG_REVIEW")
+    from ainav.industry_certify import validate_honest_industry
+
+    validate_honest_industry(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

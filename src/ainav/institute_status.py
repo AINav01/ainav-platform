@@ -244,6 +244,9 @@ def public_status() -> dict[str, Any]:
             "sim_is_production": False,
             "update_is_live_pin": False,
             "launch_day_certified": False,
+            "honest_industry": bool(site.get("honest_industry")),
+            "honest_industry_live": False,
+            "industry_certified_launch": False,
         },
         "bc": {
             "connection": "bc.premium",

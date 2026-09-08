@@ -16,7 +16,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_292_brand_system():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.06.0"
+    assert cat["entity"]["release"] == "3.07.0"
     brand = cat["expert_review"]["success"]["brand"]
     assert brand["kind"] == "ainav.brand.v1"
     assert brand["sku"] is False
@@ -52,7 +52,7 @@ def test_release_is_292_brand_system():
     assert "trademark" in missing
     assert "apex brand" in missing
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 76
+    assert len(cat["expert_review"]["upgrades"]) == 77
     assert upgrades[62]["who"] == "tree"
     assert upgrades[62]["done"] is True
     assert upgrades[62]["marks_live_pin"] is False
@@ -66,7 +66,7 @@ def test_release_is_292_brand_system():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "3.06.0" in html
+    assert "3.07.0" in html
     assert 'id="brand-surfaces"' in html
     assert 'id="brand-lede"' in html
     assert 'id="brand-status"' in html
@@ -89,9 +89,9 @@ def test_release_is_292_brand_system():
     assert "index.html#brand" in app
     assert 'href="#brand"' in html.split('id="ops-note"', 1)[1].split("</p>", 1)[0]
     dash = public_dashboard()
-    assert dash["release"] == "3.06.0"
+    assert dash["release"] == "3.07.0"
     status = public_status()
-    assert status["release"] == "3.06.0"
+    assert status["release"] == "3.07.0"
     assert status["website"]["brand"] is True
     assert status["website"]["brand_is_sku"] is False
     held = publish_institute()

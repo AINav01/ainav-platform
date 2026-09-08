@@ -1656,6 +1656,28 @@ table.law tr[data-group] th {
   flex-wrap: wrap;
   gap: 0.65rem 1.1rem;
 }
+.industry-cert-rows {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.85rem 0 1.15rem;
+}
+.industry-cert-rows [data-class="standard"] { box-shadow: inset 3px 0 0 var(--gold); }
+.industry-cert-rows [data-class="upsell"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.industry-cert-rows section {
+  padding: 0.55rem 0.75rem 0.55rem 0.95rem;
+}
+.industry-cert-rows h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+}
+.industry-cert-rows p {
+  margin: 0;
+}
+#industry-cert-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+}
 #operator-zeros {
   display: flex;
   flex-wrap: wrap;
