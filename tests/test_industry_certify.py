@@ -91,6 +91,9 @@ def test_run_industry_certification_fail_closed(monkeypatch):
     monkeypatch.setattr("ainav.industry_certify.certify_industry", bad_rows)
     with pytest.raises(IntegrityError):
         run_industry_certification()
+
+
+def test_run_industry_certification_repos_fail_closed():
     cat = copy.deepcopy(load_catalog())
     cat["repositories"][0]["sku"] = True
     with pytest.raises(IntegrityError):
@@ -101,6 +104,7 @@ def test_run_industry_certification_fail_closed(monkeypatch):
         run_industry_certification(live)
     named = copy.deepcopy(load_catalog())
     named["repositories"][0]["id"] = "L1"
+    named["industry_certify"]["repositories"] = [item["id"] for item in named["repositories"]]
     with pytest.raises(IntegrityError):
         run_industry_certification(named)
 
@@ -162,3 +166,186 @@ def test_validate_honest_industry_fail_closed():
 def test_refuse_text_starts_refused():
     assert HONEST_INDUSTRY_REFUSE_TEXT["industry_pack_as_sku"].startswith("Refused.")
     assert HONEST_INDUSTRY_REFUSE_TEXT["industry_certify_as_launch"].startswith("Refused.")
+
+
+def test_validate_honest_industry_more_fail_closed(monkeypatch):
+    edge = load_catalog()
+    missing_flag = copy.deepcopy(edge)
+    missing_flag["industry_certify"].pop("packs_are_skus")
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(missing_flag)
+    missing_launch = copy.deepcopy(edge)
+    missing_launch["industry_certify"].pop("industry_certified_launch")
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(missing_launch)
+    not_objects = copy.deepcopy(edge)
+    not_objects["industry_certify"]["rows"] = list(HONEST_INDUSTRY_LIBRARY_PAIRS)
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(not_objects)
+    order = copy.deepcopy(edge)
+    order["industry_certify"]["rows"] = list(reversed(order["industry_certify"]["rows"]))
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(order)
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_STANDARD_COUNT", 1)
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(copy.deepcopy(edge))
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_STANDARD_COUNT", HONEST_INDUSTRY_STANDARD_COUNT)
+    monkeypatch.setattr("ainav.industry_certify.MODULE_COUNT", 1)
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(copy.deepcopy(edge))
+    monkeypatch.setattr("ainav.industry_certify.MODULE_COUNT", MODULE_COUNT)
+    monkeypatch.setattr("ainav.industry_certify.LIBRARY_COUNT", 1)
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(copy.deepcopy(edge))
+    monkeypatch.setattr("ainav.industry_certify.LIBRARY_COUNT", LIBRARY_COUNT)
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_UNPAIRED_LIBS", frozenset({"lib.ghost"}))
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(copy.deepcopy(edge))
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_UNPAIRED_LIBS", HONEST_INDUSTRY_UNPAIRED_LIBS)
+    monkeypatch.setattr("ainav.industry_certify.REPOSITORY_COUNT", 1)
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(copy.deepcopy(edge))
+    monkeypatch.setattr("ainav.industry_certify.REPOSITORY_COUNT", REPOSITORY_COUNT)
+    note = copy.deepcopy(edge)
+    note["industry_certify"]["note"] = "Honest industry. Industry certify is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(note)
+    note2 = copy.deepcopy(edge)
+    note2["industry_certify"]["note"] = "Honest industry. Packs are not SKUs."
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(note2)
+    lede = copy.deepcopy(edge)
+    lede["industry_certify"]["lede"] = "Industry certify is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(lede)
+    lede2 = copy.deepcopy(edge)
+    lede2["industry_certify"]["lede"] = "Standard and upsell desks."
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(lede2)
+    site = copy.deepcopy(edge)
+    site["industry_certify"]["site"] = "Honest industry on #packs. Packs are not SKUs."
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(site)
+    site2 = copy.deepcopy(edge)
+    site2["industry_certify"]["site"] = (
+        "Honest industry. Industry certify is not launch. Not a /industry route."
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(site2)
+    site3 = copy.deepcopy(edge)
+    site3["industry_certify"]["site"] = (
+        "Honest industry on #packs. Industry certify is not launch."
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(site3)
+    operator = copy.deepcopy(edge)
+    operator["operating"]["operator"] = "grok.build"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(operator)
+    mods = copy.deepcopy(edge)
+    mods["industry_certify"]["modules"] = list(mods["industry_certify"]["modules"])
+    mods["industry_certify"]["modules"][0] = "bc.ghost.post"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(mods)
+    libs = copy.deepcopy(edge)
+    libs["industry_certify"]["libraries"] = list(libs["industry_certify"]["libraries"])
+    libs["industry_certify"]["libraries"][0] = "lib.ghost"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(libs)
+    repos = copy.deepcopy(edge)
+    repos["industry_certify"]["repositories"] = list(repos["industry_certify"]["repositories"])
+    repos["industry_certify"]["repositories"][0] = "repo.ghost"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(repos)
+    klass = copy.deepcopy(edge)
+    klass["industry_certify"]["rows"][0]["class"] = "upsell"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(klass)
+    row_mod = copy.deepcopy(edge)
+    row_mod["industry_certify"]["rows"][0]["modules"] = ["bc.ghost.post"]
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(row_mod)
+    row_lib = copy.deepcopy(edge)
+    row_lib["industry_certify"]["rows"][0]["libraries"] = ["lib.ghost"]
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(row_lib)
+    row_sku = copy.deepcopy(edge)
+    row_sku["industry_certify"]["rows"][0]["sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(row_sku)
+    row_href = copy.deepcopy(edge)
+    row_href["industry_certify"]["rows"][0]["href"] = "#industry"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(row_href)
+    refuse_href = copy.deepcopy(edge)
+    refuse_href["industry_certify"]["refuse"][0]["href"] = "#industry"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(refuse_href)
+    playbook = copy.deepcopy(edge)
+    playbook["industry_certify"]["owner_playbook"]["actor"] = "Cursor"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(playbook)
+    playbook2 = copy.deepcopy(edge)
+    playbook2["industry_certify"]["owner_playbook"]["cannot_be_done_by"] = "james"
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(playbook2)
+    refuse_ids = copy.deepcopy(edge)
+    refuse_ids["industry_certify"]["refuse"] = refuse_ids["industry_certify"]["refuse"][:-1]
+    with pytest.raises(IntegrityError):
+        validate_honest_industry(refuse_ids)
+
+
+def test_certify_industry_fail_closed(monkeypatch):
+    edge = load_catalog()
+    short = copy.deepcopy(edge)
+    short["industry_packs"] = short["industry_packs"][:1]
+    with pytest.raises(IntegrityError):
+        certify_industry(short)
+    unknown = copy.deepcopy(edge)
+    unknown["industry_packs"][0]["id"] = "industry.ghost"
+    with pytest.raises(IntegrityError):
+        certify_industry(unknown)
+    sku = copy.deepcopy(edge)
+    sku["industry_packs"][0]["requires_sku"] = "L2"
+    with pytest.raises(IntegrityError):
+        certify_industry(sku)
+    pack_sku = copy.deepcopy(edge)
+    pack_sku["industry_packs"][0]["sku"] = True
+    with pytest.raises(IntegrityError):
+        certify_industry(pack_sku)
+    pack_named = copy.deepcopy(edge)
+    pack_named["industry_packs"][0]["id"] = "L1"
+    with pytest.raises(IntegrityError):
+        certify_industry(pack_named)
+    bad_mod = copy.deepcopy(edge)
+    bad_mod["industry_packs"][0]["modules"] = ["bc.ghost.post"]
+    with pytest.raises(IntegrityError):
+        certify_industry(bad_mod)
+    pairs = dict(HONEST_INDUSTRY_LIBRARY_PAIRS)
+    pairs["industry.credit"] = ["lib.udual.sales"]
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_LIBRARY_PAIRS", pairs)
+    with pytest.raises(IntegrityError):
+        certify_industry(copy.deepcopy(edge))
+    empty = dict(HONEST_INDUSTRY_LIBRARY_PAIRS)
+    empty["industry.treasury"] = []
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_LIBRARY_PAIRS", empty)
+    with pytest.raises(IntegrityError):
+        certify_industry(copy.deepcopy(edge))
+    ghost_lib = dict(HONEST_INDUSTRY_LIBRARY_PAIRS)
+    ghost_lib["industry.treasury"] = ["lib.ghost"]
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_LIBRARY_PAIRS", ghost_lib)
+    with pytest.raises(IntegrityError):
+        certify_industry(copy.deepcopy(edge))
+    mismatch = copy.deepcopy(edge)
+    for lib in mismatch["libraries"]:
+        if lib["id"] == "lib.l1.wedge":
+            lib["requires_sku"] = "P-ADM"
+    monkeypatch.setattr("ainav.industry_certify.HONEST_INDUSTRY_LIBRARY_PAIRS", dict(HONEST_INDUSTRY_LIBRARY_PAIRS))
+    with pytest.raises(IntegrityError):
+        certify_industry(mismatch)
+    lib_sku = copy.deepcopy(edge)
+    for lib in lib_sku["libraries"]:
+        if lib["id"] == "lib.l1.wedge":
+            lib["sku"] = True
+    with pytest.raises(IntegrityError):
+        certify_industry(lib_sku)

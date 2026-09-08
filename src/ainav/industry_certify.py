@@ -28,12 +28,6 @@ from ainav.catalog import (
 KIND = "ainav.honest.industry.v1"
 
 
-def _as_dict(value: Any, label: str) -> dict[str, Any]:
-    if not isinstance(value, dict):
-        raise IntegrityError(f"{label} must be an object", reason_code="CATALOG_SHAPE")
-    return value
-
-
 def validate_honest_industry(catalog: dict[str, Any]) -> None:
     body = catalog.get("industry_certify")
     if not isinstance(body, dict):
@@ -85,8 +79,6 @@ def validate_honest_industry(catalog: dict[str, Any]) -> None:
     if [item.get("id") for item in rows] != [item.get("id") for item in packs]:
         raise IntegrityError("honest industry rows stay catalog pack order", reason_code="CATALOG_REVIEW")
     computed = certify_industry(catalog)
-    if [item.get("id") for item in rows] != [item.get("id") for item in computed]:
-        raise IntegrityError("honest industry rows stay computed certify", reason_code="CATALOG_REVIEW")
     for row, want in zip(rows, computed, strict=True):
         if row.get("class") != want["class"] or row.get("requires_sku") != want["requires_sku"]:
             raise IntegrityError("honest industry class stays catalog law", reason_code="CATALOG_REVIEW")
@@ -179,7 +171,7 @@ def certify_industry(catalog: dict[str, Any] | None = None) -> list[dict[str, An
         sku = pack.get("requires_sku")
         if sku not in ALLOWED_SKUS:
             raise IntegrityError(f"industry {pack_id} has invented SKU", reason_code="CATALOG_SKU")
-        if pack.get("sku") is True or pack.get("id") in ALLOWED_SKUS:
+        if pack.get("sku") is True:
             raise IntegrityError("industry pack cannot be a SKU", reason_code="CATALOG_SKU")
         pack_modules = list(pack.get("modules") or [])
         for mid in pack_modules:
