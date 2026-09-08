@@ -1,0 +1,157 @@
+{
+  "certified": false,
+  "closes_dataverse": false,
+  "cms": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "host": false,
+      "id": "product",
+      "live": false,
+      "name": "Microsoft Power Pages",
+      "note": "Power Platform external website. Dataverse-backed. Not Job C.",
+      "sku": false
+    },
+    {
+      "host": false,
+      "id": "host",
+      "live": false,
+      "name": "Institute host",
+      "note": "Azure SWA stays the host. Power Pages is not the Institute.",
+      "sku": false
+    },
+    {
+      "host": false,
+      "id": "dataverse",
+      "live": false,
+      "name": "US Dataverse",
+      "note": "Power Pages needs Dataverse. US Dataverse stays open. Canada is not United States.",
+      "sku": false
+    },
+    {
+      "host": false,
+      "id": "complements",
+      "live": false,
+      "name": "Complements",
+      "note": "Complements stay eight. Power Pages is not a complement.",
+      "sku": false
+    },
+    {
+      "host": false,
+      "id": "job_c",
+      "live": false,
+      "name": "Job C",
+      "note": "A portal login is not dual admit. Two humans. One hash. Then the write.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "honest": true,
+  "href": "#twin",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_host": false,
+  "is_sku": false,
+  "kind": "ainav.honest.power_pages.v1",
+  "lede": "Microsoft Power Pages is a Dataverse-backed Power Platform website. Considered. Azure SWA stays the Institute host. Power Pages is not the Institute host. Power Pages is not a SKU. Complements stay eight. US Dataverse stays open.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft Power Pages",
+  "note": "Honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not create a Power Pages site from this plane.",
+      "Do not bind ainav.institute to Power Pages.",
+      "Do not treat Power Pages as a Dataverse close."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "closes_dataverse": false,
+    "cms": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "institute_publish": "launch_not_ready",
+    "is_complement": false,
+    "is_host": false,
+    "is_sku": false,
+    "kind": "ainav.honest.power_pages.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false
+  },
+  "product": "Honest Power Pages",
+  "refuse": [
+    {
+      "href": "#twin",
+      "id": "power_pages_as_host",
+      "name": "Power Pages as the Institute host",
+      "note": "Refused. Power Pages is not the Institute host.",
+      "refuse": true,
+      "refuse_text": "Refused. Power Pages is not the Institute host.",
+      "state": "refused",
+      "text": "Refused. Power Pages is not the Institute host.",
+      "title": "Power Pages as the Institute host"
+    },
+    {
+      "href": "#twin",
+      "id": "power_pages_as_sku",
+      "name": "Power Pages as a SKU",
+      "note": "Refused. Power Pages is not a SKU.",
+      "refuse": true,
+      "refuse_text": "Refused. Power Pages is not a SKU.",
+      "state": "refused",
+      "text": "Refused. Power Pages is not a SKU.",
+      "title": "Power Pages as a SKU"
+    },
+    {
+      "href": "#twin",
+      "id": "power_pages_as_cms",
+      "name": "Power Pages as the CMS",
+      "note": "Refused. Power Pages is not the CMS.",
+      "refuse": true,
+      "refuse_text": "Refused. Power Pages is not the CMS.",
+      "state": "refused",
+      "text": "Refused. Power Pages is not the CMS.",
+      "title": "Power Pages as the CMS"
+    },
+    {
+      "href": "#twin",
+      "id": "power_pages_as_apex",
+      "name": "Power Pages as the Institute apex",
+      "note": "Refused. Power Pages is not the Institute apex.",
+      "refuse": true,
+      "refuse_text": "Refused. Power Pages is not the Institute apex.",
+      "state": "refused",
+      "text": "Refused. Power Pages is not the Institute apex.",
+      "title": "Power Pages as the Institute apex"
+    },
+    {
+      "href": "#twin",
+      "id": "power_pages_as_dataverse_close",
+      "name": "Power Pages as a Dataverse close",
+      "note": "Refused. Power Pages does not close US Dataverse.",
+      "refuse": true,
+      "refuse_text": "Refused. Power Pages does not close US Dataverse.",
+      "state": "refused",
+      "text": "Refused. Power Pages does not close US Dataverse.",
+      "title": "Power Pages as a Dataverse close"
+    }
+  ],
+  "site": "Honest Power Pages on #twin. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. First glance stays the write rail. Not a /power-pages route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat Power Pages as the Institute host.",
+    "Treat Power Pages as a SKU.",
+    "Treat Power Pages as the CMS.",
+    "Treat Power Pages as the Institute apex.",
+    "Treat Power Pages as a Dataverse close."
+  ],
+  "wired": false
+}

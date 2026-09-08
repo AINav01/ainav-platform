@@ -940,7 +940,12 @@
         "Treat a 10/10 review as launch",
         "Treat the stitch as a SKU",
         "Treat the twin as the Institute apex",
-        "Treat a green check as launch"
+        "Treat a green check as launch",
+        "Treat Power Pages as the Institute host",
+        "Treat Power Pages as a SKU",
+        "Treat Power Pages as the CMS",
+        "Treat Power Pages as the Institute apex",
+        "Treat Power Pages as a Dataverse close"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2004,7 +2009,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [
@@ -2014,7 +2019,8 @@
         "A /demo route",
         "Calendly / Intercom as the demo",
         "Launch from this plane",
-        "LIVE_PIN_OK theater"
+        "LIVE_PIN_OK theater",
+        "Power Pages"
       ],
       "site": "First glance stays the write rail. Demo is #twin. Product is #product. Not a /demo route. Not a CMS.",
       "sku": false
@@ -2831,7 +2837,8 @@
         "HubSpot / Salesforce as the wow",
         "AI Governess",
         "GENIUS / CLARITY close",
-        "D&O / penalty product"
+        "D&O / penalty product",
+        "Power Pages as the Institute"
       ],
       "site": "This band sits after market position. First glance stays the write rail. Not a /have route. Not #missing. #missing stays owner-honest.",
       "sku": false,

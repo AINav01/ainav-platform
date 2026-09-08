@@ -441,7 +441,8 @@
       "3.05.0 honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.06.0 honest readiness. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.07.0 honest industry certify. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.08.0 honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.09.0 honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -634,7 +635,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "3.08.0",
+  "release": "3.09.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -679,6 +680,8 @@
     "honest_industry_live": false,
     "honest_operators": true,
     "honest_operators_live": false,
+    "honest_power_pages": true,
+    "honest_power_pages_live": false,
     "honest_readiness": true,
     "honest_readiness_live": false,
     "honest_whole": true,
@@ -723,6 +726,10 @@
     "packs_are_skus": false,
     "pages_is_host": false,
     "path_href": "#path",
+    "power_pages_closes_dataverse": false,
+    "power_pages_is_cms": false,
+    "power_pages_is_host": false,
+    "power_pages_is_sku": false,
     "public_edge": "cloudflare",
     "review_path": "twin.html",
     "sim_is_production": false,

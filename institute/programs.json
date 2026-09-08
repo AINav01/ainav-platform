@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.08.0",
+  "release": "3.09.0",
   "sku": false,
   "website": {
     "additional_access_needed": false,
@@ -262,6 +262,8 @@
     "honest_industry_live": false,
     "honest_operators": true,
     "honest_operators_live": false,
+    "honest_power_pages": true,
+    "honest_power_pages_live": false,
     "honest_readiness": true,
     "honest_readiness_live": false,
     "honest_whole": true,
@@ -308,6 +310,10 @@
     "packs_are_skus": false,
     "pages_is_host": false,
     "path_href": "#path",
+    "power_pages_closes_dataverse": false,
+    "power_pages_is_cms": false,
+    "power_pages_is_host": false,
+    "power_pages_is_sku": false,
     "public_deploy_claimed": false,
     "public_edge": "cloudflare",
     "review_path": "twin.html",

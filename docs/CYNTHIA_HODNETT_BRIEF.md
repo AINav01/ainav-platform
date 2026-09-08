@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.08.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.09.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.08.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.09.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -401,6 +401,7 @@ Working well
 - 3.06.0 honest readiness is catalog law: quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.
 - 3.07.0 honest industry certify is catalog law: standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.
 - 3.08.0 honest whole is catalog law: business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK.
+- 3.09.0 honest Power Pages is catalog law: considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -599,6 +600,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 76. [tree] Honest readiness — Ship 3.06.0 honest readiness on #agent-tools. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Not LIVE_PIN_OK.
 - 77. [tree] Honest industry certify — Ship 3.07.0 honest industry certify on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Not LIVE_PIN_OK.
 - 78. [tree] Honest whole — Ship 3.08.0 honest whole on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK.
+- 79. [tree] Honest Power Pages — Ship 3.09.0 honest Power Pages on #twin. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Not LIVE_PIN_OK.
 
 ## What happens next
 

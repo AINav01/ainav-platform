@@ -170,6 +170,7 @@ def public_llms() -> str:
         "",
         "Honest industry certify sits on #packs. Packs are not SKUs. Industry certify is not launch.",
         "Honest whole sits on #whole. Business, build, and website on one board. A 10/10 review is not launch. The whole firm is not launch.",
+        "Honest Power Pages sits on #twin. Considered. Power Pages is not the Institute host. Power Pages is not a SKU.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
         "",
@@ -283,6 +284,12 @@ def public_search() -> dict[str, Any]:
             "title": "Honest whole",
             "href": "index.html#whole",
             "text": "Honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. First glance stays the write rail. Not a /whole route.",
+        },
+        {
+            "id": "pages",
+            "title": "Honest Power Pages",
+            "href": "index.html#twin",
+            "text": "Honest Power Pages. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not a /power-pages route.",
         },
     ]
     return {

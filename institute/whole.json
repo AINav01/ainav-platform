@@ -62,7 +62,7 @@
       "id": "website",
       "live": false,
       "name": "Website",
-      "note": "Azure SWA twin. Cloudflare apex empty. Not the Institute.",
+      "note": "Azure SWA twin. Cloudflare apex empty. Power Pages is not the host.",
       "seat": false,
       "sku": false
     },

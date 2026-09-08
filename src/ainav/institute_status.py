@@ -252,6 +252,12 @@ def public_status() -> dict[str, Any]:
             "whole_is_launch": False,
             "ten_is_launch": False,
             "stitch_is_sku": False,
+            "honest_power_pages": bool(site.get("honest_power_pages")),
+            "honest_power_pages_live": False,
+            "power_pages_is_host": False,
+            "power_pages_is_sku": False,
+            "power_pages_is_cms": False,
+            "power_pages_closes_dataverse": False,
         },
         "bc": {
             "connection": "bc.premium",

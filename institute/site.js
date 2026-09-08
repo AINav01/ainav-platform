@@ -4427,6 +4427,80 @@
   }
   bindWholeRefuses(document.getElementById("whole"));
 
+  var PAGES_REFUSE = {
+    power_pages_as_host: {
+      message: "Refused. Power Pages is not the Institute host.",
+      ledger: "pages_denied · power pages as host\nPower Pages is not the Institute host.\nComplements stay eight.\nlive=false · live_pin_ok=false"
+    },
+    power_pages_as_sku: {
+      message: "Refused. Power Pages is not a SKU.",
+      ledger: "pages_denied · power pages as sku\nPower Pages is not a SKU.\nPower Pages is not the Institute host.\nlive=false · live_pin_ok=false"
+    },
+    power_pages_as_cms: {
+      message: "Refused. Power Pages is not the CMS.",
+      ledger: "pages_denied · power pages as cms\nPower Pages is not the CMS.\nAzure SWA stays the host.\nlive=false · live_pin_ok=false"
+    },
+    power_pages_as_apex: {
+      message: "Refused. Power Pages is not the Institute apex.",
+      ledger: "pages_denied · power pages as apex\nPower Pages is not the Institute apex.\nCloudflare apex stays empty.\nlive=false · live_pin_ok=false"
+    },
+    power_pages_as_dataverse_close: {
+      message: "Refused. Power Pages does not close US Dataverse.",
+      ledger: "pages_denied · power pages as dataverse close\nPower Pages does not close US Dataverse.\nCanada is not United States.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writePagesLedger(text) {
+    var node = document.getElementById("pages-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refusePages(button, message, ledger) {
+    var refuse = document.getElementById("pages-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writePagesLedger(ledger);
+  }
+
+  function bindPagesRefuses(root) {
+    if (!root || root.getAttribute("data-pages-bound")) return;
+    root.setAttribute("data-pages-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-pages-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-pages-refuse") || "";
+      var pack = PAGES_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refusePages(
+        btn,
+        message,
+        pack.ledger || ("pages_denied · " + id + "\nPower Pages is not the Institute host.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindPagesRefuses(document.getElementById("pages-consider"));
+
+  fetch("pages.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.is_host || data.is_sku || data.cms || data.certified) return;
+      var status = document.getElementById("pages-status");
+      if (status) {
+        status.textContent =
+          "honest=true · considered=true · is_host=false · is_sku=false · cms=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("whole.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

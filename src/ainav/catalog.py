@@ -1154,8 +1154,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 78:
-        raise IntegrityError("expert review needs 16–78 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 79:
+        raise IntegrityError("expert review needs 16–79 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1224,6 +1224,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         76: ("honest readiness", "live_pin_ok"),
         77: ("honest industry", "live_pin_ok"),
         78: ("honest whole", "live_pin_ok"),
+        79: ("honest power pages", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1335,6 +1336,8 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest whole", reason_code="CATALOG_REVIEW")
     if "10/10 review is not launch" not in blob:
         raise IntegrityError("first-principles must keep 10/10 review is not launch", reason_code="CATALOG_REVIEW")
+    if "honest power pages" not in blob or "power pages is not the institute host" not in blob:
+        raise IntegrityError("first-principles must keep honest Power Pages", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1581,6 +1584,27 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest whole stays not live and is not launch", reason_code="CATALOG_REVIEW")
     if hosted_whole.get("stitch_is_sku") is True:
         raise IntegrityError("success honest whole stitch is not a SKU", reason_code="CATALOG_REVIEW")
+    if "power pages as the institute host" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as the Institute host", reason_code="CATALOG_REVIEW")
+    if "power pages as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as a SKU", reason_code="CATALOG_REVIEW")
+    if "power pages as the cms" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as the CMS", reason_code="CATALOG_REVIEW")
+    if "power pages as the institute apex" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as the Institute apex", reason_code="CATALOG_REVIEW")
+    if "power pages as a dataverse close" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as a Dataverse close", reason_code="CATALOG_REVIEW")
+    hosted_pages = success.get("honest_power_pages")
+    if not isinstance(hosted_pages, dict):
+        raise IntegrityError("success program keeps honest Power Pages", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("kind") != "ainav.honest.power_pages.v1" or hosted_pages.get("honest") is not True:
+        raise IntegrityError("success honest Power Pages stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("href") != "#twin":
+        raise IntegrityError("success honest Power Pages sits on #twin", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("live") is True or hosted_pages.get("is_host") is True or hosted_pages.get("is_sku") is True:
+        raise IntegrityError("success honest Power Pages stays not live and is not a host", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("cms") is True or hosted_pages.get("closes_dataverse") is True:
+        raise IntegrityError("success honest Power Pages is not the CMS and does not close Dataverse", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3135,6 +3159,22 @@ HONEST_WHOLE_REFUSE_TEXT = {
     "ci_as_launch": "Refused. A green check is not launch.",
 }
 HONEST_WHOLE_HREFS = {key: "#whole" for key in HONEST_WHOLE_REFUSE_IDS}
+HONEST_POWER_PAGES_FACT_IDS = ["product", "host", "dataverse", "complements", "job_c"]
+HONEST_POWER_PAGES_REFUSE_IDS = [
+    "power_pages_as_host",
+    "power_pages_as_sku",
+    "power_pages_as_cms",
+    "power_pages_as_apex",
+    "power_pages_as_dataverse_close",
+]
+HONEST_POWER_PAGES_REFUSE_TEXT = {
+    "power_pages_as_host": "Refused. Power Pages is not the Institute host.",
+    "power_pages_as_sku": "Refused. Power Pages is not a SKU.",
+    "power_pages_as_cms": "Refused. Power Pages is not the CMS.",
+    "power_pages_as_apex": "Refused. Power Pages is not the Institute apex.",
+    "power_pages_as_dataverse_close": "Refused. Power Pages does not close US Dataverse.",
+}
+HONEST_POWER_PAGES_HREFS = {key: "#twin" for key in HONEST_POWER_PAGES_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4198,6 +4238,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_306(catalog, body)
     _validate_instrument_307(catalog, body)
     _validate_instrument_308(catalog, body)
+    _validate_instrument_309(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5392,8 +5433,6 @@ def _validate_instrument_307(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_308(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.08.0":
-        raise IntegrityError("entity.release is 3.08.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.08.0" in item and "honest whole" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.08.0 honest whole", reason_code="CATALOG_ENGINEERING")
@@ -5435,6 +5474,58 @@ def _validate_instrument_308(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_whole import validate_honest_whole
 
     validate_honest_whole(catalog)
+
+
+def _validate_instrument_309(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.09.0":
+        raise IntegrityError("entity.release is 3.09.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.09.0" in item and "power pages" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.09.0 honest Power Pages", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_power_pages") is not True or site.get("honest_whole") is not True:
+        raise IntegrityError("3.09.0 website has honest Power Pages", reason_code="CATALOG_PLANE")
+    if site.get("honest_power_pages_live") is True or site.get("power_pages_is_host") is True:
+        raise IntegrityError("3.09.0 Power Pages is not live and is not the host", reason_code="CATALOG_PLANE")
+    if site.get("power_pages_is_sku") is True or site.get("power_pages_is_cms") is True:
+        raise IntegrityError("3.09.0 Power Pages is not a SKU and is not the CMS", reason_code="CATALOG_PLANE")
+    if site.get("power_pages_closes_dataverse") is True:
+        raise IntegrityError("3.09.0 Power Pages does not close US Dataverse", reason_code="CATALOG_PLANE")
+    pages = catalog.get("honest_power_pages") or {}
+    if pages.get("kind") != "ainav.honest.power_pages.v1" or pages.get("honest") is not True:
+        raise IntegrityError("3.09.0 honest Power Pages kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if pages.get("is_host") is True or pages.get("is_sku") is True:
+        raise IntegrityError("3.09.0 Power Pages is not the Institute host and is not a SKU", reason_code="CATALOG_REVIEW")
+    if pages.get("certified") is True:
+        raise IntegrityError("3.09.0 honest Power Pages is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(pages.get("site") or "").lower()
+    if "honest power pages" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps honest Power Pages", reason_code="CATALOG_REVIEW")
+    if "power pages is not the institute host" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps Power Pages is not the Institute host", reason_code="CATALOG_REVIEW")
+    if "not a /power-pages route" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps not a /power-pages route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest power pages" not in principles:
+        raise IntegrityError("first-principles must keep honest Power Pages", reason_code="CATALOG_REVIEW")
+    if "power pages is not the institute host" not in principles:
+        raise IntegrityError("first-principles must keep Power Pages is not the Institute host", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.09.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#twin" not in ops:
+        raise IntegrityError("3.09.0 operations note keeps #twin", reason_code="CATALOG_REVIEW")
+    if "honest power pages" not in ops:
+        raise IntegrityError("3.09.0 operations note keeps honest Power Pages", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not power pages" not in managed:
+        raise IntegrityError("3.09.0 managed face refuses Power Pages", reason_code="CATALOG_PLANE")
+    from ainav.power_pages import validate_honest_power_pages
+
+    validate_honest_power_pages(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
