@@ -426,7 +426,7 @@ Could be improved — without inventing a fourth SKU
 - Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.
 - Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.
 - Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.
-- Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
+- Gold 99.5 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
 - Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
 - Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
 - Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.

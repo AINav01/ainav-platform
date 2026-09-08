@@ -3450,7 +3450,7 @@
       if (status) status.textContent = "Refused. Launch gate closed. Gold is not launch. Owner says launch.";
       writeFirmLedger(
         "denied",
-        "launch_denied · gate closed\nSeat B click open. Signed L1 0. LIVE_PIN_OK false.\nGold 99 is the release floor, not launch.\nlaunch=false · live_pin_ok=false"
+        "launch_denied · gate closed\nSeat B click open. Signed L1 0. LIVE_PIN_OK false.\nGold 99.5 is the release floor, not launch.\nlaunch=false · live_pin_ok=false"
       );
     });
   }

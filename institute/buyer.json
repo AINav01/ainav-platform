@@ -627,7 +627,7 @@
       }
     ],
     "sku": false,
-    "thesis": "The Institute is a catalog-honest static application. Managed first-class face: catalog is law, gold 99, twin publish. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The sale path is qualify, remote proof, close L1, then a client-assigned segregated sandbox. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not a dynamic app. Not LIVE_PIN_OK."
+    "thesis": "The Institute is a catalog-honest static application. Managed first-class face: catalog is law, gold 99.5, twin publish. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The sale path is qualify, remote proof, close L1, then a client-assigned segregated sandbox. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not a dynamic app. Not LIVE_PIN_OK."
   },
   "refuse": [
     "Teams vote as dual",
@@ -2031,7 +2031,7 @@
       "fourth_sku": false,
       "kind": "ainav.managed_face.v1",
       "launch": false,
-      "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
+      "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
       "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim.",
@@ -2215,7 +2215,7 @@
           {
             "id": "launch",
             "name": "Launch",
-            "note": "Owner says launch and gold holds 99. This plane cannot mark it."
+            "note": "Owner says launch and gold holds 99.5. This plane cannot mark it."
           }
         ]
       },
@@ -2246,13 +2246,13 @@
           {
             "id": "owner_launch",
             "name": "Owner launch word",
-            "note": "James says launch. Gold holds 99.",
+            "note": "James says launch. Gold holds 99.5.",
             "ready": false
           },
           {
             "held": true,
             "id": "gold",
-            "name": "Gold 99",
+            "name": "Gold 99.5",
             "note": "Floor held. Gold is not launch.",
             "ready": false
           }

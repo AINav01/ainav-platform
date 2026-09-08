@@ -13,9 +13,9 @@ from ainav.dashboard import public_dashboard
 def test_release_is_280_and_gold_99_is_the_floor():
     cat = load_catalog()
     assert cat["entity"]["release"] == "3.14.0"
-    assert cat["engineering"]["gold_ci"]["coverage_floor"] == 99
-    assert cat["plane_interface"]["gaps"]["gold_floor"] == 99
-    assert "fail_under = 99" in Path("pyproject.toml").read_text(encoding="utf-8")
+    assert cat["engineering"]["gold_ci"]["coverage_floor"] == 99.5
+    assert cat["plane_interface"]["gaps"]["gold_floor"] == 99.5
+    assert "fail_under = 99.5" in Path("pyproject.toml").read_text(encoding="utf-8")
     assert any("2.80.0" in item and "99" in item for item in cat["engineering"]["closed_in_tree"])
     assert any("2.79.0" in item and "first-principles" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("gold floor 95" in item.lower() for item in cat["plane_interface"]["gaps"]["in_tree_closed"])
@@ -25,10 +25,10 @@ def test_release_is_280_and_gold_99_is_the_floor():
     assert "identify is not admit" in blob
     assert "assignment_live" in blob
     assert "claiming 99" in blob
-    assert "gold coverage floor is 99" in blob
+    assert "gold coverage floor is 99.5" in blob
     dash = public_dashboard()
     assert dash["release"] == "3.14.0"
-    assert dash["gaps"]["gold_floor"] == 99
+    assert dash["gaps"]["gold_floor"] == 99.5
 
 
 def test_upgrade_50_is_tree_done():
@@ -43,7 +43,7 @@ def test_upgrade_50_is_tree_done():
     assert "live_pin_ok" in blob
     html = Path("institute/index.html").read_text(encoding="utf-8")
     assert "3.14.0" in html
-    assert "Gold floor 99" in Path("institute/app.html").read_text(encoding="utf-8")
+    assert "Gold floor 99.5" in Path("institute/app.html").read_text(encoding="utf-8")
 
 
 def _reject(mutator):

@@ -50,5 +50,5 @@ source = ["agent_gov", "ainav"]
 branch = true
 
 [tool.coverage.report]
-fail_under = 99
+fail_under = 99.5
 show_missing = true

@@ -18,7 +18,7 @@ def test_institute_twin_is_swa_and_cloudflare_apex_is_empty():
     assert twin["authorized"] is False
     assert twin["launch"] is False
     assert twin["live_pin_ok"] is False
-    assert twin["gold_floor"] == 99
+    assert twin["gold_floor"] == 99.5
     assert twin["development"]["host"] == "azure.swa"
     assert twin["development"]["is_public_apex"] is False
     assert twin["public_edge"]["host"] == "cloudflare"
@@ -29,7 +29,7 @@ def test_institute_twin_is_swa_and_cloudflare_apex_is_empty():
     exported = catalog_institute_twin()
     assert exported["lede"] == twin["lede"]
     edge = catalog_edge()
-    assert edge["twin"]["gold_floor"] == 99
+    assert edge["twin"]["gold_floor"] == 99.5
     assert cat["programs"]["website"]["twin_host"] == "azure.swa"
     assert cat["programs"]["website"]["public_edge"] == "cloudflare"
     assert cat["programs"]["website"]["authorized_release"] is False

@@ -206,10 +206,10 @@
         "url": "https://blue-river-010091a0f.7.azurestaticapps.net/"
       },
       "from_this_plane": false,
-      "gold_floor": 99,
+      "gold_floor": 99.5,
       "kind": "ainav.institute.twin.v1",
       "launch": false,
-      "lede": "The Institute has a digital twin. Development is Azure SWA. The public hostname is on Cloudflare and is empty. Gold 99 is the release floor. Authorization is owner-only.",
+      "lede": "The Institute has a digital twin. Development is Azure SWA. The public hostname is on Cloudflare and is empty. Gold 99.5 is the release floor. Authorization is owner-only.",
       "live": false,
       "live_pin_ok": false,
       "note": "Cloudflare is the edge. Azure SWA is the twin. Apex 404 is not the Institute. A green check is not LIVE_PIN_OK. Not launch.",
@@ -235,7 +235,7 @@
         "path": "Keep Azure SWA as the development twin. When authorized, publish that gold tree to the Cloudflare public origin (empty Pages today). Do not auto-publish on a green CI check. This Cloud Agent cannot edit Cloudflare.",
         "requires": [
           "James says launch or authorize public release",
-          "make gold at or above 99 on the twin",
+          "make gold at or above 99.5 on the twin",
           "do not mark LIVE_PIN_OK"
         ]
       },
@@ -340,7 +340,8 @@
       "3.11.0 honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.12.0 honest operate. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.14.0 gold 99.5 is the floor: coverage_floor 99.5, pyproject fail_under 99.5. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -352,7 +353,7 @@
     },
     "gold_ci": {
       "command": "make gold",
-      "coverage_floor": 99,
+      "coverage_floor": 99.5,
       "exists": true,
       "id": "github.actions.gold",
       "is_admit_plane": false,
@@ -397,7 +398,7 @@
       "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.",
       "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.",
       "Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.",
-      "Gold 99 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
+      "Gold 99.5 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
       "Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.",
       "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
@@ -1885,7 +1886,7 @@
         "fourth_sku": false,
         "kind": "ainav.managed_face.v1",
         "launch": false,
-        "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
+        "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
         "live": false,
         "live_pin_ok": false,
         "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim.",
@@ -2077,7 +2078,7 @@
             {
               "id": "launch",
               "name": "Launch",
-              "note": "Owner says launch and gold holds 99. This plane cannot mark it."
+              "note": "Owner says launch and gold holds 99.5. This plane cannot mark it."
             }
           ]
         },
@@ -2108,13 +2109,13 @@
             {
               "id": "owner_launch",
               "name": "Owner launch word",
-              "note": "James says launch. Gold holds 99.",
+              "note": "James says launch. Gold holds 99.5.",
               "ready": false
             },
             {
               "held": true,
               "id": "gold",
-              "name": "Gold 99",
+              "name": "Gold 99.5",
               "note": "Floor held. Gold is not launch.",
               "ready": false
             }

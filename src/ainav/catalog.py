@@ -319,8 +319,8 @@ def _validate_institute_twin(edge: dict[str, Any]) -> None:
     for flag in ("sku", "live", "live_pin_ok", "launch", "authorized", "from_this_plane"):
         if twin.get(flag) is True:
             raise IntegrityError(f"Institute twin cannot claim {flag}", reason_code="CATALOG_EDGE")
-    if int(twin.get("gold_floor") or 0) != 99:
-        raise IntegrityError("Institute twin gold_floor is 99", reason_code="CATALOG_EDGE")
+    if twin.get("gold_floor") != 99.5:
+        raise IntegrityError("Institute twin gold_floor is 99.5", reason_code="CATALOG_EDGE")
     lede = str(twin.get("lede") or "").lower()
     if "digital twin" not in lede or "azure swa" not in lede or "cloudflare" not in lede:
         raise IntegrityError("Institute twin lede is SWA development and Cloudflare empty", reason_code="CATALOG_EDGE")
@@ -559,13 +559,13 @@ def _validate_engineering(catalog: dict[str, Any]) -> None:
         raise IntegrityError("gold_ci cannot mark LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
     if gold.get("is_admit_plane") is not False:
         raise IntegrityError("gold_ci is not the admit plane", reason_code="CATALOG_ENGINEERING")
-    if gold.get("coverage_floor") != 99:
-        raise IntegrityError("gold coverage floor is 99", reason_code="CATALOG_ENGINEERING")
+    if gold.get("coverage_floor") != 99.5:
+        raise IntegrityError("gold coverage floor is 99.5", reason_code="CATALOG_ENGINEERING")
     pyproject = Path("pyproject.toml")
     if not pyproject.is_file():
         raise IntegrityError("pyproject.toml is missing", reason_code="CATALOG_ENGINEERING")
-    if "fail_under = 99" not in pyproject.read_text(encoding="utf-8"):
-        raise IntegrityError("pyproject fail_under must match gold floor 99", reason_code="CATALOG_ENGINEERING")
+    if "fail_under = 99.5" not in pyproject.read_text(encoding="utf-8"):
+        raise IntegrityError("pyproject fail_under must match gold floor 99.5", reason_code="CATALOG_ENGINEERING")
     if gold.get("command") != "make gold":
         raise IntegrityError("gold command is make gold", reason_code="CATALOG_ENGINEERING")
     note = str(gold.get("note") or "").lower()
@@ -4476,8 +4476,8 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("gaps board is not a SKU or live", reason_code="CATALOG_PLANE")
     if gaps.get("claimed") is True:
         raise IntegrityError("gaps board cannot claim closed owner clicks", reason_code="CATALOG_PLANE")
-    if int(gaps.get("gold_floor") or 0) != 99:
-        raise IntegrityError("gaps gold_floor is 99", reason_code="CATALOG_PLANE")
+    if gaps.get("gold_floor") != 99.5:
+        raise IntegrityError("gaps gold_floor is 99.5", reason_code="CATALOG_PLANE")
     gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
     if gaps.get("gold_floor") != gold.get("coverage_floor"):
         raise IntegrityError("gaps.gold_floor must match engineering.gold_ci.coverage_floor", reason_code="CATALOG_ENGINEERING")
@@ -4809,11 +4809,11 @@ def _validate_instrument_280(catalog: dict[str, Any], body: dict[str, Any]) -> N
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("2.80.0" in item and "99" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 2.80.0 gold 99 floor", reason_code="CATALOG_ENGINEERING")
-    if int((body.get("gaps") or {}).get("gold_floor") or 0) != 99:
-        raise IntegrityError("2.80.0 gaps gold_floor is 99", reason_code="CATALOG_PLANE")
+    if (body.get("gaps") or {}).get("gold_floor") != 99.5:
+        raise IntegrityError("current gaps gold_floor is 99.5", reason_code="CATALOG_PLANE")
     gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
-    if gold.get("coverage_floor") != 99:
-        raise IntegrityError("2.80.0 coverage_floor is 99", reason_code="CATALOG_ENGINEERING")
+    if gold.get("coverage_floor") != 99.5:
+        raise IntegrityError("current coverage_floor is 99.5", reason_code="CATALOG_ENGINEERING")
 
 
 def _validate_instrument_281(catalog: dict[str, Any], body: dict[str, Any]) -> None:

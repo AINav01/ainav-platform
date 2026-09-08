@@ -17,7 +17,7 @@ def test_release_is_274():
     assert "edge quality" in cat["equations"]["interface"]
     assert any("2.74.0" in item and "quality" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.73.0" in item and "floor" in item.lower() for item in cat["engineering"]["closed_in_tree"])
-    assert cat["engineering"]["gold_ci"]["coverage_floor"] == 99
+    assert cat["engineering"]["gold_ci"]["coverage_floor"] == 99.5
     dash = public_dashboard()
     assert dash["release"] == "3.14.0"
 

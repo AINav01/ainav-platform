@@ -27,7 +27,7 @@ def test_catalog_engineering_records_gold_ci_not_launch():
     assert gold["observed_green"] is True
     assert gold["workflow"] == ".github/workflows/gold.yml"
     assert gold["command"] == "make gold"
-    assert gold["coverage_floor"] == 99
+    assert gold["coverage_floor"] == 99.5
     assert gold["marks_live_pin"] is False
     assert gold["is_admit_plane"] is False
     assert "not live_pin_ok" in gold["note"].lower()
