@@ -272,6 +272,13 @@ def public_status() -> dict[str, Any]:
             "available_is_seat": False,
             "graph_read_is_live_pin": False,
             "cursor_app_is_seat": False,
+            "honest_operate": bool(site.get("honest_operate")),
+            "honest_operate_live": False,
+            "close_gaps_is_this_plane": False,
+            "outlook_is_click": False,
+            "grok_login_is_this_plane": False,
+            "operate_sim_is_production": False,
+            "polish_ten_is_launch": False,
         },
         "bc": {
             "connection": "bc.premium",

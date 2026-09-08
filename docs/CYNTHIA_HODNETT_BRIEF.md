@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.11.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.12.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.11.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.12.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -404,6 +404,7 @@ Working well
 - 3.09.0 honest Power Pages is catalog law: considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Complements stay eight. Not LIVE_PIN_OK.
 - 3.10.0 honest Copilot Studio is catalog law: considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK.
 - 3.11.0 honest connect is catalog law: recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK.
+- 3.12.0 honest operate is catalog law: recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -457,6 +458,7 @@ Could be improved — without inventing a fourth SKU
 - 3.06.0 honest readiness sits on #agent-tools. Twin certified is not launch day. Gold is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.
 - 3.07.0 honest industry certify sits on #packs. Standard, upsells, modules, libraries, and repositories by industry. Packs are not SKUs. Industry certify is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.
 - 3.08.0 honest whole sits on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Seat B click and signed L1 stay owner-only. Not from this plane.
+- Owner asked to close all gaps, integrate Cursor apps, add Grok, run operational simulations, and make this 10/10. This plane records honest operate. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch.
 
 They win the bake-off when
 
@@ -605,6 +607,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 79. [tree] Honest Power Pages — Ship 3.09.0 honest Power Pages on #twin. Considered. Power Pages is not the Institute host. Power Pages is not a SKU. Power Pages is not the CMS. Power Pages does not close US Dataverse. Not LIVE_PIN_OK.
 - 80. [tree] Honest Copilot Studio — Ship 3.10.0 honest Copilot Studio on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Not LIVE_PIN_OK.
 - 81. [tree] Honest connect — Ship 3.11.0 honest connect on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Not LIVE_PIN_OK.
+- 82. [tree] Honest operate — Ship 3.12.0 honest operate on #agent-tools. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Not LIVE_PIN_OK.
 
 ## What happens next
 

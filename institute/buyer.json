@@ -955,7 +955,12 @@
         "Treat licensed as wired",
         "Treat available as a seat",
         "Treat a Graph read as LIVE_PIN_OK",
-        "Treat a Cursor app as a seat"
+        "Treat a Cursor app as a seat",
+        "Treat closing all gaps as this plane",
+        "Treat Outlook mail as a click",
+        "Treat grok login as this plane",
+        "Treat an operate sim as production",
+        "Treat a 10/10 polish as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2019,7 +2024,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

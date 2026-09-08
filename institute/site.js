@@ -4604,6 +4604,65 @@
   }
   bindConnectRefuses(document.getElementById("connect-consider"));
 
+  var OPERATE_REFUSE = {
+    close_gaps_as_this_plane: {
+      message: "Refused. Closing all gaps is not this plane.",
+      ledger: "operate_denied · closing all gaps as this plane\nClosing all gaps is not this plane.\nSeat B click stays owner-only.\nlive=false · live_pin_ok=false"
+    },
+    outlook_as_click: {
+      message: "Refused. Outlook mail is not a click.",
+      ledger: "operate_denied · outlook mail as a click\nOutlook mail is not a click.\nMailbox is not seat B.\nlive=false · live_pin_ok=false"
+    },
+    grok_login_as_this_plane: {
+      message: "Refused. grok login is not this plane.",
+      ledger: "operate_denied · grok login as this plane\ngrok login is not this plane.\nGrok Build stays mapped.\nlive=false · live_pin_ok=false"
+    },
+    operate_sim_as_production: {
+      message: "Refused. An operate sim is not production.",
+      ledger: "operate_denied · operate sim as production\nAn operate sim is not production.\nLab oids are not named seats.\nlive=false · live_pin_ok=false"
+    },
+    polish_ten_as_launch: {
+      message: "Refused. A 10/10 polish is not launch.",
+      ledger: "operate_denied · 10/10 polish as launch\nA 10/10 polish is not launch.\nOwner says launch.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeOperateLedger(text) {
+    var node = document.getElementById("operate-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseOperate(button, message, ledger) {
+    var refuse = document.getElementById("operate-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeOperateLedger(ledger);
+  }
+
+  function bindOperateRefuses(root) {
+    if (!root || root.getAttribute("data-operate-bound")) return;
+    root.setAttribute("data-operate-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-operate-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-operate-refuse") || "";
+      var pack = OPERATE_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseOperate(
+        btn,
+        message,
+        pack.ledger || ("operate_denied · " + id + "\nClosing all gaps is not this plane.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindOperateRefuses(document.getElementById("operate-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -4615,6 +4674,21 @@
       if (status) {
         status.textContent =
           "honest=true · recorded=true · connected_is_live=false · licensed_is_wired=false · available_is_seat=false · live=false";
+      }
+    })
+    .catch(function () {});
+
+  fetch("operate.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.close_gaps_is_this_plane || data.outlook_is_click || data.grok_login_is_this_plane || data.operate_sim_is_production || data.polish_ten_is_launch || data.certified) return;
+      var status = document.getElementById("operate-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · close_gaps_is_this_plane=false · outlook_is_click=false · grok_login_is_this_plane=false · live=false";
       }
     })
     .catch(function () {});

@@ -1154,8 +1154,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 81:
-        raise IntegrityError("expert review needs 16–80 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 82:
+        raise IntegrityError("expert review needs 16–82 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1227,6 +1227,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         79: ("honest power pages", "live_pin_ok"),
         80: ("honest copilot studio", "live_pin_ok"),
         81: ("honest connect", "live_pin_ok"),
+        82: ("honest operate", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1346,6 +1347,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest connect", reason_code="CATALOG_REVIEW")
     if "licensed is not wired" not in blob or "available is not a seat" not in blob:
         raise IntegrityError("first-principles must keep licensed is not wired and available is not a seat", reason_code="CATALOG_REVIEW")
+    if "honest operate" not in blob or "closing all gaps is not this plane" not in blob:
+        raise IntegrityError("first-principles must keep honest operate", reason_code="CATALOG_REVIEW")
+    if "outlook mail is not a click" not in blob or "grok login is not this plane" not in blob:
+        raise IntegrityError("first-principles must keep Outlook mail is not a click and grok login is not this plane", reason_code="CATALOG_REVIEW")
+    if "operate sim is not production" not in blob or "10/10 polish is not launch" not in blob:
+        raise IntegrityError("first-principles must keep an operate sim is not production and a 10/10 polish is not launch", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1657,6 +1664,29 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest connect is not wired and is not a seat", reason_code="CATALOG_REVIEW")
     if hosted_connect.get("graph_read_is_live_pin") is True or hosted_connect.get("cursor_app_is_seat") is True:
         raise IntegrityError("success honest connect is not a live pin and is not a seat", reason_code="CATALOG_REVIEW")
+    if "closing all gaps as this plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat closing all gaps as this plane", reason_code="CATALOG_REVIEW")
+    if "outlook mail as a click" not in does_not:
+        raise IntegrityError("CISO posture does not treat Outlook mail as a click", reason_code="CATALOG_REVIEW")
+    if "grok login as this plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat grok login as this plane", reason_code="CATALOG_REVIEW")
+    if "an operate sim as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat an operate sim as production", reason_code="CATALOG_REVIEW")
+    if "a 10/10 polish as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 polish as launch", reason_code="CATALOG_REVIEW")
+    hosted_operate = success.get("honest_operate")
+    if not isinstance(hosted_operate, dict):
+        raise IntegrityError("success program keeps honest operate", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("kind") != "ainav.honest.operate.v1" or hosted_operate.get("honest") is not True:
+        raise IntegrityError("success honest operate stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("href") != "#agent-tools":
+        raise IntegrityError("success honest operate sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("live") is True or hosted_operate.get("close_gaps_is_this_plane") is True:
+        raise IntegrityError("success honest operate stays not live and is not this plane closing gaps", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("outlook_is_click") is True or hosted_operate.get("grok_login_is_this_plane") is True:
+        raise IntegrityError("success honest operate is not a click and is not grok login", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("operate_sim_is_production") is True or hosted_operate.get("polish_ten_is_launch") is True:
+        raise IntegrityError("success honest operate is not production and is not launch", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3259,6 +3289,22 @@ HONEST_CONNECT_REFUSE_TEXT = {
     "cursor_app_as_seat": "Refused. A Cursor app is not a seat.",
 }
 HONEST_CONNECT_HREFS = {key: "#missing" for key in HONEST_CONNECT_REFUSE_IDS}
+HONEST_OPERATE_FACT_IDS = ["gaps", "cursor_apps", "grok", "simulation", "ten"]
+HONEST_OPERATE_REFUSE_IDS = [
+    "close_gaps_as_this_plane",
+    "outlook_as_click",
+    "grok_login_as_this_plane",
+    "operate_sim_as_production",
+    "polish_ten_as_launch",
+]
+HONEST_OPERATE_REFUSE_TEXT = {
+    "close_gaps_as_this_plane": "Refused. Closing all gaps is not this plane.",
+    "outlook_as_click": "Refused. Outlook mail is not a click.",
+    "grok_login_as_this_plane": "Refused. grok login is not this plane.",
+    "operate_sim_as_production": "Refused. An operate sim is not production.",
+    "polish_ten_as_launch": "Refused. A 10/10 polish is not launch.",
+}
+HONEST_OPERATE_HREFS = {key: "#agent-tools" for key in HONEST_OPERATE_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4325,6 +4371,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_309(catalog, body)
     _validate_instrument_310(catalog, body)
     _validate_instrument_311(catalog, body)
+    _validate_instrument_312(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -5663,8 +5710,6 @@ def _validate_instrument_310(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_311(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.11.0":
-        raise IntegrityError("entity.release is 3.11.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.11.0" in item and "honest connect" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.11.0 honest connect", reason_code="CATALOG_ENGINEERING")
@@ -5712,6 +5757,58 @@ def _validate_instrument_311(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_connect import validate_honest_connect
 
     validate_honest_connect(catalog)
+
+
+def _validate_instrument_312(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.12.0":
+        raise IntegrityError("entity.release is 3.12.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.12.0" in item and "honest operate" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.12.0 honest operate", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_operate") is not True or site.get("honest_connect") is not True:
+        raise IntegrityError("3.12.0 website has honest operate", reason_code="CATALOG_PLANE")
+    if site.get("honest_operate_live") is True or site.get("close_gaps_is_this_plane") is True:
+        raise IntegrityError("3.12.0 operate is not live and closing all gaps is not this plane", reason_code="CATALOG_PLANE")
+    if site.get("outlook_is_click") is True or site.get("grok_login_is_this_plane") is True:
+        raise IntegrityError("3.12.0 Outlook mail is not a click and grok login is not this plane", reason_code="CATALOG_PLANE")
+    if site.get("operate_sim_is_production") is True or site.get("polish_ten_is_launch") is True:
+        raise IntegrityError("3.12.0 an operate sim is not production and a 10/10 polish is not launch", reason_code="CATALOG_PLANE")
+    operate = catalog.get("honest_operate") or {}
+    if operate.get("kind") != "ainav.honest.operate.v1" or operate.get("honest") is not True:
+        raise IntegrityError("3.12.0 honest operate kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if operate.get("close_gaps_is_this_plane") is True or operate.get("outlook_is_click") is True:
+        raise IntegrityError("3.12.0 closing all gaps is not this plane and Outlook mail is not a click", reason_code="CATALOG_REVIEW")
+    if operate.get("certified") is True:
+        raise IntegrityError("3.12.0 honest operate is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(operate.get("site") or "").lower()
+    if "honest operate" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps honest operate", reason_code="CATALOG_REVIEW")
+    if "closing all gaps is not this plane" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps closing all gaps is not this plane", reason_code="CATALOG_REVIEW")
+    if "not a /operate route" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps not a /operate route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest operate" not in principles:
+        raise IntegrityError("first-principles must keep honest operate", reason_code="CATALOG_REVIEW")
+    if "closing all gaps is not this plane" not in principles:
+        raise IntegrityError("first-principles must keep closing all gaps is not this plane", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.12.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.12.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest operate" not in ops:
+        raise IntegrityError("3.12.0 operations note keeps honest operate", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10 launch" not in managed:
+        raise IntegrityError("3.12.0 managed face refuses a 10/10 launch", reason_code="CATALOG_PLANE")
+    from ainav.honest_operate import validate_honest_operate
+
+    validate_honest_operate(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
