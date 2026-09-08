@@ -103,7 +103,7 @@ plan-check:
 	test -s docs/CYNTHIA_HODNETT_BRIEF.pdf
 
 gold: plan-check
-	python3 -m pytest -q --cov=agent_gov --cov=ainav --cov-report=term-missing
+	python3 -m pytest -q --cov=agent_gov --cov=ainav --cov-report=term-missing --cov-fail-under=99
 
 kit:
 	cd web && npm ci && npm run build && npm run test:e2e && npm run lighthouse && npm run pagefind

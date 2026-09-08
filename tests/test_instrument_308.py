@@ -177,6 +177,71 @@ def test_instrument_308_fail_closed():
     success_missing.pop("honest_whole")
     with pytest.raises(IntegrityError):
         catmod._validate_success_program(success_missing)
+    success_kind = copy.deepcopy(edge["expert_review"]["success"])
+    success_kind["honest_whole"]["kind"] = "ainav.honest.whole.v0"
+    with pytest.raises(IntegrityError):
+        catmod._validate_success_program(success_kind)
+    success_href = copy.deepcopy(edge["expert_review"]["success"])
+    success_href["honest_whole"]["href"] = "#buyer"
+    with pytest.raises(IntegrityError):
+        catmod._validate_success_program(success_href)
+    success_stitch = copy.deepcopy(edge["expert_review"]["success"])
+    success_stitch["honest_whole"]["stitch_is_sku"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_success_program(success_stitch)
+    stitch_site = copy.deepcopy(edge)
+    stitch_site["programs"]["website"]["stitch_is_sku"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(stitch_site, stitch_site["plane_interface"])
+    certified = copy.deepcopy(edge)
+    certified["honest_whole"]["certified"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(certified, certified["plane_interface"])
+    whole_launch = copy.deepcopy(edge)
+    whole_launch["honest_whole"]["whole_is_launch"] = True
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(whole_launch, whole_launch["plane_interface"])
+    site_glance = copy.deepcopy(edge)
+    site_glance["honest_whole"]["site"] = site_glance["honest_whole"]["site"].replace(
+        "First glance stays the write rail. ",
+        "",
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(site_glance, site_glance["plane_interface"])
+    principles_direct = copy.deepcopy(edge)
+    principles_direct["expert_review"]["first_principles"] = [
+        item
+        for item in principles_direct["expert_review"]["first_principles"]
+        if "honest whole" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(principles_direct, principles_direct["plane_interface"])
+    principles_firm = copy.deepcopy(edge)
+    principles_firm["expert_review"]["first_principles"] = [
+        item.replace("The whole firm is not launch.", "The stitch is recorded.")
+        for item in principles_firm["expert_review"]["first_principles"]
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(principles_firm, principles_firm["plane_interface"])
+    principles_ten = copy.deepcopy(edge)
+    principles_ten["expert_review"]["first_principles"] = [
+        item.replace("A 10/10 review is not launch.", "Review is recorded.")
+        for item in principles_ten["expert_review"]["first_principles"]
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(principles_ten["expert_review"]["first_principles"])
+    ops_attach = copy.deepcopy(edge)
+    ops_attach["operations"]["note"] = "Honest whole sits on #whole."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(ops_attach, ops_attach["plane_interface"])
+    ops_href = copy.deepcopy(edge)
+    ops_href["operations"]["note"] = "SKU attach chain. Honest whole is recorded."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(ops_href, ops_href["plane_interface"])
+    ops_name = copy.deepcopy(edge)
+    ops_name["operations"]["note"] = "SKU attach chain. The stitch sits on #whole."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_308(ops_name, ops_name["plane_interface"])
     for missing in (
         "Treat the whole firm as launch",
         "Treat a 10/10 review as launch",
