@@ -4663,6 +4663,65 @@
   }
   bindOperateRefuses(document.getElementById("operate-consider"));
 
+  var CYCLE_REFUSE = {
+    industry_as_named_client: {
+      message: "Refused. An industry is not a named client.",
+      ledger: "path_denied · industry as a named client\nAn industry is not a named client.\nOwner names the client after signed L1.\nlive=false · live_pin_ok=false"
+    },
+    shared_sandbox_as_production: {
+      message: "Refused. A shared sandbox is not production.",
+      ledger: "path_denied · shared sandbox as production\nA shared sandbox is not production.\nAssigned stays 0.\nlive=false · live_pin_ok=false"
+    },
+    hours_as_sku: {
+      message: "Refused. Hours are not a SKU.",
+      ledger: "path_denied · hours as a SKU\nHours are not a SKU.\nThree SKUs only.\nlive=false · live_pin_ok=false"
+    },
+    rollback_as_live_pin: {
+      message: "Refused. Rollback is not LIVE_PIN_OK.",
+      ledger: "path_denied · rollback as LIVE_PIN_OK\nRollback is not LIVE_PIN_OK.\nCompensating write. Not a time machine.\nlive=false · live_pin_ok=false"
+    },
+    redeploy_as_launch: {
+      message: "Refused. A redeploy is not launch.",
+      ledger: "path_denied · redeploy as launch\nA redeploy is not launch.\nOwner says launch.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeCycleLedger(text) {
+    var node = document.getElementById("cycle-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseCycle(button, message, ledger) {
+    var refuse = document.getElementById("cycle-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeCycleLedger(ledger);
+  }
+
+  function bindCycleRefuses(root) {
+    if (!root || root.getAttribute("data-cycle-bound")) return;
+    root.setAttribute("data-cycle-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-cycle-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-cycle-refuse") || "";
+      var pack = CYCLE_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseCycle(
+        btn,
+        message,
+        pack.ledger || ("path_denied · " + id + "\nAn industry is not a named client.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindCycleRefuses(document.getElementById("path-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -4689,6 +4748,21 @@
       if (status) {
         status.textContent =
           "honest=true · recorded=true · close_gaps_is_this_plane=false · outlook_is_click=false · grok_login_is_this_plane=false · live=false";
+      }
+    })
+    .catch(function () {});
+
+  fetch("path.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.industry_is_named_client || data.shared_sandbox_is_production || data.hours_is_sku || data.rollback_is_live_pin || data.redeploy_is_launch || data.certified) return;
+      var status = document.getElementById("cycle-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · industry_is_named_client=false · shared_sandbox_is_production=false · hours_is_sku=false · live=false";
       }
     })
     .catch(function () {});

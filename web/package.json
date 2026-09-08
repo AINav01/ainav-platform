@@ -1,6 +1,6 @@
 {
   "name": "ainav-institute-kit",
-  "version": "3.12.0",
+  "version": "3.13.0",
   "private": true,
   "description": "Eleventy compiler, Storybook, Playwright, axe, Lighthouse, Pagefind. Not a CMS.",
   "scripts": {

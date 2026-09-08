@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_310_honest_copilot_studio():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.12.0"
+    assert cat["entity"]["release"] == "3.13.0"
     studio = cat["honest_copilot_studio"]
     assert studio["kind"] == "ainav.honest.copilot_studio.v1"
     assert studio["honest"] is True
@@ -66,7 +66,7 @@ def test_release_is_310_honest_copilot_studio():
     assert "honest copilot studio" in principles
     assert "copilot studio is not job c" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 82
+    assert len(cat["expert_review"]["upgrades"]) == 83
     assert upgrades[80]["who"] == "tree"
     assert upgrades[80]["done"] is True
     assert upgrades[80]["marks_live_pin"] is False
@@ -78,7 +78,7 @@ def test_release_is_310_honest_copilot_studio():
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
-    assert "3.12.0" in html
+    assert "3.13.0" in html
     assert "honest copilot studio" in html.lower()
     assert "copilot studio is not job c" in html.lower()
     assert "copilot studio is not a sku" in html.lower()
@@ -107,18 +107,18 @@ def test_release_is_310_honest_copilot_studio():
     assert "access-lede" not in js
     assert "honest copilot studio" in twin.lower()
     assert "copilot studio is not job c" in twin.lower()
-    assert "Digital twin · 3.12.0" in twin
-    assert "AINAV.Institute twin · 3.12.0" in twin
+    assert "Digital twin · 3.13.0" in twin
+    assert "AINAV.Institute twin · 3.13.0" in twin
     assert "3.08.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.12.0" in kit
+    assert "Application kit · 3.13.0" in kit
     assert "Copilot Studio is Job C" in identify
     assert "Open Copilot Studio" in identify
     assert "Copilot Studio is Job C" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.12.0"
+    assert dash["release"] == "3.13.0"
     status = public_status()
-    assert status["release"] == "3.12.0"
+    assert status["release"] == "3.13.0"
     assert status["website"]["honest_copilot_studio"] is True
     assert status["website"]["honest_copilot_studio_live"] is False
     assert status["website"]["copilot_studio_is_job_c"] is False

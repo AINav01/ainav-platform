@@ -960,7 +960,12 @@
         "Treat Outlook mail as a click",
         "Treat grok login as this plane",
         "Treat an operate sim as production",
-        "Treat a 10/10 polish as launch"
+        "Treat a 10/10 polish as launch",
+        "Treat an industry as a named client",
+        "Treat a shared sandbox as production",
+        "Treat hours as a SKU",
+        "Treat rollback as LIVE_PIN_OK",
+        "Treat a redeploy as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2024,7 +2029,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

@@ -1875,17 +1875,20 @@ table.law tr[data-group] th {
 #pages-consider,
 #studio-consider,
 #connect-consider,
-#operate-consider {
+#operate-consider,
+#path-consider {
   padding: 1.45rem 1.45rem 1.65rem;
 }
 #pages-consider .ghost,
 #studio-consider .ghost,
 #connect-consider .ghost,
-#operate-consider .ghost {
+#operate-consider .ghost,
+#path-consider .ghost {
   min-height: 2.45rem;
   padding: 0.45rem 0.85rem;
 }
-#operate-consider {
+#operate-consider,
+#path-consider {
   max-width: var(--wide);
   margin: 1.35rem 0 0;
   padding: 1.45rem 1.45rem 1.65rem;
@@ -1894,30 +1897,40 @@ table.law tr[data-group] th {
   border: 1px solid color-mix(in srgb, var(--gold-2) 24%, var(--rule));
   box-shadow: var(--shadow);
 }
-#operate-consider > h2 {
+#path-consider { margin: 0 0 1.35rem; }
+#operate-consider > h2,
+#path-consider > h2 {
   margin: 0 0 0.55rem;
   color: var(--ink);
   font-size: clamp(1.85rem, 3.4vw, 2.55rem);
 }
-#operate-consider .lede {
+#operate-consider .lede,
+#path-consider .lede {
   color: var(--ink);
   max-width: 40rem;
 }
-#operate-consider .kicker { color: var(--gold-ink); }
-#operate-consider .note { color: var(--mute); }
-#operate-consider .ghost {
+#operate-consider .kicker,
+#path-consider .kicker { color: var(--gold-ink); }
+#operate-consider .note,
+#path-consider .note { color: var(--mute); }
+#operate-consider .ghost,
+#path-consider .ghost {
   color: var(--ink);
   border-color: var(--ink);
   background: transparent;
 }
 #operate-consider .ghost:hover,
-#operate-consider .ghost[aria-pressed="true"] {
+#operate-consider .ghost[aria-pressed="true"],
+#path-consider .ghost:hover,
+#path-consider .ghost[aria-pressed="true"] {
   background: color-mix(in srgb, var(--gold) 14%, var(--paper));
   border-color: var(--gold);
   color: var(--ink);
 }
-.operate-facts [data-fact="ten"] { box-shadow: inset 3px 0 0 var(--gold-2); }
-#operate-zeros {
+.operate-facts [data-fact="ten"],
+.cycle-facts [data-fact="service"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+#operate-zeros,
+#cycle-zeros {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 1.15rem;
@@ -1929,11 +1942,13 @@ table.law tr[data-group] th {
   font-size: 0.74rem;
   letter-spacing: 0.02em;
 }
-#operate-zeros b { color: var(--gold-2); }
+#operate-zeros b,
+#cycle-zeros b { color: var(--gold-2); }
 @media (min-width: 1100px) {
   .pages-facts { grid-template-columns: repeat(3, 1fr); }
   .pages-facts.connect-facts,
-  .pages-facts.operate-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pages-facts.operate-facts,
+  .pages-facts.cycle-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 #missing .gaps {
   display: grid;

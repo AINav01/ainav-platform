@@ -279,6 +279,13 @@ def public_status() -> dict[str, Any]:
             "grok_login_is_this_plane": False,
             "operate_sim_is_production": False,
             "polish_ten_is_launch": False,
+            "honest_path": bool(site.get("honest_path")),
+            "honest_path_live": False,
+            "industry_is_named_client": False,
+            "shared_sandbox_is_production": False,
+            "hours_is_sku": False,
+            "rollback_is_live_pin": False,
+            "redeploy_is_launch": False,
         },
         "bc": {
             "connection": "bc.premium",
