@@ -110,11 +110,11 @@ def test_release_is_312_honest_operate():
     assert "access-lede" not in js
     assert "honest operate" in twin.lower()
     assert "closing all gaps is not this plane" in twin.lower()
-    assert "Digital twin · 3.16.0" in twin
-    assert "AINAV.Institute twin · 3.16.0" in twin
+    assert "Digital twin · 3.17.0" in twin
+    assert "AINAV.Institute twin · 3.17.0" in twin
     assert "3.11.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.16.0" in kit
+    assert "Application kit · 3.17.0" in kit
     assert "Closing all gaps is this plane" in identify
     assert "Open operate" in identify
     assert "Closing all gaps is this plane" in app

@@ -107,11 +107,11 @@ def test_release_is_310_honest_copilot_studio():
     assert "access-lede" not in js
     assert "honest copilot studio" in twin.lower()
     assert "copilot studio is not job c" in twin.lower()
-    assert "Digital twin · 3.16.0" in twin
-    assert "AINAV.Institute twin · 3.16.0" in twin
+    assert "Digital twin · 3.17.0" in twin
+    assert "AINAV.Institute twin · 3.17.0" in twin
     assert "3.08.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.16.0" in kit
+    assert "Application kit · 3.17.0" in kit
     assert "Copilot Studio is Job C" in identify
     assert "Open Copilot Studio" in identify
     assert "Copilot Studio is Job C" in app

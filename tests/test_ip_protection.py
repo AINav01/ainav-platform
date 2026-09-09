@@ -115,3 +115,39 @@ def test_allowed_skus_are_not_competitor_aliases():
     with pytest.raises(IntegrityError) as hit:
         validate_catalog(collide)
     assert hit.value.reason_code == "CATALOG_SKU"
+    text = notice(cat)
+    assert "AINav, Inc." in text
+    missing_protect = copy.deepcopy(cat)
+    missing_protect["ip"].pop("client_protect")
+    with pytest.raises(IntegrityError):
+        validate_catalog(missing_protect)
+    assign = copy.deepcopy(cat)
+    assign["ip"]["client_protect"]["license_is_assignment"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(assign)
+    note = copy.deepcopy(cat)
+    note["ip"]["client_protect"]["note"] = "Not work-for-hire. Not an assignment."
+    with pytest.raises(IntegrityError):
+        validate_catalog(note)
+    hire = copy.deepcopy(cat)
+    hire["ip"]["client_protect"]["note"] = "L1 is a use license of the admit plane."
+    with pytest.raises(IntegrityError):
+        validate_catalog(hire)
+    claims = copy.deepcopy(cat)
+    claims["ip"]["forbidden_claims"] = [
+        item for item in claims["ip"]["forbidden_claims"] if "l1 assigns job c" not in item
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(claims)
+    reserved = copy.deepcopy(cat)
+    reserved["ip"]["reserved_work"] = [
+        item for item in reserved["ip"]["reserved_work"] if "client license is use" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(reserved)
+    layer = copy.deepcopy(cat)
+    layer["ip"]["insulation"]["layers"] = [
+        item for item in layer["ip"]["insulation"]["layers"] if item.get("id") != "client"
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(layer)

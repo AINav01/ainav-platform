@@ -110,11 +110,11 @@ def test_release_is_311_honest_connect():
     assert "access-lede" not in js
     assert "honest connect" in twin.lower()
     assert "connected is not live" in twin.lower()
-    assert "Digital twin · 3.16.0" in twin
-    assert "AINAV.Institute twin · 3.16.0" in twin
+    assert "Digital twin · 3.17.0" in twin
+    assert "AINAV.Institute twin · 3.17.0" in twin
     assert "3.08.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.16.0" in kit
+    assert "Application kit · 3.17.0" in kit
     assert "Connected is live" in identify
     assert "Open connect" in identify
     assert "Connected is live" in app

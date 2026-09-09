@@ -108,17 +108,17 @@ def test_release_is_315_honest_remainder():
     assert "pages-lede" not in js
     assert "honest remainder" in twin.lower()
     assert "a remainder close is not launch" in twin.lower()
-    assert "Digital twin · 3.16.0" in twin
-    assert "AINAV.Institute twin · 3.16.0" in twin
+    assert "Digital twin · 3.17.0" in twin
+    assert "AINAV.Institute twin · 3.17.0" in twin
     assert "3.14.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.16.0" in kit
-    assert "Release 3.16.0" in lost
+    assert "Application kit · 3.17.0" in kit
+    assert "Release 3.17.0" in lost
     assert "3.14.0" not in lost
-    assert "Ultimate control plane · 3.16.0" in plane
+    assert "Ultimate control plane · 3.17.0" in plane
     assert "3.14.0" not in plane
     assert 'href="index.html#remain-consider"' in plane
     assert 'href="index.html#remain-consider"' in app

@@ -218,9 +218,15 @@ def test_validate_honest_protect_more_fail_closed():
     with pytest.raises(IntegrityError):
         validate_honest_protect(lede_assign)
     site = copy.deepcopy(load_catalog())
-    site["honest_protect"]["site"] = "Honest protect. An IP board is not a patent."
+    site["honest_protect"]["site"] = "Protect board. An IP board is not a patent."
     with pytest.raises(IntegrityError):
         validate_honest_protect(site)
+    site_name = copy.deepcopy(load_catalog())
+    site_name["honest_protect"]["site"] = (
+        "Protect board. Not a /protect route. First glance stays the write rail."
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_protect(site_name)
     site_route = copy.deepcopy(load_catalog())
     site_route["honest_protect"]["site"] = (
         "Honest protect. Not a /protect route. Complements stay eight."
@@ -281,6 +287,22 @@ def test_validate_honest_protect_more_fail_closed():
     g12_open["ip"]["g12_open"] = False
     with pytest.raises(IntegrityError):
         validate_honest_protect(g12_open)
+    no_patent = copy.deepcopy(load_catalog())
+    no_patent["ip"]["no_patent_claim_in_this_tree"] = False
+    with pytest.raises(IntegrityError):
+        validate_honest_protect(no_patent)
+    uncopyable = copy.deepcopy(load_catalog())
+    uncopyable["ip"]["insulation"]["uncopyable"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_protect(uncopyable)
+    hire = copy.deepcopy(load_catalog())
+    hire["ip"]["client_protect"]["work_for_hire"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_protect(hire)
+    seats = copy.deepcopy(load_catalog())
+    seats["ip"]["client_protect"]["seats_are_inventors"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_protect(seats)
 
 
 def test_run_protect_certification_fail_closed(monkeypatch):

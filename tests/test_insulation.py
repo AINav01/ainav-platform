@@ -41,6 +41,9 @@ def test_insulation_is_hygiene_not_a_patent():
     assert "not uncopyable" in md.lower()
     assert "microsoft" in md.lower()
     assert "ultimate control plane" in md.lower()
+    assert "protect from clients" in md.lower()
+    assert "use license" in md.lower() or "use of the admit plane" in md.lower()
+    assert body["client_protect"]["license_is_assignment"] is False
 
 
 def test_independence_desk_and_ip_keep_are_not_skus():
@@ -95,6 +98,15 @@ def test_insulation_validators_refuse_fiction():
     refuse["ip"]["insulation"]["refuse"] = ["AINav is a Microsoft product"]
     with pytest.raises(IntegrityError):
         validate_catalog(refuse)
+
+
+def test_insulation_markdown_without_client_protect(monkeypatch):
+    body = public_insulation()
+    body["client_protect"] = {}
+    monkeypatch.setattr("ainav.ip.public_insulation", lambda: body)
+    md = insulation_markdown()
+    assert "protect from clients" not in md.lower()
+    assert "not a patent" in md.lower()
 
 
 def test_institute_ip_is_catalog_honest():

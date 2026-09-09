@@ -105,11 +105,11 @@ def test_release_is_309_honest_power_pages():
     assert "access-lede" not in js
     assert "honest power pages" in twin.lower()
     assert "power pages is not the institute host" in twin.lower()
-    assert "Digital twin · 3.16.0" in twin
-    assert "AINAV.Institute twin · 3.16.0" in twin
+    assert "Digital twin · 3.17.0" in twin
+    assert "AINAV.Institute twin · 3.17.0" in twin
     assert "3.07.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.16.0" in kit
+    assert "Application kit · 3.17.0" in kit
     assert "Power Pages is host" in identify
     assert "Open Power Pages" in identify
     assert "Power Pages is host" in app
