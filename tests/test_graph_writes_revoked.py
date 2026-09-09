@@ -125,6 +125,14 @@ def test_graph_writes_revoked_fail_closed():
     def plane(cat):
         cat["microsoft_stack"]["graph"]["from_this_plane"] = True
 
+    def ungrant(cat):
+        cat["microsoft_stack"]["graph"]["four_reads_granted"] = False
+
+    def note_open(cat):
+        cat["microsoft_stack"]["graph"]["note"] = (
+            "Four Reads Granted. Not Graph Read closed. Not LIVE_PIN_OK."
+        )
+
     for mutator in (
         status,
         error,
@@ -141,5 +149,7 @@ def test_graph_writes_revoked_fail_closed():
         upgrade_stems,
         claimed,
         plane,
+        ungrant,
+        note_open,
     ):
         _reject(mutator)
