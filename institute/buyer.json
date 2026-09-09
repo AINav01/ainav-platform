@@ -508,6 +508,10 @@
           {
             "href": "#ten-consider",
             "label": "Honest ten"
+          },
+          {
+            "href": "#protect-consider",
+            "label": "Honest protect"
           }
         ],
         "name": "Owner"
@@ -988,7 +992,12 @@
         "Treat gold 99.9 as LIVE_PIN_OK",
         "Treat a competitor analysis as a named client",
         "Treat a green service as production",
-        "Treat a quality check as a seated second human"
+        "Treat a quality check as a seated second human",
+        "Treat an IP board as a patent",
+        "Treat insulation as uncopyable",
+        "Treat an L1 license as an assignment of Job C",
+        "Treat kit PASS as a source license",
+        "Treat this board as closing G12"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2052,7 +2061,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

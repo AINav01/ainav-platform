@@ -108,6 +108,12 @@
       "title": "Honest ten"
     },
     {
+      "href": "index.html#ip",
+      "id": "protect",
+      "text": "Honest protect. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight. Not a /protect route.",
+      "title": "Honest protect"
+    },
+    {
       "href": "index.html#brand",
       "id": "brand",
       "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
@@ -144,6 +150,6 @@
       "title": "Honest Power Pages"
     }
   ],
-  "release": "3.16.0",
+  "release": "3.17.0",
   "sku": false
 }

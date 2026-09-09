@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.16.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.17.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.16.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.17.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -409,6 +409,7 @@ Working well
 - 3.14.0 honest production is catalog law: recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.
 - 3.15.0 honest remainder is catalog law: leftover gold-99.5 copy and owner hrefs closed in the tree. A remainder close is not launch. Owner-only stays owner-only. Not LIVE_PIN_OK.
 - 3.16.0 honest ten is catalog law: recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not LIVE_PIN_OK.
+- 3.17.0 honest protect is catalog law: recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -468,6 +469,7 @@ Could be improved — without inventing a fourth SKU
 - Owner asked to make all much better, fix all, close all gaps, and simulate production in all its elements. This plane records honest production. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK.
 - 3.15.0 honest remainder sits on #missing. This plane closed leftover gold-99.5 copy and completed owner hrefs. Owner-only stays owner-only. A remainder close is not launch. Not from this plane.
 - 3.16.0 honest ten sits on #success. This plane recorded a 10/10 quality check and competitor analysis. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. Owner-only stays owner-only. Not from this plane.
+- 3.17.0 honest protect sits on #ip. This plane recorded IP, competitor, and client insulation. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Owner-only stays owner-only. Not from this plane.
 
 They win the bake-off when
 
@@ -621,6 +623,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 84. [tree] Honest production — Ship 3.14.0 honest production on #firm. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Not LIVE_PIN_OK.
 - 85. [tree] Honest remainder — Ship 3.15.0 honest remainder on #missing. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Not LIVE_PIN_OK.
 - 86. [tree] Honest ten — Ship 3.16.0 honest ten on #success. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Not LIVE_PIN_OK.
+- 87. [tree] Honest protect — Ship 3.17.0 honest protect on #ip. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Not LIVE_PIN_OK.
 
 ## What happens next
 
