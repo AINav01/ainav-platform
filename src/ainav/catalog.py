@@ -3642,6 +3642,25 @@ HONEST_HOLD_SECRET_NAMES = [
     "SHAREPOINT-SITE-ID",
     "AZURE-SENTINEL-WORKSPACE-ID",
 ]
+HONEST_HOLD_DIRECTION_IDS = ["names_as_wired", "secret_in_catalog", "sentinel_as_admit"]
+HONEST_HOLD_DIRECTION_LINKS = {
+    "names_as_wired": [
+        ("Key Vaults", "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"),
+        ("Teams admin", "https://admin.teams.microsoft.com"),
+        ("SharePoint site", "https://ainav.sharepoint.com/sites/AINavInc"),
+        ("Stack walk", "#stack-walk"),
+    ],
+    "secret_in_catalog": [
+        ("Key Vaults", "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"),
+        ("Set a secret", "https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal"),
+    ],
+    "sentinel_as_admit": [
+        ("Microsoft Sentinel", "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights"),
+        ("Azure Monitor", "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview"),
+        ("The write", "#buyer"),
+        ("Sentinel overview", "https://learn.microsoft.com/en-us/azure/sentinel/overview"),
+    ],
+}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",

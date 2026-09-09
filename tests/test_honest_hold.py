@@ -8,6 +8,8 @@ import pytest
 
 from agent_gov.errors import IntegrityError
 from ainav.catalog import (
+    HONEST_HOLD_DIRECTION_IDS,
+    HONEST_HOLD_DIRECTION_LINKS,
     HONEST_HOLD_FACT_IDS,
     HONEST_HOLD_SECRET_NAMES,
     load_catalog,
@@ -49,6 +51,9 @@ def test_hold_review_is_not_a_live_pin():
     assert "sentinel is not the admit plane" in body["note"].lower()
     assert [item["id"] for item in body["facts"]] == list(HONEST_HOLD_FACT_IDS)
     assert list(body["secret_names"]) == list(HONEST_HOLD_SECRET_NAMES)
+    assert [item["id"] for item in body["directions"]] == list(HONEST_HOLD_DIRECTION_IDS)
+    names_links = [(link["label"], link["url"]) for link in body["directions"][0]["links"]]
+    assert names_links == list(HONEST_HOLD_DIRECTION_LINKS["names_as_wired"])
     assert "Treat a vault hold as LIVE_PIN_OK." in body["this_agent_cannot"]
     assert "Put secret values in the catalog." in body["this_agent_cannot"]
     probes = body["probes"]
@@ -278,6 +283,22 @@ def test_validate_honest_hold_more_fail_closed():
     names["honest_hold"]["secret_names"] = list(HONEST_HOLD_SECRET_NAMES)[:-1]
     with pytest.raises(IntegrityError):
         validate_honest_hold(names)
+    directions = copy.deepcopy(load_catalog())
+    directions["honest_hold"]["directions"] = []
+    with pytest.raises(IntegrityError):
+        validate_honest_hold(directions)
+    direction_wired = copy.deepcopy(load_catalog())
+    direction_wired["honest_hold"]["directions"][0]["wired"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_hold(direction_wired)
+    direction_link = copy.deepcopy(load_catalog())
+    direction_link["honest_hold"]["directions"][0]["links"][0]["url"] = "https://example.com"
+    with pytest.raises(IntegrityError):
+        validate_honest_hold(direction_link)
+    direction_note = copy.deepcopy(load_catalog())
+    direction_note["honest_hold"]["directions"][2]["note"] = "Owner added Sentinel to the LAW."
+    with pytest.raises(IntegrityError):
+        validate_honest_hold(direction_note)
     vault_name = copy.deepcopy(load_catalog())
     vault_name["honest_hold"]["vault_name"] = "other"
     with pytest.raises(IntegrityError):

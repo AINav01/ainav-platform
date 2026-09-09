@@ -11,6 +11,8 @@ from typing import Any
 
 from agent_gov.errors import IntegrityError
 from ainav.catalog import (
+    HONEST_HOLD_DIRECTION_IDS,
+    HONEST_HOLD_DIRECTION_LINKS,
     HONEST_HOLD_FACT_IDS,
     HONEST_HOLD_HREFS,
     HONEST_HOLD_REFUSE_IDS,
@@ -90,6 +92,26 @@ def validate_honest_hold(catalog: dict[str, Any]) -> None:
     names = body.get("secret_names") or []
     if list(names) != list(HONEST_HOLD_SECRET_NAMES):
         raise IntegrityError("honest hold secret names stay catalog law", reason_code="CATALOG_REVIEW")
+    directions = body.get("directions") or []
+    if not isinstance(directions, list) or [item.get("id") for item in directions if isinstance(item, dict)] != list(
+        HONEST_HOLD_DIRECTION_IDS
+    ):
+        raise IntegrityError("honest hold directions stay catalog law", reason_code="CATALOG_REVIEW")
+    for item in directions:
+        if item.get("wired") is True or item.get("values_in_tree") is True or item.get("is_admit_plane") is True:
+            raise IntegrityError("honest hold directions cannot claim wired, values, or admit", reason_code="CATALOG_REVIEW")
+        got = [(link.get("label"), link.get("url")) for link in (item.get("links") or []) if isinstance(link, dict)]
+        if got != list(HONEST_HOLD_DIRECTION_LINKS[item["id"]]):
+            raise IntegrityError("honest hold direction links stay catalog law", reason_code="CATALOG_REVIEW")
+    notes = {item.get("id"): str(item.get("note") or "").lower() for item in directions}
+    if "not wired" not in notes.get("names_as_wired", "") or "no get" not in notes.get("names_as_wired", ""):
+        raise IntegrityError("names direction keeps not wired and no Get", reason_code="CATALOG_REVIEW")
+    if "names only" not in notes.get("secret_in_catalog", "") or "must not hold secret values" not in notes.get(
+        "secret_in_catalog", ""
+    ):
+        raise IntegrityError("secret direction keeps names only and must not hold secret values", reason_code="CATALOG_REVIEW")
+    if "not the admit plane" not in notes.get("sentinel_as_admit", ""):
+        raise IntegrityError("Sentinel direction keeps not the admit plane", reason_code="CATALOG_REVIEW")
     if body.get("sentinel_on_law_owner") is not True:
         raise IntegrityError("honest hold records owner Sentinel on the LAW", reason_code="CATALOG_REVIEW")
     facts = body.get("facts") or []
@@ -232,6 +254,7 @@ def public_review() -> dict[str, Any]:
         "services": dict(body.get("services") or {}),
         "owner_playbook": dict(body.get("owner_playbook") or {}),
         "secret_names": list(body.get("secret_names") or []),
+        "directions": [dict(item) for item in body.get("directions") or []],
         "probes": probes,
         "this_agent_cannot": [
             "Treat a vault hold as LIVE_PIN_OK.",

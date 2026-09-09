@@ -2,6 +2,75 @@
   "certified": false,
   "considered": true,
   "created": false,
+  "directions": [
+    {
+      "href": "#missing",
+      "id": "names_as_wired",
+      "links": [
+        {
+          "label": "Key Vaults",
+          "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"
+        },
+        {
+          "label": "Teams admin",
+          "url": "https://admin.teams.microsoft.com"
+        },
+        {
+          "label": "SharePoint site",
+          "url": "https://ainav.sharepoint.com/sites/AINavInc"
+        },
+        {
+          "label": "Stack walk",
+          "url": "#stack-walk"
+        }
+      ],
+      "note": "Dash names in ainavinc7bfcff are not underscore env and not Teams notify. Owner reads team, channel, and site ids in the Microsoft admin, then Set values only in the vault. Opening the vault is not wired. This Cloud Agent has no Get.",
+      "title": "Secret names are not wired",
+      "wired": false
+    },
+    {
+      "href": "#missing",
+      "id": "secret_in_catalog",
+      "links": [
+        {
+          "label": "Key Vaults",
+          "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"
+        },
+        {
+          "label": "Set a secret",
+          "url": "https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal"
+        }
+      ],
+      "note": "A catalog must not hold secret values. Catalog holds names only. James has Get/List/Set on ainavinc7bfcff. Cloud Agent1 has no Get. Do not paste values into the catalog, the Institute, a PR, or chat.",
+      "title": "A catalog must not hold secret values",
+      "values_in_tree": false
+    },
+    {
+      "href": "#buyer",
+      "id": "sentinel_as_admit",
+      "is_admit_plane": false,
+      "links": [
+        {
+          "label": "Microsoft Sentinel",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights"
+        },
+        {
+          "label": "Azure Monitor",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview"
+        },
+        {
+          "label": "The write",
+          "url": "#buyer"
+        },
+        {
+          "label": "Sentinel overview",
+          "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+        }
+      ],
+      "note": "Owner added Sentinel to ainav-mothership. Sentinel is not the admit plane. That is SIEM. Admit is two humans, one hash, then the write. Workspace id name held. Value stays in the vault. Sentinel on the existing LAW stays open.",
+      "title": "Sentinel is not the admit plane"
+    }
+  ],
   "entity": "AINav, Inc.",
   "facts": [
     {

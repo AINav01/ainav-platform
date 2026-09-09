@@ -8,6 +8,8 @@ import pytest
 from agent_gov.errors import IntegrityError
 from ainav import catalog as catmod
 from ainav.catalog import (
+    HONEST_HOLD_DIRECTION_IDS,
+    HONEST_HOLD_DIRECTION_LINKS,
     HONEST_HOLD_HREFS,
     HONEST_HOLD_REFUSE_IDS,
     HONEST_HOLD_REFUSE_TEXT,
@@ -43,6 +45,13 @@ def test_release_is_318_honest_hold():
     assert hold["vault_name"] == "ainavinc7bfcff"
     assert hold["law_name"] == "ainav-mothership"
     assert list(hold["secret_names"]) == list(HONEST_HOLD_SECRET_NAMES)
+    assert [item["id"] for item in hold["directions"]] == list(HONEST_HOLD_DIRECTION_IDS)
+    for item in hold["directions"]:
+        assert item.get("wired") is not True
+        assert item.get("values_in_tree") is not True
+        assert item.get("is_admit_plane") is not True
+        got = [(link["label"], link["url"]) for link in item["links"]]
+        assert got == list(HONEST_HOLD_DIRECTION_LINKS[item["id"]])
     refuse = [item for item in hold["refuse"] if item.get("refuse") is True]
     assert [item["id"] for item in refuse] == list(HONEST_HOLD_REFUSE_IDS)
     assert {item["id"]: item["refuse_text"] for item in refuse} == {
@@ -102,7 +111,17 @@ def test_release_is_318_honest_hold():
     assert html.index('id="hold-consider"') < html.index('id="remain-consider"')
     assert 'id="hold-zeros"' in html
     assert 'id="hold-names"' in html
+    assert 'id="hold-directions"' in html
     assert 'id="hold-facts"' in html
+    assert "Secret names are not wired" in html
+    assert "A catalog must not hold secret values" in html
+    assert "Sentinel is not the admit plane" in html
+    assert "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults" in html
+    assert "https://admin.teams.microsoft.com" in html
+    assert "https://ainav.sharepoint.com/sites/AINavInc" in html
+    assert "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights" in html
+    assert 'href="#buyer">The write' in html
+    assert "Owner directions and links sit on the hold board" in twin
     for name in HONEST_HOLD_SECRET_NAMES:
         assert name in html
     assert 'data-hold-refuse="vault_as_live_pin"' in html
@@ -138,7 +157,9 @@ def test_release_is_318_honest_hold():
     assert "#ten-consider {" in css
     assert "#protect-consider {" in css
     assert "#hold-zeros" in css
+    assert "#hold-directions {" in css
     assert ".hold-facts" in css
+    assert ".hold-directions" in css
     assert "A vault hold is LIVE_PIN_OK" in identify
     assert "Open hold" in identify
     assert 'href="index.html#hold-consider">Open hold' in identify

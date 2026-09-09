@@ -14880,6 +14880,75 @@
         "text": "Refused. A vault hold is not a seated second human."
       }
     ],
+    "directions": [
+      {
+        "id": "names_as_wired",
+        "title": "Secret names are not wired",
+        "note": "Dash names in ainavinc7bfcff are not underscore env and not Teams notify. Owner reads team, channel, and site ids in the Microsoft admin, then Set values only in the vault. Opening the vault is not wired. This Cloud Agent has no Get.",
+        "wired": false,
+        "href": "#missing",
+        "links": [
+          {
+            "label": "Key Vaults",
+            "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"
+          },
+          {
+            "label": "Teams admin",
+            "url": "https://admin.teams.microsoft.com"
+          },
+          {
+            "label": "SharePoint site",
+            "url": "https://ainav.sharepoint.com/sites/AINavInc"
+          },
+          {
+            "label": "Stack walk",
+            "url": "#stack-walk"
+          }
+        ]
+      },
+      {
+        "id": "secret_in_catalog",
+        "title": "A catalog must not hold secret values",
+        "note": "A catalog must not hold secret values. Catalog holds names only. James has Get/List/Set on ainavinc7bfcff. Cloud Agent1 has no Get. Do not paste values into the catalog, the Institute, a PR, or chat.",
+        "values_in_tree": false,
+        "href": "#missing",
+        "links": [
+          {
+            "label": "Key Vaults",
+            "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"
+          },
+          {
+            "label": "Set a secret",
+            "url": "https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal"
+          }
+        ]
+      },
+      {
+        "id": "sentinel_as_admit",
+        "title": "Sentinel is not the admit plane",
+        "note": "Owner added Sentinel to ainav-mothership. Sentinel is not the admit plane. That is SIEM. Admit is two humans, one hash, then the write. Workspace id name held. Value stays in the vault. Sentinel on the existing LAW stays open.",
+        "is_admit_plane": false,
+        "href": "#buyer",
+        "links": [
+          {
+            "label": "Microsoft Sentinel",
+            "url": "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights"
+          },
+          {
+            "label": "Azure Monitor",
+            "url": "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview"
+          },
+          {
+            "label": "The write",
+            "url": "#buyer"
+          },
+          {
+            "label": "Sentinel overview",
+            "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+          }
+        ]
+      }
+    ],
     "services": {
       "claimed_as_wired": false,
       "vault": {
