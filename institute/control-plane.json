@@ -1540,7 +1540,7 @@
         {
           "id": "graph.read_roles",
           "name": "Same app API permissions",
-          "note": "On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.",
+          "note": "Recorded. Owner revoked Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All Application on AINav Cloud Agent1. Four Reads stay Granted. CRM impersonation left. Business Central Application stays. Do not add Write. Do not create a new app. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK.",
           "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
           "url_label": "Same app API permissions"
         },
@@ -2173,7 +2173,8 @@
       "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.14.0 gold 99.5 is the floor after measured coverage",
-      "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.15.0 owner recorded Graph Writes revoked; four Reads stay Granted; not Graph Write claimed; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -2181,7 +2182,6 @@
     "note": "Close what the tree can close. Do not invent owner clicks. Gold floor 99.5 is catalog law. Owner hrefs walk; a walk is not a click. A remainder close is not launch. A green check is not LIVE_PIN_OK. Owner-only lines walk to Owner steps.",
     "owner_only_hrefs": {
       "G12/G13": "index.html#open",
-      "Graph Writes revoke": "index.html#stack-walk",
       "Rocket Loader confirm": "index.html#e7-cloudflare",
       "SHAREPOINT_SITE_ID": "index.html#stack-walk",
       "Sentinel on the existing LAW": "index.html#stack-walk",
@@ -2196,7 +2196,6 @@
     "owner_only_open": [
       "seat B click",
       "named-human proof day",
-      "Graph Writes revoke",
       "US Dataverse",
       "G12/G13",
       "billing",
@@ -5967,7 +5966,6 @@
         "note": "The Microsoft run is catalog law on #firm-ms. The roster is the operating-day face. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays visible. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
         "owner_only": [
           "Seat B click",
-          "Graph Writes revoke-then-grant",
           "Teams team and channel ids",
           "SHAREPOINT_SITE_ID",
           "US Dataverse / DATAVERSE_URL",
@@ -6168,7 +6166,7 @@
             "job": "evidence",
             "live": false,
             "name": "SharePoint",
-            "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes still Granted.",
+            "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes are owner-revoked.",
             "production": false,
             "sku": false,
             "status": "graph_read_open",
@@ -6185,7 +6183,7 @@
             "job": "security",
             "live": false,
             "name": "Microsoft Defender XDR",
-            "note": "E7 security sink. Not the admit plane. Graph Writes still Granted.",
+            "note": "E7 security sink. Not the admit plane. Graph Writes are owner-revoked.",
             "production": false,
             "sku": false,
             "status": "graph_read_open",

@@ -258,7 +258,6 @@
     "cannot_close": [
       "Second unique human (Cynthia mailbox recorded; Entra oid, seat B click, and signed L1 seats)",
       "ainav.institute custom domain and launch",
-      "Graph Writes still Granted on the same Entra app",
       "US Dataverse for Sales (Canada affinity recorded; United States not pinned)",
       "G12 legal / G13 signed L1",
       "Recognized revenue",
@@ -342,7 +341,8 @@
       "3.13.0 honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.14.0 honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.14.0 gold 99.5 is the floor: coverage_floor 99.5, pyproject fail_under 99.5. A green check is not LIVE_PIN_OK",
-      "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.15.0 owner recorded Graph Writes revoked. Four Reads stay Granted. CRM impersonation left. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -399,7 +399,8 @@
       "Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.",
       "Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.",
       "Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.",
-      "Gold 99.5 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
+      "Gold 99.5 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.",
+      "Owner recorded Graph Writes revoked on AINav Cloud Agent1. Four Reads stay Granted. This plane cannot invent Graph consent or claim Graph Write. Not LIVE_PIN_OK.",
       "Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.",
       "Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.",
       "Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.",
@@ -2244,7 +2245,6 @@
           "note": "The Microsoft run is catalog law on #firm-ms. The roster is the operating-day face. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays visible. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
           "owner_only": [
             "Seat B click",
-            "Graph Writes revoke-then-grant",
             "Teams team and channel ids",
             "SHAREPOINT_SITE_ID",
             "US Dataverse / DATAVERSE_URL",
@@ -2445,7 +2445,7 @@
               "job": "evidence",
               "live": false,
               "name": "SharePoint",
-              "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes still Granted.",
+              "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes are owner-revoked.",
               "production": false,
               "sku": false,
               "status": "graph_read_open",
@@ -2462,7 +2462,7 @@
               "job": "security",
               "live": false,
               "name": "Microsoft Defender XDR",
-              "note": "E7 security sink. Not the admit plane. Graph Writes still Granted.",
+              "note": "E7 security sink. Not the admit plane. Graph Writes are owner-revoked.",
               "production": false,
               "sku": false,
               "status": "graph_read_open",
@@ -2782,7 +2782,8 @@
         "who": "owner"
       },
       {
-        "do": "Four Reads are Granted. Trash Graph Writes. Grant again to revoke Organization.ReadWrite.All and User.ReadWrite.All. Keep the four Reads. No Write. No new app.",
+        "do": "Owner recorded Graph Writes revoked. Four Reads stay Granted. Do not add Write. Do not create a new app. Not Graph Write claimed. Not LIVE_PIN_OK.",
+        "done": true,
         "marks_live_pin": false,
         "n": 3,
         "title": "Graph read on the same app",

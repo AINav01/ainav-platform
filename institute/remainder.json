@@ -26,7 +26,7 @@
       "id": "hrefs",
       "live": false,
       "name": "Hrefs",
-      "note": "Twelve owner-only lines walk. A walk is not a click.",
+      "note": "Eleven owner-only lines walk. A walk is not a click.",
       "sku": false
     },
     {
@@ -42,7 +42,7 @@
       "id": "owner_only",
       "live": false,
       "name": "Owner-only",
-      "note": "Seat B, oid, signed L1, Teams ids, SHAREPOINT_SITE_ID, Sentinel, Graph Writes, US Dataverse stay owner-only.",
+      "note": "Seat B, oid, signed L1, Teams ids, SHAREPOINT_SITE_ID, Sentinel, US Dataverse stay owner-only.",
       "sku": false
     }
   ],

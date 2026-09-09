@@ -112,7 +112,7 @@
       {
         "id": "graph.read_roles",
         "name": "Same app API permissions",
-        "note": "On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.",
+        "note": "Recorded. Owner revoked Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All Application on AINav Cloud Agent1. Four Reads stay Granted. CRM impersonation left. Business Central Application stays. Do not add Write. Do not create a new app. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK.",
         "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
         "url_label": "Same app API permissions"
       },
@@ -2372,7 +2372,6 @@
         "note": "The Microsoft run is catalog law on #firm-ms. The roster is the operating-day face. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays visible. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
         "owner_only": [
           "Seat B click",
-          "Graph Writes revoke-then-grant",
           "Teams team and channel ids",
           "SHAREPOINT_SITE_ID",
           "US Dataverse / DATAVERSE_URL",
@@ -2573,7 +2572,7 @@
             "job": "evidence",
             "live": false,
             "name": "SharePoint",
-            "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes still Granted.",
+            "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes are owner-revoked.",
             "production": false,
             "sku": false,
             "status": "graph_read_open",
@@ -2590,7 +2589,7 @@
             "job": "security",
             "live": false,
             "name": "Microsoft Defender XDR",
-            "note": "E7 security sink. Not the admit plane. Graph Writes still Granted.",
+            "note": "E7 security sink. Not the admit plane. Graph Writes are owner-revoked.",
             "production": false,
             "sku": false,
             "status": "graph_read_open",

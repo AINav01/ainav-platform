@@ -23,16 +23,16 @@ def test_release_is_278():
 def test_owner_gaps_stay_open_after_quality_check():
     cat = load_catalog()
     owner = " ".join(cat["plane_interface"]["gaps"]["owner_only_open"]).lower()
-    for stem in ("seat b", "graph write", "dataverse", "g12", "billing", "launch"):
+    for stem in ("seat b", "dataverse", "g12", "billing", "launch"):
         assert stem in owner
+    assert "graph write" not in owner
     assert cat["plane_interface"]["gaps"]["claimed"] is False
     assert cat["plane_interface"]["gaps"]["live_pin_ok"] is False
     opens = cat["investor"]["executive_summary"]["opens"].lower()
-    assert "graph write" in opens
+    assert "graph write" not in opens
     assert "graph read on the same" not in opens
     html = Path("institute/index.html").read_text(encoding="utf-8")
     assert "3.14.0" in html
-    assert "Graph Writes still Granted on the same Entra app" in html
     assert cat["investor"]["executive_summary"]["opens"] in html
     assert "Named dual seats, Graph Read, Dataverse" not in html
     assert "Graph Read on the same Entra app" not in html

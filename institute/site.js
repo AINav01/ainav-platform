@@ -3495,10 +3495,10 @@
   if (firmTrashWrites) {
     firmTrashWrites.addEventListener("click", function () {
       var status = document.getElementById("firm-ms-status");
-      if (status) status.textContent = "Refused. Graph Writes revoke-then-grant is owner-only. This plane cannot grant.";
+      if (status) status.textContent = "Recorded. Graph Writes are owner-revoked. This plane cannot invent Graph consent or add Write.";
       writeFirmLedger(
         "denied",
-        "graph_denied · Writes still Granted\nTrash Organization.ReadWrite.All and User.ReadWrite.All, then Grant again.\nThis plane cannot invent consent.\nlive=false · live_pin_ok=false"
+        "graph_recorded · Writes owner-revoked\nDo not add Organization.ReadWrite.All or User.ReadWrite.All.\nThis plane cannot invent consent.\nlive=false · live_pin_ok=false"
       );
     });
   }

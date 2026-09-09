@@ -39,7 +39,7 @@ def test_gaps_board_is_honest_and_paints_on_owner_entire():
     assert "gold floor 95" in closed
     assert "pending bind" in closed
     assert "seat b" in owner
-    assert "graph" in owner
+    assert "graph write" not in owner
     assert "launch" in owner
     assert "entra_oid" in cannot
     assert "live_pin_ok" in cannot

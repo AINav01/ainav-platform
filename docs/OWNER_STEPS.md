@@ -17,7 +17,7 @@ The nine gates below are the clicks. Cloudflare Pro activate is owner-only at [d
 3. Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.
    [Agents > Tools registry](https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all)
 
-4. On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.
+4. Recorded. Owner revoked Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All Application on AINav Cloud Agent1. Four Reads stay Granted. CRM impersonation left. Business Central Application stays. Do not add Write. Do not create a new app. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK.
    [Same app API permissions](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED])
 
 5. Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.

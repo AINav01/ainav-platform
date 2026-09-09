@@ -20,7 +20,7 @@
       "id": "authorized",
       "live": false,
       "name": "Authorized",
-      "note": "Graph Writes still Granted. Twin authorized=false. Not launch.",
+      "note": "Graph Writes owner-revoked. Twin authorized=false. Not launch.",
       "sku": false
     },
     {
@@ -73,7 +73,7 @@
       "Do not treat a read-only probe as live.",
       "Do not treat a licensed SKU as wired.",
       "Do not treat Agent Tools Available as a seat.",
-      "Trash Graph Writes on the same app, then Grant again.",
+      "Do not add Graph Write back on the same app.",
       "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
     ]
   },

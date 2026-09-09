@@ -36,8 +36,8 @@ def test_graph_consent_keeps_leftover_failure():
     assert any("service principal" in item.lower() for item in graph["owner_recorded"])
     gaps = load_catalog()["plane_interface"]["gaps"]
     owner = " ".join(gaps["owner_only_open"]).lower()
-    assert "graph" in owner
     assert "seat b" in owner
+    assert "graph read" not in owner
     assert any("leftover" in item.lower() and "service principal" in item.lower() for item in gaps["in_tree_closed"])
 
 

@@ -18,7 +18,7 @@ This is the board packet for the admit plane. Job C needs a second human. The sa
 | Scoreboard today | Recognized revenue $0. Named customers 0. Signed L1 0. First record 1 sandbox / 0 production. Second record 0. Off switch READY. Seats 1 mailbox recorded / 0 oid. Cynthia agreed as seat B. Entra oid and click still open. |
 | Microsoft | Microsoft is identity, notify, SoR, and host. Microsoft is not the product. A Teams vote, a PIM activation, or Copilot asking a human is not dual admit. |
 | Must-have | Must-have is not mandated by the SEC. Certified is false. Governance is a catalog map. It is not counsel, not a filing, and not a certificate. G12 stays open. This is not a patent. |
-| Owner-only still open | Named dual seats. Graph Writes revoke. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
+| Owner-only still open | Named dual seats. US Dataverse. Institute launch. Production BC only if explicitly authorized. LIVE_PIN_OK cannot be marked from this plane. |
 | The ask | Cynthia Hodnett as seat B. Mailbox chodnett@ainav.institute recorded. Entra oid and click still open. Not stock. Not Global Admin. Not a priced round. Not LIVE_PIN_OK. |
 
 ## A letter to Cynthia Hodnett
@@ -170,7 +170,7 @@ This Cloud Agent cannot create users, grant Graph roles, publish the Institute, 
 | Microsoft 365 admin → Users | Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree. | https://admin.microsoft.com/Adminportal/Home#/users |
 | Entra users | Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats. | https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers |
 | Agents > Tools registry | Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL. | https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all |
-| Same app API permissions | On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
+| Same app API permissions | Recorded. Owner revoked Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All Application on AINav Cloud Agent1. Four Reads stay Granted. CRM impersonation left. Business Central Application stays. Do not add Write. Do not create a new app. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK. | https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED] |
 | Power Platform environments | Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas. | https://admin.powerplatform.microsoft.com/environments |
 | Delaware entity search | Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here. | https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx |
 | Microsoft for Startups | Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed. | https://www.microsoft.com/en-us/startups |
@@ -249,8 +249,8 @@ Ten departments. The map is complete out of the gate. That does not mean Sales, 
 | Treasury / Finance | books | running_sandbox | BC Production app not Enabled; signed L1 / two named treasury humans |
 | Identity / IT / Host | identity_host | running_sandbox | LIVE_PIN_OK |
 | Sales / Revenue | pipeline | licensed_not_wired | Power Platform environment with Dataverse; DATAVERSE_URL |
-| People / Notify | notify | licensed_not_wired | Graph Writes still Granted; Teams notify not wired |
-| Security / Compliance | audit_sink | licensed_not_wired | Graph Writes still Granted; Sentinel on the existing LAW |
+| People / Notify | notify | licensed_not_wired | Teams notify not wired |
+| Security / Compliance | audit_sink | licensed_not_wired | Sentinel on the existing LAW |
 | Institute / GTM | public | azure_hosted_not_custom | ainav.institute custom domain |
 | Legal / Counsel | counsel | open_gap | G12 legal; G13 signed L1 |
 | Product / Engineering | plane | running_code | product HA |
@@ -427,7 +427,8 @@ Could be improved — without inventing a fourth SKU
 - Owner recorded Automatic SSL/TLS Full (strict). Rocket Loader Off stays owner confirm. This plane cannot claim Full from a visitor cert. Do not drop to Flexible.
 - Owner asked to close all gaps. This plane cannot close seat B, Graph Writes, US Dataverse, G12/G13, billing, launch, or LIVE_PIN_OK.
 - Deep review asked for MFA dashboards, credentialed executive personalization, remote assignment, custom reports, board fiduciary, and gold 99 as the floor. Those stay catalog law or owner clicks. This plane cannot invent them live. Claiming 99 without coverage is a lie.
-- Gold 99.5 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, Graph Writes revoke, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
+- Gold 99.5 is now the floor after measured coverage. Owner-only stays owner-only: seat B click, US Dataverse, G12/G13, billing, launch, LIVE_PIN_OK.
+- Owner recorded Graph Writes revoked on AINav Cloud Agent1. Four Reads stay Granted. This plane cannot invent Graph consent or claim Graph Write. Not LIVE_PIN_OK.
 - Human control / write-fear sits on the sale site after the bake-off. Doom-fear stays off the fold. Not a fear brand. Not LIVE_PIN_OK.
 - Executive risk / compliance-fear sits after human control. Maps stay claimed=false. G12 stays open. Buying L1 does not close regulator clocks. Not a certificate. Not LIVE_PIN_OK.
 - Market position / future sits after executive risk. Now is unlaunched and zero booked. The only future that counts is the first L1. Not TAM. Not a forecast. Not a priced round. Not LIVE_PIN_OK.
@@ -534,7 +535,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 
 - 1. [owner] Named dual seats — Create or confirm her Entra user. Confirm a distinct object id. She clicks seat B. Mailbox chodnett@ainav.institute is already recorded. James does not click both.
 - 2. [owner] Proof day on named humans — Run python -m ainav proof-day with two distinct Entra object ids. Stop telling the AINAV-L1 lab-oid story as the sale.
-- 3. [owner] Graph read on the same app — Four Reads are Granted. Trash Graph Writes. Grant again to revoke Organization.ReadWrite.All and User.ReadWrite.All. Keep the four Reads. No Write. No new app.
+- 3. [owner] Graph read on the same app — Owner recorded Graph Writes revoked. Four Reads stay Granted. Do not add Write. Do not create a new app. Not Graph Write claimed. Not LIVE_PIN_OK.
 - 4. [owner] US Dataverse — Ticket 2609030040009525: North America sandboxes follow Canada affinity. ADR cannot be purchased on a USA sign-up tenant. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste an environment id. Do not set DATAVERSE_URL from this plane.
 - 5. [tree] Name the 2026 substitutes — Paint BC Workflow User Groups, Copilot Studio RFI, Joule/Agentforce HITL, and in-harness governors as copies they can make. Job C pins stay. Not uncopyable.
 - 6. [tree] Price the incident, not hours — Sell L1 against the unauthorized journal. FFS days deepen the same plane and never mint a SKU.

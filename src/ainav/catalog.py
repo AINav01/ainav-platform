@@ -529,8 +529,63 @@ def _validate_graph_owner_consent(catalog: dict[str, Any]) -> None:
     note = str(graph.get("note") or "").lower()
     if "not live_pin_ok" not in note:
         raise IntegrityError("graph note: not LIVE_PIN_OK", reason_code="CATALOG_STACK")
-    if "writes still" not in note or "not graph read closed" not in note:
-        raise IntegrityError("graph note: Writes still Granted and not Graph Read closed", reason_code="CATALOG_STACK")
+    if "not graph read closed" not in note:
+        raise IntegrityError("graph note: not Graph Read closed", reason_code="CATALOG_STACK")
+    if "owner-revoked" not in note and "writes revoked" not in note:
+        raise IntegrityError("graph note: Writes owner-revoked and not Graph Read closed", reason_code="CATALOG_STACK")
+    _validate_graph_writes_revoked(catalog)
+
+
+def _validate_graph_writes_revoked(catalog: dict[str, Any]) -> None:
+    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    if graph.get("status") != "four_reads_granted_writes_revoked":
+        raise IntegrityError("graph status is four_reads_granted_writes_revoked", reason_code="CATALOG_STACK")
+    if graph.get("error"):
+        raise IntegrityError("graph Writes error is closed", reason_code="CATALOG_STACK")
+    if graph.get("writes_revoked") is not True:
+        raise IntegrityError("graph writes_revoked is recorded", reason_code="CATALOG_STACK")
+    if list(graph.get("writes_still_granted") or []):
+        raise IntegrityError("graph writes_still_granted stays empty after owner revoke", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "owner revoked" not in recorded or "readwrite" not in recorded:
+        raise IntegrityError("graph owner_recorded must keep the Writes revoke", reason_code="CATALOG_STACK")
+    if graph.get("graph_write_claimed") is True or graph.get("from_this_plane") is True:
+        raise IntegrityError("graph Writes revoke is not Graph Write claimed and not from this plane", reason_code="CATALOG_STACK")
+    if graph.get("four_reads_granted") is not True:
+        raise IntegrityError("graph four Reads stay Granted after Writes revoke", reason_code="CATALOG_STACK")
+    walk_body = _as_dict((catalog.get("microsoft_stack") or {}).get("walk") or {}, "stack walk")
+    walk = next(
+        (
+            item
+            for item in walk_body.get("path") or []
+            if isinstance(item, dict) and item.get("id") == "graph.read"
+        ),
+        {},
+    )
+    if walk.get("status") != "four_reads_granted_writes_revoked":
+        raise IntegrityError("graph.read walk is four_reads_granted_writes_revoked", reason_code="CATALOG_STACK")
+    owner = [str(item).lower() for item in ((catalog.get("plane_interface") or {}).get("gaps") or {}).get("owner_only_open") or []]
+    if any("graph write" in item for item in owner):
+        raise IntegrityError("Graph Writes revoke is recorded, not still owner-only open", reason_code="CATALOG_PLANE")
+    opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
+    if "graph write" in opens:
+        raise IntegrityError("investor opens no longer name Graph Writes revoke", reason_code="CATALOG_INVESTOR")
+    missing = " ".join(str(item).lower() for item in catalog.get("honest_missing") or [])
+    if "graph write" in missing:
+        raise IntegrityError("honest_missing no longer names Graph Writes still Granted", reason_code="CATALOG_HONEST")
+    cannot = " ".join(str(item).lower() for item in ((catalog.get("engineering") or {}).get("cannot_close") or []))
+    if "graph writes still granted" in cannot:
+        raise IntegrityError("cannot_close no longer names Graph Writes still Granted", reason_code="CATALOG_ENGINEERING")
+    closed = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("graph writes revoked" in item and "not graph write claimed" in item for item in closed):
+        raise IntegrityError("closed_in_tree must keep owner recorded Graph Writes revoked", reason_code="CATALOG_ENGINEERING")
+    upgrades = {item.get("n"): item for item in ((catalog.get("expert_review") or {}).get("upgrades") or [])}
+    item = upgrades.get(3) or {}
+    if item.get("who") != "owner" or item.get("done") is not True:
+        raise IntegrityError("owner upgrade 3 Graph Writes revoke is done", reason_code="CATALOG_REVIEW")
+    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+    if "revoked" not in blob or "do not add write" not in blob:
+        raise IntegrityError("owner upgrade 3 must keep Writes revoked and do not add Write", reason_code="CATALOG_REVIEW")
 
 
 def _validate_engineering(catalog: dict[str, Any]) -> None:
@@ -3510,9 +3565,9 @@ def _validate_microsoft_run(body: Any) -> None:
         if stem not in refuse:
             raise IntegrityError("microsoft-run refuse keeps Dataverse, Teams, SharePoint, Graph Writes, ninth complement", reason_code="CATALOG_REVIEW")
     owner = " ".join(str(item).lower() for item in run.get("owner_only") or [])
-    for stem in ("seat b", "graph", "dataverse", "launch", "live_pin"):
+    for stem in ("seat b", "dataverse", "launch", "live_pin"):
         if stem not in owner:
-            raise IntegrityError("microsoft-run owner_only keeps seat B, Graph, Dataverse, launch, LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+            raise IntegrityError("microsoft-run owner_only keeps seat B, Dataverse, launch, LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
     note = str(run.get("note") or "").lower()
     if "#firm-ms" not in note or "eight" not in note or "live_pin_ok" not in note:
         raise IntegrityError("microsoft-run note is #firm-ms, eight complements, not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
@@ -4536,7 +4591,7 @@ def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> N
     for stem in ("gold floor 95", "client offer", "pending bind"):
         if not any(stem in item for item in closed):
             raise IntegrityError("gaps in_tree_closed must keep " + stem, reason_code="CATALOG_PLANE")
-    for stem in ("seat b", "graph", "dataverse", "g12", "billing", "launch"):
+    for stem in ("seat b", "dataverse", "g12", "billing", "launch"):
         if not any(stem in item for item in owner):
             raise IntegrityError("gaps owner_only_open must keep " + stem, reason_code="CATALOG_PLANE")
     for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph", "canada", "environment id", "authorized release"):
@@ -4801,13 +4856,6 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
     graph = _as_dict((catalog.get("microsoft_stack") or {}).get("graph") or {}, "graph owner consent")
     if graph.get("four_reads_granted") is not True or graph.get("tenant_wide_grant_ok") is not True:
         raise IntegrityError("2.77.0 four Reads are Granted", reason_code="CATALOG_STACK")
-    if graph.get("status") != "four_reads_granted_writes_open":
-        raise IntegrityError("2.77.0 graph status is four_reads_granted_writes_open", reason_code="CATALOG_STACK")
-    if graph.get("error") != "graph_writes_still_granted":
-        raise IntegrityError("2.77.0 Graph Writes still Granted", reason_code="CATALOG_STACK")
-    writes = " ".join(str(item) for item in graph.get("writes_still_granted") or [])
-    if "Organization.ReadWrite.All" not in writes or "User.ReadWrite.All" not in writes:
-        raise IntegrityError("2.77.0 writes_still_granted must name the three Graph Writes", reason_code="CATALOG_STACK")
     recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
     if "successfully granted" not in recorded or "four reads" not in recorded:
         raise IntegrityError("2.77.0 owner_recorded must keep Grant succeeded and four Reads", reason_code="CATALOG_STACK")
@@ -4820,8 +4868,6 @@ def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> N
         ),
         {},
     )
-    if walk.get("status") != "four_reads_granted_writes_open":
-        raise IntegrityError("2.77.0 graph.read stays four_reads_granted_writes_open", reason_code="CATALOG_STACK")
     owner_blob = f"{walk.get('owner') or ''} {walk.get('in_tree') or ''}".lower()
     if "readwrite" not in owner_blob or "revoke" not in owner_blob:
         raise IntegrityError("2.77.0 graph.read walk must revoke ReadWrite", reason_code="CATALOG_STACK")
@@ -4842,8 +4888,8 @@ def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> N
     if not any("2.78.0" in item and "refus" in item for item in closed_gaps):
         raise IntegrityError("in_tree_closed must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_PLANE")
     opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
-    if "graph write" not in opens or "graph read on the same" in opens:
-        raise IntegrityError("2.78.0 investor opens must name Graph Writes, not Graph Read", reason_code="CATALOG_INVESTOR")
+    if "graph read on the same" in opens:
+        raise IntegrityError("2.78.0 investor opens must not reopen Graph Read", reason_code="CATALOG_INVESTOR")
 
 
 def _validate_instrument_279(catalog: dict[str, Any], body: dict[str, Any]) -> None:

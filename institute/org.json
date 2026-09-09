@@ -100,12 +100,11 @@
     },
     {
       "blocked_by": [
-        "Graph Writes still Granted",
         "Teams notify not wired"
       ],
       "id": "dept.people",
       "name": "People / Notify",
-      "note": "Teams is licensed. Team.ReadBasic.All is Granted. A chat is not a seat. Graph notify is not wired. Trash Graph Writes.",
+      "note": "Teams is licensed. Team.ReadBasic.All is Granted. A chat is not a seat. Graph notify is not wired. Graph Writes are owner-revoked. Do not add Write.",
       "production": false,
       "role": "notify",
       "status": "licensed_not_wired",
@@ -117,12 +116,11 @@
     },
     {
       "blocked_by": [
-        "Graph Writes still Granted",
         "Sentinel on the existing LAW"
       ],
       "id": "dept.compliance",
       "name": "Security / Compliance",
-      "note": "E7 licenses exist. Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Trash Graph Writes.",
+      "note": "E7 licenses exist. Sites.Read.All, SecurityIncident.Read.All, and RoleEligibilitySchedule.Read.Directory are Granted. Complements are not SKUs. PIM activation is not dual admit. LAW is not Sentinel. Graph Writes are owner-revoked. Do not add Write.",
       "production": false,
       "role": "audit_sink",
       "status": "licensed_not_wired",
@@ -222,7 +220,7 @@
     "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
     "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
     "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
-    "On the same Entra app AINav Cloud Agent1 ([REDACTED]): leftovers Speech, Azure Service Management, and Key Vault are gone. Four Reads are Granted. Trash Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All. Keep Organization.Read.All, User.Read.All, Business Central, and the four Reads. Then Grant admin consent again so tenant-wide consent revokes the Writes. Do not create a new app.",
+    "Recorded. Owner revoked Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All Application on AINav Cloud Agent1. Four Reads stay Granted. CRM impersonation left. Business Central Application stays. Do not add Write. Do not create a new app. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK.",
     "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
     "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
     "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",

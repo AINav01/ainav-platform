@@ -29,8 +29,9 @@ def test_release_is_279():
 def test_first_principles_refuse_invented_live():
     cat = load_catalog()
     owner = " ".join(cat["plane_interface"]["gaps"]["owner_only_open"]).lower()
-    for stem in ("seat b", "graph write", "dataverse", "g12", "billing", "launch"):
+    for stem in ("seat b", "dataverse", "g12", "billing", "launch"):
         assert stem in owner
+    assert "graph write" not in owner
     html = Path("institute/index.html").read_text(encoding="utf-8")
     assert "3.14.0" in html
     assert cat["investor"]["executive_summary"]["opens"] in html
