@@ -32,6 +32,7 @@ def test_insulation_is_hygiene_not_a_patent():
         "gold",
         "catalog_law",
         "umbrella",
+        "client",
     }
     assert "last" in (body.get("why_ultimate_plane") or "").lower()
     assert any("job_c" in item.lower() for item in body["what_the_build_pins"])

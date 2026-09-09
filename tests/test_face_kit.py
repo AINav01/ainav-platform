@@ -46,6 +46,7 @@ def test_public_kit_is_fail_closed():
     assert "honest production sits on #firm" in llms
     assert "honest remainder sits on #missing" in llms
     assert "gold 99.5 is not production" in llms
+    assert "honest protect sits on #ip" in llms
     search = public_search()
     assert search["engine"] == "catalog_minisearch"
     assert {item["id"] for item in search["records"]} >= {
@@ -58,6 +59,7 @@ def test_public_kit_is_fail_closed():
         "operate",
         "production",
         "remainder",
+        "protect",
     }
     twin = next(item for item in search["records"] if item["id"] == "twin-review")
     assert "Gold 99.5" in twin["text"]

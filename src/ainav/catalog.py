@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 86:
-        raise IntegrityError("expert review needs 16–86 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 87:
+        raise IntegrityError("expert review needs 16–87 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1287,6 +1287,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         84: ("honest production", "live_pin_ok"),
         85: ("honest remainder", "live_pin_ok"),
         86: ("honest ten", "live_pin_ok"),
+        87: ("honest protect", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1436,6 +1437,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep gold 99.9 is not LIVE_PIN_OK and a competitor analysis is not a named client", reason_code="CATALOG_REVIEW")
     if "a green service is not production" not in blob or "a quality check is not a seated second human" not in blob:
         raise IntegrityError("first-principles must keep a green service is not production and a quality check is not seated", reason_code="CATALOG_REVIEW")
+    if "honest protect" not in blob or "an ip board is not a patent" not in blob:
+        raise IntegrityError("first-principles must keep honest protect", reason_code="CATALOG_REVIEW")
+    if "an l1 license is not an assignment of job c" not in blob or "kit pass is not a source license" not in blob:
+        raise IntegrityError("first-principles must keep an L1 license is not an assignment and kit PASS is not a source license", reason_code="CATALOG_REVIEW")
+    if "this board does not close g12" not in blob or "insulation is not uncopyable" not in blob:
+        raise IntegrityError("first-principles must keep this board does not close G12 and insulation is not uncopyable", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1823,6 +1830,16 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat a green service as production", reason_code="CATALOG_REVIEW")
     if "a quality check as a seated second human" not in does_not:
         raise IntegrityError("CISO posture does not treat a quality check as a seated second human", reason_code="CATALOG_REVIEW")
+    if "an ip board as a patent" not in does_not:
+        raise IntegrityError("CISO posture does not treat an IP board as a patent", reason_code="CATALOG_REVIEW")
+    if "insulation as uncopyable" not in does_not:
+        raise IntegrityError("CISO posture does not treat insulation as uncopyable", reason_code="CATALOG_REVIEW")
+    if "an l1 license as an assignment of job c" not in does_not:
+        raise IntegrityError("CISO posture does not treat an L1 license as an assignment of Job C", reason_code="CATALOG_REVIEW")
+    if "kit pass as a source license" not in does_not:
+        raise IntegrityError("CISO posture does not treat kit PASS as a source license", reason_code="CATALOG_REVIEW")
+    if "this board as closing g12" not in does_not:
+        raise IntegrityError("CISO posture does not treat this board as closing G12", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -1862,6 +1879,19 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest ten is not a live pin and a competitor analysis is not a named client", reason_code="CATALOG_REVIEW")
     if hosted_ten.get("service_green_is_production") is True or hosted_ten.get("quality_is_seated") is True:
         raise IntegrityError("success honest ten is not production and is not seated", reason_code="CATALOG_REVIEW")
+    hosted_protect = success.get("honest_protect")
+    if not isinstance(hosted_protect, dict):
+        raise IntegrityError("success program keeps honest protect", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("kind") != "ainav.honest.protect.v1" or hosted_protect.get("honest") is not True:
+        raise IntegrityError("success honest protect stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("href") != "#ip":
+        raise IntegrityError("success honest protect sits on #ip", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("live") is True or hosted_protect.get("protect_as_patent") is True:
+        raise IntegrityError("success honest protect stays not live and an IP board is not a patent", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("protect_as_uncopyable") is True or hosted_protect.get("client_license_as_assignment") is True:
+        raise IntegrityError("success honest protect is not uncopyable and an L1 license is not an assignment", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("kit_pass_as_source") is True or hosted_protect.get("g12_as_closed") is True:
+        raise IntegrityError("success honest protect is not a source license and does not close G12", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3544,6 +3574,22 @@ HONEST_TEN_REFUSE_TEXT = {
     "quality_as_seated": "Refused. A quality check is not a seated second human.",
 }
 HONEST_TEN_HREFS = {key: "#success" for key in HONEST_TEN_REFUSE_IDS}
+HONEST_PROTECT_FACT_IDS = ["microsoft", "others", "client", "reserved", "counsel"]
+HONEST_PROTECT_REFUSE_IDS = [
+    "protect_as_patent",
+    "protect_as_uncopyable",
+    "client_license_as_assignment",
+    "kit_pass_as_source",
+    "g12_as_closed",
+]
+HONEST_PROTECT_REFUSE_TEXT = {
+    "protect_as_patent": "Refused. An IP board is not a patent.",
+    "protect_as_uncopyable": "Refused. Insulation is not uncopyable.",
+    "client_license_as_assignment": "Refused. An L1 license is not an assignment of Job C.",
+    "kit_pass_as_source": "Refused. Kit PASS is not a source license.",
+    "g12_as_closed": "Refused. This board does not close G12.",
+}
+HONEST_PROTECT_HREFS = {key: "#ip" for key in HONEST_PROTECT_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4615,6 +4661,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_314(catalog, body)
     _validate_instrument_315(catalog, body)
     _validate_instrument_316(catalog, body)
+    _validate_instrument_317(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6199,8 +6246,6 @@ def _validate_instrument_315(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_316(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.16.0":
-        raise IntegrityError("entity.release is 3.16.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.16.0" in item and "honest ten" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.16.0 honest ten", reason_code="CATALOG_ENGINEERING")
@@ -6248,6 +6293,60 @@ def _validate_instrument_316(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_ten import validate_honest_ten
 
     validate_honest_ten(catalog)
+
+
+def _validate_instrument_317(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.17.0":
+        raise IntegrityError("entity.release is 3.17.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.17.0" in item and "honest protect" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.17.0 honest protect", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_protect") is not True or site.get("honest_ten") is not True:
+        raise IntegrityError("3.17.0 website has honest protect", reason_code="CATALOG_PLANE")
+    if site.get("honest_protect_live") is True or site.get("protect_as_patent") is True:
+        raise IntegrityError("3.17.0 protect is not live and an IP board is not a patent", reason_code="CATALOG_PLANE")
+    if site.get("protect_as_uncopyable") is True or site.get("client_license_as_assignment") is True:
+        raise IntegrityError("3.17.0 insulation is not uncopyable and an L1 license is not an assignment", reason_code="CATALOG_PLANE")
+    if site.get("kit_pass_as_source") is True or site.get("g12_as_closed") is True:
+        raise IntegrityError("3.17.0 kit PASS is not a source license and this board does not close G12", reason_code="CATALOG_PLANE")
+    protect = catalog.get("honest_protect") or {}
+    if protect.get("kind") != "ainav.honest.protect.v1" or protect.get("honest") is not True:
+        raise IntegrityError("3.17.0 honest protect kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if protect.get("protect_as_patent") is True or protect.get("protect_as_uncopyable") is True:
+        raise IntegrityError("3.17.0 an IP board is not a patent and insulation is not uncopyable", reason_code="CATALOG_REVIEW")
+    if protect.get("certified") is True:
+        raise IntegrityError("3.17.0 honest protect is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(protect.get("site") or "").lower()
+    if "honest protect" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps honest protect", reason_code="CATALOG_REVIEW")
+    if "an ip board is not a patent" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps an IP board is not a patent", reason_code="CATALOG_REVIEW")
+    if "not a /protect route" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps not a /protect route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest protect" not in principles:
+        raise IntegrityError("first-principles must keep honest protect", reason_code="CATALOG_REVIEW")
+    if "an ip board is not a patent" not in principles:
+        raise IntegrityError("first-principles must keep an IP board is not a patent", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.17.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#ip" not in ops:
+        raise IntegrityError("3.17.0 operations note keeps #ip", reason_code="CATALOG_REVIEW")
+    if "honest protect" not in ops:
+        raise IntegrityError("3.17.0 operations note keeps honest protect", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a patent board" not in managed:
+        raise IntegrityError("3.17.0 managed face refuses a patent board", reason_code="CATALOG_PLANE")
+    if "not a client assignment" not in managed:
+        raise IntegrityError("3.17.0 managed face refuses a client assignment", reason_code="CATALOG_PLANE")
+    from ainav.honest_protect import validate_honest_protect
+
+    validate_honest_protect(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

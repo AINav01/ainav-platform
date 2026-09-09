@@ -130,6 +130,20 @@ def test_first_principles_keep_honest_ten_stems():
         catmod._validate_first_principles(seated)
 
 
+def test_first_principles_keep_honest_protect_stems():
+    cat = load_catalog()
+    principles = list(cat["expert_review"]["first_principles"])
+    patent = [item.replace("An IP board is not a patent.", "Protect is recorded.") for item in principles]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(patent)
+    assign = [
+        item.replace("An L1 license is not an assignment of Job C.", "License is recorded.")
+        for item in principles
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(assign)
+
+
 def test_industry_pack_cannot_be_a_sku():
     cat = copy.deepcopy(load_catalog())
     cat["industry_packs"][0]["sku"] = True

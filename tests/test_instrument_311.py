@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_311_honest_connect():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.16.0"
+    assert cat["entity"]["release"] == "3.17.0"
     connect = cat["honest_connect"]
     assert connect["kind"] == "ainav.honest.connect.v1"
     assert connect["honest"] is True
@@ -67,7 +67,7 @@ def test_release_is_311_honest_connect():
     assert "honest connect" in principles
     assert "connected is not live" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 86
+    assert len(cat["expert_review"]["upgrades"]) == 87
     assert upgrades[81]["who"] == "tree"
     assert upgrades[81]["done"] is True
     assert upgrades[81]["marks_live_pin"] is False
@@ -119,9 +119,9 @@ def test_release_is_311_honest_connect():
     assert "Open connect" in identify
     assert "Connected is live" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.16.0"
+    assert dash["release"] == "3.17.0"
     status = public_status()
-    assert status["release"] == "3.16.0"
+    assert status["release"] == "3.17.0"
     assert status["website"]["honest_connect"] is True
     assert status["website"]["honest_connect_live"] is False
     assert status["website"]["connected_is_live"] is False

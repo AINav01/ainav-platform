@@ -307,6 +307,13 @@ def public_status() -> dict[str, Any]:
             "compete_is_named_client": False,
             "service_green_is_production": False,
             "quality_is_seated": False,
+            "honest_protect": bool(site.get("honest_protect")),
+            "honest_protect_live": False,
+            "protect_as_patent": False,
+            "protect_as_uncopyable": False,
+            "client_license_as_assignment": False,
+            "kit_pass_as_source": False,
+            "g12_as_closed": False,
         },
         "bc": {
             "connection": "bc.premium",

@@ -1,0 +1,181 @@
+{
+  "certified": false,
+  "client_license_as_assignment": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "microsoft",
+      "live": false,
+      "name": "Microsoft",
+      "note": "Microsoft can copy Teams vote, Copilot Studio RFI, and PIM. They do not copy Job C pins. Microsoft is not the product. Do not say they cannot legally copy.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "others",
+      "live": false,
+      "name": "Others",
+      "note": "Agentforce, Joule, Now Assist, Palantir AIP, UiPath, Workday, Okta, and SailPoint win vote, RFI, and PIM. They do not win consume-once, fail-closed SoR, or counterparty AI.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "client",
+      "live": false,
+      "name": "Client",
+      "note": "An L1, P-ADM, or U-DUAL license is use of the admit plane. Not assignment of Job C. Not work-for-hire. Client AI is not AINav. Seats are not inventors.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "reserved",
+      "live": false,
+      "name": "Reserved",
+      "note": "Job C lockfile, ConsumeLedger, EffectLedger, grant_id, dual_consume.lua, frozen gold, action_hash, catalog, mothership, and ops stay reserved. Kit PASS is not a source license.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "counsel",
+      "live": false,
+      "name": "Counsel",
+      "note": "G12 stays open. This board is not a patent. Insulation is not uncopyable. Trademark filing stays owner-only. This plane cannot invent a signed MSA.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "g12_as_closed": false,
+  "honest": true,
+  "href": "#ip",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.protect.v1",
+  "kit_pass_as_source": false,
+  "lede": "An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft marks",
+  "note": "Honest protect. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat an IP board as a patent.",
+      "Do not treat insulation as uncopyable.",
+      "Do not treat an L1 license as an assignment of Job C.",
+      "Do not treat kit PASS as a source license.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "client_license_as_assignment": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "g12_as_closed": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.protect.v1",
+    "kit_pass_as_source": false,
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "protect_as_patent": false,
+    "protect_as_uncopyable": false,
+    "recorded": true
+  },
+  "product": "Honest protect",
+  "protect_as_patent": false,
+  "protect_as_uncopyable": false,
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#ip",
+      "id": "protect_as_patent",
+      "name": "An IP board as a patent",
+      "note": "Refused. An IP board is not a patent.",
+      "refuse": true,
+      "refuse_text": "Refused. An IP board is not a patent.",
+      "state": "refused",
+      "text": "Refused. An IP board is not a patent.",
+      "title": "An IP board as a patent"
+    },
+    {
+      "href": "#ip",
+      "id": "protect_as_uncopyable",
+      "name": "Insulation as uncopyable",
+      "note": "Refused. Insulation is not uncopyable.",
+      "refuse": true,
+      "refuse_text": "Refused. Insulation is not uncopyable.",
+      "state": "refused",
+      "text": "Refused. Insulation is not uncopyable.",
+      "title": "Insulation as uncopyable"
+    },
+    {
+      "href": "#ip",
+      "id": "client_license_as_assignment",
+      "name": "An L1 license as assignment",
+      "note": "Refused. An L1 license is not an assignment of Job C.",
+      "refuse": true,
+      "refuse_text": "Refused. An L1 license is not an assignment of Job C.",
+      "state": "refused",
+      "text": "Refused. An L1 license is not an assignment of Job C.",
+      "title": "An L1 license as assignment"
+    },
+    {
+      "href": "#ip",
+      "id": "kit_pass_as_source",
+      "name": "Kit PASS as a source license",
+      "note": "Refused. Kit PASS is not a source license.",
+      "refuse": true,
+      "refuse_text": "Refused. Kit PASS is not a source license.",
+      "state": "refused",
+      "text": "Refused. Kit PASS is not a source license.",
+      "title": "Kit PASS as a source license"
+    },
+    {
+      "href": "#ip",
+      "id": "g12_as_closed",
+      "name": "This board as closing G12",
+      "note": "Refused. This board does not close G12.",
+      "refuse": true,
+      "refuse_text": "Refused. This board does not close G12.",
+      "state": "refused",
+      "text": "Refused. This board does not close G12.",
+      "title": "This board as closing G12"
+    }
+  ],
+  "services": {
+    "claimed_as_assignment": false,
+    "client": {
+      "kit_pass_is_source": false,
+      "license_is_assignment": false
+    },
+    "counsel": {
+      "board_is_counsel": false,
+      "g12_closed": false
+    },
+    "kind": "ainav.honest.protect.services.v1",
+    "microsoft": {
+      "can_copy_job_c_pins": false,
+      "is_the_product": false
+    }
+  },
+  "site": "Honest protect on #ip. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. First glance stays the write rail. Not a /protect route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat an IP board as a patent.",
+    "Treat insulation as uncopyable.",
+    "Treat an L1 license as an assignment of Job C.",
+    "Treat kit PASS as a source license.",
+    "Treat this board as closing G12."
+  ],
+  "wired": false
+}

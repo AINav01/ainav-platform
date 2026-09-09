@@ -24,7 +24,7 @@ from ainav.microsoft.operators import public_review
 
 def test_release_is_304_honest_operators():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.16.0"
+    assert cat["entity"]["release"] == "3.17.0"
     ops = cat["microsoft_stack"]["operators"]
     assert ops["kind"] == "ainav.honest.operators.v1"
     assert ops["honest"] is True
@@ -75,7 +75,7 @@ def test_release_is_304_honest_operators():
     assert "grok build is mapped" in principles
     assert "grok bot is not admit" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 86
+    assert len(cat["expert_review"]["upgrades"]) == 87
     assert upgrades[74]["who"] == "tree"
     assert upgrades[74]["done"] is True
     assert upgrades[74]["marks_live_pin"] is False
@@ -111,9 +111,9 @@ def test_release_is_304_honest_operators():
     assert "operators" in app.lower()
     assert "Grok bot" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.16.0"
+    assert dash["release"] == "3.17.0"
     status = public_status()
-    assert status["release"] == "3.16.0"
+    assert status["release"] == "3.17.0"
     assert status["website"]["honest_operators"] is True
     assert status["website"]["honest_operators_live"] is False
     assert status["website"]["operator_swap"] is False

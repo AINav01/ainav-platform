@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_312_honest_operate():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.16.0"
+    assert cat["entity"]["release"] == "3.17.0"
     operate = cat["honest_operate"]
     assert operate["kind"] == "ainav.honest.operate.v1"
     assert operate["honest"] is True
@@ -67,7 +67,7 @@ def test_release_is_312_honest_operate():
     assert "honest operate" in principles
     assert "closing all gaps is not this plane" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 86
+    assert len(cat["expert_review"]["upgrades"]) == 87
     assert upgrades[82]["who"] == "tree"
     assert upgrades[82]["done"] is True
     assert upgrades[82]["marks_live_pin"] is False
@@ -119,9 +119,9 @@ def test_release_is_312_honest_operate():
     assert "Open operate" in identify
     assert "Closing all gaps is this plane" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.16.0"
+    assert dash["release"] == "3.17.0"
     status = public_status()
-    assert status["release"] == "3.16.0"
+    assert status["release"] == "3.17.0"
     assert status["website"]["honest_operate"] is True
     assert status["website"]["honest_operate_live"] is False
     assert status["website"]["close_gaps_is_this_plane"] is False

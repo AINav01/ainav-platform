@@ -142,7 +142,8 @@ def public_insulation() -> dict[str, Any]:
         "refuse": list(body.get("refuse") or []),
         "reserved_work": list(cat["ip"].get("reserved_work") or []),
         "microsoft_use": cat["ip"].get("microsoft_use"),
-        "note": "Hygiene. Not a patent. Not uncopyable. G12 stays open. Microsoft is not the product.",
+        "client_protect": dict(cat["ip"].get("client_protect") or {}),
+        "note": "Hygiene. Not a patent. Not uncopyable. G12 stays open. Microsoft is not the product. An L1 license is not an assignment of Job C.",
     }
 
 
@@ -182,6 +183,10 @@ def insulation_markdown() -> str:
     lines += ["", "## Refuse", ""]
     for item in body["refuse"]:
         lines.append(f"- {item}")
+    protect = body.get("client_protect") or {}
+    if protect:
+        lines += ["", "## Protect from clients", ""]
+        lines.append(str(protect.get("note") or ""))
     lines += ["", body.get("note") or "", ""]
     return "\n".join(lines)
 
@@ -212,9 +217,35 @@ def _validate_insulation(ip: dict[str, Any]) -> None:
         if stem not in claims:
             raise IntegrityError(f"forbidden claims must include {stem}", reason_code="IP_CLAIM")
     layers = {str(item.get("id") or "") for item in body.get("layers") or []}
-    for needed in ("independence", "job_c", "fail_closed", "gold", "catalog_law", "umbrella"):
+    for needed in ("independence", "job_c", "fail_closed", "gold", "catalog_law", "umbrella", "client"):
         if needed not in layers:
             raise IntegrityError(f"insulation layers must include {needed}", reason_code="CATALOG_IP")
+    protect = ip.get("client_protect")
+    if not isinstance(protect, dict):
+        raise IntegrityError("catalog missing ip.client_protect", reason_code="CATALOG_IP")
+    for flag in (
+        "license_is_assignment",
+        "work_for_hire",
+        "kit_pass_is_source",
+        "client_owns_reserved_work",
+        "seats_are_inventors",
+        "hours_assign_copyright",
+        "g12_closed_by_board",
+    ):
+        if protect.get(flag) is True:
+            raise IntegrityError("client protect cannot claim " + flag.replace("_", " "), reason_code="CATALOG_IP")
+    note = str(protect.get("note") or "").lower()
+    if "use license" not in note and "use of the admit plane" not in note:
+        raise IntegrityError("client protect must keep use, not assignment", reason_code="CATALOG_IP")
+    if "not work-for-hire" not in note or "not an assignment" not in note:
+        raise IntegrityError("client protect must keep not work-for-hire and not an assignment", reason_code="CATALOG_IP")
+    reserved = " ".join(str(item) for item in ip.get("reserved_work") or []).lower()
+    if "client license is use" not in reserved:
+        raise IntegrityError("reserved work must keep client license is use", reason_code="CATALOG_IP")
+    claims = " ".join(ip.get("forbidden_claims") or []).lower()
+    for stem in ("l1 assigns job c", "kit pass is a source license", "client owns dual_consume"):
+        if stem not in claims:
+            raise IntegrityError(f"forbidden claims must include {stem}", reason_code="IP_CLAIM")
     if not body.get("what_they_can_copy") or not body.get("what_the_build_pins"):
         raise IntegrityError("insulation must name what they can copy and what the build pins", reason_code="CATALOG_IP")
     ultimate = str(body.get("why_ultimate_plane") or "").lower()

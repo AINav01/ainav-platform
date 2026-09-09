@@ -4899,6 +4899,65 @@
   }
   bindTenRefuses(document.getElementById("ten-consider"));
 
+  var PROTECT_REFUSE = {
+    protect_as_patent: {
+      message: "Refused. An IP board is not a patent.",
+      ledger: "protect_denied · IP board as patent\nAn IP board is not a patent.\nG12 stays open.\nlive=false · live_pin_ok=false"
+    },
+    protect_as_uncopyable: {
+      message: "Refused. Insulation is not uncopyable.",
+      ledger: "protect_denied · insulation as uncopyable\nInsulation is not uncopyable.\nG12 stays open.\nlive=false · live_pin_ok=false"
+    },
+    client_license_as_assignment: {
+      message: "Refused. An L1 license is not an assignment of Job C.",
+      ledger: "protect_denied · L1 license as assignment\nAn L1 license is not an assignment of Job C.\nReserved work stays AINav.\nlive=false · live_pin_ok=false"
+    },
+    kit_pass_as_source: {
+      message: "Refused. Kit PASS is not a source license.",
+      ledger: "protect_denied · kit PASS as source\nKit PASS is not a source license.\nReserved work stays AINav.\nlive=false · live_pin_ok=false"
+    },
+    g12_as_closed: {
+      message: "Refused. This board does not close G12.",
+      ledger: "protect_denied · board as G12 closed\nThis board does not close G12.\nCounsel stays open.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeProtectLedger(text) {
+    var node = document.getElementById("protect-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseProtect(button, message, ledger) {
+    var refuse = document.getElementById("protect-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeProtectLedger(ledger);
+  }
+
+  function bindProtectRefuses(root) {
+    if (!root || root.getAttribute("data-protect-bound")) return;
+    root.setAttribute("data-protect-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-protect-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-protect-refuse") || "";
+      var pack = PROTECT_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseProtect(
+        btn,
+        message,
+        pack.ledger || ("protect_denied · " + id + "\nAn IP board is not a patent.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindProtectRefuses(document.getElementById("protect-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -4985,6 +5044,21 @@
       if (status) {
         status.textContent =
           "honest=true · recorded=true · quality_ten_is_launch=false · gold_999_is_live_pin=false · compete_is_named_client=false · live=false";
+      }
+    })
+    .catch(function () {});
+
+  fetch("protect.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.protect_as_patent || data.protect_as_uncopyable || data.client_license_as_assignment || data.kit_pass_as_source || data.g12_as_closed || data.certified) return;
+      var status = document.getElementById("protect-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · protect_as_patent=false · protect_as_uncopyable=false · client_license_as_assignment=false · live=false";
       }
     })
     .catch(function () {});

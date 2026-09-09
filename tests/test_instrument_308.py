@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_308_honest_whole():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.16.0"
+    assert cat["entity"]["release"] == "3.17.0"
     whole = cat["honest_whole"]
     assert whole["kind"] == "ainav.honest.whole.v1"
     assert whole["honest"] is True
@@ -56,7 +56,7 @@ def test_release_is_308_honest_whole():
     assert "honest whole" in principles
     assert "the whole firm is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 86
+    assert len(cat["expert_review"]["upgrades"]) == 87
     assert upgrades[78]["who"] == "tree"
     assert upgrades[78]["done"] is True
     assert upgrades[78]["marks_live_pin"] is False
@@ -94,9 +94,9 @@ def test_release_is_308_honest_whole():
     assert "Application kit · 3.16.0" in kit
     assert "Whole is launch" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.16.0"
+    assert dash["release"] == "3.17.0"
     status = public_status()
-    assert status["release"] == "3.16.0"
+    assert status["release"] == "3.17.0"
     assert status["website"]["honest_whole"] is True
     assert status["website"]["honest_whole_live"] is False
     assert status["website"]["whole_is_launch"] is False

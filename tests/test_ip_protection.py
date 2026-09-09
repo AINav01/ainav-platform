@@ -62,6 +62,12 @@ def test_forbidden_claims_and_rebrand():
         refuse_claim("patent granted")
     with pytest.raises(IPError):
         refuse_claim("Microsoft cannot legally copy")
+    with pytest.raises(IPError):
+        refuse_claim("L1 assigns Job C")
+    with pytest.raises(IPError):
+        refuse_claim("kit pass is a source license")
+    with pytest.raises(IPError):
+        refuse_claim("client owns dual_consume")
     with pytest.raises(LockfileError) as lock:
         refuse_lockfile_rebrand("copilot")
     assert lock.value.reason_code == "LOCKFILE_PRODUCT"
