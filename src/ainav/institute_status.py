@@ -314,6 +314,13 @@ def public_status() -> dict[str, Any]:
             "client_license_as_assignment": False,
             "kit_pass_as_source": False,
             "g12_as_closed": False,
+            "honest_hold": bool(site.get("honest_hold")),
+            "honest_hold_live": False,
+            "vault_as_live_pin": False,
+            "names_as_wired": False,
+            "secret_in_catalog": False,
+            "sentinel_as_admit": False,
+            "hold_as_seated": False,
         },
         "bc": {
             "connection": "bc.premium",

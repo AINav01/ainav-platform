@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.17.0",
+  "release": "3.18.0",
   "sku": false,
   "website": {
     "additional_access_needed": false,
@@ -274,6 +274,7 @@
     "grok_is_recorded": false,
     "grok_is_seat": false,
     "grok_login_is_this_plane": false,
+    "hold_as_seated": false,
     "honest_access": true,
     "honest_access_live": false,
     "honest_build": true,
@@ -282,6 +283,8 @@
     "honest_connect_live": false,
     "honest_copilot_studio": true,
     "honest_copilot_studio_live": false,
+    "honest_hold": true,
+    "honest_hold_live": false,
     "honest_industry": true,
     "honest_industry_live": false,
     "honest_operate": true,
@@ -344,6 +347,7 @@
     "microsoft_run": true,
     "microsoft_run_is_sku": false,
     "name": "AINAV.Institute",
+    "names_as_wired": false,
     "operate_sim_is_production": false,
     "operating_company": true,
     "operating_day": true,
@@ -371,6 +375,8 @@
     "remainder_is_launch": false,
     "review_path": "twin.html",
     "rollback_is_live_pin": false,
+    "secret_in_catalog": false,
+    "sentinel_as_admit": false,
     "service_green_is_production": false,
     "shared_sandbox_is_production": false,
     "sim_is_production": false,
@@ -387,6 +393,7 @@
     "universe_sit_down": true,
     "universe_wells_live": false,
     "update_is_live_pin": false,
+    "vault_as_live_pin": false,
     "website_is_apex": false,
     "whole_is_launch": false
   }

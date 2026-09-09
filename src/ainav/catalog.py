@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 87:
-        raise IntegrityError("expert review needs 16–87 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 88:
+        raise IntegrityError("expert review needs 16–88 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1288,6 +1288,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         85: ("honest remainder", "live_pin_ok"),
         86: ("honest ten", "live_pin_ok"),
         87: ("honest protect", "live_pin_ok"),
+        88: ("honest hold", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1443,6 +1444,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep an L1 license is not an assignment and kit PASS is not a source license", reason_code="CATALOG_REVIEW")
     if "this board does not close g12" not in blob or "insulation is not uncopyable" not in blob:
         raise IntegrityError("first-principles must keep this board does not close G12 and insulation is not uncopyable", reason_code="CATALOG_REVIEW")
+    if "honest hold" not in blob or "a vault hold is not live_pin_ok" not in blob:
+        raise IntegrityError("first-principles must keep honest hold", reason_code="CATALOG_REVIEW")
+    if "secret names are not wired notify" not in blob or "sentinel is not the admit plane" not in blob:
+        raise IntegrityError("first-principles must keep secret names are not wired and Sentinel is not the admit plane", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1840,6 +1845,16 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat kit PASS as a source license", reason_code="CATALOG_REVIEW")
     if "this board as closing g12" not in does_not:
         raise IntegrityError("CISO posture does not treat this board as closing G12", reason_code="CATALOG_REVIEW")
+    if "a vault hold as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat a vault hold as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "secret names as wired notify" not in does_not:
+        raise IntegrityError("CISO posture does not treat secret names as wired notify", reason_code="CATALOG_REVIEW")
+    if "secret values in the catalog" not in does_not:
+        raise IntegrityError("CISO posture does not put secret values in the catalog", reason_code="CATALOG_REVIEW")
+    if "sentinel as the admit plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat Sentinel as the admit plane", reason_code="CATALOG_REVIEW")
+    if "a vault hold as a seated second human" not in does_not:
+        raise IntegrityError("CISO posture does not treat a vault hold as a seated second human", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -1892,6 +1907,19 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest protect is not uncopyable and an L1 license is not an assignment", reason_code="CATALOG_REVIEW")
     if hosted_protect.get("kit_pass_as_source") is True or hosted_protect.get("g12_as_closed") is True:
         raise IntegrityError("success honest protect is not a source license and does not close G12", reason_code="CATALOG_REVIEW")
+    hosted_hold = success.get("honest_hold")
+    if not isinstance(hosted_hold, dict):
+        raise IntegrityError("success program keeps honest hold", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("kind") != "ainav.honest.hold.v1" or hosted_hold.get("honest") is not True:
+        raise IntegrityError("success honest hold stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("href") != "#missing":
+        raise IntegrityError("success honest hold sits on #missing", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("live") is True or hosted_hold.get("vault_as_live_pin") is True:
+        raise IntegrityError("success honest hold stays not live and a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("names_as_wired") is True or hosted_hold.get("secret_in_catalog") is True:
+        raise IntegrityError("success honest hold is not wired and cannot hold secret values", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("sentinel_as_admit") is True or hosted_hold.get("hold_as_seated") is True:
+        raise IntegrityError("success honest hold is not the admit plane and is not seated", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3590,6 +3618,30 @@ HONEST_PROTECT_REFUSE_TEXT = {
     "g12_as_closed": "Refused. This board does not close G12.",
 }
 HONEST_PROTECT_HREFS = {key: "#ip" for key in HONEST_PROTECT_REFUSE_IDS}
+HONEST_HOLD_FACT_IDS = ["vault", "teams", "sharepoint", "sentinel", "plane"]
+HONEST_HOLD_REFUSE_IDS = [
+    "vault_as_live_pin",
+    "names_as_wired",
+    "secret_in_catalog",
+    "sentinel_as_admit",
+    "hold_as_seated",
+]
+HONEST_HOLD_REFUSE_TEXT = {
+    "vault_as_live_pin": "Refused. A vault hold is not LIVE_PIN_OK.",
+    "names_as_wired": "Refused. Secret names are not wired notify.",
+    "secret_in_catalog": "Refused. A catalog must not hold secret values.",
+    "sentinel_as_admit": "Refused. Sentinel is not the admit plane.",
+    "hold_as_seated": "Refused. A vault hold is not a seated second human.",
+}
+HONEST_HOLD_HREFS = {key: "#missing" for key in HONEST_HOLD_REFUSE_IDS}
+HONEST_HOLD_SECRET_NAMES = [
+    "TEAMS-ENTERPRISE-TEAM-ID",
+    "TEAMS-ENTERPRISE-CHANNEL-ID",
+    "TEAMS-PREMIUM-TEAM-ID",
+    "TEAMS-PREMIUM-CHANNEL-ID",
+    "SHAREPOINT-SITE-ID",
+    "AZURE-SENTINEL-WORKSPACE-ID",
+]
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4662,6 +4714,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_315(catalog, body)
     _validate_instrument_316(catalog, body)
     _validate_instrument_317(catalog, body)
+    _validate_instrument_318(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6296,8 +6349,6 @@ def _validate_instrument_316(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_317(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.17.0":
-        raise IntegrityError("entity.release is 3.17.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.17.0" in item and "honest protect" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.17.0 honest protect", reason_code="CATALOG_ENGINEERING")
@@ -6347,6 +6398,60 @@ def _validate_instrument_317(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_protect import validate_honest_protect
 
     validate_honest_protect(catalog)
+
+
+def _validate_instrument_318(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.18.0":
+        raise IntegrityError("entity.release is 3.18.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.18.0" in item and "honest hold" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.18.0 honest hold", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_hold") is not True or site.get("honest_protect") is not True:
+        raise IntegrityError("3.18.0 website has honest hold", reason_code="CATALOG_PLANE")
+    if site.get("honest_hold_live") is True or site.get("vault_as_live_pin") is True:
+        raise IntegrityError("3.18.0 hold is not live and a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    if site.get("names_as_wired") is True or site.get("secret_in_catalog") is True:
+        raise IntegrityError("3.18.0 secret names are not wired and values stay out of the catalog", reason_code="CATALOG_PLANE")
+    if site.get("sentinel_as_admit") is True or site.get("hold_as_seated") is True:
+        raise IntegrityError("3.18.0 Sentinel is not the admit plane and a hold is not seated", reason_code="CATALOG_PLANE")
+    hold = catalog.get("honest_hold") or {}
+    if hold.get("kind") != "ainav.honest.hold.v1" or hold.get("honest") is not True:
+        raise IntegrityError("3.18.0 honest hold kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if hold.get("vault_as_live_pin") is True or hold.get("values_in_tree") is True:
+        raise IntegrityError("3.18.0 a vault hold is not LIVE_PIN_OK and values stay out of the tree", reason_code="CATALOG_REVIEW")
+    if hold.get("certified") is True:
+        raise IntegrityError("3.18.0 honest hold is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(hold.get("site") or "").lower()
+    if "honest hold" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps honest hold", reason_code="CATALOG_REVIEW")
+    if "a vault hold is not live_pin_ok" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "not a /hold route" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps not a /hold route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest hold" not in principles:
+        raise IntegrityError("first-principles must keep honest hold", reason_code="CATALOG_REVIEW")
+    if "a vault hold is not live_pin_ok" not in principles:
+        raise IntegrityError("first-principles must keep a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.18.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#missing" not in ops:
+        raise IntegrityError("3.18.0 operations note keeps #missing", reason_code="CATALOG_REVIEW")
+    if "honest hold" not in ops:
+        raise IntegrityError("3.18.0 operations note keeps honest hold", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a vault live pin" not in managed:
+        raise IntegrityError("3.18.0 managed face refuses a vault live pin", reason_code="CATALOG_PLANE")
+    if "not a secret catalog" not in managed:
+        raise IntegrityError("3.18.0 managed face refuses a secret catalog", reason_code="CATALOG_PLANE")
+    from ainav.honest_hold import validate_honest_hold
+
+    validate_honest_hold(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

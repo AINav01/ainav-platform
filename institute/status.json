@@ -451,7 +451,8 @@
       "3.15.0 honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.15.0 owner recorded Graph Writes revoked. Four Reads stay Granted. CRM impersonation left. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK",
       "3.16.0 honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.17.0 honest protect. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.17.0 honest protect. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.18.0 honest hold. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -643,7 +644,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "3.17.0",
+  "release": "3.18.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -700,6 +701,7 @@
     "grok_is_recorded": false,
     "grok_is_seat": false,
     "grok_login_is_this_plane": false,
+    "hold_as_seated": false,
     "honest_access": true,
     "honest_access_live": false,
     "honest_build": true,
@@ -708,6 +710,8 @@
     "honest_connect_live": false,
     "honest_copilot_studio": true,
     "honest_copilot_studio_live": false,
+    "honest_hold": true,
+    "honest_hold_live": false,
     "honest_industry": true,
     "honest_industry_live": false,
     "honest_operate": true,
@@ -768,6 +772,7 @@
     "microsoft_roster_is_sku": false,
     "microsoft_run": true,
     "microsoft_run_is_sku": false,
+    "names_as_wired": false,
     "operate_sim_is_production": false,
     "operating_company": true,
     "operating_day": true,
@@ -794,6 +799,8 @@
     "remainder_is_launch": false,
     "review_path": "twin.html",
     "rollback_is_live_pin": false,
+    "secret_in_catalog": false,
+    "sentinel_as_admit": false,
     "service_green_is_production": false,
     "shared_sandbox_is_production": false,
     "sim_is_production": false,
@@ -810,6 +817,7 @@
     "universe_sit_down": true,
     "universe_wells_live": false,
     "update_is_live_pin": false,
+    "vault_as_live_pin": false,
     "whole_is_launch": false
   },
   "wrote_sor": false

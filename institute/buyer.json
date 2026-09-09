@@ -512,6 +512,10 @@
           {
             "href": "#protect-consider",
             "label": "Honest protect"
+          },
+          {
+            "href": "#hold-consider",
+            "label": "Honest hold"
           }
         ],
         "name": "Owner"
@@ -997,7 +1001,12 @@
         "Treat insulation as uncopyable",
         "Treat an L1 license as an assignment of Job C",
         "Treat kit PASS as a source license",
-        "Treat this board as closing G12"
+        "Treat this board as closing G12",
+        "Treat a vault hold as LIVE_PIN_OK",
+        "Treat secret names as wired notify",
+        "Treat secret values in the catalog",
+        "Treat Sentinel as the admit plane",
+        "Treat a vault hold as a seated second human"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2061,7 +2070,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

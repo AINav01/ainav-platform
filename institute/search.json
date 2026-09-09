@@ -114,6 +114,12 @@
       "title": "Honest protect"
     },
     {
+      "href": "index.html#missing",
+      "id": "hold",
+      "text": "Honest hold. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not a /hold route.",
+      "title": "Honest hold"
+    },
+    {
       "href": "index.html#brand",
       "id": "brand",
       "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
@@ -150,6 +156,6 @@
       "title": "Honest Power Pages"
     }
   ],
-  "release": "3.17.0",
+  "release": "3.18.0",
   "sku": false
 }

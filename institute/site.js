@@ -4958,6 +4958,65 @@
   }
   bindProtectRefuses(document.getElementById("protect-consider"));
 
+  var HOLD_REFUSE = {
+    vault_as_live_pin: {
+      message: "Refused. A vault hold is not LIVE_PIN_OK.",
+      ledger: "hold_denied · vault hold as LIVE_PIN_OK\nA vault hold is not LIVE_PIN_OK.\nValues stay out of this tree.\nlive=false · live_pin_ok=false"
+    },
+    names_as_wired: {
+      message: "Refused. Secret names are not wired notify.",
+      ledger: "hold_denied · secret names as wired\nSecret names are not wired notify.\nIds stay unset in this plane.\nlive=false · live_pin_ok=false"
+    },
+    secret_in_catalog: {
+      message: "Refused. A catalog must not hold secret values.",
+      ledger: "hold_denied · secret values in catalog\nA catalog must not hold secret values.\nNames only.\nlive=false · live_pin_ok=false"
+    },
+    sentinel_as_admit: {
+      message: "Refused. Sentinel is not the admit plane.",
+      ledger: "hold_denied · Sentinel as admit\nSentinel is not the admit plane.\nLAW is not Job C.\nlive=false · live_pin_ok=false"
+    },
+    hold_as_seated: {
+      message: "Refused. A vault hold is not a seated second human.",
+      ledger: "hold_denied · vault hold as seated\nA vault hold is not a seated second human.\nSeat B stays owner-only.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeHoldLedger(text) {
+    var node = document.getElementById("hold-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseHold(button, message, ledger) {
+    var refuse = document.getElementById("hold-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeHoldLedger(ledger);
+  }
+
+  function bindHoldRefuses(root) {
+    if (!root || root.getAttribute("data-hold-bound")) return;
+    root.setAttribute("data-hold-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-hold-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-hold-refuse") || "";
+      var pack = HOLD_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseHold(
+        btn,
+        message,
+        pack.ledger || ("hold_denied · " + id + "\nA vault hold is not LIVE_PIN_OK.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindHoldRefuses(document.getElementById("hold-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

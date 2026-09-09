@@ -144,6 +144,20 @@ def test_first_principles_keep_honest_protect_stems():
         catmod._validate_first_principles(assign)
 
 
+def test_first_principles_keep_honest_hold_stems():
+    cat = load_catalog()
+    principles = list(cat["expert_review"]["first_principles"])
+    pin = [item.replace("A vault hold is not LIVE_PIN_OK.", "Hold is recorded.") for item in principles]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(pin)
+    wired = [
+        item.replace("Secret names are not wired notify.", "Names are recorded.")
+        for item in principles
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_first_principles(wired)
+
+
 def test_industry_pack_cannot_be_a_sku():
     cat = copy.deepcopy(load_catalog())
     cat["industry_packs"][0]["sku"] = True
