@@ -400,6 +400,63 @@ def test_small_module_holes(monkeypatch):
     run_proof_day("cli-ttl-995")
 
 
+def test_catalog_residual_holes():
+    cat = _cat()
+    for pack in cat.get("industry_packs") or []:
+        pack["sku"] = True
+        break
+    _reject(validate_catalog, cat)
+    cat = _cat()
+    cat["expert_review"]["success"]["operating_company"]["day"]["launch"] = True
+    _reject(catmod._validate_instrument_287, cat, cat["plane_interface"])
+    cat = _cat()
+    cat["expert_review"]["first_principles"] = _scrub_principles("honest agents")
+    _reject(catmod._validate_instrument_302, cat, cat["plane_interface"])
+    cat = _cat()
+    cat["operations"]["note"] = _scrub(cat["operations"]["note"], "honest agents")
+    _reject(catmod._validate_instrument_302, cat, cat["plane_interface"])
+    cat = _cat()
+    demo = cat["plane_interface"]["examiner_walk"]["demo"]
+    demo["record_id"] = "named.record"
+    demo["included"] = False
+    demo["leaf"] = "named"
+    demo["root"] = "named"
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    cat["plane_interface"]["client_dashboard"]["executive_board"] = None
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    columns = {
+        item.get("id"): item
+        for item in cat["plane_interface"]["included_and_upsells"]["first_glance"]["columns"]
+    }
+    columns["upsell_band"]["items"] = [
+        _scrub(str(item), "never free") for item in columns["upsell_band"].get("items") or []
+    ]
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    cat["plane_interface"]["dashboard"]["first_glance"]["write_rail"] = [
+        {"id": "hold"}
+    ]
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    cat["plane_interface"]["floor"]["success"]["lede"] = "hold"
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    cat["plane_interface"]["floor"]["proof_close"]["minutes"] = 1
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    items = cat["plane_interface"]["floor"]["integrate"]["items"]
+    if items:
+        items[0]["url"] = "http://example.com"
+    _reject(catmod._validate_plane_interface, cat)
+    cat = _cat()
+    items = cat["plane_interface"]["floor"]["integrate"]["items"]
+    if items:
+        items[0]["url"] = "https://example.com/?entra_client_id=2ad041b8"
+    _reject(catmod._validate_plane_interface, cat)
+
+
 def test_main_modules_as_scripts(monkeypatch):
     monkeypatch.setattr(sys, "argv", ["agent_gov", "--help"])
     with pytest.raises(SystemExit):

@@ -40,9 +40,30 @@ def test_public_kit_is_fail_closed():
     assert "microsoft for startups first" in llms
     assert "nvidia inception second" in llms
     assert "nvidia inception member" not in llms
+    assert "honest connect sits on #missing" in llms
+    assert "honest operate sits on #agent-tools" in llms
+    assert "honest path sits on #path" in llms
+    assert "honest production sits on #firm" in llms
+    assert "honest remainder sits on #missing" in llms
+    assert "gold 99.5 is not production" in llms
     search = public_search()
     assert search["engine"] == "catalog_minisearch"
-    assert {item["id"] for item in search["records"]} >= {"floor", "capital", "business", "programs", "kit"}
+    assert {item["id"] for item in search["records"]} >= {
+        "floor",
+        "capital",
+        "business",
+        "programs",
+        "kit",
+        "connect",
+        "operate",
+        "production",
+        "remainder",
+    }
+    twin = next(item for item in search["records"] if item["id"] == "twin-review")
+    assert "Gold 99.5" in twin["text"]
+    assert "Gold 99." not in twin["text"].replace("Gold 99.5.", "")
+    remainder = next(item for item in search["records"] if item["id"] == "remainder")
+    assert "A remainder close is not launch" in remainder["text"]
     assert public_speculation()["prefetch"][0]["urls"]
     assert "/app.html" in public_sitemap()
     assert "/llms.txt" in public_sitemap()

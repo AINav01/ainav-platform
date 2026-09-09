@@ -132,7 +132,7 @@ Walk away:
 - **What's your market share?** — Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.
 - **What's the five-year plan?** — The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.
 - **We already have dual control.** — You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.
-- **We need a real managed website.** — This is it. Catalog-honest static application on Azure SWA. Gold 99. Twin publish. Not Webflow. The product is the admit plane.
+- **We need a real managed website.** — This is it. Catalog-honest static application on Azure SWA. Gold 99.5. Twin publish. Not Webflow. The product is the admit plane.
 - **Just give us a shared demo tenant we can keep.** — The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.
 - **Just flip the demo live.** — The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.
 - **Just stand up HubSpot and pay the team.** — The firm is this operating day on the Microsoft run. Six required connections and eight complements. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product. Microsoft is not the product.

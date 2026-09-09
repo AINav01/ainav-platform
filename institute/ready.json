@@ -17,7 +17,7 @@
       "id": "quality",
       "installed": null,
       "name": "Quality",
-      "note": "Gold 99. Fail-closed. Edge quality. Not launch.",
+      "note": "Gold 99.5. Fail-closed. Edge quality. Not launch.",
       "role": "certified",
       "seat": false,
       "title": "Quality"

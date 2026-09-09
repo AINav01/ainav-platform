@@ -113,7 +113,20 @@ def test_release_is_315_honest_remainder():
     assert "AINAV.Institute twin · 3.15.0" in twin
     assert "3.14.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
+    lost = Path("institute/404.html").read_text(encoding="utf-8")
+    plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
+    css = Path("institute/styles.css").read_text(encoding="utf-8")
     assert "Application kit · 3.15.0" in kit
+    assert "Release 3.15.0" in lost
+    assert "3.14.0" not in lost
+    assert "Ultimate control plane · 3.15.0" in plane
+    assert "3.14.0" not in plane
+    assert 'href="index.html#remain-consider"' in plane
+    assert 'href="index.html#remain-consider"' in app
+    assert 'href="#remain-consider">Honest remainder' in html
+    assert "#remain-consider {" in css
+    assert "#remain-zeros" in css
+    assert ".remain-facts" in css
     assert "A remainder close is launch" in identify
     assert "Open remainder" in identify
     assert "A remainder close is launch" in app
@@ -135,6 +148,31 @@ def test_release_is_315_honest_remainder():
     held = publish_institute()
     assert held["ok"] is False
     assert held["reason"] == "launch_not_ready"
+    quality = next(
+        item
+        for item in cat["microsoft_stack"]["readiness"]["lanes"]
+        if item.get("id") == "quality"
+    )
+    assert quality["note"].startswith("Gold 99.5.")
+    managed = next(
+        item for item in cat["expert_review"]["success"]["objections"] if item.get("id") == "managed"
+    )
+    assert "Gold 99.5." in managed["answer"]
+    assert "Gold 99." not in managed["answer"].replace("Gold 99.5.", "")
+    now = next(
+        item
+        for lane in cat["expert_review"]["success"]["industry_drawer"]["control"]["lanes"]
+        for item in lane.get("items") or []
+        if item.get("id") == "now"
+    )
+    assert "Gold 99.5." in now["note"]
+    assert "Gold 99." not in now["note"].replace("Gold 99.5.", "")
+    owner_hrefs = [
+        item.get("href")
+        for item in cat["plane_interface"]["floor"]["public_face"]["owner_book"][1]["items"]
+    ]
+    assert owner_hrefs[:3] == ["#closed", "#missing", "#open"]
+    assert "#remain-consider" in owner_hrefs
 
 
 def test_instrument_315_fail_closed():
