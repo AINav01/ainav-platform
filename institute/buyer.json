@@ -502,6 +502,10 @@
             "label": "E7 on Cloudflare"
           },
           {
+            "href": "#hold-consider",
+            "label": "Honest hold"
+          },
+          {
             "href": "#remain-consider",
             "label": "Honest remainder"
           },
@@ -512,10 +516,6 @@
           {
             "href": "#protect-consider",
             "label": "Honest protect"
-          },
-          {
-            "href": "#hold-consider",
-            "label": "Honest hold"
           }
         ],
         "name": "Owner"

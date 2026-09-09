@@ -101,7 +101,10 @@ def test_release_is_318_honest_hold():
     assert 'id="hold-consider"' in html
     assert html.index('id="hold-consider"') < html.index('id="remain-consider"')
     assert 'id="hold-zeros"' in html
+    assert 'id="hold-names"' in html
     assert 'id="hold-facts"' in html
+    for name in HONEST_HOLD_SECRET_NAMES:
+        assert name in html
     assert 'data-hold-refuse="vault_as_live_pin"' in html
     assert 'data-hold-refuse="names_as_wired"' in html
     assert 'data-hold-refuse="secret_in_catalog"' in html
@@ -138,6 +141,7 @@ def test_release_is_318_honest_hold():
     assert ".hold-facts" in css
     assert "A vault hold is LIVE_PIN_OK" in identify
     assert "Open hold" in identify
+    assert 'href="index.html#hold-consider">Open hold' in identify
     assert "A vault hold is LIVE_PIN_OK" in app
     assert "Open protect" in identify
     dash = public_dashboard()

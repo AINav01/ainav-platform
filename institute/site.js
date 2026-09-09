@@ -5017,6 +5017,21 @@
   }
   bindHoldRefuses(document.getElementById("hold-consider"));
 
+  fetch("hold.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.vault_as_live_pin || data.names_as_wired || data.secret_in_catalog || data.certified) return;
+      var status = document.getElementById("hold-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · vault_as_live_pin=false · names_as_wired=false · secret_in_catalog=false · sentinel_as_admit=false · hold_as_seated=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
