@@ -504,6 +504,10 @@
           {
             "href": "#remain-consider",
             "label": "Honest remainder"
+          },
+          {
+            "href": "#ten-consider",
+            "label": "Honest ten"
           }
         ],
         "name": "Owner"
@@ -979,7 +983,12 @@
         "Treat leftover copy as LIVE_PIN_OK",
         "Treat owner hrefs as owner clicks",
         "Treat gold 99.5 as production",
-        "Treat a deep remainder as seated"
+        "Treat a deep remainder as seated",
+        "Treat a 10/10 quality check as launch",
+        "Treat gold 99.9 as LIVE_PIN_OK",
+        "Treat a competitor analysis as a named client",
+        "Treat a green service as production",
+        "Treat a quality check as a seated second human"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2043,7 +2052,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

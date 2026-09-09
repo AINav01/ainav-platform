@@ -176,6 +176,7 @@ def public_llms() -> str:
         "Honest path sits on #path. Recorded. A shared sandbox is not production. Complements stay eight.",
         "Honest production sits on #firm. Recorded. A production sim is not production. Complements stay eight.",
         "Honest remainder sits on #missing. Recorded. A remainder close is not launch. Gold 99.5 is not production. Complements stay eight.",
+        "Honest ten sits on #success. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. Complements stay eight.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
         "",
@@ -283,6 +284,12 @@ def public_search() -> dict[str, Any]:
             "title": "Honest remainder",
             "href": "index.html#missing",
             "text": "Honest remainder. Recorded. A remainder close is not launch. Leftover copy is not LIVE_PIN_OK. Owner hrefs are not owner clicks. Gold 99.5 is not production. A deep remainder is not a seated second human. Complements stay eight. Not a /remainder route.",
+        },
+        {
+            "id": "ten",
+            "title": "Honest ten",
+            "href": "index.html#success",
+            "text": "Honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not a /ten route.",
         },
         {
             "id": "brand",

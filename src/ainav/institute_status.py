@@ -300,6 +300,13 @@ def public_status() -> dict[str, Any]:
             "owner_hrefs_are_clicks": False,
             "gold_995_is_production": False,
             "deep_remainder_is_seated": False,
+            "honest_ten": bool(site.get("honest_ten")),
+            "honest_ten_live": False,
+            "quality_ten_is_launch": False,
+            "gold_999_is_live_pin": False,
+            "compete_is_named_client": False,
+            "service_green_is_production": False,
+            "quality_is_seated": False,
         },
         "bc": {
             "connection": "bc.premium",

@@ -4840,6 +4840,65 @@
   }
   bindRemainRefuses(document.getElementById("remain-consider"));
 
+  var TEN_REFUSE = {
+    ten_as_launch: {
+      message: "Refused. A 10/10 quality check is not launch.",
+      ledger: "ten_denied · 10/10 quality check as launch\nA 10/10 quality check is not launch.\nOwner-only stays owner-only.\nlive=false · live_pin_ok=false"
+    },
+    gold_999_as_live_pin: {
+      message: "Refused. Gold 99.9 is not LIVE_PIN_OK.",
+      ledger: "ten_denied · gold 99.9 as LIVE_PIN_OK\nGold 99.9 is not LIVE_PIN_OK.\nGold is not launch.\nlive=false · live_pin_ok=false"
+    },
+    compete_as_named_client: {
+      message: "Refused. A competitor analysis is not a named client.",
+      ledger: "ten_denied · competitor analysis as named client\nA competitor analysis is not a named client.\nNo named client from this plane.\nlive=false · live_pin_ok=false"
+    },
+    service_green_as_production: {
+      message: "Refused. A green service is not production.",
+      ledger: "ten_denied · green service as production\nA green service is not production.\nLicensed-not-wired stays honest.\nlive=false · live_pin_ok=false"
+    },
+    quality_as_seated: {
+      message: "Refused. A quality check is not a seated second human.",
+      ledger: "ten_denied · quality check as seated\nA quality check is not a seated second human.\nSeat B stays open.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeTenLedger(text) {
+    var node = document.getElementById("ten-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseTen(button, message, ledger) {
+    var refuse = document.getElementById("ten-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeTenLedger(ledger);
+  }
+
+  function bindTenRefuses(root) {
+    if (!root || root.getAttribute("data-ten-bound")) return;
+    root.setAttribute("data-ten-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-ten-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-ten-refuse") || "";
+      var pack = TEN_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseTen(
+        btn,
+        message,
+        pack.ledger || ("ten_denied · " + id + "\nA 10/10 quality check is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindTenRefuses(document.getElementById("ten-consider"));
+
   fetch("connect.json")
     .then(function (res) {
       return res.ok ? res.json() : null;
@@ -4911,6 +4970,21 @@
       if (status) {
         status.textContent =
           "honest=true · recorded=true · remainder_is_launch=false · leftover_copy_is_live_pin=false · owner_hrefs_are_clicks=false · live=false";
+      }
+    })
+    .catch(function () {});
+
+  fetch("ten.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.quality_ten_is_launch || data.gold_999_is_live_pin || data.compete_is_named_client || data.service_green_is_production || data.quality_is_seated || data.certified) return;
+      var status = document.getElementById("ten-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · quality_ten_is_launch=false · gold_999_is_live_pin=false · compete_is_named_client=false · live=false";
       }
     })
     .catch(function () {});

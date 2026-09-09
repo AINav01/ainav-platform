@@ -1,6 +1,6 @@
 # AINav, Inc. — ultimate control plane interface
 
-Release 3.15.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
+Release 3.16.0. Not a SKU. Not LIVE_PIN_OK. Not a certificate.
 
 **Must-have: every new client AI is another unauthorized-write surface unless one human plane sits over all of them. Humans sit on the plane from the top of the client's existing org chart. Owner and board oversee. Treasury and controller admit. Departments draft or keep. Department AI is not a seat. Internal and remote use the same Entra object id. Hierarchical views are the same plane seen from owner, seats, examiner, remote, IT, provision, records, and client. Each view has a command console. Access is zero-standing: Entra may identify continuously; identify is not admit. Authorization is identify, view, seat, bind, consume, revoke. The client executive dashboard is included with L1 and is not an upsell. Personalized Floor views are assigned from the client org chart. Authorize and de-authorize are fail-closed. MFA identifies; it does not admit. Provisioning is two bands, not SKUs: standard is included with L1; advanced is the upsell of priced desks, P-ADM, paid U-DUAL, and hours. Inter-communication is notify only. Record keeping is first record, second record, weekly keep. AI and regulation compliance are maps, claimed=false. The interface is not a fourth SKU.**
 
@@ -238,6 +238,11 @@ CISO posture is fail-closed and zero-standing. It is not a certificate and not G
 - Does not: Treat owner hrefs as owner clicks
 - Does not: Treat gold 99.5 as production
 - Does not: Treat a deep remainder as seated
+- Does not: Treat a 10/10 quality check as launch
+- Does not: Treat gold 99.9 as LIVE_PIN_OK
+- Does not: Treat a competitor analysis as a named client
+- Does not: Treat a green service as production
+- Does not: Treat a quality check as a seated second human
 
 ### Seat B meaning
 
@@ -361,7 +366,7 @@ Org: client org chart × existing SOD × one admit plane.
 
 ## Clock — catalog as-of
 
-- As of: catalog release 3.15.0.
+- As of: catalog release 3.16.0.
 - Live clock claimed: false.
 - Last event: AINAV-L1 sandbox first_record (sandbox).
 - Frozen: false. Pending binds: 0.

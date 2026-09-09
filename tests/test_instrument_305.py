@@ -24,7 +24,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_305_honest_build():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.15.0"
+    assert cat["entity"]["release"] == "3.16.0"
     build = cat["microsoft_stack"]["build"]
     assert build["kind"] == "ainav.honest.build.v1"
     assert build["honest"] is True
@@ -69,7 +69,7 @@ def test_release_is_305_honest_build():
     assert "twin is not launch" in principles
     assert "packs, modules, and repositories are not skus" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 85
+    assert len(cat["expert_review"]["upgrades"]) == 86
     assert upgrades[75]["who"] == "tree"
     assert upgrades[75]["done"] is True
     assert upgrades[75]["marks_live_pin"] is False
@@ -106,9 +106,9 @@ def test_release_is_305_honest_build():
     assert "build" in app.lower()
     assert "Full access" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.15.0"
+    assert dash["release"] == "3.16.0"
     status = public_status()
-    assert status["release"] == "3.15.0"
+    assert status["release"] == "3.16.0"
     assert status["website"]["honest_build"] is True
     assert status["website"]["honest_build_live"] is False
     assert status["website"]["full_access_needed"] is False

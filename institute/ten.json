@@ -1,0 +1,187 @@
+{
+  "certified": false,
+  "compete_is_named_client": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "quality",
+      "live": false,
+      "name": "Quality",
+      "note": "Microsoft: four Reads Granted, Writes owner-revoked, licensed-not-wired. Cloudflare: apex empty/403, SSL Full recorded not claimed. GitHub: a green check is not LIVE_PIN_OK. Cursor: Cloud Agent is not a seat.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "compete",
+      "live": false,
+      "name": "Compete",
+      "note": "Teams vote, Entra MFA, Cursor Cloud Agent, and Cloudflare edge do not win consume-once, fail-closed SoR, or counterparty AI. A competitor analysis is not a named client.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "gold",
+      "live": false,
+      "name": "Gold",
+      "note": "Gold 99.9 is the target. Claiming 99.9 without coverage is a lie. Gold 99.9 is not LIVE_PIN_OK.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "ten",
+      "live": false,
+      "name": "Ten",
+      "note": "A 10/10 quality check is not launch and not LIVE_PIN_OK.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "owner_only",
+      "live": false,
+      "name": "Owner-only",
+      "note": "Seat B, oid, signed L1, Teams ids, SHAREPOINT_SITE_ID, Sentinel, US Dataverse stay owner-only.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "gold_999_is_live_pin": false,
+  "honest": true,
+  "href": "#success",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.ten.v1",
+  "lede": "A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a 10/10 quality check as launch.",
+      "Do not treat gold 99.9 as LIVE_PIN_OK.",
+      "Do not treat a competitor analysis as a named client.",
+      "Do not treat a green service as production.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "compete_is_named_client": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "gold_999_is_live_pin": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.ten.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "quality_is_seated": false,
+    "quality_ten_is_launch": false,
+    "recorded": true,
+    "service_green_is_production": false
+  },
+  "product": "Honest ten",
+  "quality_is_seated": false,
+  "quality_ten_is_launch": false,
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#success",
+      "id": "ten_as_launch",
+      "name": "A 10/10 quality check as launch",
+      "note": "Refused. A 10/10 quality check is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A 10/10 quality check is not launch.",
+      "state": "refused",
+      "text": "Refused. A 10/10 quality check is not launch.",
+      "title": "A 10/10 quality check as launch"
+    },
+    {
+      "href": "#success",
+      "id": "gold_999_as_live_pin",
+      "name": "Gold 99.9 as LIVE_PIN_OK",
+      "note": "Refused. Gold 99.9 is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. Gold 99.9 is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. Gold 99.9 is not LIVE_PIN_OK.",
+      "title": "Gold 99.9 as LIVE_PIN_OK"
+    },
+    {
+      "href": "#success",
+      "id": "compete_as_named_client",
+      "name": "A competitor analysis as a named client",
+      "note": "Refused. A competitor analysis is not a named client.",
+      "refuse": true,
+      "refuse_text": "Refused. A competitor analysis is not a named client.",
+      "state": "refused",
+      "text": "Refused. A competitor analysis is not a named client.",
+      "title": "A competitor analysis as a named client"
+    },
+    {
+      "href": "#success",
+      "id": "service_green_as_production",
+      "name": "A green service as production",
+      "note": "Refused. A green service is not production.",
+      "refuse": true,
+      "refuse_text": "Refused. A green service is not production.",
+      "state": "refused",
+      "text": "Refused. A green service is not production.",
+      "title": "A green service as production"
+    },
+    {
+      "href": "#success",
+      "id": "quality_as_seated",
+      "name": "A quality check as seated",
+      "note": "Refused. A quality check is not a seated second human.",
+      "refuse": true,
+      "refuse_text": "Refused. A quality check is not a seated second human.",
+      "state": "refused",
+      "text": "Refused. A quality check is not a seated second human.",
+      "title": "A quality check as seated"
+    }
+  ],
+  "service_green_is_production": false,
+  "services": {
+    "claimed_as_production": false,
+    "cloudflare": {
+      "apex": "empty_403",
+      "ssl_full_claimed": false,
+      "this_plane_cannot_edit": true
+    },
+    "cursor": {
+      "cloud_agent_is_not_a_seat": true,
+      "recorded_operator": true
+    },
+    "github": {
+      "green_check_is_not_live_pin_ok": true
+    },
+    "kind": "ainav.honest.ten.services.v1",
+    "microsoft": {
+      "graph_reads": "four_granted",
+      "graph_writes": "owner_revoked",
+      "licensed_not_wired": true,
+      "us_dataverse": "canada_not_united_states"
+    }
+  },
+  "site": "Honest ten on #success. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. First glance stays the write rail. Not a /ten route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat a 10/10 quality check as launch.",
+    "Treat gold 99.9 as LIVE_PIN_OK.",
+    "Treat a competitor analysis as a named client.",
+    "Treat a green service as production.",
+    "Treat a quality check as a seated second human."
+  ],
+  "wired": false
+}

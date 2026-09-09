@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 85:
-        raise IntegrityError("expert review needs 16–85 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 86:
+        raise IntegrityError("expert review needs 16–86 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1286,6 +1286,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         83: ("honest path", "live_pin_ok"),
         84: ("honest production", "live_pin_ok"),
         85: ("honest remainder", "live_pin_ok"),
+        86: ("honest ten", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1429,6 +1430,12 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep leftover copy is not LIVE_PIN_OK and owner hrefs are not owner clicks", reason_code="CATALOG_REVIEW")
     if "gold 99.5 is not production" not in blob or "a deep remainder is not a seated second human" not in blob:
         raise IntegrityError("first-principles must keep gold 99.5 is not production and a deep remainder is not seated", reason_code="CATALOG_REVIEW")
+    if "honest ten" not in blob or "a 10/10 quality check is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest ten", reason_code="CATALOG_REVIEW")
+    if "gold 99.9 is not live_pin_ok" not in blob or "a competitor analysis is not a named client" not in blob:
+        raise IntegrityError("first-principles must keep gold 99.9 is not LIVE_PIN_OK and a competitor analysis is not a named client", reason_code="CATALOG_REVIEW")
+    if "a green service is not production" not in blob or "a quality check is not a seated second human" not in blob:
+        raise IntegrityError("first-principles must keep a green service is not production and a quality check is not seated", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1806,6 +1813,16 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat gold 99.5 as production", reason_code="CATALOG_REVIEW")
     if "a deep remainder as seated" not in does_not:
         raise IntegrityError("CISO posture does not treat a deep remainder as seated", reason_code="CATALOG_REVIEW")
+    if "a 10/10 quality check as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 quality check as launch", reason_code="CATALOG_REVIEW")
+    if "gold 99.9 as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat gold 99.9 as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "a competitor analysis as a named client" not in does_not:
+        raise IntegrityError("CISO posture does not treat a competitor analysis as a named client", reason_code="CATALOG_REVIEW")
+    if "a green service as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a green service as production", reason_code="CATALOG_REVIEW")
+    if "a quality check as a seated second human" not in does_not:
+        raise IntegrityError("CISO posture does not treat a quality check as a seated second human", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -1832,6 +1849,19 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest remainder is not a live pin and owner hrefs are not clicks", reason_code="CATALOG_REVIEW")
     if hosted_remainder.get("gold_995_is_production") is True or hosted_remainder.get("deep_remainder_is_seated") is True:
         raise IntegrityError("success honest remainder is not production and is not seated", reason_code="CATALOG_REVIEW")
+    hosted_ten = success.get("honest_ten")
+    if not isinstance(hosted_ten, dict):
+        raise IntegrityError("success program keeps honest ten", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("kind") != "ainav.honest.ten.v1" or hosted_ten.get("honest") is not True:
+        raise IntegrityError("success honest ten stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("href") != "#success":
+        raise IntegrityError("success honest ten sits on #success", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("live") is True or hosted_ten.get("quality_ten_is_launch") is True:
+        raise IntegrityError("success honest ten stays not live and a 10/10 quality check is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("gold_999_is_live_pin") is True or hosted_ten.get("compete_is_named_client") is True:
+        raise IntegrityError("success honest ten is not a live pin and a competitor analysis is not a named client", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("service_green_is_production") is True or hosted_ten.get("quality_is_seated") is True:
+        raise IntegrityError("success honest ten is not production and is not seated", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3498,6 +3528,22 @@ HONEST_REMAINDER_REFUSE_TEXT = {
     "deep_remainder_as_seated": "Refused. A deep remainder is not a seated second human.",
 }
 HONEST_REMAINDER_HREFS = {key: "#missing" for key in HONEST_REMAINDER_REFUSE_IDS}
+HONEST_TEN_FACT_IDS = ["quality", "compete", "gold", "ten", "owner_only"]
+HONEST_TEN_REFUSE_IDS = [
+    "ten_as_launch",
+    "gold_999_as_live_pin",
+    "compete_as_named_client",
+    "service_green_as_production",
+    "quality_as_seated",
+]
+HONEST_TEN_REFUSE_TEXT = {
+    "ten_as_launch": "Refused. A 10/10 quality check is not launch.",
+    "gold_999_as_live_pin": "Refused. Gold 99.9 is not LIVE_PIN_OK.",
+    "compete_as_named_client": "Refused. A competitor analysis is not a named client.",
+    "service_green_as_production": "Refused. A green service is not production.",
+    "quality_as_seated": "Refused. A quality check is not a seated second human.",
+}
+HONEST_TEN_HREFS = {key: "#success" for key in HONEST_TEN_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4568,6 +4614,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_313(catalog, body)
     _validate_instrument_314(catalog, body)
     _validate_instrument_315(catalog, body)
+    _validate_instrument_316(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6097,8 +6144,6 @@ def _validate_instrument_314(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_315(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.15.0":
-        raise IntegrityError("entity.release is 3.15.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.15.0" in item and "honest remainder" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.15.0 honest remainder", reason_code="CATALOG_ENGINEERING")
@@ -6151,6 +6196,58 @@ def _validate_instrument_315(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_remainder import validate_honest_remainder
 
     validate_honest_remainder(catalog)
+
+
+def _validate_instrument_316(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.16.0":
+        raise IntegrityError("entity.release is 3.16.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.16.0" in item and "honest ten" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.16.0 honest ten", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_ten") is not True or site.get("honest_remainder") is not True:
+        raise IntegrityError("3.16.0 website has honest ten", reason_code="CATALOG_PLANE")
+    if site.get("honest_ten_live") is True or site.get("quality_ten_is_launch") is True:
+        raise IntegrityError("3.16.0 ten is not live and a 10/10 quality check is not launch", reason_code="CATALOG_PLANE")
+    if site.get("gold_999_is_live_pin") is True or site.get("compete_is_named_client") is True:
+        raise IntegrityError("3.16.0 gold 99.9 is not LIVE_PIN_OK and a competitor analysis is not a named client", reason_code="CATALOG_PLANE")
+    if site.get("service_green_is_production") is True or site.get("quality_is_seated") is True:
+        raise IntegrityError("3.16.0 a green service is not production and a quality check is not seated", reason_code="CATALOG_PLANE")
+    ten = catalog.get("honest_ten") or {}
+    if ten.get("kind") != "ainav.honest.ten.v1" or ten.get("honest") is not True:
+        raise IntegrityError("3.16.0 honest ten kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if ten.get("quality_ten_is_launch") is True or ten.get("gold_999_is_live_pin") is True:
+        raise IntegrityError("3.16.0 a 10/10 quality check is not launch and gold 99.9 is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if ten.get("certified") is True:
+        raise IntegrityError("3.16.0 honest ten is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(ten.get("site") or "").lower()
+    if "honest ten" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps honest ten", reason_code="CATALOG_REVIEW")
+    if "a 10/10 quality check is not launch" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps a 10/10 quality check is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /ten route" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps not a /ten route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest ten" not in principles:
+        raise IntegrityError("first-principles must keep honest ten", reason_code="CATALOG_REVIEW")
+    if "a 10/10 quality check is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 quality check is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.16.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#success" not in ops:
+        raise IntegrityError("3.16.0 operations note keeps #success", reason_code="CATALOG_REVIEW")
+    if "honest ten" not in ops:
+        raise IntegrityError("3.16.0 operations note keeps honest ten", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10 quality launch" not in managed:
+        raise IntegrityError("3.16.0 managed face refuses a 10/10 quality launch", reason_code="CATALOG_PLANE")
+    from ainav.honest_ten import validate_honest_ten
+
+    validate_honest_ten(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

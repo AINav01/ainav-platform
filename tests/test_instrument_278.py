@@ -12,12 +12,12 @@ from ainav.dashboard import public_dashboard
 
 def test_release_is_278():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.15.0"
+    assert cat["entity"]["release"] == "3.16.0"
     assert any("2.78.0" in item and "refus" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     assert any("2.78.0" in item and "refus" in item.lower() for item in cat["plane_interface"]["gaps"]["in_tree_closed"])
     assert any("2.77.0" in item and "four reads" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     dash = public_dashboard()
-    assert dash["release"] == "3.15.0"
+    assert dash["release"] == "3.16.0"
 
 
 def test_owner_gaps_stay_open_after_quality_check():
@@ -41,7 +41,7 @@ def test_owner_gaps_stay_open_after_quality_check():
 def test_upgrade_48_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 85
+    assert len(cat["expert_review"]["upgrades"]) == 86
     assert upgrades[48]["who"] == "tree"
     assert upgrades[48]["done"] is True
     assert upgrades[48]["marks_live_pin"] is False
