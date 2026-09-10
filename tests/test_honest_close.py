@@ -196,6 +196,10 @@ def test_validate_honest_close_more_fail_closed():
     refuse_text["honest_close"]["refuse"][0]["refuse_text"] = "No."
     with pytest.raises(IntegrityError):
         validate_honest_close(refuse_text)
+    refuse_href = copy.deepcopy(load_catalog())
+    refuse_href["honest_close"]["refuse"][0]["href"] = "#whole"
+    with pytest.raises(IntegrityError):
+        validate_honest_close(refuse_href)
     leftover = copy.deepcopy(load_catalog())
     leftover["honest_close"]["refuse"][0]["claimed"] = False
     with pytest.raises(IntegrityError):
@@ -208,6 +212,40 @@ def test_validate_honest_close_more_fail_closed():
     note["honest_close"]["note"] = "A 10/10 close is not launch. A catalog list is not collection."
     with pytest.raises(IntegrityError):
         validate_honest_close(note)
+    note_launch = copy.deepcopy(load_catalog())
+    note_launch["honest_close"]["note"] = "Honest close. A catalog list is not collection."
+    with pytest.raises(IntegrityError):
+        validate_honest_close(note_launch)
+    note_list = copy.deepcopy(load_catalog())
+    note_list["honest_close"]["note"] = "Honest close. A 10/10 close is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_close(note_list)
+    lede = copy.deepcopy(load_catalog())
+    lede["honest_close"]["lede"] = "Complements stay eight."
+    with pytest.raises(IntegrityError):
+        validate_honest_close(lede)
+    lede_sku = copy.deepcopy(load_catalog())
+    lede_sku["honest_close"]["lede"] = "A 10/10 close is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_close(lede_sku)
+    site = copy.deepcopy(load_catalog())
+    site["honest_close"]["site"] = "Close board. A 10/10 close is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_close(site)
+    site_route = copy.deepcopy(load_catalog())
+    site_route["honest_close"]["site"] = site_route["honest_close"]["site"].replace(
+        "Not a /close route.",
+        "A /close route.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_close(site_route)
+    site_glance = copy.deepcopy(load_catalog())
+    site_glance["honest_close"]["site"] = site_glance["honest_close"]["site"].replace(
+        "First glance stays the write rail.",
+        "First glance is the close board.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_close(site_glance)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

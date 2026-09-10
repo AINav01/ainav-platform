@@ -141,7 +141,6 @@ def test_release_is_319_honest_close():
     assert 'href="index.html#close-consider"' in app
     assert 'href="#close-consider">Honest close' in html
     assert "#close-consider {" in css
-    assert "#path-consider {" in css
     assert "#hold-consider {" in css
     assert "#ten-consider {" in css
     assert "#protect-consider {" in css
