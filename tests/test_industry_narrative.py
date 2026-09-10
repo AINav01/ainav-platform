@@ -63,7 +63,12 @@ def test_industry_areas_tell_need_and_why():
     assert "function dismiss" in search_js
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#packs"' not in nav
-    assert "Walk the industry" in html
+    assert html.count("Walk the industry") >= 6
+    assert 'href="#industry.treasury"' in html.split('id="industry-day"', 1)[1]
+    assert 'href="#industry-area-libraries"' in html.split('id="industry-day"', 1)[1]
+    assert 'href="#industry-area-repositories"' in html.split('id="industry-day"', 1)[1]
+    assert 'href="#industry.bank"' in html.split('id="industry-rooms"', 1)[1]
+    assert 'href="#industry.treasury"' in html.split('id="pack-industry"', 1)[1]
 
 
 def test_industry_catalog_and_search_name_the_areas():
@@ -75,15 +80,31 @@ def test_industry_catalog_and_search_name_the_areas():
         assert "industry certify is not launch" in low
     llms = public_llms().lower()
     assert "five industry areas" in llms
+    assert "walk the five areas" in llms
     assert "a 10/10+ quality check is not launch" in llms
     search = public_search()
     packs = next(item for item in search["records"] if item["id"] == "packs")
     assert packs["href"] == "index.html#packs"
     assert "five industry areas" in packs["text"].lower()
     assert "need and why" in packs["text"].lower()
-    twin = Path("institute/twin.html").read_text(encoding="utf-8").lower()
-    assert "five areas" in twin
-    assert "a 10/10+ quality check is not launch" in twin
+    assert "walk the five areas" in packs["text"].lower()
+    books = next(item for item in search["records"] if item["id"] == "industry-books")
+    assert books["href"] == "index.html#industry-area-books"
+    sales = next(item for item in search["records"] if item["id"] == "industry-sales")
+    assert sales["href"] == "index.html#industry-area-sales"
+    keep = next(item for item in search["records"] if item["id"] == "industry-keep")
+    assert keep["href"] == "index.html#industry-area-keep"
+    libs = next(item for item in search["records"] if item["id"] == "industry-libraries")
+    assert libs["href"] == "index.html#industry-area-libraries"
+    repos = next(item for item in search["records"] if item["id"] == "industry-repositories")
+    assert repos["href"] == "index.html#industry-area-repositories"
+    twin = Path("institute/twin.html").read_text(encoding="utf-8")
+    assert "five areas" in twin.lower()
+    assert "a 10/10+ quality check is not launch" in twin.lower()
+    assert 'href="index.html#industry-narratives"' in twin
+    identify = Path("institute/identify.html").read_text(encoding="utf-8")
+    assert 'href="index.html#industry-narratives"' in identify
+    assert "Walk the industry" in identify
 
 
 def test_industry_lede_refuses_area_fiction():
