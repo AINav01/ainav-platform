@@ -321,6 +321,13 @@ def public_status() -> dict[str, Any]:
             "secret_in_catalog": False,
             "sentinel_as_admit": False,
             "hold_as_seated": False,
+            "honest_close": bool(site.get("honest_close")),
+            "honest_close_live": False,
+            "close_as_launch": False,
+            "booking_as_revenue": False,
+            "twin_as_assigned": False,
+            "custom_db_as_sku": False,
+            "list_as_collection": False,
         },
         "bc": {
             "connection": "bc.premium",

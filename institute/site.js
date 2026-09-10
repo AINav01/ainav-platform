@@ -5017,6 +5017,80 @@
   }
   bindHoldRefuses(document.getElementById("hold-consider"));
 
+  var CLOSE_REFUSE = {
+    close_as_launch: {
+      message: "Refused. A 10/10 close is not launch.",
+      ledger: "close_denied · 10/10 close as launch\nA 10/10 close is not launch.\nSigned L1 stays open.\nlive=false · live_pin_ok=false"
+    },
+    booking_as_revenue: {
+      message: "Refused. A booking is not recognized revenue.",
+      ledger: "close_denied · booking as revenue\nA booking is not recognized revenue.\nBilling provider unset.\nlive=false · live_pin_ok=false"
+    },
+    twin_as_assigned: {
+      message: "Refused. The Institute twin is not the assigned client sandbox.",
+      ledger: "close_denied · Institute twin as assigned\nThe Institute twin is not the assigned client sandbox.\nThree planes stay distinct.\nlive=false · live_pin_ok=false"
+    },
+    custom_db_as_sku: {
+      message: "Refused. A custom database is not a fourth SKU.",
+      ledger: "close_denied · custom database as SKU\nA custom database is not a fourth SKU.\nCustom packs are FFS.\nlive=false · live_pin_ok=false"
+    },
+    list_as_collection: {
+      message: "Refused. A catalog list is not collection.",
+      ledger: "close_denied · catalog list as collection\nA catalog list is not collection.\nComplements stay eight.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeCloseLedger(text) {
+    var node = document.getElementById("close-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseClose(button, message, ledger) {
+    var refuse = document.getElementById("close-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeCloseLedger(ledger);
+  }
+
+  function bindCloseRefuses(root) {
+    if (!root || root.getAttribute("data-close-bound")) return;
+    root.setAttribute("data-close-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-close-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-close-refuse") || "";
+      var pack = CLOSE_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseClose(
+        btn,
+        message,
+        pack.ledger || ("close_denied · " + id + "\nA 10/10 close is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindCloseRefuses(document.getElementById("close-consider"));
+
+  fetch("close.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.close_as_launch || data.booking_as_revenue || data.twin_as_assigned || data.certified) return;
+      var status = document.getElementById("close-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · close_as_launch=false · booking_as_revenue=false · twin_as_assigned=false · custom_db_as_sku=false · list_as_collection=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("hold.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

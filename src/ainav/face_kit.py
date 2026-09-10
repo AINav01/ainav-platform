@@ -179,6 +179,7 @@ def public_llms() -> str:
         "Honest ten sits on #success. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. Complements stay eight.",
         "Honest protect sits on #ip. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Complements stay eight.",
         "Honest hold sits on #missing. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. Sentinel is not the admit plane. Complements stay eight.",
+        "Honest close sits on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. A catalog list is not collection. Complements stay eight.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
         "",
@@ -304,6 +305,12 @@ def public_search() -> dict[str, Any]:
             "title": "Honest hold",
             "href": "index.html#missing",
             "text": "Honest hold. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not a /hold route.",
+        },
+        {
+            "id": "close",
+            "title": "Honest close",
+            "href": "index.html#path",
+            "text": "Honest close. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight. Not a /close route.",
         },
         {
             "id": "brand",
