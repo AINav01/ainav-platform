@@ -154,6 +154,7 @@ def public_llms() -> str:
         "## Pages",
         "",
         f"- [Sale]({HOST}/): the write, proof day, bake-off",
+        f"- [About]({HOST}/#about): company narrative. Failsafe, not the AI. Not a running firm",
         f"- [Application]({HOST}/app.html): floor, capital, programs",
         f"- [Floor]({HOST}/app.html#floor): one dashboard, same write rail",
         f"- [Capital]({HOST}/app.html#capital): outside investor room, not a priced round",
@@ -181,6 +182,7 @@ def public_llms() -> str:
         "Honest hold sits on #missing. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. Sentinel is not the admit plane. Complements stay eight.",
         "Honest close sits on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. A catalog list is not collection. Complements stay eight.",
         "Honest join sits on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight.",
+        "About AINav sits on #about. The company is the admit plane. Failsafe, not the AI. Not a running firm. Not a named client. Revenue $0.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
         "",
@@ -198,6 +200,12 @@ def public_search() -> dict[str, Any]:
             "title": "The write",
             "href": "index.html#buyer",
             "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL.",
+        },
+        {
+            "id": "about",
+            "title": "About AINav",
+            "href": "index.html#about",
+            "text": "Company narrative. AINav is the human failsafe, not the AI. Two humans bind one hash. Then the write. Sole owner James Hodnett. Seat B mailbox recorded. Revenue $0. Named customers 0. Signed L1 0. Not a running firm. Not a patent. Not a named design partner. A 10/10+ quality check is not launch.",
         },
         {
             "id": "floor",

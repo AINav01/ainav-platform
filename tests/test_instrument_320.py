@@ -193,6 +193,10 @@ def test_release_is_320_honest_join():
     assert "a 10/10+ quality check is not launch" in join_rec["text"].lower()
     assert "not a /join route" in join_rec["text"].lower()
     assert "a 10/10+ quality check is not launch" in llms
+    assert "about ainav sits on #about" in llms
+    about_rec = next(item for item in search["records"] if item["id"] == "about")
+    assert about_rec["href"] == "index.html#about"
+    assert "not a running firm" in about_rec["text"].lower()
     assert "The join is launch" in identify
     assert "10/10+ is launch" in identify
     assert "10/10+ is launch" in app

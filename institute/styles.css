@@ -721,7 +721,39 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
 .about-ainav {
   max-width: var(--wide);
 }
+#about {
+  max-width: var(--wide);
+}
 .about-ainav h2 { font-size: clamp(1.45rem, 2.4vw, 1.85rem); }
+#about-lede {
+  max-width: 42rem;
+  margin: 0.55rem 0 0.35rem;
+  font-size: clamp(1.12rem, 2vw, 1.38rem);
+  line-height: 1.35;
+}
+.about-story {
+  max-width: 40rem;
+  display: grid;
+  gap: 0.85rem;
+  margin: 1rem 0 1.15rem;
+}
+.about-story p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+#about-facts-kicker,
+#about-open-kicker,
+#about-refuse-kicker {
+  margin: 1.05rem 0 0.4rem;
+}
+#about-open,
+#about-refuse {
+  max-width: 36rem;
+}
+.about-walk {
+  margin: 1rem 0 0.15rem;
+}
 #hero-sale { margin: 1.4rem 0 0.25rem; max-width: var(--wide); }
 #hero-notes {
   display: grid;
@@ -2050,7 +2082,8 @@ table.law tr[data-group] th {
   outline-offset: 2px;
 }
 .pages-facts.join-facts,
-.pages-facts.close-facts {
+.pages-facts.close-facts,
+.pages-facts.about-facts {
   margin-top: 0.35rem;
   padding: 0.7rem 0.85rem 0.8rem;
   background: color-mix(in srgb, var(--void) 5%, var(--paper));
@@ -2059,7 +2092,8 @@ table.law tr[data-group] th {
   grid-template-columns: 1fr;
 }
 .pages-facts.join-facts section,
-.pages-facts.close-facts section {
+.pages-facts.close-facts section,
+.pages-facts.about-facts section {
   min-height: 0;
   padding: 0.4rem 0.15rem 0.4rem 0.7rem;
   background: transparent;
@@ -2070,13 +2104,15 @@ table.law tr[data-group] th {
   align-items: baseline;
 }
 .pages-facts.join-facts [data-fact="join"],
-.pages-facts.close-facts [data-fact="close"] {
+.pages-facts.close-facts [data-fact="close"],
+.pages-facts.about-facts [data-fact="product"] {
   box-shadow: none;
   border-left: 3px solid var(--gold-2);
   padding-left: 0.7rem;
 }
 .pages-facts.join-facts h3,
-.pages-facts.close-facts h3 {
+.pages-facts.close-facts h3,
+.pages-facts.about-facts h3 {
   margin: 0;
   font-family: var(--mono);
   font-size: 0.68rem;
@@ -2085,7 +2121,8 @@ table.law tr[data-group] th {
   color: var(--gold-ink);
 }
 .pages-facts.join-facts p,
-.pages-facts.close-facts p {
+.pages-facts.close-facts p,
+.pages-facts.about-facts p {
   font-size: 0.86rem;
 }
 @media (min-width: 900px) {
@@ -2098,8 +2135,12 @@ table.law tr[data-group] th {
   .pages-facts.close-facts {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
+  .pages-facts.about-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .pages-facts.join-facts section,
-  .pages-facts.close-facts section {
+  .pages-facts.close-facts section,
+  .pages-facts.about-facts section {
     grid-template-columns: 1fr;
     gap: 0.28rem;
   }

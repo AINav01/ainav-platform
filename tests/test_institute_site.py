@@ -291,6 +291,7 @@ def test_institute_foundation_is_catalog_honest():
     assert 'id="investor-decision"' in html
     assert 'id="investor-tuesday"' in html
     assert 'id="about"' in html
+    assert 'id="about-lede"' in html
     assert html.index('id="buyer"') < html.index('id="twin"') < html.index('id="product"') < html.index('id="about"') < html.index('id="opportunity"')
     assert "<h2>Proof day</h2>" in html
     assert "The product is the admit plane" in html
