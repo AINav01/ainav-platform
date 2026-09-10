@@ -5141,7 +5141,7 @@
     })
     .then(function (data) {
       if (!data) return;
-      if (data.live || data.join_as_launch || data.stitch_as_live_pin || data.licensed_as_wired_firm || data.certified) return;
+      if (data.live || data.join_as_launch || data.stitch_as_live_pin || data.licensed_as_wired_firm || data.manage_ops_as_closed || data.certify_as_running || data.certified) return;
       var status = document.getElementById("join-status");
       if (status) {
         status.textContent =
@@ -5156,7 +5156,7 @@
     })
     .then(function (data) {
       if (!data) return;
-      if (data.live || data.close_as_launch || data.booking_as_revenue || data.twin_as_assigned || data.certified) return;
+      if (data.live || data.close_as_launch || data.booking_as_revenue || data.twin_as_assigned || data.custom_db_as_sku || data.list_as_collection || data.certified) return;
       var status = document.getElementById("close-status");
       if (status) {
         status.textContent =

@@ -18,6 +18,7 @@ from ainav.catalog import (
     validate_catalog,
 )
 from ainav.dashboard import public_dashboard
+from ainav.face_kit import public_llms, public_search
 from ainav.honest_join import public_review
 from ainav.institute_status import public_status
 from ainav.microsoft.institute_publish import publish_institute
@@ -126,6 +127,12 @@ def test_release_is_320_honest_join():
     assert 'data-hop="keep"><a href="#ops"' in join_board
     assert 'data-hop="certify"><a href="#success"' in join_board
     assert 'href="/join"' not in join_board
+    for hop in join["hops"]:
+        assert hop["note"] in join_board
+    assert "a 10/10 quality check is not launch" in join_board.lower()
+    close_board = html.split('id="close-consider"', 1)[1].split('id="join-consider"', 1)[0]
+    assert 'data-hop="qualify"><a href="#success"' in close_board
+    assert 'data-hop="upsell"><a href="#commercial"' in close_board
     assert 'data-join-refuse="join_as_launch"' in html
     assert 'data-join-refuse="stitch_as_live_pin"' in html
     assert 'data-join-refuse="licensed_as_wired_firm"' in html
@@ -164,8 +171,19 @@ def test_release_is_320_honest_join():
     assert "#join-zeros" in css
     assert ".join-facts" in css
     assert "#join-hops a" in css
+    assert "#close-hops a" in css
     assert ".pages-facts.join-facts" in css
     assert "[popover].owner-book a { white-space: nowrap; }" in css
+    assert "data.manage_ops_as_closed || data.certify_as_running" in js
+    llms = public_llms().lower()
+    assert "honest join sits on #firm" in llms
+    assert "the join is not launch" in llms
+    assert "a certified simulation is not a running firm" in llms
+    search = public_search()
+    join_rec = next(item for item in search["records"] if item["id"] == "join")
+    assert join_rec["href"] == "index.html#join-consider"
+    assert "the join is not launch" in join_rec["text"].lower()
+    assert "not a /join route" in join_rec["text"].lower()
     assert "The join is launch" in identify
     assert "Open join" in identify
     assert 'href="index.html#join-consider">Open join' in identify

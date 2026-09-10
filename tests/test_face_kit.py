@@ -49,6 +49,10 @@ def test_public_kit_is_fail_closed():
     assert "honest protect sits on #ip" in llms
     assert "honest hold sits on #missing" in llms
     assert "a vault hold is not live_pin_ok" in llms
+    assert "honest close sits on #path" in llms
+    assert "honest join sits on #firm" in llms
+    assert "the join is not launch" in llms
+    assert "a certified simulation is not a running firm" in llms
     search = public_search()
     assert search["engine"] == "catalog_minisearch"
     assert {item["id"] for item in search["records"]} >= {
@@ -63,6 +67,8 @@ def test_public_kit_is_fail_closed():
         "remainder",
         "protect",
         "hold",
+        "close",
+        "join",
     }
     twin = next(item for item in search["records"] if item["id"] == "twin-review")
     assert "Gold 99.5" in twin["text"]
