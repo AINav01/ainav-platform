@@ -8957,7 +8957,7 @@
       "Honest close sits on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight. First glance stays the write rail. Not a /close route. Not LIVE_PIN_OK.",
       "3.19.0 honest close sits on #path. This plane recorded the client sales hops: qualify, proof, book, contract, fulfill, twin, data, produce, bill, keep, upsell. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Owner-only stays owner-only. Not from this plane.",
       "3.19.0 honest close is catalog law: recorded. A 10/10 close is not launch. A booking is not recognized revenue. A catalog list is not collection. Complements stay eight. Not LIVE_PIN_OK.",
-      "Honest join sits on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
+      "Honest join sits on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
       "3.20.0 honest join sits on #firm. This plane recorded the join hops: write, plan, close, fulfill, produce, microsoft, fabric, website, operate, keep, certify. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Owner-only stays owner-only. Not from this plane.",
       "3.20.0 honest join is catalog law: recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK."
     ],
@@ -15334,9 +15334,9 @@
     "billing_provider": false,
     "running_firm": false,
     "href": "#firm",
-    "site": "Honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
-    "lede": "The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight.",
-    "note": "Honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK.",
+    "site": "Honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
+    "lede": "The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight.",
+    "note": "Honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight. Not LIVE_PIN_OK.",
     "facts": [
       {
         "id": "join",

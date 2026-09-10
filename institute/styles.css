@@ -2018,8 +2018,13 @@ table.law tr[data-group] th {
 .close-facts [data-fact="close"],
 .join-facts [data-fact="join"] { box-shadow: inset 3px 0 0 var(--gold-2); }
 #join-hops-kicker,
-#join-facts-kicker {
+#join-facts-kicker,
+#close-hops-kicker,
+#close-facts-kicker {
   margin: 1.05rem 0 0.4rem;
+}
+.join-walk {
+  margin: 0.7rem 0 0.15rem;
 }
 #join-hops a,
 #close-hops a {
@@ -2044,7 +2049,8 @@ table.law tr[data-group] th {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
-.pages-facts.join-facts {
+.pages-facts.join-facts,
+.pages-facts.close-facts {
   margin-top: 0.35rem;
   padding: 0.7rem 0.85rem 0.8rem;
   background: color-mix(in srgb, var(--void) 5%, var(--paper));
@@ -2052,7 +2058,8 @@ table.law tr[data-group] th {
   box-shadow: none;
   grid-template-columns: 1fr;
 }
-.pages-facts.join-facts section {
+.pages-facts.join-facts section,
+.pages-facts.close-facts section {
   min-height: 0;
   padding: 0.4rem 0.15rem 0.4rem 0.7rem;
   background: transparent;
@@ -2062,12 +2069,14 @@ table.law tr[data-group] th {
   gap: 0.45rem 0.75rem;
   align-items: baseline;
 }
-.pages-facts.join-facts [data-fact="join"] {
+.pages-facts.join-facts [data-fact="join"],
+.pages-facts.close-facts [data-fact="close"] {
   box-shadow: none;
   border-left: 3px solid var(--gold-2);
   padding-left: 0.7rem;
 }
-.pages-facts.join-facts h3 {
+.pages-facts.join-facts h3,
+.pages-facts.close-facts h3 {
   margin: 0;
   font-family: var(--mono);
   font-size: 0.68rem;
@@ -2075,7 +2084,8 @@ table.law tr[data-group] th {
   text-transform: uppercase;
   color: var(--gold-ink);
 }
-.pages-facts.join-facts p {
+.pages-facts.join-facts p,
+.pages-facts.close-facts p {
   font-size: 0.86rem;
 }
 @media (min-width: 900px) {
@@ -2084,10 +2094,12 @@ table.law tr[data-group] th {
 }
 @media (min-width: 1100px) {
   #join-hops { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .pages-facts.join-facts {
+  .pages-facts.join-facts,
+  .pages-facts.close-facts {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-  .pages-facts.join-facts section {
+  .pages-facts.join-facts section,
+  .pages-facts.close-facts section {
     grid-template-columns: 1fr;
     gap: 0.28rem;
   }

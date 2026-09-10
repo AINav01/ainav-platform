@@ -148,13 +148,13 @@
   "is_sku": false,
   "join_as_launch": false,
   "kind": "ainav.honest.join.v1",
-  "lede": "The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight.",
+  "lede": "The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight.",
   "licensed_as_wired_firm": false,
   "live": false,
   "live_pin_ok": false,
   "manage_ops_as_closed": false,
   "microsoft_product": "Microsoft marks",
-  "note": "Honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK.",
+  "note": "Honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight. Not LIVE_PIN_OK.",
   "owner_playbook": {
     "actor": "James Hodnett",
     "cannot_be_done_by": "cursor.cloud_agent",
@@ -227,7 +227,7 @@
       "title": "A certified simulation as a running firm"
     }
   ],
-  "site": "Honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
+  "site": "Honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
   "stitch_as_live_pin": false,
   "this_agent_cannot": [
     "Treat the join as launch.",

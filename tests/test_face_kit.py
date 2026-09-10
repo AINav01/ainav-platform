@@ -53,6 +53,7 @@ def test_public_kit_is_fail_closed():
     assert "honest join sits on #firm" in llms
     assert "the join is not launch" in llms
     assert "a certified simulation is not a running firm" in llms
+    assert "a 10/10+ quality check is not launch" in llms
     search = public_search()
     assert search["engine"] == "catalog_minisearch"
     assert {item["id"] for item in search["records"]} >= {

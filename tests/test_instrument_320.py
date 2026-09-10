@@ -130,9 +130,16 @@ def test_release_is_320_honest_join():
     for hop in join["hops"]:
         assert hop["note"] in join_board
     assert "a 10/10 quality check is not launch" in join_board.lower()
+    assert "a 10/10+ quality check is not launch" in join_board.lower()
+    assert 'id="join-is-plus"' in join_board
+    assert html.count("Walk the join") >= 8
     close_board = html.split('id="close-consider"', 1)[1].split('id="join-consider"', 1)[0]
     assert 'data-hop="qualify"><a href="#success"' in close_board
     assert 'data-hop="upsell"><a href="#commercial"' in close_board
+    assert 'id="close-hops-kicker"' in close_board
+    assert 'id="close-facts-kicker"' in close_board
+    for hop in cat["honest_close"]["hops"]:
+        assert hop["note"] in close_board
     assert 'data-join-refuse="join_as_launch"' in html
     assert 'data-join-refuse="stitch_as_live_pin"' in html
     assert 'data-join-refuse="licensed_as_wired_firm"' in html
@@ -183,8 +190,12 @@ def test_release_is_320_honest_join():
     join_rec = next(item for item in search["records"] if item["id"] == "join")
     assert join_rec["href"] == "index.html#join-consider"
     assert "the join is not launch" in join_rec["text"].lower()
+    assert "a 10/10+ quality check is not launch" in join_rec["text"].lower()
     assert "not a /join route" in join_rec["text"].lower()
+    assert "a 10/10+ quality check is not launch" in llms
     assert "The join is launch" in identify
+    assert "10/10+ is launch" in identify
+    assert "10/10+ is launch" in app
     assert "Open join" in identify
     assert 'href="index.html#join-consider">Open join' in identify
     assert "The join is launch" in app

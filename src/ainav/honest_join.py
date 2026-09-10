@@ -128,6 +128,8 @@ def validate_honest_join(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest join lede keeps the join is not launch", reason_code="CATALOG_REVIEW")
     if "licensed-not-wired is not a wired firm" not in lede:
         raise IntegrityError("honest join lede keeps licensed-not-wired is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "a 10/10+ quality check is not launch" not in lede:
+        raise IntegrityError("honest join lede keeps a 10/10+ quality check is not launch", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest join" not in site:
         raise IntegrityError("honest join site keeps honest join", reason_code="CATALOG_REVIEW")

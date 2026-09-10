@@ -229,6 +229,13 @@ def test_validate_honest_join_more_fail_closed():
     lede_wired["honest_join"]["lede"] = "The join is not launch."
     with pytest.raises(IntegrityError):
         validate_honest_join(lede_wired)
+    lede_plus = copy.deepcopy(load_catalog())
+    lede_plus["honest_join"]["lede"] = lede_plus["honest_join"]["lede"].replace(
+        "A 10/10+ quality check is not launch.",
+        "Quality is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_join(lede_plus)
     site = copy.deepcopy(load_catalog())
     site["honest_join"]["site"] = "Join board. The join is not launch."
     with pytest.raises(IntegrityError):
