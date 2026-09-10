@@ -2428,12 +2428,16 @@ table.law tr[data-group] th {
   #agent-intent-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 .industry-cert-rows section[id]:target,
-.industry-cert-rows section[id].is-landed,
+.industry-cert-rows section[id].is-landed {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  background: color-mix(in srgb, var(--gold) 14%, var(--paper));
+}
 .industry-area:target,
 .industry-area.is-landed,
 #agent-intent:target,
 #agent-intent.is-landed {
-  outline: 2px solid color-mix(in srgb, var(--gold) 70%, var(--paper));
+  outline: 2px solid var(--gold);
   outline-offset: 6px;
 }
 .industry-area {
