@@ -1,0 +1,98 @@
+"""Industry area narratives stay segmented, honest, and not a named vertical."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from agent_gov.errors import IntegrityError
+from ainav.catalog import load_catalog
+from ainav.face_kit import public_llms, public_search
+from ainav.industry_certify import validate_honest_industry
+
+
+def test_industry_areas_tell_need_and_why():
+    html = Path("institute/index.html").read_text(encoding="utf-8")
+    css = Path("institute/styles.css").read_text(encoding="utf-8")
+    js = Path("institute/site.js").read_text(encoding="utf-8")
+    packs = html[html.index('id="packs"') : html.index('id="governance"')]
+    assert 'id="industry-narratives"' in packs
+    assert 'id="industry-narr-lede"' in packs
+    assert "Five industry areas" in packs
+    assert "A 10/10+ quality check is not launch" in packs
+    assert "A named vertical is not a SKU" in packs
+    assert 'id="industry-area-books"' in packs
+    assert 'id="industry-area-sales"' in packs
+    assert 'id="industry-area-keep"' in packs
+    assert 'id="industry-area-libraries"' in packs
+    assert 'id="industry-area-repositories"' in packs
+    assert "Need: an unauthorized Business Central journal" in packs
+    assert "Need: an unauthorized quote override" in packs
+    assert "Need: the examiner cannot see who admitted" in packs
+    assert "Need: a desk without identity and notify" in packs
+    assert "Need: law has to live somewhere" in packs
+    assert "Standard inclusions" in packs
+    assert "industry.treasury" in packs
+    assert "lib.l1.wedge" in packs
+    assert "lib.udual.sales" in packs
+    assert "lib.padm.records" in packs
+    assert "repo.catalog" in packs
+    assert "Never free with P-ADM" in packs
+    assert "Not a named auditor" in packs
+    assert "healthcare" not in packs.lower()
+    assert "manufacturing sku" not in packs.lower()
+    assert "licensed as wired" not in packs.lower()
+    assert "nvidia inception member" not in packs.lower()
+    assert html.count("Owner book") == 1
+    assert 'id="industry.treasury"' in packs
+    assert 'id="industry.sales"' in packs
+    assert 'id="industry.retention"' in packs
+    assert "industry-narr-lede" not in js
+    assert "#industry-narratives" in css
+    assert "#industry-area-hops a" in css
+    assert ".industry-area-bands" in css
+    nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
+    assert 'href="#packs"' not in nav
+    assert "Walk the industry" in html
+
+
+def test_industry_catalog_and_search_name_the_areas():
+    body = load_catalog()["industry_certify"]
+    for text in (body["lede"], body["note"], body["site"]):
+        low = text.lower()
+        assert "five" in low and "areas" in low
+        assert "a 10/10+ quality check is not launch" in low
+        assert "industry certify is not launch" in low
+    llms = public_llms().lower()
+    assert "five industry areas" in llms
+    assert "a 10/10+ quality check is not launch" in llms
+    search = public_search()
+    packs = next(item for item in search["records"] if item["id"] == "packs")
+    assert packs["href"] == "index.html#packs"
+    assert "five industry areas" in packs["text"].lower()
+    assert "need and why" in packs["text"].lower()
+    twin = Path("institute/twin.html").read_text(encoding="utf-8").lower()
+    assert "five areas" in twin
+    assert "a 10/10+ quality check is not launch" in twin
+
+
+def test_industry_lede_refuses_area_fiction():
+    cat = load_catalog()
+    missing_plus = dict(cat)
+    missing_plus["industry_certify"] = dict(cat["industry_certify"])
+    missing_plus["industry_certify"]["lede"] = (
+        "Detail every industry desk: standard or upsell. "
+        "Five industry areas tell the need and the why: books, sales deepen, keep. "
+        "Industry certify is not launch. Packs are not SKUs."
+    )
+    with pytest.raises(IntegrityError, match="10/10"):
+        validate_honest_industry(missing_plus)
+    missing_areas = dict(cat)
+    missing_areas["industry_certify"] = dict(cat["industry_certify"])
+    missing_areas["industry_certify"]["lede"] = (
+        "Detail every industry desk: standard or upsell. Need and why. "
+        "Industry certify is not launch. A 10/10+ quality check is not launch."
+    )
+    with pytest.raises(IntegrityError, match="segmented industry areas"):
+        validate_honest_industry(missing_areas)

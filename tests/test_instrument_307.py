@@ -44,6 +44,8 @@ def test_release_is_307_honest_industry():
     assert "packs are not skus" in industry["note"].lower()
     assert "industry certify is not launch" in industry["note"].lower()
     assert "industry certify is not launch" in industry["lede"].lower()
+    assert "a 10/10+ quality check is not launch" in industry["lede"].lower()
+    assert "five industry areas" in industry["lede"].lower()
     assert cat["programs"]["website"]["honest_industry"] is True
     assert cat["programs"]["website"]["honest_readiness"] is True
     assert cat["programs"]["website"]["honest_industry_live"] is False

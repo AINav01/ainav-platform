@@ -130,11 +130,21 @@ def validate_honest_industry(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest industry note keeps packs are not SKUs", reason_code="CATALOG_REVIEW")
     if "industry certify is not launch" not in note:
         raise IntegrityError("honest industry note keeps industry certify is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10+ quality check is not launch" not in note:
+        raise IntegrityError("honest industry note keeps 10/10+ is not launch", reason_code="CATALOG_REVIEW")
+    if "five areas" not in note and "five industry areas" not in note:
+        raise IntegrityError("honest industry note keeps five areas", reason_code="CATALOG_REVIEW")
     lede = str(body.get("lede") or "").lower()
     if "standard" not in lede or "upsell" not in lede:
         raise IntegrityError("honest industry lede keeps standard and upsell", reason_code="CATALOG_REVIEW")
     if "industry certify is not launch" not in lede:
         raise IntegrityError("honest industry lede keeps industry certify is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10+ quality check is not launch" not in lede:
+        raise IntegrityError("honest industry lede keeps 10/10+ is not launch", reason_code="CATALOG_REVIEW")
+    if "books" not in lede or "sales deepen" not in lede or "keep" not in lede:
+        raise IntegrityError("honest industry lede keeps segmented industry areas", reason_code="CATALOG_REVIEW")
+    if "need" not in lede or "why" not in lede:
+        raise IntegrityError("honest industry lede keeps need and why", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest industry" not in site:
         raise IntegrityError("honest industry site keeps honest industry", reason_code="CATALOG_REVIEW")
@@ -144,6 +154,10 @@ def validate_honest_industry(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest industry site keeps industry certify is not launch", reason_code="CATALOG_REVIEW")
     if "not a /industry route" not in site:
         raise IntegrityError("honest industry site keeps not a /industry route", reason_code="CATALOG_REVIEW")
+    if "a 10/10+ quality check is not launch" not in site:
+        raise IntegrityError("honest industry site keeps 10/10+ is not launch", reason_code="CATALOG_REVIEW")
+    if "five industry areas" not in site:
+        raise IntegrityError("honest industry site keeps five industry areas", reason_code="CATALOG_REVIEW")
     operating = catalog.get("operating") if isinstance(catalog.get("operating"), dict) else {}
     if operating.get("operator") != "cursor.cloud_agent":
         raise IntegrityError("recorded operator stays cursor.cloud_agent", reason_code="CATALOG_REVIEW")
