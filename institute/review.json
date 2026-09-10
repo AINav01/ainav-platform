@@ -1654,7 +1654,7 @@
         "filing": false,
         "fourth_sku": false,
         "fully_operable": true,
-        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK. Honest control. Need. Consequence. Now. Around the corner. GENIUS and CLARITY claimed=false. Not AI Governess.",
+        "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK. Honest control. Need. Consequence. Now. Around the corner. GENIUS and CLARITY claimed=false. Not AI Governess.",
         "honest_control": true,
         "kind": "ainav.industry_drawer.v1",
         "lanes": [
@@ -1806,11 +1806,11 @@
           }
         ],
         "launch": false,
-        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Company policy is not a SKU.",
+        "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Company policy is not a SKU.",
         "live": false,
         "live_pin_ok": false,
         "named_vertical": false,
-        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK. Honest control. If you don't have it, the write does not land. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Not AI Governess.",
+        "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK. Honest control. If you don't have it, the write does not land. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Not AI Governess.",
         "owner_only": [
           "Signed L1",
           "Assigned industry packs on a named twin",
@@ -1888,10 +1888,10 @@
           "honest_zeros": true,
           "kind": "ainav.industry_rooms.v1",
           "lead": "bc.general_journal.post",
-          "lede": "Room 1 is books. Room 2 is refuse. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+          "lede": "Room 1 is books. Room 2 is refuse. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
           "live": false,
           "named_vertical": false,
-          "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+          "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
           "operable": true,
           "refuse_is_visible": true,
           "room_1": [
@@ -1899,21 +1899,21 @@
               "href": "#packs",
               "id": "bank",
               "name": "Bank desk",
-              "note": "industry.bank. Same admit plane. Not 17a-4.",
+              "note": "Agent Intent: banks. industry.bank. Same admit plane. Need: an unauthorized bank rec. Not 17a-4.",
               "state": "recorded"
             },
             {
               "href": "#packs",
               "id": "reserve",
               "name": "Reserve journal / fund NAV",
-              "note": "Stablecoin reserve journal or fund NAV in BC is Room 1.",
+              "note": "Agent Intent: stablecoin reserve or fund NAV. Stablecoin reserve journal or fund NAV in BC is Room 1. Mint stays Room 2.",
               "state": "recorded"
             },
             {
               "href": "#industry",
               "id": "receivable",
               "name": "Booked receivable",
-              "note": "Tokenized RWA on the books is Room 1. Issuing the token is Room 2.",
+              "note": "Agent Intent: RWAs on the books. Tokenized RWA booked receivable is Room 1. Issuing the token is Room 2.",
               "state": "recorded"
             }
           ],
@@ -1966,7 +1966,7 @@
           ],
           "rooms_are_live": false,
           "seventeen_a4": false,
-          "site": "Fully operable industry rooms on #industry. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Room 2 records stay 0. Not a /crypto route. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+          "site": "Fully operable industry rooms on #industry. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Agent Intent sits on #agent-intent. Room 2 records stay 0. Not a /crypto route. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
           "spine_states": {
             "after_l1": "after_l1",
             "room_1": "ready",
@@ -1980,7 +1980,7 @@
           "wells_are_live": false
         },
         "sit_down": true,
-        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route. Honest control on #industry. Need is #control. Consequence is #risk. GENIUS and CLARITY stay claimed=false. Not AI Governess.",
+        "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Agent Intent sits on #agent-intent. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route. Honest control on #industry. Need is #control. Consequence is #risk. GENIUS and CLARITY stay claimed=false. Not AI Governess.",
         "sku": false
       },
       "live": false,

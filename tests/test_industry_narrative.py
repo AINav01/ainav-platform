@@ -64,11 +64,36 @@ def test_industry_areas_tell_need_and_why():
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#packs"' not in nav
     assert html.count("Walk the industry") >= 6
+    assert html.count("Walk Agent Intent") >= 6
     assert 'href="#industry.treasury"' in html.split('id="industry-day"', 1)[1]
     assert 'href="#industry-area-libraries"' in html.split('id="industry-day"', 1)[1]
     assert 'href="#industry-area-repositories"' in html.split('id="industry-day"', 1)[1]
     assert 'href="#industry.bank"' in html.split('id="industry-rooms"', 1)[1]
     assert 'href="#industry.treasury"' in html.split('id="pack-industry"', 1)[1]
+    intent = html[html.index('id="agent-intent"') : html.index('id="industry-rooms"')]
+    assert "Agent Intent is what the buyer says" in intent
+    assert "Need: an unauthorized bank rec" in intent
+    assert "Need: a reserve journal two humans did not admit" in intent
+    assert "Need: a booked RWA receivable without two seats" in intent
+    assert "Stablecoin mint / burn" in intent
+    assert "Tokenization / RWA issuance" in intent
+    assert "Crypto asset management" in intent
+    assert "Custody / wallet / ATS" in intent
+    assert "Tokenized deposits" in intent
+    assert "MiCA / CASP product" in intent
+    assert "A named vertical is not a SKU" in intent
+    assert "Not a /crypto route" in intent
+    assert 'data-room-refuse="stablecoin_mint"' in intent
+    assert 'data-room-refuse="rwa_issue"' in intent
+    assert 'data-room-refuse="crypto_ams"' in intent
+    assert "agent-intent-lede" not in js
+    assert "#agent-intent" in css
+    assert "#agent-intent-walks" in css
+    nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
+    assert 'href="#crypto"' not in nav
+    assert 'href="#token"' not in nav
+    assert 'href="#rwa"' not in nav
+    assert 'href="#agent-intent"' not in nav
 
 
 def test_industry_catalog_and_search_name_the_areas():
@@ -81,6 +106,7 @@ def test_industry_catalog_and_search_name_the_areas():
     llms = public_llms().lower()
     assert "five industry areas" in llms
     assert "walk the five areas" in llms
+    assert "agent intent sits on #agent-intent" in llms
     assert "a 10/10+ quality check is not launch" in llms
     search = public_search()
     packs = next(item for item in search["records"] if item["id"] == "packs")
@@ -88,6 +114,14 @@ def test_industry_catalog_and_search_name_the_areas():
     assert "five industry areas" in packs["text"].lower()
     assert "need and why" in packs["text"].lower()
     assert "walk the five areas" in packs["text"].lower()
+    intent = next(item for item in search["records"] if item["id"] == "agent-intent")
+    assert intent["href"] == "index.html#agent-intent"
+    assert "banks" in intent["text"].lower()
+    assert "stablecoin" in intent["text"].lower()
+    assert "tokenization" in intent["text"].lower()
+    assert "crypto asset management" in intent["text"].lower()
+    assert "a named vertical is not a sku" in intent["text"].lower()
+    assert "not a /crypto route" in intent["text"].lower()
     books = next(item for item in search["records"] if item["id"] == "industry-books")
     assert books["href"] == "index.html#industry-area-books"
     sales = next(item for item in search["records"] if item["id"] == "industry-sales")
@@ -102,9 +136,13 @@ def test_industry_catalog_and_search_name_the_areas():
     assert "five areas" in twin.lower()
     assert "a 10/10+ quality check is not launch" in twin.lower()
     assert 'href="index.html#industry-narratives"' in twin
+    assert 'href="index.html#agent-intent"' in twin
+    assert "Walk Agent Intent" in twin
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
     assert 'href="index.html#industry-narratives"' in identify
     assert "Walk the industry" in identify
+    assert 'href="index.html#agent-intent"' in identify
+    assert "Walk Agent Intent" in identify
 
 
 def test_industry_lede_refuses_area_fiction():

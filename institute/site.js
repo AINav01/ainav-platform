@@ -3795,6 +3795,7 @@
   bindIndustryRoomRefuses(document.getElementById("industry-room-spine"));
   bindIndustryRoomRefuses(document.getElementById("industry-day"));
   bindIndustryRoomRefuses(document.getElementById("industry-control"));
+  bindIndustryRoomRefuses(document.getElementById("agent-intent"));
 
   var industryCertify = document.getElementById("industry-certify");
   if (industryCertify) {

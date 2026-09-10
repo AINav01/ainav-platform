@@ -1585,6 +1585,48 @@ table.law tr[data-group] th {
 .industry-rooms [data-room="room_2"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
+#agent-intent {
+  margin: 1.2rem 0 1.35rem;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border: 1px dashed color-mix(in srgb, var(--gold-2) 30%, var(--rule));
+  background: color-mix(in srgb, var(--void) 4%, var(--paper));
+  scroll-margin-top: 6.5rem;
+}
+#agent-intent h3 {
+  margin: 0.15rem 0 0.55rem;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+}
+#agent-intent-lede {
+  max-width: 44rem;
+  font-size: clamp(1.04rem, 1.7vw, 1.22rem);
+  line-height: 1.42;
+}
+#agent-intent-zeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.15rem;
+  margin: 0.85rem 0 0.15rem;
+  padding: 0.7rem 0.95rem;
+  background: var(--void);
+  color: var(--void-ink);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+#agent-intent-walk-kicker,
+#agent-intent-refuse-kicker,
+#agent-intent-kicker {
+  margin: 1.05rem 0 0.4rem;
+}
+#agent-intent-refuses li {
+  box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
+}
+#agent-intent-walks li {
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+#agent-intent button.room-refuse {
+  position: relative;
+  z-index: 1;
+}
 .industry-control {
   margin-top: 1.15rem;
   padding-top: 0.15rem;
@@ -2418,7 +2460,9 @@ table.law tr[data-group] th {
 .industry-control button.room-refuse,
 .industry-control button.room-refuse b,
 #industry-room-spine button.room-refuse,
-#industry-room-spine button.room-refuse b {
+#industry-room-spine button.room-refuse b,
+#agent-intent button.room-refuse,
+#agent-intent button.room-refuse b {
   color: var(--gold-2);
   background: transparent;
   border: 0;
@@ -2430,11 +2474,13 @@ table.law tr[data-group] th {
 .industry-day [data-lane="refuse"] button.room-refuse:hover b,
 .industry-rooms button.room-refuse:hover b,
 .industry-control button.room-refuse:hover b,
-#industry-room-spine button.room-refuse:hover b { color: var(--gold); }
+#industry-room-spine button.room-refuse:hover b,
+#agent-intent button.room-refuse:hover b { color: var(--gold); }
 .industry-day [data-lane="refuse"] button.room-refuse[aria-pressed="true"] b,
 .industry-rooms button.room-refuse[aria-pressed="true"] b,
 .industry-control button.room-refuse[aria-pressed="true"] b,
-#industry-room-spine button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
+#industry-room-spine button.room-refuse[aria-pressed="true"] b,
+#agent-intent button.room-refuse[aria-pressed="true"] b { color: var(--hold); }
 .universe-spine li[data-state="refused"] {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }

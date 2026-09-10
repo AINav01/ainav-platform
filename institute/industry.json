@@ -12,7 +12,7 @@
   "is_connection": false,
   "is_sku": false,
   "kind": "ainav.honest.industry.v1",
-  "lede": "Detail every industry desk: standard or upsell, required SKU, modules, paired library, shared repositories. Five industry areas tell the need and the why: books, sales deepen, keep, libraries, repositories. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. Credit, inventory, and pricing stay unpaired until a dedicated library. A named vertical is not a SKU.",
+  "lede": "Detail every industry desk: standard or upsell, required SKU, modules, paired library, shared repositories. Five industry areas tell the need and the why: books, sales deepen, keep, libraries, repositories. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. Credit, inventory, and pricing stay unpaired until a dedicated library. A named vertical is not a SKU.",
   "libraries": [
     "lib.l1.wedge",
     "lib.udual.sales",
@@ -74,7 +74,7 @@
     "ip.reserved.export"
   ],
   "named_vertical_is_sku": false,
-  "note": "Honest industry certify. Standard and upsell desks, modules, libraries, and repositories are catalog law by industry. Five areas: books, sales deepen, keep, libraries, repositories. Need and why sit with inclusions. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. Not LIVE_PIN_OK. Unpaired packs: credit, inventory, pricing. Unpaired libraries stay inventory.",
+  "note": "Honest industry certify. Standard and upsell desks, modules, libraries, and repositories are catalog law by industry. Five areas: books, sales deepen, keep, libraries, repositories. Need and why sit with inclusions. Agent Intent walks Room 1 versus Room 2 refuse. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. Not LIVE_PIN_OK. Unpaired packs: credit, inventory, pricing. Unpaired libraries stay inventory.",
   "owner_playbook": {
     "actor": "James Hodnett",
     "cannot_be_done_by": "cursor.cloud_agent",
@@ -659,7 +659,7 @@
       "sku": false
     }
   ],
-  "site": "Honest industry certify on #packs. Five industry areas: books, sales deepen, keep, libraries, repositories. Need and why sit with standard inclusions, upsells, libraries, and shared repositories. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. First glance stays the write rail. Not a named vertical. Not a /industry route. Not LIVE_PIN_OK.",
+  "site": "Honest industry certify on #packs. Five industry areas: books, sales deepen, keep, libraries, repositories. Need and why sit with standard inclusions, upsells, libraries, and shared repositories. Agent Intent walks Room 1 books versus Room 2 refuse. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. First glance stays the write rail. Not a named vertical. Not a /industry route. Not LIVE_PIN_OK.",
   "this_agent_cannot": [
     "Treat an industry pack as a SKU.",
     "Treat a library as a SKU.",
