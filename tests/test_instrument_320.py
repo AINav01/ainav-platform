@@ -108,8 +108,24 @@ def test_release_is_320_honest_join():
     assert 'id="join-zeros"' in html
     assert 'id="join-hops"' in html
     assert 'id="join-facts"' in html
+    assert 'id="join-hops-kicker"' in html
+    assert 'id="join-facts-kicker"' in html
+    assert "Five facts" in html
     assert 'data-hop="write"' in html
     assert 'data-hop="certify"' in html
+    join_board = html.split('id="join-consider"', 1)[1].split('id="firm-console"', 1)[0]
+    assert 'data-hop="write"><a href="#buyer"' in join_board
+    assert 'data-hop="plan"><a href="#business"' in join_board
+    assert 'data-hop="close"><a href="#close-consider"' in join_board
+    assert 'data-hop="fulfill"><a href="#path"' in join_board
+    assert 'data-hop="produce"><a href="#firm"' in join_board
+    assert 'data-hop="microsoft"><a href="#firm-ms"' in join_board
+    assert 'data-hop="fabric"><a href="#fabric"' in join_board
+    assert 'data-hop="website"><a href="#whole"' in join_board
+    assert 'data-hop="operate"><a href="#agent-tools"' in join_board
+    assert 'data-hop="keep"><a href="#ops"' in join_board
+    assert 'data-hop="certify"><a href="#success"' in join_board
+    assert 'href="/join"' not in join_board
     assert 'data-join-refuse="join_as_launch"' in html
     assert 'data-join-refuse="stitch_as_live_pin"' in html
     assert 'data-join-refuse="licensed_as_wired_firm"' in html
@@ -147,6 +163,9 @@ def test_release_is_320_honest_join():
     assert "#protect-consider {" in css
     assert "#join-zeros" in css
     assert ".join-facts" in css
+    assert "#join-hops a" in css
+    assert ".pages-facts.join-facts" in css
+    assert "[popover].owner-book a { white-space: nowrap; }" in css
     assert "The join is launch" in identify
     assert "Open join" in identify
     assert 'href="index.html#join-consider">Open join' in identify
