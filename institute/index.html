@@ -2108,35 +2108,6 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
       <h2>Packs, libraries, services</h2>
       <p class="kicker">Attach after the required SKU · sit-down on #industry · not SKUs</p>
       <p class="note">Industry desks, libraries, fee-for-service hours, and repositories are not SKUs. The sit-down industry drawer walks here. Five industry areas tell the need and the why. Catalog list from <code>packs.json</code>.</p>
-      <div class="split">
-        <div>
-          <h3>Industry</h3>
-          <ul class="stack" id="pack-industry">
-            <li><strong>industry.treasury</strong> — included with L1. Journal wedge.</li>
-            <li><strong>industry.payables / bank / cash / fixed_asset / inventory</strong> — priced L1 desks.</li>
-            <li><strong>industry.control_plane / industry.org / industry.independence</strong> — included with L1. Plane, org seating, and Microsoft-is-not-the-failsafe.</li>
-            <li><strong>industry.cascade</strong> — priced L1 desk. Client's customers utilize AI. Client's two humans admit.</li>
-            <li><strong>industry.off_switch / rollback</strong> — priced L1 desks. Fail-closed freeze. Compensating write. Not a time machine.</li>
-            <li><strong>industry.sales / quote_desk</strong> — included with paid U-DUAL.</li>
-            <li><strong>industry.invoice_desk / credit / returns / pricing</strong> — priced U-DUAL desks.</li>
-            <li><strong>industry.retention</strong> — priced P-ADM keep. Not live Defender.</li>
-            <li><strong>industry.second_record</strong> — priced P-ADM keep. Sealed DecisionRecord. Not a certificate.</li>
-            <li><strong>industry.board</strong> — priced P-ADM keep. Owner / board / examiner evidence. Not a filing.</li>
-            <li><strong>industry.internal_audit</strong> — priced P-ADM keep. Seating map plus second record. Not a named auditor.</li>
-            <li><strong>industry.ip_keep</strong> — priced P-ADM keep. Reserved-work notice. Not a patent. Not uncopyable.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Libraries, fee-for-service, repositories</h3>
-          <ul class="stack" id="pack-libraries">
-            <li><strong>lib.l1.*</strong> — L1 seating. Not SKUs.</li>
-            <li><strong>lib.udual.*</strong> — paid U-DUAL. Never free with P-ADM.</li>
-            <li><strong>lib.padm.*</strong> — P-ADM keep. Not live Sentinel.</li>
-            <li><strong>Acceptance Kit</strong> — inside L1. Desk workshop / keep wiring $3,500/day after L1.</li>
-            <li><strong>repo.packs / repo.runbooks / repo.owner / repo.legal</strong> — not SKUs. Not live.</li>
-          </ul>
-        </div>
-      </div>
       <div id="industry-narratives">
         <p class="kicker" id="industry-narr-kicker">Five industry areas · walk the need and the why · not named verticals</p>
         <p class="lede" id="industry-narr-lede">
@@ -2164,143 +2135,146 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <article class="industry-area" id="industry-area-books" data-area="books">
           <p class="kicker">Room 1 · books · L1 · not 17a-4</p>
           <h3>Books</h3>
+          <p class="lede" id="industry-books-story">
+            Controllers already have two-person SOD on Business Central. That SOD was built for people.
+            It does not sit in front of Copilot or a customer's model. The week-one prove is one journal on this twin.
+          </p>
           <p class="need" id="industry-books-need">Need: an unauthorized Business Central journal — or a payable, bank rec, cash receipt, asset journal, or inventory adjust — that client AI drafted and two humans did not admit.</p>
           <p class="why" id="industry-books-why">Why: controllers already have two-person SOD. They do not have Job C in front of the write. Week-one prove is the journal wedge. Same-plane desks deepen after L1. Not a fourth SKU. Not a named vertical.</p>
-          <div class="industry-area-bands">
-            <section data-band="standard">
-              <h4>Standard inclusions</h4>
-              <p>Included with L1, not free. <a href="#industry.treasury">industry.treasury</a> + lib.l1.wedge is week-one. Controller seating is the same journal, different humans. AI failsafe, human control plane, client org seating, and independent plane sit with L1 so the failsafe is the plane, not Microsoft.</p>
-              <ul class="stack">
-                <li>industry.treasury · lib.l1.wedge · bc.general_journal.post</li>
-                <li>industry.controller · same journal · seat B if treasury is seat A</li>
-                <li>industry.governance · lib.l1.failsafe · client AI may draft</li>
-                <li>industry.control_plane · lib.l1.plane · one gate over every drafting AI</li>
-                <li>industry.org · lib.l1.org · existing SOD. Do not invent named heads</li>
-                <li>industry.independence · lib.l1.independence · vendor of the AI is not the failsafe</li>
-              </ul>
-            </section>
-            <section data-band="upsell">
-              <h4>Upsells</h4>
-              <p>Priced L1 desks after the required SKU. Same admit plane. Hours never mint a SKU.</p>
-              <ul class="stack">
-                <li>industry.payables · lib.l1.payables · $6–10k / year</li>
-                <li>industry.bank · lib.l1.bank · same plane as the journal</li>
-                <li>industry.cash · lib.l1.cash · receipt and sales invoice</li>
-                <li>industry.fixed_asset · lib.l1.fixed_asset</li>
-                <li>industry.inventory · unpaired until a dedicated library</li>
-                <li>industry.cascade · lib.l1.cascade · customer's AI drafts; client's two humans admit</li>
-                <li>industry.off_switch · lib.l1.off_switch · freeze grants, not Copilot</li>
-                <li>industry.rollback · lib.l1.wedge · a new admitted reversing journal. Not a time machine</li>
-              </ul>
-            </section>
+          <p class="kicker">Four facts · not hops</p>
+          <div class="pages-facts about-facts industry-area-facts" aria-label="Books facts">
+            <section data-fact="standard"><h3>Standard</h3><p>Six L1 seats. Journal first. Included, not free.</p></section>
+            <section data-fact="upsell"><h3>Upsell</h3><p>Eight priced L1 desks after the SKU.</p></section>
+            <section data-fact="libraries"><h3>Libraries</h3><p>lib.l1.* seats Entra and notify. Not products.</p></section>
+            <section data-fact="repos"><h3>Repos</h3><p>Shared. Not live. Room 2 stays refuse.</p></section>
           </div>
-          <p class="note">Libraries on books seat Entra verify and Teams notify with the BC module. They are not products. Shared repositories hold catalog law and runbooks. They are not live. Inventory stays unpaired. Room 2 — mint, tokenization, wallet — stays refuse.</p>
+          <p class="kicker">Standard inclusions · walk the desks</p>
+          <ol class="industry-desk-hops" aria-label="Books standard desks">
+            <li><a href="#industry.treasury"><b>Treasury</b><span>industry.treasury · lib.l1.wedge · week-one journal</span></a></li>
+            <li><a href="#industry.controller"><b>Controller</b><span>Same journal. Seat B if treasury is seat A</span></a></li>
+            <li><a href="#industry.governance"><b>Failsafe</b><span>industry.governance · lib.l1.failsafe · AI may draft</span></a></li>
+            <li><a href="#industry.control_plane"><b>Plane</b><span>industry.control_plane · lib.l1.plane · one gate</span></a></li>
+            <li><a href="#industry.org"><b>Org</b><span>industry.org · lib.l1.org · existing SOD</span></a></li>
+            <li><a href="#industry.independence"><b>Independence</b><span>industry.independence · vendor is not the failsafe</span></a></li>
+          </ol>
+          <p class="kicker">Upsells · same plane · not a fourth SKU</p>
+          <ol class="industry-desk-hops" aria-label="Books upsell desks">
+            <li><a href="#industry.payables"><b>Payables</b><span>industry.payables · lib.l1.payables · $6–10k / year</span></a></li>
+            <li><a href="#industry.bank"><b>Bank</b><span>industry.bank · lib.l1.bank</span></a></li>
+            <li><a href="#industry.cash"><b>Cash</b><span>industry.cash · lib.l1.cash</span></a></li>
+            <li><a href="#industry.fixed_asset"><b>Fixed asset</b><span>industry.fixed_asset · lib.l1.fixed_asset</span></a></li>
+            <li><a href="#industry.inventory"><b>Inventory</b><span>industry.inventory · unpaired</span></a></li>
+            <li><a href="#industry.cascade"><b>Cascade</b><span>industry.cascade · customer's AI drafts</span></a></li>
+            <li><a href="#industry.off_switch"><b>Off switch</b><span>industry.off_switch · freeze grants, not Copilot</span></a></li>
+            <li><a href="#industry.rollback"><b>Rollback</b><span>industry.rollback · reversing journal. Not a time machine</span></a></li>
+          </ol>
+          <p class="note">Inventory stays unpaired. Room 2 — mint, tokenization, wallet — stays refuse. <a href="#industry-area-sales">Next: Sales deepen</a></p>
         </article>
         <article class="industry-area" id="industry-area-sales" data-area="sales">
           <p class="kicker">Sales deepen · paid U-DUAL · never free with P-ADM</p>
           <h3>Sales deepen</h3>
+          <p class="lede" id="industry-sales-story">
+            L1 proves the journal. Sales is the same admit plane on a later paid attach.
+            A quote without two seats is the write that must not happen. Never free with P-ADM.
+          </p>
           <p class="need" id="industry-sales-need">Need: an unauthorized quote override, order submit, invoice, credit memo, return, or price change that Sales AI drafted and two humans did not admit.</p>
           <p class="why" id="industry-sales-why">Why: L1 proves the journal. U-DUAL deepens the same plane onto Sales Enterprise. Never free with P-ADM. Until G14 the twin is the Sales sandbox. Not a second product. Not a named vertical.</p>
-          <div class="industry-area-bands">
-            <section data-band="standard">
-              <h4>Standard inclusions</h4>
-              <p>Included with paid U-DUAL, not free, not included with L1 or P-ADM.</p>
-              <ul class="stack">
-                <li>industry.sales · lib.udual.sales · d365.quote.discount_override + d365.order.submit</li>
-                <li>industry.quote_desk · same library · quote override only</li>
-              </ul>
-            </section>
-            <section data-band="upsell">
-              <h4>Upsells</h4>
-              <p>Priced U-DUAL desks after paid attach. Same admit plane.</p>
-              <ul class="stack">
-                <li>industry.invoice_desk · lib.udual.quote_to_cash · d365.invoice.post</li>
-                <li>industry.credit · unpaired until a dedicated library · d365.creditmemo.issue</li>
-                <li>industry.returns · lib.udual.returns · d365.return.authorize</li>
-                <li>industry.pricing · unpaired until a dedicated library · price override + quote void</li>
-              </ul>
-            </section>
+          <p class="kicker">Four facts · not hops</p>
+          <div class="pages-facts about-facts industry-area-facts" aria-label="Sales facts">
+            <section data-fact="standard"><h3>Standard</h3><p>Sales + quote desk. Included with paid U-DUAL.</p></section>
+            <section data-fact="upsell"><h3>Upsell</h3><p>Invoice, credit, returns, pricing after attach.</p></section>
+            <section data-fact="libraries"><h3>Libraries</h3><p>lib.udual.* never free with P-ADM.</p></section>
+            <section data-fact="repos"><h3>Repos</h3><p>Shared. Until G14 the Sales twin.</p></section>
           </div>
-          <p class="note">U-DUAL libraries seat quote-to-cash modules. They never attach free with P-ADM. Credit and pricing stay inventory until a dedicated library. Shared repositories stay shared.</p>
+          <p class="kicker">Standard inclusions · walk the desks</p>
+          <ol class="industry-desk-hops" aria-label="Sales standard desks">
+            <li><a href="#industry.sales"><b>Sales</b><span>industry.sales · lib.udual.sales · quote + order</span></a></li>
+            <li><a href="#industry.quote_desk"><b>Quote</b><span>industry.quote_desk · same library · override only</span></a></li>
+          </ol>
+          <p class="kicker">Upsells · same plane</p>
+          <ol class="industry-desk-hops" aria-label="Sales upsell desks">
+            <li><a href="#industry.invoice_desk"><b>Invoice</b><span>industry.invoice_desk · lib.udual.quote_to_cash</span></a></li>
+            <li><a href="#industry.credit"><b>Credit</b><span>industry.credit · unpaired</span></a></li>
+            <li><a href="#industry.returns"><b>Returns</b><span>industry.returns · lib.udual.returns</span></a></li>
+            <li><a href="#industry.pricing"><b>Pricing</b><span>industry.pricing · unpaired</span></a></li>
+          </ol>
+          <p class="note">Credit and pricing stay inventory until a dedicated library. <a href="#industry-area-keep">Next: Keep</a></p>
         </article>
         <article class="industry-area" id="industry-area-keep" data-area="keep">
           <p class="kicker">Keep · P-ADM after kit PASS · not a certificate</p>
           <h3>Keep</h3>
+          <p class="lede" id="industry-keep-story">
+            L1 proves the write. Keep is what the examiner walks out with: who admitted, freeze evidence, last sealed keep.
+            A keep export is not dual admit. Included-with-L1 seating does not attach P-ADM.
+          </p>
           <p class="need" id="industry-keep-need">Need: the examiner cannot see who admitted the write. The board cannot freeze with evidence. The second record is 0. A keep export is not dual admit.</p>
           <p class="why" id="industry-keep-why">Why: L1 proves the write. P-ADM keeps the sealed DecisionRecord, risk register, off-switch evidence, org seating map, and reserved-work notice. Attach only after kit PASS. Not a filing. Not 17a-4. Not a patent. Not LIVE_PIN_OK.</p>
-          <div class="industry-area-bands">
-            <section data-band="standard">
-              <h4>Standard inclusions</h4>
-              <p>None as a keep SKU. Keep is the P-ADM band. Included-with-L1 seating does not attach P-ADM.</p>
-            </section>
-            <section data-band="upsell">
-              <h4>Upsells</h4>
-              <p>Priced P-ADM keeps after kit PASS. $5–8k / year each on the catalog list. Not recognized revenue.</p>
-              <ul class="stack">
-                <li>industry.retention · lib.padm.retention · Defender / Monitor / Key Vault sinks. Not live Defender</li>
-                <li>industry.oversight · lib.padm.governance · DecisionRecords and risk register. Not a certificate</li>
-                <li>industry.second_record · lib.padm.records · sealed DecisionRecord. Not the SoR first record</li>
-                <li>industry.board · lib.padm.board · who admitted, freeze, last sealed keep. Not a filing</li>
-                <li>industry.internal_audit · lib.padm.audit · seating map plus second record. Not a named auditor</li>
-                <li>industry.ip_keep · lib.padm.ip · reserved-work notice. Not a patent. G12 stays open</li>
-              </ul>
-            </section>
+          <p class="kicker">Four facts · not hops</p>
+          <div class="pages-facts about-facts industry-area-facts" aria-label="Keep facts">
+            <section data-fact="standard"><h3>Standard</h3><p>None as a keep SKU. P-ADM is the band.</p></section>
+            <section data-fact="upsell"><h3>Upsell</h3><p>Six priced keeps after kit PASS. $5–8k list.</p></section>
+            <section data-fact="libraries"><h3>Libraries</h3><p>lib.padm.* export. They do not admit.</p></section>
+            <section data-fact="repos"><h3>Repos</h3><p>Shared. Not live Sentinel. Not 17a-4.</p></section>
           </div>
-          <p class="note">P-ADM libraries export keep. They do not admit. lib.padm.export and lib.padm.siem stay unpaired inventory. Shared repositories hold the keep law. They are not live Sentinel.</p>
+          <p class="kicker">Standard inclusions</p>
+          <p class="note">None as a keep SKU. Keep is the P-ADM band after kit PASS.</p>
+          <p class="kicker">Upsells · walk the desks · not a named auditor</p>
+          <ol class="industry-desk-hops" aria-label="Keep upsell desks">
+            <li><a href="#industry.retention"><b>Retention</b><span>industry.retention · lib.padm.retention · not live Defender</span></a></li>
+            <li><a href="#industry.oversight"><b>Oversight</b><span>industry.oversight · lib.padm.governance · not a certificate</span></a></li>
+            <li><a href="#industry.second_record"><b>Second record</b><span>industry.second_record · lib.padm.records</span></a></li>
+            <li><a href="#industry.board"><b>Board</b><span>industry.board · who admitted, freeze, last keep</span></a></li>
+            <li><a href="#industry.internal_audit"><b>Internal audit</b><span>industry.internal_audit · not a named auditor</span></a></li>
+            <li><a href="#industry.ip_keep"><b>IP keep</b><span>industry.ip_keep · not a patent. G12 stays open</span></a></li>
+          </ol>
+          <p class="note">lib.padm.export and lib.padm.siem stay unpaired inventory. <a href="#industry-area-libraries">Next: Libraries</a></p>
         </article>
         <article class="industry-area" id="industry-area-libraries" data-area="libraries">
           <p class="kicker">Twenty-three libraries · seat the plane · not products</p>
           <h3>Libraries</h3>
+          <p class="lede" id="industry-libraries-story">
+            A pack without a library is a name. The library is the kit that seats identity and notify with the module.
+            A desk that invents its own seating mints a fourth SKU. Walk a kit to the desk it already seats.
+          </p>
           <p class="need" id="industry-libraries-need">Need: a desk without identity and notify is a button, not a plane. A pack that invents its own seating mints a fourth SKU.</p>
           <p class="why" id="industry-libraries-why">Why: libraries pair the privileged module to Entra seat verify and Teams notify. Included means included with the required SKU, not free. Libraries are not SKUs. They are not products. They do not launch the Institute.</p>
-          <div class="industry-area-bands">
-            <section data-band="standard">
-              <h4>Standard inclusions</h4>
-              <ul class="stack">
-                <li>lib.l1.wedge / failsafe / plane / org / independence — included with L1</li>
-                <li>lib.udual.sales — included with paid U-DUAL</li>
-              </ul>
-            </section>
-            <section data-band="upsell">
-              <h4>Upsells and unpaired</h4>
-              <ul class="stack">
-                <li>lib.l1.payables / bank / cash / fixed_asset / cascade / off_switch — priced L1 seating</li>
-                <li>lib.udual.quote_to_cash / returns — priced U-DUAL seating</li>
-                <li>lib.padm.retention / governance / records / board / audit / ip — P-ADM keep</li>
-                <li>Unpaired inventory: lib.kit.evidence, lib.padm.export, lib.padm.siem — not a desk</li>
-              </ul>
-            </section>
+          <p class="kicker">Four facts · not hops</p>
+          <div class="pages-facts about-facts industry-area-facts" aria-label="Libraries facts">
+            <section data-fact="standard"><h3>Standard</h3><p>lib.l1.wedge and the L1 kit. lib.udual.sales with paid U-DUAL.</p></section>
+            <section data-fact="upsell"><h3>Upsell</h3><p>Priced L1, U-DUAL, and P-ADM kits after the required SKU.</p></section>
+            <section data-fact="unpaired"><h3>Unpaired</h3><p>lib.kit.evidence, lib.padm.export, lib.padm.siem — no desk.</p></section>
+            <section data-fact="not-sku"><h3>Not a SKU</h3><p>A kit is not a product. A 10/10+ check is not launch.</p></section>
           </div>
-          <p class="note">Twenty-three libraries. Three stay unpaired. A library is not a SKU. A 10/10+ quality check is not launch.</p>
+          <p class="kicker">Walk a kit to its desk · three unpaired have no row</p>
+          <ol class="industry-desk-hops" aria-label="Library kits with a desk">
+            <li><a href="#industry.treasury"><b>lib.l1.wedge</b><span>L1 books kit · Treasury wedge</span></a></li>
+            <li><a href="#industry.governance"><b>lib.l1.failsafe</b><span>AI may draft. Two humans still admit</span></a></li>
+            <li><a href="#industry.control_plane"><b>lib.l1.plane</b><span>One gate. Not a second product</span></a></li>
+            <li><a href="#industry.sales"><b>lib.udual.sales</b><span>Paid U-DUAL · never free with P-ADM</span></a></li>
+            <li><a href="#industry.invoice_desk"><b>lib.udual.quote_to_cash</b><span>Invoice after attach</span></a></li>
+            <li><a href="#industry.retention"><b>lib.padm.retention</b><span>P-ADM keep · not live Defender</span></a></li>
+            <li><a href="#industry.second_record"><b>lib.padm.records</b><span>P-ADM keep · second record</span></a></li>
+            <li><a href="#industry.oversight"><b>lib.padm.governance</b><span>Not a certificate</span></a></li>
+          </ol>
+          <p class="note">Twenty-three libraries. Three unpaired — <code>lib.kit.evidence</code>, <code>lib.padm.export</code>, <code>lib.padm.siem</code> — have no pack. A library is not a SKU. Next: <a href="#industry-area-repositories">Repositories</a></p>
         </article>
         <article class="industry-area" id="industry-area-repositories" data-area="repositories">
           <p class="kicker">Eleven repositories · shared · not live</p>
           <h3>Repositories</h3>
+          <p class="lede" id="industry-repos-story">
+            Law has to live somewhere that is not a CMS and not a live system of record.
+            The eleven repositories are that somewhere. None writes Production. There is no hop to a certify row.
+          </p>
           <p class="need" id="industry-repos-need">Need: law has to live somewhere that is not a CMS and not a live system of record. A repo that writes Production is LIVE_PIN_OK we do not have.</p>
           <p class="why" id="industry-repos-why">Why: eleven shared repositories hold the admit plane, catalog law, Institute face, finance list, brief, review, pack attach, runbooks, owner gates, counsel pack, and governance maps. Every desk uses them. None is a SKU. None is live.</p>
-          <div class="industry-area-bands">
-            <section data-band="standard">
-              <h4>Standard inclusions</h4>
-              <p>Shared across every industry desk. Not an extra attach.</p>
-              <ul class="stack">
-                <li>repo.agent_gov · Job C admit plane</li>
-                <li>repo.catalog · commercial law</li>
-                <li>repo.institute · twin face. Public deploy is not claimed</li>
-                <li>repo.packs / repo.runbooks · attach and seating</li>
-                <li>repo.governance · maps claimed=false</li>
-              </ul>
-            </section>
-            <section data-band="upsell">
-              <h4>Also shared — not upsell SKUs</h4>
-              <ul class="stack">
-                <li>repo.finance · catalog list. Not recognized revenue</li>
-                <li>repo.brief / repo.review · packets. Not a contract</li>
-                <li>repo.owner · owner-only gates. Not a seat</li>
-                <li>repo.legal · unsigned order form and MSA. G12 stays open</li>
-              </ul>
-            </section>
+          <p class="kicker">Four facts · not hops</p>
+          <div class="pages-facts about-facts industry-area-facts" aria-label="Repositories facts">
+            <section data-fact="catalog"><h3>Catalog</h3><p>repo.catalog holds commercial law. Not a fourth SKU.</p></section>
+            <section data-fact="shared"><h3>Shared</h3><p>Admit plane, packs, runbooks, maps. Not an extra attach.</p></section>
+            <section data-fact="owner"><h3>Owner / counsel</h3><p>repo.owner and repo.legal stay owner-only. G12 stays open.</p></section>
+            <section data-fact="not-live"><h3>Not live</h3><p>No #repo.catalog row. A repository is not Production.</p></section>
           </div>
-          <p class="note">Repositories are not SKUs. Repositories are not live. A repository is not a named client. Industry certify is not launch.</p>
+          <p class="note">Eleven repositories. <code>repo.catalog</code> is the catalog itself. Repositories are not SKUs. Repositories are not live. Next: <a href="#industry-area-books">Books</a> · <a href="#industry-narratives">Five areas</a></p>
         </article>
         <p class="note about-walk" id="industry-narr-walk">
           <a href="#buyer">Walk the write</a>
@@ -2308,6 +2282,35 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
           · <a href="#join-consider">Walk the join</a>
           · <a href="#about">Walk the company</a>
         </p>
+      </div>
+      <div class="split" id="pack-index">
+        <div>
+          <h3>Industry</h3>
+          <ul class="stack" id="pack-industry">
+            <li><a href="#industry-area-books"><strong>industry.treasury</strong></a> — included with L1. Journal wedge.</li>
+            <li><a href="#industry-area-books"><strong>industry.payables / bank / cash / fixed_asset / inventory</strong></a> — priced L1 desks.</li>
+            <li><a href="#industry-area-books"><strong>industry.control_plane / industry.org / industry.independence</strong></a> — included with L1. Plane, org seating, and Microsoft-is-not-the-failsafe.</li>
+            <li><a href="#industry-area-books"><strong>industry.cascade</strong></a> — priced L1 desk. Client's customers utilize AI. Client's two humans admit.</li>
+            <li><a href="#industry-area-books"><strong>industry.off_switch / rollback</strong></a> — priced L1 desks. Fail-closed freeze. Compensating write. Not a time machine.</li>
+            <li><a href="#industry-area-sales"><strong>industry.sales / quote_desk</strong></a> — included with paid U-DUAL.</li>
+            <li><a href="#industry-area-sales"><strong>industry.invoice_desk / credit / returns / pricing</strong></a> — priced U-DUAL desks.</li>
+            <li><a href="#industry-area-keep"><strong>industry.retention</strong></a> — priced P-ADM keep. Not live Defender.</li>
+            <li><a href="#industry-area-keep"><strong>industry.second_record</strong></a> — priced P-ADM keep. Sealed DecisionRecord. Not a certificate.</li>
+            <li><a href="#industry-area-keep"><strong>industry.board</strong></a> — priced P-ADM keep. Owner / board / examiner evidence. Not a filing.</li>
+            <li><a href="#industry-area-keep"><strong>industry.internal_audit</strong></a> — priced P-ADM keep. Seating map plus second record. Not a named auditor.</li>
+            <li><a href="#industry-area-keep"><strong>industry.ip_keep</strong></a> — priced P-ADM keep. Reserved-work notice. Not a patent. Not uncopyable.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Libraries, fee-for-service, repositories</h3>
+          <ul class="stack" id="pack-libraries">
+            <li><a href="#industry-area-libraries"><strong>lib.l1.*</strong></a> — L1 seating. Not SKUs.</li>
+            <li><a href="#industry-area-libraries"><strong>lib.udual.*</strong></a> — paid U-DUAL. Never free with P-ADM.</li>
+            <li><a href="#industry-area-libraries"><strong>lib.padm.*</strong></a> — P-ADM keep. Not live Sentinel.</li>
+            <li><strong>Acceptance Kit</strong> — inside L1. Desk workshop / keep wiring $3,500/day after L1.</li>
+            <li><a href="#industry-area-repositories"><strong>repo.packs / repo.runbooks / repo.owner / repo.legal</strong></a> — not SKUs. Not live.</li>
+          </ul>
+        </div>
       </div>
       <p class="kicker" id="industry-cert-kicker">Honest industry certify · standard and upsell by desk · packs are not SKUs</p>
       <p class="lede" id="industry-cert-lede">
@@ -2337,106 +2340,132 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <section id="industry.treasury" data-industry="industry.treasury" data-class="standard">
           <h3>Treasury wedge</h3>
           <p><a href="#packs"><b>standard</b></a> L1 · bc.general_journal.post · lib.l1.wedge · shared repos</p>
+          <p class="industry-desk-need">Need: the unauthorized journal. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.controller" data-industry="industry.controller" data-class="standard">
           <h3>Controller desk</h3>
           <p><a href="#packs"><b>standard</b></a> L1 · bc.general_journal.post · lib.l1.wedge · shared repos</p>
+          <p class="industry-desk-need">Need: seat B if treasury is seat A. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.governance" data-industry="industry.governance" data-class="standard">
           <h3>AI failsafe desk</h3>
           <p><a href="#packs"><b>standard</b></a> L1 · bc.general_journal.post · lib.l1.failsafe · shared repos</p>
+          <p class="industry-desk-need">Need: AI may draft. Two humans still admit. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.control_plane" data-industry="industry.control_plane" data-class="standard">
           <h3>Human control plane</h3>
           <p><a href="#packs"><b>standard</b></a> L1 · bc.general_journal.post · lib.l1.plane · shared repos</p>
+          <p class="industry-desk-need">Need: one gate, not a second product. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.org" data-industry="industry.org" data-class="standard">
           <h3>Client org seating</h3>
           <p><a href="#packs"><b>standard</b></a> L1 · bc.general_journal.post · lib.l1.org · shared repos</p>
+          <p class="industry-desk-need">Need: existing SOD is not Job C. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.independence" data-industry="industry.independence" data-class="standard">
           <h3>Independent plane</h3>
           <p><a href="#packs"><b>standard</b></a> L1 · bc.general_journal.post · lib.l1.independence · shared repos</p>
+          <p class="industry-desk-need">Need: the vendor is not the failsafe. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.payables" data-industry="industry.payables" data-class="upsell">
           <h3>Payables desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.payment_journal.post, bc.purchase_invoice.post · lib.l1.payables · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized payable. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.bank" data-industry="industry.bank" data-class="upsell">
           <h3>Bank desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.bank_reconciliation.post · lib.l1.bank · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized bank rec. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.cash" data-industry="industry.cash" data-class="upsell">
           <h3>Cash desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.cash_receipt.post, bc.sales_invoice.post · lib.l1.cash · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized cash receipt. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.fixed_asset" data-industry="industry.fixed_asset" data-class="upsell">
           <h3>Fixed-asset desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.fixed_asset.post · lib.l1.fixed_asset · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized asset journal. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.inventory" data-industry="industry.inventory" data-class="upsell">
           <h3>Inventory desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.inventory.adjust · no dedicated library · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized inventory adjust. Unpaired. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.cascade" data-industry="industry.cascade" data-class="upsell">
           <h3>Counterparty AI desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.general_journal.post · lib.l1.cascade · shared repos</p>
+          <p class="industry-desk-need">Need: the customer's AI drafted. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.off_switch" data-industry="industry.off_switch" data-class="upsell">
           <h3>Off-switch desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.general_journal.post · lib.l1.off_switch · shared repos</p>
+          <p class="industry-desk-need">Need: freeze grants, not Copilot. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.rollback" data-industry="industry.rollback" data-class="upsell">
           <h3>Rollback desk</h3>
           <p><a href="#packs"><b>upsell</b></a> L1 · bc.general_journal.post · lib.l1.wedge · shared repos</p>
+          <p class="industry-desk-need">Need: a reversing journal. Not a time machine. <a href="#industry-area-books">Books</a></p>
         </section>
         <section id="industry.sales" data-industry="industry.sales" data-class="standard">
           <h3>Sales deepen</h3>
           <p><a href="#packs"><b>standard</b></a> U-DUAL · d365.quote.discount_override, d365.order.submit · lib.udual.sales · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized quote or order. <a href="#industry-area-sales">Sales</a></p>
         </section>
         <section id="industry.quote_desk" data-industry="industry.quote_desk" data-class="standard">
           <h3>Quote desk</h3>
           <p><a href="#packs"><b>standard</b></a> U-DUAL · d365.quote.discount_override · lib.udual.sales · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized quote override. <a href="#industry-area-sales">Sales</a></p>
         </section>
         <section id="industry.invoice_desk" data-industry="industry.invoice_desk" data-class="upsell">
           <h3>Invoice desk</h3>
           <p><a href="#packs"><b>upsell</b></a> U-DUAL · d365.invoice.post · lib.udual.quote_to_cash · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized invoice. <a href="#industry-area-sales">Sales</a></p>
         </section>
         <section id="industry.credit" data-industry="industry.credit" data-class="upsell">
           <h3>Credit desk</h3>
           <p><a href="#packs"><b>upsell</b></a> U-DUAL · d365.creditmemo.issue · no dedicated library · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized credit memo. Unpaired. <a href="#industry-area-sales">Sales</a></p>
         </section>
         <section id="industry.returns" data-industry="industry.returns" data-class="upsell">
           <h3>Returns desk</h3>
           <p><a href="#packs"><b>upsell</b></a> U-DUAL · d365.return.authorize · lib.udual.returns · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized return. <a href="#industry-area-sales">Sales</a></p>
         </section>
         <section id="industry.pricing" data-industry="industry.pricing" data-class="upsell">
           <h3>Pricing desk</h3>
           <p><a href="#packs"><b>upsell</b></a> U-DUAL · d365.price.override, d365.quote.void · no dedicated library · shared repos</p>
+          <p class="industry-desk-need">Need: an unauthorized price change. Unpaired. <a href="#industry-area-sales">Sales</a></p>
         </section>
         <section id="industry.retention" data-industry="industry.retention" data-class="upsell">
           <h3>Retention keep</h3>
           <p><a href="#packs"><b>upsell</b></a> P-ADM · defender / monitor / keyvault export · lib.padm.retention · shared repos</p>
+          <p class="industry-desk-need">Need: freeze evidence the examiner cannot see. <a href="#industry-area-keep">Keep</a></p>
         </section>
         <section id="industry.oversight" data-industry="industry.oversight" data-class="upsell">
           <h3>Oversight keep</h3>
           <p><a href="#packs"><b>upsell</b></a> P-ADM · governance.decision.export, governance.risk.export · lib.padm.governance · shared repos</p>
+          <p class="industry-desk-need">Need: the risk register is not a certificate. <a href="#industry-area-keep">Keep</a></p>
         </section>
         <section id="industry.second_record" data-industry="industry.second_record" data-class="upsell">
           <h3>Second-record keep</h3>
           <p><a href="#packs"><b>upsell</b></a> P-ADM · decision + second record · lib.padm.records · shared repos</p>
+          <p class="industry-desk-need">Need: the second record is 0. <a href="#industry-area-keep">Keep</a></p>
         </section>
         <section id="industry.board" data-industry="industry.board" data-class="upsell">
           <h3>Board / examiner keep</h3>
           <p><a href="#packs"><b>upsell</b></a> P-ADM · decision, second record, off switch, reset · lib.padm.board · shared repos</p>
+          <p class="industry-desk-need">Need: who admitted, freeze, last keep. <a href="#industry-area-keep">Keep</a></p>
         </section>
         <section id="industry.internal_audit" data-industry="industry.internal_audit" data-class="upsell">
           <h3>Internal-audit keep</h3>
           <p><a href="#packs"><b>upsell</b></a> P-ADM · decision, second record, org · lib.padm.audit · shared repos</p>
+          <p class="industry-desk-need">Need: a seating map without a named auditor. <a href="#industry-area-keep">Keep</a></p>
         </section>
         <section id="industry.ip_keep" data-industry="industry.ip_keep" data-class="upsell">
           <h3>IP / reserved-work keep</h3>
           <p><a href="#packs"><b>upsell</b></a> P-ADM · ip.reserved.export · lib.padm.ip · shared repos</p>
+          <p class="industry-desk-need">Need: reserved work is not a patent. <a href="#industry-area-keep">Keep</a></p>
         </section>
       </div>
       <p class="note" id="industry-cert-unpaired">Unpaired packs stay inventory until a dedicated library: industry.credit, industry.inventory, industry.pricing. Unpaired libraries stay inventory, not a desk: lib.kit.evidence, lib.padm.export, lib.padm.siem. Shared repositories: repo.agent_gov, repo.catalog, repo.institute, repo.finance, repo.brief, repo.review, repo.packs, repo.runbooks, repo.owner, repo.legal, repo.governance.</p>

@@ -48,10 +48,17 @@ def test_industry_areas_tell_need_and_why():
     assert 'id="industry.treasury"' in packs
     assert 'id="industry.sales"' in packs
     assert 'id="industry.retention"' in packs
+    assert 'href="#industry.treasury"' in packs
+    assert 'class="industry-desk-hops"' in packs
     assert "industry-narr-lede" not in js
     assert "#industry-narratives" in css
     assert "#industry-area-hops a" in css
+    assert "#industry-area-hops { grid-template-columns: repeat(5" in css
+    assert ".industry-desk-hops" in css
     assert ".industry-area-bands" in css
+    search_js = Path("institute/search.js").read_text(encoding="utf-8")
+    assert 'input.value = ""' in search_js
+    assert 'root.textContent = ""' in search_js
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#packs"' not in nav
     assert "Walk the industry" in html

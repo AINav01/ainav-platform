@@ -10,7 +10,7 @@
     return hits === terms.length ? hits : 0;
   }
 
-  function render(root, items) {
+  function render(root, items, input) {
     root.textContent = "";
     if (!items.length) {
       var empty = document.createElement("p");
@@ -23,6 +23,10 @@
       var a = document.createElement("a");
       a.href = item.href;
       a.textContent = item.title;
+      a.addEventListener("click", function () {
+        if (input) input.value = "";
+        root.textContent = "";
+      });
       var p = document.createElement("p");
       p.className = "note";
       p.textContent = (item.text || "").slice(0, 160);
@@ -48,7 +52,8 @@
         out,
         records.filter(function (item) {
           return score(item, terms) > 0;
-        })
+        }),
+        input
       );
     });
   }
