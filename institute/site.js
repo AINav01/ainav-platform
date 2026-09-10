@@ -27,18 +27,59 @@
     });
   }
 
-  document.querySelectorAll("a[href^='#']").forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      var id = link.getAttribute("href").slice(1);
-      var target = document.getElementById(id);
-      if (!target) return;
-      event.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (history.replaceState) history.replaceState(null, "", "#" + id);
-      var box = document.getElementById("nav-open");
-      if (box) box.checked = false;
+  function idFromHash(hash) {
+    var raw = String(hash || "").replace(/^#/, "");
+    try {
+      return decodeURIComponent(raw);
+    } catch (err) {
+      return raw;
+    }
+  }
+
+  function markLanded(target) {
+    document.querySelectorAll(".is-landed").forEach(function (node) {
+      node.classList.remove("is-landed");
     });
+    if (target) target.classList.add("is-landed");
+  }
+
+  function hopTo(target, id) {
+    if (!target) return;
+    markLanded(target);
+    var reduce =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    if (id && history.replaceState) history.replaceState(null, "", "#" + id);
+  }
+
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest("a[href]");
+    if (!link) return;
+    var href = link.getAttribute("href") || "";
+    var hashAt = href.indexOf("#");
+    if (hashAt < 0) return;
+    var path = href.slice(0, hashAt);
+    var hash = href.slice(hashAt);
+    if (hash.length < 2) return;
+    if (path) {
+      var dest = path.split("/").pop() || "";
+      var here = location.pathname.split("/").pop() || "index.html";
+      if (here === "") here = "index.html";
+      if (dest && dest !== here && dest !== ".") return;
+    }
+    var id = idFromHash(hash);
+    var target = document.getElementById(id);
+    if (!target) return;
+    event.preventDefault();
+    hopTo(target, id);
+    var box = document.getElementById("nav-open");
+    if (box) box.checked = false;
   });
+
+  window.addEventListener("hashchange", function () {
+    hopTo(document.getElementById(idFromHash(location.hash)), idFromHash(location.hash));
+  });
+  hopTo(document.getElementById(idFromHash(location.hash)), idFromHash(location.hash));
 
   fetch("governance.json")
     .then(function (res) {

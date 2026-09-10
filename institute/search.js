@@ -28,8 +28,31 @@
       var a = document.createElement("a");
       a.href = item.href;
       a.textContent = item.title;
-      a.addEventListener("click", function () {
+      a.addEventListener("click", function (event) {
         dismiss(input, root);
+        var href = item.href || a.getAttribute("href") || "";
+        var hashAt = href.indexOf("#");
+        if (hashAt < 0) return;
+        var path = href.slice(0, hashAt);
+        var hash = href.slice(hashAt);
+        if (hash.length < 2) return;
+        if (path) {
+          var dest = path.split("/").pop() || "";
+          var here = location.pathname.split("/").pop() || "index.html";
+          if (here === "") here = "index.html";
+          if (dest && dest !== here && dest !== ".") return;
+        }
+        var id;
+        try {
+          id = decodeURIComponent(hash.slice(1));
+        } catch (err) {
+          id = hash.slice(1);
+        }
+        var target = document.getElementById(id);
+        if (!target) return;
+        event.preventDefault();
+        if (history.replaceState) history.replaceState(null, "", hash);
+        window.dispatchEvent(new Event("hashchange"));
       });
       var p = document.createElement("p");
       p.className = "note";

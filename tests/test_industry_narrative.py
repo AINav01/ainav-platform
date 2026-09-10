@@ -61,6 +61,8 @@ def test_industry_areas_tell_need_and_why():
     assert 'root.textContent = ""' in search_js
     assert "hashchange" in search_js
     assert "function dismiss" in search_js
+    assert "replaceState" in search_js
+    assert "getElementById" in search_js
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#packs"' not in nav
     assert html.count("Walk the industry") >= 6
@@ -90,12 +92,22 @@ def test_industry_areas_tell_need_and_why():
     assert 'data-room-refuse="rwa_issue"' in intent
     assert 'data-room-refuse="crypto_ams"' in intent
     assert 'id="agent-intent-refuse"' in intent
+    assert 'id="agent-intent-hops"' in intent
+    assert 'href="#industry.bank"' in intent
     assert "agent-intent-lede" not in js
     assert "refuseIndustryCert" in js
     assert '"agent-intent-refuse"' in js
+    assert "idFromHash" in js
+    assert "markLanded" in js
+    assert "is-landed" in js
+    assert 'closest("a[href]")' in js
     assert "#agent-intent" in css
     assert "#agent-intent-walks" in css
     assert "#agent-intent-lede" in css
+    assert "#agent-intent-hops" in css
+    assert "#agent-intent-hops { grid-template-columns: repeat(5" in css
+    assert ".is-landed" in css
+    assert "section[id]:target" in css
     assert "color: var(--ink)" in css
     assert ".agent-intent-cut" in css
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
@@ -152,6 +164,9 @@ def test_industry_catalog_and_search_name_the_areas():
     assert "Walk the industry" in identify
     assert 'href="index.html#agent-intent"' in identify
     assert "Walk Agent Intent" in identify
+    app = Path("institute/app.html").read_text(encoding="utf-8")
+    assert 'href="index.html#agent-intent"' in app
+    assert "Walk Agent Intent" in app
 
 
 def test_industry_lede_refuses_area_fiction():
