@@ -336,3 +336,63 @@ def test_instrument_320_fail_closed():
         ciso_hole["ciso"]["does_not"] = [item for item in ciso_hole["ciso"]["does_not"] if item != missing]
         with pytest.raises(IntegrityError):
             catmod._validate_success_program(ciso_hole)
+    hosted_booking = copy.deepcopy(edge)
+    hosted_booking["expert_review"]["success"]["honest_close"]["booking_as_revenue"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(hosted_booking)
+    hosted_list = copy.deepcopy(edge)
+    hosted_list["expert_review"]["success"]["honest_close"]["custom_db_as_sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(hosted_list)
+    hosted_stitch = copy.deepcopy(edge)
+    hosted_stitch["expert_review"]["success"]["honest_join"]["stitch_as_live_pin"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(hosted_stitch)
+    hosted_ops = copy.deepcopy(edge)
+    hosted_ops["expert_review"]["success"]["honest_join"]["manage_ops_as_closed"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(hosted_ops)
+    principles_join = copy.deepcopy(edge)
+    principles_join["expert_review"]["first_principles"] = [
+        item
+        for item in principles_join["expert_review"]["first_principles"]
+        if "honest join" not in item.lower()
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_320(principles_join, principles_join["plane_interface"])
+    principles_launch = copy.deepcopy(edge)
+    principles_launch["expert_review"]["first_principles"] = [
+        item.replace("The join is not launch.", "Join is recorded.")
+        for item in principles_launch["expert_review"]["first_principles"]
+    ]
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_320(principles_launch, principles_launch["plane_interface"])
+    ops_sku = copy.deepcopy(edge)
+    ops_sku["operations"]["note"] = "Honest join sits on #firm."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_320(ops_sku, ops_sku["plane_interface"])
+    ops_firm = copy.deepcopy(edge)
+    ops_firm["operations"]["note"] = "SKU attach chain. Honest join sits on #path."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_320(ops_firm, ops_firm["plane_interface"])
+    ops_name = copy.deepcopy(edge)
+    ops_name["operations"]["note"] = "SKU attach chain. The operating day is #firm."
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_320(ops_name, ops_name["plane_interface"])
+    managed_run = copy.deepcopy(edge)
+    managed_run["expert_review"]["success"]["managed_face"]["managed"] = (
+        edge["expert_review"]["success"]["managed_face"]["managed"].replace(
+            "Not a certified running firm.",
+            "Certified running firm.",
+        )
+    )
+    with pytest.raises(IntegrityError):
+        catmod._validate_instrument_320(managed_run, managed_run["plane_interface"])
+    wired_fp = copy.deepcopy(edge)
+    wired_fp["expert_review"]["first_principles"] = [
+        item.replace("Licensed-not-wired is not a wired firm.", "Licensed is visible.")
+        .replace("A certified simulation is not a running firm.", "Simulation is recorded.")
+        for item in wired_fp["expert_review"]["first_principles"]
+    ]
+    with pytest.raises(IntegrityError):
+        validate_catalog(wired_fp)

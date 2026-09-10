@@ -47,8 +47,8 @@ def test_release_is_288_operating_day_quality_review():
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
     js = Path("institute/site.js").read_text(encoding="utf-8")
     assert "3.14.0" in html
-    assert 'src="site.js?v=3.19.0"' in html
-    assert 'src="site.js?v=3.19.0"' in twin
+    assert 'src="site.js?v=3.20.0"' in html
+    assert 'src="site.js?v=3.20.0"' in twin
     assert "Held. Floor held. Gold is not launch." in html
     assert 'id="ops-note"' in html
     assert "SKU attach chain" in html
