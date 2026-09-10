@@ -56,6 +56,17 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert [item["href"] for item in sale][-1] == "#join-consider"
     assert [item["href"] for item in sale][-2] == "#firm"
     assert [item["href"] for item in sale][-3] == "#close-consider"
+    assert 'id="twin-use"' in html
+    assert 'id="twin-use-hops"' in html
+    assert 'id="twin-use-lede"' in html
+    assert "The Institute twin is not the assigned client sandbox" in html
+    assert "Assigned stays 0" in html
+    assert 'href="#demo-console"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
+    assert 'href="#path"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
+    assert 'href="#firm"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
+    assert "index.html#twin-use" in twin_html
+    hops = html[html.index('id="join-hops"') : html.index("</ol>", html.index('id="join-hops"'))]
+    assert hops.count("<li") == 11
 
 
 def _reject(mutator):

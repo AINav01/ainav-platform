@@ -2186,6 +2186,42 @@ table.law tr[data-group] th {
 @media (min-width: 1100px) {
   #product-fulfill-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
+#twin-use-kicker {
+  margin: 1.15rem 0 0.4rem;
+}
+#twin-use-lede {
+  max-width: 42rem;
+}
+#twin-use-hops {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+#twin-use-hops li::after { content: none; }
+#twin-use-hops a {
+  color: inherit;
+  text-decoration: none;
+}
+#twin-use-hops a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+#twin-use-hops li:hover,
+#twin-use-hops li:focus-within {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#twin-use-hops a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+@media (min-width: 900px) {
+  #twin-use-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 #join-hops a,
 #close-hops a {
   color: inherit;

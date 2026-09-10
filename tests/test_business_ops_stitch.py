@@ -52,6 +52,16 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert "#product-fulfill-hops" in css
     assert "#product-fulfill-hops { grid-template-columns: repeat(5" in css
     assert "#industry-area-hops { grid-template-columns: repeat(5" in css
+    assert 'id="twin-use"' in html
+    assert "#twin-use-hops" in css
+    assert "#twin-use-hops { grid-template-columns: repeat(3" in css
+    assert "Walk the twin" in html
+    assert "Walk the client twin" in html
+    app = Path("institute/app.html").read_text(encoding="utf-8")
+    assert 'href="index.html#twin">Proof day</a>' in app
+    assert 'href="index.html#path">Client twin</a>' in app
+    assert 'href="index.html#twin"><b>Proof</b>' in app
+    assert app.count("Owner book") == 1
     product = html[html.index('id="product"') : html.index('id="path"')]
     assert "L1 · Prove" in product
     assert "P-ADM · Keep" in product
