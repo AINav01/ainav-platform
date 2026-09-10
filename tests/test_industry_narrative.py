@@ -79,8 +79,9 @@ def test_industry_catalog_and_search_name_the_areas():
 
 def test_industry_lede_refuses_area_fiction():
     cat = load_catalog()
+    body = cat["industry_certify"]
     missing_plus = dict(cat)
-    missing_plus["industry_certify"] = dict(cat["industry_certify"])
+    missing_plus["industry_certify"] = dict(body)
     missing_plus["industry_certify"]["lede"] = (
         "Detail every industry desk: standard or upsell. "
         "Five industry areas tell the need and the why: books, sales deepen, keep. "
@@ -89,10 +90,49 @@ def test_industry_lede_refuses_area_fiction():
     with pytest.raises(IntegrityError, match="10/10"):
         validate_honest_industry(missing_plus)
     missing_areas = dict(cat)
-    missing_areas["industry_certify"] = dict(cat["industry_certify"])
+    missing_areas["industry_certify"] = dict(body)
     missing_areas["industry_certify"]["lede"] = (
         "Detail every industry desk: standard or upsell. Need and why. "
         "Industry certify is not launch. A 10/10+ quality check is not launch."
     )
     with pytest.raises(IntegrityError, match="segmented industry areas"):
         validate_honest_industry(missing_areas)
+    missing_need = dict(cat)
+    missing_need["industry_certify"] = dict(body)
+    missing_need["industry_certify"]["lede"] = (
+        "Detail every industry desk: standard or upsell. books, sales deepen, keep. "
+        "Industry certify is not launch. A 10/10+ quality check is not launch."
+    )
+    with pytest.raises(IntegrityError, match="need and why"):
+        validate_honest_industry(missing_need)
+    note_plus = dict(cat)
+    note_plus["industry_certify"] = dict(body)
+    note_plus["industry_certify"]["note"] = (
+        "Honest industry. Packs are not SKUs. Industry certify is not launch. Five areas: books."
+    )
+    with pytest.raises(IntegrityError, match="10/10"):
+        validate_honest_industry(note_plus)
+    note_areas = dict(cat)
+    note_areas["industry_certify"] = dict(body)
+    note_areas["industry_certify"]["note"] = (
+        "Honest industry. Packs are not SKUs. Industry certify is not launch. "
+        "A 10/10+ quality check is not launch."
+    )
+    with pytest.raises(IntegrityError, match="five areas"):
+        validate_honest_industry(note_areas)
+    site_plus = dict(cat)
+    site_plus["industry_certify"] = dict(body)
+    site_plus["industry_certify"]["site"] = (
+        "Honest industry certify on #packs. Five industry areas. "
+        "Industry certify is not launch. Not a /industry route."
+    )
+    with pytest.raises(IntegrityError, match="10/10"):
+        validate_honest_industry(site_plus)
+    site_areas = dict(cat)
+    site_areas["industry_certify"] = dict(body)
+    site_areas["industry_certify"]["site"] = (
+        "Honest industry certify on #packs. Industry certify is not launch. "
+        "A 10/10+ quality check is not launch. Not a /industry route."
+    )
+    with pytest.raises(IntegrityError, match="five industry areas"):
+        validate_honest_industry(site_areas)
