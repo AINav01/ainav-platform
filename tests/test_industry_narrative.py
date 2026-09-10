@@ -167,7 +167,7 @@ def test_industry_catalog_and_search_name_the_areas():
     app = Path("institute/app.html").read_text(encoding="utf-8")
     assert 'href="index.html#agent-intent"' in app
     assert "Walk Agent Intent" in app
-    assert 'id="app-business-walk"' in app
+    assert 'id="app-business-stitch"' in app
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     assert "Walk Agent Intent" in kit
     assert 'href="index.html#industry-narratives"' in kit
