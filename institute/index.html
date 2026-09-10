@@ -1769,6 +1769,56 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <span>GENIUS <b id="industry-genius">no</b></span>
         <span>CLARITY <b id="industry-clarity">no</b></span>
       </div>
+      <div class="industry-intent" id="agent-intent">
+        <p class="kicker" id="agent-intent-kicker">Agent Intent · Room 1 walks the journal · Room 2 stays refuse · not a named vertical</p>
+        <h3>Agent Intent</h3>
+        <p class="lede" id="agent-intent-lede">
+          Agent Intent is what the buyer says. Bank. Stablecoin. RWA. Tokenization. Crypto asset management.
+          Those words are intents. They are not SKUs.
+          If the write is already in Business Central — a bank rec, a reserve journal, a booked receivable, a fund NAV — that is Room 1. Walk the books.
+          If the write is the mint, the token, the wallet, or the ATS match — that is Room 2. Refuse it as product.
+          A named vertical is not a SKU. Industry certify is not launch. A 10/10+ quality check is not launch. Not a crypto product. Not a /crypto route.
+        </p>
+        <p class="need" id="agent-intent-need">Need: the buyer names a vertical and this plane invents a fourth SKU — or a bank rec, reserve journal, or booked RWA receivable lands without two seats.</p>
+        <p class="why" id="agent-intent-why">Why: Job C sits in front of the book write they already have. It does not mint a coin, issue a token, or stand up a CASP product. Room 1 walks. Room 2 stays refuse.</p>
+        <p class="kicker">Four facts · not hops</p>
+        <div class="pages-facts about-facts industry-area-facts agent-intent-facts" aria-label="Agent Intent facts">
+          <section data-fact="walk"><h3>Walk</h3><p>Banks, treasury, payments, reserve, NAV, booked RWAs. Same admit plane.</p></section>
+          <section data-fact="refuse"><h3>Refuse</h3><p>Mint, tokenization, crypto AMS, custody, ATS. Not SKUs.</p></section>
+          <section data-fact="vertical"><h3>Vertical</h3><p>A named vertical is not a SKU. Maps stay claimed=false.</p></section>
+          <section data-fact="launch"><h3>Launch</h3><p>Industry certify is not launch. 10/10+ is not launch.</p></section>
+        </div>
+        <p class="universe-refuse" id="agent-intent-refuse" role="status" aria-live="assertive">Waiting. Click a Room 2 intent. A named vertical is not a SKU.</p>
+        <div class="agent-intent-cut" id="agent-intent-cut">
+          <div>
+            <p class="kicker" id="agent-intent-walk-kicker">Room 1 · walk the journal · not a fourth SKU</p>
+            <ol class="industry-desk-hops" id="agent-intent-walks" aria-label="Agent Intent Room 1 walks">
+              <li data-intent="banks"><a href="#industry.bank"><b>Banks</b><span>Need: an unauthorized bank rec. Why: industry.bank is the same admit plane. Not 17a-4.</span></a></li>
+              <li data-intent="treasury"><a href="#industry.treasury"><b>Treasury</b><span>Need: an unauthorized treasury journal. Why: week-one prove is the wedge. Sit is Dynamics BC.</span></a></li>
+              <li data-intent="payments"><a href="#industry.cash"><b>Payments / cash</b><span>Need: an unauthorized cash receipt. Why: cash on the books is Room 1. On-chain rails stay Room 2.</span></a></li>
+              <li data-intent="payables"><a href="#industry.payables"><b>Payables</b><span>Need: an unauthorized payable. Why: same L1 plane after the journal. Not a payments SKU.</span></a></li>
+              <li data-intent="reserve"><a href="#industry-area-books"><b>Stablecoin reserve</b><span>Need: a reserve journal two humans did not admit. Why: GENIUS is a map. claimed=false. Mint is Room 2.</span></a></li>
+              <li data-intent="nav"><a href="#industry-area-books"><b>Fund NAV / fee admin</b><span>Need: NAV or fee in BC without two seats. Why: the booked number is Room 1. Wallet signing is Room 2.</span></a></li>
+              <li data-intent="rwa_books"><a href="#industry-area-books"><b>RWAs on the books</b><span>Need: a booked RWA receivable without two seats. Why: the receivable is Room 1. Issuing the token is Room 2.</span></a></li>
+              <li data-intent="broker"><a href="#industry-area-books"><b>Broker books</b><span>Need: a booked trade in BC. Why: the journal is Room 1. 17a-4 WORM stays Room 2.</span></a></li>
+            </ol>
+          </div>
+          <div>
+            <p class="kicker" id="agent-intent-refuse-kicker">Room 2 · refuse as product · catalog is the message</p>
+            <ol class="industry-desk-hops" id="agent-intent-refuses" aria-label="Agent Intent Room 2 refuses">
+              <li data-intent="stablecoin_mint"><button type="button" class="ghost room-refuse" data-room-refuse="stablecoin_mint" data-refuse-text="Refused. Not a stablecoin SKU. Room 2 is refuse." aria-pressed="false"><b>Stablecoin mint / burn</b></button><span>On-chain mint is Room 2. Reserve journal is Room 1.</span></li>
+              <li data-intent="rwa_issue"><button type="button" class="ghost room-refuse" data-room-refuse="rwa_issue" data-refuse-text="Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse." aria-pressed="false"><b>Tokenization / RWA issuance</b></button><span>Issuing the token is Room 2. Booked receivable is Room 1.</span></li>
+              <li data-intent="crypto_ams"><button type="button" class="ghost room-refuse" data-room-refuse="crypto_ams" data-refuse-text="Refused. Not a crypto asset-management SKU. Room 2 is refuse." aria-pressed="false"><b>Crypto asset management</b></button><span>Wallet signing is Room 2. NAV in BC is Room 1.</span></li>
+              <li data-intent="custody"><button type="button" class="ghost room-refuse" data-room-refuse="wallet" data-refuse-text="Refused. Wallet is not a seat. Room 2 is refuse." aria-pressed="false"><b>Custody / wallet / ATS</b></button><span>Custody move and ATS match stay Room 2. Wallet is not a seat.</span></li>
+              <li data-intent="deposits"><button type="button" class="ghost room-refuse" data-room-refuse="rwa_issue" data-refuse-text="Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse." aria-pressed="false"><b>Tokenized deposits</b></button><span>Issuance stays Room 2. A booked deposit is Room 1.</span></li>
+              <li data-intent="mica"><button type="button" class="ghost room-refuse" data-room-refuse="named_vertical" data-refuse-text="Refused. This plane cannot invent a named vertical as a fourth SKU." aria-pressed="false"><b>MiCA / CASP product</b></button><span>EU-ready as a named vertical stays refused. Maps claimed=false.</span></li>
+              <li data-intent="seventeen_a4"><button type="button" class="ghost room-refuse" data-room-refuse="seventeen_a4" data-refuse-text="Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin." aria-pressed="false"><b>17a-4 WORM / crypto ledger</b></button><span>Not 17a-4. Not a coin. Walk away if they think P-ADM is WORM.</span></li>
+              <li data-intent="named_vertical"><button type="button" class="ghost room-refuse" data-room-refuse="named_vertical" data-refuse-text="Refused. This plane cannot invent a named vertical as a fourth SKU." aria-pressed="false"><b>Invent a named vertical</b></button><span>Banks, stablecoins, RWAs, and crypto AMS are intents. Not SKUs.</span></li>
+            </ol>
+          </div>
+        </div>
+        <p class="note" id="agent-intent-note">Agent Intent walks Room 1 to the five industry areas. Room 2 stays refuse. A named vertical is not a SKU. <a href="#industry-narratives">Walk the industry</a> · <a href="#industry-rooms">Open the rooms</a> · <a href="#buyer">Walk the write</a></p>
+      </div>
       <div class="universe-day industry-day" id="industry-day" aria-label="Sit-down industry drawer">
         <section data-lane="sit">
           <h3>Sit</h3>
@@ -1806,46 +1856,6 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
             <li data-day="named_vertical"><button type="button" class="ghost room-refuse" data-room-refuse="named_vertical" data-refuse-text="Refused. This plane cannot invent a named vertical as a fourth SKU." aria-pressed="false"><b>Invent a named vertical</b></button><span>Refused. Not a fourth SKU.</span></li>
           </ol>
         </section>
-      </div>
-      <div class="industry-intent" id="agent-intent">
-        <p class="kicker" id="agent-intent-kicker">Agent Intent · Room 1 walks the journal · Room 2 stays refuse · not a named vertical</p>
-        <h3>Agent Intent</h3>
-        <p class="lede" id="agent-intent-lede">
-          Agent Intent is what the buyer says. Banks, corporate treasury, payments, payables, payment-stablecoin reserve journals, fund NAV, and booked RWAs sit the Business Central write — Room 1.
-          Stablecoin mint, RWA issuance, tokenization, crypto asset management, custody wallets, ATS match, tokenized deposits as issuance, and a MiCA / CASP product stay Room 2.
-          A named vertical is not a SKU. Industry certify is not launch. A 10/10+ quality check is not launch. Not a crypto product. Not a /crypto route.
-        </p>
-        <div class="plane-strip" id="agent-intent-zeros" aria-label="Agent Intent zeros">
-          <span>A named vertical is a SKU <b id="agent-intent-vertical">no</b></span>
-          <span>Banks are a SKU <b id="agent-intent-banks">no</b></span>
-          <span>Stablecoin mint is a SKU <b id="agent-intent-mint">no</b></span>
-          <span>Tokenization is a SKU <b id="agent-intent-token">no</b></span>
-          <span>Crypto AMS is a SKU <b id="agent-intent-ams">no</b></span>
-          <span>10/10+ is launch <b id="agent-intent-plus">no</b></span>
-        </div>
-        <p class="kicker" id="agent-intent-walk-kicker">Room 1 intents · walk the journal · not a fourth SKU</p>
-        <ol class="industry-desk-hops" id="agent-intent-walks" aria-label="Agent Intent Room 1 walks">
-          <li data-intent="banks"><a href="#industry.bank"><b>Banks</b><span>Need: an unauthorized bank rec. Why: industry.bank is the same admit plane. Not 17a-4.</span></a></li>
-          <li data-intent="treasury"><a href="#industry.treasury"><b>Treasury</b><span>Need: an unauthorized treasury journal. Why: week-one prove is the wedge. Sit is Dynamics BC.</span></a></li>
-          <li data-intent="payments"><a href="#industry.cash"><b>Payments / cash</b><span>Need: an unauthorized cash receipt. Why: cash on the books is Room 1. On-chain rails stay Room 2.</span></a></li>
-          <li data-intent="payables"><a href="#industry.payables"><b>Payables</b><span>Need: an unauthorized payable. Why: same L1 plane after the journal. Not a payments SKU.</span></a></li>
-          <li data-intent="reserve"><a href="#industry-area-books"><b>Stablecoin reserve</b><span>Need: a reserve journal two humans did not admit. Why: GENIUS is a map. claimed=false. Mint is Room 2.</span></a></li>
-          <li data-intent="nav"><a href="#industry-area-books"><b>Fund NAV / fee admin</b><span>Need: NAV or fee in BC without two seats. Why: the booked number is Room 1. Wallet signing is Room 2.</span></a></li>
-          <li data-intent="rwa_books"><a href="#industry-area-books"><b>RWAs on the books</b><span>Need: a booked RWA receivable without two seats. Why: the receivable is Room 1. Issuing the token is Room 2.</span></a></li>
-          <li data-intent="broker"><a href="#industry-area-books"><b>Broker books</b><span>Need: a booked trade in BC. Why: the journal is Room 1. 17a-4 WORM stays Room 2.</span></a></li>
-        </ol>
-        <p class="kicker" id="agent-intent-refuse-kicker">Room 2 intents · refuse as product · catalog is the message</p>
-        <ol class="industry-desk-hops" id="agent-intent-refuses" aria-label="Agent Intent Room 2 refuses">
-          <li data-intent="stablecoin_mint"><button type="button" class="ghost room-refuse" data-room-refuse="stablecoin_mint" data-refuse-text="Refused. Not a stablecoin SKU. Room 2 is refuse." aria-pressed="false"><b>Stablecoin mint / burn</b></button><span>On-chain mint is Room 2. Reserve journal is Room 1.</span></li>
-          <li data-intent="rwa_issue"><button type="button" class="ghost room-refuse" data-room-refuse="rwa_issue" data-refuse-text="Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse." aria-pressed="false"><b>Tokenization / RWA issuance</b></button><span>Issuing the token is Room 2. Booked receivable is Room 1.</span></li>
-          <li data-intent="crypto_ams"><button type="button" class="ghost room-refuse" data-room-refuse="crypto_ams" data-refuse-text="Refused. Not a crypto asset-management SKU. Room 2 is refuse." aria-pressed="false"><b>Crypto asset management</b></button><span>Wallet signing is Room 2. NAV in BC is Room 1.</span></li>
-          <li data-intent="custody"><button type="button" class="ghost room-refuse" data-room-refuse="wallet" data-refuse-text="Refused. Wallet is not a seat. Room 2 is refuse." aria-pressed="false"><b>Custody / wallet / ATS</b></button><span>Custody move and ATS match stay Room 2. Wallet is not a seat.</span></li>
-          <li data-intent="deposits"><button type="button" class="ghost room-refuse" data-room-refuse="rwa_issue" data-refuse-text="Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse." aria-pressed="false"><b>Tokenized deposits</b></button><span>Issuance stays Room 2. A booked deposit is Room 1.</span></li>
-          <li data-intent="mica"><button type="button" class="ghost room-refuse" data-room-refuse="named_vertical" data-refuse-text="Refused. This plane cannot invent a named vertical as a fourth SKU." aria-pressed="false"><b>MiCA / CASP product</b></button><span>EU-ready as a named vertical stays refused. Maps claimed=false.</span></li>
-          <li data-intent="seventeen_a4"><button type="button" class="ghost room-refuse" data-room-refuse="seventeen_a4" data-refuse-text="Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin." aria-pressed="false"><b>17a-4 WORM / crypto ledger</b></button><span>Not 17a-4. Not a coin. Walk away if they think P-ADM is WORM.</span></li>
-          <li data-intent="named_vertical"><button type="button" class="ghost room-refuse" data-room-refuse="named_vertical" data-refuse-text="Refused. This plane cannot invent a named vertical as a fourth SKU." aria-pressed="false"><b>Invent a named vertical</b></button><span>Banks, stablecoins, RWAs, and crypto AMS are intents. Not SKUs.</span></li>
-        </ol>
-        <p class="note" id="agent-intent-note">Agent Intent walks Room 1 to the five industry areas. Room 2 stays refuse. A named vertical is not a SKU. <a href="#industry-narratives">Walk the industry</a> · <a href="#industry-rooms">Open the rooms</a></p>
       </div>
       <div class="universe-day industry-rooms" id="industry-rooms" aria-label="Sit-down industry rooms">
         <section data-room="room_1">

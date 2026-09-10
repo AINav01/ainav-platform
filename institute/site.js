@@ -3692,11 +3692,13 @@
   }
 
   function refuseIndustry(button, message, ledger) {
-    var refuse = document.getElementById("industry-refuse");
-    if (refuse) {
-      refuse.textContent = message;
-      refuse.classList.add("is-live");
-    }
+    ["industry-refuse", "agent-intent-refuse"].forEach(function (id) {
+      var refuse = document.getElementById(id);
+      if (refuse) {
+        refuse.textContent = message;
+        refuse.classList.add("is-live");
+      }
+    });
     if (button) button.setAttribute("aria-pressed", "true");
     writeIndustryLedger(ledger);
     writeFirmLedger("denied", ledger);
@@ -4324,7 +4326,7 @@
     node.textContent = text;
   }
 
-  function refuseIndustry(button, message, ledger) {
+  function refuseIndustryCert(button, message, ledger) {
     var refuse = document.getElementById("industry-cert-refuse");
     if (refuse) {
       refuse.textContent = message;
@@ -4345,7 +4347,7 @@
       var message = btn.getAttribute("data-refuse-text") || pack.message;
       if (!message) return;
       ev.preventDefault();
-      refuseIndustry(
+      refuseIndustryCert(
         btn,
         message,
         pack.ledger || ("industry_denied · " + id + "\nPacks are not SKUs.\nIndustry certify is not launch.\nlive=false · live_pin_ok=false")

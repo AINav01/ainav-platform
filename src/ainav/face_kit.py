@@ -349,7 +349,7 @@ def public_search() -> dict[str, Any]:
             "id": "agent-intent",
             "title": "Agent Intent",
             "href": "index.html#agent-intent",
-            "text": "Agent Intent is what the buyer says. Banks, corporate treasury, payments, payables, payment-stablecoin reserve journals, fund NAV, and booked RWAs sit the Business Central write — Room 1. Stablecoin mint, RWA issuance, tokenization, crypto asset management, custody wallets, ATS match, tokenized deposits as issuance, and a MiCA / CASP product stay Room 2. A named vertical is not a SKU. Industry certify is not launch. A 10/10+ quality check is not launch. Not a crypto product. Not a /crypto route.",
+            "text": "Agent Intent is what the buyer says. Banks, stablecoins, RWAs, tokenization, and crypto asset management are intents, not SKUs. Room 1 walks the book write they already have. Room 2 refuses mint, token, wallet, and ATS as product. Need and why. A named vertical is not a SKU. Industry certify is not launch. A 10/10+ quality check is not launch. Not a crypto product. Not a /crypto route.",
         },
         {
             "id": "packs",

@@ -1586,20 +1586,41 @@ table.law tr[data-group] th {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
 #agent-intent {
-  margin: 1.2rem 0 1.35rem;
-  padding: 1.1rem 1.15rem 1.2rem;
-  border: 1px dashed color-mix(in srgb, var(--gold-2) 30%, var(--rule));
-  background: color-mix(in srgb, var(--void) 4%, var(--paper));
+  margin: 1.35rem 0 1.5rem;
+  padding: 1.25rem 1.3rem 1.35rem;
+  border: 1px dashed color-mix(in srgb, var(--gold-2) 36%, var(--rule));
+  background: var(--paper);
+  color: var(--ink);
   scroll-margin-top: 6.5rem;
 }
+.band #agent-intent,
+.band #agent-intent .lede,
+.band #agent-intent h3,
+.band #agent-intent .need,
+.band #agent-intent .why,
+.band #agent-intent .note,
+.band #agent-intent .kicker {
+  color: var(--ink);
+}
+.band #agent-intent .note { color: var(--mute); }
+.band #agent-intent .kicker { color: var(--gold-ink); }
 #agent-intent h3 {
   margin: 0.15rem 0 0.55rem;
-  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
 }
 #agent-intent-lede {
   max-width: 44rem;
-  font-size: clamp(1.04rem, 1.7vw, 1.22rem);
-  line-height: 1.42;
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.12rem, 1.9vw, 1.36rem);
+  line-height: 1.4;
+  color: var(--ink);
+}
+#agent-intent .need,
+#agent-intent .why {
+  max-width: 42rem;
+  margin: 0 0 0.7rem;
+  line-height: 1.5;
+  color: var(--ink);
 }
 #agent-intent-zeros {
   display: flex;
@@ -1617,6 +1638,20 @@ table.law tr[data-group] th {
 #agent-intent-kicker {
   margin: 1.05rem 0 0.4rem;
 }
+.agent-intent-cut {
+  display: grid;
+  gap: 1.15rem 1.4rem;
+  margin: 0.35rem 0 0.55rem;
+}
+@media (min-width: 980px) {
+  .agent-intent-cut { grid-template-columns: 1fr 1fr; }
+}
+.agent-intent-facts {
+  margin: 0.35rem 0 1rem;
+}
+#agent-intent-refuse {
+  margin: 0.85rem 0 1rem;
+}
 #agent-intent-refuses li {
   box-shadow: inset 3px 0 0 rgba(120, 40, 40, 0.55);
 }
@@ -1627,6 +1662,18 @@ table.law tr[data-group] th {
   position: relative;
   z-index: 1;
 }
+.band #agent-intent button.ghost.room-refuse,
+.band #agent-intent button.ghost.room-refuse b {
+  color: var(--gold-ink);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.band #agent-intent button.ghost.room-refuse:hover b { color: var(--gold); }
+.band #agent-intent button.ghost.room-refuse[aria-pressed="true"] b { color: var(--hold); }
 .industry-control {
   margin-top: 1.15rem;
   padding-top: 0.15rem;

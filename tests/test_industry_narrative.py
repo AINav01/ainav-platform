@@ -72,6 +72,9 @@ def test_industry_areas_tell_need_and_why():
     assert 'href="#industry.treasury"' in html.split('id="pack-industry"', 1)[1]
     intent = html[html.index('id="agent-intent"') : html.index('id="industry-rooms"')]
     assert "Agent Intent is what the buyer says" in intent
+    assert "Those words are intents. They are not SKUs." in intent
+    assert 'id="agent-intent-need"' in intent
+    assert 'id="agent-intent-why"' in intent
     assert "Need: an unauthorized bank rec" in intent
     assert "Need: a reserve journal two humans did not admit" in intent
     assert "Need: a booked RWA receivable without two seats" in intent
@@ -86,9 +89,15 @@ def test_industry_areas_tell_need_and_why():
     assert 'data-room-refuse="stablecoin_mint"' in intent
     assert 'data-room-refuse="rwa_issue"' in intent
     assert 'data-room-refuse="crypto_ams"' in intent
+    assert 'id="agent-intent-refuse"' in intent
     assert "agent-intent-lede" not in js
+    assert "refuseIndustryCert" in js
+    assert '"agent-intent-refuse"' in js
     assert "#agent-intent" in css
     assert "#agent-intent-walks" in css
+    assert "#agent-intent-lede" in css
+    assert "color: var(--ink)" in css
+    assert ".agent-intent-cut" in css
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#crypto"' not in nav
     assert 'href="#token"' not in nav
