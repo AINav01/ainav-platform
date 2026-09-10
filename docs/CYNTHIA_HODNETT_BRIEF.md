@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.19.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.20.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.19.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.20.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -412,6 +412,7 @@ Working well
 - 3.17.0 honest protect is catalog law: recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Complements stay eight. Not LIVE_PIN_OK.
 - 3.18.0 honest hold is catalog law: recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not LIVE_PIN_OK.
 - 3.19.0 honest close is catalog law: recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight. Not LIVE_PIN_OK.
+- 3.20.0 honest join is catalog law: recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -628,6 +629,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 87. [tree] Honest protect — Ship 3.17.0 honest protect on #ip. Recorded. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Not LIVE_PIN_OK.
 - 88. [tree] Honest hold — Ship 3.18.0 honest hold on #missing. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Not LIVE_PIN_OK.
 - 89. [tree] Honest close — Ship 3.19.0 honest close on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Not LIVE_PIN_OK.
+- 90. [tree] Honest join — Ship 3.20.0 honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Not LIVE_PIN_OK.
 
 ## What happens next
 

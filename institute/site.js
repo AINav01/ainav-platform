@@ -5076,6 +5076,80 @@
   }
   bindCloseRefuses(document.getElementById("close-consider"));
 
+  var JOIN_REFUSE = {
+    join_as_launch: {
+      message: "Refused. The join is not launch.",
+      ledger: "join_denied · join as launch\nThe join is not launch.\nBoards stay recorded.\nlive=false · live_pin_ok=false"
+    },
+    stitch_as_live_pin: {
+      message: "Refused. The stitched firm is not LIVE_PIN_OK.",
+      ledger: "join_denied · stitched firm as LIVE_PIN_OK\nThe stitched firm is not LIVE_PIN_OK.\nOwner-only stays owner-only.\nlive=false · live_pin_ok=false"
+    },
+    licensed_as_wired_firm: {
+      message: "Refused. Licensed-not-wired is not a wired firm.",
+      ledger: "join_denied · licensed-not-wired as wired firm\nLicensed-not-wired is not a wired firm.\nMicrosoft roster stays visible.\nlive=false · live_pin_ok=false"
+    },
+    manage_ops_as_closed: {
+      message: "Refused. Management and operations are not closed from this plane.",
+      ledger: "join_denied · manage-ops as closed\nManagement and operations are not closed from this plane.\nMaps stay maps.\nlive=false · live_pin_ok=false"
+    },
+    certify_as_running: {
+      message: "Refused. A certified simulation is not a running firm.",
+      ledger: "join_denied · certified simulation as running firm\nA certified simulation is not a running firm.\nA 10/10 quality check is not launch.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeJoinLedger(text) {
+    var node = document.getElementById("join-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseJoin(button, message, ledger) {
+    var refuse = document.getElementById("join-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeJoinLedger(ledger);
+  }
+
+  function bindJoinRefuses(root) {
+    if (!root || root.getAttribute("data-join-bound")) return;
+    root.setAttribute("data-join-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-join-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-join-refuse") || "";
+      var pack = JOIN_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseJoin(
+        btn,
+        message,
+        pack.ledger || ("join_denied · " + id + "\nThe join is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindJoinRefuses(document.getElementById("join-consider"));
+
+  fetch("join.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.join_as_launch || data.stitch_as_live_pin || data.licensed_as_wired_firm || data.certified) return;
+      var status = document.getElementById("join-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · join_as_launch=false · stitch_as_live_pin=false · licensed_as_wired_firm=false · manage_ops_as_closed=false · certify_as_running=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("close.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

@@ -1882,7 +1882,8 @@ table.law tr[data-group] th {
 #ten-consider,
 #protect-consider,
 #hold-consider,
-#close-consider {
+#close-consider,
+#join-consider {
   padding: 1.45rem 1.45rem 1.65rem;
 }
 #pages-consider .ghost,
@@ -1895,7 +1896,8 @@ table.law tr[data-group] th {
 #ten-consider .ghost,
 #protect-consider .ghost,
 #hold-consider .ghost,
-#close-consider .ghost {
+#close-consider .ghost,
+#join-consider .ghost {
   min-height: 2.45rem;
   padding: 0.45rem 0.85rem;
 }
@@ -1906,7 +1908,8 @@ table.law tr[data-group] th {
 #ten-consider,
 #protect-consider,
 #hold-consider,
-#close-consider {
+#close-consider,
+#join-consider {
   max-width: var(--wide);
   margin: 1.35rem 0 0;
   padding: 1.45rem 1.45rem 1.65rem;
@@ -1922,6 +1925,7 @@ table.law tr[data-group] th {
 #protect-consider { margin: 0 0 1.35rem; }
 #hold-consider { margin: 0 0 1.35rem; }
 #close-consider { margin: 0 0 1.35rem; }
+#join-consider { margin: 0 0 1.35rem; }
 #operate-consider > h2,
 #path-consider > h2,
 #prod-consider > h2,
@@ -1929,7 +1933,8 @@ table.law tr[data-group] th {
 #ten-consider > h2,
 #protect-consider > h2,
 #hold-consider > h2,
-#close-consider > h2 {
+#close-consider > h2,
+#join-consider > h2 {
   margin: 0 0 0.55rem;
   color: var(--ink);
   font-size: clamp(1.85rem, 3.4vw, 2.55rem);
@@ -1941,7 +1946,8 @@ table.law tr[data-group] th {
 #ten-consider .lede,
 #protect-consider .lede,
 #hold-consider .lede,
-#close-consider .lede {
+#close-consider .lede,
+#join-consider .lede {
   color: var(--ink);
   max-width: 40rem;
 }
@@ -1952,7 +1958,8 @@ table.law tr[data-group] th {
 #ten-consider .kicker,
 #protect-consider .kicker,
 #hold-consider .kicker,
-#close-consider .kicker { color: var(--gold-ink); }
+#close-consider .kicker,
+#join-consider .kicker { color: var(--gold-ink); }
 #operate-consider .note,
 #path-consider .note,
 #prod-consider .note,
@@ -1960,7 +1967,8 @@ table.law tr[data-group] th {
 #ten-consider .note,
 #protect-consider .note,
 #hold-consider .note,
-#close-consider .note { color: var(--mute); }
+#close-consider .note,
+#join-consider .note { color: var(--mute); }
 #operate-consider .ghost,
 #path-consider .ghost,
 #prod-consider .ghost,
@@ -1968,7 +1976,8 @@ table.law tr[data-group] th {
 #ten-consider .ghost,
 #protect-consider .ghost,
 #hold-consider .ghost,
-#close-consider .ghost {
+#close-consider .ghost,
+#join-consider .ghost {
   color: var(--ink);
   border-color: var(--ink);
   background: transparent;
@@ -1988,7 +1997,9 @@ table.law tr[data-group] th {
 #hold-consider .ghost:hover,
 #hold-consider .ghost[aria-pressed="true"],
 #close-consider .ghost:hover,
-#close-consider .ghost[aria-pressed="true"] {
+#close-consider .ghost[aria-pressed="true"],
+#join-consider .ghost:hover,
+#join-consider .ghost[aria-pressed="true"] {
   background: color-mix(in srgb, var(--gold) 14%, var(--paper));
   border-color: var(--gold);
   color: var(--ink);
@@ -2000,7 +2011,8 @@ table.law tr[data-group] th {
 .ten-facts [data-fact="quality"],
 .protect-facts [data-fact="client"],
 .hold-facts [data-fact="vault"],
-.close-facts [data-fact="close"] { box-shadow: inset 3px 0 0 var(--gold-2); }
+.close-facts [data-fact="close"],
+.join-facts [data-fact="join"] { box-shadow: inset 3px 0 0 var(--gold-2); }
 #operate-zeros,
 #cycle-zeros,
 #prod-zeros,
@@ -2008,7 +2020,8 @@ table.law tr[data-group] th {
 #ten-zeros,
 #protect-zeros,
 #hold-zeros,
-#close-zeros {
+#close-zeros,
+#join-zeros {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 1.15rem;
@@ -2027,7 +2040,8 @@ table.law tr[data-group] th {
 #ten-zeros b,
 #protect-zeros b,
 #hold-zeros b,
-#close-zeros b { color: var(--gold-2); }
+#close-zeros b,
+#join-zeros b { color: var(--gold-2); }
 #hold-names-lede { margin: 0.85rem 0 0.35rem; }
 #hold-names {
   display: flex;

@@ -1,0 +1,240 @@
+{
+  "certified": false,
+  "certify_as_running": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "join",
+      "live": false,
+      "name": "Join",
+      "note": "The join stitches existing boards. The joined firm is not launch.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "manage",
+      "live": false,
+      "name": "Manage",
+      "note": "Business plan and ops maps. Management and operations are not closed from this plane.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "fulfill",
+      "live": false,
+      "name": "Fulfill",
+      "note": "Client fulfillment stays on #path. Not a named client. Hours are not a SKU.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "produce",
+      "live": false,
+      "name": "Produce",
+      "note": "Production stays owner-gated. A production sim is not production. Not auto-promote.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "certify",
+      "live": false,
+      "name": "Certify",
+      "note": "A certified simulation is not a running firm. A 10/10 quality check is not launch.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "honest": true,
+  "hops": [
+    {
+      "closed": false,
+      "href": "#buyer",
+      "id": "write",
+      "live": false,
+      "name": "Write",
+      "note": "Job C. The unauthorized journal. First glance stays the write rail."
+    },
+    {
+      "closed": false,
+      "href": "#business",
+      "id": "plan",
+      "live": false,
+      "name": "Plan",
+      "note": "Business plan and management maps. Not a running firm."
+    },
+    {
+      "closed": false,
+      "href": "#close-consider",
+      "id": "close",
+      "live": false,
+      "name": "Close",
+      "note": "Honest close hops by reference. A 10/10 close is not launch."
+    },
+    {
+      "closed": false,
+      "href": "#path",
+      "id": "fulfill",
+      "live": false,
+      "name": "Fulfill",
+      "note": "Client twin after signed L1. Hours are not a SKU. Not a named client."
+    },
+    {
+      "closed": false,
+      "href": "#firm",
+      "id": "produce",
+      "live": false,
+      "name": "Produce",
+      "note": "Operating day on #firm. A production sim is not production."
+    },
+    {
+      "closed": false,
+      "href": "#firm-ms",
+      "id": "microsoft",
+      "live": false,
+      "name": "Microsoft",
+      "note": "BC, Sales, Teams, SharePoint, Sentinel. Licensed-not-wired is visible."
+    },
+    {
+      "closed": false,
+      "href": "#fabric",
+      "id": "fabric",
+      "live": false,
+      "name": "Fabric",
+      "note": "Azure hosts. Entra identifies. AINav admits. Complements stay eight."
+    },
+    {
+      "closed": false,
+      "href": "#whole",
+      "id": "website",
+      "live": false,
+      "name": "Website",
+      "note": "Institute twin on Azure SWA. Apex empty. The twin is not launch."
+    },
+    {
+      "closed": false,
+      "href": "#agent-tools",
+      "id": "operate",
+      "live": false,
+      "name": "Operate",
+      "note": "Connect, operate, hold. Licensed is not wired. Connected is not live."
+    },
+    {
+      "closed": false,
+      "href": "#ops",
+      "id": "keep",
+      "live": false,
+      "name": "Keep",
+      "note": "P-ADM after kit. Maintenance is not launch. Complements stay eight."
+    },
+    {
+      "closed": false,
+      "href": "#success",
+      "id": "certify",
+      "live": false,
+      "name": "Certify",
+      "note": "Honest ten. A 10/10 quality check is not launch. A certified simulation is not a running firm."
+    }
+  ],
+  "href": "#firm",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "join_as_launch": false,
+  "kind": "ainav.honest.join.v1",
+  "lede": "The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight.",
+  "licensed_as_wired_firm": false,
+  "live": false,
+  "live_pin_ok": false,
+  "manage_ops_as_closed": false,
+  "microsoft_product": "Microsoft marks",
+  "note": "Honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat the join as launch.",
+      "Do not treat the stitched firm as LIVE_PIN_OK.",
+      "Do not treat licensed-not-wired as a wired firm.",
+      "Do not treat management and operations as closed from this plane.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "certify_as_running": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "institute_publish": "launch_not_ready",
+    "join_as_launch": false,
+    "kind": "ainav.honest.join.v1",
+    "launch": false,
+    "licensed_as_wired_firm": false,
+    "live": false,
+    "live_pin_ok": false,
+    "manage_ops_as_closed": false,
+    "recorded": true,
+    "stitch_as_live_pin": false
+  },
+  "product": "Honest join",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#firm",
+      "id": "join_as_launch",
+      "name": "The join as launch",
+      "refuse": true,
+      "refuse_text": "Refused. The join is not launch.",
+      "title": "The join as launch"
+    },
+    {
+      "href": "#firm",
+      "id": "stitch_as_live_pin",
+      "name": "The stitched firm as LIVE_PIN_OK",
+      "refuse": true,
+      "refuse_text": "Refused. The stitched firm is not LIVE_PIN_OK.",
+      "title": "The stitched firm as LIVE_PIN_OK"
+    },
+    {
+      "href": "#firm",
+      "id": "licensed_as_wired_firm",
+      "name": "Licensed-not-wired as a wired firm",
+      "refuse": true,
+      "refuse_text": "Refused. Licensed-not-wired is not a wired firm.",
+      "title": "Licensed-not-wired as a wired firm"
+    },
+    {
+      "href": "#firm",
+      "id": "manage_ops_as_closed",
+      "name": "Management and operations as closed",
+      "refuse": true,
+      "refuse_text": "Refused. Management and operations are not closed from this plane.",
+      "title": "Management and operations as closed"
+    },
+    {
+      "href": "#firm",
+      "id": "certify_as_running",
+      "name": "A certified simulation as a running firm",
+      "refuse": true,
+      "refuse_text": "Refused. A certified simulation is not a running firm.",
+      "title": "A certified simulation as a running firm"
+    }
+  ],
+  "site": "Honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. First glance stays the write rail. Not a /join route. Not LIVE_PIN_OK.",
+  "stitch_as_live_pin": false,
+  "this_agent_cannot": [
+    "Treat the join as launch.",
+    "Treat the stitched firm as LIVE_PIN_OK.",
+    "Treat licensed-not-wired as a wired firm.",
+    "Treat management and operations as closed from this plane.",
+    "Treat a certified simulation as a running firm."
+  ],
+  "wired": false
+}

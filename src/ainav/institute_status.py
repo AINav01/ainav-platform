@@ -328,6 +328,13 @@ def public_status() -> dict[str, Any]:
             "twin_as_assigned": False,
             "custom_db_as_sku": False,
             "list_as_collection": False,
+            "honest_join": bool(site.get("honest_join")),
+            "honest_join_live": False,
+            "join_as_launch": False,
+            "stitch_as_live_pin": False,
+            "licensed_as_wired_firm": False,
+            "manage_ops_as_closed": False,
+            "certify_as_running": False,
         },
         "bc": {
             "connection": "bc.premium",

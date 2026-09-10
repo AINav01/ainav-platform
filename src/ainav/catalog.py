@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 89:
-        raise IntegrityError("expert review needs 16–89 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 90:
+        raise IntegrityError("expert review needs 16–90 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1290,6 +1290,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         87: ("honest protect", "live_pin_ok"),
         88: ("honest hold", "live_pin_ok"),
         89: ("honest close", "live_pin_ok"),
+        90: ("honest join", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1453,6 +1454,10 @@ def _validate_first_principles(items: Any) -> None:
         raise IntegrityError("first-principles must keep honest close", reason_code="CATALOG_REVIEW")
     if "a booking is not recognized revenue" not in blob or "a catalog list is not collection" not in blob:
         raise IntegrityError("first-principles must keep a booking is not recognized revenue and a catalog list is not collection", reason_code="CATALOG_REVIEW")
+    if "honest join" not in blob or "the join is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest join", reason_code="CATALOG_REVIEW")
+    if "licensed-not-wired is not a wired firm" not in blob or "a certified simulation is not a running firm" not in blob:
+        raise IntegrityError("first-principles must keep licensed-not-wired is not a wired firm", reason_code="CATALOG_REVIEW")
     if "mfa admits" in blob or "live_pin_ok is closed" in blob:
         raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
 
@@ -1870,6 +1875,16 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO does-not keeps a custom database as a fourth SKU", reason_code="CATALOG_REVIEW")
     if "a catalog list as collection" not in does_not:
         raise IntegrityError("CISO posture does not treat a catalog list as collection", reason_code="CATALOG_REVIEW")
+    if "the join as launch" not in does_not:
+        raise IntegrityError("CISO does-not keeps the join as launch", reason_code="CATALOG_REVIEW")
+    if "the stitched firm as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO does-not keeps the stitched firm as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "licensed-not-wired as a wired firm" not in does_not:
+        raise IntegrityError("CISO does-not keeps licensed-not-wired as a wired firm", reason_code="CATALOG_REVIEW")
+    if "management and operations as closed from this plane" not in does_not:
+        raise IntegrityError("CISO does-not keeps management and operations as closed from this plane", reason_code="CATALOG_REVIEW")
+    if "a certified simulation as a running firm" not in does_not:
+        raise IntegrityError("CISO posture does not treat a certified simulation as a running firm", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -1948,6 +1963,19 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest close is not revenue and the twin is not assigned", reason_code="CATALOG_REVIEW")
     if hosted_close.get("custom_db_as_sku") is True or hosted_close.get("list_as_collection") is True:
         raise IntegrityError("success honest close is not a fourth SKU and is not collection", reason_code="CATALOG_REVIEW")
+    hosted_join = success.get("honest_join")
+    if not isinstance(hosted_join, dict):
+        raise IntegrityError("success program keeps honest join", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("kind") != "ainav.honest.join.v1" or hosted_join.get("honest") is not True:
+        raise IntegrityError("success honest join stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("href") != "#firm":
+        raise IntegrityError("success honest join sits on #firm", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("live") is True or hosted_join.get("join_as_launch") is True:
+        raise IntegrityError("success honest join stays not live and the join is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("stitch_as_live_pin") is True or hosted_join.get("licensed_as_wired_firm") is True:
+        raise IntegrityError("success honest join is not LIVE_PIN_OK and is not a wired firm", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("manage_ops_as_closed") is True or hosted_join.get("certify_as_running") is True:
+        raise IntegrityError("success honest join does not close management and is not a running firm", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3731,6 +3759,48 @@ HONEST_CLOSE_REFUSE_TEXT = {
     "list_as_collection": "Refused. A catalog list is not collection.",
 }
 HONEST_CLOSE_HREFS = {key: "#path" for key in HONEST_CLOSE_REFUSE_IDS}
+HONEST_JOIN_FACT_IDS = ["join", "manage", "fulfill", "produce", "certify"]
+HONEST_JOIN_HOP_IDS = [
+    "write",
+    "plan",
+    "close",
+    "fulfill",
+    "produce",
+    "microsoft",
+    "fabric",
+    "website",
+    "operate",
+    "keep",
+    "certify",
+]
+HONEST_JOIN_HOP_HREFS = {
+    "write": "#buyer",
+    "plan": "#business",
+    "close": "#close-consider",
+    "fulfill": "#path",
+    "produce": "#firm",
+    "microsoft": "#firm-ms",
+    "fabric": "#fabric",
+    "website": "#whole",
+    "operate": "#agent-tools",
+    "keep": "#ops",
+    "certify": "#success",
+}
+HONEST_JOIN_REFUSE_IDS = [
+    "join_as_launch",
+    "stitch_as_live_pin",
+    "licensed_as_wired_firm",
+    "manage_ops_as_closed",
+    "certify_as_running",
+]
+HONEST_JOIN_REFUSE_TEXT = {
+    "join_as_launch": "Refused. The join is not launch.",
+    "stitch_as_live_pin": "Refused. The stitched firm is not LIVE_PIN_OK.",
+    "licensed_as_wired_firm": "Refused. Licensed-not-wired is not a wired firm.",
+    "manage_ops_as_closed": "Refused. Management and operations are not closed from this plane.",
+    "certify_as_running": "Refused. A certified simulation is not a running firm.",
+}
+HONEST_JOIN_HREFS = {key: "#firm" for key in HONEST_JOIN_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4228,8 +4298,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path", "#close-consider", "#firm"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin, honest close, firm", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path", "#close-consider", "#firm", "#join-consider"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin, honest close, firm, honest join", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
@@ -4805,6 +4875,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_317(catalog, body)
     _validate_instrument_318(catalog, body)
     _validate_instrument_319(catalog, body)
+    _validate_instrument_320(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6543,8 +6614,6 @@ def _validate_instrument_318(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_319(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.19.0":
-        raise IntegrityError("entity.release is 3.19.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.19.0" in item and "honest close" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.19.0 honest close", reason_code="CATALOG_ENGINEERING")
@@ -6594,6 +6663,60 @@ def _validate_instrument_319(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_close import validate_honest_close
 
     validate_honest_close(catalog)
+
+
+def _validate_instrument_320(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.20.0":
+        raise IntegrityError("entity.release is 3.20.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.20.0" in item and "honest join" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.20.0 honest join", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_join") is not True or site.get("honest_close") is not True:
+        raise IntegrityError("3.20.0 website has honest join", reason_code="CATALOG_PLANE")
+    if site.get("honest_join_live") is True or site.get("join_as_launch") is True:
+        raise IntegrityError("3.20.0 join is not live and the join is not launch", reason_code="CATALOG_PLANE")
+    if site.get("stitch_as_live_pin") is True or site.get("licensed_as_wired_firm") is True:
+        raise IntegrityError("3.20.0 the stitched firm is not LIVE_PIN_OK and licensed is not wired", reason_code="CATALOG_PLANE")
+    if site.get("manage_ops_as_closed") is True or site.get("certify_as_running") is True:
+        raise IntegrityError("3.20.0 management is not closed and a simulation is not a running firm", reason_code="CATALOG_PLANE")
+    join = catalog.get("honest_join") or {}
+    if join.get("kind") != "ainav.honest.join.v1" or join.get("honest") is not True:
+        raise IntegrityError("3.20.0 honest join kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if join.get("join_as_launch") is True or join.get("signed_l1") is True:
+        raise IntegrityError("3.20.0 the join is not launch and signed L1 stays open", reason_code="CATALOG_REVIEW")
+    if join.get("certified") is True:
+        raise IntegrityError("3.20.0 honest join is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(join.get("site") or "").lower()
+    if "honest join" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps honest join", reason_code="CATALOG_REVIEW")
+    if "the join is not launch" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps the join is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /join route" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps not a /join route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest join" not in principles:
+        raise IntegrityError("first-principles must keep honest join", reason_code="CATALOG_REVIEW")
+    if "the join is not launch" not in principles:
+        raise IntegrityError("first-principles must keep the join is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.20.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#firm" not in ops:
+        raise IntegrityError("3.20.0 operations note keeps #firm", reason_code="CATALOG_REVIEW")
+    if "honest join" not in ops:
+        raise IntegrityError("3.20.0 operations note keeps honest join", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a joined firm" not in managed:
+        raise IntegrityError("3.20.0 managed face refuses a joined firm", reason_code="CATALOG_PLANE")
+    if "not a certified running firm" not in managed:
+        raise IntegrityError("3.20.0 managed face refuses a certified running firm", reason_code="CATALOG_PLANE")
+    from ainav.honest_join import validate_honest_join
+
+    validate_honest_join(catalog)
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
