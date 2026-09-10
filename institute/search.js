@@ -10,6 +10,11 @@
     return hits === terms.length ? hits : 0;
   }
 
+  function dismiss(input, root) {
+    if (input) input.value = "";
+    if (root) root.textContent = "";
+  }
+
   function render(root, items, input) {
     root.textContent = "";
     if (!items.length) {
@@ -24,8 +29,7 @@
       a.href = item.href;
       a.textContent = item.title;
       a.addEventListener("click", function () {
-        if (input) input.value = "";
-        root.textContent = "";
+        dismiss(input, root);
       });
       var p = document.createElement("p");
       p.className = "note";
@@ -45,7 +49,7 @@
         .split(/\s+/)
         .filter(Boolean);
       if (!terms.length) {
-        out.textContent = "";
+        dismiss(input, out);
         return;
       }
       render(
@@ -67,6 +71,11 @@
       bind(document.getElementById("site-search"), document.getElementById("site-search-out"), data.records);
       bind(document.getElementById("app-search"), document.getElementById("app-search-out"), data.records);
       bind(document.getElementById("kit-search"), document.getElementById("kit-search-out"), data.records);
+      window.addEventListener("hashchange", function () {
+        dismiss(document.getElementById("site-search"), document.getElementById("site-search-out"));
+        dismiss(document.getElementById("app-search"), document.getElementById("app-search-out"));
+        dismiss(document.getElementById("kit-search"), document.getElementById("kit-search-out"));
+      });
     })
     .catch(function () {});
 })();

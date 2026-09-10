@@ -59,6 +59,8 @@ def test_industry_areas_tell_need_and_why():
     search_js = Path("institute/search.js").read_text(encoding="utf-8")
     assert 'input.value = ""' in search_js
     assert 'root.textContent = ""' in search_js
+    assert "hashchange" in search_js
+    assert "function dismiss" in search_js
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="#packs"' not in nav
     assert "Walk the industry" in html

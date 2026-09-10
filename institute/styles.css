@@ -2393,10 +2393,10 @@ table.law tr[data-group] th {
   color: var(--mute);
 }
 .industry-cert-rows section[id] {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 6.5rem;
 }
 .industry-area {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 6.5rem;
 }
 #operator-zeros {
   display: flex;
@@ -2768,6 +2768,27 @@ footer a { color: inherit; }
   display: grid;
   gap: 0.45rem;
   margin: 0 0 1rem;
+}
+.app-search-out:empty { display: none; }
+#site-search-out {
+  position: absolute;
+  top: calc(100% - 0.1rem);
+  right: 6vw;
+  z-index: 12;
+  width: min(28rem, calc(100vw - 12vw));
+  max-height: min(24rem, 70vh);
+  overflow: auto;
+  margin: 0;
+  padding: 0.45rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+}
+#site-search-out:empty {
+  display: none;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
 }
 .app-search-out article {
   border: 1px solid var(--rule);
