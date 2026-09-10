@@ -753,6 +753,9 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
 }
 .about-walk {
   margin: 1rem 0 0.15rem;
+  max-width: var(--wide);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 #hero-sale { margin: 1.4rem 0 0.25rem; max-width: var(--wide); }
 #hero-notes {
@@ -2146,6 +2149,42 @@ table.law tr[data-group] th {
 }
 .join-walk {
   margin: 0.7rem 0 0.15rem;
+  max-width: var(--wide);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+#product-fulfill-kicker {
+  margin: 1.05rem 0 0.4rem;
+}
+#product-fulfill-hops {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+#product-fulfill-hops li::after { content: none; }
+#product-fulfill-hops a {
+  color: inherit;
+  text-decoration: none;
+}
+#product-fulfill-hops a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+#product-fulfill-hops li:hover,
+#product-fulfill-hops li:focus-within {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#product-fulfill-hops a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+@media (min-width: 1100px) {
+  #product-fulfill-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 #join-hops a,
 #close-hops a {
