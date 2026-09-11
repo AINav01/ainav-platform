@@ -84,6 +84,9 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'id="bc-tools-cut"' in html
     assert 'id="ten-proof"' in html
     assert 'id="ten-proof-cut"' in html
+    assert 'id="ten-need"' in html
+    assert 'id="ten-why"' in html
+    assert "Walk honest ten" in html
     assert 'id="ms-proof"' in html
     assert 'id="ms-proof-cut"' in html
     assert 'id="ms-universe"' in html
@@ -123,6 +126,7 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'href="index.html#sale-tools">Walk the sales tools</a>' in app
     assert 'href="index.html#bc-tools">Walk Business Central</a>' in app
     assert 'href="index.html#ten-proof">Walk the 10/10</a>' in app
+    assert 'href="index.html#ten-consider">Walk honest ten</a>' in app
     assert 'href="index.html#ms-proof">Walk the Microsoft 10/10</a>' in app
     assert 'href="index.html#ms-universe">Walk the Microsoft universe</a>' in app
     assert 'href="index.html#hold-consider">Walk the honest hold</a>' in app

@@ -364,7 +364,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'href="#firm-ms"' in ten_proof
     assert 'href="#twin-proof"' in ten_proof
     assert 'href="#bc-tools"' in ten_proof
-    assert 'href="#missing"' in ten_proof
+    assert 'href="#ten-consider"' in ten_proof
     assert 'href="#ten-proof"' in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
     assert 'href="#ten-proof"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
     assert 'href="#ten-proof"' in html[html.index('id="twin-proof-walk"') : html.index("</p>", html.index('id="twin-proof-walk"'))]
@@ -375,6 +375,18 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#ten-proof-hops { grid-template-columns: repeat(3" in css
     assert "#ten-proof.is-landed" in css
     assert "index.html#ten-proof" in twin_html
+    assert 'id="ten-need"' in html
+    assert 'id="ten-why"' in html
+    assert "ten-need" not in js
+    assert "ten-lede" not in js
+    assert "Walk honest ten" in html
+    assert html.index('id="ten-lede"') < html.index('id="ten-need"') < html.index('id="ten-proof"') < html.index('id="ten-zeros"')
+    assert 'href="#ten-consider"' in html[html.index('id="ten-proof-walk"') : html.index("</p>", html.index('id="ten-proof-walk"'))]
+    assert 'href="#ten-consider"' in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert "Walk the industry" in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert "#ten-consider.is-landed" in css
+    assert 'href="/ten"' not in html
     assert 'id="ms-proof"' in html
     assert 'id="ms-proof-hops"' in html
     assert 'id="ms-proof-lede"' in html

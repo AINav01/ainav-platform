@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -2117,6 +2117,8 @@ table.law tr[data-group] th {
 #prod-consider .lede,
 #remain-consider .lede,
 #ten-consider .lede,
+#ten-consider .need,
+#ten-consider .why,
 #protect-consider .lede,
 #hold-consider .lede,
 #hold-consider .need,
@@ -2330,6 +2332,8 @@ table.law tr[data-group] th {
 #bc-tools.is-landed,
 #ten-proof:target,
 #ten-proof.is-landed,
+#ten-consider:target,
+#ten-consider.is-landed,
 #ms-proof:target,
 #ms-proof.is-landed,
 #ms-universe:target,
