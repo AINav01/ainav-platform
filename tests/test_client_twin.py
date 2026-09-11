@@ -414,6 +414,47 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#ms-proof-hops { grid-template-columns: repeat(3" in css
     assert "#ms-proof.is-landed" in css
     assert "index.html#ms-proof" in twin_html
+    assert 'id="offer-proof"' in html
+    assert 'id="offer-proof-hops"' in html
+    assert 'id="offer-proof-lede"' in html
+    assert 'id="offer-proof-need"' in html
+    assert 'id="offer-proof-why"' in html
+    assert 'id="offer-proof-zeros"' in html
+    assert 'id="offer-proof-facts"' in html
+    assert 'id="offer-proof-cut"' in html
+    assert "offer-proof-lede" not in js
+    assert "Walk the offer 10/10" in html
+    assert "A 10/10 offer is not a fourth SKU" in html
+    assert "Packs, modules, and repositories are not SKUs" in html
+    assert 'id="offer-proof-is-pack">no' in html
+    assert 'id="offer-proof-is-free">no' in html
+    assert 'id="offer-proof-is-hours">no' in html
+    assert 'id="offer-proof-is-cert">no' in html
+    assert 'id="offer-proof-is-trial">no' in html
+    assert 'href="/offer"' not in html
+    assert html.index('id="packs"') < html.index('id="offer-proof"') < html.index('id="industry-narratives"')
+    offer_proof = html[html.index('id="offer-proof-hops"') : html.index("</ol>", html.index('id="offer-proof-hops"'))]
+    assert offer_proof.count("Need:") == 6
+    assert offer_proof.count("Why:") == 6
+    assert offer_proof.count("<li") == 6
+    assert 'href="#ten-proof"' in offer_proof
+    assert 'href="#included-upsells"' in offer_proof
+    assert 'href="#industry-narratives"' in offer_proof
+    assert 'href="#industry-area-libraries"' in offer_proof
+    assert 'href="#ops"' in offer_proof
+    assert 'href="#missing"' in offer_proof
+    assert 'href="#offer-proof"' in html[html.index('id="ten-proof-walk"') : html.index("</p>", html.index('id="ten-proof-walk"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="client-proof-walk"') : html.index("</p>", html.index('id="client-proof-walk"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="industry-narr-walk"') : html.index("</p>", html.index('id="industry-narr-walk"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="industry-narr-return"') : html.index("</p>", html.index('id="industry-narr-return"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="ops-join-walk"') : html.index("</p>", html.index('id="ops-join-walk"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="finance-join-walk"') : html.index("</p>", html.index('id="finance-join-walk"'))]
+    assert 'href="#offer-proof"' in html[html.index('id="commercial-walk"') : html.index("</p>", html.index('id="commercial-walk"'))]
+    assert "#offer-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#offer-proof.is-landed" in css
+    assert "#included-upsells.is-landed" in css
+    assert "index.html#offer-proof" in twin_html
     assert hops.count("<li") == 11
 
 

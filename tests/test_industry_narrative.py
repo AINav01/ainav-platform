@@ -18,6 +18,9 @@ def test_industry_areas_tell_need_and_why():
     js = Path("institute/site.js").read_text(encoding="utf-8")
     packs = html[html.index('id="packs"') : html.index('id="governance"')]
     assert 'id="industry-narratives"' in packs
+    assert 'id="offer-proof"' in packs
+    assert "A 10/10 offer is not a fourth SKU" in packs
+    assert "Walk the offer 10/10" in packs
     assert 'id="industry-narr-lede"' in packs
     assert "Five industry areas" in packs
     assert "A 10/10+ quality check is not launch" in packs
