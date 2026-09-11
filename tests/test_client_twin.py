@@ -596,7 +596,10 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Temporary complete access is not LIVE_PIN_OK" in html
     assert "Read this window confirmed" in html
     assert "Cynthia mailbox user exists and is enabled" in html
-    assert "Channel list is not granted" in html
+    assert "Channel.ReadBasic.All visible" in html
+    assert "Channel list is granted" in html
+    assert "Display name General" in html
+    assert "Ids stay James Sets" in html
     assert "SWA custom domain list empty" in html
     assert "asuid not bound on the twin" in html
     assert "Teams id names are not in that list yet" in html
