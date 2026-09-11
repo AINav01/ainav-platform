@@ -84,6 +84,8 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'id="ms-proof-cut"' in html
     assert 'id="client-proof"' in html
     assert 'id="client-proof-cut"' in html
+    assert 'id="client-planes-cut"' in html
+    assert 'id="close-console-walk"' in html
     assert 'id="eco-proof-cut"' in html
     assert 'id="twin-proof-cut"' in html
     assert 'id="life-proof-cut"' in html

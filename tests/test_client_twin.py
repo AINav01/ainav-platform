@@ -104,12 +104,19 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'href="#client-proof"' in html[html.index('id="path-join-walk"') : html.index("</p>", html.index('id="path-join-walk"'))]
     assert 'href="#client-proof"' in html[html.index('id="close-join-walk"') : html.index("</p>", html.index('id="close-join-walk"'))]
     assert 'href="#client-proof"' in html[html.index('id="twin-use-walk"') : html.index("</p>", html.index('id="twin-use-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="firm-proof-walk"') : html.index("</p>", html.index('id="firm-proof-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="sale-tools-walk"') : html.index("</p>", html.index('id="sale-tools-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="bc-tools-walk"') : html.index("</p>", html.index('id="bc-tools-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="ms-proof-walk"') : html.index("</p>", html.index('id="ms-proof-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="close-console-walk"') : html.index("</p>", html.index('id="close-console-walk"'))]
     assert "index.html#client-proof" in twin_html
     assert hops.count("<li") == 11
     assert 'id="client-planes"' in html
     assert 'id="client-plane-hops"' in html
     assert "one live client, one sandbox" in html.lower()
     plane = html[html.index('id="client-plane-hops"') : html.index("</ol>", html.index('id="client-plane-hops"'))]
+    assert plane.count("Need:") == 6
+    assert plane.count("Why:") == 6
     assert plane.count("<li") == 6
     assert 'href="#success"' in plane
     assert 'href="#demo-console"' in plane
@@ -125,6 +132,11 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="client-planes-why"' in html
     assert 'id="client-planes-zeros"' in html
     assert 'id="client-planes-facts"' in html
+    assert 'id="client-planes-cut"' in html
+    assert 'id="close-console-need"' in html
+    assert 'id="close-console-why"' in html
+    assert 'id="close-console-walk"' in html
+    assert "close-console-lede" not in js
     assert "client-planes-lede" not in js
     assert "twin-use-lede" not in js
     css = Path("institute/styles.css").read_text(encoding="utf-8")
@@ -132,6 +144,8 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#client-planes.is-landed" in css
     assert "#client-proof-hops { grid-template-columns: repeat(3" in css
     assert "#client-proof.is-landed" in css
+    assert "#close-console.is-landed" in css
+    assert 'id="client-planes-cut"' in html
     assert 'id="twin-proof"' in html
     assert 'id="twin-proof-hops"' in html
     assert 'id="twin-proof-cut"' in html

@@ -1319,6 +1319,27 @@ table.law tr[data-group] th {
   align-items: center;
   text-decoration: none;
 }
+#close-console .need,
+#close-console .why {
+  max-width: 42rem;
+  margin: 0 0 0.7rem;
+  line-height: 1.5;
+  color: #d8d2c6;
+}
+#close-console .join-walk,
+#close-console .join-walk a {
+  color: #d8d2c6;
+}
+#close-console .join-walk a:hover,
+#close-console .join-walk a:focus-visible {
+  color: var(--gold-2);
+}
+#close-console:target,
+#close-console.is-landed {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent), var(--shadow);
+}
 .firm-rail li[data-rail="pipeline"],
 .firm-rail li[data-rail="live"] {
   background: var(--void);
