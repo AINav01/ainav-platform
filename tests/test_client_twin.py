@@ -268,7 +268,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="sale-tools-is-sku">no' in html
     assert 'id="sale-tools-is-wired">no' in html
     assert 'id="sale-tools-is-hubspot">no' in html
-    assert html.index('id="firm-lede"') < html.index('id="firm-proof"') < html.index('id="sale-tools"') < html.index('id="bc-tools"') < html.index('id="ms-proof"') < html.index('id="firm-rails"')
+    assert html.index('id="firm-lede"') < html.index('id="firm-proof"') < html.index('id="sale-tools"') < html.index('id="bc-tools"') < html.index('id="ms-proof"') < html.index('id="ms-universe"') < html.index('id="firm-rails"')
     sale_tools = html[html.index('id="sale-tools-hops"') : html.index("</ol>", html.index('id="sale-tools-hops"'))]
     assert sale_tools.count("Need:") == 6
     assert sale_tools.count("Why:") == 6
@@ -414,6 +414,46 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#ms-proof-hops { grid-template-columns: repeat(3" in css
     assert "#ms-proof.is-landed" in css
     assert "index.html#ms-proof" in twin_html
+    assert 'id="ms-universe"' in html
+    assert 'id="ms-universe-hops"' in html
+    assert 'id="ms-universe-lede"' in html
+    assert 'id="ms-universe-need"' in html
+    assert 'id="ms-universe-why"' in html
+    assert 'id="ms-universe-zeros"' in html
+    assert 'id="ms-universe-facts"' in html
+    assert 'id="ms-universe-cut"' in html
+    assert "ms-universe-lede" not in js
+    assert "Walk the Microsoft universe" in html
+    assert "Temporary access is not LIVE_PIN_OK" in html
+    assert "A 10/10 Microsoft universe is not launch" in html
+    assert 'id="ms-universe-is-wired">no' in html
+    assert 'id="ms-universe-is-ninth">no' in html
+    assert 'id="ms-universe-is-pin">no' in html
+    assert 'id="ms-universe-is-seat">no' in html
+    assert 'id="ms-universe-is-write">revoked' in html
+    assert 'href="/ms"' not in html
+    assert html.index('id="ms-proof"') < html.index('id="ms-universe"') < html.index('id="firm-rails"')
+    ms_universe = html[html.index('id="ms-universe-hops"') : html.index("</ol>", html.index('id="ms-universe-hops"'))]
+    assert ms_universe.count("Need:") == 6
+    assert ms_universe.count("Why:") == 6
+    assert ms_universe.count("<li") == 6
+    assert 'href="#ms-azure"' in ms_universe
+    assert 'href="#ms-e7"' in ms_universe
+    assert 'href="#ms-bc"' in ms_universe
+    assert 'href="#ms-sales"' in ms_universe
+    assert 'href="#ms-teams-premium"' in ms_universe
+    assert 'href="#missing"' in ms_universe
+    assert 'href="#ms-universe"' in html[html.index('id="ms-proof-walk"') : html.index("</p>", html.index('id="ms-proof-walk"'))]
+    assert 'href="#ms-universe"' in html[html.index('id="ten-proof-walk"') : html.index("</p>", html.index('id="ten-proof-walk"'))]
+    assert 'href="#ms-universe"' in html[html.index('id="offer-proof-walk"') : html.index("</p>", html.index('id="offer-proof-walk"'))]
+    assert 'href="#ms-universe"' in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert 'href="#ms-universe"' in html[html.index('id="firm-join-walk"') : html.index("</p>", html.index('id="firm-join-walk"'))]
+    assert 'href="#ms-universe"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
+    assert "Walk the industry" in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert "#ms-universe-hops { grid-template-columns: repeat(3" in css
+    assert "#ms-universe.is-landed" in css
+    assert "index.html#ms-universe" in twin_html
     assert 'id="offer-proof"' in html
     assert 'id="offer-proof-hops"' in html
     assert 'id="offer-proof-lede"' in html
