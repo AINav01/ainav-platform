@@ -130,6 +130,30 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#life-proof-hops { grid-template-columns: repeat(3" in css
     assert "#life-proof.is-landed" in css
     assert "index.html#life-proof" in twin_html
+    assert 'id="eco-proof"' in html
+    assert 'id="eco-proof-hops"' in html
+    assert 'id="eco-proof-lede"' in html
+    assert 'id="eco-proof-need"' in html
+    assert 'id="eco-proof-why"' in html
+    assert 'id="eco-proof-zeros"' in html
+    assert 'id="eco-proof-facts"' in html
+    assert "eco-proof-lede" not in js
+    assert "The stitched ecosystem is not a running firm" in html
+    assert "Walk the ecosystem proof" in html
+    eco = html[html.index('id="eco-proof-hops"') : html.index("</ol>", html.index('id="eco-proof-hops"'))]
+    assert eco.count("<li") == 6
+    assert 'href="#whole"' in eco
+    assert 'href="#buyer"' in eco
+    assert 'href="#twin-proof"' in eco
+    assert 'href="#life-proof"' in eco
+    assert 'href="#firm-ms"' in eco
+    assert 'href="#missing"' in eco
+    assert 'href="#eco-proof"' in html[html.index('id="twin-proof-walk"') : html.index("</p>", html.index('id="twin-proof-walk"'))]
+    assert 'href="#eco-proof"' in html[html.index('id="life-proof-walk"') : html.index("</p>", html.index('id="life-proof-walk"'))]
+    assert 'href="#eco-proof"' in html[html.index('id="whole-join-walk"') : html.index("</p>", html.index('id="whole-join-walk"'))]
+    assert "#eco-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#eco-proof.is-landed" in css
+    assert "index.html#eco-proof" in twin_html
     assert hops.count("<li") == 11
 
 
