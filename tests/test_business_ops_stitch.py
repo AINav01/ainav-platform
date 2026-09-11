@@ -52,6 +52,8 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert "#product-fulfill-hops" in css
     assert "#product-fulfill-hops { grid-template-columns: repeat(5" in css
     assert "#industry-area-hops { grid-template-columns: repeat(5" in css
+    assert "#twin-proof-hops { grid-template-columns: repeat(3" in css
+    assert "Walk what we proof" in html
     assert 'id="twin-use"' in html
     assert "#twin-use-hops" in css
     assert "#twin-use-hops { grid-template-columns: repeat(3" in css

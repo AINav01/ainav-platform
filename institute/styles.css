@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #ready-lanes { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -2226,10 +2226,55 @@ table.law tr[data-group] th {
 #twin-use:target,
 #twin-use.is-landed,
 #client-planes:target,
-#client-planes.is-landed {
+#client-planes.is-landed,
+#twin-proof:target,
+#twin-proof.is-landed {
   outline: 2px solid var(--gold);
   outline-offset: 6px;
   background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#twin-proof-zeros {
+  margin: 0.85rem 0 0.35rem;
+}
+#twin-proof-hops {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+#twin-proof-hops li::after { content: none; }
+#twin-proof-hops a {
+  color: inherit;
+  text-decoration: none;
+}
+#twin-proof-hops a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+#twin-proof-hops li:hover,
+#twin-proof-hops li:focus-within {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#twin-proof-hops a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+#twin-proof-hops li {
+  color: var(--ink);
+}
+#twin-proof-hops li span {
+  color: var(--mute);
+}
+#twin-proof-hops li[data-hop="owner"] {
+  border-top: 3px solid var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+@media (min-width: 900px) {
+  #twin-proof-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 #client-planes-zeros {
   margin: 0.85rem 0 0.35rem;

@@ -91,6 +91,23 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     assert ".plane-island" in css
     assert "#client-planes.is-landed" in css
+    assert 'id="twin-proof"' in html
+    assert 'id="twin-proof-hops"' in html
+    assert "twin-proof-lede" not in js
+    assert "Named-human proof day" in html
+    assert "Twin certified is not launch day" in html
+    proof = html[html.index('id="twin-proof-hops"') : html.index("</ol>", html.index('id="twin-proof-hops"'))]
+    assert proof.count("<li") == 6
+    assert 'href="#buyer"' in proof
+    assert 'href="#demo-console"' in proof
+    assert 'href="kit.html"' in proof
+    assert 'href="#ready-lanes"' in proof
+    assert 'href="#client-planes"' in proof
+    assert 'href="#missing"' in proof
+    assert "#twin-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#twin-proof.is-landed" in css
+    assert "index.html#twin-proof" in twin_html
+    assert hops.count("<li") == 11
 
 
 def _reject(mutator):
