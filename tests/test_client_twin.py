@@ -597,6 +597,11 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Read this window confirmed" in html
     assert "Cynthia mailbox user exists and is enabled" in html
     assert "Channel list is not granted" in html
+    assert "SWA custom domain list empty" in html
+    assert "asuid not bound on the twin" in html
+    assert "Teams id names are not in that list yet" in html
+    assert "Values unread" in html
+    assert "Teams id names still need Create then Set" in html
     assert "A read session is not a seated second human" in html
     assert "Do not grant Graph Writes" in html
     assert "Do not grant Outlook send" in html
