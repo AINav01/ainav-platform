@@ -548,7 +548,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="grok-ms-is-write">revoked' in html
     assert 'href="/grok"' not in html
     assert 'href="/bot"' not in html
-    assert html.index('id="operate-consider"') < html.index('id="grok-ms"') < html.index('id="protect-consider"')
+    assert html.index('id="operate-consider"') < html.index('id="grok-ms"') < html.index('id="access-window"') < html.index('id="protect-consider"')
     grok_ms = html[html.index('id="grok-ms-hops"') : html.index("</ol>", html.index('id="grok-ms-hops"'))]
     assert grok_ms.count("Need:") == 6
     assert grok_ms.count("Why:") == 6
@@ -577,6 +577,51 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#grok-ms-hops { grid-template-columns: repeat(3" in css
     assert "#grok-ms.is-landed" in css
     assert "index.html#grok-ms" in twin_html
+    assert hops.count("<li") == 11
+    assert 'id="access-window"' in html
+    assert 'id="access-window-hops"' in html
+    assert 'id="access-window-lede"' in html
+    assert 'id="access-window-need"' in html
+    assert 'id="access-window-why"' in html
+    assert 'id="access-window-zeros"' in html
+    assert 'id="access-window-facts"' in html
+    assert 'id="access-window-cut"' in html
+    assert "access-window-lede" not in js
+    assert "Walk the access window" in html
+    assert "time-boxed admin session" in html
+    assert "Temporary complete access is not LIVE_PIN_OK" in html
+    assert "A read session is not a seated second human" in html
+    assert "Do not grant Graph Writes" in html
+    assert "Do not grant Outlook send" in html
+    assert 'id="access-window-is-pin">no' in html
+    assert 'id="access-window-is-seat">no' in html
+    assert 'id="access-window-is-wired">no' in html
+    assert 'id="access-window-is-dataverse">no' in html
+    assert 'id="access-window-is-write">revoked' in html
+    assert 'href="/access"' not in html
+    assert 'href="/window"' not in html
+    access_window = html[html.index('id="access-window-hops"') : html.index("</ol>", html.index('id="access-window-hops"'))]
+    assert access_window.count("Need:") == 6
+    assert access_window.count("Why:") == 6
+    assert access_window.count("<li") == 6
+    assert 'href="#agent-tools"' in access_window
+    assert 'href="#ms-azure"' in access_window
+    assert 'href="#ms-e7"' in access_window
+    assert 'href="#hold-consider"' in access_window
+    assert 'href="#ms-universe"' in access_window
+    assert 'href="#missing"' in access_window
+    assert 'href="#access-window"' in html[html.index('id="operate-join-walk"') : html.index("</p>", html.index('id="operate-join-walk"'))]
+    assert 'href="#access-window"' in html[html.index('id="operate-consider-walk"') : html.index("</p>", html.index('id="operate-consider-walk"'))]
+    assert 'href="#access-window"' in html[html.index('id="grok-ms-walk"') : html.index("</p>", html.index('id="grok-ms-walk"'))]
+    assert 'href="#access-window"' in html[html.index('id="ms-universe-walk"') : html.index("</p>", html.index('id="ms-universe-walk"'))]
+    assert 'href="#access-window"' in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert 'href="#access-window"' in html[html.index('id="hold-join-walk"') : html.index("</p>", html.index('id="hold-join-walk"'))]
+    assert 'href="#access-window"' in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert "Walk the industry" in html[html.index('id="access-window-walk"') : html.index("</p>", html.index('id="access-window-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="access-window-walk"') : html.index("</p>", html.index('id="access-window-walk"'))]
+    assert "#access-window-hops { grid-template-columns: repeat(3" in css
+    assert "#access-window.is-landed" in css
+    assert "index.html#access-window" in twin_html
     assert hops.count("<li") == 11
 
 
