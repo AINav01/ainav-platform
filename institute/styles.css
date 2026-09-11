@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #ready-lanes { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ms-proof, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #ready-lanes { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -2281,6 +2281,8 @@ table.law tr[data-group] th {
 #bc-tools.is-landed,
 #ten-proof:target,
 #ten-proof.is-landed,
+#ms-proof:target,
+#ms-proof.is-landed,
 #brand-island:target,
 #brand-island.is-landed {
   outline: 2px solid var(--gold);
@@ -2605,6 +2607,52 @@ table.law tr[data-group] th {
 }
 @media (min-width: 900px) {
   #ten-proof-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+#ms-proof-zeros {
+  margin: 0.85rem 0 0.35rem;
+}
+#ms-proof-hops {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+#ms-proof-hops li::after { content: none; }
+#ms-proof-hops a {
+  color: inherit;
+  text-decoration: none;
+}
+#ms-proof-hops a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+#ms-proof-hops li:hover,
+#ms-proof-hops li:focus-within {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#ms-proof-hops a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+#ms-proof-hops li {
+  color: var(--ink);
+}
+#ms-proof-hops li span {
+  color: var(--mute);
+}
+#ms-proof-hops li[data-hop="sor"] {
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+#ms-proof-hops li[data-hop="keep"] {
+  border-top: 3px solid var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+@media (min-width: 900px) {
+  #ms-proof-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 #client-planes-zeros {
   margin: 0.85rem 0 0.35rem;
