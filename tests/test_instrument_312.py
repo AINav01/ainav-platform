@@ -86,6 +86,11 @@ def test_release_is_312_honest_operate():
     assert 'id="operate-consider"' in html
     assert 'id="operate-zeros"' in html
     assert 'id="operate-facts"' in html
+    assert 'id="grok-ms"' in html
+    assert "grok-ms-lede" not in js
+    assert "Walk Grok Bot Microsoft" in html
+    assert 'href="/grok"' not in html
+    assert 'href="/bot"' not in html
     assert 'data-operate-refuse="close_gaps_as_this_plane"' in html
     assert 'data-operate-refuse="outlook_as_click"' in html
     assert 'data-operate-refuse="grok_login_as_this_plane"' in html

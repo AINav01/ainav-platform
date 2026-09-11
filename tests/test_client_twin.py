@@ -526,6 +526,58 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#included-upsells.is-landed" in css
     assert "index.html#offer-proof" in twin_html
     assert hops.count("<li") == 11
+    assert 'id="grok-ms"' in html
+    assert 'id="grok-ms-hops"' in html
+    assert 'id="grok-ms-lede"' in html
+    assert 'id="grok-ms-need"' in html
+    assert 'id="grok-ms-why"' in html
+    assert 'id="grok-ms-zeros"' in html
+    assert 'id="grok-ms-facts"' in html
+    assert 'id="grok-ms-cut"' in html
+    assert "grok-ms-lede" not in js
+    assert "Walk Grok Bot Microsoft" in html
+    assert "A Grok bot is not dual admit" in html
+    assert "A Grok Bot approval gate is not Job C" in html
+    assert "Firecracker is not a client sandbox" in html
+    assert "Composio or MCP is not Graph Writes Granted" in html
+    assert "A considered plugin is not a wired firm" in html
+    assert 'id="grok-ms-is-admit">no' in html
+    assert 'id="grok-ms-is-outlook">no' in html
+    assert 'id="grok-ms-is-ninth">no' in html
+    assert 'id="grok-ms-is-jobc">no' in html
+    assert 'id="grok-ms-is-write">revoked' in html
+    assert 'href="/grok"' not in html
+    assert 'href="/bot"' not in html
+    assert html.index('id="operate-consider"') < html.index('id="grok-ms"') < html.index('id="protect-consider"')
+    grok_ms = html[html.index('id="grok-ms-hops"') : html.index("</ol>", html.index('id="grok-ms-hops"'))]
+    assert grok_ms.count("Need:") == 6
+    assert grok_ms.count("Why:") == 6
+    assert grok_ms.count("<li") == 6
+    assert 'href="#agent-tools"' in grok_ms
+    assert 'href="#operate-consider"' in grok_ms
+    assert 'href="#ms-teams-premium"' in grok_ms
+    assert 'href="#hold-consider"' in grok_ms
+    assert 'href="#ms-universe"' in grok_ms
+    assert 'href="#missing"' in grok_ms
+    assert 'href="#grok-ms"' in html[html.index('id="operate-join-walk"') : html.index("</p>", html.index('id="operate-join-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="operate-consider-walk"') : html.index("</p>", html.index('id="operate-consider-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="ten-proof-walk"') : html.index("</p>", html.index('id="ten-proof-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="ms-universe-walk"') : html.index("</p>", html.index('id="ms-universe-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="ms-proof-walk"') : html.index("</p>", html.index('id="ms-proof-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="hold-join-walk"') : html.index("</p>", html.index('id="hold-join-walk"'))]
+    assert 'href="#grok-ms"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
+    assert "Walk the industry" in html[html.index('id="operate-join-walk"') : html.index("</p>", html.index('id="operate-join-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="operate-join-walk"') : html.index("</p>", html.index('id="operate-join-walk"'))]
+    assert "Walk the industry" in html[html.index('id="operate-consider-walk"') : html.index("</p>", html.index('id="operate-consider-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="operate-consider-walk"') : html.index("</p>", html.index('id="operate-consider-walk"'))]
+    assert "Walk the industry" in html[html.index('id="grok-ms-walk"') : html.index("</p>", html.index('id="grok-ms-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="grok-ms-walk"') : html.index("</p>", html.index('id="grok-ms-walk"'))]
+    assert "#grok-ms-hops { grid-template-columns: repeat(3" in css
+    assert "#grok-ms.is-landed" in css
+    assert "index.html#grok-ms" in twin_html
+    assert hops.count("<li") == 11
 
 
 def _reject(mutator):
