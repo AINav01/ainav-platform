@@ -63,6 +63,8 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'id="life-proof"' in html
     assert 'id="eco-proof"' in html
     assert 'id="firm-proof"' in html
+    assert 'id="firm-proof-cut"' in html
+    assert ".ops-cut" in css
     assert 'id="twin-use"' in html
     assert "#twin-use-hops" in css
     assert "#twin-use-hops { grid-template-columns: repeat(3" in css

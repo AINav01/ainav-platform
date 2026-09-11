@@ -165,7 +165,11 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Walk the operating company" in html
     assert "Teams Premium is not a seat" in html
     assert "Co-brand stays unnamed until signed L1" in html
+    assert 'id="firm-proof-cut"' in html
+    assert html.index('id="firm-lede"') < html.index('id="firm-proof"') < html.index('id="firm-rails"')
     firm_proof = html[html.index('id="firm-proof-hops"') : html.index("</ol>", html.index('id="firm-proof-hops"'))]
+    assert firm_proof.count("Need:") == 6
+    assert firm_proof.count("Why:") == 6
     assert firm_proof.count("<li") == 6
     assert 'href="#business"' in firm_proof
     assert 'href="#success"' in firm_proof
