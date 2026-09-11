@@ -606,6 +606,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Vault ARM list shows the six held names" in html
     assert "Values unread" in html
     assert "The six held names exist in the vault list" in html
+    assert "James confirmed the six current versions are not blank" in html
     assert "A read session is not a seated second human" in html
     assert "Do not grant Graph Writes" in html
     assert "Do not grant Outlook send" in html
