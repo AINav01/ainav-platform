@@ -442,7 +442,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'href="#ms-bc"' in ms_universe
     assert 'href="#ms-sales"' in ms_universe
     assert 'href="#ms-teams-premium"' in ms_universe
-    assert 'href="#missing"' in ms_universe
+    assert 'href="#hold-consider"' in ms_universe
     assert 'href="#ms-universe"' in html[html.index('id="ms-proof-walk"') : html.index("</p>", html.index('id="ms-proof-walk"'))]
     assert 'href="#ms-universe"' in html[html.index('id="ten-proof-walk"') : html.index("</p>", html.index('id="ten-proof-walk"'))]
     assert 'href="#ms-universe"' in html[html.index('id="offer-proof-walk"') : html.index("</p>", html.index('id="offer-proof-walk"'))]
@@ -454,6 +454,24 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#ms-universe-hops { grid-template-columns: repeat(3" in css
     assert "#ms-universe.is-landed" in css
     assert "index.html#ms-universe" in twin_html
+    assert 'id="firm-ms-need"' in html
+    assert 'id="firm-ms-why"' in html
+    assert 'id="hold-need"' in html
+    assert 'id="hold-why"' in html
+    assert 'id="hold-join-walk"' in html
+    assert "firm-ms-need" not in js
+    assert "hold-need" not in js
+    assert "Walk the honest hold" in html
+    assert 'href="#hold-consider"' in html[html.index('id="ms-universe-walk"') : html.index("</p>", html.index('id="ms-universe-walk"'))]
+    assert 'href="#ms-universe"' in html[html.index('id="hold-join-walk"') : html.index("</p>", html.index('id="hold-join-walk"'))]
+    assert "Walk the industry" in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert "#firm-ms.is-landed" in css
+    assert "#hold-consider.is-landed" in css
+    assert "#close-console.is-landed" in css
+    assert 'background: color-mix(in srgb, var(--gold) 10%, var(--paper))' in css[css.index("#hold-consider.is-landed") : css.index("#hold-consider.is-landed") + 400]
+    firm_ms_gold = css[css.index("#firm-ms.is-landed") : css.index("#firm-ms.is-landed") + 280]
+    assert "var(--paper)" not in firm_ms_gold
     assert 'id="offer-proof"' in html
     assert 'id="offer-proof-hops"' in html
     assert 'id="offer-proof-lede"' in html

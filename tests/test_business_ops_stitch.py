@@ -88,6 +88,10 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'id="ms-proof-cut"' in html
     assert 'id="ms-universe"' in html
     assert 'id="ms-universe-cut"' in html
+    assert 'id="firm-ms-need"' in html
+    assert 'id="hold-need"' in html
+    assert 'id="hold-join-walk"' in html
+    assert "Walk the honest hold" in html
     assert 'id="client-proof"' in html
     assert 'id="client-proof-cut"' in html
     assert 'id="offer-proof"' in html
@@ -121,6 +125,7 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'href="index.html#ten-proof">Walk the 10/10</a>' in app
     assert 'href="index.html#ms-proof">Walk the Microsoft 10/10</a>' in app
     assert 'href="index.html#ms-universe">Walk the Microsoft universe</a>' in app
+    assert 'href="index.html#hold-consider">Walk the honest hold</a>' in app
     assert 'href="index.html#client-proof">Walk the client 10/10</a>' in app
     assert 'href="index.html#offer-proof">Walk the offer 10/10</a>' in app
     assert app.count("Owner book") == 1

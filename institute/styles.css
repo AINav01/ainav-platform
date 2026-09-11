@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #ready-lanes { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -1340,6 +1340,30 @@ table.law tr[data-group] th {
   outline-offset: 6px;
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent), var(--shadow);
 }
+#firm-ms .need,
+#firm-ms .why {
+  max-width: 42rem;
+  margin: 0 0 0.7rem;
+  line-height: 1.5;
+  color: #d8d2c6;
+}
+#firm-ms:target,
+#firm-ms.is-landed {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent), var(--shadow);
+}
+#ms-azure.is-landed,
+#ms-e7.is-landed,
+#ms-teams.is-landed,
+#ms-teams-premium.is-landed,
+#ms-bc.is-landed,
+#ms-sales.is-landed,
+#ms-entra.is-landed {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+}
 .firm-rail li[data-rail="pipeline"],
 .firm-rail li[data-rail="live"] {
   background: var(--void);
@@ -2095,6 +2119,8 @@ table.law tr[data-group] th {
 #ten-consider .lede,
 #protect-consider .lede,
 #hold-consider .lede,
+#hold-consider .need,
+#hold-consider .why,
 #close-consider .lede,
 #join-consider .lede {
   color: var(--ink);
@@ -2308,6 +2334,8 @@ table.law tr[data-group] th {
 #ms-proof.is-landed,
 #ms-universe:target,
 #ms-universe.is-landed,
+#hold-consider:target,
+#hold-consider.is-landed,
 #offer-proof:target,
 #offer-proof.is-landed,
 #included-upsells:target,
