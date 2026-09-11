@@ -55,11 +55,14 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert "#twin-proof-hops { grid-template-columns: repeat(3" in css
     assert "#life-proof-hops { grid-template-columns: repeat(3" in css
     assert "#eco-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#firm-proof-hops { grid-template-columns: repeat(3" in css
     assert "Walk what we proof" in html
     assert "Walk the client lifecycle" in html
     assert "Walk the ecosystem proof" in html
+    assert "Walk the operating company" in html
     assert 'id="life-proof"' in html
     assert 'id="eco-proof"' in html
+    assert 'id="firm-proof"' in html
     assert 'id="twin-use"' in html
     assert "#twin-use-hops" in css
     assert "#twin-use-hops { grid-template-columns: repeat(3" in css
@@ -77,6 +80,7 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'href="index.html#client-planes"><b>Assign</b>' in app
     assert 'href="index.html#life-proof">Walk the client lifecycle</a>' in app
     assert 'href="index.html#eco-proof">Walk the ecosystem proof</a>' in app
+    assert 'href="index.html#firm-proof">Walk the operating company</a>' in app
     assert app.count("Owner book") == 1
     product = html[html.index('id="product"') : html.index('id="path"')]
     assert "L1 · Prove" in product

@@ -154,6 +154,34 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#eco-proof-hops { grid-template-columns: repeat(3" in css
     assert "#eco-proof.is-landed" in css
     assert "index.html#eco-proof" in twin_html
+    assert 'id="firm-proof"' in html
+    assert 'id="firm-proof-hops"' in html
+    assert 'id="firm-proof-lede"' in html
+    assert 'id="firm-proof-need"' in html
+    assert 'id="firm-proof-why"' in html
+    assert 'id="firm-proof-zeros"' in html
+    assert 'id="firm-proof-facts"' in html
+    assert "firm-proof-lede" not in js
+    assert "Walk the operating company" in html
+    assert "Teams Premium is not a seat" in html
+    assert "Co-brand stays unnamed until signed L1" in html
+    firm_proof = html[html.index('id="firm-proof-hops"') : html.index("</ol>", html.index('id="firm-proof-hops"'))]
+    assert firm_proof.count("<li") == 6
+    assert 'href="#business"' in firm_proof
+    assert 'href="#success"' in firm_proof
+    assert 'href="#firm-ms"' in firm_proof
+    assert 'href="#finance"' in firm_proof
+    assert 'href="#brand"' in firm_proof
+    assert 'href="#universe"' in firm_proof
+    assert 'href="#firm-proof"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
+    assert 'href="#firm-proof"' in html[html.index('id="firm-join-walk"') : html.index("</p>", html.index('id="firm-join-walk"'))]
+    assert 'href="#firm-proof"' in html[html.index('id="ops-join-walk"') : html.index("</p>", html.index('id="ops-join-walk"'))]
+    assert 'href="#firm-proof"' in html[html.index('id="brand-join-walk"') : html.index("</p>", html.index('id="brand-join-walk"'))]
+    assert 'href="#firm-proof"' in html[html.index('id="finance-join-walk"') : html.index("</p>", html.index('id="finance-join-walk"'))]
+    assert 'href="#firm-proof"' in html[html.index('id="universe-join-walk"') : html.index("</p>", html.index('id="universe-join-walk"'))]
+    assert "#firm-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#firm-proof.is-landed" in css
+    assert "index.html#firm-proof" in twin_html
     assert hops.count("<li") == 11
 
 
