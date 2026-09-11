@@ -2209,6 +2209,13 @@
           var li = document.createElement("li");
           li.setAttribute("data-wired", item.wired ? "yes" : "no");
           li.setAttribute("data-class", item.class || "required");
+          var hopId = {
+            "m365.e7": "ms-e7",
+            "teams.enterprise": "ms-teams",
+            "teams.premium": "ms-teams-premium",
+            "sales.enterprise": "ms-sales"
+          }[item.id];
+          if (hopId) li.id = hopId;
           var name = document.createElement("b");
           name.textContent = item.name || item.id || "";
           li.appendChild(name);

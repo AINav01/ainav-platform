@@ -186,6 +186,48 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#firm-proof-hops { grid-template-columns: repeat(3" in css
     assert "#firm-proof.is-landed" in css
     assert "index.html#firm-proof" in twin_html
+    assert 'id="sale-tools"' in html
+    assert 'id="sale-tools-hops"' in html
+    assert 'id="sale-tools-lede"' in html
+    assert 'id="sale-tools-need"' in html
+    assert 'id="sale-tools-why"' in html
+    assert 'id="sale-tools-zeros"' in html
+    assert 'id="sale-tools-facts"' in html
+    assert "sale-tools-lede" not in js
+    assert "Walk the sales tools" in html
+    assert "Sales Enterprise is not the firm CRM" in html
+    assert "Microsoft marks are theirs" in html
+    assert "Microsoft is not the product" in html
+    assert 'id="sale-tools-cut"' in html
+    assert 'id="sale-tools-is-crm">no' in html
+    assert 'id="sale-tools-is-seat">no' in html
+    assert 'id="sale-tools-is-sku">no' in html
+    assert 'id="sale-tools-is-wired">no' in html
+    assert 'id="sale-tools-is-hubspot">no' in html
+    assert html.index('id="firm-lede"') < html.index('id="firm-proof"') < html.index('id="sale-tools"') < html.index('id="firm-rails"')
+    sale_tools = html[html.index('id="sale-tools-hops"') : html.index("</ol>", html.index('id="sale-tools-hops"'))]
+    assert sale_tools.count("Need:") == 6
+    assert sale_tools.count("Why:") == 6
+    assert sale_tools.count("<li") == 6
+    assert 'href="#ms-sales"' in sale_tools
+    assert 'href="#ms-teams-premium"' in sale_tools
+    assert 'href="#ms-teams"' in sale_tools
+    assert 'href="#ms-e7"' in sale_tools
+    assert 'href="#success"' in sale_tools
+    assert 'href="#brand"' in sale_tools
+    assert 'href="#sale-tools"' in html[html.index('id="firm-proof-walk"') : html.index("</p>", html.index('id="firm-proof-walk"'))]
+    assert 'href="#sale-tools"' in html[html.index('id="firm-join-walk"') : html.index("</p>", html.index('id="firm-join-walk"'))]
+    assert 'href="#sale-tools"' in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert 'href="#sale-tools"' in html[html.index('id="brand-join-walk"') : html.index("</p>", html.index('id="brand-join-walk"'))]
+    assert "#sale-tools-hops { grid-template-columns: repeat(3" in css
+    assert "#sale-tools.is-landed" in css
+    assert "index.html#sale-tools" in twin_html
+    assert '"sales.enterprise": "ms-sales"' in js
+    assert '"teams.premium": "ms-teams-premium"' in js
+    assert 'id="ms-sales"' in html
+    assert 'id="ms-teams-premium"' in html
+    assert 'id="ms-teams"' in html
+    assert 'id="ms-e7"' in html
     assert hops.count("<li") == 11
 
 
