@@ -2346,8 +2346,6 @@ table.law tr[data-group] th {
 #grok-ms.is-landed,
 #access-window:target,
 #access-window.is-landed,
-#write-window:target,
-#write-window.is-landed,
 #included-upsells:target,
 #included-upsells.is-landed,
 #brand-island:target,
@@ -2858,6 +2856,12 @@ table.law tr[data-group] th {
 }
 @media (min-width: 900px) {
   #access-window-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+#write-window:target,
+#write-window.is-landed {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
 }
 #write-window-zeros {
   margin: 0.85rem 0 0.35rem;
