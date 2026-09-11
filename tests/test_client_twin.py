@@ -93,10 +93,13 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#client-planes.is-landed" in css
     assert 'id="twin-proof"' in html
     assert 'id="twin-proof-hops"' in html
+    assert 'id="twin-proof-cut"' in html
     assert "twin-proof-lede" not in js
     assert "Named-human proof day" in html
     assert "Twin certified is not launch day" in html
     proof = html[html.index('id="twin-proof-hops"') : html.index("</ol>", html.index('id="twin-proof-hops"'))]
+    assert proof.count("Need:") == 6
+    assert proof.count("Why:") == 6
     assert proof.count("<li") == 6
     assert 'href="#buyer"' in proof
     assert 'href="#demo-console"' in proof
@@ -114,10 +117,13 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="life-proof-why"' in html
     assert 'id="life-proof-zeros"' in html
     assert 'id="life-proof-facts"' in html
+    assert 'id="life-proof-cut"' in html
     assert "life-proof-lede" not in js
     assert "A walked lifecycle is not a live client" in html
     assert "Walk the client lifecycle" in html
     life = html[html.index('id="life-proof-hops"') : html.index("</ol>", html.index('id="life-proof-hops"'))]
+    assert life.count("Need:") == 6
+    assert life.count("Why:") == 6
     assert life.count("<li") == 6
     assert 'href="#success"' in life
     assert 'href="#demo-console"' in life
@@ -137,10 +143,13 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="eco-proof-why"' in html
     assert 'id="eco-proof-zeros"' in html
     assert 'id="eco-proof-facts"' in html
+    assert 'id="eco-proof-cut"' in html
     assert "eco-proof-lede" not in js
     assert "The stitched ecosystem is not a running firm" in html
     assert "Walk the ecosystem proof" in html
     eco = html[html.index('id="eco-proof-hops"') : html.index("</ol>", html.index('id="eco-proof-hops"'))]
+    assert eco.count("Need:") == 6
+    assert eco.count("Why:") == 6
     assert eco.count("<li") == 6
     assert 'href="#whole"' in eco
     assert 'href="#buyer"' in eco
@@ -272,6 +281,45 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="ms-bc"' in html
     assert 'id="ms-azure"' in html
     assert 'id="ms-entra"' in html
+    assert 'id="ten-proof"' in html
+    assert 'id="ten-proof-hops"' in html
+    assert 'id="ten-proof-lede"' in html
+    assert 'id="ten-proof-need"' in html
+    assert 'id="ten-proof-why"' in html
+    assert 'id="ten-proof-zeros"' in html
+    assert 'id="ten-proof-facts"' in html
+    assert 'id="ten-proof-cut"' in html
+    assert "ten-proof-lede" not in js
+    assert "Walk the 10/10" in html
+    assert "Making all much better is not launch" in html
+    assert "A 10/10+ quality check is not launch" in html
+    assert 'id="ten-proof-is-launch">no' in html
+    assert 'id="ten-proof-is-gold">no' in html
+    assert 'id="ten-proof-is-wired">no' in html
+    assert 'id="ten-proof-is-sim">no' in html
+    assert 'id="ten-proof-is-seated">no' in html
+    assert 'href="/ten"' not in html
+    assert html.index('id="ten-lede"') < html.index('id="ten-proof"') < html.index('id="ten-zeros"')
+    ten_proof = html[html.index('id="ten-proof-hops"') : html.index("</ol>", html.index('id="ten-proof-hops"'))]
+    assert ten_proof.count("Need:") == 6
+    assert ten_proof.count("Why:") == 6
+    assert ten_proof.count("<li") == 6
+    assert 'href="#whole"' in ten_proof
+    assert 'href="#eco-proof"' in ten_proof
+    assert 'href="#firm-ms"' in ten_proof
+    assert 'href="#twin-proof"' in ten_proof
+    assert 'href="#bc-tools"' in ten_proof
+    assert 'href="#missing"' in ten_proof
+    assert 'href="#ten-proof"' in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert 'href="#ten-proof"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
+    assert 'href="#ten-proof"' in html[html.index('id="twin-proof-walk"') : html.index("</p>", html.index('id="twin-proof-walk"'))]
+    assert 'href="#ten-proof"' in html[html.index('id="life-proof-walk"') : html.index("</p>", html.index('id="life-proof-walk"'))]
+    assert 'href="#ten-proof"' in html[html.index('id="firm-proof-walk"') : html.index("</p>", html.index('id="firm-proof-walk"'))]
+    assert 'href="#ten-proof"' in html[html.index('id="sale-tools-walk"') : html.index("</p>", html.index('id="sale-tools-walk"'))]
+    assert 'href="#ten-proof"' in html[html.index('id="bc-tools-walk"') : html.index("</p>", html.index('id="bc-tools-walk"'))]
+    assert "#ten-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#ten-proof.is-landed" in css
+    assert "index.html#ten-proof" in twin_html
     assert hops.count("<li") == 11
 
 
