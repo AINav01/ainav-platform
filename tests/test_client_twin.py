@@ -67,6 +67,45 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "index.html#twin-use" in twin_html
     hops = html[html.index('id="join-hops"') : html.index("</ol>", html.index('id="join-hops"'))]
     assert hops.count("<li") == 11
+    assert 'id="client-proof"' in html
+    assert 'id="client-proof-hops"' in html
+    assert 'id="client-proof-lede"' in html
+    assert 'id="client-proof-need"' in html
+    assert 'id="client-proof-why"' in html
+    assert 'id="client-proof-zeros"' in html
+    assert 'id="client-proof-facts"' in html
+    assert 'id="client-proof-cut"' in html
+    assert "client-proof-lede" not in js
+    assert "A 10/10 client is not a live client" in html
+    assert "A certified client simulation is not a named client" in html
+    assert "Walk the client 10/10" in html
+    assert 'id="client-proof-is-named">none' in html
+    assert 'id="client-proof-is-assigned">no' in html
+    assert 'id="client-proof-is-launch">no' in html
+    assert 'id="client-proof-is-sim">no' in html
+    assert 'id="client-proof-is-assign">no' in html
+    assert 'href="/client"' not in html
+    assert html.index('id="life-proof"') < html.index('id="client-proof"') < html.index('id="close-console"')
+    client_proof = html[html.index('id="client-proof-hops"') : html.index("</ol>", html.index('id="client-proof-hops"'))]
+    assert client_proof.count("Need:") == 6
+    assert client_proof.count("Why:") == 6
+    assert client_proof.count("<li") == 6
+    assert 'href="#life-proof"' in client_proof
+    assert 'href="#success"' in client_proof
+    assert 'href="#client-planes"' in client_proof
+    assert 'href="#twin-proof"' in client_proof
+    assert 'href="#close-console"' in client_proof
+    assert 'href="#missing"' in client_proof
+    assert 'href="#client-proof"' in html[html.index('id="life-proof-walk"') : html.index("</p>", html.index('id="life-proof-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="client-planes-walk"') : html.index("</p>", html.index('id="client-planes-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="ten-proof-walk"') : html.index("</p>", html.index('id="ten-proof-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="twin-proof-walk"') : html.index("</p>", html.index('id="twin-proof-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="eco-proof-walk"') : html.index("</p>", html.index('id="eco-proof-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="path-join-walk"') : html.index("</p>", html.index('id="path-join-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="close-join-walk"') : html.index("</p>", html.index('id="close-join-walk"'))]
+    assert 'href="#client-proof"' in html[html.index('id="twin-use-walk"') : html.index("</p>", html.index('id="twin-use-walk"'))]
+    assert "index.html#client-proof" in twin_html
+    assert hops.count("<li") == 11
     assert 'id="client-planes"' in html
     assert 'id="client-plane-hops"' in html
     assert "one live client, one sandbox" in html.lower()
@@ -91,6 +130,8 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     css = Path("institute/styles.css").read_text(encoding="utf-8")
     assert ".plane-island" in css
     assert "#client-planes.is-landed" in css
+    assert "#client-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#client-proof.is-landed" in css
     assert 'id="twin-proof"' in html
     assert 'id="twin-proof-hops"' in html
     assert 'id="twin-proof-cut"' in html
