@@ -204,7 +204,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="sale-tools-is-sku">no' in html
     assert 'id="sale-tools-is-wired">no' in html
     assert 'id="sale-tools-is-hubspot">no' in html
-    assert html.index('id="firm-lede"') < html.index('id="firm-proof"') < html.index('id="sale-tools"') < html.index('id="firm-rails"')
+    assert html.index('id="firm-lede"') < html.index('id="firm-proof"') < html.index('id="sale-tools"') < html.index('id="bc-tools"') < html.index('id="firm-rails"')
     sale_tools = html[html.index('id="sale-tools-hops"') : html.index("</ol>", html.index('id="sale-tools-hops"'))]
     assert sale_tools.count("Need:") == 6
     assert sale_tools.count("Why:") == 6
@@ -228,6 +228,50 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="ms-teams-premium"' in html
     assert 'id="ms-teams"' in html
     assert 'id="ms-e7"' in html
+    assert 'id="bc-tools"' in html
+    assert 'id="bc-tools-hops"' in html
+    assert 'id="bc-tools-lede"' in html
+    assert 'id="bc-tools-need"' in html
+    assert 'id="bc-tools-why"' in html
+    assert 'id="bc-tools-zeros"' in html
+    assert 'id="bc-tools-facts"' in html
+    assert "bc-tools-lede" not in js
+    assert "Walk Business Central" in html
+    assert "A sandbox journal is not production" in html
+    assert "Lab AINAV-L1 is not two named treasury humans" in html
+    assert "Controllers already have Business Central" in html
+    assert 'id="bc-tools-cut"' in html
+    assert 'id="bc-tools-is-prod">no' in html
+    assert 'id="bc-tools-is-close">no' in html
+    assert 'id="bc-tools-is-wired">no' in html
+    assert 'id="bc-tools-is-named">no' in html
+    assert 'id="bc-tools-is-sku">no' in html
+    assert 'href="/bc"' not in html
+    bc_tools = html[html.index('id="bc-tools-hops"') : html.index("</ol>", html.index('id="bc-tools-hops"'))]
+    assert bc_tools.count("Need:") == 6
+    assert bc_tools.count("Why:") == 6
+    assert bc_tools.count("<li") == 6
+    assert 'href="#ms-bc"' in bc_tools
+    assert 'href="#product"' in bc_tools
+    assert 'href="#ms-entra"' in bc_tools
+    assert 'href="#ms-azure"' in bc_tools
+    assert 'href="#brand"' in bc_tools
+    assert 'href="#missing"' in bc_tools
+    assert 'href="#bc-tools"' in html[html.index('id="sale-tools-walk"') : html.index("</p>", html.index('id="sale-tools-walk"'))]
+    assert 'href="#bc-tools"' in html[html.index('id="firm-proof-walk"') : html.index("</p>", html.index('id="firm-proof-walk"'))]
+    assert 'href="#bc-tools"' in html[html.index('id="firm-join-walk"') : html.index("</p>", html.index('id="firm-join-walk"'))]
+    assert 'href="#bc-tools"' in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert 'href="#bc-tools"' in html[html.index('id="brand-join-walk"') : html.index("</p>", html.index('id="brand-join-walk"'))]
+    assert 'href="#bc-tools"' in html[html.index('id="product-walk"') : html.index("</p>", html.index('id="product-walk"'))]
+    assert "#bc-tools-hops { grid-template-columns: repeat(3" in css
+    assert "#bc-tools.is-landed" in css
+    assert "index.html#bc-tools" in twin_html
+    assert '"bc.premium": "ms-bc"' in js
+    assert '"azure.host": "ms-azure"' in js
+    assert '"entra.id": "ms-entra"' in js
+    assert 'id="ms-bc"' in html
+    assert 'id="ms-azure"' in html
+    assert 'id="ms-entra"' in html
     assert hops.count("<li") == 11
 
 

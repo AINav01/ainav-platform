@@ -2210,10 +2210,13 @@
           li.setAttribute("data-wired", item.wired ? "yes" : "no");
           li.setAttribute("data-class", item.class || "required");
           var hopId = {
+            "azure.host": "ms-azure",
             "m365.e7": "ms-e7",
             "teams.enterprise": "ms-teams",
             "teams.premium": "ms-teams-premium",
-            "sales.enterprise": "ms-sales"
+            "bc.premium": "ms-bc",
+            "sales.enterprise": "ms-sales",
+            "entra.id": "ms-entra"
           }[item.id];
           if (hopId) li.id = hopId;
           var name = document.createElement("b");
