@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #ready-lanes { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #ready-lanes { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -2228,7 +2228,9 @@ table.law tr[data-group] th {
 #client-planes:target,
 #client-planes.is-landed,
 #twin-proof:target,
-#twin-proof.is-landed {
+#twin-proof.is-landed,
+#life-proof:target,
+#life-proof.is-landed {
   outline: 2px solid var(--gold);
   outline-offset: 6px;
   background: color-mix(in srgb, var(--gold) 10%, var(--paper));
@@ -2275,6 +2277,52 @@ table.law tr[data-group] th {
 }
 @media (min-width: 900px) {
   #twin-proof-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+#life-proof-zeros {
+  margin: 0.85rem 0 0.35rem;
+}
+#life-proof-hops {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+#life-proof-hops li::after { content: none; }
+#life-proof-hops a {
+  color: inherit;
+  text-decoration: none;
+}
+#life-proof-hops a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+#life-proof-hops li:hover,
+#life-proof-hops li:focus-within {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#life-proof-hops a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+#life-proof-hops li {
+  color: var(--ink);
+}
+#life-proof-hops li span {
+  color: var(--mute);
+}
+#life-proof-hops li[data-hop="assign"] {
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+#life-proof-hops li[data-hop="produce"] {
+  border-top: 3px solid var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+@media (min-width: 900px) {
+  #life-proof-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 #client-planes-zeros {
   margin: 0.85rem 0 0.35rem;

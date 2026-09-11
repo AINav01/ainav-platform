@@ -107,6 +107,29 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#twin-proof-hops { grid-template-columns: repeat(3" in css
     assert "#twin-proof.is-landed" in css
     assert "index.html#twin-proof" in twin_html
+    assert 'id="life-proof"' in html
+    assert 'id="life-proof-hops"' in html
+    assert 'id="life-proof-lede"' in html
+    assert 'id="life-proof-need"' in html
+    assert 'id="life-proof-why"' in html
+    assert 'id="life-proof-zeros"' in html
+    assert 'id="life-proof-facts"' in html
+    assert "life-proof-lede" not in js
+    assert "A walked lifecycle is not a live client" in html
+    assert "Walk the client lifecycle" in html
+    life = html[html.index('id="life-proof-hops"') : html.index("</ol>", html.index('id="life-proof-hops"'))]
+    assert life.count("<li") == 6
+    assert 'href="#success"' in life
+    assert 'href="#demo-console"' in life
+    assert 'href="#close-consider"' in life
+    assert 'href="#close-console"' in life
+    assert 'href="#ops"' in life
+    assert 'href="#firm"' in life
+    assert 'href="#life-proof"' in html[html.index('id="twin-proof-walk"') : html.index("</p>", html.index('id="twin-proof-walk"'))]
+    assert 'href="#life-proof"' in html[html.index('id="client-planes-walk"') : html.index("</p>", html.index('id="client-planes-walk"'))]
+    assert "#life-proof-hops { grid-template-columns: repeat(3" in css
+    assert "#life-proof.is-landed" in css
+    assert "index.html#life-proof" in twin_html
     assert hops.count("<li") == 11
 
 
