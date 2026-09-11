@@ -1018,12 +1018,15 @@
       </div>
       <div class="ledger" id="twin-ledger" aria-live="polite"></div>
       </div>
-      <div id="twin-use">
+      <div class="plane-island" id="twin-use">
       <p class="kicker" id="twin-use-kicker">How we utilize the twin · three planes · not one host</p>
+      <h3>Three planes. Not one host.</h3>
       <p class="lede" id="twin-use-lede">The Institute twin is the remote demo on this Azure SWA host. The client twin is a segregated sandbox after signed L1. Production is owner LIVE_PIN_OK only. Assigned stays 0. A shared sandbox is not production. Power Pages is not the Institute host.</p>
+      <p class="need" id="twin-use-need">Need: one review host is treated as the assigned client sandbox and as production.</p>
+      <p class="why" id="twin-use-why">Why: the remote demo, the client sandbox, and production write stay distinct. Graph is not called. This plane cannot mark LIVE_PIN_OK.</p>
       <ol class="write-rail path-rail join-rail" id="twin-use-hops" aria-label="Twin utilization hops">
         <li data-hop="institute"><a href="#demo-console"><b>Institute twin</b><span>Ninety-minute proof. Browser rehearsal. Graph is not called. Not the assigned sandbox.</span></a></li>
-        <li data-hop="client"><a href="#path"><b>Client sandbox</b><span>Assigned after signed L1. Segregated. Not shared. Count stays 0.</span></a></li>
+        <li data-hop="client"><a href="#client-planes"><b>Client sandbox</b><span>Assigned after signed L1. Segregated. Not shared. Count stays 0.</span></a></li>
         <li data-hop="production"><a href="#firm"><b>Production</b><span>Owner LIVE_PIN_OK only. Not auto-promote. A production sim is not production.</span></a></li>
       </ol>
       <p class="note join-walk" id="twin-use-walk">
@@ -1068,7 +1071,7 @@
         <li data-hop="qualify"><a href="#success"><b>Qualify</b><span>Bake-off. Walk cheaper native. An industry is not a named client.</span></a></li>
         <li data-hop="proof"><a href="#twin"><b>Proof</b><span>Ninety minutes on this twin. Not the assigned sandbox.</span></a></li>
         <li data-hop="close"><a href="#close-consider"><b>Close L1</b><span>Signed L1. A 10/10 close is not launch.</span></a></li>
-        <li data-hop="fulfill"><a href="#path"><b>Fulfill</b><span>Kit. Assigned segregated sandbox. Hours are not a SKU.</span></a></li>
+        <li data-hop="fulfill"><a href="#client-planes"><b>Fulfill</b><span>Kit. Assigned segregated sandbox. Hours are not a SKU.</span></a></li>
         <li data-hop="keep"><a href="#ops"><b>Keep</b><span>P-ADM after kit PASS. Paid U-DUAL. Complements stay eight.</span></a></li>
       </ol>
       <p class="note about-walk" id="product-walk">
@@ -1217,9 +1220,27 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         <li data-plane="client"><a href="#client-planes"><b>Client sandbox</b><span id="path-plane-client">Assigned after L1. Segregated. Not shared.</span></a></li>
         <li data-plane="production"><a href="#firm"><b>Production</b><span id="path-plane-production">Owner LIVE_PIN_OK only. Not auto-promote.</span></a></li>
       </ol>
-      <div id="client-planes">
+      <div class="plane-island" id="client-planes">
       <p class="kicker" id="client-planes-kicker">Segregated client planes · one client, one sandbox · not production</p>
+      <h3>One client, one sandbox</h3>
       <p class="lede" id="client-planes-lede">Each signed L1 gets its own digital twin. Kit, enhance, debug, P-ADM, and paid U-DUAL run on that sandbox. Isolation is one live client, one sandbox. Never shared. Assigned stays 0. A shared sandbox is not production. Auto-promote is refused. Production write is owner LIVE_PIN_OK only.</p>
+      <p class="need" id="client-planes-need">Need: a shared demo becomes the client's tenancy — or this plane invents a named client and auto-promotes the sandbox.</p>
+      <p class="why" id="client-planes-why">Why: each signed L1 gets a segregated digital twin. Kit, enhance, and debug stay there. Hours never mint a SKU. Production write is owner LIVE_PIN_OK only. Assigned stays 0.</p>
+      <div class="plane-strip" id="client-planes-zeros" aria-label="Segregated plane zeros">
+        <span>Assigned <b id="client-planes-is-assigned">no</b></span>
+        <span>Named client <b id="client-planes-is-named">none</b></span>
+        <span>Count <b id="client-planes-is-count">0</b></span>
+        <span>Shared sandbox is production <b id="client-planes-is-shared">no</b></span>
+        <span>Auto-promote <b id="client-planes-is-promote">no</b></span>
+      </div>
+      <p class="kicker" id="client-planes-facts-kicker">Four facts · not hops</p>
+      <div class="pages-facts about-facts" id="client-planes-facts" aria-label="Segregated plane facts">
+        <section data-fact="isolate"><h3>Isolate</h3><p>One live client, one sandbox. Never shared. Not the Institute twin.</p></section>
+        <section data-fact="service"><h3>Service</h3><p>Kit PASS then P-ADM. Paid enhance and debug stay on that twin.</p></section>
+        <section data-fact="hours"><h3>Hours</h3><p>Hours are not a SKU. Hours never attach free U-DUAL.</p></section>
+        <section data-fact="gate"><h3>Gate</h3><p>A production sim is not production. Not auto-promote. Not LIVE_PIN_OK.</p></section>
+      </div>
+      <p class="kicker" id="client-plane-hops-kicker">Six hops · sandbox to the production gate · assigned stays 0</p>
       <ol class="write-rail path-rail join-rail" id="client-plane-hops" aria-label="Segregated client plane hops">
         <li data-hop="qualify"><a href="#success"><b>Qualify</b><span>ICP and walk-away. No invented inbox. An industry is not a named client.</span></a></li>
         <li data-hop="proof"><a href="#demo-console"><b>Institute proof</b><span>Ninety minutes on the shared review host. Graph is not called. Not the client plane.</span></a></li>
@@ -1234,6 +1255,8 @@ EffectLedger().effect(rec["request_id"], rec["action_hash"])</code></pre>
         · <a href="#path-enhance">Walk enhance</a>
         · <a href="#universe">Walk the unnamed universe</a>
         · <a href="#twin-use">Walk the three planes</a>
+        · <a href="#industry-narratives">Walk the industry</a>
+        · <a href="#agent-intent">Walk Agent Intent</a>
         · Assigned stays 0
       </p>
       </div>

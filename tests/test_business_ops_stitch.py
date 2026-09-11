@@ -61,10 +61,12 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert "Walk the client twin" in html
     assert "Walk the segregated planes" in html
     assert 'id="client-planes"' in html
+    assert "Need: a shared demo becomes the client's tenancy" in html
     app = Path("institute/app.html").read_text(encoding="utf-8")
     assert 'href="index.html#twin">Proof day</a>' in app
     assert 'href="index.html#path">Client twin</a>' in app
     assert 'href="index.html#twin"><b>Proof</b>' in app
+    assert 'href="index.html#client-planes"><b>Assign</b>' in app
     assert app.count("Owner book") == 1
     product = html[html.index('id="product"') : html.index('id="path"')]
     assert "L1 · Prove" in product

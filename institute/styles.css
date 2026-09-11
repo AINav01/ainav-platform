@@ -2186,6 +2186,61 @@ table.law tr[data-group] th {
 @media (min-width: 1100px) {
   #product-fulfill-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
+.plane-island {
+  margin: 1.35rem 0 1.5rem;
+  padding: 1.25rem 1.3rem 1.35rem;
+  border: 1px dashed color-mix(in srgb, var(--gold-2) 36%, var(--rule));
+  background: var(--paper);
+  color: var(--ink);
+  scroll-margin-top: 6.5rem;
+}
+.band .plane-island,
+.band .plane-island .lede,
+.band .plane-island h3,
+.band .plane-island .need,
+.band .plane-island .why,
+.band .plane-island .note,
+.band .plane-island .kicker {
+  color: var(--ink);
+}
+.band .plane-island .note { color: var(--mute); }
+.band .plane-island .kicker { color: var(--gold-ink); }
+.plane-island h3 {
+  margin: 0.15rem 0 0.55rem;
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+}
+.plane-island .lede {
+  max-width: 44rem;
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.12rem, 1.9vw, 1.36rem);
+  line-height: 1.4;
+  color: var(--ink);
+}
+.plane-island .need,
+.plane-island .why {
+  max-width: 42rem;
+  margin: 0 0 0.7rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+#twin-use:target,
+#twin-use.is-landed,
+#client-planes:target,
+#client-planes.is-landed {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+#client-planes-zeros {
+  margin: 0.85rem 0 0.35rem;
+}
+#client-plane-hops li[data-hop="assign"] {
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
+#client-plane-hops li[data-hop="produce"] {
+  border-top: 3px solid var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+}
 #twin-use-kicker {
   margin: 1.15rem 0 0.4rem;
 }

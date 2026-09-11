@@ -62,7 +62,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "The Institute twin is not the assigned client sandbox" in html
     assert "Assigned stays 0" in html
     assert 'href="#demo-console"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
-    assert 'href="#path"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
+    assert 'href="#client-planes"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
     assert 'href="#firm"' in html[html.index('id="twin-use-hops"') : html.index('id="twin-use-walk"')]
     assert "index.html#twin-use" in twin_html
     hops = html[html.index('id="join-hops"') : html.index("</ol>", html.index('id="join-hops"'))]
@@ -82,6 +82,15 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Walk the segregated planes" in html
     assert "index.html#client-planes" in twin_html
     assert "index.html#client-planes" in Path("institute/app.html").read_text(encoding="utf-8")
+    assert 'id="client-planes-need"' in html
+    assert 'id="client-planes-why"' in html
+    assert 'id="client-planes-zeros"' in html
+    assert 'id="client-planes-facts"' in html
+    assert "client-planes-lede" not in js
+    assert "twin-use-lede" not in js
+    css = Path("institute/styles.css").read_text(encoding="utf-8")
+    assert ".plane-island" in css
+    assert "#client-planes.is-landed" in css
 
 
 def _reject(mutator):
