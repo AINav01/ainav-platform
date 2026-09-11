@@ -549,6 +549,10 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'href="/grok"' not in html
     assert 'href="/bot"' not in html
     assert html.index('id="operate-consider"') < html.index('id="grok-ms"') < html.index('id="access-window"') < html.index('id="write-window"') < html.index('id="protect-consider"')
+    assert 'id="operate-need"' in html
+    assert 'id="operate-why"' in html
+    assert "Closing all gaps is not this plane" in html[html.index('id="operate-why"') : html.index("</p>", html.index('id="operate-why"'))]
+    assert "operate-need" not in js
     grok_ms = html[html.index('id="grok-ms-hops"') : html.index("</ol>", html.index('id="grok-ms-hops"'))]
     assert grok_ms.count("Need:") == 6
     assert grok_ms.count("Why:") == 6
@@ -590,6 +594,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Walk the access window" in html
     assert "time-boxed admin session" in html
     assert "Temporary complete access is not LIVE_PIN_OK" in html
+    assert "Read this window confirmed" in html
     assert "A read session is not a seated second human" in html
     assert "Do not grant Graph Writes" in html
     assert "Do not grant Outlook send" in html
@@ -637,6 +642,8 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Temporary ReadWrite is not LIVE_PIN_OK" in html
     assert "A PIM Write activation is not dual admit" in html
     assert "Writes stay unused" in html
+    assert "Write role present" in html
+    assert "Write unused" in html
     assert 'id="write-window-is-pin">no' in html
     assert 'id="write-window-is-granted">no' in html
     assert 'id="write-window-is-wired">no' in html
