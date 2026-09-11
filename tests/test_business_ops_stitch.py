@@ -55,8 +55,12 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'id="twin-use"' in html
     assert "#twin-use-hops" in css
     assert "#twin-use-hops { grid-template-columns: repeat(3" in css
+    assert "#client-plane-hops" in css
+    assert "#client-plane-hops { grid-template-columns: repeat(3" in css
     assert "Walk the twin" in html
     assert "Walk the client twin" in html
+    assert "Walk the segregated planes" in html
+    assert 'id="client-planes"' in html
     app = Path("institute/app.html").read_text(encoding="utf-8")
     assert 'href="index.html#twin">Proof day</a>' in app
     assert 'href="index.html#path">Client twin</a>' in app

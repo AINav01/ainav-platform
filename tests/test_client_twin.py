@@ -67,6 +67,21 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "index.html#twin-use" in twin_html
     hops = html[html.index('id="join-hops"') : html.index("</ol>", html.index('id="join-hops"'))]
     assert hops.count("<li") == 11
+    assert 'id="client-planes"' in html
+    assert 'id="client-plane-hops"' in html
+    assert "one live client, one sandbox" in html.lower()
+    plane = html[html.index('id="client-plane-hops"') : html.index("</ol>", html.index('id="client-plane-hops"'))]
+    assert plane.count("<li") == 6
+    assert 'href="#success"' in plane
+    assert 'href="#demo-console"' in plane
+    assert 'href="#close-consider"' in plane
+    assert 'href="#close-console"' in plane
+    assert 'href="#ops"' in plane
+    assert 'href="#firm"' in plane
+    assert 'href="#twin-use"' in html[html.index('id="path-planes"') : html.index("</ol>", html.index('id="path-planes"'))]
+    assert "Walk the segregated planes" in html
+    assert "index.html#client-planes" in twin_html
+    assert "index.html#client-planes" in Path("institute/app.html").read_text(encoding="utf-8")
 
 
 def _reject(mutator):
