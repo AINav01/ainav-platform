@@ -65,6 +65,7 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert "#offer-proof-hops { grid-template-columns: repeat(3" in css
     assert "#grok-ms-hops { grid-template-columns: repeat(3" in css
     assert "#access-window-hops { grid-template-columns: repeat(3" in css
+    assert "#write-window-hops { grid-template-columns: repeat(3" in css
     assert "Walk what we proof" in html
     assert "Walk the client lifecycle" in html
     assert "Walk the client 10/10" in html
@@ -77,6 +78,7 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert "Walk the Microsoft universe" in html
     assert "Walk Grok Bot Microsoft" in html
     assert "Walk the access window" in html
+    assert "Walk the write window" in html
     assert "Walk the offer 10/10" in html
     assert 'id="life-proof"' in html
     assert 'id="eco-proof"' in html
@@ -107,6 +109,8 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'id="grok-ms-cut"' in html
     assert 'id="access-window"' in html
     assert 'id="access-window-cut"' in html
+    assert 'id="write-window"' in html
+    assert 'id="write-window-cut"' in html
     assert 'id="operate-consider-walk"' in html
     assert 'id="client-planes-cut"' in html
     assert 'id="close-console-walk"' in html
@@ -141,6 +145,7 @@ def test_fulfillment_and_walks_stitch_without_launch():
     assert 'href="index.html#hold-consider">Walk the honest hold</a>' in app
     assert 'href="index.html#grok-ms">Walk Grok Bot Microsoft</a>' in app
     assert 'href="index.html#access-window">Walk the access window</a>' in app
+    assert 'href="index.html#write-window">Walk the write window</a>' in app
     assert 'href="index.html#client-proof">Walk the client 10/10</a>' in app
     assert 'href="index.html#offer-proof">Walk the offer 10/10</a>' in app
     assert app.count("Owner book") == 1

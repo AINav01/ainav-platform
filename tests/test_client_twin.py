@@ -548,7 +548,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="grok-ms-is-write">revoked' in html
     assert 'href="/grok"' not in html
     assert 'href="/bot"' not in html
-    assert html.index('id="operate-consider"') < html.index('id="grok-ms"') < html.index('id="access-window"') < html.index('id="protect-consider"')
+    assert html.index('id="operate-consider"') < html.index('id="grok-ms"') < html.index('id="access-window"') < html.index('id="write-window"') < html.index('id="protect-consider"')
     grok_ms = html[html.index('id="grok-ms-hops"') : html.index("</ol>", html.index('id="grok-ms-hops"'))]
     assert grok_ms.count("Need:") == 6
     assert grok_ms.count("Why:") == 6
@@ -622,6 +622,49 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "#access-window-hops { grid-template-columns: repeat(3" in css
     assert "#access-window.is-landed" in css
     assert "index.html#access-window" in twin_html
+    assert hops.count("<li") == 11
+    assert 'id="write-window"' in html
+    assert 'id="write-window-hops"' in html
+    assert 'id="write-window-lede"' in html
+    assert 'id="write-window-need"' in html
+    assert 'id="write-window-why"' in html
+    assert 'id="write-window-zeros"' in html
+    assert 'id="write-window-facts"' in html
+    assert 'id="write-window-cut"' in html
+    assert "write-window-lede" not in js
+    assert "Walk the write window" in html
+    assert "A short Write is not Granted" in html
+    assert "Temporary ReadWrite is not LIVE_PIN_OK" in html
+    assert "A PIM Write activation is not dual admit" in html
+    assert "Writes stay unused" in html
+    assert 'id="write-window-is-pin">no' in html
+    assert 'id="write-window-is-granted">no' in html
+    assert 'id="write-window-is-wired">no' in html
+    assert 'id="write-window-is-outlook">no' in html
+    assert 'id="write-window-is-write">revoked' in html
+    assert 'href="/write"' not in html
+    write_window = html[html.index('id="write-window-hops"') : html.index("</ol>", html.index('id="write-window-hops"'))]
+    assert write_window.count("Need:") == 6
+    assert write_window.count("Why:") == 6
+    assert write_window.count("<li") == 6
+    assert 'href="#access-window"' in write_window
+    assert 'href="#operate-consider"' in write_window
+    assert 'href="#ms-teams-premium"' in write_window
+    assert 'href="#hold-consider"' in write_window
+    assert 'href="#ms-universe"' in write_window
+    assert 'href="#missing"' in write_window
+    assert 'href="#write-window"' in html[html.index('id="access-window-walk"') : html.index("</p>", html.index('id="access-window-walk"'))]
+    assert 'href="#write-window"' in html[html.index('id="operate-join-walk"') : html.index("</p>", html.index('id="operate-join-walk"'))]
+    assert 'href="#write-window"' in html[html.index('id="operate-consider-walk"') : html.index("</p>", html.index('id="operate-consider-walk"'))]
+    assert 'href="#write-window"' in html[html.index('id="ms-universe-walk"') : html.index("</p>", html.index('id="ms-universe-walk"'))]
+    assert 'href="#write-window"' in html[html.index('id="firm-ms-join-walk"') : html.index("</p>", html.index('id="firm-ms-join-walk"'))]
+    assert 'href="#write-window"' in html[html.index('id="hold-join-walk"') : html.index("</p>", html.index('id="hold-join-walk"'))]
+    assert 'href="#write-window"' in html[html.index('id="ten-join-walk"') : html.index("</p>", html.index('id="ten-join-walk"'))]
+    assert "Walk the industry" in html[html.index('id="write-window-walk"') : html.index("</p>", html.index('id="write-window-walk"'))]
+    assert "Walk Agent Intent" in html[html.index('id="write-window-walk"') : html.index("</p>", html.index('id="write-window-walk"'))]
+    assert "#write-window-hops { grid-template-columns: repeat(3" in css
+    assert "#write-window.is-landed" in css
+    assert "index.html#write-window" in twin_html
     assert hops.count("<li") == 11
 
 
