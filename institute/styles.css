@@ -2220,6 +2220,20 @@ table.law tr[data-group] th {
   line-height: 1.5;
   color: var(--ink);
 }
+.band .plane-island button.ghost,
+.band .plane-island .ghost {
+  color: var(--ink);
+  border-color: var(--rule);
+  background: var(--paper);
+}
+.band .plane-island button.ghost:hover,
+.band .plane-island .ghost:hover,
+.band .plane-island button.ghost[aria-pressed="true"],
+.band .plane-island .ghost[aria-pressed="true"] {
+  color: var(--gold-ink);
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
 .band .plane-island,
 .band .plane-island .lede,
 .band .plane-island h3,
