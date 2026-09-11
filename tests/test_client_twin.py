@@ -595,6 +595,8 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "time-boxed admin session" in html
     assert "Temporary complete access is not LIVE_PIN_OK" in html
     assert "Read this window confirmed" in html
+    assert "Cynthia mailbox user exists and is enabled" in html
+    assert "Channel list is not granted" in html
     assert "A read session is not a seated second human" in html
     assert "Do not grant Graph Writes" in html
     assert "Do not grant Outlook send" in html
