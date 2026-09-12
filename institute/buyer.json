@@ -1037,7 +1037,11 @@
         "Treat making better as launch",
         "Treat please make better as launch",
         "Treat twin HTTP as launch",
-        "Treat sandbox HTTP as G14"
+        "Treat sandbox HTTP as G14",
+        "Treat a 10/10 of industry, client, and twin as launch",
+        "Treat a 10/10 industry as launch",
+        "Treat a 10/10 client as a live client",
+        "Treat a 10/10 twin as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -1055,7 +1059,7 @@
       "do_not_invent_names": true,
       "enhance": "Paid packs and FFS hours on the assigned client twin. Continuous enhancement and debug stay on that sandbox. Custom features are pay-for-service on the same admit plane. Never a SKU.",
       "fourth_sku": false,
-      "glance": "Qualify. Remote proof. Close L1. Assign a segregated sandbox. Paid enhance stays there. Not production.",
+      "glance": "Qualify. Remote proof. Close L1. Assign a segregated sandbox. Paid enhance stays there. Not production. A 10/10 twin is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14.",
       "is": [
         "A sale path, not a product SKU",
         "Remote demo on the Institute twin",
@@ -1074,11 +1078,11 @@
       ],
       "kind": "ainav.client_twin.v1",
       "launch": false,
-      "lede": "The sale path is qualify, remote proof, tailor, close L1, kit, assigned sandbox, paid enhance. The Institute twin is the remote demo. The client twin is a client-assigned segregated sandbox after qualify or with L1. Not production. Not a SKU.",
+      "lede": "The sale path is qualify, remote proof, tailor, close L1, kit, assigned sandbox, paid enhance. The Institute twin is the remote demo. The client twin is a client-assigned segregated sandbox after qualify or with L1. Not production. Not a SKU. A 10/10 twin is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14.",
       "live": false,
       "live_pin_ok": false,
       "named_client": null,
-      "note": "Assigned stays false. Named client stays none. Count stays 0. Not production. Not LIVE_PIN_OK.",
+      "note": "Assigned stays false. Named client stays none. Count stays 0. Not production. Not LIVE_PIN_OK. A 10/10 twin is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14.",
       "production": false,
       "site": "This band sits after the product. First glance stays the write rail. Demo is #twin. Path is #path. The close bench is #close-console. Not a /demo route. Not a fourth SKU.",
       "sku": false,
@@ -1095,6 +1099,7 @@
     "client_universe": {
       "assigned": false,
       "certified": false,
+      "client_ten_as_live_client": false,
       "cms": false,
       "day": {
         "invented": false,
@@ -1211,7 +1216,7 @@
       "fear_brand": false,
       "forecast": false,
       "fourth_sku": false,
-      "glance": "Sit-down client day. Now mailbox recorded. Next seat B. After L1 unnamed. MFA identifies. Honest zeros. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
+      "glance": "Sit-down client day. Now mailbox recorded. Next seat B. After L1 unnamed. MFA identifies. Honest zeros. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK. A 10/10 client is not a live client. The Institute twin is not the assigned client sandbox. A shared sandbox is not production.",
       "groups": [
         {
           "id": "control",
@@ -1251,14 +1256,15 @@
           ]
         }
       ],
+      "institute_twin_is_assigned_sandbox": false,
       "kind": "ainav.client_universe.v1",
       "launch": false,
-      "lede": "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans bind one hash. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs are not SKUs.",
+      "lede": "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans bind one hash. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs are not SKUs. A 10/10 client is not a live client. The Institute twin is not the assigned client sandbox. A shared sandbox is not production.",
       "live": false,
       "live_pin_ok": false,
       "mfa_admits": false,
       "named_client": false,
-      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Sit-down client day. Not a live named day. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Sit-down client day. Not a live named day. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK. A 10/10 client is not a live client. The Institute twin is not the assigned client sandbox. A shared sandbox is not production.",
       "operable": true,
       "owner_only": [
         "Seat B click",
@@ -1284,8 +1290,9 @@
         "A /universe route"
       ],
       "refuse_is_visible": true,
+      "shared_sandbox_is_production": false,
       "sit_down": true,
-      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. The sit-down client day is now / next / after L1. Not a /universe route.",
+      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. The sit-down client day is now / next / after L1. Not a /universe route. A 10/10 client is not a live client. The Institute twin is not the assigned client sandbox. A shared sandbox is not production.",
       "sku": false,
       "spine_states": {
         "admit": "owner_only",
@@ -1760,8 +1767,9 @@
       "filing": false,
       "fourth_sku": false,
       "fully_operable": true,
-      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK. Honest control. Need. Consequence. Now. Around the corner. GENIUS and CLARITY claimed=false. Not AI Governess.",
+      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK. Honest control. Need. Consequence. Now. Around the corner. GENIUS and CLARITY claimed=false. Not AI Governess. A 10/10 industry is not launch. A named vertical is not a SKU. /industry is not a route.",
       "honest_control": true,
+      "industry_ten_as_launch": false,
       "kind": "ainav.industry_drawer.v1",
       "lanes": [
         {
@@ -1912,11 +1920,12 @@
         }
       ],
       "launch": false,
-      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Company policy is not a SKU.",
+      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Company policy is not a SKU. A 10/10 industry is not launch. A named vertical is not a SKU. /industry is not a route.",
       "live": false,
       "live_pin_ok": false,
       "named_vertical": false,
-      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK. Honest control. If you don't have it, the write does not land. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Not AI Governess.",
+      "named_vertical_as_sku": false,
+      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK. Honest control. If you don't have it, the write does not land. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Not AI Governess. A 10/10 industry is not launch. A named vertical is not a SKU. /industry is not a route.",
       "owner_only": [
         "Signed L1",
         "Assigned industry packs on a named twin",
@@ -2086,7 +2095,7 @@
         "wells_are_live": false
       },
       "sit_down": true,
-      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Agent Intent sits on #agent-intent. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route. Honest control on #industry. Need is #control. Consequence is #risk. GENIUS and CLARITY stay claimed=false. Not AI Governess.",
+      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Agent Intent sits on #agent-intent. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route. Honest control on #industry. Need is #control. Consequence is #risk. GENIUS and CLARITY stay claimed=false. Not AI Governess. A 10/10 industry is not launch. A named vertical is not a SKU. /industry is not a route.",
       "sku": false
     },
     "live": false,
@@ -2101,7 +2110,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

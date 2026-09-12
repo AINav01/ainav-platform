@@ -40,6 +40,10 @@ def test_better_review_is_not_launch():
     assert body["please_as_launch"] is False
     assert body["twin_http_is_launch"] is False
     assert body["sandbox_http_is_g14"] is False
+    assert body["planes_as_launch"] is False
+    assert body["industry_ten_as_launch"] is False
+    assert body["client_ten_as_live_client"] is False
+    assert body["twin_ten_as_launch"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -63,7 +67,9 @@ def test_better_review_is_not_launch():
     assert "Treat making better as launch." in body["this_agent_cannot"]
     assert "Treat please make better as launch." in body["this_agent_cannot"]
     assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
-    assert "please make better is not launch" in body["lede"].lower()
+    assert "Treat a 10/10 of industry, client, and twin as launch." in body["this_agent_cannot"]
+    assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
+    assert "a 10/10 of industry, client, and twin planes is not launch" in body["lede"].lower()
     assert "twin http 200 is not launch" in body["lede"].lower()
     probes = body["probes"]
     assert probes["complements"] == 8
@@ -189,6 +195,13 @@ def test_validate_honest_better_more_fail_closed():
         "please_as_launch",
         "twin_http_is_launch",
         "sandbox_http_is_g14",
+        "planes_as_launch",
+        "industry_ten_as_launch",
+        "client_ten_as_live_client",
+        "twin_ten_as_launch",
+        "named_vertical_as_sku",
+        "institute_twin_is_assigned_sandbox",
+        "shared_sandbox_is_production",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)

@@ -26,7 +26,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_320_honest_join():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.23.0"
+    assert cat["entity"]["release"] == "3.24.0"
     join = cat["honest_join"]
     assert join["kind"] == "ainav.honest.join.v1"
     assert join["honest"] is True
@@ -80,7 +80,7 @@ def test_release_is_320_honest_join():
     assert "honest join" in principles
     assert "the join is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 93
+    assert len(cat["expert_review"]["upgrades"]) == 94
     assert upgrades[90]["who"] == "tree"
     assert upgrades[90]["done"] is True
     assert upgrades[90]["marks_live_pin"] is False
@@ -156,17 +156,17 @@ def test_release_is_320_honest_join():
     assert "JOIN_REFUSE" in js
     assert 'getElementById("join-lede")' not in js
     assert "honest join" in twin.lower()
-    assert "Digital twin · 3.23.0" in twin
-    assert "AINAV.Institute twin · 3.23.0" in twin
+    assert "Digital twin · 3.24.0" in twin
+    assert "AINAV.Institute twin · 3.24.0" in twin
     assert "3.16.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.23.0" in kit
-    assert "Release 3.23.0" in lost
+    assert "Application kit · 3.24.0" in kit
+    assert "Release 3.24.0" in lost
     assert "3.16.0" not in lost
-    assert "Ultimate control plane · 3.23.0" in plane
+    assert "Ultimate control plane · 3.24.0" in plane
     assert "3.16.0" not in plane
     assert 'href="index.html#join-consider"' in plane
     assert 'href="index.html#join-consider"' in app
@@ -206,9 +206,9 @@ def test_release_is_320_honest_join():
     assert "The join is launch" in app
     assert "Open close" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.23.0"
+    assert dash["release"] == "3.24.0"
     status = public_status()
-    assert status["release"] == "3.23.0"
+    assert status["release"] == "3.24.0"
     assert status["website"]["honest_join"] is True
     assert status["website"]["honest_join_live"] is False
     assert status["website"]["join_as_launch"] is False

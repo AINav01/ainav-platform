@@ -25,7 +25,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_296_sit_down_industry():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.23.0"
+    assert cat["entity"]["release"] == "3.24.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     assert drawer["kind"] == "ainav.industry_drawer.v1"
     assert drawer["sit_down"] is True
@@ -63,7 +63,7 @@ def test_release_is_296_sit_down_industry():
     assert "maps stay claimed=false" in principles
     assert "not a /industry route" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 93
+    assert len(cat["expert_review"]["upgrades"]) == 94
     assert upgrades[66]["who"] == "tree"
     assert upgrades[66]["done"] is True
     assert upgrades[66]["marks_live_pin"] is False
@@ -99,9 +99,9 @@ def test_release_is_296_sit_down_industry():
     assert "not SKUs" in app or "not skus" in app.lower()
     assert 'id="identify-industry"' in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.23.0"
+    assert dash["release"] == "3.24.0"
     status = public_status()
-    assert status["release"] == "3.23.0"
+    assert status["release"] == "3.24.0"
     assert status["website"]["industry_drawer"] is True
     assert status["website"]["industry_drawer_live"] is False
     held = publish_institute()

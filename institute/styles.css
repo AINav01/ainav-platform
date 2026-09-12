@@ -38,7 +38,7 @@
   --ink: #12100c;
   --paper: #f3eee4;
   --paper-2: #e7dfd0;
-  --mute: #5f584d;
+  --mute: #3f3a34;
   --rule: rgba(18, 16, 12, 0.14);
   --gold: #8a6a2c;
   --gold-ink: #7a5d26;
@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -566,7 +566,13 @@ h1 {
 }
 .band #accountable article p,
 .band #protect article p,
-.band #memory article p { color: color-mix(in srgb, var(--void-ink) 68%, transparent); }
+.band #memory article p { color: var(--mute); }
+.must-for article h3,
+.cards article h3,
+.band article h3,
+.band #accountable article h3 {
+  color: var(--ink);
+}
 
 section {
   padding: clamp(3rem, 8vh, 5.5rem) 0;
@@ -2115,6 +2121,19 @@ table.law tr[data-group] th {
 #twin-sandbox-proof {
   margin: 1.1rem 0 0;
 }
+#industry-proof,
+#universe-proof,
+#client-planes-proof,
+#twin-planes-proof {
+  margin: 0.95rem 0 1.1rem;
+  width: 100%;
+}
+#industry-proof article,
+#universe-proof article,
+#client-planes-proof article,
+#twin-planes-proof article {
+  min-height: 0;
+}
 #protect-consider { margin: 0 0 1.35rem; }
 #hold-consider { margin: 0 0 1.35rem; }
 #close-consider { margin: 0 0 1.35rem; }
@@ -3078,6 +3097,23 @@ table.law tr[data-group] th {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
+#twin-planes-hops {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+#twin-planes-hops li::after { content: none; }
+#twin-planes-hops a {
+  color: inherit;
+  text-decoration: none;
+}
+#twin-planes-hops a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
 @media (min-width: 900px) {
   #twin-use-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -3229,6 +3265,11 @@ table.law tr[data-group] th {
   #better-consider .hero-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #better-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #twin-sandbox-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #industry-proof,
+  #universe-proof,
+  #client-planes-proof,
+  #twin-planes-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #twin-planes-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #industry-area-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .pages-facts.join-facts,
   .pages-facts.close-facts {
