@@ -1,0 +1,165 @@
+{
+  "certified": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "industry",
+      "live": false,
+      "name": "Industry",
+      "note": "Independent by industry. Standard and upsell packs, libraries, repositories. Packs are not SKUs. Named vertical stays false.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "client",
+      "live": false,
+      "name": "Client",
+      "note": "Individual client BD. Assigned stays 0. Do not invent a named client.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "twin",
+      "live": false,
+      "name": "Twin",
+      "note": "Segregated sandbox after signed L1. Not the Institute twin. Not shared. Not production.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "close",
+      "live": false,
+      "name": "Close",
+      "note": "Qualify. Proof. Signed L1. Assign. Sales is not close. Close is signed L1.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "service",
+      "live": false,
+      "name": "Service",
+      "note": "Deploy kit, debug, upgrade, redeploy, FFS hours, billing, rollback. Hours are not a SKU. Rollback is not LIVE_PIN_OK. Billing is not recognized revenue. A redeploy is not launch.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "honest": true,
+  "hours_is_sku": false,
+  "href": "#path",
+  "industry_is_named_client": false,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.path.v1",
+  "lede": "An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not invent a named client from an industry pack.",
+      "Do not share a sandbox as production.",
+      "Do not treat FFS hours as a SKU.",
+      "Do not treat rollback as LIVE_PIN_OK.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "hours_is_sku": false,
+    "industry_is_named_client": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.path.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "recorded": true,
+    "redeploy_is_launch": false,
+    "rollback_is_live_pin": false,
+    "shared_sandbox_is_production": false
+  },
+  "product": "Honest path",
+  "recorded": true,
+  "redeploy_is_launch": false,
+  "refuse": [
+    {
+      "href": "#path",
+      "id": "industry_as_named_client",
+      "name": "An industry as a named client",
+      "note": "Refused. An industry is not a named client.",
+      "refuse": true,
+      "refuse_text": "Refused. An industry is not a named client.",
+      "state": "refused",
+      "text": "Refused. An industry is not a named client.",
+      "title": "An industry as a named client"
+    },
+    {
+      "href": "#path",
+      "id": "shared_sandbox_as_production",
+      "name": "A shared sandbox as production",
+      "note": "Refused. A shared sandbox is not production.",
+      "refuse": true,
+      "refuse_text": "Refused. A shared sandbox is not production.",
+      "state": "refused",
+      "text": "Refused. A shared sandbox is not production.",
+      "title": "A shared sandbox as production"
+    },
+    {
+      "href": "#path",
+      "id": "hours_as_sku",
+      "name": "Hours as a SKU",
+      "note": "Refused. Hours are not a SKU.",
+      "refuse": true,
+      "refuse_text": "Refused. Hours are not a SKU.",
+      "state": "refused",
+      "text": "Refused. Hours are not a SKU.",
+      "title": "Hours as a SKU"
+    },
+    {
+      "href": "#path",
+      "id": "rollback_as_live_pin",
+      "name": "Rollback as LIVE_PIN_OK",
+      "note": "Refused. Rollback is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. Rollback is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. Rollback is not LIVE_PIN_OK.",
+      "title": "Rollback as LIVE_PIN_OK"
+    },
+    {
+      "href": "#path",
+      "id": "redeploy_as_launch",
+      "name": "A redeploy as launch",
+      "note": "Refused. A redeploy is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A redeploy is not launch.",
+      "state": "refused",
+      "text": "Refused. A redeploy is not launch.",
+      "title": "A redeploy as launch"
+    }
+  ],
+  "rollback_is_live_pin": false,
+  "shared_sandbox_is_production": false,
+  "site": "Honest path on #path. Recorded. An industry is not a named client. A shared sandbox is not production. Hours are not a SKU. Rollback is not LIVE_PIN_OK. A redeploy is not launch. First glance stays the write rail. Not a /path route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat an industry as a named client.",
+    "Treat a shared sandbox as production.",
+    "Treat hours as a SKU.",
+    "Treat rollback as LIVE_PIN_OK.",
+    "Treat a redeploy as launch."
+  ],
+  "wired": false
+}

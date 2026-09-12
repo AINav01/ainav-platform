@@ -1,0 +1,35 @@
+AINav, Inc. — intellectual property notice
+=========================================
+
+Copyright (c) 2026 AINav, Inc. All rights reserved.
+
+Reserved work (not an exhaustive claim list)
+--------------------------------------------
+- Job C dual-admit algorithm and pinned lockfile
+- ConsumeLedger / EffectLedger / grant_id bind
+- dual_consume.lua validate-all-then-write-all
+- Frozen gold vectors and the action_hash contract
+- Catalog, mothership provision, and ops spine
+- Marks: AINav, AINav Control Plane, AINAV.Institute
+
+Microsoft trademarks
+--------------------
+Microsoft, Microsoft 365, Microsoft Teams, Microsoft Entra, Dynamics 365,
+Azure, Purview, Sentinel, and Copilot are trademarks of Microsoft
+Corporation. They appear in this tree only to name integrations
+(identity, notify, system of record, audit sink, hosting).
+
+AINav is not a Microsoft product. No affiliation, sponsorship,
+endorsement, or joint venture is claimed. A Teams message is not a seat.
+Copilot, Power Automate, Purview, and Sentinel are not AINav SKUs.
+
+Other third-party marks
+-----------------------
+ServiceNow, SailPoint, Okta, Palantir, UiPath, Salesforce, SAP, Workday,
+and similar names are the marks of their owners. They are listed as
+competitor aliases so they cannot be provisioned as AINav SKUs.
+
+G12
+---
+Legal review is OPEN. This NOTICE is hygiene, not counsel sign-off.
+No patent is claimed in this tree.

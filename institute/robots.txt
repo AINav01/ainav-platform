@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blue-river-010091a0f.7.azurestaticapps.net/sitemap.xml

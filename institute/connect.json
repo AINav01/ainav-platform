@@ -1,0 +1,165 @@
+{
+  "available_is_seat": false,
+  "certified": false,
+  "connected_is_live": false,
+  "considered": true,
+  "created": false,
+  "cursor_app_is_seat": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "connected",
+      "live": false,
+      "name": "Connected",
+      "note": "Read-only Graph and ARM. Nine recorded. Not live.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "authorized",
+      "live": false,
+      "name": "Authorized",
+      "note": "Graph Writes owner-revoked. Twin authorized=false. Not launch.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "available",
+      "live": false,
+      "name": "Available",
+      "note": "Leave five Available. Dataverse MCP stays Blocked. Registry is owner-only.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "blocked",
+      "live": false,
+      "name": "Blocked",
+      "note": "Teams ids, DATAVERSE_URL, SHAREPOINT_SITE_ID, Sentinel on LAW. Owner-only.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "live",
+      "live": false,
+      "name": "LIVE_PIN_OK",
+      "note": "A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "graph_read_is_live_pin": false,
+  "honest": true,
+  "href": "#missing",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.connect.v1",
+  "lede": "Licensed is not wired. Connected is not authorized. Available is not a seat. A Graph read is not LIVE_PIN_OK. Nine read-only probes are not live. Complements stay eight.",
+  "licensed_is_wired": false,
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest connect. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a read-only probe as live.",
+      "Do not treat a licensed SKU as wired.",
+      "Do not treat Agent Tools Available as a seat.",
+      "Do not add Graph Write back on the same app.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "available_is_seat": false,
+    "certified": false,
+    "complements": 8,
+    "connected_is_live": false,
+    "considered": true,
+    "created": false,
+    "cursor_app_is_seat": false,
+    "graph_read_is_live_pin": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.connect.v1",
+    "launch": false,
+    "licensed_is_wired": false,
+    "live": false,
+    "live_pin_ok": false,
+    "recorded": true
+  },
+  "product": "Honest connect",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#missing",
+      "id": "connected_as_live",
+      "name": "Connected as live",
+      "note": "Refused. Connected is not live.",
+      "refuse": true,
+      "refuse_text": "Refused. Connected is not live.",
+      "state": "refused",
+      "text": "Refused. Connected is not live.",
+      "title": "Connected as live"
+    },
+    {
+      "href": "#missing",
+      "id": "licensed_as_wired",
+      "name": "Licensed as wired",
+      "note": "Refused. Licensed is not wired.",
+      "refuse": true,
+      "refuse_text": "Refused. Licensed is not wired.",
+      "state": "refused",
+      "text": "Refused. Licensed is not wired.",
+      "title": "Licensed as wired"
+    },
+    {
+      "href": "#missing",
+      "id": "available_as_seat",
+      "name": "Available as a seat",
+      "note": "Refused. Available is not a seat.",
+      "refuse": true,
+      "refuse_text": "Refused. Available is not a seat.",
+      "state": "refused",
+      "text": "Refused. Available is not a seat.",
+      "title": "Available as a seat"
+    },
+    {
+      "href": "#missing",
+      "id": "graph_read_as_live_pin",
+      "name": "A Graph read as LIVE_PIN_OK",
+      "note": "Refused. A Graph read is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. A Graph read is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. A Graph read is not LIVE_PIN_OK.",
+      "title": "A Graph read as LIVE_PIN_OK"
+    },
+    {
+      "href": "#missing",
+      "id": "cursor_app_as_seat",
+      "name": "A Cursor app as a seat",
+      "note": "Refused. A Cursor app is not a seat.",
+      "refuse": true,
+      "refuse_text": "Refused. A Cursor app is not a seat.",
+      "state": "refused",
+      "text": "Refused. A Cursor app is not a seat.",
+      "title": "A Cursor app as a seat"
+    }
+  ],
+  "site": "Honest connect on #missing. Recorded. Connected is not live. Licensed is not wired. Available is not a seat. A Graph read is not LIVE_PIN_OK. A Cursor app is not a seat. First glance stays the write rail. Not a /connect route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat connected as live.",
+    "Treat licensed as wired.",
+    "Treat available as a seat.",
+    "Treat a Graph read as LIVE_PIN_OK.",
+    "Treat a Cursor app as a seat."
+  ],
+  "wired": false
+}

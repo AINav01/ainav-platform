@@ -1,0 +1,5 @@
+node_modules/
+.lighthouseci/
+storybook-static/
+test-results/
+playwright-report/

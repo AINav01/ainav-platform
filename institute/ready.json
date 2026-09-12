@@ -1,0 +1,202 @@
+{
+  "certified": false,
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "gold_is_launch": false,
+  "honest": true,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.honest.readiness.v1",
+  "lanes": [
+    {
+      "does": "Hold gold and fail-closed probes on the twin.",
+      "does_not": "Mark LIVE_PIN_OK. Become launch.",
+      "href": "#agent-tools",
+      "id": "quality",
+      "installed": null,
+      "name": "Quality",
+      "note": "Gold 99.5. Fail-closed. Edge quality. Not launch.",
+      "role": "certified",
+      "seat": false,
+      "title": "Quality"
+    },
+    {
+      "does": "Walk QUALIFY through U-DUAL attach on catalog law.",
+      "does_not": "Write production Business Central.",
+      "href": "#agent-tools",
+      "id": "operability",
+      "installed": null,
+      "name": "Operability",
+      "note": "SKU attach. Health. Commercial stages. Not a live SoR write.",
+      "role": "certified",
+      "seat": false,
+      "title": "Operability"
+    },
+    {
+      "does": "Rehearse Job C on the digital twin.",
+      "does_not": "Become production. Become launch day.",
+      "href": "#agent-tools",
+      "id": "simulation",
+      "installed": null,
+      "name": "Simulation",
+      "note": "Twin. BC sandbox. Lua rehearsal. Not production.",
+      "role": "certified",
+      "seat": false,
+      "title": "Simulation"
+    },
+    {
+      "does": "Publish the review twin. Hold institute publish.",
+      "does_not": "Bind ainav.institute. Mark launch.",
+      "href": "#agent-tools",
+      "id": "deliverability",
+      "installed": null,
+      "name": "Deliverability",
+      "note": "Twin publish. Kit. Shared ledger. Institute stays launch_not_ready.",
+      "role": "certified",
+      "seat": false,
+      "title": "Deliverability"
+    },
+    {
+      "does": "Regenerate catalog-derived docs and republish the twin.",
+      "does_not": "Become LIVE_PIN_OK.",
+      "href": "#agent-tools",
+      "id": "updateability",
+      "installed": null,
+      "name": "Updateability",
+      "note": "Catalog regen. Version pins. Republish is not launch.",
+      "role": "certified",
+      "seat": false,
+      "title": "Updateability"
+    },
+    {
+      "does": "Prove sealed records and refuse the wrong close.",
+      "does_not": "Invent a live filing or a live census.",
+      "href": "#agent-tools",
+      "id": "debugging",
+      "installed": null,
+      "name": "Debugging",
+      "note": "Examiner. Refuse rehearsal. Fail-closed probes. Not a census.",
+      "role": "certified",
+      "seat": false,
+      "title": "Debugging"
+    },
+    {
+      "does": "James clicks what this plane cannot.",
+      "does_not": "Be certified from this plane. Be closed by gold.",
+      "href": "#agent-tools",
+      "id": "launch",
+      "installed": null,
+      "name": "Launch is James",
+      "note": "Seat B. Signed L1. LIVE_PIN_OK. Apex bind. Launch word. Owner-only.",
+      "role": "owner_only",
+      "seat": false,
+      "title": "Launch is James"
+    }
+  ],
+  "launch_day_certified": false,
+  "lede": "Run quality, operability, simulation, deliverability, updateability, and debugging on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Simulation is not production. An update is not LIVE_PIN_OK.",
+  "live": false,
+  "live_pin_ok": false,
+  "note": "Honest readiness. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. Simulation is not production. An update is not LIVE_PIN_OK. Launch stays owner-only.",
+  "owner_gaps_closed": false,
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat gold or twin certified as launch day.",
+      "Keep owner gaps owner-only.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "debugging": true,
+    "deliverability": true,
+    "gold_is_launch": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.readiness.v1",
+    "launch": false,
+    "launch_day_certified": false,
+    "live": false,
+    "live_pin_ok": false,
+    "operability": true,
+    "owner_gaps_closed": false,
+    "quality": true,
+    "sim_is_production": false,
+    "simulation": true,
+    "twin_is_launch_day": false,
+    "update_is_live_pin": false,
+    "updateability": true
+  },
+  "product": "Honest readiness",
+  "refuse": [
+    {
+      "href": "#agent-tools",
+      "id": "gold_as_launch",
+      "name": "gold as launch",
+      "note": "Refused. Gold is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. Gold is not launch.",
+      "state": "refused",
+      "text": "Refused. Gold is not launch.",
+      "title": "gold as launch"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "twin_as_launch_day",
+      "name": "twin as launch day",
+      "note": "Refused. Twin certified is not launch day.",
+      "refuse": true,
+      "refuse_text": "Refused. Twin certified is not launch day.",
+      "state": "refused",
+      "text": "Refused. Twin certified is not launch day.",
+      "title": "twin as launch day"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "sim_as_production",
+      "name": "simulation as production",
+      "note": "Refused. Simulation is not production.",
+      "refuse": true,
+      "refuse_text": "Refused. Simulation is not production.",
+      "state": "refused",
+      "text": "Refused. Simulation is not production.",
+      "title": "simulation as production"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "update_as_live_pin",
+      "name": "update as live pin",
+      "note": "Refused. An update is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. An update is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. An update is not LIVE_PIN_OK.",
+      "title": "update as live pin"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "close_owner_from_plane",
+      "name": "close owner from plane",
+      "note": "Refused. Owner gaps stay owner-only.",
+      "refuse": true,
+      "refuse_text": "Refused. Owner gaps stay owner-only.",
+      "state": "refused",
+      "text": "Refused. Owner gaps stay owner-only.",
+      "title": "close owner from plane"
+    }
+  ],
+  "sim_is_production": false,
+  "site": "Honest readiness on #agent-tools. Quality, operability, simulation, deliverability, updateability, and debugging are certified on the twin. Gold is not launch. Twin certified is not launch day. Owner gaps stay owner-only. First glance stays the write rail. Not a /ready route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat gold as launch.",
+    "Treat twin certified as launch day.",
+    "Treat simulation as production.",
+    "Treat an update as LIVE_PIN_OK.",
+    "Close owner gaps from this plane."
+  ],
+  "twin_is_launch_day": false,
+  "update_is_live_pin": false,
+  "wired": false
+}

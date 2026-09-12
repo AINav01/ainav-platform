@@ -1,0 +1,7526 @@
+"""Commercial catalog. Source of truth for SKUs. No invented products."""
+
+from __future__ import annotations
+
+import json
+import re
+from functools import lru_cache
+from importlib.resources import files
+from pathlib import Path
+from typing import Any
+
+from agent_gov.errors import IntegrityError
+
+ALLOWED_SKUS = frozenset({"L1", "P-ADM", "U-DUAL"})
+
+
+def _as_dict(value: Any, label: str, reason_code: str = "CATALOG_SHAPE") -> dict[str, Any]:
+    if not isinstance(value, dict):
+        raise IntegrityError(f"{label} must be an object", reason_code=reason_code)
+    return value
+
+
+@lru_cache(maxsize=1)
+def load_catalog() -> dict[str, Any]:
+    raw = files("ainav.data").joinpath("catalog.json").read_text(encoding="utf-8")
+    catalog = json.loads(raw)
+    validate_catalog(catalog)
+    return catalog
+
+
+def validate_catalog(catalog: dict[str, Any]) -> None:
+    try:
+        _validate_catalog_law(catalog)
+    except IntegrityError:
+        raise
+    except (AttributeError, TypeError, KeyError, ValueError) as exc:
+        raise IntegrityError("catalog shape must fail closed", reason_code="CATALOG_SHAPE") from exc
+
+
+def _validate_catalog_law(catalog: dict[str, Any]) -> None:
+    if catalog.get("schema_version") != "ainav.catalog.v1":
+        raise IntegrityError("unsupported catalog schema", reason_code="CATALOG_SCHEMA")
+    if catalog.get("entity", {}).get("job") != "C":
+        raise IntegrityError("catalog job must be C", reason_code="CATALOG_JOB")
+    skus = {item["id"] for item in catalog.get("skus", [])}
+    if skus != ALLOWED_SKUS:
+        raise IntegrityError(
+            f"catalog SKUs must be exactly {sorted(ALLOWED_SKUS)}",
+            reason_code="CATALOG_SKU",
+        )
+    for sku_item in catalog["skus"]:
+        if sku_item["id"] == "U-DUAL":
+            never = set(sku_item.get("never_free_with") or [])
+            if "P-ADM" not in never:
+                raise IntegrityError("U-DUAL must never be free with P-ADM")
+    module_ids: set[str] = set()
+    for module in catalog.get("modules", []):
+        if module.get("sku") not in ALLOWED_SKUS:
+            raise IntegrityError(f"module {module.get('id')} has invented SKU")
+        module_ids.add(module["id"])
+    _validate_named_sets(catalog.get("industry_packs", []), module_ids, "industry pack")
+    _validate_named_sets(catalog.get("libraries", []), module_ids, "library")
+    for svc in catalog.get("fee_for_service", []):
+        if svc.get("id") in ALLOWED_SKUS or svc.get("sku"):
+            raise IntegrityError("fee-for-service is not a SKU", reason_code="CATALOG_SKU")
+        included = svc.get("included_in")
+        if included and included not in ALLOWED_SKUS:
+            raise IntegrityError(
+                f"fee-for-service {svc.get('id')} included_in invented SKU",
+                reason_code="CATALOG_SKU",
+            )
+        if svc.get("attaches_udual") is True:
+            raise IntegrityError("fee-for-service cannot attach U-DUAL", reason_code="UDUAL_NOT_FREE")
+        if svc.get("billable") is True and svc.get("requires_l1") is not True:
+            raise IntegrityError("billable FFS requires L1", reason_code="FFS_SCOPE")
+    from ainav.business import validate_business
+    from ainav.ip import validate_ip_doctrine
+    from ainav.microsoft.agent_tools import validate_agent_tools
+    from ainav.microsoft.access import validate_honest_access
+    from ainav.microsoft.agents import validate_microsoft_agents
+    from ainav.microsoft.operators import validate_honest_operators
+    from ainav.microsoft.build import validate_honest_build
+    from ainav.microsoft.readiness import validate_honest_readiness
+    from ainav.industry_certify import validate_honest_industry
+    from ainav.honest_whole import validate_honest_whole
+    from ainav.microsoft.connections import validate_connections
+    from ainav.programs import validate_programs
+
+    validate_ip_doctrine(catalog)
+    validate_programs(catalog)
+    validate_connections(catalog)
+    validate_agent_tools(catalog)
+    validate_microsoft_agents(catalog)
+    validate_honest_access(catalog)
+    validate_honest_operators(catalog)
+    validate_honest_build(catalog)
+    validate_honest_readiness(catalog)
+    validate_honest_industry(catalog)
+    validate_honest_whole(catalog)
+    validate_business(catalog)
+    from ainav.delivery import validate_delivery
+
+    validate_delivery(catalog)
+    _validate_operating(catalog)
+    from ainav.org import validate_organization
+
+    validate_organization(catalog)
+    _validate_mailbox_law(catalog)
+    _validate_proof_day(catalog)
+    _validate_next_pin(catalog)
+    _validate_sandbox_evidence(catalog)
+    _validate_buyer(catalog)
+    _validate_icp(catalog)
+    _validate_acceptance_kit(catalog)
+    _validate_counsel(catalog)
+    _validate_owner_gates(catalog)
+    _validate_finance(catalog)
+    _validate_expert_review(catalog)
+    _validate_upsells(catalog)
+    _validate_repositories(catalog)
+    _validate_governance(catalog)
+    _validate_client_org(catalog)
+    _validate_plane_interface(catalog)
+    _validate_investor(catalog)
+    _validate_microsoft_edge(catalog)
+    _validate_us_dataverse(catalog)
+    _validate_engineering(catalog)
+    _validate_honest_missing(catalog)
+
+
+def _validate_microsoft_edge(catalog: dict[str, Any]) -> None:
+    edge = (catalog.get("microsoft_stack") or {}).get("edge")
+    if not isinstance(edge, dict):
+        raise IntegrityError("catalog missing Cloudflare edge", reason_code="CATALOG_EDGE")
+    if edge.get("id") != "cloudflare.dns":
+        raise IntegrityError("edge id is cloudflare.dns", reason_code="CATALOG_EDGE")
+    if edge.get("product") != "Cloudflare":
+        raise IntegrityError("edge product is Cloudflare", reason_code="CATALOG_EDGE")
+    if edge.get("role") != "dns_edge":
+        raise IntegrityError("edge role is dns_edge", reason_code="CATALOG_EDGE")
+    if edge.get("dashboard_url") != "https://dash.cloudflare.com":
+        raise IntegrityError("edge dashboard is dash.cloudflare.com", reason_code="CATALOG_EDGE")
+    if str(edge.get("apex") or "") != "ainav.institute":
+        raise IntegrityError("edge apex is ainav.institute", reason_code="CATALOG_EDGE")
+    for flag in (
+        "sku",
+        "connection",
+        "complement",
+        "live",
+        "live_pin_ok",
+        "is_admit_plane",
+    ):
+        if edge.get(flag) is not False:
+            raise IntegrityError(f"edge cannot claim {flag}", reason_code="CATALOG_EDGE")
+    already = " ".join(str(item) for item in edge.get("already") or []).lower()
+    for stem in ("nameserver", "mx", "spf", "entra", "autodiscover", "dkim", "dmarc"):
+        if stem not in already:
+            raise IntegrityError(f"edge already must include {stem}", reason_code="CATALOG_EDGE")
+    missing_items = list(edge.get("missing") or [])
+    missing = " ".join(str(item) for item in missing_items).lower()
+    not_blob = " ".join(str(item) for item in edge.get("not") or []).lower()
+    for stem in ("sku", "complement", "dual", "launch"):
+        if stem not in not_blob:
+            raise IntegrityError(f"edge not must include {stem}", reason_code="CATALOG_EDGE")
+    note = str(edge.get("note") or "").lower()
+    if "not the product" not in note:
+        raise IntegrityError("edge note: Cloudflare is not the product", reason_code="CATALOG_EDGE")
+    if "dns-only" not in note:
+        raise IntegrityError("edge note: MX stays DNS-only", reason_code="CATALOG_EDGE")
+    if "cannot edit" not in note:
+        raise IntegrityError("edge note: Cloud Agent cannot edit Cloudflare", reason_code="CATALOG_EDGE")
+    if "not institute launch" not in note:
+        raise IntegrityError("edge note: not Institute launch", reason_code="CATALOG_EDGE")
+    if str(edge.get("plan") or "") != "pro":
+        raise IntegrityError("edge plan is Cloudflare Pro", reason_code="CATALOG_EDGE")
+    if edge.get("plan_sku") is True:
+        raise IntegrityError("Cloudflare Pro is not a SKU", reason_code="CATALOG_EDGE")
+    if edge.get("from_this_plane") is True:
+        raise IntegrityError("this plane cannot edit Cloudflare", reason_code="CATALOG_EDGE")
+    activate = edge.get("activate") or {}
+    if not isinstance(activate, dict) or activate.get("from_this_plane") is True:
+        raise IntegrityError("Cloudflare Pro activate is owner-only", reason_code="CATALOG_EDGE")
+    now_ids = [item.get("id") for item in activate.get("now") or []]
+    for needed in ("ssl.full", "waf.managed", "perf.off", "dns.only"):
+        if needed not in now_ids:
+            raise IntegrityError(f"Pro activate now must include {needed}", reason_code="CATALOG_EDGE")
+    wait_blob = " ".join(
+        f"{item.get('id') or ''} {item.get('do') or ''}" for item in activate.get("wait") or []
+    ).lower()
+    if "launch" not in wait_blob or "asuid" not in wait_blob:
+        raise IntegrityError("Pro activate wait keeps launch and asuid", reason_code="CATALOG_EDGE")
+    if "twin" not in wait_blob or "gold" not in wait_blob:
+        raise IntegrityError("Pro activate wait keeps the SWA twin and gold-99 release", reason_code="CATALOG_EDGE")
+    if "point the apex at azure swa wait" in wait_blob:
+        raise IntegrityError("Pro activate wait cannot treat SWA as the public origin", reason_code="CATALOG_EDGE")
+    now_blob = " ".join(
+        f"{item.get('id') or ''} {item.get('do') or ''}" for item in activate.get("now") or []
+    ).lower()
+    for stem in ("flexible", "rocket loader", "dns only"):
+        if stem not in now_blob:
+            raise IntegrityError(f"Pro activate now must keep {stem}", reason_code="CATALOG_EDGE")
+    if "pro" not in already:
+        raise IntegrityError("edge already must record Cloudflare Pro", reason_code="CATALOG_EDGE")
+    if "404" not in now_blob and "empty" not in now_blob:
+        raise IntegrityError("Pro activate must keep the empty 404 apex", reason_code="CATALOG_EDGE")
+    if "grey" not in now_blob and "outlook" not in now_blob:
+        raise IntegrityError("Pro activate DNS must keep Outlook / grey cloud", reason_code="CATALOG_EDGE")
+    if "reject" not in wait_blob:
+        raise IntegrityError("Pro activate wait keeps DMARC reject", reason_code="CATALOG_EDGE")
+    holding = edge.get("holding") or {}
+    if not isinstance(holding, dict):
+        raise IntegrityError("edge holding is empty Cloudflare Pages", reason_code="CATALOG_EDGE")
+    if holding.get("id") != "cloudflare.pages":
+        raise IntegrityError("edge holding is cloudflare.pages", reason_code="CATALOG_EDGE")
+    if str(holding.get("origin") or "") != "ainav-institute.pages.dev":
+        raise IntegrityError("edge holding origin is ainav-institute.pages.dev", reason_code="CATALOG_EDGE")
+    for flag in ("host", "institute", "launch", "sku"):
+        if holding.get(flag) is not False:
+            raise IntegrityError(f"Pages cannot claim {flag}", reason_code="CATALOG_EDGE")
+    hold_note = str(holding.get("note") or "").lower()
+    if "not the institute" not in hold_note or "leave" not in hold_note:
+        raise IntegrityError(
+            "edge holding note: Pages is not the Institute; leave the zone",
+            reason_code="CATALOG_EDGE",
+        )
+    if edge.get("full") is True:
+        if missing_items:
+            raise IntegrityError("edge cannot claim full while records are missing", reason_code="CATALOG_EDGE")
+        for stem in ("sip", "lync"):
+            if stem not in already:
+                raise IntegrityError(f"edge full must record {stem}", reason_code="CATALOG_EDGE")
+        if "dns is full" not in note:
+            raise IntegrityError("edge note: DNS is full", reason_code="CATALOG_EDGE")
+        _validate_edge_quality(edge)
+        _validate_institute_twin(edge)
+    elif edge.get("full") is False:
+        if "sip" not in missing:
+            raise IntegrityError("edge missing must include Teams SIP", reason_code="CATALOG_EDGE")
+        if "full is false" not in note:
+            raise IntegrityError("edge note: full is false", reason_code="CATALOG_EDGE")
+    else:
+        raise IntegrityError("edge full must be boolean", reason_code="CATALOG_EDGE")
+    _validate_stack_walk(catalog)
+    _validate_graph_owner_consent(catalog)
+
+
+def _validate_edge_quality(edge: dict[str, Any]) -> None:
+    quality = edge.get("quality")
+    if not isinstance(quality, dict):
+        raise IntegrityError("edge quality is required", reason_code="CATALOG_EDGE")
+    if quality.get("kind") != "ainav.edge.quality.v1":
+        raise IntegrityError("edge quality kind is ainav.edge.quality.v1", reason_code="CATALOG_EDGE")
+    for flag in (
+        "sku",
+        "live",
+        "live_pin_ok",
+        "from_this_plane",
+        "apex_is_institute",
+        "ssl_full_claimed",
+        "rocket_loader_claimed",
+    ):
+        if quality.get(flag) is True:
+            raise IntegrityError(f"edge quality cannot claim {flag}", reason_code="CATALOG_EDGE")
+    if quality.get("e7_full") is not True:
+        raise IntegrityError("edge quality records E7 DNS full", reason_code="CATALOG_EDGE")
+    if str(quality.get("institute_host") or "") != "azure.swa":
+        raise IntegrityError("edge quality host is Azure SWA", reason_code="CATALOG_EDGE")
+    freshness = quality.get("host_freshness") or {}
+    if not isinstance(freshness, dict):
+        raise IntegrityError("edge quality host_freshness is required", reason_code="CATALOG_EDGE")
+    if freshness.get("from_this_plane") is True:
+        raise IntegrityError("edge quality cannot claim host republish from this plane", reason_code="CATALOG_EDGE")
+    if freshness.get("republish_is_not_launch") is not True:
+        raise IntegrityError("edge quality: republish is not launch", reason_code="CATALOG_EDGE")
+    if freshness.get("published_host_is_swa") is not True or freshness.get("apex_is_not_the_host") is not True:
+        raise IntegrityError("edge quality host is SWA, not the apex", reason_code="CATALOG_EDGE")
+    owner_ssl = quality.get("owner_ssl") or {}
+    if not isinstance(owner_ssl, dict):
+        raise IntegrityError("edge quality owner_ssl is required", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("from_this_plane") is True or owner_ssl.get("live") is True or owner_ssl.get("live_pin_ok") is True:
+        raise IntegrityError("owner_ssl cannot be claimed from this plane", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("sku") is True:
+        raise IntegrityError("owner_ssl is not a SKU", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("automatic") is not True or str(owner_ssl.get("mode") or "") != "full_strict":
+        raise IntegrityError("owner_ssl records Automatic Full (strict)", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("visitor_cert_is_not_proof") is not True:
+        raise IntegrityError("owner_ssl: visitor cert is not proof", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("flexible") is True or owner_ssl.get("off") is True:
+        raise IntegrityError("owner_ssl cannot be Flexible or Off", reason_code="CATALOG_EDGE")
+    recorded = " ".join(str(item).lower() for item in quality.get("owner_recorded") or [])
+    if "full (strict)" not in recorded or "owner" not in recorded:
+        raise IntegrityError("edge quality owner_recorded must keep Full (strict)", reason_code="CATALOG_EDGE")
+    verified = " ".join(str(item).lower() for item in quality.get("verified") or [])
+    for stem in ("13/13", "404", "asuid", "301", "tls", "anycast"):
+        if stem not in verified:
+            raise IntegrityError(f"edge quality verified must keep {stem}", reason_code="CATALOG_EDGE")
+    confirm = " ".join(str(item).lower() for item in quality.get("confirm") or [])
+    for stem in ("flexible", "rocket", "grey", "403-vs-404"):
+        if stem not in confirm:
+            raise IntegrityError(f"edge quality confirm must keep {stem}", reason_code="CATALOG_EDGE")
+    refuse = " ".join(str(item).lower() for item in quality.get("refuse") or [])
+    for stem in ("asuid", "orange-cloud", "404"):
+        if stem not in refuse:
+            raise IntegrityError(f"edge quality refuse must keep {stem}", reason_code="CATALOG_EDGE")
+    wait = " ".join(str(item).lower() for item in quality.get("wait") or [])
+    if "reject" not in wait or "launch" not in wait:
+        raise IntegrityError("edge quality wait keeps DMARC reject and launch", reason_code="CATALOG_EDGE")
+    note = str(quality.get("note") or "").lower()
+    if "not institute launch" not in note or "cannot edit" not in note:
+        raise IntegrityError("edge quality note: not launch and cannot edit", reason_code="CATALOG_EDGE")
+    if "twin" not in note or "404" not in note:
+        raise IntegrityError("edge quality note must keep the SWA twin and empty 404 apex", reason_code="CATALOG_EDGE")
+
+
+def _validate_institute_twin(edge: dict[str, Any]) -> None:
+    twin = _as_dict(edge.get("twin"), "Institute twin")
+    if twin.get("kind") != "ainav.institute.twin.v1":
+        raise IntegrityError("Institute twin kind is ainav.institute.twin.v1", reason_code="CATALOG_EDGE")
+    for flag in ("sku", "live", "live_pin_ok", "launch", "authorized", "from_this_plane"):
+        if twin.get(flag) is True:
+            raise IntegrityError(f"Institute twin cannot claim {flag}", reason_code="CATALOG_EDGE")
+    if twin.get("gold_floor") != 99.5:
+        raise IntegrityError("Institute twin gold_floor is 99.5", reason_code="CATALOG_EDGE")
+    lede = str(twin.get("lede") or "").lower()
+    if "digital twin" not in lede or "azure swa" not in lede or "cloudflare" not in lede:
+        raise IntegrityError("Institute twin lede is SWA development and Cloudflare empty", reason_code="CATALOG_EDGE")
+    dev = _as_dict(twin.get("development"), "Institute twin development")
+    if str(dev.get("host") or "") != "azure.swa" or str(dev.get("role") or "") != "digital_twin":
+        raise IntegrityError("Institute development twin is Azure SWA", reason_code="CATALOG_EDGE")
+    if "azurestaticapps.net" not in str(dev.get("url") or "").lower():
+        raise IntegrityError("Institute twin url is the Azure SWA hostname", reason_code="CATALOG_EDGE")
+    if dev.get("is_public_apex") is True:
+        raise IntegrityError("SWA twin is not the public apex", reason_code="CATALOG_EDGE")
+    public = _as_dict(twin.get("public_edge"), "Institute public edge")
+    if str(public.get("host") or "") != "cloudflare" or str(public.get("apex") or "") != "ainav.institute":
+        raise IntegrityError("public edge is Cloudflare on ainav.institute", reason_code="CATALOG_EDGE")
+    if public.get("is_institute") is True or public.get("challenge_hold") is True:
+        raise IntegrityError("Cloudflare apex is not the Institute and is not a 403 hold", reason_code="CATALOG_EDGE")
+    if "404" not in str(public.get("observed") or "").lower():
+        raise IntegrityError("public edge observed is 404 empty", reason_code="CATALOG_EDGE")
+    release = _as_dict(twin.get("release"), "Institute twin release")
+    if release.get("authorized") is True or release.get("from_this_plane") is True:
+        raise IntegrityError("Institute release is not authorized from this plane", reason_code="CATALOG_EDGE")
+    requires = " ".join(str(item).lower() for item in release.get("requires") or [])
+    if "gold" not in requires or "99" not in requires or "launch" not in requires:
+        raise IntegrityError("Institute release requires gold 99 and owner launch", reason_code="CATALOG_EDGE")
+    refused = " ".join(str(item).lower() for item in release.get("not") or [])
+    for stem in ("auto-publish", "apex 404", "cloudflare edge", "asuid"):
+        if stem not in refused:
+            raise IntegrityError(f"Institute release must refuse {stem}", reason_code="CATALOG_EDGE")
+    note = str(twin.get("note") or "").lower()
+    if "twin" not in note or "404" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("Institute twin note: SWA twin, empty 404, not LIVE_PIN_OK", reason_code="CATALOG_EDGE")
+
+
+def _validate_stack_walk(catalog: dict[str, Any]) -> None:
+    walk = (catalog.get("microsoft_stack") or {}).get("walk")
+    if not isinstance(walk, dict):
+        raise IntegrityError("catalog missing stack walk", reason_code="CATALOG_STACK")
+    if walk.get("sku") is True or walk.get("is_admit_plane") is True:
+        raise IntegrityError("stack walk is not a SKU or the admit plane", reason_code="CATALOG_STACK")
+    if walk.get("live") is True or walk.get("live_pin_ok") is True:
+        raise IntegrityError("stack walk cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    thesis = str(walk.get("thesis") or "").lower()
+    if "azure hosts" not in thesis or "ainav admits" not in thesis:
+        raise IntegrityError("stack walk thesis is Azure hosts, AINav admits", reason_code="CATALOG_STACK")
+    if "not a hop" not in thesis and "dns/edge" not in thesis:
+        raise IntegrityError("stack walk must keep Cloudflare off the write hop", reason_code="CATALOG_STACK")
+    path_ids = [item.get("id") for item in walk.get("path") or []]
+    for needed in (
+        "cloudflare.dns",
+        "azure.host",
+        "entra.id",
+        "admit",
+        "bc.premium",
+        "sales.enterprise",
+        "teams.enterprise",
+        "graph.read",
+        "agent_tools",
+        "institute.launch",
+    ):
+        if needed not in path_ids:
+            raise IntegrityError(f"stack walk path must include {needed}", reason_code="CATALOG_STACK")
+    for item in (walk.get("path") or []) + (walk.get("complements") or []):
+        url = str(item.get("url") or "")
+        if not url.startswith("https://"):
+            raise IntegrityError(f"stack walk {item.get('id')} needs an https link", reason_code="CATALOG_STACK")
+        if item.get("live") is True or item.get("live_pin_ok") is True:
+            raise IntegrityError("stack walk hops cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if "dash.cloudflare.com" not in str((walk.get("path") or [{}])[0].get("url") or ""):
+        raise IntegrityError("first hop is the Cloudflare dashboard", reason_code="CATALOG_STACK")
+    cannot = " ".join(str(item).lower() for item in walk.get("cannot") or [])
+    for stem in ("create users", "graph", "cloudflare", "live_pin_ok", "canada", "environment id"):
+        if stem not in cannot:
+            raise IntegrityError(f"stack walk cannot must keep {stem}", reason_code="CATALOG_STACK")
+    sales = next((item for item in (walk.get("path") or []) if item.get("id") == "sales.enterprise"), {})
+    sales_blob = f"{sales.get('in_tree') or ''} {sales.get('owner') or ''}".lower()
+    for stem in ("canada", "2609030040009525", "united states is not pinned"):
+        if stem not in sales_blob:
+            raise IntegrityError("stack walk Sales hop must keep Canada affinity", reason_code="CATALOG_STACK")
+    if "create a us power platform" in sales_blob:
+        raise IntegrityError("stack walk cannot pretend United States is create-able", reason_code="CATALOG_STACK")
+    share = next(
+        (item for item in (catalog.get("connections") or {}).get("complements") or [] if item.get("id") == "sharepoint.kit"),
+        {},
+    )
+    if share.get("write_from_this_plane") is not False:
+        raise IntegrityError("SharePoint Write is not from this plane", reason_code="CATALOG_STACK")
+    if str(share.get("consented_ask") or "") != "Sites.Read.All":
+        raise IntegrityError("SharePoint consented ask is Sites.Read.All", reason_code="CATALOG_STACK")
+
+
+def _validate_us_dataverse(catalog: dict[str, Any]) -> None:
+    body = _as_dict((catalog.get("microsoft_stack") or {}).get("us_dataverse"), "US Dataverse")
+    if body.get("kind") != "ainav.us_dataverse.v1":
+        raise IntegrityError("US Dataverse kind is ainav.us_dataverse.v1", reason_code="CATALOG_STACK")
+    if body.get("sku") is True:
+        raise IntegrityError("US Dataverse is not a SKU", reason_code="CATALOG_SKU")
+    for flag in (
+        "live",
+        "live_pin_ok",
+        "closed",
+        "united_states",
+        "canada_is_united_states",
+        "adr_purchased",
+        "adr_eligible",
+        "geo_to_geo_available",
+        "dataverse_url_set",
+        "engineering_exception_granted",
+        "support_changes_made",
+    ):
+        if body.get(flag) is True:
+            raise IntegrityError(f"US Dataverse cannot claim {flag}", reason_code="CATALOG_STACK")
+    if body.get("engineering_exception_routed") is not True:
+        raise IntegrityError("US Dataverse engineering exception is routed, not granted", reason_code="CATALOG_STACK")
+    if str(body.get("ticket") or "") != "2609030040009525":
+        raise IntegrityError("US Dataverse must keep Support ticket 2609030040009525", reason_code="CATALOG_STACK")
+    lede = str(body.get("lede") or "").lower()
+    if "us dataverse stays open" not in lede or "macro region" not in lede or "canada" not in lede:
+        raise IntegrityError("US Dataverse lede is open, macro region, Canada affinity", reason_code="CATALOG_STACK")
+    finding = str(body.get("finding") or "").lower()
+    if "2609030040009525" not in finding or "advanced data residency" not in finding or "routed" not in finding:
+        raise IntegrityError("US Dataverse finding must keep the Support ticket", reason_code="CATALOG_STACK")
+    owner = str(body.get("owner") or "").lower()
+    if "reply" not in owner or "united states" not in owner or "path b" not in owner:
+        raise IntegrityError("US Dataverse owner step is reply-all and path B", reason_code="CATALOG_STACK")
+    is_not = " ".join(str(item).lower() for item in body.get("is_not") or [])
+    for stem in ("united states", "adr purchased", "dataverse_url", "live sor"):
+        if stem not in is_not:
+            raise IntegrityError(f"US Dataverse is_not must keep {stem}", reason_code="CATALOG_STACK")
+    cannot = " ".join(str(item).lower() for item in body.get("cannot") or [])
+    for stem in ("canada as united states", "environment id", "purchase adr", "live_pin_ok"):
+        if stem not in cannot:
+            raise IntegrityError(f"US Dataverse cannot must keep {stem}", reason_code="CATALOG_STACK")
+    scope = " ".join(str(item).lower() for item in body.get("scope_not") or [])
+    for stem in ("exchange", "default environment", "the americas", "power bi"):
+        if stem not in scope:
+            raise IntegrityError(f"US Dataverse scope_not must keep {stem}", reason_code="CATALOG_STACK")
+    note = str(body.get("note") or "").lower()
+    if "separate service" not in note or "canada is not united states" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("US Dataverse note: M365 is separate; Canada is not United States", reason_code="CATALOG_STACK")
+    learn = body.get("learn") or {}
+    if not isinstance(learn, dict):
+        raise IntegrityError("US Dataverse learn must be an object", reason_code="CATALOG_STACK")
+    for key, stem in (
+        ("macro_regions", "macro-regions"),
+        ("adr", "advanced-data-residency"),
+        ("geo_to_geo", "geo-to-geo"),
+    ):
+        if stem not in str(learn.get(key) or "").lower():
+            raise IntegrityError(f"US Dataverse learn must keep {key}", reason_code="CATALOG_STACK")
+    if "90299caf" in json.dumps(catalog).lower():
+        raise IntegrityError("do not paste a Dataverse environment id", reason_code="CATALOG_STACK")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    pin = next((item for item in upgrades if item.get("n") == 4), {})
+    if pin.get("who") != "owner" or pin.get("done") is True or pin.get("marks_live_pin") is True:
+        raise IntegrityError("upgrade 4 US Dataverse stays owner and open", reason_code="CATALOG_REVIEW")
+    pin_blob = f"{pin.get('title') or ''} {pin.get('do') or ''}".lower()
+    for stem in ("2609030040009525", "canada", "adr", "united states"):
+        if stem not in pin_blob:
+            raise IntegrityError("upgrade 4 must keep the Support Canada-affinity finding", reason_code="CATALOG_REVIEW")
+    if "create a us power platform" in pin_blob:
+        raise IntegrityError("upgrade 4 cannot pretend United States is create-able", reason_code="CATALOG_REVIEW")
+    interface_note = ""
+    for item in ((((catalog.get("plane_interface") or {}).get("floor") or {}).get("integrate") or {}).get("items") or []):
+        if item.get("id") == "dataverse.us":
+            interface_note = str(item.get("note") or "").lower()
+            break
+    for stem in ("2609030040009525", "canada", "adr", "united states"):
+        if stem not in interface_note:
+            raise IntegrityError("plane integrate dataverse.us must keep the Support finding", reason_code="CATALOG_STACK")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("2609030040009525" in item and "canada" in item for item in well):
+        raise IntegrityError("working_well must keep the Support Canada-affinity ticket", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("2609030040009525" in item and "path b" in item for item in improve):
+        raise IntegrityError("improve must keep Support reply-all and path B", reason_code="CATALOG_REVIEW")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("cannot_close") or [])]
+    if not any("dataverse" in item and "canada" in item and "united states" in item for item in closed_eng):
+        raise IntegrityError("engineering cannot_close must keep US Dataverse Canada affinity", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_graph_owner_consent(catalog: dict[str, Any]) -> None:
+    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    if not isinstance(graph, dict) or graph.get("kind") != "ainav.graph.owner_consent.v1":
+        raise IntegrityError("graph owner consent kind is ainav.graph.owner_consent.v1", reason_code="CATALOG_STACK")
+    if graph.get("from_this_plane") is True or graph.get("live") is True or graph.get("live_pin_ok") is True:
+        raise IntegrityError("graph owner consent is not from this plane", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if graph.get("sku") is True:
+        raise IntegrityError("graph owner consent is not a SKU", reason_code="CATALOG_STACK")
+    if graph.get("graph_write_claimed") is True:
+        raise IntegrityError("this plane cannot claim Graph Write", reason_code="CATALOG_STACK")
+    remove = " ".join(str(item).lower() for item in graph.get("remove_before_grant") or [])
+    for stem in ("speech", "service management", "key vault", "readwrite"):
+        if stem not in remove:
+            raise IntegrityError(f"graph remove_before_grant must keep {stem}", reason_code="CATALOG_STACK")
+    reads = " ".join(str(item) for item in graph.get("four_reads") or [])
+    for stem in (
+        "Team.ReadBasic.All",
+        "Sites.Read.All",
+        "SecurityIncident.Read.All",
+        "RoleEligibilitySchedule.Read.Directory",
+    ):
+        if stem not in reads:
+            raise IntegrityError(f"graph four_reads must keep {stem}", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "service principal" not in recorded or "speech" not in recorded:
+        raise IntegrityError("graph owner_recorded must keep the leftover API failure", reason_code="CATALOG_STACK")
+    note = str(graph.get("note") or "").lower()
+    if "not live_pin_ok" not in note:
+        raise IntegrityError("graph note: not LIVE_PIN_OK", reason_code="CATALOG_STACK")
+    if "not graph read closed" not in note:
+        raise IntegrityError("graph note: not Graph Read closed", reason_code="CATALOG_STACK")
+    if "owner-revoked" not in note and "writes revoked" not in note:
+        raise IntegrityError("graph note: Writes owner-revoked and not Graph Read closed", reason_code="CATALOG_STACK")
+    _validate_graph_writes_revoked(catalog)
+
+
+def _validate_graph_writes_revoked(catalog: dict[str, Any]) -> None:
+    graph = (catalog.get("microsoft_stack") or {}).get("graph") or {}
+    if graph.get("status") != "four_reads_granted_writes_revoked":
+        raise IntegrityError("graph status is four_reads_granted_writes_revoked", reason_code="CATALOG_STACK")
+    if graph.get("error"):
+        raise IntegrityError("graph Writes error is closed", reason_code="CATALOG_STACK")
+    if graph.get("writes_revoked") is not True:
+        raise IntegrityError("graph writes_revoked is recorded", reason_code="CATALOG_STACK")
+    if list(graph.get("writes_still_granted") or []):
+        raise IntegrityError("graph writes_still_granted stays empty after owner revoke", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "owner revoked" not in recorded or "readwrite" not in recorded:
+        raise IntegrityError("graph owner_recorded must keep the Writes revoke", reason_code="CATALOG_STACK")
+    if graph.get("graph_write_claimed") is True or graph.get("from_this_plane") is True:
+        raise IntegrityError("graph Writes revoke is not Graph Write claimed and not from this plane", reason_code="CATALOG_STACK")
+    if graph.get("four_reads_granted") is not True:
+        raise IntegrityError("graph four Reads stay Granted after Writes revoke", reason_code="CATALOG_STACK")
+    walk_body = _as_dict((catalog.get("microsoft_stack") or {}).get("walk") or {}, "stack walk")
+    walk = next(
+        (
+            item
+            for item in walk_body.get("path") or []
+            if isinstance(item, dict) and item.get("id") == "graph.read"
+        ),
+        {},
+    )
+    if walk.get("status") != "four_reads_granted_writes_revoked":
+        raise IntegrityError("graph.read walk is four_reads_granted_writes_revoked", reason_code="CATALOG_STACK")
+    owner = [str(item).lower() for item in ((catalog.get("plane_interface") or {}).get("gaps") or {}).get("owner_only_open") or []]
+    if any("graph write" in item for item in owner):
+        raise IntegrityError("Graph Writes revoke is recorded, not still owner-only open", reason_code="CATALOG_PLANE")
+    opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
+    if "graph write" in opens:
+        raise IntegrityError("investor opens no longer name Graph Writes revoke", reason_code="CATALOG_INVESTOR")
+    missing = " ".join(str(item).lower() for item in catalog.get("honest_missing") or [])
+    if "graph write" in missing:
+        raise IntegrityError("honest_missing no longer names Graph Writes still Granted", reason_code="CATALOG_HONEST")
+    cannot = " ".join(str(item).lower() for item in ((catalog.get("engineering") or {}).get("cannot_close") or []))
+    if "graph writes still granted" in cannot:
+        raise IntegrityError("cannot_close no longer names Graph Writes still Granted", reason_code="CATALOG_ENGINEERING")
+    closed = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("graph writes revoked" in item and "not graph write claimed" in item for item in closed):
+        raise IntegrityError("closed_in_tree must keep owner recorded Graph Writes revoked", reason_code="CATALOG_ENGINEERING")
+    upgrades = {item.get("n"): item for item in ((catalog.get("expert_review") or {}).get("upgrades") or [])}
+    item = upgrades.get(3) or {}
+    if item.get("who") != "owner" or item.get("done") is not True:
+        raise IntegrityError("owner upgrade 3 Graph Writes revoke is done", reason_code="CATALOG_REVIEW")
+    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+    if "revoked" not in blob or "do not add write" not in blob:
+        raise IntegrityError("owner upgrade 3 must keep Writes revoked and do not add Write", reason_code="CATALOG_REVIEW")
+
+
+def _validate_engineering(catalog: dict[str, Any]) -> None:
+    body = catalog.get("engineering")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing engineering", reason_code="CATALOG_ENGINEERING")
+    if body.get("kind") != "ainav.engineering.v1":
+        raise IntegrityError("engineering kind is ainav.engineering.v1", reason_code="CATALOG_ENGINEERING")
+    for flag in (
+        "sku",
+        "connection",
+        "complement",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "is_admit_plane",
+    ):
+        if body.get(flag) is not False:
+            raise IntegrityError(f"engineering cannot claim {flag}", reason_code="CATALOG_ENGINEERING")
+    gold = body.get("gold_ci")
+    if not isinstance(gold, dict):
+        raise IntegrityError("engineering missing gold_ci", reason_code="CATALOG_ENGINEERING")
+    if gold.get("id") != "github.actions.gold":
+        raise IntegrityError("gold_ci id is github.actions.gold", reason_code="CATALOG_ENGINEERING")
+    if gold.get("marks_live_pin") is not False:
+        raise IntegrityError("gold_ci cannot mark LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    if gold.get("is_admit_plane") is not False:
+        raise IntegrityError("gold_ci is not the admit plane", reason_code="CATALOG_ENGINEERING")
+    if gold.get("coverage_floor") != 99.5:
+        raise IntegrityError("gold coverage floor is 99.5", reason_code="CATALOG_ENGINEERING")
+    pyproject = Path("pyproject.toml")
+    if not pyproject.is_file():
+        raise IntegrityError("pyproject.toml is missing", reason_code="CATALOG_ENGINEERING")
+    if "fail_under = 99.5" not in pyproject.read_text(encoding="utf-8"):
+        raise IntegrityError("pyproject fail_under must match gold floor 99.5", reason_code="CATALOG_ENGINEERING")
+    if gold.get("command") != "make gold":
+        raise IntegrityError("gold command is make gold", reason_code="CATALOG_ENGINEERING")
+    note = str(gold.get("note") or "").lower()
+    if "not live_pin_ok" not in note:
+        raise IntegrityError("gold_ci note must refuse LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    closed = [str(item).lower() for item in body.get("closed_in_tree") or []]
+    cannot = [str(item).lower() for item in body.get("cannot_close") or []]
+    if not closed or not cannot:
+        raise IntegrityError("engineering needs closed_in_tree and cannot_close", reason_code="CATALOG_ENGINEERING")
+    if not any("live_pin" in item for item in cannot):
+        raise IntegrityError("cannot_close must keep LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    if not any("cynthia" in item or "second unique" in item for item in cannot):
+        raise IntegrityError("cannot_close must keep the second human", reason_code="CATALOG_ENGINEERING")
+    if any("live_pin_ok" in item and "not" not in item for item in closed):
+        raise IntegrityError("closed_in_tree cannot claim LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+    law = str(body.get("note") or "").lower()
+    if "not a sku" not in law:
+        raise IntegrityError("engineering note: not a SKU", reason_code="CATALOG_ENGINEERING")
+    if "not the admit plane" not in law:
+        raise IntegrityError("engineering note: not the admit plane", reason_code="CATALOG_ENGINEERING")
+    if gold.get("exists") is True:
+        path = Path(str(gold.get("workflow") or ""))
+        if path.as_posix() != ".github/workflows/gold.yml":
+            raise IntegrityError("gold workflow path", reason_code="CATALOG_ENGINEERING")
+        if not path.is_file():
+            raise IntegrityError("gold workflow file missing", reason_code="CATALOG_ENGINEERING")
+        text = path.read_text(encoding="utf-8").lower()
+        if "make gold" not in text:
+            raise IntegrityError("gold workflow must run make gold", reason_code="CATALOG_ENGINEERING")
+        if "live_pin_ok" not in text:
+            raise IntegrityError("gold workflow must refuse LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+        if "green check" not in note:
+            raise IntegrityError("gold_ci note: a green check is not LIVE_PIN_OK", reason_code="CATALOG_ENGINEERING")
+        if not any("gold" in item or "github" in item or "workflow" in item for item in closed):
+            raise IntegrityError("closed_in_tree must record gold CI", reason_code="CATALOG_ENGINEERING")
+        if not re.search(r"actions/checkout@[0-9a-f]{40}", text):
+            raise IntegrityError("gold workflow must pin checkout", reason_code="CATALOG_ENGINEERING")
+        if not re.search(r"actions/setup-python@[0-9a-f]{40}", text):
+            raise IntegrityError("gold workflow must pin setup-python", reason_code="CATALOG_ENGINEERING")
+    elif gold.get("exists") is False:
+        if "missing" not in note and "not in the tree" not in note:
+            raise IntegrityError("missing gold_ci must say so", reason_code="CATALOG_ENGINEERING")
+    else:
+        raise IntegrityError("gold_ci.exists must be boolean", reason_code="CATALOG_ENGINEERING")
+    if gold.get("observed_green") is True:
+        if gold.get("exists") is not True:
+            raise IntegrityError("cannot claim green without a workflow", reason_code="CATALOG_ENGINEERING")
+        if "ran green" not in note:
+            raise IntegrityError("observed_green note must say ran green", reason_code="CATALOG_ENGINEERING")
+    elif gold.get("observed_green") is False:
+        if "ran green" in note:
+            raise IntegrityError("observed_green false cannot claim ran green", reason_code="CATALOG_ENGINEERING")
+    else:
+        raise IntegrityError("gold_ci.observed_green must be boolean", reason_code="CATALOG_ENGINEERING")
+    _validate_catalog_shape(body)
+    _validate_formal(body)
+
+
+def _validate_catalog_shape(body: dict[str, Any]) -> None:
+    shape = body.get("catalog_shape")
+    if not isinstance(shape, dict):
+        raise IntegrityError("engineering needs catalog_shape", reason_code="CATALOG_ENGINEERING")
+    if shape.get("one_file") is not True or shape.get("do_not_split") is not True:
+        raise IntegrityError("do not split catalog.json", reason_code="CATALOG_ENGINEERING")
+    if str(shape.get("path") or "") != "src/ainav/data/catalog.json":
+        raise IntegrityError("catalog_shape path is catalog.json", reason_code="CATALOG_ENGINEERING")
+    extract = [str(item) for item in shape.get("extract") or []]
+    if "src/ainav/data/action.schema.json" not in extract:
+        raise IntegrityError("catalog_shape extracts action.schema.json", reason_code="CATALOG_ENGINEERING")
+    schema = Path("src/ainav/data/action.schema.json")
+    if not schema.is_file():
+        raise IntegrityError("action.schema.json is missing", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_formal(body: dict[str, Any]) -> None:
+    formal = body.get("formal")
+    if not isinstance(formal, dict):
+        raise IntegrityError("engineering needs formal spec honesty", reason_code="CATALOG_ENGINEERING")
+    if formal.get("claimed") is True or formal.get("verified") is True:
+        raise IntegrityError("do not claim formally verified", reason_code="CATALOG_ENGINEERING")
+    spec = Path(str(formal.get("spec") or ""))
+    if spec.as_posix() != "src/agent_gov/spec/consume_once.tla":
+        raise IntegrityError("formal spec path is consume_once.tla", reason_code="CATALOG_ENGINEERING")
+    if not spec.is_file():
+        raise IntegrityError("formal spec file missing", reason_code="CATALOG_ENGINEERING")
+    text = spec.read_text(encoding="utf-8")
+    if "CONSUME" not in text.upper() and "consume" not in text.lower():
+        raise IntegrityError("formal spec must sketch consume-once", reason_code="CATALOG_ENGINEERING")
+
+
+def catalog_engineering() -> dict[str, Any]:
+    return dict(load_catalog()["engineering"])
+
+
+def _validate_honest_missing(catalog: dict[str, Any]) -> None:
+    missing = [str(item).lower() for item in catalog.get("honest_missing") or []]
+    if not missing:
+        raise IntegrityError("catalog missing honest_missing", reason_code="CATALOG_HONEST")
+    if not any("live_pin" in item for item in missing):
+        raise IntegrityError("honest_missing must keep LIVE_PIN_OK", reason_code="CATALOG_HONEST")
+    if not any("second unique" in item or "cynthia" in item for item in missing):
+        raise IntegrityError("honest_missing must keep the second human", reason_code="CATALOG_HONEST")
+    if not any("dataverse" in item and "canada" in item for item in missing):
+        raise IntegrityError("honest_missing must keep US Dataverse Canada affinity", reason_code="CATALOG_HONEST")
+    if not any("teams" in item and "channel" in item for item in missing):
+        raise IntegrityError("honest_missing must keep Teams team and channel ids", reason_code="CATALOG_HONEST")
+    if not any("sharepoint" in item for item in missing):
+        raise IntegrityError("honest_missing must keep SHAREPOINT_SITE_ID", reason_code="CATALOG_HONEST")
+    if not any("sentinel" in item and "law" in item for item in missing):
+        raise IntegrityError("honest_missing must keep Sentinel on the existing LAW", reason_code="CATALOG_HONEST")
+    if not any("trademark" in item and "apex brand" in item for item in missing):
+        raise IntegrityError("honest_missing must keep trademark filing and public apex brand", reason_code="CATALOG_HONEST")
+    if any(item.strip() == "live_pin_ok is marked" for item in missing):
+        raise IntegrityError("honest_missing cannot claim LIVE_PIN_OK closed", reason_code="CATALOG_HONEST")
+
+
+def _validate_operating(catalog: dict[str, Any]) -> None:
+    body = catalog.get("operating")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing operating model", reason_code="CATALOG_OPERATING")
+    if body.get("legal_entity") != catalog.get("entity", {}).get("legal"):
+        raise IntegrityError("operating legal_entity must match entity.legal", reason_code="CATALOG_OPERATING")
+    if body.get("sole_owner") is not True:
+        raise IntegrityError("operating records the sole owner", reason_code="CATALOG_OPERATING")
+    if body.get("operator_is_seat") is True or body.get("agent_is_not_dual") is not True:
+        raise IntegrityError("the operator cannot be a dual seat", reason_code="CATALOG_OPERATING")
+    if not str(body.get("owner_principal") or "").strip():
+        raise IntegrityError("operating owner_principal is required", reason_code="CATALOG_OPERATING")
+    if body.get("owner_principal") == body.get("operator"):
+        raise IntegrityError("owner cannot be the operator", reason_code="CATALOG_OPERATING")
+    equations = catalog.get("equations") or {}
+    if "named dual seats" not in str(equations.get("commercial") or ""):
+        raise IntegrityError("commercial equation must name dual seats", reason_code="CATALOG_EQUATION")
+    if equations.get("lab_pin") != "LIVE_PIN_OK":
+        raise IntegrityError("lab pin stays LIVE_PIN_OK", reason_code="CATALOG_EQUATION")
+    control = str(equations.get("control") or "").lower()
+    if "client utilizes ai" not in control or "human" not in control:
+        raise IntegrityError(
+            "control equation is client utilizes AI \u00d7 human-control failsafe",
+            reason_code="CATALOG_EQUATION",
+        )
+    cascade = str(equations.get("cascade") or "").lower()
+    if "client" not in cascade or "institutes ainav" not in cascade:
+        raise IntegrityError(
+            "cascade equation is client's clients utilize AI \u00d7 client institutes AINav",
+            reason_code="CATALOG_EQUATION",
+        )
+    umbrella = str(equations.get("umbrella") or "").lower()
+    if "every client ai" not in umbrella or "one admit plane" not in umbrella:
+        raise IntegrityError(
+            "umbrella equation is every client AI \u00d7 one admit plane",
+            reason_code="CATALOG_EQUATION",
+        )
+    plane = str(equations.get("plane") or "").lower()
+    if "off-switch" not in plane or "rollback" not in plane:
+        raise IntegrityError(
+            "plane equation is failsafe \u00d7 off-switch \u00d7 reset \u00d7 rollback",
+            reason_code="CATALOG_EQUATION",
+        )
+    org = str(equations.get("org") or "").lower()
+    if "org chart" not in org or "sod" not in org:
+        raise IntegrityError(
+            "org equation is client org chart \u00d7 existing SOD \u00d7 one admit plane",
+            reason_code="CATALOG_EQUATION",
+        )
+    insulation = str(equations.get("insulation") or "").lower()
+    if "independence" not in insulation or "job c" not in insulation:
+        raise IntegrityError(
+            "insulation equation is independence \u00d7 Job C lockfile",
+            reason_code="CATALOG_EQUATION",
+        )
+    for stem in ("lockfile", "gold", "catalog"):
+        if stem not in insulation:
+            raise IntegrityError(
+                f"insulation equation must keep {stem}",
+                reason_code="CATALOG_EQUATION",
+            )
+    interface = str(equations.get("interface") or "").lower()
+    if "humans from the top" not in interface or "hierarchical" not in interface:
+        raise IntegrityError(
+            "interface equation is humans from the top \u00d7 hierarchical access",
+            reason_code="CATALOG_EQUATION",
+        )
+    if "walkable rehearsal" not in interface:
+        raise IntegrityError(
+            "interface equation must keep walkable rehearsal",
+            reason_code="CATALOG_EQUATION",
+        )
+    if "authorization lifecycle" not in interface or "sealed records" not in interface:
+        raise IntegrityError(
+            "interface equation must keep authorization lifecycle and sealed records",
+            reason_code="CATALOG_EQUATION",
+        )
+    if "view assignment" not in interface or "mfa identify" not in interface:
+        raise IntegrityError(
+            "interface equation must keep view assignment and MFA identify",
+            reason_code="CATALOG_EQUATION",
+        )
+    for stem in (
+        "failsafe",
+        "immutable",
+        "other uses",
+        "executive oversee",
+        "ai governance maps",
+        "internal audit",
+        "regulator archive",
+        "regulated entities",
+    ):
+        if stem not in interface:
+            raise IntegrityError(
+                f"interface equation must keep {stem}",
+                reason_code="CATALOG_EQUATION",
+            )
+    estate_eq = str(equations.get("estate") or "").lower()
+    for stem in ("other uses", "failsafe", "executive oversee", "sealed records", "immutable", "ai governance maps"):
+        if stem not in estate_eq:
+            raise IntegrityError(
+                "estate equation is other uses × failsafe × executive oversee × sealed records × immutable × AI governance maps",
+                reason_code="CATALOG_EQUATION",
+            )
+    if "must-have" not in interface:
+        raise IntegrityError(
+            "interface equation must keep must-have",
+            reason_code="CATALOG_EQUATION",
+        )
+    investor = str(equations.get("investor") or "").lower()
+    if "catalog list" not in investor or "zero booked" not in investor:
+        raise IntegrityError(
+            "investor equation is catalog list \u00d7 zero booked \u00d7 two-human close",
+            reason_code="CATALOG_EQUATION",
+        )
+    if "two-human" not in investor and "two human" not in investor:
+        raise IntegrityError(
+            "investor equation must keep two-human close",
+            reason_code="CATALOG_EQUATION",
+        )
+    audit_eq = str(equations.get("audit") or "").lower()
+    for stem in ("internal audit", "regulator archive", "failure to comply", "room 1", "room 2"):
+        if stem not in audit_eq:
+            raise IntegrityError(
+                "audit equation is internal audit × regulator archive × failure to comply × Room 1 books × Room 2 refuse",
+                reason_code="CATALOG_EQUATION",
+            )
+    proof = str(equations.get("proof") or "").lower()
+    for stem in ("write rail", "two seats", "one hash", "fail-closed"):
+        if stem not in proof:
+            raise IntegrityError(
+                "proof equation is write rail × two seats × one hash × fail-closed write",
+                reason_code="CATALOG_EQUATION",
+            )
+    instrument = str(equations.get("instrument") or "").lower()
+    for stem in (
+        "action schema",
+        "admit client",
+        "ai inventory",
+        "examiner prove",
+        "grant ttl",
+        "passkey identify",
+    ):
+        if stem not in instrument:
+            raise IntegrityError(
+                "instrument equation is action schema × admit client × AI inventory × examiner prove × grant TTL × passkey identify",
+                reason_code="CATALOG_EQUATION",
+            )
+    for stem in (
+        "proof-day floor",
+        "action schema",
+        "admit client",
+        "examiner prove",
+        "pending bind",
+        "freeze console",
+        "examiner walk",
+        "motions",
+        "gaps board",
+        "provision spine",
+        "duty hints",
+        "board packet",
+        "lab pin",
+        "edge quality",
+        "graph owner consent",
+    ):
+        if stem not in interface:
+            raise IntegrityError(
+                f"interface equation must keep {stem}",
+                reason_code="CATALOG_EQUATION",
+            )
+    motion = str(equations.get("motion") or "").lower()
+    for stem in ("same l1", "ninety minutes", "qualify path", "counsel packet"):
+        if stem not in motion:
+            raise IntegrityError(
+                "motion equation is same L1 × ninety minutes × qualify path × counsel packet",
+                reason_code="CATALOG_EQUATION",
+            )
+
+
+def _validate_mailbox_law(catalog: dict[str, Any]) -> None:
+    invited = ((catalog.get("organization") or {}).get("contacts") or {}).get("invited") or {}
+    if invited.get("recorded") is not True:
+        return
+    if invited.get("seat_role") != "treasury_controller":
+        raise IntegrityError("recorded invite seat is treasury_controller", reason_code="ORG_SECOND_OFFICER")
+    if invited.get("inception_role") != "business_executive":
+        raise IntegrityError("recorded invite Inception role is business_executive", reason_code="ORG_SECOND_OFFICER")
+    stale = "invited, not recorded"
+    plane = _as_dict(catalog.get("plane_interface") or {}, "plane interface")
+    for item in plane.get("authorizations") or []:
+        if not isinstance(item, dict) or item.get("id") != "seat":
+            continue
+        note = str(item.get("note") or "").lower()
+        if "1 mailbox" not in note or "0 oid" not in note:
+            raise IntegrityError("seat authorization must keep 1 mailbox / 0 oid", reason_code="CATALOG_PLANE")
+        if stale in note or "0 recorded / 1 invited" in note:
+            raise IntegrityError("seat authorization cannot revert to invited-not-recorded", reason_code="CATALOG_PLANE")
+    investor = _as_dict(catalog.get("investor") or {}, "investor packet")
+    for field in ("letter_body", "letter_open", "seat_b", "ask"):
+        if stale in str(investor.get(field) or "").lower():
+            raise IntegrityError(
+                "investor copy cannot say invited, not recorded after mailbox law",
+                reason_code="CATALOG_INVESTOR",
+            )
+    if not any("chodnett@ainav.institute" in str(item).lower() for item in catalog.get("honest_missing") or []):
+        raise IntegrityError("honest_missing must keep the recorded mailbox", reason_code="CATALOG_HONEST")
+    seat = (((catalog.get("expert_review") or {}).get("success") or {}).get("seat_b") or {})
+    if seat and str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
+        raise IntegrityError("success seat B must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
+
+
+def _validate_proof_day(catalog: dict[str, Any]) -> None:
+    body = catalog.get("proof_day")
+    if not isinstance(body, dict) or body.get("requires_sku") != "L1":
+        raise IntegrityError("proof day requires L1", reason_code="CATALOG_PROOF_DAY")
+    if body.get("signed_l1") is True or body.get("live") is True:
+        raise IntegrityError("proof day cannot close G13 or claim live", reason_code="SIGNED_L1_OPEN")
+    if int(body.get("minutes") or 0) != 90:
+        raise IntegrityError("proof day is ninety minutes", reason_code="CATALOG_PROOF_DAY")
+    if body.get("action_class") != "bc.general_journal.post":
+        raise IntegrityError("proof day is the L1 journal", reason_code="CATALOG_PROOF_DAY")
+    if body.get("sor_target") != "bc.sandbox":
+        raise IntegrityError("proof day stays on the BC twin", reason_code="CATALOG_PROOF_DAY")
+
+
+def _validate_next_pin(catalog: dict[str, Any]) -> None:
+    body = catalog.get("next_pin")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing next_pin", reason_code="CATALOG_NEXT_PIN")
+    if body.get("id") != "bc.microsoft.sandbox":
+        raise IntegrityError("next pin is bc.microsoft.sandbox", reason_code="CATALOG_NEXT_PIN")
+    if body.get("connection") != "bc.premium":
+        raise IntegrityError("next pin binds bc.premium", reason_code="CATALOG_NEXT_PIN")
+    if body.get("live") is True or body.get("production") is True or body.get("sent") is True:
+        raise IntegrityError("next pin cannot claim live, production, or sent", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("live_pin_ok") is True:
+        raise IntegrityError("next pin cannot close LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("from") != "bc.sandbox" or body.get("to") != "bc.microsoft.sandbox":
+        raise IntegrityError("next pin is twin → microsoft sandbox", reason_code="CATALOG_NEXT_PIN")
+
+
+def _validate_sandbox_evidence(catalog: dict[str, Any]) -> None:
+    body = catalog.get("sandbox_evidence")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing sandbox evidence", reason_code="CATALOG_SANDBOX")
+    if body.get("action_class") != "bc.general_journal.post":
+        raise IntegrityError("sandbox evidence is the L1 journal", reason_code="CATALOG_SANDBOX")
+    if body.get("environment") != "sandbox":
+        raise IntegrityError("sandbox evidence stays on sandbox", reason_code="CATALOG_SANDBOX")
+    if body.get("production") is True or body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("sandbox evidence cannot claim production or live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("signed_l1") is True:
+        raise IntegrityError("sandbox evidence cannot close signed L1", reason_code="SIGNED_L1_OPEN")
+
+
+def _validate_buyer(catalog: dict[str, Any]) -> None:
+    body = catalog.get("buyer")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing buyer page", reason_code="CATALOG_BUYER")
+    if body.get("contact_email") or body.get("mailto"):
+        raise IntegrityError("do not invent a contact inbox", reason_code="BUYER_INBOX")
+    write = body.get("write_that_must_not_happen") or ""
+    if "journal" not in str(write).lower():
+        raise IntegrityError("buyer page must name the journal write", reason_code="CATALOG_BUYER")
+    seats = set(body.get("seats") or [])
+    kit = _as_dict((catalog.get("acceptance_kit") or {}).get("seats") or {}, "acceptance kit seats")
+    seat_a = _as_dict(kit.get("seat_a") or {}, "acceptance kit seat_a")
+    seat_b = _as_dict(kit.get("seat_b") or {}, "acceptance kit seat_b")
+    expected = {seat_a.get("role"), seat_b.get("role")}
+    if seats != expected:
+        raise IntegrityError("buyer seats must be the catalog treasury pair", reason_code="CATALOG_BUYER")
+    prices = " ".join(body.get("prices") or [])
+    for sku_id in ("L1", "P-ADM", "U-DUAL"):
+        if sku_id not in prices:
+            raise IntegrityError("buyer page must list the three SKUs", reason_code="CATALOG_BUYER")
+    refuse = " ".join(body.get("refuse") or []).lower().replace("_", " ")
+    for stem in (
+        "teams vote",
+        "copilot",
+        "free u-dual",
+        "live pin ok",
+        "client ai as dual",
+        "customer",
+        "time-machine",
+        "powers down",
+        "mandated",
+        "department",
+        "org chart",
+        "one title",
+        "uncopyable",
+        "patent",
+        "cannot legally copy",
+    ):
+        if stem not in refuse:
+            raise IntegrityError(f"buyer page must refuse {stem}", reason_code="CATALOG_BUYER")
+
+
+def _validate_counsel(catalog: dict[str, Any]) -> None:
+    body = catalog.get("counsel")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing counsel pack", reason_code="G12_OPEN")
+    if body.get("signed") is True or body.get("g12_open") is not True or body.get("g13_open") is not True:
+        raise IntegrityError("counsel pack stays unsigned; G12/G13 stay open", reason_code="G12_OPEN")
+    order = body.get("order_form") or {}
+    msa = body.get("msa") or {}
+    if order.get("unsigned") is not True or msa.get("unsigned") is not True:
+        raise IntegrityError("order form and MSA stay unsigned", reason_code="G12_OPEN")
+    rules = " ".join(order.get("rules") or [])
+    if "U-DUAL is never free" not in rules:
+        raise IntegrityError("order form must refuse free U-DUAL", reason_code="UDUAL_NOT_FREE")
+    if "not SKUs" not in rules:
+        raise IntegrityError("order form must refuse pack SKUs", reason_code="CATALOG_SKU")
+
+
+def _validate_finance(catalog: dict[str, Any]) -> None:
+    body = catalog.get("financial_model")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing financial model", reason_code="CATALOG_FINANCE")
+    if body.get("recognized_revenue") not in (0, False):
+        raise IntegrityError("do not invent recognized revenue", reason_code="CATALOG_FINANCE")
+    if body.get("signed_l1") not in (0, False):
+        raise IntegrityError("signed L1 is still open", reason_code="SIGNED_L1_OPEN")
+    if body.get("named_customers") not in (0, False):
+        raise IntegrityError("do not invent named customers", reason_code="ICP_NAMED")
+    if body.get("billing_provider") is True:
+        raise IntegrityError("no billing provider is claimed", reason_code="CATALOG_FINANCE")
+    models = body.get("pricing_models") or []
+    ids = {item.get("id") for item in models}
+    if not {"L1", "P-ADM", "U-DUAL", "ffs", "pack_attach"} <= ids:
+        raise IntegrityError(
+            "financial model must price three SKUs, FFS, and pack attach",
+            reason_code="CATALOG_FINANCE",
+        )
+    pack_attach = next(item for item in models if item.get("id") == "pack_attach")
+    if pack_attach.get("sku") is True or pack_attach.get("attaches_udual") is True:
+        raise IntegrityError("pack attach cannot be a SKU or attach U-DUAL", reason_code="CATALOG_SKU")
+
+
+def _validate_investor(catalog: dict[str, Any]) -> None:
+    body = catalog.get("investor")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing investor packet", reason_code="CATALOG_INVESTOR")
+    if body.get("sku") is True:
+        raise IntegrityError("investor packet is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("investor packet cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    for flag in ("raise_claimed", "valuation_claimed", "forecast", "priced_round", "equity_offered"):
+        if body.get(flag) is True:
+            raise IntegrityError(f"investor packet cannot claim {flag}", reason_code="CATALOG_INVESTOR")
+    if body.get("not_a_round") is not True:
+        raise IntegrityError("investor packet is not a priced round", reason_code="CATALOG_INVESTOR")
+    if "cynthia" not in str(body.get("audience") or "").lower():
+        raise IntegrityError("investor audience is Cynthia Hodnett", reason_code="CATALOG_INVESTOR")
+    one = str(body.get("one_liner") or "").lower()
+    if "human" not in one or "write" not in one:
+        raise IntegrityError("investor one-liner is the human write-gate", reason_code="CATALOG_INVESTOR")
+    if "not a priced round" not in str(body.get("ask") or "").lower():
+        raise IntegrityError("investor ask is not a priced round", reason_code="CATALOG_INVESTOR")
+    refuse = " ".join(body.get("refuse") or []).lower()
+    for stem in ("priced round", "valuation", "forecast", "named customer", "equity"):
+        if stem not in refuse:
+            raise IntegrityError(f"investor packet must refuse {stem}", reason_code="CATALOG_INVESTOR")
+    print_body = body.get("print") or {}
+    pages = int(print_body.get("pages") or 0)
+    if pages < 4 or pages > 10:
+        raise IntegrityError("investor print is a four-to-ten page letter packet", reason_code="CATALOG_INVESTOR")
+    if body.get("include_upsells") is not True:
+        raise IntegrityError("investor packet must include the upsell catalog", reason_code="CATALOG_INVESTOR")
+    if "same three skus" not in str(body.get("upsell_note") or "").lower() and "not a fourth" not in str(body.get("upsell_note") or "").lower():
+        raise IntegrityError("upsell note must keep packs off a fourth SKU", reason_code="CATALOG_INVESTOR")
+    if "dear cynthia" not in str(body.get("letter_open") or "").lower():
+        raise IntegrityError("investor letter opens to Cynthia", reason_code="CATALOG_INVESTOR")
+    if "second human" not in str(body.get("letter_open") or "").lower():
+        raise IntegrityError("investor letter leads with the second-human ask", reason_code="CATALOG_INVESTOR")
+    if "i am writing" not in str(body.get("letter_open") or "").lower():
+        raise IntegrityError("investor letter is first person from the owner", reason_code="CATALOG_INVESTOR")
+    if str(body.get("letter_voice") or "") != "first_person":
+        raise IntegrityError("investor letter voice is first person", reason_code="CATALOG_INVESTOR")
+    letter_body = str(body.get("letter_body") or "").lower()
+    for stem in (
+        "seat b",
+        "mailbox recorded",
+        "not stock",
+        "not a priced round",
+        "chodnett@ainav.institute",
+        "number two",
+        "not all aspects",
+    ):
+        if stem not in letter_body:
+            raise IntegrityError(f"investor letter body must keep {stem}", reason_code="CATALOG_INVESTOR")
+    if "$0" not in str(body.get("letter_body") or "") and "recognized revenue is $0" not in letter_body:
+        raise IntegrityError("investor letter body must keep the $0 scoreboard", reason_code="CATALOG_INVESTOR")
+    if "delaware" in letter_body:
+        raise IntegrityError("investor letter body is the human ask — company dump belongs in the exec table", reason_code="CATALOG_INVESTOR")
+    if "i will not ask" not in letter_body:
+        raise IntegrityError("investor letter body must end on what James will not ask Cynthia for", reason_code="CATALOG_INVESTOR")
+    if "i trust" not in letter_body:
+        raise IntegrityError("investor letter body must say why James trusts Cynthia", reason_code="CATALOG_INVESTOR")
+    if "sole owner" not in str(body.get("letter_close") or "").lower():
+        raise IntegrityError("investor letter closes from the sole owner", reason_code="CATALOG_INVESTOR")
+    if "seat b" not in str(body.get("seat_b") or "").lower():
+        raise IntegrityError("investor letter names seat B", reason_code="CATALOG_INVESTOR")
+    if "number two" not in str(body.get("seat_b") or "").lower() or "not all aspects" not in str(body.get("seat_b") or "").lower():
+        raise IntegrityError("investor seat B is number two for other aspects, not all aspects", reason_code="CATALOG_INVESTOR")
+    if "stock" not in str(body.get("will_not_ask") or "").lower():
+        raise IntegrityError("investor letter refuses stock", reason_code="CATALOG_INVESTOR")
+    if "6,000" not in str(body.get("stack") or "") and "$6" not in str(body.get("stack") or ""):
+        raise IntegrityError("investor stack must price the upsell desks", reason_code="CATALOG_INVESTOR")
+    plane = str(body.get("control_plane") or "").lower()
+    if "control plane" not in plane:
+        raise IntegrityError("investor letter must name the control plane", reason_code="CATALOG_INVESTOR")
+    if "not a patent" not in plane:
+        raise IntegrityError("control-plane insulation is not a patent", reason_code="IP_CLAIM")
+    if "uncopyable" not in plane:
+        raise IntegrityError("control-plane insulation must say this is not uncopyable", reason_code="IP_CLAIM")
+    if "independen" not in plane and "vendor" not in plane:
+        raise IntegrityError("control-plane insulation must keep independence", reason_code="CATALOG_INVESTOR")
+    summary = body.get("executive_summary")
+    if not isinstance(summary, dict):
+        raise IntegrityError("investor packet missing executive summary", reason_code="CATALOG_INVESTOR")
+    if summary.get("sku") is True or summary.get("certified") is True or summary.get("mandated") is True:
+        raise IntegrityError("executive summary is not a SKU, certificate, or mandate", reason_code="CATALOG_INVESTOR")
+    if summary.get("forecast") is True or summary.get("priced_round") is True:
+        raise IntegrityError("executive summary cannot claim a forecast or priced round", reason_code="CATALOG_INVESTOR")
+    if summary.get("live") is True or summary.get("live_pin_ok") is True:
+        raise IntegrityError("executive summary cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(summary.get("lede") or "").lower()
+    for stem in ("job c", "ninety", "three sku", "zero"):
+        if stem not in lede:
+            raise IntegrityError(f"executive summary lede must keep {stem}", reason_code="CATALOG_INVESTOR")
+    if "board packet" not in lede:
+        raise IntegrityError("executive summary lede must say this is the board packet", reason_code="CATALOG_INVESTOR")
+    if str(summary.get("proof") or "") != str((catalog.get("buyer") or {}).get("proof_day") or ""):
+        raise IntegrityError("executive summary proof must match buyer proof day", reason_code="CATALOG_INVESTOR")
+    if "two distinct humans" not in str(summary.get("job_c") or "").lower():
+        raise IntegrityError("executive summary Job C is two distinct humans", reason_code="CATALOG_INVESTOR")
+    tiles = str(summary.get("tiles") or "").lower()
+    if "$0" not in str(summary.get("tiles") or "") or "mailbox recorded" not in tiles:
+        raise IntegrityError("executive summary tiles stay $0 and mailbox recorded", reason_code="CATALOG_INVESTOR")
+    if "not the product" not in str(summary.get("microsoft") or "").lower():
+        raise IntegrityError("executive summary Microsoft is not the product", reason_code="CATALOG_INVESTOR")
+    must = str(summary.get("must_have") or "").lower()
+    if "not counsel" not in must or "not a certificate" not in must:
+        raise IntegrityError("executive summary must-have is not counsel or a certificate", reason_code="CATALOG_INVESTOR")
+    if "live_pin_ok cannot be marked" not in str(summary.get("opens") or "").lower():
+        raise IntegrityError("executive summary opens cannot mark LIVE_PIN_OK", reason_code="CATALOG_INVESTOR")
+    ask = str(summary.get("ask") or "").lower()
+    if "seat b" not in ask or "mailbox" not in ask or "click" not in ask:
+        raise IntegrityError("executive summary ask is seat B mailbox recorded, click still open", reason_code="CATALOG_INVESTOR")
+    wanted = [
+        ("job_c", "Job C", summary.get("job_c")),
+        ("proof", "Proof day", summary.get("proof")),
+        ("skus", "Three SKUs", summary.get("skus")),
+        ("tiles", "Scoreboard today", summary.get("tiles")),
+        ("microsoft", "Microsoft", summary.get("microsoft")),
+        ("must_have", "Must-have", summary.get("must_have")),
+        ("opens", "Owner-only still open", summary.get("opens")),
+        ("ask", "The ask", summary.get("ask")),
+    ]
+    items = list(summary.get("items") or [])
+    if [item.get("id") for item in items] != [row[0] for row in wanted]:
+        raise IntegrityError("executive summary items must be the board-packet rows", reason_code="CATALOG_INVESTOR")
+    for item, (iid, name, note) in zip(items, wanted, strict=True):
+        if str(item.get("name") or "") != name or str(item.get("note") or "") != str(note or ""):
+            raise IntegrityError(f"executive summary {iid} must match the scalar", reason_code="CATALOG_INVESTOR")
+
+
+def _validate_expert_review(catalog: dict[str, Any]) -> None:
+    body = catalog.get("expert_review")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
+    upgrades = body.get("upgrades") or []
+    if not 16 <= len(upgrades) <= 90:
+        raise IntegrityError("expert review needs 16–90 upgrades", reason_code="CATALOG_REVIEW")
+    if not any(
+        item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
+        for item in upgrades
+    ):
+        raise IntegrityError("tree upgrade 16 is first-screen substitute vs Job C", reason_code="CATALOG_REVIEW")
+    required_done = {
+        17: ("bake-off", "independence"),
+        18: ("walk away", "workflow"),
+        19: ("objection", "pim"),
+        20: ("graph write", "fail-closed"),
+        21: ("chodnett@ainav.institute", "not a click"),
+        22: ("missing", "product working"),
+        23: ("stack walk", "cloudflare"),
+        24: ("static", "owner book"),
+        25: ("pro", "not a sku"),
+        26: ("pages", "not the institute"),
+        27: ("write rail", "not a cms"),
+        28: ("write rail", "one dashboard"),
+        29: ("application", "not a cms"),
+        30: ("kit", "not a cms"),
+        31: ("business", "not a priced round"),
+        32: ("number two", "not all aspects"),
+        33: ("visibility", "view_shows"),
+        34: ("provision", "spine"),
+        35: ("duty hint", "view"),
+        36: ("freeze", "console"),
+        37: ("examiner", "leaf"),
+        38: ("gaps", "owner steps"),
+        39: ("board packet", "seat b"),
+        40: ("lab", "commercial"),
+        41: ("quality", "probe"),
+        42: ("tls", "1.2"),
+        43: ("anycast", "outlook"),
+        44: ("visitor", "full"),
+        45: ("full (strict)", "owner"),
+        46: ("leftover", "service principal"),
+        47: ("four reads", "writes"),
+        48: ("refus", "live_pin_ok"),
+        49: ("first-principles", "live_pin_ok"),
+        50: ("gold 99", "live_pin_ok"),
+        51: ("twin website", "live_pin_ok"),
+        52: ("been missing", "live_pin_ok"),
+        53: ("first-class", "live_pin_ok"),
+        54: ("client twin", "live_pin_ok"),
+        55: ("close bench", "live_pin_ok"),
+        56: ("operating company", "live_pin_ok"),
+        57: ("operating day", "live_pin_ok"),
+        58: ("quality review", "live_pin_ok"),
+        59: ("microsoft run", "live_pin_ok"),
+        60: ("day map", "live_pin_ok"),
+        61: ("roster", "live_pin_ok"),
+        62: ("brand", "live_pin_ok"),
+        63: ("universe", "live_pin_ok"),
+        64: ("operable", "live_pin_ok"),
+        65: ("sit-down", "live_pin_ok"),
+        66: ("sit-down industry", "live_pin_ok"),
+        67: ("room 1", "live_pin_ok"),
+        68: ("operable industry", "live_pin_ok"),
+        69: ("every refuse", "live_pin_ok"),
+        70: ("complete industry", "live_pin_ok"),
+        71: ("honest control", "live_pin_ok"),
+        72: ("honest agents", "live_pin_ok"),
+        73: ("honest access", "live_pin_ok"),
+        74: ("honest operators", "live_pin_ok"),
+        75: ("honest build", "live_pin_ok"),
+        76: ("honest readiness", "live_pin_ok"),
+        77: ("honest industry", "live_pin_ok"),
+        78: ("honest whole", "live_pin_ok"),
+        79: ("honest power pages", "live_pin_ok"),
+        80: ("honest copilot studio", "live_pin_ok"),
+        81: ("honest connect", "live_pin_ok"),
+        82: ("honest operate", "live_pin_ok"),
+        83: ("honest path", "live_pin_ok"),
+        84: ("honest production", "live_pin_ok"),
+        85: ("honest remainder", "live_pin_ok"),
+        86: ("honest ten", "live_pin_ok"),
+        87: ("honest protect", "live_pin_ok"),
+        88: ("honest hold", "live_pin_ok"),
+        89: ("honest close", "live_pin_ok"),
+        90: ("honest join", "live_pin_ok"),
+    }
+    by_n = {item.get("n"): item for item in upgrades}
+    for number, stems in required_done.items():
+        item = by_n.get(number) or {}
+        if item.get("who") != "tree" or item.get("done") is not True:
+            raise IntegrityError(f"tree upgrade {number} must be done", reason_code="CATALOG_REVIEW")
+        blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+        if any(stem not in blob for stem in stems):
+            raise IntegrityError(f"tree upgrade {number} must keep {stems[0]}", reason_code="CATALOG_REVIEW")
+    if not body.get("working_well") or not body.get("improve"):
+        raise IntegrityError("expert review needs working_well and improve", reason_code="CATALOG_REVIEW")
+    _validate_first_principles(body.get("first_principles"))
+    if any(item.get("marks_live_pin") is True for item in upgrades):
+        raise IntegrityError("upgrades cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    _validate_success_program(body.get("success"))
+
+
+def _validate_first_principles(items: Any) -> None:
+    if not isinstance(items, list) or len(items) < 20:
+        raise IntegrityError("expert review needs 20 first-principles", reason_code="CATALOG_REVIEW")
+    blob = " ".join(str(item).lower() for item in items)
+    if "identify is not admit" not in blob or "assignment_live" not in blob or "claiming 99" not in blob:
+        raise IntegrityError("first-principles must keep identify, assignment_live, and claiming 99", reason_code="CATALOG_REVIEW")
+    if "write-fear" not in blob or "doom-fear" not in blob or "loss of control" not in blob:
+        raise IntegrityError("first-principles must keep write-fear, doom-fear, and loss of control", reason_code="CATALOG_REVIEW")
+    if "executive risk" not in blob or "non-compliance" not in blob or "sox opinion" not in blob:
+        raise IntegrityError("first-principles must keep executive risk, non-compliance, and SOX opinion", reason_code="CATALOG_REVIEW")
+    if "market position" not in blob or "forecast" not in blob or "priced round" not in blob:
+        raise IntegrityError("first-principles must keep market position, forecast, and priced round", reason_code="CATALOG_REVIEW")
+    if "canada as united states" not in blob or "advanced data residency" not in blob or "affinity" not in blob:
+        raise IntegrityError("first-principles must keep Canada affinity and Advanced Data Residency", reason_code="CATALOG_REVIEW")
+    if "digital twin" not in blob or "apex 404" not in blob or "gold 99" not in blob:
+        raise IntegrityError("first-principles must keep the Institute twin and empty Cloudflare apex", reason_code="CATALOG_REVIEW")
+    if "what you've been missing" not in blob or "you already have" not in blob or "fourth sku" not in blob:
+        raise IntegrityError("first-principles must keep what you've been missing and you already have", reason_code="CATALOG_REVIEW")
+    if "managed first-class" not in blob or "dynamic app" not in blob or "/demo" not in blob:
+        raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
+    if "client-assigned" not in blob or "segregated" not in blob or "client twin" not in blob:
+        raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
+    if "close bench" not in blob or "three planes" not in blob:
+        raise IntegrityError("first-principles must keep the first-class close bench", reason_code="CATALOG_REVIEW")
+    if "operating company" not in blob or "five hundred" not in blob or "capacity" not in blob:
+        raise IntegrityError("first-principles must keep the first-class operating company", reason_code="CATALOG_REVIEW")
+    if "operating day" not in blob or "launch gate" not in blob or "gold is not launch" not in blob:
+        raise IntegrityError("first-principles must keep the first-class operating day and launch gate", reason_code="CATALOG_REVIEW")
+    if "quality review" not in blob or "403 challenge" not in blob or "sku attach" not in blob:
+        raise IntegrityError("first-principles must keep the operating-day quality review", reason_code="CATALOG_REVIEW")
+    if "microsoft run" not in blob or "eight complements" not in blob or "not the product" not in blob:
+        raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
+    if "day map" not in blob or "assign sits on azure host" not in blob:
+        raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
+    if "roster" not in blob or "licensed-not-wired is visible" not in blob:
+        raise IntegrityError("first-principles must keep the Microsoft operating-day roster", reason_code="CATALOG_REVIEW")
+    if "brand system" not in blob or "lockfile stays job_c" not in blob:
+        raise IntegrityError("first-principles must keep the brand system and lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    if "microsoft marks" not in blob or "teams is notify" not in blob:
+        raise IntegrityError("first-principles must keep Microsoft marks and Teams is notify", reason_code="CATALOG_REVIEW")
+    if "not a production brand" not in blob or "not a fear brand" not in blob:
+        raise IntegrityError("first-principles must keep sandbox is not a production brand and not a fear brand", reason_code="CATALOG_REVIEW")
+    if "client business universe" not in blob or "mfa identifies" not in blob:
+        raise IntegrityError("first-principles must keep the client business universe and MFA identifies", reason_code="CATALOG_REVIEW")
+    if "segregated branded" not in blob or "not a /universe route" not in blob:
+        raise IntegrityError("first-principles must keep the segregated branded sandbox and not a /universe route", reason_code="CATALOG_REVIEW")
+    if "operable client universe" not in blob or "honest zeros" not in blob or "refuse is visible" not in blob:
+        raise IntegrityError("first-principles must keep the operable client universe, honest zeros, and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "sit-down client day" not in blob or "now is recorded" not in blob or "not a live named day" not in blob:
+        raise IntegrityError("first-principles must keep the sit-down client day", reason_code="CATALOG_REVIEW")
+    if "sit-down industry drawer" not in blob or "maps stay claimed=false" not in blob or "not a /industry route" not in blob:
+        raise IntegrityError("first-principles must keep the sit-down industry drawer", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in blob or "not a crypto product" not in blob or "not 17a-4" not in blob:
+        raise IntegrityError("first-principles must keep Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    if "operable industry rooms" not in blob or "honest zeros" not in blob or "refuse is visible" not in blob:
+        raise IntegrityError("first-principles must keep operable industry rooms, honest zeros, and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "fully operable industry drawer" not in blob or "every refuse clicks" not in blob or "catalog is the message" not in blob:
+        raise IntegrityError("first-principles must keep the fully operable industry drawer", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer" not in blob:
+        raise IntegrityError("first-principles must keep the complete industry drawer", reason_code="CATALOG_REVIEW")
+    if "honest control" not in blob or "if you don't have it" not in blob or "genius" not in blob or "clarity" not in blob:
+        raise IntegrityError("first-principles must keep honest control, if you don't have it, GENIUS, and CLARITY", reason_code="CATALOG_REVIEW")
+    if "company policy is not a sku" not in blob or "not ai governess" not in blob:
+        raise IntegrityError("first-principles must keep company policy is not a SKU and not AI Governess", reason_code="CATALOG_REVIEW")
+    if "honest agents" not in blob or "agent is not a seat" not in blob or "agent 365" not in blob:
+        raise IntegrityError("first-principles must keep honest agents, an agent is not a seat, and Agent 365", reason_code="CATALOG_REVIEW")
+    if "around the write" not in blob or "total agents" not in blob:
+        raise IntegrityError("first-principles must keep around the write and Total agents", reason_code="CATALOG_REVIEW")
+    if "honest access" not in blob or "does not need additional access" not in blob:
+        raise IntegrityError("first-principles must keep honest access and does not need additional access", reason_code="CATALOG_REVIEW")
+    if "grok build is not a seat" not in blob:
+        raise IntegrityError("first-principles must keep Grok Build is not a seat", reason_code="CATALOG_REVIEW")
+    if "honest operators" not in blob or "cursor is recorded" not in blob:
+        raise IntegrityError("first-principles must keep honest operators and Cursor is recorded", reason_code="CATALOG_REVIEW")
+    if "grok build is mapped" not in blob or "grok bot is not admit" not in blob:
+        raise IntegrityError("first-principles must keep Grok Build is mapped and Grok bot is not admit", reason_code="CATALOG_REVIEW")
+    if "honest build" not in blob or "does not need full access" not in blob:
+        raise IntegrityError("first-principles must keep honest build and does not need full access", reason_code="CATALOG_REVIEW")
+    if "twin is not launch" not in blob:
+        raise IntegrityError("first-principles must keep twin is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and repositories are not skus" not in blob:
+        raise IntegrityError("first-principles must keep packs, modules, and repositories are not SKUs", reason_code="CATALOG_REVIEW")
+    if "honest readiness" not in blob or "gold is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest readiness and gold is not launch", reason_code="CATALOG_REVIEW")
+    if "twin certified is not launch day" not in blob:
+        raise IntegrityError("first-principles must keep twin certified is not launch day", reason_code="CATALOG_REVIEW")
+    if "owner gaps stay owner-only" not in blob:
+        raise IntegrityError("first-principles must keep owner gaps stay owner-only", reason_code="CATALOG_REVIEW")
+    if "honest industry certify" not in blob or "industry certify is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest industry certify", reason_code="CATALOG_REVIEW")
+    if "honest whole" not in blob or "the whole firm is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest whole", reason_code="CATALOG_REVIEW")
+    if "10/10 review is not launch" not in blob:
+        raise IntegrityError("first-principles must keep 10/10 review is not launch", reason_code="CATALOG_REVIEW")
+    if "honest power pages" not in blob or "power pages is not the institute host" not in blob:
+        raise IntegrityError("first-principles must keep honest Power Pages", reason_code="CATALOG_REVIEW")
+    if "honest copilot studio" not in blob or "copilot studio is not job c" not in blob:
+        raise IntegrityError("first-principles must keep honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if "honest connect" not in blob or "connected is not live" not in blob:
+        raise IntegrityError("first-principles must keep honest connect", reason_code="CATALOG_REVIEW")
+    if "licensed is not wired" not in blob or "available is not a seat" not in blob:
+        raise IntegrityError("first-principles must keep licensed is not wired and available is not a seat", reason_code="CATALOG_REVIEW")
+    if "honest operate" not in blob or "closing all gaps is not this plane" not in blob:
+        raise IntegrityError("first-principles must keep honest operate", reason_code="CATALOG_REVIEW")
+    if "outlook mail is not a click" not in blob or "grok login is not this plane" not in blob:
+        raise IntegrityError("first-principles must keep Outlook mail is not a click and grok login is not this plane", reason_code="CATALOG_REVIEW")
+    if "operate sim is not production" not in blob or "10/10 polish is not launch" not in blob:
+        raise IntegrityError("first-principles must keep an operate sim is not production and a 10/10 polish is not launch", reason_code="CATALOG_REVIEW")
+    if "honest path" not in blob or "an industry is not a named client" not in blob:
+        raise IntegrityError("first-principles must keep honest path", reason_code="CATALOG_REVIEW")
+    if "shared sandbox is not production" not in blob or "hours are not a sku" not in blob:
+        raise IntegrityError("first-principles must keep a shared sandbox is not production and hours are not a SKU", reason_code="CATALOG_REVIEW")
+    if "rollback is not live_pin_ok" not in blob or "a redeploy is not launch" not in blob:
+        raise IntegrityError("first-principles must keep rollback is not LIVE_PIN_OK and a redeploy is not launch", reason_code="CATALOG_REVIEW")
+    if "honest production" not in blob or "a production sim is not production" not in blob:
+        raise IntegrityError("first-principles must keep honest production", reason_code="CATALOG_REVIEW")
+    if "fixing all is not this plane" not in blob or "rehearsed elements are not live" not in blob:
+        raise IntegrityError("first-principles must keep fixing all is not this plane and rehearsed elements are not live", reason_code="CATALOG_REVIEW")
+    if "making all much better is not launch" not in blob or "a rehearsal is not live_pin_ok" not in blob:
+        raise IntegrityError("first-principles must keep making all much better is not launch and a rehearsal is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "honest remainder" not in blob or "a remainder close is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest remainder", reason_code="CATALOG_REVIEW")
+    if "leftover copy is not live_pin_ok" not in blob or "owner hrefs are not owner clicks" not in blob:
+        raise IntegrityError("first-principles must keep leftover copy is not LIVE_PIN_OK and owner hrefs are not owner clicks", reason_code="CATALOG_REVIEW")
+    if "gold 99.5 is not production" not in blob or "a deep remainder is not a seated second human" not in blob:
+        raise IntegrityError("first-principles must keep gold 99.5 is not production and a deep remainder is not seated", reason_code="CATALOG_REVIEW")
+    if "honest ten" not in blob or "a 10/10 quality check is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest ten", reason_code="CATALOG_REVIEW")
+    if "gold 99.9 is not live_pin_ok" not in blob or "a competitor analysis is not a named client" not in blob:
+        raise IntegrityError("first-principles must keep gold 99.9 is not LIVE_PIN_OK and a competitor analysis is not a named client", reason_code="CATALOG_REVIEW")
+    if "a green service is not production" not in blob or "a quality check is not a seated second human" not in blob:
+        raise IntegrityError("first-principles must keep a green service is not production and a quality check is not seated", reason_code="CATALOG_REVIEW")
+    if "honest protect" not in blob or "an ip board is not a patent" not in blob:
+        raise IntegrityError("first-principles must keep honest protect", reason_code="CATALOG_REVIEW")
+    if "an l1 license is not an assignment of job c" not in blob or "kit pass is not a source license" not in blob:
+        raise IntegrityError("first-principles must keep an L1 license is not an assignment and kit PASS is not a source license", reason_code="CATALOG_REVIEW")
+    if "this board does not close g12" not in blob or "insulation is not uncopyable" not in blob:
+        raise IntegrityError("first-principles must keep this board does not close G12 and insulation is not uncopyable", reason_code="CATALOG_REVIEW")
+    if "honest hold" not in blob or "a vault hold is not live_pin_ok" not in blob:
+        raise IntegrityError("first-principles must keep honest hold", reason_code="CATALOG_REVIEW")
+    if "secret names are not wired notify" not in blob or "sentinel is not the admit plane" not in blob:
+        raise IntegrityError("first-principles must keep secret names are not wired and Sentinel is not the admit plane", reason_code="CATALOG_REVIEW")
+    if "honest close" not in blob or "a 10/10 close is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest close", reason_code="CATALOG_REVIEW")
+    if "a booking is not recognized revenue" not in blob or "a catalog list is not collection" not in blob:
+        raise IntegrityError("first-principles must keep a booking is not recognized revenue and a catalog list is not collection", reason_code="CATALOG_REVIEW")
+    if "honest join" not in blob or "the join is not launch" not in blob:
+        raise IntegrityError("first-principles must keep honest join", reason_code="CATALOG_REVIEW")
+    if "licensed-not-wired is not a wired firm" not in blob or "a certified simulation is not a running firm" not in blob:
+        raise IntegrityError("first-principles must keep licensed-not-wired is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "mfa admits" in blob or "live_pin_ok is closed" in blob:
+        raise IntegrityError("first-principles cannot claim MFA admit or LIVE_PIN_OK closed", reason_code="LIVE_PIN_NOT_CLAIMED")
+
+
+def _validate_success_program(success: Any) -> None:
+    if not isinstance(success, dict):
+        raise IntegrityError("expert review needs a success program", reason_code="CATALOG_REVIEW")
+    if success.get("sku") is True or success.get("mandated") is True or success.get("certified") is True:
+        raise IntegrityError("success program is not a SKU, mandate, or certificate", reason_code="CATALOG_REVIEW")
+    if success.get("live") is True or success.get("live_pin_ok") is True:
+        raise IntegrityError("success program cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    thesis = str(success.get("thesis") or "").lower()
+    if "walk" not in thesis or "licensed substitute" not in thesis or "live_pin_ok" not in thesis:
+        raise IntegrityError("success thesis is walk away from the licensed substitute", reason_code="CATALOG_REVIEW")
+    bake = success.get("bake_off") or {}
+    they = [item.get("id") for item in bake.get("they_win") or []]
+    we = [item.get("id") for item in bake.get("we_win") or []]
+    if not {"one_vendor", "cheaper", "speed"} <= set(they):
+        raise IntegrityError("bake-off they-win must name one-vendor, cheaper, speed", reason_code="CATALOG_REVIEW")
+    if not {"independence", "consume_once", "fail_closed", "counterparty"} <= set(we):
+        raise IntegrityError("bake-off we-win must name independence and fail-closed", reason_code="CATALOG_REVIEW")
+    if "cheaper button" not in str(bake.get("lede") or "").lower():
+        raise IntegrityError("bake-off lede must name the cheaper button", reason_code="CATALOG_REVIEW")
+    qualify = success.get("qualify") or {}
+    walk = " ".join(str(item).lower() for item in qualify.get("walk_away") or [])
+    must = " ".join(str(item).lower() for item in qualify.get("must") or [])
+    if "workflow user groups" not in walk or "one human" not in walk:
+        raise IntegrityError("qualify must walk away from cheaper native dual", reason_code="CATALOG_REVIEW")
+    if "doom" not in walk or "fear brand" not in walk:
+        raise IntegrityError("qualify must walk away from AI doom and a fear brand", reason_code="CATALOG_REVIEW")
+    if "sox" not in walk or "compliant" not in walk or "d&o" not in walk:
+        raise IntegrityError("qualify must walk away from SOX theater, fake compliance, and D&O", reason_code="CATALOG_REVIEW")
+    if "tam" not in walk or "forecast" not in walk or "priced round" not in walk:
+        raise IntegrityError("qualify must walk away from TAM, forecast, and a priced round", reason_code="CATALOG_REVIEW")
+    if "cms" not in walk or "fourth sku" not in walk or "been missing" not in walk:
+        raise IntegrityError("qualify must walk away from a CMS, a fourth SKU, and wow-as-product", reason_code="CATALOG_REVIEW")
+    if "dynamic" not in walk or "calendly" not in walk:
+        raise IntegrityError("qualify must walk away from a dynamic app and Calendly as the demo", reason_code="CATALOG_REVIEW")
+    if "shared twin" not in walk or "client twin" not in walk:
+        raise IntegrityError("qualify must walk away from a shared twin as production and a client twin as a SKU", reason_code="CATALOG_REVIEW")
+    if "two existing treasury" not in must or "one title" not in must:
+        raise IntegrityError("qualify must keep two existing treasury humans", reason_code="CATALOG_REVIEW")
+    objections = {item.get("id"): item for item in success.get("objections") or []}
+    for needed in ("price", "microsoft", "slow", "pim", "copilot_rfi", "doom", "sox", "personal", "share", "future", "have", "managed", "path", "close", "firm"):
+        if needed not in objections:
+            raise IntegrityError(f"success objections must include {needed}", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('hear') or ''} {item.get('answer') or ''}".lower()
+        for item in objections.values()
+    )
+    if "uncopyable" in blob or "patent granted" in blob:
+        raise IntegrityError("objections cannot claim uncopyable or a patent", reason_code="CATALOG_REVIEW")
+    if "walk away" not in str(objections["price"].get("answer") or "").lower():
+        raise IntegrityError("price objection must offer the walk-away", reason_code="CATALOG_REVIEW")
+    ciso = success.get("ciso") or {}
+    holds = " ".join(str(item).lower() for item in ciso.get("holds") or [])
+    does_not = " ".join(str(item).lower() for item in ciso.get("does_not") or [])
+    if "no graph write" not in holds or "fail-closed" not in holds:
+        raise IntegrityError("CISO posture must keep no Graph Write and fail-closed", reason_code="CATALOG_REVIEW")
+    if "live_pin_ok" not in does_not or "inbox" not in does_not:
+        raise IntegrityError("CISO posture cannot invent an inbox or LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "doom-fear" not in does_not:
+        raise IntegrityError("CISO posture does not sell doom-fear", reason_code="CATALOG_REVIEW")
+    if "sox" not in does_not or "g12" not in does_not or "d&o" not in does_not:
+        raise IntegrityError("CISO posture does not sell a SOX certificate, close G12, or sell D&O", reason_code="CATALOG_REVIEW")
+    if "tam" not in does_not or "priced round" not in does_not or "institute launch" not in does_not:
+        raise IntegrityError("CISO posture does not invent TAM, a priced round, or Institute launch", reason_code="CATALOG_REVIEW")
+    if "fourth sku" not in does_not or "cms" not in does_not or "sale wow" not in does_not:
+        raise IntegrityError("CISO posture does not mint a fourth SKU, sell a CMS, or treat owner-missing as the sale wow", reason_code="CATALOG_REVIEW")
+    if "dynamic app" not in does_not or "calendly" not in does_not:
+        raise IntegrityError("CISO posture does not sell a dynamic app or Calendly as the demo", reason_code="CATALOG_REVIEW")
+    if "institute twin" not in does_not or "client production" not in does_not:
+        raise IntegrityError("CISO posture does not treat the Institute twin as client production", reason_code="CATALOG_REVIEW")
+    if "client twin" not in does_not:
+        raise IntegrityError("CISO posture does not mint a fourth SKU as the client twin", reason_code="CATALOG_REVIEW")
+    if "auto-promote" not in does_not:
+        raise IntegrityError("CISO posture does not auto-promote a sandbox to production", reason_code="CATALOG_REVIEW")
+    if "sales team" not in does_not or "commission" not in does_not:
+        raise IntegrityError("CISO posture does not invent a sales team or pay a commission from this plane", reason_code="CATALOG_REVIEW")
+    if "launch gate" not in does_not:
+        raise IntegrityError("CISO posture does not mark the launch gate from this plane", reason_code="CATALOG_REVIEW")
+    if "microsoft as the product" not in does_not or "ninth complement" not in does_not:
+        raise IntegrityError("CISO posture does not treat Microsoft as the product or invent a ninth complement", reason_code="CATALOG_REVIEW")
+    if "teams channel" not in does_not or "dataverse_url" not in does_not:
+        raise IntegrityError("CISO posture does not invent Teams channel ids or DATAVERSE_URL", reason_code="CATALOG_REVIEW")
+    if "day map" not in does_not:
+        raise IntegrityError("CISO posture does not treat the Microsoft day map as wired", reason_code="CATALOG_REVIEW")
+    if "roster as wired" not in does_not:
+        raise IntegrityError("CISO posture does not treat the roster as wired", reason_code="CATALOG_REVIEW")
+    if "rebrand job c" not in does_not or "brand as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not rebrand Job C or treat the brand as a SKU", reason_code="CATALOG_REVIEW")
+    if "mfa as admit" not in does_not or "named client universe" not in does_not or "universe as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat MFA as admit or invent a named client universe", reason_code="CATALOG_REVIEW")
+    if "refuse as a live record" not in does_not or "wells as named records" not in does_not:
+        raise IntegrityError("CISO posture does not treat refuse or universe wells as named records", reason_code="CATALOG_REVIEW")
+    if "sit-down day as a live named day" not in does_not or "seat b click on the day board" not in does_not:
+        raise IntegrityError("CISO posture does not treat the sit-down day as a live named day", reason_code="CATALOG_REVIEW")
+    if "industry drawer as a live filing" not in does_not or "named vertical as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat the industry drawer as a live filing", reason_code="CATALOG_REVIEW")
+    if "maps as certificates on the industry drawer" not in does_not or "packs as skus on the industry drawer" not in does_not:
+        raise IntegrityError("CISO posture does not treat maps as certificates or packs as SKUs", reason_code="CATALOG_REVIEW")
+    if "crypto product" not in does_not or "17a-4 worm" not in does_not or "room 2" not in does_not or "tokenization sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat AINav as a crypto product or sell 17a-4 WORM", reason_code="CATALOG_REVIEW")
+    if "room 2 refuse as a live record" not in does_not or "room 1 wells as named records" not in does_not:
+        raise IntegrityError("CISO posture does not treat Room 2 refuse or Room 1 wells as live records", reason_code="CATALOG_REVIEW")
+    if "refuse lane walk as a live route" not in does_not:
+        raise IntegrityError("CISO posture does not treat a refuse lane walk as a live route", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer as a live named vertical" not in does_not:
+        raise IntegrityError("CISO posture does not treat the complete industry drawer as a live named vertical", reason_code="CATALOG_REVIEW")
+    if "genius" not in does_not or "clarity" not in does_not:
+        raise IntegrityError("CISO posture does not treat GENIUS or CLARITY as closed", reason_code="CATALOG_REVIEW")
+    if "fear as the first glance" not in does_not:
+        raise IntegrityError("CISO posture does not treat fear as the first glance", reason_code="CATALOG_REVIEW")
+    if "company policy as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat company policy as a SKU", reason_code="CATALOG_REVIEW")
+    if "ai governess" not in does_not:
+        raise IntegrityError("CISO posture does not call the product AI Governess", reason_code="CATALOG_REVIEW")
+    if "honest control board as a live filing" not in does_not:
+        raise IntegrityError("CISO posture does not treat the honest control board as a live filing", reason_code="CATALOG_REVIEW")
+    if "agent 365 as ainav" not in does_not:
+        raise IntegrityError("CISO posture does not treat Agent 365 as AINav", reason_code="CATALOG_REVIEW")
+    if "agent as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat an agent as a seat", reason_code="CATALOG_REVIEW")
+    if "live agent census" not in does_not:
+        raise IntegrityError("CISO posture does not claim a live agent census from this plane", reason_code="CATALOG_REVIEW")
+    if "pinned agent as dual admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat a pinned agent as dual admit", reason_code="CATALOG_REVIEW")
+    if "total agents" not in does_not:
+        raise IntegrityError("CISO posture does not paste Total agents into the catalog", reason_code="CATALOG_REVIEW")
+    if "ownerless" not in does_not or "unmanaged" not in does_not:
+        raise IntegrityError("CISO posture does not treat ownerless or unmanaged agents as a census", reason_code="CATALOG_REVIEW")
+    hosted = success.get("microsoft_agents")
+    if not isinstance(hosted, dict):
+        raise IntegrityError("success program keeps honest agents", reason_code="CATALOG_REVIEW")
+    if hosted.get("kind") != "ainav.microsoft.agents.v1" or hosted.get("honest") is not True:
+        raise IntegrityError("success microsoft agents stay catalog law", reason_code="CATALOG_REVIEW")
+    if hosted.get("href") != "#agent-tools":
+        raise IntegrityError("success microsoft agents sit on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted.get("live") is True or hosted.get("inventory_claimed") is True or hosted.get("agent_365_is_product") is True:
+        raise IntegrityError("success microsoft agents stay not live and not a census", reason_code="CATALOG_REVIEW")
+    if "grok build as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat Grok Build as a seat", reason_code="CATALOG_REVIEW")
+    if "grok bot as dual admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Grok bot as dual admit", reason_code="CATALOG_REVIEW")
+    if "microsoft admin as this cloud agent" not in does_not:
+        raise IntegrityError("CISO posture does not request Microsoft admin as this Cloud Agent", reason_code="CATALOG_REVIEW")
+    if "additional access as admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat additional access as admit", reason_code="CATALOG_REVIEW")
+    access = success.get("honest_access")
+    if not isinstance(access, dict):
+        raise IntegrityError("success program keeps honest access", reason_code="CATALOG_REVIEW")
+    if access.get("kind") != "ainav.honest.access.v1" or access.get("honest") is not True:
+        raise IntegrityError("success honest access stays catalog law", reason_code="CATALOG_REVIEW")
+    if access.get("href") != "#agent-tools":
+        raise IntegrityError("success honest access sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if access.get("live") is True or access.get("need_more") is True or access.get("grok_is_product") is True:
+        raise IntegrityError("success honest access stays not live and does not need more", reason_code="CATALOG_REVIEW")
+    if "grok build as the recorded operator" not in does_not:
+        raise IntegrityError("CISO posture does not treat Grok Build as the recorded operator", reason_code="CATALOG_REVIEW")
+    if "grok bot as the operator" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Grok bot as the operator", reason_code="CATALOG_REVIEW")
+    if "swap cursor for grok" not in does_not:
+        raise IntegrityError("CISO posture does not swap Cursor for Grok", reason_code="CATALOG_REVIEW")
+    hosted_ops = success.get("honest_operators")
+    if not isinstance(hosted_ops, dict):
+        raise IntegrityError("success program keeps honest operators", reason_code="CATALOG_REVIEW")
+    if hosted_ops.get("kind") != "ainav.honest.operators.v1" or hosted_ops.get("honest") is not True:
+        raise IntegrityError("success honest operators stay catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_ops.get("href") != "#agent-tools":
+        raise IntegrityError("success honest operators sit on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_ops.get("live") is True or hosted_ops.get("swap") is True or hosted_ops.get("grok_is_recorded") is True:
+        raise IntegrityError("success honest operators stay not live and do not swap", reason_code="CATALOG_REVIEW")
+    if "full access as admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat full access as admit", reason_code="CATALOG_REVIEW")
+    if "more secrets as build" not in does_not:
+        raise IntegrityError("CISO posture does not treat more secrets as build", reason_code="CATALOG_REVIEW")
+    if "the twin as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat the twin as launch", reason_code="CATALOG_REVIEW")
+    hosted_build = success.get("honest_build")
+    if not isinstance(hosted_build, dict):
+        raise IntegrityError("success program keeps honest build", reason_code="CATALOG_REVIEW")
+    if hosted_build.get("kind") != "ainav.honest.build.v1" or hosted_build.get("honest") is not True:
+        raise IntegrityError("success honest build stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_build.get("href") != "#agent-tools":
+        raise IntegrityError("success honest build sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_build.get("live") is True or hosted_build.get("need_full") is True or hosted_build.get("twin_is_launch") is True:
+        raise IntegrityError("success honest build stays not live and does not need full access", reason_code="CATALOG_REVIEW")
+    if "gold as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat gold as launch", reason_code="CATALOG_REVIEW")
+    if "twin certified as launch day" not in does_not:
+        raise IntegrityError("CISO posture does not treat twin certified as launch day", reason_code="CATALOG_REVIEW")
+    if "simulation as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat simulation as production", reason_code="CATALOG_REVIEW")
+    if "an update as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat an update as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    hosted_ready = success.get("honest_readiness")
+    if not isinstance(hosted_ready, dict):
+        raise IntegrityError("success program keeps honest readiness", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("kind") != "ainav.honest.readiness.v1" or hosted_ready.get("honest") is not True:
+        raise IntegrityError("success honest readiness stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("href") != "#agent-tools":
+        raise IntegrityError("success honest readiness sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("live") is True or hosted_ready.get("gold_is_launch") is True or hosted_ready.get("twin_is_launch_day") is True:
+        raise IntegrityError("success honest readiness stays not live and is not launch day", reason_code="CATALOG_REVIEW")
+    if hosted_ready.get("launch_day_certified") is True:
+        raise IntegrityError("success honest readiness cannot certify launch day", reason_code="CATALOG_REVIEW")
+    if "an industry pack as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat an industry pack as a SKU", reason_code="CATALOG_REVIEW")
+    if "a library as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat a library as a SKU", reason_code="CATALOG_REVIEW")
+    if "a repository as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat a repository as a SKU", reason_code="CATALOG_REVIEW")
+    if "industry certify as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat industry certify as launch", reason_code="CATALOG_REVIEW")
+    hosted_industry = success.get("honest_industry")
+    if not isinstance(hosted_industry, dict):
+        raise IntegrityError("success program keeps honest industry", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("kind") != "ainav.honest.industry.v1" or hosted_industry.get("honest") is not True:
+        raise IntegrityError("success honest industry stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("href") != "#packs":
+        raise IntegrityError("success honest industry sits on #packs", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("live") is True or hosted_industry.get("packs_are_skus") is True:
+        raise IntegrityError("success honest industry stays not live and packs are not SKUs", reason_code="CATALOG_REVIEW")
+    if hosted_industry.get("industry_certified_launch") is True:
+        raise IntegrityError("success honest industry cannot certify launch", reason_code="CATALOG_REVIEW")
+    if "the whole firm as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat the whole firm as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 review as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 review as launch", reason_code="CATALOG_REVIEW")
+    if "the stitch as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat the stitch as a SKU", reason_code="CATALOG_REVIEW")
+    if "the twin as the institute apex" not in does_not:
+        raise IntegrityError("CISO posture does not treat the twin as the Institute apex", reason_code="CATALOG_REVIEW")
+    if "a green check as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a green check as launch", reason_code="CATALOG_REVIEW")
+    hosted_whole = success.get("honest_whole")
+    if not isinstance(hosted_whole, dict):
+        raise IntegrityError("success program keeps honest whole", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("kind") != "ainav.honest.whole.v1" or hosted_whole.get("honest") is not True:
+        raise IntegrityError("success honest whole stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("href") != "#whole":
+        raise IntegrityError("success honest whole sits on #whole", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("live") is True or hosted_whole.get("whole_is_launch") is True or hosted_whole.get("ten_is_launch") is True:
+        raise IntegrityError("success honest whole stays not live and is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_whole.get("stitch_is_sku") is True:
+        raise IntegrityError("success honest whole stitch is not a SKU", reason_code="CATALOG_REVIEW")
+    if "power pages as the institute host" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as the Institute host", reason_code="CATALOG_REVIEW")
+    if "power pages as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as a SKU", reason_code="CATALOG_REVIEW")
+    if "power pages as the cms" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as the CMS", reason_code="CATALOG_REVIEW")
+    if "power pages as the institute apex" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as the Institute apex", reason_code="CATALOG_REVIEW")
+    if "power pages as a dataverse close" not in does_not:
+        raise IntegrityError("CISO posture does not treat Power Pages as a Dataverse close", reason_code="CATALOG_REVIEW")
+    hosted_pages = success.get("honest_power_pages")
+    if not isinstance(hosted_pages, dict):
+        raise IntegrityError("success program keeps honest Power Pages", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("kind") != "ainav.honest.power_pages.v1" or hosted_pages.get("honest") is not True:
+        raise IntegrityError("success honest Power Pages stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("href") != "#twin":
+        raise IntegrityError("success honest Power Pages sits on #twin", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("live") is True or hosted_pages.get("is_host") is True or hosted_pages.get("is_sku") is True:
+        raise IntegrityError("success honest Power Pages stays not live and is not a host", reason_code="CATALOG_REVIEW")
+    if hosted_pages.get("cms") is True or hosted_pages.get("closes_dataverse") is True:
+        raise IntegrityError("success honest Power Pages is not the CMS and does not close Dataverse", reason_code="CATALOG_REVIEW")
+    if "copilot studio as job c" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as Job C", reason_code="CATALOG_REVIEW")
+    if "copilot studio as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as a SKU", reason_code="CATALOG_REVIEW")
+    if "copilot studio as the admit plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as the admit plane", reason_code="CATALOG_REVIEW")
+    if "copilot studio as a complement" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as a complement", reason_code="CATALOG_REVIEW")
+    if "copilot studio as seat b" not in does_not:
+        raise IntegrityError("CISO posture does not treat Copilot Studio as seat B", reason_code="CATALOG_REVIEW")
+    hosted_studio = success.get("honest_copilot_studio")
+    if not isinstance(hosted_studio, dict):
+        raise IntegrityError("success program keeps honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("kind") != "ainav.honest.copilot_studio.v1" or hosted_studio.get("honest") is not True:
+        raise IntegrityError("success honest Copilot Studio stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("href") != "#success":
+        raise IntegrityError("success honest Copilot Studio sits on #success", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("live") is True or hosted_studio.get("is_job_c") is True or hosted_studio.get("is_sku") is True:
+        raise IntegrityError("success honest Copilot Studio stays not live and is not Job C", reason_code="CATALOG_REVIEW")
+    if hosted_studio.get("is_admit_plane") is True or hosted_studio.get("is_seat") is True:
+        raise IntegrityError("success honest Copilot Studio is not the admit plane and is not seat B", reason_code="CATALOG_REVIEW")
+    if "connected as live" not in does_not:
+        raise IntegrityError("CISO posture does not treat connected as live", reason_code="CATALOG_REVIEW")
+    if "licensed as wired" not in does_not:
+        raise IntegrityError("CISO posture does not treat licensed as wired", reason_code="CATALOG_REVIEW")
+    if "available as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat available as a seat", reason_code="CATALOG_REVIEW")
+    if "graph read as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Graph read as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "cursor app as a seat" not in does_not:
+        raise IntegrityError("CISO posture does not treat a Cursor app as a seat", reason_code="CATALOG_REVIEW")
+    hosted_connect = success.get("honest_connect")
+    if not isinstance(hosted_connect, dict):
+        raise IntegrityError("success program keeps honest connect", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("kind") != "ainav.honest.connect.v1" or hosted_connect.get("honest") is not True:
+        raise IntegrityError("success honest connect stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("href") != "#missing":
+        raise IntegrityError("success honest connect sits on #missing", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("live") is True or hosted_connect.get("connected_is_live") is True:
+        raise IntegrityError("success honest connect stays not live", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("licensed_is_wired") is True or hosted_connect.get("available_is_seat") is True:
+        raise IntegrityError("success honest connect is not wired and is not a seat", reason_code="CATALOG_REVIEW")
+    if hosted_connect.get("graph_read_is_live_pin") is True or hosted_connect.get("cursor_app_is_seat") is True:
+        raise IntegrityError("success honest connect is not a live pin and is not a seat", reason_code="CATALOG_REVIEW")
+    if "closing all gaps as this plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat closing all gaps as this plane", reason_code="CATALOG_REVIEW")
+    if "outlook mail as a click" not in does_not:
+        raise IntegrityError("CISO posture does not treat Outlook mail as a click", reason_code="CATALOG_REVIEW")
+    if "grok login as this plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat grok login as this plane", reason_code="CATALOG_REVIEW")
+    if "an operate sim as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat an operate sim as production", reason_code="CATALOG_REVIEW")
+    if "a 10/10 polish as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 polish as launch", reason_code="CATALOG_REVIEW")
+    hosted_operate = success.get("honest_operate")
+    if not isinstance(hosted_operate, dict):
+        raise IntegrityError("success program keeps honest operate", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("kind") != "ainav.honest.operate.v1" or hosted_operate.get("honest") is not True:
+        raise IntegrityError("success honest operate stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("href") != "#agent-tools":
+        raise IntegrityError("success honest operate sits on #agent-tools", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("live") is True or hosted_operate.get("close_gaps_is_this_plane") is True:
+        raise IntegrityError("success honest operate stays not live and is not this plane closing gaps", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("outlook_is_click") is True or hosted_operate.get("grok_login_is_this_plane") is True:
+        raise IntegrityError("success honest operate is not a click and is not grok login", reason_code="CATALOG_REVIEW")
+    if hosted_operate.get("operate_sim_is_production") is True or hosted_operate.get("polish_ten_is_launch") is True:
+        raise IntegrityError("success honest operate is not production and is not launch", reason_code="CATALOG_REVIEW")
+    if "an industry as a named client" not in does_not:
+        raise IntegrityError("CISO posture does not treat an industry as a named client", reason_code="CATALOG_REVIEW")
+    if "a shared sandbox as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a shared sandbox as production", reason_code="CATALOG_REVIEW")
+    if "hours as a sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat hours as a SKU", reason_code="CATALOG_REVIEW")
+    if "rollback as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat rollback as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "a redeploy as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a redeploy as launch", reason_code="CATALOG_REVIEW")
+    hosted_path = success.get("honest_path")
+    if not isinstance(hosted_path, dict):
+        raise IntegrityError("success program keeps honest path", reason_code="CATALOG_REVIEW")
+    if hosted_path.get("kind") != "ainav.honest.path.v1" or hosted_path.get("honest") is not True:
+        raise IntegrityError("success honest path stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_path.get("href") != "#path":
+        raise IntegrityError("success honest path sits on #path", reason_code="CATALOG_REVIEW")
+    if hosted_path.get("live") is True or hosted_path.get("industry_is_named_client") is True:
+        raise IntegrityError("success honest path stays not live and an industry is not a named client", reason_code="CATALOG_REVIEW")
+    if hosted_path.get("shared_sandbox_is_production") is True or hosted_path.get("hours_is_sku") is True:
+        raise IntegrityError("success honest path is not production and hours are not a SKU", reason_code="CATALOG_REVIEW")
+    if hosted_path.get("rollback_is_live_pin") is True or hosted_path.get("redeploy_is_launch") is True:
+        raise IntegrityError("success honest path is not a live pin and is not launch", reason_code="CATALOG_REVIEW")
+    if "a production sim as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a production sim as production", reason_code="CATALOG_REVIEW")
+    if "fixing all as this plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat fixing all as this plane", reason_code="CATALOG_REVIEW")
+    if "rehearsed elements as live" not in does_not:
+        raise IntegrityError("CISO posture does not treat rehearsed elements as live", reason_code="CATALOG_REVIEW")
+    if "making all much better as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat making all much better as launch", reason_code="CATALOG_REVIEW")
+    if "a rehearsal as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat a rehearsal as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "a remainder close as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a remainder close as launch", reason_code="CATALOG_REVIEW")
+    if "leftover copy as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat leftover copy as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "owner hrefs as owner clicks" not in does_not:
+        raise IntegrityError("CISO posture does not treat owner hrefs as owner clicks", reason_code="CATALOG_REVIEW")
+    if "gold 99.5 as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat gold 99.5 as production", reason_code="CATALOG_REVIEW")
+    if "a deep remainder as seated" not in does_not:
+        raise IntegrityError("CISO posture does not treat a deep remainder as seated", reason_code="CATALOG_REVIEW")
+    if "a 10/10 quality check as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 quality check as launch", reason_code="CATALOG_REVIEW")
+    if "gold 99.9 as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat gold 99.9 as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "a competitor analysis as a named client" not in does_not:
+        raise IntegrityError("CISO posture does not treat a competitor analysis as a named client", reason_code="CATALOG_REVIEW")
+    if "a green service as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a green service as production", reason_code="CATALOG_REVIEW")
+    if "a quality check as a seated second human" not in does_not:
+        raise IntegrityError("CISO posture does not treat a quality check as a seated second human", reason_code="CATALOG_REVIEW")
+    if "an ip board as a patent" not in does_not:
+        raise IntegrityError("CISO posture does not treat an IP board as a patent", reason_code="CATALOG_REVIEW")
+    if "insulation as uncopyable" not in does_not:
+        raise IntegrityError("CISO posture does not treat insulation as uncopyable", reason_code="CATALOG_REVIEW")
+    if "an l1 license as an assignment of job c" not in does_not:
+        raise IntegrityError("CISO posture does not treat an L1 license as an assignment of Job C", reason_code="CATALOG_REVIEW")
+    if "kit pass as a source license" not in does_not:
+        raise IntegrityError("CISO posture does not treat kit PASS as a source license", reason_code="CATALOG_REVIEW")
+    if "this board as closing g12" not in does_not:
+        raise IntegrityError("CISO posture does not treat this board as closing G12", reason_code="CATALOG_REVIEW")
+    if "a vault hold as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat a vault hold as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "secret names as wired notify" not in does_not:
+        raise IntegrityError("CISO posture does not treat secret names as wired notify", reason_code="CATALOG_REVIEW")
+    if "secret values in the catalog" not in does_not:
+        raise IntegrityError("CISO posture does not put secret values in the catalog", reason_code="CATALOG_REVIEW")
+    if "sentinel as the admit plane" not in does_not:
+        raise IntegrityError("CISO posture does not treat Sentinel as the admit plane", reason_code="CATALOG_REVIEW")
+    if "a vault hold as a seated second human" not in does_not:
+        raise IntegrityError("CISO does-not keeps a vault hold as a seated second human", reason_code="CATALOG_REVIEW")
+    if "a 10/10 close as launch" not in does_not:
+        raise IntegrityError("CISO does-not keeps a 10/10 close as launch", reason_code="CATALOG_REVIEW")
+    if "a booking as recognized revenue" not in does_not:
+        raise IntegrityError("CISO does-not keeps a booking as recognized revenue", reason_code="CATALOG_REVIEW")
+    if "the institute twin as the assigned client sandbox" not in does_not:
+        raise IntegrityError("CISO does-not keeps the Institute twin as the assigned client sandbox", reason_code="CATALOG_REVIEW")
+    if "a custom database as a fourth sku" not in does_not:
+        raise IntegrityError("CISO does-not keeps a custom database as a fourth SKU", reason_code="CATALOG_REVIEW")
+    if "a catalog list as collection" not in does_not:
+        raise IntegrityError("CISO posture does not treat a catalog list as collection", reason_code="CATALOG_REVIEW")
+    if "the join as launch" not in does_not:
+        raise IntegrityError("CISO does-not keeps the join as launch", reason_code="CATALOG_REVIEW")
+    if "the stitched firm as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO does-not keeps the stitched firm as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "licensed-not-wired as a wired firm" not in does_not:
+        raise IntegrityError("CISO does-not keeps licensed-not-wired as a wired firm", reason_code="CATALOG_REVIEW")
+    if "management and operations as closed from this plane" not in does_not:
+        raise IntegrityError("CISO does-not keeps management and operations as closed from this plane", reason_code="CATALOG_REVIEW")
+    if "a certified simulation as a running firm" not in does_not:
+        raise IntegrityError("CISO posture does not treat a certified simulation as a running firm", reason_code="CATALOG_REVIEW")
+    hosted_production = success.get("honest_production")
+    if not isinstance(hosted_production, dict):
+        raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("kind") != "ainav.honest.production.v1" or hosted_production.get("honest") is not True:
+        raise IntegrityError("success honest production stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("href") != "#firm":
+        raise IntegrityError("success honest production sits on #firm", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("live") is True or hosted_production.get("production_sim_is_production") is True:
+        raise IntegrityError("success honest production stays not live and a production sim is not production", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("fix_all_is_this_plane") is True or hosted_production.get("elements_are_live") is True:
+        raise IntegrityError("success honest production is not this plane and rehearsed elements are not live", reason_code="CATALOG_REVIEW")
+    if hosted_production.get("better_is_launch") is True or hosted_production.get("rehearsal_is_live_pin") is True:
+        raise IntegrityError("success honest production is not launch and is not a live pin", reason_code="CATALOG_REVIEW")
+    hosted_remainder = success.get("honest_remainder")
+    if not isinstance(hosted_remainder, dict):
+        raise IntegrityError("success program keeps honest remainder", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("kind") != "ainav.honest.remainder.v1" or hosted_remainder.get("honest") is not True:
+        raise IntegrityError("success honest remainder stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("href") != "#missing":
+        raise IntegrityError("success honest remainder sits on #missing", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("live") is True or hosted_remainder.get("remainder_is_launch") is True:
+        raise IntegrityError("success honest remainder stays not live and a remainder close is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("leftover_copy_is_live_pin") is True or hosted_remainder.get("owner_hrefs_are_clicks") is True:
+        raise IntegrityError("success honest remainder is not a live pin and owner hrefs are not clicks", reason_code="CATALOG_REVIEW")
+    if hosted_remainder.get("gold_995_is_production") is True or hosted_remainder.get("deep_remainder_is_seated") is True:
+        raise IntegrityError("success honest remainder is not production and is not seated", reason_code="CATALOG_REVIEW")
+    hosted_ten = success.get("honest_ten")
+    if not isinstance(hosted_ten, dict):
+        raise IntegrityError("success program keeps honest ten", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("kind") != "ainav.honest.ten.v1" or hosted_ten.get("honest") is not True:
+        raise IntegrityError("success honest ten stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("href") != "#success":
+        raise IntegrityError("success honest ten sits on #success", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("live") is True or hosted_ten.get("quality_ten_is_launch") is True:
+        raise IntegrityError("success honest ten stays not live and a 10/10 quality check is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("gold_999_is_live_pin") is True or hosted_ten.get("compete_is_named_client") is True:
+        raise IntegrityError("success honest ten is not a live pin and a competitor analysis is not a named client", reason_code="CATALOG_REVIEW")
+    if hosted_ten.get("service_green_is_production") is True or hosted_ten.get("quality_is_seated") is True:
+        raise IntegrityError("success honest ten is not production and is not seated", reason_code="CATALOG_REVIEW")
+    hosted_protect = success.get("honest_protect")
+    if not isinstance(hosted_protect, dict):
+        raise IntegrityError("success program keeps honest protect", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("kind") != "ainav.honest.protect.v1" or hosted_protect.get("honest") is not True:
+        raise IntegrityError("success honest protect stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("href") != "#ip":
+        raise IntegrityError("success honest protect sits on #ip", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("live") is True or hosted_protect.get("protect_as_patent") is True:
+        raise IntegrityError("success honest protect stays not live and an IP board is not a patent", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("protect_as_uncopyable") is True or hosted_protect.get("client_license_as_assignment") is True:
+        raise IntegrityError("success honest protect is not uncopyable and an L1 license is not an assignment", reason_code="CATALOG_REVIEW")
+    if hosted_protect.get("kit_pass_as_source") is True or hosted_protect.get("g12_as_closed") is True:
+        raise IntegrityError("success honest protect is not a source license and does not close G12", reason_code="CATALOG_REVIEW")
+    hosted_hold = success.get("honest_hold")
+    if not isinstance(hosted_hold, dict):
+        raise IntegrityError("success program keeps honest hold", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("kind") != "ainav.honest.hold.v1" or hosted_hold.get("honest") is not True:
+        raise IntegrityError("success honest hold stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("href") != "#missing":
+        raise IntegrityError("success honest hold sits on #missing", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("live") is True or hosted_hold.get("vault_as_live_pin") is True:
+        raise IntegrityError("success honest hold stays not live and a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("names_as_wired") is True or hosted_hold.get("secret_in_catalog") is True:
+        raise IntegrityError("success honest hold is not wired and cannot hold secret values", reason_code="CATALOG_REVIEW")
+    if hosted_hold.get("sentinel_as_admit") is True or hosted_hold.get("hold_as_seated") is True:
+        raise IntegrityError("success honest hold is not the admit plane and is not seated", reason_code="CATALOG_REVIEW")
+    hosted_close = success.get("honest_close")
+    if not isinstance(hosted_close, dict):
+        raise IntegrityError("success program keeps honest close", reason_code="CATALOG_REVIEW")
+    if hosted_close.get("kind") != "ainav.honest.close.v1" or hosted_close.get("honest") is not True:
+        raise IntegrityError("success honest close stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_close.get("href") != "#path":
+        raise IntegrityError("success honest close sits on #path", reason_code="CATALOG_REVIEW")
+    if hosted_close.get("live") is True or hosted_close.get("close_as_launch") is True:
+        raise IntegrityError("success honest close stays not live and a 10/10 close is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_close.get("booking_as_revenue") is True or hosted_close.get("twin_as_assigned") is True:
+        raise IntegrityError("success honest close is not revenue and the twin is not assigned", reason_code="CATALOG_REVIEW")
+    if hosted_close.get("custom_db_as_sku") is True or hosted_close.get("list_as_collection") is True:
+        raise IntegrityError("success honest close is not a fourth SKU and is not collection", reason_code="CATALOG_REVIEW")
+    hosted_join = success.get("honest_join")
+    if not isinstance(hosted_join, dict):
+        raise IntegrityError("success program keeps honest join", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("kind") != "ainav.honest.join.v1" or hosted_join.get("honest") is not True:
+        raise IntegrityError("success honest join stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("href") != "#firm":
+        raise IntegrityError("success honest join sits on #firm", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("live") is True or hosted_join.get("join_as_launch") is True:
+        raise IntegrityError("success honest join stays not live and the join is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("stitch_as_live_pin") is True or hosted_join.get("licensed_as_wired_firm") is True:
+        raise IntegrityError("success honest join is not LIVE_PIN_OK and is not a wired firm", reason_code="CATALOG_REVIEW")
+    if hosted_join.get("manage_ops_as_closed") is True or hosted_join.get("certify_as_running") is True:
+        raise IntegrityError("success honest join does not close management and is not a running firm", reason_code="CATALOG_REVIEW")
+    seat = success.get("seat_b") or {}
+    if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
+        raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
+    if str(seat.get("name") or "") != "Cynthia Hodnett":
+        raise IntegrityError("seat B meaning must keep Cynthia Hodnett", reason_code="ORG_SECOND_OFFICER")
+    is_not = " ".join(str(item).lower() for item in seat.get("is_not") or [])
+    if "entra object id" not in is_not or "officer" not in is_not or "stockholder" not in is_not:
+        raise IntegrityError("seat B meaning: mailbox is not oid, officer, or stock", reason_code="ORG_SECOND_OFFICER")
+    is_yes = " ".join(str(item).lower() for item in seat.get("is") or [])
+    if "number two" not in is_yes or "other aspects" not in is_yes:
+        raise IntegrityError("seat B meaning: number two for other aspects", reason_code="ORG_SECOND_OFFICER")
+    if "all aspects" not in is_not:
+        raise IntegrityError("seat B meaning: not all aspects", reason_code="ORG_SECOND_OFFICER")
+    continuity = success.get("continuity") or {}
+    if "write does not land" not in str(continuity.get("lede") or "").lower():
+        raise IntegrityError("continuity is the write does not land", reason_code="CATALOG_REVIEW")
+    if "bypass" not in str(continuity.get("note") or "").lower():
+        raise IntegrityError("continuity is not a bypass", reason_code="CATALOG_REVIEW")
+    ledger = success.get("walk_away_ledger")
+    if not isinstance(ledger, dict):
+        raise IntegrityError("success needs a walk-away ledger", reason_code="CATALOG_REVIEW")
+    if ledger.get("recorded") is True:
+        raise IntegrityError("do not invent a recorded walk-away", reason_code="CATALOG_REVIEW")
+    if int(ledger.get("count") or 0) != 0:
+        raise IntegrityError("walk-away ledger count stays zero", reason_code="CATALOG_REVIEW")
+    if list(ledger.get("items") or []) != []:
+        raise IntegrityError("walk-away ledger items stay empty", reason_code="CATALOG_REVIEW")
+    if ledger.get("do_not_invent_names") is not True:
+        raise IntegrityError("walk-away ledger cannot invent names", reason_code="CATALOG_REVIEW")
+    if "not recorded" not in str(ledger.get("note") or "").lower():
+        raise IntegrityError("walk-away ledger note: first walk-away is not recorded", reason_code="CATALOG_REVIEW")
+    _validate_human_control(success.get("human_control"))
+    _validate_executive_risk(success.get("executive_risk"))
+    _validate_market_position(success.get("market_position"))
+    _validate_what_was_missing(success.get("what_was_missing"))
+    _validate_managed_face(success.get("managed_face"))
+    _validate_client_twin(success.get("client_twin"))
+    _validate_close_bench(success.get("close_bench"))
+    _validate_operating_company(success.get("operating_company"))
+    _validate_brand(success.get("brand"))
+    _validate_client_universe(success.get("client_universe"))
+    _validate_industry_drawer(success.get("industry_drawer"))
+
+
+def _validate_human_control(body: Any) -> None:
+    control = _as_dict(body, "human_control")
+    if control.get("sku") is True or control.get("cms") is True or control.get("fear_brand") is True:
+        raise IntegrityError("human control is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if control.get("live") is True or control.get("live_pin_ok") is True:
+        raise IntegrityError("human control cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(control.get("lede") or "").lower()
+    if "authority" not in lede or "loss of control" not in lede or "write" not in lede:
+        raise IntegrityError("human control lede is authority over the write", reason_code="CATALOG_REVIEW")
+    ours = str(control.get("ours") or "").lower()
+    not_ours = str(control.get("not_ours") or "").lower()
+    if "write-fear" not in ours or "doom-fear" not in not_ours:
+        raise IntegrityError("human control splits write-fear from doom-fear", reason_code="CATALOG_REVIEW")
+    if "agi" in ours or "fear brand" in ours:
+        raise IntegrityError("write-fear cannot become a fear brand", reason_code="CATALOG_REVIEW")
+    loss = [str(item).lower() for item in control.get("loss") or []]
+    restore = [str(item).lower() for item in control.get("restore") or []]
+    if len(loss) < 4 or not any("identify" in item and "admit" in item for item in loss):
+        raise IntegrityError("human control loss must name identify pretending to be admit", reason_code="CATALOG_REVIEW")
+    if not any("consume" in item for item in restore) or not any("fail-closed" in item for item in restore):
+        raise IntegrityError("human control restore must keep consume-once and fail-closed", reason_code="CATALOG_REVIEW")
+    site = str(control.get("site") or "").lower()
+    if "write rail" not in site or "/fear" not in site:
+        raise IntegrityError("human control site stays after the bake-off, not a /fear route", reason_code="CATALOG_REVIEW")
+    social = str(control.get("social") or "").lower()
+    if "teams" not in social or "take your job" not in social:
+        raise IntegrityError("human control social names the journal, not job-loss theater", reason_code="CATALOG_REVIEW")
+    note = str(control.get("note") or "").lower()
+    if "live_pin_ok" not in note or "fear brand" not in note:
+        raise IntegrityError("human control note refuses a fear brand and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+
+
+def _validate_executive_risk(body: Any) -> None:
+    risk = _as_dict(body, "executive_risk")
+    if risk.get("sku") is True or risk.get("cms") is True or risk.get("fear_brand") is True:
+        raise IntegrityError("executive risk is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if risk.get("counsel") is True or risk.get("certified") is True or risk.get("sox_opinion") is True:
+        raise IntegrityError("executive risk is not counsel, a certificate, or a SOX opinion", reason_code="CATALOG_REVIEW")
+    if risk.get("seventeen_a4") is True or risk.get("d_and_o") is True:
+        raise IntegrityError("executive risk is not 17a-4 or D&O", reason_code="CATALOG_REVIEW")
+    if risk.get("live") is True or risk.get("live_pin_ok") is True:
+        raise IntegrityError("executive risk cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(risk.get("lede") or "").lower()
+    if "executive risk" not in lede or "personal" not in lede or "business" not in lede or "write" not in lede:
+        raise IntegrityError("executive risk lede is personal and business as the same write", reason_code="CATALOG_REVIEW")
+    personal = str(risk.get("personal") or "").lower()
+    business = str(risk.get("business") or "").lower()
+    if "identify" not in personal or "admit" not in personal or "d&o" not in personal:
+        raise IntegrityError("personal risk is identify-not-admit, not D&O", reason_code="CATALOG_REVIEW")
+    if "restatement" not in business or "clocks" not in business:
+        raise IntegrityError("business risk names restatement and regulator clocks", reason_code="CATALOG_REVIEW")
+    compliance = str(risk.get("compliance") or "").lower()
+    non_comp = str(risk.get("non_compliance") or "").lower()
+    if "compliance-fear" not in compliance or "sox opinion" not in compliance or "g12" not in compliance:
+        raise IntegrityError("compliance-fear is a map, not a SOX opinion", reason_code="CATALOG_REVIEW")
+    if "non-compliance" not in non_comp or "write-fear" not in non_comp:
+        raise IntegrityError("non-compliance that is ours is the landed write", reason_code="CATALOG_REVIEW")
+    also = [str(item).lower() for item in risk.get("also") or []]
+    blob = " ".join(also)
+    if len(also) < 5 or "overseeing is not admitting" not in blob or "same l1" not in blob:
+        raise IntegrityError("executive risk also-list keeps board oversee and same L1", reason_code="CATALOG_REVIEW")
+    site = str(risk.get("site") or "").lower()
+    if "write rail" not in site or "/risk" not in site or "grc" not in site:
+        raise IntegrityError("executive risk site stays after human control, not a /risk GRC route", reason_code="CATALOG_REVIEW")
+    note = str(risk.get("note") or "").lower()
+    if "sox opinion" not in note or "17a-4" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("executive risk note refuses SOX, 17a-4, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+
+
+def _validate_market_position(body: Any) -> None:
+    market = _as_dict(body, "market_position")
+    if market.get("sku") is True or market.get("cms") is True or market.get("fear_brand") is True:
+        raise IntegrityError("market position is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if market.get("forecast") is True or market.get("priced_round") is True or market.get("tam") is True:
+        raise IntegrityError("market position is not a forecast, priced round, or TAM", reason_code="CATALOG_REVIEW")
+    if market.get("launch") is True or market.get("category_leader") is True:
+        raise IntegrityError("market position cannot claim launch or category leader", reason_code="CATALOG_REVIEW")
+    if market.get("live") is True or market.get("live_pin_ok") is True:
+        raise IntegrityError("market position cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(market.get("lede") or "").lower()
+    if "market position" not in lede or "unlaunched" not in lede or "named customers" not in lede:
+        raise IntegrityError("market position lede is unlaunched with no named customers", reason_code="CATALOG_REVIEW")
+    now = str(market.get("now") or "").lower()
+    future = str(market.get("future") or "").lower()
+    not_future = str(market.get("not_the_future") or "").lower()
+    if "zero booked" not in now or "demand is 0" not in now:
+        raise IntegrityError("market now is zero booked and demand is 0", reason_code="CATALOG_REVIEW")
+    if "licensed substitute" not in future or "buys l1" not in future or "live_pin_ok" not in future:
+        raise IntegrityError("the only future that counts is the first L1", reason_code="CATALOG_REVIEW")
+    if "tam" not in not_future or "forecast" not in not_future or "priced round" not in not_future:
+        raise IntegrityError("market future refuses TAM, forecast, and a priced round", reason_code="CATALOG_REVIEW")
+    also = [str(item).lower() for item in market.get("also") or []]
+    blob = " ".join(also)
+    if len(also) < 5 or "last authority" not in blob or "eight" not in blob:
+        raise IntegrityError("market also-list keeps last authority and eight complements", reason_code="CATALOG_REVIEW")
+    site = str(market.get("site") or "").lower()
+    if "write rail" not in site or "/market" not in site or "forecast" not in site:
+        raise IntegrityError("market site stays after executive risk, not a /market forecast", reason_code="CATALOG_REVIEW")
+    note = str(market.get("note") or "").lower()
+    if "zero booked" not in note or "priced round" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("market note is catalog list times zero booked, not a priced round", reason_code="CATALOG_REVIEW")
+
+
+def _validate_what_was_missing(body: Any) -> None:
+    missing = _as_dict(body, "what_was_missing")
+    if missing.get("kind") != "ainav.what_was_missing.v1":
+        raise IntegrityError("what_was_missing kind is ainav.what_was_missing.v1", reason_code="CATALOG_REVIEW")
+    if missing.get("sku") is True or missing.get("cms") is True or missing.get("fourth_sku") is True:
+        raise IntegrityError("what you've been missing is not a SKU, CMS, or fourth SKU", reason_code="CATALOG_REVIEW")
+    if missing.get("launch") is True or missing.get("fear_brand") is True or missing.get("forecast") is True:
+        raise IntegrityError("what you've been missing cannot claim launch, a fear brand, or a forecast", reason_code="CATALOG_REVIEW")
+    if missing.get("live") is True or missing.get("live_pin_ok") is True:
+        raise IntegrityError("what you've been missing cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(missing.get("lede") or "").lower()
+    if "been missing" not in lede or "copilot" not in lede or "cheaper" not in lede:
+        raise IntegrityError("what-was-missing lede is licensed copies versus the admit plane", reason_code="CATALOG_REVIEW")
+    already = " ".join(str(item).lower() for item in missing.get("already_have") or [])
+    for stem in ("business central", "entra", "workflow", "copilot", "teams", "pim"):
+        if stem not in already:
+            raise IntegrityError("already-have must name the licensed cheaper copies", reason_code="CATALOG_REVIEW")
+    been = " ".join(str(item).lower() for item in missing.get("been_missing") or [])
+    for stem in ("action_hash", "consume-once", "fail-closed", "freeze", "independence", "counterparty"):
+        if stem not in been:
+            raise IntegrityError("been-missing must name the admit plane", reason_code="CATALOG_REVIEW")
+    caps = " ".join(str(item).lower() for item in missing.get("capabilities") or [])
+    for stem in ("admit", "consume-once", "fail-closed", "keep", "freeze", "examiner", "walk-away", "twin", "dashboard"):
+        if stem not in caps:
+            raise IntegrityError("capabilities must name the whole-business plane, not SKUs", reason_code="CATALOG_REVIEW")
+    tools = " ".join(str(item).lower() for item in missing.get("tools_around") or [])
+    for stem in ("teams", "e7", "cloudflare", "gold", "kit", "swa"):
+        if stem not in tools:
+            raise IntegrityError("tools-around stay complements, not the product", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in missing.get("refuse_to_become") or [])
+    for stem in ("copilot", "cms", "grc", "forecast", "ninth", "cloudflare", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("refuse-to-become must keep Copilot, CMS, GRC, forecast, ninth, Cloudflare, LIVE_PIN", reason_code="CATALOG_REVIEW")
+    site = str(missing.get("site") or "").lower()
+    if "write rail" not in site or "/have" not in site or "#missing" not in site:
+        raise IntegrityError("what-was-missing site stays after market, not a /have route or #missing", reason_code="CATALOG_REVIEW")
+    note = str(missing.get("note") or "").lower()
+    if "fourth sku" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("what-was-missing note refuses a fourth SKU and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if len(missing.get("already_have") or []) < 6 or len(missing.get("been_missing") or []) < 6:
+        raise IntegrityError("what-was-missing needs the licensed-copy versus admit contrast", reason_code="CATALOG_REVIEW")
+    if len(missing.get("capabilities") or []) < 7 or len(missing.get("tools_around") or []) < 5:
+        raise IntegrityError("what-was-missing needs the whole-business capability and tools map", reason_code="CATALOG_REVIEW")
+
+
+def _validate_managed_face(body: Any) -> None:
+    face = _as_dict(body, "managed_face")
+    if face.get("kind") != "ainav.managed_face.v1":
+        raise IntegrityError("managed_face kind is ainav.managed_face.v1", reason_code="CATALOG_REVIEW")
+    if face.get("sku") is True or face.get("cms") is True or face.get("fourth_sku") is True:
+        raise IntegrityError("managed face is not a SKU, CMS, or fourth SKU", reason_code="CATALOG_REVIEW")
+    if face.get("dynamic") is True or face.get("launch") is True:
+        raise IntegrityError("managed face is not a dynamic app or launch", reason_code="CATALOG_REVIEW")
+    if face.get("live") is True or face.get("live_pin_ok") is True:
+        raise IntegrityError("managed face cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    lede = str(face.get("lede") or "").lower()
+    if "managed first-class" not in lede or "static" not in lede or "cms" not in lede:
+        raise IntegrityError("managed-face lede is a managed first-class static application", reason_code="CATALOG_REVIEW")
+    product = str(face.get("product") or "").lower()
+    demo = str(face.get("demo") or "").lower()
+    managed = str(face.get("managed") or "").lower()
+    if "admit plane" not in product or "three skus" not in product or "dashboard" not in product:
+        raise IntegrityError("managed-face product is the admit plane", reason_code="CATALOG_REVIEW")
+    if "ninety-minute" not in demo or "graph is not called" not in demo or "calendly" not in demo:
+        raise IntegrityError("managed-face demo is the ninety-minute proof", reason_code="CATALOG_REVIEW")
+    if "azure swa" not in managed or "gold" not in managed or "publish-twin" not in managed:
+        raise IntegrityError("managed-face host is catalog plus gold plus twin publish", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in face.get("refuse") or [])
+    for stem in ("cms", "dynamic", "fourth sku", "/demo", "calendly", "launch", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("managed-face refuse keeps CMS, dynamic, fourth SKU, /demo, Calendly, launch, LIVE_PIN", reason_code="CATALOG_REVIEW")
+    site = str(face.get("site") or "").lower()
+    if "write rail" not in site or "#twin" not in site or "/demo" not in site:
+        raise IntegrityError("managed-face site stays the write rail; demo is #twin", reason_code="CATALOG_REVIEW")
+    note = str(face.get("note") or "").lower()
+    if "webflow" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("managed-face note refuses Webflow and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+
+
+def _validate_client_twin(body: Any) -> None:
+    twin = _as_dict(body, "client_twin")
+    if twin.get("kind") != "ainav.client_twin.v1":
+        raise IntegrityError("client_twin kind is ainav.client_twin.v1", reason_code="CATALOG_REVIEW")
+    if twin.get("sku") is True or twin.get("fourth_sku") is True or twin.get("assigned") is True:
+        raise IntegrityError("client twin is not a SKU and is not assigned", reason_code="CATALOG_REVIEW")
+    if twin.get("launch") is True or twin.get("production") is True:
+        raise IntegrityError("client twin is not launch or production", reason_code="CATALOG_REVIEW")
+    if twin.get("live") is True or twin.get("live_pin_ok") is True:
+        raise IntegrityError("client twin cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if twin.get("named_client") is not None:
+        raise IntegrityError("client twin cannot invent a named client", reason_code="CATALOG_REVIEW")
+    if int(twin.get("count") or 0) != 0:
+        raise IntegrityError("client twin count stays zero until a real L1", reason_code="CATALOG_REVIEW")
+    if twin.get("do_not_invent_names") is not True:
+        raise IntegrityError("client twin cannot invent names", reason_code="CATALOG_REVIEW")
+    lede = str(twin.get("lede") or "").lower()
+    if "client-assigned" not in lede or "segregated" not in lede or "sandbox" not in lede:
+        raise IntegrityError("client-twin lede is a client-assigned segregated sandbox", reason_code="CATALOG_REVIEW")
+    stages = " ".join(str(item).lower() for item in twin.get("stages") or [])
+    for stem in ("qualify", "remote proof", "close l1", "assigned sandbox", "paid enhance"):
+        if stem not in stages:
+            raise IntegrityError("client-twin stages keep qualify, remote proof, close L1, assigned sandbox", reason_code="CATALOG_REVIEW")
+    is_yes = " ".join(str(item).lower() for item in twin.get("is") or [])
+    is_not = " ".join(str(item).lower() for item in twin.get("is_not") or [])
+    if "sale path" not in is_yes or "institute twin" not in is_yes or "segregated" not in is_yes:
+        raise IntegrityError("client twin is a sale path on a segregated sandbox", reason_code="CATALOG_REVIEW")
+    if "fourth sku" not in is_not or "client production" not in is_not or "live_pin_ok" not in is_not:
+        raise IntegrityError("client twin is not a fourth SKU or production", reason_code="CATALOG_REVIEW")
+    enhance = str(twin.get("enhance") or "").lower()
+    deploy = str(twin.get("deploy") or "").lower()
+    if "hours" not in enhance or "never a sku" not in enhance:
+        raise IntegrityError("client-twin enhance is paid hours on the same plane", reason_code="CATALOG_REVIEW")
+    if "l1 kit" not in deploy or "live_pin_ok" not in deploy:
+        raise IntegrityError("client-twin deploy is the L1 kit, not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    site = str(twin.get("site") or "").lower()
+    if "write rail" not in site or "#path" not in site or "fourth sku" not in site:
+        raise IntegrityError("client-twin site stays after the product as #path", reason_code="CATALOG_REVIEW")
+    note = str(twin.get("note") or "").lower()
+    if "assigned stays false" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("client-twin note keeps assigned false and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+
+
+def _validate_close_bench(body: Any) -> None:
+    bench = _as_dict(body, "close_bench")
+    if bench.get("kind") != "ainav.close_bench.v1":
+        raise IntegrityError("close_bench kind is ainav.close_bench.v1", reason_code="CATALOG_REVIEW")
+    if bench.get("sku") is True or bench.get("fourth_sku") is True or bench.get("assigned") is True:
+        raise IntegrityError("close bench is not a SKU and is not assigned", reason_code="CATALOG_REVIEW")
+    if bench.get("launch") is True or bench.get("production") is True or bench.get("cms") is True:
+        raise IntegrityError("close bench is not launch, production, or a CMS", reason_code="CATALOG_REVIEW")
+    if bench.get("dynamic") is True or bench.get("live") is True or bench.get("live_pin_ok") is True:
+        raise IntegrityError("close bench cannot mark LIVE_PIN_OK or become a dynamic app", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if bench.get("named_client") is not None:
+        raise IntegrityError("close bench cannot invent a named client", reason_code="CATALOG_REVIEW")
+    lede = str(bench.get("lede") or "").lower()
+    if "first-class close" not in lede or "segregated" not in lede or "owner-gated" not in lede:
+        raise IntegrityError("close-bench lede is a first-class close on a segregated sandbox", reason_code="CATALOG_REVIEW")
+    planes = bench.get("planes") or []
+    ids = [item.get("id") for item in planes if isinstance(item, dict)]
+    if ids != ["institute", "client", "production"]:
+        raise IntegrityError("close bench planes are Institute twin, client sandbox, production", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in planes
+        if isinstance(item, dict)
+    )
+    if "remote demo" not in blob or "segregated" not in blob or "live_pin_ok" not in blob:
+        raise IntegrityError("close bench planes keep remote demo, segregated sandbox, LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in bench.get("refuse") or [])
+    for stem in ("fourth sku", "client production", "named client", "auto-promote", "calendly", "u-dual", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("close-bench refuse keeps fourth SKU, production, named client, auto-promote", reason_code="CATALOG_REVIEW")
+    site = str(bench.get("site") or "").lower()
+    if "#close-console" not in site or "#path" not in site or "#twin" not in site:
+        raise IntegrityError("close-bench site is #close-console on #path; demo is #twin", reason_code="CATALOG_REVIEW")
+    note = str(bench.get("note") or "").lower()
+    if "assigned stays false" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("close-bench note keeps assigned false and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+
+
+def _validate_operating_company(body: Any) -> None:
+    firm = _as_dict(body, "operating_company")
+    if firm.get("kind") != "ainav.operating_company.v1":
+        raise IntegrityError("operating_company kind is ainav.operating_company.v1", reason_code="CATALOG_REVIEW")
+    if firm.get("sku") is True or firm.get("fourth_sku") is True or firm.get("crm") is True:
+        raise IntegrityError("operating company is not a SKU or a CRM", reason_code="CATALOG_REVIEW")
+    if firm.get("hubspot") is True or firm.get("salesforce") is True:
+        raise IntegrityError("operating company is not HubSpot or Salesforce", reason_code="CATALOG_REVIEW")
+    if firm.get("assigned") is True or firm.get("launch") is True or firm.get("production") is True:
+        raise IntegrityError("operating company is not assigned, launch, or production", reason_code="CATALOG_REVIEW")
+    if firm.get("cms") is True or firm.get("dynamic") is True:
+        raise IntegrityError("operating company is not a CMS or a dynamic app", reason_code="CATALOG_REVIEW")
+    if firm.get("live") is True or firm.get("live_pin_ok") is True:
+        raise IntegrityError("operating company cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if firm.get("named_client") is not None or firm.get("named_contractor") is not None:
+        raise IntegrityError("operating company cannot invent a named client or contractor", reason_code="CATALOG_REVIEW")
+    if firm.get("sales_team_claimed") is True or firm.get("payouts_booked") is True:
+        raise IntegrityError("operating company cannot claim a sales team or booked payouts", reason_code="CATALOG_REVIEW")
+    if firm.get("recognized_revenue_claimed") is True:
+        raise IntegrityError("operating company cannot claim recognized revenue", reason_code="CATALOG_REVIEW")
+    lede = str(firm.get("lede") or "").lower()
+    if "one spine" not in lede or "five hundred" not in lede or "capacity" not in lede:
+        raise IntegrityError("operating-company lede is one spine at 500/500 capacity", reason_code="CATALOG_REVIEW")
+    glance = str(firm.get("glance") or "").lower()
+    if "roster" not in glance or "licensed-not-wired" not in glance:
+        raise IntegrityError("operating-company glance is the Microsoft roster and licensed-not-wired", reason_code="CATALOG_REVIEW")
+    cap = firm.get("capacity") or {}
+    if int(cap.get("live_target") or 0) != 500 or int(cap.get("pipeline_target") or 0) != 500:
+        raise IntegrityError("operating-company capacity targets are 500 live and 500 pipeline", reason_code="CATALOG_REVIEW")
+    if int(cap.get("live") or 0) != 0 or int(cap.get("pipeline") or 0) != 0 or int(cap.get("sandboxes") or 0) != 0:
+        raise IntegrityError("operating-company live, pipeline, and sandboxes stay zero", reason_code="CATALOG_REVIEW")
+    if "capacity" not in str(cap.get("note") or "").lower() or "booked" not in str(cap.get("note") or "").lower():
+        raise IntegrityError("operating-company capacity note keeps targets as capacity not booked", reason_code="CATALOG_REVIEW")
+    rails = firm.get("rails") or []
+    ids = [item.get("id") for item in rails if isinstance(item, dict)]
+    if ids != ["pipeline", "live", "sandbox", "production"]:
+        raise IntegrityError("operating-company rails are pipeline, live book, sandbox, production", reason_code="CATALOG_REVIEW")
+    roles = firm.get("roles") or []
+    role_ids = [item.get("id") for item in roles if isinstance(item, dict)]
+    if role_ids != ["owner", "number_two", "bd", "closer", "kit", "service", "ic"]:
+        raise IntegrityError("operating-company roles are owner, number two, BD, closer, kit, service, IC", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in roles
+        if isinstance(item, dict)
+    )
+    if "not a seat" not in blob or "hodnett" not in blob or "cynthia" not in blob:
+        raise IntegrityError("operating-company roles keep owner, Cynthia, and ICs are not seats", reason_code="CATALOG_REVIEW")
+    comp = firm.get("comp") or {}
+    if comp.get("kind") != "ainav.comp.v1":
+        raise IntegrityError("operating-company comp kind is ainav.comp.v1", reason_code="CATALOG_REVIEW")
+    if comp.get("booked") is True or int(comp.get("paid_count") or 0) != 0:
+        raise IntegrityError("operating-company comp stays unbooked and unpaid", reason_code="CATALOG_REVIEW")
+    if comp.get("from_this_plane") is True or comp.get("payroll_provider") is not None:
+        raise IntegrityError("operating-company cannot pay from this plane or invent payroll", reason_code="CATALOG_REVIEW")
+    if comp.get("ic_is_not_seat") is not True:
+        raise IntegrityError("operating-company ICs are not seats", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in firm.get("refuse") or [])
+    for stem in ("500 live", "named contractor", "commission", "hubspot", "shared twin", "fourth sku", "live_pin", "mark launch", "u-dual", "dataverse", "ninth", "microsoft as the product"):
+        if stem not in refuse:
+            raise IntegrityError("operating-company refuse keeps 500 live, contractor, commission, HubSpot", reason_code="CATALOG_REVIEW")
+    site = str(firm.get("site") or "").lower()
+    if "#firm-console" not in site or "#firm" not in site or "#twin" not in site:
+        raise IntegrityError("operating-company site is #firm-console on #firm; demo is #twin", reason_code="CATALOG_REVIEW")
+    if "operating day" not in site or "launch gate" not in site:
+        raise IntegrityError("operating-company site keeps the operating day and launch gate", reason_code="CATALOG_REVIEW")
+    if "#firm-ms" not in site or "microsoft run" not in site:
+        raise IntegrityError("operating-company site keeps the Microsoft run on #firm-ms", reason_code="CATALOG_REVIEW")
+    if "#firm-ms-day" not in site or "day map" not in site:
+        raise IntegrityError("operating-company site keeps the Microsoft day map on #firm-ms-day", reason_code="CATALOG_REVIEW")
+    note = str(firm.get("note") or "").lower()
+    if "live stays 0" not in note or "payouts stay 0" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("operating-company note keeps live 0, payouts 0, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+    if "launch stays false" not in note:
+        raise IntegrityError("operating-company note keeps launch false", reason_code="CATALOG_REVIEW")
+    needs = " ".join(str(item).lower() for item in firm.get("needs") or [])
+    if "commission" not in needs or "payout" not in needs or "g12" not in needs:
+        raise IntegrityError("operating-company needs keep commission rates, payout vehicle, and G12", reason_code="CATALOG_REVIEW")
+    _validate_operating_day(firm.get("day"))
+    _validate_launch_gate(firm.get("gates"))
+    _validate_service_book(firm.get("service"))
+    _validate_microsoft_run(firm.get("microsoft_run"))
+
+
+def _validate_brand(body: Any) -> None:
+    brand = _as_dict(body, "brand")
+    if brand.get("kind") != "ainav.brand.v1":
+        raise IntegrityError("brand kind is ainav.brand.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "trademark_filed",
+        "microsoft_is_the_product",
+    ):
+        if brand.get(flag) is True:
+            raise IntegrityError(f"brand cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if brand.get("lockfile_stays_job_c") is not True:
+        raise IntegrityError("brand lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    marks = brand.get("marks") or {}
+    if marks.get("legal") != "AINav, Inc." or marks.get("product") != "AINav Control Plane":
+        raise IntegrityError("brand marks keep AINav, Inc. and AINav Control Plane", reason_code="CATALOG_REVIEW")
+    if marks.get("institute") != "AINAV.Institute" or marks.get("lockfile") != "job_c":
+        raise IntegrityError("brand marks keep AINAV.Institute and lockfile job_c", reason_code="CATALOG_REVIEW")
+    if "job c" not in str(marks.get("job") or "").lower():
+        raise IntegrityError("brand marks keep Job C", reason_code="CATALOG_REVIEW")
+    voice = " ".join(str((brand.get("voice") or {}).get(key) or "").lower() for key in ("ours", "not_ours"))
+    if "write-fear" not in voice or "doom-fear" not in voice or "fear brand" not in voice:
+        raise IntegrityError("brand voice splits write-fear from doom-fear and a fear brand", reason_code="CATALOG_REVIEW")
+    surfaces = [item for item in (brand.get("surfaces") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in surfaces] != BRAND_SURFACE_IDS:
+        raise IntegrityError("brand surfaces are legal through owner", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('mark') or ''} {item.get('note') or ''}".lower()
+        for item in surfaces
+    )
+    for stem in (
+        "delaware",
+        "job c",
+        "lockfile stays job_c",
+        "not launched",
+        "not hubspot",
+        "write-fear",
+        "azure swa",
+        "ainav-l1",
+        "ids stay unset",
+        "paid on cynthia",
+        "not the firm crm",
+        "live_pin_ok",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"brand surfaces must keep {stem}", reason_code="CATALOG_REVIEW")
+    face = brand.get("face") or {}
+    if str(face.get("paper") or "") != "#f3eee4" or str(face.get("ink") or "") != "#12100c":
+        raise IntegrityError("brand face keeps paper and ink tokens", reason_code="CATALOG_REVIEW")
+    if str(face.get("gold") or "") != "#8a6a2c" or str(face.get("gold_2") or "") != "#c9a45a":
+        raise IntegrityError("brand face keeps gold tokens", reason_code="CATALOG_REVIEW")
+    if str(face.get("void") or "") != "#100e0b":
+        raise IntegrityError("brand face keeps the void token", reason_code="CATALOG_REVIEW")
+    if "newsreader" not in str(face.get("display") or "").lower() or "source sans 3" not in str(face.get("sans") or "").lower():
+        raise IntegrityError("brand face keeps Newsreader and Source Sans 3", reason_code="CATALOG_REVIEW")
+    if "cms" not in str(face.get("note") or "").lower():
+        raise IntegrityError("brand face is not a CMS theme SKU", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in brand.get("refuse") or [])
+    for stem in ("rebrand job c", "lockfile", "microsoft as the product", "fear brand", "doom-fear", "teams team name", "production brand", "hubspot", "launched", "live_pin"):
+        if stem not in refuse:
+            raise IntegrityError("brand refuse keeps rebrand, fear brand, Microsoft as the product, sandbox production", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in brand.get("owner_only") or [])
+    for stem in ("trademark", "apex brand", "teams", "client twin", "production brand", "launch", "live_pin"):
+        if stem not in owner:
+            raise IntegrityError("brand owner_only keeps trademark, apex brand, Teams ids, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    site = str(brand.get("site") or "").lower()
+    if "#brand" not in site or "not a /brand route" not in site:
+        raise IntegrityError("brand site is #brand, not a /brand route", reason_code="CATALOG_REVIEW")
+    if "#firm" not in site or "#twin" not in site or "#path" not in site:
+        raise IntegrityError("brand site keeps firm, twin, and close", reason_code="CATALOG_REVIEW")
+    note = str(brand.get("note") or "").lower()
+    if "lockfile stays job_c" not in note or "live_pin_ok" not in note or "fear brand" not in note:
+        raise IntegrityError("brand note keeps lockfile, fear brand refuse, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+    lede = str(brand.get("lede") or "").lower()
+    if "one mark set" not in lede or "write-fear" not in lede or "lockfile stays job_c" not in lede:
+        raise IntegrityError("brand lede is one mark set, write-fear, lockfile stays job_c", reason_code="CATALOG_REVIEW")
+
+
+def _validate_client_universe(body: Any) -> None:
+    universe = _as_dict(body, "client_universe")
+    if universe.get("kind") != "ainav.client_universe.v1":
+        raise IntegrityError("client universe kind is ainav.client_universe.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "assigned",
+        "production",
+        "named_client",
+        "mfa_admits",
+        "certified",
+        "forecast",
+    ):
+        if universe.get(flag) is True:
+            raise IntegrityError(f"client universe cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    surfaces = [item for item in (universe.get("surfaces") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in surfaces] != CLIENT_UNIVERSE_RAIL_IDS:
+        raise IntegrityError("client universe rails are identify through packs", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in surfaces
+    )
+    for stem in (
+        "identify is not admit",
+        "mfa",
+        "one hash",
+        "consume once",
+        "no admit, no write",
+        "first record",
+        "decisionrecord",
+        "17a-4",
+        "unnamed",
+        "never shared",
+        "not production",
+        "claimed=false",
+        "landed write",
+        "close clocks",
+        "write-fear",
+        "doom-fear",
+        "not tam",
+        "not a forecast",
+        "kit pass",
+        "hours never mint",
+        "never free",
+        "not skus",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"client universe rails must keep {stem}", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in universe.get("refuse") or [])
+    for stem in (
+        "mfa as admit",
+        "named client",
+        "sandbox as production",
+        "fourth sku",
+        "fear brand",
+        "maps certified",
+        "close regulator clocks",
+        "arr graphs",
+        "hubspot",
+        "live_pin",
+        "/universe route",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("client universe refuse keeps MFA-as-admit, named client, and /universe route", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in universe.get("owner_only") or [])
+    for stem in ("seat b", "signed l1", "assigned sandbox", "client brand", "live_pin", "launch", "g12"):
+        if stem not in owner:
+            raise IntegrityError("client universe owner_only keeps seat B, signed L1, assigned name, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    site = str(universe.get("site") or "").lower()
+    if "#universe" not in site or "not a /universe route" not in site:
+        raise IntegrityError("client universe site is #universe, not a /universe route", reason_code="CATALOG_REVIEW")
+    if "#path" not in site or "#twin" not in site or "#brand" not in site or "#firm" not in site:
+        raise IntegrityError("client universe site keeps close, twin, brand, and firm", reason_code="CATALOG_REVIEW")
+    if "write rail" not in site:
+        raise IntegrityError("client universe site keeps first glance as the write rail", reason_code="CATALOG_REVIEW")
+    note = str(universe.get("note") or "").lower()
+    if "mfa identifies" not in note or "identify is not admit" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("client universe note keeps MFA identifies, identify is not admit, and LIVE_PIN_OK honest", reason_code="CATALOG_REVIEW")
+    if "claimed=false" not in note or "close regulator clocks" not in note:
+        raise IntegrityError("client universe note keeps maps claimed=false and regulator clocks open", reason_code="CATALOG_REVIEW")
+    lede = str(universe.get("lede") or "").lower()
+    if "client business universe" not in lede or "mfa identifies" not in lede or "identify is not admit" not in lede:
+        raise IntegrityError("client universe lede is MFA identifies and identify is not admit", reason_code="CATALOG_REVIEW")
+    if "segregated branded" not in lede or "packs are not skus" not in lede:
+        raise IntegrityError("client universe lede keeps the segregated branded sandbox and packs are not SKUs", reason_code="CATALOG_REVIEW")
+    glance = str(universe.get("glance") or "").lower()
+    if "unnamed" not in glance or "mfa identifies" not in glance or "claimed=false" not in glance:
+        raise IntegrityError("client universe glance keeps unnamed, MFA identifies, and maps claimed=false", reason_code="CATALOG_REVIEW")
+    if universe.get("operable") is not True or universe.get("refuse_is_visible") is not True:
+        raise IntegrityError("client universe is operable and refuse is visible", reason_code="CATALOG_REVIEW")
+    if universe.get("wells_are_live") is True:
+        raise IntegrityError("client universe wells are not live records", reason_code="CATALOG_REVIEW")
+    wells = universe.get("wells") or {}
+    if not isinstance(wells, dict):
+        raise IntegrityError("client universe wells must be an object", reason_code="CATALOG_REVIEW")
+    if wells.get("named_client") is True or wells.get("assigned") is True or wells.get("maps_claimed") is True:
+        raise IntegrityError("client universe wells stay unnamed, unassigned, maps claimed=false", reason_code="CATALOG_REVIEW")
+    if str(wells.get("client_mark") or "") or int(wells.get("first_record") or 0) != 0 or int(wells.get("second_record") or 0) != 0:
+        raise IntegrityError("client universe wells stay empty and record counts stay zero", reason_code="CATALOG_REVIEW")
+    if int(wells.get("packs_attached") or 0) != 0:
+        raise IntegrityError("client universe packs_attached stays zero", reason_code="CATALOG_REVIEW")
+    well_note = str(wells.get("note") or "").lower()
+    if "honest zeros" not in well_note or "refuse is visible" not in well_note:
+        raise IntegrityError("client universe wells note keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    groups = [item for item in (universe.get("groups") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in groups] != CLIENT_UNIVERSE_GROUP_IDS:
+        raise IntegrityError("client universe groups are control, marks, govern, offer", reason_code="CATALOG_REVIEW")
+    grouped = []
+    for item in groups:
+        grouped.extend(item.get("rails") or [])
+    if grouped != CLIENT_UNIVERSE_RAIL_IDS:
+        raise IntegrityError("client universe groups cover identify through packs once", reason_code="CATALOG_REVIEW")
+    hrefs = {item.get("id"): str(item.get("href") or "") for item in surfaces}
+    if hrefs != CLIENT_UNIVERSE_HREFS:
+        raise IntegrityError("client universe rails walk to identify, control, close, governance, and packs", reason_code="CATALOG_REVIEW")
+    if "honest zeros" not in site or "refuse is visible" not in site:
+        raise IntegrityError("client universe site keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if universe.get("sit_down") is not True:
+        raise IntegrityError("client universe is a sit-down client day", reason_code="CATALOG_REVIEW")
+    if universe.get("day_is_live") is True or universe.get("day_invented") is True:
+        raise IntegrityError("sit-down client day is not a live named day", reason_code="CATALOG_REVIEW")
+    _validate_client_universe_day(universe.get("day"))
+    if universe.get("spine_states") != CLIENT_UNIVERSE_SPINE_STATES:
+        raise IntegrityError("client universe spine states stay ready, owner_only, blocked, after_l1", reason_code="CATALOG_REVIEW")
+    if "sit-down client day" not in site or "now / next / after l1" not in site:
+        raise IntegrityError("client universe site keeps the sit-down client day", reason_code="CATALOG_REVIEW")
+
+
+def _validate_client_universe_day(body: Any) -> None:
+    day = _as_dict(body, "client_universe_day")
+    if day.get("kind") != "ainav.client_universe_day.v1":
+        raise IntegrityError("client universe day kind is ainav.client_universe_day.v1", reason_code="CATALOG_REVIEW")
+    if day.get("live") is True or day.get("invented") is True or day.get("sku") is True:
+        raise IntegrityError("sit-down client day is not live, invented, or a SKU", reason_code="CATALOG_REVIEW")
+    lanes = [item for item in (day.get("lanes") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in lanes] != CLIENT_UNIVERSE_DAY_LANE_IDS:
+        raise IntegrityError("sit-down client day lanes are now, next, after_l1, blocked", reason_code="CATALOG_REVIEW")
+    by_id = {item.get("id"): item for item in lanes}
+    expected = {
+        "now": CLIENT_UNIVERSE_DAY_NOW_IDS,
+        "next": CLIENT_UNIVERSE_DAY_NEXT_IDS,
+        "after_l1": CLIENT_UNIVERSE_DAY_AFTER_IDS,
+        "blocked": CLIENT_UNIVERSE_DAY_BLOCKED_IDS,
+    }
+    hrefs = {}
+    for lane_id, item_ids in expected.items():
+        items = [row for row in (by_id[lane_id].get("items") or []) if isinstance(row, dict)]
+        if [row.get("id") for row in items] != item_ids:
+            raise IntegrityError(f"sit-down client day {lane_id} items stay exact", reason_code="CATALOG_REVIEW")
+        for row in items:
+            hrefs[row.get("id")] = str(row.get("href") or "")
+    if hrefs != CLIENT_UNIVERSE_DAY_HREFS:
+        raise IntegrityError("sit-down client day walks to identify, control, close, and owner missing", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{row.get('name') or ''} {row.get('note') or ''}".lower()
+        for lane in lanes
+        for row in (lane.get("items") or [])
+        if isinstance(row, dict)
+    )
+    for stem in (
+        "chodnett@ainav.institute",
+        "mailbox is not oid",
+        "identify is not admit",
+        "honest zeros",
+        "she clicks",
+        "cannot invent an oid",
+        "unnamed until signed l1",
+        "never shared",
+        "refused",
+        "not from this plane",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"sit-down client day must keep {stem}", reason_code="CATALOG_REVIEW")
+    note = str(day.get("note") or "").lower()
+    if "sit-down client day" not in note or "not a live named day" not in note:
+        raise IntegrityError("sit-down client day note stays honest", reason_code="CATALOG_REVIEW")
+
+
+def _validate_industry_drawer(body: Any) -> None:
+    drawer = _as_dict(body, "industry_drawer")
+    if drawer.get("kind") != "ainav.industry_drawer.v1":
+        raise IntegrityError("industry drawer kind is ainav.industry_drawer.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "certified",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "named_vertical",
+        "filing",
+        "drawer_is_live",
+        "drawer_invented",
+    ):
+        if drawer.get(flag) is True:
+            raise IntegrityError(f"industry drawer cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if drawer.get("sit_down") is not True:
+        raise IntegrityError("industry drawer is a sit-down", reason_code="CATALOG_REVIEW")
+    lanes = [item for item in (drawer.get("lanes") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in lanes] != INDUSTRY_DRAWER_LANE_IDS:
+        raise IntegrityError("industry drawer lanes are sit, maps, attach, refuse", reason_code="CATALOG_REVIEW")
+    by_id = {item.get("id"): item for item in lanes}
+    expected = {
+        "sit": INDUSTRY_DRAWER_SIT_IDS,
+        "maps": INDUSTRY_DRAWER_MAPS_IDS,
+        "attach": INDUSTRY_DRAWER_ATTACH_IDS,
+        "refuse": INDUSTRY_DRAWER_REFUSE_IDS,
+    }
+    hrefs = {}
+    for lane_id, item_ids in expected.items():
+        items = [row for row in (by_id[lane_id].get("items") or []) if isinstance(row, dict)]
+        if [row.get("id") for row in items] != item_ids:
+            raise IntegrityError(f"industry drawer {lane_id} items stay exact", reason_code="CATALOG_REVIEW")
+        for row in items:
+            hrefs[row.get("id")] = str(row.get("href") or "")
+    if hrefs != INDUSTRY_DRAWER_HREFS:
+        raise IntegrityError("industry drawer walks to packs, governance, risk, and #industry", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{row.get('name') or ''} {row.get('note') or ''}".lower()
+        for lane in lanes
+        for row in (lane.get("items") or [])
+        if isinstance(row, dict)
+    )
+    for stem in (
+        "week-one prove",
+        "journal wedge",
+        "not a fourth sku",
+        "buying l1 is not a certificate",
+        "nist",
+        "sox",
+        "claimed=false",
+        "eu ai act",
+        "iso 42001",
+        "landed write",
+        "close clocks",
+        "included is not free",
+        "not skus",
+        "libraries seat",
+        "repo.packs",
+        "catalog drawers",
+        "not a grc product",
+        "maps are not filings",
+        "packs deepen",
+        "drawer is #industry",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"industry drawer must keep {stem}", reason_code="CATALOG_REVIEW")
+    papers = [item for item in (drawer.get("papers") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in papers] != INDUSTRY_DRAWER_PAPER_IDS:
+        raise IntegrityError("industry drawer papers stay the unauthorized journal through the landed write", reason_code="CATALOG_REVIEW")
+    paper_hrefs = {item.get("id"): str(item.get("href") or "") for item in papers}
+    if paper_hrefs != INDUSTRY_DRAWER_PAPER_HREFS:
+        raise IntegrityError("industry drawer papers walk to write, bake-off, governance, and risk", reason_code="CATALOG_REVIEW")
+    paper_blob = " ".join(f"{item.get('name') or ''} {item.get('note') or ''}".lower() for item in papers)
+    for stem in ("write that must not happen", "worst failsafe", "claimed=false", "landed write", "reserve journal", "not a coin"):
+        if stem not in paper_blob:
+            raise IntegrityError(f"industry drawer papers must keep {stem}", reason_code="CATALOG_REVIEW")
+    areas = [item for item in (drawer.get("areas") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in areas] != INDUSTRY_DRAWER_AREA_IDS:
+        raise IntegrityError("industry drawer areas stay public, encyclopedia, owner, sandbox, industry", reason_code="CATALOG_REVIEW")
+    area_hrefs = {item.get("id"): str(item.get("href") or "") for item in areas}
+    if area_hrefs != INDUSTRY_DRAWER_AREA_HREFS:
+        raise IntegrityError("industry drawer areas walk to write rail, Floor, owner, close, and #industry", reason_code="CATALOG_REVIEW")
+    area_blob = " ".join(f"{item.get('name') or ''} {item.get('note') or ''}".lower() for item in areas)
+    for stem in ("first glance", "client floor stays lean", "owner-only", "unnamed until signed l1", "not a /industry route"):
+        if stem not in area_blob:
+            raise IntegrityError(f"industry drawer areas must keep {stem}", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in drawer.get("refuse") or [])
+    for stem in (
+        "maps as certificates",
+        "packs as skus",
+        "named vertical",
+        "/industry route",
+        "healthcare grc",
+        "certificate mill",
+        "close regulator clocks",
+        "live_pin",
+        "tokenization sku",
+        "stablecoin sku",
+        "rwa sku",
+        "crypto asset-management sku",
+        "17a-4 worm",
+        "crypto product",
+        "room 2",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("industry drawer refuse keeps maps-as-certificates and /industry route", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in drawer.get("owner_only") or [])
+    for stem in ("signed l1", "named twin", "live_pin", "g12"):
+        if stem not in owner:
+            raise IntegrityError("industry drawer owner_only keeps signed L1, named twin, and LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    lede = str(drawer.get("lede") or "").lower()
+    if "sit-down industry drawer" not in lede or "maps stay claimed=false" not in lede or "not skus" not in lede:
+        raise IntegrityError("industry drawer lede keeps sit-down, maps claimed=false, and not SKUs", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in lede or "not a crypto product" not in lede:
+        raise IntegrityError("industry drawer lede keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    if "honest zeros" not in lede or "refuse is visible" not in lede:
+        raise IntegrityError("industry drawer lede keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in lede or "catalog is the message" not in lede:
+        raise IntegrityError("industry drawer lede keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
+    glance = str(drawer.get("glance") or "").lower()
+    if "sit-down industry drawer" not in glance or "not a /industry route" not in glance:
+        raise IntegrityError("industry drawer glance keeps sit-down and not a /industry route", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in glance or "not a crypto product" not in glance:
+        raise IntegrityError("industry drawer glance keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    if "honest zeros" not in glance or "refuse is visible" not in glance:
+        raise IntegrityError("industry drawer glance keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in glance:
+        raise IntegrityError("industry drawer glance keeps every refuse clicks", reason_code="CATALOG_REVIEW")
+    site = str(drawer.get("site") or "").lower()
+    if "#industry" not in site or "not a /industry route" not in site:
+        raise IntegrityError("industry drawer site is #industry, not a /industry route", reason_code="CATALOG_REVIEW")
+    if "sit / maps / attach / refuse" not in site or "write rail" not in site:
+        raise IntegrityError("industry drawer site keeps sit / maps / attach / refuse and the write rail", reason_code="CATALOG_REVIEW")
+    if "honest zeros" not in site or "refuse is visible" not in site:
+        raise IntegrityError("industry drawer site keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in site or "catalog is the message" not in site:
+        raise IntegrityError("industry drawer site keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
+    if drawer.get("fully_operable") is not True or drawer.get("every_refuse_clicks") is not True:
+        raise IntegrityError("industry drawer is fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
+    if drawer.get("complete") is not True:
+        raise IntegrityError("industry drawer is complete", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer" not in lede:
+        raise IntegrityError("industry drawer lede keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer" not in glance:
+        raise IntegrityError("industry drawer glance keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer" not in site:
+        raise IntegrityError("industry drawer site keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    note = str(drawer.get("note") or "").lower()
+    if "maps stay claimed=false" not in note or "not a live filing" not in note or "landed write" not in note:
+        raise IntegrityError("industry drawer note keeps maps claimed=false and not a live filing", reason_code="CATALOG_REVIEW")
+    if "room 1 is books" not in note or "not a crypto product" not in note or "not 17a-4" not in note:
+        raise IntegrityError("industry drawer note keeps Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    if "honest zeros" not in note or "refuse is visible" not in note:
+        raise IntegrityError("industry drawer note keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in note or "catalog is the message" not in note:
+        raise IntegrityError("industry drawer note keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer" not in note:
+        raise IntegrityError("industry drawer note keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    refuse_lane = next((lane for lane in lanes if lane.get("id") == "refuse"), {})
+    refuse_items = [row for row in (refuse_lane.get("items") or []) if isinstance(row, dict)]
+    if any(row.get("refuse") is not True for row in refuse_items) or len(refuse_items) != len(INDUSTRY_DRAWER_REFUSE_IDS):
+        raise IntegrityError("industry drawer refuse lane items stay refuse", reason_code="CATALOG_REVIEW")
+    if {row.get("id"): row.get("refuse_text") for row in refuse_items} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_DRAWER_REFUSE_IDS
+    }:
+        raise IntegrityError("industry drawer refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
+    refuse_blob = " ".join(str(item).lower() for item in drawer.get("refuse") or [])
+    for stem in ("genius act close", "clarity act close", "d&o", "governess", "company policy as a sku", "fear as the first glance"):
+        if stem not in refuse_blob:
+            raise IntegrityError("industry drawer refuse keeps GENIUS, CLARITY, D&O, Governess, policy SKU, and fear first glance", reason_code="CATALOG_REVIEW")
+    for field in ("lede", "glance", "site", "note"):
+        if "honest control" not in str(drawer.get(field) or "").lower():
+            raise IntegrityError(f"industry drawer {field} keeps honest control", reason_code="CATALOG_REVIEW")
+    if drawer.get("honest_control") is not True:
+        raise IntegrityError("industry drawer is honest control", reason_code="CATALOG_REVIEW")
+    _validate_industry_rooms(drawer.get("rooms"))
+    _validate_industry_control(drawer.get("control"))
+
+
+def _validate_industry_rooms(body: Any) -> None:
+    rooms = _as_dict(body, "industry_rooms")
+    if rooms.get("kind") != "ainav.industry_rooms.v1":
+        raise IntegrityError("industry rooms kind is ainav.industry_rooms.v1", reason_code="CATALOG_REVIEW")
+    for flag in ("live", "crypto_product", "seventeen_a4", "fourth_sku"):
+        if rooms.get(flag) is True:
+            raise IntegrityError(f"industry rooms cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if rooms.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("industry rooms lead stays bc.general_journal.post", reason_code="CATALOG_REVIEW")
+    room_1 = [item for item in (rooms.get("room_1") or []) if isinstance(item, dict)]
+    room_2 = [item for item in (rooms.get("room_2") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in room_1] != INDUSTRY_ROOM_1_IDS:
+        raise IntegrityError("industry Room 1 items stay bank, reserve, receivable", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in room_2] != INDUSTRY_ROOM_2_IDS:
+        raise IntegrityError("industry Room 2 items stay mint, RWA, crypto AMS, wallet, 17a-4", reason_code="CATALOG_REVIEW")
+    hrefs_1 = {item.get("id"): str(item.get("href") or "") for item in room_1}
+    hrefs_2 = {item.get("id"): str(item.get("href") or "") for item in room_2}
+    if hrefs_1 != INDUSTRY_ROOM_1_HREFS or hrefs_2 != INDUSTRY_ROOM_2_HREFS:
+        raise IntegrityError("industry rooms walk to packs and #industry", reason_code="CATALOG_REVIEW")
+    if rooms.get("operable") is not True or rooms.get("refuse_is_visible") is not True or rooms.get("honest_zeros") is not True:
+        raise IntegrityError("industry rooms are operable, refuse is visible, and honest zeros", reason_code="CATALOG_REVIEW")
+    if rooms.get("assigned") is True or rooms.get("named_vertical") is True:
+        raise IntegrityError("industry rooms stay unassigned and unnamed", reason_code="CATALOG_REVIEW")
+    if rooms.get("rooms_are_live") is True or rooms.get("wells_are_live") is True:
+        raise IntegrityError("industry rooms and wells are not live records", reason_code="CATALOG_REVIEW")
+    wells = rooms.get("wells") or {}
+    if not isinstance(wells, dict):
+        raise IntegrityError("industry room wells must be an object", reason_code="CATALOG_REVIEW")
+    if int(wells.get("room_1") or 0) != 0 or int(wells.get("room_2") or 0) != 0 or str(wells.get("named") or ""):
+        raise IntegrityError("industry room wells stay honest zeros", reason_code="CATALOG_REVIEW")
+    if rooms.get("spine_states") != INDUSTRY_ROOM_SPINE_STATES:
+        raise IntegrityError("industry room spine states stay ready, refused, after_l1", reason_code="CATALOG_REVIEW")
+    if any(item.get("refuse") is not True for item in room_2):
+        raise IntegrityError("industry Room 2 items stay refuse", reason_code="CATALOG_REVIEW")
+    if {item.get("id"): item.get("refuse_text") for item in room_2} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_ROOM_2_IDS
+    }:
+        raise IntegrityError("industry Room 2 catalog is the message", reason_code="CATALOG_REVIEW")
+    if rooms.get("fully_operable") is not True or rooms.get("every_refuse_clicks") is not True:
+        raise IntegrityError("industry rooms are fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
+    if rooms.get("complete") is not True:
+        raise IntegrityError("industry rooms are complete", reason_code="CATALOG_REVIEW")
+    site = str(rooms.get("site") or "").lower()
+    if "operable industry rooms" not in site or "honest zeros" not in site or "refuse is visible" not in site:
+        raise IntegrityError("industry rooms site keeps operable, honest zeros, and refuse is visible", reason_code="CATALOG_REVIEW")
+    if "every refuse clicks" not in site or "catalog is the message" not in site:
+        raise IntegrityError("industry rooms site keeps every refuse clicks and catalog is the message", reason_code="CATALOG_REVIEW")
+    if "complete industry drawer" not in site:
+        raise IntegrityError("industry rooms site keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    if "#packs" not in site or "#industry" not in site or "not a /crypto route" not in site:
+        raise IntegrityError("industry rooms site keeps packs, #industry, and not a /crypto route", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in room_1 + room_2
+    )
+    blob += f" {rooms.get('lede') or ''} {rooms.get('note') or ''}".lower()
+    for stem in (
+        "industry.bank",
+        "reserve journal",
+        "booked receivable",
+        "issuing the token",
+        "mint",
+        "wallet signing",
+        "17a-4",
+        "not a coin",
+        "ats match",
+        "wallet is not a seat",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"industry rooms must keep {stem}", reason_code="CATALOG_REVIEW")
+
+
+def _validate_industry_control(body: Any) -> None:
+    control = _as_dict(body, "industry_control")
+    if control.get("kind") != "ainav.industry_control.v1":
+        raise IntegrityError("industry control kind is ainav.industry_control.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "fourth_sku",
+        "cms",
+        "fear_brand",
+        "certified",
+        "claimed",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "dno",
+        "genius_closed",
+        "clarity_closed",
+        "governess",
+        "policy_sku",
+        "control_is_live",
+    ):
+        if control.get(flag) is True:
+            raise IntegrityError(f"industry control cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if control.get("honest") is not True or control.get("every_refuse_clicks") is not True:
+        raise IntegrityError("industry control is honest and every refuse clicks", reason_code="CATALOG_REVIEW")
+    lanes = [item for item in (control.get("lanes") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in lanes] != INDUSTRY_CONTROL_LANE_IDS:
+        raise IntegrityError("industry control lanes stay need, human, fiduciary, maps_oversight, refuse", reason_code="CATALOG_REVIEW")
+    by_id = {item.get("id"): item for item in lanes}
+    expected = {
+        "need": INDUSTRY_CONTROL_NEED_IDS,
+        "human": INDUSTRY_CONTROL_HUMAN_IDS,
+        "fiduciary": INDUSTRY_CONTROL_FIDUCIARY_IDS,
+        "maps_oversight": INDUSTRY_CONTROL_MAPS_IDS,
+        "refuse": INDUSTRY_CONTROL_REFUSE_IDS,
+    }
+    hrefs = {}
+    for lane_id, item_ids in expected.items():
+        items = [row for row in (by_id[lane_id].get("items") or []) if isinstance(row, dict)]
+        if [row.get("id") for row in items] != item_ids:
+            raise IntegrityError(f"industry control {lane_id} items stay exact", reason_code="CATALOG_REVIEW")
+        for row in items:
+            hrefs[row.get("id")] = str(row.get("href") or "")
+    if hrefs != INDUSTRY_CONTROL_HREFS:
+        raise IntegrityError("industry control walks to control, risk, governance, missing, have, buyer, and #industry", reason_code="CATALOG_REVIEW")
+    refuse_lane = next((lane for lane in lanes if lane.get("id") == "refuse"), {})
+    refuse_items = [row for row in (refuse_lane.get("items") or []) if isinstance(row, dict)]
+    if any(row.get("refuse") is not True for row in refuse_items) or len(refuse_items) != len(INDUSTRY_CONTROL_REFUSE_IDS):
+        raise IntegrityError("industry control refuse lane items stay refuse", reason_code="CATALOG_REVIEW")
+    if {row.get("id"): row.get("refuse_text") for row in refuse_items} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_CONTROL_REFUSE_IDS
+    }:
+        raise IntegrityError("industry control refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{row.get('name') or ''} {row.get('note') or ''}".lower()
+        for lane in lanes
+        for row in (lane.get("items") or [])
+        if isinstance(row, dict)
+    )
+    for stem in (
+        "write does not land",
+        "thinking you have it",
+        "around the corner",
+        "mailbox is not oid",
+        "do not claim we have it",
+        "not a d&o opinion",
+        "landed write",
+        "genius",
+        "clarity",
+        "department ai is not a seat",
+        "company policy is not a sku",
+        "refuse rehearsal",
+    ):
+        if stem not in blob:
+            raise IntegrityError(f"industry control must keep {stem}", reason_code="CATALOG_REVIEW")
+    for field in ("lede", "glance", "site", "note"):
+        text = str(control.get(field) or "").lower()
+        if "honest control" not in text:
+            raise IntegrityError(f"industry control {field} keeps honest control", reason_code="CATALOG_REVIEW")
+    if "if you don't have it" not in str(control.get("lede") or "").lower():
+        raise IntegrityError("industry control lede keeps if you don't have it", reason_code="CATALOG_REVIEW")
+    if "not ai governess" not in str(control.get("lede") or "").lower():
+        raise IntegrityError("industry control lede keeps not AI Governess", reason_code="CATALOG_REVIEW")
+    if "claimed=false" not in str(control.get("note") or "").lower():
+        raise IntegrityError("industry control note keeps claimed=false", reason_code="CATALOG_REVIEW")
+
+
+def _validate_operating_day(body: Any) -> None:
+    day = _as_dict(body, "operating_day")
+    if day.get("kind") != "ainav.operating_day.v1":
+        raise IntegrityError("operating day kind is ainav.operating_day.v1", reason_code="CATALOG_REVIEW")
+    if day.get("sku") is True or day.get("launch") is True or day.get("live_pin_ok") is True:
+        raise IntegrityError("operating day is not a SKU, launch, or LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    ids = [item.get("id") for item in day.get("stages") or [] if isinstance(item, dict)]
+    if ids != ["qualify", "proof", "close", "assign", "service", "launch"]:
+        raise IntegrityError("operating day is qualify, proof, close, assign, service, launch", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in day.get("stages") or []
+        if isinstance(item, dict)
+    )
+    if "walk-away" not in blob or "calendly" not in blob or "segregated" not in blob:
+        raise IntegrityError("operating day keeps walk-away, Calendly refuse, and segregated assign", reason_code="CATALOG_REVIEW")
+    if "p-adm" not in blob or "gold holds 99" not in blob:
+        raise IntegrityError("operating day keeps P-ADM service and gold-holds-99 launch", reason_code="CATALOG_REVIEW")
+
+
+def _validate_launch_gate(body: Any) -> None:
+    gates = _as_dict(body, "launch_gate")
+    if gates.get("kind") != "ainav.launch_gate.v1":
+        raise IntegrityError("launch gate kind is ainav.launch_gate.v1", reason_code="CATALOG_REVIEW")
+    if gates.get("launch") is True or gates.get("authorized_release") is True or gates.get("live_pin_ok") is True:
+        raise IntegrityError("launch gate stays closed", reason_code="CATALOG_REVIEW")
+    if gates.get("gold_is_not_launch") is not True:
+        raise IntegrityError("gold is not launch", reason_code="CATALOG_REVIEW")
+    ids = [item.get("id") for item in gates.get("items") or [] if isinstance(item, dict)]
+    if ids != ["seat_b", "signed_l1", "live_pin", "owner_launch", "gold"]:
+        raise IntegrityError("launch gate items are seat B, signed L1, LIVE_PIN_OK, owner launch, gold", reason_code="CATALOG_REVIEW")
+    if any(item.get("ready") is True for item in gates.get("items") or [] if isinstance(item, dict)):
+        raise IntegrityError("launch gate items stay not ready", reason_code="CATALOG_REVIEW")
+    gold = next((item for item in gates.get("items") or [] if isinstance(item, dict) and item.get("id") == "gold"), {})
+    if gold.get("held") is not True:
+        raise IntegrityError("gold 99 is held as the release floor, not an open gap", reason_code="CATALOG_REVIEW")
+    if any(item.get("held") is True for item in gates.get("items") or [] if isinstance(item, dict) and item.get("id") != "gold"):
+        raise IntegrityError("only gold 99 may be held on the launch gate", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''}".lower()
+        for item in gates.get("items") or []
+        if isinstance(item, dict)
+    )
+    if "she clicks" not in blob or "gold is not launch" not in blob or "james says launch" not in blob:
+        raise IntegrityError("launch gate keeps seat B click, gold is not launch, and owner launch word", reason_code="CATALOG_REVIEW")
+    if "floor held" not in blob:
+        raise IntegrityError("gold gate note keeps floor held", reason_code="CATALOG_REVIEW")
+
+
+def _validate_service_book(body: Any) -> None:
+    book = _as_dict(body, "service_book")
+    if book.get("kind") != "ainav.service_book.v1":
+        raise IntegrityError("service book kind is ainav.service_book.v1", reason_code="CATALOG_REVIEW")
+    if int(book.get("live") or 0) != 0 or int(book.get("padm") or 0) != 0 or int(book.get("ffs_hours") or 0) != 0:
+        raise IntegrityError("service book live, P-ADM, and FFS hours stay zero", reason_code="CATALOG_REVIEW")
+    if book.get("hours_mint_sku") is True or book.get("hours_attach_udual") is True or book.get("shared_twin") is True:
+        raise IntegrityError("service hours cannot mint a SKU, attach U-DUAL, or share a twin", reason_code="CATALOG_REVIEW")
+    note = str(book.get("note") or "").lower()
+    if "p-adm" not in note or "u-dual" not in note or "live stays 0" not in note:
+        raise IntegrityError("service book note keeps P-ADM, U-DUAL refuse, and live 0", reason_code="CATALOG_REVIEW")
+
+
+REQUIRED_MS_IDS = [
+    "azure.host",
+    "m365.e7",
+    "teams.enterprise",
+    "teams.premium",
+    "bc.premium",
+    "sales.enterprise",
+]
+COMPLEMENT_MS_IDS = [
+    "entra.id",
+    "azure.keyvault",
+    "azure.monitor",
+    "sharepoint.kit",
+    "defender.xdr",
+    "entra.pim",
+    "sentinel.siem",
+    "azure.policy",
+]
+OPERATING_DAY_IDS = ["qualify", "proof", "close", "assign", "service", "launch"]
+BRAND_SURFACE_IDS = [
+    "legal",
+    "product",
+    "institute",
+    "firm",
+    "sale",
+    "twin",
+    "sandbox",
+    "teams",
+    "teams_premium",
+    "sales",
+    "owner",
+]
+CLIENT_UNIVERSE_RAIL_IDS = [
+    "identify",
+    "admit",
+    "write",
+    "record",
+    "brand",
+    "sandbox",
+    "govern",
+    "consequence",
+    "need",
+    "lead",
+    "keep",
+    "deepen",
+    "packs",
+]
+CLIENT_UNIVERSE_GROUP_IDS = ["control", "marks", "govern", "offer"]
+CLIENT_UNIVERSE_HREFS = {
+    "identify": "identify.html",
+    "admit": "#control",
+    "write": "#buyer",
+    "record": "#governance",
+    "brand": "#brand",
+    "sandbox": "#path",
+    "govern": "#governance",
+    "consequence": "#risk",
+    "need": "#have",
+    "lead": "#market",
+    "keep": "#product",
+    "deepen": "#product",
+    "packs": "#packs",
+}
+CLIENT_UNIVERSE_DAY_LANE_IDS = ["now", "next", "after_l1", "blocked"]
+CLIENT_UNIVERSE_DAY_NOW_IDS = ["mailbox", "identify", "zeros"]
+CLIENT_UNIVERSE_DAY_NEXT_IDS = ["seat_b", "oid"]
+CLIENT_UNIVERSE_DAY_AFTER_IDS = ["named", "assigned", "records"]
+CLIENT_UNIVERSE_DAY_BLOCKED_IDS = ["mfa_admit", "named_now", "live_pin"]
+CLIENT_UNIVERSE_DAY_HREFS = {
+    "mailbox": "identify.html",
+    "identify": "identify.html",
+    "zeros": "#universe",
+    "seat_b": "#control",
+    "oid": "identify.html",
+    "named": "#path",
+    "assigned": "#path",
+    "records": "#governance",
+    "mfa_admit": "#universe",
+    "named_now": "#universe",
+    "live_pin": "#missing",
+}
+CLIENT_UNIVERSE_SPINE_STATES = {
+    "identify": "ready",
+    "admit": "owner_only",
+    "write": "blocked",
+    "record": "blocked",
+    "keep": "after_l1",
+    "pack": "after_l1",
+}
+INDUSTRY_DRAWER_LANE_IDS = ["sit", "maps", "attach", "refuse"]
+INDUSTRY_DRAWER_SIT_IDS = ["bc_treasury", "desks", "maps_false"]
+INDUSTRY_DRAWER_MAPS_IDS = ["domestic", "international", "noncompliance"]
+INDUSTRY_DRAWER_ATTACH_IDS = ["included", "upsell", "library", "repo", "paper"]
+INDUSTRY_DRAWER_REFUSE_IDS = ["grc_product", "cert_mill", "pack_sku", "industry_route", "named_vertical"]
+INDUSTRY_DRAWER_HREFS = {
+    "bc_treasury": "#packs",
+    "desks": "#packs",
+    "maps_false": "#governance",
+    "domestic": "#governance",
+    "international": "#governance",
+    "noncompliance": "#risk",
+    "included": "#packs",
+    "upsell": "#packs",
+    "library": "#packs",
+    "repo": "#packs",
+    "paper": "#industry",
+    "grc_product": "#industry",
+    "cert_mill": "#industry",
+    "pack_sku": "#industry",
+    "industry_route": "#industry",
+    "named_vertical": "#industry",
+}
+INDUSTRY_DRAWER_PAPER_IDS = [
+    "unauthorized_journal",
+    "independence",
+    "maps_are_not_filings",
+    "noncompliance_is_the_write",
+    "room_1_is_the_journal",
+    "not_a_crypto_product",
+]
+INDUSTRY_DRAWER_PAPER_HREFS = {
+    "unauthorized_journal": "#buyer",
+    "independence": "#success",
+    "maps_are_not_filings": "#governance",
+    "noncompliance_is_the_write": "#risk",
+    "room_1_is_the_journal": "#buyer",
+    "not_a_crypto_product": "#industry",
+}
+INDUSTRY_ROOM_1_IDS = ["bank", "reserve", "receivable"]
+INDUSTRY_ROOM_2_IDS = ["stablecoin_mint", "rwa_issue", "crypto_ams", "wallet", "seventeen_a4"]
+INDUSTRY_ROOM_1_HREFS = {
+    "bank": "#packs",
+    "reserve": "#packs",
+    "receivable": "#industry",
+}
+INDUSTRY_ROOM_2_HREFS = {
+    "stablecoin_mint": "#industry",
+    "rwa_issue": "#industry",
+    "crypto_ams": "#industry",
+    "wallet": "#industry",
+    "seventeen_a4": "#industry",
+}
+INDUSTRY_ROOM_SPINE_STATES = {
+    "room_1": "ready",
+    "room_2": "refused",
+    "after_l1": "after_l1",
+}
+INDUSTRY_REFUSE_TEXT = {
+    "grc_product": "Refused. Not a GRC product. Maps stay claimed=false.",
+    "cert_mill": "Refused. Maps are not filings. Buying L1 is not a certificate.",
+    "pack_sku": "Refused. Packs, libraries, and repositories are not SKUs.",
+    "industry_route": "Refused. The industry drawer sits on #industry. Not a /industry route.",
+    "named_vertical": "Refused. This plane cannot invent a named vertical as a fourth SKU.",
+    "stablecoin_mint": "Refused. Not a stablecoin SKU. Room 2 is refuse.",
+    "rwa_issue": "Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse.",
+    "crypto_ams": "Refused. Not a crypto asset-management SKU. Room 2 is refuse.",
+    "wallet": "Refused. Wallet is not a seat. Room 2 is refuse.",
+    "seventeen_a4": "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
+    "genius_close": "Refused. GENIUS is a map. claimed=false. Not a close.",
+    "clarity_close": "Refused. CLARITY is a map. claimed=false. Not a close.",
+    "dno_product": "Refused. Not D&O. Not a penalty product. Fiduciary is why two humans bind.",
+    "governess_product": "Refused. Not AI Governess. The product is Job C.",
+    "policy_sku": "Refused. Company policy is not a SKU. Catalog is the doctrine.",
+    "fear_first_glance": "Refused. Fear is not the first glance. First glance stays the write rail.",
+}
+INDUSTRY_CONTROL_LANE_IDS = ["need", "human", "fiduciary", "maps_oversight", "refuse"]
+INDUSTRY_CONTROL_NEED_IDS = ["if_you_dont", "consequence", "now", "corner"]
+INDUSTRY_CONTROL_HUMAN_IDS = ["lack", "thinking", "get_it"]
+INDUSTRY_CONTROL_FIDUCIARY_IDS = ["board", "penalties"]
+INDUSTRY_CONTROL_MAPS_IDS = ["genius", "clarity", "employee", "doctrine", "change"]
+INDUSTRY_CONTROL_REFUSE_IDS = [
+    "genius_close",
+    "clarity_close",
+    "dno_product",
+    "governess_product",
+    "policy_sku",
+    "fear_first_glance",
+]
+INDUSTRY_CONTROL_HREFS = {
+    "if_you_dont": "#control",
+    "consequence": "#risk",
+    "now": "#industry",
+    "corner": "#missing",
+    "lack": "#control",
+    "thinking": "#have",
+    "get_it": "#buyer",
+    "board": "#governance",
+    "penalties": "#risk",
+    "genius": "#governance",
+    "clarity": "#governance",
+    "employee": "#control",
+    "doctrine": "#industry",
+    "change": "#industry",
+    "genius_close": "#industry",
+    "clarity_close": "#industry",
+    "dno_product": "#industry",
+    "governess_product": "#industry",
+    "policy_sku": "#industry",
+    "fear_first_glance": "#industry",
+}
+AGENTS_ALL_URL = "https://admin.cloud.microsoft/?#/agents/all"
+AGENTS_TOOLS_URL = "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all"
+MICROSOFT_AGENT_TYPE_IDS = ["microsoft", "external_partner", "published_by_org", "shared_by_creator"]
+MICROSOFT_AGENT_LANE_IDS = ["operate", "registry", "draft", "never", "mcp", "refuse"]
+MICROSOFT_AGENT_OPERATE_IDS = ["owner", "cloud_agent", "dual", "five"]
+MICROSOFT_AGENT_REGISTRY_IDS = ["all_agents", "tools", "types"]
+MICROSOFT_AGENT_DRAFT_IDS = [
+    "m365_copilot",
+    "copilot_studio",
+    "sharepoint",
+    "dynamics",
+    "security",
+    "cursor",
+]
+MICROSOFT_AGENT_AROUND_IDS = [
+    "github_copilot",
+    "azure_foundry",
+    "researcher_analyst",
+    "channel_apps",
+    "purview_defender",
+    "entra_agent_id",
+    "copilot_tuning",
+    "ownerless_unmanaged",
+    "power_platform",
+    "sentinel",
+]
+MICROSOFT_AGENT_NEVER_IDS = ["agent_365", "copilot", "cloud_agent_seat", "pin"]
+MICROSOFT_AGENT_MCP_IDS = ["leave_five", "block_dataverse"]
+MICROSOFT_AGENT_REFUSE_IDS = [
+    "agent_as_seat",
+    "agent365_as_product",
+    "live_census",
+    "pin_as_admit",
+    "tools_as_sku",
+    "copilot_studio_as_job_c",
+]
+MICROSOFT_AGENT_REFUSE_TEXT = {
+    "agent_as_seat": "Refused. An agent is not a seat. Two humans bind.",
+    "agent365_as_product": "Refused. Agent 365 is Microsoft's inventory plane. Not AINav.",
+    "live_census": "Refused. This plane cannot sign in. Inventory stays claimed=false.",
+    "pin_as_admit": "Refused. A pinned agent is not dual admit.",
+    "tools_as_sku": "Refused. Agent Tools are not a SKU. Complements only.",
+    "copilot_studio_as_job_c": "Refused. Copilot Studio RFI is a human looked. Not Job C.",
+}
+MICROSOFT_AGENT_HREFS = {
+    "owner": "#missing",
+    "cloud_agent": "#agent-tools",
+    "dual": "#buyer",
+    "five": "#agent-tools",
+    "all_agents": "#agent-tools",
+    "tools": "#agent-tools",
+    "types": "#agent-tools",
+    "m365_copilot": "#control",
+    "copilot_studio": "#success",
+    "sharepoint": "#agent-tools",
+    "dynamics": "#buyer",
+    "security": "#control",
+    "cursor": "#agent-tools",
+    "agent_365": "#agent-tools",
+    "copilot": "#control",
+    "cloud_agent_seat": "#agent-tools",
+    "pin": "#agent-tools",
+    "leave_five": "#agent-tools",
+    "block_dataverse": "#agent-tools",
+    "agent_as_seat": "#agent-tools",
+    "agent365_as_product": "#agent-tools",
+    "live_census": "#agent-tools",
+    "pin_as_admit": "#agent-tools",
+    "tools_as_sku": "#agent-tools",
+    "copilot_studio_as_job_c": "#agent-tools",
+}
+HONEST_ACCESS_LANE_IDS = ["have", "need_not", "owner_only", "operators", "refuse"]
+HONEST_ACCESS_HAVE_IDS = ["repo", "catalog", "twin_publish", "graph_read"]
+HONEST_ACCESS_NEED_NOT_IDS = ["admin_sign_in", "grok_login", "xai_api_key", "graph_write"]
+HONEST_ACCESS_OWNER_IDS = ["agents_all", "supergrok", "seat_b"]
+HONEST_ACCESS_OPERATOR_IDS = [
+    "cursor",
+    "grok_build",
+    "grok_bot",
+    "github_copilot_agent",
+    "claude_code",
+    "azure_copilot",
+]
+HONEST_ACCESS_REFUSE_IDS = [
+    "ask_admin",
+    "grok_as_seat",
+    "grok_as_product",
+    "bot_as_admit",
+    "more_access_as_admit",
+]
+HONEST_ACCESS_REFUSE_TEXT = {
+    "ask_admin": "Refused. This plane does not need Microsoft admin. James clicks.",
+    "grok_as_seat": "Refused. Grok Build is not a seat. Two humans bind.",
+    "grok_as_product": "Refused. Grok Build is an operator map. Not AINav.",
+    "bot_as_admit": "Refused. A Grok bot is not dual admit.",
+    "more_access_as_admit": "Refused. More access is not admit.",
+}
+HONEST_ACCESS_HREFS = {
+    "repo": "#agent-tools",
+    "catalog": "#agent-tools",
+    "twin_publish": "#twin",
+    "graph_read": "#control",
+    "admin_sign_in": "#missing",
+    "grok_login": "#agent-tools",
+    "xai_api_key": "#agent-tools",
+    "graph_write": "#control",
+    "agents_all": "#missing",
+    "supergrok": "#agent-tools",
+    "seat_b": "#buyer",
+    "cursor": "#agent-tools",
+    "grok_build": "#agent-tools",
+    "grok_bot": "#agent-tools",
+    "github_copilot_agent": "#agent-tools",
+    "claude_code": "#agent-tools",
+    "azure_copilot": "#control",
+    "ask_admin": "#agent-tools",
+    "grok_as_seat": "#agent-tools",
+    "grok_as_product": "#agent-tools",
+    "bot_as_admit": "#agent-tools",
+    "more_access_as_admit": "#agent-tools",
+}
+HONEST_OPERATOR_IDS = ["cursor", "grok_build", "grok_bot"]
+HONEST_OPERATOR_ROLES = {
+    "cursor": "recorded",
+    "grok_build": "mapped",
+    "grok_bot": "not_admit",
+}
+HONEST_OPERATOR_REFUSE_IDS = ["swap_operator", "grok_as_recorded", "bot_as_operator"]
+HONEST_OPERATOR_REFUSE_TEXT = {
+    "swap_operator": "Refused. Cursor stays the recorded operator.",
+    "grok_as_recorded": "Refused. Grok Build is mapped. Not this recorded operator.",
+    "bot_as_operator": "Refused. A Grok bot is not the operator. Not dual admit.",
+}
+HONEST_OPERATOR_HREFS = {
+    "cursor": "#agent-tools",
+    "grok_build": "#agent-tools",
+    "grok_bot": "#agent-tools",
+    "swap_operator": "#agent-tools",
+    "grok_as_recorded": "#agent-tools",
+    "bot_as_operator": "#agent-tools",
+}
+HONEST_BUILD_IDS = ["enough", "build", "launch"]
+HONEST_BUILD_ROLES = {
+    "enough": "have",
+    "build": "catalog",
+    "launch": "owner_only",
+}
+HONEST_BUILD_REFUSE_IDS = [
+    "full_access_as_admit",
+    "more_secrets_as_build",
+    "twin_as_launch",
+    "pack_as_sku",
+]
+HONEST_BUILD_REFUSE_TEXT = {
+    "full_access_as_admit": "Refused. Full access is not admit.",
+    "more_secrets_as_build": "Refused. More secrets are not how we build.",
+    "twin_as_launch": "Refused. The twin is not launch.",
+    "pack_as_sku": "Refused. Packs, modules, and repositories are not SKUs.",
+}
+HONEST_BUILD_HREFS = {
+    "enough": "#agent-tools",
+    "build": "#agent-tools",
+    "launch": "#agent-tools",
+    "full_access_as_admit": "#agent-tools",
+    "more_secrets_as_build": "#agent-tools",
+    "twin_as_launch": "#agent-tools",
+    "pack_as_sku": "#agent-tools",
+}
+HONEST_READY_IDS = [
+    "quality",
+    "operability",
+    "simulation",
+    "deliverability",
+    "updateability",
+    "debugging",
+    "launch",
+]
+HONEST_READY_ROLES = {
+    "quality": "certified",
+    "operability": "certified",
+    "simulation": "certified",
+    "deliverability": "certified",
+    "updateability": "certified",
+    "debugging": "certified",
+    "launch": "owner_only",
+}
+HONEST_READY_REFUSE_IDS = [
+    "gold_as_launch",
+    "twin_as_launch_day",
+    "sim_as_production",
+    "update_as_live_pin",
+    "close_owner_from_plane",
+]
+HONEST_READY_REFUSE_TEXT = {
+    "gold_as_launch": "Refused. Gold is not launch.",
+    "twin_as_launch_day": "Refused. Twin certified is not launch day.",
+    "sim_as_production": "Refused. Simulation is not production.",
+    "update_as_live_pin": "Refused. An update is not LIVE_PIN_OK.",
+    "close_owner_from_plane": "Refused. Owner gaps stay owner-only.",
+}
+HONEST_READY_HREFS = {
+    "quality": "#agent-tools",
+    "operability": "#agent-tools",
+    "simulation": "#agent-tools",
+    "deliverability": "#agent-tools",
+    "updateability": "#agent-tools",
+    "debugging": "#agent-tools",
+    "launch": "#agent-tools",
+    "gold_as_launch": "#agent-tools",
+    "twin_as_launch_day": "#agent-tools",
+    "sim_as_production": "#agent-tools",
+    "update_as_live_pin": "#agent-tools",
+    "close_owner_from_plane": "#agent-tools",
+}
+HONEST_INDUSTRY_PACK_COUNT = 26
+HONEST_INDUSTRY_STANDARD_COUNT = 8
+HONEST_INDUSTRY_UPSELL_COUNT = 18
+MODULE_COUNT = 30
+LIBRARY_COUNT = 23
+REPOSITORY_COUNT = 11
+HONEST_INDUSTRY_UNPAIRED_PACKS = frozenset({"industry.credit", "industry.inventory", "industry.pricing"})
+HONEST_INDUSTRY_UNPAIRED_LIBS = frozenset({"lib.kit.evidence", "lib.padm.export", "lib.padm.siem"})
+HONEST_INDUSTRY_LIBRARY_PAIRS = {
+    "industry.treasury": ["lib.l1.wedge"],
+    "industry.sales": ["lib.udual.sales"],
+    "industry.controller": ["lib.l1.wedge"],
+    "industry.quote_desk": ["lib.udual.sales"],
+    "industry.payables": ["lib.l1.payables"],
+    "industry.bank": ["lib.l1.bank"],
+    "industry.invoice_desk": ["lib.udual.quote_to_cash"],
+    "industry.credit": [],
+    "industry.cash": ["lib.l1.cash"],
+    "industry.fixed_asset": ["lib.l1.fixed_asset"],
+    "industry.inventory": [],
+    "industry.returns": ["lib.udual.returns"],
+    "industry.pricing": [],
+    "industry.retention": ["lib.padm.retention"],
+    "industry.governance": ["lib.l1.failsafe"],
+    "industry.oversight": ["lib.padm.governance"],
+    "industry.cascade": ["lib.l1.cascade"],
+    "industry.second_record": ["lib.padm.records"],
+    "industry.control_plane": ["lib.l1.plane"],
+    "industry.off_switch": ["lib.l1.off_switch"],
+    "industry.rollback": ["lib.l1.wedge"],
+    "industry.board": ["lib.padm.board"],
+    "industry.org": ["lib.l1.org"],
+    "industry.internal_audit": ["lib.padm.audit"],
+    "industry.independence": ["lib.l1.independence"],
+    "industry.ip_keep": ["lib.padm.ip"],
+}
+HONEST_INDUSTRY_REFUSE_IDS = [
+    "industry_pack_as_sku",
+    "industry_lib_as_sku",
+    "industry_repo_as_sku",
+    "named_vertical_as_sku",
+    "industry_certify_as_launch",
+]
+HONEST_INDUSTRY_REFUSE_TEXT = {
+    "industry_pack_as_sku": "Refused. Packs are not SKUs.",
+    "industry_lib_as_sku": "Refused. Libraries are not SKUs.",
+    "industry_repo_as_sku": "Refused. Repositories are not SKUs.",
+    "named_vertical_as_sku": "Refused. A named vertical is not a SKU.",
+    "industry_certify_as_launch": "Refused. Industry certify is not launch.",
+}
+HONEST_INDUSTRY_HREFS = {key: "#packs" for key in list(HONEST_INDUSTRY_LIBRARY_PAIRS) + HONEST_INDUSTRY_REFUSE_IDS}
+HONEST_WHOLE_LANE_IDS = ["write", "skus", "industry", "build", "business", "website", "launch"]
+HONEST_WHOLE_LANE_HREFS = {
+    "write": "#buyer",
+    "skus": "#product",
+    "industry": "#packs",
+    "build": "#agent-tools",
+    "business": "#investor",
+    "website": "#twin",
+    "launch": "#missing",
+}
+HONEST_WHOLE_REFUSE_IDS = [
+    "whole_as_launch",
+    "ten_as_launch",
+    "stitch_as_sku",
+    "website_as_apex",
+    "ci_as_launch",
+]
+HONEST_WHOLE_REFUSE_TEXT = {
+    "whole_as_launch": "Refused. The whole firm is not launch.",
+    "ten_as_launch": "Refused. A 10/10 review is not launch.",
+    "stitch_as_sku": "Refused. The stitch is not a SKU.",
+    "website_as_apex": "Refused. The twin is not the Institute apex.",
+    "ci_as_launch": "Refused. A green check is not launch.",
+}
+HONEST_WHOLE_HREFS = {key: "#whole" for key in HONEST_WHOLE_REFUSE_IDS}
+HONEST_POWER_PAGES_FACT_IDS = ["product", "host", "dataverse", "complements", "job_c"]
+HONEST_POWER_PAGES_REFUSE_IDS = [
+    "power_pages_as_host",
+    "power_pages_as_sku",
+    "power_pages_as_cms",
+    "power_pages_as_apex",
+    "power_pages_as_dataverse_close",
+]
+HONEST_POWER_PAGES_REFUSE_TEXT = {
+    "power_pages_as_host": "Refused. Power Pages is not the Institute host.",
+    "power_pages_as_sku": "Refused. Power Pages is not a SKU.",
+    "power_pages_as_cms": "Refused. Power Pages is not the CMS.",
+    "power_pages_as_apex": "Refused. Power Pages is not the Institute apex.",
+    "power_pages_as_dataverse_close": "Refused. Power Pages does not close US Dataverse.",
+}
+HONEST_POWER_PAGES_HREFS = {key: "#twin" for key in HONEST_POWER_PAGES_REFUSE_IDS}
+HONEST_COPILOT_STUDIO_FACT_IDS = ["product", "admit", "sku", "complements", "seat"]
+HONEST_COPILOT_STUDIO_REFUSE_IDS = [
+    "studio_as_job_c",
+    "studio_as_sku",
+    "studio_as_admit",
+    "studio_as_complement",
+    "studio_as_seat",
+]
+HONEST_COPILOT_STUDIO_REFUSE_TEXT = {
+    "studio_as_job_c": "Refused. Copilot Studio is not Job C.",
+    "studio_as_sku": "Refused. Copilot Studio is not a SKU.",
+    "studio_as_admit": "Refused. Copilot Studio is not the admit plane.",
+    "studio_as_complement": "Refused. Copilot Studio is not a complement.",
+    "studio_as_seat": "Refused. Copilot Studio RFI is not seat B.",
+}
+HONEST_COPILOT_STUDIO_HREFS = {key: "#success" for key in HONEST_COPILOT_STUDIO_REFUSE_IDS}
+HONEST_CONNECT_FACT_IDS = ["connected", "authorized", "available", "blocked", "live"]
+HONEST_CONNECT_REFUSE_IDS = [
+    "connected_as_live",
+    "licensed_as_wired",
+    "available_as_seat",
+    "graph_read_as_live_pin",
+    "cursor_app_as_seat",
+]
+HONEST_CONNECT_REFUSE_TEXT = {
+    "connected_as_live": "Refused. Connected is not live.",
+    "licensed_as_wired": "Refused. Licensed is not wired.",
+    "available_as_seat": "Refused. Available is not a seat.",
+    "graph_read_as_live_pin": "Refused. A Graph read is not LIVE_PIN_OK.",
+    "cursor_app_as_seat": "Refused. A Cursor app is not a seat.",
+}
+HONEST_CONNECT_HREFS = {key: "#missing" for key in HONEST_CONNECT_REFUSE_IDS}
+HONEST_OPERATE_FACT_IDS = ["gaps", "cursor_apps", "grok", "simulation", "ten"]
+HONEST_OPERATE_REFUSE_IDS = [
+    "close_gaps_as_this_plane",
+    "outlook_as_click",
+    "grok_login_as_this_plane",
+    "operate_sim_as_production",
+    "polish_ten_as_launch",
+]
+HONEST_OPERATE_REFUSE_TEXT = {
+    "close_gaps_as_this_plane": "Refused. Closing all gaps is not this plane.",
+    "outlook_as_click": "Refused. Outlook mail is not a click.",
+    "grok_login_as_this_plane": "Refused. grok login is not this plane.",
+    "operate_sim_as_production": "Refused. An operate sim is not production.",
+    "polish_ten_as_launch": "Refused. A 10/10 polish is not launch.",
+}
+HONEST_OPERATE_HREFS = {key: "#agent-tools" for key in HONEST_OPERATE_REFUSE_IDS}
+HONEST_PATH_FACT_IDS = ["industry", "client", "twin", "close", "service"]
+HONEST_PATH_REFUSE_IDS = [
+    "industry_as_named_client",
+    "shared_sandbox_as_production",
+    "hours_as_sku",
+    "rollback_as_live_pin",
+    "redeploy_as_launch",
+]
+HONEST_PATH_REFUSE_TEXT = {
+    "industry_as_named_client": "Refused. An industry is not a named client.",
+    "shared_sandbox_as_production": "Refused. A shared sandbox is not production.",
+    "hours_as_sku": "Refused. Hours are not a SKU.",
+    "rollback_as_live_pin": "Refused. Rollback is not LIVE_PIN_OK.",
+    "redeploy_as_launch": "Refused. A redeploy is not launch.",
+}
+HONEST_PATH_HREFS = {key: "#path" for key in HONEST_PATH_REFUSE_IDS}
+HONEST_PRODUCTION_FACT_IDS = ["day", "attach", "write", "service", "gate"]
+HONEST_PRODUCTION_REFUSE_IDS = [
+    "production_sim_as_production",
+    "fix_all_as_this_plane",
+    "elements_as_live",
+    "better_as_launch",
+    "rehearsal_as_live_pin",
+]
+HONEST_PRODUCTION_REFUSE_TEXT = {
+    "production_sim_as_production": "Refused. A production sim is not production.",
+    "fix_all_as_this_plane": "Refused. Fixing all is not this plane.",
+    "elements_as_live": "Refused. Rehearsed elements are not live.",
+    "better_as_launch": "Refused. Making all much better is not launch.",
+    "rehearsal_as_live_pin": "Refused. A rehearsal is not LIVE_PIN_OK.",
+}
+HONEST_PRODUCTION_HREFS = {key: "#firm" for key in HONEST_PRODUCTION_REFUSE_IDS}
+HONEST_REMAINDER_FACT_IDS = ["remainder", "leftover", "hrefs", "gold", "owner_only"]
+HONEST_REMAINDER_REFUSE_IDS = [
+    "remainder_as_launch",
+    "leftover_copy_as_live_pin",
+    "owner_hrefs_as_owner_clicks",
+    "gold_995_as_production",
+    "deep_remainder_as_seated",
+]
+HONEST_REMAINDER_REFUSE_TEXT = {
+    "remainder_as_launch": "Refused. A remainder close is not launch.",
+    "leftover_copy_as_live_pin": "Refused. Leftover copy is not LIVE_PIN_OK.",
+    "owner_hrefs_as_owner_clicks": "Refused. Owner hrefs are not owner clicks.",
+    "gold_995_as_production": "Refused. Gold 99.5 is not production.",
+    "deep_remainder_as_seated": "Refused. A deep remainder is not a seated second human.",
+}
+HONEST_REMAINDER_HREFS = {key: "#missing" for key in HONEST_REMAINDER_REFUSE_IDS}
+HONEST_TEN_FACT_IDS = ["quality", "compete", "gold", "ten", "owner_only"]
+HONEST_TEN_REFUSE_IDS = [
+    "ten_as_launch",
+    "gold_999_as_live_pin",
+    "compete_as_named_client",
+    "service_green_as_production",
+    "quality_as_seated",
+]
+HONEST_TEN_REFUSE_TEXT = {
+    "ten_as_launch": "Refused. A 10/10 quality check is not launch.",
+    "gold_999_as_live_pin": "Refused. Gold 99.9 is not LIVE_PIN_OK.",
+    "compete_as_named_client": "Refused. A competitor analysis is not a named client.",
+    "service_green_as_production": "Refused. A green service is not production.",
+    "quality_as_seated": "Refused. A quality check is not a seated second human.",
+}
+HONEST_TEN_HREFS = {key: "#success" for key in HONEST_TEN_REFUSE_IDS}
+HONEST_PROTECT_FACT_IDS = ["microsoft", "others", "client", "reserved", "counsel"]
+HONEST_PROTECT_REFUSE_IDS = [
+    "protect_as_patent",
+    "protect_as_uncopyable",
+    "client_license_as_assignment",
+    "kit_pass_as_source",
+    "g12_as_closed",
+]
+HONEST_PROTECT_REFUSE_TEXT = {
+    "protect_as_patent": "Refused. An IP board is not a patent.",
+    "protect_as_uncopyable": "Refused. Insulation is not uncopyable.",
+    "client_license_as_assignment": "Refused. An L1 license is not an assignment of Job C.",
+    "kit_pass_as_source": "Refused. Kit PASS is not a source license.",
+    "g12_as_closed": "Refused. This board does not close G12.",
+}
+HONEST_PROTECT_HREFS = {key: "#ip" for key in HONEST_PROTECT_REFUSE_IDS}
+HONEST_HOLD_FACT_IDS = ["vault", "teams", "sharepoint", "sentinel", "plane"]
+HONEST_HOLD_REFUSE_IDS = [
+    "vault_as_live_pin",
+    "names_as_wired",
+    "secret_in_catalog",
+    "sentinel_as_admit",
+    "hold_as_seated",
+]
+HONEST_HOLD_REFUSE_TEXT = {
+    "vault_as_live_pin": "Refused. A vault hold is not LIVE_PIN_OK.",
+    "names_as_wired": "Refused. Secret names are not wired notify.",
+    "secret_in_catalog": "Refused. A catalog must not hold secret values.",
+    "sentinel_as_admit": "Refused. Sentinel is not the admit plane.",
+    "hold_as_seated": "Refused. A vault hold is not a seated second human.",
+}
+HONEST_HOLD_HREFS = {key: "#missing" for key in HONEST_HOLD_REFUSE_IDS}
+HONEST_HOLD_SECRET_NAMES = [
+    "TEAMS-ENTERPRISE-TEAM-ID",
+    "TEAMS-ENTERPRISE-CHANNEL-ID",
+    "TEAMS-PREMIUM-TEAM-ID",
+    "TEAMS-PREMIUM-CHANNEL-ID",
+    "SHAREPOINT-SITE-ID",
+    "AZURE-SENTINEL-WORKSPACE-ID",
+]
+HONEST_HOLD_DIRECTION_IDS = ["names_as_wired", "secret_in_catalog", "sentinel_as_admit"]
+HONEST_HOLD_DIRECTION_LINKS = {
+    "names_as_wired": [
+        ("Key Vaults", "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"),
+        ("Teams admin", "https://admin.teams.microsoft.com"),
+        ("SharePoint site", "https://ainav.sharepoint.com/sites/AINavInc"),
+        ("Stack walk", "#stack-walk"),
+    ],
+    "secret_in_catalog": [
+        ("Key Vaults", "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"),
+        ("Set a secret", "https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal"),
+    ],
+    "sentinel_as_admit": [
+        ("Microsoft Sentinel", "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights"),
+        ("Azure Monitor", "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview"),
+        ("The write", "#buyer"),
+        ("Sentinel overview", "https://learn.microsoft.com/en-us/azure/sentinel/overview"),
+    ],
+}
+HONEST_CLOSE_FACT_IDS = ["close", "fulfill", "twin", "produce", "keep"]
+HONEST_CLOSE_HOP_IDS = [
+    "qualify",
+    "proof",
+    "book",
+    "contract",
+    "fulfill",
+    "twin",
+    "data",
+    "produce",
+    "bill",
+    "keep",
+    "upsell",
+]
+HONEST_CLOSE_HOP_HREFS = {
+    "qualify": "#success",
+    "proof": "#twin",
+    "book": "#close-consider",
+    "contract": "#open",
+    "fulfill": "#path",
+    "twin": "#path",
+    "data": "#mothership",
+    "produce": "#firm",
+    "bill": "#finance",
+    "keep": "#ops",
+    "upsell": "#commercial",
+}
+HONEST_CLOSE_REFUSE_IDS = [
+    "close_as_launch",
+    "booking_as_revenue",
+    "twin_as_assigned",
+    "custom_db_as_sku",
+    "list_as_collection",
+]
+HONEST_CLOSE_REFUSE_TEXT = {
+    "close_as_launch": "Refused. A 10/10 close is not launch.",
+    "booking_as_revenue": "Refused. A booking is not recognized revenue.",
+    "twin_as_assigned": "Refused. The Institute twin is not the assigned client sandbox.",
+    "custom_db_as_sku": "Refused. A custom database is not a fourth SKU.",
+    "list_as_collection": "Refused. A catalog list is not collection.",
+}
+HONEST_CLOSE_HREFS = {key: "#path" for key in HONEST_CLOSE_REFUSE_IDS}
+HONEST_JOIN_FACT_IDS = ["join", "manage", "fulfill", "produce", "certify"]
+HONEST_JOIN_HOP_IDS = [
+    "write",
+    "plan",
+    "close",
+    "fulfill",
+    "produce",
+    "microsoft",
+    "fabric",
+    "website",
+    "operate",
+    "keep",
+    "certify",
+]
+HONEST_JOIN_HOP_HREFS = {
+    "write": "#buyer",
+    "plan": "#business",
+    "close": "#close-consider",
+    "fulfill": "#path",
+    "produce": "#firm",
+    "microsoft": "#firm-ms",
+    "fabric": "#fabric",
+    "website": "#whole",
+    "operate": "#agent-tools",
+    "keep": "#ops",
+    "certify": "#success",
+}
+HONEST_JOIN_REFUSE_IDS = [
+    "join_as_launch",
+    "stitch_as_live_pin",
+    "licensed_as_wired_firm",
+    "manage_ops_as_closed",
+    "certify_as_running",
+]
+HONEST_JOIN_REFUSE_TEXT = {
+    "join_as_launch": "Refused. The join is not launch.",
+    "stitch_as_live_pin": "Refused. The stitched firm is not LIVE_PIN_OK.",
+    "licensed_as_wired_firm": "Refused. Licensed-not-wired is not a wired firm.",
+    "manage_ops_as_closed": "Refused. Management and operations are not closed from this plane.",
+    "certify_as_running": "Refused. A certified simulation is not a running firm.",
+}
+HONEST_JOIN_HREFS = {key: "#firm" for key in HONEST_JOIN_REFUSE_IDS}
+INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
+INDUSTRY_DRAWER_AREA_HREFS = {
+    "public": "#buyer",
+    "encyclopedia": "app.html",
+    "owner": "#missing",
+    "sandbox": "#path",
+    "industry": "#industry",
+}
+MICROSOFT_DAY_ON = {
+    "qualify": ["m365.e7", "teams.enterprise", "teams.premium", "entra.id", "entra.pim"],
+    "proof": ["azure.host", "m365.e7"],
+    "close": ["bc.premium", "sales.enterprise"],
+    "assign": ["azure.host"],
+    "service": ["azure.keyvault", "azure.monitor", "sharepoint.kit", "defender.xdr", "sentinel.siem"],
+    "launch": ["azure.policy"],
+}
+
+
+def _validate_microsoft_run(body: Any) -> None:
+    run = _as_dict(body, "microsoft_run")
+    if run.get("kind") != "ainav.microsoft_run.v1":
+        raise IntegrityError("microsoft_run kind is ainav.microsoft_run.v1", reason_code="CATALOG_REVIEW")
+    for flag in (
+        "sku",
+        "crm",
+        "fourth_sku",
+        "live",
+        "live_pin_ok",
+        "from_this_plane",
+        "wired_claimed",
+        "microsoft_is_the_product",
+        "ninth_complement",
+    ):
+        if run.get(flag) is True:
+            raise IntegrityError(f"microsoft run cannot claim {flag}", reason_code="CATALOG_REVIEW")
+    if run.get("roster") is not True:
+        raise IntegrityError("microsoft run is the operating-day roster", reason_code="CATALOG_REVIEW")
+    if run.get("roster_is_sku") is True:
+        raise IntegrityError("microsoft roster is not a SKU", reason_code="CATALOG_REVIEW")
+    if list(run.get("required_ids") or []) != REQUIRED_MS_IDS:
+        raise IntegrityError("microsoft run required_ids are the six declared connections", reason_code="CATALOG_REVIEW")
+    if list(run.get("complement_ids") or []) != COMPLEMENT_MS_IDS:
+        raise IntegrityError("microsoft run complement_ids stay the eight complements", reason_code="CATALOG_REVIEW")
+    spine = [item for item in (run.get("spine") or []) if isinstance(item, dict)]
+    ids = [item.get("id") for item in spine]
+    if ids != REQUIRED_MS_IDS + COMPLEMENT_MS_IDS:
+        raise IntegrityError("microsoft run spine is six required then eight complements", reason_code="CATALOG_REVIEW")
+    if any(item.get("wired") is True or item.get("live") is True or item.get("production") is True or item.get("sku") is True for item in spine):
+        raise IntegrityError("microsoft run spine stays unwired, not live, not production, not a SKU", reason_code="CATALOG_REVIEW")
+    if sum(1 for item in spine if item.get("class") == "complement") != 8:
+        raise IntegrityError("microsoft run keeps exactly eight complements", reason_code="CATALOG_REVIEW")
+    blob = " ".join(
+        f"{item.get('name') or ''} {item.get('note') or ''} {item.get('status') or ''}".lower()
+        for item in spine
+    )
+    if "not a seat" not in blob or "canada" not in blob or "law is not sentinel" not in blob:
+        raise IntegrityError("microsoft run keeps seat honesty, Canada, and LAW is not Sentinel", reason_code="CATALOG_REVIEW")
+    lede = str(run.get("lede") or "").lower()
+    if "microsoft run" not in lede or "eight complements" not in lede or "not the product" not in lede:
+        raise IntegrityError("microsoft-run lede keeps eight complements and Microsoft is not the product", reason_code="CATALOG_REVIEW")
+    if "every operating-day stage" not in lede:
+        raise IntegrityError("microsoft-run lede keeps every operating-day stage on the Microsoft substrate", reason_code="CATALOG_REVIEW")
+    refuse = " ".join(str(item).lower() for item in run.get("refuse") or [])
+    for stem in ("dataverse", "teams", "sharepoint", "graph writes", "ninth", "not the product", "hubspot", "launch"):
+        if stem not in refuse:
+            raise IntegrityError("microsoft-run refuse keeps Dataverse, Teams, SharePoint, Graph Writes, ninth complement", reason_code="CATALOG_REVIEW")
+    owner = " ".join(str(item).lower() for item in run.get("owner_only") or [])
+    for stem in ("seat b", "dataverse", "launch", "live_pin"):
+        if stem not in owner:
+            raise IntegrityError("microsoft-run owner_only keeps seat B, Dataverse, launch, LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    note = str(run.get("note") or "").lower()
+    if "#firm-ms" not in note or "eight" not in note or "live_pin_ok" not in note:
+        raise IntegrityError("microsoft-run note is #firm-ms, eight complements, not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "#firm-ms-day" not in note or "day map" not in note or "assign sits on azure host" not in note:
+        raise IntegrityError("microsoft-run note keeps the day map on #firm-ms-day and assign on Azure host", reason_code="CATALOG_REVIEW")
+    day_map = [item for item in (run.get("day_map") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in day_map] != OPERATING_DAY_IDS:
+        raise IntegrityError("microsoft day map is qualify, proof, close, assign, service, launch", reason_code="CATALOG_REVIEW")
+    if any(item.get("wired") is True or item.get("live") is True for item in day_map):
+        raise IntegrityError("microsoft day map stays unwired and not live", reason_code="CATALOG_REVIEW")
+    covered: list[str] = []
+    for item in day_map:
+        stage = str(item.get("id") or "")
+        on = list(item.get("on") or [])
+        if on != MICROSOFT_DAY_ON.get(stage):
+            raise IntegrityError("microsoft day map on-ids stay the declared substrate", reason_code="CATALOG_REVIEW")
+        covered.extend(on)
+        stage_note = str(item.get("note") or "").lower()
+        if stage == "qualify" and "not a crm" not in stage_note:
+            raise IntegrityError("qualify day map is identity and notify, not a CRM", reason_code="CATALOG_REVIEW")
+        if stage == "proof" and "twin" not in stage_note:
+            raise IntegrityError("proof day map keeps the Institute twin", reason_code="CATALOG_REVIEW")
+        if stage == "close" and "canada" not in stage_note:
+            raise IntegrityError("close day map keeps Canada is not United States", reason_code="CATALOG_REVIEW")
+        if stage == "assign" and "sandbox" not in stage_note:
+            raise IntegrityError("assign day map keeps the segregated sandbox on Azure host", reason_code="CATALOG_REVIEW")
+        if stage == "service" and "sentinel" not in stage_note:
+            raise IntegrityError("service day map keeps LAW is not Sentinel", reason_code="CATALOG_REVIEW")
+        if stage == "launch" and "live_pin" not in stage_note:
+            raise IntegrityError("launch day map cannot mark LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if sorted(set(covered)) != sorted(REQUIRED_MS_IDS + COMPLEMENT_MS_IDS):
+        raise IntegrityError("microsoft day map covers every required connection and complement", reason_code="CATALOG_REVIEW")
+    spine_by_id = {item.get("id"): item for item in spine}
+    for item in spine:
+        days = list(item.get("days") or [])
+        if not days or days[0] != item.get("day"):
+            raise IntegrityError("microsoft run spine days start with the primary day", reason_code="CATALOG_REVIEW")
+        if any(day not in OPERATING_DAY_IDS for day in days):
+            raise IntegrityError("microsoft run spine days stay on the operating day", reason_code="CATALOG_REVIEW")
+        for day in days:
+            if item.get("id") not in MICROSOFT_DAY_ON[day]:
+                raise IntegrityError("microsoft run spine days match the day map", reason_code="CATALOG_REVIEW")
+    for stage, on_ids in MICROSOFT_DAY_ON.items():
+        for conn_id in on_ids:
+            days = list((spine_by_id.get(conn_id) or {}).get("days") or [])
+            if stage not in days:
+                raise IntegrityError("microsoft day map and spine days stay in lockstep", reason_code="CATALOG_REVIEW")
+
+
+def _validate_owner_gates(catalog: dict[str, Any]) -> None:
+    gates = catalog.get("owner_gates")
+    if not isinstance(gates, list) or len(gates) < 6:
+        raise IntegrityError("catalog missing owner gates", reason_code="CATALOG_ORG")
+    for item in gates:
+        if not item.get("do") or not item.get("url"):
+            raise IntegrityError("owner gate needs a step and a link", reason_code="CATALOG_ORG")
+        if item.get("id") == "invite.seat_b":
+            do = str(item.get("do") or "").lower()
+            if "chodnett@ainav.institute" not in do or "mailbox recorded" not in do:
+                raise IntegrityError("invite.seat_b must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
+            if "paid" not in do or "e7" not in do or "teams premium" not in do:
+                raise IntegrityError("invite.seat_b records paid E7 and Teams Premium", reason_code="ORG_SECOND_OFFICER")
+            if "fallback" not in do or "not a seat" not in do:
+                raise IntegrityError("invite.seat_b keeps the fallback and Teams Premium is not a seat", reason_code="ORG_SECOND_OFFICER")
+            if "invited, not recorded" in do:
+                raise IntegrityError("invite.seat_b cannot revert to invited-not-recorded", reason_code="ORG_SECOND_OFFICER")
+        if item.get("id") == "dataverse.us":
+            do = str(item.get("do") or "").lower()
+            for stem in ("2609030040009525", "canada", "adr", "united states", "environment id"):
+                if stem not in do:
+                    raise IntegrityError("dataverse.us must keep the Support Canada-affinity finding", reason_code="CATALOG_STACK")
+            if "create a us power platform" in do:
+                raise IntegrityError("dataverse.us cannot pretend United States is create-able", reason_code="CATALOG_STACK")
+
+
+def _validate_icp(catalog: dict[str, Any]) -> None:
+    icp = catalog.get("icp")
+    if not isinstance(icp, dict):
+        raise IntegrityError("catalog missing icp profile", reason_code="CATALOG_ICP")
+    if icp.get("named_customers"):
+        raise IntegrityError("do not invent a named customer", reason_code="ICP_NAMED")
+    if icp.get("do_not_invent_names") is not True:
+        raise IntegrityError("ICP must refuse invented names", reason_code="ICP_NAMED")
+    if "Business Central" not in str(icp.get("erp") or ""):
+        raise IntegrityError("ICP erp is Business Central Premium", reason_code="CATALOG_ICP")
+    if "Entra" not in str(icp.get("identity") or ""):
+        raise IntegrityError("ICP identity is Entra ID", reason_code="CATALOG_ICP")
+    if icp.get("utilizes_ai") is not True:
+        raise IntegrityError("ICP utilizes AI; AINav is not that AI", reason_code="CATALOG_ICP")
+    if "not ainav" not in str(icp.get("ai") or "").lower():
+        raise IntegrityError("ICP AI is the client's, not AINav", reason_code="CATALOG_ICP")
+    if icp.get("counterparties_utilize_ai") is not True:
+        raise IntegrityError("ICP counterparties utilize AI", reason_code="CATALOG_ICP")
+    if icp.get("do_not_invent_counterparty_names") is not True:
+        raise IntegrityError("do not invent counterparty names", reason_code="ICP_NAMED")
+    if "institutes" not in str(icp.get("institutes_ainav") or "").lower():
+        raise IntegrityError("ICP client institutes AINav", reason_code="CATALOG_ICP")
+    if icp.get("sits_over_client_ai") is not True:
+        raise IntegrityError("ICP plane sits over client AI", reason_code="CATALOG_ICP")
+    needed = {"owner", "board", "examiner"}
+    have = {str(item).lower() for item in icp.get("must_have_for") or []}
+    if not needed <= have:
+        raise IntegrityError("ICP must-have is owner, board, examiner", reason_code="CATALOG_ICP")
+    if icp.get("org_chart") is not True:
+        raise IntegrityError("ICP maps the client org chart", reason_code="CATALOG_ICP")
+    if icp.get("do_not_invent_department_heads") is not True:
+        raise IntegrityError("do not invent department heads", reason_code="ICP_NAMED")
+    if icp.get("independent_of_microsoft") is not True:
+        raise IntegrityError("ICP plane is independent of Microsoft", reason_code="CATALOG_ICP")
+
+
+def _validate_acceptance_kit(catalog: dict[str, Any]) -> None:
+    kit = catalog.get("acceptance_kit")
+    if not isinstance(kit, dict) or kit.get("requires_sku") != "L1":
+        raise IntegrityError("acceptance kit must require L1", reason_code="CATALOG_KIT")
+    cases = kit.get("cases") or []
+    if not cases:
+        raise IntegrityError("acceptance kit needs at least one case", reason_code="CATALOG_KIT")
+    l1 = {
+        m["id"]
+        for m in catalog.get("modules", [])
+        if m.get("sku") == "L1" and m.get("kind") == "action"
+    }
+    for case in cases:
+        action = case.get("action") or {}
+        if action.get("action_class") not in l1:
+            raise IntegrityError("kit case must be the L1 action", reason_code="CATALOG_KIT")
+        if action.get("sor_target") != "bc.sandbox":
+            raise IntegrityError("kit case must stay on the BC twin", reason_code="CATALOG_KIT")
+
+
+def _validate_upsells(catalog: dict[str, Any]) -> None:
+    wedges = [
+        m
+        for m in catalog.get("modules", [])
+        if m.get("kind") == "action" and m.get("wedge") is True
+    ]
+    l1_wedges = [m["id"] for m in wedges if m.get("sku") == "L1"]
+    if l1_wedges != ["bc.general_journal.post"]:
+        raise IntegrityError("L1 wedge stays the general journal", reason_code="CATALOG_WEDGE")
+    udual_wedges = {m["id"] for m in wedges if m.get("sku") == "U-DUAL"}
+    if udual_wedges != {"d365.quote.discount_override", "d365.order.submit"}:
+        raise IntegrityError("U-DUAL wedges stay quote and order", reason_code="CATALOG_WEDGE")
+    for pack in catalog.get("industry_packs", []):
+        if not pack.get("runbook"):
+            raise IntegrityError(f"{pack.get('id')} needs a runbook", reason_code="CATALOG_PACK")
+        if pack.get("sku") is True:
+            raise IntegrityError("industry pack is not a SKU", reason_code="CATALOG_SKU")
+        attach = pack.get("attach_usd") or {}
+        lo = int(attach.get("min") or 0)
+        hi = int(attach.get("max") or 0)
+        if pack.get("included_in_sku") is True:
+            if lo != 0 or hi != 0:
+                raise IntegrityError(
+                    f"{pack.get('id')} is included and cannot carry an attach price",
+                    reason_code="CATALOG_PACK",
+                )
+        elif pack.get("ala_carte") is True:
+            if lo < 1 or hi < lo:
+                raise IntegrityError(
+                    f"{pack.get('id')} needs a catalog-list attach band",
+                    reason_code="CATALOG_PACK",
+                )
+    for lib in catalog.get("libraries", []):
+        if not lib.get("note"):
+            raise IntegrityError(f"{lib.get('id')} needs a note", reason_code="CATALOG_LIB")
+        if lib.get("sku") is True:
+            raise IntegrityError("library is not a SKU", reason_code="CATALOG_SKU")
+    referenced = {
+        mid
+        for item in list(catalog.get("industry_packs") or []) + list(catalog.get("libraries") or [])
+        for mid in item.get("modules") or []
+    }
+    for module in catalog.get("modules", []):
+        if module.get("upsell") is True and module.get("wedge") is True:
+            raise IntegrityError("a wedge cannot be an upsell", reason_code="CATALOG_WEDGE")
+        if module.get("upsell") is True and module["id"] not in referenced:
+            raise IntegrityError(
+                f"upsell {module['id']} must be seated by a pack or library",
+                reason_code="CATALOG_PACK",
+            )
+
+
+def _validate_governance(catalog: dict[str, Any]) -> None:
+    body = catalog.get("governance")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing governance doctrine", reason_code="CATALOG_GOVERNANCE")
+    if body.get("sku") is True:
+        raise IntegrityError("governance is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("certified") is True or body.get("replaces_counsel") is True:
+        raise IntegrityError("do not claim certification or replace counsel", reason_code="CATALOG_GOVERNANCE")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("governance cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    fail = body.get("failsafe") or {}
+    separate = " ".join(fail.get("separate_from") or []).lower().replace("_", " ").replace(".", " ")
+    for stem in ("client ai", "copilot", "cloud agent", "agent 365"):
+        if stem not in separate:
+            raise IntegrityError(
+                f"failsafe must stay separate from {stem}",
+                reason_code="CATALOG_GOVERNANCE",
+            )
+    thesis = str(body.get("thesis") or "").lower()
+    if "two" not in thesis and "dual" not in thesis:
+        raise IntegrityError("governance thesis must keep dual humans", reason_code="CATALOG_GOVERNANCE")
+    if "utilizes" not in thesis or "control" not in thesis:
+        raise IntegrityError(
+            "governance thesis is client utilizes AI, humans control",
+            reason_code="CATALOG_GOVERNANCE",
+        )
+    if fail.get("client_utilizes_ai") is not True or fail.get("human_control") is not True:
+        raise IntegrityError("failsafe is human control of client-utilized AI", reason_code="CATALOG_GOVERNANCE")
+    if fail.get("ainav_is_client_ai") is True:
+        raise IntegrityError("AINav is not the client's AI", reason_code="CATALOG_GOVERNANCE")
+    maps = {item.get("id") for item in body.get("maps") or []}
+    if not {
+        "nist.ai_rmf",
+        "eu.ai_act",
+        "iso.42001",
+        "sox.icfr",
+        "gdpr.art22",
+        "coe.ai_convention",
+        "sec.books_records",
+        "genius.act",
+        "clarity.act",
+    } <= maps:
+        raise IntegrityError(
+            "governance must map NIST, EU AI Act, ISO 42001, SOX, SEC books, GDPR Art. 22, and the CoE convention",
+            reason_code="CATALOG_GOVERNANCE",
+        )
+    if any(item.get("claimed") is True for item in body.get("maps") or []):
+        raise IntegrityError("governance maps cannot claim certification", reason_code="CATALOG_GOVERNANCE")
+    refuse = " ".join(body.get("refuse") or []).lower()
+    for stem in (
+        "eu ai act certified",
+        "nist certified",
+        "replaces counsel",
+        "client ai as dual",
+        "17a-4 ready",
+        "worm claimed",
+        "crypto ledger",
+        "gdpr certified",
+        "eu-ready",
+        "colorado sb 24-205",
+        "genius certified",
+        "clarity certified",
+    ):
+        if stem not in refuse:
+            raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+    immutable = body.get("immutable") or {}
+    if immutable.get("sku") is True or immutable.get("certified") is True:
+        raise IntegrityError("immutable is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if immutable.get("crypto") is True or immutable.get("worm") is True or immutable.get("seventeen_a4") is True:
+        raise IntegrityError("immutable is not crypto, WORM, or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    if immutable.get("uncopyable") is True:
+        raise IntegrityError("immutable is not uncopyable", reason_code="CATALOG_GOVERNANCE")
+    imm_thesis = str(immutable.get("thesis") or "").lower()
+    if "sealed" not in imm_thesis or "consume-once" not in imm_thesis or "hash-chained" not in imm_thesis:
+        raise IntegrityError("immutable thesis is sealed, consume-once, hash-chained", reason_code="CATALOG_GOVERNANCE")
+    pin_ids = [item.get("id") for item in immutable.get("pins") or [] if isinstance(item, dict)]
+    for needed in ("consume_once", "action_hash", "sealed_chain", "fail_closed", "lockfile"):
+        if needed not in pin_ids:
+            raise IntegrityError(f"immutable pins must include {needed}", reason_code="CATALOG_GOVERNANCE")
+    reporting = body.get("reporting") or {}
+    if reporting.get("sku") is True or reporting.get("certified") is True:
+        raise IntegrityError("reporting is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if reporting.get("chat_is_not_keep") is not True or reporting.get("mailbox_is_not_second_record") is not True:
+        raise IntegrityError("a chat or mailbox is not the keep", reason_code="CATALOG_GOVERNANCE")
+    consequences = body.get("consequences") or {}
+    if consequences.get("mandated") is True or consequences.get("ainav_named_in_statute") is True:
+        raise IntegrityError("must-have is not a statute that names AINav", reason_code="CATALOG_GOVERNANCE")
+    if consequences.get("buying_l1_closes_clocks") is True:
+        raise IntegrityError("buying L1 does not close regulator clocks", reason_code="CATALOG_GOVERNANCE")
+    if consequences.get("certified") is True:
+        raise IntegrityError("consequences are not a certificate", reason_code="CATALOG_GOVERNANCE")
+    if consequences.get("sku") is True:
+        raise IntegrityError("consequences are not a SKU", reason_code="CATALOG_GOVERNANCE")
+    calendar = body.get("calendar") or {}
+    if calendar.get("sku") is True or calendar.get("certified") is True:
+        raise IntegrityError("governance calendar is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if calendar.get("counsel") is not True:
+        raise IntegrityError("governance calendar stays with counsel", reason_code="CATALOG_GOVERNANCE")
+    cal_ids = {item.get("id") for item in calendar.get("items") or [] if isinstance(item, dict)}
+    for needed in ("eu.ai_act.gpai_enforcement", "us.co.sb26_189", "eu.ai_act.annex_iii"):
+        if needed not in cal_ids:
+            raise IntegrityError(f"calendar must include {needed}", reason_code="CATALOG_GOVERNANCE")
+    if any(item.get("claimed") is True for item in calendar.get("items") or [] if isinstance(item, dict)):
+        raise IntegrityError("calendar items cannot claim certification", reason_code="CATALOG_GOVERNANCE")
+    regulated = body.get("regulated") or {}
+    if regulated.get("sku") is True or regulated.get("certified") is True or regulated.get("mandated") is True:
+        raise IntegrityError("regulated is not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if regulated.get("crypto_associated") is True or regulated.get("seventeen_a4") is True:
+        raise IntegrityError("regulated is not crypto-associated or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    if regulated.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("regulated lead stays the general journal", reason_code="CATALOG_WEDGE")
+    if regulated.get("room_1") != "books" or regulated.get("room_2") != "refuse":
+        raise IntegrityError("Room 1 is books. Room 2 is refuse", reason_code="CATALOG_GOVERNANCE")
+    if not body.get("risks"):
+        raise IntegrityError("governance must name non-compliance risks", reason_code="CATALOG_GOVERNANCE")
+    cascade = body.get("cascade") or {}
+    if cascade.get("counterparties_utilize_ai") is not True:
+        raise IntegrityError("cascade counterparties utilize AI", reason_code="CATALOG_GOVERNANCE")
+    if cascade.get("client_institutes_ainav") is not True:
+        raise IntegrityError("the client institutes AINav", reason_code="CATALOG_GOVERNANCE")
+    if cascade.get("do_not_invent_names") is not True or cascade.get("buyer_is_the_client") is not True:
+        raise IntegrityError("cascade buyer is the client; do not invent names", reason_code="ICP_NAMED")
+    records = body.get("records") or {}
+    first = records.get("first") or {}
+    second = records.get("second") or {}
+    if records.get("sku") is True or records.get("certified") is True:
+        raise IntegrityError("records are not a SKU or certificate", reason_code="CATALOG_GOVERNANCE")
+    if "sor" not in str(first.get("what") or "").lower():
+        raise IntegrityError("first record is the SoR write", reason_code="CATALOG_GOVERNANCE")
+    if "decisionrecord" not in str(second.get("what") or "").lower().replace(" ", ""):
+        raise IntegrityError("second record is the DecisionRecord", reason_code="CATALOG_GOVERNANCE")
+    if "counterparty ai" not in separate:
+        raise IntegrityError("failsafe must stay separate from counterparty AI", reason_code="CATALOG_GOVERNANCE")
+    plane_body = body.get("plane") or {}
+    if plane_body.get("sits_over_client_ai") is not True or plane_body.get("is_the_clients_ai") is True:
+        raise IntegrityError("plane sits over client AI and is not that AI", reason_code="CATALOG_GOVERNANCE")
+    if plane_body.get("sku") is True:
+        raise IntegrityError("the control plane is not a fourth SKU", reason_code="CATALOG_SKU")
+    switch = plane_body.get("off_switch") or {}
+    if "fail-closed" not in str(switch.get("does") or "").lower().replace(" ", "-") and "fail-closed" not in str(switch.get("does") or "").lower():
+        raise IntegrityError("off switch is fail-closed", reason_code="CATALOG_GOVERNANCE")
+    if "power" not in str(switch.get("does_not") or "").lower():
+        raise IntegrityError("off switch does not power down Copilot", reason_code="CATALOG_GOVERNANCE")
+    rollback = plane_body.get("rollback") or {}
+    if "compensating" not in str(rollback.get("does") or "").lower():
+        raise IntegrityError("rollback is a compensating write", reason_code="CATALOG_GOVERNANCE")
+    if "time machine" not in str(rollback.get("does_not") or "").lower():
+        raise IntegrityError("rollback is not a time machine", reason_code="CATALOG_GOVERNANCE")
+    must = body.get("must_have") or {}
+    if must.get("sku") is True or must.get("mandated") is True or must.get("certified") is True:
+        raise IntegrityError("must-have is not a SKU, mandate, or certificate", reason_code="CATALOG_GOVERNANCE")
+    audience = must.get("for") or {}
+    for who in ("owner", "board", "examiner"):
+        if not str(audience.get(who) or "").strip():
+            raise IntegrityError(f"must-have must name the {who}", reason_code="CATALOG_GOVERNANCE")
+    for stem in ("time-machine rollback", "powers down copilot", "mandated by sec"):
+        if stem not in refuse:
+            raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+    for stem in ("department ai as dual", "replaces the org chart"):
+        if stem not in refuse:
+            raise IntegrityError(f"governance must refuse {stem}", reason_code="CATALOG_GOVERNANCE")
+
+
+def _validate_client_org(catalog: dict[str, Any]) -> None:
+    from ainav.client_org import ALLOWED_ROLES, REQUIRED_CLIENT_DEPTS
+
+    body = catalog.get("client_org")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing client org chart", reason_code="CATALOG_ORG")
+    if body.get("sku") is True:
+        raise IntegrityError("client org is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("replaces_org_chart") is True:
+        raise IntegrityError("AINav does not replace the org chart", reason_code="CATALOG_ORG")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("client org cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("named_customers"):
+        raise IntegrityError("do not invent a named customer", reason_code="ICP_NAMED")
+    if body.get("do_not_invent_names") is not True or body.get("do_not_invent_department_heads") is not True:
+        raise IntegrityError("do not invent department heads", reason_code="ICP_NAMED")
+    seats = body.get("seats") or {}
+    if (seats.get("seat_a") or {}).get("role") != "treasury_approver":
+        raise IntegrityError("client seat A is treasury_approver", reason_code="CATALOG_ORG")
+    if (seats.get("seat_b") or {}).get("role") != "treasury_controller":
+        raise IntegrityError("client seat B is treasury_controller", reason_code="CATALOG_ORG")
+    departments = body.get("departments") or []
+    ids = [item.get("id") for item in departments]
+    if ids != list(REQUIRED_CLIENT_DEPTS):
+        raise IntegrityError("client org departments must be the template set", reason_code="CATALOG_ORG")
+    admit = 0
+    for item in departments:
+        if item.get("role") not in ALLOWED_ROLES:
+            raise IntegrityError(f"unknown client org role {item.get('role')!r}", reason_code="CATALOG_ORG")
+        if item.get("department_ai_is_seat") is True:
+            raise IntegrityError("department AI is not a seat", reason_code="CATALOG_ORG")
+        if item.get("named_head"):
+            raise IntegrityError("do not invent a department head", reason_code="ICP_NAMED")
+        if item.get("sku") is True:
+            raise IntegrityError("client department is not a SKU", reason_code="CATALOG_SKU")
+        if item.get("role") == "admit":
+            admit += 1
+    if admit < 2:
+        raise IntegrityError("client org needs two admit departments", reason_code="CATALOG_ORG")
+    thesis = str(body.get("thesis") or "").lower()
+    if "org chart" not in thesis or "not a seat" not in thesis:
+        raise IntegrityError("client org thesis must keep the chart and refuse department AI as a seat", reason_code="CATALOG_ORG")
+
+
+def _validate_public_face(face: Any) -> None:
+    if not isinstance(face, dict):
+        raise IntegrityError("floor public_face is required", reason_code="CATALOG_PLANE")
+    if face.get("sku") is True:
+        raise IntegrityError("public face is not a SKU", reason_code="CATALOG_SKU")
+    if face.get("live") is True or face.get("live_pin_ok") is True or face.get("launch") is True:
+        raise IntegrityError("public face cannot mark launch or LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if face.get("cms") is True:
+        raise IntegrityError("public face is not a CMS", reason_code="CATALOG_PLANE")
+    if face.get("application") is not True:
+        raise IntegrityError("public face is a catalog-honest application", reason_code="CATALOG_PLANE")
+    if "static" not in str(face.get("host") or "").lower():
+        raise IntegrityError("public face host is Azure Static Web Apps", reason_code="CATALOG_PLANE")
+    thesis = str(face.get("thesis") or "").lower()
+    for stem in ("static", "application", "first glance", "write rail", "owner book", "not a cms", "live_pin_ok"):
+        if stem not in thesis:
+            raise IntegrityError(f"public face thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    app = face.get("app") or {}
+    if not isinstance(app, dict) or app.get("cms") is True or app.get("sku") is True:
+        raise IntegrityError("application face is not a CMS or a SKU", reason_code="CATALOG_PLANE")
+    if str(app.get("href") or "") != "app.html":
+        raise IntegrityError("application face is app.html", reason_code="CATALOG_PLANE")
+    work_ids = [item.get("id") for item in app.get("workspaces") or []]
+    if not {"floor", "capital", "business", "programs"} <= set(work_ids):
+        raise IntegrityError("application workspaces are floor, capital, business, and programs", reason_code="CATALOG_PLANE")
+    primary = list(face.get("primary") or [])
+    labels = [str(item.get("label") or "") for item in primary]
+    if labels != ["The write", "Proof day", "Bake-off", "Dashboard", "Owner"]:
+        raise IntegrityError("primary nav is write, proof day, bake-off, dashboard, owner", reason_code="CATALOG_PLANE")
+    hrefs = [str(item.get("href") or "") for item in primary]
+    if hrefs != ["#buyer", "#twin", "#success", "app.html", "#missing"]:
+        raise IntegrityError("primary nav hrefs are buyer, twin, success, application, owner", reason_code="CATALOG_PLANE")
+    book = list(face.get("owner_book") or [])
+    book_ids = [item.get("id") for item in book]
+    if book_ids != ["sale", "owner", "book"]:
+        raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
+    sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path", "#close-consider", "#firm", "#join-consider"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin, honest close, firm, honest join", reason_code="CATALOG_PLANE")
+    owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
+    if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
+        raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
+    book_hrefs = [str(item.get("href") or "") for item in (book[2].get("items") or [])]
+    for needed in ("#finance", "#governance", "#investor"):
+        if needed not in book_hrefs:
+            raise IntegrityError(f"owner book must keep {needed}", reason_code="CATALOG_PLANE")
+    ctas = [str(item.get("href") or "") for item in face.get("cta") or []]
+    if "#twin" not in ctas or "#success" not in ctas or "#buyer" not in ctas:
+        raise IntegrityError("public face CTAs are proof day, bake-off, and the write", reason_code="CATALOG_PLANE")
+    cannot = " ".join(str(item) for item in face.get("cannot") or []).lower()
+    for stem in ("inbox", "ainav.institute", "live_pin_ok", "cms"):
+        if stem not in cannot:
+            raise IntegrityError(f"public face cannot must keep {stem}", reason_code="CATALOG_PLANE")
+    _validate_face_kit(face.get("kit"))
+
+
+REQUIRED_KIT_TOOLS = (
+    "jsonld",
+    "llms_txt",
+    "view_transitions",
+    "speculation_rules",
+    "popover",
+    "minisearch",
+    "playwright",
+    "axe",
+    "lighthouse",
+    "eleventy",
+    "lit",
+    "swa_auth",
+    "swa_api",
+    "app_insights",
+    "pagefind",
+    "swa_cli",
+    "storybook",
+)
+
+
+def _validate_face_kit(kit: Any) -> None:
+    if not isinstance(kit, dict):
+        raise IntegrityError("public face kit is required", reason_code="CATALOG_PLANE")
+    if kit.get("sku") is True or kit.get("cms") is True or kit.get("compiler_is_cms") is True:
+        raise IntegrityError("application kit is not a CMS or a SKU", reason_code="CATALOG_PLANE")
+    if kit.get("live") is True or kit.get("live_pin_ok") is True or kit.get("launch") is True:
+        raise IntegrityError("application kit cannot mark launch or LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if kit.get("auth_is_admit") is True:
+        raise IntegrityError("SWA identify is not admit", reason_code="CATALOG_PLANE")
+    if kit.get("api_writes_sor") is True:
+        raise IntegrityError("kit API cannot write a SoR", reason_code="CATALOG_PLANE")
+    if kit.get("insights_claimed") is True or kit.get("connection_claimed") is True:
+        raise IntegrityError("Application Insights is not claimed", reason_code="CATALOG_PLANE")
+    if kit.get("pagefind_on_public_face") is True:
+        raise IntegrityError("Pagefind stays on the kit, not the public CSP", reason_code="CATALOG_PLANE")
+    if str(kit.get("href") or "") != "kit.html":
+        raise IntegrityError("application kit is kit.html", reason_code="CATALOG_PLANE")
+    if str(kit.get("compiler") or "") != "eleventy":
+        raise IntegrityError("application kit compiler is Eleventy", reason_code="CATALOG_PLANE")
+    thesis = str(kit.get("thesis") or "").lower()
+    for stem in ("kit", "eleventy", "identify", "not a cms", "live_pin_ok"):
+        if stem not in thesis:
+            raise IntegrityError(f"application kit thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    ids = [item.get("id") for item in kit.get("tools") or []]
+    missing = [item for item in REQUIRED_KIT_TOOLS if item not in ids]
+    if missing:
+        raise IntegrityError(f"application kit missing {missing[0]}", reason_code="CATALOG_PLANE")
+
+
+def _validate_view_assignment(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    assign = body.get("view_assignment")
+    if not isinstance(assign, dict):
+        raise IntegrityError("catalog missing view assignment", reason_code="CATALOG_PLANE")
+    if assign.get("sku") is True or assign.get("upsell") is True:
+        raise IntegrityError("view assignment is not a SKU", reason_code="CATALOG_SKU")
+    if assign.get("live") is True or assign.get("live_pin_ok") is True or assign.get("assignment_live") is True:
+        raise IntegrityError("view assignment cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if assign.get("same_dashboard") is not True:
+        raise IntegrityError("view assignment is the same dashboard", reason_code="CATALOG_PLANE")
+    if assign.get("included_with") != "L1":
+        raise IntegrityError("view assignment is included with L1", reason_code="CATALOG_PLANE")
+    if assign.get("do_not_invent_names") is not True:
+        raise IntegrityError("view assignment cannot invent named heads", reason_code="CATALOG_PLANE")
+    if list(assign.get("named_assignments") or []) != []:
+        raise IntegrityError("named assignments stay empty", reason_code="CATALOG_PLANE")
+    if assign.get("department_ai_cannot_receive") is not True:
+        raise IntegrityError("department AI cannot receive a view assignment", reason_code="CATALOG_PLANE")
+    if assign.get("cloud_agent_cannot_assign") is not True:
+        raise IntegrityError("Cloud Agent cannot assign views", reason_code="CATALOG_PLANE")
+    if assign.get("duty_aware") is not True or assign.get("zero_standing") is not True:
+        raise IntegrityError("view assignment is duty-aware and zero-standing", reason_code="CATALOG_PLANE")
+    thesis = str(assign.get("thesis") or "").lower()
+    for stem in ("org chart", "one dashboard", "fail-closed", "mfa", "does not admit"):
+        if stem not in thesis:
+            raise IntegrityError(f"view assignment thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    glance = assign.get("first_glance") or {}
+    if glance.get("sku") is True:
+        raise IntegrityError("view assignment first glance is not a SKU", reason_code="CATALOG_SKU")
+    if str(glance.get("legal") or "") != str((catalog.get("entity") or {}).get("legal") or ""):
+        raise IntegrityError("view assignment legal is AINav, Inc.", reason_code="CATALOG_PLANE")
+    lede = str(glance.get("lede") or "").lower()
+    if "org chart" not in lede or "fail-closed" not in lede or "does not admit" not in lede:
+        raise IntegrityError("view assignment first glance is org-chart, fail-closed, MFA identify", reason_code="CATALOG_PLANE")
+    provision = assign.get("provision") or {}
+    if provision.get("standard") != "provision.standard" or provision.get("options") != "provision.advanced":
+        raise IntegrityError("view assignment provision is standard plus options", reason_code="CATALOG_PLANE")
+    if provision.get("week_one") != "provisioning.standard_l1":
+        raise IntegrityError("view assignment week-one stays standard_l1", reason_code="CATALOG_PLANE")
+    seats = list(provision.get("standard_seats") or [])
+    for needed in ("client", "seats", "owner", "examiner", "remote", "it", "provision", "records"):
+        if needed not in seats:
+            raise IntegrityError(f"standard seats must include {needed}", reason_code="CATALOG_PLANE")
+    unlock = [str(item).lower() for item in provision.get("options_unlock") or []]
+    for needed in ("priced_desks", "padm_keep", "paid_udual", "hours"):
+        if needed not in unlock:
+            raise IntegrityError("options unlock priced desks, keep, paid U-DUAL, and hours", reason_code="CATALOG_PLANE")
+    view_ids = {item.get("id") for item in body.get("views") or [] if isinstance(item, dict)}
+    depts = {
+        item.get("id"): item
+        for item in ((catalog.get("client_org") or {}).get("departments") or [])
+        if isinstance(item, dict)
+    }
+    covered: set[str] = set()
+    matrix = assign.get("matrix") or []
+    if len(matrix) != len(depts):
+        raise IntegrityError("view assignment matrix covers every client department", reason_code="CATALOG_PLANE")
+    for row in matrix:
+        if not isinstance(row, dict):
+            raise IntegrityError("view assignment matrix row is an object", reason_code="CATALOG_PLANE")
+        nodes = list(row.get("org_nodes") or [])
+        if not nodes:
+            raise IntegrityError("view assignment row needs org nodes", reason_code="CATALOG_PLANE")
+        for node in nodes:
+            if node not in depts:
+                raise IntegrityError(f"view assignment unknown org node {node}", reason_code="CATALOG_PLANE")
+            if node in covered:
+                raise IntegrityError("view assignment org node is unique", reason_code="CATALOG_PLANE")
+            covered.add(node)
+            if depts[node].get("role") != row.get("org_role"):
+                raise IntegrityError("view assignment role must match the org chart", reason_code="CATALOG_PLANE")
+        default = row.get("default_view")
+        allowed = list(row.get("allowed_views") or [])
+        if default not in allowed:
+            raise IntegrityError("default view must be allowed", reason_code="CATALOG_PLANE")
+        for view in allowed:
+            if view not in view_ids:
+                raise IntegrityError(f"view assignment unknown view {view}", reason_code="CATALOG_PLANE")
+        if row.get("org_role") == "admit":
+            if row.get("may_bind") is not True:
+                raise IntegrityError("admit roles may bind", reason_code="CATALOG_PLANE")
+            if row.get("seat") not in {"seat_a", "seat_b"}:
+                raise IntegrityError("admit assignment names seat A or seat B", reason_code="CATALOG_PLANE")
+        elif row.get("may_bind") is True:
+            raise IntegrityError("only admit roles may bind", reason_code="CATALOG_PLANE")
+        band = row.get("provision_band")
+        if band not in {"provision.standard", "provision.advanced"}:
+            raise IntegrityError("assignment band is standard or advanced provision", reason_code="CATALOG_PLANE")
+    if covered != set(depts):
+        raise IntegrityError("view assignment must cover the org chart", reason_code="CATALOG_PLANE")
+    auth = assign.get("authorize") or {}
+    if auth.get("sku") is True or auth.get("live") is True or auth.get("standing") is True:
+        raise IntegrityError("authorize stays zero-standing and not a SKU", reason_code="CATALOG_PLANE")
+    if auth.get("fail_closed") is not True:
+        raise IntegrityError("authorize is fail-closed", reason_code="CATALOG_PLANE")
+    if auth.get("uses") != "authorizations":
+        raise IntegrityError("authorize uses the authorization lifecycle", reason_code="CATALOG_PLANE")
+    if "seat_bind" not in (auth.get("requires_dual_humans_for") or []):
+        raise IntegrityError("seat bind requires two humans", reason_code="CATALOG_PLANE")
+    if list(auth.get("path") or []) != ["identify", "view", "seat", "bind"]:
+        raise IntegrityError("authorize path is identify, view, seat, bind", reason_code="CATALOG_PLANE")
+    deauth = assign.get("deauthorize") or {}
+    if deauth.get("sku") is True or deauth.get("live") is True or deauth.get("standing") is True:
+        raise IntegrityError("de-authorize stays zero-standing and not a SKU", reason_code="CATALOG_PLANE")
+    if deauth.get("fail_closed") is not True:
+        raise IntegrityError("de-authorize is fail-closed", reason_code="CATALOG_PLANE")
+    if deauth.get("uses") != "revocations":
+        raise IntegrityError("de-authorize uses revocations", reason_code="CATALOG_PLANE")
+    if deauth.get("effect") != "console_hidden":
+        raise IntegrityError("de-authorize hides the console", reason_code="CATALOG_PLANE")
+    by = set(deauth.get("by") or [])
+    if not {"freeze", "seat_revoke", "view_revoke"} <= by:
+        raise IntegrityError("de-authorize by freeze, seat revoke, and view revoke", reason_code="CATALOG_PLANE")
+    if "seat_revoke" not in (deauth.get("requires_dual_humans_for") or []):
+        raise IntegrityError("seat revoke requires two humans", reason_code="CATALOG_PLANE")
+    mfa = assign.get("mfa") or {}
+    if mfa.get("sku") is True:
+        raise IntegrityError("MFA is not a SKU", reason_code="CATALOG_SKU")
+    if mfa.get("live") is True or mfa.get("mfa_live") is True:
+        raise IntegrityError("MFA cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if mfa.get("is_admit") is True:
+        raise IntegrityError("MFA is not admit", reason_code="CATALOG_PLANE")
+    if mfa.get("same_plane") is not True or mfa.get("vpn_sku") is True:
+        raise IntegrityError("remote MFA is the same plane, not a VPN SKU", reason_code="CATALOG_PLANE")
+    if mfa.get("pim_is_not_dual") is not True:
+        raise IntegrityError("PIM is not dual admit", reason_code="CATALOG_PLANE")
+    internal = mfa.get("internal") or {}
+    remote = mfa.get("remote") or {}
+    if internal.get("admit") is True or remote.get("admit") is True:
+        raise IntegrityError("internal and remote MFA do not admit", reason_code="CATALOG_PLANE")
+    if internal.get("mfa_live") is True or remote.get("mfa_live") is True:
+        raise IntegrityError("MFA cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if remote.get("same_plane") is not True or remote.get("vpn_sku") is True:
+        raise IntegrityError("remote MFA is the same plane", reason_code="CATALOG_PLANE")
+    mfa_note = str(mfa.get("note") or "").lower()
+    if "identify" not in mfa_note or "not dual admit" not in mfa_note or "wired live" not in mfa_note:
+        raise IntegrityError("MFA note is identify, not admit, not live", reason_code="CATALOG_PLANE")
+    passkey = mfa.get("passkey")
+    if not isinstance(passkey, dict):
+        raise IntegrityError("MFA needs passkey identify", reason_code="CATALOG_PLANE")
+    if passkey.get("is_admit") is True or passkey.get("live") is True:
+        raise IntegrityError("passkey is identify, not admit, not live", reason_code="CATALOG_PLANE")
+    if passkey.get("identify") is not True:
+        raise IntegrityError("passkey identifies", reason_code="CATALOG_PLANE")
+    if "does not admit" not in str(passkey.get("note") or "").lower():
+        raise IntegrityError("passkey note: identify is not admit", reason_code="CATALOG_PLANE")
+    disc = assign.get("disclaimers") or {}
+    if str(disc.get("legal") or "") != str((catalog.get("entity") or {}).get("legal") or ""):
+        raise IntegrityError("disclaimers are AINav, Inc.", reason_code="CATALOG_PLANE")
+    if disc.get("sku") is True or disc.get("certified") is True or disc.get("counsel") is True:
+        raise IntegrityError("disclaimers are not a SKU, certificate, or counsel", reason_code="CATALOG_PLANE")
+    if disc.get("signature") is True or disc.get("live_pin_ok") is True:
+        raise IntegrityError("disclaimers are not a signature or LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    if disc.get("uses") != "floor.protect":
+        raise IntegrityError("disclaimers use floor.protect", reason_code="CATALOG_PLANE")
+    protect = ((body.get("floor") or {}).get("protect") or {})
+    prot_items = {item.get("id"): item for item in protect.get("items") or [] if isinstance(item, dict)}
+    disc_items = {item.get("id"): item for item in disc.get("items") or [] if isinstance(item, dict)}
+    for needed in ("disclaimer", "attest", "policy", "update"):
+        if needed not in disc_items:
+            raise IntegrityError(f"disclaimers must include {needed}", reason_code="CATALOG_PLANE")
+        if str((disc_items.get(needed) or {}).get("note") or "") != str((prot_items.get(needed) or {}).get("note") or ""):
+            raise IntegrityError(f"disclaimer {needed} must match floor.protect", reason_code="CATALOG_PLANE")
+    disc_lede = str(disc.get("lede") or "").lower()
+    if "ainav, inc" not in disc_lede or "not counsel" not in disc_lede or "not a certificate" not in disc_lede:
+        raise IntegrityError("disclaimer lede is AINav, Inc. catalog-map", reason_code="CATALOG_PLANE")
+    advantage = assign.get("advantage") or {}
+    if advantage.get("sku") is True or advantage.get("live") is True:
+        raise IntegrityError("advantage is not a SKU or live", reason_code="CATALOG_PLANE")
+    adv_ids = [item.get("id") for item in advantage.get("items") or [] if isinstance(item, dict)]
+    for needed in ("org_chart_assignment", "fail_closed_revoke", "identify_not_admit", "duty_aware", "independence"):
+        if needed not in adv_ids:
+            raise IntegrityError(f"advantage must include {needed}", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in assign.get("refuse") or []]
+    for stem in (
+        "view assignment as sku",
+        "personalized dashboard as sku",
+        "mfa as dual admit",
+        "mfa live claimed",
+        "dashboard as sku",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("view assignment must refuse " + stem, reason_code="CATALOG_PLANE")
+
+
+def _validate_estate(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    estate = body.get("estate")
+    if not isinstance(estate, dict):
+        raise IntegrityError("catalog missing plane estate", reason_code="CATALOG_PLANE")
+    if estate.get("sku") is True or estate.get("upsell") is True or estate.get("fourth_sku") is True:
+        raise IntegrityError("estate is not a SKU", reason_code="CATALOG_SKU")
+    if estate.get("live") is True or estate.get("live_pin_ok") is True:
+        raise IntegrityError("estate cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if estate.get("same_dashboard") is not True or estate.get("included_with") != "L1":
+        raise IntegrityError("estate is the same L1 dashboard", reason_code="CATALOG_PLANE")
+    thesis = str(estate.get("thesis") or "").lower()
+    for stem in ("failsafe", "not the ai", "two records", "hash-chained", "catalog map", "bc.general_journal.post"):
+        if stem not in thesis:
+            raise IntegrityError(f"estate thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    glance = estate.get("first_glance") or {}
+    if glance.get("sku") is True:
+        raise IntegrityError("estate first glance is not a SKU", reason_code="CATALOG_SKU")
+    lede = str(glance.get("lede") or "").lower()
+    for stem in ("failsafe", "sealed records", "immutable", "not a fourth sku"):
+        if stem not in lede:
+            raise IntegrityError(f"estate first glance must keep {stem}", reason_code="CATALOG_PLANE")
+    columns = {item.get("id"): item for item in glance.get("columns") or [] if isinstance(item, dict)}
+    if set(columns) != {"other_uses", "failsafe_oversee", "records_maps"}:
+        raise IntegrityError(
+            "estate first glance needs other_uses, failsafe_oversee, and records_maps",
+            reason_code="CATALOG_PLANE",
+        )
+    for column in columns.values():
+        if column.get("sku") is True or column.get("upsell") is True:
+            raise IntegrityError("estate first glance column is not a SKU", reason_code="CATALOG_SKU")
+    uses_blob = " ".join(str(item) for item in (columns["other_uses"].get("items") or [])).lower()
+    if "bc.general_journal.post" not in uses_blob or "l1" not in uses_blob or "u-dual" not in uses_blob:
+        raise IntegrityError("estate first glance other uses keep the journal lead", reason_code="CATALOG_PLANE")
+    fail_blob = " ".join(str(item) for item in (columns["failsafe_oversee"].get("items") or [])).lower()
+    if "admit" not in fail_blob or "not seats" not in fail_blob:
+        raise IntegrityError("estate first glance failsafe keeps admit and not seats", reason_code="CATALOG_PLANE")
+    rec_blob = " ".join(str(item) for item in (columns["records_maps"].get("items") or [])).lower()
+    if "two records" not in rec_blob and "second record" not in rec_blob:
+        raise IntegrityError("estate first glance records keep the second record", reason_code="CATALOG_PLANE")
+    if "hash-chained" not in rec_blob or "maps" not in rec_blob:
+        raise IntegrityError("estate first glance maps stay claimed maps", reason_code="CATALOG_PLANE")
+    uses = estate.get("other_uses") or {}
+    if uses.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("other uses lead stays the general journal", reason_code="CATALOG_WEDGE")
+    modules = {
+        item.get("id"): item
+        for item in catalog.get("modules") or []
+        if isinstance(item, dict)
+    }
+    bands = {item.get("id"): item for item in uses.get("bands") or [] if isinstance(item, dict)}
+    for needed in ("prove", "deepen", "keep"):
+        if needed not in bands:
+            raise IntegrityError(f"other uses must include {needed}", reason_code="CATALOG_PLANE")
+    prove = bands["prove"]
+    deepen = bands["deepen"]
+    keep = bands["keep"]
+    if prove.get("sku") != "L1" or deepen.get("sku") != "U-DUAL" or keep.get("sku") != "P-ADM":
+        raise IntegrityError("other uses bands stay L1 / U-DUAL / P-ADM", reason_code="CATALOG_SKU")
+    if list(prove.get("wedge") or []) != ["bc.general_journal.post"]:
+        raise IntegrityError("L1 other-uses wedge stays the general journal", reason_code="CATALOG_WEDGE")
+    if set(deepen.get("wedge") or []) != {"d365.quote.discount_override", "d365.order.submit"}:
+        raise IntegrityError("U-DUAL other-uses wedges stay quote and order", reason_code="CATALOG_WEDGE")
+    for band in (prove, deepen, keep):
+        for action_id in list(band.get("wedge") or []) + list(band.get("desks") or []):
+            module = modules.get(action_id)
+            if not module:
+                raise IntegrityError(f"other uses unknown module {action_id}", reason_code="CATALOG_PLANE")
+            if module.get("sku") != band.get("sku"):
+                raise IntegrityError(f"other uses {action_id} must stay on {band.get('sku')}", reason_code="CATALOG_SKU")
+    fail = estate.get("failsafe") or {}
+    if fail.get("ainav_is_client_ai") is True:
+        raise IntegrityError("estate failsafe is not the client's AI", reason_code="CATALOG_GOVERNANCE")
+    if fail.get("uses") != "governance.plane":
+        raise IntegrityError("estate failsafe uses governance.plane", reason_code="CATALOG_PLANE")
+    verb_ids = [item.get("id") for item in fail.get("verbs") or [] if isinstance(item, dict)]
+    for needed in ("admit", "off_switch", "reset", "rollback"):
+        if needed not in verb_ids:
+            raise IntegrityError(f"failsafe verbs must include {needed}", reason_code="CATALOG_PLANE")
+    gov_plane = ((catalog.get("governance") or {}).get("plane") or {})
+    verbs = {item.get("id"): item for item in fail.get("verbs") or [] if isinstance(item, dict)}
+    for key in ("off_switch", "reset", "rollback"):
+        if str((verbs.get(key) or {}).get("note") or "") != str((gov_plane.get(key) or {}).get("does") or ""):
+            raise IntegrityError(f"estate {key} must match governance.plane", reason_code="CATALOG_PLANE")
+    executive = estate.get("executive") or {}
+    if executive.get("dashboard_is_sku") is True or executive.get("dashboard_included_with") != "L1":
+        raise IntegrityError("executive dashboard is included with L1, not a SKU", reason_code="CATALOG_SKU")
+    for who in ("owner", "board"):
+        row = executive.get(who) or {}
+        if row.get("admit") is True or row.get("role") != "oversee":
+            raise IntegrityError(f"{who} oversees and does not admit", reason_code="CATALOG_PLANE")
+        if row.get("freeze") != "request":
+            raise IntegrityError(f"{who} may request a freeze", reason_code="CATALOG_PLANE")
+    records = estate.get("records") or {}
+    if records.get("certified") is True:
+        raise IntegrityError("estate records are not a certificate", reason_code="CATALOG_GOVERNANCE")
+    if records.get("uses") != "governance.records":
+        raise IntegrityError("estate records use governance.records", reason_code="CATALOG_PLANE")
+    rec_ids = [item.get("id") for item in records.get("items") or [] if isinstance(item, dict)]
+    for needed in ("first", "second", "keep"):
+        if needed not in rec_ids:
+            raise IntegrityError(f"estate records must include {needed}", reason_code="CATALOG_PLANE")
+    immutable = estate.get("immutable") or {}
+    if immutable.get("crypto") is True or immutable.get("worm") is True:
+        raise IntegrityError("estate immutable is not crypto or WORM", reason_code="CATALOG_GOVERNANCE")
+    if immutable.get("uses") != "governance.immutable":
+        raise IntegrityError("estate immutable uses governance.immutable", reason_code="CATALOG_PLANE")
+    instruments = estate.get("instruments") or {}
+    if instruments.get("certified") is True or instruments.get("mandated") is True:
+        raise IntegrityError("estate instruments are not certified or mandated", reason_code="CATALOG_GOVERNANCE")
+    if instruments.get("uses") != "governance.maps":
+        raise IntegrityError("estate instruments use governance.maps", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in estate.get("refuse") or []]
+    for stem in (
+        "estate as sku",
+        "other uses as fourth sku",
+        "failsafe as client ai",
+        "owner as both seats",
+        "board admits",
+        "worm claimed",
+        "crypto ledger",
+        "eu-ready",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("estate must refuse " + stem, reason_code="CATALOG_PLANE")
+
+
+def _validate_audit(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    audit = body.get("audit")
+    if not isinstance(audit, dict):
+        raise IntegrityError("catalog missing plane audit", reason_code="CATALOG_PLANE")
+    if audit.get("sku") is True or audit.get("upsell") is True or audit.get("fourth_sku") is True:
+        raise IntegrityError("audit is not a SKU", reason_code="CATALOG_SKU")
+    if audit.get("live") is True or audit.get("live_pin_ok") is True:
+        raise IntegrityError("audit cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if audit.get("same_dashboard") is not True or audit.get("included_with") != "L1":
+        raise IntegrityError("audit is the same L1 dashboard", reason_code="CATALOG_PLANE")
+    if audit.get("crypto_associated") is True or audit.get("seventeen_a4") is True:
+        raise IntegrityError("audit is not crypto-associated or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    thesis = str(audit.get("thesis") or "").lower()
+    for stem in (
+        "internal audit",
+        "does not admit",
+        "17a-4",
+        "room 1",
+        "room 2",
+        "bc.general_journal.post",
+        "does not close regulator clocks",
+    ):
+        if stem not in thesis:
+            raise IntegrityError(f"audit thesis must keep {stem}", reason_code="CATALOG_PLANE")
+    glance = audit.get("first_glance") or {}
+    if glance.get("sku") is True:
+        raise IntegrityError("audit first glance is not a SKU", reason_code="CATALOG_SKU")
+    columns = {item.get("id"): item for item in glance.get("columns") or [] if isinstance(item, dict)}
+    if set(columns) != {"internal_audit", "regulator_archive", "consequences"}:
+        raise IntegrityError(
+            "audit first glance needs internal_audit, regulator_archive, and consequences",
+            reason_code="CATALOG_PLANE",
+        )
+    for column in columns.values():
+        if column.get("sku") is True or column.get("upsell") is True:
+            raise IntegrityError("audit first glance column is not a SKU", reason_code="CATALOG_SKU")
+    rooms = audit.get("rooms") or {}
+    internal = rooms.get("internal") or {}
+    if internal.get("admit") is True or internal.get("role") != "keep":
+        raise IntegrityError("internal audit keeps and does not admit", reason_code="CATALOG_PLANE")
+    if internal.get("default_view") != "examiner" or internal.get("pack") != "industry.internal_audit":
+        raise IntegrityError("internal audit sits Examiner on industry.internal_audit", reason_code="CATALOG_PLANE")
+    archive = rooms.get("archive") or {}
+    if archive.get("seventeen_a4") is True or archive.get("worm") is True:
+        raise IntegrityError("archive is not 17a-4 or WORM", reason_code="CATALOG_GOVERNANCE")
+    if "merkle" not in str(archive.get("what") or "").lower():
+        raise IntegrityError("archive is a Merkle walk", reason_code="CATALOG_PLANE")
+    regulated = audit.get("regulated") or {}
+    if regulated.get("lead") != "bc.general_journal.post":
+        raise IntegrityError("regulated lead stays the general journal", reason_code="CATALOG_WEDGE")
+    if regulated.get("crypto_associated") is True:
+        raise IntegrityError("regulated is not crypto-associated", reason_code="CATALOG_GOVERNANCE")
+    room_1 = regulated.get("room_1") or {}
+    room_2 = regulated.get("room_2") or {}
+    if room_1.get("id") != "room_1" or room_2.get("id") != "room_2":
+        raise IntegrityError("regulated needs Room 1 and Room 2", reason_code="CATALOG_PLANE")
+    if room_1.get("buy") != "L1 as today":
+        raise IntegrityError("Room 1 buys L1 as today", reason_code="CATALOG_PLANE")
+    if room_2.get("buy") is not False:
+        raise IntegrityError("Room 2 is not a buy this week", reason_code="CATALOG_SKU")
+    item_ids = [item.get("id") for item in regulated.get("items") or [] if isinstance(item, dict)]
+    for needed in ("sec.books", "sec.17a4", "stablecoin", "rwa", "crypto_am", "mica"):
+        if needed not in item_ids:
+            raise IntegrityError(f"regulated items must include {needed}", reason_code="CATALOG_PLANE")
+    if any(item.get("claimed") is True for item in regulated.get("items") or [] if isinstance(item, dict)):
+        raise IntegrityError("regulated items cannot claim certification", reason_code="CATALOG_GOVERNANCE")
+    if audit.get("consequences_uses") != "governance.consequences":
+        raise IntegrityError("audit consequences use governance.consequences", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in audit.get("refuse") or []]
+    for stem in (
+        "audit as sku",
+        "17a-4 ready",
+        "worm claimed",
+        "stablecoin sku",
+        "room 2 as lead",
+        "buying l1 closes clocks",
+    ):
+        if stem not in refuse:
+            raise IntegrityError("audit must refuse " + stem, reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    floor = body.get("proof_day_floor")
+    if not isinstance(floor, dict):
+        raise IntegrityError("catalog missing proof-day Floor", reason_code="CATALOG_PLANE")
+    if floor.get("sku") is True:
+        raise IntegrityError("proof-day Floor is not a SKU", reason_code="CATALOG_SKU")
+    if floor.get("same_dashboard") is not True or floor.get("included_with") != "L1":
+        raise IntegrityError("proof-day Floor is the same L1 dashboard", reason_code="CATALOG_PLANE")
+    if int(floor.get("minutes") or 0) != 90:
+        raise IntegrityError("proof-day Floor is ninety minutes", reason_code="CATALOG_PLANE")
+    shows = [str(item) for item in floor.get("client_shows") or []]
+    for needed in ("write_rail", "attention", "seats", "keep", "offer"):
+        if needed not in shows:
+            raise IntegrityError("Client proof-day Floor sits write rail, attention, seats, keep, offer", reason_code="CATALOG_PLANE")
+    hides = [str(item) for item in floor.get("client_hides") or []]
+    for needed in ("estate", "audit", "assignment"):
+        if needed not in hides:
+            raise IntegrityError("Client proof-day Floor hides estate, audit, and assignment", reason_code="CATALOG_PLANE")
+    client_view = next(
+        (item for item in body.get("views") or [] if isinstance(item, dict) and item.get("id") == "client"),
+        {},
+    )
+    if "ninety-minute" not in str(client_view.get("can") or "").lower():
+        raise IntegrityError("client view is the ninety-minute proof-day Floor", reason_code="CATALOG_PLANE")
+    admit = body.get("admit_client")
+    if not isinstance(admit, dict):
+        raise IntegrityError("catalog missing admit client", reason_code="CATALOG_PLANE")
+    if admit.get("sku") is True or admit.get("live") is True:
+        raise IntegrityError("admit client is not a SKU or live", reason_code="CATALOG_PLANE")
+    if admit.get("drafter_is_not_seat") is not True:
+        raise IntegrityError("drafter is not a seat", reason_code="CATALOG_PLANE")
+    examiner = body.get("examiner")
+    if not isinstance(examiner, dict):
+        raise IntegrityError("catalog missing examiner prove", reason_code="CATALOG_PLANE")
+    if examiner.get("sku") is True or examiner.get("live") is True:
+        raise IntegrityError("examiner is not a SKU or live", reason_code="CATALOG_PLANE")
+    if examiner.get("read_only") is not True:
+        raise IntegrityError("examiner prove is read-only", reason_code="CATALOG_PLANE")
+    if examiner.get("seventeen_a4") is True or examiner.get("worm") is True:
+        raise IntegrityError("examiner is not 17a-4 or WORM", reason_code="CATALOG_GOVERNANCE")
+    if "examiner-prove" not in str(examiner.get("cli") or ""):
+        raise IntegrityError("examiner cli is examiner-prove", reason_code="CATALOG_PLANE")
+    inventory = body.get("ai_inventory")
+    if not isinstance(inventory, dict):
+        raise IntegrityError("catalog missing AI inventory", reason_code="CATALOG_PLANE")
+    if inventory.get("sku") is True or inventory.get("live") is True:
+        raise IntegrityError("AI inventory is not a SKU or live", reason_code="CATALOG_PLANE")
+    if list(inventory.get("items") or []) != []:
+        raise IntegrityError("AI inventory stays empty", reason_code="CATALOG_PLANE")
+    if inventory.get("do_not_invent_names") is not True:
+        raise IntegrityError("AI inventory cannot invent names", reason_code="CATALOG_PLANE")
+    if inventory.get("drafter_is_not_seat") is not True:
+        raise IntegrityError("AI inventory: drafter is not a seat", reason_code="CATALOG_PLANE")
+    ttl = body.get("grant_ttl")
+    if not isinstance(ttl, dict):
+        raise IntegrityError("catalog missing grant TTL", reason_code="CATALOG_PLANE")
+    if ttl.get("outside_digest") is not True or ttl.get("changes_policy_hash") is True:
+        raise IntegrityError("grant TTL stays outside the lockfile digest", reason_code="CATALOG_PLANE")
+    if ttl.get("default_seconds") is not None:
+        raise IntegrityError("default grant TTL stays unset", reason_code="CATALOG_PLANE")
+    if int(ttl.get("proof_day_seconds") or 0) != 5400:
+        raise IntegrityError("proof-day grant TTL is 90 minutes outside the digest", reason_code="CATALOG_PLANE")
+    proof_day = catalog.get("proof_day") or {}
+    if int(proof_day.get("grant_ttl_seconds") or 0) != int(ttl.get("proof_day_seconds") or 0):
+        raise IntegrityError("proof-day TTL must match grant_ttl.proof_day_seconds", reason_code="CATALOG_PLANE")
+    if proof_day.get("lab_oids_are_not_named_seats") is not True:
+        raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
+    _validate_instrument_271(catalog, body)
+    _validate_instrument_272(catalog, body)
+    _validate_instrument_273(catalog, body)
+    _validate_instrument_274(catalog, body)
+    _validate_instrument_275(catalog, body)
+    _validate_instrument_276(catalog, body)
+    _validate_instrument_277(catalog, body)
+    _validate_instrument_278(catalog, body)
+    _validate_instrument_279(catalog, body)
+    _validate_instrument_280(catalog, body)
+    _validate_instrument_281(catalog, body)
+    _validate_instrument_282(catalog, body)
+    _validate_instrument_283(catalog, body)
+    _validate_instrument_284(catalog, body)
+    _validate_instrument_285(catalog, body)
+    _validate_instrument_286(catalog, body)
+    _validate_instrument_287(catalog, body)
+    _validate_instrument_288(catalog, body)
+    _validate_instrument_289(catalog, body)
+    _validate_instrument_290(catalog, body)
+    _validate_instrument_291(catalog, body)
+    _validate_instrument_292(catalog, body)
+    _validate_instrument_293(catalog, body)
+    _validate_instrument_294(catalog, body)
+    _validate_instrument_295(catalog, body)
+    _validate_instrument_296(catalog, body)
+    _validate_instrument_297(catalog, body)
+    _validate_instrument_298(catalog, body)
+    _validate_instrument_299(catalog, body)
+    _validate_instrument_300(catalog, body)
+    _validate_instrument_301(catalog, body)
+    _validate_instrument_302(catalog, body)
+    _validate_instrument_303(catalog, body)
+    _validate_instrument_304(catalog, body)
+    _validate_instrument_305(catalog, body)
+    _validate_instrument_306(catalog, body)
+    _validate_instrument_307(catalog, body)
+    _validate_instrument_308(catalog, body)
+    _validate_instrument_309(catalog, body)
+    _validate_instrument_310(catalog, body)
+    _validate_instrument_311(catalog, body)
+    _validate_instrument_312(catalog, body)
+    _validate_instrument_313(catalog, body)
+    _validate_instrument_314(catalog, body)
+    _validate_instrument_315(catalog, body)
+    _validate_instrument_316(catalog, body)
+    _validate_instrument_317(catalog, body)
+    _validate_instrument_318(catalog, body)
+    _validate_instrument_319(catalog, body)
+    _validate_instrument_320(catalog, body)
+
+
+def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    gaps = body.get("gaps")
+    if not isinstance(gaps, dict):
+        raise IntegrityError("catalog missing gaps board", reason_code="CATALOG_PLANE")
+    if gaps.get("sku") is True or gaps.get("live") is True or gaps.get("live_pin_ok") is True:
+        raise IntegrityError("gaps board is not a SKU or live", reason_code="CATALOG_PLANE")
+    if gaps.get("claimed") is True:
+        raise IntegrityError("gaps board cannot claim closed owner clicks", reason_code="CATALOG_PLANE")
+    if gaps.get("gold_floor") != 99.5:
+        raise IntegrityError("gaps gold_floor is 99.5", reason_code="CATALOG_PLANE")
+    gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
+    if gaps.get("gold_floor") != gold.get("coverage_floor"):
+        raise IntegrityError("gaps.gold_floor must match engineering.gold_ci.coverage_floor", reason_code="CATALOG_ENGINEERING")
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    cannot = [str(item).lower() for item in gaps.get("this_plane_cannot") or []]
+    if not closed or not owner or not cannot:
+        raise IntegrityError("gaps board needs in_tree_closed, owner_only_open, and this_plane_cannot", reason_code="CATALOG_PLANE")
+    for stem in ("gold floor 95", "client offer", "pending bind"):
+        if not any(stem in item for item in closed):
+            raise IntegrityError("gaps in_tree_closed must keep " + stem, reason_code="CATALOG_PLANE")
+    for stem in ("seat b", "dataverse", "g12", "billing", "launch"):
+        if not any(stem in item for item in owner):
+            raise IntegrityError("gaps owner_only_open must keep " + stem, reason_code="CATALOG_PLANE")
+    for stem in ("entra_oid", "seat click", "live_pin_ok", "cloudflare", "asuid", "graph", "canada", "environment id", "authorized release"):
+        if not any(stem in item for item in cannot):
+            raise IntegrityError("gaps this_plane_cannot must keep " + stem, reason_code="CATALOG_PLANE")
+    if "do not invent" not in str(gaps.get("note") or "").lower():
+        raise IntegrityError("gaps note must refuse invented owner clicks", reason_code="CATALOG_PLANE")
+    floor = body.get("proof_day_floor") or {}
+    if "gaps" not in (floor.get("owner_shows") or []) or "gaps" not in (floor.get("entire_shows") or []):
+        raise IntegrityError("gaps board sits Owner and Entire", reason_code="CATALOG_PLANE")
+    if "gaps" in (floor.get("client_shows") or []) or "gaps" in (floor.get("client_hides") or []):
+        raise IntegrityError("Client proof-day Floor does not sit the gaps board", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("gold floor" in item and "95" in item for item in well):
+        raise IntegrityError("working_well must keep gold floor 95", reason_code="CATALOG_REVIEW")
+    if not any("gaps board" in item for item in well):
+        raise IntegrityError("working_well must keep the gaps board", reason_code="CATALOG_REVIEW")
+    traction = str(((catalog.get("investor") or {}).get("traction") or "")).lower()
+    if "95" not in traction or "gold floor" not in traction:
+        raise IntegrityError("investor traction must keep gold floor 95", reason_code="CATALOG_INVESTOR")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.72.0" in item and "95" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.72.0 gold floor 95", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_instrument_273(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.73.0" in item and "floor" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.73.0 Floor view_shows", reason_code="CATALOG_ENGINEERING")
+    floor = body.get("proof_day_floor") or {}
+    view_shows = floor.get("view_shows")
+    if not isinstance(view_shows, dict) or not view_shows:
+        raise IntegrityError("proof-day Floor needs catalog view_shows", reason_code="CATALOG_PLANE")
+    client = [str(item) for item in view_shows.get("client") or []]
+    owner = [str(item) for item in view_shows.get("owner") or []]
+    entire = [str(item) for item in view_shows.get("entire") or []]
+    provision = [str(item) for item in view_shows.get("provision") or []]
+    if "gaps" in client or "estate" in client or "audit" in client:
+        raise IntegrityError("Client view_shows must stay lean", reason_code="CATALOG_PLANE")
+    if "gaps" not in owner or "gaps" not in entire:
+        raise IntegrityError("Owner and Entire view_shows must include gaps", reason_code="CATALOG_PLANE")
+    if "provision_path" not in provision:
+        raise IntegrityError("Provision view_shows must include provision_path", reason_code="CATALOG_PLANE")
+    if "board_packet" not in owner:
+        raise IntegrityError("Owner view_shows must include board_packet", reason_code="CATALOG_PLANE")
+    if "board_packet" not in (floor.get("owner_shows") or []):
+        raise IntegrityError("owner_shows must include board_packet", reason_code="CATALOG_PLANE")
+    if "provision_path" not in (floor.get("provision_shows") or []):
+        raise IntegrityError("provision_shows must include provision_path", reason_code="CATALOG_PLANE")
+    hints = floor.get("duty_hints")
+    if not isinstance(hints, dict):
+        raise IntegrityError("proof-day Floor needs duty hints", reason_code="CATALOG_PLANE")
+    for view in (
+        "client",
+        "entire",
+        "owner",
+        "seats",
+        "examiner",
+        "remote",
+        "it",
+        "provision",
+        "records",
+    ):
+        if view not in hints or not str(hints[view]).strip():
+            raise IntegrityError(f"duty hint missing for {view}", reason_code="CATALOG_PLANE")
+    demo = ((body.get("examiner_walk") or {}).get("demo") or {})
+    if demo.get("record_id") != "lab.demo.inclusion":
+        raise IntegrityError("examiner demo leaf must be lab.demo.inclusion", reason_code="CATALOG_PLANE")
+    if demo.get("included") is not True or demo.get("lab") is not True:
+        raise IntegrityError("examiner demo leaf is a lab inclusion, not a named record", reason_code="CATALOG_PLANE")
+    hrefs = (body.get("gaps") or {}).get("owner_only_hrefs")
+    if not isinstance(hrefs, dict) or not hrefs:
+        raise IntegrityError("owner-only gaps must have hrefs", reason_code="CATALOG_PLANE")
+    for stem in ("missing", "twin", "stack-walk", "open"):
+        if stem not in " ".join(str(item) for item in hrefs.values()):
+            raise IntegrityError(f"owner-only hrefs must walk to {stem}", reason_code="CATALOG_PLANE")
+    lab = body.get("lab_vs_commercial")
+    if not isinstance(lab, dict):
+        raise IntegrityError("catalog missing lab vs commercial", reason_code="CATALOG_PLANE")
+    if lab.get("sku") is True or lab.get("live") is True or lab.get("live_pin_ok") is True:
+        raise IntegrityError("lab vs commercial is not a SKU or live", reason_code="CATALOG_PLANE")
+    if lab.get("lab_pin") != "AINAV-L1":
+        raise IntegrityError("lab pin must stay AINAV-L1", reason_code="CATALOG_PLANE")
+    if lab.get("commercial_close") is not False:
+        raise IntegrityError("commercial close must stay false", reason_code="CATALOG_PLANE")
+    packet = body.get("board_packet")
+    if not isinstance(packet, dict):
+        raise IntegrityError("catalog missing board packet", reason_code="CATALOG_PLANE")
+    if packet.get("sku") is True or packet.get("live") is True or packet.get("live_pin_ok") is True:
+        raise IntegrityError("board packet is not a SKU or live", reason_code="CATALOG_PLANE")
+    tiles = [str(item) for item in packet.get("tile_ids") or []]
+    for needed in ("must_have", "pending_admits", "seats_recorded", "signed_l1", "recognized_revenue"):
+        if needed not in tiles:
+            raise IntegrityError(f"board packet must include {needed}", reason_code="CATALOG_PLANE")
+    if "seat b" not in str(packet.get("ask") or "").lower():
+        raise IntegrityError("board packet ask must stay seat B click", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("catalog-driven floor" in item or "view_shows" in item for item in well):
+        raise IntegrityError("working_well must keep catalog-driven Floor", reason_code="CATALOG_REVIEW")
+    if not any("provision spine" in item for item in well):
+        raise IntegrityError("working_well must keep the provision spine", reason_code="CATALOG_REVIEW")
+    if not any("board packet" in item for item in well):
+        raise IntegrityError("working_well must keep the board packet", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("seat b click" in item for item in improve):
+        raise IntegrityError("improve must still name seat B click", reason_code="CATALOG_REVIEW")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    for number, needle in (
+        (33, "visibility"),
+        (34, "provision"),
+        (35, "duty"),
+        (36, "freeze"),
+        (37, "examiner"),
+        (38, "gaps"),
+        (39, "packet"),
+        (40, "lab"),
+    ):
+        item = by_n.get(number) or {}
+        blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+        if needle not in blob:
+            raise IntegrityError(f"2.73.0 upgrade {number} must mention {needle}", reason_code="CATALOG_REVIEW")
+        if item.get("who") != "tree" or item.get("done") is not True:
+            raise IntegrityError(f"2.73.0 upgrade {number} must stay tree and done", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_274(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.74.0" in item and "quality" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.74.0 Cloudflare quality", reason_code="CATALOG_ENGINEERING")
+    edge = _as_dict((catalog.get("microsoft_stack") or {}).get("edge") or {}, "Cloudflare edge")
+    quality = _as_dict(edge.get("quality") or {}, "edge quality")
+    if quality.get("ssl_full_claimed") is True or quality.get("apex_is_institute") is True:
+        raise IntegrityError("2.74.0 cannot claim SSL Full or apex Institute", reason_code="CATALOG_EDGE")
+    if quality.get("rocket_loader_claimed") is True:
+        raise IntegrityError("2.74.0 cannot claim Rocket Loader Off", reason_code="CATALOG_EDGE")
+    verified = " ".join(str(item).lower() for item in quality.get("verified") or [])
+    if "tls" not in verified or "anycast" not in verified:
+        raise IntegrityError("2.74.0 quality verified must keep tls and anycast", reason_code="CATALOG_EDGE")
+    gaps = body.get("gaps") or {}
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    if not any("seat b" in item for item in owner):
+        raise IntegrityError("2.74.0 owner-only must still name seat B click", reason_code="CATALOG_PLANE")
+    hrefs = " ".join(str(item) for item in (gaps.get("owner_only_hrefs") or {}).values())
+    if "e7-cloudflare" not in hrefs:
+        raise IntegrityError("2.74.0 owner-only hrefs must walk to #e7-cloudflare", reason_code="CATALOG_PLANE")
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    if not any("quality" in item and "anycast" in item for item in closed):
+        raise IntegrityError("gaps in_tree_closed must keep the quality live probe", reason_code="CATALOG_PLANE")
+    interface = str((catalog.get("equations") or {}).get("interface") or "").lower()
+    if "edge quality" not in interface:
+        raise IntegrityError("interface equation must keep edge quality", reason_code="CATALOG_EQUATION")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("quality probe" in item or "live cloudflare quality" in item for item in well):
+        raise IntegrityError("working_well must keep the live quality probe", reason_code="CATALOG_REVIEW")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("ssl" in item and "full" in item and "rocket" in item for item in improve):
+        raise IntegrityError("improve must keep SSL Full and Rocket Loader as owner confirm", reason_code="CATALOG_REVIEW")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    for number, needle in ((41, "probe"), (42, "tls"), (43, "anycast"), (44, "visitor")):
+        item = by_n.get(number) or {}
+        blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+        if needle not in blob:
+            raise IntegrityError(f"2.74.0 upgrade {number} must mention {needle}", reason_code="CATALOG_REVIEW")
+        if item.get("who") != "tree" or item.get("done") is not True:
+            raise IntegrityError(f"2.74.0 upgrade {number} must stay tree and done", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_275(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.75.0" in item and "full (strict)" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.75.0 Full (strict)", reason_code="CATALOG_ENGINEERING")
+    edge = _as_dict((catalog.get("microsoft_stack") or {}).get("edge") or {}, "Cloudflare edge")
+    quality = _as_dict(edge.get("quality") or {}, "edge quality")
+    if quality.get("ssl_full_claimed") is True or quality.get("apex_is_institute") is True:
+        raise IntegrityError("2.75.0 cannot claim SSL Full from this plane", reason_code="CATALOG_EDGE")
+    owner_ssl = _as_dict(quality.get("owner_ssl") or {}, "owner_ssl")
+    if owner_ssl.get("mode") != "full_strict" or owner_ssl.get("automatic") is not True:
+        raise IntegrityError("2.75.0 owner_ssl is Automatic Full (strict)", reason_code="CATALOG_EDGE")
+    if owner_ssl.get("from_this_plane") is True:
+        raise IntegrityError("2.75.0 owner_ssl is not from this plane", reason_code="CATALOG_EDGE")
+    recorded = " ".join(str(item).lower() for item in quality.get("owner_recorded") or [])
+    if "full (strict)" not in recorded:
+        raise IntegrityError("2.75.0 owner_recorded must keep Full (strict)", reason_code="CATALOG_EDGE")
+    gaps = body.get("gaps") or {}
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    if not any("seat b" in item for item in owner):
+        raise IntegrityError("2.75.0 owner-only must still name seat B click", reason_code="CATALOG_PLANE")
+    if not any("rocket" in item for item in owner):
+        raise IntegrityError("2.75.0 owner-only must still name Rocket Loader confirm", reason_code="CATALOG_PLANE")
+    if any("ssl full confirm" in item for item in owner):
+        raise IntegrityError("2.75.0 SSL Full confirm is recorded, not still open", reason_code="CATALOG_PLANE")
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    if not any("full (strict)" in item and "owner recorded" in item for item in closed):
+        raise IntegrityError("gaps in_tree_closed must keep owner recorded Full (strict)", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("full (strict)" in item and "owner recorded" in item for item in well):
+        raise IntegrityError("working_well must keep owner recorded Full (strict)", reason_code="CATALOG_REVIEW")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    item = by_n.get(45) or {}
+    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+    if "full (strict)" not in blob or "owner" not in blob:
+        raise IntegrityError("2.75.0 upgrade 45 must mention owner Full (strict)", reason_code="CATALOG_REVIEW")
+    if item.get("who") != "tree" or item.get("done") is not True:
+        raise IntegrityError("2.75.0 upgrade 45 must stay tree and done", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_276(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.76.0" in item and "service principal" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.76.0 leftover service principal", reason_code="CATALOG_ENGINEERING")
+    graph = _as_dict((catalog.get("microsoft_stack") or {}).get("graph") or {}, "graph owner consent")
+    if graph.get("kind") != "ainav.graph.owner_consent.v1":
+        raise IntegrityError("2.76.0 graph kind is ainav.graph.owner_consent.v1", reason_code="CATALOG_STACK")
+    if graph.get("from_this_plane") is True:
+        raise IntegrityError("2.76.0 cannot claim Graph from this plane", reason_code="CATALOG_STACK")
+    if graph.get("graph_write_claimed") is True:
+        raise IntegrityError("2.76.0 cannot claim Graph Write", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "speech" not in recorded or "service principal" not in recorded:
+        raise IntegrityError("2.76.0 owner_recorded must keep leftover Speech and service principal", reason_code="CATALOG_STACK")
+    walk_body = _as_dict((catalog.get("microsoft_stack") or {}).get("walk") or {}, "stack walk")
+    walk = next(
+        (
+            item
+            for item in walk_body.get("path") or []
+            if isinstance(item, dict) and item.get("id") == "graph.read"
+        ),
+        {},
+    )
+    owner_blob = f"{walk.get('owner') or ''} {walk.get('in_tree') or ''}".lower()
+    if "leftover" not in owner_blob or "key vault" not in owner_blob:
+        raise IntegrityError("2.76.0 graph.read walk must keep leftover Key Vault", reason_code="CATALOG_STACK")
+    gaps = body.get("gaps") or {}
+    closed = [str(item).lower() for item in gaps.get("in_tree_closed") or []]
+    if not any("service principal" in item and "leftover" in item for item in closed):
+        raise IntegrityError("gaps in_tree_closed must keep leftover service principal", reason_code="CATALOG_PLANE")
+    well = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("working_well") or [])]
+    if not any("leftover" in item and "service principal" in item for item in well):
+        raise IntegrityError("working_well must keep leftover service principal", reason_code="CATALOG_REVIEW")
+    interface = str((catalog.get("equations") or {}).get("interface") or "").lower()
+    if "graph owner consent" not in interface:
+        raise IntegrityError("interface equation must keep graph owner consent", reason_code="CATALOG_EQUATION")
+    upgrades = (catalog.get("expert_review") or {}).get("upgrades") or []
+    by_n = {item.get("n"): item for item in upgrades}
+    item = by_n.get(46) or {}
+    blob = f"{item.get('title') or ''} {item.get('do') or ''}".lower()
+    if "leftover" not in blob or "service principal" not in blob:
+        raise IntegrityError("2.76.0 upgrade 46 must mention leftover service principal", reason_code="CATALOG_REVIEW")
+    if item.get("who") != "tree" or item.get("done") is not True:
+        raise IntegrityError("2.76.0 upgrade 46 must stay tree and done", reason_code="CATALOG_REVIEW")
+    if item.get("marks_live_pin") is True:
+        raise IntegrityError("2.76.0 upgrade 46 cannot mark LIVE_PIN_OK", reason_code="LIVE_PIN_NOT_CLAIMED")
+
+
+def _validate_instrument_277(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.77.0" in item and "four reads" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.77.0 four Reads Granted", reason_code="CATALOG_ENGINEERING")
+    graph = _as_dict((catalog.get("microsoft_stack") or {}).get("graph") or {}, "graph owner consent")
+    if graph.get("four_reads_granted") is not True or graph.get("tenant_wide_grant_ok") is not True:
+        raise IntegrityError("2.77.0 four Reads are Granted", reason_code="CATALOG_STACK")
+    recorded = " ".join(str(item).lower() for item in graph.get("owner_recorded") or [])
+    if "successfully granted" not in recorded or "four reads" not in recorded:
+        raise IntegrityError("2.77.0 owner_recorded must keep Grant succeeded and four Reads", reason_code="CATALOG_STACK")
+    walk_body = _as_dict((catalog.get("microsoft_stack") or {}).get("walk") or {}, "stack walk")
+    walk = next(
+        (
+            item
+            for item in walk_body.get("path") or []
+            if isinstance(item, dict) and item.get("id") == "graph.read"
+        ),
+        {},
+    )
+    owner_blob = f"{walk.get('owner') or ''} {walk.get('in_tree') or ''}".lower()
+    if "readwrite" not in owner_blob or "revoke" not in owner_blob:
+        raise IntegrityError("2.77.0 graph.read walk must revoke ReadWrite", reason_code="CATALOG_STACK")
+    gaps = body.get("gaps") or {}
+    owner = [str(item).lower() for item in gaps.get("owner_only_open") or []]
+    if any("graph read" == item.strip() for item in owner):
+        raise IntegrityError("2.77.0 Graph Read four Reads are recorded, not still the open line", reason_code="CATALOG_PLANE")
+    improve = [str(item).lower() for item in ((catalog.get("expert_review") or {}).get("improve") or [])]
+    if not any("graph write" in item and "revoke" in item for item in improve):
+        raise IntegrityError("improve must keep Graph Writes revoke", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_278(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.78.0" in item and "refus" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_ENGINEERING")
+    closed_gaps = [str(item).lower() for item in ((body.get("gaps") or {}).get("in_tree_closed") or [])]
+    if not any("2.78.0" in item and "refus" in item for item in closed_gaps):
+        raise IntegrityError("in_tree_closed must keep 2.78.0 refused owner-gap close", reason_code="CATALOG_PLANE")
+    opens = str((((catalog.get("investor") or {}).get("executive_summary") or {}).get("opens")) or "").lower()
+    if "graph read on the same" in opens:
+        raise IntegrityError("2.78.0 investor opens must not reopen Graph Read", reason_code="CATALOG_INVESTOR")
+
+
+def _validate_instrument_279(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.79.0" in item and "first-principles" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.79.0 first-principles review", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_instrument_280(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.80.0" in item and "99" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.80.0 gold 99 floor", reason_code="CATALOG_ENGINEERING")
+    if (body.get("gaps") or {}).get("gold_floor") != 99.5:
+        raise IntegrityError("current gaps gold_floor is 99.5", reason_code="CATALOG_PLANE")
+    gold = ((catalog.get("engineering") or {}).get("gold_ci") or {})
+    if gold.get("coverage_floor") != 99.5:
+        raise IntegrityError("current coverage_floor is 99.5", reason_code="CATALOG_ENGINEERING")
+
+
+def _validate_instrument_281(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.81.0" in item and "twin" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.81.0 Institute twin website", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("twin_review") is not True:
+        raise IntegrityError("2.81.0 twin website is the review surface", reason_code="CATALOG_PLANE")
+    if str(site.get("review_path") or "") != "twin.html":
+        raise IntegrityError("2.81.0 review path is twin.html", reason_code="CATALOG_PLANE")
+    if site.get("authorized_release") is True or site.get("launch_ready") is True:
+        raise IntegrityError("2.81.0 twin review is not public launch", reason_code="CATALOG_PLANE")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "twin website" not in principles or "publish-twin" not in principles:
+        raise IntegrityError("first-principles must keep the twin website and publish-twin", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_282(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.82.0" in item and "been missing" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.82.0 what you've been missing", reason_code="CATALOG_ENGINEERING")
+    missing = ((catalog.get("expert_review") or {}).get("success") or {}).get("what_was_missing") or {}
+    if missing.get("kind") != "ainav.what_was_missing.v1":
+        raise IntegrityError("2.82.0 what_was_missing kind", reason_code="CATALOG_REVIEW")
+    if missing.get("fourth_sku") is True or missing.get("launch") is True:
+        raise IntegrityError("2.82.0 what_was_missing is not a fourth SKU or launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "what you've been missing" not in principles or "you already have" not in principles:
+        raise IntegrityError("first-principles must keep what you've been missing", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_283(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.83.0" in item and "first-class" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.83.0 managed first-class face", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("managed") is not True or site.get("first_class") is not True:
+        raise IntegrityError("2.83.0 website is a managed first-class face", reason_code="CATALOG_PLANE")
+    if site.get("dynamic") is True or site.get("cms") is True:
+        raise IntegrityError("2.83.0 website is not a dynamic app or CMS", reason_code="CATALOG_PLANE")
+    if str(site.get("demo_path") or "") != "#twin" or site.get("demo_is_sku") is True:
+        raise IntegrityError("2.83.0 demo is #twin and not a SKU", reason_code="CATALOG_PLANE")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    if face.get("kind") != "ainav.managed_face.v1":
+        raise IntegrityError("2.83.0 managed_face kind", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "managed first-class" not in principles or "ninety-minute" not in principles:
+        raise IntegrityError("first-principles must keep the managed first-class face", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_284(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.84.0" in item and "client" in item and "twin" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.84.0 client-assigned sandbox twin", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if str(site.get("path_href") or "") != "#path":
+        raise IntegrityError("2.84.0 sale path is #path", reason_code="CATALOG_PLANE")
+    if site.get("client_twin_is_sku") is True:
+        raise IntegrityError("2.84.0 client twin is not a SKU", reason_code="CATALOG_PLANE")
+    twin = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_twin") or {}
+    if twin.get("kind") != "ainav.client_twin.v1":
+        raise IntegrityError("2.84.0 client_twin kind", reason_code="CATALOG_REVIEW")
+    if twin.get("assigned") is True or twin.get("production") is True or twin.get("sku") is True:
+        raise IntegrityError("2.84.0 client twin is not assigned, production, or a SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "client-assigned" not in principles or "segregated" not in principles:
+        raise IntegrityError("first-principles must keep the client-assigned sandbox twin", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_285(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.85.0" in item and "close bench" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.85.0 first-class close bench", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("close_bench") is not True:
+        raise IntegrityError("2.85.0 website has a first-class close bench", reason_code="CATALOG_PLANE")
+    if site.get("close_is_sku") is True:
+        raise IntegrityError("2.85.0 close bench is not a SKU", reason_code="CATALOG_PLANE")
+    bench = ((catalog.get("expert_review") or {}).get("success") or {}).get("close_bench") or {}
+    if bench.get("kind") != "ainav.close_bench.v1":
+        raise IntegrityError("2.85.0 close_bench kind", reason_code="CATALOG_REVIEW")
+    if bench.get("assigned") is True or bench.get("production") is True or bench.get("sku") is True:
+        raise IntegrityError("2.85.0 close bench is not assigned, production, or a SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "close bench" not in principles or "three planes" not in principles:
+        raise IntegrityError("first-principles must keep the first-class close bench", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_286(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.86.0" in item and "operating company" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.86.0 first-class operating company", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("operating_company") is not True:
+        raise IntegrityError("2.86.0 website has a first-class operating company", reason_code="CATALOG_PLANE")
+    if site.get("firm_is_sku") is True or site.get("firm_is_crm") is True:
+        raise IntegrityError("2.86.0 operating company is not a SKU or a CRM", reason_code="CATALOG_PLANE")
+    if str(site.get("firm_href") or "") != "#firm":
+        raise IntegrityError("2.86.0 firm bench is #firm", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    if firm.get("kind") != "ainav.operating_company.v1":
+        raise IntegrityError("2.86.0 operating_company kind", reason_code="CATALOG_REVIEW")
+    if firm.get("sales_team_claimed") is True or firm.get("payouts_booked") is True or firm.get("sku") is True:
+        raise IntegrityError("2.86.0 operating company is not a sales team, booked payouts, or a SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "operating company" not in principles or "five hundred" not in principles:
+        raise IntegrityError("first-principles must keep the first-class operating company", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_287(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.87.0" in item and "operating day" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.87.0 first-class operating day", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("operating_day") is not True:
+        raise IntegrityError("2.87.0 website has a first-class operating day", reason_code="CATALOG_PLANE")
+    if site.get("operating_day_is_sku") is True:
+        raise IntegrityError("2.87.0 operating day is not a SKU", reason_code="CATALOG_PLANE")
+    if site.get("launch_gate") is not True:
+        raise IntegrityError("2.87.0 website has a launch gate", reason_code="CATALOG_PLANE")
+    if site.get("launch_is_ready") is True:
+        raise IntegrityError("2.87.0 launch gate stays closed", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    day = firm.get("day") or {}
+    if day.get("kind") != "ainav.operating_day.v1":
+        raise IntegrityError("2.87.0 operating_day kind", reason_code="CATALOG_REVIEW")
+    if day.get("launch") is True or day.get("live_pin_ok") is True or day.get("sku") is True:
+        raise IntegrityError("2.87.0 operating day is not launch, LIVE_PIN_OK, or a SKU", reason_code="CATALOG_REVIEW")
+    gates = firm.get("gates") or {}
+    if gates.get("kind") != "ainav.launch_gate.v1":
+        raise IntegrityError("2.87.0 launch_gate kind", reason_code="CATALOG_REVIEW")
+    if gates.get("launch") is True or gates.get("gold_is_not_launch") is not True:
+        raise IntegrityError("2.87.0 launch gate stays closed and gold is not launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "operating day" not in principles or "launch gate" not in principles:
+        raise IntegrityError("first-principles must keep the first-class operating day and launch gate", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_288(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.88.0" in item and "quality review" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.88.0 operating-day quality review", reason_code="CATALOG_ENGINEERING")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    gold = next(
+        (item for item in (firm.get("gates") or {}).get("items") or [] if isinstance(item, dict) and item.get("id") == "gold"),
+        {},
+    )
+    if gold.get("held") is not True or gold.get("ready") is True:
+        raise IntegrityError("2.88.0 gold 99 is held and not ready", reason_code="CATALOG_REVIEW")
+    ops = catalog.get("operations") or {}
+    note = str(ops.get("note") or "").lower()
+    if "operating day" not in note or "#firm" not in note or "sku attach" not in note:
+        raise IntegrityError("2.88.0 operations note points at the operating day on #firm", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "quality review" not in principles or "403 challenge" not in principles or "sku attach" not in principles:
+        raise IntegrityError("first-principles must keep the operating-day quality review", reason_code="CATALOG_REVIEW")
+    confirm = " ".join(
+        str(item).lower()
+        for item in (
+            (((catalog.get("microsoft_stack") or {}).get("edge") or {}).get("quality") or {}).get("confirm")
+            or []
+        )
+    )
+    if "403-vs-404" not in confirm:
+        raise IntegrityError("2.88.0 edge quality confirm keeps the 403 observation", reason_code="CATALOG_EDGE")
+
+
+def _validate_instrument_289(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.89.0" in item and "microsoft run" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.89.0 first-class Microsoft run", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_run") is not True:
+        raise IntegrityError("2.89.0 website has a first-class Microsoft run", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_run_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.89.0 Microsoft run is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    run = firm.get("microsoft_run") or {}
+    if run.get("kind") != "ainav.microsoft_run.v1":
+        raise IntegrityError("2.89.0 microsoft_run kind", reason_code="CATALOG_REVIEW")
+    if run.get("wired_claimed") is True or run.get("microsoft_is_the_product") is True or run.get("ninth_complement") is True:
+        raise IntegrityError("2.89.0 Microsoft run is not wired, not the product, and not a ninth complement", reason_code="CATALOG_REVIEW")
+    connections = catalog.get("connections") or {}
+    if list(connections.get("required_ids") or []) != REQUIRED_MS_IDS:
+        raise IntegrityError("2.89.0 connections.required_ids stay the six declared connections", reason_code="CATALOG_REVIEW")
+    complement_ids = [item.get("id") for item in (connections.get("complements") or []) if isinstance(item, dict)]
+    if complement_ids != COMPLEMENT_MS_IDS:
+        raise IntegrityError("2.89.0 connections.complements stay the eight complements", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "microsoft run" not in principles or "eight complements" not in principles or "not the product" not in principles:
+        raise IntegrityError("first-principles must keep the first-class Microsoft run", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_290(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.90.0" in item and "day map" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.90.0 Microsoft day map", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_day_map") is not True:
+        raise IntegrityError("2.90.0 website has a first-class Microsoft day map", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_day_map_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.90.0 Microsoft day map is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    run = firm.get("microsoft_run") or {}
+    day_map = [item for item in (run.get("day_map") or []) if isinstance(item, dict)]
+    if [item.get("id") for item in day_map] != OPERATING_DAY_IDS:
+        raise IntegrityError("2.90.0 day map is the whole operating day", reason_code="CATALOG_REVIEW")
+    if any(item.get("wired") is True or item.get("live") is True for item in day_map):
+        raise IntegrityError("2.90.0 day map stays unwired and not live", reason_code="CATALOG_REVIEW")
+    assign = next((item for item in day_map if item.get("id") == "assign"), {})
+    if list(assign.get("on") or []) != ["azure.host"]:
+        raise IntegrityError("2.90.0 assign sits on Azure host", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "day map" not in principles or "assign sits on azure host" not in principles:
+        raise IntegrityError("first-principles must keep the Microsoft day map", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_291(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.91.0" in item and "roster" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.91.0 Microsoft operating-day roster", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_roster") is not True:
+        raise IntegrityError("2.91.0 website has a first-class Microsoft roster", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_roster_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.91.0 Microsoft roster is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    firm = ((catalog.get("expert_review") or {}).get("success") or {}).get("operating_company") or {}
+    run = firm.get("microsoft_run") or {}
+    if run.get("roster") is not True:
+        raise IntegrityError("2.91.0 microsoft run is the operating-day roster", reason_code="CATALOG_REVIEW")
+    if run.get("roster_is_sku") is True:
+        raise IntegrityError("2.91.0 Microsoft roster is not a SKU", reason_code="CATALOG_REVIEW")
+    glance = str(firm.get("glance") or "").lower()
+    if "roster" not in glance or "licensed-not-wired" not in glance:
+        raise IntegrityError("2.91.0 glance keeps the Microsoft roster and licensed-not-wired", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "roster" not in principles or "licensed-not-wired is visible" not in principles:
+        raise IntegrityError("first-principles must keep the Microsoft operating-day roster", reason_code="CATALOG_REVIEW")
+    missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
+    if "teams" not in missing or "sharepoint" not in missing or "sentinel" not in missing:
+        raise IntegrityError("honest_missing must keep Teams, SharePoint, and Sentinel", reason_code="CATALOG_HONEST")
+
+
+def _validate_instrument_292(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.92.0" in item and "brand" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.92.0 first-class brand system", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("brand") is not True:
+        raise IntegrityError("2.92.0 website has a first-class brand system", reason_code="CATALOG_PLANE")
+    if site.get("brand_is_sku") is True or site.get("microsoft_is_the_product") is True:
+        raise IntegrityError("2.92.0 brand is not a SKU and Microsoft is not the product", reason_code="CATALOG_PLANE")
+    if str(site.get("brand_href") or "") != "#brand":
+        raise IntegrityError("2.92.0 brand bench is #brand", reason_code="CATALOG_PLANE")
+    brand = ((catalog.get("expert_review") or {}).get("success") or {}).get("brand") or {}
+    if brand.get("kind") != "ainav.brand.v1":
+        raise IntegrityError("2.92.0 brand kind", reason_code="CATALOG_REVIEW")
+    if brand.get("sku") is True or brand.get("cms") is True or brand.get("fear_brand") is True:
+        raise IntegrityError("2.92.0 brand is not a SKU, CMS, or fear brand", reason_code="CATALOG_REVIEW")
+    if brand.get("lockfile_stays_job_c") is not True:
+        raise IntegrityError("2.92.0 lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    marks = brand.get("marks") or {}
+    entity = catalog.get("entity") or {}
+    ip = catalog.get("ip") or {}
+    if marks.get("legal") != entity.get("legal") or marks.get("product") != entity.get("product"):
+        raise IntegrityError("2.92.0 brand marks stay lockstep with entity", reason_code="CATALOG_REVIEW")
+    if marks.get("institute") != entity.get("institute") or marks.get("product") != ip.get("product_mark"):
+        raise IntegrityError("2.92.0 brand marks stay lockstep with entity and ip", reason_code="CATALOG_REVIEW")
+    if marks.get("institute") != ip.get("institute_mark") or marks.get("legal") != ip.get("owner"):
+        raise IntegrityError("2.92.0 brand marks stay lockstep with ip owner and institute mark", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (brand.get("surfaces") or []) if isinstance(item, dict)] != BRAND_SURFACE_IDS:
+        raise IntegrityError("2.92.0 brand surfaces stay the declared mark set", reason_code="CATALOG_REVIEW")
+    site_note = str(brand.get("site") or "").lower()
+    if "#brand" not in site_note or "not a /brand route" not in site_note:
+        raise IntegrityError("2.92.0 brand site is #brand, not a /brand route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "brand system" not in principles or "lockfile stays job_c" not in principles:
+        raise IntegrityError("first-principles must keep the brand system and lockfile stays job_c", reason_code="CATALOG_REVIEW")
+    if "write-fear" not in principles or "microsoft marks" not in principles:
+        raise IntegrityError("first-principles must keep write-fear and Microsoft marks", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#firm" not in ops or "operating day" not in ops:
+        raise IntegrityError("2.92.0 operations note keeps SKU attach, #firm, and the operating day", reason_code="CATALOG_REVIEW")
+    if "#brand" not in ops:
+        raise IntegrityError("2.92.0 operations note points at the brand on #brand", reason_code="CATALOG_REVIEW")
+    missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
+    if "trademark" not in missing or "apex brand" not in missing:
+        raise IntegrityError("honest_missing must keep trademark filing and public apex brand", reason_code="CATALOG_HONEST")
+
+
+def _validate_instrument_293(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.93.0" in item and "universe" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.93.0 first-class client business universe", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("client_universe") is not True:
+        raise IntegrityError("2.93.0 website has a first-class client business universe", reason_code="CATALOG_PLANE")
+    if site.get("universe_is_sku") is True or site.get("brand_is_sku") is True:
+        raise IntegrityError("2.93.0 client universe is not a SKU", reason_code="CATALOG_PLANE")
+    if str(site.get("universe_href") or "") != "#universe":
+        raise IntegrityError("2.93.0 client universe bench is #universe", reason_code="CATALOG_PLANE")
+    universe = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_universe") or {}
+    if universe.get("kind") != "ainav.client_universe.v1":
+        raise IntegrityError("2.93.0 client universe kind", reason_code="CATALOG_REVIEW")
+    if universe.get("sku") is True or universe.get("mfa_admits") is True or universe.get("assigned") is True:
+        raise IntegrityError("2.93.0 client universe is not a SKU, MFA-as-admit, or assigned", reason_code="CATALOG_REVIEW")
+    if universe.get("named_client") is True or universe.get("certified") is True or universe.get("forecast") is True:
+        raise IntegrityError("2.93.0 client universe cannot invent a named client, certificate, or forecast", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (universe.get("surfaces") or []) if isinstance(item, dict)] != CLIENT_UNIVERSE_RAIL_IDS:
+        raise IntegrityError("2.93.0 client universe rails stay identify through packs", reason_code="CATALOG_REVIEW")
+    site_note = str(universe.get("site") or "").lower()
+    if "#universe" not in site_note or "not a /universe route" not in site_note:
+        raise IntegrityError("2.93.0 client universe site is #universe, not a /universe route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "client business universe" not in principles or "mfa identifies" not in principles:
+        raise IntegrityError("first-principles must keep the client business universe and MFA identifies", reason_code="CATALOG_REVIEW")
+    if "identify is not admit" not in principles or "not a /universe route" not in principles:
+        raise IntegrityError("first-principles must keep identify is not admit and not a /universe route", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#firm" not in ops or "operating day" not in ops:
+        raise IntegrityError("2.93.0 operations note keeps SKU attach, #firm, and the operating day", reason_code="CATALOG_REVIEW")
+    if "#brand" not in ops or "#universe" not in ops:
+        raise IntegrityError("2.93.0 operations note points at the brand and the client universe", reason_code="CATALOG_REVIEW")
+    missing = " ".join(str(item).lower() for item in (catalog.get("honest_missing") or []))
+    if "named client" not in missing or "assigned client universe" not in missing:
+        raise IntegrityError("honest_missing must keep assigned client universe and named client brand", reason_code="CATALOG_HONEST")
+
+
+def _validate_instrument_294(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.94.0" in item and "operable" in item and "universe" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.94.0 operable client universe", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("client_universe") is not True or site.get("universe_operable") is not True:
+        raise IntegrityError("2.94.0 website has an operable client universe", reason_code="CATALOG_PLANE")
+    if site.get("universe_is_sku") is True or site.get("universe_wells_live") is True:
+        raise IntegrityError("2.94.0 client universe is not a SKU and wells are not live", reason_code="CATALOG_PLANE")
+    universe = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_universe") or {}
+    if universe.get("operable") is not True or universe.get("refuse_is_visible") is not True:
+        raise IntegrityError("2.94.0 client universe is operable and refuse is visible", reason_code="CATALOG_REVIEW")
+    if universe.get("wells_are_live") is True or universe.get("assigned") is True or universe.get("named_client") is True:
+        raise IntegrityError("2.94.0 client universe stays unassigned and unnamed", reason_code="CATALOG_REVIEW")
+    wells = universe.get("wells") or {}
+    if int(wells.get("first_record") or 0) != 0 or int(wells.get("second_record") or 0) != 0 or str(wells.get("client_mark") or ""):
+        raise IntegrityError("2.94.0 universe wells stay honest zeros", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (universe.get("groups") or []) if isinstance(item, dict)] != CLIENT_UNIVERSE_GROUP_IDS:
+        raise IntegrityError("2.94.0 universe groups stay control, marks, govern, offer", reason_code="CATALOG_REVIEW")
+    hrefs = {
+        item.get("id"): str(item.get("href") or "")
+        for item in (universe.get("surfaces") or [])
+        if isinstance(item, dict)
+    }
+    if hrefs != CLIENT_UNIVERSE_HREFS:
+        raise IntegrityError("2.94.0 universe rails walk to existing boards", reason_code="CATALOG_REVIEW")
+    site_note = str(universe.get("site") or "").lower()
+    if "honest zeros" not in site_note or "refuse is visible" not in site_note:
+        raise IntegrityError("2.94.0 universe site keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "operable client universe" not in principles or "honest zeros" not in principles or "refuse is visible" not in principles:
+        raise IntegrityError("first-principles must keep the operable client universe", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#universe" not in ops or "honest zeros" not in ops:
+        raise IntegrityError("2.94.0 operations note keeps SKU attach, #universe, and honest zeros", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_295(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.95.0" in item and "sit-down" in item and "day" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.95.0 sit-down client day", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("universe_sit_down") is not True or site.get("universe_operable") is not True:
+        raise IntegrityError("2.95.0 website has a sit-down client day", reason_code="CATALOG_PLANE")
+    if site.get("universe_is_sku") is True or site.get("universe_day_live") is True:
+        raise IntegrityError("2.95.0 sit-down day is not a SKU and is not live", reason_code="CATALOG_PLANE")
+    universe = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_universe") or {}
+    if universe.get("sit_down") is not True or universe.get("day_is_live") is True or universe.get("day_invented") is True:
+        raise IntegrityError("2.95.0 sit-down client day stays not live and not invented", reason_code="CATALOG_REVIEW")
+    if universe.get("spine_states") != CLIENT_UNIVERSE_SPINE_STATES:
+        raise IntegrityError("2.95.0 spine states stay ready, owner_only, blocked, after_l1", reason_code="CATALOG_REVIEW")
+    day = universe.get("day") or {}
+    if day.get("kind") != "ainav.client_universe_day.v1" or day.get("live") is True:
+        raise IntegrityError("2.95.0 sit-down day kind stays catalog law and not live", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (day.get("lanes") or []) if isinstance(item, dict)] != CLIENT_UNIVERSE_DAY_LANE_IDS:
+        raise IntegrityError("2.95.0 sit-down day lanes stay now, next, after_l1, blocked", reason_code="CATALOG_REVIEW")
+    site_note = str(universe.get("site") or "").lower()
+    if "sit-down client day" not in site_note or "now / next / after l1" not in site_note:
+        raise IntegrityError("2.95.0 universe site keeps the sit-down client day", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "sit-down client day" not in principles or "not a live named day" not in principles:
+        raise IntegrityError("first-principles must keep the sit-down client day", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#universe" not in ops or "sit-down client day" not in ops:
+        raise IntegrityError("2.95.0 operations note keeps SKU attach, #universe, and sit-down client day", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_296(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.96.0" in item and "sit-down" in item and "industry" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.96.0 sit-down industry drawer", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_drawer") is not True or site.get("universe_sit_down") is not True:
+        raise IntegrityError("2.96.0 website has a sit-down industry drawer", reason_code="CATALOG_PLANE")
+    if site.get("industry_is_sku") is True or site.get("industry_drawer_live") is True or site.get("industry_certified") is True:
+        raise IntegrityError("2.96.0 industry drawer is not a SKU, not live, and not certified", reason_code="CATALOG_PLANE")
+    if str(site.get("industry_href") or "") != "#industry":
+        raise IntegrityError("2.96.0 industry drawer bench is #industry", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("sit_down") is not True or drawer.get("drawer_is_live") is True or drawer.get("drawer_invented") is True:
+        raise IntegrityError("2.96.0 sit-down industry drawer stays not live and not invented", reason_code="CATALOG_REVIEW")
+    if drawer.get("kind") != "ainav.industry_drawer.v1" or drawer.get("certified") is True:
+        raise IntegrityError("2.96.0 industry drawer kind stays catalog law and not certified", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in (drawer.get("lanes") or []) if isinstance(item, dict)] != INDUSTRY_DRAWER_LANE_IDS:
+        raise IntegrityError("2.96.0 industry drawer lanes stay sit, maps, attach, refuse", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "sit-down industry" not in site_note and "industry drawer on #industry" not in site_note:
+        raise IntegrityError("2.96.0 industry drawer site keeps the sit-down industry drawer", reason_code="CATALOG_REVIEW")
+    if "sit / maps / attach / refuse" not in site_note or "not a /industry route" not in site_note:
+        raise IntegrityError("2.96.0 industry drawer site keeps sit / maps / attach / refuse", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "sit-down industry drawer" not in principles or "not a /industry route" not in principles:
+        raise IntegrityError("first-principles must keep the sit-down industry drawer", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "sit-down industry drawer" not in ops:
+        raise IntegrityError("2.96.0 operations note keeps SKU attach, #industry, and sit-down industry drawer", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_297(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.97.0" in item and "room" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.97.0 sit-down industry rooms", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_rooms") is not True or site.get("industry_drawer") is not True:
+        raise IntegrityError("2.97.0 website has sit-down industry rooms", reason_code="CATALOG_PLANE")
+    if site.get("industry_crypto") is True or site.get("industry_seventeen_a4") is True:
+        raise IntegrityError("2.97.0 industry rooms are not a crypto product and not 17a-4", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    rooms = drawer.get("rooms") or {}
+    if rooms.get("kind") != "ainav.industry_rooms.v1" or rooms.get("live") is True:
+        raise IntegrityError("2.97.0 industry rooms kind stays catalog law and not live", reason_code="CATALOG_REVIEW")
+    if rooms.get("crypto_product") is True or rooms.get("seventeen_a4") is True:
+        raise IntegrityError("2.97.0 industry rooms stay not a crypto product and not 17a-4", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "room 1" not in site_note or "not a crypto product" not in site_note:
+        raise IntegrityError("2.97.0 industry drawer site keeps Room 1 and not a crypto product", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "room 1 is books" not in principles or "not a crypto product" not in principles:
+        raise IntegrityError("first-principles must keep Room 1 is books and not a crypto product", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "room 1" not in ops:
+        raise IntegrityError("2.97.0 operations note keeps SKU attach, #industry, and Room 1", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_298(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.98.0" in item and "operable" in item and "room" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.98.0 operable industry rooms", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_operable") is not True or site.get("industry_rooms") is not True:
+        raise IntegrityError("2.98.0 website has operable industry rooms", reason_code="CATALOG_PLANE")
+    if site.get("industry_rooms_live") is True or site.get("industry_wells_live") is True:
+        raise IntegrityError("2.98.0 industry rooms and wells are not live", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    rooms = drawer.get("rooms") or {}
+    if rooms.get("operable") is not True or rooms.get("refuse_is_visible") is not True or rooms.get("honest_zeros") is not True:
+        raise IntegrityError("2.98.0 industry rooms are operable and refuse is visible", reason_code="CATALOG_REVIEW")
+    if rooms.get("rooms_are_live") is True or rooms.get("wells_are_live") is True or rooms.get("assigned") is True:
+        raise IntegrityError("2.98.0 industry rooms stay not live and unassigned", reason_code="CATALOG_REVIEW")
+    wells = rooms.get("wells") or {}
+    if int(wells.get("room_1") or 0) != 0 or int(wells.get("room_2") or 0) != 0 or str(wells.get("named") or ""):
+        raise IntegrityError("2.98.0 industry room wells stay honest zeros", reason_code="CATALOG_REVIEW")
+    if rooms.get("spine_states") != INDUSTRY_ROOM_SPINE_STATES:
+        raise IntegrityError("2.98.0 industry room spine states stay ready, refused, after_l1", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "honest zeros" not in site_note or "refuse is visible" not in site_note:
+        raise IntegrityError("2.98.0 industry drawer site keeps honest zeros and refuse is visible", reason_code="CATALOG_REVIEW")
+    rooms_site = str(rooms.get("site") or "").lower()
+    if "honest zeros" not in rooms_site or "refuse is visible" not in rooms_site or "not a /crypto route" not in rooms_site:
+        raise IntegrityError("2.98.0 industry rooms site keeps honest zeros and not a /crypto route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "operable industry rooms" not in principles or "honest zeros" not in principles or "refuse is visible" not in principles:
+        raise IntegrityError("first-principles must keep operable industry rooms", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "room 1" not in ops:
+        raise IntegrityError("2.98.0 operations note keeps SKU attach, #industry, and Room 1", reason_code="CATALOG_REVIEW")
+    if "honest zeros" not in ops and "operable" not in ops:
+        raise IntegrityError("2.98.0 operations note keeps honest zeros or operable industry rooms", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_299(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("2.99.0" in item and "fully operable" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 2.99.0 fully operable industry drawer", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_fully_operable") is not True or site.get("industry_operable") is not True:
+        raise IntegrityError("2.99.0 website has a fully operable industry drawer", reason_code="CATALOG_PLANE")
+    if site.get("industry_rooms_live") is True or site.get("industry_wells_live") is True:
+        raise IntegrityError("2.99.0 industry rooms and wells are not live", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("fully_operable") is not True or drawer.get("every_refuse_clicks") is not True:
+        raise IntegrityError("2.99.0 industry drawer is fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
+    rooms = drawer.get("rooms") or {}
+    if rooms.get("fully_operable") is not True or rooms.get("every_refuse_clicks") is not True:
+        raise IntegrityError("2.99.0 industry rooms are fully operable and every refuse clicks", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "every refuse clicks" not in site_note or "catalog is the message" not in site_note:
+        raise IntegrityError("2.99.0 industry drawer site keeps every refuse clicks", reason_code="CATALOG_REVIEW")
+    rooms_site = str(rooms.get("site") or "").lower()
+    if "every refuse clicks" not in rooms_site or "catalog is the message" not in rooms_site:
+        raise IntegrityError("2.99.0 industry rooms site keeps every refuse clicks", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "fully operable industry drawer" not in principles or "every refuse clicks" not in principles or "catalog is the message" not in principles:
+        raise IntegrityError("first-principles must keep the fully operable industry drawer", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "every refuse clicks" not in ops:
+        raise IntegrityError("2.99.0 operations note keeps SKU attach, #industry, and every refuse clicks", reason_code="CATALOG_REVIEW")
+    refuse_lane = next(
+        (lane for lane in (drawer.get("lanes") or []) if isinstance(lane, dict) and lane.get("id") == "refuse"),
+        {},
+    )
+    refuse_items = [row for row in (refuse_lane.get("items") or []) if isinstance(row, dict)]
+    if {row.get("id"): row.get("refuse_text") for row in refuse_items} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_DRAWER_REFUSE_IDS
+    }:
+        raise IntegrityError("2.99.0 refuse lane catalog is the message", reason_code="CATALOG_REVIEW")
+    room_2 = [item for item in (rooms.get("room_2") or []) if isinstance(item, dict)]
+    if {item.get("id"): item.get("refuse_text") for item in room_2} != {
+        key: INDUSTRY_REFUSE_TEXT[key] for key in INDUSTRY_ROOM_2_IDS
+    }:
+        raise IntegrityError("2.99.0 Room 2 catalog is the message", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_300(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.00.0" in item and "complete" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.00.0 complete industry drawer", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_complete") is not True or site.get("industry_fully_operable") is not True:
+        raise IntegrityError("3.00.0 website has a complete industry drawer", reason_code="CATALOG_PLANE")
+    if site.get("industry_rooms_live") is True or site.get("industry_wells_live") is True:
+        raise IntegrityError("3.00.0 industry rooms and wells are not live", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("complete") is not True or drawer.get("fully_operable") is not True or drawer.get("every_refuse_clicks") is not True:
+        raise IntegrityError("3.00.0 industry drawer is complete and every refuse clicks", reason_code="CATALOG_REVIEW")
+    rooms = drawer.get("rooms") or {}
+    if rooms.get("complete") is not True or rooms.get("fully_operable") is not True:
+        raise IntegrityError("3.00.0 industry rooms are complete", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "complete industry drawer" not in site_note or "every refuse clicks" not in site_note:
+        raise IntegrityError("3.00.0 industry drawer site keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    rooms_site = str(rooms.get("site") or "").lower()
+    if "complete industry drawer" not in rooms_site or "every refuse clicks" not in rooms_site:
+        raise IntegrityError("3.00.0 industry rooms site keeps complete industry drawer", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "complete industry drawer" not in principles or "every refuse clicks" not in principles:
+        raise IntegrityError("first-principles must keep the complete industry drawer", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "complete industry drawer" not in ops:
+        raise IntegrityError("3.00.0 operations note keeps SKU attach, #industry, and complete industry drawer", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_301(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.01.0" in item and "honest control" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.01.0 honest control", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("industry_control") is not True or site.get("industry_honest") is not True:
+        raise IntegrityError("3.01.0 website has honest control", reason_code="CATALOG_PLANE")
+    if site.get("industry_control_live") is True or site.get("industry_rooms_live") is True:
+        raise IntegrityError("3.01.0 industry control is not live", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("honest_control") is not True or drawer.get("complete") is not True:
+        raise IntegrityError("3.01.0 industry drawer is honest control and complete", reason_code="CATALOG_REVIEW")
+    control = drawer.get("control") or {}
+    if control.get("kind") != "ainav.industry_control.v1" or control.get("honest") is not True:
+        raise IntegrityError("3.01.0 industry control kind stays catalog law and honest", reason_code="CATALOG_REVIEW")
+    if control.get("control_is_live") is True or control.get("claimed") is True or control.get("genius_closed") is True:
+        raise IntegrityError("3.01.0 industry control stays not live and not claimed", reason_code="CATALOG_REVIEW")
+    site_note = str(drawer.get("site") or "").lower()
+    if "honest control" not in site_note or "genius" not in site_note or "clarity" not in site_note:
+        raise IntegrityError("3.01.0 industry drawer site keeps honest control, GENIUS, and CLARITY", reason_code="CATALOG_REVIEW")
+    control_site = str(control.get("site") or "").lower()
+    if "honest control" not in control_site or "not ai governess" not in control_site:
+        raise IntegrityError("3.01.0 industry control site keeps honest control and not AI Governess", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest control" not in principles or "if you don't have it" not in principles:
+        raise IntegrityError("first-principles must keep honest control", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#industry" not in ops or "honest control" not in ops:
+        raise IntegrityError("3.01.0 operations note keeps SKU attach, #industry, and honest control", reason_code="CATALOG_REVIEW")
+    maps = {item.get("id") for item in ((catalog.get("governance") or {}).get("maps") or [])}
+    if "genius.act" not in maps or "clarity.act" not in maps:
+        raise IntegrityError("3.01.0 governance maps GENIUS and CLARITY", reason_code="CATALOG_GOVERNANCE")
+
+
+def _validate_instrument_302(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.02.0" in item and "honest agents" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.02.0 honest agents", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("microsoft_agents") is not True or site.get("microsoft_agents_honest") is not True:
+        raise IntegrityError("3.02.0 website has honest agents", reason_code="CATALOG_PLANE")
+    if site.get("microsoft_agents_live") is True or site.get("microsoft_census") is True:
+        raise IntegrityError("3.02.0 microsoft agents are not live and census stays false", reason_code="CATALOG_PLANE")
+    if site.get("agent_365_is_product") is True:
+        raise IntegrityError("3.02.0 Agent 365 is not the product", reason_code="CATALOG_PLANE")
+    agents = (catalog.get("microsoft_stack") or {}).get("agents") or {}
+    if agents.get("kind") != "ainav.microsoft.agents.v1" or agents.get("honest") is not True:
+        raise IntegrityError("3.02.0 microsoft agents kind stays catalog law and honest", reason_code="CATALOG_REVIEW")
+    if agents.get("inventory_claimed") is True or agents.get("agent_365_is_product") is True:
+        raise IntegrityError("3.02.0 agents stay not a census and Agent 365 is not the product", reason_code="CATALOG_REVIEW")
+    if agents.get("admin_url") != AGENTS_ALL_URL:
+        raise IntegrityError("3.02.0 agents admin_url is Agents > All", reason_code="CATALOG_REVIEW")
+    site_note = str(agents.get("site") or "").lower()
+    if "honest agents" not in site_note or "agent is not a seat" not in site_note:
+        raise IntegrityError("3.02.0 agents site keeps honest agents and not a seat", reason_code="CATALOG_REVIEW")
+    if "around the write" not in site_note or "total agents" not in site_note:
+        raise IntegrityError("3.02.0 agents site keeps around the write and Total agents", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest agents" not in principles or "agent is not a seat" not in principles:
+        raise IntegrityError("first-principles must keep honest agents", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#agent-tools" not in ops or "honest agents" not in ops:
+        raise IntegrityError("3.02.0 operations note keeps SKU attach, #agent-tools, and honest agents", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.agents import validate_microsoft_agents
+
+    validate_microsoft_agents(catalog)
+
+
+def _validate_instrument_303(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.03.0" in item and "honest access" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.03.0 honest access", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_access") is not True or site.get("microsoft_agents_honest") is not True:
+        raise IntegrityError("3.03.0 website has honest access", reason_code="CATALOG_PLANE")
+    if site.get("honest_access_live") is True or site.get("additional_access_needed") is True:
+        raise IntegrityError("3.03.0 honest access is not live and does not need more", reason_code="CATALOG_PLANE")
+    if site.get("grok_is_product") is True or site.get("grok_is_seat") is True:
+        raise IntegrityError("3.03.0 Grok is not the product and not a seat", reason_code="CATALOG_PLANE")
+    access = (catalog.get("microsoft_stack") or {}).get("access") or {}
+    if access.get("kind") != "ainav.honest.access.v1" or access.get("honest") is not True:
+        raise IntegrityError("3.03.0 honest access kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if access.get("need_more") is True or access.get("grok_is_product") is True:
+        raise IntegrityError("3.03.0 this plane does not need more and Grok is not the product", reason_code="CATALOG_REVIEW")
+    site_note = str(access.get("site") or "").lower()
+    if "honest access" not in site_note or "does not need additional access" not in site_note:
+        raise IntegrityError("3.03.0 access site keeps honest access and does not need additional access", reason_code="CATALOG_REVIEW")
+    if "grok build is not a seat" not in site_note:
+        raise IntegrityError("3.03.0 access site keeps Grok Build is not a seat", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest access" not in principles or "grok build is not a seat" not in principles:
+        raise IntegrityError("first-principles must keep honest access", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops or "#agent-tools" not in ops or "honest access" not in ops:
+        raise IntegrityError("3.03.0 operations note keeps SKU attach, #agent-tools, and honest access", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.access import validate_honest_access
+
+    validate_honest_access(catalog)
+
+
+def _validate_instrument_304(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.04.0" in item and "honest operators" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.04.0 honest operators", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_operators") is not True or site.get("honest_access") is not True:
+        raise IntegrityError("3.04.0 website has honest operators", reason_code="CATALOG_PLANE")
+    if site.get("honest_operators_live") is True or site.get("operator_swap") is True:
+        raise IntegrityError("3.04.0 honest operators are not live and do not swap", reason_code="CATALOG_PLANE")
+    if site.get("grok_is_recorded") is True or site.get("bot_is_operator") is True:
+        raise IntegrityError("3.04.0 Grok is not recorded and a bot is not the operator", reason_code="CATALOG_PLANE")
+    operators = (catalog.get("microsoft_stack") or {}).get("operators") or {}
+    if operators.get("kind") != "ainav.honest.operators.v1" or operators.get("honest") is not True:
+        raise IntegrityError("3.04.0 honest operators kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if operators.get("swap") is True:
+        raise IntegrityError("3.04.0 Cursor stays recorded and Grok stays mapped", reason_code="CATALOG_REVIEW")
+    if operators.get("grok_is_recorded") is True:
+        raise IntegrityError("3.04.0 Grok Build stays mapped, not recorded", reason_code="CATALOG_REVIEW")
+    if operators.get("bot_is_operator") is True:
+        raise IntegrityError("3.04.0 a Grok bot is not the operator", reason_code="CATALOG_REVIEW")
+    site_note = str(operators.get("site") or "").lower()
+    if "honest operators" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps honest operators", reason_code="CATALOG_REVIEW")
+    if "cursor is recorded" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps Cursor is recorded", reason_code="CATALOG_REVIEW")
+    if "grok build is mapped" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps Grok Build is mapped", reason_code="CATALOG_REVIEW")
+    if "grok bot is not admit" not in site_note:
+        raise IntegrityError("3.04.0 operators site keeps Grok bot is not admit", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest operators" not in principles:
+        raise IntegrityError("first-principles must keep honest operators", reason_code="CATALOG_REVIEW")
+    if "cursor is recorded" not in principles:
+        raise IntegrityError("first-principles must keep Cursor is recorded", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.04.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.04.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest operators" not in ops:
+        raise IntegrityError("3.04.0 operations note keeps honest operators", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.operators import validate_honest_operators
+
+    validate_honest_operators(catalog)
+
+
+def _validate_instrument_305(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.05.0" in item and "honest build" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.05.0 honest build", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_build") is not True or site.get("honest_operators") is not True:
+        raise IntegrityError("3.05.0 website has honest build", reason_code="CATALOG_PLANE")
+    if site.get("honest_build_live") is True or site.get("full_access_needed") is True:
+        raise IntegrityError("3.05.0 honest build is not live and does not need full access", reason_code="CATALOG_PLANE")
+    if site.get("twin_is_launch") is True or site.get("packs_are_skus") is True:
+        raise IntegrityError("3.05.0 the twin is not launch and packs are not SKUs", reason_code="CATALOG_PLANE")
+    build = (catalog.get("microsoft_stack") or {}).get("build") or {}
+    if build.get("kind") != "ainav.honest.build.v1" or build.get("honest") is not True:
+        raise IntegrityError("3.05.0 honest build kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if build.get("need_full") is True:
+        raise IntegrityError("3.05.0 this plane does not need full access", reason_code="CATALOG_REVIEW")
+    if build.get("twin_is_launch") is True:
+        raise IntegrityError("3.05.0 the twin is not launch", reason_code="CATALOG_REVIEW")
+    if build.get("packs_are_skus") is True:
+        raise IntegrityError("3.05.0 packs are not SKUs", reason_code="CATALOG_REVIEW")
+    site_note = str(build.get("site") or "").lower()
+    if "honest build" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps honest build", reason_code="CATALOG_REVIEW")
+    if "does not need full access" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps does not need full access", reason_code="CATALOG_REVIEW")
+    if "twin is not launch" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps twin is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and repositories are not skus" not in site_note:
+        raise IntegrityError("3.05.0 build site keeps packs, modules, and repositories are not SKUs", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest build" not in principles:
+        raise IntegrityError("first-principles must keep honest build", reason_code="CATALOG_REVIEW")
+    if "does not need full access" not in principles:
+        raise IntegrityError("first-principles must keep does not need full access", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.05.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.05.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest build" not in ops:
+        raise IntegrityError("3.05.0 operations note keeps honest build", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.build import validate_honest_build
+
+    validate_honest_build(catalog)
+
+
+def _validate_instrument_306(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.06.0" in item and "honest readiness" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.06.0 honest readiness", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_readiness") is not True or site.get("honest_build") is not True:
+        raise IntegrityError("3.06.0 website has honest readiness", reason_code="CATALOG_PLANE")
+    if site.get("honest_readiness_live") is True or site.get("gold_is_launch") is True:
+        raise IntegrityError("3.06.0 honest readiness is not live and gold is not launch", reason_code="CATALOG_PLANE")
+    if site.get("twin_is_launch_day") is True or site.get("launch_day_certified") is True:
+        raise IntegrityError("3.06.0 twin certified is not launch day", reason_code="CATALOG_PLANE")
+    ready = (catalog.get("microsoft_stack") or {}).get("readiness") or {}
+    if ready.get("kind") != "ainav.honest.readiness.v1" or ready.get("honest") is not True:
+        raise IntegrityError("3.06.0 honest readiness kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if ready.get("gold_is_launch") is True:
+        raise IntegrityError("3.06.0 gold is not launch", reason_code="CATALOG_REVIEW")
+    if ready.get("twin_is_launch_day") is True:
+        raise IntegrityError("3.06.0 twin certified is not launch day", reason_code="CATALOG_REVIEW")
+    if ready.get("launch_day_certified") is True:
+        raise IntegrityError("3.06.0 this plane cannot certify launch day", reason_code="CATALOG_REVIEW")
+    site_note = str(ready.get("site") or "").lower()
+    if "honest readiness" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps honest readiness", reason_code="CATALOG_REVIEW")
+    if "gold is not launch" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps gold is not launch", reason_code="CATALOG_REVIEW")
+    if "twin certified is not launch day" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps twin certified is not launch day", reason_code="CATALOG_REVIEW")
+    if "owner gaps stay owner-only" not in site_note:
+        raise IntegrityError("3.06.0 readiness site keeps owner gaps stay owner-only", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest readiness" not in principles:
+        raise IntegrityError("first-principles must keep honest readiness", reason_code="CATALOG_REVIEW")
+    if "gold is not launch" not in principles:
+        raise IntegrityError("first-principles must keep gold is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.06.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.06.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest readiness" not in ops:
+        raise IntegrityError("3.06.0 operations note keeps honest readiness", reason_code="CATALOG_REVIEW")
+    from ainav.microsoft.readiness import validate_honest_readiness
+
+    validate_honest_readiness(catalog)
+
+
+def _validate_instrument_307(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.07.0" in item and "honest industry" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.07.0 honest industry", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_industry") is not True or site.get("honest_readiness") is not True:
+        raise IntegrityError("3.07.0 website has honest industry", reason_code="CATALOG_PLANE")
+    if site.get("honest_industry_live") is True or site.get("industry_certified_launch") is True:
+        raise IntegrityError("3.07.0 honest industry is not live and is not launch", reason_code="CATALOG_PLANE")
+    if site.get("packs_are_skus") is True:
+        raise IntegrityError("3.07.0 packs are not SKUs", reason_code="CATALOG_PLANE")
+    industry = catalog.get("industry_certify") or {}
+    if industry.get("kind") != "ainav.honest.industry.v1" or industry.get("honest") is not True:
+        raise IntegrityError("3.07.0 honest industry kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if industry.get("packs_are_skus") is True:
+        raise IntegrityError("3.07.0 packs are not SKUs", reason_code="CATALOG_REVIEW")
+    if industry.get("industry_certified_launch") is True:
+        raise IntegrityError("3.07.0 industry certify is not launch", reason_code="CATALOG_REVIEW")
+    if industry.get("certified") is True:
+        raise IntegrityError("3.07.0 industry certify is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(industry.get("site") or "").lower()
+    if "honest industry" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps honest industry", reason_code="CATALOG_REVIEW")
+    if "packs are not skus" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps packs are not SKUs", reason_code="CATALOG_REVIEW")
+    if "industry certify is not launch" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps industry certify is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /industry route" not in site_note:
+        raise IntegrityError("3.07.0 industry site keeps not a /industry route", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest industry certify" not in principles:
+        raise IntegrityError("first-principles must keep honest industry certify", reason_code="CATALOG_REVIEW")
+    if "industry certify is not launch" not in principles:
+        raise IntegrityError("first-principles must keep industry certify is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.07.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#packs" not in ops:
+        raise IntegrityError("3.07.0 operations note keeps #packs", reason_code="CATALOG_REVIEW")
+    if "honest industry" not in ops:
+        raise IntegrityError("3.07.0 operations note keeps honest industry", reason_code="CATALOG_REVIEW")
+    from ainav.industry_certify import validate_honest_industry
+
+    validate_honest_industry(catalog)
+
+
+def _validate_instrument_308(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.08.0" in item and "honest whole" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.08.0 honest whole", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_whole") is not True or site.get("honest_industry") is not True:
+        raise IntegrityError("3.08.0 website has honest whole", reason_code="CATALOG_PLANE")
+    if site.get("honest_whole_live") is True or site.get("whole_is_launch") is True or site.get("ten_is_launch") is True:
+        raise IntegrityError("3.08.0 honest whole is not live and is not launch", reason_code="CATALOG_PLANE")
+    if site.get("stitch_is_sku") is True:
+        raise IntegrityError("3.08.0 stitch is not a SKU", reason_code="CATALOG_PLANE")
+    whole = catalog.get("honest_whole") or {}
+    if whole.get("kind") != "ainav.honest.whole.v1" or whole.get("honest") is not True:
+        raise IntegrityError("3.08.0 honest whole kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if whole.get("whole_is_launch") is True or whole.get("ten_is_launch") is True:
+        raise IntegrityError("3.08.0 the whole firm is not launch", reason_code="CATALOG_REVIEW")
+    if whole.get("certified") is True:
+        raise IntegrityError("3.08.0 honest whole is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(whole.get("site") or "").lower()
+    if "honest whole" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps honest whole", reason_code="CATALOG_REVIEW")
+    if "the whole firm is not launch" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps the whole firm is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /whole route" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps not a /whole route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.08.0 whole site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest whole" not in principles:
+        raise IntegrityError("first-principles must keep honest whole", reason_code="CATALOG_REVIEW")
+    if "the whole firm is not launch" not in principles:
+        raise IntegrityError("first-principles must keep the whole firm is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.08.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#whole" not in ops:
+        raise IntegrityError("3.08.0 operations note keeps #whole", reason_code="CATALOG_REVIEW")
+    if "honest whole" not in ops:
+        raise IntegrityError("3.08.0 operations note keeps honest whole", reason_code="CATALOG_REVIEW")
+    from ainav.honest_whole import validate_honest_whole
+
+    validate_honest_whole(catalog)
+
+
+def _validate_instrument_309(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.09.0" in item and "power pages" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.09.0 honest Power Pages", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_power_pages") is not True or site.get("honest_whole") is not True:
+        raise IntegrityError("3.09.0 website has honest Power Pages", reason_code="CATALOG_PLANE")
+    if site.get("honest_power_pages_live") is True or site.get("power_pages_is_host") is True:
+        raise IntegrityError("3.09.0 Power Pages is not live and is not the host", reason_code="CATALOG_PLANE")
+    if site.get("power_pages_is_sku") is True or site.get("power_pages_is_cms") is True:
+        raise IntegrityError("3.09.0 Power Pages is not a SKU and is not the CMS", reason_code="CATALOG_PLANE")
+    if site.get("power_pages_closes_dataverse") is True:
+        raise IntegrityError("3.09.0 Power Pages does not close US Dataverse", reason_code="CATALOG_PLANE")
+    pages = catalog.get("honest_power_pages") or {}
+    if pages.get("kind") != "ainav.honest.power_pages.v1" or pages.get("honest") is not True:
+        raise IntegrityError("3.09.0 honest Power Pages kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if pages.get("is_host") is True or pages.get("is_sku") is True:
+        raise IntegrityError("3.09.0 Power Pages is not the Institute host and is not a SKU", reason_code="CATALOG_REVIEW")
+    if pages.get("certified") is True:
+        raise IntegrityError("3.09.0 honest Power Pages is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(pages.get("site") or "").lower()
+    if "honest power pages" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps honest Power Pages", reason_code="CATALOG_REVIEW")
+    if "power pages is not the institute host" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps Power Pages is not the Institute host", reason_code="CATALOG_REVIEW")
+    if "not a /power-pages route" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps not a /power-pages route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.09.0 Power Pages site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest power pages" not in principles:
+        raise IntegrityError("first-principles must keep honest Power Pages", reason_code="CATALOG_REVIEW")
+    if "power pages is not the institute host" not in principles:
+        raise IntegrityError("first-principles must keep Power Pages is not the Institute host", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.09.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#twin" not in ops:
+        raise IntegrityError("3.09.0 operations note keeps #twin", reason_code="CATALOG_REVIEW")
+    if "honest power pages" not in ops:
+        raise IntegrityError("3.09.0 operations note keeps honest Power Pages", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not power pages" not in managed:
+        raise IntegrityError("3.09.0 managed face refuses Power Pages", reason_code="CATALOG_PLANE")
+    from ainav.power_pages import validate_honest_power_pages
+
+    validate_honest_power_pages(catalog)
+
+
+def _validate_instrument_310(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.10.0" in item and "copilot studio" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.10.0 honest Copilot Studio", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_copilot_studio") is not True or site.get("honest_power_pages") is not True:
+        raise IntegrityError("3.10.0 website has honest Copilot Studio", reason_code="CATALOG_PLANE")
+    if site.get("honest_copilot_studio_live") is True or site.get("copilot_studio_is_job_c") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not live and is not Job C", reason_code="CATALOG_PLANE")
+    if site.get("copilot_studio_is_sku") is True or site.get("copilot_studio_is_admit") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not a SKU and is not the admit plane", reason_code="CATALOG_PLANE")
+    if site.get("copilot_studio_is_complement") is True or site.get("copilot_studio_is_seat") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not a complement and is not seat B", reason_code="CATALOG_PLANE")
+    studio = catalog.get("honest_copilot_studio") or {}
+    if studio.get("kind") != "ainav.honest.copilot_studio.v1" or studio.get("honest") is not True:
+        raise IntegrityError("3.10.0 honest Copilot Studio kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if studio.get("is_job_c") is True or studio.get("is_sku") is True:
+        raise IntegrityError("3.10.0 Copilot Studio is not Job C and is not a SKU", reason_code="CATALOG_REVIEW")
+    if studio.get("certified") is True:
+        raise IntegrityError("3.10.0 honest Copilot Studio is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(studio.get("site") or "").lower()
+    if "honest copilot studio" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if "copilot studio is not job c" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps Copilot Studio is not Job C", reason_code="CATALOG_REVIEW")
+    if "not a /copilot-studio route" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps not a /copilot-studio route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.10.0 Copilot Studio site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest copilot studio" not in principles:
+        raise IntegrityError("first-principles must keep honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    if "copilot studio is not job c" not in principles:
+        raise IntegrityError("first-principles must keep Copilot Studio is not Job C", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.10.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#success" not in ops:
+        raise IntegrityError("3.10.0 operations note keeps #success", reason_code="CATALOG_REVIEW")
+    if "honest copilot studio" not in ops:
+        raise IntegrityError("3.10.0 operations note keeps honest Copilot Studio", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not copilot studio" not in managed:
+        raise IntegrityError("3.10.0 managed face refuses Copilot Studio", reason_code="CATALOG_PLANE")
+    from ainav.copilot_studio import validate_honest_copilot_studio
+
+    validate_honest_copilot_studio(catalog)
+
+
+def _validate_instrument_311(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.11.0" in item and "honest connect" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.11.0 honest connect", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_connect") is not True or site.get("honest_copilot_studio") is not True:
+        raise IntegrityError("3.11.0 website has honest connect", reason_code="CATALOG_PLANE")
+    if site.get("honest_connect_live") is True or site.get("connected_is_live") is True:
+        raise IntegrityError("3.11.0 connect is not live", reason_code="CATALOG_PLANE")
+    if site.get("licensed_is_wired") is True or site.get("available_is_seat") is True:
+        raise IntegrityError("3.11.0 licensed is not wired and available is not a seat", reason_code="CATALOG_PLANE")
+    if site.get("graph_read_is_live_pin") is True or site.get("cursor_app_is_seat") is True:
+        raise IntegrityError("3.11.0 a Graph read is not LIVE_PIN_OK and a Cursor app is not a seat", reason_code="CATALOG_PLANE")
+    connect = catalog.get("honest_connect") or {}
+    if connect.get("kind") != "ainav.honest.connect.v1" or connect.get("honest") is not True:
+        raise IntegrityError("3.11.0 honest connect kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if connect.get("connected_is_live") is True or connect.get("licensed_is_wired") is True:
+        raise IntegrityError("3.11.0 connected is not live and licensed is not wired", reason_code="CATALOG_REVIEW")
+    if connect.get("certified") is True:
+        raise IntegrityError("3.11.0 honest connect is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(connect.get("site") or "").lower()
+    if "honest connect" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps honest connect", reason_code="CATALOG_REVIEW")
+    if "connected is not live" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps connected is not live", reason_code="CATALOG_REVIEW")
+    if "not a /connect route" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps not a /connect route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.11.0 connect site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest connect" not in principles:
+        raise IntegrityError("first-principles must keep honest connect", reason_code="CATALOG_REVIEW")
+    if "connected is not live" not in principles:
+        raise IntegrityError("first-principles must keep connected is not live", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.11.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#missing" not in ops:
+        raise IntegrityError("3.11.0 operations note keeps #missing", reason_code="CATALOG_REVIEW")
+    if "honest connect" not in ops:
+        raise IntegrityError("3.11.0 operations note keeps honest connect", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not connected-as-live" not in managed:
+        raise IntegrityError("3.11.0 managed face refuses connected-as-live", reason_code="CATALOG_PLANE")
+    from ainav.honest_connect import validate_honest_connect
+
+    validate_honest_connect(catalog)
+
+
+def _validate_instrument_312(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.12.0" in item and "honest operate" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.12.0 honest operate", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_operate") is not True or site.get("honest_connect") is not True:
+        raise IntegrityError("3.12.0 website has honest operate", reason_code="CATALOG_PLANE")
+    if site.get("honest_operate_live") is True or site.get("close_gaps_is_this_plane") is True:
+        raise IntegrityError("3.12.0 operate is not live and closing all gaps is not this plane", reason_code="CATALOG_PLANE")
+    if site.get("outlook_is_click") is True or site.get("grok_login_is_this_plane") is True:
+        raise IntegrityError("3.12.0 Outlook mail is not a click and grok login is not this plane", reason_code="CATALOG_PLANE")
+    if site.get("operate_sim_is_production") is True or site.get("polish_ten_is_launch") is True:
+        raise IntegrityError("3.12.0 an operate sim is not production and a 10/10 polish is not launch", reason_code="CATALOG_PLANE")
+    operate = catalog.get("honest_operate") or {}
+    if operate.get("kind") != "ainav.honest.operate.v1" or operate.get("honest") is not True:
+        raise IntegrityError("3.12.0 honest operate kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if operate.get("close_gaps_is_this_plane") is True or operate.get("outlook_is_click") is True:
+        raise IntegrityError("3.12.0 closing all gaps is not this plane and Outlook mail is not a click", reason_code="CATALOG_REVIEW")
+    if operate.get("certified") is True:
+        raise IntegrityError("3.12.0 honest operate is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(operate.get("site") or "").lower()
+    if "honest operate" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps honest operate", reason_code="CATALOG_REVIEW")
+    if "closing all gaps is not this plane" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps closing all gaps is not this plane", reason_code="CATALOG_REVIEW")
+    if "not a /operate route" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps not a /operate route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.12.0 operate site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest operate" not in principles:
+        raise IntegrityError("first-principles must keep honest operate", reason_code="CATALOG_REVIEW")
+    if "closing all gaps is not this plane" not in principles:
+        raise IntegrityError("first-principles must keep closing all gaps is not this plane", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.12.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#agent-tools" not in ops:
+        raise IntegrityError("3.12.0 operations note keeps #agent-tools", reason_code="CATALOG_REVIEW")
+    if "honest operate" not in ops:
+        raise IntegrityError("3.12.0 operations note keeps honest operate", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10 launch" not in managed:
+        raise IntegrityError("3.12.0 managed face refuses a 10/10 launch", reason_code="CATALOG_PLANE")
+    from ainav.honest_operate import validate_honest_operate
+
+    validate_honest_operate(catalog)
+
+
+def _validate_instrument_313(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.13.0" in item and "honest path" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.13.0 honest path", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_path") is not True or site.get("honest_operate") is not True:
+        raise IntegrityError("3.13.0 website has honest path", reason_code="CATALOG_PLANE")
+    if site.get("honest_path_live") is True or site.get("industry_is_named_client") is True:
+        raise IntegrityError("3.13.0 path is not live and an industry is not a named client", reason_code="CATALOG_PLANE")
+    if site.get("shared_sandbox_is_production") is True or site.get("hours_is_sku") is True:
+        raise IntegrityError("3.13.0 a shared sandbox is not production and hours are not a SKU", reason_code="CATALOG_PLANE")
+    if site.get("rollback_is_live_pin") is True or site.get("redeploy_is_launch") is True:
+        raise IntegrityError("3.13.0 rollback is not LIVE_PIN_OK and a redeploy is not launch", reason_code="CATALOG_PLANE")
+    path = catalog.get("honest_path") or {}
+    if path.get("kind") != "ainav.honest.path.v1" or path.get("honest") is not True:
+        raise IntegrityError("3.13.0 honest path kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if path.get("industry_is_named_client") is True or path.get("shared_sandbox_is_production") is True:
+        raise IntegrityError("3.13.0 an industry is not a named client and a shared sandbox is not production", reason_code="CATALOG_REVIEW")
+    if path.get("certified") is True:
+        raise IntegrityError("3.13.0 honest path is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(path.get("site") or "").lower()
+    if "honest path" not in site_note:
+        raise IntegrityError("3.13.0 path site keeps honest path", reason_code="CATALOG_REVIEW")
+    if "an industry is not a named client" not in site_note:
+        raise IntegrityError("3.13.0 path site keeps an industry is not a named client", reason_code="CATALOG_REVIEW")
+    if "not a /path route" not in site_note:
+        raise IntegrityError("3.13.0 path site keeps not a /path route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.13.0 path site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest path" not in principles:
+        raise IntegrityError("first-principles must keep honest path", reason_code="CATALOG_REVIEW")
+    if "an industry is not a named client" not in principles:
+        raise IntegrityError("first-principles must keep an industry is not a named client", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.13.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#path" not in ops:
+        raise IntegrityError("3.13.0 operations note keeps #path", reason_code="CATALOG_REVIEW")
+    if "honest path" not in ops:
+        raise IntegrityError("3.13.0 operations note keeps honest path", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a shared sandbox" not in managed:
+        raise IntegrityError("3.13.0 managed face refuses a shared sandbox", reason_code="CATALOG_PLANE")
+    from ainav.honest_path import validate_honest_path
+
+    validate_honest_path(catalog)
+
+
+def _validate_instrument_314(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.14.0" in item and "honest production" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.14.0 honest production", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_production") is not True or site.get("honest_path") is not True:
+        raise IntegrityError("3.14.0 website has honest production", reason_code="CATALOG_PLANE")
+    if site.get("honest_production_live") is True or site.get("production_sim_is_production") is True:
+        raise IntegrityError("3.14.0 production is not live and a production sim is not production", reason_code="CATALOG_PLANE")
+    if site.get("fix_all_is_this_plane") is True or site.get("elements_are_live") is True:
+        raise IntegrityError("3.14.0 fixing all is not this plane and rehearsed elements are not live", reason_code="CATALOG_PLANE")
+    if site.get("better_is_launch") is True or site.get("rehearsal_is_live_pin") is True:
+        raise IntegrityError("3.14.0 making all much better is not launch and a rehearsal is not LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    production = catalog.get("honest_production") or {}
+    if production.get("kind") != "ainav.honest.production.v1" or production.get("honest") is not True:
+        raise IntegrityError("3.14.0 honest production kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if production.get("production_sim_is_production") is True or production.get("fix_all_is_this_plane") is True:
+        raise IntegrityError("3.14.0 a production sim is not production and fixing all is not this plane", reason_code="CATALOG_REVIEW")
+    if production.get("certified") is True:
+        raise IntegrityError("3.14.0 honest production is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(production.get("site") or "").lower()
+    if "honest production" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps honest production", reason_code="CATALOG_REVIEW")
+    if "a production sim is not production" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps a production sim is not production", reason_code="CATALOG_REVIEW")
+    if "not a /firm route" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps not a /firm route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.14.0 production site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest production" not in principles:
+        raise IntegrityError("first-principles must keep honest production", reason_code="CATALOG_REVIEW")
+    if "a production sim is not production" not in principles:
+        raise IntegrityError("first-principles must keep a production sim is not production", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.14.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#firm" not in ops:
+        raise IntegrityError("3.14.0 operations note keeps #firm", reason_code="CATALOG_REVIEW")
+    if "honest production" not in ops:
+        raise IntegrityError("3.14.0 operations note keeps honest production", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a production sim" not in managed:
+        raise IntegrityError("3.14.0 managed face refuses a production sim", reason_code="CATALOG_PLANE")
+    from ainav.honest_production import validate_honest_production
+
+    validate_honest_production(catalog)
+
+
+def _validate_instrument_315(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.15.0" in item and "honest remainder" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.15.0 honest remainder", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_remainder") is not True or site.get("honest_production") is not True:
+        raise IntegrityError("3.15.0 website has honest remainder", reason_code="CATALOG_PLANE")
+    if site.get("honest_remainder_live") is True or site.get("remainder_is_launch") is True:
+        raise IntegrityError("3.15.0 remainder is not live and a remainder close is not launch", reason_code="CATALOG_PLANE")
+    if site.get("leftover_copy_is_live_pin") is True or site.get("owner_hrefs_are_clicks") is True:
+        raise IntegrityError("3.15.0 leftover copy is not LIVE_PIN_OK and owner hrefs are not clicks", reason_code="CATALOG_PLANE")
+    if site.get("gold_995_is_production") is True or site.get("deep_remainder_is_seated") is True:
+        raise IntegrityError("3.15.0 gold 99.5 is not production and a deep remainder is not seated", reason_code="CATALOG_PLANE")
+    remainder = catalog.get("honest_remainder") or {}
+    if remainder.get("kind") != "ainav.honest.remainder.v1" or remainder.get("honest") is not True:
+        raise IntegrityError("3.15.0 honest remainder kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if remainder.get("remainder_is_launch") is True or remainder.get("leftover_copy_is_live_pin") is True:
+        raise IntegrityError("3.15.0 a remainder close is not launch and leftover copy is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if remainder.get("certified") is True:
+        raise IntegrityError("3.15.0 honest remainder is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(remainder.get("site") or "").lower()
+    if "honest remainder" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps honest remainder", reason_code="CATALOG_REVIEW")
+    if "a remainder close is not launch" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps a remainder close is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /remainder route" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps not a /remainder route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.15.0 remainder site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest remainder" not in principles:
+        raise IntegrityError("first-principles must keep honest remainder", reason_code="CATALOG_REVIEW")
+    if "a remainder close is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a remainder close is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.15.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#missing" not in ops:
+        raise IntegrityError("3.15.0 operations note keeps #missing", reason_code="CATALOG_REVIEW")
+    if "honest remainder" not in ops:
+        raise IntegrityError("3.15.0 operations note keeps honest remainder", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a remainder close" not in managed:
+        raise IntegrityError("3.15.0 managed face refuses a remainder close", reason_code="CATALOG_PLANE")
+    gaps = body.get("gaps") or {}
+    hrefs = gaps.get("owner_only_hrefs") if isinstance(gaps.get("owner_only_hrefs"), dict) else {}
+    for item in gaps.get("owner_only_open") or []:
+        if item not in hrefs:
+            raise IntegrityError("owner-only href missing for " + str(item), reason_code="CATALOG_PLANE")
+    from ainav.honest_remainder import validate_honest_remainder
+
+    validate_honest_remainder(catalog)
+
+
+def _validate_instrument_316(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.16.0" in item and "honest ten" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.16.0 honest ten", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_ten") is not True or site.get("honest_remainder") is not True:
+        raise IntegrityError("3.16.0 website has honest ten", reason_code="CATALOG_PLANE")
+    if site.get("honest_ten_live") is True or site.get("quality_ten_is_launch") is True:
+        raise IntegrityError("3.16.0 ten is not live and a 10/10 quality check is not launch", reason_code="CATALOG_PLANE")
+    if site.get("gold_999_is_live_pin") is True or site.get("compete_is_named_client") is True:
+        raise IntegrityError("3.16.0 gold 99.9 is not LIVE_PIN_OK and a competitor analysis is not a named client", reason_code="CATALOG_PLANE")
+    if site.get("service_green_is_production") is True or site.get("quality_is_seated") is True:
+        raise IntegrityError("3.16.0 a green service is not production and a quality check is not seated", reason_code="CATALOG_PLANE")
+    ten = catalog.get("honest_ten") or {}
+    if ten.get("kind") != "ainav.honest.ten.v1" or ten.get("honest") is not True:
+        raise IntegrityError("3.16.0 honest ten kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if ten.get("quality_ten_is_launch") is True or ten.get("gold_999_is_live_pin") is True:
+        raise IntegrityError("3.16.0 a 10/10 quality check is not launch and gold 99.9 is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if ten.get("certified") is True:
+        raise IntegrityError("3.16.0 honest ten is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(ten.get("site") or "").lower()
+    if "honest ten" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps honest ten", reason_code="CATALOG_REVIEW")
+    if "a 10/10 quality check is not launch" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps a 10/10 quality check is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /ten route" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps not a /ten route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.16.0 ten site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest ten" not in principles:
+        raise IntegrityError("first-principles must keep honest ten", reason_code="CATALOG_REVIEW")
+    if "a 10/10 quality check is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 quality check is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.16.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#success" not in ops:
+        raise IntegrityError("3.16.0 operations note keeps #success", reason_code="CATALOG_REVIEW")
+    if "honest ten" not in ops:
+        raise IntegrityError("3.16.0 operations note keeps honest ten", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10 quality launch" not in managed:
+        raise IntegrityError("3.16.0 managed face refuses a 10/10 quality launch", reason_code="CATALOG_PLANE")
+    from ainav.honest_ten import validate_honest_ten
+
+    validate_honest_ten(catalog)
+
+
+def _validate_instrument_317(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.17.0" in item and "honest protect" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.17.0 honest protect", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_protect") is not True or site.get("honest_ten") is not True:
+        raise IntegrityError("3.17.0 website has honest protect", reason_code="CATALOG_PLANE")
+    if site.get("honest_protect_live") is True or site.get("protect_as_patent") is True:
+        raise IntegrityError("3.17.0 protect is not live and an IP board is not a patent", reason_code="CATALOG_PLANE")
+    if site.get("protect_as_uncopyable") is True or site.get("client_license_as_assignment") is True:
+        raise IntegrityError("3.17.0 insulation is not uncopyable and an L1 license is not an assignment", reason_code="CATALOG_PLANE")
+    if site.get("kit_pass_as_source") is True or site.get("g12_as_closed") is True:
+        raise IntegrityError("3.17.0 kit PASS is not a source license and this board does not close G12", reason_code="CATALOG_PLANE")
+    protect = catalog.get("honest_protect") or {}
+    if protect.get("kind") != "ainav.honest.protect.v1" or protect.get("honest") is not True:
+        raise IntegrityError("3.17.0 honest protect kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if protect.get("protect_as_patent") is True or protect.get("protect_as_uncopyable") is True:
+        raise IntegrityError("3.17.0 an IP board is not a patent and insulation is not uncopyable", reason_code="CATALOG_REVIEW")
+    if protect.get("certified") is True:
+        raise IntegrityError("3.17.0 honest protect is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(protect.get("site") or "").lower()
+    if "honest protect" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps honest protect", reason_code="CATALOG_REVIEW")
+    if "an ip board is not a patent" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps an IP board is not a patent", reason_code="CATALOG_REVIEW")
+    if "not a /protect route" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps not a /protect route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.17.0 protect site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest protect" not in principles:
+        raise IntegrityError("first-principles must keep honest protect", reason_code="CATALOG_REVIEW")
+    if "an ip board is not a patent" not in principles:
+        raise IntegrityError("first-principles must keep an IP board is not a patent", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.17.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#ip" not in ops:
+        raise IntegrityError("3.17.0 operations note keeps #ip", reason_code="CATALOG_REVIEW")
+    if "honest protect" not in ops:
+        raise IntegrityError("3.17.0 operations note keeps honest protect", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a patent board" not in managed:
+        raise IntegrityError("3.17.0 managed face refuses a patent board", reason_code="CATALOG_PLANE")
+    if "not a client assignment" not in managed:
+        raise IntegrityError("3.17.0 managed face refuses a client assignment", reason_code="CATALOG_PLANE")
+    from ainav.honest_protect import validate_honest_protect
+
+    validate_honest_protect(catalog)
+
+
+def _validate_instrument_318(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.18.0" in item and "honest hold" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.18.0 honest hold", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_hold") is not True or site.get("honest_protect") is not True:
+        raise IntegrityError("3.18.0 website has honest hold", reason_code="CATALOG_PLANE")
+    if site.get("honest_hold_live") is True or site.get("vault_as_live_pin") is True:
+        raise IntegrityError("3.18.0 hold is not live and a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    if site.get("names_as_wired") is True or site.get("secret_in_catalog") is True:
+        raise IntegrityError("3.18.0 secret names are not wired and values stay out of the catalog", reason_code="CATALOG_PLANE")
+    if site.get("sentinel_as_admit") is True or site.get("hold_as_seated") is True:
+        raise IntegrityError("3.18.0 Sentinel is not the admit plane and a hold is not seated", reason_code="CATALOG_PLANE")
+    hold = catalog.get("honest_hold") or {}
+    if hold.get("kind") != "ainav.honest.hold.v1" or hold.get("honest") is not True:
+        raise IntegrityError("3.18.0 honest hold kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if hold.get("vault_as_live_pin") is True or hold.get("values_in_tree") is True:
+        raise IntegrityError("3.18.0 a vault hold is not LIVE_PIN_OK and values stay out of the tree", reason_code="CATALOG_REVIEW")
+    if hold.get("certified") is True:
+        raise IntegrityError("3.18.0 honest hold is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(hold.get("site") or "").lower()
+    if "honest hold" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps honest hold", reason_code="CATALOG_REVIEW")
+    if "a vault hold is not live_pin_ok" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "not a /hold route" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps not a /hold route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.18.0 hold site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest hold" not in principles:
+        raise IntegrityError("first-principles must keep honest hold", reason_code="CATALOG_REVIEW")
+    if "a vault hold is not live_pin_ok" not in principles:
+        raise IntegrityError("first-principles must keep a vault hold is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.18.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#missing" not in ops:
+        raise IntegrityError("3.18.0 operations note keeps #missing", reason_code="CATALOG_REVIEW")
+    if "honest hold" not in ops:
+        raise IntegrityError("3.18.0 operations note keeps honest hold", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a vault live pin" not in managed:
+        raise IntegrityError("3.18.0 managed face refuses a vault live pin", reason_code="CATALOG_PLANE")
+    if "not a secret catalog" not in managed:
+        raise IntegrityError("3.18.0 managed face refuses a secret catalog", reason_code="CATALOG_PLANE")
+    from ainav.honest_hold import validate_honest_hold
+
+    validate_honest_hold(catalog)
+
+
+def _validate_instrument_319(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.19.0" in item and "honest close" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.19.0 honest close", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_close") is not True or site.get("honest_hold") is not True:
+        raise IntegrityError("3.19.0 website has honest close", reason_code="CATALOG_PLANE")
+    if site.get("honest_close_live") is True or site.get("close_as_launch") is True:
+        raise IntegrityError("3.19.0 close is not live and a 10/10 close is not launch", reason_code="CATALOG_PLANE")
+    if site.get("booking_as_revenue") is True or site.get("twin_as_assigned") is True:
+        raise IntegrityError("3.19.0 a booking is not revenue and the twin is not assigned", reason_code="CATALOG_PLANE")
+    if site.get("custom_db_as_sku") is True or site.get("list_as_collection") is True:
+        raise IntegrityError("3.19.0 a custom database is not a SKU and a list is not collection", reason_code="CATALOG_PLANE")
+    close = catalog.get("honest_close") or {}
+    if close.get("kind") != "ainav.honest.close.v1" or close.get("honest") is not True:
+        raise IntegrityError("3.19.0 honest close kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if close.get("close_as_launch") is True or close.get("signed_l1") is True:
+        raise IntegrityError("3.19.0 a 10/10 close is not launch and signed L1 stays open", reason_code="CATALOG_REVIEW")
+    if close.get("certified") is True:
+        raise IntegrityError("3.19.0 honest close is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(close.get("site") or "").lower()
+    if "honest close" not in site_note:
+        raise IntegrityError("3.19.0 close site keeps honest close", reason_code="CATALOG_REVIEW")
+    if "a 10/10 close is not launch" not in site_note:
+        raise IntegrityError("3.19.0 close site keeps a 10/10 close is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /close route" not in site_note:
+        raise IntegrityError("3.19.0 close site keeps not a /close route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.19.0 close site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest close" not in principles:
+        raise IntegrityError("first-principles must keep honest close", reason_code="CATALOG_REVIEW")
+    if "a 10/10 close is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 close is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.19.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#path" not in ops:
+        raise IntegrityError("3.19.0 operations note keeps #path", reason_code="CATALOG_REVIEW")
+    if "honest close" not in ops:
+        raise IntegrityError("3.19.0 operations note keeps honest close", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a booked close" not in managed:
+        raise IntegrityError("3.19.0 managed face refuses a booked close", reason_code="CATALOG_PLANE")
+    if "not a catalog collection" not in managed:
+        raise IntegrityError("3.19.0 managed face refuses a catalog collection", reason_code="CATALOG_PLANE")
+    from ainav.honest_close import validate_honest_close
+
+    validate_honest_close(catalog)
+
+
+def _validate_instrument_320(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.20.0":
+        raise IntegrityError("entity.release is 3.20.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.20.0" in item and "honest join" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.20.0 honest join", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_join") is not True or site.get("honest_close") is not True:
+        raise IntegrityError("3.20.0 website has honest join", reason_code="CATALOG_PLANE")
+    if site.get("honest_join_live") is True or site.get("join_as_launch") is True:
+        raise IntegrityError("3.20.0 join is not live and the join is not launch", reason_code="CATALOG_PLANE")
+    if site.get("stitch_as_live_pin") is True or site.get("licensed_as_wired_firm") is True:
+        raise IntegrityError("3.20.0 the stitched firm is not LIVE_PIN_OK and licensed is not wired", reason_code="CATALOG_PLANE")
+    if site.get("manage_ops_as_closed") is True or site.get("certify_as_running") is True:
+        raise IntegrityError("3.20.0 management is not closed and a simulation is not a running firm", reason_code="CATALOG_PLANE")
+    join = catalog.get("honest_join") or {}
+    if join.get("kind") != "ainav.honest.join.v1" or join.get("honest") is not True:
+        raise IntegrityError("3.20.0 honest join kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if join.get("join_as_launch") is True or join.get("signed_l1") is True:
+        raise IntegrityError("3.20.0 the join is not launch and signed L1 stays open", reason_code="CATALOG_REVIEW")
+    if join.get("certified") is True:
+        raise IntegrityError("3.20.0 honest join is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(join.get("site") or "").lower()
+    if "honest join" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps honest join", reason_code="CATALOG_REVIEW")
+    if "the join is not launch" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps the join is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /join route" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps not a /join route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.20.0 join site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest join" not in principles:
+        raise IntegrityError("first-principles must keep honest join", reason_code="CATALOG_REVIEW")
+    if "the join is not launch" not in principles:
+        raise IntegrityError("first-principles must keep the join is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.20.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#firm" not in ops:
+        raise IntegrityError("3.20.0 operations note keeps #firm", reason_code="CATALOG_REVIEW")
+    if "honest join" not in ops:
+        raise IntegrityError("3.20.0 operations note keeps honest join", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a joined firm" not in managed:
+        raise IntegrityError("3.20.0 managed face refuses a joined firm", reason_code="CATALOG_PLANE")
+    if "not a certified running firm" not in managed:
+        raise IntegrityError("3.20.0 managed face refuses a certified running firm", reason_code="CATALOG_PLANE")
+    from ainav.honest_join import validate_honest_join
+
+    validate_honest_join(catalog)
+
+
+def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    offer = body.get("included_and_upsells") or {}
+    included = next(
+        (
+            item
+            for item in ((offer.get("first_glance") or {}).get("columns") or [])
+            if isinstance(item, dict) and item.get("id") == "included_with_l1"
+        ),
+        {},
+    )
+    included_blob = " ".join(str(item) for item in included.get("items") or []).lower()
+    if "estate — same plane" in included_blob or "audit — same plane" in included_blob:
+        raise IntegrityError("Client offer cannot leak Estate or Audit encyclopedia", reason_code="CATALOG_PLANE")
+    if "encyclopedia" not in included_blob or "drawer" not in included_blob:
+        raise IntegrityError("Client offer keeps encyclopedia as a drawer on Entire", reason_code="CATALOG_PLANE")
+    floor = body.get("proof_day_floor") or {}
+    if "pending_bind" not in (floor.get("client_shows") or []):
+        raise IntegrityError("Client proof-day Floor sits the pending bind", reason_code="CATALOG_PLANE")
+    if "examiner_walk" not in (floor.get("examiner_shows") or []):
+        raise IntegrityError("Examiner proof-day Floor sits the examiner walk", reason_code="CATALOG_PLANE")
+    if "freeze_console" not in (floor.get("owner_shows") or []):
+        raise IntegrityError("Owner proof-day Floor sits the freeze console", reason_code="CATALOG_PLANE")
+    if "continuity" not in (floor.get("seats_shows") or []) and "continuity" not in (floor.get("entire_shows") or []):
+        raise IntegrityError("continuity rehearsal sits Seats or Entire", reason_code="CATALOG_PLANE")
+    pending = body.get("pending_bind")
+    if not isinstance(pending, dict):
+        raise IntegrityError("catalog missing pending bind", reason_code="CATALOG_PLANE")
+    if pending.get("sku") is True or pending.get("live") is True or pending.get("live_pin_ok") is True:
+        raise IntegrityError("pending bind is not a SKU or live", reason_code="CATALOG_PLANE")
+    if int(pending.get("count") or 0) != 0:
+        raise IntegrityError("pending bind count stays zero until a named pair", reason_code="CATALOG_PLANE")
+    if pending.get("named_pair") is True:
+        raise IntegrityError("pending bind cannot invent a named pair", reason_code="CATALOG_PLANE")
+    if pending.get("action_class") != "bc.general_journal.post":
+        raise IntegrityError("pending bind walks the public wedge", reason_code="CATALOG_PLANE")
+    if str(pending.get("seat_a") or "") or str(pending.get("seat_b") or "") or str(pending.get("action_hash") or ""):
+        raise IntegrityError("pending bind wells stay empty", reason_code="CATALOG_PLANE")
+    if pending.get("refuse") is not True or pending.get("local_rehearsal") is not True:
+        raise IntegrityError("pending bind is a local refuse rehearsal", reason_code="CATALOG_PLANE")
+    freeze = body.get("freeze_console")
+    if not isinstance(freeze, dict):
+        raise IntegrityError("catalog missing freeze console", reason_code="CATALOG_PLANE")
+    if freeze.get("sku") is True or freeze.get("live") is True or freeze.get("live_pin_ok") is True:
+        raise IntegrityError("freeze console is not a SKU or live", reason_code="CATALOG_PLANE")
+    if freeze.get("verb") != "request":
+        raise IntegrityError("freeze console verb is request", reason_code="CATALOG_PLANE")
+    if freeze.get("catalog_plane_stays_open") is not True:
+        raise IntegrityError("freeze request cannot close the catalog plane", reason_code="CATALOG_PLANE")
+    if freeze.get("local_to_browser") is not True:
+        raise IntegrityError("freeze console is local to the browser", reason_code="CATALOG_PLANE")
+    if freeze.get("inference_may_continue") is not True or freeze.get("consequence_does_not") is not True:
+        raise IntegrityError("freeze: inference may continue, consequence does not", reason_code="CATALOG_PLANE")
+    walk = body.get("examiner_walk")
+    if not isinstance(walk, dict):
+        raise IntegrityError("catalog missing examiner walk", reason_code="CATALOG_PLANE")
+    if walk.get("sku") is True or walk.get("live") is True:
+        raise IntegrityError("examiner walk is not a SKU or live", reason_code="CATALOG_PLANE")
+    if walk.get("read_only") is not True:
+        raise IntegrityError("examiner walk is read-only", reason_code="CATALOG_PLANE")
+    if walk.get("seventeen_a4") is True or walk.get("worm") is True or walk.get("claimed") is True:
+        raise IntegrityError("examiner walk is not 17a-4, WORM, or claimed", reason_code="CATALOG_GOVERNANCE")
+    if int(walk.get("named_records") or 0) != 0:
+        raise IntegrityError("examiner walk named records stay zero", reason_code="CATALOG_PLANE")
+    demo = walk.get("demo") or {}
+    if demo.get("lab") is not True:
+        raise IntegrityError("examiner walk demo stays lab", reason_code="CATALOG_PLANE")
+    if demo.get("record_id") == "lab.demo.inclusion":
+        if demo.get("included") is not True:
+            raise IntegrityError("lab demo leaf is a lab inclusion, not a named record", reason_code="CATALOG_PLANE")
+        if demo.get("leaf") != "lab" or demo.get("root") != "catalog":
+            raise IntegrityError("lab demo leaf stays lab / catalog", reason_code="CATALOG_PLANE")
+    else:
+        if demo.get("included") is True:
+            raise IntegrityError("examiner walk demo stays not included unless it is the lab leaf", reason_code="CATALOG_PLANE")
+        if str(demo.get("record_id") or "") or str(demo.get("leaf") or "") or str(demo.get("root") or ""):
+            raise IntegrityError("examiner walk cannot invent a named record", reason_code="CATALOG_PLANE")
+    groups = (body.get("view_assignment") or {}).get("entra_groups")
+    if not isinstance(groups, dict):
+        raise IntegrityError("catalog missing Entra-group view templates", reason_code="CATALOG_PLANE")
+    if groups.get("sku") is True or groups.get("live") is True or groups.get("assignment_live") is True:
+        raise IntegrityError("Entra-group assignment is not live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if groups.get("do_not_invent_names") is not True or groups.get("named_head") is True:
+        raise IntegrityError("Entra-group templates cannot invent named heads", reason_code="CATALOG_PLANE")
+    if groups.get("cloud_agent_cannot_assign") is not True:
+        raise IntegrityError("Cloud Agent cannot assign Entra groups", reason_code="CATALOG_PLANE")
+    templates = groups.get("templates") or []
+    if not templates:
+        raise IntegrityError("Entra-group templates are required", reason_code="CATALOG_PLANE")
+    for row in templates:
+        if not isinstance(row, dict):
+            raise IntegrityError("Entra-group template is an object", reason_code="CATALOG_PLANE")
+        if row.get("named_head") is True:
+            raise IntegrityError("Entra-group template cannot name a head", reason_code="CATALOG_PLANE")
+        if not row.get("org_node") or not row.get("group") or not row.get("default_view"):
+            raise IntegrityError("Entra-group template needs org node, group, and view", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in (body.get("view_assignment") or {}).get("refuse") or []]
+    for stem in ("entra group assignment live", "named department head"):
+        if stem not in refuse:
+            raise IntegrityError("view assignment must refuse " + stem, reason_code="CATALOG_PLANE")
+    motions = body.get("motions")
+    if not isinstance(motions, dict):
+        raise IntegrityError("catalog missing client motions", reason_code="CATALOG_PLANE")
+    if motions.get("sku") is True or motions.get("fourth_sku") is True or motions.get("live") is True:
+        raise IntegrityError("motions are not a SKU", reason_code="CATALOG_SKU")
+    small = motions.get("small_client") or {}
+    if small.get("sku") is True or small.get("express_sku") is True or small.get("discount_udual") is True:
+        raise IntegrityError("small-client motion is not a SKU and does not discount U-DUAL", reason_code="CATALOG_SKU")
+    if small.get("same_l1") is not True or int(small.get("minutes") or 0) != 90:
+        raise IntegrityError("small-client motion is the same L1 ninety minutes", reason_code="CATALOG_PLANE")
+    price = small.get("price_usd") or {}
+    if int(price.get("min") or 0) != 28000 or int(price.get("max") or 0) != 40000:
+        raise IntegrityError("small-client motion stays $28–40k", reason_code="CATALOG_PLANE")
+    if "workflow" not in str(small.get("walk_away_if") or "").lower():
+        raise IntegrityError("small-client motion walks away from Workflow User Groups", reason_code="CATALOG_PLANE")
+    large = motions.get("large_client") or {}
+    if large.get("sku") is True or large.get("certificate") is True or large.get("claimed") is True:
+        raise IntegrityError("large-client motion is not a certificate", reason_code="CATALOG_GOVERNANCE")
+    if large.get("sox") is True or large.get("seventeen_a4") is True:
+        raise IntegrityError("large-client motion cannot claim SOX or 17a-4", reason_code="CATALOG_GOVERNANCE")
+    if large.get("same_three_skus") is not True or large.get("g12_open") is not True:
+        raise IntegrityError("large-client motion keeps three SKUs and G12 open", reason_code="CATALOG_PLANE")
+    packet = large.get("counsel_ready") or {}
+    for needed in ("order_form", "msa_skeleton", "icfr_kit_case", "examiner_export", "off_switch_evidence"):
+        if packet.get(needed) is not True:
+            raise IntegrityError(f"large-client counsel packet must include {needed}", reason_code="CATALOG_PLANE")
+    host = body.get("hostname_rehearsal")
+    if not isinstance(host, dict):
+        raise IntegrityError("catalog missing hostname rehearsal", reason_code="CATALOG_PLANE")
+    if host.get("sku") is True or host.get("live") is True or host.get("launch") is True:
+        raise IntegrityError("hostname rehearsal is not launch", reason_code="CATALOG_PLANE")
+    if host.get("asuid_added") is True or host.get("cloudflare_edited_from_this_plane") is True:
+        raise IntegrityError("hostname rehearsal cannot add asuid or edit Cloudflare", reason_code="CATALOG_PLANE")
+    if host.get("pages_is_not_institute") is not True:
+        raise IntegrityError("Pages is not the Institute", reason_code="CATALOG_PLANE")
+    cutover = [str(item).lower() for item in host.get("cutover") or []]
+    for stem in ("pages empty", "swa", "asuid only then", "james", "authorized"):
+        if not any(stem in item for item in cutover):
+            raise IntegrityError("hostname rehearsal cutover must keep " + stem, reason_code="CATALOG_PLANE")
+    competitive = body.get("competitive")
+    if not isinstance(competitive, dict):
+        raise IntegrityError("catalog missing competitive one-pager", reason_code="CATALOG_PLANE")
+    if competitive.get("sku") is True or competitive.get("live") is True:
+        raise IntegrityError("competitive one-pager is not a SKU or live", reason_code="CATALOG_PLANE")
+    if competitive.get("uncopyable") is True or competitive.get("patent") is True:
+        raise IntegrityError("do not say uncopyable or patent", reason_code="CATALOG_PLANE")
+    if list(competitive.get("we_win_only") or []) != ["consume_once", "fail_closed_sor", "counterparty_ai"]:
+        raise IntegrityError("we win only on consume-once, fail-closed SoR, and counterparty AI", reason_code="CATALOG_PLANE")
+    if list(competitive.get("columns") or []) != [
+        "covers_this_vendor",
+        "consume_once",
+        "fail_closed_sor",
+        "counterparty_ai",
+    ]:
+        raise IntegrityError("competitive columns are vendor, consume-once, fail-closed, counterparty", reason_code="CATALOG_PLANE")
+    row_ids = [item.get("id") for item in competitive.get("rows") or [] if isinstance(item, dict)]
+    for needed in ("job_c", "bc_workflow", "copilot_studio", "pim", "grc_icfr", "in_harness"):
+        if needed not in row_ids:
+            raise IntegrityError(f"competitive one-pager must include {needed}", reason_code="CATALOG_PLANE")
+    job = next((item for item in competitive.get("rows") or [] if item.get("id") == "job_c"), {})
+    if not (
+        job.get("covers_this_vendor") is True
+        and job.get("consume_once") is True
+        and job.get("fail_closed_sor") is True
+        and job.get("counterparty_ai") is True
+    ):
+        raise IntegrityError("Job C wins all four competitive columns", reason_code="CATALOG_PLANE")
+    for item in competitive.get("rows") or []:
+        if item.get("id") == "job_c":
+            continue
+        if item.get("consume_once") is True or item.get("fail_closed_sor") is True or item.get("counterparty_ai") is True:
+            raise IntegrityError("substitutes do not win consume-once, fail-closed, or counterparty", reason_code="CATALOG_PLANE")
+    if "uncopyable" in str(competitive.get("note") or "").lower() and "do not say uncopyable" not in str(
+        competitive.get("note") or ""
+    ).lower():
+        raise IntegrityError("competitive note cannot claim uncopyable", reason_code="CATALOG_PLANE")
+    success = (catalog.get("expert_review") or {}).get("success") or {}
+    rehearsal = (success.get("continuity") or {}).get("rehearsal") or {}
+    if not isinstance(rehearsal, dict) or not rehearsal:
+        raise IntegrityError("continuity needs a Tuesday rehearsal", reason_code="CATALOG_REVIEW")
+    if rehearsal.get("sku") is True or rehearsal.get("live") is True:
+        raise IntegrityError("continuity rehearsal is not a SKU or live", reason_code="CATALOG_REVIEW")
+    if rehearsal.get("write_lands") is True or rehearsal.get("sealed_deny") is not True:
+        raise IntegrityError("continuity rehearsal: write does not land, sealed deny", reason_code="CATALOG_REVIEW")
+    if str(rehearsal.get("seat_missing") or "") != "seat_b":
+        raise IntegrityError("continuity rehearsal is seat B absent", reason_code="CATALOG_REVIEW")
+
+
+def _validate_plane_interface(catalog: dict[str, Any]) -> None:
+    body = catalog.get("plane_interface")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing plane interface", reason_code="CATALOG_PLANE")
+    if body.get("sku") is True:
+        raise IntegrityError("plane interface is not a SKU", reason_code="CATALOG_SKU")
+    if body.get("live") is True or body.get("live_pin_ok") is True:
+        raise IntegrityError("plane interface cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if body.get("certified") is True or body.get("real_time_claimed") is True or body.get("forecast") is True:
+        raise IntegrityError("plane interface cannot claim live metrics or certification", reason_code="CATALOG_PLANE")
+    thesis = str(body.get("thesis") or "").lower()
+    letter = str(body.get("letter") or "").lower()
+    for stem in ("human", "dashboard", "remote", "compliance", "not a fourth"):
+        blob = thesis + " " + letter
+        if stem not in blob and not (stem == "not a fourth" and "not a fourth" in blob):
+            if stem == "not a fourth" and "fourth sku" in " ".join(body.get("refuse") or []).lower():
+                continue
+            if stem not in blob:
+                raise IntegrityError(f"plane interface must keep {stem}", reason_code="CATALOG_PLANE")
+    ids = [item.get("id") for item in body.get("levels") or []]
+    for needed in ("owner", "board", "seat_a", "seat_b", "remote", "agent"):
+        if needed not in ids:
+            raise IntegrityError(f"plane interface levels must include {needed}", reason_code="CATALOG_PLANE")
+    access = body.get("access") or {}
+    if access.get("same_plane") is not True or access.get("second_remote_plane") is True:
+        raise IntegrityError("remote access is the same plane", reason_code="CATALOG_PLANE")
+    if access.get("vpn_sku") is True:
+        raise IntegrityError("remote access is not a VPN SKU", reason_code="CATALOG_SKU")
+    dash = body.get("dashboard") or {}
+    if dash.get("sku") is True or dash.get("upsell") is True:
+        raise IntegrityError("dashboard is not a SKU", reason_code="CATALOG_SKU")
+    if dash.get("included_with") != "L1":
+        raise IntegrityError("dashboard is included with L1", reason_code="CATALOG_PLANE")
+    client_dash = body.get("client_dashboard")
+    if not isinstance(client_dash, dict):
+        raise IntegrityError("catalog missing client dashboard", reason_code="CATALOG_PLANE")
+    if client_dash.get("sku") is True or client_dash.get("upsell") is True:
+        raise IntegrityError("client dashboard is not a SKU or an upsell", reason_code="CATALOG_SKU")
+    if client_dash.get("included_with") != "L1":
+        raise IntegrityError("client dashboard is included with L1", reason_code="CATALOG_PLANE")
+    if client_dash.get("live") is True:
+        raise IntegrityError("client dashboard cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+    if client_dash.get("standard_vs_advanced_dashboard") is True:
+        raise IntegrityError("do not sell Standard vs Advanced dashboard", reason_code="CATALOG_SKU")
+    if client_dash.get("same_as") != "dashboard":
+        raise IntegrityError("client dashboard is the same dashboard", reason_code="CATALOG_PLANE")
+    if dash.get("same_as") != "client_dashboard":
+        raise IntegrityError("dashboard is the client dashboard", reason_code="CATALOG_PLANE")
+    board = client_dash.get("executive_board") or {}
+    if not isinstance(board, dict):
+        raise IntegrityError("catalog missing executive board", reason_code="CATALOG_PLANE")
+    if board.get("sku") is True or board.get("upsell") is True:
+        raise IntegrityError("executive board is not a SKU or an upsell", reason_code="CATALOG_SKU")
+    if board.get("included_with") != "L1":
+        raise IntegrityError("executive board is included with L1", reason_code="CATALOG_PLANE")
+    if board.get("same_as") != "client_dashboard":
+        raise IntegrityError("executive board is the client dashboard", reason_code="CATALOG_PLANE")
+    if board.get("default_view") != "client":
+        raise IntegrityError("executive board sits the client view first", reason_code="CATALOG_PLANE")
+    board_lede = str(board.get("lede") or "").lower()
+    if "sit the plane" not in board_lede or "one dashboard" not in board_lede:
+        raise IntegrityError("executive board lede is sit the plane on one dashboard", reason_code="CATALOG_PLANE")
+    section_ids = [item.get("id") for item in board.get("sections") or [] if isinstance(item, dict)]
+    if section_ids != ["write_rail", "attention", "seats", "keep", "offer"]:
+        raise IntegrityError("executive board is write rail, attention, seats, keep, offer", reason_code="CATALOG_PLANE")
+    attention_ids = list(board.get("attention_ids") or [])
+    if "must_have" not in attention_ids or "pending" not in attention_ids:
+        raise IntegrityError("executive board attention keeps must-have and pending", reason_code="CATALOG_PLANE")
+    if "seats_recorded" not in (board.get("seat_tile_ids") or []):
+        raise IntegrityError("executive board seats keep seats recorded", reason_code="CATALOG_PLANE")
+    if "second_record" not in (board.get("keep_tile_ids") or []):
+        raise IntegrityError("executive board keep keeps the second record", reason_code="CATALOG_PLANE")
+    if "signed_l1" not in (board.get("tile_ids") or []):
+        raise IntegrityError("executive board ledger keeps signed L1", reason_code="CATALOG_PLANE")
+    client_view = next(
+        (item for item in body.get("views") or [] if isinstance(item, dict) and item.get("id") == "client"),
+        {},
+    )
+    if "write_rail" not in (client_view.get("shows") or []) or "offer" not in (client_view.get("shows") or []):
+        raise IntegrityError("client view sits the executive board", reason_code="CATALOG_PLANE")
+    dash_glance = dash.get("first_glance") or {}
+    if not isinstance(dash_glance, dict):
+        raise IntegrityError("dashboard first glance is required", reason_code="CATALOG_PLANE")
+    if dash_glance.get("sku") is True:
+        raise IntegrityError("dashboard first glance is not a SKU", reason_code="CATALOG_SKU")
+    if dash_glance.get("same_as") != "client_dashboard":
+        raise IntegrityError("dashboard first glance is the client dashboard", reason_code="CATALOG_PLANE")
+    if dash_glance.get("uses") != "write_rail":
+        raise IntegrityError("dashboard first glance uses the write rail", reason_code="CATALOG_PLANE")
+    dash_lede = str(dash_glance.get("lede") or "").lower()
+    if "one dashboard" not in dash_lede or "same plane" not in dash_lede:
+        raise IntegrityError("dashboard first glance is one dashboard on the same plane", reason_code="CATALOG_PLANE")
+    dash_rail = [item.get("id") for item in dash_glance.get("write_rail") or []]
+    if dash_rail != ["seat_a", "seat_b", "hash", "write"]:
+        raise IntegrityError("dashboard write rail is seat A, seat B, hash, then the write", reason_code="CATALOG_PLANE")
+    bands = body.get("provision_bands") or {}
+    if bands.get("sku") is True:
+        raise IntegrityError("provision bands are not a SKU", reason_code="CATALOG_SKU")
+    band_items = {item.get("id"): item for item in bands.get("items") or []}
+    if "provision.standard" not in band_items or "provision.advanced" not in band_items:
+        raise IntegrityError("provision bands must include standard and advanced", reason_code="CATALOG_PLANE")
+    standard = band_items["provision.standard"]
+    advanced = band_items["provision.advanced"]
+    if standard.get("sku") is True or advanced.get("sku") is True:
+        raise IntegrityError("a provision band is not a SKU", reason_code="CATALOG_SKU")
+    if standard.get("upsell") is True:
+        raise IntegrityError("standard provision is not an upsell", reason_code="CATALOG_PLANE")
+    if advanced.get("upsell") is not True:
+        raise IntegrityError("advanced provision is the upsell band", reason_code="CATALOG_PLANE")
+    if standard.get("requires_sku") != "L1" or advanced.get("requires_sku") != "L1":
+        raise IntegrityError("provision bands require L1", reason_code="CATALOG_PLANE")
+    if advanced.get("u_dual_never_free") is not True:
+        raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    if advanced.get("hours_never_attach_udual") is not True:
+        raise IntegrityError("hours never attach U-DUAL", reason_code="CATALOG_PLANE")
+    if "included with" not in str(bands.get("attach_means") or "").lower():
+        raise IntegrityError("included means included with the required SKU", reason_code="CATALOG_PLANE")
+    if bands.get("week_one") != "provisioning.standard_l1":
+        raise IntegrityError("week-one prove stays standard_l1", reason_code="CATALOG_PLANE")
+    offer = body.get("included_and_upsells") or {}
+    if not isinstance(offer, dict):
+        raise IntegrityError("catalog missing included and upsells", reason_code="CATALOG_PLANE")
+    if offer.get("sku") is True or offer.get("fourth_sku") is True:
+        raise IntegrityError("included and upsells is not a SKU", reason_code="CATALOG_SKU")
+    if offer.get("included_means_free") is True:
+        raise IntegrityError("included does not mean free", reason_code="CATALOG_PLANE")
+    if offer.get("u_dual_never_free") is not True:
+        raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    if offer.get("hours_never_attach_udual") is not True:
+        raise IntegrityError("hours never attach U-DUAL", reason_code="CATALOG_PLANE")
+    if offer.get("standard_vs_advanced_dashboard") is True:
+        raise IntegrityError("do not sell Standard vs Advanced dashboard", reason_code="CATALOG_SKU")
+    if str(offer.get("attach_means") or "") != str(bands.get("attach_means") or ""):
+        raise IntegrityError("included attach_means must match provision bands", reason_code="CATALOG_PLANE")
+    thesis = str(offer.get("thesis") or "").lower()
+    if "not free" not in thesis or "three sku" not in thesis or "upsell band" not in thesis:
+        raise IntegrityError("included thesis is seating vs upsell band, not free, three SKUs", reason_code="CATALOG_PLANE")
+    glance = offer.get("first_glance") or {}
+    if not isinstance(glance, dict):
+        raise IntegrityError("included and upsells first glance is required", reason_code="CATALOG_PLANE")
+    if glance.get("sku") is True:
+        raise IntegrityError("included and upsells first glance is not a SKU", reason_code="CATALOG_SKU")
+    lede = str(glance.get("lede") or "").lower()
+    if "not a gift" not in lede or "upsell band" not in lede or "fourth sku" not in lede:
+        raise IntegrityError("included first glance is seating vs upsell, not a fourth SKU", reason_code="CATALOG_PLANE")
+    columns = {item.get("id"): item for item in glance.get("columns") or [] if isinstance(item, dict)}
+    if set(columns) != {"included_with_l1", "upsell_band"}:
+        raise IntegrityError("included and upsells needs included_with_l1 and upsell_band", reason_code="CATALOG_PLANE")
+    included = columns["included_with_l1"]
+    upsell = columns["upsell_band"]
+    if included.get("sku") is True or upsell.get("sku") is True:
+        raise IntegrityError("an included or upsell column is not a SKU", reason_code="CATALOG_SKU")
+    if included.get("upsell") is True or included.get("band") != "provision.standard":
+        raise IntegrityError("included with L1 is standard provision, not an upsell", reason_code="CATALOG_PLANE")
+    if upsell.get("upsell") is not True or upsell.get("band") != "provision.advanced":
+        raise IntegrityError("upsell band is advanced provision", reason_code="CATALOG_PLANE")
+    included_blob = " ".join(str(item) for item in included.get("items") or []).lower()
+    if "week-one" not in included_blob or "dashboard" not in included_blob or "included_in_sku" not in included_blob:
+        raise IntegrityError("included column must keep week-one, dashboard, and included seating", reason_code="CATALOG_PLANE")
+    upsell_blob = " ".join(str(item) for item in upsell.get("items") or []).lower()
+    if "p-adm" not in upsell_blob or "u-dual" not in upsell_blob or "hours" not in upsell_blob:
+        raise IntegrityError("upsell column must keep priced desks, P-ADM, U-DUAL, and hours", reason_code="CATALOG_PLANE")
+    if "never free" not in upsell_blob:
+        raise IntegrityError("upsell column must keep U-DUAL never free", reason_code="CATALOG_PLANE")
+    refuse = [str(item).lower() for item in offer.get("refuse") or []]
+    for stem in ("included means free", "fourth sku", "u-dual free with p-adm", "dashboard as sku"):
+        if stem not in refuse:
+            raise IntegrityError("included and upsells must refuse " + stem, reason_code="CATALOG_PLANE")
+    floor = body.get("floor") or {}
+    lede = str(floor.get("lede") or "").lower()
+    if "one dashboard" not in lede or "included with l1" not in lede:
+        raise IntegrityError("floor lede must keep one dashboard included with L1", reason_code="CATALOG_PLANE")
+    if "must-have" not in lede or "write surface" not in lede or "two humans" not in lede:
+        raise IntegrityError("floor lede must keep must-have write surface", reason_code="CATALOG_PLANE")
+    if "already have" not in lede or "gate" not in lede:
+        raise IntegrityError("floor lede must keep already-have and the gate", reason_code="CATALOG_PLANE")
+    already = str(floor.get("already_have") or "").lower()
+    if "business central" not in already or "entra" not in already or "sod" not in already:
+        raise IntegrityError("already-have is BC, Entra, and journal SOD", reason_code="CATALOG_PLANE")
+    if "gate" not in str(floor.get("still_lack") or "").lower():
+        raise IntegrityError("still-lack is the gate in front of the write", reason_code="CATALOG_PLANE")
+    floor_must = floor.get("must_have") or {}
+    if not isinstance(floor_must, dict):
+        raise IntegrityError("floor must-have is required", reason_code="CATALOG_PLANE")
+    if floor_must.get("sku") is True or floor_must.get("mandated") is True or floor_must.get("certified") is True:
+        raise IntegrityError("must-have is not a SKU, mandate, or certificate", reason_code="CATALOG_GOVERNANCE")
+    gov_why = str(((catalog.get("governance") or {}).get("must_have") or {}).get("why") or "")
+    if str(floor_must.get("why") or "") != gov_why:
+        raise IntegrityError("floor must-have why must match governance", reason_code="CATALOG_PLANE")
+    if str(floor_must.get("incident") or "") != str(catalog.get("l1_incident_copy") or ""):
+        raise IntegrityError("floor must-have incident must match l1_incident_copy", reason_code="CATALOG_PLANE")
+    if "two humans before the write" not in str(floor_must.get("job_c_plain") or "").lower():
+        raise IntegrityError("Job C plain is two humans before the write", reason_code="CATALOG_PLANE")
+    gov_for = ((catalog.get("governance") or {}).get("must_have") or {}).get("for") or {}
+    floor_for = floor_must.get("for") or {}
+    for who in ("owner", "board", "examiner"):
+        if str(floor_for.get(who) or "") != str(gov_for.get(who) or ""):
+            raise IntegrityError(f"floor must-have for {who} must match governance", reason_code="CATALOG_PLANE")
+    not_gate_ids = [item.get("id") for item in floor.get("not_the_gate") or []]
+    for needed in ("vendor_native", "teams", "pim", "copilot", "bc_workflow", "in_harness", "grc_icfr"):
+        if needed not in not_gate_ids:
+            raise IntegrityError(f"not-the-gate must include {needed}", reason_code="CATALOG_PLANE")
+    glance = floor.get("first_glance") or {}
+    if not isinstance(glance, dict):
+        raise IntegrityError("floor first_glance is required", reason_code="CATALOG_PLANE")
+    if glance.get("sku") is True:
+        raise IntegrityError("first glance is not a SKU", reason_code="CATALOG_SKU")
+    if glance.get("uses") != "not_the_gate":
+        raise IntegrityError("first glance uses not_the_gate", reason_code="CATALOG_PLANE")
+    glance_lede = str(glance.get("lede") or "").lower()
+    if "substitute" not in glance_lede or "job c" not in glance_lede:
+        raise IntegrityError("first glance is substitute vs Job C", reason_code="CATALOG_PLANE")
+    job_c = str(glance.get("job_c") or "").lower()
+    if "sor write-gate" not in job_c or "not agent inventory" not in job_c:
+        raise IntegrityError("first glance Job C is a SoR write-gate, not agent inventory", reason_code="CATALOG_PLANE")
+    if list(glance.get("skus") or []) != ["L1", "P-ADM", "U-DUAL"]:
+        raise IntegrityError("first glance names the same three SKUs", reason_code="CATALOG_PLANE")
+    rail = list(glance.get("write_rail") or [])
+    if [item.get("id") for item in rail] != ["seat_a", "seat_b", "hash", "write"]:
+        raise IntegrityError("first glance write rail is seat A, seat B, hash, then the write", reason_code="CATALOG_PLANE")
+    dash_ids = [item.get("id") for item in ((body.get("dashboard") or {}).get("first_glance") or {}).get("write_rail") or []]
+    if dash_ids != [item.get("id") for item in rail]:
+        raise IntegrityError("dashboard write rail must match the public write rail", reason_code="CATALOG_PLANE")
+    rail_blob = " ".join(f"{item.get('name') or ''} {item.get('note') or ''}" for item in rail).lower()
+    for stem in ("seat a", "seat b", "hash", "write"):
+        if stem not in rail_blob:
+            raise IntegrityError(f"first glance write rail must keep {stem}", reason_code="CATALOG_PLANE")
+    kicker = str(glance.get("rail_kicker") or "").lower()
+    if "gate" not in kicker or "cop" not in kicker:
+        raise IntegrityError("first glance rail kicker is the gate then the licensed copies", reason_code="CATALOG_PLANE")
+    _validate_public_face(floor.get("public_face"))
+    success_floor = floor.get("success") or {}
+    if not isinstance(success_floor, dict):
+        raise IntegrityError("floor success is required", reason_code="CATALOG_PLANE")
+    if success_floor.get("sku") is True:
+        raise IntegrityError("floor success is not a SKU", reason_code="CATALOG_SKU")
+    if success_floor.get("uses") != "expert_review.success":
+        raise IntegrityError("floor success uses expert_review.success", reason_code="CATALOG_PLANE")
+    review_thesis = str(((catalog.get("expert_review") or {}).get("success") or {}).get("thesis") or "")
+    if str(success_floor.get("lede") or "") != review_thesis:
+        raise IntegrityError("floor success lede must match the success thesis", reason_code="CATALOG_PLANE")
+    close = floor.get("proof_close") or {}
+    if close.get("minutes") != (catalog.get("proof_day") or {}).get("minutes"):
+        raise IntegrityError("proof close minutes must match proof day", reason_code="CATALOG_PLANE")
+    if list(close.get("walk_out") or []) != list((catalog.get("proof_day") or {}).get("walk_out") or []):
+        raise IntegrityError("proof close walk-out must match proof day", reason_code="CATALOG_PLANE")
+    if "ninety-minute" not in str(close.get("sale") or "").lower():
+        raise IntegrityError("the sale is the ninety-minute proof", reason_code="CATALOG_PLANE")
+    no_means = floor.get("no_means") or {}
+    off = str((((catalog.get("governance") or {}).get("plane") or {}).get("off_switch") or {}).get("does") or "")
+    if str(no_means.get("off_switch") or "") != off:
+        raise IntegrityError("no-means off switch must match governance", reason_code="CATALOG_PLANE")
+    if "write does not land" not in str(no_means.get("fail_closed") or "").lower():
+        raise IntegrityError("fail-closed is the write does not land", reason_code="CATALOG_PLANE")
+    if "refusing is the product working" not in str(no_means.get("refuse") or "").lower():
+        raise IntegrityError("refusing is the product working", reason_code="CATALOG_PLANE")
+    scope_ids = [item.get("id") for item in floor.get("scopes") or []]
+    for needed in ("week_one", "included_seating", "advanced"):
+        if needed not in scope_ids:
+            raise IntegrityError(f"floor scopes must include {needed}", reason_code="CATALOG_PLANE")
+    page = floor.get("page") or {}
+    if page.get("product_first") is not True:
+        raise IntegrityError("homepage is product-first", reason_code="CATALOG_PLANE")
+    if str(page.get("twin_heading") or "") != "Proof day":
+        raise IntegrityError("twin heading is Proof day", reason_code="CATALOG_PLANE")
+    if str(page.get("twin_is") or "") != str(
+        (catalog.get("microsoft_stack") or {}).get("not_the_product") or ""
+    ):
+        raise IntegrityError("twin is a test of the plane", reason_code="CATALOG_PLANE")
+    if str(page.get("sale") or "") != str(close.get("sale") or ""):
+        raise IntegrityError("page sale must match proof close", reason_code="CATALOG_PLANE")
+    if list(page.get("product_path") or []) != ["buyer", "twin", "product"]:
+        raise IntegrityError("product path is buyer, twin, product", reason_code="CATALOG_PLANE")
+    if str(page.get("company_after") or "") != "about":
+        raise IntegrityError("company dump sits after about", reason_code="CATALOG_PLANE")
+    accountable = floor.get("accountable") or {}
+    acc_lede = str(accountable.get("lede") or "").lower()
+    if "duty matrix" not in acc_lede or "only seat a and seat b admit" not in acc_lede:
+        raise IntegrityError("accountable lede is the duty matrix", reason_code="CATALOG_PLANE")
+    acc_ids = [item.get("id") for item in accountable.get("items") or []]
+    for needed in ("admit", "freeze", "keep", "not_a_seat"):
+        if needed not in acc_ids:
+            raise IntegrityError(f"accountable must include {needed}", reason_code="CATALOG_PLANE")
+    acc_by = {item.get("id"): item for item in accountable.get("items") or []}
+    if "only two humans" not in str((acc_by.get("admit") or {}).get("note") or "").lower():
+        raise IntegrityError("admit is the only two humans", reason_code="CATALOG_PLANE")
+    freeze_note = str((acc_by.get("freeze") or {}).get("note") or "").lower()
+    if "they are not seats" not in freeze_note or "freeze" not in freeze_note:
+        raise IntegrityError("owner and board are not seats", reason_code="CATALOG_PLANE")
+    if str((acc_by.get("keep") or {}).get("note") or "") != str(floor_for.get("examiner") or ""):
+        raise IntegrityError("keep must match examiner must-have", reason_code="CATALOG_PLANE")
+    not_seat = str((acc_by.get("not_a_seat") or {}).get("note") or "").lower()
+    if "one title cannot" not in not_seat or "lab oids are not two named" not in not_seat:
+        raise IntegrityError("lab oids are not named seats", reason_code="CATALOG_PLANE")
+    protect = floor.get("protect") or {}
+    prot_lede = str(protect.get("lede") or "").lower()
+    if "not counsel" not in prot_lede or "not a certificate" not in prot_lede:
+        raise IntegrityError("protect lede is the catalog-map disclaimer", reason_code="CATALOG_PLANE")
+    prot_ids = [item.get("id") for item in protect.get("items") or []]
+    for needed in ("disclaimer", "attest", "policy", "update"):
+        if needed not in prot_ids:
+            raise IntegrityError(f"protect must include {needed}", reason_code="CATALOG_PLANE")
+    prot_by = {item.get("id"): item for item in protect.get("items") or []}
+    disc = str((prot_by.get("disclaimer") or {}).get("note") or "").lower()
+    if "does not certify" not in disc or "not a signature" not in disc:
+        raise IntegrityError("disclaimer is not a certificate or a signature", reason_code="CATALOG_PLANE")
+    second = str((((catalog.get("governance") or {}).get("records") or {}).get("second") or {}).get("what") or "")
+    if str((prot_by.get("attest") or {}).get("note") or "") != second:
+        raise IntegrityError("attest must match the second record", reason_code="CATALOG_PLANE")
+    pol = str((prot_by.get("policy") or {}).get("note") or "").lower()
+    if "cannot weaken job c" not in pol or "live_pin_ok cannot be marked" not in pol:
+        raise IntegrityError("policy cannot weaken Job C", reason_code="CATALOG_PLANE")
+    if "a rebrand breaks gold" not in str((prot_by.get("update") or {}).get("note") or "").lower():
+        raise IntegrityError("a system update cannot rebrand Job C", reason_code="CATALOG_PLANE")
+    memory = floor.get("memory") or {}
+    mem_lede = str(memory.get("lede") or "").lower()
+    if "two records and a keep" not in mem_lede:
+        raise IntegrityError("memory lede is two records and a keep", reason_code="CATALOG_PLANE")
+    mem_ids = [item.get("id") for item in memory.get("items") or []]
+    for needed in ("first", "keep", "reset", "rollback"):
+        if needed not in mem_ids:
+            raise IntegrityError(f"memory must include {needed}", reason_code="CATALOG_PLANE")
+    mem_by = {item.get("id"): item for item in memory.get("items") or []}
+    first_what = str((((catalog.get("governance") or {}).get("records") or {}).get("first") or {}).get("what") or "")
+    if str((mem_by.get("first") or {}).get("note") or "") != first_what:
+        raise IntegrityError("memory first must match the first record", reason_code="CATALOG_PLANE")
+    keep_note = ""
+    for item in body.get("write_path") or []:
+        if item.get("id") == "keep":
+            keep_note = str(item.get("note") or "")
+            break
+    if str((mem_by.get("keep") or {}).get("note") or "") != keep_note:
+        raise IntegrityError("memory keep must match the write-path keep", reason_code="CATALOG_PLANE")
+    reset_does = str((((catalog.get("governance") or {}).get("plane") or {}).get("reset") or {}).get("does") or "")
+    if str((mem_by.get("reset") or {}).get("note") or "") != reset_does:
+        raise IntegrityError("memory reset must match governance reset", reason_code="CATALOG_PLANE")
+    rollback_note = str((mem_by.get("rollback") or {}).get("note") or "").lower()
+    if "compensating write" not in rollback_note or "not a time machine" not in rollback_note:
+        raise IntegrityError("rollback is a compensating write, not a time machine", reason_code="CATALOG_PLANE")
+    integrate = floor.get("integrate") or {}
+    int_lede = str(integrate.get("lede") or "").lower()
+    if "cannot create users" not in int_lede or "live_pin_ok" not in int_lede:
+        raise IntegrityError("integrate lede is the owner-click playbook", reason_code="CATALOG_PLANE")
+    gates = catalog.get("owner_gates") or []
+    int_items = list(integrate.get("items") or [])
+    if [item.get("id") for item in int_items] != [item.get("id") for item in gates]:
+        raise IntegrityError("integrate items must match owner gates", reason_code="CATALOG_PLANE")
+    for gate, item in zip(gates, int_items, strict=True):
+        if str(item.get("note") or "") != str(gate.get("do") or ""):
+            raise IntegrityError(f"integrate {gate.get('id')} must match the owner gate", reason_code="CATALOG_PLANE")
+        if str(item.get("url") or "") != str(gate.get("url") or ""):
+            raise IntegrityError(f"integrate {gate.get('id')} url must match the owner gate", reason_code="CATALOG_PLANE")
+        if not item.get("url") or not str(item.get("url")).startswith("https://"):
+            raise IntegrityError("integrate steps need https links", reason_code="CATALOG_PLANE")
+        if "entra_client_id" in str(item.get("url") or "").lower() or "2ad041b8" in str(item.get("url") or ""):
+            raise IntegrityError("integrate urls cannot embed the Entra app id", reason_code="CATALOG_PLANE")
+    if "with u-dual" not in str(bands.get("desk_band_means") or "").lower():
+        raise IntegrityError("desk bands must keep included-with-SKU labels", reason_code="CATALOG_PLANE")
+    refuse_blob = " ".join(str(item) for item in body.get("refuse") or []).lower()
+    for stem in (
+        "dashboard as sku",
+        "standard provision as sku",
+        "advanced provision as sku",
+        "included means free",
+        "must-have as sku",
+        "must-have as mandate",
+        "native approval as the plane",
+        "vendor-native as dual",
+        "microsoft as the product",
+        "homepage as company first",
+        "lab oids as named seats",
+        "owner as a seat",
+        "update weakens job c",
+        "this page as a certificate",
+        "this page as a signature",
+        "mailbox as the second record",
+        "rollback as a time machine",
+        "reset wipes production",
+        "new entra app",
+        "graph write roles",
+        "cloud agent clicks unblock",
+        "view assignment as sku",
+        "personalized dashboard as sku",
+        "mfa as dual admit",
+        "mfa live claimed",
+    ):
+        if stem not in refuse_blob:
+            raise IntegrityError(f"plane refuse must keep {stem}", reason_code="CATALOG_PLANE")
+    tiles = dash.get("tiles") or []
+    for needed in ("plane_state", "recognized_revenue", "compliance_maps"):
+        if needed not in tiles:
+            raise IntegrityError(f"dashboard must tile {needed}", reason_code="CATALOG_PLANE")
+    view_ids = [item.get("id") for item in body.get("views") or []]
+    for needed in (
+        "entire",
+        "owner",
+        "seats",
+        "examiner",
+        "remote",
+        "it",
+        "provision",
+        "records",
+        "client",
+    ):
+        if needed not in view_ids:
+            raise IntegrityError(f"plane views must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("views") or []:
+        if item.get("sku") is True:
+            raise IntegrityError("a view is not a SKU", reason_code="CATALOG_SKU")
+    path_ids = [item.get("id") for item in body.get("write_path") or []]
+    for needed in ("draft", "seat_a", "seat_b", "first_record", "keep"):
+        if needed not in path_ids:
+            raise IntegrityError(f"write path must include {needed}", reason_code="CATALOG_PLANE")
+    lod_ids = [item.get("id") for item in body.get("lines_of_defense") or []]
+    if not {"1lod", "2lod", "3lod"} <= set(lod_ids):
+        raise IntegrityError("three lines of defense are required", reason_code="CATALOG_PLANE")
+    for item in body.get("lines_of_defense") or []:
+        if item.get("claimed") is True:
+            raise IntegrityError("lines of defense are not a certificate", reason_code="CATALOG_PLANE")
+    clock = body.get("clock") or {}
+    if clock.get("live_clock_claimed") is True:
+        raise IntegrityError("plane clock cannot claim a live Production clock", reason_code="CATALOG_PLANE")
+    if clock.get("pending_binds") not in (0, "0"):
+        raise IntegrityError("plane clock pending binds stay zero until a named pair", reason_code="CATALOG_PLANE")
+    attention_ids = [item.get("id") for item in body.get("attention") or []]
+    for needed in ("must_have", "pending", "production", "sandbox_first", "second_record"):
+        if needed not in attention_ids:
+            raise IntegrityError(f"attention board must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("attention") or []:
+        if item.get("id") in {"pending", "production", "second_record", "standing_grants"} and str(
+            item.get("value")
+        ) not in {"0", "0"}:
+            raise IntegrityError(f"attention {item.get('id')} stays zero", reason_code="CATALOG_PLANE")
+    zt = body.get("zero_trust") or {}
+    if zt.get("sku") is True or zt.get("ztna_sku") is True:
+        raise IntegrityError("zero trust is not a SKU", reason_code="CATALOG_SKU")
+    if zt.get("identify_is_not_admit") is not True:
+        raise IntegrityError("identify is not admit", reason_code="CATALOG_PLANE")
+    auth_ids = [item.get("id") for item in body.get("authorizations") or []]
+    for needed in ("identify", "seat", "bind", "revoke"):
+        if needed not in auth_ids:
+            raise IntegrityError(f"authorizations must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("authorizations") or []:
+        if item.get("standing") is True or item.get("live") is True:
+            raise IntegrityError("authorizations stay zero-standing", reason_code="CATALOG_PLANE")
+        if item.get("id") == "seat":
+            note = str(item.get("note") or "").lower()
+            if "1 mailbox" not in note or "0 oid" not in note:
+                raise IntegrityError("seat authorization must keep 1 mailbox / 0 oid", reason_code="CATALOG_PLANE")
+    if not {"freeze", "seat_revoke", "grant_expire"} <= {
+        item.get("id") for item in body.get("revocations") or []
+    }:
+        raise IntegrityError("revocations must include freeze and seat revoke", reason_code="CATALOG_PLANE")
+    for item in body.get("revocations") or []:
+        if item.get("live") is True or item.get("sku") is True:
+            raise IntegrityError("revocations are not live or a SKU", reason_code="CATALOG_PLANE")
+    provision = body.get("provisioning") or {}
+    if provision.get("sku") is True:
+        raise IntegrityError("provisioning is not a SKU", reason_code="CATALOG_SKU")
+    if provision.get("live") is True or provision.get("live_pin_ok") is True:
+        raise IntegrityError("provisioning is not live", reason_code="CATALOG_PLANE")
+    if provision.get("u_dual_never_free") is not True:
+        raise IntegrityError("U-DUAL is never free", reason_code="CATALOG_PLANE")
+    attached = provision.get("attached") or {}
+    if any(int(attached.get(key) or 0) for key in ("L1", "P-ADM", "U-DUAL")):
+        raise IntegrityError("provisioned SKUs stay zero until a named buyer", reason_code="CATALOG_PLANE")
+    for item in body.get("communications") or []:
+        if item.get("seat") is True or item.get("keep") is True:
+            raise IntegrityError("notify is not a seat or a keep", reason_code="CATALOG_PLANE")
+    record_ids = [item.get("id") for item in body.get("records") or []]
+    for needed in ("first_record", "second_record", "keep"):
+        if needed not in record_ids:
+            raise IntegrityError(f"records must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("records") or []:
+        if item.get("live") is True or item.get("certified") is True:
+            raise IntegrityError("records are not live or certified", reason_code="CATALOG_PLANE")
+    exception_ids = [item.get("id") for item in body.get("exceptions") or []]
+    for needed in ("same_seat", "agent_click", "seat_refuse", "freeze", "replay"):
+        if needed not in exception_ids:
+            raise IntegrityError(f"exception paths must include {needed}", reason_code="CATALOG_PLANE")
+    for item in body.get("exceptions") or []:
+        if item.get("live") is True:
+            raise IntegrityError("exception paths are not live incidents", reason_code="CATALOG_PLANE")
+    rehearsal = body.get("rehearsal") or {}
+    if rehearsal.get("sku") is True:
+        raise IntegrityError("rehearsal is not a SKU", reason_code="CATALOG_SKU")
+    if rehearsal.get("live") is True or rehearsal.get("production") is True or rehearsal.get("writes_sor") is True:
+        raise IntegrityError("rehearsal cannot write SoR or claim live", reason_code="CATALOG_PLANE")
+    if rehearsal.get("wedge") != "bc.general_journal.post":
+        raise IntegrityError("rehearsal walks the public wedge", reason_code="CATALOG_PLANE")
+    if rehearsal.get("named_humans") is True:
+        raise IntegrityError("rehearsal cannot invent named humans", reason_code="CATALOG_PLANE")
+    _validate_view_assignment(catalog, body)
+    _validate_estate(catalog, body)
+    _validate_audit(catalog, body)
+    _validate_instrument_plane(catalog, body)
+
+
+def _validate_repositories(catalog: dict[str, Any]) -> None:
+    repos = catalog.get("repositories") or []
+    ids = {item.get("id") for item in repos}
+    if not {"repo.agent_gov", "repo.catalog", "repo.institute"} <= ids:
+        raise IntegrityError("core repositories are required", reason_code="CATALOG_REPO")
+    for item in repos:
+        if item.get("id") in ALLOWED_SKUS or item.get("sku"):
+            raise IntegrityError("repository is not a SKU", reason_code="CATALOG_SKU")
+        if item.get("live") is True:
+            raise IntegrityError("repository cannot claim live", reason_code="LIVE_PIN_NOT_CLAIMED")
+
+
+def _validate_named_sets(items: list[dict[str, Any]], module_ids: set[str], kind: str) -> None:
+    for item in items:
+        ident = item.get("id")
+        if ident in ALLOWED_SKUS:
+            raise IntegrityError(f"{kind} cannot be a SKU", reason_code="CATALOG_SKU")
+        required = item.get("requires_sku")
+        if required not in ALLOWED_SKUS:
+            raise IntegrityError(f"{kind} {ident} has invented SKU", reason_code="CATALOG_SKU")
+        for mid in item.get("modules", []):
+            if mid not in module_ids:
+                raise IntegrityError(f"{kind} {ident} references unknown module {mid}")
+
+
+def sku(sku_id: str) -> dict[str, Any]:
+    for item in load_catalog()["skus"]:
+        if item["id"] == sku_id:
+            return dict(item)
+    raise IntegrityError(f"unknown SKU {sku_id}", reason_code="CATALOG_SKU")
+
+
+def modules_for(sku_id: str) -> list[dict[str, Any]]:
+    sku(sku_id)
+    return [dict(m) for m in load_catalog()["modules"] if m["sku"] == sku_id]
+
+
+def action_classes_for(sku_id: str) -> frozenset[str]:
+    return frozenset(m["id"] for m in modules_for(sku_id) if m.get("kind") == "action")
+
+
+def wedge_action_classes(sku_id: str) -> frozenset[str]:
+    return frozenset(
+        m["id"]
+        for m in modules_for(sku_id)
+        if m.get("kind") == "action" and m.get("wedge") is True
+    )
+
+
+def module_by_id(module_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("modules", []):
+        if item["id"] == module_id:
+            return dict(item)
+    raise IntegrityError(f"unknown module {module_id}", reason_code="CATALOG_PACK")
+
+
+def l1_action_classes() -> frozenset[str]:
+    return action_classes_for("L1")
+
+
+def udual_action_classes() -> frozenset[str]:
+    return action_classes_for("U-DUAL")
+
+
+def industry_pack(pack_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("industry_packs", []):
+        if item["id"] == pack_id:
+            return dict(item)
+    raise IntegrityError(f"unknown industry pack {pack_id}", reason_code="CATALOG_PACK")
+
+
+def library(library_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("libraries", []):
+        if item["id"] == library_id:
+            return dict(item)
+    raise IntegrityError(f"unknown library {library_id}", reason_code="CATALOG_LIB")
+
+
+def attach_band(item: dict[str, Any]) -> tuple[int, int]:
+    usd = item.get("attach_usd") or {}
+    return int(usd.get("min") or 0), int(usd.get("max") or 0)
+
+
+def fee_for_service(service_id: str) -> dict[str, Any]:
+    for item in load_catalog().get("fee_for_service", []):
+        if item["id"] == service_id:
+            return dict(item)
+    raise IntegrityError(f"unknown fee-for-service {service_id}", reason_code="CATALOG_FFS")
+
+
+def operations() -> dict[str, Any]:
+    return dict(load_catalog()["operations"])
+
+
+def acceptance_kit() -> dict[str, Any]:
+    return dict(load_catalog()["acceptance_kit"])
+
+
+def honest_missing() -> list[str]:
+    return list(load_catalog().get("honest_missing") or [])
+
+
+def l1_incident_copy() -> str:
+    return str(load_catalog()["l1_incident_copy"])
+
+
+def microsoft_stack() -> dict[str, Any]:
+    return dict(load_catalog()["microsoft_stack"])
+
+
+def catalog_graph() -> dict[str, Any]:
+    return dict((load_catalog().get("microsoft_stack") or {}).get("graph") or {})
+
+
+def catalog_us_dataverse() -> dict[str, Any]:
+    return dict((load_catalog().get("microsoft_stack") or {}).get("us_dataverse") or {})
+
+
+def catalog_institute_twin() -> dict[str, Any]:
+    return dict(((load_catalog().get("microsoft_stack") or {}).get("edge") or {}).get("twin") or {})

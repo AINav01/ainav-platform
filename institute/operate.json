@@ -1,0 +1,165 @@
+{
+  "certified": false,
+  "close_gaps_is_this_plane": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "gaps",
+      "live": false,
+      "name": "Gaps",
+      "note": "Seat B, oid, signed L1, LIVE_PIN_OK stay owner-only. Closing all gaps is not this plane.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "cursor_apps",
+      "live": false,
+      "name": "Cursor apps",
+      "note": "Azure MCP is host. Outlook, Zoom, Stripe, X, Railway stay unauthed. A Cursor app is not a seat.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "grok",
+      "live": false,
+      "name": "Grok",
+      "note": "Grok Build is mapped. grok login is not this plane. SuperGrok stays owner-only.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "simulation",
+      "live": false,
+      "name": "Simulation",
+      "note": "Fail-closed operate sims. Lab oids are not named seats. An operate sim is not production.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "ten",
+      "live": false,
+      "name": "10/10",
+      "note": "Surface polish is recorded. A 10/10 polish is not launch.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "grok_login_is_this_plane": false,
+  "honest": true,
+  "href": "#agent-tools",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.operate.v1",
+  "lede": "Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest operate. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. Complements stay eight. Not LIVE_PIN_OK.",
+  "operate_sim_is_production": false,
+  "outlook_is_click": false,
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not close owner gaps from this plane.",
+      "Do not treat Outlook mail as a click.",
+      "Do not grok login on this plane.",
+      "Do not treat an operate sim as production.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "polish_ten_is_launch": false,
+  "probes": {
+    "certified": false,
+    "close_gaps_is_this_plane": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "grok_login_is_this_plane": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.operate.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "operate_sim_is_production": false,
+    "outlook_is_click": false,
+    "polish_ten_is_launch": false,
+    "recorded": true
+  },
+  "product": "Honest operate",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#agent-tools",
+      "id": "close_gaps_as_this_plane",
+      "name": "Closing all gaps as this plane",
+      "note": "Refused. Closing all gaps is not this plane.",
+      "refuse": true,
+      "refuse_text": "Refused. Closing all gaps is not this plane.",
+      "state": "refused",
+      "text": "Refused. Closing all gaps is not this plane.",
+      "title": "Closing all gaps as this plane"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "outlook_as_click",
+      "name": "Outlook mail as a click",
+      "note": "Refused. Outlook mail is not a click.",
+      "refuse": true,
+      "refuse_text": "Refused. Outlook mail is not a click.",
+      "state": "refused",
+      "text": "Refused. Outlook mail is not a click.",
+      "title": "Outlook mail as a click"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "grok_login_as_this_plane",
+      "name": "grok login as this plane",
+      "note": "Refused. grok login is not this plane.",
+      "refuse": true,
+      "refuse_text": "Refused. grok login is not this plane.",
+      "state": "refused",
+      "text": "Refused. grok login is not this plane.",
+      "title": "grok login as this plane"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "operate_sim_as_production",
+      "name": "An operate sim as production",
+      "note": "Refused. An operate sim is not production.",
+      "refuse": true,
+      "refuse_text": "Refused. An operate sim is not production.",
+      "state": "refused",
+      "text": "Refused. An operate sim is not production.",
+      "title": "An operate sim as production"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "polish_ten_as_launch",
+      "name": "A 10/10 polish as launch",
+      "note": "Refused. A 10/10 polish is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A 10/10 polish is not launch.",
+      "state": "refused",
+      "text": "Refused. A 10/10 polish is not launch.",
+      "title": "A 10/10 polish as launch"
+    }
+  ],
+  "site": "Honest operate on #agent-tools. Recorded. Closing all gaps is not this plane. Outlook mail is not a click. grok login is not this plane. An operate sim is not production. A 10/10 polish is not launch. First glance stays the write rail. Not a /operate route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat closing all gaps as this plane.",
+    "Treat Outlook mail as a click.",
+    "Treat grok login as this plane.",
+    "Treat an operate sim as production.",
+    "Treat a 10/10 polish as launch."
+  ],
+  "wired": false
+}

@@ -1,0 +1,254 @@
+{
+  "certified": false,
+  "considered": true,
+  "created": false,
+  "directions": [
+    {
+      "href": "#missing",
+      "id": "names_as_wired",
+      "links": [
+        {
+          "label": "Key Vaults",
+          "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"
+        },
+        {
+          "label": "Teams admin",
+          "url": "https://admin.teams.microsoft.com"
+        },
+        {
+          "label": "SharePoint site",
+          "url": "https://ainav.sharepoint.com/sites/AINavInc"
+        },
+        {
+          "label": "Stack walk",
+          "url": "#stack-walk"
+        }
+      ],
+      "note": "Dash names in ainavinc7bfcff are not underscore env and not Teams notify. Owner reads team, channel, and site ids in the Microsoft admin, then Set values only in the vault. Opening the vault is not wired. This Cloud Agent has no Get.",
+      "title": "Secret names are not wired",
+      "wired": false
+    },
+    {
+      "href": "#missing",
+      "id": "secret_in_catalog",
+      "links": [
+        {
+          "label": "Key Vaults",
+          "url": "https://portal.azure.com/#browse/Microsoft.KeyVault%2Fvaults"
+        },
+        {
+          "label": "Set a secret",
+          "url": "https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal"
+        }
+      ],
+      "note": "A catalog must not hold secret values. Catalog holds names only. James has Get/List/Set on ainavinc7bfcff. Cloud Agent1 has no Get. Do not paste values into the catalog, the Institute, a PR, or chat.",
+      "title": "A catalog must not hold secret values",
+      "values_in_tree": false
+    },
+    {
+      "href": "#buyer",
+      "id": "sentinel_as_admit",
+      "is_admit_plane": false,
+      "links": [
+        {
+          "label": "Microsoft Sentinel",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Security_Insights"
+        },
+        {
+          "label": "Azure Monitor",
+          "url": "https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/overview"
+        },
+        {
+          "label": "The write",
+          "url": "#buyer"
+        },
+        {
+          "label": "Sentinel overview",
+          "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+        }
+      ],
+      "note": "Owner added Sentinel to ainav-mothership. Sentinel is not the admit plane. That is SIEM. Admit is two humans, one hash, then the write. Workspace id name held. Value stays in the vault. Sentinel on the existing LAW stays open.",
+      "title": "Sentinel is not the admit plane"
+    }
+  ],
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "vault",
+      "live": false,
+      "name": "Vault",
+      "note": "ainavinc7bfcff holds secret names. Values stay out of this tree. A vault hold is not LIVE_PIN_OK.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "teams",
+      "live": false,
+      "name": "Teams",
+      "note": "Four TEAMS-* names held. Team display AINav Inc. Ids stay unset in this plane. Secret names are not wired notify.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "sharepoint",
+      "live": false,
+      "name": "SharePoint",
+      "note": "SHAREPOINT-SITE-ID name held. Site path /sites/AINavInc recorded. Graph id stays out of this tree.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "sentinel",
+      "live": false,
+      "name": "Sentinel",
+      "note": "Owner added Sentinel to ainav-mothership. AZURE-SENTINEL-WORKSPACE-ID name held. Sentinel is not the admit plane. Not from this plane.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "plane",
+      "live": false,
+      "name": "Plane",
+      "note": "Dash names map later to underscore env. This Cloud Agent has no Get. Ids stay unset in this plane. A vault hold is not a seated second human.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "hold_as_seated": false,
+  "honest": true,
+  "href": "#missing",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.hold.v1",
+  "lede": "A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft marks",
+  "names_as_wired": false,
+  "note": "Honest hold. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a vault hold as LIVE_PIN_OK.",
+      "Do not treat secret names as wired notify.",
+      "Do not put secret values in the catalog.",
+      "Do not treat Sentinel as the admit plane.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "hold_as_seated": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.hold.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "names_as_wired": false,
+    "recorded": true,
+    "secret_in_catalog": false,
+    "sentinel_as_admit": false,
+    "vault_as_live_pin": false
+  },
+  "product": "Honest hold",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#missing",
+      "id": "vault_as_live_pin",
+      "name": "A vault hold as LIVE_PIN_OK",
+      "note": "Refused. A vault hold is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. A vault hold is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. A vault hold is not LIVE_PIN_OK.",
+      "title": "A vault hold as LIVE_PIN_OK"
+    },
+    {
+      "href": "#missing",
+      "id": "names_as_wired",
+      "name": "Secret names as wired",
+      "note": "Refused. Secret names are not wired notify.",
+      "refuse": true,
+      "refuse_text": "Refused. Secret names are not wired notify.",
+      "state": "refused",
+      "text": "Refused. Secret names are not wired notify.",
+      "title": "Secret names as wired"
+    },
+    {
+      "href": "#missing",
+      "id": "secret_in_catalog",
+      "name": "Secret values in the catalog",
+      "note": "Refused. A catalog must not hold secret values.",
+      "refuse": true,
+      "refuse_text": "Refused. A catalog must not hold secret values.",
+      "state": "refused",
+      "text": "Refused. A catalog must not hold secret values.",
+      "title": "Secret values in the catalog"
+    },
+    {
+      "href": "#missing",
+      "id": "sentinel_as_admit",
+      "name": "Sentinel as the admit plane",
+      "note": "Refused. Sentinel is not the admit plane.",
+      "refuse": true,
+      "refuse_text": "Refused. Sentinel is not the admit plane.",
+      "state": "refused",
+      "text": "Refused. Sentinel is not the admit plane.",
+      "title": "Sentinel as the admit plane"
+    },
+    {
+      "href": "#missing",
+      "id": "hold_as_seated",
+      "name": "A vault hold as seated",
+      "note": "Refused. A vault hold is not a seated second human.",
+      "refuse": true,
+      "refuse_text": "Refused. A vault hold is not a seated second human.",
+      "state": "refused",
+      "text": "Refused. A vault hold is not a seated second human.",
+      "title": "A vault hold as seated"
+    }
+  ],
+  "secret_in_catalog": false,
+  "secret_names": [
+    "TEAMS-ENTERPRISE-TEAM-ID",
+    "TEAMS-ENTERPRISE-CHANNEL-ID",
+    "TEAMS-PREMIUM-TEAM-ID",
+    "TEAMS-PREMIUM-CHANNEL-ID",
+    "SHAREPOINT-SITE-ID",
+    "AZURE-SENTINEL-WORKSPACE-ID"
+  ],
+  "sentinel_as_admit": false,
+  "services": {
+    "claimed_as_wired": false,
+    "sentinel": {
+      "from_this_plane": false,
+      "is_admit_plane": false,
+      "on_law_owner": true
+    },
+    "vault": {
+      "name": "ainavinc7bfcff",
+      "values_in_tree": false
+    }
+  },
+  "site": "Honest hold on #missing. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. First glance stays the write rail. Not a /hold route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat a vault hold as LIVE_PIN_OK.",
+    "Treat secret names as wired notify.",
+    "Put secret values in the catalog.",
+    "Treat Sentinel as the admit plane.",
+    "Treat a vault hold as a seated second human."
+  ],
+  "vault_as_live_pin": false,
+  "wired": false
+}

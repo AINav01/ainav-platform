@@ -1,0 +1,165 @@
+{
+  "better_is_launch": false,
+  "certified": false,
+  "considered": true,
+  "created": false,
+  "elements_are_live": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "day",
+      "live": false,
+      "name": "Day",
+      "note": "Qualify, proof, close, assign, service, launch gate. Rehearsed. Not live.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "attach",
+      "live": false,
+      "name": "Attach",
+      "note": "L1 then kit then P-ADM then U-DUAL. Hours never attach free U-DUAL.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "write",
+      "live": false,
+      "name": "Write",
+      "note": "Sandbox journal rehearsal. Lab oids are not named seats. Not a live SoR write.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "service",
+      "live": false,
+      "name": "Service",
+      "note": "Debug, upgrade, redeploy, FFS hours, billing, rollback. Hours are not a SKU. Billing is not recognized revenue.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "gate",
+      "live": false,
+      "name": "Gate",
+      "note": "Launch stays closed. Gold is not launch. A production sim is not production.",
+      "sku": false
+    }
+  ],
+  "fix_all_is_this_plane": false,
+  "fourth_sku": false,
+  "honest": true,
+  "href": "#firm",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.production.v1",
+  "lede": "A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest production. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a production sim as production.",
+      "Do not fix all from this plane.",
+      "Do not mark rehearsed elements live.",
+      "Do not treat making all much better as launch.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "better_is_launch": false,
+    "certified": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "elements_are_live": false,
+    "fix_all_is_this_plane": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.production.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "production_sim_is_production": false,
+    "recorded": true,
+    "rehearsal_is_live_pin": false
+  },
+  "product": "Honest production",
+  "production_sim_is_production": false,
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#firm",
+      "id": "production_sim_as_production",
+      "name": "A production sim as production",
+      "note": "Refused. A production sim is not production.",
+      "refuse": true,
+      "refuse_text": "Refused. A production sim is not production.",
+      "state": "refused",
+      "text": "Refused. A production sim is not production.",
+      "title": "A production sim as production"
+    },
+    {
+      "href": "#firm",
+      "id": "fix_all_as_this_plane",
+      "name": "Fixing all as this plane",
+      "note": "Refused. Fixing all is not this plane.",
+      "refuse": true,
+      "refuse_text": "Refused. Fixing all is not this plane.",
+      "state": "refused",
+      "text": "Refused. Fixing all is not this plane.",
+      "title": "Fixing all as this plane"
+    },
+    {
+      "href": "#firm",
+      "id": "elements_as_live",
+      "name": "Rehearsed elements as live",
+      "note": "Refused. Rehearsed elements are not live.",
+      "refuse": true,
+      "refuse_text": "Refused. Rehearsed elements are not live.",
+      "state": "refused",
+      "text": "Refused. Rehearsed elements are not live.",
+      "title": "Rehearsed elements as live"
+    },
+    {
+      "href": "#firm",
+      "id": "better_as_launch",
+      "name": "Making all much better as launch",
+      "note": "Refused. Making all much better is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. Making all much better is not launch.",
+      "state": "refused",
+      "text": "Refused. Making all much better is not launch.",
+      "title": "Making all much better as launch"
+    },
+    {
+      "href": "#firm",
+      "id": "rehearsal_as_live_pin",
+      "name": "A rehearsal as LIVE_PIN_OK",
+      "note": "Refused. A rehearsal is not LIVE_PIN_OK.",
+      "refuse": true,
+      "refuse_text": "Refused. A rehearsal is not LIVE_PIN_OK.",
+      "state": "refused",
+      "text": "Refused. A rehearsal is not LIVE_PIN_OK.",
+      "title": "A rehearsal as LIVE_PIN_OK"
+    }
+  ],
+  "rehearsal_is_live_pin": false,
+  "site": "Honest production on #firm. Recorded. A production sim is not production. Fixing all is not this plane. Rehearsed elements are not live. Making all much better is not launch. A rehearsal is not LIVE_PIN_OK. First glance stays the write rail. Not a /firm route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat a production sim as production.",
+    "Treat fixing all as this plane.",
+    "Treat rehearsed elements as live.",
+    "Treat making all much better as launch.",
+    "Treat a rehearsal as LIVE_PIN_OK."
+  ],
+  "wired": false
+}

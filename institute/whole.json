@@ -1,0 +1,185 @@
+{
+  "certified": false,
+  "ci_is_launch": false,
+  "complete": true,
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "honest": true,
+  "href": "#whole",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.honest.whole.v1",
+  "lanes": [
+    {
+      "href": "#buyer",
+      "id": "write",
+      "live": false,
+      "name": "The write",
+      "note": "Job C. Two humans. One hash. Then the write.",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "href": "#product",
+      "id": "skus",
+      "live": false,
+      "name": "Three SKUs",
+      "note": "L1, P-ADM, U-DUAL only.",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "href": "#packs",
+      "id": "industry",
+      "live": false,
+      "name": "Industry certify",
+      "note": "Twenty-six desks. Packs are not SKUs.",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "href": "#agent-tools",
+      "id": "build",
+      "live": false,
+      "name": "Build",
+      "note": "Honest agents, access, operators, build, readiness.",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "href": "#investor",
+      "id": "business",
+      "live": false,
+      "name": "Business",
+      "note": "Board packet. Recognized revenue $0.",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "href": "#twin",
+      "id": "website",
+      "live": false,
+      "name": "Website",
+      "note": "Azure SWA twin. Cloudflare apex empty. Power Pages is not the host.",
+      "seat": false,
+      "sku": false
+    },
+    {
+      "href": "#missing",
+      "id": "launch",
+      "live": false,
+      "name": "Launch",
+      "note": "Owner-only. Gold is not launch. LIVE_PIN_OK stays false.",
+      "seat": false,
+      "sku": false
+    }
+  ],
+  "lede": "Put the whole business, build, and website together: write, three SKUs, industry certify, honest build, board packet, and the twin. The stitch is not a SKU. The whole firm is not launch. A 10/10 review is not launch.",
+  "live": false,
+  "live_pin_ok": false,
+  "note": "Honest whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat the stitch as a SKU.",
+      "Do not treat a 10/10 review as launch.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "build": true,
+    "business": true,
+    "certified": false,
+    "ci_is_launch": false,
+    "industry": true,
+    "industry_packs": 26,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.whole.v1",
+    "lanes": 7,
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "readiness_launch": false,
+    "skus": true,
+    "stitch_is_sku": false,
+    "ten_is_launch": false,
+    "website": true,
+    "website_is_apex": false,
+    "whole_is_launch": false,
+    "write": true
+  },
+  "product": "Honest whole",
+  "refuse": [
+    {
+      "href": "#whole",
+      "id": "whole_as_launch",
+      "name": "whole firm as launch",
+      "note": "Refused. The whole firm is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. The whole firm is not launch.",
+      "state": "refused",
+      "text": "Refused. The whole firm is not launch.",
+      "title": "whole firm as launch"
+    },
+    {
+      "href": "#whole",
+      "id": "ten_as_launch",
+      "name": "10/10 review as launch",
+      "note": "Refused. A 10/10 review is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A 10/10 review is not launch.",
+      "state": "refused",
+      "text": "Refused. A 10/10 review is not launch.",
+      "title": "10/10 review as launch"
+    },
+    {
+      "href": "#whole",
+      "id": "stitch_as_sku",
+      "name": "stitch as a SKU",
+      "note": "Refused. The stitch is not a SKU.",
+      "refuse": true,
+      "refuse_text": "Refused. The stitch is not a SKU.",
+      "state": "refused",
+      "text": "Refused. The stitch is not a SKU.",
+      "title": "stitch as a SKU"
+    },
+    {
+      "href": "#whole",
+      "id": "website_as_apex",
+      "name": "twin as the Institute apex",
+      "note": "Refused. The twin is not the Institute apex.",
+      "refuse": true,
+      "refuse_text": "Refused. The twin is not the Institute apex.",
+      "state": "refused",
+      "text": "Refused. The twin is not the Institute apex.",
+      "title": "twin as the Institute apex"
+    },
+    {
+      "href": "#whole",
+      "id": "ci_as_launch",
+      "name": "green check as launch",
+      "note": "Refused. A green check is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A green check is not launch.",
+      "state": "refused",
+      "text": "Refused. A green check is not launch.",
+      "title": "green check as launch"
+    }
+  ],
+  "site": "Honest whole on #whole. Business, build, and website on one board. The stitch is not a SKU. A 10/10 review is not launch. The whole firm is not launch. First glance stays the write rail. Not a /whole route. Not LIVE_PIN_OK.",
+  "stitch_is_sku": false,
+  "ten_is_launch": false,
+  "this_agent_cannot": [
+    "Treat the whole firm as launch.",
+    "Treat a 10/10 review as launch.",
+    "Treat the stitch as a SKU.",
+    "Treat the twin as the Institute apex.",
+    "Treat a green check as launch."
+  ],
+  "website_is_apex": false,
+  "whole_is_launch": false,
+  "wired": false
+}

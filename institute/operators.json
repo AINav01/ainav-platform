@@ -1,0 +1,115 @@
+{
+  "bot_is_admit": false,
+  "bot_is_operator": false,
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "grok_is_recorded": false,
+  "honest": true,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.honest.operators.v1",
+  "lede": "Consider Cursor, Grok Build, and Grok bot. Cursor is recorded. Grok Build is mapped. Grok bot is not admit. They are not interchangeable.",
+  "live": false,
+  "live_pin_ok": false,
+  "note": "Honest operators. Cursor is recorded. Grok Build is mapped. Grok bot is not admit. Owner cannot be the operator. This plane does not swap Cursor for Grok.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Leave Cursor Cloud Agent as the recorded operator of this tree.",
+      "Buy SuperGrok / X Premium Plus only if Grok Build is wanted on a James machine.",
+      "Do not treat a Grok bot as dual admit or as the operator."
+    ]
+  },
+  "product": "Honest operators",
+  "refuse": [
+    {
+      "href": "#agent-tools",
+      "id": "swap_operator",
+      "name": "Swap Cursor for Grok",
+      "note": "Refused. Cursor stays the recorded operator.",
+      "refuse": true,
+      "refuse_text": "Refused. Cursor stays the recorded operator.",
+      "state": "refused",
+      "text": "Refused. Cursor stays the recorded operator.",
+      "title": "Swap Cursor for Grok"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "grok_as_recorded",
+      "name": "Grok Build as the recorded operator",
+      "note": "Refused. Grok Build is mapped. Not this recorded operator.",
+      "refuse": true,
+      "refuse_text": "Refused. Grok Build is mapped. Not this recorded operator.",
+      "state": "refused",
+      "text": "Refused. Grok Build is mapped. Not this recorded operator.",
+      "title": "Grok Build as the recorded operator"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "bot_as_operator",
+      "name": "Grok bot as the operator",
+      "note": "Refused. A Grok bot is not the operator. Not dual admit.",
+      "refuse": true,
+      "refuse_text": "Refused. A Grok bot is not the operator. Not dual admit.",
+      "state": "refused",
+      "text": "Refused. A Grok bot is not the operator. Not dual admit.",
+      "title": "Grok bot as the operator"
+    }
+  ],
+  "site": "Honest operators on #agent-tools. Cursor is recorded. Grok Build is mapped. Grok bot is not admit. First glance stays the write rail. Not a /operators route. Not LIVE_PIN_OK.",
+  "swap": false,
+  "this_agent_cannot": [
+    "Swap Cursor for Grok Build as the recorded operator.",
+    "Treat Grok Build as this recorded operator.",
+    "Treat a Grok bot as the operator or as dual admit.",
+    "Make James the operator."
+  ],
+  "three": [
+    {
+      "does": "Operate this catalog and publish the twin.",
+      "does_not": "Admit the write. Be seat A or seat B. Swap itself for Grok.",
+      "href": "#agent-tools",
+      "id": "cursor",
+      "installed": null,
+      "name": "Cursor Cloud Agent",
+      "note": "Recorded operator of this tree. Host, catalog, gold, twin. Not a seat. Owner cannot be the operator.",
+      "operator": true,
+      "recorded": true,
+      "role": "recorded",
+      "seat": false,
+      "title": "Cursor Cloud Agent"
+    },
+    {
+      "does": "Operate on a James machine if James buys SuperGrok.",
+      "does_not": "Become this recorded operator. Become a seat. Require grok login on this plane.",
+      "href": "#agent-tools",
+      "id": "grok_build",
+      "installed": null,
+      "name": "Grok Build",
+      "note": "xAI terminal coding agent. SuperGrok / X Premium Plus. Mapped. Not recorded here. installed=null.",
+      "operator": true,
+      "recorded": false,
+      "role": "mapped",
+      "seat": false,
+      "title": "Grok Build"
+    },
+    {
+      "does": "Draft or orchestrate on an xAI plane James owns.",
+      "does_not": "Bind action_hash. Be Cynthia's click. Replace Cursor.",
+      "href": "#agent-tools",
+      "id": "grok_bot",
+      "installed": null,
+      "name": "Grok bot",
+      "note": "Grok Build ACP bots and agent orchestration. Not the operator. Not dual admit. Not Job C.",
+      "operator": false,
+      "recorded": false,
+      "role": "not_admit",
+      "seat": false,
+      "title": "Grok bot"
+    }
+  ],
+  "wired": false
+}

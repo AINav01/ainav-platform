@@ -1,0 +1,163 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/api/*",
+      "/stack.json",
+      "/buyer.json",
+      "/org.json",
+      "/business.json",
+      "/status.json",
+      "/agent-tools.json",
+      "/review.json",
+      "/owner-steps.json",
+      "/control-plane.json",
+      "/control-plane.html",
+      "/app.html",
+      "/app.js",
+      "/styles.css",
+      "/site.js",
+      "/search.js",
+      "/insights.js",
+      "/investor.json",
+      "/programs.json",
+      "/packs.json",
+      "/finance.json",
+      "/governance.json",
+      "/client-org.json",
+      "/ip.json",
+      "/kit.json",
+      "/plane-business.json",
+      "/schema.json",
+      "/search.json",
+      "/speculation.json",
+      "/llms.txt",
+      "/kit.html",
+      "/identify.html",
+      "/twin.html",
+      "/owner-gate.html",
+      "/compiled/*",
+      "/pagefind/*",
+      "/kit/*",
+      "/favicon.svg",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/site.webmanifest",
+      "/fonts/*",
+      "/graphics/*",
+      "/*.webp",
+      "/*.jpg",
+      "/*.png",
+      "/*.svg",
+      "/*.woff2"
+    ]
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "no-referrer",
+    "X-Frame-Options": "DENY",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+  },
+  "responseOverrides": {
+    "401": {
+      "redirect": "/identify.html",
+      "statusCode": 302
+    },
+    "404": {
+      "rewrite": "/404.html"
+    }
+  },
+  "routes": [
+    {
+      "route": "/owner-gate.html",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/.auth/login/twitter",
+      "statusCode": 404
+    },
+    {
+      "route": "/pagefind/*",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+      }
+    },
+    {
+      "route": "/kit.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/plane-business.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/schema.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/search.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/speculation.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/stack.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/org.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/buyer.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/business.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/status.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/agent-tools.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/review.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/owner-steps.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/control-plane.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/investor.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/programs.json",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/twin.html",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/app.html",
+      "headers": { "Cache-Control": "no-store" }
+    },
+    {
+      "route": "/app.js",
+      "headers": { "Cache-Control": "no-store" }
+    }
+  ]
+}

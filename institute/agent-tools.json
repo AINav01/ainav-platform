@@ -1,0 +1,155 @@
+{
+  "admin_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+  "block_until_dual": [
+    {
+      "id": "dataverse.mcp",
+      "maps_to": "sales.enterprise",
+      "name": "Dataverse MCP Server",
+      "note": "Sales SoR. No Dataverse instance. A quote or order write without two seats is the U-DUAL write that must not happen."
+    },
+    {
+      "id": "byo.sor_write",
+      "maps_to": "bc.premium",
+      "name": "Any BYO MCP that writes Business Central or Sales",
+      "note": "Reject on the Requests tab. Do not register an AINav admit MCP that posts journals."
+    }
+  ],
+  "cloud_agent_can_approve": false,
+  "entity": "AINav, Inc.",
+  "human_adds": true,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.institute.agent_tools.v1",
+  "leave_available": [
+    {
+      "id": "workiq.user",
+      "maps_to": "entra.id",
+      "name": "Work IQ User",
+      "note": "Seat object ids. Not a seat.",
+      "search": "Work IQ User"
+    },
+    {
+      "id": "workiq.teams",
+      "maps_to": "teams.enterprise",
+      "name": "Work IQ Teams",
+      "note": "Notify. A chat is not a seat.",
+      "search": "Work IQ Teams"
+    },
+    {
+      "id": "workiq.sharepoint",
+      "maps_to": "sharepoint.kit",
+      "name": "Work IQ SharePoint",
+      "note": "Kit evidence. Not dual.",
+      "search": "Work IQ SharePoint"
+    },
+    {
+      "id": "workiq.mail",
+      "maps_to": "teams.enterprise",
+      "name": "Work IQ Mail",
+      "note": "Notify only. A mailbox is not a seat.",
+      "search": "Work IQ Mail"
+    },
+    {
+      "id": "mcp.management",
+      "maps_to": "azure.policy",
+      "name": "Microsoft MCP Management",
+      "note": "Governs tools. Cannot weaken Job C.",
+      "search": "Microsoft MCP Management"
+    }
+  ],
+  "live": false,
+  "live_pin_ok": false,
+  "never_as_admit": [
+    "Microsoft 365 Copilot",
+    "Work IQ Copilot",
+    "Agent 365",
+    "Work IQ Calendar"
+  ],
+  "note": "E7 ships Copilot and Agent 365. The Agents > Tools registry governs MCP servers. A tool invocation is not dual admit.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "docs": [
+      {
+        "title": "Manage tools for agents",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent"
+      },
+      {
+        "title": "Work IQ MCP overview",
+        "url": "https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview"
+      }
+    ],
+    "steps": [
+      {
+        "do": "Sign in to the Microsoft 365 admin center as James Hodnett. Use a role that can manage Agent Tools.",
+        "id": "sign_in",
+        "url": "https://admin.microsoft.com",
+        "url_label": "admin.microsoft.com"
+      },
+      {
+        "do": "Open Agents > Tools > Registry. The Cloud admin deep link lands on the tools list.",
+        "doc": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent",
+        "id": "open_registry",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Agents > Tools registry"
+      },
+      {
+        "do": "For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat.",
+        "id": "leave_available",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Registry \u2014 Unblock / Available"
+      },
+      {
+        "do": "Confirm these five show Status Available and Publisher Microsoft: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management.",
+        "id": "confirm_five",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Confirm Available"
+      },
+      {
+        "do": "Do not bind Microsoft 365 Copilot, Work IQ Copilot, Agent 365, or Work IQ Calendar as seat_a or seat_b. A tool invocation is not dual admit.",
+        "id": "never_as_admit",
+        "url": "https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview",
+        "url_label": "Work IQ MCP overview"
+      },
+      {
+        "do": "Find Dataverse MCP Server. If Status is Available, choose Block. Keep it blocked until paid U-DUAL and dual admit exist.",
+        "id": "block_dataverse",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Block Dataverse MCP"
+      },
+      {
+        "do": "Open the Requests tab. Reject any BYO MCP that writes Business Central or Sales or claims dual admit. Do not register an AINav admit MCP that posts journals.",
+        "doc": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent",
+        "id": "requests",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Requests tab"
+      },
+      {
+        "do": "Stop. This does not publish the Institute, write a SoR, or mark LIVE_PIN_OK. This Cloud Agent cannot click Unblock or Block.",
+        "id": "stop",
+        "url": "",
+        "url_label": ""
+      }
+    ]
+  },
+  "product": "Microsoft 365 Agent Tools",
+  "this_agent_cannot": [
+    "Sign in to admin.cloud.microsoft as the owner.",
+    "Approve or block a tool.",
+    "Grant Entra consent for an MCP server.",
+    "Create a new Entra app."
+  ],
+  "wired": false,
+  "you_do": [
+    "Sign in to the Microsoft 365 admin center as James Hodnett. Use a role that can manage Agent Tools.",
+    "Open Agents > Tools > Registry. The Cloud admin deep link lands on the tools list.",
+    "For each Leave Available tool: search the Name, open the row, and leave Status = Available. If it is Blocked, choose Unblock. Available is not a seat.",
+    "Confirm these five show Status Available and Publisher Microsoft: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management.",
+    "Do not bind Microsoft 365 Copilot, Work IQ Copilot, Agent 365, or Work IQ Calendar as seat_a or seat_b. A tool invocation is not dual admit.",
+    "Find Dataverse MCP Server. If Status is Available, choose Block. Keep it blocked until paid U-DUAL and dual admit exist.",
+    "Open the Requests tab. Reject any BYO MCP that writes Business Central or Sales or claims dual admit. Do not register an AINav admit MCP that posts journals.",
+    "Stop. This does not publish the Institute, write a SoR, or mark LIVE_PIN_OK. This Cloud Agent cannot click Unblock or Block."
+  ]
+}

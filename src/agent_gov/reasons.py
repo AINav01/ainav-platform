@@ -1,0 +1,65 @@
+"""Closed reason-code vocabulary. Unknown codes are a bug, not a new product."""
+
+from __future__ import annotations
+
+ALL = frozenset(
+    {
+        "ACTION_EMPTY",
+        "ACTION_FIELD_REQUIRED",
+        "ACTION_MISSING",
+        "ACTION_NOT_CANONICAL",
+        "ACTION_TYPE",
+        "ADMIT_DENIED",
+        "CONSUME_LUA_ERR",
+        "CONSUME_REPLAY",
+        "EFFECT_ADMIT_NOT_OK",
+        "EFFECT_APPLY_FAILED",
+        "EFFECT_BLOCKED",
+        "EFFECT_HASH_MISMATCH",
+        "EFFECT_NO_ADMIT",
+        "EFFECT_NO_HASH",
+        "EFFECT_NO_REQUEST",
+        "EFFECT_NOT_RESERVED",
+        "EFFECT_REPLAY",
+        "EFFECT_STATE",
+        "EFFECT_RESERVED_ORPHAN",
+        "EXPORT_COUNT",
+        "EXPORT_PRODUCT",
+        "EXPORT_RECORDS",
+        "EXPORT_SCHEMA",
+        "EXPORT_TIP",
+        "GOV_ERROR",
+        "GRANT_MISSING",
+        "GRANT_MISMATCH",
+        "INTEGRITY",
+        "LEDGER_CORRUPT",
+        "LEDGER_UNREADABLE",
+        "INTEGRITY_CHAIN",
+        "INTEGRITY_HASH",
+        "INTEGRITY_SEQ",
+        "LOCKFILE_EFFECT_GATE",
+        "LOCKFILE_HASH_MISMATCH",
+        "LOCKFILE_INVALID",
+        "LOCKFILE_INVARIANT",
+        "LOCKFILE_PRODUCT",
+        "LOCKFILE_SCHEMA",
+        "LOCKFILE_WEAKENED",
+        "MERKLE_INDEX",
+        "MERKLE_LEAF",
+        "MERKLE_MISSING",
+        "MERKLE_MISMATCH",
+        "MERKLE_PROOF",
+        "RECORD_SCHEMA",
+        "SEALED",
+        "SEATS_NOT_DISTINCT",
+        "SEAT_EMPTY",
+        "SEAT_MISSING",
+        "SEAT_TYPE",
+        "SLOT_MISSING",
+        "TIP_MISMATCH",
+    }
+)
+
+
+def known(code: str) -> bool:
+    return code in ALL

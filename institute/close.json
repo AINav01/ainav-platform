@@ -1,0 +1,256 @@
+{
+  "booking_as_revenue": false,
+  "certified": false,
+  "close_as_launch": false,
+  "considered": true,
+  "created": false,
+  "custom_db_as_sku": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "close",
+      "live": false,
+      "name": "Close",
+      "note": "Named dual seats times proof day times signed L1 times P-ADM attach. Close is signed L1. A 10/10 close is not launch.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "fulfill",
+      "live": false,
+      "name": "Fulfill",
+      "note": "Kit after signed L1. Hours are FFS. Hours are not a SKU. A redeploy is not launch.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "twin",
+      "live": false,
+      "name": "Twin",
+      "note": "Assigned segregated sandbox after L1. The Institute twin is not the assigned client sandbox. Not shared. Not production.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "produce",
+      "live": false,
+      "name": "Produce",
+      "note": "Production write after LIVE_PIN_OK. A production sim is not production. Not auto-promote.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "keep",
+      "live": false,
+      "name": "Keep",
+      "note": "P-ADM after kit. Paid U-DUAL and FFS. A catalog list is not collection. Complements stay eight.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "honest": true,
+  "hops": [
+    {
+      "closed": false,
+      "href": "#success",
+      "id": "qualify",
+      "live": false,
+      "name": "Qualify",
+      "note": "Bake-off on #success. Named dual seats stay open. An industry is not a named client."
+    },
+    {
+      "closed": false,
+      "href": "#twin",
+      "id": "proof",
+      "live": false,
+      "name": "Proof",
+      "note": "Remote demo on the Institute twin. Ninety minutes. Not the assigned client sandbox."
+    },
+    {
+      "closed": false,
+      "href": "#close-consider",
+      "id": "book",
+      "live": false,
+      "name": "Book",
+      "note": "Calendar hold after proof. A booking is not recognized revenue. Not Calendly as the demo."
+    },
+    {
+      "closed": false,
+      "href": "#open",
+      "id": "contract",
+      "live": false,
+      "name": "Contract",
+      "note": "Unsigned order form and MSA. G12 stays open. This board does not close G12."
+    },
+    {
+      "closed": false,
+      "href": "#path",
+      "id": "fulfill",
+      "live": false,
+      "name": "Fulfill",
+      "note": "Kit after signed L1. Hours are FFS. Hours are not a SKU."
+    },
+    {
+      "closed": false,
+      "href": "#path",
+      "id": "twin",
+      "live": false,
+      "name": "Twin",
+      "note": "Assigned segregated sandbox after L1. The Institute twin is not the assigned client sandbox."
+    },
+    {
+      "closed": false,
+      "href": "#mothership",
+      "id": "data",
+      "live": false,
+      "name": "Data",
+      "note": "Client SoR stays BC and Sales sandbox. Custom databases are FFS packs. A custom database is not a fourth SKU. Master never writes client SoR."
+    },
+    {
+      "closed": false,
+      "href": "#firm",
+      "id": "produce",
+      "live": false,
+      "name": "Produce",
+      "note": "Production write after LIVE_PIN_OK. A production sim is not production. Not auto-promote."
+    },
+    {
+      "closed": false,
+      "href": "#finance",
+      "id": "bill",
+      "live": false,
+      "name": "Bill",
+      "note": "Billing provider unset. A catalog list is not collection. A booking is not recognized revenue."
+    },
+    {
+      "closed": false,
+      "href": "#ops",
+      "id": "keep",
+      "live": false,
+      "name": "Keep",
+      "note": "P-ADM after KIT_PASS. Maintenance on the assigned twin. A vault hold is not seated."
+    },
+    {
+      "closed": false,
+      "href": "#commercial",
+      "id": "upsell",
+      "live": false,
+      "name": "Upsell",
+      "note": "Paid U-DUAL and FFS. Complements stay eight. Hours never attach free U-DUAL."
+    }
+  ],
+  "href": "#path",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.close.v1",
+  "lede": "A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight.",
+  "list_as_collection": false,
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft marks",
+  "note": "Honest close. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a 10/10 close as launch.",
+      "Do not treat a booking as recognized revenue.",
+      "Do not treat the Institute twin as the assigned client sandbox.",
+      "Do not treat a custom database as a fourth SKU.",
+      "Do not treat a catalog list as collection.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "booking_as_revenue": false,
+    "certified": false,
+    "close_as_launch": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "custom_db_as_sku": false,
+    "institute_publish": "launch_not_ready",
+    "kind": "ainav.honest.close.v1",
+    "launch": false,
+    "list_as_collection": false,
+    "live": false,
+    "live_pin_ok": false,
+    "recorded": true,
+    "twin_as_assigned": false
+  },
+  "product": "Honest close",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#path",
+      "id": "close_as_launch",
+      "name": "A 10/10 close as launch",
+      "note": "Refused. A 10/10 close is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. A 10/10 close is not launch.",
+      "state": "refused",
+      "text": "Refused. A 10/10 close is not launch.",
+      "title": "A 10/10 close as launch"
+    },
+    {
+      "href": "#path",
+      "id": "booking_as_revenue",
+      "name": "A booking as recognized revenue",
+      "note": "Refused. A booking is not recognized revenue.",
+      "refuse": true,
+      "refuse_text": "Refused. A booking is not recognized revenue.",
+      "state": "refused",
+      "text": "Refused. A booking is not recognized revenue.",
+      "title": "A booking as recognized revenue"
+    },
+    {
+      "href": "#path",
+      "id": "twin_as_assigned",
+      "name": "Institute twin as assigned sandbox",
+      "note": "Refused. The Institute twin is not the assigned client sandbox.",
+      "refuse": true,
+      "refuse_text": "Refused. The Institute twin is not the assigned client sandbox.",
+      "state": "refused",
+      "text": "Refused. The Institute twin is not the assigned client sandbox.",
+      "title": "Institute twin as assigned sandbox"
+    },
+    {
+      "href": "#path",
+      "id": "custom_db_as_sku",
+      "name": "A custom database as a fourth SKU",
+      "note": "Refused. A custom database is not a fourth SKU.",
+      "refuse": true,
+      "refuse_text": "Refused. A custom database is not a fourth SKU.",
+      "state": "refused",
+      "text": "Refused. A custom database is not a fourth SKU.",
+      "title": "A custom database as a fourth SKU"
+    },
+    {
+      "href": "#path",
+      "id": "list_as_collection",
+      "name": "A catalog list as collection",
+      "note": "Refused. A catalog list is not collection.",
+      "refuse": true,
+      "refuse_text": "Refused. A catalog list is not collection.",
+      "state": "refused",
+      "text": "Refused. A catalog list is not collection.",
+      "title": "A catalog list as collection"
+    }
+  ],
+  "site": "Honest close on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. First glance stays the write rail. Not a /close route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat a 10/10 close as launch.",
+    "Treat a booking as recognized revenue.",
+    "Treat the Institute twin as the assigned client sandbox.",
+    "Treat a custom database as a fourth SKU.",
+    "Treat a catalog list as collection."
+  ],
+  "twin_as_assigned": false,
+  "wired": false
+}

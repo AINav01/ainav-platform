@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ainav.institute/schemas/action.schema.json",
+  "title": "AINav privileged action",
+  "description": "HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen. Not a live pin.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "action_class",
+    "payload",
+    "proposal_id",
+    "sor_target",
+    "policy_id"
+  ],
+  "properties": {
+    "action_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object"
+    },
+    "proposal_id": {
+      "type": "string"
+    },
+    "sor_target": {
+      "type": "string"
+    },
+    "policy_id": {
+      "type": "string"
+    }
+  }
+}

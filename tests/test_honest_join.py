@@ -1,0 +1,300 @@
+from __future__ import annotations
+
+import copy
+import json
+from pathlib import Path
+
+import pytest
+
+from agent_gov.errors import IntegrityError
+from ainav.catalog import (
+    HONEST_JOIN_FACT_IDS,
+    HONEST_JOIN_HOP_HREFS,
+    HONEST_JOIN_HOP_IDS,
+    load_catalog,
+    validate_catalog,
+)
+from ainav.honest_join import (
+    public_review,
+    run_join_certification,
+    validate_honest_join,
+)
+
+
+def test_join_review_is_not_launch():
+    body = public_review()
+    assert body["kind"] == "ainav.honest.join.v1"
+    assert body["is_admit_plane"] is False
+    assert body["is_sku"] is False
+    assert body["fourth_sku"] is False
+    assert body["is_connection"] is False
+    assert body["is_complement"] is False
+    assert body["is_job_c"] is False
+    assert body["is_seat"] is False
+    assert body["join_as_launch"] is False
+    assert body["stitch_as_live_pin"] is False
+    assert body["licensed_as_wired_firm"] is False
+    assert body["manage_ops_as_closed"] is False
+    assert body["certify_as_running"] is False
+    assert body["created"] is False
+    assert body["certified"] is False
+    assert body["live"] is False
+    assert body["live_pin_ok"] is False
+    assert body["wired"] is False
+    assert body["considered"] is True
+    assert body["recorded"] is True
+    assert body["honest"] is True
+    assert body["href"] == "#firm"
+    assert "the join is not launch" in body["lede"].lower()
+    assert "honest join" in body["note"].lower()
+    assert "a certified simulation is not a running firm" in body["note"].lower()
+    assert [item["id"] for item in body["facts"]] == list(HONEST_JOIN_FACT_IDS)
+    assert [item["id"] for item in body["hops"]] == list(HONEST_JOIN_HOP_IDS)
+    hop_hrefs = {item["id"]: item["href"] for item in body["hops"]}
+    assert hop_hrefs == {key: HONEST_JOIN_HOP_HREFS[key] for key in HONEST_JOIN_HOP_IDS}
+    assert "Treat the join as launch." in body["this_agent_cannot"]
+    assert "Treat a certified simulation as a running firm." in body["this_agent_cannot"]
+    probes = body["probes"]
+    assert probes["complements"] == 8
+    assert probes["join_as_launch"] is False
+    assert probes["launch"] is False
+    on_disk = json.loads(Path("institute/join.json").read_text(encoding="utf-8"))
+    assert on_disk == body
+
+
+def test_run_join_certification_holds_launch():
+    probes = run_join_certification()
+    assert probes["kind"] == "ainav.honest.join.v1"
+    assert probes["considered"] is True
+    assert probes["recorded"] is True
+    assert probes["join_as_launch"] is False
+    assert probes["stitch_as_live_pin"] is False
+    assert probes["licensed_as_wired_firm"] is False
+    assert probes["manage_ops_as_closed"] is False
+    assert probes["certify_as_running"] is False
+    assert probes["complements"] == 8
+    assert probes["created"] is False
+    assert probes["certified"] is False
+    assert probes["live"] is False
+    assert probes["live_pin_ok"] is False
+    assert probes["launch"] is False
+    assert probes["institute_publish"] == "launch_not_ready"
+
+
+def test_honest_join_fail_closed():
+    hole = copy.deepcopy(load_catalog())
+    hole["honest_join"]["join_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(hole)
+    stitch = copy.deepcopy(load_catalog())
+    stitch["honest_join"]["stitch_as_live_pin"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(stitch)
+    wired = copy.deepcopy(load_catalog())
+    wired["honest_join"]["licensed_as_wired_firm"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(wired)
+    closed = copy.deepcopy(load_catalog())
+    closed["honest_join"]["manage_ops_as_closed"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(closed)
+    running = copy.deepcopy(load_catalog())
+    running["honest_join"]["certify_as_running"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(running)
+    href = copy.deepcopy(load_catalog())
+    href["honest_join"]["href"] = "#buyer"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(href)
+    live = copy.deepcopy(load_catalog())
+    live["programs"]["website"]["honest_join_live"] = True
+    with pytest.raises(IntegrityError):
+        validate_catalog(live)
+
+
+def test_validate_honest_join_more_fail_closed():
+    missing = copy.deepcopy(load_catalog())
+    missing.pop("honest_join")
+    with pytest.raises(IntegrityError):
+        validate_honest_join(missing)
+    kind = copy.deepcopy(load_catalog())
+    kind["honest_join"]["kind"] = "ainav.honest.join.v0"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(kind)
+    for flag in (
+        "sku",
+        "certified",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "created",
+        "claimed",
+        "signed_l1",
+        "named_client",
+        "billing_provider",
+        "running_firm",
+    ):
+        claimed = copy.deepcopy(load_catalog())
+        claimed["honest_join"][flag] = True
+        with pytest.raises(IntegrityError):
+            validate_honest_join(claimed)
+    honest = copy.deepcopy(load_catalog())
+    honest["honest_join"]["honest"] = False
+    with pytest.raises(IntegrityError):
+        validate_honest_join(honest)
+    considered = copy.deepcopy(load_catalog())
+    considered["honest_join"]["considered"] = False
+    with pytest.raises(IntegrityError):
+        validate_honest_join(considered)
+    recorded = copy.deepcopy(load_catalog())
+    recorded["honest_join"]["recorded"] = False
+    with pytest.raises(IntegrityError):
+        validate_honest_join(recorded)
+    for key in (
+        "join_as_launch",
+        "stitch_as_live_pin",
+        "licensed_as_wired_firm",
+        "manage_ops_as_closed",
+        "certify_as_running",
+    ):
+        missing_flag = copy.deepcopy(load_catalog())
+        missing_flag["honest_join"].pop(key)
+        with pytest.raises(IntegrityError):
+            validate_honest_join(missing_flag)
+    hops = copy.deepcopy(load_catalog())
+    hops["honest_join"]["hops"] = []
+    with pytest.raises(IntegrityError):
+        validate_honest_join(hops)
+    hop_closed = copy.deepcopy(load_catalog())
+    hop_closed["honest_join"]["hops"][0]["closed"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(hop_closed)
+    hop_href = copy.deepcopy(load_catalog())
+    hop_href["honest_join"]["hops"][0]["href"] = "#open"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(hop_href)
+    facts_len = copy.deepcopy(load_catalog())
+    facts_len["honest_join"]["facts"] = []
+    with pytest.raises(IntegrityError):
+        validate_honest_join(facts_len)
+    not_objects = copy.deepcopy(load_catalog())
+    not_objects["honest_join"]["facts"] = list(HONEST_JOIN_FACT_IDS)
+    with pytest.raises(IntegrityError):
+        validate_honest_join(not_objects)
+    facts_ids = copy.deepcopy(load_catalog())
+    facts_ids["honest_join"]["facts"][0]["id"] = "probe"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(facts_ids)
+    fact_sku = copy.deepcopy(load_catalog())
+    fact_sku["honest_join"]["facts"][0]["sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_join(fact_sku)
+    refuse_ids = copy.deepcopy(load_catalog())
+    refuse_ids["honest_join"]["refuse"][0]["id"] = "join_as_product"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(refuse_ids)
+    refuse_text = copy.deepcopy(load_catalog())
+    refuse_text["honest_join"]["refuse"][0]["refuse_text"] = "No."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(refuse_text)
+    refuse_href = copy.deepcopy(load_catalog())
+    refuse_href["honest_join"]["refuse"][0]["href"] = "#whole"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(refuse_href)
+    leftover = copy.deepcopy(load_catalog())
+    leftover["honest_join"]["refuse"][0]["claimed"] = False
+    with pytest.raises(IntegrityError):
+        validate_honest_join(leftover)
+    leftover_live = copy.deepcopy(load_catalog())
+    leftover_live["honest_join"]["refuse"][0]["live"] = False
+    with pytest.raises(IntegrityError):
+        validate_honest_join(leftover_live)
+    note = copy.deepcopy(load_catalog())
+    note["honest_join"]["note"] = "The join is not launch. A certified simulation is not a running firm."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(note)
+    note_launch = copy.deepcopy(load_catalog())
+    note_launch["honest_join"]["note"] = "Honest join. A certified simulation is not a running firm."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(note_launch)
+    note_run = copy.deepcopy(load_catalog())
+    note_run["honest_join"]["note"] = "Honest join. The join is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(note_run)
+    lede = copy.deepcopy(load_catalog())
+    lede["honest_join"]["lede"] = "Complements stay eight."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(lede)
+    lede_wired = copy.deepcopy(load_catalog())
+    lede_wired["honest_join"]["lede"] = "The join is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(lede_wired)
+    lede_plus = copy.deepcopy(load_catalog())
+    lede_plus["honest_join"]["lede"] = lede_plus["honest_join"]["lede"].replace(
+        "A 10/10+ quality check is not launch.",
+        "Quality is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_join(lede_plus)
+    site = copy.deepcopy(load_catalog())
+    site["honest_join"]["site"] = "Join board. The join is not launch."
+    with pytest.raises(IntegrityError):
+        validate_honest_join(site)
+    site_route = copy.deepcopy(load_catalog())
+    site_route["honest_join"]["site"] = site_route["honest_join"]["site"].replace(
+        "Not a /join route.",
+        "A /join route.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_join(site_route)
+    site_glance = copy.deepcopy(load_catalog())
+    site_glance["honest_join"]["site"] = site_glance["honest_join"]["site"].replace(
+        "First glance stays the write rail.",
+        "First glance is the join board.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_join(site_glance)
+    complements = copy.deepcopy(load_catalog())
+    complements["connections"]["complements"] = complements["connections"]["complements"][:7]
+    with pytest.raises(IntegrityError):
+        validate_honest_join(complements)
+    actor = copy.deepcopy(load_catalog())
+    actor["honest_join"]["owner_playbook"]["actor"] = "Cursor"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(actor)
+    cannot = copy.deepcopy(load_catalog())
+    cannot["honest_join"]["owner_playbook"]["cannot_be_done_by"] = "james"
+    with pytest.raises(IntegrityError):
+        validate_honest_join(cannot)
+    owner = copy.deepcopy(load_catalog())
+    owner["plane_interface"]["gaps"]["owner_only_open"] = [
+        item
+        for item in owner["plane_interface"]["gaps"]["owner_only_open"]
+        if "seat B click" not in item
+    ]
+    with pytest.raises(IntegrityError):
+        validate_honest_join(owner)
+
+
+def test_run_join_certification_fail_closed(monkeypatch):
+    monkeypatch.setattr(
+        "ainav.microsoft.institute_publish.publish_institute",
+        lambda: {"ok": True, "reason": "published"},
+    )
+    with pytest.raises(IntegrityError, match="institute publish stays launch_not_ready"):
+        run_join_certification()
+    monkeypatch.setattr(
+        "ainav.microsoft.institute_publish.publish_institute",
+        lambda: {"ok": False, "reason": "other"},
+    )
+    with pytest.raises(IntegrityError, match="institute publish stays launch_not_ready"):
+        run_join_certification()
+    monkeypatch.setattr(
+        "ainav.microsoft.institute_publish.publish_institute",
+        lambda: {"ok": False, "reason": "launch_not_ready"},
+    )
+    monkeypatch.setattr("ainav.honest_join.validate_honest_join", lambda _catalog: None)
+    short = copy.deepcopy(load_catalog())
+    short["connections"]["complements"] = short["connections"]["complements"][:7]
+    with pytest.raises(IntegrityError, match="complements stay eight after honest join"):
+        run_join_certification(short)

@@ -1,0 +1,465 @@
+{
+  "admin_url": "https://admin.cloud.microsoft/?#/agents/all",
+  "agent_365_is_product": false,
+  "around": [
+    {
+      "claimed": false,
+      "id": "github_copilot",
+      "installed": null,
+      "name": "GitHub Copilot",
+      "note": "Repo drafts in this tree. Not a seat."
+    },
+    {
+      "claimed": false,
+      "id": "azure_foundry",
+      "installed": null,
+      "name": "Azure AI Foundry",
+      "note": "Host models. Not admit."
+    },
+    {
+      "claimed": false,
+      "id": "researcher_analyst",
+      "installed": null,
+      "name": "Researcher and Analyst",
+      "note": "Microsoft 365 Copilot agents. Draft. Installed is not claimed."
+    },
+    {
+      "claimed": false,
+      "id": "channel_apps",
+      "installed": null,
+      "name": "Teams, Outlook, Microsoft 365 apps",
+      "note": "Channels on Agents > All. A chat is not a seat."
+    },
+    {
+      "claimed": false,
+      "id": "purview_defender",
+      "installed": null,
+      "name": "Purview and Defender",
+      "note": "Risk cards. Not 17a-4. Not WORM."
+    },
+    {
+      "claimed": false,
+      "id": "entra_agent_id",
+      "installed": null,
+      "name": "Entra Agent ID",
+      "note": "Agent ID and MFA identify. Not admit."
+    },
+    {
+      "claimed": false,
+      "id": "copilot_tuning",
+      "installed": null,
+      "name": "Copilot Tuning",
+      "note": "Fine-tuned models. Not Job C."
+    },
+    {
+      "claimed": false,
+      "id": "ownerless_unmanaged",
+      "installed": null,
+      "name": "Ownerless and unmanaged",
+      "note": "Microsoft cards on Agents > All. Not a census this plane can claim."
+    },
+    {
+      "claimed": false,
+      "id": "power_platform",
+      "installed": null,
+      "name": "Power Platform Copilot",
+      "note": "Automate is not Job C."
+    },
+    {
+      "claimed": false,
+      "id": "sentinel",
+      "installed": null,
+      "name": "Microsoft Sentinel",
+      "note": "Not wired. LAW is not Sentinel."
+    }
+  ],
+  "census": false,
+  "cloud_agent_can_approve": false,
+  "draft": [
+    {
+      "id": "m365_copilot",
+      "installed": null,
+      "name": "Microsoft 365 Copilot",
+      "note": "May draft. Not a seat. Installed is not claimed."
+    },
+    {
+      "id": "copilot_studio",
+      "installed": null,
+      "name": "Copilot Studio agents",
+      "note": "A human looked is not Job C. Walk it like cheaper native."
+    },
+    {
+      "id": "sharepoint",
+      "installed": null,
+      "name": "SharePoint agents",
+      "note": "Channel. Kit evidence is not dual."
+    },
+    {
+      "id": "dynamics",
+      "installed": null,
+      "name": "Dynamics 365 Copilot",
+      "note": "BC or Sales Copilot may draft the write that must not land."
+    },
+    {
+      "id": "security",
+      "installed": null,
+      "name": "Microsoft Security Copilot",
+      "note": "Security sink. Not admit."
+    },
+    {
+      "id": "cursor",
+      "installed": null,
+      "name": "Cursor Cloud Agent",
+      "note": "Operates host, catalog, twin. Not in the Microsoft registry. Not a seat."
+    }
+  ],
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "honest": true,
+  "institute": "AINAV.Institute",
+  "inventory_claimed": false,
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.microsoft.agents.v1",
+  "lanes": [
+    {
+      "id": "operate",
+      "items": [
+        {
+          "href": "#missing",
+          "id": "owner",
+          "name": "Owner click",
+          "note": "James signs in to Agents > All and Tools. This Cloud Agent cannot.",
+          "state": "owner_only"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "cloud_agent",
+          "name": "Cursor Cloud Agent",
+          "note": "Operates host, catalog, gold, twin. Not a seat. Cannot sign in.",
+          "state": "recorded"
+        },
+        {
+          "href": "#buyer",
+          "id": "dual",
+          "name": "Two humans admit",
+          "note": "Job C. Agents draft. Humans bind.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "five",
+          "name": "Leave five Available",
+          "note": "Work IQ User, Teams, SharePoint, Mail, MCP Management. Available is not a seat.",
+          "state": "recorded"
+        }
+      ],
+      "name": "Operate"
+    },
+    {
+      "id": "registry",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "all_agents",
+          "name": "Agents > All",
+          "note": "https://admin.cloud.microsoft/?#/agents/all. Registry, not a live census.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "tools",
+          "name": "Agents > Tools",
+          "note": "MCP registry. Leave five. Block Dataverse MCP.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "types",
+          "name": "Four types",
+          "note": "Microsoft, partner, org-published, shared. Maps. claimed=false.",
+          "state": "recorded"
+        }
+      ],
+      "name": "Registry"
+    },
+    {
+      "id": "draft",
+      "items": [
+        {
+          "href": "#control",
+          "id": "m365_copilot",
+          "name": "Microsoft 365 Copilot",
+          "note": "May draft. Not a seat.",
+          "state": "recorded"
+        },
+        {
+          "href": "#success",
+          "id": "copilot_studio",
+          "name": "Copilot Studio",
+          "note": "RFI is a human looked. Not Job C.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "sharepoint",
+          "name": "SharePoint agents",
+          "note": "Channel. Not dual.",
+          "state": "recorded"
+        },
+        {
+          "href": "#buyer",
+          "id": "dynamics",
+          "name": "Dynamics Copilot",
+          "note": "BC or Sales may draft the journal.",
+          "state": "recorded"
+        },
+        {
+          "href": "#control",
+          "id": "security",
+          "name": "Security Copilot",
+          "note": "Not admit.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "cursor",
+          "name": "Cursor Cloud Agent",
+          "note": "Operates. Not a seat. Not in the registry.",
+          "state": "recorded"
+        }
+      ],
+      "name": "Draft maps"
+    },
+    {
+      "id": "never",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "agent_365",
+          "name": "Agent 365",
+          "note": "Microsoft inventory plane. Not AINav.",
+          "state": "recorded"
+        },
+        {
+          "href": "#control",
+          "id": "copilot",
+          "name": "Copilot",
+          "note": "Identify and draft. Not admit.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "cloud_agent_seat",
+          "name": "Cloud Agent as seat",
+          "note": "Operator is not seat_a or seat_b.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "pin",
+          "name": "Pinned agent",
+          "note": "A pin is visibility. Not dual admit.",
+          "state": "recorded"
+        }
+      ],
+      "name": "Never a seat"
+    },
+    {
+      "id": "mcp",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "leave_five",
+          "name": "Leave Available",
+          "note": "Five Work IQ / MCP Management complements.",
+          "state": "recorded"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "block_dataverse",
+          "name": "Block Dataverse MCP",
+          "note": "Until paid U-DUAL and dual admit exist.",
+          "state": "recorded"
+        }
+      ],
+      "name": "Tools"
+    },
+    {
+      "id": "refuse",
+      "items": [
+        {
+          "href": "#agent-tools",
+          "id": "agent_as_seat",
+          "name": "Agent as a seat",
+          "note": "Refused. Two humans bind.",
+          "refuse": true,
+          "refuse_text": "Refused. An agent is not a seat. Two humans bind.",
+          "state": "refused"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "agent365_as_product",
+          "name": "Agent 365 as the product",
+          "note": "Refused. Inventory is not Job C.",
+          "refuse": true,
+          "refuse_text": "Refused. Agent 365 is Microsoft's inventory plane. Not AINav.",
+          "state": "refused"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "live_census",
+          "name": "Live census from this plane",
+          "note": "Refused. claimed=false.",
+          "refuse": true,
+          "refuse_text": "Refused. This plane cannot sign in. Inventory stays claimed=false.",
+          "state": "refused"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "pin_as_admit",
+          "name": "Pin as admit",
+          "note": "Refused. A pin is not dual.",
+          "refuse": true,
+          "refuse_text": "Refused. A pinned agent is not dual admit.",
+          "state": "refused"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "tools_as_sku",
+          "name": "Agent Tools as a SKU",
+          "note": "Refused. Complements only.",
+          "refuse": true,
+          "refuse_text": "Refused. Agent Tools are not a SKU. Complements only.",
+          "state": "refused"
+        },
+        {
+          "href": "#agent-tools",
+          "id": "copilot_studio_as_job_c",
+          "name": "Copilot Studio as Job C",
+          "note": "Refused. A human looked is not admit.",
+          "refuse": true,
+          "refuse_text": "Refused. Copilot Studio RFI is a human looked. Not Job C.",
+          "state": "refused"
+        }
+      ],
+      "name": "Refuse"
+    }
+  ],
+  "lede": "Honest agents sit on #agent-tools. James reviews https://admin.cloud.microsoft/?#/agents/all. An agent is not a seat. A tool is not a seat. A pin is not admit. Agent 365 inventories Microsoft agents. Job C admits the write. Inventory stays claimed=false. This Cloud Agent cannot sign in. Around the write stays maps. Total agents is a Microsoft card.",
+  "live": false,
+  "live_pin_ok": false,
+  "never_as_admit": [
+    "Microsoft 365 Copilot",
+    "Work IQ Copilot",
+    "Agent 365",
+    "Copilot Studio",
+    "SharePoint agents",
+    "Dynamics 365 Copilot",
+    "Microsoft Security Copilot",
+    "Cursor Cloud Agent",
+    "A pinned agent"
+  ],
+  "note": "Honest agents. Agents > All is the registry. Agents > Tools is the MCP list. An agent is not a seat. Agent 365 is Microsoft's inventory plane, not AINav. This Cloud Agent cannot sign in or take a census. Leave five Available. Block Dataverse MCP. Not LIVE_PIN_OK. Around the write stays maps. Total agents is a Microsoft card.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "docs": [
+      {
+        "title": "Agent Registry",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/agent-registry"
+      },
+      {
+        "title": "Governance and lifecycle actions",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/agent-actions"
+      },
+      {
+        "title": "Manage tools for agents",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/manage-tools-for-agent"
+      }
+    ],
+    "steps": [
+      {
+        "do": "Sign in to the Microsoft 365 admin center as James Hodnett.",
+        "id": "sign_in",
+        "url": "https://admin.microsoft.com",
+        "url_label": "admin.microsoft.com"
+      },
+      {
+        "do": "Open Agents > All. This is the registry, not a Job C census this plane can claim.",
+        "id": "open_all",
+        "url": "https://admin.cloud.microsoft/?#/agents/all",
+        "url_label": "Agents > All"
+      },
+      {
+        "do": "Read the four types as maps: Microsoft, partner, org-published, shared. Do not paste Total agents into the catalog.",
+        "id": "types",
+        "url": "https://admin.cloud.microsoft/?#/agents/all",
+        "url_label": "Registry types"
+      },
+      {
+        "do": "Do not pin, install, or treat any agent as seat_a or seat_b. A pin is not dual admit.",
+        "id": "never_seat",
+        "url": "https://admin.cloud.microsoft/?#/agents/all",
+        "url_label": "Do not pin as admit"
+      },
+      {
+        "do": "Open Agents > Tools. Leave the five Available. Block Dataverse MCP until paid U-DUAL.",
+        "id": "open_tools",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Agents > Tools"
+      },
+      {
+        "do": "Reject any BYO MCP or agent that writes Business Central or Sales or claims dual admit.",
+        "id": "requests",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Requests"
+      },
+      {
+        "do": "Stop. This does not mark LIVE_PIN_OK. This Cloud Agent cannot sign in, install, pin, or Block.",
+        "id": "stop",
+        "url": "",
+        "url_label": ""
+      }
+    ]
+  },
+  "product": "Microsoft 365 Agents registry",
+  "site": "Honest agents on #agent-tools. Registry is Agents > All. Tools is Agents > Tools. An agent is not a seat. Agent 365 is not AINav. Census stays claimed=false. First glance stays the write rail. Leave five Available. Block Dataverse MCP. Not a /agents route. Not LIVE_PIN_OK. Around the write stays maps. Total agents is a Microsoft card.",
+  "this_agent_cannot": [
+    "Sign in to admin.cloud.microsoft as the owner.",
+    "Take a live census of Agents > All.",
+    "Paste Total agents, ownerless, or unmanaged into the catalog.",
+    "Install, pin, block, or unblock an agent.",
+    "Treat Agent 365 as AINav.",
+    "Treat an agent as a seat."
+  ],
+  "tools_url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+  "types": [
+    {
+      "claimed": false,
+      "id": "microsoft",
+      "name": "Microsoft agents",
+      "note": "Built and maintained by Microsoft. Draft maps. claimed=false."
+    },
+    {
+      "claimed": false,
+      "id": "external_partner",
+      "name": "External partner-built agents",
+      "note": "Trusted non-Microsoft publishers. Not a seat. claimed=false."
+    },
+    {
+      "claimed": false,
+      "id": "published_by_org",
+      "name": "Published by your org",
+      "note": "LOB agents. Not Job C. claimed=false."
+    },
+    {
+      "claimed": false,
+      "id": "shared_by_creator",
+      "name": "Shared by creator",
+      "note": "Shared agents. Ownerless is a Microsoft card. Not a census from this plane. claimed=false."
+    }
+  ],
+  "wired": false
+}

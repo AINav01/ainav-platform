@@ -1,0 +1,156 @@
+{
+  "certified": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "product",
+      "live": false,
+      "name": "Microsoft Copilot Studio",
+      "note": "Agent-builder. RFI is a human looked. Not Job C.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "admit",
+      "live": false,
+      "name": "Dual admit",
+      "note": "One human reviewing a Copilot is not two humans + one hash.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "sku",
+      "live": false,
+      "name": "Three SKUs",
+      "note": "L1, P-ADM, U-DUAL only. Copilot Studio is not a SKU.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "complements",
+      "live": false,
+      "name": "Complements",
+      "note": "Complements stay eight. Copilot Studio is not a complement.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "seat",
+      "live": false,
+      "name": "Seat B",
+      "note": "Copilot Studio RFI is not Cynthia's click. Mailbox is not a click.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "honest": true,
+  "href": "#success",
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.copilot_studio.v1",
+  "lede": "Microsoft Copilot Studio is an agent-builder. Considered. A human looked is not Job C. Copilot Studio is not Job C. Copilot Studio is not a SKU. Complements stay eight. Copilot Studio RFI is not seat B.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft Copilot Studio",
+  "note": "Honest Copilot Studio. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. A human looked is not dual admit. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat Copilot Studio RFI as Job C.",
+      "Do not treat a human looked as dual admit.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "probes": {
+    "certified": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "institute_publish": "launch_not_ready",
+    "is_admit_plane": false,
+    "is_complement": false,
+    "is_job_c": false,
+    "is_seat": false,
+    "is_sku": false,
+    "kind": "ainav.honest.copilot_studio.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false
+  },
+  "product": "Honest Copilot Studio",
+  "refuse": [
+    {
+      "href": "#success",
+      "id": "studio_as_job_c",
+      "name": "Copilot Studio as Job C",
+      "note": "Refused. Copilot Studio is not Job C.",
+      "refuse": true,
+      "refuse_text": "Refused. Copilot Studio is not Job C.",
+      "state": "refused",
+      "text": "Refused. Copilot Studio is not Job C.",
+      "title": "Copilot Studio as Job C"
+    },
+    {
+      "href": "#success",
+      "id": "studio_as_sku",
+      "name": "Copilot Studio as a SKU",
+      "note": "Refused. Copilot Studio is not a SKU.",
+      "refuse": true,
+      "refuse_text": "Refused. Copilot Studio is not a SKU.",
+      "state": "refused",
+      "text": "Refused. Copilot Studio is not a SKU.",
+      "title": "Copilot Studio as a SKU"
+    },
+    {
+      "href": "#success",
+      "id": "studio_as_admit",
+      "name": "Copilot Studio as the admit plane",
+      "note": "Refused. Copilot Studio is not the admit plane.",
+      "refuse": true,
+      "refuse_text": "Refused. Copilot Studio is not the admit plane.",
+      "state": "refused",
+      "text": "Refused. Copilot Studio is not the admit plane.",
+      "title": "Copilot Studio as the admit plane"
+    },
+    {
+      "href": "#success",
+      "id": "studio_as_complement",
+      "name": "Copilot Studio as a complement",
+      "note": "Refused. Copilot Studio is not a complement.",
+      "refuse": true,
+      "refuse_text": "Refused. Copilot Studio is not a complement.",
+      "state": "refused",
+      "text": "Refused. Copilot Studio is not a complement.",
+      "title": "Copilot Studio as a complement"
+    },
+    {
+      "href": "#success",
+      "id": "studio_as_seat",
+      "name": "Copilot Studio as seat B",
+      "note": "Refused. Copilot Studio RFI is not seat B.",
+      "refuse": true,
+      "refuse_text": "Refused. Copilot Studio RFI is not seat B.",
+      "state": "refused",
+      "text": "Refused. Copilot Studio RFI is not seat B.",
+      "title": "Copilot Studio as seat B"
+    }
+  ],
+  "site": "Honest Copilot Studio on #success. Considered. Copilot Studio is not Job C. Copilot Studio is not a SKU. Copilot Studio is not the admit plane. First glance stays the write rail. Not a /copilot-studio route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Treat Copilot Studio as Job C.",
+    "Treat Copilot Studio as a SKU.",
+    "Treat Copilot Studio as the admit plane.",
+    "Treat Copilot Studio as a complement.",
+    "Treat Copilot Studio as seat B."
+  ],
+  "wired": false
+}

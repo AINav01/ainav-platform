@@ -1,0 +1,121 @@
+{
+  "entity": "AINav, Inc.",
+  "fourth_sku": false,
+  "full_access_needed": false,
+  "honest": true,
+  "institute": "AINAV.Institute",
+  "is_admit_plane": false,
+  "is_connection": false,
+  "is_sku": false,
+  "kind": "ainav.honest.build.v1",
+  "lede": "Do not give full access. This plane does not need full access. Build L1, P-ADM, U-DUAL, modules, packs, and repositories on the twin. The twin is not launch. Packs, modules, and repositories are not SKUs.",
+  "live": false,
+  "live_pin_ok": false,
+  "more_secrets_needed": false,
+  "need_full": false,
+  "note": "Honest build. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. Launch stays owner-only. More secrets are not how we build.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not give this plane full access.",
+      "Build standard, upsells, modules, and repositories on the twin.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "packs_are_skus": false,
+  "product": "Honest build",
+  "refuse": [
+    {
+      "href": "#agent-tools",
+      "id": "full_access_as_admit",
+      "name": "full access as admit",
+      "note": "Refused. Full access is not admit.",
+      "refuse": true,
+      "refuse_text": "Refused. Full access is not admit.",
+      "state": "refused",
+      "text": "Refused. Full access is not admit.",
+      "title": "full access as admit"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "more_secrets_as_build",
+      "name": "more secrets as build",
+      "note": "Refused. More secrets are not how we build.",
+      "refuse": true,
+      "refuse_text": "Refused. More secrets are not how we build.",
+      "state": "refused",
+      "text": "Refused. More secrets are not how we build.",
+      "title": "more secrets as build"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "twin_as_launch",
+      "name": "twin as launch",
+      "note": "Refused. The twin is not launch.",
+      "refuse": true,
+      "refuse_text": "Refused. The twin is not launch.",
+      "state": "refused",
+      "text": "Refused. The twin is not launch.",
+      "title": "twin as launch"
+    },
+    {
+      "href": "#agent-tools",
+      "id": "pack_as_sku",
+      "name": "pack as sku",
+      "note": "Refused. Packs, modules, and repositories are not SKUs.",
+      "refuse": true,
+      "refuse_text": "Refused. Packs, modules, and repositories are not SKUs.",
+      "state": "refused",
+      "text": "Refused. Packs, modules, and repositories are not SKUs.",
+      "title": "pack as sku"
+    }
+  ],
+  "site": "Honest build on #agent-tools. This plane does not need full access. The twin is not launch. Packs, modules, and repositories are not SKUs. First glance stays the write rail. Not a /build route. Not LIVE_PIN_OK.",
+  "this_agent_cannot": [
+    "Request full access as this Cloud Agent.",
+    "Treat more secrets as the way to build.",
+    "Mark the twin as launch.",
+    "Treat packs, modules, or repositories as SKUs."
+  ],
+  "three": [
+    {
+      "does": "Stay honest on the twin without more secrets.",
+      "does_not": "Need Microsoft admin, grok login, Graph Writes, or Cloudflare edit.",
+      "href": "#agent-tools",
+      "id": "enough",
+      "installed": null,
+      "name": "Already enough",
+      "note": "Repo, catalog, gold, twin publish. Graph read. Azure host read. BC sandbox read. Not full access.",
+      "role": "have",
+      "seat": false,
+      "title": "Already enough"
+    },
+    {
+      "does": "Write catalog law, gold 99.5, and republish the twin.",
+      "does_not": "Become a fourth SKU. Become launch. Become a live SoR write.",
+      "href": "#agent-tools",
+      "id": "build",
+      "installed": null,
+      "name": "Build here",
+      "note": "L1, P-ADM, U-DUAL. Modules, packs, and repositories are not SKUs. Certified on the twin.",
+      "role": "catalog",
+      "seat": false,
+      "title": "Build here"
+    },
+    {
+      "does": "James clicks what this plane cannot.",
+      "does_not": "Be done by Cursor Cloud Agent. Be done by more secrets.",
+      "href": "#agent-tools",
+      "id": "launch",
+      "installed": null,
+      "name": "Launch is James",
+      "note": "Seat B click. Signed L1. LIVE_PIN_OK. Apex bind. Launch word. Owner-only.",
+      "role": "owner_only",
+      "seat": false,
+      "title": "Launch is James"
+    }
+  ],
+  "twin_is_launch": false,
+  "wired": false
+}

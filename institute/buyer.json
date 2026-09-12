@@ -1,0 +1,2936 @@
+{
+  "accountable": {
+    "items": [
+      {
+        "id": "admit",
+        "name": "Seat A / seat B",
+        "note": "Treasury (seat A) and controller (seat B) are the only two humans who bind the action_hash."
+      },
+      {
+        "id": "freeze",
+        "name": "Owner / board",
+        "note": "Owner and board oversee. They institute the plane and can ask for a freeze. They are not seats."
+      },
+      {
+        "id": "keep",
+        "name": "Examiner",
+        "note": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing."
+      },
+      {
+        "id": "not_a_seat",
+        "name": "Not a seat",
+        "note": "One title cannot click both admits. Lab oids are not two named treasury humans."
+      }
+    ],
+    "lede": "The duty matrix is who may admit, freeze, keep, draft, host, or counsel. Only seat A and seat B admit."
+  },
+  "already_have": "Controllers already have Business Central Premium, Entra, and two-person journal SOD.",
+  "contact_email": null,
+  "door": "Generate a proof-day brief a controller can forward. Do not invent a contact inbox.",
+  "entity": "AINav, Inc.",
+  "first_glance": {
+    "job_c": "Two distinct humans. One action_hash. Then the write. Job C is a SoR write-gate, not agent inventory.",
+    "lede": "Substitute vs Job C. They can copy the licensed button. They cannot copy consume-once action_hash, fail-closed EffectLedger, or independence from the drafting vendor.",
+    "rail_kicker": "The gate \u00b7 then the licensed copies",
+    "sku": false,
+    "skus": [
+      "L1",
+      "P-ADM",
+      "U-DUAL"
+    ],
+    "uses": "not_the_gate",
+    "write_rail": [
+      {
+        "id": "seat_a",
+        "name": "Seat A",
+        "note": "Treasury admits"
+      },
+      {
+        "id": "seat_b",
+        "name": "Seat B",
+        "note": "Controller admits"
+      },
+      {
+        "id": "hash",
+        "name": "One hash",
+        "note": "Consume once"
+      },
+      {
+        "id": "write",
+        "name": "Then the write",
+        "note": "Fail-closed SoR"
+      }
+    ]
+  },
+  "icp": {
+    "ai": "Client Copilot / agents / BYO models \u2014 not AINav",
+    "control": "existing two-person journal SOD; AINav dual admit is the human-control failsafe for client AI and counterparty AI",
+    "counterparties_utilize_ai": true,
+    "counterparty_ai": "The client's customers' AI drafting into the client's SoR \u2014 not a seat",
+    "do_not_invent_counterparty_names": true,
+    "do_not_invent_department_heads": true,
+    "do_not_invent_names": true,
+    "erp": "Dynamics 365 Business Central Premium",
+    "identity": "Microsoft Entra ID",
+    "independent_of_microsoft": true,
+    "institutes_ainav": "Client institutes L1 and the stable of desks, keep, and hours as the failsafe for their AI and their customers' AI",
+    "must_have_for": [
+      "owner",
+      "board",
+      "examiner"
+    ],
+    "named_customers": [],
+    "org_chart": true,
+    "sits_over_client_ai": true,
+    "utilizes_ai": true
+  },
+  "incident": "The unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit. Every new client AI is another such surface. L1 is the week you prove one human plane sits over all of them: no admit, no write. The client institutes AINav as the failsafe, not as the AI.",
+  "institute": "AINAV.Institute",
+  "integrate": {
+    "items": [
+      {
+        "id": "invite.seat_b",
+        "name": "Microsoft 365 admin \u2192 Users",
+        "note": "Cynthia agreed. Mailbox recorded: chodnett@ainav.institute. Owner assigned paid Microsoft 365 E7 and Teams Premium. James keeps the fallback E7. She signs in once as the second unique human. She clicks seat B. Teams Premium is not a seat. Do not invent an object id in this tree.",
+        "url": "https://admin.microsoft.com/Adminportal/Home#/users",
+        "url_label": "Microsoft 365 admin \u2192 Users"
+      },
+      {
+        "id": "entra.confirm_oid",
+        "name": "Entra users",
+        "note": "Confirm her Entra object id is different from James Hodnett. She signs in once. She is treasury_controller / Inception business executive. She clicks seat B. You do not click both seats.",
+        "url": "https://entra.microsoft.com/#view/Microsoft_AAD_UsersAndTenants/UserManagementMenuBlade/~/AllUsers",
+        "url_label": "Entra users"
+      },
+      {
+        "id": "agent_tools.leave_available",
+        "name": "Agents > Tools registry",
+        "note": "Leave Available: Work IQ User, Work IQ Teams, Work IQ SharePoint, Work IQ Mail, Microsoft MCP Management. Block Dataverse MCP until paid U-DUAL.",
+        "url": "https://admin.cloud.microsoft/?source=applauncher#/agents/tools/all",
+        "url_label": "Agents > Tools registry"
+      },
+      {
+        "id": "graph.read_roles",
+        "name": "Same app API permissions",
+        "note": "Recorded. Owner revoked Organization.ReadWrite.All Delegated, Organization.ReadWrite.All Application, and User.ReadWrite.All Application on AINav Cloud Agent1. Four Reads stay Granted. CRM impersonation left. Business Central Application stays. Do not add Write. Do not create a new app. Not Graph Write claimed. Not from this plane. Not LIVE_PIN_OK.",
+        "url": "https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/CallAnAPI/appId/[REDACTED]",
+        "url_label": "Same app API permissions"
+      },
+      {
+        "id": "dataverse.us",
+        "name": "Power Platform environments",
+        "note": "Ticket 2609030040009525: Support recorded North America Sandbox affinity to Canada. ADR cannot be purchased on a USA sign-up tenant. Geo-to-geo also needs ADR. Engineering exception routed, not granted. US Dataverse stays open. Do not treat Canada as United States. Do not paste a Dataverse environment id. Do not set DATAVERSE_URL from this plane. Keep Dataverse MCP Blocked. Do not Add Dataverse on Default. Do not pick The Americas.",
+        "url": "https://admin.powerplatform.microsoft.com/environments",
+        "url_label": "Power Platform environments"
+      },
+      {
+        "id": "incorporation.date",
+        "name": "Delaware entity search",
+        "note": "Record the Delaware C-corp incorporation date outside this tree for Microsoft for Startups and NVIDIA Inception. Do not commit the date here.",
+        "url": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx",
+        "url_label": "Delaware entity search"
+      },
+      {
+        "id": "founders_hub",
+        "name": "Microsoft for Startups",
+        "note": "Apply to Microsoft for Startups first, only after you say launch and the public site is the custom domain. Membership is not claimed.",
+        "url": "https://www.microsoft.com/en-us/startups",
+        "url_label": "Microsoft for Startups"
+      },
+      {
+        "id": "institute.launch",
+        "name": "Azure Static Web Apps",
+        "note": "Say launch only when you want ainav.institute bound. Then add SWA asuid TXT and point DNS off empty Pages. Empty Pages is not the Institute. Do not publish until you say launch.",
+        "url": "https://portal.azure.com/#view/Microsoft_Azure_StaticApps",
+        "url_label": "Azure Static Web Apps"
+      },
+      {
+        "id": "bc.production",
+        "name": "Business Central Sandbox",
+        "note": "Enable the same Entra app in Business Central Production only when you explicitly authorize a Production write. Sandbox journal AINAV-L1 is not Production.",
+        "url": "https://businesscentral.dynamics.com/ainav.institute/Sandbox",
+        "url_label": "Business Central Sandbox"
+      }
+    ],
+    "lede": "This Cloud Agent cannot create users, grant Graph roles, publish the Institute, or mark LIVE_PIN_OK."
+  },
+  "kind": "ainav.institute.buyer.v1",
+  "launch": false,
+  "live": false,
+  "live_pin_ok": false,
+  "mailto": null,
+  "memory": {
+    "items": [
+      {
+        "id": "first",
+        "name": "First record",
+        "note": "The privileged SoR write after dual admit (journal, invoice, order)."
+      },
+      {
+        "id": "keep",
+        "name": "Keep",
+        "note": "Weekly export after kit PASS."
+      },
+      {
+        "id": "reset",
+        "name": "Reset",
+        "note": "Return the admit plane to the last sealed DecisionRecord / Merkle root as the keep."
+      },
+      {
+        "id": "rollback",
+        "name": "Rollback",
+        "note": "Rollback is a compensating write that itself requires dual admit. Not a time machine."
+      }
+    ],
+    "lede": "Record keeping is two records and a keep."
+  },
+  "minutes": 90,
+  "must_have_for": {
+    "board": "Fiduciary oversight of material AI write risk. Inventory of models is not a control. One admit plane plus second-record keep is.",
+    "examiner": "First record is the SoR write. Second record is who admitted it. Off-switch evidence is that the plane can freeze. Not a filing.",
+    "owner": "The controller who cannot let any AI post a journal without two seats, and who must be able to freeze writes without turning the business off."
+  },
+  "no_means": {
+    "fail_closed": "If either person is missing, or the apply fails, the write does not land and there is no fake success.",
+    "off_switch": "Fail-closed. No dual admit, no write. Humans freeze new grants. Inference may continue. Consequence does not.",
+    "refuse": "Refusing is the product working. No grant. No SoR write."
+  },
+  "not_the_gate": [
+    {
+      "id": "vendor_native",
+      "name": "Vendor-native approval",
+      "note": "A vendor-native button only covers that vendor."
+    },
+    {
+      "id": "teams",
+      "name": "Teams vote",
+      "note": "A chat is not a seat. A Teams vote is not dual admit."
+    },
+    {
+      "id": "pim",
+      "name": "PIM activation",
+      "note": "PIM is not dual admit. Eligible seats stay eligible."
+    },
+    {
+      "id": "copilot",
+      "name": "Copilot asking a human",
+      "note": "Copilot asking a human leaves Agentforce and the counterparty's model ungated."
+    },
+    {
+      "id": "bc_workflow",
+      "name": "BC native dual approval",
+      "note": "Workflow User Groups can require two humans. That is not consume-once action_hash and not a fail-closed EffectLedger."
+    },
+    {
+      "id": "in_harness",
+      "name": "In-harness AI governor",
+      "note": "Policy inside the agent loop is not an independent SoR admit plane. Job C sits outside the drafting AI."
+    },
+    {
+      "id": "grc_icfr",
+      "name": "GRC / ICFR tool",
+      "note": "AuditBoard-class and Workiva-class tools map controls. They do not consume-once an action_hash and they do not hold a fail-closed EffectLedger."
+    }
+  ],
+  "prices": [
+    "L1 $28\u201340k / 2\u20134 weeks",
+    "P-ADM $40\u201360k / year after kit PASS",
+    "U-DUAL $20\u201335k / year \u2014 never free"
+  ],
+  "proof_close": {
+    "minutes": 90,
+    "note": "Lab oids are not two named treasury humans. Not signed L1. Not LIVE_PIN_OK.",
+    "sale": "The sale is the ninety-minute proof.",
+    "walk_in": "Two existing treasury seats. Client AI or a customer AI may draft.",
+    "walk_out": [
+      "sealed DecisionRecord",
+      "Merkle / audit export"
+    ]
+  },
+  "proof_day": "Ninety minutes. Client AI or a customer AI may draft. Two existing treasury seats admit. One journal. First record on the twin. Second record is the sealed DecisionRecord. Walk out.",
+  "protect": {
+    "items": [
+      {
+        "id": "disclaimer",
+        "name": "Not counsel",
+        "note": "This tree maps instruments. It does not certify. Counsel stays open (G12). Unsigned order form and MSA skeleton are not a signature."
+      },
+      {
+        "id": "attest",
+        "name": "Second record",
+        "note": "Sealed DecisionRecord and Merkle keep of who admitted the write."
+      },
+      {
+        "id": "policy",
+        "name": "Host policy",
+        "note": "Host policy. Cannot weaken Job C invariants. LIVE_PIN_OK cannot be marked from this plane."
+      },
+      {
+        "id": "update",
+        "name": "Lockfile digest",
+        "note": "Frozen vectors and lockfile digest. A rebrand breaks gold."
+      }
+    ],
+    "lede": "Governance is a catalog map. It is not counsel, not a filing, and not a certificate."
+  },
+  "public_face": {
+    "app": {
+      "cms": false,
+      "href": "app.html",
+      "sku": false,
+      "workspaces": [
+        {
+          "id": "floor",
+          "kind": "dashboard",
+          "label": "Floor"
+        },
+        {
+          "id": "capital",
+          "kind": "dashboard",
+          "label": "Capital"
+        },
+        {
+          "id": "business",
+          "kind": "dashboard",
+          "label": "Business"
+        },
+        {
+          "id": "programs",
+          "kind": "dashboard",
+          "label": "Programs"
+        },
+        {
+          "href": "index.html",
+          "id": "sale",
+          "label": "Sale"
+        },
+        {
+          "href": "index.html#missing",
+          "id": "owner",
+          "label": "Owner"
+        },
+        {
+          "href": "kit.html",
+          "id": "kit",
+          "label": "Kit"
+        }
+      ]
+    },
+    "application": true,
+    "cannot": [
+      "invent an inbox",
+      "bind ainav.institute",
+      "mark LIVE_PIN_OK",
+      "become a CMS"
+    ],
+    "cms": false,
+    "cta": [
+      {
+        "href": "#twin",
+        "kind": "ask",
+        "label": "Ninety-minute proof day"
+      },
+      {
+        "href": "#success",
+        "kind": "ghost",
+        "label": "When to walk away"
+      },
+      {
+        "href": "#buyer",
+        "kind": "ghost",
+        "label": "The write"
+      }
+    ],
+    "host": "azure_static_web_apps",
+    "kit": {
+      "api_writes_sor": false,
+      "auth_is_admit": false,
+      "cms": false,
+      "compiler": "eleventy",
+      "compiler_is_cms": false,
+      "connection_claimed": false,
+      "href": "kit.html",
+      "insights_claimed": false,
+      "launch": false,
+      "live": false,
+      "live_pin_ok": false,
+      "pagefind_on_public_face": false,
+      "sku": false,
+      "thesis": "The kit compiles catalog law into JSON-LD, llms.txt, search, speculation, Lit elements, Eleventy output, Storybook stories, Playwright, axe, Lighthouse, SWA identify-not-admit, a read-only Function, fail-closed Insights, Pagefind on the kit only, and SWA CLI. Identify is not admit. The API does not write a SoR. Insights are not claimed. Not a CMS. Not LIVE_PIN_OK.",
+      "tools": [
+        {
+          "id": "jsonld",
+          "status": "wired"
+        },
+        {
+          "id": "llms_txt",
+          "status": "wired"
+        },
+        {
+          "id": "view_transitions",
+          "status": "wired"
+        },
+        {
+          "id": "speculation_rules",
+          "status": "wired"
+        },
+        {
+          "id": "popover",
+          "status": "wired"
+        },
+        {
+          "id": "minisearch",
+          "status": "wired"
+        },
+        {
+          "id": "playwright",
+          "status": "wired"
+        },
+        {
+          "id": "axe",
+          "status": "wired"
+        },
+        {
+          "id": "lighthouse",
+          "status": "wired"
+        },
+        {
+          "id": "eleventy",
+          "status": "wired"
+        },
+        {
+          "id": "lit",
+          "status": "wired"
+        },
+        {
+          "id": "swa_auth",
+          "status": "identify_not_admit"
+        },
+        {
+          "id": "swa_api",
+          "status": "read_only"
+        },
+        {
+          "id": "app_insights",
+          "status": "fail_closed"
+        },
+        {
+          "id": "pagefind",
+          "status": "kit_only"
+        },
+        {
+          "id": "swa_cli",
+          "status": "local_emulate"
+        },
+        {
+          "id": "storybook",
+          "status": "catalog_stories"
+        }
+      ]
+    },
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "owner_book": [
+      {
+        "id": "sale",
+        "items": [
+          {
+            "href": "#buyer",
+            "label": "The write"
+          },
+          {
+            "href": "#twin",
+            "label": "Proof day"
+          },
+          {
+            "href": "#success",
+            "label": "Bake-off"
+          },
+          {
+            "href": "#control",
+            "label": "Human control"
+          },
+          {
+            "href": "#risk",
+            "label": "Executive risk"
+          },
+          {
+            "href": "#market",
+            "label": "Market"
+          },
+          {
+            "href": "#have",
+            "label": "You've been missing"
+          },
+          {
+            "href": "#product",
+            "label": "Product"
+          },
+          {
+            "href": "#path",
+            "label": "Client twin"
+          },
+          {
+            "href": "#close-consider",
+            "label": "Honest close"
+          },
+          {
+            "href": "#firm",
+            "label": "Run the firm"
+          },
+          {
+            "href": "#join-consider",
+            "label": "Honest join"
+          }
+        ],
+        "name": "Sale"
+      },
+      {
+        "id": "owner",
+        "items": [
+          {
+            "href": "#closed",
+            "label": "Closed"
+          },
+          {
+            "href": "#missing",
+            "label": "Owner"
+          },
+          {
+            "href": "#open",
+            "label": "Open"
+          },
+          {
+            "href": "#stack-walk",
+            "label": "Stack walk"
+          },
+          {
+            "href": "#e7-cloudflare",
+            "label": "E7 on Cloudflare"
+          },
+          {
+            "href": "#hold-consider",
+            "label": "Honest hold"
+          },
+          {
+            "href": "#remain-consider",
+            "label": "Honest remainder"
+          },
+          {
+            "href": "#ten-consider",
+            "label": "Honest ten"
+          },
+          {
+            "href": "#protect-consider",
+            "label": "Honest protect"
+          }
+        ],
+        "name": "Owner"
+      },
+      {
+        "id": "book",
+        "items": [
+          {
+            "href": "#brand",
+            "label": "Brand"
+          },
+          {
+            "href": "#universe",
+            "label": "Universe"
+          },
+          {
+            "href": "#about",
+            "label": "About AINav"
+          },
+          {
+            "href": "#opportunity",
+            "label": "Opportunity"
+          },
+          {
+            "href": "#fabric",
+            "label": "Fabric"
+          },
+          {
+            "href": "#org",
+            "label": "Organization"
+          },
+          {
+            "href": "#client-org",
+            "label": "Client chart"
+          },
+          {
+            "href": "#review",
+            "label": "Review"
+          },
+          {
+            "href": "#programs",
+            "label": "Programs"
+          },
+          {
+            "href": "#packs",
+            "label": "Packs"
+          },
+          {
+            "href": "#governance",
+            "label": "Governance"
+          },
+          {
+            "href": "#control-plane",
+            "label": "Control plane"
+          },
+          {
+            "href": "#ops",
+            "label": "Operations"
+          },
+          {
+            "href": "#business",
+            "label": "Business"
+          },
+          {
+            "href": "#finance",
+            "label": "Finance"
+          },
+          {
+            "href": "#investor",
+            "label": "Investor"
+          },
+          {
+            "href": "#delivery",
+            "label": "Delivery"
+          },
+          {
+            "href": "#commercial",
+            "label": "Commercial"
+          },
+          {
+            "href": "#mothership",
+            "label": "Mothership"
+          },
+          {
+            "href": "#microsoft",
+            "label": "Microsoft"
+          },
+          {
+            "href": "#agent-tools",
+            "label": "Agent Tools"
+          },
+          {
+            "href": "#ip",
+            "label": "IP"
+          }
+        ],
+        "name": "Book"
+      }
+    ],
+    "primary": [
+      {
+        "href": "#buyer",
+        "id": "buyer",
+        "label": "The write"
+      },
+      {
+        "href": "#twin",
+        "id": "twin",
+        "label": "Proof day"
+      },
+      {
+        "href": "#success",
+        "id": "success",
+        "label": "Bake-off"
+      },
+      {
+        "href": "app.html",
+        "id": "dashboard",
+        "label": "Dashboard"
+      },
+      {
+        "href": "#missing",
+        "id": "owner",
+        "label": "Owner"
+      }
+    ],
+    "sku": false,
+    "thesis": "The Institute is a catalog-honest static application. Managed first-class face: catalog is law, gold 99.5, twin publish. First glance is a write rail, Job C vs substitutes, three SKUs, and the ninety-minute proof. The sale path is qualify, remote proof, close L1, then a client-assigned segregated sandbox. The owner book is not the primary nav. Custom dashboards are the same plane. The business plane is if-then catalog list, bake-off, and the commercial close \u2014 not a priced round and not a forecast. The kit is licensed complements, not a CMS. Not a dynamic app. Not LIVE_PIN_OK."
+  },
+  "refuse": [
+    "Teams vote as dual",
+    "Copilot as the admit plane",
+    "free U-DUAL",
+    "LIVE_PIN_OK",
+    "named design partner",
+    "invented contact inbox",
+    "client AI as dual",
+    "AINav is the client's AI",
+    "EU AI Act certified",
+    "AINav replaces the client's AI",
+    "customer's AI as dual",
+    "invented counterparty name",
+    "time-machine rollback",
+    "AINav powers down Copilot",
+    "mandated by SEC",
+    "AINav replaces all client AI",
+    "invented department head",
+    "department AI as dual",
+    "one title as both seats",
+    "AINav replaces the org chart",
+    "uncopyable",
+    "patent granted",
+    "Microsoft cannot legally copy"
+  ],
+  "sale": "The sale is the ninety-minute proof.",
+  "seats": [
+    "treasury_approver",
+    "treasury_controller"
+  ],
+  "signed_l1": false,
+  "skus": [
+    {
+      "id": "L1",
+      "kind": "prove",
+      "name": "FIRST_OFFER",
+      "one_line": "The unauthorized general-journal post that two humans did not admit.",
+      "price_usd": {
+        "max": 40000,
+        "min": 28000
+      },
+      "term": "2\u20134 weeks"
+    },
+    {
+      "id": "P-ADM",
+      "kind": "keep",
+      "name": "ADMIT_COVERAGE",
+      "one_line": "Keep the same admit plane covered",
+      "price_usd": {
+        "max": 60000,
+        "min": 40000
+      },
+      "term": "annual"
+    },
+    {
+      "id": "U-DUAL",
+      "kind": "deepen",
+      "name": "DEPTH_PACK",
+      "one_line": "Additional action classes on the same admit plane",
+      "price_usd": {
+        "max": 35000,
+        "min": 20000
+      },
+      "term": "annual"
+    }
+  ],
+  "still_lack": "They do not have a gate in front of the write.",
+  "success": {
+    "bake_off": {
+      "lede": "They already have a cheaper button. Buy L1 only when independence, consume-once, and a fail-closed SoR are the requirement.",
+      "they_win": [
+        {
+          "id": "one_vendor",
+          "name": "One vendor, one button",
+          "note": "They only run Copilot on Business Central. Workflow User Groups is enough this quarter."
+        },
+        {
+          "id": "cheaper",
+          "name": "Native is already licensed",
+          "note": "They will not pay L1 to prove a gate they think they already have."
+        },
+        {
+          "id": "speed",
+          "name": "Chat approval is fast",
+          "note": "They accept a Teams vote as two humans looked."
+        }
+      ],
+      "we_win": [
+        {
+          "id": "independence",
+          "name": "Independence",
+          "note": "The drafting vendor is the worst failsafe for that draft. Job C sits outside the model."
+        },
+        {
+          "id": "consume_once",
+          "name": "Consume-once",
+          "note": "Native approval can be replayed. Job C consumes the grant once on one action_hash."
+        },
+        {
+          "id": "fail_closed",
+          "name": "Fail-closed SoR",
+          "note": "If either seat is missing, the write does not land. No fake success."
+        },
+        {
+          "id": "counterparty",
+          "name": "Counterparty AI",
+          "note": "A Copilot-only button leaves Agentforce and the customer's model ungated."
+        }
+      ]
+    },
+    "brand": {
+      "cms": false,
+      "face": {
+        "display": "Newsreader",
+        "gold": "#8a6a2c",
+        "gold_2": "#c9a45a",
+        "ink": "#12100c",
+        "note": "Institute face tokens. Not a CMS theme SKU.",
+        "paper": "#f3eee4",
+        "sans": "Source Sans 3",
+        "void": "#100e0b"
+      },
+      "fear_brand": false,
+      "fourth_sku": false,
+      "glance": "Marks on #brand. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
+      "kind": "ainav.brand.v1",
+      "launch": false,
+      "lede": "One mark set across the firm. Legal is AINav, Inc. Product is AINav Control Plane. Institute is AINAV.Institute. Sale is L1, P-ADM, and U-DUAL. Write-fear names the unauthorized journal. Lockfile stays job_c. Microsoft marks are theirs. Teams is notify. The sandbox is not a production brand.",
+      "live": false,
+      "live_pin_ok": false,
+      "lockfile_stays_job_c": true,
+      "marks": {
+        "institute": "AINAV.Institute",
+        "job": "Job C",
+        "legal": "AINav, Inc.",
+        "lockfile": "job_c",
+        "product": "AINav Control Plane"
+      },
+      "microsoft_is_the_product": false,
+      "note": "Marks stay catalog law. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. Not LIVE_PIN_OK.",
+      "owner_only": [
+        "Trademark filing",
+        "Public apex brand",
+        "Teams display name and team ids",
+        "Client twin name after signed L1",
+        "Production brand",
+        "Launch",
+        "LIVE_PIN_OK"
+      ],
+      "refuse": [
+        "Rebrand Job C",
+        "Rebrand the lockfile off job_c",
+        "Treat Microsoft as the product",
+        "Fear brand",
+        "Doom-fear",
+        "A fourth SKU as a brand",
+        "Invent a Teams team name as live",
+        "Treat the sandbox as production brand",
+        "HubSpot as the firm brand",
+        "Mark Institute launched",
+        "LIVE_PIN_OK theater"
+      ],
+      "site": "Brand system on #brand. Firm is #firm. Twin is #twin. Close is #path. Not a /brand route.",
+      "sku": false,
+      "surfaces": [
+        {
+          "id": "legal",
+          "mark": "AINav, Inc.",
+          "note": "Delaware C corporation. Sole owner James Hodnett."
+        },
+        {
+          "id": "product",
+          "mark": "AINav Control Plane",
+          "note": "Job C. Three SKUs. Lockfile stays job_c."
+        },
+        {
+          "id": "institute",
+          "mark": "AINAV.Institute",
+          "note": "Sale face. Twin review. Not launched."
+        },
+        {
+          "id": "firm",
+          "mark": "AINav, Inc.",
+          "note": "Operating company. Not HubSpot. Not a CRM."
+        },
+        {
+          "id": "sale",
+          "mark": "L1 \u00b7 P-ADM \u00b7 U-DUAL",
+          "note": "Prove, keep, deepen. Write-fear. Not doom-fear."
+        },
+        {
+          "id": "twin",
+          "mark": "AINAV.Institute twin",
+          "note": "Azure SWA review. Not client production."
+        },
+        {
+          "id": "sandbox",
+          "mark": "unnamed until signed L1",
+          "note": "Segregated after L1. Never shared. Lab pin AINAV-L1 is not commercial close. BC company AINav exists. Not production."
+        },
+        {
+          "id": "teams",
+          "mark": "Microsoft Teams",
+          "note": "Notify. Not a seat. Team and channel ids stay unset. Microsoft mark."
+        },
+        {
+          "id": "teams_premium",
+          "mark": "Microsoft Teams Premium",
+          "note": "Paid on Cynthia. Not a seat. Microsoft mark."
+        },
+        {
+          "id": "sales",
+          "mark": "Dynamics 365 Sales Enterprise",
+          "note": "Microsoft mark. Not the firm CRM."
+        },
+        {
+          "id": "owner",
+          "mark": "James Hodnett",
+          "note": "Sole. Marks payouts and LIVE_PIN_OK."
+        }
+      ],
+      "trademark_filed": false,
+      "voice": {
+        "not_ours": "Doom-fear is AGI theater. Not a fear brand.",
+        "ours": "Write-fear names the unauthorized journal two humans did not admit."
+      }
+    },
+    "certified": false,
+    "ciso": {
+      "does_not": [
+        "Store a buyer inbox",
+        "Invent an Entra object id",
+        "Mark LIVE_PIN_OK",
+        "Replace counsel",
+        "Power down Copilot",
+        "Sell doom-fear",
+        "Sell a SOX certificate",
+        "Close G12",
+        "Sell D&O",
+        "Invent TAM or forecast ARR",
+        "Claim a priced round",
+        "Mark Institute launch",
+        "Mint a fourth SKU",
+        "Sell a CMS",
+        "Treat owner-missing as the sale wow",
+        "Sell a dynamic app",
+        "Treat Calendly as the demo",
+        "Institute twin as client production",
+        "A fourth SKU as the client twin",
+        "Auto-promote a sandbox to production",
+        "Invent a sales team or pay a commission from this plane",
+        "Mark the launch gate from this plane",
+        "Treat Microsoft as the product",
+        "Invent a ninth complement",
+        "Invent Teams channel ids or DATAVERSE_URL from this plane",
+        "Treat the Microsoft day map as wired",
+        "Treat the roster as wired",
+        "Rebrand Job C",
+        "Treat the brand as a SKU",
+        "Treat MFA as admit",
+        "Invent a named client universe",
+        "Treat the universe as a SKU",
+        "Treat refuse as a live record",
+        "Treat universe wells as named records",
+        "Treat the sit-down day as a live named day",
+        "Invent seat B click on the day board",
+        "Treat the industry drawer as a live filing",
+        "Invent a named vertical as a SKU",
+        "Treat maps as certificates on the industry drawer",
+        "Treat packs as SKUs on the industry drawer",
+        "Treat AINav as a crypto product",
+        "Sell 17a-4 WORM",
+        "Lead with Room 2",
+        "Mint a tokenization SKU",
+        "Treat Room 2 refuse as a live record",
+        "Treat Room 1 wells as named records",
+        "Treat a refuse lane walk as a live route",
+        "Treat the complete industry drawer as a live named vertical",
+        "Treat GENIUS or CLARITY as closed",
+        "Treat fear as the first glance",
+        "Treat company policy as a SKU",
+        "Call the product AI Governess",
+        "Treat the honest control board as a live filing",
+        "Treat Agent 365 as AINav",
+        "Treat an agent as a seat",
+        "Claim a live agent census from this plane",
+        "Treat a pinned agent as dual admit",
+        "Paste Total agents into the catalog",
+        "Treat ownerless or unmanaged agents as a census",
+        "Treat Grok Build as a seat",
+        "Treat a Grok bot as dual admit",
+        "Request Microsoft admin as this Cloud Agent",
+        "Treat additional access as admit",
+        "Treat Grok Build as the recorded operator",
+        "Treat a Grok bot as the operator",
+        "Swap Cursor for Grok",
+        "Treat full access as admit",
+        "Treat more secrets as build",
+        "Treat the twin as launch",
+        "Treat gold as launch",
+        "Treat twin certified as launch day",
+        "Treat simulation as production",
+        "Treat an update as LIVE_PIN_OK",
+        "Treat an industry pack as a SKU",
+        "Treat a library as a SKU",
+        "Treat a repository as a SKU",
+        "Treat industry certify as launch",
+        "Treat the whole firm as launch",
+        "Treat a 10/10 review as launch",
+        "Treat the stitch as a SKU",
+        "Treat the twin as the Institute apex",
+        "Treat a green check as launch",
+        "Treat Power Pages as the Institute host",
+        "Treat Power Pages as a SKU",
+        "Treat Power Pages as the CMS",
+        "Treat Power Pages as the Institute apex",
+        "Treat Power Pages as a Dataverse close",
+        "Treat Copilot Studio as Job C",
+        "Treat Copilot Studio as a SKU",
+        "Treat Copilot Studio as the admit plane",
+        "Treat Copilot Studio as a complement",
+        "Treat Copilot Studio as seat B",
+        "Treat connected as live",
+        "Treat licensed as wired",
+        "Treat available as a seat",
+        "Treat a Graph read as LIVE_PIN_OK",
+        "Treat a Cursor app as a seat",
+        "Treat closing all gaps as this plane",
+        "Treat Outlook mail as a click",
+        "Treat grok login as this plane",
+        "Treat an operate sim as production",
+        "Treat a 10/10 polish as launch",
+        "Treat an industry as a named client",
+        "Treat a shared sandbox as production",
+        "Treat hours as a SKU",
+        "Treat rollback as LIVE_PIN_OK",
+        "Treat a redeploy as launch",
+        "Treat a production sim as production",
+        "Treat fixing all as this plane",
+        "Treat rehearsed elements as live",
+        "Treat making all much better as launch",
+        "Treat a rehearsal as LIVE_PIN_OK",
+        "Treat a remainder close as launch",
+        "Treat leftover copy as LIVE_PIN_OK",
+        "Treat owner hrefs as owner clicks",
+        "Treat gold 99.5 as production",
+        "Treat a deep remainder as seated",
+        "Treat a 10/10 quality check as launch",
+        "Treat gold 99.9 as LIVE_PIN_OK",
+        "Treat a competitor analysis as a named client",
+        "Treat a green service as production",
+        "Treat a quality check as a seated second human",
+        "Treat an IP board as a patent",
+        "Treat insulation as uncopyable",
+        "Treat an L1 license as an assignment of Job C",
+        "Treat kit PASS as a source license",
+        "Treat this board as closing G12",
+        "Treat a vault hold as LIVE_PIN_OK",
+        "Treat secret names as wired notify",
+        "Treat secret values in the catalog",
+        "Treat Sentinel as the admit plane",
+        "Treat a vault hold as a seated second human",
+        "Treat a 10/10 close as launch",
+        "Treat a booking as recognized revenue",
+        "Treat the Institute twin as the assigned client sandbox",
+        "Treat a custom database as a fourth SKU",
+        "Treat a catalog list as collection",
+        "Treat the join as launch",
+        "Treat the stitched firm as LIVE_PIN_OK",
+        "Treat licensed-not-wired as a wired firm",
+        "Treat management and operations as closed from this plane",
+        "Treat a certified simulation as a running firm"
+      ],
+      "holds": [
+        "No Graph Write from this plane",
+        "Fail-closed EffectLedger \u2014 no admit, no write",
+        "Zero-standing grants \u2014 identify is not admit",
+        "Sandbox first; Production blocked until the owner authorizes",
+        "Mailbox is not an Entra oid and not a click"
+      ],
+      "lede": "CISO posture is fail-closed and zero-standing. It is not a certificate and not Graph Write."
+    },
+    "client_twin": {
+      "assigned": false,
+      "count": 0,
+      "deploy": "Deployment is the L1 kit on a BC sandbox, then P-ADM. Production write only if the owner marks LIVE_PIN_OK. This plane cannot mark it.",
+      "do_not_invent_names": true,
+      "enhance": "Paid packs and FFS hours on the assigned client twin. Continuous enhancement and debug stay on that sandbox. Custom features are pay-for-service on the same admit plane. Never a SKU.",
+      "fourth_sku": false,
+      "glance": "Qualify. Remote proof. Close L1. Assign a segregated sandbox. Paid enhance stays there. Not production.",
+      "is": [
+        "A sale path, not a product SKU",
+        "Remote demo on the Institute twin",
+        "Client-assigned after qualify or with L1",
+        "Segregated sandbox \u2014 not shared multi-tenant production",
+        "The place for paid enhance, debug, and custom packs"
+      ],
+      "is_not": [
+        "A fourth SKU",
+        "The Institute review twin as client production",
+        "Production write or LIVE_PIN_OK",
+        "A named client until a real L1",
+        "Auto-promote from sandbox to production",
+        "Calendly, HubSpot, or Intercom as the close",
+        "Hours that attach free U-DUAL"
+      ],
+      "kind": "ainav.client_twin.v1",
+      "launch": false,
+      "lede": "The sale path is qualify, remote proof, tailor, close L1, kit, assigned sandbox, paid enhance. The Institute twin is the remote demo. The client twin is a client-assigned segregated sandbox after qualify or with L1. Not production. Not a SKU.",
+      "live": false,
+      "live_pin_ok": false,
+      "named_client": null,
+      "note": "Assigned stays false. Named client stays none. Count stays 0. Not production. Not LIVE_PIN_OK.",
+      "production": false,
+      "site": "This band sits after the product. First glance stays the write rail. Demo is #twin. Path is #path. The close bench is #close-console. Not a /demo route. Not a fourth SKU.",
+      "sku": false,
+      "stages": [
+        "Qualify \u2014 ICP and walk-away. No invented inbox.",
+        "Remote proof \u2014 ninety minutes on the Institute twin. Browser. Graph is not called. Not Calendly.",
+        "Tailor \u2014 same plane, client SOD pair and journal class. Do not invent a named customer.",
+        "Close L1 \u2014 signed order. Owner-only. Still open.",
+        "Kit \u2014 L1 kit on the BC sandbox. PASS then P-ADM.",
+        "Assigned sandbox \u2014 client-specific segregated digital twin. Not the Institute review twin. Not production.",
+        "Paid enhance \u2014 packs and FFS hours on that client twin. Hours deepen the same admit plane. Never mint a SKU. Hours never attach free U-DUAL."
+      ]
+    },
+    "client_universe": {
+      "assigned": false,
+      "certified": false,
+      "cms": false,
+      "day": {
+        "invented": false,
+        "kind": "ainav.client_universe_day.v1",
+        "lanes": [
+          {
+            "id": "now",
+            "items": [
+              {
+                "href": "identify.html",
+                "id": "mailbox",
+                "name": "Mailbox recorded",
+                "note": "chodnett@ainav.institute. Mailbox is not oid. Mailbox is not the click.",
+                "state": "recorded"
+              },
+              {
+                "href": "identify.html",
+                "id": "identify",
+                "name": "MFA identifies",
+                "note": "Identify is not admit. Credentialed SWA identify is not seated.",
+                "state": "ready"
+              },
+              {
+                "href": "#universe",
+                "id": "zeros",
+                "name": "Honest zeros",
+                "note": "Unnamed. Assigned no. Records 0. Packs 0. Maps claimed=false.",
+                "state": "recorded"
+              }
+            ],
+            "name": "Now"
+          },
+          {
+            "id": "next",
+            "items": [
+              {
+                "href": "#control",
+                "id": "seat_b",
+                "name": "Seat B click",
+                "note": "She clicks. James does not click both. Owner-only. This plane cannot invent the click.",
+                "state": "owner_only"
+              },
+              {
+                "href": "identify.html",
+                "id": "oid",
+                "name": "Distinct Entra oid",
+                "note": "This plane cannot invent an oid.",
+                "state": "owner_only"
+              }
+            ],
+            "name": "Next"
+          },
+          {
+            "id": "after_l1",
+            "items": [
+              {
+                "href": "#path",
+                "id": "named",
+                "name": "Named client mark",
+                "note": "Unnamed until signed L1.",
+                "state": "after_l1"
+              },
+              {
+                "href": "#path",
+                "id": "assigned",
+                "name": "Assigned sandbox",
+                "note": "Never shared. Not production. Not the Institute twin.",
+                "state": "after_l1"
+              },
+              {
+                "href": "#governance",
+                "id": "records",
+                "name": "First and second record",
+                "note": "SoR write then sealed DecisionRecord.",
+                "state": "after_l1"
+              }
+            ],
+            "name": "After L1"
+          },
+          {
+            "id": "blocked",
+            "items": [
+              {
+                "href": "#universe",
+                "id": "mfa_admit",
+                "name": "MFA as admit",
+                "note": "Refused. Identify is not admit.",
+                "state": "refused"
+              },
+              {
+                "href": "#universe",
+                "id": "named_now",
+                "name": "Invent a named client",
+                "note": "Refused. Unnamed until signed L1.",
+                "state": "refused"
+              },
+              {
+                "href": "#missing",
+                "id": "live_pin",
+                "name": "LIVE_PIN_OK",
+                "note": "Not from this plane.",
+                "state": "blocked"
+              }
+            ],
+            "name": "Blocked"
+          }
+        ],
+        "live": false,
+        "note": "Sit-down client day. Now is recorded. Next is owner-only. After L1 stays unnamed. Blocked stays refused. Not a live named day. Not LIVE_PIN_OK.",
+        "sku": false
+      },
+      "day_invented": false,
+      "day_is_live": false,
+      "fear_brand": false,
+      "forecast": false,
+      "fourth_sku": false,
+      "glance": "Sit-down client day. Now mailbox recorded. Next seat B. After L1 unnamed. MFA identifies. Honest zeros. Maps claimed=false. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK.",
+      "groups": [
+        {
+          "id": "control",
+          "name": "Control",
+          "rails": [
+            "identify",
+            "admit",
+            "write",
+            "record"
+          ]
+        },
+        {
+          "id": "marks",
+          "name": "Marks",
+          "rails": [
+            "brand",
+            "sandbox"
+          ]
+        },
+        {
+          "id": "govern",
+          "name": "Govern",
+          "rails": [
+            "govern",
+            "consequence"
+          ]
+        },
+        {
+          "id": "offer",
+          "name": "Offer",
+          "rails": [
+            "need",
+            "lead",
+            "keep",
+            "deepen",
+            "packs"
+          ]
+        }
+      ],
+      "kind": "ainav.client_universe.v1",
+      "launch": false,
+      "lede": "The client business universe is the post-close face. MFA identifies. Identify is not admit. Two humans bind one hash. First record is the SoR write. Second record is the sealed DecisionRecord. The segregated branded sandbox stays unnamed until signed L1. Maps stay claimed=false. Packs are not SKUs.",
+      "live": false,
+      "live_pin_ok": false,
+      "mfa_admits": false,
+      "named_client": false,
+      "note": "MFA identifies. Identify is not admit. Assigned stays false. Named client stays false. Maps claimed=false. Buying L1 does not close regulator clocks. Honest zeros. Refuse is visible. Sit-down client day. Not a live named day. Not a certificate. Not D&O. Not a SOX opinion. Not LIVE_PIN_OK.",
+      "operable": true,
+      "owner_only": [
+        "Seat B click",
+        "Signed L1",
+        "Assigned sandbox name",
+        "Client brand after L1",
+        "LIVE_PIN_OK",
+        "Launch",
+        "G12/G13"
+      ],
+      "production": false,
+      "refuse": [
+        "Treat MFA as admit",
+        "Invent a named client",
+        "Treat the sandbox as production",
+        "Mint a fourth SKU",
+        "Fear brand",
+        "Mark maps certified",
+        "Close regulator clocks by buying L1",
+        "Invent ARR graphs",
+        "HubSpot as the client CRM",
+        "LIVE_PIN_OK theater",
+        "A /universe route"
+      ],
+      "refuse_is_visible": true,
+      "sit_down": true,
+      "site": "Client universe on #universe. Close is #path. Twin is #twin. Brand is #brand. Firm is #firm. First glance stays the write rail. Honest zeros sit the board. Refuse is visible. The sit-down client day is now / next / after L1. Not a /universe route.",
+      "sku": false,
+      "spine_states": {
+        "admit": "owner_only",
+        "identify": "ready",
+        "keep": "after_l1",
+        "pack": "after_l1",
+        "record": "blocked",
+        "write": "blocked"
+      },
+      "surfaces": [
+        {
+          "href": "identify.html",
+          "id": "identify",
+          "name": "MFA / Entra identify",
+          "note": "Identify is not admit. MFA and Conditional Access identify. Credentialed SWA identify is not seated."
+        },
+        {
+          "href": "#control",
+          "id": "admit",
+          "name": "Two seats",
+          "note": "Seat A treasury. Seat B controller. One hash. Consume once. Mailbox is not the click."
+        },
+        {
+          "href": "#buyer",
+          "id": "write",
+          "name": "Fail-closed SoR",
+          "note": "No admit, no write. First record is the SoR write. Graph is not called from this plane."
+        },
+        {
+          "href": "#governance",
+          "id": "record",
+          "name": "Audit trail",
+          "note": "Second record is the sealed DecisionRecord. Weekly keep after kit PASS. Not 17a-4. Not WORM."
+        },
+        {
+          "href": "#brand",
+          "id": "brand",
+          "name": "AINav / client marks",
+          "note": "AINav Control Plane plus an unnamed client mark until signed L1. Never shared. Not a production brand."
+        },
+        {
+          "href": "#path",
+          "id": "sandbox",
+          "name": "Segregated twin",
+          "note": "Assigned after signed L1. Not the Institute twin. Never shared. Not production."
+        },
+        {
+          "href": "#governance",
+          "id": "govern",
+          "name": "Maps",
+          "note": "NIST AI RMF, SOX ICFR, EU AI Act, ISO 42001. claimed=false. Buying L1 is not a certificate."
+        },
+        {
+          "href": "#risk",
+          "id": "consequence",
+          "name": "Non-compliance",
+          "note": "The landed write. Buying L1 does not close clocks. Not D&O. Not a SOX opinion. Maps stay claimed=false."
+        },
+        {
+          "href": "#have",
+          "id": "need",
+          "name": "Product need",
+          "note": "Independent admit plane. Write-fear names the unauthorized journal. Not doom-fear. Not a fear brand."
+        },
+        {
+          "href": "#market",
+          "id": "lead",
+          "name": "Thought leadership",
+          "note": "Last authority, not another Copilot. Not TAM. Not a forecast. Not a priced round."
+        },
+        {
+          "href": "#product",
+          "id": "keep",
+          "name": "P-ADM",
+          "note": "Keep after kit PASS. Hours never mint a SKU. Hours never attach free U-DUAL."
+        },
+        {
+          "href": "#product",
+          "id": "deepen",
+          "name": "U-DUAL",
+          "note": "Paid. Never free with P-ADM. Additional action classes on the same admit plane."
+        },
+        {
+          "href": "#packs",
+          "id": "packs",
+          "name": "Custom packs / modules",
+          "note": "A la carte after the required SKU. FFS $3500/day. Libraries and industry packs are not SKUs."
+        }
+      ],
+      "wells": {
+        "assigned": false,
+        "client_mark": "",
+        "first_record": 0,
+        "maps_claimed": false,
+        "named_client": false,
+        "note": "Honest zeros. Unnamed until signed L1. Maps claimed=false. Refuse is visible. Not LIVE_PIN_OK.",
+        "packs_attached": 0,
+        "second_record": 0
+      },
+      "wells_are_live": false
+    },
+    "close_bench": {
+      "assigned": false,
+      "cms": false,
+      "dynamic": false,
+      "fourth_sku": false,
+      "glance": "Qualify. Remote proof. Close L1. Assign a segregated sandbox. Paid enhance stays there. Not production.",
+      "kind": "ainav.close_bench.v1",
+      "launch": false,
+      "lede": "The first-class close is this bench. Qualify. Remote proof on the Institute twin. Tailor the SOD pair. Close signed L1. Assign a segregated sandbox. Paid enhance stays there. Production stays owner-gated. Not a SKU.",
+      "live": false,
+      "live_pin_ok": false,
+      "named_client": null,
+      "note": "The bench rehearses the close. Assigned stays false. Named client stays none. Not LIVE_PIN_OK.",
+      "planes": [
+        {
+          "id": "institute",
+          "name": "Institute twin",
+          "note": "Remote demo. This host. Not client production."
+        },
+        {
+          "id": "client",
+          "name": "Client sandbox",
+          "note": "Assigned after L1. Segregated. Not shared."
+        },
+        {
+          "id": "production",
+          "name": "Production",
+          "note": "Owner LIVE_PIN_OK only. Not auto-promote."
+        }
+      ],
+      "production": false,
+      "refuse": [
+        "A fourth SKU",
+        "Institute twin as client production",
+        "Invented named client",
+        "Auto-promote sandbox to production",
+        "Calendly as the close",
+        "Free U-DUAL from hours",
+        "LIVE_PIN_OK theater"
+      ],
+      "site": "The close bench is #close-console on #path. Demo is #twin. First glance stays the write rail. Not a /demo route.",
+      "sku": false
+    },
+    "continuity": {
+      "lede": "If either seat is missing, the write does not land. That is the product working.",
+      "note": "Not a bypass. Not a standing grant. Freeze is the off switch. Inference may continue. Consequence does not.",
+      "rehearsal": {
+        "live": false,
+        "note": "Tuesday rehearsal: seat B absent \u2192 write does not land \u2192 sealed deny.",
+        "sealed_deny": true,
+        "seat_missing": "seat_b",
+        "sku": false,
+        "write_lands": false
+      }
+    },
+    "executive_risk": {
+      "also": [
+        "Board oversees. Overseeing is not admitting.",
+        "One title cannot wear both seats to shed personal risk.",
+        "Second record is the keep, not the first record.",
+        "Counterparty model into the client's SoR is the same write.",
+        "Small client and large client: same journal, same L1.",
+        "Insurance, D&O, and personal-liability product: walk away.",
+        "Privacy, model-risk, and job-loss theater: not the category unless they are the write.",
+        "Fiduciary duty is why two humans bind. Not a D&O product and not a penalty SKU.",
+        "GENIUS and CLARITY stay claimed=false. Buying L1 does not close those clocks.",
+        "Internal doctrine is catalog law. Company policy is not a SKU."
+      ],
+      "business": "Business: restatement, ICFR weakness, customer or counterparty write, examiner exception. Buying L1 does not close regulator clocks.",
+      "certified": false,
+      "cms": false,
+      "compliance": "Compliance-fear: maps, SOX opinion, EU AI Act certificate, NIST badge, GENIUS close, CLARITY close. Claimed stays false. G12 stays open. Not counsel. Walk it like cheaper native.",
+      "counsel": false,
+      "d_and_o": false,
+      "fear_brand": false,
+      "kind": "ainav.executive_risk.v1",
+      "lede": "Executive risk is the unauthorized write under a name that certifies the books. Personal and business are the same journal. Fiduciary is why two humans bind, not a penalty product. Compliance maps are not the sale.",
+      "live": false,
+      "live_pin_ok": false,
+      "non_compliance": "Non-compliance that is ours: a privileged SoR line landed and two humans did not bind. That is write-fear. A missed map is counsel's clock.",
+      "note": "Not a SOX opinion. Not 17a-4. Not counsel. Not a certificate. Not LIVE_PIN_OK. Fiduciary is why two humans bind. Not a SOX opinion. Not 17a-4. Not counsel. Not a certificate. Not LIVE_PIN_OK.",
+      "personal": "Personal: the controller or officer who certifies. 'I did not know the AI posted' is identify, not admit. We do not indemnify. We do not appoint officers. We do not sell D&O.",
+      "seventeen_a4": false,
+      "site": "This band sits after human control. First glance stays the write rail. Not a /risk route. Not a GRC SKU.",
+      "sku": false,
+      "sox_opinion": false
+    },
+    "human_control": {
+      "cms": false,
+      "fear_brand": false,
+      "kind": "ainav.human_control.v1",
+      "lede": "Human control is authority over the write. Loss of control is a privileged SoR line that two humans did not bind. Thinking you have it under control without seat B is not seated. Get it under control is the second unique human. Fear is only useful if it names that write.",
+      "live": false,
+      "live_pin_ok": false,
+      "loss": [
+        "Identify pretends to be admit",
+        "Teams vote, Copilot confirm, or PIM eligible \u2014 replayable, not consume-once",
+        "One title clicks both seats",
+        "The vendor of the draft is the failsafe",
+        "One vendor HITL leaves counterparty models ungated",
+        "Seat missing and the write still lands",
+        "Thinking you have it under control is mailbox without a click",
+        "Employee AI drafts; department AI is not a seat",
+        "Change without two humans is not under control"
+      ],
+      "not_ours": "Doom-fear: AGI, mass irrelevance, the machines are coming. Not the category. Not the ICP. Walk it like cheaper native.",
+      "note": "Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK. Honest control sits on #industry. Must-have is not a mandate. Maps are not counsel. Certified is false. Not a fear brand. Not LIVE_PIN_OK.",
+      "ours": "Write-fear: a client or customer model drafted a privileged line. Two humans did not admit. The write can still land. That is the sale.",
+      "restore": [
+        "Two distinct humans bind one action_hash",
+        "Consume-once",
+        "Fail-closed SoR",
+        "Plane outside the drafting model",
+        "Freeze: inference may continue, consequence does not",
+        "Get it under control is the second unique human. Do not claim we have it",
+        "Fear management is refuse rehearsal, not a /fear brand",
+        "Change is sit / maps / attach / refuse"
+      ],
+      "site": "First glance stays the write rail. This band sits after the bake-off. Not a /fear route. Not a CMS.",
+      "sku": false,
+      "social": "A human looked in Teams. The journal still posted. Not: AI will take your job."
+    },
+    "industry_drawer": {
+      "areas": [
+        {
+          "href": "#buyer",
+          "id": "public",
+          "name": "Write rail",
+          "note": "First glance. Not the industry drawer."
+        },
+        {
+          "href": "app.html",
+          "id": "encyclopedia",
+          "name": "Encyclopedia drawer",
+          "note": "Entire. Client Floor stays lean."
+        },
+        {
+          "href": "#missing",
+          "id": "owner",
+          "name": "Owner",
+          "note": "Owner-only. Not the first glance."
+        },
+        {
+          "href": "#path",
+          "id": "sandbox",
+          "name": "Client sandbox after L1",
+          "note": "Unnamed until signed L1. Never shared."
+        },
+        {
+          "href": "#industry",
+          "id": "industry",
+          "name": "Industry drawer",
+          "note": "Sit / maps / attach / refuse. Not a /industry route."
+        }
+      ],
+      "certified": false,
+      "cms": false,
+      "complete": true,
+      "control": {
+        "certified": false,
+        "claimed": false,
+        "clarity_closed": false,
+        "cms": false,
+        "control_is_live": false,
+        "dno": false,
+        "every_refuse_clicks": true,
+        "fear_brand": false,
+        "fourth_sku": false,
+        "genius_closed": false,
+        "glance": "Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Lack of control. Thinking you have it. Get it under control. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Employee AI oversight. Company policy is not a SKU. Every refuse clicks. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
+        "governess": false,
+        "honest": true,
+        "kind": "ainav.industry_control.v1",
+        "lanes": [
+          {
+            "id": "need",
+            "items": [
+              {
+                "href": "#control",
+                "id": "if_you_dont",
+                "name": "If you don't have it",
+                "note": "One human cannot bind Job C. The write does not land.",
+                "state": "recorded"
+              },
+              {
+                "href": "#risk",
+                "id": "consequence",
+                "name": "Consequence",
+                "note": "Thinking you have it under control without seat B is not seated. MFA identifies. It does not admit.",
+                "state": "recorded"
+              },
+              {
+                "href": "#industry",
+                "id": "now",
+                "name": "Now",
+                "note": "Complete industry drawer. Every refuse clicks. Catalog is the message. Gold 99.5. Twin on Azure SWA.",
+                "state": "recorded"
+              },
+              {
+                "href": "#missing",
+                "id": "corner",
+                "name": "Around the corner",
+                "note": "Seat B click, Entra oid, signed L1, LIVE_PIN_OK, launch. Owner-only. This plane cannot invent them.",
+                "state": "owner_only"
+              }
+            ],
+            "name": "Need"
+          },
+          {
+            "id": "human",
+            "items": [
+              {
+                "href": "#control",
+                "id": "lack",
+                "name": "Lack of control",
+                "note": "A privileged SoR line two humans did not bind. Mailbox is not oid. Mailbox is not the click.",
+                "state": "recorded"
+              },
+              {
+                "href": "#have",
+                "id": "thinking",
+                "name": "Thinking you have it",
+                "note": "Identify pretending to be admit. A Teams vote is not dual admit. PIM eligible is not admit.",
+                "state": "recorded"
+              },
+              {
+                "href": "#buyer",
+                "id": "get_it",
+                "name": "Get it under control",
+                "note": "Second unique human. One action_hash. Consume-once. Fail-closed SoR. Do not claim we have it.",
+                "state": "recorded"
+              }
+            ],
+            "name": "Human control"
+          },
+          {
+            "id": "fiduciary",
+            "items": [
+              {
+                "href": "#governance",
+                "id": "board",
+                "name": "Board / executive duty",
+                "note": "Two humans bind because the write is the duty. Inventory of models is not a control. Not a D&O opinion.",
+                "state": "recorded"
+              },
+              {
+                "href": "#risk",
+                "id": "penalties",
+                "name": "Penalties / non-compliance",
+                "note": "Non-compliance that is ours is the landed write. Not a SOX opinion. Not D&O. Not a certificate.",
+                "state": "recorded"
+              }
+            ],
+            "name": "Fiduciary"
+          },
+          {
+            "id": "maps_oversight",
+            "items": [
+              {
+                "href": "#governance",
+                "id": "genius",
+                "name": "GENIUS Act",
+                "note": "Payment-stablecoin map. claimed=false. Not a close. Reserve journal is Room 1. On-chain mint stays Room 2.",
+                "state": "recorded"
+              },
+              {
+                "href": "#governance",
+                "id": "clarity",
+                "name": "CLARITY Act",
+                "note": "Digital-asset market-structure map. claimed=false. Not a close. Not a crypto product.",
+                "state": "recorded"
+              },
+              {
+                "href": "#control",
+                "id": "employee",
+                "name": "Employee AI oversight",
+                "note": "Department AI is not a seat. Loss of oversight is identify pretending to be admit.",
+                "state": "recorded"
+              },
+              {
+                "href": "#industry",
+                "id": "doctrine",
+                "name": "Internal doctrine / policy",
+                "note": "Company policy is not a SKU. Catalog is the doctrine. Policy does not mint a fourth SKU.",
+                "state": "recorded"
+              },
+              {
+                "href": "#industry",
+                "id": "change",
+                "name": "Change / fear management",
+                "note": "Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a /fear brand.",
+                "state": "recorded"
+              }
+            ],
+            "name": "Maps / oversight"
+          },
+          {
+            "id": "refuse",
+            "items": [
+              {
+                "href": "#industry",
+                "id": "genius_close",
+                "name": "GENIUS Act close",
+                "note": "Refused. Maps stay claimed=false.",
+                "refuse": true,
+                "refuse_text": "Refused. GENIUS is a map. claimed=false. Not a close.",
+                "state": "refused"
+              },
+              {
+                "href": "#industry",
+                "id": "clarity_close",
+                "name": "CLARITY Act close",
+                "note": "Refused. Maps stay claimed=false.",
+                "refuse": true,
+                "refuse_text": "Refused. CLARITY is a map. claimed=false. Not a close.",
+                "state": "refused"
+              },
+              {
+                "href": "#industry",
+                "id": "dno_product",
+                "name": "D&O / penalty product",
+                "note": "Refused. Fiduciary is why two humans bind.",
+                "refuse": true,
+                "refuse_text": "Refused. Not D&O. Not a penalty product. Fiduciary is why two humans bind.",
+                "state": "refused"
+              },
+              {
+                "href": "#industry",
+                "id": "governess_product",
+                "name": "AI Governess product",
+                "note": "Refused. The product is Job C.",
+                "refuse": true,
+                "refuse_text": "Refused. Not AI Governess. The product is Job C.",
+                "state": "refused"
+              },
+              {
+                "href": "#industry",
+                "id": "policy_sku",
+                "name": "Company policy as a SKU",
+                "note": "Refused. Doctrine is not a product.",
+                "refuse": true,
+                "refuse_text": "Refused. Company policy is not a SKU. Catalog is the doctrine.",
+                "state": "refused"
+              },
+              {
+                "href": "#industry",
+                "id": "fear_first_glance",
+                "name": "Fear as the first glance",
+                "note": "Refused. First glance stays the write.",
+                "refuse": true,
+                "refuse_text": "Refused. Fear is not the first glance. First glance stays the write rail.",
+                "state": "refused"
+              }
+            ],
+            "name": "Refuse"
+          }
+        ],
+        "launch": false,
+        "lede": "Honest control sits on #industry after the complete drawer. Need is two humans bind one hash. If you don't have it, the write does not land. Thinking you have it under control without seat B is not seated. Get it under control is the second unique human and a fail-closed SoR write. Fiduciary is why two humans bind, not a D&O opinion. GENIUS and CLARITY stay claimed=false. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a /fear route. Not AI Governess. Not LIVE_PIN_OK.",
+        "live": false,
+        "live_pin_ok": false,
+        "note": "Honest control. Need is two humans bind one hash. If you don't have it, the write does not land. Thinking you have it under control without seat B is not seated. MFA identifies. It does not admit. Get it under control is the second unique human. Do not claim we have it. Fiduciary is why two humans bind. Not a D&O opinion. Not a SOX opinion. Not a penalty product. GENIUS and CLARITY stay claimed=false. Buying L1 does not close regulator clocks. Employee AI is not a seat. Company policy is not a SKU. Change is sit / maps / attach / refuse. Fear management is refuse rehearsal. Not a live filing. Not AI Governess. Not LIVE_PIN_OK.",
+        "policy_sku": false,
+        "site": "Honest control on #industry. Need is #control. Consequence is #risk. Maps is #governance. Around the corner is #missing. First glance stays the write rail. Complete industry drawer. Every refuse clicks. Catalog is the message. GENIUS and CLARITY stay claimed=false. Not a live filing. Not AI Governess. Not a /fear route. Not LIVE_PIN_OK.",
+        "sku": false
+      },
+      "drawer_invented": false,
+      "drawer_is_live": false,
+      "every_refuse_clicks": true,
+      "fear_brand": false,
+      "filing": false,
+      "fourth_sku": false,
+      "fully_operable": true,
+      "glance": "Sit-down industry drawer. Sit Dynamics BC treasury. Maps claimed=false. Attach after the required SKU. Papers are not filings. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Honest zeros. Refuse is visible. Not a /industry route. Not a crypto product. Not LIVE_PIN_OK. Honest control. Need. Consequence. Now. Around the corner. GENIUS and CLARITY claimed=false. Not AI Governess.",
+      "honest_control": true,
+      "kind": "ainav.industry_drawer.v1",
+      "lanes": [
+        {
+          "id": "sit",
+          "items": [
+            {
+              "href": "#packs",
+              "id": "bc_treasury",
+              "name": "Dynamics BC treasury / controller",
+              "note": "Week-one prove. Journal wedge. industry.treasury + lib.l1.wedge.",
+              "state": "recorded"
+            },
+            {
+              "href": "#packs",
+              "id": "desks",
+              "name": "Same-plane desks",
+              "note": "Payables, bank, cash after L1. Not a fourth SKU.",
+              "state": "after_l1"
+            },
+            {
+              "href": "#governance",
+              "id": "maps_false",
+              "name": "Maps claimed=false",
+              "note": "Buying L1 is not a certificate.",
+              "state": "recorded"
+            }
+          ],
+          "name": "Sit"
+        },
+        {
+          "id": "maps",
+          "items": [
+            {
+              "href": "#governance",
+              "id": "domestic",
+              "name": "US domestic",
+              "note": "NIST AI RMF, SOX ICFR, books, COSO, fiduciary. claimed=false.",
+              "state": "recorded"
+            },
+            {
+              "href": "#governance",
+              "id": "international",
+              "name": "International",
+              "note": "EU AI Act, ISO 42001, OECD, GDPR Art 22. claimed=false. Not a conformity assessment.",
+              "state": "recorded"
+            },
+            {
+              "href": "#risk",
+              "id": "noncompliance",
+              "name": "Non-compliance that is ours",
+              "note": "The landed write. Buying L1 does not close clocks.",
+              "state": "recorded"
+            }
+          ],
+          "name": "Maps"
+        },
+        {
+          "id": "attach",
+          "items": [
+            {
+              "href": "#packs",
+              "id": "included",
+              "name": "Included with L1",
+              "note": "industry.treasury + lib.l1.wedge. Included is not free.",
+              "state": "recorded"
+            },
+            {
+              "href": "#packs",
+              "id": "upsell",
+              "name": "Upsell band",
+              "note": "Priced desks, P-ADM, paid U-DUAL, FFS. Not SKUs.",
+              "state": "after_l1"
+            },
+            {
+              "href": "#packs",
+              "id": "library",
+              "name": "Libraries",
+              "note": "Libraries seat the same plane. Not products.",
+              "state": "after_l1"
+            },
+            {
+              "href": "#packs",
+              "id": "repo",
+              "name": "Repositories",
+              "note": "repo.packs / repo.governance / repo.runbooks. Not SKUs.",
+              "state": "recorded"
+            },
+            {
+              "href": "#industry",
+              "id": "paper",
+              "name": "White papers",
+              "note": "Catalog drawers. Not certificates. Not filings.",
+              "state": "recorded"
+            }
+          ],
+          "name": "Attach"
+        },
+        {
+          "id": "refuse",
+          "items": [
+            {
+              "href": "#industry",
+              "id": "grc_product",
+              "name": "Healthcare GRC / AI compliance CMS",
+              "note": "Refused. Not a GRC product.",
+              "refuse": true,
+              "refuse_text": "Refused. Not a GRC product. Maps stay claimed=false.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "cert_mill",
+              "name": "ISO / EU AI Act certificate mill",
+              "note": "Refused. Maps are not filings.",
+              "refuse": true,
+              "refuse_text": "Refused. Maps are not filings. Buying L1 is not a certificate.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "pack_sku",
+              "name": "Packs as SKUs",
+              "note": "Refused. Packs deepen L1.",
+              "refuse": true,
+              "refuse_text": "Refused. Packs, libraries, and repositories are not SKUs.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "industry_route",
+              "name": "A /industry route",
+              "note": "Refused. Drawer is #industry.",
+              "refuse": true,
+              "refuse_text": "Refused. The industry drawer sits on #industry. Not a /industry route.",
+              "state": "refused"
+            },
+            {
+              "href": "#industry",
+              "id": "named_vertical",
+              "name": "Invent a named vertical",
+              "note": "Refused. Not a fourth SKU.",
+              "refuse": true,
+              "refuse_text": "Refused. This plane cannot invent a named vertical as a fourth SKU.",
+              "state": "refused"
+            }
+          ],
+          "name": "Refuse"
+        }
+      ],
+      "launch": false,
+      "lede": "The sit-down industry drawer is who we sit, domestic and international maps, papers that are not certificates, and attach that is not a fourth SKU. Sit is Dynamics BC treasury. Maps stay claimed=false. Packs, libraries, and repositories are not SKUs. Room 1 is books. Room 2 is refuse. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Operable industry rooms. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Honest control. Need. If you don't have it. Consequence. Now. Around the corner. Fiduciary is why two humans bind. GENIUS and CLARITY claimed=false. Company policy is not a SKU.",
+      "live": false,
+      "live_pin_ok": false,
+      "named_vertical": false,
+      "note": "Packs, libraries, repositories, and papers are not SKUs. Maps stay claimed=false. Buying L1 does not close regulator clocks. Non-compliance that is ours is the landed write. Room 1 is books. Room 2 is refuse. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a certificate. Not a SOX opinion. Not D&O. Not a live filing. Not LIVE_PIN_OK. Honest control. If you don't have it, the write does not land. GENIUS and CLARITY stay claimed=false. Company policy is not a SKU. Not AI Governess.",
+      "owner_only": [
+        "Signed L1",
+        "Assigned industry packs on a named twin",
+        "LIVE_PIN_OK",
+        "G12/G13"
+      ],
+      "papers": [
+        {
+          "href": "#buyer",
+          "id": "unauthorized_journal",
+          "name": "The unauthorized journal",
+          "note": "The write that must not happen. Two humans admit."
+        },
+        {
+          "href": "#success",
+          "id": "independence",
+          "name": "Independence",
+          "note": "The vendor of the draft is the worst failsafe."
+        },
+        {
+          "href": "#governance",
+          "id": "maps_are_not_filings",
+          "name": "Maps are not filings",
+          "note": "Domestic and international maps stay claimed=false."
+        },
+        {
+          "href": "#risk",
+          "id": "noncompliance_is_the_write",
+          "name": "Non-compliance is the write",
+          "note": "Non-compliance that is ours is the landed write."
+        },
+        {
+          "href": "#buyer",
+          "id": "room_1_is_the_journal",
+          "name": "Room 1 is the journal",
+          "note": "Booked receivable, reserve journal, and fund NAV in BC are Room 1."
+        },
+        {
+          "href": "#industry",
+          "id": "not_a_crypto_product",
+          "name": "Not a crypto product",
+          "note": "Immutable is consume-once, not a coin. Not 17a-4."
+        }
+      ],
+      "refuse": [
+        "Treat maps as certificates",
+        "Mint packs as SKUs",
+        "Invent a named vertical",
+        "A /industry route",
+        "Healthcare GRC product",
+        "ISO certificate mill",
+        "Close regulator clocks by buying L1",
+        "LIVE_PIN_OK theater",
+        "Mint a tokenization SKU",
+        "Mint a stablecoin SKU",
+        "Mint an RWA SKU",
+        "Mint a crypto asset-management SKU",
+        "Sell 17a-4 WORM",
+        "Treat AINav as a crypto product",
+        "Lead with Room 2",
+        "GENIUS Act close",
+        "CLARITY Act close",
+        "D&O / penalty product",
+        "AI Governess product",
+        "Company policy as a SKU",
+        "Fear as the first glance"
+      ],
+      "rooms": {
+        "assigned": false,
+        "complete": true,
+        "crypto_product": false,
+        "every_refuse_clicks": true,
+        "fourth_sku": false,
+        "fully_operable": true,
+        "honest_zeros": true,
+        "kind": "ainav.industry_rooms.v1",
+        "lead": "bc.general_journal.post",
+        "lede": "Room 1 is books. Room 2 is refuse. Agent Intent is what the buyer says. Banks, reserve journals, and booked receivables sit the BC write. Tokenization, RWAs, stablecoin mint, and crypto asset management stay Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+        "live": false,
+        "named_vertical": false,
+        "note": "Lead stays bc.general_journal.post. industry.bank is the same admit plane. Immutable is consume-once, not a coin. ATS match, tokenized deposits as issuance, and MiCA / CASP EU-ready stay Room 2 notes. Wallet is not a seat. Agent Intent walks Room 1 versus Room 2. Fully operable. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros. Refuse is visible. Not a fourth SKU. Not LIVE_PIN_OK. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+        "operable": true,
+        "refuse_is_visible": true,
+        "room_1": [
+          {
+            "href": "#packs",
+            "id": "bank",
+            "name": "Bank desk",
+            "note": "Agent Intent: banks. industry.bank. Same admit plane. Need: an unauthorized bank rec. Not 17a-4.",
+            "state": "recorded"
+          },
+          {
+            "href": "#packs",
+            "id": "reserve",
+            "name": "Reserve journal / fund NAV",
+            "note": "Agent Intent: stablecoin reserve or fund NAV. Stablecoin reserve journal or fund NAV in BC is Room 1. Mint stays Room 2.",
+            "state": "recorded"
+          },
+          {
+            "href": "#industry",
+            "id": "receivable",
+            "name": "Booked receivable",
+            "note": "Agent Intent: RWAs on the books. Tokenized RWA booked receivable is Room 1. Issuing the token is Room 2.",
+            "state": "recorded"
+          }
+        ],
+        "room_2": [
+          {
+            "href": "#industry",
+            "id": "stablecoin_mint",
+            "name": "Stablecoin mint / burn",
+            "note": "On-chain mint is Room 2. Not a stablecoin SKU.",
+            "refuse": true,
+            "refuse_text": "Refused. Not a stablecoin SKU. Room 2 is refuse.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "rwa_issue",
+            "name": "RWA issuance / tokenization",
+            "note": "Issuing the token is Room 2. Not a tokenization SKU.",
+            "refuse": true,
+            "refuse_text": "Refused. Not a tokenization SKU. Not an RWA SKU. Room 2 is refuse.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "crypto_ams",
+            "name": "Crypto asset management",
+            "note": "Wallet signing is Room 2. Not a crypto asset-management SKU.",
+            "refuse": true,
+            "refuse_text": "Refused. Not a crypto asset-management SKU. Room 2 is refuse.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "wallet",
+            "name": "Wallet is not a seat",
+            "note": "Custody move and ATS match stay Room 2. Wallet is not a seat.",
+            "refuse": true,
+            "refuse_text": "Refused. Wallet is not a seat. Room 2 is refuse.",
+            "state": "refused"
+          },
+          {
+            "href": "#industry",
+            "id": "seventeen_a4",
+            "name": "17a-4 WORM / crypto ledger",
+            "note": "Not 17a-4. Not a coin. Walk away if they think P-ADM is WORM.",
+            "refuse": true,
+            "refuse_text": "Refused. Not 17a-4. Not WORM. Immutable is consume-once, not a coin.",
+            "state": "refused"
+          }
+        ],
+        "rooms_are_live": false,
+        "seventeen_a4": false,
+        "site": "Fully operable industry rooms on #industry. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Room 1 walks to #packs. Room 2 refuse stays on #industry. Agent Intent sits on #agent-intent. Room 2 records stay 0. Not a /crypto route. Honest control. GENIUS and CLARITY claimed=false. Not AI Governess.",
+        "spine_states": {
+          "after_l1": "after_l1",
+          "room_1": "ready",
+          "room_2": "refused"
+        },
+        "wells": {
+          "named": "",
+          "room_1": 0,
+          "room_2": 0
+        },
+        "wells_are_live": false
+      },
+      "sit_down": true,
+      "site": "Industry drawer on #industry. Packs is #packs. Maps is #governance. Non-compliance is #risk. First glance stays the write rail. Sit / maps / attach / refuse. Room 1 is books. Room 2 is refuse. Agent Intent sits on #agent-intent. Fully operable industry drawer. Complete industry drawer. Every refuse clicks. Catalog is the message. Honest zeros sit the board. Refuse is visible. Not a crypto product. Not 17a-4. Not a /industry route. Honest control on #industry. Need is #control. Consequence is #risk. GENIUS and CLARITY stay claimed=false. Not AI Governess.",
+      "sku": false
+    },
+    "live": false,
+    "live_pin_ok": false,
+    "managed_face": {
+      "cms": false,
+      "demo": "The first-class demo is the ninety-minute proof day on this twin. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
+      "dynamic": false,
+      "fourth_sku": false,
+      "kind": "ainav.managed_face.v1",
+      "launch": false,
+      "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
+      "live": false,
+      "live_pin_ok": false,
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm.",
+      "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
+      "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
+      "refuse": [
+        "A CMS",
+        "A dynamic app",
+        "A fourth SKU",
+        "A /demo route",
+        "Calendly / Intercom as the demo",
+        "Launch from this plane",
+        "LIVE_PIN_OK theater",
+        "Power Pages"
+      ],
+      "site": "First glance stays the write rail. Demo is #twin. Product is #product. Not a /demo route. Not a CMS.",
+      "sku": false
+    },
+    "mandated": false,
+    "market_position": {
+      "also": [
+        "Category is last authority, not another Copilot.",
+        "We win only on independence, consume-once, fail-closed SoR, and counterparty AI.",
+        "Not uncopyable. Not a patent. G12 stays open.",
+        "Complements stay eight. Cloudflare is DNS/edge, not a SKU.",
+        "Startups then Inception only after launch. Membership is not claimed.",
+        "Thought leadership points at the write rail. Not a blog SKU.",
+        "Switching cost after kit PASS is segregation of duties, not contract fiction."
+      ],
+      "category_leader": false,
+      "cms": false,
+      "fear_brand": false,
+      "forecast": false,
+      "future": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. That sale cannot invent seats, revenue, or LIVE_PIN_OK.",
+      "kind": "ainav.market_position.v1",
+      "launch": false,
+      "lede": "AINav, Inc. market position is an unlaunched independent admit plane. Last authority over the write, not another Copilot. Named customers: none. Recognized revenue: none.",
+      "live": false,
+      "live_pin_ok": false,
+      "not_the_future": "Not TAM. Not forecast ARR. Not a priced round. Not a valuation. Not a design partner. Not category leader from a demo. Not Institute launch from this plane.",
+      "note": "Catalog list times zero booked times a two-human close. Not a priced round. Not LIVE_PIN_OK.",
+      "now": "Now: a running Job C plane, an Azure-hosted Institute that is not launched, and catalog list times zero booked. Demand is 0. Substitutes are already licensed and cheaper.",
+      "priced_round": false,
+      "site": "This band sits after executive risk. First glance stays the write rail. Not a /market route. Not a forecast.",
+      "sku": false,
+      "tam": false
+    },
+    "objections": [
+      {
+        "answer": "Native is licensed. L1 prices the unauthorized journal, not hours. If independence is not the requirement, walk away.",
+        "hear": "Native is free.",
+        "id": "price"
+      },
+      {
+        "answer": "Microsoft hosts, identifies, notifies, and receives the write. Microsoft is not the admit plane. A vendor-native button only covers that vendor.",
+        "hear": "Microsoft already does this.",
+        "id": "microsoft"
+      },
+      {
+        "answer": "One missing human is the product working. The unauthorized post is faster. Controllers buy the gate.",
+        "hear": "Two humans is slow.",
+        "id": "slow"
+      },
+      {
+        "answer": "PIM is eligible access. Eligible is not admit. PIM does not consume an action_hash.",
+        "hear": "Why not PIM?",
+        "id": "pim"
+      },
+      {
+        "answer": "That leaves Agentforce and the counterparty's model ungated. Job C sits over all of them.",
+        "hear": "Copilot Studio already asks a human.",
+        "id": "copilot_rfi"
+      },
+      {
+        "answer": "Wrong meeting. We do not power down Copilot. We bind the write. Doom-fear is not the sale. Write-fear is the unauthorized journal.",
+        "hear": "AI will take over.",
+        "id": "doom"
+      },
+      {
+        "answer": "No. Dual admit is a control on the journal. It is not a SOX opinion. Maps stay claimed=false. G12 stays open.",
+        "hear": "Will this make us SOX compliant?",
+        "id": "sox"
+      },
+      {
+        "answer": "The write that landed under your title. We bind that write. We do not indemnify. We do not replace counsel.",
+        "hear": "What is my personal liability?",
+        "id": "personal"
+      },
+      {
+        "answer": "Zero booked. Named customers: none. Position is the independent admit plane, not a share of Copilot.",
+        "hear": "What's your market share?",
+        "id": "share"
+      },
+      {
+        "answer": "The only future that counts is a named controller who walks away from the licensed substitute and buys L1. There is no forecast ARR. There is no priced round.",
+        "hear": "What's the five-year plan?",
+        "id": "future"
+      },
+      {
+        "answer": "You have identify, SOD, a Teams vote, and PIM eligible. You've been missing two humans, one hash, consume-once, and fail-closed SoR.",
+        "hear": "We already have dual control.",
+        "id": "have"
+      },
+      {
+        "answer": "This is it. Catalog-honest static application on Azure SWA. Gold 99.5. Twin publish. Not Webflow. The product is the admit plane.",
+        "hear": "We need a real managed website.",
+        "id": "managed"
+      },
+      {
+        "answer": "The remote demo is ninety minutes on the Institute twin. Close is signed L1. Then a client-assigned segregated sandbox. Not production. Not a fourth SKU. Not the Institute twin as your tenancy.",
+        "hear": "Just give us a shared demo tenant we can keep.",
+        "id": "path"
+      },
+      {
+        "answer": "The Institute twin is the remote demo. Close is signed L1. Then a segregated client sandbox. Production write only after LIVE_PIN_OK. This plane cannot flip it.",
+        "hear": "Just flip the demo live.",
+        "id": "close"
+      },
+      {
+        "answer": "The firm is this operating day on the Microsoft run. Six required connections and eight complements. Qualify, proof, close, assign, service, launch gate. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Independent contractors are not seats. This plane cannot pay a commission. Gold is not launch. HubSpot is not the product. Microsoft is not the product.",
+        "hear": "Just stand up HubSpot and pay the team.",
+        "id": "firm"
+      }
+    ],
+    "operating_company": {
+      "assigned": false,
+      "capacity": {
+        "live": 0,
+        "live_target": 500,
+        "note": "Targets are capacity. They are not booked clients.",
+        "pipeline": 0,
+        "pipeline_target": 500,
+        "sandboxes": 0
+      },
+      "cms": false,
+      "comp": {
+        "bd": "After recognized L1 receipt if they qualified. Owner-set rate. Not booked.",
+        "booked": false,
+        "closer": "After recognized L1 receipt only. Owner-set rate. Not booked.",
+        "from_this_plane": false,
+        "hours": "FFS never commissions a SKU and never attaches free U-DUAL.",
+        "ic_is_not_seat": true,
+        "kind": "ainav.comp.v1",
+        "note": "Policy is catalog law. Payouts stay 0. This plane cannot pay.",
+        "paid_count": 0,
+        "payroll_provider": null,
+        "residual": "After collected P-ADM only. Owner-set. Not booked."
+      },
+      "crm": false,
+      "day": {
+        "kind": "ainav.operating_day.v1",
+        "launch": false,
+        "live_pin_ok": false,
+        "sku": false,
+        "stages": [
+          {
+            "id": "qualify",
+            "name": "Qualify",
+            "note": "BD. ICP and walk-away. Do not invent a lead."
+          },
+          {
+            "id": "proof",
+            "name": "Proof",
+            "note": "Ninety minutes on the Institute twin. Not Calendly."
+          },
+          {
+            "id": "close",
+            "name": "Close",
+            "note": "Signed L1 on the close bench. Still 0."
+          },
+          {
+            "id": "assign",
+            "name": "Assign",
+            "note": "One live client, one segregated sandbox. Never shared."
+          },
+          {
+            "id": "service",
+            "name": "Service",
+            "note": "P-ADM keep and FFS on that twin. Hours never mint a SKU."
+          },
+          {
+            "id": "launch",
+            "name": "Launch",
+            "note": "Owner says launch and gold holds 99.5. This plane cannot mark it."
+          }
+        ]
+      },
+      "dynamic": false,
+      "fourth_sku": false,
+      "gates": {
+        "authorized_release": false,
+        "gold_is_not_launch": true,
+        "items": [
+          {
+            "id": "seat_b",
+            "name": "Seat B click",
+            "note": "Mailbox recorded. She clicks.",
+            "ready": false
+          },
+          {
+            "id": "signed_l1",
+            "name": "First signed L1",
+            "note": "Owner-only. Count stays 0.",
+            "ready": false
+          },
+          {
+            "id": "live_pin",
+            "name": "LIVE_PIN_OK",
+            "note": "Owner-only. This plane cannot mark it.",
+            "ready": false
+          },
+          {
+            "id": "owner_launch",
+            "name": "Owner launch word",
+            "note": "James says launch. Gold holds 99.5.",
+            "ready": false
+          },
+          {
+            "held": true,
+            "id": "gold",
+            "name": "Gold 99.5",
+            "note": "Floor held. Gold is not launch.",
+            "ready": false
+          }
+        ],
+        "kind": "ainav.launch_gate.v1",
+        "launch": false,
+        "live_pin_ok": false
+      },
+      "glance": "Operating day on the Microsoft roster. Licensed-not-wired. Launch gate closed. 0 of 500 live. 0 of 500 pipeline.",
+      "hubspot": false,
+      "kind": "ainav.operating_company.v1",
+      "launch": false,
+      "lede": "The firm is one spine and one operating day. BD qualifies. Sales proofs on the Institute twin. Close assigns a segregated sandbox. Service keeps P-ADM and FFS on that twin. The launch gate stays closed. Five hundred live and five hundred pipeline are capacity. Live stays 0. Pipeline stays 0. Gold is not launch. Not a CRM. Not a fourth SKU.",
+      "live": false,
+      "live_pin_ok": false,
+      "microsoft_run": {
+        "complement_ids": [
+          "entra.id",
+          "azure.keyvault",
+          "azure.monitor",
+          "sharepoint.kit",
+          "defender.xdr",
+          "entra.pim",
+          "sentinel.siem",
+          "azure.policy"
+        ],
+        "crm": false,
+        "day_map": [
+          {
+            "id": "qualify",
+            "live": false,
+            "name": "Qualify",
+            "note": "Runs on Microsoft 365 E7, Teams Enterprise, Teams Premium, Entra ID, and Entra PIM. Identity and notify. Not a CRM.",
+            "on": [
+              "m365.e7",
+              "teams.enterprise",
+              "teams.premium",
+              "entra.id",
+              "entra.pim"
+            ],
+            "wired": false
+          },
+          {
+            "id": "proof",
+            "live": false,
+            "name": "Proof",
+            "note": "Runs on Azure host and Microsoft 365 E7. Institute twin on Azure SWA. Mailbox is not a click.",
+            "on": [
+              "azure.host",
+              "m365.e7"
+            ],
+            "wired": false
+          },
+          {
+            "id": "close",
+            "live": false,
+            "name": "Close",
+            "note": "Runs on Business Central Premium and Sales Enterprise. SoR after signed L1. Canada is not United States.",
+            "on": [
+              "bc.premium",
+              "sales.enterprise"
+            ],
+            "wired": false
+          },
+          {
+            "id": "assign",
+            "live": false,
+            "name": "Assign",
+            "note": "Runs on Azure host. One live client, one segregated sandbox. Assigned stays 0.",
+            "on": [
+              "azure.host"
+            ],
+            "wired": false
+          },
+          {
+            "id": "service",
+            "live": false,
+            "name": "Service",
+            "note": "Runs on Key Vault, Monitor, SharePoint, Defender XDR, and Sentinel. Keep on the assigned twin. LAW is not Sentinel.",
+            "on": [
+              "azure.keyvault",
+              "azure.monitor",
+              "sharepoint.kit",
+              "defender.xdr",
+              "sentinel.siem"
+            ],
+            "wired": false
+          },
+          {
+            "id": "launch",
+            "live": false,
+            "name": "Launch",
+            "note": "Runs on Azure Policy. Policy cannot mark launch or LIVE_PIN_OK.",
+            "on": [
+              "azure.policy"
+            ],
+            "wired": false
+          }
+        ],
+        "fourth_sku": false,
+        "from_this_plane": false,
+        "kind": "ainav.microsoft_run.v1",
+        "lede": "The Microsoft run is the operating-day roster. Every operating-day stage runs on the declared Microsoft substrate. Six required connections and eight complements. Microsoft is identity, notify, SoR, keep, and host \u2014 not the product. Licensed-not-wired stays visible. The roster is not wired.",
+        "live": false,
+        "live_pin_ok": false,
+        "microsoft_is_the_product": false,
+        "ninth_complement": false,
+        "note": "The Microsoft run is catalog law on #firm-ms. The roster is the operating-day face. The day map is #firm-ms-day. Every operating-day stage runs on the declared Microsoft substrate. Assign sits on Azure host. Complements stay eight. Licensed-not-wired stays visible. This plane cannot invent owner binds. Not LIVE_PIN_OK.",
+        "owner_only": [
+          "Seat B click",
+          "Teams team and channel ids",
+          "SHAREPOINT_SITE_ID",
+          "US Dataverse / DATAVERSE_URL",
+          "Sentinel on the existing LAW",
+          "G12/G13",
+          "billing",
+          "launch",
+          "LIVE_PIN_OK"
+        ],
+        "refuse": [
+          "HubSpot as the firm",
+          "Invent DATAVERSE_URL",
+          "Invent Teams channel ids",
+          "Invent a SharePoint site",
+          "Mark Graph Writes revoked from this plane",
+          "Treat Canada as United States",
+          "Treat LAW as Sentinel",
+          "A ninth Microsoft complement",
+          "Microsoft as the product",
+          "Microsoft is not the product \u2014 do not invert it",
+          "Mark launch from this plane"
+        ],
+        "required_ids": [
+          "azure.host",
+          "m365.e7",
+          "teams.enterprise",
+          "teams.premium",
+          "bc.premium",
+          "sales.enterprise"
+        ],
+        "roster": true,
+        "roster_is_sku": false,
+        "sku": false,
+        "spine": [
+          {
+            "class": "required",
+            "day": "proof",
+            "days": [
+              "proof",
+              "assign"
+            ],
+            "dept": "dept.identity",
+            "id": "azure.host",
+            "job": "host",
+            "live": false,
+            "name": "Microsoft Azure",
+            "note": "SWA twin hosts the Institute review. Client sandboxes stay unassigned. Not the public apex.",
+            "production": false,
+            "sku": false,
+            "status": "twin_hosted",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "qualify",
+            "days": [
+              "qualify",
+              "proof"
+            ],
+            "dept": "dept.identity",
+            "id": "m365.e7",
+            "job": "tenant",
+            "live": false,
+            "name": "Microsoft 365 E7",
+            "note": "Paid E7 and Teams Premium assigned. Mailbox is not an oid and not a click.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_read",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "qualify",
+            "days": [
+              "qualify"
+            ],
+            "dept": "dept.people",
+            "id": "teams.enterprise",
+            "job": "notify",
+            "live": false,
+            "name": "Microsoft Teams Enterprise",
+            "note": "Licensed. Team and channel ids stay unset. A chat is not a seat.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_not_wired",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "qualify",
+            "days": [
+              "qualify"
+            ],
+            "dept": "dept.people",
+            "id": "teams.premium",
+            "job": "notify",
+            "live": false,
+            "name": "Microsoft Teams Premium",
+            "note": "Paid on Cynthia's mailbox. Teams Premium is not a seat. Channel ids stay unset.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_not_wired",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "close",
+            "days": [
+              "close"
+            ],
+            "dept": "dept.treasury",
+            "id": "bc.premium",
+            "job": "sor",
+            "live": false,
+            "name": "Dynamics 365 Business Central Premium",
+            "note": "Sandbox company AINav exists. Production stays blocked. Not LIVE_PIN_OK.",
+            "production": false,
+            "sku": false,
+            "status": "sandbox_company",
+            "wired": false
+          },
+          {
+            "class": "required",
+            "day": "close",
+            "days": [
+              "close"
+            ],
+            "dept": "dept.sales",
+            "id": "sales.enterprise",
+            "job": "sor",
+            "live": false,
+            "name": "Dynamics 365 Sales Enterprise",
+            "note": "License exists. Zero Dataverse instances. Canada is not United States. Not the firm CRM.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_not_wired",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "qualify",
+            "days": [
+              "qualify"
+            ],
+            "dept": "dept.identity",
+            "id": "entra.id",
+            "job": "identity",
+            "live": false,
+            "name": "Microsoft Entra ID",
+            "note": "Consumes object ids. Does not replace the IdP. Mailbox is not a click.",
+            "production": false,
+            "sku": false,
+            "status": "licensed_read",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "days": [
+              "service"
+            ],
+            "dept": "dept.identity",
+            "id": "azure.keyvault",
+            "job": "secrets",
+            "live": false,
+            "name": "Azure Key Vault",
+            "note": "Hold connection secrets. Do not paste them into the catalog.",
+            "production": false,
+            "sku": false,
+            "status": "declared_sandbox",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "days": [
+              "service"
+            ],
+            "dept": "dept.identity",
+            "id": "azure.monitor",
+            "job": "observe",
+            "live": false,
+            "name": "Azure Monitor",
+            "note": "Mothership health. LAW is not Sentinel. Not the admit plane.",
+            "production": false,
+            "sku": false,
+            "status": "declared_sandbox",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "days": [
+              "service"
+            ],
+            "dept": "dept.compliance",
+            "id": "sharepoint.kit",
+            "job": "evidence",
+            "live": false,
+            "name": "SharePoint",
+            "note": "Kit evidence store. SHAREPOINT_SITE_ID stays unset. Graph Writes are owner-revoked.",
+            "production": false,
+            "sku": false,
+            "status": "graph_read_open",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "days": [
+              "service"
+            ],
+            "dept": "dept.compliance",
+            "id": "defender.xdr",
+            "job": "security",
+            "live": false,
+            "name": "Microsoft Defender XDR",
+            "note": "E7 security sink. Not the admit plane. Graph Writes are owner-revoked.",
+            "production": false,
+            "sku": false,
+            "status": "graph_read_open",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "qualify",
+            "days": [
+              "qualify"
+            ],
+            "dept": "dept.compliance",
+            "id": "entra.pim",
+            "job": "eligibility",
+            "live": false,
+            "name": "Microsoft Entra Privileged Identity Management",
+            "note": "Eligible seats. A PIM activation is not dual admit.",
+            "production": false,
+            "sku": false,
+            "status": "not_dual",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "service",
+            "days": [
+              "service"
+            ],
+            "dept": "dept.compliance",
+            "id": "sentinel.siem",
+            "job": "siem",
+            "live": false,
+            "name": "Microsoft Sentinel",
+            "note": "DecisionRecord export sink after P-ADM. The mothership LAW is not Sentinel.",
+            "production": false,
+            "sku": false,
+            "status": "law_is_not_sentinel",
+            "wired": false
+          },
+          {
+            "class": "complement",
+            "day": "launch",
+            "days": [
+              "launch"
+            ],
+            "dept": "dept.identity",
+            "id": "azure.policy",
+            "job": "host_policy",
+            "live": false,
+            "name": "Azure Policy",
+            "note": "West Europe stays blocked. Policy cannot loosen Job C or mark LIVE_PIN_OK.",
+            "production": false,
+            "sku": false,
+            "status": "cannot_weaken",
+            "wired": false
+          }
+        ],
+        "wired_claimed": false
+      },
+      "named_client": null,
+      "named_contractor": null,
+      "needs": [
+        "Owner-set commission rates",
+        "Payout vehicle \u2014 BC vendor, Wise, or Gusto. Not invented from this plane",
+        "Contractor MSA. G12 stays open",
+        "Seat B click",
+        "First signed L1",
+        "Azure budget for N segregated sandboxes",
+        "Dataverse if Sales Enterprise becomes the 500-lead CRM \u2014 Canada affinity still open",
+        "Teams team and channel ids",
+        "SHAREPOINT_SITE_ID",
+        "Sentinel on the existing LAW"
+      ],
+      "note": "Live stays 0. Pipeline stays 0. Contractors stay unnamed. Payouts stay 0. Launch stays false. Microsoft is not the product. Not LIVE_PIN_OK.",
+      "payouts_booked": false,
+      "production": false,
+      "rails": [
+        {
+          "id": "pipeline",
+          "name": "Pipeline",
+          "note": "0 of 500. BD qualifies. Do not invent a lead."
+        },
+        {
+          "id": "live",
+          "name": "Live book",
+          "note": "0 of 500. Signed L1 then sandbox. Not production."
+        },
+        {
+          "id": "sandbox",
+          "name": "Client twin",
+          "note": "One live client, one segregated sandbox. Never shared."
+        },
+        {
+          "id": "production",
+          "name": "Production",
+          "note": "Owner LIVE_PIN_OK only. Not auto-promote."
+        }
+      ],
+      "recognized_revenue_claimed": false,
+      "refuse": [
+        "Invent 500 live clients",
+        "Invent 500 named leads",
+        "Invent a named contractor",
+        "Pay a commission from this plane",
+        "HubSpot or Salesforce as the firm",
+        "Shared twin as production",
+        "A fourth SKU as the operating company",
+        "LIVE_PIN_OK theater",
+        "Mark launch from this plane",
+        "Free U-DUAL from service hours",
+        "Invent DATAVERSE_URL",
+        "Invent Teams channel ids",
+        "Invent a SharePoint site",
+        "Mark Graph Writes revoked from this plane",
+        "A ninth Microsoft complement",
+        "Microsoft as the product"
+      ],
+      "roles": [
+        {
+          "id": "owner",
+          "name": "Owner",
+          "note": "James Hodnett. Sole. Marks payouts and LIVE_PIN_OK."
+        },
+        {
+          "id": "number_two",
+          "name": "Number two",
+          "note": "Cynthia. Mailbox recorded. Not all aspects. Not a click."
+        },
+        {
+          "id": "bd",
+          "name": "Business development",
+          "note": "Qualify ICP. Walk cheaper native. Independent contractor OK. Not a seat."
+        },
+        {
+          "id": "closer",
+          "name": "Closer",
+          "note": "Ninety minutes. Sell L1. Not dual admit."
+        },
+        {
+          "id": "kit",
+          "name": "Kit operator",
+          "note": "Acceptance Kit on the assigned sandbox."
+        },
+        {
+          "id": "service",
+          "name": "Service",
+          "note": "P-ADM keep and FFS on that twin. Hours never mint a SKU."
+        },
+        {
+          "id": "ic",
+          "name": "Independent contractor",
+          "note": "1099. Not a seat. Not dual admit. Named count stays 0."
+        }
+      ],
+      "sales_team_claimed": false,
+      "salesforce": false,
+      "service": {
+        "ffs_hours": 0,
+        "hours_attach_udual": false,
+        "hours_mint_sku": false,
+        "kind": "ainav.service_book.v1",
+        "live": 0,
+        "note": "Servicing is P-ADM keep and FFS on the assigned twin. Live stays 0. Hours never mint a SKU and never attach free U-DUAL.",
+        "padm": 0,
+        "shared_twin": false
+      },
+      "site": "The firm bench is #firm-console on #firm. The Microsoft run is #firm-ms. The roster is #firm-ms. The day map is #firm-ms-day. The brand is #brand. The operating day is qualify, proof, close, assign, service, launch gate. Close is #path. Demo is #twin. First glance stays the write rail. Not a /firm route. Not a CRM. Gold is not launch.",
+      "sku": false
+    },
+    "qualify": {
+      "lede": "Walk away from the cheap-native buyer. Proof day is for the controller who cannot let any AI post.",
+      "must": [
+        "Business Central Premium",
+        "Entra ID",
+        "Two existing treasury humans \u2014 not one title as both seats",
+        "Client AI that can draft a privileged write",
+        "Controller who cannot let any AI post without two seats"
+      ],
+      "walk_away": [
+        "Just give us cheaper Workflow User Groups",
+        "One human wearing both titles",
+        "Copilot Studio RFI as the product",
+        "AINav as the client's AI",
+        "LIVE_PIN_OK from a demo",
+        "Invented named customer or inbox",
+        "AI doom as the product",
+        "Fear brand / AGI theater",
+        "SOX certificate as the product",
+        "Buy L1 and we are compliant",
+        "D&O / personal-liability product",
+        "Maps as the sale",
+        "TAM / forecast as the product",
+        "Priced round as the sale",
+        "Category leader from a demo",
+        "Another Copilot as the wow",
+        "CMS as the product",
+        "Fourth SKU as what you've been missing",
+        "Dynamic app as the Institute",
+        "Calendly as the demo, a shared twin as production, or a client twin as a SKU"
+      ]
+    },
+    "seat_b": {
+      "is": [
+        "Agreed human for seat B",
+        "Mailbox chodnett@ainav.institute recorded",
+        "Intended treasury_controller",
+        "Intended Inception business_executive contact when programs open",
+        "Number two for other aspects"
+      ],
+      "is_not": [
+        "An Entra object id",
+        "A seat B click",
+        "An officer",
+        "A stockholder",
+        "The second unique human until oid and click",
+        "The Cloud Agent",
+        "All aspects of the business"
+      ],
+      "lede": "Mailbox recorded is not the click. Seat B meaning stays honest.",
+      "mailbox": "chodnett@ainav.institute",
+      "name": "Cynthia Hodnett"
+    },
+    "sku": false,
+    "thesis": "The business succeeds when a named controller walks away from the licensed substitute and buys L1. The build succeeds when that sale cannot invent seats, revenue, or LIVE_PIN_OK.",
+    "what_was_missing": {
+      "already_have": [
+        "Business Central Premium \u2014 two-person journal SOD",
+        "Entra ID \u2014 identify, MFA, Conditional Access",
+        "Workflow User Groups \u2014 native dual approval, replayable",
+        "Copilot Studio RFI \u2014 a human looked",
+        "Teams vote \u2014 a chat is not admit",
+        "PIM eligible \u2014 eligible is not admit",
+        "Defender / Purview \u2014 detect and retain, not bind the write",
+        "Microsoft 365 E7 \u2014 mailbox and identify, not a seat",
+        "Company policy / AI acceptable-use \u2014 doctrine is not a seat"
+      ],
+      "been_missing": [
+        "Two distinct humans bind one action_hash",
+        "Consume-once \u2014 the grant cannot be replayed",
+        "Fail-closed SoR \u2014 no admit, no write",
+        "Second record \u2014 sealed DecisionRecord, not the first record",
+        "Freeze \u2014 inference may continue, consequence does not",
+        "Independence \u2014 plane outside the drafting vendor",
+        "Counterparty AI \u2014 the same write when their model drafts into your SoR",
+        "Ninety-minute proof day \u2014 walk out with kit PASS, not a demo",
+        "Employee AI oversight \u2014 department AI is not a seat"
+      ],
+      "capabilities": [
+        "Admit \u2014 two humans, one hash. Not identify.",
+        "Consume-once \u2014 the grant dies on the write.",
+        "Fail-closed effect \u2014 no admit, no SoR line.",
+        "Keep / Merkle \u2014 second record. Examiner walk.",
+        "Freeze \u2014 off switch. Consequence does not.",
+        "Examiner walk \u2014 read-only Merkle prove. Not 17a-4.",
+        "Walk-away qualify \u2014 cheaper native is a refuse.",
+        "Twin review \u2014 see the Institute before launch.",
+        "One dashboard \u2014 included with L1. Not a second SKU."
+      ],
+      "cms": false,
+      "fear_brand": false,
+      "forecast": false,
+      "fourth_sku": false,
+      "kind": "ainav.what_was_missing.v1",
+      "launch": false,
+      "lede": "What you've been missing is not another Copilot. You already licensed cheaper copies. The missing piece is two humans, one hash, consume-once, fail-closed SoR.",
+      "live": false,
+      "live_pin_ok": false,
+      "note": "The wow is the missing admit plane. Not a fourth SKU. Not launch. Not LIVE_PIN_OK.",
+      "refuse_to_become": [
+        "Another Copilot",
+        "A CMS \u2014 Webflow, Squarespace, Storybook as the product",
+        "A GRC certificate",
+        "A forecast / TAM product",
+        "A ninth complement",
+        "Cloudflare as a SKU",
+        "LIVE_PIN_OK theater",
+        "Intercom / live-chat as the sale",
+        "HubSpot / Salesforce as the wow",
+        "AI Governess",
+        "GENIUS / CLARITY close",
+        "D&O / penalty product",
+        "Power Pages as the Institute"
+      ],
+      "site": "This band sits after market position. First glance stays the write rail. Not a /have route. Not #missing. #missing stays owner-honest.",
+      "sku": false,
+      "tools_around": [
+        "Teams notify \u2014 complement. A chat is not a seat.",
+        "E7 identify \u2014 mailbox and MFA. Identify is not admit.",
+        "Cloudflare edge \u2014 DNS/edge. Not a SKU. Not the Institute.",
+        "Gold CI \u2014 coverage at or above 99.5. A green check is not LIVE_PIN_OK.",
+        "Kit Playwright / Lighthouse \u2014 proof tooling. Not a CMS.",
+        "Azure SWA twin \u2014 review host. Not launch.",
+        "status.json paint \u2014 catalog-honest live paint. Not a CMS."
+      ]
+    }
+  },
+  "twin_is": "Microsoft is identity, notify, SoR, and audit sink. The product is the admit plane.",
+  "write_that_must_not_happen": "An unauthorized general-journal post the client's AI or the client's customer AI drafted and two humans did not admit."
+}
