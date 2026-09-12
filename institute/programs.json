@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.21.0",
+  "release": "3.22.0",
   "sku": false,
   "website": {
     "additional_access_needed": false,
@@ -298,6 +298,8 @@
     "honest_industry_live": false,
     "honest_join": true,
     "honest_join_live": false,
+    "honest_make": true,
+    "honest_make_live": false,
     "honest_operate": true,
     "honest_operate_live": false,
     "honest_operators": true,
@@ -349,6 +351,7 @@
     "licensed_as_wired_firm": false,
     "licensed_is_wired": false,
     "list_as_collection": false,
+    "make_as_launch": false,
     "manage_ops_as_closed": false,
     "managed": true,
     "microsoft_agents": true,

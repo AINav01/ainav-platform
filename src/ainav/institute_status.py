@@ -342,6 +342,9 @@ def public_status() -> dict[str, Any]:
             "systems_as_wired": False,
             "polish_as_production": False,
             "interpret_as_live_pin": False,
+            "honest_make": bool(site.get("honest_make")),
+            "honest_make_live": False,
+            "make_as_launch": False,
         },
         "bc": {
             "connection": "bc.premium",

@@ -12,7 +12,7 @@ from ainav.dashboard import public_dashboard
 
 def test_release_is_280_and_gold_99_is_the_floor():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.21.0"
+    assert cat["entity"]["release"] == "3.22.0"
     assert cat["engineering"]["gold_ci"]["coverage_floor"] == 99.5
     assert cat["plane_interface"]["gaps"]["gold_floor"] == 99.5
     assert "fail_under = 99.5" in Path("pyproject.toml").read_text(encoding="utf-8")
@@ -27,14 +27,14 @@ def test_release_is_280_and_gold_99_is_the_floor():
     assert "claiming 99" in blob
     assert "gold coverage floor is 99.5" in blob
     dash = public_dashboard()
-    assert dash["release"] == "3.21.0"
+    assert dash["release"] == "3.22.0"
     assert dash["gaps"]["gold_floor"] == 99.5
 
 
 def test_upgrade_50_is_tree_done():
     cat = load_catalog()
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 91
+    assert len(cat["expert_review"]["upgrades"]) == 92
     assert upgrades[50]["who"] == "tree"
     assert upgrades[50]["done"] is True
     assert upgrades[50]["marks_live_pin"] is False

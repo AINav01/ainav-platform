@@ -348,7 +348,8 @@
       "3.18.0 honest hold. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.19.0 honest close. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.20.0 honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.21.0 honest better. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.21.0 honest better. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.22.0 making better. Recorded. Making better is not launch. A much better build and business is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -756,7 +757,8 @@
           "Treat a 10/10 as a seated second human",
           "Treat a systems review as a wired firm",
           "Treat a polish pass as production",
-          "Treat interpretability as LIVE_PIN_OK"
+          "Treat interpretability as LIVE_PIN_OK",
+          "Treat making better as launch"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1208,6 +1210,7 @@
         "interpret_as_live_pin": false,
         "kind": "ainav.honest.better.v1",
         "live": false,
+        "make_as_launch": false,
         "polish_as_production": false,
         "systems_as_wired": false,
         "ten_as_seated": false
@@ -2012,7 +2015,7 @@
         "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
         "live": false,
         "live_pin_ok": false,
-        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch.",
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch.",
         "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
         "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
         "refuse": [
@@ -3592,6 +3595,14 @@
         "n": 91,
         "title": "Honest better",
         "who": "tree"
+      },
+      {
+        "do": "Ship 3.22.0 making better on #success. Recorded. Making better is not launch. A much better build and business is not launch. Complements stay eight. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 92,
+        "title": "Making better",
+        "who": "tree"
       }
     ],
     "working_well": [
@@ -3710,7 +3721,8 @@
       "3.18.0 honest hold is catalog law: recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. A catalog must not hold secret values. Sentinel is not the admit plane. A vault hold is not a seated second human. Complements stay eight. Not LIVE_PIN_OK.",
       "3.19.0 honest close is catalog law: recorded. A 10/10 close is not launch. A booking is not recognized revenue. The Institute twin is not the assigned client sandbox. A custom database is not a fourth SKU. A catalog list is not collection. Complements stay eight. Not LIVE_PIN_OK.",
       "3.20.0 honest join is catalog law: recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK.",
-      "3.21.0 honest better is catalog law: recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK."
+      "3.21.0 honest better is catalog law: recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
+      "3.22.0 making better is catalog law: recorded. Making better is not launch. Complements stay eight. Not LIVE_PIN_OK."
     ]
   },
   "fit": [

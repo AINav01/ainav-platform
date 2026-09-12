@@ -24,7 +24,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_303_honest_access():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.21.0"
+    assert cat["entity"]["release"] == "3.22.0"
     access = cat["microsoft_stack"]["access"]
     assert access["kind"] == "ainav.honest.access.v1"
     assert access["honest"] is True
@@ -70,7 +70,7 @@ def test_release_is_303_honest_access():
     assert "does not need additional access" in principles
     assert "grok build is not a seat" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 91
+    assert len(cat["expert_review"]["upgrades"]) == 92
     assert upgrades[73]["who"] == "tree"
     assert upgrades[73]["done"] is True
     assert upgrades[73]["marks_live_pin"] is False
@@ -107,9 +107,9 @@ def test_release_is_303_honest_access():
     assert "access" in app.lower()
     assert "Grok" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.21.0"
+    assert dash["release"] == "3.22.0"
     status = public_status()
-    assert status["release"] == "3.21.0"
+    assert status["release"] == "3.22.0"
     assert status["website"]["honest_access"] is True
     assert status["website"]["honest_access_live"] is False
     assert status["website"]["additional_access_needed"] is False

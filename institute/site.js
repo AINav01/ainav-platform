@@ -5209,6 +5209,10 @@
     interpret_as_live_pin: {
       message: "Refused. Interpretability is not LIVE_PIN_OK.",
       ledger: "better_denied · interpretability as LIVE_PIN_OK\nInterpretability is not LIVE_PIN_OK.\nA readable board is not a live pin.\nlive=false · live_pin_ok=false"
+    },
+    make_as_launch: {
+      message: "Refused. Making better is not launch.",
+      ledger: "better_denied · making better as launch\nMaking better is not launch.\nBoards stay recorded.\nlive=false · live_pin_ok=false"
     }
   };
 
@@ -5254,11 +5258,11 @@
     })
     .then(function (data) {
       if (!data) return;
-      if (data.live || data.better_as_launch || data.ten_as_seated || data.systems_as_wired || data.polish_as_production || data.interpret_as_live_pin || data.certified) return;
+      if (data.live || data.better_as_launch || data.ten_as_seated || data.systems_as_wired || data.polish_as_production || data.interpret_as_live_pin || data.make_as_launch || data.certified) return;
       var status = document.getElementById("better-status");
       if (status) {
         status.textContent =
-          "honest=true · recorded=true · better_as_launch=false · ten_as_seated=false · systems_as_wired=false · polish_as_production=false · interpret_as_live_pin=false · live=false";
+          "honest=true · recorded=true · better_as_launch=false · ten_as_seated=false · systems_as_wired=false · polish_as_production=false · interpret_as_live_pin=false · make_as_launch=false · live=false";
       }
     })
     .catch(function () {});

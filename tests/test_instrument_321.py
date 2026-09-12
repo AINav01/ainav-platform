@@ -26,7 +26,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_321_honest_better():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.21.0"
+    assert cat["entity"]["release"] == "3.22.0"
     better = cat["honest_better"]
     assert better["kind"] == "ainav.honest.better.v1"
     assert better["honest"] is True
@@ -37,6 +37,7 @@ def test_release_is_321_honest_better():
     assert better["systems_as_wired"] is False
     assert better["polish_as_production"] is False
     assert better["interpret_as_live_pin"] is False
+    assert better["make_as_launch"] is False
     assert better["certified"] is False
     assert better["created"] is False
     assert better["signed_l1"] is False
@@ -58,6 +59,7 @@ def test_release_is_321_honest_better():
     assert "honest better" in better["note"].lower()
     assert "a much better build and business is not launch" in better["note"].lower()
     assert "interpretability is not live_pin_ok" in better["note"].lower()
+    assert "making better is not launch" in better["note"].lower()
     assert cat["programs"]["website"]["honest_better"] is True
     assert cat["programs"]["website"]["honest_join"] is True
     assert cat["programs"]["website"]["honest_better_live"] is False
@@ -66,6 +68,9 @@ def test_release_is_321_honest_better():
     assert cat["programs"]["website"]["systems_as_wired"] is False
     assert cat["programs"]["website"]["polish_as_production"] is False
     assert cat["programs"]["website"]["interpret_as_live_pin"] is False
+    assert cat["programs"]["website"]["honest_make"] is True
+    assert cat["programs"]["website"]["honest_make_live"] is False
+    assert cat["programs"]["website"]["make_as_launch"] is False
     assert "honest better" in cat["operations"]["note"].lower()
     assert "#success" in cat["operations"]["note"]
     assert any("3.21.0" in item and "honest better" in item.lower() for item in cat["engineering"]["closed_in_tree"])
@@ -80,7 +85,7 @@ def test_release_is_321_honest_better():
     assert "honest better" in principles
     assert "a much better build and business is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 91
+    assert len(cat["expert_review"]["upgrades"]) == 92
     assert upgrades[91]["who"] == "tree"
     assert upgrades[91]["done"] is True
     assert upgrades[91]["marks_live_pin"] is False
@@ -96,6 +101,8 @@ def test_release_is_321_honest_better():
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
     assert "3.21.0" in html
+    assert "3.22.0" in html
+    assert "making better is not launch" in html.lower()
     assert "3.20.0" in html
     assert "honest better" in html.lower()
     assert "a much better build and business is not launch" in html.lower()
@@ -131,6 +138,7 @@ def test_release_is_321_honest_better():
     assert 'data-better-refuse="systems_as_wired"' in html
     assert 'data-better-refuse="polish_as_production"' in html
     assert 'data-better-refuse="interpret_as_live_pin"' in html
+    assert 'data-better-refuse="make_as_launch"' in html
     nav = html.split('aria-label="Primary"', 1)[1].split("</nav>", 1)[0]
     assert 'href="/better"' not in nav
     assert 'href="#better"' not in nav
@@ -141,17 +149,17 @@ def test_release_is_321_honest_better():
     assert "BETTER_REFUSE" in js
     assert 'getElementById("better-lede")' not in js
     assert "honest better" in twin.lower()
-    assert "Digital twin · 3.21.0" in twin
-    assert "AINAV.Institute twin · 3.21.0" in twin
+    assert "Digital twin · 3.22.0" in twin
+    assert "AINAV.Institute twin · 3.22.0" in twin
     assert "3.16.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.21.0" in kit
-    assert "Release 3.21.0" in lost
+    assert "Application kit · 3.22.0" in kit
+    assert "Release 3.22.0" in lost
     assert "3.16.0" not in lost
-    assert "Ultimate control plane · 3.21.0" in plane
+    assert "Ultimate control plane · 3.22.0" in plane
     assert "3.16.0" not in plane
     assert 'href="index.html#better-consider"' in plane
     assert 'href="index.html#better-consider"' in app
@@ -179,9 +187,9 @@ def test_release_is_321_honest_better():
     assert "Open better" in identify
     assert 'href="index.html#better-consider">Open better' in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.21.0"
+    assert dash["release"] == "3.22.0"
     status = public_status()
-    assert status["release"] == "3.21.0"
+    assert status["release"] == "3.22.0"
     assert status["website"]["honest_better"] is True
     assert status["website"]["honest_better_live"] is False
     assert status["website"]["better_as_launch"] is False
@@ -189,6 +197,8 @@ def test_release_is_321_honest_better():
     assert status["website"]["systems_as_wired"] is False
     assert status["website"]["polish_as_production"] is False
     assert status["website"]["interpret_as_live_pin"] is False
+    assert status["website"]["honest_make"] is True
+    assert status["website"]["make_as_launch"] is False
     review = public_review()
     assert review["kind"] == "ainav.honest.better.v1"
     assert review["better_as_launch"] is False

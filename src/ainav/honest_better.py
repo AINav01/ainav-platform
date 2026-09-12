@@ -2,7 +2,7 @@
 
 A systems review is not a wired firm. A 10/10 is not a seated second human.
 A polish pass is not production. Interpretability is not LIVE_PIN_OK.
-Complements stay eight.
+Making better is not launch. Complements stay eight.
 """
 
 from __future__ import annotations
@@ -44,6 +44,7 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         "systems_as_wired",
         "polish_as_production",
         "interpret_as_live_pin",
+        "make_as_launch",
         "cms",
         "host",
         "is_host",
@@ -86,6 +87,8 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("a polish pass is not production", reason_code="CATALOG_REVIEW")
     if body.get("interpret_as_live_pin") is not False:
         raise IntegrityError("interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if body.get("make_as_launch") is not False:
+        raise IntegrityError("making better is not launch", reason_code="CATALOG_REVIEW")
     hops = body.get("hops") or []
     if not isinstance(hops, list) or [item.get("id") for item in hops if isinstance(item, dict)] != list(
         HONEST_BETTER_HOP_IDS
@@ -123,6 +126,8 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better note keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
     if "interpretability is not live_pin_ok" not in note:
         raise IntegrityError("honest better note keeps interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "making better is not launch" not in note:
+        raise IntegrityError("honest better note keeps making better is not launch", reason_code="CATALOG_REVIEW")
     lede = str(body.get("lede") or "").lower()
     if "a much better build and business is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
@@ -130,6 +135,8 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better lede keeps a systems review is not a wired firm", reason_code="CATALOG_REVIEW")
     if "a 10/10 is not a seated second human" not in lede:
         raise IntegrityError("honest better lede keeps a 10/10 is not a seated second human", reason_code="CATALOG_REVIEW")
+    if "making better is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps making better is not launch", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest better" not in site:
         raise IntegrityError("honest better site keeps honest better", reason_code="CATALOG_REVIEW")
@@ -137,6 +144,8 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better site keeps not a /better route", reason_code="CATALOG_REVIEW")
     if "first glance stays the write rail" not in site:
         raise IntegrityError("honest better site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    if "making better is not launch" not in site:
+        raise IntegrityError("honest better site keeps making better is not launch", reason_code="CATALOG_REVIEW")
     complements = (catalog.get("connections") or {}).get("complements") or []
     if len(complements) != COMPLEMENT_COUNT:
         raise IntegrityError("complements stay eight. Honest better is not a complement", reason_code="CATALOG_REVIEW")
@@ -174,6 +183,7 @@ def run_better_certification(catalog: dict[str, Any] | None = None) -> dict[str,
         "systems_as_wired": False,
         "polish_as_production": False,
         "interpret_as_live_pin": False,
+        "make_as_launch": False,
         "complements": COMPLEMENT_COUNT,
         "created": False,
         "certified": False,
@@ -210,6 +220,7 @@ def public_review() -> dict[str, Any]:
         "systems_as_wired": False,
         "polish_as_production": False,
         "interpret_as_live_pin": False,
+        "make_as_launch": False,
         "created": False,
         "live": False,
         "live_pin_ok": False,
@@ -233,5 +244,6 @@ def public_review() -> dict[str, Any]:
             "Treat a systems review as a wired firm.",
             "Treat a polish pass as production.",
             "Treat interpretability as LIVE_PIN_OK.",
+            "Treat making better as launch.",
         ],
     }

@@ -2098,7 +2098,10 @@ table.law tr[data-group] th {
 #prod-consider,
 #remain-consider { margin: 0 0 1.35rem; }
 #ten-consider { margin: 0 0 1.35rem; }
-#better-consider { margin: 0 0 1.35rem; }
+#better-consider { margin: 0 0 1.35rem; max-width: none; width: 100%; box-sizing: border-box; }
+#better-consider .hero-actions {
+  margin-top: 0.85rem;
+}
 #protect-consider { margin: 0 0 1.35rem; }
 #hold-consider { margin: 0 0 1.35rem; }
 #close-consider { margin: 0 0 1.35rem; }
@@ -3201,9 +3204,6 @@ table.law tr[data-group] th {
 .pages-facts.about-facts p {
   font-size: 0.86rem;
 }
-.pages-facts.better-facts section {
-  grid-template-columns: 1fr;
-}
 @media (min-width: 900px) {
   #join-hops li::after,
   #better-hops li::after,
@@ -3212,14 +3212,14 @@ table.law tr[data-group] th {
 }
 @media (min-width: 1100px) {
   #join-hops { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  #better-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #better-hops { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   #industry-area-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .pages-facts.join-facts,
   .pages-facts.close-facts {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
   .pages-facts.better-facts {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .pages-facts.about-facts {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3229,10 +3229,12 @@ table.law tr[data-group] th {
   }
   .pages-facts.join-facts section,
   .pages-facts.close-facts section,
-  .pages-facts.better-facts section,
   .pages-facts.about-facts section {
     grid-template-columns: 1fr;
     gap: 0.28rem;
+  }
+  .pages-facts.better-facts section {
+    grid-template-columns: 6.2rem minmax(0, 1fr);
   }
   #access-window-facts.pages-facts.about-facts,
   #ms-universe-facts.pages-facts.about-facts,
@@ -3240,7 +3242,8 @@ table.law tr[data-group] th {
   #better-facts.pages-facts.about-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  #access-window-facts [data-fact="record"] {
+  #access-window-facts [data-fact="record"],
+  #better-facts [data-fact="business"] {
     grid-column: 1 / -1;
   }
 }

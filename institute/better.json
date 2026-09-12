@@ -34,7 +34,7 @@
       "id": "polish",
       "live": false,
       "name": "Polish",
-      "note": "Twin, kit, CSS. Query strings. Owner book. First glance stays the write rail. A 10/10 polish is not launch. A polish pass is not production.",
+      "note": "Twin, kit, CSS. Query strings. The owner-book hops. First glance stays the write rail. Six hops scan. Five facts stack. Making better is not launch. A 10/10 polish is not launch. A polish pass is not production.",
       "sku": false
     },
     {
@@ -108,11 +108,12 @@
   "is_seat": false,
   "is_sku": false,
   "kind": "ainav.honest.better.v1",
-  "lede": "A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
+  "lede": "A much better build and business is not launch. Making better is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
   "live": false,
   "live_pin_ok": false,
+  "make_as_launch": false,
   "microsoft_product": "Microsoft stack",
-  "note": "Honest better. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
+  "note": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
   "owner_playbook": {
     "actor": "James Hodnett",
     "cannot_be_done_by": "cursor.cloud_agent",
@@ -122,6 +123,7 @@
       "Do not treat a systems review as a wired firm.",
       "Do not treat a polish pass as production.",
       "Do not treat interpretability as LIVE_PIN_OK.",
+      "Do not treat making better as launch.",
       "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
     ]
   },
@@ -138,6 +140,7 @@
     "launch": false,
     "live": false,
     "live_pin_ok": false,
+    "make_as_launch": false,
     "polish_as_production": false,
     "recorded": true,
     "systems_as_wired": false,
@@ -185,9 +188,17 @@
       "refuse": true,
       "refuse_text": "Refused. Interpretability is not LIVE_PIN_OK.",
       "title": "Interpretability as LIVE_PIN_OK"
+    },
+    {
+      "href": "#success",
+      "id": "make_as_launch",
+      "name": "Making better as launch",
+      "refuse": true,
+      "refuse_text": "Refused. Making better is not launch.",
+      "title": "Making better as launch"
     }
   ],
-  "site": "Honest better on #success. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK.",
+  "site": "Honest better on #success. Recorded. A much better build and business is not launch. Making better is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK.",
   "systems_as_wired": false,
   "ten_as_seated": false,
   "this_agent_cannot": [
@@ -195,7 +206,8 @@
     "Treat a 10/10 as a seated second human.",
     "Treat a systems review as a wired firm.",
     "Treat a polish pass as production.",
-    "Treat interpretability as LIVE_PIN_OK."
+    "Treat interpretability as LIVE_PIN_OK.",
+    "Treat making better as launch."
   ],
   "wired": false
 }

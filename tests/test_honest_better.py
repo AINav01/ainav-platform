@@ -36,6 +36,7 @@ def test_better_review_is_not_launch():
     assert body["systems_as_wired"] is False
     assert body["polish_as_production"] is False
     assert body["interpret_as_live_pin"] is False
+    assert body["make_as_launch"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -46,7 +47,9 @@ def test_better_review_is_not_launch():
     assert body["honest"] is True
     assert body["href"] == "#success"
     assert "a much better build and business is not launch" in body["lede"].lower()
+    assert "making better is not launch" in body["lede"].lower()
     assert "honest better" in body["note"].lower()
+    assert "making better is not launch" in body["note"].lower()
     assert "interpretability is not live_pin_ok" in body["note"].lower()
     assert [item["id"] for item in body["facts"]] == list(HONEST_BETTER_FACT_IDS)
     assert [item["id"] for item in body["hops"]] == list(HONEST_BETTER_HOP_IDS)
@@ -54,6 +57,7 @@ def test_better_review_is_not_launch():
     assert hop_hrefs == {key: HONEST_BETTER_HOP_HREFS[key] for key in HONEST_BETTER_HOP_IDS}
     assert "Treat a much better build and business as launch." in body["this_agent_cannot"]
     assert "Treat interpretability as LIVE_PIN_OK." in body["this_agent_cannot"]
+    assert "Treat making better as launch." in body["this_agent_cannot"]
     probes = body["probes"]
     assert probes["complements"] == 8
     assert probes["better_as_launch"] is False
@@ -72,6 +76,7 @@ def test_run_better_certification_holds_launch():
     assert probes["systems_as_wired"] is False
     assert probes["polish_as_production"] is False
     assert probes["interpret_as_live_pin"] is False
+    assert probes["make_as_launch"] is False
     assert probes["complements"] == 8
     assert probes["created"] is False
     assert probes["certified"] is False
@@ -102,6 +107,10 @@ def test_honest_better_fail_closed():
     interpret["honest_better"]["interpret_as_live_pin"] = True
     with pytest.raises(IntegrityError):
         validate_honest_better(interpret)
+    make = copy.deepcopy(load_catalog())
+    make["honest_better"]["make_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(make)
     href = copy.deepcopy(load_catalog())
     href["honest_better"]["href"] = "#buyer"
     with pytest.raises(IntegrityError):
@@ -157,6 +166,7 @@ def test_validate_honest_better_more_fail_closed():
         "systems_as_wired",
         "polish_as_production",
         "interpret_as_live_pin",
+        "make_as_launch",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)
@@ -222,6 +232,12 @@ def test_validate_honest_better_more_fail_closed():
     note_pin["honest_better"]["note"] = "Honest better. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
         validate_honest_better(note_pin)
+    note_make = copy.deepcopy(load_catalog())
+    note_make["honest_better"]["note"] = (
+        "Honest better. A much better build and business is not launch. Interpretability is not LIVE_PIN_OK."
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_make)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -237,6 +253,13 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_ten)
+    lede_make = copy.deepcopy(load_catalog())
+    lede_make["honest_better"]["lede"] = lede_make["honest_better"]["lede"].replace(
+        "Making better is not launch.",
+        "Better is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_make)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
@@ -255,6 +278,13 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_glance)
+    site_make = copy.deepcopy(load_catalog())
+    site_make["honest_better"]["site"] = site_make["honest_better"]["site"].replace(
+        "Making better is not launch.",
+        "Better is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_make)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

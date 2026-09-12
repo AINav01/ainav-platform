@@ -15,7 +15,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_286_first_class_operating_company():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.21.0"
+    assert cat["entity"]["release"] == "3.22.0"
     firm = cat["expert_review"]["success"]["operating_company"]
     assert firm["kind"] == "ainav.operating_company.v1"
     assert firm["sku"] is False
@@ -30,7 +30,7 @@ def test_release_is_286_first_class_operating_company():
     assert cat["programs"]["website"]["firm_href"] == "#firm"
     assert any("2.86.0" in item and "operating company" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 91
+    assert len(cat["expert_review"]["upgrades"]) == 92
     assert upgrades[56]["who"] == "tree"
     assert upgrades[56]["done"] is True
     assert upgrades[56]["marks_live_pin"] is False
@@ -42,9 +42,9 @@ def test_release_is_286_first_class_operating_company():
     assert 'id="firm-console"' in html
     assert 'id="firm-rails"' in html
     dash = public_dashboard()
-    assert dash["release"] == "3.21.0"
+    assert dash["release"] == "3.22.0"
     status = public_status()
-    assert status["release"] == "3.21.0"
+    assert status["release"] == "3.22.0"
     assert status["website"]["operating_company"] is True
     assert status["website"]["firm_is_sku"] is False
     held = publish_institute()
