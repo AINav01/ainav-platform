@@ -83,9 +83,15 @@ def normalize_action(action: Any) -> dict[str, Any]:
         ) from exc
 
 
+def hashed_action(action: Any) -> dict[str, Any]:
+    """HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen."""
+    canonical = normalize_action(action)
+    return {field: canonical[field] for field in HASH_FIELDS if field in canonical}
+
+
 def action_hash(action: Any) -> str:
-    """SHA-256 hex digest of the canonical action document."""
-    return sha256_hex(canonical_json(normalize_action(action)))
+    """SHA-256 hex digest of the HASH_FIELDS canonical action document."""
+    return sha256_hex(canonical_json(hashed_action(action)))
 
 
 def content_hash(document: Mapping[str, Any]) -> str:

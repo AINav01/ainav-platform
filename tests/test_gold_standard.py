@@ -20,7 +20,7 @@ from agent_gov import (
     verify_export,
     verify_record,
 )
-from agent_gov.hashing import canonical_json, hashes_equal, normalize_action
+from agent_gov.hashing import HASH_FIELDS, canonical_json, hashed_action, hashes_equal, normalize_action
 from agent_gov.invariants import check_admit_ok, check_effect_applied, check_lockfile
 
 from tests.helpers import sample_action
@@ -43,6 +43,24 @@ def test_frozen_action_hash_vector():
         ),
         vec["grant_id"],
     )
+
+
+def test_extra_keys_are_not_hashed():
+    vec = _vectors()
+    bloated = dict(vec["action"])
+    bloated["comment"] = "not a privileged field"
+    bloated["nonce"] = "should-not-change-slot"
+    assert list(hashed_action(bloated)) == list(HASH_FIELDS)
+    assert hashes_equal(action_hash(bloated), vec["action_hash"])
+    left = admit(vec["action"], default_lockfile(), seat_a="oid-1", seat_b="oid-2")
+    from agent_gov.errors import ConsumeReplay
+
+    with pytest.raises(ConsumeReplay):
+        admit(bloated, default_lockfile(), seat_a="oid-1", seat_b="oid-2")
+    mutated = dict(vec["action"])
+    mutated["payload"] = dict(vec["action"]["payload"], amount="101")
+    assert action_hash(mutated) != vec["action_hash"]
+    assert left["record_type"] == "admit_ok"
 
 
 def test_typed_action_matches_dict_hash():
