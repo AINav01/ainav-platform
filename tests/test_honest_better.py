@@ -136,6 +136,34 @@ def test_honest_better_fail_closed():
     sandbox_http["honest_better"]["sandbox_http_is_g14"] = True
     with pytest.raises(IntegrityError):
         validate_honest_better(sandbox_http)
+    planes = copy.deepcopy(load_catalog())
+    planes["honest_better"]["planes_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(planes)
+    industry_ten = copy.deepcopy(load_catalog())
+    industry_ten["honest_better"]["industry_ten_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(industry_ten)
+    client_ten = copy.deepcopy(load_catalog())
+    client_ten["honest_better"]["client_ten_as_live_client"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(client_ten)
+    twin_ten = copy.deepcopy(load_catalog())
+    twin_ten["honest_better"]["twin_ten_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(twin_ten)
+    vertical = copy.deepcopy(load_catalog())
+    vertical["honest_better"]["named_vertical_as_sku"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(vertical)
+    assigned = copy.deepcopy(load_catalog())
+    assigned["honest_better"]["institute_twin_is_assigned_sandbox"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(assigned)
+    shared = copy.deepcopy(load_catalog())
+    shared["honest_better"]["shared_sandbox_is_production"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(shared)
     href = copy.deepcopy(load_catalog())
     href["honest_better"]["href"] = "#buyer"
     with pytest.raises(IntegrityError):
@@ -294,6 +322,20 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(note_sandbox)
+    note_planes = copy.deepcopy(load_catalog())
+    note_planes["honest_better"]["note"] = note_planes["honest_better"]["note"].replace(
+        "A 10/10 of industry, client, and twin planes is not launch.",
+        "Planes are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_planes)
+    note_vertical = copy.deepcopy(load_catalog())
+    note_vertical["honest_better"]["note"] = note_vertical["honest_better"]["note"].replace(
+        "A named vertical is not a SKU.",
+        "A named vertical is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_vertical)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -337,6 +379,13 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_sandbox)
+    lede_planes = copy.deepcopy(load_catalog())
+    lede_planes["honest_better"]["lede"] = lede_planes["honest_better"]["lede"].replace(
+        "A 10/10 of industry, client, and twin planes is not launch.",
+        "Planes are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_planes)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
@@ -383,6 +432,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_sandbox)
+    site_planes = copy.deepcopy(load_catalog())
+    site_planes["honest_better"]["site"] = site_planes["honest_better"]["site"].replace(
+        "A 10/10 of industry, client, and twin planes is not launch.",
+        "Planes are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_planes)
+    site_vertical = copy.deepcopy(load_catalog())
+    site_vertical["honest_better"]["site"] = site_vertical["honest_better"]["site"].replace(
+        "A named vertical is not a SKU.",
+        "A named vertical is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_vertical)
+    site_assigned = copy.deepcopy(load_catalog())
+    site_assigned["honest_better"]["site"] = site_assigned["honest_better"]["site"].replace(
+        "The Institute twin is not the assigned client sandbox.",
+        "The Institute twin is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_assigned)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

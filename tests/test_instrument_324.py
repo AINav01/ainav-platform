@@ -239,6 +239,15 @@ def test_instrument_324_fail_closed():
             for item in cat["expert_review"]["first_principles"]
         ]
 
+    def principles_assigned(cat):
+        cat["expert_review"]["first_principles"] = [
+            item.replace(
+                "The Institute twin is not the assigned client sandbox.",
+                "The Institute twin is recorded.",
+            )
+            for item in cat["expert_review"]["first_principles"]
+        ]
+
     def hosted_industry(cat):
         cat["expert_review"]["success"]["honest_better"]["industry_ten_as_launch"] = True
 
@@ -253,6 +262,40 @@ def test_instrument_324_fail_closed():
 
     def universe_ten(cat):
         cat["expert_review"]["success"]["client_universe"]["client_ten_as_live_client"] = True
+
+    def body_vertical(cat):
+        cat["honest_better"]["named_vertical_as_sku"] = True
+
+    def body_assigned(cat):
+        cat["honest_better"]["institute_twin_is_assigned_sandbox"] = True
+
+    def body_shared(cat):
+        cat["honest_better"]["shared_sandbox_is_production"] = True
+
+    def hosted_vertical(cat):
+        cat["expert_review"]["success"]["honest_better"]["named_vertical_as_sku"] = True
+
+    def drawer_vertical(cat):
+        cat["expert_review"]["success"]["industry_drawer"]["named_vertical_as_sku"] = True
+
+    def drawer_note(cat):
+        drawer = cat["expert_review"]["success"]["industry_drawer"]
+        for key in ("lede", "site", "note", "glance"):
+            drawer[key] = str(drawer.get(key) or "").replace(
+                "A 10/10 industry is not launch.",
+                "Industry is recorded.",
+            )
+
+    def universe_assigned(cat):
+        cat["expert_review"]["success"]["client_universe"]["institute_twin_is_assigned_sandbox"] = True
+
+    def universe_note(cat):
+        universe = cat["expert_review"]["success"]["client_universe"]
+        for key in ("lede", "site", "note", "glance"):
+            universe[key] = str(universe.get(key) or "").replace(
+                "A 10/10 client is not a live client.",
+                "Client is recorded.",
+            )
 
     def upgrade_n(cat):
         by_n = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
@@ -293,16 +336,25 @@ def test_instrument_324_fail_closed():
         body_industry,
         body_client,
         body_twin,
+        body_vertical,
+        body_assigned,
+        body_shared,
         site,
         site_vertical,
         site_assigned,
         principles_vertical,
+        principles_assigned,
         hosted,
         hosted_industry,
         hosted_client,
         hosted_twin,
+        hosted_vertical,
         drawer_ten,
+        drawer_vertical,
+        drawer_note,
         universe_ten,
+        universe_assigned,
+        universe_note,
     ):
         hole = copy.deepcopy(edge)
         mutator(hole)
