@@ -351,7 +351,8 @@
       "3.21.0 honest better. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.22.0 making better. Recorded. Making better is not launch. A much better build and business is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.23.0 please make better. Recorded. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Making better is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.24.0 honest planes. Recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.24.0 honest planes. Recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.25.0 honest rails. Recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -449,7 +450,8 @@
       "3.15.0 honest remainder sits on #missing. This plane closed leftover gold-99.5 copy and completed owner hrefs. Owner-only stays owner-only. A remainder close is not launch. Not from this plane.",
       "3.16.0 honest ten sits on #success. This plane recorded a 10/10 quality check and competitor analysis. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. Owner-only stays owner-only. Not from this plane.",
       "3.17.0 honest protect sits on #ip. This plane recorded IP, competitor, and client insulation. An IP board is not a patent. Insulation is not uncopyable. An L1 license is not an assignment of Job C. Kit PASS is not a source license. This board does not close G12. Owner-only stays owner-only. Not from this plane.",
-      "3.24.0 honest planes is catalog law: recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. Complements stay eight. Not LIVE_PIN_OK."
+      "3.24.0 honest planes is catalog law: recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. Complements stay eight. Not LIVE_PIN_OK.",
+      "3.25.0 honest rails is catalog law: recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -768,7 +770,10 @@
           "Treat a 10/10 of industry, client, and twin as launch",
           "Treat a 10/10 industry as launch",
           "Treat a 10/10 client as a live client",
-          "Treat a 10/10 twin as launch"
+          "Treat a 10/10 twin as launch",
+          "Treat a 10/10 of the write rail, proof day, and bake-off as launch",
+          "Treat a polished Microsoft roster as a wired firm",
+          "Treat an identify flag strip as admit"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1219,8 +1224,11 @@
       "honest_better": {
         "better_as_launch": false,
         "client_ten_as_live_client": false,
+        "flag_strip_as_admit": false,
         "honest": true,
         "honest_planes": true,
+        "honest_rails": true,
+        "honest_rails_live": false,
         "href": "#success",
         "industry_ten_as_launch": false,
         "institute_twin_is_assigned_sandbox": false,
@@ -1234,6 +1242,8 @@
         "please_make": true,
         "please_make_live": false,
         "polish_as_production": false,
+        "rails_as_launch": false,
+        "roster_as_wired": false,
         "sandbox_http_is_g14": false,
         "shared_sandbox_is_production": false,
         "systems_as_wired": false,
@@ -2043,7 +2053,7 @@
         "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
         "live": false,
         "live_pin_ok": false,
-        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch.",
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch.",
         "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
         "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
         "refuse": [
@@ -3646,6 +3656,14 @@
         "marks_live_pin": false,
         "n": 94,
         "title": "Honest planes",
+        "who": "tree"
+      },
+      {
+        "do": "Ship 3.25.0 honest rails on the write rail, #twin, and #success. Recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 95,
+        "title": "Honest rails",
         "who": "tree"
       }
     ],

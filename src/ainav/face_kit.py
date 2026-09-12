@@ -182,8 +182,9 @@ def public_llms() -> str:
         "Honest hold sits on #missing. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. Sentinel is not the admit plane. Complements stay eight.",
         "Honest close sits on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. A catalog list is not collection. Complements stay eight.",
         "Honest join sits on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight.",
-        "Honest better sits on #success. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
+        "Honest better sits on #success. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
         "Honest planes sit on #industry, #universe, #client-planes, and the twin. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. Complements stay eight.",
+        "Honest rails sit on the write rail, #twin, and #success. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight.",
         "About AINav sits on #about. The company is the admit plane. Failsafe, not the AI. Not a running firm. Not a named client. Revenue $0.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
@@ -201,7 +202,7 @@ def public_search() -> dict[str, Any]:
             "id": "sale",
             "title": "The write",
             "href": "index.html#buyer",
-            "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL.",
+            "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL. A 10/10 of the write rail, proof day, and bake-off is not launch.",
         },
         {
             "id": "about",
@@ -243,7 +244,7 @@ def public_search() -> dict[str, Any]:
             "id": "identify",
             "title": "Identify is not admit",
             "href": "identify.html",
-            "text": "SWA Entra login identifies. Identify is not admit. Not seat B. Not LIVE_PIN_OK.",
+            "text": "SWA Entra login identifies. Identify is not admit. An identify flag strip is not admit. Not seat B. Not LIVE_PIN_OK.",
         },
         {
             "id": "twin-review",
@@ -261,7 +262,7 @@ def public_search() -> dict[str, Any]:
             "id": "demo",
             "title": "First-class demo",
             "href": "index.html#twin",
-            "text": "Ninety-minute proof day. Browser rehearsal. Graph is not called. Not a video SKU. Not Calendly.",
+            "text": "Ninety-minute proof day. Browser rehearsal. Graph is not called. A 10/10 proof day is not launch. Not a video SKU. Not Calendly.",
         },
         {
             "id": "path",
@@ -273,7 +274,7 @@ def public_search() -> dict[str, Any]:
             "id": "firm",
             "title": "Run the firm",
             "href": "index.html#firm",
-            "text": "First-class operating day and launch gate. Qualify, proof, close, assign, service, launch. 500/500 capacity. Gold is not launch. Not a CRM. Not a fourth SKU.",
+            "text": "First-class operating day and launch gate. Qualify, proof, close, assign, service, launch. 500/500 capacity. Gold is not launch. A polished Microsoft roster is not a wired firm. Not a CRM. Not a fourth SKU.",
         },
         {
             "id": "connect",
@@ -333,7 +334,7 @@ def public_search() -> dict[str, Any]:
             "id": "better",
             "title": "Honest better",
             "href": "index.html#better-consider",
-            "text": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
+            "text": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
         },
         {
             "id": "brand",

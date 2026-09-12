@@ -44,6 +44,10 @@ def test_better_review_is_not_launch():
     assert body["industry_ten_as_launch"] is False
     assert body["client_ten_as_live_client"] is False
     assert body["twin_ten_as_launch"] is False
+    assert body["shared_sandbox_is_production"] is False
+    assert body["rails_as_launch"] is False
+    assert body["roster_as_wired"] is False
+    assert body["flag_strip_as_admit"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -68,8 +72,12 @@ def test_better_review_is_not_launch():
     assert "Treat please make better as launch." in body["this_agent_cannot"]
     assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
     assert "Treat a 10/10 of industry, client, and twin as launch." in body["this_agent_cannot"]
+    assert "Treat a 10/10 of the write rail, proof day, and bake-off as launch." in body["this_agent_cannot"]
+    assert "Treat a polished Microsoft roster as a wired firm." in body["this_agent_cannot"]
+    assert "Treat an identify flag strip as admit." in body["this_agent_cannot"]
     assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
     assert "a 10/10 of industry, client, and twin planes is not launch" in body["lede"].lower()
+    assert "a 10/10 of the write rail, proof day, and bake-off is not launch" in body["lede"].lower()
     assert "twin http 200 is not launch" in body["lede"].lower()
     probes = body["probes"]
     assert probes["complements"] == 8
@@ -164,6 +172,18 @@ def test_honest_better_fail_closed():
     shared["honest_better"]["shared_sandbox_is_production"] = True
     with pytest.raises(IntegrityError):
         validate_honest_better(shared)
+    rails = copy.deepcopy(load_catalog())
+    rails["honest_better"]["rails_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(rails)
+    roster = copy.deepcopy(load_catalog())
+    roster["honest_better"]["roster_as_wired"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(roster)
+    flags = copy.deepcopy(load_catalog())
+    flags["honest_better"]["flag_strip_as_admit"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(flags)
     href = copy.deepcopy(load_catalog())
     href["honest_better"]["href"] = "#buyer"
     with pytest.raises(IntegrityError):
@@ -230,6 +250,9 @@ def test_validate_honest_better_more_fail_closed():
         "named_vertical_as_sku",
         "institute_twin_is_assigned_sandbox",
         "shared_sandbox_is_production",
+        "rails_as_launch",
+        "roster_as_wired",
+        "flag_strip_as_admit",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)
@@ -336,6 +359,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(note_vertical)
+    note_rails = copy.deepcopy(load_catalog())
+    note_rails["honest_better"]["note"] = note_rails["honest_better"]["note"].replace(
+        "A 10/10 of the write rail, proof day, and bake-off is not launch.",
+        "Rails are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_rails)
+    note_roster = copy.deepcopy(load_catalog())
+    note_roster["honest_better"]["note"] = note_roster["honest_better"]["note"].replace(
+        "A polished Microsoft roster is not a wired firm.",
+        "A polished roster is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_roster)
+    note_flags = copy.deepcopy(load_catalog())
+    note_flags["honest_better"]["note"] = note_flags["honest_better"]["note"].replace(
+        "An identify flag strip is not admit.",
+        "A flag strip is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_flags)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -386,6 +430,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_planes)
+    lede_rails = copy.deepcopy(load_catalog())
+    lede_rails["honest_better"]["lede"] = lede_rails["honest_better"]["lede"].replace(
+        "A 10/10 of the write rail, proof day, and bake-off is not launch.",
+        "Rails are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_rails)
+    lede_roster = copy.deepcopy(load_catalog())
+    lede_roster["honest_better"]["lede"] = lede_roster["honest_better"]["lede"].replace(
+        "A polished Microsoft roster is not a wired firm.",
+        "A polished roster is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_roster)
+    lede_flags = copy.deepcopy(load_catalog())
+    lede_flags["honest_better"]["lede"] = lede_flags["honest_better"]["lede"].replace(
+        "An identify flag strip is not admit.",
+        "A flag strip is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_flags)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
@@ -453,6 +518,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_assigned)
+    site_rails = copy.deepcopy(load_catalog())
+    site_rails["honest_better"]["site"] = site_rails["honest_better"]["site"].replace(
+        "A 10/10 of the write rail, proof day, and bake-off is not launch.",
+        "Rails are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_rails)
+    site_roster = copy.deepcopy(load_catalog())
+    site_roster["honest_better"]["site"] = site_roster["honest_better"]["site"].replace(
+        "A polished Microsoft roster is not a wired firm.",
+        "A polished roster is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_roster)
+    site_flags = copy.deepcopy(load_catalog())
+    site_flags["honest_better"]["site"] = site_flags["honest_better"]["site"].replace(
+        "An identify flag strip is not admit.",
+        "A flag strip is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_flags)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

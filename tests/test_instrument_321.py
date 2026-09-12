@@ -26,7 +26,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_321_honest_better():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.24.0"
+    assert cat["entity"]["release"] == "3.25.0"
     better = cat["honest_better"]
     assert better["kind"] == "ainav.honest.better.v1"
     assert better["honest"] is True
@@ -85,7 +85,7 @@ def test_release_is_321_honest_better():
     assert "honest better" in principles
     assert "a much better build and business is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 94
+    assert len(cat["expert_review"]["upgrades"]) == 95
     assert upgrades[91]["who"] == "tree"
     assert upgrades[91]["done"] is True
     assert upgrades[91]["marks_live_pin"] is False
@@ -149,17 +149,17 @@ def test_release_is_321_honest_better():
     assert "BETTER_REFUSE" in js
     assert 'getElementById("better-lede")' not in js
     assert "honest better" in twin.lower()
-    assert "Digital twin · 3.24.0" in twin
-    assert "AINAV.Institute twin · 3.24.0" in twin
+    assert "Digital twin · 3.25.0" in twin
+    assert "AINAV.Institute twin · 3.25.0" in twin
     assert "3.16.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.24.0" in kit
-    assert "Release 3.24.0" in lost
+    assert "Application kit · 3.25.0" in kit
+    assert "Release 3.25.0" in lost
     assert "3.16.0" not in lost
-    assert "Ultimate control plane · 3.24.0" in plane
+    assert "Ultimate control plane · 3.25.0" in plane
     assert "3.16.0" not in plane
     assert 'href="index.html#better-consider"' in plane
     assert 'href="index.html#better-consider"' in app
@@ -187,9 +187,9 @@ def test_release_is_321_honest_better():
     assert "Open better" in identify
     assert 'href="index.html#better-consider">Open better' in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.24.0"
+    assert dash["release"] == "3.25.0"
     status = public_status()
-    assert status["release"] == "3.24.0"
+    assert status["release"] == "3.25.0"
     assert status["website"]["honest_better"] is True
     assert status["website"]["honest_better_live"] is False
     assert status["website"]["better_as_launch"] is False

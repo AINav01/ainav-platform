@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 94:
-        raise IntegrityError("expert review needs 16–94 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 95:
+        raise IntegrityError("expert review needs 16–95 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1295,6 +1295,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         92: ("making better", "live_pin_ok"),
         93: ("please make better", "live_pin_ok"),
         94: ("honest planes", "live_pin_ok"),
+        95: ("honest rails", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1915,6 +1916,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat a 10/10 client as a live client", reason_code="CATALOG_REVIEW")
     if "a 10/10 twin as launch" not in does_not:
         raise IntegrityError("CISO posture does not treat a 10/10 twin as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of the write rail, proof day, and bake-off as launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster as a wired firm" not in does_not:
+        raise IntegrityError("CISO posture does not treat a polished Microsoft roster as a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip as admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat an identify flag strip as admit", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -4959,6 +4966,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_322(catalog, body)
     _validate_instrument_323(catalog, body)
     _validate_instrument_324(catalog, body)
+    _validate_instrument_325(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6929,8 +6937,6 @@ def _validate_instrument_323(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_324(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.24.0":
-        raise IntegrityError("entity.release is 3.24.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.24.0" in item and "honest planes" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.24.0 honest planes", reason_code="CATALOG_ENGINEERING")
@@ -6994,6 +7000,52 @@ def _validate_instrument_324(catalog: dict[str, Any], body: dict[str, Any]) -> N
     universe_note = " ".join(str(universe.get(key) or "").lower() for key in ("lede", "site", "note", "glance"))
     if "a 10/10 client is not a live client" not in universe_note:
         raise IntegrityError("3.24.0 client universe keeps a 10/10 client is not a live client", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_325(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.25.0":
+        raise IntegrityError("entity.release is 3.25.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.25.0" in item and "honest rails" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.25.0 honest rails", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_rails") is not True or site.get("honest_planes") is not True:
+        raise IntegrityError("3.25.0 website has honest rails on honest planes", reason_code="CATALOG_PLANE")
+    if site.get("honest_rails_live") is True or site.get("rails_as_launch") is True:
+        raise IntegrityError("3.25.0 rails are not live and a 10/10 of those rails is not launch", reason_code="CATALOG_PLANE")
+    if site.get("roster_as_wired") is True or site.get("flag_strip_as_admit") is True:
+        raise IntegrityError("3.25.0 a polished Microsoft roster is not a wired firm and an identify flag strip is not admit", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("rails_as_launch") is True:
+        raise IntegrityError("3.25.0 a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("roster_as_wired") is True or better.get("flag_strip_as_admit") is True:
+        raise IntegrityError("3.25.0 a polished Microsoft roster is not a wired firm and an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in site_note:
+        raise IntegrityError("3.25.0 better site keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in site_note:
+        raise IntegrityError("3.25.0 better site keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in site_note:
+        raise IntegrityError("3.25.0 better site keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in principles:
+        raise IntegrityError("first-principles must keep a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in principles:
+        raise IntegrityError("first-principles must keep an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest rails" not in ops:
+        raise IntegrityError("3.25.0 operations note keeps honest rails", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-rails launch" not in managed:
+        raise IntegrityError("3.25.0 managed face refuses a 10/10-rails launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("rails_as_launch") is True:
+        raise IntegrityError("3.25.0 hosted better a 10/10 of those rails is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("roster_as_wired") is True or hosted.get("flag_strip_as_admit") is True:
+        raise IntegrityError("3.25.0 hosted better roster is not wired and a flag strip is not admit", reason_code="CATALOG_PLANE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

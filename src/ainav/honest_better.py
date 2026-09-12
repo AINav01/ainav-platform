@@ -5,6 +5,7 @@ A polish pass is not production. Interpretability is not LIVE_PIN_OK.
 Making better is not launch. Please make better is not launch.
 Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Complements stay eight.
 A 10/10 of industry, client, and twin planes is not launch.
+A 10/10 of the write rail, proof day, and bake-off is not launch.
 """
 
 from __future__ import annotations
@@ -57,6 +58,9 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         "named_vertical_as_sku",
         "institute_twin_is_assigned_sandbox",
         "shared_sandbox_is_production",
+        "rails_as_launch",
+        "roster_as_wired",
+        "flag_strip_as_admit",
         "cms",
         "host",
         "is_host",
@@ -121,6 +125,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("the Institute twin is not the assigned client sandbox", reason_code="CATALOG_REVIEW")
     if body.get("shared_sandbox_is_production") is not False:
         raise IntegrityError("a shared sandbox is not production", reason_code="CATALOG_REVIEW")
+    if body.get("rails_as_launch") is not False:
+        raise IntegrityError("a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("roster_as_wired") is not False:
+        raise IntegrityError("a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if body.get("flag_strip_as_admit") is not False:
+        raise IntegrityError("an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
     hops = body.get("hops") or []
     if not isinstance(hops, list) or [item.get("id") for item in hops if isinstance(item, dict)] != list(
         HONEST_BETTER_HOP_IDS
@@ -170,6 +180,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better note keeps a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
     if "a named vertical is not a sku" not in note:
         raise IntegrityError("honest better note keeps a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in note:
+        raise IntegrityError("honest better note keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in note:
+        raise IntegrityError("honest better note keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
     lede = str(body.get("lede") or "").lower()
     if "a much better build and business is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
@@ -187,6 +203,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better lede keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
     if "a 10/10 of industry, client, and twin planes is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in lede:
+        raise IntegrityError("honest better lede keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in lede:
+        raise IntegrityError("honest better lede keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest better" not in site:
         raise IntegrityError("honest better site keeps honest better", reason_code="CATALOG_REVIEW")
@@ -208,6 +230,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better site keeps a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
     if "the institute twin is not the assigned client sandbox" not in site:
         raise IntegrityError("honest better site keeps the Institute twin is not the assigned client sandbox", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in site:
+        raise IntegrityError("honest better site keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in site:
+        raise IntegrityError("honest better site keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
     complements = (catalog.get("connections") or {}).get("complements") or []
     if len(complements) != COMPLEMENT_COUNT:
         raise IntegrityError("complements stay eight. Honest better is not a complement", reason_code="CATALOG_REVIEW")
@@ -256,6 +284,9 @@ def run_better_certification(catalog: dict[str, Any] | None = None) -> dict[str,
         "named_vertical_as_sku": False,
         "institute_twin_is_assigned_sandbox": False,
         "shared_sandbox_is_production": False,
+        "rails_as_launch": False,
+        "roster_as_wired": False,
+        "flag_strip_as_admit": False,
         "complements": COMPLEMENT_COUNT,
         "created": False,
         "certified": False,
@@ -303,6 +334,9 @@ def public_review() -> dict[str, Any]:
         "named_vertical_as_sku": False,
         "institute_twin_is_assigned_sandbox": False,
         "shared_sandbox_is_production": False,
+        "rails_as_launch": False,
+        "roster_as_wired": False,
+        "flag_strip_as_admit": False,
         "created": False,
         "live": False,
         "live_pin_ok": False,
@@ -336,5 +370,8 @@ def public_review() -> dict[str, Any]:
             "Treat a 10/10 twin as launch.",
             "Treat a named vertical as a SKU.",
             "Treat the Institute twin as the assigned client sandbox.",
+            "Treat a 10/10 of the write rail, proof day, and bake-off as launch.",
+            "Treat a polished Microsoft roster as a wired firm.",
+            "Treat an identify flag strip as admit.",
         ],
     }

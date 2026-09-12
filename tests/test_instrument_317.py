@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_317_honest_protect():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.24.0"
+    assert cat["entity"]["release"] == "3.25.0"
     protect = cat["honest_protect"]
     assert protect["kind"] == "ainav.honest.protect.v1"
     assert protect["honest"] is True
@@ -67,7 +67,7 @@ def test_release_is_317_honest_protect():
     assert "honest protect" in principles
     assert "an ip board is not a patent" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 94
+    assert len(cat["expert_review"]["upgrades"]) == 95
     assert upgrades[87]["who"] == "tree"
     assert upgrades[87]["done"] is True
     assert upgrades[87]["marks_live_pin"] is False
@@ -109,17 +109,17 @@ def test_release_is_317_honest_protect():
     assert "buyer-protect-lede" in js
     assert "ten-lede" not in js
     assert "honest protect" in twin.lower() or "3.17.0" in twin
-    assert "Digital twin · 3.24.0" in twin
-    assert "AINAV.Institute twin · 3.24.0" in twin
+    assert "Digital twin · 3.25.0" in twin
+    assert "AINAV.Institute twin · 3.25.0" in twin
     assert "3.16.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.24.0" in kit
-    assert "Release 3.24.0" in lost
+    assert "Application kit · 3.25.0" in kit
+    assert "Release 3.25.0" in lost
     assert "3.16.0" not in lost
-    assert "Ultimate control plane · 3.24.0" in plane
+    assert "Ultimate control plane · 3.25.0" in plane
     assert "3.16.0" not in plane
     assert 'href="index.html#protect-consider"' in plane
     assert 'href="index.html#protect-consider"' in app
@@ -130,9 +130,9 @@ def test_release_is_317_honest_protect():
     assert "An IP board is a patent" in identify
     assert "Open protect" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.24.0"
+    assert dash["release"] == "3.25.0"
     status = public_status()
-    assert status["release"] == "3.24.0"
+    assert status["release"] == "3.25.0"
     assert status["website"]["honest_protect"] is True
     assert status["website"]["honest_protect_live"] is False
     assert status["website"]["protect_as_patent"] is False

@@ -359,6 +359,11 @@ def public_status() -> dict[str, Any]:
             "named_vertical_as_sku": False,
             "institute_twin_is_assigned_sandbox": False,
             "shared_sandbox_is_production": False,
+            "honest_rails": bool(site.get("honest_rails")),
+            "honest_rails_live": False,
+            "rails_as_launch": False,
+            "roster_as_wired": False,
+            "flag_strip_as_admit": False,
         },
         "bc": {
             "connection": "bc.premium",

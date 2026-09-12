@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof, #hero-write-rail, #hero-rails-proof, #twin-day-proof, #success-rails-proof { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -393,7 +393,7 @@ h1 {
 .write-rail li[data-step="seat_a"]::before,
 .write-rail li[data-step="seat_b"]::before { color: var(--gold-2); }
 .write-rail li[data-step="seat_a"] span,
-.write-rail li[data-step="seat_b"] span { color: #d8d2c6; }
+.write-rail li[data-step="seat_b"] span { color: #ece8e0; }
 .write-rail li[data-step="hash"] {
   border-top: 3px solid var(--gold);
 }
@@ -497,7 +497,7 @@ h1 {
   letter-spacing: 0.02em;
 }
 #hero-contrast article[data-pin="job-c"] p,
-#hero-contrast article[data-lane="gate"] p { color: #d8d2c6; }
+#hero-contrast article[data-lane="gate"] p { color: #ece8e0; }
 #hero-contrast article[data-lane="copy"] {
   min-height: 7.6rem;
   background: color-mix(in srgb, var(--paper) 82%, white);
@@ -2124,15 +2124,28 @@ table.law tr[data-group] th {
 #industry-proof,
 #universe-proof,
 #client-planes-proof,
-#twin-planes-proof {
+#twin-planes-proof,
+#hero-rails-proof,
+#twin-day-proof,
+#success-rails-proof,
+#identify-rails-proof,
+#app-rails-proof {
   margin: 0.95rem 0 1.1rem;
   width: 100%;
 }
 #industry-proof article,
 #universe-proof article,
 #client-planes-proof article,
-#twin-planes-proof article {
+#twin-planes-proof article,
+#hero-rails-proof article,
+#twin-day-proof article,
+#success-rails-proof article,
+#identify-rails-proof article,
+#app-rails-proof article {
   min-height: 0;
+}
+#hero-write-rail {
+  margin-top: 1.35rem;
 }
 #protect-consider { margin: 0 0 1.35rem; }
 #hold-consider { margin: 0 0 1.35rem; }
@@ -3268,8 +3281,14 @@ table.law tr[data-group] th {
   #industry-proof,
   #universe-proof,
   #client-planes-proof,
-  #twin-planes-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  #twin-planes-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #twin-planes-proof,
+  #hero-rails-proof,
+  #twin-day-proof,
+  #success-rails-proof,
+  #identify-rails-proof,
+  #app-rails-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #twin-planes-hops,
+  #twin-rails-hops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #industry-area-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .pages-facts.join-facts,
   .pages-facts.close-facts {
