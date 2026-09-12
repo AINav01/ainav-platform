@@ -24,7 +24,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_298_operable_industry_rooms():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.20.0"
+    assert cat["entity"]["release"] == "3.21.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     rooms = drawer["rooms"]
     assert rooms["kind"] == "ainav.industry_rooms.v1"
@@ -75,7 +75,7 @@ def test_release_is_298_operable_industry_rooms():
     assert "honest zeros" in principles
     assert "refuse is visible" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 90
+    assert len(cat["expert_review"]["upgrades"]) == 91
     assert upgrades[68]["who"] == "tree"
     assert upgrades[68]["done"] is True
     assert upgrades[68]["marks_live_pin"] is False
@@ -125,9 +125,9 @@ def test_release_is_298_operable_industry_rooms():
     assert "Honest zeros" in identify
     assert "Refuse" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.20.0"
+    assert dash["release"] == "3.21.0"
     status = public_status()
-    assert status["release"] == "3.20.0"
+    assert status["release"] == "3.21.0"
     assert status["website"]["industry_operable"] is True
     assert status["website"]["industry_rooms_live"] is False
     assert status["website"]["industry_wells_live"] is False

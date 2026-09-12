@@ -1,0 +1,201 @@
+{
+  "better_as_launch": false,
+  "certified": false,
+  "considered": true,
+  "created": false,
+  "entity": "AINav, Inc.",
+  "facts": [
+    {
+      "admit": false,
+      "id": "systems",
+      "live": false,
+      "name": "Systems",
+      "note": "HASH_FIELDS fail-closed. Extra keys cannot mint a second slot. Missing HASH_FIELDS cannot share sha256({}). Job C: two distinct humans, one action_hash, consume once. Gold 99.5 is the floor. A systems review is not a wired firm.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "services",
+      "live": false,
+      "name": "Services",
+      "note": "Microsoft six required plus eight complements. GitHub gold. Cursor Cloud Agent is not a seat. Cloudflare apex empty. A green service is not production.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "interpretability",
+      "live": false,
+      "name": "Interpretability",
+      "note": "Hops visible. Refuse clicks. Fact-stacks scan. Need and why in ink. A readable board is not a seated second human.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "polish",
+      "live": false,
+      "name": "Polish",
+      "note": "Twin, kit, CSS. Query strings. Owner book. First glance stays the write rail. A 10/10 polish is not launch. A polish pass is not production.",
+      "sku": false
+    },
+    {
+      "admit": false,
+      "id": "business",
+      "live": false,
+      "name": "Business",
+      "note": "Three SKUs: L1, P-ADM, U-DUAL. Operating day on #firm. Catalog list is not recognized revenue. A 10/10 business is not recognized revenue.",
+      "sku": false
+    }
+  ],
+  "fourth_sku": false,
+  "honest": true,
+  "hops": [
+    {
+      "closed": false,
+      "href": "#buyer",
+      "id": "systems",
+      "live": false,
+      "name": "Systems",
+      "note": "Job C. HASH_FIELDS fail-closed. A systems review is not a wired firm."
+    },
+    {
+      "closed": false,
+      "href": "#whole",
+      "id": "build",
+      "live": false,
+      "name": "Build",
+      "note": "Honest whole. A 10/10 review is not launch."
+    },
+    {
+      "closed": false,
+      "href": "#firm",
+      "id": "business",
+      "live": false,
+      "name": "Business",
+      "note": "Operating day. A 10/10 business is not recognized revenue."
+    },
+    {
+      "closed": false,
+      "href": "#firm-ms",
+      "id": "services",
+      "live": false,
+      "name": "Services",
+      "note": "Microsoft roster. A green service is not production."
+    },
+    {
+      "closed": false,
+      "href": "#ten-consider",
+      "id": "polish",
+      "live": false,
+      "name": "Polish",
+      "note": "Honest ten. A 10/10 polish is not launch. A polish pass is not production."
+    },
+    {
+      "closed": false,
+      "href": "#ten-consider",
+      "id": "owner",
+      "live": false,
+      "name": "Owner",
+      "note": "Seat B click stays owner-only. A 10/10 is not a seated second human."
+    }
+  ],
+  "href": "#success",
+  "institute": "AINAV.Institute",
+  "interpret_as_live_pin": false,
+  "is_admit_plane": false,
+  "is_complement": false,
+  "is_connection": false,
+  "is_job_c": false,
+  "is_seat": false,
+  "is_sku": false,
+  "kind": "ainav.honest.better.v1",
+  "lede": "A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
+  "live": false,
+  "live_pin_ok": false,
+  "microsoft_product": "Microsoft stack",
+  "note": "Honest better. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
+  "owner_playbook": {
+    "actor": "James Hodnett",
+    "cannot_be_done_by": "cursor.cloud_agent",
+    "steps": [
+      "Do not treat a much better build and business as launch.",
+      "Do not treat a 10/10 as a seated second human.",
+      "Do not treat a systems review as a wired firm.",
+      "Do not treat a polish pass as production.",
+      "Do not treat interpretability as LIVE_PIN_OK.",
+      "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
+    ]
+  },
+  "polish_as_production": false,
+  "probes": {
+    "better_as_launch": false,
+    "certified": false,
+    "complements": 8,
+    "considered": true,
+    "created": false,
+    "institute_publish": "launch_not_ready",
+    "interpret_as_live_pin": false,
+    "kind": "ainav.honest.better.v1",
+    "launch": false,
+    "live": false,
+    "live_pin_ok": false,
+    "polish_as_production": false,
+    "recorded": true,
+    "systems_as_wired": false,
+    "ten_as_seated": false
+  },
+  "product": "Honest better",
+  "recorded": true,
+  "refuse": [
+    {
+      "href": "#success",
+      "id": "better_as_launch",
+      "name": "A much better build and business as launch",
+      "refuse": true,
+      "refuse_text": "Refused. A much better build and business is not launch.",
+      "title": "A much better build and business as launch"
+    },
+    {
+      "href": "#success",
+      "id": "ten_as_seated",
+      "name": "A 10/10 as a seated second human",
+      "refuse": true,
+      "refuse_text": "Refused. A 10/10 is not a seated second human.",
+      "title": "A 10/10 as a seated second human"
+    },
+    {
+      "href": "#success",
+      "id": "systems_as_wired",
+      "name": "A systems review as a wired firm",
+      "refuse": true,
+      "refuse_text": "Refused. A systems review is not a wired firm.",
+      "title": "A systems review as a wired firm"
+    },
+    {
+      "href": "#success",
+      "id": "polish_as_production",
+      "name": "A polish pass as production",
+      "refuse": true,
+      "refuse_text": "Refused. A polish pass is not production.",
+      "title": "A polish pass as production"
+    },
+    {
+      "href": "#success",
+      "id": "interpret_as_live_pin",
+      "name": "Interpretability as LIVE_PIN_OK",
+      "refuse": true,
+      "refuse_text": "Refused. Interpretability is not LIVE_PIN_OK.",
+      "title": "Interpretability as LIVE_PIN_OK"
+    }
+  ],
+  "site": "Honest better on #success. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK.",
+  "systems_as_wired": false,
+  "ten_as_seated": false,
+  "this_agent_cannot": [
+    "Treat a much better build and business as launch.",
+    "Treat a 10/10 as a seated second human.",
+    "Treat a systems review as a wired firm.",
+    "Treat a polish pass as production.",
+    "Treat interpretability as LIVE_PIN_OK."
+  ],
+  "wired": false
+}

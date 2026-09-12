@@ -1,6 +1,6 @@
 {
   "name": "ainav-institute-api",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "private": true,
   "main": "src/app.js",
   "description": "Read-only Institute Function. Does not write a SoR. Not Job C.",

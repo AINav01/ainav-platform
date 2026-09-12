@@ -182,6 +182,7 @@ def public_llms() -> str:
         "Honest hold sits on #missing. Recorded. A vault hold is not LIVE_PIN_OK. Secret names are not wired notify. Sentinel is not the admit plane. Complements stay eight.",
         "Honest close sits on #path. Recorded. A 10/10 close is not launch. A booking is not recognized revenue. A catalog list is not collection. Complements stay eight.",
         "Honest join sits on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight.",
+        "Honest better sits on #success. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
         "About AINav sits on #about. The company is the admit plane. Failsafe, not the AI. Not a running firm. Not a named client. Revenue $0.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
@@ -326,6 +327,12 @@ def public_search() -> dict[str, Any]:
             "title": "Honest join",
             "href": "index.html#join-consider",
             "text": "Honest join. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. A 10/10+ quality check is not launch. Complements stay eight. Not a /join route.",
+        },
+        {
+            "id": "better",
+            "title": "Honest better",
+            "href": "index.html#better-consider",
+            "text": "Honest better. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
         },
         {
             "id": "brand",

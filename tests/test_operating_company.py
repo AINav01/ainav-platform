@@ -97,8 +97,8 @@ def test_operating_company_is_catalog_law_and_on_the_sale_site():
     assert 'id="firm-rails"' in html
     assert 'id="firm-day"' in html
     assert 'id="firm-gates"' in html
-    assert 'src="site.js?v=3.20.0"' in html
-    assert 'src="site.js?v=3.20.0"' in twin
+    assert 'src="site.js?v=3.21.0"' in html
+    assert 'src="site.js?v=3.21.0"' in twin
     assert html.find('id="firm-ms"') < html.find('id="firm-day"')
     assert 'id="firm-open-assign"' in html
     assert "firm-wire-sharepoint" in html

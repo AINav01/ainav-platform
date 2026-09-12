@@ -335,6 +335,13 @@ def public_status() -> dict[str, Any]:
             "licensed_as_wired_firm": False,
             "manage_ops_as_closed": False,
             "certify_as_running": False,
+            "honest_better": bool(site.get("honest_better")),
+            "honest_better_live": False,
+            "better_as_launch": False,
+            "ten_as_seated": False,
+            "systems_as_wired": False,
+            "polish_as_production": False,
+            "interpret_as_live_pin": False,
         },
         "bc": {
             "connection": "bc.premium",

@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_316_honest_ten():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.20.0"
+    assert cat["entity"]["release"] == "3.21.0"
     ten = cat["honest_ten"]
     assert ten["kind"] == "ainav.honest.ten.v1"
     assert ten["honest"] is True
@@ -67,7 +67,7 @@ def test_release_is_316_honest_ten():
     assert "honest ten" in principles
     assert "a 10/10 quality check is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 90
+    assert len(cat["expert_review"]["upgrades"]) == 91
     assert upgrades[86]["who"] == "tree"
     assert upgrades[86]["done"] is True
     assert upgrades[86]["marks_live_pin"] is False
@@ -116,17 +116,17 @@ def test_release_is_316_honest_ten():
     assert "remain-lede" not in js
     assert "honest ten" in twin.lower()
     assert "a 10/10 quality check is not launch" in twin.lower()
-    assert "Digital twin · 3.20.0" in twin
-    assert "AINAV.Institute twin · 3.20.0" in twin
+    assert "Digital twin · 3.21.0" in twin
+    assert "AINAV.Institute twin · 3.21.0" in twin
     assert "3.16.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.20.0" in kit
-    assert "Release 3.20.0" in lost
+    assert "Application kit · 3.21.0" in kit
+    assert "Release 3.21.0" in lost
     assert "3.16.0" not in lost
-    assert "Ultimate control plane · 3.20.0" in plane
+    assert "Ultimate control plane · 3.21.0" in plane
     assert "3.16.0" not in plane
     assert 'href="index.html#ten-consider"' in plane
     assert 'href="index.html#ten-consider"' in app
@@ -138,9 +138,9 @@ def test_release_is_316_honest_ten():
     assert "Open ten" in identify
     assert "A 10/10 quality check is launch" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.20.0"
+    assert dash["release"] == "3.21.0"
     status = public_status()
-    assert status["release"] == "3.20.0"
+    assert status["release"] == "3.21.0"
     assert status["website"]["honest_ten"] is True
     assert status["website"]["honest_ten_live"] is False
     assert status["website"]["quality_ten_is_launch"] is False
