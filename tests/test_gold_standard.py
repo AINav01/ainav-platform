@@ -61,6 +61,47 @@ def test_extra_keys_are_not_hashed():
     mutated["payload"] = dict(vec["action"]["payload"], amount="101")
     assert action_hash(mutated) != vec["action_hash"]
     assert left["record_type"] == "admit_ok"
+    assert "comment" not in left["proposal"]
+    assert set(left["proposal"]) >= {"action_class", "payload", "proposal_id", "sor_target", "policy_id"}
+
+
+def test_missing_hash_fields_do_not_share_empty_hash():
+    from agent_gov.errors import AdmitDenied
+    from agent_gov.hashing import sha256_hex
+
+    empty = sha256_hex(canonical_json({}))
+    with pytest.raises(AdmitDenied) as comment:
+        action_hash({"comment": "a"})
+    with pytest.raises(AdmitDenied) as nonce:
+        action_hash({"nonce": "b"})
+    assert comment.value.reason_code == "ACTION_FIELD_REQUIRED"
+    assert nonce.value.reason_code == "ACTION_FIELD_REQUIRED"
+    assert comment.value.reason_code == nonce.value.reason_code
+    with pytest.raises(AdmitDenied):
+        hashed_action({"action_class": "custody.withdraw.execute"})
+    with pytest.raises(AdmitDenied) as payload:
+        action_hash(
+            {
+                "action_class": "custody.withdraw.execute",
+                "payload": "not-an-object",
+                "proposal_id": "prp-1",
+                "sor_target": "custody.core",
+                "policy_id": "dual-admit-v1",
+            }
+        )
+    assert payload.value.reason_code == "ACTION_PAYLOAD"
+    with pytest.raises(AdmitDenied) as typed:
+        action_hash(
+            {
+                "action_class": 1,
+                "payload": {},
+                "proposal_id": "prp-1",
+                "sor_target": "custody.core",
+                "policy_id": "dual-admit-v1",
+            }
+        )
+    assert typed.value.reason_code == "ACTION_FIELD_TYPE"
+    assert empty != action_hash(sample_action())
 
 
 def test_typed_action_matches_dict_hash():

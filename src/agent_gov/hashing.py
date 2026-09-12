@@ -84,9 +84,27 @@ def normalize_action(action: Any) -> dict[str, Any]:
 
 
 def hashed_action(action: Any) -> dict[str, Any]:
-    """HASH_FIELDS only. Extra keys are not hashed. Gold vectors stay frozen."""
+    """HASH_FIELDS only. Extra keys are not hashed. Missing HASH_FIELDS fail-closed.
+
+    Gold vectors stay frozen. Two extra-only documents must not share sha256("{}").
+    """
     canonical = normalize_action(action)
-    return {field: canonical[field] for field in HASH_FIELDS if field in canonical}
+    missing = [field for field in HASH_FIELDS if field not in canonical]
+    if missing:
+        raise AdmitDenied(
+            f"action missing HASH_FIELDS: {', '.join(missing)}",
+            reason_code="ACTION_FIELD_REQUIRED",
+        )
+    payload = canonical["payload"]
+    if not isinstance(payload, dict):
+        raise AdmitDenied("payload must be an object", reason_code="ACTION_PAYLOAD")
+    for field in ("action_class", "proposal_id", "sor_target", "policy_id"):
+        if not isinstance(canonical[field], str):
+            raise AdmitDenied(
+                f"{field} must be a string",
+                reason_code="ACTION_FIELD_TYPE",
+            )
+    return {field: canonical[field] for field in HASH_FIELDS}
 
 
 def action_hash(action: Any) -> str:
