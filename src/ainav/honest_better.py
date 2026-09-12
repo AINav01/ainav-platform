@@ -2,7 +2,8 @@
 
 A systems review is not a wired firm. A 10/10 is not a seated second human.
 A polish pass is not production. Interpretability is not LIVE_PIN_OK.
-Making better is not launch. Complements stay eight.
+Making better is not launch. Please make better is not launch.
+Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Complements stay eight.
 """
 
 from __future__ import annotations
@@ -45,6 +46,9 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         "polish_as_production",
         "interpret_as_live_pin",
         "make_as_launch",
+        "please_as_launch",
+        "twin_http_is_launch",
+        "sandbox_http_is_g14",
         "cms",
         "host",
         "is_host",
@@ -89,6 +93,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
     if body.get("make_as_launch") is not False:
         raise IntegrityError("making better is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("please_as_launch") is not False:
+        raise IntegrityError("please make better is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("twin_http_is_launch") is not False:
+        raise IntegrityError("twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("sandbox_http_is_g14") is not False:
+        raise IntegrityError("sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
     hops = body.get("hops") or []
     if not isinstance(hops, list) or [item.get("id") for item in hops if isinstance(item, dict)] != list(
         HONEST_BETTER_HOP_IDS
@@ -128,6 +138,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better note keeps interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
     if "making better is not launch" not in note:
         raise IntegrityError("honest better note keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    if "please make better is not launch" not in note:
+        raise IntegrityError("honest better note keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in note:
+        raise IntegrityError("honest better note keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in note:
+        raise IntegrityError("honest better note keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
     lede = str(body.get("lede") or "").lower()
     if "a much better build and business is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
@@ -137,6 +153,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better lede keeps a 10/10 is not a seated second human", reason_code="CATALOG_REVIEW")
     if "making better is not launch" not in lede:
         raise IntegrityError("honest better lede keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    if "please make better is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in lede:
+        raise IntegrityError("honest better lede keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest better" not in site:
         raise IntegrityError("honest better site keeps honest better", reason_code="CATALOG_REVIEW")
@@ -146,6 +168,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
     if "making better is not launch" not in site:
         raise IntegrityError("honest better site keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    if "please make better is not launch" not in site:
+        raise IntegrityError("honest better site keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in site:
+        raise IntegrityError("honest better site keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in site:
+        raise IntegrityError("honest better site keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
     complements = (catalog.get("connections") or {}).get("complements") or []
     if len(complements) != COMPLEMENT_COUNT:
         raise IntegrityError("complements stay eight. Honest better is not a complement", reason_code="CATALOG_REVIEW")
@@ -184,6 +212,9 @@ def run_better_certification(catalog: dict[str, Any] | None = None) -> dict[str,
         "polish_as_production": False,
         "interpret_as_live_pin": False,
         "make_as_launch": False,
+        "please_as_launch": False,
+        "twin_http_is_launch": False,
+        "sandbox_http_is_g14": False,
         "complements": COMPLEMENT_COUNT,
         "created": False,
         "certified": False,
@@ -221,6 +252,9 @@ def public_review() -> dict[str, Any]:
         "polish_as_production": False,
         "interpret_as_live_pin": False,
         "make_as_launch": False,
+        "please_as_launch": False,
+        "twin_http_is_launch": False,
+        "sandbox_http_is_g14": False,
         "created": False,
         "live": False,
         "live_pin_ok": False,
@@ -245,5 +279,8 @@ def public_review() -> dict[str, Any]:
             "Treat a polish pass as production.",
             "Treat interpretability as LIVE_PIN_OK.",
             "Treat making better as launch.",
+            "Treat please make better as launch.",
+            "Treat twin HTTP as launch.",
+            "Treat sandbox HTTP as G14.",
         ],
     }

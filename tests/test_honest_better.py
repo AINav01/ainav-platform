@@ -37,6 +37,9 @@ def test_better_review_is_not_launch():
     assert body["polish_as_production"] is False
     assert body["interpret_as_live_pin"] is False
     assert body["make_as_launch"] is False
+    assert body["please_as_launch"] is False
+    assert body["twin_http_is_launch"] is False
+    assert body["sandbox_http_is_g14"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -58,6 +61,10 @@ def test_better_review_is_not_launch():
     assert "Treat a much better build and business as launch." in body["this_agent_cannot"]
     assert "Treat interpretability as LIVE_PIN_OK." in body["this_agent_cannot"]
     assert "Treat making better as launch." in body["this_agent_cannot"]
+    assert "Treat please make better as launch." in body["this_agent_cannot"]
+    assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
+    assert "please make better is not launch" in body["lede"].lower()
+    assert "twin http 200 is not launch" in body["lede"].lower()
     probes = body["probes"]
     assert probes["complements"] == 8
     assert probes["better_as_launch"] is False
@@ -111,6 +118,18 @@ def test_honest_better_fail_closed():
     make["honest_better"]["make_as_launch"] = True
     with pytest.raises(IntegrityError):
         validate_honest_better(make)
+    please = copy.deepcopy(load_catalog())
+    please["honest_better"]["please_as_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(please)
+    twin_http = copy.deepcopy(load_catalog())
+    twin_http["honest_better"]["twin_http_is_launch"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(twin_http)
+    sandbox_http = copy.deepcopy(load_catalog())
+    sandbox_http["honest_better"]["sandbox_http_is_g14"] = True
+    with pytest.raises(IntegrityError):
+        validate_honest_better(sandbox_http)
     href = copy.deepcopy(load_catalog())
     href["honest_better"]["href"] = "#buyer"
     with pytest.raises(IntegrityError):
@@ -167,6 +186,9 @@ def test_validate_honest_better_more_fail_closed():
         "polish_as_production",
         "interpret_as_live_pin",
         "make_as_launch",
+        "please_as_launch",
+        "twin_http_is_launch",
+        "sandbox_http_is_g14",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)
@@ -238,6 +260,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(note_make)
+    note_please = copy.deepcopy(load_catalog())
+    note_please["honest_better"]["note"] = note_please["honest_better"]["note"].replace(
+        "Please make better is not launch.",
+        "Better is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_please)
+    note_twin = copy.deepcopy(load_catalog())
+    note_twin["honest_better"]["note"] = note_twin["honest_better"]["note"].replace(
+        "Twin HTTP 200 is not launch.",
+        "Twin HTTP is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_twin)
+    note_sandbox = copy.deepcopy(load_catalog())
+    note_sandbox["honest_better"]["note"] = note_sandbox["honest_better"]["note"].replace(
+        "Sandbox HTTP is not G14.",
+        "Sandbox HTTP is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_sandbox)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -260,6 +303,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_make)
+    lede_please = copy.deepcopy(load_catalog())
+    lede_please["honest_better"]["lede"] = lede_please["honest_better"]["lede"].replace(
+        "Please make better is not launch.",
+        "Better is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_please)
+    lede_twin = copy.deepcopy(load_catalog())
+    lede_twin["honest_better"]["lede"] = lede_twin["honest_better"]["lede"].replace(
+        "Twin HTTP 200 is not launch.",
+        "Twin HTTP is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_twin)
+    lede_sandbox = copy.deepcopy(load_catalog())
+    lede_sandbox["honest_better"]["lede"] = lede_sandbox["honest_better"]["lede"].replace(
+        "Sandbox HTTP is not G14.",
+        "Sandbox HTTP is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_sandbox)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
@@ -285,6 +349,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_make)
+    site_please = copy.deepcopy(load_catalog())
+    site_please["honest_better"]["site"] = site_please["honest_better"]["site"].replace(
+        "Please make better is not launch.",
+        "Better is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_please)
+    site_twin = copy.deepcopy(load_catalog())
+    site_twin["honest_better"]["site"] = site_twin["honest_better"]["site"].replace(
+        "Twin HTTP 200 is not launch.",
+        "Twin HTTP is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_twin)
+    site_sandbox = copy.deepcopy(load_catalog())
+    site_sandbox["honest_better"]["site"] = site_sandbox["honest_better"]["site"].replace(
+        "Sandbox HTTP is not G14.",
+        "Sandbox HTTP is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_sandbox)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

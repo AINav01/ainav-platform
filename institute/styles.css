@@ -2101,6 +2101,19 @@ table.law tr[data-group] th {
 #better-consider { margin: 0 0 1.35rem; max-width: none; width: 100%; box-sizing: border-box; }
 #better-consider .hero-actions {
   margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+#better-proof {
+  margin: 0.95rem 0 1.1rem;
+  width: 100%;
+}
+#better-proof article {
+  min-height: 0;
+}
+#twin-sandbox-proof {
+  margin: 1.1rem 0 0;
 }
 #protect-consider { margin: 0 0 1.35rem; }
 #hold-consider { margin: 0 0 1.35rem; }
@@ -3213,6 +3226,9 @@ table.law tr[data-group] th {
 @media (min-width: 1100px) {
   #join-hops { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   #better-hops { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  #better-consider .hero-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #better-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #twin-sandbox-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   #industry-area-hops { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .pages-facts.join-facts,
   .pages-facts.close-facts {

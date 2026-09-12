@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.22.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.23.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.22.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.23.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -415,6 +415,8 @@ Working well
 - 3.20.0 honest join is catalog law: recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Complements stay eight. Not LIVE_PIN_OK.
 - 3.21.0 honest better is catalog law: recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.
 - 3.22.0 making better is catalog law: recorded. Making better is not launch. Complements stay eight. Not LIVE_PIN_OK.
+- Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14.
+- 3.23.0 please make better is catalog law: recorded. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Complements stay eight. Not LIVE_PIN_OK.
 
 Could be improved — without inventing a fourth SKU
 
@@ -634,6 +636,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 90. [tree] Honest join — Ship 3.20.0 honest join on #firm. Recorded. The join is not launch. The stitched firm is not LIVE_PIN_OK. Licensed-not-wired is not a wired firm. Management and operations are not closed from this plane. A certified simulation is not a running firm. Not LIVE_PIN_OK.
 - 91. [tree] Honest better — Ship 3.21.0 honest better on #success. Recorded. A much better build and business is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Not LIVE_PIN_OK.
 - 92. [tree] Making better — Ship 3.22.0 making better on #success. Recorded. Making better is not launch. A much better build and business is not launch. Complements stay eight. Not LIVE_PIN_OK.
+- 93. [tree] Please make better — Ship 3.23.0 please make better on the twin. Recorded. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Making better is not launch. Complements stay eight. Not LIVE_PIN_OK.
 
 ## What happens next
 

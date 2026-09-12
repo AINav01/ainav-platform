@@ -345,6 +345,11 @@ def public_status() -> dict[str, Any]:
             "honest_make": bool(site.get("honest_make")),
             "honest_make_live": False,
             "make_as_launch": False,
+            "please_make": bool(site.get("please_make")),
+            "please_make_live": False,
+            "please_as_launch": False,
+            "twin_http_is_launch": False,
+            "sandbox_http_is_g14": False,
         },
         "bc": {
             "connection": "bc.premium",

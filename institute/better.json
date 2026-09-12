@@ -34,7 +34,7 @@
       "id": "polish",
       "live": false,
       "name": "Polish",
-      "note": "Twin, kit, CSS. Query strings. The owner-book hops. First glance stays the write rail. Six hops scan. Five facts stack. Making better is not launch. A 10/10 polish is not launch. A polish pass is not production.",
+      "note": "Twin, kit, CSS. Query strings. The owner-book hops. First glance stays the write rail. Six hops scan. Five facts stack. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 polish is not launch. A polish pass is not production.",
       "sku": false
     },
     {
@@ -108,12 +108,12 @@
   "is_seat": false,
   "is_sku": false,
   "kind": "ainav.honest.better.v1",
-  "lede": "A much better build and business is not launch. Making better is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
+  "lede": "A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
   "live": false,
   "live_pin_ok": false,
   "make_as_launch": false,
   "microsoft_product": "Microsoft stack",
-  "note": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
+  "note": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK.",
   "owner_playbook": {
     "actor": "James Hodnett",
     "cannot_be_done_by": "cursor.cloud_agent",
@@ -124,9 +124,13 @@
       "Do not treat a polish pass as production.",
       "Do not treat interpretability as LIVE_PIN_OK.",
       "Do not treat making better as launch.",
+      "Do not treat please make better as launch.",
+      "Do not treat twin HTTP as launch.",
+      "Do not treat sandbox HTTP as G14.",
       "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
     ]
   },
+  "please_as_launch": false,
   "polish_as_production": false,
   "probes": {
     "better_as_launch": false,
@@ -141,10 +145,13 @@
     "live": false,
     "live_pin_ok": false,
     "make_as_launch": false,
+    "please_as_launch": false,
     "polish_as_production": false,
     "recorded": true,
+    "sandbox_http_is_g14": false,
     "systems_as_wired": false,
-    "ten_as_seated": false
+    "ten_as_seated": false,
+    "twin_http_is_launch": false
   },
   "product": "Honest better",
   "recorded": true,
@@ -198,7 +205,8 @@
       "title": "Making better as launch"
     }
   ],
-  "site": "Honest better on #success. Recorded. A much better build and business is not launch. Making better is not launch. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK.",
+  "sandbox_http_is_g14": false,
+  "site": "Honest better on #success. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK.",
   "systems_as_wired": false,
   "ten_as_seated": false,
   "this_agent_cannot": [
@@ -207,7 +215,11 @@
     "Treat a systems review as a wired firm.",
     "Treat a polish pass as production.",
     "Treat interpretability as LIVE_PIN_OK.",
-    "Treat making better as launch."
+    "Treat making better as launch.",
+    "Treat please make better as launch.",
+    "Treat twin HTTP as launch.",
+    "Treat sandbox HTTP as G14."
   ],
+  "twin_http_is_launch": false,
   "wired": false
 }

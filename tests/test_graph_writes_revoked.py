@@ -40,7 +40,7 @@ def test_graph_writes_revoked_is_owner_recorded():
         for item in cat["engineering"]["closed_in_tree"]
     )
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 92
+    assert len(cat["expert_review"]["upgrades"]) == 93
     assert upgrades[3]["who"] == "owner"
     assert upgrades[3]["done"] is True
     assert upgrades[3]["marks_live_pin"] is False
@@ -52,7 +52,7 @@ def test_graph_writes_revoked_is_owner_recorded():
     depts = {item["id"]: item for item in cat["organization"]["departments"]}
     assert "Graph Write" not in " ".join(depts["dept.people"]["blocked_by"])
     assert "Graph Write" not in " ".join(depts["dept.compliance"]["blocked_by"])
-    assert cat["entity"]["release"] == "3.22.0"
+    assert cat["entity"]["release"] == "3.23.0"
 
 
 def _reject(mutator):

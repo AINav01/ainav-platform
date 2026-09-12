@@ -17,7 +17,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_322_making_better():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.22.0"
+    assert cat["entity"]["release"] == "3.23.0"
     better = cat["honest_better"]
     assert better["make_as_launch"] is False
     assert "making better is not launch" in better["note"].lower()
@@ -35,7 +35,7 @@ def test_release_is_322_making_better():
     principles = " ".join(cat["expert_review"]["first_principles"]).lower()
     assert "making better is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 92
+    assert len(cat["expert_review"]["upgrades"]) == 93
     assert upgrades[92]["who"] == "tree"
     assert upgrades[92]["done"] is True
     assert upgrades[92]["marks_live_pin"] is False
@@ -48,6 +48,7 @@ def test_release_is_322_making_better():
     identify = Path("institute/identify.html").read_text(encoding="utf-8")
     app = Path("institute/app.html").read_text(encoding="utf-8")
     twin = Path("institute/twin.html").read_text(encoding="utf-8")
+    assert "3.23.0" in html
     assert "3.22.0" in html
     assert "3.21.0" in html
     assert "making better is not launch" in html.lower()
@@ -73,7 +74,7 @@ def test_release_is_322_making_better():
     assert "Making better is launch" in identify
     assert "Making better is launch" in app
     assert "making better is not launch" in twin.lower()
-    assert "Application · 3.22.0" in app
+    assert "Application · 3.23.0" in app
     assert html.count("Walk honest better") >= 4
     assert html.count("Owner book") == 1
     llms = public_llms().lower()
@@ -82,9 +83,9 @@ def test_release_is_322_making_better():
     better_rec = next(item for item in search["records"] if item["id"] == "better")
     assert "making better is not launch" in better_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.22.0"
+    assert dash["release"] == "3.23.0"
     status = public_status()
-    assert status["release"] == "3.22.0"
+    assert status["release"] == "3.23.0"
     assert status["website"]["honest_make"] is True
     assert status["website"]["honest_make_live"] is False
     assert status["website"]["make_as_launch"] is False
@@ -168,10 +169,11 @@ def test_instrument_322_fail_closed():
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
-    hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "3.21.0"
-    with pytest.raises(IntegrityError):
-        catmod._validate_instrument_322(hole, hole["plane_interface"])
+    for mutator in (body_launch, site, hosted):
+        hole = copy.deepcopy(edge)
+        mutator(hole)
+        with pytest.raises(IntegrityError):
+            catmod._validate_instrument_322(hole, hole["plane_interface"])
     ciso_hole = copy.deepcopy(edge["expert_review"]["success"])
     ciso_hole["ciso"]["does_not"] = [
         item for item in ciso_hole["ciso"]["does_not"] if item != "Treat making better as launch"

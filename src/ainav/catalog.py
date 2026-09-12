@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 92:
-        raise IntegrityError("expert review needs 16–92 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 93:
+        raise IntegrityError("expert review needs 16–93 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1293,6 +1293,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         90: ("honest join", "live_pin_ok"),
         91: ("honest better", "live_pin_ok"),
         92: ("making better", "live_pin_ok"),
+        93: ("please make better", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1899,6 +1900,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat interpretability as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
     if "making better as launch" not in does_not:
         raise IntegrityError("CISO posture does not treat making better as launch", reason_code="CATALOG_REVIEW")
+    if "please make better as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat please make better as launch", reason_code="CATALOG_REVIEW")
+    if "twin http as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat twin HTTP as launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http as g14" not in does_not:
+        raise IntegrityError("CISO posture does not treat sandbox HTTP as G14", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -4941,6 +4948,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_320(catalog, body)
     _validate_instrument_321(catalog, body)
     _validate_instrument_322(catalog, body)
+    _validate_instrument_323(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6837,8 +6845,6 @@ def _validate_instrument_321(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_322(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.22.0":
-        raise IntegrityError("entity.release is 3.22.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.22.0" in item and "making better" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.22.0 making better", reason_code="CATALOG_ENGINEERING")
@@ -6866,6 +6872,52 @@ def _validate_instrument_322(catalog: dict[str, Any], body: dict[str, Any]) -> N
     hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
     if hosted.get("make_as_launch") is True:
         raise IntegrityError("3.22.0 hosted better making better is not launch", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_323(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.23.0":
+        raise IntegrityError("entity.release is 3.23.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.23.0" in item and "please make better" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.23.0 please make better", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("please_make") is not True or site.get("honest_make") is not True:
+        raise IntegrityError("3.23.0 website has please make on honest make", reason_code="CATALOG_PLANE")
+    if site.get("please_make_live") is True or site.get("please_as_launch") is True:
+        raise IntegrityError("3.23.0 please make is not live and please make better is not launch", reason_code="CATALOG_PLANE")
+    if site.get("twin_http_is_launch") is True or site.get("sandbox_http_is_g14") is True:
+        raise IntegrityError("3.23.0 twin HTTP is not launch and sandbox HTTP is not G14", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("please_as_launch") is True:
+        raise IntegrityError("3.23.0 please make better is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("twin_http_is_launch") is True or better.get("sandbox_http_is_g14") is True:
+        raise IntegrityError("3.23.0 twin HTTP is not launch and sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "please make better is not launch" not in site_note:
+        raise IntegrityError("3.23.0 better site keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in site_note:
+        raise IntegrityError("3.23.0 better site keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in site_note:
+        raise IntegrityError("3.23.0 better site keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "please make better is not launch" not in principles:
+        raise IntegrityError("first-principles must keep please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in principles:
+        raise IntegrityError("first-principles must keep twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in principles:
+        raise IntegrityError("first-principles must keep sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "please make better" not in ops:
+        raise IntegrityError("3.23.0 operations note keeps please make better", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a please-make-better launch" not in managed:
+        raise IntegrityError("3.23.0 managed face refuses a please-make-better launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("please_as_launch") is True:
+        raise IntegrityError("3.23.0 hosted better please make better is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("twin_http_is_launch") is True or hosted.get("sandbox_http_is_g14") is True:
+        raise IntegrityError("3.23.0 hosted better twin HTTP is not launch and sandbox HTTP is not G14", reason_code="CATALOG_PLANE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -26,7 +26,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_299_fully_operable_industry_drawer():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.22.0"
+    assert cat["entity"]["release"] == "3.23.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     rooms = drawer["rooms"]
     assert drawer["fully_operable"] is True
@@ -98,7 +98,7 @@ def test_release_is_299_fully_operable_industry_drawer():
     assert "every refuse clicks" in principles
     assert "catalog is the message" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 92
+    assert len(cat["expert_review"]["upgrades"]) == 93
     assert upgrades[69]["who"] == "tree"
     assert upgrades[69]["done"] is True
     assert upgrades[69]["marks_live_pin"] is False
@@ -159,9 +159,9 @@ def test_release_is_299_fully_operable_industry_drawer():
     assert "Every refuse" in identify
     assert "the message" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.22.0"
+    assert dash["release"] == "3.23.0"
     exported_status = public_status()
-    assert exported_status["release"] == "3.22.0"
+    assert exported_status["release"] == "3.23.0"
     assert exported_status["website"]["industry_fully_operable"] is True
     assert exported_status["website"]["industry_operable"] is True
     assert exported_status["website"]["industry_rooms_live"] is False
@@ -453,7 +453,8 @@ def test_industry_drawer_fully_operable_fail_closed():
     with pytest.raises(IntegrityError):
         catmod._validate_success_program(ciso)
     upgrade = copy.deepcopy(cat)
-    upgrade["expert_review"]["upgrades"][-1]["title"] = "Rooms"
-    upgrade["expert_review"]["upgrades"][-1]["do"] = "Ship 2.99.0. Not LIVE_PIN_OK."
+    by_n = {item["n"]: item for item in upgrade["expert_review"]["upgrades"]}
+    by_n[69]["title"] = "Rooms"
+    by_n[69]["do"] = "Ship 2.99.0. Not LIVE_PIN_OK."
     with pytest.raises(IntegrityError):
         validate_catalog(upgrade)
