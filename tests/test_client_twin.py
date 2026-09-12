@@ -627,7 +627,7 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert 'id="access-window-is-this-bound">unbound' in html
     assert 'id="access-window-is-later-bound">connected' in html
     assert 'id="access-window-is-sales">blocked' in html
-    assert 'class="fact-stack"' in html[html.index('id="access-window-facts"') : html.index("</div>", html.index('id="access-window-facts"'))]
+    assert html[html.index('id="access-window-facts"') : html.index('id="access-window-hops"')].count('class="fact-stack"') >= 2
     assert "#access-window-facts.pages-facts.about-facts" in css
     assert "#access-window-facts [data-fact=\"record\"]" in css
     assert 'href="/access"' not in html
