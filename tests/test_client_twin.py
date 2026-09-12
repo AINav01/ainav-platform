@@ -607,8 +607,15 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     assert "Values unread" in html
     assert "The six held names exist in the vault list" in html
     assert "James confirmed the six current versions are not blank" in html
+    assert "This process started before Cursor Secrets" in html
     assert "Cursor underscore env not present this run" in html
-    assert "Probe stays unbound for Teams and SharePoint" in html
+    assert "Probe on this process stays unbound for Teams and SharePoint" in html
+    assert "A later Cloud Agent on the same environment received the six names and probed Teams and SharePoint connected" in html
+    assert "Sales stays blocked" in html
+    assert "No Dataverse URL" in html
+    assert "Teams connected is not a seat" in html
+    assert "SharePoint bound is not kit evidence live" in html
+    assert "Cursor Secrets exist on a later Cloud Agent" in html
     assert "A read session is not a seated second human" in html
     assert "Do not grant Graph Writes" in html
     assert "Do not grant Outlook send" in html
