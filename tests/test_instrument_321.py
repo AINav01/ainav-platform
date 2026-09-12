@@ -249,6 +249,13 @@ def test_instrument_321_fail_closed():
             if "honest better" not in item.lower()
         ]
 
+    def interpret_fp(cat):
+        cat["expert_review"]["first_principles"] = [
+            item
+            for item in cat["expert_review"]["first_principles"]
+            if "interpretability is not live_pin_ok" not in item.lower()
+        ]
+
     def ops(cat):
         cat["operations"]["note"] = "SKU attach chain. Honest join sits on #firm."
 
@@ -275,6 +282,7 @@ def test_instrument_321_fail_closed():
         interpret,
         site,
         principles,
+        interpret_fp,
         ops,
         managed,
     ):

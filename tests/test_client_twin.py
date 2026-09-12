@@ -53,9 +53,10 @@ def test_client_twin_is_catalog_law_and_on_the_sale_site():
     objections = {item["id"] for item in cat["expert_review"]["success"]["objections"]}
     assert "path" in objections
     sale = cat["plane_interface"]["floor"]["public_face"]["owner_book"][0]["items"]
-    assert [item["href"] for item in sale][-1] == "#join-consider"
-    assert [item["href"] for item in sale][-2] == "#firm"
-    assert [item["href"] for item in sale][-3] == "#close-consider"
+    assert [item["href"] for item in sale][-1] == "#better-consider"
+    assert [item["href"] for item in sale][-2] == "#join-consider"
+    assert [item["href"] for item in sale][-3] == "#firm"
+    assert [item["href"] for item in sale][-4] == "#close-consider"
     assert 'id="twin-use"' in html
     assert 'id="twin-use-hops"' in html
     assert 'id="twin-use-lede"' in html
