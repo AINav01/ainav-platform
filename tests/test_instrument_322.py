@@ -17,7 +17,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_322_making_better():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.26.0"
+    assert cat["entity"]["release"] == "3.27.0"
     better = cat["honest_better"]
     assert better["make_as_launch"] is False
     assert "making better is not launch" in better["note"].lower()
@@ -35,7 +35,7 @@ def test_release_is_322_making_better():
     principles = " ".join(cat["expert_review"]["first_principles"]).lower()
     assert "making better is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 96
+    assert len(cat["expert_review"]["upgrades"]) == 97
     assert upgrades[92]["who"] == "tree"
     assert upgrades[92]["done"] is True
     assert upgrades[92]["marks_live_pin"] is False
@@ -74,7 +74,7 @@ def test_release_is_322_making_better():
     assert "Making better is launch" in identify
     assert "Making better is launch" in app
     assert "making better is not launch" in twin.lower()
-    assert "Application · 3.26.0" in app
+    assert "Application · 3.27.0" in app
     assert html.count("Walk honest better") >= 4
     assert html.count("Owner book") == 1
     llms = public_llms().lower()
@@ -83,9 +83,9 @@ def test_release_is_322_making_better():
     better_rec = next(item for item in search["records"] if item["id"] == "better")
     assert "making better is not launch" in better_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.26.0"
+    assert dash["release"] == "3.27.0"
     status = public_status()
-    assert status["release"] == "3.26.0"
+    assert status["release"] == "3.27.0"
     assert status["website"]["honest_make"] is True
     assert status["website"]["honest_make_live"] is False
     assert status["website"]["make_as_launch"] is False

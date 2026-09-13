@@ -51,6 +51,9 @@ def test_better_review_is_not_launch():
     assert body["craft_as_launch"] is False
     assert body["look_as_production"] is False
     assert body["graphic_as_launch"] is False
+    assert body["kit_as_launch"] is False
+    assert body["face_as_launch"] is False
+    assert body["type_as_launch"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -81,10 +84,16 @@ def test_better_review_is_not_launch():
     assert "Treat a 10/10 of quality, content, format, and graphics as launch." in body["this_agent_cannot"]
     assert "Treat a 10/10 look as production." in body["this_agent_cannot"]
     assert "Treat a polished graphic as launch." in body["this_agent_cannot"]
+    assert "Treat a green kit check as launch." in body["this_agent_cannot"]
+    assert "Treat a 10/10 face as production." in body["this_agent_cannot"]
+    assert "Treat readable type as launch." in body["this_agent_cannot"]
     assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
     assert "a 10/10 of industry, client, and twin planes is not launch" in body["lede"].lower()
     assert "a 10/10 of the write rail, proof day, and bake-off is not launch" in body["lede"].lower()
     assert "a 10/10 of quality, content, format, and graphics is not launch" in body["lede"].lower()
+    assert "a green kit check is not launch" in body["lede"].lower()
+    assert "a 10/10 face is not production" in body["lede"].lower()
+    assert "readable type is not launch" in body["lede"].lower()
     assert "twin http 200 is not launch" in body["lede"].lower()
     probes = body["probes"]
     assert probes["complements"] == 8
@@ -263,6 +272,9 @@ def test_validate_honest_better_more_fail_closed():
         "craft_as_launch",
         "look_as_production",
         "graphic_as_launch",
+        "kit_as_launch",
+        "face_as_launch",
+        "type_as_launch",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)
@@ -411,6 +423,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(note_graphic)
+    note_kit = copy.deepcopy(load_catalog())
+    note_kit["honest_better"]["note"] = note_kit["honest_better"]["note"].replace(
+        "A green kit check is not launch.",
+        "Kit is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_kit)
+    note_face = copy.deepcopy(load_catalog())
+    note_face["honest_better"]["note"] = note_face["honest_better"]["note"].replace(
+        "A 10/10 face is not production.",
+        "A face is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_face)
+    note_type = copy.deepcopy(load_catalog())
+    note_type["honest_better"]["note"] = note_type["honest_better"]["note"].replace(
+        "Readable type is not launch.",
+        "Type is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_type)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -503,6 +536,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_graphic)
+    lede_kit = copy.deepcopy(load_catalog())
+    lede_kit["honest_better"]["lede"] = lede_kit["honest_better"]["lede"].replace(
+        "A green kit check is not launch.",
+        "Kit is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_kit)
+    lede_face = copy.deepcopy(load_catalog())
+    lede_face["honest_better"]["lede"] = lede_face["honest_better"]["lede"].replace(
+        "A 10/10 face is not production.",
+        "A face is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_face)
+    lede_type = copy.deepcopy(load_catalog())
+    lede_type["honest_better"]["lede"] = lede_type["honest_better"]["lede"].replace(
+        "Readable type is not launch.",
+        "Type is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_type)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
@@ -612,6 +666,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_graphic)
+    site_kit = copy.deepcopy(load_catalog())
+    site_kit["honest_better"]["site"] = site_kit["honest_better"]["site"].replace(
+        "A green kit check is not launch.",
+        "Kit is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_kit)
+    site_face = copy.deepcopy(load_catalog())
+    site_face["honest_better"]["site"] = site_face["honest_better"]["site"].replace(
+        "A 10/10 face is not production.",
+        "A face is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_face)
+    site_type = copy.deepcopy(load_catalog())
+    site_type["honest_better"]["site"] = site_type["honest_better"]["site"].replace(
+        "Readable type is not launch.",
+        "Type is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_type)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

@@ -22,10 +22,37 @@
     root.setAttribute("aria-label", "Catalog matches");
   }
 
+  function optionEls(root) {
+    if (!root) return [];
+    return Array.prototype.slice.call(root.querySelectorAll('[role="option"]'));
+  }
+
+  function markActive(input, root, index) {
+    var opts = optionEls(root);
+    if (!input) return;
+    if (!opts.length || index < 0 || index >= opts.length) {
+      input.removeAttribute("aria-activedescendant");
+      opts.forEach(function (item) {
+        item.classList.remove("is-active");
+        item.removeAttribute("aria-selected");
+      });
+      return;
+    }
+    opts.forEach(function (item, i) {
+      var on = i === index;
+      item.classList.toggle("is-active", on);
+      if (on) item.setAttribute("aria-selected", "true");
+      else item.removeAttribute("aria-selected");
+    });
+    if (opts[index].id) input.setAttribute("aria-activedescendant", opts[index].id);
+    if (opts[index].scrollIntoView) opts[index].scrollIntoView({ block: "nearest" });
+  }
+
   function close(input, root) {
     if (root) root.textContent = "";
     restoreListbox(root);
     setExpanded(input, false);
+    if (input) input.removeAttribute("aria-activedescendant");
   }
 
   function dismiss(input, root) {
@@ -36,6 +63,7 @@
   function render(root, items, input) {
     root.textContent = "";
     setExpanded(input, true);
+    if (input) input.removeAttribute("aria-activedescendant");
     if (!items.length) {
       root.setAttribute("role", "status");
       root.removeAttribute("aria-label");
@@ -91,11 +119,13 @@
 
   function bind(input, out, records) {
     if (!input || !out) return;
+    var activeIndex = -1;
     input.addEventListener("input", function () {
       var terms = String(input.value || "")
         .toLowerCase()
         .split(/\s+/)
         .filter(Boolean);
+      activeIndex = -1;
       if (!terms.length) {
         close(input, out);
         return;
@@ -109,9 +139,29 @@
       );
     });
     input.addEventListener("keydown", function (event) {
+      var opts = optionEls(out);
       if (event.key === "Escape") {
         event.preventDefault();
+        activeIndex = -1;
         dismiss(input, out);
+        return;
+      }
+      if (!opts.length) return;
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        activeIndex = activeIndex < opts.length - 1 ? activeIndex + 1 : 0;
+        markActive(input, out, activeIndex);
+        return;
+      }
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        activeIndex = activeIndex > 0 ? activeIndex - 1 : opts.length - 1;
+        markActive(input, out, activeIndex);
+        return;
+      }
+      if (event.key === "Enter" && activeIndex >= 0 && opts[activeIndex]) {
+        event.preventDefault();
+        opts[activeIndex].click();
       }
     });
   }

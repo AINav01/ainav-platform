@@ -16,7 +16,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_294_operable_universe():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.26.0"
+    assert cat["entity"]["release"] == "3.27.0"
     universe = cat["expert_review"]["success"]["client_universe"]
     assert universe["operable"] is True
     assert universe["refuse_is_visible"] is True
@@ -45,7 +45,7 @@ def test_release_is_294_operable_universe():
     assert "honest zeros" in principles
     assert "refuse is visible" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 96
+    assert len(cat["expert_review"]["upgrades"]) == 97
     assert upgrades[64]["who"] == "tree"
     assert upgrades[64]["done"] is True
     assert upgrades[64]["marks_live_pin"] is False
@@ -82,9 +82,9 @@ def test_release_is_294_operable_universe():
     assert "Mark <b>unnamed</b>" in app or "unnamed" in app
     assert 'id="app-floor-universe"' in app
     dash = public_dashboard()
-    assert dash["release"] == "3.26.0"
+    assert dash["release"] == "3.27.0"
     status = public_status()
-    assert status["release"] == "3.26.0"
+    assert status["release"] == "3.27.0"
     assert status["website"]["universe_operable"] is True
     assert status["website"]["universe_wells_live"] is False
     held = publish_institute()

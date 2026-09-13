@@ -60,6 +60,8 @@
       "/craft",
       "/look",
       "/graphics",
+      "/face",
+      "/please",
       "/kit.html",
       "/identify.html",
       "/twin.html",
@@ -125,6 +127,8 @@
     {"route": "/craft", "statusCode": 404},
     {"route": "/look", "statusCode": 404},
     {"route": "/graphics", "statusCode": 404},
+    {"route": "/face", "statusCode": 404},
+    {"route": "/please", "statusCode": 404},
     {
       "route": "/owner-gate.html",
       "allowedRoles": ["authenticated"]

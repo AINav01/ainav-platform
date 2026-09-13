@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof, #hero-write-rail, #hero-rails-proof, #hero-diagram, #brand-craft-proof, #ten-craft-proof, #twin-day-proof, #success-rails-proof { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof, #hero-write-rail, #hero-rails-proof, #hero-diagram, #brand-craft-proof, #ten-craft-proof, #ten-face-proof, #twin-day-proof, #success-rails-proof { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -2187,9 +2187,12 @@ table.law tr[data-group] th {
 #identify-rails-proof article,
 #app-rails-proof article,
 #identify-craft-proof article,
+#identify-face-proof article,
 #app-craft-proof article,
+#app-face-proof article,
 #brand-craft-proof article,
-#ten-craft-proof article {
+#ten-craft-proof article,
+#ten-face-proof article {
   min-height: 0;
 }
 #hero-write-rail {
@@ -4139,6 +4142,16 @@ footer a { color: inherit; }
   background: color-mix(in srgb, var(--paper) 74%, white);
 }
 .app-search-out a { color: inherit; }
+.app-search-out [role="option"].is-active {
+  color: var(--gold-ink);
+  text-decoration: underline;
+}
+#site-search:focus-visible,
+#app-search:focus-visible,
+#kit-search:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
 .site-search { margin: 0; min-width: 12rem; }
 .field.site-search input { width: 100%; }
 .top .site-search {

@@ -497,7 +497,7 @@
     "live_clock_claimed": false,
     "note": "Catalog as-of. Not a live Production clock. Not forecast ARR.",
     "pending_binds": 0,
-    "release": "3.26.0"
+    "release": "3.27.0"
   },
   "communications": [
     {
@@ -2241,7 +2241,8 @@
       "3.23.0 please make better. Recorded. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Making better is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.24.0 honest planes: a 10/10 of industry, client, and twin planes is not launch; a named vertical is not a SKU; the Institute twin is not the assigned client sandbox; a shared sandbox is not production; not from this plane",
       "3.25.0 honest rails: a 10/10 of the write rail, proof day, and bake-off is not launch; a polished Microsoft roster is not a wired firm; an identify flag strip is not admit; not from this plane",
-      "3.26.0 honest craft: a 10/10 of quality, content, format, and graphics is not launch; a 10/10 look is not production; a polished graphic is not launch; not from this plane"
+      "3.26.0 honest craft: a 10/10 of quality, content, format, and graphics is not launch; a 10/10 look is not production; a polished graphic is not launch; not from this plane",
+      "3.27.0 honest face: please make better is not launch; a green kit check is not launch; a 10/10 face is not production; readable type is not launch; not from this plane"
     ],
     "kind": "ainav.plane.gaps.v1",
     "live": false,
@@ -3975,7 +3976,7 @@
     "wedge": "bc.general_journal.post",
     "writes_sor": false
   },
-  "release": "3.26.0",
+  "release": "3.27.0",
   "revocations": [
     {
       "by": "Owner / board request",
@@ -4550,7 +4551,10 @@
         "Treat an identify flag strip as admit",
         "Treat a 10/10 of quality, content, format, and graphics as launch",
         "Treat a 10/10 look as production",
-        "Treat a polished graphic as launch"
+        "Treat a polished graphic as launch",
+        "Treat a green kit check as launch",
+        "Treat a 10/10 face as production",
+        "Treat readable type as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -5002,11 +5006,14 @@
       "better_as_launch": false,
       "client_ten_as_live_client": false,
       "craft_as_launch": false,
+      "face_as_launch": false,
       "flag_strip_as_admit": false,
       "graphic_as_launch": false,
       "honest": true,
       "honest_craft": true,
       "honest_craft_live": false,
+      "honest_face": true,
+      "honest_face_live": false,
       "honest_planes": true,
       "honest_rails": true,
       "honest_rails_live": false,
@@ -5015,6 +5022,7 @@
       "institute_twin_is_assigned_sandbox": false,
       "interpret_as_live_pin": false,
       "kind": "ainav.honest.better.v1",
+      "kit_as_launch": false,
       "live": false,
       "look_as_production": false,
       "make_as_launch": false,
@@ -5031,7 +5039,8 @@
       "systems_as_wired": false,
       "ten_as_seated": false,
       "twin_http_is_launch": false,
-      "twin_ten_as_launch": false
+      "twin_ten_as_launch": false,
+      "type_as_launch": false
     },
     "honest_build": {
       "honest": true,
@@ -5835,7 +5844,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch. Not a 10/10-craft launch.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch. Not a 10/10-craft launch. Not a 10/10-face launch.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

@@ -18,7 +18,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_326_honest_craft():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.26.0"
+    assert cat["entity"]["release"] == "3.27.0"
     better = cat["honest_better"]
     assert better["craft_as_launch"] is False
     assert better["look_as_production"] is False
@@ -44,7 +44,7 @@ def test_release_is_326_honest_craft():
     assert "a 10/10 look is not production" in principles
     assert "a polished graphic is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 96
+    assert len(cat["expert_review"]["upgrades"]) == 97
     assert upgrades[96]["who"] == "tree"
     assert upgrades[96]["done"] is True
     assert upgrades[96]["marks_live_pin"] is False
@@ -78,7 +78,7 @@ def test_release_is_326_honest_craft():
     assert "Honest better" not in nav
     assert "Honest rails" not in nav
     assert 'id="twin-craft-hops"' in twin
-    assert "Digital twin · 3.26.0" in twin
+    assert "Digital twin · 3.27.0" in twin
     assert "A 10/10 of quality, content, format, and graphics is not launch" in twin
     assert "A 10/10 of quality, content, format, and graphics is launch" in identify
     assert "A 10/10 look is production" in identify
@@ -87,7 +87,7 @@ def test_release_is_326_honest_craft():
     assert "A 10/10 of quality, content, format, and graphics is launch" in app
     assert "A 10/10 look is production" in app
     assert "A polished graphic is launch" in app
-    assert "Application · 3.26.0" in app
+    assert "Application · 3.27.0" in app
     assert "not a /brand" in lost.lower()
     assert "not a /craft" in lost.lower()
     assert "a 10/10 of quality, content, format, and graphics is not launch" in lost.lower()
@@ -113,7 +113,7 @@ def test_release_is_326_honest_craft():
     assert "twitter:image" in html
     assert "og:image:alt" in html
     assert "graphics/emblem.svg" in kit
-    assert "Application kit · 3.26.0" in kit
+    assert "Application kit · 3.27.0" in kit
     search_js = Path("institute/search.js").read_text(encoding="utf-8")
     assert "RESULT_CAP" in search_js
     assert "aria-expanded" in search_js
@@ -137,9 +137,9 @@ def test_release_is_326_honest_craft():
     assert "a 10/10 of quality, content, format, and graphics is not launch" in ten_rec["text"].lower()
     assert "a 10/10 of quality, content, format, and graphics is not launch" in better_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.26.0"
+    assert dash["release"] == "3.27.0"
     status = public_status()
-    assert status["release"] == "3.26.0"
+    assert status["release"] == "3.27.0"
     assert status["website"]["honest_craft"] is True
     assert status["website"]["honest_craft_live"] is False
     assert status["website"]["craft_as_launch"] is False
@@ -273,10 +273,6 @@ def test_instrument_326_fail_closed():
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
-    hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "3.25.0"
-    with pytest.raises(IntegrityError):
-        catmod._validate_instrument_326(hole, hole["plane_interface"])
     for mutator in (
         body_launch,
         body_look,

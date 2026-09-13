@@ -18,7 +18,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_323_please_make_better():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.26.0"
+    assert cat["entity"]["release"] == "3.27.0"
     better = cat["honest_better"]
     assert better["please_as_launch"] is False
     assert better["twin_http_is_launch"] is False
@@ -44,7 +44,7 @@ def test_release_is_323_please_make_better():
     assert "twin http 200 is not launch" in principles
     assert "sandbox http is not g14" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 96
+    assert len(cat["expert_review"]["upgrades"]) == 97
     assert upgrades[93]["who"] == "tree"
     assert upgrades[93]["done"] is True
     assert upgrades[93]["marks_live_pin"] is False
@@ -81,14 +81,14 @@ def test_release_is_323_please_make_better():
     assert 'id="twin-sandbox-proof"' in twin
     assert "Sandbox HTTP is not G14" in twin
     assert "please make better is not launch" in twin.lower()
-    assert "Digital twin · 3.26.0" in twin
+    assert "Digital twin · 3.27.0" in twin
     assert "Please make better is launch" in identify
     assert "Twin HTTP is launch" in identify
     assert "Sandbox HTTP is G14" in identify
     assert "Please make better is launch" in app
     assert "Twin HTTP is launch" in app
     assert "Sandbox HTTP is G14" in app
-    assert "Application · 3.26.0" in app
+    assert "Application · 3.27.0" in app
     assert "not a /better" in lost.lower()
     assert "please make better is not launch" in lost.lower()
     assert "#better-proof {" in css
@@ -107,9 +107,9 @@ def test_release_is_323_please_make_better():
     assert "please make better is not launch" in better_rec["text"].lower()
     assert "twin http 200 is not launch" in better_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.26.0"
+    assert dash["release"] == "3.27.0"
     status = public_status()
-    assert status["release"] == "3.26.0"
+    assert status["release"] == "3.27.0"
     assert status["website"]["please_make"] is True
     assert status["website"]["please_make_live"] is False
     assert status["website"]["twin_http_is_launch"] is False
@@ -165,9 +165,13 @@ def test_instrument_323_fail_closed():
         ]
 
     def ops(cat):
-        cat["operations"]["note"] = cat["operations"]["note"].replace(
-            "3.23.0 please make better sits on the twin. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. ",
-            "",
+        cat["operations"]["note"] = (
+            cat["operations"]["note"]
+            .replace(
+                "3.23.0 please make better sits on the twin. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. ",
+                "",
+            )
+            .replace("Please make better is not launch.", "")
         )
 
     def managed(cat):

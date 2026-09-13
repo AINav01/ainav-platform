@@ -7,6 +7,8 @@ Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Complements stay eight.
 A 10/10 of industry, client, and twin planes is not launch.
 A 10/10 of the write rail, proof day, and bake-off is not launch.
 A 10/10 of quality, content, format, and graphics is not launch.
+A green kit check is not launch. A 10/10 face is not production.
+Readable type is not launch.
 """
 
 from __future__ import annotations
@@ -65,6 +67,9 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         "craft_as_launch",
         "look_as_production",
         "graphic_as_launch",
+        "kit_as_launch",
+        "face_as_launch",
+        "type_as_launch",
         "cms",
         "host",
         "is_host",
@@ -141,6 +146,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("a 10/10 look is not production", reason_code="CATALOG_REVIEW")
     if body.get("graphic_as_launch") is not False:
         raise IntegrityError("a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("kit_as_launch") is not False:
+        raise IntegrityError("a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("face_as_launch") is not False:
+        raise IntegrityError("a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if body.get("type_as_launch") is not False:
+        raise IntegrityError("readable type is not launch", reason_code="CATALOG_REVIEW")
     hops = body.get("hops") or []
     if not isinstance(hops, list) or [item.get("id") for item in hops if isinstance(item, dict)] != list(
         HONEST_BETTER_HOP_IDS
@@ -202,6 +213,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better note keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
     if "a polished graphic is not launch" not in note:
         raise IntegrityError("honest better note keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check is not launch" not in note:
+        raise IntegrityError("honest better note keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in note:
+        raise IntegrityError("honest better note keeps readable type is not launch", reason_code="CATALOG_REVIEW")
     lede = str(body.get("lede") or "").lower()
     if "a much better build and business is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
@@ -231,6 +248,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better lede keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
     if "a polished graphic is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps readable type is not launch", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest better" not in site:
         raise IntegrityError("honest better site keeps honest better", reason_code="CATALOG_REVIEW")
@@ -264,6 +287,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better site keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
     if "a polished graphic is not launch" not in site:
         raise IntegrityError("honest better site keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check is not launch" not in site:
+        raise IntegrityError("honest better site keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in site:
+        raise IntegrityError("honest better site keeps readable type is not launch", reason_code="CATALOG_REVIEW")
     complements = (catalog.get("connections") or {}).get("complements") or []
     if len(complements) != COMPLEMENT_COUNT:
         raise IntegrityError("complements stay eight. Honest better is not a complement", reason_code="CATALOG_REVIEW")
@@ -318,6 +347,9 @@ def run_better_certification(catalog: dict[str, Any] | None = None) -> dict[str,
         "craft_as_launch": False,
         "look_as_production": False,
         "graphic_as_launch": False,
+        "kit_as_launch": False,
+        "face_as_launch": False,
+        "type_as_launch": False,
         "complements": COMPLEMENT_COUNT,
         "created": False,
         "certified": False,
@@ -371,6 +403,9 @@ def public_review() -> dict[str, Any]:
         "craft_as_launch": False,
         "look_as_production": False,
         "graphic_as_launch": False,
+        "kit_as_launch": False,
+        "face_as_launch": False,
+        "type_as_launch": False,
         "created": False,
         "live": False,
         "live_pin_ok": False,
@@ -410,5 +445,8 @@ def public_review() -> dict[str, Any]:
             "Treat a 10/10 of quality, content, format, and graphics as launch.",
             "Treat a 10/10 look as production.",
             "Treat a polished graphic as launch.",
+            "Treat a green kit check as launch.",
+            "Treat a 10/10 face as production.",
+            "Treat readable type as launch.",
         ],
     }

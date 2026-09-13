@@ -369,6 +369,11 @@ def public_status() -> dict[str, Any]:
             "craft_as_launch": False,
             "look_as_production": False,
             "graphic_as_launch": False,
+            "honest_face": bool(site.get("honest_face")),
+            "honest_face_live": False,
+            "kit_as_launch": False,
+            "face_as_launch": False,
+            "type_as_launch": False,
         },
         "bc": {
             "connection": "bc.premium",
