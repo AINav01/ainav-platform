@@ -456,6 +456,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(note_type)
+    note_use = copy.deepcopy(load_catalog())
+    note_use["honest_better"]["note"] = note_use["honest_better"]["note"].replace(
+        "A 10/10 of operability, interoperability, and usability is not launch.",
+        "Use is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_use)
+    note_certified = copy.deepcopy(load_catalog())
+    note_certified["honest_better"]["note"] = note_certified["honest_better"]["note"].replace(
+        "A 10/10 of prebuilt certified day-one is not launch.",
+        "Certified is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_certified)
+    note_packs = copy.deepcopy(load_catalog())
+    note_packs["honest_better"]["note"] = note_packs["honest_better"]["note"].replace(
+        "Packs, modules, and custom builds are not a fourth SKU.",
+        "Packs are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_packs)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -569,6 +590,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_type)
+    lede_use = copy.deepcopy(load_catalog())
+    lede_use["honest_better"]["lede"] = lede_use["honest_better"]["lede"].replace(
+        "A 10/10 of operability, interoperability, and usability is not launch.",
+        "Use is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_use)
+    lede_certified = copy.deepcopy(load_catalog())
+    lede_certified["honest_better"]["lede"] = lede_certified["honest_better"]["lede"].replace(
+        "A 10/10 of prebuilt certified day-one is not launch.",
+        "Certified is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_certified)
+    lede_packs = copy.deepcopy(load_catalog())
+    lede_packs["honest_better"]["lede"] = lede_packs["honest_better"]["lede"].replace(
+        "Packs, modules, and custom builds are not a fourth SKU.",
+        "Packs are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_packs)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
