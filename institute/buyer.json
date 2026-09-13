@@ -1044,7 +1044,10 @@
         "Treat a 10/10 twin as launch",
         "Treat a 10/10 of the write rail, proof day, and bake-off as launch",
         "Treat a polished Microsoft roster as a wired firm",
-        "Treat an identify flag strip as admit"
+        "Treat an identify flag strip as admit",
+        "Treat a 10/10 of quality, content, format, and graphics as launch",
+        "Treat a 10/10 look as production",
+        "Treat a polished graphic as launch"
       ],
       "holds": [
         "No Graph Write from this plane",
@@ -2113,7 +2116,7 @@
       "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
       "live": false,
       "live_pin_ok": false,
-      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch.",
+      "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch. Not a 10/10-craft launch.",
       "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
       "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
       "refuse": [

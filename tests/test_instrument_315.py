@@ -69,7 +69,7 @@ def test_release_is_315_honest_remainder():
     assert "honest remainder" in principles
     assert "a remainder close is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 95
+    assert len(cat["expert_review"]["upgrades"]) == 96
     assert upgrades[85]["who"] == "tree"
     assert upgrades[85]["done"] is True
     assert upgrades[85]["marks_live_pin"] is False
@@ -108,17 +108,17 @@ def test_release_is_315_honest_remainder():
     assert "pages-lede" not in js
     assert "honest remainder" in twin.lower()
     assert "a remainder close is not launch" in twin.lower()
-    assert "Digital twin · 3.25.0" in twin
-    assert "AINAV.Institute twin · 3.25.0" in twin
+    assert "Digital twin · 3.26.0" in twin
+    assert "AINAV.Institute twin · 3.26.0" in twin
     assert "3.14.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     plane = Path("institute/control-plane.html").read_text(encoding="utf-8")
     css = Path("institute/styles.css").read_text(encoding="utf-8")
-    assert "Application kit · 3.25.0" in kit
-    assert "Release 3.25.0" in lost
+    assert "Application kit · 3.26.0" in kit
+    assert "Release 3.26.0" in lost
     assert "3.14.0" not in lost
-    assert "Ultimate control plane · 3.25.0" in plane
+    assert "Ultimate control plane · 3.26.0" in plane
     assert "3.14.0" not in plane
     assert 'href="index.html#remain-consider"' in plane
     assert 'href="index.html#remain-consider"' in app
@@ -130,9 +130,9 @@ def test_release_is_315_honest_remainder():
     assert "Open remainder" in identify
     assert "A remainder close is launch" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.25.0"
+    assert dash["release"] == "3.26.0"
     status = public_status()
-    assert status["release"] == "3.25.0"
+    assert status["release"] == "3.26.0"
     assert status["website"]["honest_remainder"] is True
     assert status["website"]["honest_remainder_live"] is False
     assert status["website"]["remainder_is_launch"] is False

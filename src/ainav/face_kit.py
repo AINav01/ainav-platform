@@ -185,6 +185,7 @@ def public_llms() -> str:
         "Honest better sits on #success. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight.",
         "Honest planes sit on #industry, #universe, #client-planes, and the twin. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. Complements stay eight.",
         "Honest rails sit on the write rail, #twin, and #success. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight.",
+        "Honest craft sits on the write-rail diagram, #brand, and #ten-proof. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight.",
         "About AINav sits on #about. The company is the admit plane. Failsafe, not the AI. Not a running firm. Not a named client. Revenue $0.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
@@ -202,7 +203,7 @@ def public_search() -> dict[str, Any]:
             "id": "sale",
             "title": "The write",
             "href": "index.html#buyer",
-            "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL. A 10/10 of the write rail, proof day, and bake-off is not launch.",
+            "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL. A 10/10 of the write rail, proof day, and bake-off is not launch. A 10/10 of quality, content, format, and graphics is not launch.",
         },
         {
             "id": "about",
@@ -304,7 +305,7 @@ def public_search() -> dict[str, Any]:
             "id": "ten",
             "title": "Honest ten",
             "href": "index.html#success",
-            "text": "Honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not a /ten route.",
+            "text": "Honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not a /ten route. A 10/10 of quality, content, format, and graphics is not launch.",
         },
         {
             "id": "protect",
@@ -334,13 +335,13 @@ def public_search() -> dict[str, Any]:
             "id": "better",
             "title": "Honest better",
             "href": "index.html#better-consider",
-            "text": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
+            "text": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A 10/10 of quality, content, format, and graphics is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
         },
         {
             "id": "brand",
             "title": "Brand",
             "href": "index.html#brand",
-            "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand.",
+            "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. A 10/10 look is not production. A polished graphic is not launch. A 10/10 of quality, content, format, and graphics is not launch.",
         },
         {
             "id": "universe",

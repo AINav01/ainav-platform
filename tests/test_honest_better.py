@@ -48,6 +48,9 @@ def test_better_review_is_not_launch():
     assert body["rails_as_launch"] is False
     assert body["roster_as_wired"] is False
     assert body["flag_strip_as_admit"] is False
+    assert body["craft_as_launch"] is False
+    assert body["look_as_production"] is False
+    assert body["graphic_as_launch"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -75,9 +78,13 @@ def test_better_review_is_not_launch():
     assert "Treat a 10/10 of the write rail, proof day, and bake-off as launch." in body["this_agent_cannot"]
     assert "Treat a polished Microsoft roster as a wired firm." in body["this_agent_cannot"]
     assert "Treat an identify flag strip as admit." in body["this_agent_cannot"]
+    assert "Treat a 10/10 of quality, content, format, and graphics as launch." in body["this_agent_cannot"]
+    assert "Treat a 10/10 look as production." in body["this_agent_cannot"]
+    assert "Treat a polished graphic as launch." in body["this_agent_cannot"]
     assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
     assert "a 10/10 of industry, client, and twin planes is not launch" in body["lede"].lower()
     assert "a 10/10 of the write rail, proof day, and bake-off is not launch" in body["lede"].lower()
+    assert "a 10/10 of quality, content, format, and graphics is not launch" in body["lede"].lower()
     assert "twin http 200 is not launch" in body["lede"].lower()
     probes = body["probes"]
     assert probes["complements"] == 8
@@ -253,6 +260,9 @@ def test_validate_honest_better_more_fail_closed():
         "rails_as_launch",
         "roster_as_wired",
         "flag_strip_as_admit",
+        "craft_as_launch",
+        "look_as_production",
+        "graphic_as_launch",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)
@@ -380,6 +390,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(note_flags)
+    note_craft = copy.deepcopy(load_catalog())
+    note_craft["honest_better"]["note"] = note_craft["honest_better"]["note"].replace(
+        "A 10/10 of quality, content, format, and graphics is not launch.",
+        "Craft is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_craft)
+    note_look = copy.deepcopy(load_catalog())
+    note_look["honest_better"]["note"] = note_look["honest_better"]["note"].replace(
+        "A 10/10 look is not production.",
+        "A look is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_look)
+    note_graphic = copy.deepcopy(load_catalog())
+    note_graphic["honest_better"]["note"] = note_graphic["honest_better"]["note"].replace(
+        "A polished graphic is not launch.",
+        "A graphic is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(note_graphic)
     lede = copy.deepcopy(load_catalog())
     lede["honest_better"]["lede"] = "Complements stay eight."
     with pytest.raises(IntegrityError):
@@ -451,6 +482,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(lede_flags)
+    lede_craft = copy.deepcopy(load_catalog())
+    lede_craft["honest_better"]["lede"] = lede_craft["honest_better"]["lede"].replace(
+        "A 10/10 of quality, content, format, and graphics is not launch.",
+        "Craft is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_craft)
+    lede_look = copy.deepcopy(load_catalog())
+    lede_look["honest_better"]["lede"] = lede_look["honest_better"]["lede"].replace(
+        "A 10/10 look is not production.",
+        "A look is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_look)
+    lede_graphic = copy.deepcopy(load_catalog())
+    lede_graphic["honest_better"]["lede"] = lede_graphic["honest_better"]["lede"].replace(
+        "A polished graphic is not launch.",
+        "A graphic is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(lede_graphic)
     site = copy.deepcopy(load_catalog())
     site["honest_better"]["site"] = "Better board. A much better build and business is not launch."
     with pytest.raises(IntegrityError):
@@ -539,6 +591,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_flags)
+    site_craft = copy.deepcopy(load_catalog())
+    site_craft["honest_better"]["site"] = site_craft["honest_better"]["site"].replace(
+        "A 10/10 of quality, content, format, and graphics is not launch.",
+        "Craft is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_craft)
+    site_look = copy.deepcopy(load_catalog())
+    site_look["honest_better"]["site"] = site_look["honest_better"]["site"].replace(
+        "A 10/10 look is not production.",
+        "A look is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_look)
+    site_graphic = copy.deepcopy(load_catalog())
+    site_graphic["honest_better"]["site"] = site_graphic["honest_better"]["site"].replace(
+        "A polished graphic is not launch.",
+        "A graphic is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_graphic)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

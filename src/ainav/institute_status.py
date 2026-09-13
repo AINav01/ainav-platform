@@ -364,6 +364,11 @@ def public_status() -> dict[str, Any]:
             "rails_as_launch": False,
             "roster_as_wired": False,
             "flag_strip_as_admit": False,
+            "honest_craft": bool(site.get("honest_craft")),
+            "honest_craft_live": False,
+            "craft_as_launch": False,
+            "look_as_production": False,
+            "graphic_as_launch": False,
         },
         "bc": {
             "connection": "bc.premium",

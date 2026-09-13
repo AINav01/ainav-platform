@@ -56,6 +56,10 @@
       "/demo",
       "/owner",
       "/rails",
+      "/brand",
+      "/craft",
+      "/look",
+      "/graphics",
       "/kit.html",
       "/identify.html",
       "/twin.html",
@@ -117,6 +121,10 @@
     {"route": "/demo", "statusCode": 404},
     {"route": "/owner", "statusCode": 404},
     {"route": "/rails", "statusCode": 404},
+    {"route": "/brand", "statusCode": 404},
+    {"route": "/craft", "statusCode": 404},
+    {"route": "/look", "statusCode": 404},
+    {"route": "/graphics", "statusCode": 404},
     {
       "route": "/owner-gate.html",
       "allowedRoles": ["authenticated"]

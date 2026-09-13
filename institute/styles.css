@@ -170,7 +170,7 @@ body {
 }
 .nav-wrap { display: flex; align-items: center; gap: 0.55rem 1.05rem; }
 nav.primary { display: flex; flex-wrap: wrap; justify-content: flex-end; order: 0; margin-left: auto; }
-.top .site-search { order: 1; min-width: 8.5rem; margin: 0; }
+.top .site-search { order: 1; min-width: 14rem; margin: 0; }
 .top .book-open { order: 2; }
 .nav-more { order: 3; }
 nav a, .nav-more summary, .nav-toggle {
@@ -296,7 +296,7 @@ nav.primary a:hover { border-bottom-color: color-mix(in srgb, var(--gold) 70%, t
 
 main { padding: 0 6vw 8rem; }
 section[id] { scroll-margin-top: 5.2rem; }
-#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof, #hero-write-rail, #hero-rails-proof, #twin-day-proof, #success-rails-proof { scroll-margin-top: 6.4rem; }
+#twin, #demo-console, #product, #path, #close-console, #firm, #firm-console, #firm-ms, #firm-ms-day, #class-glance, #twin-use, #client-planes, #path-enhance, #twin-proof, #life-proof, #client-proof, #eco-proof, #firm-proof, #sale-tools, #bc-tools, #ten-proof, #ten-consider, #better-consider, #ms-proof, #ms-universe, #offer-proof, #included-upsells, #commercial, #brand-island, #ms-sales, #ms-teams-premium, #ms-teams, #ms-e7, #ms-bc, #ms-azure, #ms-entra, #hold-consider, #ready-lanes, #operate-consider, #grok-ms, #access-window, #write-window, #industry, #industry-proof, #universe-proof, #client-planes-proof, #hero-write-rail, #hero-rails-proof, #hero-diagram, #brand-craft-proof, #ten-craft-proof, #twin-day-proof, #success-rails-proof { scroll-margin-top: 6.4rem; }
 #brand { scroll-margin-top: 6.4rem; }
 #universe { scroll-margin-top: 6.4rem; }
 
@@ -2141,11 +2141,18 @@ table.law tr[data-group] th {
 #twin-day-proof article,
 #success-rails-proof article,
 #identify-rails-proof article,
-#app-rails-proof article {
+#app-rails-proof article,
+#identify-craft-proof article,
+#app-craft-proof article,
+#brand-craft-proof article,
+#ten-craft-proof article {
   min-height: 0;
 }
 #hero-write-rail {
   margin-top: 1.35rem;
+}
+#hero-diagram {
+  margin-top: 1.15rem;
 }
 #protect-consider { margin: 0 0 1.35rem; }
 #hold-consider { margin: 0 0 1.35rem; }
@@ -2695,6 +2702,26 @@ table.law tr[data-group] th {
 }
 #ten-proof-zeros {
   margin: 0.85rem 0 0.35rem;
+}
+#brand-craft-zeros {
+  margin: 0.85rem 0 0.35rem;
+}
+#brand-craft-proof img,
+#ten-craft-proof img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0.4rem 0 0.55rem;
+  border: 1px solid var(--rule);
+  background: #100e0b;
+}
+#brand-craft-proof .craft-mark {
+  width: 4rem;
+  height: 4rem;
+  margin-right: auto;
+}
+#brand-craft-proof article[data-mark="og"] img {
+  background: var(--paper);
 }
 #ten-proof-hops {
   display: grid;
@@ -4064,7 +4091,7 @@ footer a { color: inherit; }
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  min-width: 8.5rem;
+  min-width: 14rem;
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4073,7 +4100,7 @@ footer a { color: inherit; }
 .top .site-search input {
   min-height: 2.15rem;
   padding: 0.32rem 0.55rem;
-  width: 9.4rem;
+  width: 14rem;
 }
 .top .book-open {
   min-height: 2.15rem;

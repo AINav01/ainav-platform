@@ -175,10 +175,10 @@ def test_industry_catalog_and_search_name_the_areas():
     assert "Walk Agent Intent" in kit
     assert 'href="index.html#industry-narratives"' in kit
     assert 'href="index.html#success">Bake-off</a>' in kit
-    assert "graphics/emblem.webp" in kit
+    assert "graphics/emblem.svg" in kit
     assert "Walk Agent Intent" in identify
     assert 'href="index.html#success">Bake-off</a>' in identify
-    assert "graphics/emblem.webp" in identify
+    assert "graphics/emblem.svg" in identify
 
 
 def test_industry_lede_refuses_area_fiction():

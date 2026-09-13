@@ -13,14 +13,14 @@
       "type": "image/svg+xml"
     },
     {
+      "src": "graphics/emblem.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
       "src": "graphics/apple-touch.png",
       "sizes": "180x180",
       "type": "image/png"
-    },
-    {
-      "src": "graphics/emblem.webp",
-      "sizes": "512x512",
-      "type": "image/webp"
     }
   ]
 }

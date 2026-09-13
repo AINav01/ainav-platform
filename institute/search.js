@@ -1,6 +1,8 @@
 (function () {
   "use strict";
 
+  var RESULT_CAP = 8;
+
   function score(record, terms) {
     var hay = ((record.title || "") + " " + (record.text || "")).toLowerCase();
     var hits = 0;
@@ -10,13 +12,19 @@
     return hits === terms.length ? hits : 0;
   }
 
+  function setExpanded(input, open) {
+    if (input) input.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
   function dismiss(input, root) {
     if (input) input.value = "";
     if (root) root.textContent = "";
+    setExpanded(input, false);
   }
 
   function render(root, items, input) {
     root.textContent = "";
+    setExpanded(input, true);
     if (!items.length) {
       var empty = document.createElement("p");
       empty.className = "note";
@@ -24,10 +32,11 @@
       root.appendChild(empty);
       return;
     }
-    items.forEach(function (item) {
+    items.slice(0, RESULT_CAP).forEach(function (item) {
       var a = document.createElement("a");
       a.href = item.href;
       a.textContent = item.title;
+      a.setAttribute("role", "option");
       a.addEventListener("click", function (event) {
         dismiss(input, root);
         var href = item.href || a.getAttribute("href") || "";
@@ -58,6 +67,7 @@
       p.className = "note";
       p.textContent = (item.text || "").slice(0, 160);
       var wrap = document.createElement("article");
+      wrap.setAttribute("role", "presentation");
       wrap.appendChild(a);
       wrap.appendChild(p);
       root.appendChild(wrap);

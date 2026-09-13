@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 95:
-        raise IntegrityError("expert review needs 16–95 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 96:
+        raise IntegrityError("expert review needs 16–96 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1296,6 +1296,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         93: ("please make better", "live_pin_ok"),
         94: ("honest planes", "live_pin_ok"),
         95: ("honest rails", "live_pin_ok"),
+        96: ("honest craft", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1922,6 +1923,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat a polished Microsoft roster as a wired firm", reason_code="CATALOG_REVIEW")
     if "an identify flag strip as admit" not in does_not:
         raise IntegrityError("CISO posture does not treat an identify flag strip as admit", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of quality, content, format, and graphics as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of quality, content, format, and graphics as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 look as production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a polished graphic as launch", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -4967,6 +4974,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_323(catalog, body)
     _validate_instrument_324(catalog, body)
     _validate_instrument_325(catalog, body)
+    _validate_instrument_326(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -7003,8 +7011,6 @@ def _validate_instrument_324(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_325(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.25.0":
-        raise IntegrityError("entity.release is 3.25.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.25.0" in item and "honest rails" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.25.0 honest rails", reason_code="CATALOG_ENGINEERING")
@@ -7046,6 +7052,52 @@ def _validate_instrument_325(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("3.25.0 hosted better a 10/10 of those rails is not launch", reason_code="CATALOG_PLANE")
     if hosted.get("roster_as_wired") is True or hosted.get("flag_strip_as_admit") is True:
         raise IntegrityError("3.25.0 hosted better roster is not wired and a flag strip is not admit", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_326(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.26.0":
+        raise IntegrityError("entity.release is 3.26.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.26.0" in item and "honest craft" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.26.0 honest craft", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_craft") is not True or site.get("honest_rails") is not True:
+        raise IntegrityError("3.26.0 website has honest craft on honest rails", reason_code="CATALOG_PLANE")
+    if site.get("honest_craft_live") is True or site.get("craft_as_launch") is True:
+        raise IntegrityError("3.26.0 craft is not live and a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_PLANE")
+    if site.get("look_as_production") is True or site.get("graphic_as_launch") is True:
+        raise IntegrityError("3.26.0 a 10/10 look is not production and a polished graphic is not launch", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("craft_as_launch") is True:
+        raise IntegrityError("3.26.0 a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("look_as_production") is True or better.get("graphic_as_launch") is True:
+        raise IntegrityError("3.26.0 a 10/10 look is not production and a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in site_note:
+        raise IntegrityError("3.26.0 better site keeps a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in site_note:
+        raise IntegrityError("3.26.0 better site keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in site_note:
+        raise IntegrityError("3.26.0 better site keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest craft" not in ops:
+        raise IntegrityError("3.26.0 operations note keeps honest craft", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-craft launch" not in managed:
+        raise IntegrityError("3.26.0 managed face refuses a 10/10-craft launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("craft_as_launch") is True:
+        raise IntegrityError("3.26.0 hosted better a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("look_as_production") is True or hosted.get("graphic_as_launch") is True:
+        raise IntegrityError("3.26.0 hosted better a 10/10 look is not production and a polished graphic is not launch", reason_code="CATALOG_PLANE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
