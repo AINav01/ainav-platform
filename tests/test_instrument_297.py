@@ -23,7 +23,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_297_sit_down_industry_rooms():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     rooms = drawer["rooms"]
     assert rooms["kind"] == "ainav.industry_rooms.v1"
@@ -64,7 +64,7 @@ def test_release_is_297_sit_down_industry_rooms():
     assert "not a crypto product" in principles
     assert "not 17a-4" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[67]["who"] == "tree"
     assert upgrades[67]["done"] is True
     assert upgrades[67]["marks_live_pin"] is False
@@ -105,9 +105,9 @@ def test_release_is_297_sit_down_industry_rooms():
     assert "Room 1" in identify
     assert "Room 2" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["industry_rooms"] is True
     assert status["website"]["industry_crypto"] is False
     assert status["website"]["industry_seventeen_a4"] is False

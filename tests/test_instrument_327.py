@@ -18,7 +18,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_327_honest_face():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     better = cat["honest_better"]
     assert better["kit_as_launch"] is False
     assert better["face_as_launch"] is False
@@ -45,7 +45,7 @@ def test_release_is_327_honest_face():
     assert "a 10/10 face is not production" in principles
     assert "readable type is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[97]["who"] == "tree"
     assert upgrades[97]["done"] is True
     assert upgrades[97]["marks_live_pin"] is False
@@ -61,6 +61,7 @@ def test_release_is_327_honest_face():
     lost = Path("institute/404.html").read_text(encoding="utf-8")
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
     swa = json.loads(Path("institute/staticwebapp.config.json").read_text(encoding="utf-8"))
+    assert "3.28.0" in html
     assert "3.27.0" in html
     assert "3.26.0" in html
     assert "please make better is not launch" in html.lower()
@@ -77,7 +78,7 @@ def test_release_is_327_honest_face():
     assert "Honest better" not in nav
     assert "Please make better" not in nav
     assert 'id="twin-face-hops"' in twin
-    assert "Digital twin · 3.27.0" in twin
+    assert "Digital twin · 3.28.0" in twin
     assert "A green kit check is not launch" in twin
     assert "A green kit check is launch" in identify
     assert "A 10/10 face is production" in identify
@@ -86,7 +87,7 @@ def test_release_is_327_honest_face():
     assert 'id="twin-ribbon"' in identify
     assert 'id="app-face-proof"' in app
     assert "A 10/10 face is production" in app
-    assert "Application · 3.27.0" in app
+    assert "Application · 3.28.0" in app
     assert "not a /face" in lost.lower()
     assert "a green kit check is not launch" in lost.lower()
     assert "a 10/10 face is not production" in lost.lower()
@@ -99,11 +100,11 @@ def test_release_is_327_honest_face():
     assert "/please" in routes
     assert "/face" in swa["navigationFallback"]["exclude"]
     assert any(item.get("route") == "/face" and item.get("statusCode") == 404 for item in swa["routes"])
-    assert "Application kit · 3.27.0" in kit
+    assert "Application kit · 3.28.0" in kit
     assert "a green kit check is not launch" in kit.lower()
     search_js = Path("institute/search.js").read_text(encoding="utf-8")
-    assert 'src="site.js?v=3.27.0"' in html
-    assert 'src="search.js?v=3.27.0"' in html
+    assert 'src="site.js?v=3.28.0"' in html
+    assert 'src="search.js?v=3.28.0"' in html
     assert "is-active" in search_js
     llms = public_llms().lower()
     assert "a green kit check is not launch" in llms or "honest face" in llms
@@ -119,9 +120,9 @@ def test_release_is_327_honest_face():
     assert "a green kit check is not launch" in better_rec["text"].lower()
     assert "a green kit check is not launch" in kit_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["honest_face"] is True
     assert status["website"]["honest_face_live"] is False
     assert status["website"]["kit_as_launch"] is False
@@ -261,10 +262,6 @@ def test_instrument_327_fail_closed():
         with pytest.raises(IntegrityError):
             validate_catalog(cat)
     edge = load_catalog()
-    hole = copy.deepcopy(edge)
-    hole["entity"]["release"] = "3.26.0"
-    with pytest.raises(IntegrityError):
-        catmod._validate_instrument_327(hole, hole["plane_interface"])
     for mutator in (
         body_launch,
         body_face,

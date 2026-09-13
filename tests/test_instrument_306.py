@@ -24,7 +24,7 @@ from ainav.microsoft.readiness import public_review
 
 def test_release_is_306_honest_readiness():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     ready = cat["microsoft_stack"]["readiness"]
     assert ready["kind"] == "ainav.honest.readiness.v1"
     assert ready["honest"] is True
@@ -72,7 +72,7 @@ def test_release_is_306_honest_readiness():
     assert "twin certified is not launch day" in principles
     assert "owner gaps stay owner-only" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[76]["who"] == "tree"
     assert upgrades[76]["done"] is True
     assert upgrades[76]["marks_live_pin"] is False
@@ -111,9 +111,9 @@ def test_release_is_306_honest_readiness():
     assert "readiness" in app.lower()
     assert "Gold is launch" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["honest_readiness"] is True
     assert status["website"]["honest_readiness_live"] is False
     assert status["website"]["gold_is_launch"] is False

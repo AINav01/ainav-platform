@@ -18,7 +18,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_324_honest_planes():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     better = cat["honest_better"]
     assert better["planes_as_launch"] is False
     assert better["industry_ten_as_launch"] is False
@@ -52,7 +52,7 @@ def test_release_is_324_honest_planes():
     assert "a 10/10 of industry, client, and twin planes is not launch" in principles
     assert "a named vertical is not a sku" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[94]["who"] == "tree"
     assert upgrades[94]["done"] is True
     assert upgrades[94]["marks_live_pin"] is False
@@ -87,7 +87,7 @@ def test_release_is_324_honest_planes():
     assert "10/10 industry" not in nav
     assert 'id="twin-planes-proof"' in twin
     assert 'id="twin-planes-hops"' in twin
-    assert "Digital twin · 3.27.0" in twin
+    assert "Digital twin · 3.28.0" in twin
     assert "A 10/10 industry is not launch" in twin
     assert "A 10/10 industry is launch" in identify
     assert "A 10/10 client is a live client" in identify
@@ -96,7 +96,7 @@ def test_release_is_324_honest_planes():
     assert "A 10/10 industry is launch" in app
     assert "A 10/10 client is a live client" in app
     assert "A 10/10 twin is launch" in app
-    assert "Application · 3.27.0" in app
+    assert "Application · 3.28.0" in app
     assert "not a /industry" in lost.lower()
     assert "not a /universe" in lost.lower()
     assert "a 10/10 of industry, client, and twin planes is not launch" in lost.lower()
@@ -120,9 +120,9 @@ def test_release_is_324_honest_planes():
     assert "a 10/10 industry is not launch" in industry_rec["text"].lower()
     assert "a 10/10 client is not a live client" in universe_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["honest_planes"] is True
     assert status["website"]["honest_planes_live"] is False
     assert status["website"]["planes_as_launch"] is False

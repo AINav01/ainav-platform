@@ -18,7 +18,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_325_honest_rails():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     better = cat["honest_better"]
     assert better["rails_as_launch"] is False
     assert better["roster_as_wired"] is False
@@ -44,7 +44,7 @@ def test_release_is_325_honest_rails():
     assert "a polished microsoft roster is not a wired firm" in principles
     assert "an identify flag strip is not admit" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[95]["who"] == "tree"
     assert upgrades[95]["done"] is True
     assert upgrades[95]["marks_live_pin"] is False
@@ -75,7 +75,7 @@ def test_release_is_325_honest_rails():
     assert "Honest rails" not in nav
     assert "Honest better" not in nav
     assert 'id="twin-rails-hops"' in twin
-    assert "Digital twin · 3.27.0" in twin
+    assert "Digital twin · 3.28.0" in twin
     assert "A 10/10 of the write rail, proof day, and bake-off is not launch" in twin
     assert "The write rail is launch" in identify
     assert "A polished roster is a wired firm" in identify
@@ -84,7 +84,7 @@ def test_release_is_325_honest_rails():
     assert "The write rail is launch" in app
     assert "A polished roster is a wired firm" in app
     assert "Identify flag strip is admit" in app
-    assert "Application · 3.27.0" in app
+    assert "Application · 3.28.0" in app
     assert "not a /firm" in lost.lower()
     assert "not a /proof" in lost.lower()
     assert "a 10/10 of the write rail, proof day, and bake-off is not launch" in lost.lower()
@@ -109,9 +109,9 @@ def test_release_is_325_honest_rails():
     assert "a 10/10 proof day is not launch" in demo_rec["text"].lower()
     assert "a 10/10 of the write rail, proof day, and bake-off is not launch" in better_rec["text"].lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["honest_rails"] is True
     assert status["website"]["honest_rails_live"] is False
     assert status["website"]["rails_as_launch"] is False

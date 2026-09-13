@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_314_honest_production():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     production = cat["honest_production"]
     assert production["kind"] == "ainav.honest.production.v1"
     assert production["honest"] is True
@@ -67,7 +67,7 @@ def test_release_is_314_honest_production():
     assert "honest production" in principles
     assert "a production sim is not production" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[84]["who"] == "tree"
     assert upgrades[84]["done"] is True
     assert upgrades[84]["marks_live_pin"] is False
@@ -106,18 +106,18 @@ def test_release_is_314_honest_production():
     assert "pages-lede" not in js
     assert "honest production" in twin.lower()
     assert "a production sim is not production" in twin.lower()
-    assert "Digital twin · 3.27.0" in twin
-    assert "AINAV.Institute twin · 3.27.0" in twin
+    assert "Digital twin · 3.28.0" in twin
+    assert "AINAV.Institute twin · 3.28.0" in twin
     assert "3.13.0" not in twin
     kit = Path("institute/kit.html").read_text(encoding="utf-8")
-    assert "Application kit · 3.27.0" in kit
+    assert "Application kit · 3.28.0" in kit
     assert "A production sim is production" in identify
     assert "Open production" in identify
     assert "A production sim is production" in app
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["honest_production"] is True
     assert status["website"]["honest_production_live"] is False
     assert status["website"]["production_sim_is_production"] is False

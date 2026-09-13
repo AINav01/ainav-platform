@@ -374,6 +374,11 @@ def public_status() -> dict[str, Any]:
             "kit_as_launch": False,
             "face_as_launch": False,
             "type_as_launch": False,
+            "honest_certified": bool(site.get("honest_certified")),
+            "honest_certified_live": False,
+            "use_as_launch": False,
+            "certified_as_launch": False,
+            "packs_as_sku": False,
         },
         "bc": {
             "connection": "bc.premium",

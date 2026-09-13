@@ -54,6 +54,9 @@ def test_better_review_is_not_launch():
     assert body["kit_as_launch"] is False
     assert body["face_as_launch"] is False
     assert body["type_as_launch"] is False
+    assert body["use_as_launch"] is False
+    assert body["certified_as_launch"] is False
+    assert body["packs_as_sku"] is False
     assert body["created"] is False
     assert body["certified"] is False
     assert body["live"] is False
@@ -87,6 +90,9 @@ def test_better_review_is_not_launch():
     assert "Treat a green kit check as launch." in body["this_agent_cannot"]
     assert "Treat a 10/10 face as production." in body["this_agent_cannot"]
     assert "Treat readable type as launch." in body["this_agent_cannot"]
+    assert "Treat a 10/10 of operability, interoperability, and usability as launch." in body["this_agent_cannot"]
+    assert "Treat a 10/10 of prebuilt certified day-one as launch." in body["this_agent_cannot"]
+    assert "Treat packs as a fourth SKU." in body["this_agent_cannot"]
     assert "Treat twin HTTP as launch." in body["this_agent_cannot"]
     assert "a 10/10 of industry, client, and twin planes is not launch" in body["lede"].lower()
     assert "a 10/10 of the write rail, proof day, and bake-off is not launch" in body["lede"].lower()
@@ -94,6 +100,9 @@ def test_better_review_is_not_launch():
     assert "a green kit check is not launch" in body["lede"].lower()
     assert "a 10/10 face is not production" in body["lede"].lower()
     assert "readable type is not launch" in body["lede"].lower()
+    assert "a 10/10 of operability, interoperability, and usability is not launch" in body["lede"].lower()
+    assert "a 10/10 of prebuilt certified day-one is not launch" in body["lede"].lower()
+    assert "packs, modules, and custom builds are not a fourth sku" in body["lede"].lower()
     assert "twin http 200 is not launch" in body["lede"].lower()
     probes = body["probes"]
     assert probes["complements"] == 8
@@ -275,6 +284,9 @@ def test_validate_honest_better_more_fail_closed():
         "kit_as_launch",
         "face_as_launch",
         "type_as_launch",
+        "use_as_launch",
+        "certified_as_launch",
+        "packs_as_sku",
     ):
         missing_flag = copy.deepcopy(load_catalog())
         missing_flag["honest_better"].pop(key)
@@ -687,6 +699,27 @@ def test_validate_honest_better_more_fail_closed():
     )
     with pytest.raises(IntegrityError):
         validate_honest_better(site_type)
+    site_use = copy.deepcopy(load_catalog())
+    site_use["honest_better"]["site"] = site_use["honest_better"]["site"].replace(
+        "A 10/10 of operability, interoperability, and usability is not launch.",
+        "Use is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_use)
+    site_certified = copy.deepcopy(load_catalog())
+    site_certified["honest_better"]["site"] = site_certified["honest_better"]["site"].replace(
+        "A 10/10 of prebuilt certified day-one is not launch.",
+        "Certified is recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_certified)
+    site_packs = copy.deepcopy(load_catalog())
+    site_packs["honest_better"]["site"] = site_packs["honest_better"]["site"].replace(
+        "Packs, modules, and custom builds are not a fourth SKU.",
+        "Packs are recorded.",
+    )
+    with pytest.raises(IntegrityError):
+        validate_honest_better(site_packs)
     complements = copy.deepcopy(load_catalog())
     complements["connections"]["complements"] = complements["connections"]["complements"][:7]
     with pytest.raises(IntegrityError):

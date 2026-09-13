@@ -15,14 +15,14 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_283_managed_first_class_face():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     assert cat["expert_review"]["success"]["managed_face"]["kind"] == "ainav.managed_face.v1"
     assert cat["programs"]["website"]["managed"] is True
     assert cat["programs"]["website"]["first_class"] is True
     assert cat["programs"]["website"]["dynamic"] is False
     assert any("2.83.0" in item and "first-class" in item.lower() for item in cat["engineering"]["closed_in_tree"])
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[53]["who"] == "tree"
     assert upgrades[53]["done"] is True
     assert upgrades[53]["marks_live_pin"] is False
@@ -34,9 +34,9 @@ def test_release_is_283_managed_first_class_face():
     assert 'id="demo-console"' in html
     assert 'id="product-stage"' in html
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["managed"] is True
     assert status["website"]["first_class"] is True
     assert status["website"]["dynamic"] is False

@@ -22,7 +22,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_307_honest_industry():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.27.0"
+    assert cat["entity"]["release"] == "3.28.0"
     industry = cat["industry_certify"]
     assert industry["kind"] == "ainav.honest.industry.v1"
     assert industry["honest"] is True
@@ -62,7 +62,7 @@ def test_release_is_307_honest_industry():
     assert "honest industry certify" in principles
     assert "industry certify is not launch" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 97
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[77]["who"] == "tree"
     assert upgrades[77]["done"] is True
     assert upgrades[77]["marks_live_pin"] is False
@@ -101,9 +101,9 @@ def test_release_is_307_honest_industry():
     assert "industry" in app.lower()
     assert "Packs are SKUs" in identify
     dash = public_dashboard()
-    assert dash["release"] == "3.27.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.27.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["honest_industry"] is True
     assert status["website"]["honest_industry_live"] is False
     assert status["website"]["industry_certified_launch"] is False

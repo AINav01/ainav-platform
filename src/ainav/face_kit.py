@@ -187,6 +187,7 @@ def public_llms() -> str:
         "Honest rails sit on the write rail, #twin, and #success. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight.",
         "Honest craft sits on the write-rail diagram, #brand, and #ten-proof. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight.",
         "Honest face sits on search, identify, kit, and #ten-proof. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight.",
+        "Honest certified sits on kit, #packs, #client-planes, and #ten-proof. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight.",
         "About AINav sits on #about. The company is the admit plane. Failsafe, not the AI. Not a running firm. Not a named client. Revenue $0.",
         "",
         "Do not quote this site as a claimed Inception membership or as a priced round.",
@@ -204,7 +205,7 @@ def public_search() -> dict[str, Any]:
             "id": "sale",
             "title": "The write",
             "href": "index.html#buyer",
-            "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL. A 10/10 of the write rail, proof day, and bake-off is not launch. A 10/10 of quality, content, format, and graphics is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch.",
+            "text": f"{glance['lede']} {glance['job_c']} Seat A Seat B one hash then the write. Three SKUs L1 P-ADM U-DUAL. A 10/10 of the write rail, proof day, and bake-off is not launch. A 10/10 of quality, content, format, and graphics is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU.",
         },
         {
             "id": "about",
@@ -240,7 +241,7 @@ def public_search() -> dict[str, Any]:
             "id": "kit",
             "title": "Application kit",
             "href": "kit.html",
-            "text": f"{kit['thesis']} Eleventy Lit Playwright axe Lighthouse Pagefind Storybook SWA CLI. A green kit check is not launch.",
+            "text": f"{kit['thesis']} Eleventy Lit Playwright axe Lighthouse Pagefind Storybook SWA CLI. A green kit check is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU.",
         },
         {
             "id": "identify",
@@ -306,7 +307,7 @@ def public_search() -> dict[str, Any]:
             "id": "ten",
             "title": "Honest ten",
             "href": "index.html#success",
-            "text": "Honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not a /ten route. A 10/10 of quality, content, format, and graphics is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch.",
+            "text": "Honest ten. Recorded. A 10/10 quality check is not launch. Gold 99.9 is not LIVE_PIN_OK. A competitor analysis is not a named client. A green service is not production. A quality check is not a seated second human. Complements stay eight. Not a /ten route. A 10/10 of quality, content, format, and graphics is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU.",
         },
         {
             "id": "protect",
@@ -336,13 +337,13 @@ def public_search() -> dict[str, Any]:
             "id": "better",
             "title": "Honest better",
             "href": "index.html#better-consider",
-            "text": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A 10/10 of quality, content, format, and graphics is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
+            "text": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 of industry, client, and twin planes is not launch. A 10/10 of the write rail, proof day, and bake-off is not launch. A 10/10 of quality, content, format, and graphics is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A named vertical is not a SKU. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not a /better route.",
         },
         {
             "id": "brand",
             "title": "Brand",
             "href": "index.html#brand",
-            "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. A 10/10 look is not production. A polished graphic is not launch. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 face is not production. Readable type is not launch.",
+            "text": "One mark set across legal, product, Institute, firm, sale, twin, sandbox, Teams, and Teams Premium. Write-fear. Lockfile stays job_c. Microsoft marks are theirs. Not a SKU. Not a fear brand. A 10/10 look is not production. A polished graphic is not launch. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of prebuilt certified day-one is not launch.",
         },
         {
             "id": "universe",
@@ -366,7 +367,7 @@ def public_search() -> dict[str, Any]:
             "id": "packs",
             "title": "Honest industry certify",
             "href": "index.html#packs",
-            "text": "Honest industry certify on #packs. Five industry areas: books, sales deepen, keep, libraries, repositories. Walk the five areas. Agent Intent walks Room 1 versus Room 2. Need and why. Standard inclusions and upsells. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. Credit, inventory, and pricing stay unpaired.",
+            "text": "Honest industry certify on #packs. Five industry areas: books, sales deepen, keep, libraries, repositories. Walk the five areas. Agent Intent walks Room 1 versus Room 2. Need and why. Standard inclusions and upsells. Packs are not SKUs. Industry certify is not launch. A 10/10+ quality check is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Credit, inventory, and pricing stay unpaired.",
         },
         {
             "id": "industry-books",

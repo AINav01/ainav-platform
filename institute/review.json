@@ -354,7 +354,8 @@
       "3.24.0 honest planes. Recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.25.0 honest rails. Recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.26.0 honest craft. Recorded. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.27.0 honest face. Recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.27.0 honest face. Recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.28.0 honest certified. Recorded. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -455,7 +456,8 @@
       "3.24.0 honest planes is catalog law: recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. Complements stay eight. Not LIVE_PIN_OK.",
       "3.25.0 honest rails is catalog law: recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK.",
       "3.26.0 honest craft is catalog law: recorded. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight. Not LIVE_PIN_OK.",
-      "3.27.0 honest face is catalog law: recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK."
+      "3.27.0 honest face is catalog law: recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK.",
+      "3.28.0 honest certified is catalog law: recorded. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight. Not LIVE_PIN_OK."
     ],
     "success": {
       "bake_off": {
@@ -783,7 +785,10 @@
           "Treat a polished graphic as launch",
           "Treat a green kit check as launch",
           "Treat a 10/10 face as production",
-          "Treat readable type as launch"
+          "Treat readable type as launch",
+          "Treat a 10/10 of operability, interoperability, and usability as launch",
+          "Treat a 10/10 of prebuilt certified day-one as launch",
+          "Treat packs as a fourth SKU"
         ],
         "holds": [
           "No Graph Write from this plane",
@@ -1233,12 +1238,15 @@
       },
       "honest_better": {
         "better_as_launch": false,
+        "certified_as_launch": false,
         "client_ten_as_live_client": false,
         "craft_as_launch": false,
         "face_as_launch": false,
         "flag_strip_as_admit": false,
         "graphic_as_launch": false,
         "honest": true,
+        "honest_certified": true,
+        "honest_certified_live": false,
         "honest_craft": true,
         "honest_craft_live": false,
         "honest_face": true,
@@ -1256,6 +1264,7 @@
         "look_as_production": false,
         "make_as_launch": false,
         "named_vertical_as_sku": false,
+        "packs_as_sku": false,
         "planes_as_launch": false,
         "please_as_launch": false,
         "please_make": true,
@@ -1269,7 +1278,8 @@
         "ten_as_seated": false,
         "twin_http_is_launch": false,
         "twin_ten_as_launch": false,
-        "type_as_launch": false
+        "type_as_launch": false,
+        "use_as_launch": false
       },
       "honest_build": {
         "honest": true,
@@ -2073,7 +2083,7 @@
         "lede": "The Institute is a managed first-class static application. Catalog is law. Gold 99.5. Twin publish. Not a CMS. Not a dynamic app.",
         "live": false,
         "live_pin_ok": false,
-        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch. Not a 10/10-craft launch. Not a 10/10-face launch.",
+        "managed": "Azure SWA hosts. Catalog regen. Gold CI. --publish-twin. Owner authorizes launch. Not a webmaster CMS. Not Squarespace. Not Power Pages. Not Copilot Studio. Not connected-as-live. Not a 10/10 launch. Not a shared sandbox. Not a production sim. Not a remainder close. Not a 10/10 quality launch. Not a patent board. Not a client assignment. Not a vault live pin. Not a secret catalog. Not a booked close. Not a catalog collection. Not a joined firm. Not a certified running firm. Not a much-better launch. Not a make-better launch. Not a please-make-better launch. Not a 10/10-planes launch. Not a 10/10-rails launch. Not a 10/10-craft launch. Not a 10/10-face launch. Not a 10/10-certified launch.",
         "note": "Managed is catalog plus gold plus twin publish. Not Webflow. Not LIVE_PIN_OK.",
         "product": "The product is the admit plane. Three SKUs. One dashboard included with L1. Encyclopedia is a drawer.",
         "refuse": [
@@ -3700,6 +3710,14 @@
         "marks_live_pin": false,
         "n": 97,
         "title": "Honest face",
+        "who": "tree"
+      },
+      {
+        "do": "Ship 3.28.0 honest certified on kit, #packs, #client-planes, and #ten-proof. Recorded. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight. Not LIVE_PIN_OK.",
+        "done": true,
+        "marks_live_pin": false,
+        "n": 98,
+        "title": "Honest certified",
         "who": "tree"
       }
     ],

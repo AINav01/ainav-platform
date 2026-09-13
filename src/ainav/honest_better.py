@@ -8,7 +8,9 @@ A 10/10 of industry, client, and twin planes is not launch.
 A 10/10 of the write rail, proof day, and bake-off is not launch.
 A 10/10 of quality, content, format, and graphics is not launch.
 A green kit check is not launch. A 10/10 face is not production.
-Readable type is not launch.
+Readable type is not launch. A 10/10 of operability, interoperability,
+and usability is not launch. A 10/10 of prebuilt certified day-one is not launch.
+Packs, modules, and custom builds are not a fourth SKU.
 """
 
 from __future__ import annotations
@@ -70,6 +72,9 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         "kit_as_launch",
         "face_as_launch",
         "type_as_launch",
+        "use_as_launch",
+        "certified_as_launch",
+        "packs_as_sku",
         "cms",
         "host",
         "is_host",
@@ -152,6 +157,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("a 10/10 face is not production", reason_code="CATALOG_REVIEW")
     if body.get("type_as_launch") is not False:
         raise IntegrityError("readable type is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("use_as_launch") is not False:
+        raise IntegrityError("a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("certified_as_launch") is not False:
+        raise IntegrityError("a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("packs_as_sku") is not False:
+        raise IntegrityError("packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
     hops = body.get("hops") or []
     if not isinstance(hops, list) or [item.get("id") for item in hops if isinstance(item, dict)] != list(
         HONEST_BETTER_HOP_IDS
@@ -219,6 +230,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better note keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
     if "readable type is not launch" not in note:
         raise IntegrityError("honest better note keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in note:
+        raise IntegrityError("honest better note keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
     lede = str(body.get("lede") or "").lower()
     if "a much better build and business is not launch" not in lede:
         raise IntegrityError("honest better lede keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
@@ -254,6 +271,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better lede keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
     if "readable type is not launch" not in lede:
         raise IntegrityError("honest better lede keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in lede:
+        raise IntegrityError("honest better lede keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
     site = str(body.get("site") or "").lower()
     if "honest better" not in site:
         raise IntegrityError("honest better site keeps honest better", reason_code="CATALOG_REVIEW")
@@ -293,6 +316,12 @@ def validate_honest_better(catalog: dict[str, Any]) -> None:
         raise IntegrityError("honest better site keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
     if "readable type is not launch" not in site:
         raise IntegrityError("honest better site keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in site:
+        raise IntegrityError("honest better site keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
     complements = (catalog.get("connections") or {}).get("complements") or []
     if len(complements) != COMPLEMENT_COUNT:
         raise IntegrityError("complements stay eight. Honest better is not a complement", reason_code="CATALOG_REVIEW")
@@ -350,6 +379,9 @@ def run_better_certification(catalog: dict[str, Any] | None = None) -> dict[str,
         "kit_as_launch": False,
         "face_as_launch": False,
         "type_as_launch": False,
+        "use_as_launch": False,
+        "certified_as_launch": False,
+        "packs_as_sku": False,
         "complements": COMPLEMENT_COUNT,
         "created": False,
         "certified": False,
@@ -406,6 +438,9 @@ def public_review() -> dict[str, Any]:
         "kit_as_launch": False,
         "face_as_launch": False,
         "type_as_launch": False,
+        "use_as_launch": False,
+        "certified_as_launch": False,
+        "packs_as_sku": False,
         "created": False,
         "live": False,
         "live_pin_ok": False,
@@ -448,5 +483,8 @@ def public_review() -> dict[str, Any]:
             "Treat a green kit check as launch.",
             "Treat a 10/10 face as production.",
             "Treat readable type as launch.",
+            "Treat a 10/10 of operability, interoperability, and usability as launch.",
+            "Treat a 10/10 of prebuilt certified day-one as launch.",
+            "Treat packs as a fourth SKU.",
         ],
     }

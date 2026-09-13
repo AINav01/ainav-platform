@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 97:
-        raise IntegrityError("expert review needs 16–97 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 98:
+        raise IntegrityError("expert review needs 16–98 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1298,6 +1298,7 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         95: ("honest rails", "live_pin_ok"),
         96: ("honest craft", "live_pin_ok"),
         97: ("honest face", "live_pin_ok"),
+        98: ("honest certified", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1936,6 +1937,12 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO posture does not treat a 10/10 face as production", reason_code="CATALOG_REVIEW")
     if "readable type as launch" not in does_not:
         raise IntegrityError("CISO posture does not treat readable type as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of operability, interoperability, and usability as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of prebuilt certified day-one as launch", reason_code="CATALOG_REVIEW")
+    if "packs as a fourth sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat packs as a fourth SKU", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -4983,6 +4990,7 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_325(catalog, body)
     _validate_instrument_326(catalog, body)
     _validate_instrument_327(catalog, body)
+    _validate_instrument_328(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -7107,8 +7115,6 @@ def _validate_instrument_326(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_327(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.27.0":
-        raise IntegrityError("entity.release is 3.27.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.27.0" in item and "honest face" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.27.0 honest face", reason_code="CATALOG_ENGINEERING")
@@ -7150,6 +7156,52 @@ def _validate_instrument_327(catalog: dict[str, Any], body: dict[str, Any]) -> N
         raise IntegrityError("3.27.0 hosted better a green kit check is not launch", reason_code="CATALOG_PLANE")
     if hosted.get("face_as_launch") is True or hosted.get("type_as_launch") is True:
         raise IntegrityError("3.27.0 hosted better a 10/10 face is not production and readable type is not launch", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_328(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.28.0":
+        raise IntegrityError("entity.release is 3.28.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.28.0" in item and "honest certified" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.28.0 honest certified", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_certified") is not True or site.get("honest_face") is not True:
+        raise IntegrityError("3.28.0 website has honest certified on honest face", reason_code="CATALOG_PLANE")
+    if site.get("honest_certified_live") is True or site.get("use_as_launch") is True:
+        raise IntegrityError("3.28.0 certified is not live and a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_PLANE")
+    if site.get("certified_as_launch") is True or site.get("packs_as_sku") is True:
+        raise IntegrityError("3.28.0 a 10/10 of prebuilt certified day-one is not launch and packs are not a fourth SKU", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("use_as_launch") is True:
+        raise IntegrityError("3.28.0 a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("certified_as_launch") is True or better.get("packs_as_sku") is True:
+        raise IntegrityError("3.28.0 a 10/10 of prebuilt certified day-one is not launch and packs are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in site_note:
+        raise IntegrityError("3.28.0 better site keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in site_note:
+        raise IntegrityError("3.28.0 better site keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in site_note:
+        raise IntegrityError("3.28.0 better site keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in principles:
+        raise IntegrityError("first-principles must keep packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest certified" not in ops:
+        raise IntegrityError("3.28.0 operations note keeps honest certified", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-certified launch" not in managed:
+        raise IntegrityError("3.28.0 managed face refuses a 10/10-certified launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("use_as_launch") is True:
+        raise IntegrityError("3.28.0 hosted better a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("certified_as_launch") is True or hosted.get("packs_as_sku") is True:
+        raise IntegrityError("3.28.0 hosted better a 10/10 of prebuilt certified day-one is not launch and packs are not a fourth SKU", reason_code="CATALOG_PLANE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:

@@ -1,6 +1,7 @@
 {
   "better_as_launch": false,
   "certified": false,
+  "certified_as_launch": false,
   "client_ten_as_live_client": false,
   "considered": true,
   "craft_as_launch": false,
@@ -116,14 +117,14 @@
   "is_sku": false,
   "kind": "ainav.honest.better.v1",
   "kit_as_launch": false,
-  "lede": "A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch.",
+  "lede": "A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU.",
   "live": false,
   "live_pin_ok": false,
   "look_as_production": false,
   "make_as_launch": false,
   "microsoft_product": "Microsoft stack",
   "named_vertical_as_sku": false,
-  "note": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch.",
+  "note": "Honest better. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. Complements stay eight. Not LIVE_PIN_OK. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU.",
   "owner_playbook": {
     "actor": "James Hodnett",
     "cannot": [
@@ -135,7 +136,10 @@
       "Do not treat a polished graphic as launch.",
       "Do not treat a green kit check as launch.",
       "Do not treat a 10/10 face as production.",
-      "Do not treat readable type as launch."
+      "Do not treat readable type as launch.",
+      "Do not treat a 10/10 of operability, interoperability, and usability as launch.",
+      "Do not treat a 10/10 of prebuilt certified day-one as launch.",
+      "Do not treat packs as a fourth SKU."
     ],
     "cannot_be_done_by": "cursor.cloud_agent",
     "steps": [
@@ -151,12 +155,14 @@
       "Say launch only when seat B, signed L1, and LIVE_PIN_OK are ready."
     ]
   },
+  "packs_as_sku": false,
   "planes_as_launch": false,
   "please_as_launch": false,
   "polish_as_production": false,
   "probes": {
     "better_as_launch": false,
     "certified": false,
+    "certified_as_launch": false,
     "client_ten_as_live_client": false,
     "complements": 8,
     "considered": true,
@@ -177,6 +183,7 @@
     "look_as_production": false,
     "make_as_launch": false,
     "named_vertical_as_sku": false,
+    "packs_as_sku": false,
     "planes_as_launch": false,
     "please_as_launch": false,
     "polish_as_production": false,
@@ -189,7 +196,8 @@
     "ten_as_seated": false,
     "twin_http_is_launch": false,
     "twin_ten_as_launch": false,
-    "type_as_launch": false
+    "type_as_launch": false,
+    "use_as_launch": false
   },
   "product": "Honest better",
   "rails_as_launch": false,
@@ -247,7 +255,7 @@
   "roster_as_wired": false,
   "sandbox_http_is_g14": false,
   "shared_sandbox_is_production": false,
-  "site": "Honest better on #success. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch.",
+  "site": "Honest better on #success. Recorded. A much better build and business is not launch. Making better is not launch. Please make better is not launch. Twin HTTP 200 is not launch. Sandbox HTTP is not G14. A 10/10 is not a seated second human. A systems review is not a wired firm. A polish pass is not production. Interpretability is not LIVE_PIN_OK. First glance stays the write rail. Not a /better route. Not LIVE_PIN_OK. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU.",
   "systems_as_wired": false,
   "ten_as_seated": false,
   "this_agent_cannot": [
@@ -274,10 +282,14 @@
     "Treat a polished graphic as launch.",
     "Treat a green kit check as launch.",
     "Treat a 10/10 face as production.",
-    "Treat readable type as launch."
+    "Treat readable type as launch.",
+    "Treat a 10/10 of operability, interoperability, and usability as launch.",
+    "Treat a 10/10 of prebuilt certified day-one as launch.",
+    "Treat packs as a fourth SKU."
   ],
   "twin_http_is_launch": false,
   "twin_ten_as_launch": false,
   "type_as_launch": false,
+  "use_as_launch": false,
   "wired": false
 }

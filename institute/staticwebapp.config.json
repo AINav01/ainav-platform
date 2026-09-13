@@ -62,6 +62,8 @@
       "/graphics",
       "/face",
       "/please",
+      "/certified",
+      "/use",
       "/kit.html",
       "/identify.html",
       "/twin.html",
@@ -129,6 +131,8 @@
     {"route": "/graphics", "statusCode": 404},
     {"route": "/face", "statusCode": 404},
     {"route": "/please", "statusCode": 404},
+    {"route": "/certified", "statusCode": 404},
+    {"route": "/use", "statusCode": 404},
     {
       "route": "/owner-gate.html",
       "allowedRoles": ["authenticated"]

@@ -461,7 +461,8 @@
       "3.24.0 honest planes. Recorded. A 10/10 of industry, client, and twin planes is not launch. A named vertical is not a SKU. The Institute twin is not the assigned client sandbox. A shared sandbox is not production. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.25.0 honest rails. Recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
       "3.26.0 honest craft. Recorded. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
-      "3.27.0 honest face. Recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
+      "3.27.0 honest face. Recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK",
+      "3.28.0 honest certified. Recorded. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight. Not LIVE_PIN_OK. A green check is not LIVE_PIN_OK"
     ],
     "complement": false,
     "connection": false,
@@ -653,7 +654,7 @@
   },
   "product": "AINav Control Plane",
   "production": false,
-  "release": "3.27.0",
+  "release": "3.28.0",
   "sales": {
     "connection": "sales.enterprise",
     "instances": 0,
@@ -677,6 +678,7 @@
     "brand": true,
     "brand_href": "#brand",
     "brand_is_sku": false,
+    "certified_as_launch": false,
     "certify_as_running": false,
     "client_license_as_assignment": false,
     "client_ten_as_live_client": false,
@@ -727,6 +729,8 @@
     "honest_better_live": false,
     "honest_build": true,
     "honest_build_live": false,
+    "honest_certified": true,
+    "honest_certified_live": false,
     "honest_close": true,
     "honest_close_live": false,
     "honest_connect": true,
@@ -827,6 +831,7 @@
     "outlook_is_click": false,
     "owner_hrefs_are_clicks": false,
     "packs_are_skus": false,
+    "packs_as_sku": false,
     "pages_is_host": false,
     "path_href": "#path",
     "planes_as_launch": false,
@@ -878,6 +883,7 @@
     "universe_sit_down": true,
     "universe_wells_live": false,
     "update_is_live_pin": false,
+    "use_as_launch": false,
     "vault_as_live_pin": false,
     "whole_is_launch": false
   },

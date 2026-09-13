@@ -221,7 +221,7 @@
     "LIVE_PIN_OK",
     "CMS"
   ],
-  "release": "3.27.0",
+  "release": "3.28.0",
   "sku": false,
   "website": {
     "additional_access_needed": false,
@@ -239,6 +239,7 @@
     "brand": true,
     "brand_href": "#brand",
     "brand_is_sku": false,
+    "certified_as_launch": false,
     "certify_as_running": false,
     "ci_is_launch": false,
     "client_license_as_assignment": false,
@@ -291,6 +292,8 @@
     "honest_better_live": false,
     "honest_build": true,
     "honest_build_live": false,
+    "honest_certified": true,
+    "honest_certified_live": false,
     "honest_close": true,
     "honest_close_live": false,
     "honest_connect": true,
@@ -393,6 +396,7 @@
     "outlook_is_click": false,
     "owner_hrefs_are_clicks": false,
     "packs_are_skus": false,
+    "packs_as_sku": false,
     "pages_is_host": false,
     "path_href": "#path",
     "planes_as_launch": false,
@@ -445,6 +449,7 @@
     "universe_sit_down": true,
     "universe_wells_live": false,
     "update_is_live_pin": false,
+    "use_as_launch": false,
     "vault_as_live_pin": false,
     "website_is_apex": false,
     "whole_is_launch": false

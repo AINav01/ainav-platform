@@ -1,8 +1,8 @@
 # AINav, Inc. — Executive brief for Cynthia Hodnett
 
-Release 3.27.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
+Release 3.28.0. From James Hodnett. Printable companion: `docs/CYNTHIA_HODNETT_BRIEF.pdf`. Not a contract. Not signed L1. Not LIVE_PIN_OK.
 
-Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.27.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
+Confidential  ·  For Cynthia Hodnett  ·  From James Hodnett, sole owner of AINav, Inc.  ·  Release 3.28.0  ·  Not a contract  ·  Not signed L1  ·  Not LIVE_PIN_OK  ·  Mailbox recorded · Entra oid open · click open
 
 ## Executive summary
 
@@ -481,6 +481,7 @@ Could be improved — without inventing a fourth SKU
 - 3.25.0 honest rails is catalog law: recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK.
 - 3.26.0 honest craft is catalog law: recorded. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight. Not LIVE_PIN_OK.
 - 3.27.0 honest face is catalog law: recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK.
+- 3.28.0 honest certified is catalog law: recorded. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight. Not LIVE_PIN_OK.
 
 They win the bake-off when
 
@@ -645,6 +646,7 @@ Success upgrades. Tree = already encoded. Owner = James must click.
 - 95. [tree] Honest rails — Ship 3.25.0 honest rails on the write rail, #twin, and #success. Recorded. A 10/10 of the write rail, proof day, and bake-off is not launch. A polished Microsoft roster is not a wired firm. An identify flag strip is not admit. Complements stay eight. Not LIVE_PIN_OK.
 - 96. [tree] Honest craft — Ship 3.26.0 honest craft on the write-rail diagram, #brand, and #ten-proof. Recorded. A 10/10 of quality, content, format, and graphics is not launch. A 10/10 look is not production. A polished graphic is not launch. Complements stay eight. Not LIVE_PIN_OK.
 - 97. [tree] Honest face — Ship 3.27.0 honest face on search, identify, kit, and #ten-proof. Recorded. Please make better is not launch. A green kit check is not launch. A 10/10 face is not production. Readable type is not launch. Complements stay eight. Not LIVE_PIN_OK.
+- 98. [tree] Honest certified — Ship 3.28.0 honest certified on kit, #packs, #client-planes, and #ten-proof. Recorded. A 10/10 of operability, interoperability, and usability is not launch. A 10/10 of prebuilt certified day-one is not launch. Packs, modules, and custom builds are not a fourth SKU. Complements stay eight. Not LIVE_PIN_OK.
 
 ## What happens next
 
