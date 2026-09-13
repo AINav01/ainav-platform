@@ -376,6 +376,11 @@ h1 {
   font-size: 1.28rem;
   letter-spacing: 0.01em;
   font-weight: 500;
+  color: var(--ink);
+}
+.write-rail li[data-step="seat_a"] b,
+.write-rail li[data-step="seat_b"] b {
+  color: var(--void-ink);
 }
 .write-rail span {
   display: block;
@@ -495,6 +500,7 @@ h1 {
   font-family: var(--display);
   font-size: 1.45rem;
   letter-spacing: 0.02em;
+  color: var(--void-ink);
 }
 #hero-contrast article[data-pin="job-c"] p,
 #hero-contrast article[data-lane="gate"] p { color: #ece8e0; }
@@ -525,7 +531,8 @@ h1 {
   #objections.must-for { grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); }
 }
 #success { scroll-margin-top: 4.5rem; }
-#success h3 { margin: 1.5rem 0 0.4rem; font-size: 0.92rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--mute); }
+#success h3 { margin: 1.5rem 0 0.4rem; font-size: 0.92rem; letter-spacing: 0.04em; text-transform: uppercase; }
+#success > h3 { color: var(--gold-2); }
 #we-win article[data-id="independence"],
 #we-win article[data-id="fail_closed"] {
   box-shadow: inset 3px 0 0 var(--gold);
@@ -554,15 +561,30 @@ h1 {
   padding-left: 1.25rem;
 }
 #integrate.stack li { margin: 0.65rem 0; }
-#integrate.stack a { text-decoration: underline; }
+#integrate.stack a {
+  color: var(--gold-2);
+  text-decoration: underline;
+}
+.band a { color: var(--gold-ink); }
+.band a:hover { color: var(--ink); }
+.band > ol.stack a,
+.band > ul.stack a {
+  color: var(--gold-2);
+}
+#integrate.stack a:hover,
+.band > ol.stack a:hover,
+.band > ul.stack a:hover {
+  color: var(--void-ink);
+}
 .band #accountable,
 .band #protect,
 .band #memory { margin-top: 1.25rem; }
 .band #accountable article,
 .band #protect article,
 .band #memory article {
-  background: color-mix(in srgb, var(--void-ink) 6%, transparent);
-  border-color: color-mix(in srgb, var(--void-ink) 18%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, white);
+  border-color: var(--rule);
+  color: var(--ink);
 }
 .band #accountable article p,
 .band #protect article p,
@@ -572,6 +594,14 @@ h1 {
 .band article h3,
 .band #accountable article h3 {
   color: var(--ink);
+}
+.band .not {
+  color: color-mix(in srgb, var(--void-ink) 86%, transparent);
+}
+.band .refuse,
+.band .split .stack,
+.band .integrate {
+  color: color-mix(in srgb, var(--void-ink) 86%, transparent);
 }
 
 section {
@@ -645,10 +675,12 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
   padding: 1.15rem 1.25rem;
   overflow: auto;
   font-family: var(--mono);
+  color: var(--ink);
   font-size: 0.8rem;
   line-height: 1.55;
   border-radius: 2px;
 }
+.snippet code { color: var(--ink); }
 
 .cards { display: grid; gap: 1rem; }
 .cards.dash { grid-template-columns: repeat(2, 1fr); }
@@ -722,7 +754,12 @@ h3 { font-weight: 560; font-size: 1.02rem; margin: 0 0 0.35rem; }
   border: 1px solid var(--rule);
   margin-bottom: 0.65rem;
 }
-.plane-strip.plane-page-first b { color: var(--gold); }
+.plane-strip.plane-page-first b { color: var(--gold-ink); }
+.plane-strip.plane-page-first a,
+.plane-strip.plane-page-first a:hover {
+  color: var(--gold-ink);
+}
+.plane-strip.plane-page-first a:hover { color: var(--ink); }
 .band .equation { color: var(--gold-2); }
 .about-ainav {
   max-width: var(--wide);
@@ -1319,7 +1356,9 @@ table.law tr[data-group] th {
 .path-rail li[data-plane="production"] {
   border-top: 3px solid var(--gold);
   box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+  color: var(--ink);
 }
+.path-rail li[data-plane="production"] span { color: var(--mute); }
 .close-console .ask[href] {
   display: inline-flex;
   align-items: center;
@@ -1536,8 +1575,13 @@ table.law tr[data-group] th {
   font-size: 0.82rem;
   letter-spacing: 0.04em;
 }
-.brand-surfaces span,
-.universe-surfaces span {
+.brand-surfaces span {
+  color: var(--mute);
+  font-size: 0.86rem;
+}
+.universe-surfaces span,
+.universe-console .brand-surfaces span,
+.demo-console .brand-surfaces span {
   color: #d8d2c6;
   font-size: 0.86rem;
 }
@@ -3695,11 +3739,19 @@ table.law tr[data-group] th {
 .industry-rooms button.room-refuse b,
 .industry-control button.room-refuse,
 .industry-control button.room-refuse b,
-#industry-room-spine button.room-refuse,
-#industry-room-spine button.room-refuse b,
 #agent-intent button.room-refuse,
 #agent-intent button.room-refuse b {
   color: var(--gold-2);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+#industry-room-spine button.room-refuse,
+#industry-room-spine button.room-refuse b {
+  color: var(--gold-ink);
   background: transparent;
   border: 0;
   padding: 0;
@@ -3808,7 +3860,9 @@ table.law tr[data-group] th {
 .firm-rail li[data-rail="production"] {
   border-top: 3px solid var(--gold);
   box-shadow: inset 3px 0 0 var(--gold), var(--shadow);
+  color: var(--ink);
 }
+.firm-rail li[data-rail="production"] span { color: var(--mute); }
 .product-stage article[data-sku] {
   border-top: 3px solid var(--gold);
 }
@@ -4360,4 +4414,89 @@ footer a { color: inherit; }
 @media (max-width: 700px) {
   .app-page #app-main { padding: 1.1rem 5vw 3.4rem; }
   #app-capital-exec tbody th { width: 7rem; }
+}
+
+.band [id$="-consider"] {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 1.45rem 1.45rem 1.5rem;
+  margin: 1.35rem 0 1.5rem;
+  border: 1px dashed color-mix(in srgb, var(--gold-2) 36%, var(--rule));
+}
+.band [id$="-consider"] .plane-island {
+  margin: 0.9rem 0 0;
+}
+.band > .note a,
+.band > .join-walk a,
+.band > .about-walk a {
+  color: var(--gold-2);
+}
+.band > .note a:hover,
+.band > .join-walk a:hover,
+.band > .about-walk a:hover {
+  color: var(--void-ink);
+}
+.band [id$="-consider"] a {
+  color: var(--gold-ink);
+}
+.band [id$="-consider"] a:hover {
+  color: var(--ink);
+}
+.band [id$="-consider"] .ask,
+.band [id$="-consider"] .ghost {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: transparent;
+}
+.band [id$="-consider"] .ghost:hover,
+.band [id$="-consider"] .ghost[aria-pressed="true"] {
+  color: var(--gold-ink);
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, var(--paper));
+}
+.band .kicker { color: var(--gold-2); }
+.band [id$="-consider"] .kicker,
+.band .plane-island .kicker {
+  color: var(--gold-ink);
+}
+.demo-console a,
+.universe-console a,
+.demo-console .join-walk a,
+.universe-console .join-walk a {
+  color: var(--gold-2);
+}
+.demo-console a:hover,
+.universe-console a:hover {
+  color: var(--void-ink);
+}
+.firm-rail li { color: var(--ink); }
+.firm-rail li[data-rail="pipeline"] b,
+.firm-rail li[data-rail="live"] b,
+.firm-rail li[data-rail="sandbox"] b {
+  color: var(--void-ink);
+}
+.path-rail li[data-plane="institute"] b,
+.path-rail li[data-plane="client"] b {
+  color: var(--void-ink);
+}
+.universe-spine a b,
+.universe-spine .ghost,
+.universe-spine .ghost b {
+  color: var(--ink);
+}
+.universe-spine .ghost[aria-pressed="true"],
+.universe-spine .ghost[aria-pressed="true"] b,
+#industry-spine-room-2 b {
+  color: var(--hold);
+}
+.universe-spine li[data-state="owner_only"] a b,
+.universe-spine li[data-state="owner_only"] .ghost,
+.universe-spine li[data-state="owner_only"] .ghost b {
+  color: var(--void-ink);
+}
+.fabric-node[data-lane="admit"] .lane { color: var(--gold-2); }
+.fabric-node[data-lane="admit"] .price { color: #b7c9b0; }
+article[data-step="seat_a"][data-tone="hold"] .note,
+article[data-step="seat_b"][data-tone="hold"] .note {
+  color: #ece8e0;
 }

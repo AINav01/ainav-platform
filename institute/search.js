@@ -16,25 +16,40 @@
     if (input) input.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
+  function restoreListbox(root) {
+    if (!root) return;
+    root.setAttribute("role", "listbox");
+    root.setAttribute("aria-label", "Catalog matches");
+  }
+
+  function close(input, root) {
+    if (root) root.textContent = "";
+    restoreListbox(root);
+    setExpanded(input, false);
+  }
+
   function dismiss(input, root) {
     if (input) input.value = "";
-    if (root) root.textContent = "";
-    setExpanded(input, false);
+    close(input, root);
   }
 
   function render(root, items, input) {
     root.textContent = "";
     setExpanded(input, true);
     if (!items.length) {
+      root.setAttribute("role", "status");
+      root.removeAttribute("aria-label");
       var empty = document.createElement("p");
       empty.className = "note";
       empty.textContent = "No catalog match. Search does not invent a page.";
       root.appendChild(empty);
       return;
     }
-    items.slice(0, RESULT_CAP).forEach(function (item) {
+    restoreListbox(root);
+    items.slice(0, RESULT_CAP).forEach(function (item, index) {
       var a = document.createElement("a");
       a.href = item.href;
+      a.id = (input && input.id ? input.id : "search") + "-opt-" + index;
       a.textContent = item.title;
       a.setAttribute("role", "option");
       a.addEventListener("click", function (event) {
@@ -82,7 +97,7 @@
         .split(/\s+/)
         .filter(Boolean);
       if (!terms.length) {
-        dismiss(input, out);
+        close(input, out);
         return;
       }
       render(
@@ -92,6 +107,12 @@
         }),
         input
       );
+    });
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dismiss(input, out);
+      }
     });
   }
 

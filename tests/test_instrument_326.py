@@ -94,6 +94,10 @@ def test_release_is_326_honest_craft():
     assert "#hero-diagram" in css
     assert "#brand-craft-proof" in css
     assert "#ten-craft-proof" in css
+    assert "color: var(--void-ink)" in css.split("#hero-contrast article[data-pin=\"job-c\"] h3", 1)[1][:280]
+    assert "color: var(--gold-ink)" in css.split(".plane-strip.plane-page-first b", 1)[1][:180]
+    assert ".band .not" in css
+    assert ".band .kicker" in css
     routes = [item.get("route") for item in swa["routes"] if isinstance(item, dict)]
     assert "/brand" in routes
     assert "/craft" in routes
@@ -113,6 +117,14 @@ def test_release_is_326_honest_craft():
     search_js = Path("institute/search.js").read_text(encoding="utf-8")
     assert "RESULT_CAP" in search_js
     assert "aria-expanded" in search_js
+    assert 'role="combobox"' in html
+    assert 'role="combobox"' in app
+    assert 'role="combobox"' in kit
+    assert 'aria-haspopup="listbox"' in html
+    assert 'aria-haspopup="listbox"' in app
+    assert 'aria-haspopup="listbox"' in kit
+    assert 'id="twin-ribbon"' in app
+    assert "Escape" in search_js
     llms = public_llms().lower()
     assert "a 10/10 of quality, content, format, and graphics is not launch" in llms or "honest craft" in llms
     search = public_search()
