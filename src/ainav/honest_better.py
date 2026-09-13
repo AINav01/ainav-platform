@@ -1,0 +1,490 @@
+"""Honest better. Recorded. A much better build and business is not launch.
+
+A systems review is not a wired firm. A 10/10 is not a seated second human.
+A polish pass is not production. Interpretability is not LIVE_PIN_OK.
+Making better is not launch. Please make better is not launch.
+Twin HTTP 200 is not launch. Sandbox HTTP is not G14. Complements stay eight.
+A 10/10 of industry, client, and twin planes is not launch.
+A 10/10 of the write rail, proof day, and bake-off is not launch.
+A 10/10 of quality, content, format, and graphics is not launch.
+A green kit check is not launch. A 10/10 face is not production.
+Readable type is not launch. A 10/10 of operability, interoperability,
+and usability is not launch. A 10/10 of prebuilt certified day-one is not launch.
+Packs, modules, and custom builds are not a fourth SKU.
+"""
+
+from __future__ import annotations
+
+from typing import Any
+
+from agent_gov.errors import IntegrityError
+from ainav.catalog import (
+    HONEST_BETTER_FACT_IDS,
+    HONEST_BETTER_HOP_HREFS,
+    HONEST_BETTER_HOP_IDS,
+    HONEST_BETTER_HREFS,
+    HONEST_BETTER_REFUSE_IDS,
+    HONEST_BETTER_REFUSE_TEXT,
+    load_catalog,
+)
+
+KIND = "ainav.honest.better.v1"
+COMPLEMENT_COUNT = 8
+
+
+def validate_honest_better(catalog: dict[str, Any]) -> None:
+    body = catalog.get("honest_better")
+    if not isinstance(body, dict):
+        raise IntegrityError("catalog missing honest better", reason_code="CATALOG_REVIEW")
+    if body.get("kind") != KIND:
+        raise IntegrityError("honest better kind stays catalog law", reason_code="CATALOG_REVIEW")
+    false_flags = (
+        "sku",
+        "is_sku",
+        "fourth_sku",
+        "is_connection",
+        "is_complement",
+        "is_admit_plane",
+        "is_job_c",
+        "is_seat",
+        "better_as_launch",
+        "ten_as_seated",
+        "systems_as_wired",
+        "polish_as_production",
+        "interpret_as_live_pin",
+        "make_as_launch",
+        "please_as_launch",
+        "twin_http_is_launch",
+        "sandbox_http_is_g14",
+        "planes_as_launch",
+        "industry_ten_as_launch",
+        "client_ten_as_live_client",
+        "twin_ten_as_launch",
+        "named_vertical_as_sku",
+        "institute_twin_is_assigned_sandbox",
+        "shared_sandbox_is_production",
+        "rails_as_launch",
+        "roster_as_wired",
+        "flag_strip_as_admit",
+        "craft_as_launch",
+        "look_as_production",
+        "graphic_as_launch",
+        "kit_as_launch",
+        "face_as_launch",
+        "type_as_launch",
+        "use_as_launch",
+        "certified_as_launch",
+        "packs_as_sku",
+        "cms",
+        "host",
+        "is_host",
+        "apex",
+        "closes_dual_admit",
+        "wired",
+        "claimed",
+        "certified",
+        "live",
+        "live_pin_ok",
+        "launch",
+        "created",
+        "signed_l1",
+        "named_client",
+        "billing_provider",
+        "running_firm",
+        "recognized_revenue",
+    )
+    for flag in false_flags:
+        if body.get(flag) is True:
+            raise IntegrityError(
+                "honest better cannot claim " + flag.replace("_", " "),
+                reason_code="CATALOG_REVIEW",
+            )
+    if body.get("honest") is not True:
+        raise IntegrityError("honest better stays honest", reason_code="CATALOG_REVIEW")
+    if body.get("considered") is not True:
+        raise IntegrityError("honest better stays considered", reason_code="CATALOG_REVIEW")
+    if body.get("recorded") is not True:
+        raise IntegrityError("honest better stays recorded", reason_code="CATALOG_REVIEW")
+    if body.get("href") != "#success":
+        raise IntegrityError("honest better sits on #success", reason_code="CATALOG_REVIEW")
+    if body.get("better_as_launch") is not False:
+        raise IntegrityError("a much better build and business is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("ten_as_seated") is not False:
+        raise IntegrityError("a 10/10 is not a seated second human", reason_code="CATALOG_REVIEW")
+    if body.get("systems_as_wired") is not False:
+        raise IntegrityError("a systems review is not a wired firm", reason_code="CATALOG_REVIEW")
+    if body.get("polish_as_production") is not False:
+        raise IntegrityError("a polish pass is not production", reason_code="CATALOG_REVIEW")
+    if body.get("interpret_as_live_pin") is not False:
+        raise IntegrityError("interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if body.get("make_as_launch") is not False:
+        raise IntegrityError("making better is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("please_as_launch") is not False:
+        raise IntegrityError("please make better is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("twin_http_is_launch") is not False:
+        raise IntegrityError("twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("sandbox_http_is_g14") is not False:
+        raise IntegrityError("sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    if body.get("planes_as_launch") is not False:
+        raise IntegrityError("a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("industry_ten_as_launch") is not False:
+        raise IntegrityError("a 10/10 industry is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("client_ten_as_live_client") is not False:
+        raise IntegrityError("a 10/10 client is not a live client", reason_code="CATALOG_REVIEW")
+    if body.get("twin_ten_as_launch") is not False:
+        raise IntegrityError("a 10/10 twin is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("named_vertical_as_sku") is not False:
+        raise IntegrityError("a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if body.get("institute_twin_is_assigned_sandbox") is not False:
+        raise IntegrityError("the Institute twin is not the assigned client sandbox", reason_code="CATALOG_REVIEW")
+    if body.get("shared_sandbox_is_production") is not False:
+        raise IntegrityError("a shared sandbox is not production", reason_code="CATALOG_REVIEW")
+    if body.get("rails_as_launch") is not False:
+        raise IntegrityError("a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("roster_as_wired") is not False:
+        raise IntegrityError("a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if body.get("flag_strip_as_admit") is not False:
+        raise IntegrityError("an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    if body.get("craft_as_launch") is not False:
+        raise IntegrityError("a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("look_as_production") is not False:
+        raise IntegrityError("a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if body.get("graphic_as_launch") is not False:
+        raise IntegrityError("a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("kit_as_launch") is not False:
+        raise IntegrityError("a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("face_as_launch") is not False:
+        raise IntegrityError("a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if body.get("type_as_launch") is not False:
+        raise IntegrityError("readable type is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("use_as_launch") is not False:
+        raise IntegrityError("a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("certified_as_launch") is not False:
+        raise IntegrityError("a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if body.get("packs_as_sku") is not False:
+        raise IntegrityError("packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    hops = body.get("hops") or []
+    if not isinstance(hops, list) or [item.get("id") for item in hops if isinstance(item, dict)] != list(
+        HONEST_BETTER_HOP_IDS
+    ):
+        raise IntegrityError("honest better hops stay catalog law", reason_code="CATALOG_REVIEW")
+    hop_hrefs = {item.get("id"): item.get("href") for item in hops if isinstance(item, dict)}
+    if hop_hrefs != {key: HONEST_BETTER_HOP_HREFS[key] for key in HONEST_BETTER_HOP_IDS}:
+        raise IntegrityError("honest better hop hrefs stay catalog law", reason_code="CATALOG_REVIEW")
+    if any(item.get("closed") is True or item.get("live") is True for item in hops if isinstance(item, dict)):
+        raise IntegrityError("honest better hops are not closed or live", reason_code="CATALOG_REVIEW")
+    facts = body.get("facts") or []
+    if not isinstance(facts, list) or len(facts) != len(HONEST_BETTER_FACT_IDS):
+        raise IntegrityError("honest better stays five facts", reason_code="CATALOG_REVIEW")
+    if any(not isinstance(item, dict) for item in facts):
+        raise IntegrityError("honest better facts stay objects", reason_code="CATALOG_REVIEW")
+    if [item.get("id") for item in facts] != list(HONEST_BETTER_FACT_IDS):
+        raise IntegrityError("honest better facts stay catalog law", reason_code="CATALOG_REVIEW")
+    if any(item.get("sku") is True or item.get("admit") is True or item.get("live") is True for item in facts):
+        raise IntegrityError("honest better facts are not SKUs or admit", reason_code="CATALOG_REVIEW")
+    refuse = [item for item in (body.get("refuse") or []) if isinstance(item, dict) and item.get("refuse") is True]
+    if [item.get("id") for item in refuse] != list(HONEST_BETTER_REFUSE_IDS):
+        raise IntegrityError("honest better refuse ids stay catalog law", reason_code="CATALOG_REVIEW")
+    texts = {item.get("id"): item.get("refuse_text") for item in refuse}
+    if texts != {key: HONEST_BETTER_REFUSE_TEXT[key] for key in HONEST_BETTER_REFUSE_IDS}:
+        raise IntegrityError("honest better refuse text stays catalog law", reason_code="CATALOG_REVIEW")
+    refuse_hrefs = {item.get("id"): item.get("href") for item in refuse}
+    if refuse_hrefs != {key: HONEST_BETTER_HREFS[key] for key in HONEST_BETTER_REFUSE_IDS}:
+        raise IntegrityError("honest better refuse hrefs stay catalog law", reason_code="CATALOG_REVIEW")
+    if any(item.get("claimed") is False or item.get("live") is False for item in refuse):
+        raise IntegrityError("honest better refuse cannot leftover claimed or live", reason_code="CATALOG_REVIEW")
+    note = str(body.get("note") or "").lower()
+    if "honest better" not in note:
+        raise IntegrityError("honest better note keeps honest better", reason_code="CATALOG_REVIEW")
+    if "a much better build and business is not launch" not in note:
+        raise IntegrityError("honest better note keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
+    if "interpretability is not live_pin_ok" not in note:
+        raise IntegrityError("honest better note keeps interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "making better is not launch" not in note:
+        raise IntegrityError("honest better note keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    if "please make better is not launch" not in note:
+        raise IntegrityError("honest better note keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in note:
+        raise IntegrityError("honest better note keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in note:
+        raise IntegrityError("honest better note keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of industry, client, and twin planes is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if "a named vertical is not a sku" not in note:
+        raise IntegrityError("honest better note keeps a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in note:
+        raise IntegrityError("honest better note keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in note:
+        raise IntegrityError("honest better note keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in note:
+        raise IntegrityError("honest better note keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check is not launch" not in note:
+        raise IntegrityError("honest better note keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in note:
+        raise IntegrityError("honest better note keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in note:
+        raise IntegrityError("honest better note keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in note:
+        raise IntegrityError("honest better note keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    lede = str(body.get("lede") or "").lower()
+    if "a much better build and business is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
+    if "a systems review is not a wired firm" not in lede:
+        raise IntegrityError("honest better lede keeps a systems review is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "a 10/10 is not a seated second human" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 is not a seated second human", reason_code="CATALOG_REVIEW")
+    if "making better is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    if "please make better is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in lede:
+        raise IntegrityError("honest better lede keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of industry, client, and twin planes is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in lede:
+        raise IntegrityError("honest better lede keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in lede:
+        raise IntegrityError("honest better lede keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in lede:
+        raise IntegrityError("honest better lede keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in lede:
+        raise IntegrityError("honest better lede keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    site = str(body.get("site") or "").lower()
+    if "honest better" not in site:
+        raise IntegrityError("honest better site keeps honest better", reason_code="CATALOG_REVIEW")
+    if "not a /better route" not in site:
+        raise IntegrityError("honest better site keeps not a /better route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site:
+        raise IntegrityError("honest better site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    if "making better is not launch" not in site:
+        raise IntegrityError("honest better site keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    if "please make better is not launch" not in site:
+        raise IntegrityError("honest better site keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in site:
+        raise IntegrityError("honest better site keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in site:
+        raise IntegrityError("honest better site keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of industry, client, and twin planes is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if "a named vertical is not a sku" not in site:
+        raise IntegrityError("honest better site keeps a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if "the institute twin is not the assigned client sandbox" not in site:
+        raise IntegrityError("honest better site keeps the Institute twin is not the assigned client sandbox", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in site:
+        raise IntegrityError("honest better site keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in site:
+        raise IntegrityError("honest better site keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in site:
+        raise IntegrityError("honest better site keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check is not launch" not in site:
+        raise IntegrityError("honest better site keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in site:
+        raise IntegrityError("honest better site keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in site:
+        raise IntegrityError("honest better site keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in site:
+        raise IntegrityError("honest better site keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    complements = (catalog.get("connections") or {}).get("complements") or []
+    if len(complements) != COMPLEMENT_COUNT:
+        raise IntegrityError("complements stay eight. Honest better is not a complement", reason_code="CATALOG_REVIEW")
+    owner = (catalog.get("plane_interface") or {}).get("gaps") or {}
+    open_items = " ".join(str(item) for item in owner.get("owner_only_open") or [])
+    for stem in ("seat B click", "G12/G13", "billing", "launch"):
+        if stem not in open_items:
+            raise IntegrityError("honest better cannot close " + stem, reason_code="GAP_OPEN")
+    operating = catalog.get("operating") if isinstance(catalog.get("operating"), dict) else {}
+    playbook = body.get("owner_playbook") if isinstance(body.get("owner_playbook"), dict) else {}
+    if playbook.get("actor") != operating.get("owner_principal"):
+        raise IntegrityError("better playbook actor must be the sole owner", reason_code="CATALOG_REVIEW")
+    if playbook.get("cannot_be_done_by") != "cursor.cloud_agent":
+        raise IntegrityError("Cloud Agent cannot treat a much better build and business as launch", reason_code="CATALOG_REVIEW")
+
+
+def run_better_certification(catalog: dict[str, Any] | None = None) -> dict[str, Any]:
+    """In-tree recorded honest better. No live HTTP. Never live. Never launch."""
+    cat = catalog or load_catalog()
+    validate_honest_better(cat)
+    from ainav.microsoft.institute_publish import publish_institute
+
+    held = publish_institute()
+    if held.get("ok") is not False or held.get("reason") != "launch_not_ready":
+        raise IntegrityError("institute publish stays launch_not_ready", reason_code="CATALOG_REVIEW")
+    complements = (cat.get("connections") or {}).get("complements") or []
+    if len(complements) != COMPLEMENT_COUNT:
+        raise IntegrityError("complements stay eight after honest better", reason_code="CATALOG_REVIEW")
+    return {
+        "kind": KIND,
+        "considered": True,
+        "recorded": True,
+        "better_as_launch": False,
+        "ten_as_seated": False,
+        "systems_as_wired": False,
+        "polish_as_production": False,
+        "interpret_as_live_pin": False,
+        "make_as_launch": False,
+        "please_as_launch": False,
+        "twin_http_is_launch": False,
+        "sandbox_http_is_g14": False,
+        "planes_as_launch": False,
+        "industry_ten_as_launch": False,
+        "client_ten_as_live_client": False,
+        "twin_ten_as_launch": False,
+        "named_vertical_as_sku": False,
+        "institute_twin_is_assigned_sandbox": False,
+        "shared_sandbox_is_production": False,
+        "rails_as_launch": False,
+        "roster_as_wired": False,
+        "flag_strip_as_admit": False,
+        "craft_as_launch": False,
+        "look_as_production": False,
+        "graphic_as_launch": False,
+        "kit_as_launch": False,
+        "face_as_launch": False,
+        "type_as_launch": False,
+        "use_as_launch": False,
+        "certified_as_launch": False,
+        "packs_as_sku": False,
+        "complements": COMPLEMENT_COUNT,
+        "created": False,
+        "certified": False,
+        "live": False,
+        "live_pin_ok": False,
+        "launch": False,
+        "institute_publish": held.get("reason"),
+    }
+
+
+def doctrine() -> dict[str, Any]:
+    return dict(load_catalog()["honest_better"])
+
+
+def public_review() -> dict[str, Any]:
+    body = doctrine()
+    probes = run_better_certification()
+    cat = load_catalog()
+    return {
+        "kind": KIND,
+        "entity": cat["entity"]["legal"],
+        "institute": cat["entity"]["institute"],
+        "product": body["product"],
+        "microsoft_product": body.get("microsoft_product"),
+        "is_sku": False,
+        "fourth_sku": False,
+        "is_connection": False,
+        "is_complement": False,
+        "is_admit_plane": False,
+        "is_job_c": False,
+        "is_seat": False,
+        "better_as_launch": False,
+        "ten_as_seated": False,
+        "systems_as_wired": False,
+        "polish_as_production": False,
+        "interpret_as_live_pin": False,
+        "make_as_launch": False,
+        "please_as_launch": False,
+        "twin_http_is_launch": False,
+        "sandbox_http_is_g14": False,
+        "planes_as_launch": False,
+        "industry_ten_as_launch": False,
+        "client_ten_as_live_client": False,
+        "twin_ten_as_launch": False,
+        "named_vertical_as_sku": False,
+        "institute_twin_is_assigned_sandbox": False,
+        "shared_sandbox_is_production": False,
+        "rails_as_launch": False,
+        "roster_as_wired": False,
+        "flag_strip_as_admit": False,
+        "craft_as_launch": False,
+        "look_as_production": False,
+        "graphic_as_launch": False,
+        "kit_as_launch": False,
+        "face_as_launch": False,
+        "type_as_launch": False,
+        "use_as_launch": False,
+        "certified_as_launch": False,
+        "packs_as_sku": False,
+        "created": False,
+        "live": False,
+        "live_pin_ok": False,
+        "wired": False,
+        "certified": False,
+        "considered": True,
+        "recorded": True,
+        "honest": True,
+        "note": body["note"],
+        "lede": body.get("lede"),
+        "site": body.get("site"),
+        "href": "#success",
+        "facts": [dict(item) for item in body.get("facts") or []],
+        "hops": [dict(item) for item in body.get("hops") or []],
+        "refuse": [dict(item) for item in body.get("refuse") or []],
+        "owner_playbook": dict(body.get("owner_playbook") or {}),
+        "probes": probes,
+        "this_agent_cannot": [
+            "Treat a much better build and business as launch.",
+            "Treat a 10/10 as a seated second human.",
+            "Treat a systems review as a wired firm.",
+            "Treat a polish pass as production.",
+            "Treat interpretability as LIVE_PIN_OK.",
+            "Treat making better as launch.",
+            "Treat please make better as launch.",
+            "Treat twin HTTP as launch.",
+            "Treat sandbox HTTP as G14.",
+            "Treat a 10/10 of industry, client, and twin as launch.",
+            "Treat a 10/10 industry as launch.",
+            "Treat a 10/10 client as a live client.",
+            "Treat a 10/10 twin as launch.",
+            "Treat a named vertical as a SKU.",
+            "Treat the Institute twin as the assigned client sandbox.",
+            "Treat a 10/10 of the write rail, proof day, and bake-off as launch.",
+            "Treat a polished Microsoft roster as a wired firm.",
+            "Treat an identify flag strip as admit.",
+            "Treat a 10/10 of quality, content, format, and graphics as launch.",
+            "Treat a 10/10 look as production.",
+            "Treat a polished graphic as launch.",
+            "Treat a green kit check as launch.",
+            "Treat a 10/10 face as production.",
+            "Treat readable type as launch.",
+            "Treat a 10/10 of operability, interoperability, and usability as launch.",
+            "Treat a 10/10 of prebuilt certified day-one as launch.",
+            "Treat packs as a fourth SKU.",
+        ],
+    }

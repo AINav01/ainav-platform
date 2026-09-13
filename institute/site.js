@@ -5189,6 +5189,84 @@
   }
   bindJoinRefuses(document.getElementById("join-consider"));
 
+  var BETTER_REFUSE = {
+    better_as_launch: {
+      message: "Refused. A much better build and business is not launch.",
+      ledger: "better_denied · much better build and business as launch\nA much better build and business is not launch.\nBoards stay recorded.\nlive=false · live_pin_ok=false"
+    },
+    ten_as_seated: {
+      message: "Refused. A 10/10 is not a seated second human.",
+      ledger: "better_denied · 10/10 as seated\nA 10/10 is not a seated second human.\nSeat B stays open.\nlive=false · live_pin_ok=false"
+    },
+    systems_as_wired: {
+      message: "Refused. A systems review is not a wired firm.",
+      ledger: "better_denied · systems review as wired firm\nA systems review is not a wired firm.\nHASH_FIELDS fail-closed.\nlive=false · live_pin_ok=false"
+    },
+    polish_as_production: {
+      message: "Refused. A polish pass is not production.",
+      ledger: "better_denied · polish pass as production\nA polish pass is not production.\nTwin stays a twin.\nlive=false · live_pin_ok=false"
+    },
+    interpret_as_live_pin: {
+      message: "Refused. Interpretability is not LIVE_PIN_OK.",
+      ledger: "better_denied · interpretability as LIVE_PIN_OK\nInterpretability is not LIVE_PIN_OK.\nA readable board is not a live pin.\nlive=false · live_pin_ok=false"
+    },
+    make_as_launch: {
+      message: "Refused. Making better is not launch.",
+      ledger: "better_denied · making better as launch\nMaking better is not launch.\nBoards stay recorded.\nlive=false · live_pin_ok=false"
+    }
+  };
+
+  function writeBetterLedger(text) {
+    var node = document.getElementById("better-ledger");
+    if (!node) return;
+    node.textContent = text;
+  }
+
+  function refuseBetter(button, message, ledger) {
+    var refuse = document.getElementById("better-refuse");
+    if (refuse) {
+      refuse.textContent = message;
+      refuse.classList.add("is-live");
+    }
+    if (button) button.setAttribute("aria-pressed", "true");
+    writeBetterLedger(ledger);
+  }
+
+  function bindBetterRefuses(root) {
+    if (!root || root.getAttribute("data-better-bound")) return;
+    root.setAttribute("data-better-bound", "1");
+    root.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-better-refuse]");
+      if (!btn || !root.contains(btn)) return;
+      var id = btn.getAttribute("data-better-refuse") || "";
+      var pack = BETTER_REFUSE[id] || {};
+      var message = btn.getAttribute("data-refuse-text") || pack.message;
+      if (!message) return;
+      ev.preventDefault();
+      refuseBetter(
+        btn,
+        message,
+        pack.ledger || ("better_denied · " + id + "\nA much better build and business is not launch.\nlive=false · live_pin_ok=false")
+      );
+    });
+  }
+  bindBetterRefuses(document.getElementById("better-consider"));
+
+  fetch("better.json")
+    .then(function (res) {
+      return res.ok ? res.json() : null;
+    })
+    .then(function (data) {
+      if (!data) return;
+      if (data.live || data.better_as_launch || data.ten_as_seated || data.systems_as_wired || data.polish_as_production || data.interpret_as_live_pin || data.make_as_launch || data.certified) return;
+      var status = document.getElementById("better-status");
+      if (status) {
+        status.textContent =
+          "honest=true · recorded=true · better_as_launch=false · ten_as_seated=false · systems_as_wired=false · polish_as_production=false · interpret_as_live_pin=false · make_as_launch=false · live=false";
+      }
+    })
+    .catch(function () {});
+
   fetch("join.json")
     .then(function (res) {
       return res.ok ? res.json() : null;

@@ -29,6 +29,27 @@ test("kit and identify refuse admit and CMS", async ({ page }) => {
 
 test("axe on the application floor", async ({ page }) => {
   await page.goto("/app.html?v=2600#floor");
+  await expect(page.locator("#app-search")).toHaveAttribute("role", "combobox");
+  const results = await new AxeBuilder({ page }).analyze();
+  const serious = results.violations.filter((item) =>
+    ["serious", "critical"].includes(item.impact)
+  );
+  expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+});
+
+test("axe on the kit", async ({ page }) => {
+  await page.goto("/kit.html?v=2600");
+  await expect(page.locator("#kit-search")).toHaveAttribute("role", "combobox");
+  const results = await new AxeBuilder({ page }).analyze();
+  const serious = results.violations.filter((item) =>
+    ["serious", "critical"].includes(item.impact)
+  );
+  expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+});
+
+test("axe on the sale face", async ({ page }) => {
+  await page.goto("/index.html?v=2600");
+  await expect(page.locator("#site-search")).toHaveAttribute("role", "combobox");
   const results = await new AxeBuilder({ page }).analyze();
   const serious = results.violations.filter((item) =>
     ["serious", "critical"].includes(item.impact)

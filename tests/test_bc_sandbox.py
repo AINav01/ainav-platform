@@ -217,6 +217,31 @@ def test_sandbox_request_json_plain_and_http_errors(monkeypatch):
     assert body == "boom"
 
 
+def test_http_sandbox_cannot_flip_catalog_next_pin():
+    from ainav.catalog import load_catalog
+    from ainav.errors import LivePinError
+    from ainav.next_pin import send_sandbox
+
+    pin = load_catalog()["next_pin"]
+    assert pin["sent"] is False
+    assert pin["live"] is False
+    assert pin["production"] is False
+    assert pin["live_pin_ok"] is False
+    http = {
+        "ok": True,
+        "sent": True,
+        "posted": True,
+        "live": False,
+        "production": False,
+        "live_pin_ok": False,
+    }
+    assert pin["sent"] is not http["sent"]
+    with pytest.raises(LivePinError) as exc:
+        send_sandbox({"sent": True, "live_pin_ok": False})
+    assert exc.value.reason_code == "LIVE_PIN_NOT_CLAIMED"
+    assert load_catalog()["next_pin"]["sent"] is False
+
+
 def test_cli_sandbox_wedge(monkeypatch, capsys):
     from ainav.__main__ import main
     from ainav.microsoft import bc_sandbox, health

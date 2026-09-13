@@ -24,7 +24,7 @@ from ainav.microsoft.institute_publish import publish_institute
 
 def test_release_is_301_honest_control():
     cat = load_catalog()
-    assert cat["entity"]["release"] == "3.20.0"
+    assert cat["entity"]["release"] == "3.28.0"
     drawer = cat["expert_review"]["success"]["industry_drawer"]
     control = drawer["control"]
     rooms = drawer["rooms"]
@@ -76,7 +76,7 @@ def test_release_is_301_honest_control():
     assert "if you don't have it" in principles
     assert "company policy is not a sku" in principles
     upgrades = {item["n"]: item for item in cat["expert_review"]["upgrades"]}
-    assert len(cat["expert_review"]["upgrades"]) == 90
+    assert len(cat["expert_review"]["upgrades"]) == 98
     assert upgrades[71]["who"] == "tree"
     assert upgrades[71]["done"] is True
     assert upgrades[71]["marks_live_pin"] is False
@@ -112,9 +112,9 @@ def test_release_is_301_honest_control():
     assert "Honest" in identify
     assert "honest control" in twin.lower()
     dash = public_dashboard()
-    assert dash["release"] == "3.20.0"
+    assert dash["release"] == "3.28.0"
     status = public_status()
-    assert status["release"] == "3.20.0"
+    assert status["release"] == "3.28.0"
     assert status["website"]["industry_control"] is True
     assert status["website"]["industry_honest"] is True
     assert status["website"]["industry_control_live"] is False
@@ -256,8 +256,9 @@ def test_industry_control_fail_closed():
     with pytest.raises(IntegrityError):
         catmod._validate_success_program(ciso)
     upgrade = copy.deepcopy(cat)
-    upgrade["expert_review"]["upgrades"][-1]["title"] = "Rooms"
-    upgrade["expert_review"]["upgrades"][-1]["do"] = "Ship 3.01.0. Not LIVE_PIN_OK."
+    by_n = {item["n"]: item for item in upgrade["expert_review"]["upgrades"]}
+    by_n[71]["title"] = "Rooms"
+    by_n[71]["do"] = "Ship 3.01.0. Not LIVE_PIN_OK."
     with pytest.raises(IntegrityError):
         validate_catalog(upgrade)
     principles_policy = copy.deepcopy(cat["expert_review"]["first_principles"])

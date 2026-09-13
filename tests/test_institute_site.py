@@ -37,6 +37,9 @@ def test_institute_foundation_is_catalog_honest():
     assert "/search.json" in swa["navigationFallback"]["exclude"]
     assert "/plane-business.json" in swa["navigationFallback"]["exclude"]
     assert "/llms.txt" in swa["navigationFallback"]["exclude"]
+    assert "/better" in swa["navigationFallback"]["exclude"]
+    assert "/join" in swa["navigationFallback"]["exclude"]
+    assert any(item.get("route") == "/better" and item.get("statusCode") == 404 for item in swa["routes"])
     assert "Content-Security-Policy" in swa["globalHeaders"]
     assert swa["responseOverrides"]["404"]["rewrite"] == "/404.html"
     assert Path("institute/404.html").exists()

@@ -1209,8 +1209,8 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
     if not isinstance(body, dict):
         raise IntegrityError("catalog missing expert review", reason_code="CATALOG_REVIEW")
     upgrades = body.get("upgrades") or []
-    if not 16 <= len(upgrades) <= 90:
-        raise IntegrityError("expert review needs 16–90 upgrades", reason_code="CATALOG_REVIEW")
+    if not 16 <= len(upgrades) <= 98:
+        raise IntegrityError("expert review needs 16–98 upgrades", reason_code="CATALOG_REVIEW")
     if not any(
         item.get("n") == 16 and item.get("who") == "tree" and item.get("done") is True
         for item in upgrades
@@ -1291,6 +1291,14 @@ def _validate_expert_review(catalog: dict[str, Any]) -> None:
         88: ("honest hold", "live_pin_ok"),
         89: ("honest close", "live_pin_ok"),
         90: ("honest join", "live_pin_ok"),
+        91: ("honest better", "live_pin_ok"),
+        92: ("making better", "live_pin_ok"),
+        93: ("please make better", "live_pin_ok"),
+        94: ("honest planes", "live_pin_ok"),
+        95: ("honest rails", "live_pin_ok"),
+        96: ("honest craft", "live_pin_ok"),
+        97: ("honest face", "live_pin_ok"),
+        98: ("honest certified", "live_pin_ok"),
     }
     by_n = {item.get("n"): item for item in upgrades}
     for number, stems in required_done.items():
@@ -1885,6 +1893,56 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("CISO does-not keeps management and operations as closed from this plane", reason_code="CATALOG_REVIEW")
     if "a certified simulation as a running firm" not in does_not:
         raise IntegrityError("CISO posture does not treat a certified simulation as a running firm", reason_code="CATALOG_REVIEW")
+    if "a much better build and business as launch" not in does_not:
+        raise IntegrityError("CISO does-not keeps a much better build and business as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 as a seated second human" not in does_not:
+        raise IntegrityError("CISO does-not keeps a 10/10 as a seated second human", reason_code="CATALOG_REVIEW")
+    if "a systems review as a wired firm" not in does_not:
+        raise IntegrityError("CISO does-not keeps a systems review as a wired firm", reason_code="CATALOG_REVIEW")
+    if "a polish pass as production" not in does_not:
+        raise IntegrityError("CISO does-not keeps a polish pass as production", reason_code="CATALOG_REVIEW")
+    if "interpretability as live_pin_ok" not in does_not:
+        raise IntegrityError("CISO posture does not treat interpretability as LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if "making better as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat making better as launch", reason_code="CATALOG_REVIEW")
+    if "please make better as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat please make better as launch", reason_code="CATALOG_REVIEW")
+    if "twin http as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat twin HTTP as launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http as g14" not in does_not:
+        raise IntegrityError("CISO posture does not treat sandbox HTTP as G14", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of industry, client, and twin as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of industry, client, and twin as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 industry as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 industry as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 client as a live client" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 client as a live client", reason_code="CATALOG_REVIEW")
+    if "a 10/10 twin as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 twin as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of the write rail, proof day, and bake-off as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of the write rail, proof day, and bake-off as launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster as a wired firm" not in does_not:
+        raise IntegrityError("CISO posture does not treat a polished Microsoft roster as a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip as admit" not in does_not:
+        raise IntegrityError("CISO posture does not treat an identify flag strip as admit", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of quality, content, format, and graphics as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of quality, content, format, and graphics as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 look as production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a polished graphic as launch", reason_code="CATALOG_REVIEW")
+    if "a green kit check as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a green kit check as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face as production" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 face as production", reason_code="CATALOG_REVIEW")
+    if "readable type as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat readable type as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of operability, interoperability, and usability as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of operability, interoperability, and usability as launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one as launch" not in does_not:
+        raise IntegrityError("CISO posture does not treat a 10/10 of prebuilt certified day-one as launch", reason_code="CATALOG_REVIEW")
+    if "packs as a fourth sku" not in does_not:
+        raise IntegrityError("CISO posture does not treat packs as a fourth SKU", reason_code="CATALOG_REVIEW")
     hosted_production = success.get("honest_production")
     if not isinstance(hosted_production, dict):
         raise IntegrityError("success program keeps honest production", reason_code="CATALOG_REVIEW")
@@ -1976,6 +2034,21 @@ def _validate_success_program(success: Any) -> None:
         raise IntegrityError("success honest join is not LIVE_PIN_OK and is not a wired firm", reason_code="CATALOG_REVIEW")
     if hosted_join.get("manage_ops_as_closed") is True or hosted_join.get("certify_as_running") is True:
         raise IntegrityError("success honest join does not close management and is not a running firm", reason_code="CATALOG_REVIEW")
+    hosted_better = success.get("honest_better")
+    if not isinstance(hosted_better, dict):
+        raise IntegrityError("success program keeps honest better", reason_code="CATALOG_REVIEW")
+    if hosted_better.get("kind") != "ainav.honest.better.v1" or hosted_better.get("honest") is not True:
+        raise IntegrityError("success honest better stays catalog law", reason_code="CATALOG_REVIEW")
+    if hosted_better.get("href") != "#success":
+        raise IntegrityError("success honest better sits on #success", reason_code="CATALOG_REVIEW")
+    if hosted_better.get("live") is True or hosted_better.get("better_as_launch") is True:
+        raise IntegrityError("success honest better stays not live and a much better build and business is not launch", reason_code="CATALOG_REVIEW")
+    if hosted_better.get("ten_as_seated") is True or hosted_better.get("systems_as_wired") is True:
+        raise IntegrityError("success honest better is not seated and is not a wired firm", reason_code="CATALOG_REVIEW")
+    if hosted_better.get("polish_as_production") is True or hosted_better.get("interpret_as_live_pin") is True:
+        raise IntegrityError("success honest better is not production and is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    if hosted_better.get("make_as_launch") is True:
+        raise IntegrityError("success honest better making better is not launch", reason_code="CATALOG_REVIEW")
     seat = success.get("seat_b") or {}
     if str(seat.get("mailbox") or "") != "chodnett@ainav.institute":
         raise IntegrityError("seat B meaning must keep the recorded mailbox", reason_code="ORG_SECOND_OFFICER")
@@ -3801,6 +3874,40 @@ HONEST_JOIN_REFUSE_TEXT = {
     "certify_as_running": "Refused. A certified simulation is not a running firm.",
 }
 HONEST_JOIN_HREFS = {key: "#firm" for key in HONEST_JOIN_REFUSE_IDS}
+HONEST_BETTER_FACT_IDS = ["systems", "services", "interpretability", "polish", "business"]
+HONEST_BETTER_HOP_IDS = [
+    "systems",
+    "build",
+    "business",
+    "services",
+    "polish",
+    "owner",
+]
+HONEST_BETTER_HOP_HREFS = {
+    "systems": "#buyer",
+    "build": "#whole",
+    "business": "#firm",
+    "services": "#firm-ms",
+    "polish": "#ten-consider",
+    "owner": "#ten-consider",
+}
+HONEST_BETTER_REFUSE_IDS = [
+    "better_as_launch",
+    "ten_as_seated",
+    "systems_as_wired",
+    "polish_as_production",
+    "interpret_as_live_pin",
+    "make_as_launch",
+]
+HONEST_BETTER_REFUSE_TEXT = {
+    "better_as_launch": "Refused. A much better build and business is not launch.",
+    "ten_as_seated": "Refused. A 10/10 is not a seated second human.",
+    "systems_as_wired": "Refused. A systems review is not a wired firm.",
+    "polish_as_production": "Refused. A polish pass is not production.",
+    "interpret_as_live_pin": "Refused. Interpretability is not LIVE_PIN_OK.",
+    "make_as_launch": "Refused. Making better is not launch.",
+}
+HONEST_BETTER_HREFS = {key: "#success" for key in HONEST_BETTER_REFUSE_IDS}
 INDUSTRY_DRAWER_AREA_IDS = ["public", "encyclopedia", "owner", "sandbox", "industry"]
 INDUSTRY_DRAWER_AREA_HREFS = {
     "public": "#buyer",
@@ -4298,8 +4405,8 @@ def _validate_public_face(face: Any) -> None:
     if book_ids != ["sale", "owner", "book"]:
         raise IntegrityError("owner book groups are sale, owner, book", reason_code="CATALOG_PLANE")
     sale_hrefs = [str(item.get("href") or "") for item in (book[0].get("items") or [])]
-    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path", "#close-consider", "#firm", "#join-consider"]:
-        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin, honest close, firm, honest join", reason_code="CATALOG_PLANE")
+    if sale_hrefs != ["#buyer", "#twin", "#success", "#control", "#risk", "#market", "#have", "#product", "#path", "#close-consider", "#firm", "#join-consider", "#better-consider"]:
+        raise IntegrityError("owner book sale keeps write, proof, bake-off, control, risk, market, missing piece, product, client twin, honest close, firm, honest join, honest better", reason_code="CATALOG_PLANE")
     owner_hrefs = [str(item.get("href") or "") for item in (book[1].get("items") or [])]
     if owner_hrefs[:3] != ["#closed", "#missing", "#open"]:
         raise IntegrityError("owner book keeps Closed, Owner, Open in order", reason_code="CATALOG_PLANE")
@@ -4876,6 +4983,14 @@ def _validate_instrument_plane(catalog: dict[str, Any], body: dict[str, Any]) ->
     _validate_instrument_318(catalog, body)
     _validate_instrument_319(catalog, body)
     _validate_instrument_320(catalog, body)
+    _validate_instrument_321(catalog, body)
+    _validate_instrument_322(catalog, body)
+    _validate_instrument_323(catalog, body)
+    _validate_instrument_324(catalog, body)
+    _validate_instrument_325(catalog, body)
+    _validate_instrument_326(catalog, body)
+    _validate_instrument_327(catalog, body)
+    _validate_instrument_328(catalog, body)
 
 
 def _validate_instrument_272(catalog: dict[str, Any], body: dict[str, Any]) -> None:
@@ -6666,8 +6781,6 @@ def _validate_instrument_319(catalog: dict[str, Any], body: dict[str, Any]) -> N
 
 
 def _validate_instrument_320(catalog: dict[str, Any], body: dict[str, Any]) -> None:
-    if catalog.get("entity", {}).get("release") != "3.20.0":
-        raise IntegrityError("entity.release is 3.20.0", reason_code="CATALOG_PLANE")
     closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
     if not any("3.20.0" in item and "honest join" in item for item in closed_eng):
         raise IntegrityError("closed_in_tree must keep 3.20.0 honest join", reason_code="CATALOG_ENGINEERING")
@@ -6717,6 +6830,378 @@ def _validate_instrument_320(catalog: dict[str, Any], body: dict[str, Any]) -> N
     from ainav.honest_join import validate_honest_join
 
     validate_honest_join(catalog)
+
+
+def _validate_instrument_321(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.21.0" in item and "honest better" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.21.0 honest better", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_better") is not True or site.get("honest_join") is not True:
+        raise IntegrityError("3.21.0 website has honest better", reason_code="CATALOG_PLANE")
+    if site.get("honest_better_live") is True or site.get("better_as_launch") is True:
+        raise IntegrityError("3.21.0 better is not live and a much better build and business is not launch", reason_code="CATALOG_PLANE")
+    if site.get("ten_as_seated") is True or site.get("systems_as_wired") is True:
+        raise IntegrityError("3.21.0 a 10/10 is not seated and a systems review is not wired", reason_code="CATALOG_PLANE")
+    if site.get("polish_as_production") is True or site.get("interpret_as_live_pin") is True:
+        raise IntegrityError("3.21.0 a polish pass is not production and interpretability is not LIVE_PIN_OK", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("kind") != "ainav.honest.better.v1" or better.get("honest") is not True:
+        raise IntegrityError("3.21.0 honest better kind stays catalog law", reason_code="CATALOG_REVIEW")
+    if better.get("better_as_launch") is True or better.get("signed_l1") is True:
+        raise IntegrityError("3.21.0 a much better build and business is not launch and signed L1 stays open", reason_code="CATALOG_REVIEW")
+    if better.get("certified") is True:
+        raise IntegrityError("3.21.0 honest better is not a certificate", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "honest better" not in site_note:
+        raise IntegrityError("3.21.0 better site keeps honest better", reason_code="CATALOG_REVIEW")
+    if "a much better build and business is not launch" not in site_note:
+        raise IntegrityError("3.21.0 better site keeps a much better build and business is not launch", reason_code="CATALOG_REVIEW")
+    if "not a /better route" not in site_note:
+        raise IntegrityError("3.21.0 better site keeps not a /better route", reason_code="CATALOG_REVIEW")
+    if "first glance stays the write rail" not in site_note:
+        raise IntegrityError("3.21.0 better site keeps first glance stays the write rail", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "honest better" not in principles:
+        raise IntegrityError("first-principles must keep honest better", reason_code="CATALOG_REVIEW")
+    if "a much better build and business is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a much better build and business is not launch", reason_code="CATALOG_REVIEW")
+    if "a systems review is not a wired firm" not in principles:
+        raise IntegrityError("first-principles must keep a systems review is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "interpretability is not live_pin_ok" not in principles:
+        raise IntegrityError("first-principles must keep interpretability is not LIVE_PIN_OK", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "sku attach" not in ops:
+        raise IntegrityError("3.21.0 operations note keeps SKU attach", reason_code="CATALOG_REVIEW")
+    if "#success" not in ops:
+        raise IntegrityError("3.21.0 operations note keeps #success", reason_code="CATALOG_REVIEW")
+    if "honest better" not in ops:
+        raise IntegrityError("3.21.0 operations note keeps honest better", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a much-better launch" not in managed:
+        raise IntegrityError("3.21.0 managed face refuses a much-better launch", reason_code="CATALOG_PLANE")
+    from ainav.honest_better import validate_honest_better
+
+    validate_honest_better(catalog)
+
+
+def _validate_instrument_322(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.22.0" in item and "making better" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.22.0 making better", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_make") is not True or site.get("honest_better") is not True:
+        raise IntegrityError("3.22.0 website has honest make on honest better", reason_code="CATALOG_PLANE")
+    if site.get("honest_make_live") is True or site.get("make_as_launch") is True:
+        raise IntegrityError("3.22.0 make is not live and making better is not launch", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("make_as_launch") is True:
+        raise IntegrityError("3.22.0 making better is not launch", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "making better is not launch" not in site_note:
+        raise IntegrityError("3.22.0 better site keeps making better is not launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "making better is not launch" not in principles:
+        raise IntegrityError("first-principles must keep making better is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "making better" not in ops:
+        raise IntegrityError("3.22.0 operations note keeps making better", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a make-better launch" not in managed:
+        raise IntegrityError("3.22.0 managed face refuses a make-better launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("make_as_launch") is True:
+        raise IntegrityError("3.22.0 hosted better making better is not launch", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_323(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.23.0" in item and "please make better" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.23.0 please make better", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("please_make") is not True or site.get("honest_make") is not True:
+        raise IntegrityError("3.23.0 website has please make on honest make", reason_code="CATALOG_PLANE")
+    if site.get("please_make_live") is True or site.get("please_as_launch") is True:
+        raise IntegrityError("3.23.0 please make is not live and please make better is not launch", reason_code="CATALOG_PLANE")
+    if site.get("twin_http_is_launch") is True or site.get("sandbox_http_is_g14") is True:
+        raise IntegrityError("3.23.0 twin HTTP is not launch and sandbox HTTP is not G14", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("please_as_launch") is True:
+        raise IntegrityError("3.23.0 please make better is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("twin_http_is_launch") is True or better.get("sandbox_http_is_g14") is True:
+        raise IntegrityError("3.23.0 twin HTTP is not launch and sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "please make better is not launch" not in site_note:
+        raise IntegrityError("3.23.0 better site keeps please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in site_note:
+        raise IntegrityError("3.23.0 better site keeps twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in site_note:
+        raise IntegrityError("3.23.0 better site keeps sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "please make better is not launch" not in principles:
+        raise IntegrityError("first-principles must keep please make better is not launch", reason_code="CATALOG_REVIEW")
+    if "twin http 200 is not launch" not in principles:
+        raise IntegrityError("first-principles must keep twin HTTP 200 is not launch", reason_code="CATALOG_REVIEW")
+    if "sandbox http is not g14" not in principles:
+        raise IntegrityError("first-principles must keep sandbox HTTP is not G14", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "please make better" not in ops:
+        raise IntegrityError("3.23.0 operations note keeps please make better", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a please-make-better launch" not in managed:
+        raise IntegrityError("3.23.0 managed face refuses a please-make-better launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("please_as_launch") is True:
+        raise IntegrityError("3.23.0 hosted better please make better is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("twin_http_is_launch") is True or hosted.get("sandbox_http_is_g14") is True:
+        raise IntegrityError("3.23.0 hosted better twin HTTP is not launch and sandbox HTTP is not G14", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_324(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.24.0" in item and "honest planes" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.24.0 honest planes", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_planes") is not True or site.get("please_make") is not True:
+        raise IntegrityError("3.24.0 website has honest planes on please make", reason_code="CATALOG_PLANE")
+    if site.get("honest_planes_live") is True or site.get("planes_as_launch") is True:
+        raise IntegrityError("3.24.0 planes are not live and a 10/10 of those planes is not launch", reason_code="CATALOG_PLANE")
+    if site.get("industry_ten_as_launch") is True or site.get("named_vertical_as_sku") is True:
+        raise IntegrityError("3.24.0 a 10/10 industry is not launch and a named vertical is not a SKU", reason_code="CATALOG_PLANE")
+    if site.get("client_ten_as_live_client") is True or site.get("institute_twin_is_assigned_sandbox") is True:
+        raise IntegrityError("3.24.0 a 10/10 client is not a live client and the Institute twin is not the assigned sandbox", reason_code="CATALOG_PLANE")
+    if site.get("twin_ten_as_launch") is True or site.get("shared_sandbox_is_production") is True:
+        raise IntegrityError("3.24.0 a 10/10 twin is not launch and a shared sandbox is not production", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("planes_as_launch") is True:
+        raise IntegrityError("3.24.0 a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("industry_ten_as_launch") is True or better.get("named_vertical_as_sku") is True:
+        raise IntegrityError("3.24.0 a 10/10 industry is not launch and a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if better.get("client_ten_as_live_client") is True or better.get("institute_twin_is_assigned_sandbox") is True:
+        raise IntegrityError("3.24.0 a 10/10 client is not a live client", reason_code="CATALOG_REVIEW")
+    if better.get("twin_ten_as_launch") is True or better.get("shared_sandbox_is_production") is True:
+        raise IntegrityError("3.24.0 a 10/10 twin is not launch and a shared sandbox is not production", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of industry, client, and twin planes is not launch" not in site_note:
+        raise IntegrityError("3.24.0 better site keeps a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if "a named vertical is not a sku" not in site_note:
+        raise IntegrityError("3.24.0 better site keeps a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if "the institute twin is not the assigned client sandbox" not in site_note:
+        raise IntegrityError("3.24.0 better site keeps the Institute twin is not the assigned client sandbox", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of industry, client, and twin planes is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of industry, client, and twin planes is not launch", reason_code="CATALOG_REVIEW")
+    if "a named vertical is not a sku" not in principles:
+        raise IntegrityError("first-principles must keep a named vertical is not a SKU", reason_code="CATALOG_REVIEW")
+    if "the institute twin is not the assigned client sandbox" not in principles:
+        raise IntegrityError("first-principles must keep the Institute twin is not the assigned client sandbox", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest planes" not in ops:
+        raise IntegrityError("3.24.0 operations note keeps honest planes", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-planes launch" not in managed:
+        raise IntegrityError("3.24.0 managed face refuses a 10/10-planes launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("planes_as_launch") is True:
+        raise IntegrityError("3.24.0 hosted better a 10/10 of those planes is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("industry_ten_as_launch") is True or hosted.get("client_ten_as_live_client") is True:
+        raise IntegrityError("3.24.0 hosted better industry and client tens stay not live", reason_code="CATALOG_PLANE")
+    if hosted.get("twin_ten_as_launch") is True or hosted.get("named_vertical_as_sku") is True:
+        raise IntegrityError("3.24.0 hosted better a 10/10 twin is not launch and a named vertical is not a SKU", reason_code="CATALOG_PLANE")
+    drawer = ((catalog.get("expert_review") or {}).get("success") or {}).get("industry_drawer") or {}
+    if drawer.get("industry_ten_as_launch") is True or drawer.get("named_vertical_as_sku") is True:
+        raise IntegrityError("3.24.0 industry drawer a 10/10 industry is not launch", reason_code="CATALOG_REVIEW")
+    drawer_note = " ".join(str(drawer.get(key) or "").lower() for key in ("lede", "site", "note", "glance"))
+    if "a 10/10 industry is not launch" not in drawer_note:
+        raise IntegrityError("3.24.0 industry drawer keeps a 10/10 industry is not launch", reason_code="CATALOG_REVIEW")
+    universe = ((catalog.get("expert_review") or {}).get("success") or {}).get("client_universe") or {}
+    if universe.get("client_ten_as_live_client") is True or universe.get("institute_twin_is_assigned_sandbox") is True:
+        raise IntegrityError("3.24.0 client universe a 10/10 client is not a live client", reason_code="CATALOG_REVIEW")
+    universe_note = " ".join(str(universe.get(key) or "").lower() for key in ("lede", "site", "note", "glance"))
+    if "a 10/10 client is not a live client" not in universe_note:
+        raise IntegrityError("3.24.0 client universe keeps a 10/10 client is not a live client", reason_code="CATALOG_REVIEW")
+
+
+def _validate_instrument_325(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.25.0" in item and "honest rails" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.25.0 honest rails", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_rails") is not True or site.get("honest_planes") is not True:
+        raise IntegrityError("3.25.0 website has honest rails on honest planes", reason_code="CATALOG_PLANE")
+    if site.get("honest_rails_live") is True or site.get("rails_as_launch") is True:
+        raise IntegrityError("3.25.0 rails are not live and a 10/10 of those rails is not launch", reason_code="CATALOG_PLANE")
+    if site.get("roster_as_wired") is True or site.get("flag_strip_as_admit") is True:
+        raise IntegrityError("3.25.0 a polished Microsoft roster is not a wired firm and an identify flag strip is not admit", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("rails_as_launch") is True:
+        raise IntegrityError("3.25.0 a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("roster_as_wired") is True or better.get("flag_strip_as_admit") is True:
+        raise IntegrityError("3.25.0 a polished Microsoft roster is not a wired firm and an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in site_note:
+        raise IntegrityError("3.25.0 better site keeps a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in site_note:
+        raise IntegrityError("3.25.0 better site keeps a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in site_note:
+        raise IntegrityError("3.25.0 better site keeps an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of the write rail, proof day, and bake-off is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of the write rail, proof day, and bake-off is not launch", reason_code="CATALOG_REVIEW")
+    if "a polished microsoft roster is not a wired firm" not in principles:
+        raise IntegrityError("first-principles must keep a polished Microsoft roster is not a wired firm", reason_code="CATALOG_REVIEW")
+    if "an identify flag strip is not admit" not in principles:
+        raise IntegrityError("first-principles must keep an identify flag strip is not admit", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest rails" not in ops:
+        raise IntegrityError("3.25.0 operations note keeps honest rails", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-rails launch" not in managed:
+        raise IntegrityError("3.25.0 managed face refuses a 10/10-rails launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("rails_as_launch") is True:
+        raise IntegrityError("3.25.0 hosted better a 10/10 of those rails is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("roster_as_wired") is True or hosted.get("flag_strip_as_admit") is True:
+        raise IntegrityError("3.25.0 hosted better roster is not wired and a flag strip is not admit", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_326(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.26.0" in item and "honest craft" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.26.0 honest craft", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_craft") is not True or site.get("honest_rails") is not True:
+        raise IntegrityError("3.26.0 website has honest craft on honest rails", reason_code="CATALOG_PLANE")
+    if site.get("honest_craft_live") is True or site.get("craft_as_launch") is True:
+        raise IntegrityError("3.26.0 craft is not live and a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_PLANE")
+    if site.get("look_as_production") is True or site.get("graphic_as_launch") is True:
+        raise IntegrityError("3.26.0 a 10/10 look is not production and a polished graphic is not launch", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("craft_as_launch") is True:
+        raise IntegrityError("3.26.0 a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("look_as_production") is True or better.get("graphic_as_launch") is True:
+        raise IntegrityError("3.26.0 a 10/10 look is not production and a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in site_note:
+        raise IntegrityError("3.26.0 better site keeps a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in site_note:
+        raise IntegrityError("3.26.0 better site keeps a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in site_note:
+        raise IntegrityError("3.26.0 better site keeps a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of quality, content, format, and graphics is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 look is not production" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 look is not production", reason_code="CATALOG_REVIEW")
+    if "a polished graphic is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a polished graphic is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest craft" not in ops:
+        raise IntegrityError("3.26.0 operations note keeps honest craft", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-craft launch" not in managed:
+        raise IntegrityError("3.26.0 managed face refuses a 10/10-craft launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("craft_as_launch") is True:
+        raise IntegrityError("3.26.0 hosted better a 10/10 of quality, content, format, and graphics is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("look_as_production") is True or hosted.get("graphic_as_launch") is True:
+        raise IntegrityError("3.26.0 hosted better a 10/10 look is not production and a polished graphic is not launch", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_327(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.27.0" in item and "honest face" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.27.0 honest face", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_face") is not True or site.get("honest_craft") is not True:
+        raise IntegrityError("3.27.0 website has honest face on honest craft", reason_code="CATALOG_PLANE")
+    if site.get("honest_face_live") is True or site.get("kit_as_launch") is True:
+        raise IntegrityError("3.27.0 face is not live and a green kit check is not launch", reason_code="CATALOG_PLANE")
+    if site.get("face_as_launch") is True or site.get("type_as_launch") is True:
+        raise IntegrityError("3.27.0 a 10/10 face is not production and readable type is not launch", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("kit_as_launch") is True:
+        raise IntegrityError("3.27.0 a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("face_as_launch") is True or better.get("type_as_launch") is True:
+        raise IntegrityError("3.27.0 a 10/10 face is not production and readable type is not launch", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a green kit check is not launch" not in site_note:
+        raise IntegrityError("3.27.0 better site keeps a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in site_note:
+        raise IntegrityError("3.27.0 better site keeps a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in site_note:
+        raise IntegrityError("3.27.0 better site keeps readable type is not launch", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a green kit check is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a green kit check is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 face is not production" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 face is not production", reason_code="CATALOG_REVIEW")
+    if "readable type is not launch" not in principles:
+        raise IntegrityError("first-principles must keep readable type is not launch", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest face" not in ops:
+        raise IntegrityError("3.27.0 operations note keeps honest face", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-face launch" not in managed:
+        raise IntegrityError("3.27.0 managed face refuses a 10/10-face launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("kit_as_launch") is True:
+        raise IntegrityError("3.27.0 hosted better a green kit check is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("face_as_launch") is True or hosted.get("type_as_launch") is True:
+        raise IntegrityError("3.27.0 hosted better a 10/10 face is not production and readable type is not launch", reason_code="CATALOG_PLANE")
+
+
+def _validate_instrument_328(catalog: dict[str, Any], body: dict[str, Any]) -> None:
+    if catalog.get("entity", {}).get("release") != "3.28.0":
+        raise IntegrityError("entity.release is 3.28.0", reason_code="CATALOG_PLANE")
+    closed_eng = [str(item).lower() for item in ((catalog.get("engineering") or {}).get("closed_in_tree") or [])]
+    if not any("3.28.0" in item and "honest certified" in item for item in closed_eng):
+        raise IntegrityError("closed_in_tree must keep 3.28.0 honest certified", reason_code="CATALOG_ENGINEERING")
+    site = (catalog.get("programs") or {}).get("website") or {}
+    if site.get("honest_certified") is not True or site.get("honest_face") is not True:
+        raise IntegrityError("3.28.0 website has honest certified on honest face", reason_code="CATALOG_PLANE")
+    if site.get("honest_certified_live") is True or site.get("use_as_launch") is True:
+        raise IntegrityError("3.28.0 certified is not live and a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_PLANE")
+    if site.get("certified_as_launch") is True or site.get("packs_as_sku") is True:
+        raise IntegrityError("3.28.0 a 10/10 of prebuilt certified day-one is not launch and packs are not a fourth SKU", reason_code="CATALOG_PLANE")
+    better = catalog.get("honest_better") or {}
+    if better.get("use_as_launch") is True:
+        raise IntegrityError("3.28.0 a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if better.get("certified_as_launch") is True or better.get("packs_as_sku") is True:
+        raise IntegrityError("3.28.0 a 10/10 of prebuilt certified day-one is not launch and packs are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    site_note = str(better.get("site") or "").lower()
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in site_note:
+        raise IntegrityError("3.28.0 better site keeps a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in site_note:
+        raise IntegrityError("3.28.0 better site keeps a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in site_note:
+        raise IntegrityError("3.28.0 better site keeps packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    principles = " ".join(str(item).lower() for item in ((catalog.get("expert_review") or {}).get("first_principles") or []))
+    if "a 10/10 of operability, interoperability, and usability is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_REVIEW")
+    if "a 10/10 of prebuilt certified day-one is not launch" not in principles:
+        raise IntegrityError("first-principles must keep a 10/10 of prebuilt certified day-one is not launch", reason_code="CATALOG_REVIEW")
+    if "packs, modules, and custom builds are not a fourth sku" not in principles:
+        raise IntegrityError("first-principles must keep packs, modules, and custom builds are not a fourth SKU", reason_code="CATALOG_REVIEW")
+    ops = str((catalog.get("operations") or {}).get("note") or "").lower()
+    if "honest certified" not in ops:
+        raise IntegrityError("3.28.0 operations note keeps honest certified", reason_code="CATALOG_REVIEW")
+    face = ((catalog.get("expert_review") or {}).get("success") or {}).get("managed_face") or {}
+    managed = str(face.get("managed") or "").lower()
+    if "not a 10/10-certified launch" not in managed:
+        raise IntegrityError("3.28.0 managed face refuses a 10/10-certified launch", reason_code="CATALOG_PLANE")
+    hosted = ((catalog.get("expert_review") or {}).get("success") or {}).get("honest_better") or {}
+    if hosted.get("use_as_launch") is True:
+        raise IntegrityError("3.28.0 hosted better a 10/10 of operability, interoperability, and usability is not launch", reason_code="CATALOG_PLANE")
+    if hosted.get("certified_as_launch") is True or hosted.get("packs_as_sku") is True:
+        raise IntegrityError("3.28.0 hosted better a 10/10 of prebuilt certified day-one is not launch and packs are not a fourth SKU", reason_code="CATALOG_PLANE")
 
 
 def _validate_instrument_271(catalog: dict[str, Any], body: dict[str, Any]) -> None:
